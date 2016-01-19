@@ -1,3 +1,3 @@
-# JS demo
+# Scenario editor
 
-A demo project showing Conveyal's best-practice Javacript techniques.
+Conveyal's tools for editing land-use/transportation scenarios.
