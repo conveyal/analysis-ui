@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "babel": {
     "presets": [
+      "stage-0",
       "react",
-      "es2015",
-      "stage-0"
+      "es2015"
     ]
   },
   "scripts": {
@@ -27,8 +27,11 @@
   },
   "homepage": "https://github.com/conveyal/scenario-editor#readme",
   "dependencies": {
+    "immutable": "^3.7.6",
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "react-redux": "^4.0.6",
+    "redux": "^3.0.5"
   },
   "devDependencies": {
     "babel": "^6.3.26",
@@ -38,6 +41,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
+    "redux-devtools": "^3.0.1",
     "serve": "^1.4.0",
     "watchify": "^3.7.0"
   }
