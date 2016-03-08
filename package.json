@@ -19,7 +19,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "NODE_PATH=./node_modules:$NODE_PATH watchify -dv -t browserify-css  -t babelify -r ./lib/index.js:index -o build/index.js",
     "start": "npm run www & npm run watch",
-    "www": "serve"
+    "www": "combine-serve --serve / . --proxy / http://localhost:7070 --port 6891 --host 127.0.0.1"
   },
   "repository": {
     "type": "git",
@@ -59,8 +59,10 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babelify": "^7.2.0",
+    "combine-serve": "^0.0.5",
     "browserify": "^13.0.0",
     "browserify-css": "^0.8.4",
+    "http-proxy": "^1.13.2",
     "redux-devtools": "^3.0.1",
     "serve": "^1.4.0",
     "turf-linestring": "^1.0.2",
