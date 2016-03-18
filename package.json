@@ -15,6 +15,9 @@
     "minify": true,
     "rootDir": "."
   },
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "NODE_PATH=./node_modules:$NODE_PATH watchify -dv -t browserify-css  -t babelify -r ./lib/index.js:index -o build/index.js",
@@ -39,9 +42,13 @@
     "leaflet-transit-editor": "^0.0.2",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-leaflet": "^0.10.1",
     "react-modal": "^0.6.1",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",
+    "redux-actions": "^0.9.1",
+    "redux-multi": "^0.1.12",
+    "relay": "^0.8.0",
     "shpjs": "^3.3.1",
     "turf-bearing": "^1.0.2",
     "turf-destination": "^1.2.1",
