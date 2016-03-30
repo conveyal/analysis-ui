@@ -43,5 +43,17 @@ ul, ol {
 }
 
 /** make the list of variants appear on one line with numbers above it. http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element */
-.Modification-chooseVariants li { display: inline-block; padding: 4px; counter-increment: choose-variants; }
-.Modification-chooseVariants li::before { content: counter(choose-variants); display: block; }
+.Modification-chooseVariants {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.Modification-chooseVariants li {
+  display: inline-block;
+  padding: 4px;
+  counter-increment: choose-variants;
+}
+.Modification-chooseVariants li::before {
+  content: counter(choose-variants);
+  display: block;
+}
