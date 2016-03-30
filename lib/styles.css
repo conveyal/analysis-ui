@@ -1,7 +1,24 @@
 /** References to CSS files that should be included. They will be packed by browserify-css */
 
+@import(node_modules/bootstrap/dist/css/bootstrap.css);
 @import(node_modules/leaflet/dist/leaflet.css);
 @import(node_modules/leaflet-draw/dist/leaflet.draw.css);
+
+.Fullscreen {
+  width: 75%;
+  height: 100%;
+  position: absolute;
+  padding: 0px;
+}
+
+.DockContent {
+  padding: 8px;
+  position: relative;
+}
+
+.DockContent-Title {
+  margin-bottom: 10px;
+}
 
 /** make the list of variants appear on one line with numbers above it. http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element */
 .Modification-chooseVariants li { display: inline-block; padding: 4px; counter-increment: choose-variants; }
