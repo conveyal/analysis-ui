@@ -4,6 +4,10 @@
 @import(node_modules/leaflet/dist/leaflet.css);
 @import(node_modules/leaflet-draw/dist/leaflet.draw.css);
 
+ul, ol {
+  padding-left: 20px;
+}
+
 .Fullscreen {
   width: 75%;
   height: 100%;
@@ -18,6 +22,20 @@
 
 .DockContent-Title {
   margin-bottom: 10px;
+}
+
+.DockContent-Title:before,
+.DockContent-Title:after {
+  display: table;
+  content: " ";
+}
+
+.DockContent-Title:after {
+  clear: both;
+}
+
+.DockContent-Title-Button {
+  margin-bottom: 5px;
 }
 
 /** make the list of variants appear on one line with numbers above it. http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element */
