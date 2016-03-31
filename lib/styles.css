@@ -16,12 +16,14 @@ ul, ol {
 }
 
 .DockContent {
-  padding: 8px;
   position: relative;
 }
 
 .DockContent-Title {
-  margin-bottom: 10px;
+  margin: 0;
+  padding: 20px 8px 8px;
+  font-size: 21px;
+  line-height: 34px;
 }
 
 .DockContent-Title:before,
@@ -34,17 +36,51 @@ ul, ol {
   clear: both;
 }
 
-.DockContent-Title-Button {
-  margin-bottom: 5px;
+.DockContent > .btn-group-justified > .btn {
+  border-radius: 0;
+}
+
+.DockContent > .btn-group-justified > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-left: none;
+}
+
+.DockContent > .btn-group-justified > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+  border-right: none;
+}
+
+.alert, .panel {
+  border-radius: 0;
+}
+
+.panel {
+  border-left: none;
+  border-right: none;
+  margin-bottom: 0;
+}
+
+.panel-heading {
+  padding: 8px;
 }
 
 .panel-heading .pull-right {
   margin-left: 8px;
 }
 
+.panel-body {
+  padding: 8px;
+}
+
 .panel-body legend {
   font-size: 1.3em;
   margin-bottom: 10px;
+}
+
+.form-inline .form-control {
+  margin: 0 8px;
+}
+
+.ModificationGroup {
+  border-top: 1px solid #e5e5e5;
 }
 
 /** make the list of variants appear on one line with numbers above it. http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element */
@@ -55,10 +91,18 @@ ul, ol {
 
 .Modification-chooseVariants li {
   display: inline-block;
-  padding-right: 4px;
+  padding-right: 8px;
   counter-increment: choose-variants;
 }
 .Modification-chooseVariants li::before {
   content: counter(choose-variants);
   display: block;
+}
+
+.Variants {
+  padding: 0 8px;
+}
+
+.Variants-Variant {
+  margin-bottom: 8px;
 }
