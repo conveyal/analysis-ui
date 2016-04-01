@@ -87,7 +87,7 @@ ul, ol {
 }
 
 .panel-body {
-  padding: 15px;
+  padding: 15px 15px 0;
 }
 
 .panel-body legend {
@@ -105,28 +105,16 @@ ul, ol {
   margin-bottom: 15px;
 }
 
+.form-inline .checkbox label {
+  padding: 0 15px 15px 0;
+}
+
 .form-inline .form-control {
   margin: 0 8px;
 }
 
 .ModificationGroup {
   border-top: 3px solid #e5e5e5;
-}
-
-/** make the list of variants appear on one line with numbers above it. http://blog.teamtreehouse.com/customize-ordered-lists-pseudo-element */
-.Modification-chooseVariants {
-  padding-left: 0;
-  margin-bottom: 0;
-}
-
-.Modification-chooseVariants li {
-  display: inline-block;
-  padding-right: 8px;
-  counter-increment: choose-variants;
-}
-.Modification-chooseVariants li::before {
-  content: counter(choose-variants);
-  display: block;
 }
 
 .Variants {
