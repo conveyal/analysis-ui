@@ -117,10 +117,36 @@ ul, ol {
   border-top: 3px solid #e5e5e5;
 }
 
+.ModificationGroup .form-group {
+  clear: both;
+}
+
+.ModificationGroup .form-group:before,
+.ModificationGroup .form-group:after {
+  display: table;
+  content: " ";
+}
+
+.ModificationGroup label+.form-control {
+  display: inline-block;
+  max-width: 50%;
+  float: right;
+}
+
+.ModificationGroup .form-group label {
+  display: inline-block;
+  line-height: 34px;
+  margin-bottom: 0;
+}
+
 .Variants {
   padding: 0 15px;
 }
 
 .Variants-Variant {
   margin-bottom: 15px;
+}
+
+.ModificationGroup .Variants-Variant label+.form-control {
+  max-width: 100%;
 }
