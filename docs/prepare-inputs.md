@@ -9,11 +9,11 @@ Once you've gathered GTFS data, you can log into scenario editor. To upload GTFS
 files, give the files a name, and click 'Upload.' You only need to do this once for each set of input data, even if you are creating multiple
 scenarios based on the same data.
 
-<img src="img/upload.png" alt="upload bundle dialog" />
+<img src="../img/upload.png" alt="upload bundle dialog" />
 
 You can then create a new scenario by clicking on "Open Project," entering a name in the text field, and clicking "Create":
 
-<img src="img/create-project.png" alt="create project" />
+<img src="../img/create-project.png" alt="create project" />
 
 You can re-open a project by clicking "Open Project" and selecting the name of the project.
 
