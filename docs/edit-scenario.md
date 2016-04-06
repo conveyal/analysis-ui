@@ -8,10 +8,18 @@ After uploading a bundle and creating a project, you will arrive at a screen tha
 
 <img src="../img/new-project.png" />
 
+A transport scenario is made up of many modifications, each of which represents a single operation on the transit network (for example adding a line, or adjusting
+the speed of an existing line). All modifications are listed in the right-hand bar. Each modification has a name, which is the top text box. This name can
+be used to help keep track of the intent of different modifications. Above each modification are several controls. The map icon controls whether that modification
+is currently displayed on the map, and the caret allows expanding or collapsing the modification to save space on the display. The large red X will delete a modification:
+
+<img src="../img/modifications.png" alt="Modifications display" />
+
 Oftentimes, there will be several scenarios that are very similar, differing only in a few minor aspects. In particular, one scenario is often
 a superset of another (for instance, there is a base scenario which involves building six new rail lines, and another scenario which additionally
 involves building four more). Instead of having to code each scenario separately, we support the concept of scenario variants. You can create variants
-by clicking the "Create" button under "Variants," and entering a name for each variant.
+by clicking the "Create" button under "Variants," and entering a name for each variant. There are also buttons to show only the modifications belonging
+to a particular variant on the map, or expand the modifications which are part of a variant.
 
 <img src="../img/variants-editor.png" />
 
