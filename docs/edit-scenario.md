@@ -92,4 +92,26 @@ are 500m away; this will add significant unnecessary walking and bias the resuts
 
 The transit data used in this demo came from [WMATA](http://wmata.com) and [DC GIS](http://octo.dc.gov/service/dc-gis-services).
 
+## Remove trips
+
+Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific patterns on a particular routes.
+In order to remove trips, create a new Remove Trips modification, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this
+route/pattern combination will be removed, and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active,
+so in this case implies that the trips will be removed from the selected variants.
+
+<img src="../img/remove-trips.png" alt="Remove trips" />
+
+## Remove stops
+
+It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new Remove Stops modification, and select a feed, route, and
+patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to
+the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.
+
+<img src="../img/remove-stops.png"  alt="Remove stops" />
+
+
+
+
+
+
 
