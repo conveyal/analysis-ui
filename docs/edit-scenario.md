@@ -8,10 +8,18 @@ After uploading a bundle and creating a project, you will arrive at a screen tha
 
 <img src="../img/new-project.png" />
 
+A transport scenario is made up of many modifications, each of which represents a single operation on the transit network (for example adding a line, or adjusting
+the speed of an existing line). All modifications are listed in the right-hand bar. Each modification has a name, which is the top text box. This name can
+be used to help keep track of the intent of different modifications. Above each modification are several controls. The map icon controls whether that modification
+is currently displayed on the map, and the caret allows expanding or collapsing the modification to save space on the display. The large red X will delete a modification:
+
+<img src="../img/modifications.png" alt="Modifications display" />
+
 Oftentimes, there will be several scenarios that are very similar, differing only in a few minor aspects. In particular, one scenario is often
 a superset of another (for instance, there is a base scenario which involves building six new rail lines, and another scenario which additionally
 involves building four more). Instead of having to code each scenario separately, we support the concept of scenario variants. You can create variants
-by clicking the "Create" button under "Variants," and entering a name for each variant.
+by clicking the "Create" button under "Variants," and entering a name for each variant. There are also buttons to show only the modifications belonging
+to a particular variant on the map, or expand the modifications which are part of a variant.
 
 <img src="../img/variants-editor.png" />
 
@@ -128,6 +136,43 @@ dwell times adjusted). You can then choose to either enter a new dwell time (in 
 
 <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 
+## Change frequency
+
+Often a scenario will include frequency changes to existing lines. We support this using the change frequency modification. First, create a change frequency modification, and choose
+the feed and route you want to adjust the frequency of.
+
+<img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
+
+You then create any number of frequency entries, which represent a particular frequency on a particular trip pattern at a particular time of day. Typically, there will be at least
+two entries (one for each direction). You must create frequency entries for all of the service you want to retain on a particular route, as all existing trips will be erased.
+A frequency entry is shown below. Here, you choose a template trip for the frequency entry, which determines the stop-to-stop travel times of the trips that are created with the
+given frequency. Oftentimes, travel time will vary throughout the day due to varying traffic and passenger loads, so it makes sense to choose a template trip that is representative
+of the time window for which you are creating frequency service. You can filter the list of possible template trips by choosing a trip pattern.
+
+You then specify the parameters of the frequency entry: what days it runs on, the frequency of the trip, and the start and end time. Repeat this process until you have created frequency entries
+for all the service you want to retain, in both directions. The software will let you specify overlapping frequency windows, but keep in mind that this means that trips on _both_ entries
+will operate at the specified frequencies (e.g., if you have a ten-minute frequency and a 15-minute frequency overlapping, there will be one set of vehicles coming every ten minutes,
+and another, independent, set coming every 15).
+
+<img src="../img/frequency-entry.png" alt="Editing a frequency entry" />
+
+## Add stops
+
+It is also possible to add stops to a route (i.e. reroute the route). You can do this at the beginning or end of a route, or have a reroute in the middle.
+First, create an Add Stops modification, and select a route and patterns (as before). You then select the start and end stop of the reroute (i.e. where the route begins
+and ends its deviation from the its existing pattern). Note that you will need to select patterns appropriately and create one reroute for each direction of the route;
+a reroute can apply to multiple patterns in a single direction as long as they both contain the start and end stop in order. You select a stop by clicking the select stop
+button, and then choosing the stop on the map. If you leave the from stop blank, the entire route up to the from stop will be rerouted. If you leave the to stop blank, the entire route
+after that point will be rerouted. This can be used to extend routes, or to divert the ends of routes (e.g. to new rail stations).
+
+<img src="../img/add-stops.png" alt="Adding stops" />
+
+You can then edit the alignment and the intermediate stops by clicking on "Edit Alignment." This uses the same tools that are used when adding trip patterns. Be sure to close the map editor
+before adjusting parameters in the right-hand bar.
+
+This modification is displayed on the map with the route being modified in gray, any segments that are being replaced in red, and the new segments in blue.
+
+<img src="../img/add-stops-map.png" alt="An extensive reroute displayed on the map" />
 
 
 
