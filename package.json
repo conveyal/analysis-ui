@@ -21,7 +21,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "mastarm serve lib/index.js --proxy http://localhost:7070/api",
-    "docs": "cd docs && mkdocs serve"
+    "docs": "cd docs && mkdocs serve",
+    "deploy": "mkdir dist; rm dist/index.js.gz; mastarm build lib/index.js > dist/index.js && gzip dist/index.js && aws s3 cp  --content-encoding gzip dist/index.js.gz s3://scenario-editor/index.js"
   },
   "repository": {
     "type": "git",
