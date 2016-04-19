@@ -45,30 +45,33 @@ this would be used to model new routes, adding all of the trip patterns on the r
 
 <img src="../img/new-add-trip-patterns.png" alt="a new add trip patterns modification" />
 
-Here you can enter a name for the modification, and click "edit route geometry" to edit the alignment of the route. After clicking that, you will see
-the view below. You can also specify whether the modification is bidirectional. If this checkbox is checked, vehicles will travel in both directions
+Here you can enter a name for the modification. You can also specify whether the modification is bidirectional. If this checkbox is checked, vehicles will travel in both directions
 along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets
-or other aspects of the route that don't follow the same alignment in both directions).
+or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval
+along the route, or if you will create all stops manually. To create an alignment for the modification (or to edit the alignment you've previously created), click the 'Edit route geometry'
+button. The 'Edit route geometry' button will change to a 'Stop editing' button, and you will then see this view.
 
 <img src="../img/blank-geometry.png" alt="the route alignment editor on a new route" />
 
-Click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop, the icon will be blue and
-the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop will be created. Using the
-control panel at the upper right you can control whether stops are automatically created at a particular spacing, what that spacing is, whether clicks on
-the maps should generate stops or just "control points" (which are points that the alignment passes through but doesn't stop at), and whether clicks should extend the
-end of the line or the start of the line. Stops are shown on the map with bus stop icons, while control points are shown as blue circles.
+Click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a gray circle), the
+icon for the new stop will be blue and
+the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop will be created. Using the checkbox
+below the 'Stop editing' button. The first stop of the alignment will have a star icon; later stops will have a train icon (this is particularly important in routes that
+are not bidirectional, in order to determine the direction of the route).
+
 
 <img src="../img/edit-geometry-start.png" alt="the edit route geometry view" />
 
-If you want to edit the alignment to follow the roads, drag any part of the alignment to the path you would like it to take. This creates a control point, unless you
-drag the line onto an existing stop (which will cause the line to visit that stop). It's important to get the alignment approximately correct so that the length of each
+If you want to edit the alignment to follow the roads, drag any part of the alignment to the path you would like it to take. This creates a "control point" which the route
+passes through but does not stop at. It's important to get the alignment approximately correct so that the length of each
 segment is correct when used to calculate the travel times between stops.
 
-To insert a stop into the middle of an alignment, first drag the alignment to the appropriate location, then click on the created control point and choose "make stop":
+To insert a stop into the middle of an alignment, first drag the alignment to the appropriate location, then click on the created control point and choose "make stop." You can also
+convert undesired stops into control points, or delete them, in this view.
 
 <img src="../img/make-stop.png" alt="make a new stop" />
 
-When you are done, click "close and save" in the editing control panel in the upper right of the map.
+When you are done, click "stop editing" in the right sidebar
 
 Once you have created an alignment, you need to specify when the routes run. You can do this by clicking "Add timetable" in the right-hand bar. (Note that you should save and close
 the alignment editor before doing this.) You will see this view:
@@ -167,8 +170,7 @@ after that point will be rerouted. This can be used to extend routes, or to dive
 
 <img src="../img/add-stops.png" alt="Adding stops" />
 
-You can then edit the alignment and the intermediate stops by clicking on "Edit Alignment." This uses the same tools that are used when adding trip patterns. Be sure to close the map editor
-before adjusting parameters in the right-hand bar.
+You can then edit the alignment and the intermediate stops by clicking on "Edit Alignment." This uses the same tools that are used when adding trip patterns.
 
 This modification is displayed on the map with the route being modified in gray, any segments that are being replaced in red, and the new segments in blue.
 
