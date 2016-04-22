@@ -3,6 +3,7 @@
 @import(node_modules/bootstrap/dist/css/bootstrap.css);
 @import(node_modules/leaflet/dist/leaflet.css);
 @import(node_modules/leaflet-draw/dist/leaflet.draw.css);
+@import(node_modules/react-select/dist/react-select.css);
 
 html,
 body,
@@ -137,6 +138,10 @@ ul, ol {
   display: inline-block;
   line-height: 34px;
   margin-bottom: 0;
+}
+
+:not(.Select--multi) > .Select-control .Select-value {
+  padding-right: 42px;
 }
 
 .Variants {
