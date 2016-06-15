@@ -1,5 +1,5 @@
 
-## 0.0.1 — 2016-06-15
+## 0.1.0
 
 * Added `History.md` for record keeping of changes.
 * Updated [`mastarm`](https://github.com/conveyal/mastarm) to `0.3.2`.
