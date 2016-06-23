@@ -1,4 +1,9 @@
 
+## master
+
+* Added `activePatterns` for showing current Change Frequency Entry patterns.
+* Add `onFocus` event to modifications and dim other modifications when one is selected.
+
 ## 0.1.0
 
 * Added `History.md` for record keeping of changes.
