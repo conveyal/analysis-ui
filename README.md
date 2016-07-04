@@ -10,5 +10,5 @@ To use `Auth0`, copy the `/configurations/default/env.yml.tmp` to `/configuratio
 
 ```bash
 $ npm install -g mastarm
-$ mastarm serve lib/index.js --proxy http://localhost:7070/api
+$ mastarm build --serve lib/index.js --proxy http://localhost:7070/api
 ```
