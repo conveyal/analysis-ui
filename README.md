@@ -12,7 +12,7 @@ The Scenario Editor needs an Analyst backend running to point at. By default it 
 
 Copy the `/configurations/default/env.yml.tmp` to `/configurations/default/env.yml` and add your credentials.
 
-## Install & Run
+## Install & Run with [Node 6+](https://nodejs.org/en/download/current/)
 
 ```bash
 $ npm install && npm start
