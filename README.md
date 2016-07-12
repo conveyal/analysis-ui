@@ -4,11 +4,18 @@ Conveyal's tools for editing land-use/transportation scenarios.
 
 ## Configuration
 
-To use `Auth0`, copy the `/configurations/default/env.yml.tmp` to `/configurations/default/env.yml` and edit it with your credentials.
+### [Analyst](https://github.com/conveyal/analyst) Server
 
-## Run with [`mastarm`](/conveyal/mastarm)
+The Scenario Editor needs an Analyst backend running to point at. By default it expects it to be running at `http://localhost:7070`.
+
+### Authentication with [Auth0](https://auth0.com/)
+
+Copy the `/configurations/default/env.yml.tmp` to `/configurations/default/env.yml` and add your credentials.
+
+## Install & Run
 
 ```bash
-$ npm install -g mastarm
-$ mastarm build --serve lib/index.js --proxy http://localhost:7070/api
+$ npm install && npm start
 ```
+
+
