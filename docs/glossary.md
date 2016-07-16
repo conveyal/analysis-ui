@@ -6,7 +6,7 @@ A sequence of stops visited by a transit vehicle. A trip pattern can have many t
 
 ### trip
 
-A single vehicle trip, representing a a vehicle visiting the stops on a particular trip pattern at a particular time.
+A single vehicle trip, representing a vehicle visiting the stops on a particular trip pattern at a particular time.
 
 ### hop
 
