@@ -126,7 +126,18 @@ ul, ol {
 }
 
 .panel-heading {
-  padding: 12px;
+  padding: 12px 12px 12px 12px;
+  cursor: pointer;
+}
+
+.panel-heading.selected,
+.panel-heading:hover {
+  background: #ddd;
+}
+
+.panel-heading strong {
+  font-size: 14px;
+  line-height: 2;
 }
 
 .panel-heading .pull-right {
