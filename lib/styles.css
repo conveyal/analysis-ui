@@ -126,18 +126,7 @@ ul, ol {
 }
 
 .panel-heading {
-  padding: 12px 12px 12px 12px;
-  cursor: pointer;
-}
-
-.panel-heading.selected,
-.panel-heading:hover {
-  background: #ddd;
-}
-
-.panel-heading strong {
-  font-size: 14px;
-  line-height: 2;
+  padding: 12px;
 }
 
 .panel-heading .pull-right {
@@ -197,6 +186,28 @@ ul, ol {
   display: inline-block;
   line-height: 30px;
   margin-bottom: 0;
+}
+
+.modification-select.panel-heading {
+  padding: 12px 12px 12px 12px;
+  cursor: pointer;
+}
+
+.modification-select.panel-heading.selected,
+.modification-select.panel-heading:hover {
+  background: #ddd;
+}
+
+.modification-select.panel-heading strong {
+  font-size: 14px;
+  line-height: 2;
+}
+
+.modification-dock-container > div,
+.modification-dock-container > div > div {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .Select-control {
