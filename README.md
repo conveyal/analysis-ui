@@ -10,7 +10,7 @@ The Scenario Editor needs an Analyst backend running to point at. By default it 
 
 ### Authentication with [Auth0](https://auth0.com/)
 
-Copy the `/configurations/default/env.yml.tmp` to `/configurations/default/env.yml` and add your credentials.
+Copy the `/configurations/default/env.yml.tmp` to `/configurations/env.yml` and add your credentials.
 
 ## Install & Run with [Node 6+](https://nodejs.org/en/download/current/)
 
