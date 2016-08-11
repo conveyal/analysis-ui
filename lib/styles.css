@@ -9,12 +9,15 @@
 html,
 body,
 #root {
-  width: 100%;
-  height: 100%;
   padding: 0;
   margin: 0;
   color: #414C59;
   font-size: 12px;
+  overflow: hidden;
+}
+
+a {
+  cursor: pointer;
 }
 
 ul, ol {
@@ -24,14 +27,6 @@ ul, ol {
 .btn {
   font-size: 12px;
   line-height: 1.4;
-}
-
-.leaflet-container a.btn {
-  color: #fff;
-}
-
-.leaflet-container a.btn-default {
-  color: #333;
 }
 
 .form-group {
@@ -58,15 +53,40 @@ ul, ol {
 }
 
 .Fullscreen {
-  width: 75%;
   height: 100%;
   position: absolute;
   padding: 0px;
   right: 0;
+  left: 320px;
+}
+
+.Fullscreen.hasActiveModification {
+  left: 640px;
 }
 
 .Fullscreen > div {
   height: 100%;
+}
+
+.ApplicationDock,
+.ModificationDock {
+  position: absolute;
+  width: 320px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: scroll;
+  border-right: 1px solid #eee;
+}
+
+.ModificationDock {
+  left: 320px;
+  border-right: 1px solid #eee;
+}
+
+.ModificationDockTitle {
+  font-size: 14px;
+  padding: 6px 12px 0;
 }
 
 .DockContent {
@@ -75,32 +95,26 @@ ul, ol {
 
 .ApplicationTitle {
   font-size: 21px;
-  padding: 12px 12px 0;
+  padding: 6px 12px;
   text-transform: uppercase;
 }
 
-.DockContent-Title {
+.ProjectTitle,
+.ScenarioTitle {
   margin: 0;
   padding: 6px 12px;
   font-size: 14px;
+  cursor: pointer;
 }
 
-.DockContent-Title .btn {
-  text-transform: none;
+.ProjectTitle a > .fa,
+.ScenarioTitle a > .fa {
+  padding: 6px 12px;
+  margin-top: -6px;
 }
 
-.DockContent-Title:before,
-.DockContent-Title:after {
-  display: table;
-  content: " ";
-}
-
-.DockContent-Title:after {
-  clear: both;
-}
-
-.DockContent-Title .btn+.btn {
-  margin-right: 6px;
+.Scenario {
+  overflow: scroll;
 }
 
 .DockContent > .btn-group-justified > .btn {
@@ -154,44 +168,6 @@ ul, ol {
   margin-bottom: 12px;
 }
 
-.ModificationGroup {
-  border-top: 2px solid #e5e5e5;
-}
-
-.ModificationGroup .DockContent-Title {
-  line-height: 2;
-}
-
-.ModificationGroup .DockContent-Title .btn+.btn {
-  margin-right: 0;
-}
-
-.ModificationGroup .DockContent-Title .btn.pull-left {
-  margin-right: 6px;
-}
-
-.ModificationGroup .form-group {
-  clear: both;
-}
-
-.ModificationGroup .form-group:before,
-.ModificationGroup .form-group:after {
-  display: table;
-  content: " ";
-}
-
-.ModificationGroup label+.form-control {
-  display: inline-block;
-  max-width: 50%;
-  float: right;
-}
-
-.ModificationGroup .form-group label {
-  display: inline-block;
-  line-height: 30px;
-  margin-bottom: 0;
-}
-
 .modification-select.panel-heading {
   padding: 12px 12px 12px 12px;
   cursor: pointer;
@@ -212,6 +188,52 @@ ul, ol {
   position: absolute !important;
   width: 100% !important;
   height: 100% !important;
+}
+
+.ModificationGroup {
+  border-top: 2px solid #e5e5e5;
+}
+
+.ModificationGroupTitle {
+  cursor: pointer;
+  padding: 6px 12px;
+}
+
+.ModificationGroup > .ShowMore {
+  padding: 6px 12px;
+  display: inline-block;
+  width: 100%;
+}
+
+.ModificationTitles {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.ModificationTitle {
+  padding: 6px 0 6px 18px;
+  font-size: 10px;
+}
+
+.ModificationTitle > a > .fa {
+  font-size: 12px;
+}
+
+.ModificationTitle:hover,
+.ModificationTitle.active {
+  background-color: #eee;
+}
+
+.ModificationTitle > .ShowOnMap {
+  color: rgba(0, 0, 0, 0.5);
+  padding: 6px 18px;
+  margin-top: -6px;
+  margin-right: 6px;
+}
+
+.ModificationTitle > .ShowOnMap:hover,
+.ModificationTitle > .ShowOnMap.active {
+  color: #337ab7;
 }
 
 .Select-control {
