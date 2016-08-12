@@ -76,12 +76,33 @@ ul, ol {
   left: 0;
   height: 100%;
   overflow: scroll;
-  border-right: 1px solid #eee;
+  border-right: 1px solid #ddd;
 }
 
 .ModificationDock {
   left: 320px;
-  border-right: 1px solid #eee;
+}
+
+.ApplicationDock::-webkit-scrollbar,
+.ModificationDock::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.ApplicationDock::-webkit-scrollbar:vertical,
+.ModificationDock::-webkit-scrollbar:vertical {
+    width: 6px;
+}
+
+.ApplicationDock::-webkit-scrollbar:horizontal,
+.ModificationDock::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+.ApplicationDock::-webkit-scrollbar-thumb,
+.ModificationDock::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    /* border: 2px solid white; /* should match background, can't be transparent */
+    background-color: #ddd;
 }
 
 .ModificationDockTitle {
@@ -270,7 +291,7 @@ ul, ol {
 }
 
 .ModificationGroup .Variants-Variant label+.form-control {
-  max-width: 100%;
+  width: 105px;
 }
 
 .DirectionIcon {
