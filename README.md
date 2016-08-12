@@ -14,6 +14,14 @@ Copy the `/configurations/default/env.yml.tmp` to `/configurations/env.yml` and 
 
 ## Install & Run with [Node 6+](https://nodejs.org/en/download/current/)
 
+First make sure you're running the latest Node and NPM. For example, on a Mac using Homebrew:
+
+```bash
+$ brew update
+$ brew upgrade node
+```
+
+Then build and start the scenario editor:
 ```bash
 $ npm install && npm start
 ```
