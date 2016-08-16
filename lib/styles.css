@@ -75,7 +75,6 @@ ul, ol {
   top: 0;
   left: 0;
   height: 100%;
-  overflow: scroll;
   border-right: 1px solid #ddd;
 }
 
@@ -83,31 +82,37 @@ ul, ol {
   left: 320px;
 }
 
-.ApplicationDock::-webkit-scrollbar,
-.ModificationDock::-webkit-scrollbar {
-    -webkit-appearance: none;
+.InnerDock {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 24px;
 }
 
-.ApplicationDock::-webkit-scrollbar:vertical,
-.ModificationDock::-webkit-scrollbar:vertical {
-    width: 6px;
+.InnerDock::-webkit-scrollbar {
+  -webkit-appearance: none;
 }
 
-.ApplicationDock::-webkit-scrollbar:horizontal,
-.ModificationDock::-webkit-scrollbar:horizontal {
-    height: 6px;
+.InnerDock::-webkit-scrollbar:vertical {
+  width: 6px;
 }
 
-.ApplicationDock::-webkit-scrollbar-thumb,
-.ModificationDock::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    /* border: 2px solid white; /* should match background, can't be transparent */
-    background-color: #ddd;
+.InnerDock::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+
+.InnerDock::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #ddd;
 }
 
 .ModificationDockTitle {
   font-size: 14px;
-  padding: 6px 12px 0;
+  padding: 6px 12px;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 100;
 }
 
 .DockContent {
@@ -115,9 +120,9 @@ ul, ol {
 }
 
 .ApplicationTitle {
-  font-size: 21px;
+  font-size: 14px;
   padding: 6px 12px;
-  text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
 }
 
 .ProjectTitle,
@@ -231,6 +236,7 @@ ul, ol {
   border-bottom: 1px solid #eee;
 }
 
+.ModificationTitlePlaceholder,
 .ModificationTitle {
   padding: 6px 0 6px 18px;
   font-size: 10px;
