@@ -34,13 +34,19 @@ ul, ol {
   margin-bottom: 12px;
 }
 
+input[type="date"].form-control,
+input[type="time"].form-control,
+input[type="datetime-local"].form-control,
+input[type="month"].form-control,
 .form-control {
   font-size: 12px;
   height: 30px;
+  line-height: 1em;
+  padding: 6px;
 }
 
 .form-inline .checkbox label {
-  padding: 0 15px 15px 0;
+  padding: 0 12px 12px 0;
 }
 
 .form-inline .form-control {
@@ -193,6 +199,10 @@ ul, ol {
   border: 1px solid #e5e5e5;
   border-top: 2px solid #e5e5e5;
   margin-bottom: 12px;
+}
+
+.panel-body .inner-panel > .panel-body {
+  padding-right: 12px;
 }
 
 .modification-select.panel-heading {
