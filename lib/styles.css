@@ -14,7 +14,15 @@ body,
   margin: 0;
   color: #414C59;
   font-size: 12px;
+}
+
+body.Editor, #editor {
   overflow: hidden;
+  height: 100%;
+}
+
+#report table, #report div {
+  width: 100%;
 }
 
 a {
@@ -310,10 +318,14 @@ input[type="month"].form-control,
   font-size: 9px;
 }
 
+.Report-Modification {
+  page-break-before: always;
+}
+
 .DaysOfService-active {
   color: black;
 }
 
 .DaysOfService-inactive {
-  color: #ccc;
+  color: #ccc !important;
 }
