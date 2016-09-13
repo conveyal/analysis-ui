@@ -7,6 +7,8 @@ bundle:
   delete: Delete this bundle
   deleteConfirmation: Are you sure you would like to delete this bundle?
   edit: Edit bundle
+map:
+  northAbbr: N # Local abbreviation for north, used to label north arrow
 nav:
   createBundle: Create Bundle
   openScenario: Open Scenario
@@ -25,6 +27,7 @@ scenario:
   deleteConfirmation: Are you sure you would like to delete this scenario?
   editAction: Save changes to scenario
   editTitle: Edit scenario
+  route: Route
 transitEditor:
   followRoad: Follow streets
   makeStop: make stop
@@ -41,3 +44,70 @@ network:
   timeout: Request timed out.
   checkConnection: Check your connection and reload the page?
   saving: Saving . . .
+modificationType:
+  add-trip-pattern: Add trips
+  adjust-frequency: Adjust frequency
+  convert-to-frequency: Adjust frequency
+  remove-trips: Remove trips
+  adjust-dwell-time: Adjust dwell time
+  reroute: Reroute
+  adjust-speed: Adjust speed
+  remove-stops: Remove stops
+report:
+  keepTripsOutside: Existing trips outside modified windows are kept.
+  removeTripsOutside: All existing trips are removed.
+  newFrequencies: New frequencies
+  variant: Variant: %s
+  bundle: Using bundle "%s"
+  frequency:
+    name: Name
+    startTime: Start time
+    endTime: End time
+    frequency: Frequency
+    nTrips: Number of trips
+    speed: Speed
+    direction: Direction
+    daysOfService: Days of service
+  adjustDwellTime:
+    scale: Scale dwell times by %sx
+    set: Set dwell times to %s seconds
+    allStops: (all stops)
+    stopsModified: Stops modified:
+  adjustSpeed:
+    scale: Scale speed by %sx
+  patternLength: Length
+  patternName: Pattern
+  reroute:
+    segmentLength: New segment length
+    originalLength: Original length
+    newLength: New length
+    lengthDelta: Change in length
+    segmentSpeed: Speed over new segment
+    segmentDwell: Dwell time in new segment (seconds)
+    nStopsRemoved: Stops removed
+    nStopsAdded: Stops added
+  removeTrips:
+    removeEntireRoute: Entire route is removed.
+    removePatterns: Some patterns are removed:
+  removeStops:
+    allPatterns: All patterns are affected.
+    somePatterns: Some patterns are affected:
+    stopsRemoved: Stops removed:
+  days:
+    monday: Mo
+    tuesday: Tu
+    wednesday: We
+    thursday: Th
+    friday: Fr
+    saturday: Sa
+    sunday: Su
+  units:
+    km: km
+    mi: mi
+    furlong: furlongs
+    kmh: km/h
+    mph: mph
+    ff: furlongs per fortnight
+  addTrips:
+    bidirectional: bidirectional
+    unidirectional: unidirectional
