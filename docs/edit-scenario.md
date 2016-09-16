@@ -9,17 +9,14 @@ After uploading a bundle and creating a project, you will arrive at a screen tha
 <img src="../img/new-project.png" />
 
 A transport scenario is made up of many modifications, each of which represents a single operation on the transit network (for example adding a line, or adjusting
-the speed of an existing line). All modifications are listed in the right-hand bar. Each modification has a name, which is the top text box. This name can
-be used to help keep track of the intent of different modifications. Above each modification are several controls. The map icon controls whether that modification
-is currently displayed on the map, and the caret allows expanding or collapsing the modification to save space on the display. The large red X will delete a modification:
-
-<img src="../img/modifications.png" alt="Modifications display" />
+the speed of an existing line). All modifications are listed in the left-hand bar. Each modification has an eye icon next to it, which controls whether it is currently
+displayed on the map. Clicking on the title of a modification will open it and allow you to edit it. To create a new modification of a particular type, 
 
 Oftentimes, there will be several scenarios that are very similar, differing only in a few minor aspects. In particular, one scenario is often
 a superset of another (for instance, there is a base scenario which involves building six new rail lines, and another scenario which additionally
 involves building four more). Instead of having to code each scenario separately, we support the concept of scenario variants. You can create variants
-by clicking the "Create" button under "Variants," and entering a name for each variant. There are also buttons to show only the modifications belonging
-to a particular variant on the map, or expand the modifications which are part of a variant.
+by clicking the "Create" button under "Variants," and entering a name for each variant. The buttons to the right of a variant name allow, respectively, exporting the
+variant to Transport Analyst, viewing a printer-friendly summary of the modifications in the variant, and showing the variant on the map.	
 
 <img src="../img/variants-editor.png" />
 
@@ -35,8 +32,8 @@ Within each modification you can then choose which variants it is active in:
 - [Remove stops](#remove-stops)
 - [Adjust speed](#adjust-speed)
 - [Adjust dwell time](#adjust-dwell-time)
-- [Change frequency](#change-frequency)
-- [Add stops](#add-stops)
+- [Adjust frequency](#adjust-frequency)
+- [Reroute](#reroute)
 
 ## Add trip patterns
 
@@ -45,7 +42,7 @@ this would be used to model new routes, adding all of the trip patterns on the r
 
 <img src="../img/new-add-trip-patterns.png" alt="a new add trip patterns modification" />
 
-Here you can enter a name for the modification. You can also specify whether the modification is bidirectional. If this checkbox is checked, vehicles will travel in both directions
+Here you can enter a name for the modification, as you can with any modification. You can also specify whether the modification is bidirectional. If this checkbox is checked, vehicles will travel in both directions
 along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets
 or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval
 along the route, or if you will create all stops manually. To create an alignment for the modification (or to edit the alignment you've previously created), click the 'Edit route geometry'
@@ -55,19 +52,17 @@ button. The 'Edit route geometry' button will change to a 'Stop editing' button,
 
 Click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a gray circle), the
 icon for the new stop will be blue and
-the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop will be created. Using the checkbox
-below the 'Stop editing' button. The first stop of the alignment will have a star icon; later stops will have a train icon (this is particularly important in routes that
-are not bidirectional, in order to determine the direction of the route).
+the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop will be created.  
 
+<img src="../img/trip-drawn.png" alt="a new trip drawn in the editor" />
 
-<img src="../img/edit-geometry-start.png" alt="the edit route geometry view" />
-
-If you want to edit the alignment to follow the roads, drag any part of the alignment to the path you would like it to take. This creates a "control point" which the route
+If you want to edit the alignment to follow particular features, drag any part of the alignment to the path you would like it to take. This creates a "control point" which the route
 passes through but does not stop at. It's important to get the alignment approximately correct so that the length of each
-segment is correct when used to calculate the travel times between stops.
+segment is correct when used to calculate the travel times between stops. If you are modeling an on-street route, you can check the box that says "follow streets" to
+make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets,
+allowing you to draw part of a route on street and part off-street.
 
-To insert a stop into the middle of an alignment, first drag the alignment to the appropriate location, then click on the created control point and choose "make stop." You can also
-convert undesired stops into control points, or delete them, in this view.
+To insert a stop into the middle of an alignment, first drag the alignment to the appropriate location, then click on the created control point and choose "make stop." You can alsoconvert undesired stops into control points, or delete them, in this view.
 
 <img src="../img/make-stop.png" alt="make a new stop" />
 
@@ -76,32 +71,12 @@ When you are done, click "stop editing" in the right sidebar
 Once you have created an alignment, you need to specify when the routes run. You can do this by clicking "Add timetable" in the right-hand bar. (Note that you should save and close
 the alignment editor before doing this.) You will see this view:
 
-<img src="../img/add-timetable.png" alt="add timetable" />
+<img src="../img/new-timetable.png" alt="add timetable" />
 
 Here you can specify the days of service, span of service, frequency, speed and dwell time. You can add as many timetables as you need to specify different frequencies or speeds at
 different times of days.
 
-### Importing shapefiles
-
-Instead of using the built-in transit editor, it is also possible to import a shapefile from GIS. The advantage to using the built-in editor is that it gives much more fine-grained
-control over stop locations; shapefiles are simply imported with stops created automatically at a particular spacing. To import a shapefile, first prepare a file where each route is
-represented by a single line feature. It should have properties for the frequency (in minutes) and speed (in kilometers per hour) of each line. Then, zip the components of the
-shapefile (`.shp`, `.dbf`, `.prj`, etc.) together. Click "Import Shapefile" in Scenario Editor:
-
-<img src="../img/import-shapefile-button.png" alt="Import shapefile button" />
-
-The following dialog will appear (some fields will not be visible until a shapefile has been chosen). In the dialog, specify what fields contain the speed and frequency of the new lines,
-what field should be used to name the modifications, and what the stop spacing on the new lines should be. You can also specify whether the lines are bidirectional or not (that is, whether
-there is a separate feature for the reverse direction or not). Once you click "import," a new Add Trip Pattern modification will be present for each feature in the inout shapefile, with a skeleton
-timetable already filled out. You can edit this timetable, or add more.
-
-<img src="../img/imported-pattern.png" alt="The timetable for an imported pattern" />
-
-You can also click on "edit route geometry" to edit the alignment and stop positions of imported patterns. Particularly if the stop spacing is long, it makes sense to edit
-the stop locations so that there are stops at major destinations and transfer points (consider a line with 1 kilometer stop spacing, where the stops near a major transfer point
-are 500m away; this will add significant unnecessary walking and bias the results).
-
-The transit data used in this demo came from [WMATA](http://wmata.com) and [DC GIS](http://octo.dc.gov/service/dc-gis-services).
+You can delete this or any modification using the red "Delete Modification" button.
 
 ## Remove trips
 
@@ -139,15 +114,15 @@ dwell times adjusted). You can then choose to either enter a new dwell time (in 
 
 <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 
-## Change frequency
+## Adjust frequency
 
-Often a scenario will include frequency changes to existing lines. We support this using the change frequency modification. First, create a change frequency modification, and choose
+Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency modification. First, create an adjust frequency modification, and choose
 the feed and route you want to adjust the frequency of.
 
 <img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
 
 You then create any number of frequency entries, which represent a particular frequency on a particular trip pattern at a particular time of day. Typically, there will be at least
-two entries (one for each direction). You must create frequency entries for all of the service you want to retain on a particular route, as all existing trips will be erased.
+two entries (one for each direction).
 A frequency entry is shown below. Here, you choose a template trip for the frequency entry, which determines the stop-to-stop travel times of the trips that are created with the
 given frequency. Oftentimes, travel time will vary throughout the day due to varying traffic and passenger loads, so it makes sense to choose a template trip that is representative
 of the time window for which you are creating frequency service. You can filter the list of possible template trips by choosing a trip pattern.
@@ -157,24 +132,24 @@ for all the service you want to retain, in both directions. The software will le
 will operate at the specified frequencies (e.g., if you have a ten-minute frequency and a 15-minute frequency overlapping, there will be one set of vehicles coming every ten minutes,
 and another, independent, set coming every 15).
 
+You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful
+when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
+
 <img src="../img/frequency-entry.png" alt="Editing a frequency entry" />
 
-## Add stops
+## Reroute
 
 It is also possible to add stops to a route (i.e. reroute the route). You can do this at the beginning or end of a route, or have a reroute in the middle.
-First, create an Add Stops modification, and select a route and patterns (as before). You then select the start and end stop of the reroute (i.e. where the route begins
+First, create a Reroute modification, and select a route and patterns (as before). You then select the start and end stop of the reroute (i.e. where the route begins
 and ends its deviation from the its existing pattern). Note that you will need to select patterns appropriately and create one reroute for each direction of the route;
 a reroute can apply to multiple patterns in a single direction as long as they both contain the start and end stop in order. You select a stop by clicking the select stop
 button, and then choosing the stop on the map. If you leave the from stop blank, the entire route up to the from stop will be rerouted. If you leave the to stop blank, the entire route
 after that point will be rerouted. This can be used to extend routes, or to divert the ends of routes (e.g. to new rail stations).
 
-<img src="../img/add-stops.png" alt="Adding stops" />
+<img src="../img/reroute.png" alt="Rerouting" />
 
 You can then edit the alignment and the intermediate stops by clicking on "Edit Alignment." This uses the same tools that are used when adding trip patterns.
 
 This modification is displayed on the map with the route being modified in gray, any segments that are being replaced in red, and the new segments in blue.
-
-<img src="../img/add-stops-map.png" alt="An extensive reroute displayed on the map" />
-
 
 
