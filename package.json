@@ -6,7 +6,8 @@
     "parser": "babel-eslint"
   },
   "scripts": {
-    "test": "mastarm lint",
+    "test": "mastarm lint && jest",
+    "posttest": "rimraf tests/__snapshots__",
     "start": "mastarm build --serve lib/index.js:assets/index.js --proxy http://localhost:7070/api",
     "docs": "cd docs && mkdocs serve",
     "deploy": "mastarm deploy --config configurations/default",
@@ -70,10 +71,19 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
+    "babel-jest": "^15.0.0",
+    "babel-polyfill": "^6.13.0",
+    "jest": "^15.1.1",
     "mastarm": "^0.9.2",
     "react-addons-perf": "^15.2.1",
+    "react-test-renderer": "^15.3.1",
     "redux-devtools": "^3.3.1",
     "redux-logger": "^2.6.1",
     "semantic-release": "^4.3.5"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": ["lib/**/*.js"],
+    "coverageDirectory": "coverage"
   }
 }
