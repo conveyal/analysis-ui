@@ -40,7 +40,7 @@ Within each modification you can then choose which variants it is active in:
 The add trip patterns modification allows you to add new [trip patterns](../glossary#trip-pattern) to your transport scenario. Generally
 this would be used to model new routes, adding all of the trip patterns on the route. After creating the modification you will see this view:
 
-<img src="../img/new-add-trip-patterns.png" alt="a new add trip patterns modification" />
+<img src="../img/new-add-trip-pattern.png" alt="a new add trip patterns modification" />
 
 Here you can enter a name for the modification, as you can with any modification. You can also specify whether the modification is bidirectional. If this checkbox is checked, vehicles will travel in both directions
 along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets
