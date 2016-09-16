@@ -7,7 +7,6 @@
   },
   "scripts": {
     "test": "mastarm lint && jest",
-    "posttest": "rimraf tests/__snapshots__",
     "start": "mastarm build --serve lib/index.js:assets/index.js --proxy http://localhost:7070/api",
     "docs": "cd docs && mkdocs serve",
     "deploy": "mastarm deploy --config configurations/default",
