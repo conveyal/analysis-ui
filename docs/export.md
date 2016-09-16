@@ -9,4 +9,4 @@ Your browser will download a JSON file, which can be imported into Transport Ana
 you used in scenario editor (if you had more than one, you can ZIP them together for upload to Analyst), and then select Data -> Transport Scenarios, click New,
 select the bundle you just created in Analyst, and upload the scenario JSON file you got from Scenario Editor. The scenario will then be available in Analyst.
 
-<img src="../img/impoty-analyst.png" alt="importing a scenario into Analyst" />
+<img src="../img/import-analyst.png" alt="importing a scenario into Analyst" />
