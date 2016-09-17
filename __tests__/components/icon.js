@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Icon from '../lib/components/icon'
+import Icon from '../../lib/components/icon'
 
 describe('Icon', () => {
   it('renders correctly', () => {

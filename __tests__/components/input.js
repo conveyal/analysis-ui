@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { Checkbox, File, Group, Input, Number, Select, SelectMultiple, Text } from '../lib/components/input'
+import { Checkbox, File, Group, Input, Number, Select, SelectMultiple, Text } from '../../lib/components/input'
 
 describe('Checkbox', () => {
   it('renders correctly', () => {
