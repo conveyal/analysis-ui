@@ -3,12 +3,12 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { mockComponent, mockNamedComponents } from '../../../testUtils'
+import { mockComponents } from '../../../testUtils'
 
-jest.mock('../../../lib/components/buttons', () => { return mockNamedComponents(['Button']) })
-jest.mock('../../../lib/components/icon', () => { return mockComponent('Icon') })
-jest.mock('../../../lib/components/input', () => { return mockNamedComponents(['Checkbox', 'Number']) })
-jest.mock('../../../lib/components/timetable', () => { return mockComponent('Timetable') })
+jest.mock('../../../lib/components/buttons', () => { return mockComponents(['Button']) })
+jest.mock('../../../lib/components/icon', () => 'Icon')
+jest.mock('../../../lib/components/input', () => { return mockComponents(['Checkbox', 'Number']) })
+jest.mock('../../../lib/components/timetable', () => 'Timetable')
 
 import AddTripPattern from '../../../lib/components/modification/add-trip-pattern'
 

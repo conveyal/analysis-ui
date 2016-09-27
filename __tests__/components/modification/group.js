@@ -3,10 +3,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { mockComponent } from '../../../testUtils'
-
-jest.mock('../../../lib/components/icon', () => { return mockComponent('Icon') })
-jest.mock('../../../lib/components/modification/title', () => { return mockComponent('ModificationTitle') })
+jest.mock('../../../lib/components/icon', () => 'Icon')
+jest.mock('../../../lib/components/modification/title', () => 'ModificationTitle')
 
 import ModificationGroup from '../../../lib/components/modification/group'
 

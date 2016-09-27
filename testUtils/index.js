@@ -1,18 +1,10 @@
-import React from 'react'
-
-export function mockComponent (componentName) {
-  return (props) => {
-    return (
-      <mocked originalComponent={componentName} {...props}>{props.children}</mocked>
-    )
+export function mockComponents (components) {
+  if (components instanceof Array) {
+    const mockedComponents = {}
+    for (let i = 0; i < components.length; i++) {
+      const name = components[i]
+      mockedComponents[name] = name
+    }
+    return mockedComponents
   }
-}
-
-export function mockNamedComponents (componentNames) {
-  const mockedComponents = {}
-  for (let i = 0; i < componentNames.length; i++) {
-    const name = componentNames[i]
-    mockedComponents[name] = mockComponent(name)
-  }
-  return mockedComponents
 }
