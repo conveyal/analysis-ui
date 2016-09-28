@@ -5,7 +5,8 @@ import renderer from 'react-test-renderer'
 
 jest.mock('../../lib/components/icon', () => 'Icon')
 
-import Scenario from '../../lib/components/scenario'
+console.log(window)
+import Scenario from '../../lib/containers/scenario'
 
 describe('Scenario', () => {
   it('renders correctly', () => {
