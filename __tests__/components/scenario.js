@@ -24,7 +24,7 @@ describe('Scenario', () => {
       </Scenario>
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(addComponentToMapFn).not.toBeCalled
-    expect(loadFn).toBeCalled
+    expect(addComponentToMapFn).not.toBeCalled()
+    expect(loadFn).toBeCalled()
   })
 })

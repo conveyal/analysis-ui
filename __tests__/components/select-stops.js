@@ -18,7 +18,7 @@ describe('SelectStops', () => {
         />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(replaceModificationFn).not.toBeCalled
-    expect(setMapStateFn).not.toBeCalled
+    expect(replaceModificationFn).not.toBeCalled()
+    expect(setMapStateFn).not.toBeCalled()
   })
 })

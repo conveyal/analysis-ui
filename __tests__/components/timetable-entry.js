@@ -31,6 +31,6 @@ describe('TimetableEntry', () => {
         />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(replaceTimetableFn).not.toBeCalled
+    expect(replaceTimetableFn).not.toBeCalled()
   })
 })

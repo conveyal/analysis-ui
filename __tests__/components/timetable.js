@@ -39,7 +39,7 @@ describe('Timetable', () => {
         />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(removeTimetableFn).not.toBeCalled
-    expect(replaceTimetableFn).not.toBeCalled
+    expect(removeTimetableFn).not.toBeCalled()
+    expect(replaceTimetableFn).not.toBeCalled()
   })
 })

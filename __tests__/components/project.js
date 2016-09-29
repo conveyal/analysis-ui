@@ -21,6 +21,6 @@ describe('Project', () => {
       </Project>
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(loadFn).toBeCalled
+    expect(loadFn).toBeCalled()
   })
 })

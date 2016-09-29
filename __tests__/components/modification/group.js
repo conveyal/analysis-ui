@@ -46,6 +46,6 @@ describe('ModificationGroup', () => {
         />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(replaceModificationFn).not.toBeCalled
+    expect(replaceModificationFn).not.toBeCalled()
   })
 })
