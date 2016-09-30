@@ -1,0 +1,54 @@
+exports[`Timetable renders correctly 1`] = `
+<section
+  className="panel panel-default inner-panel">
+  <div
+    className="panel-heading clearfix">
+    <strong>
+      Test timetable
+    </strong>
+    <Button
+      className="pull-right"
+      onClick={[Function mockConstructor]}
+      size="sm"
+      style="danger"
+      title="Delete timetable">
+      <Icon
+        type="close" />
+    </Button>
+  </div>
+  <div
+    className="panel-body">
+    <Text
+      name="Name"
+      onChange={[Function anonymous]}
+      value="Test timetable" />
+    <TimetableEntry
+      replaceTimetable={[Function mockConstructor]}
+      timetable={
+        Object {
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "saturday": false,
+          "speed": 40,
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true
+        }
+      } />
+    <Number
+      label="Speed (km/h)"
+      onChange={[Function anonymous]}
+      value={40} />
+    <Number
+      label="Dwell time (seconds)"
+      onChange={[Function anonymous]}
+      value={10} />
+  </div>
+</section>
+`;

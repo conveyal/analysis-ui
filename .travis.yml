@@ -9,8 +9,14 @@ node_js:
   - '6'
 before_install:
   - npm i -g npm@^3.0.0
+install:
+  - npm i
+  - npm install -g codecov
 before_script:
   - npm prune
+script:
+  - npm test -- --coverage
+  - codecov
 after_success:
   - npm run semantic-release
 branches:
