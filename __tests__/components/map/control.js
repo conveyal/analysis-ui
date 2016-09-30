@@ -3,6 +3,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
+jest.mock('react-dom')
+
 import Control from '../../../lib/components/map/control'
 
 describe('Map > Control', () => {
