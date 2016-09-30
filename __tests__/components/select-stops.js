@@ -11,7 +11,6 @@ describe('SelectStops', () => {
     const setMapStateFn = jest.fn()
     const tree = renderer.create(
       <SelectStops
-        feed={null}
         modification={{}}
         replaceModification={replaceModificationFn}
         setMapState={setMapStateFn}

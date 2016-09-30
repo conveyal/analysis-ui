@@ -91,6 +91,7 @@ input[type="month"].form-control,
   left: 0;
   height: 100%;
   border-right: 1px solid #ddd;
+  /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15); */
 }
 
 .ModificationDock {
@@ -335,4 +336,50 @@ input[type="month"].form-control,
   font-size: 18px;
   position: absolute;
   z-index: 10000;
+}
+
+/**
+ * MAP CONTROL
+ */
+
+.MapControl {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #fff; /* #0b2b40; Conveyal blue down to 25% brightness in HSB */
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15);
+  border-bottom-left-radius: 3px;
+  width: 320px;
+  padding: 3px 0;
+}
+
+.MapControl .block {
+  display: block;
+  padding: 6px 6px 3px;
+  width: 100%;
+}
+
+.MapControl a:hover,
+.MapControl a:active,
+.MapControl a:focus,
+.MapControl a.active {
+  text-decoration: none;
+  outline: none;
+}
+
+.MapControl input[type=range] {
+  display: inline-block;
+  width: 93%;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.MapControl .Select-control {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.MapControl .Select-menu-outer {
+  border: none;
 }
