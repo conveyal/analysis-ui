@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Panel, { Heading, Body } from '../../lib/components/panel'
+import { Body, Heading, Panel } from '../../lib/components/panel'
 
 describe('Panel', () => {
   it('renders correctly', () => {

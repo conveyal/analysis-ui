@@ -3,7 +3,8 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-jest.mock('react-dom')
+jest.mock('react-select-geocoder', () => 'ReactSelctGeocoder')
+jest.mock('../../../lib/components/icon', () => 'Icon')
 
 import Control from '../../../lib/components/map/control'
 
