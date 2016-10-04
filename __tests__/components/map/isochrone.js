@@ -1,12 +1,12 @@
 /* global describe, it, expect, jest */
 
 import React from 'react'
-import {Map} from 'react-leaflet'
 import renderer from 'react-test-renderer'
 
-jest.mock('react-dom')
-
 import Isochrone from '../../../lib/components/map/isochrone'
+
+jest.mock('react-dom')
+const {Map} = jest.genMockFromModule('react-leaflet')
 
 describe('Components > Map > Isochrone', () => {
   it('renders correctly', () => {
