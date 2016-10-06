@@ -9,7 +9,7 @@ jest.mock('../../lib/components/input', () => { return mockComponents(['Checkbox
 
 import TimetableEntry from '../../lib/components/timetable-entry'
 
-describe('TimetableEntry', () => {
+describe('Component > TimetableEntry', () => {
   it('renders correctly', () => {
     const timetable = {
       monday: true,

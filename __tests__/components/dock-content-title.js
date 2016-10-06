@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 
 import Title from '../../lib/components/dock-content-title'
 
-describe('Title', () => {
+describe('Component > Title', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Title>Title text</Title>

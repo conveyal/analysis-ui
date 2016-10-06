@@ -10,7 +10,7 @@ jest.mock('react-leaflet', () => { return mockComponents(['Marker']) })
 
 import DirectionIcon from '../../lib/components/direction-icon'
 
-describe('DirectionIcon', () => {
+describe('Component > DirectionIcon', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <DirectionIcon

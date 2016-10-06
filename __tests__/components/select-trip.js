@@ -10,7 +10,7 @@ jest.mock('../../lib/components/input', () => { return mockComponents(['Group'])
 
 import SelectTrip from '../../lib/components/select-trip'
 
-describe('SelectTrip', () => {
+describe('Component > SelectTrip', () => {
   it('renders correctly', () => {
     const patternTrips = ['abcd']
     const mockFeed = {

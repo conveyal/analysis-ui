@@ -12,7 +12,7 @@ jest.mock('../../lib/components/panel', () => { return mockComponents(['Body']) 
 
 import SelectProject from '../../lib/components/select-project'
 
-describe('SelectProject', () => {
+describe('Component > SelectProject', () => {
   it('renders correctly', () => {
     const createFn = jest.fn()
     const mockProjects = [{ id: 1, name: 'P1' }, { id: 2, name: 'P2' }]

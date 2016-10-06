@@ -13,7 +13,7 @@ jest.mock('../../lib/components/panel', () => { return mockComponents(['Body', '
 
 import EditScenario from '../../lib/components/edit-scenario'
 
-describe('EditScenario', () => {
+describe('Component > EditScenario', () => {
   it('renders correctly', () => {
     const mockBundles = [{ id: 1, name: 'B1' }, { id: 2, name: 'B2' }]
     const closeFn = jest.fn()

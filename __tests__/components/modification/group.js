@@ -8,7 +8,7 @@ jest.mock('../../../lib/components/modification/title', () => 'ModificationTitle
 
 import ModificationGroup from '../../../lib/components/modification/group'
 
-describe('ModificationGroup', () => {
+describe('Component > Map > ModificationGroup', () => {
   it('renders correctly', () => {
     const activeModification = {
       id: '1234',

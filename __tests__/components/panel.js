@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 
 import { Body, Heading, Panel } from '../../lib/components/panel'
 
-describe('Panel', () => {
+describe('Component > Panel', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Panel>Panel text</Panel>
@@ -14,7 +14,7 @@ describe('Panel', () => {
   })
 })
 
-describe('Heading', () => {
+describe('Component > Heading', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Heading>Heading text</Heading>
@@ -23,7 +23,7 @@ describe('Heading', () => {
   })
 })
 
-describe('Body', () => {
+describe('Component > Body', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Body>Body text</Body>

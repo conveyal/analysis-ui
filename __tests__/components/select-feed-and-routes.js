@@ -10,7 +10,7 @@ jest.mock('../../lib/components/input', () => { return mockComponents(['Group'])
 
 import SelectFeedAndRoutes from '../../lib/components/select-feed-and-routes'
 
-describe('SelectFeedAndRoutes', () => {
+describe('Component > SelectFeedAndRoutes', () => {
   it('renders correctly', () => {
     const feeds = [{ id: 1 }, { id: 2 }]
     const onChangeFn = jest.fn()

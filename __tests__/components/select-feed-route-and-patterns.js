@@ -8,7 +8,7 @@ jest.mock('../../lib/components/select-feed-and-routes', () => 'SelectFeedAndRou
 
 import SelectFeedRouteAndPatterns from '../../lib/components/select-feed-route-and-patterns'
 
-describe('SelectFeedRouteAndPatterns', () => {
+describe('Component > SelectFeedRouteAndPatterns', () => {
   it('renders correctly', () => {
     const onChangeFn = jest.fn()
     const tree = renderer.create(

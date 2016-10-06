@@ -12,7 +12,7 @@ jest.mock('../../../lib/components/timetable', () => 'Timetable')
 
 import AddTripPattern from '../../../lib/components/modification/add-trip-pattern'
 
-describe('AddTripPattern', () => {
+describe('Component > Map > AddTripPattern', () => {
   it('renders correctly', () => {
     const mapState = {
       allowExtend: true,

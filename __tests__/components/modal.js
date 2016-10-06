@@ -7,7 +7,7 @@ jest.mock('react-modal', () => 'React-Modal')
 
 import Modal from '../../lib/components/modal'
 
-describe('Modal', () => {
+describe('Component > Modal', () => {
   it('renders correctly', () => {
     const onRequestCloseFn = jest.fn()
     const tree = renderer.create(

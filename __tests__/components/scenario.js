@@ -7,7 +7,7 @@ jest.mock('../../lib/components/icon', () => 'Icon')
 
 import Scenario from '../../lib/components/scenario'
 
-describe('Scenario', () => {
+describe('Component > Scenario', () => {
   it('renders correctly', () => {
     const addComponentToMapFn = jest.fn()
     const loadFn = jest.fn()

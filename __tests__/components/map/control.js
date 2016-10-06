@@ -8,7 +8,7 @@ jest.mock('../../../lib/components/icon', () => 'Icon')
 
 import Control from '../../../lib/components/map/control'
 
-describe('Map > Control', () => {
+describe('Component > Map > Control', () => {
   it('renders correctly', () => {
     const props = {
       addIsochroneLayerToMap: jest.fn(),

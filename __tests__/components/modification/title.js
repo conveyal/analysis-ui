@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 
 import Title from '../../../lib/components/modification/title'
 
-describe('Scenario', () => {
+describe('Component > Map > Scenario', () => {
   it('renders correctly', () => {
     const modification = {
       id: '1234',

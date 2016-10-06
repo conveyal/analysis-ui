@@ -10,7 +10,7 @@ jest.mock('../../lib/components/input', () => { return mockComponents(['Group'])
 
 import SelectPatterns from '../../lib/components/select-patterns'
 
-describe('SelectPatterns', () => {
+describe('Component > SelectPatterns', () => {
   it('renders correctly', () => {
     const onChangeFn = jest.fn()
     const routePatterns = [

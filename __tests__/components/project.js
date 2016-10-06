@@ -7,7 +7,7 @@ jest.mock('../../lib/components/icon', () => 'Icon')
 
 import Project from '../../lib/components/project'
 
-describe('Project', () => {
+describe('Component > Project', () => {
   it('renders correctly', () => {
     const loadFn = jest.fn()
     const tree = renderer.create(

@@ -12,7 +12,7 @@ jest.mock('../../lib/components/panel', () => { return mockComponents(['Body']) 
 
 import SelectScenario from '../../lib/components/select-scenario'
 
-describe('SelectScenario', () => {
+describe('Component > SelectScenario', () => {
   it('renders correctly', () => {
     const mockScenarios = [{ id: 1, name: 'S1' }, { id: 2, name: 'S2' }]
     const pushFn = jest.fn()

@@ -12,7 +12,7 @@ jest.mock('../../lib/components/timetable-entry', () => 'TimetableEntry')
 
 import Timetable from '../../lib/components/timetable'
 
-describe('Timetable', () => {
+describe('Component > Timetable', () => {
   it('renders correctly', () => {
     const timetable = {
       name: 'Test timetable',

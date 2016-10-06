@@ -11,7 +11,7 @@ jest.mock('../../lib/components/panel', () => { return mockComponents(['Panel', 
 
 import ImportModifications from '../../lib/components/import-modifications'
 
-describe('ImportModifications', () => {
+describe('Component > ImportModifications', () => {
   it('renders correctly', () => {
     const copyFromScenarioFn = jest.fn()
     const tree = renderer.create(

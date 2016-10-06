@@ -14,7 +14,7 @@ jest.mock('../../lib/components/timetable-entry', () => 'TimetableEntry')
 
 import FrequencyEntry from '../../lib/components/frequency-entry'
 
-describe('FrequencyEntry', () => {
+describe('Component > FrequencyEntry', () => {
   it('renders correctly', () => {
     const replaceTimetableFn = jest.fn()
     const removeTimetableFn = jest.fn()
