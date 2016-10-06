@@ -3,9 +3,9 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-jest.mock('react-dom')
-
 import Control from '../../../lib/components/map/control'
+
+jest.mock('react-dom')
 
 describe('Map > Control', () => {
   it('renders correctly', () => {
@@ -15,14 +15,13 @@ describe('Map > Control', () => {
         lat: 38.898,
         lon: -77.015
       },
-      clearIsochroneResults: jest.fn(),
+      fetchIsochrone: jest.fn(),
       geocoderApiKey: 'MAPZEN_SEARCH_KEY',
       isochroneCutoff: 3600,
       isFetchingIsochrone: false,
       isShowingIsochrone: false,
       removeIsochroneLayerFromMap: jest.fn(),
-      setIsochroneCutoff: jest.fn(),
-      setIsochroneLatLng: jest.fn()
+      setIsochroneCutoff: jest.fn()
     }
 
     const tree = renderer.create(
