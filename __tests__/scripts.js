@@ -7,7 +7,7 @@ const fs = require('fs-extra')
 const mkdirp = require('mkdirp')
 const rimraf = require('rimraf')
 
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 
 describe('build', function () {
   const buildFolder = 'test-build'
@@ -16,7 +16,6 @@ describe('build', function () {
   }
 
   beforeEach((done) => {
-    console.log('beforeEach')
     auto({
       removeBuildFolder: rmBuildFolderFn,
       makeBuildFolder: ['removeBuildFolder', (results, cb) => {
@@ -36,7 +35,6 @@ describe('build', function () {
   })
 
   afterEach((done) => {
-    console.log('afterEach')
     auto({
       removeBuildFolder: rmBuildFolderFn,
       removeTestSettings: (cb) => {
