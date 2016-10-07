@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { mockComponents } from '../../../testUtils'
+import { mockComponents } from '../../../test-utils'
 
 jest.mock('react-leaflet', () => { return mockComponents(['Marker']) })
 jest.mock('../../../lib/components/map/geojson', () => 'GeoJson')

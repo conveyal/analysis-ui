@@ -1,21 +1,9 @@
-/* global describe, it, expect, jest */
+/* global describe, it, expect */
 
+import { mount } from 'enzyme'
+import Leaflet from '../../../test-utils/mock-leaflet'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-jest.mock('react-leaflet', () => {
-  return {
-    GeoJson: class mockGeoJson extends React.Component {
-      render () {
-        return (
-          <mockGeoJson
-            {...this.props}
-            />
-        )
-      }
-    }
-  }
-})
+import { Map } from 'react-leaflet'
 
 import GeoJSON from '../../../lib/components/map/geojson'
 
@@ -26,11 +14,15 @@ describe('Components > Map > GeoJSON', () => {
       features: []
     }
 
-    const tree = renderer.create(
-      <GeoJSON
-        data={geojson}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    mount(
+      <Map>
+        <GeoJSON
+          data={geojson}
+          />
+      </Map>
+    , {
+      attachTo: document.getElementById('test')
+    })
+    expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
   })
 })

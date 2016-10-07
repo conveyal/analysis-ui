@@ -3,7 +3,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import { mockComponents } from '../../testUtils'
+import { mockComponents } from '../../test-utils'
 
 jest.mock('../../lib/components/input', () => { return mockComponents(['Checkbox', 'Number', 'Text']) })
 
