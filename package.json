@@ -6,10 +6,11 @@
     "parser": "babel-eslint"
   },
   "scripts": {
+    "build": "mastarm build lib/index.js:assets/index.js lib/styles.css:assets/index.css",
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "start": "mastarm build --serve lib/index.js:assets/index.js --proxy http://localhost:7070/api",
+    "start": "npm run build -- --serve --proxy http://localhost:7070/api",
     "test": "mastarm lint && mastarm test"
   },
   "repository": {
@@ -71,7 +72,7 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
-    "mastarm": "^0.11.0",
+    "mastarm": "^1.1.0",
     "react-addons-perf": "^15.2.1",
     "react-test-renderer": "^15.3.1",
     "redux-devtools": "^3.3.1",
