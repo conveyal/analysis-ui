@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 
 import { Group, Button } from '../../lib/components/buttons'
 
-describe('Button', () => {
+describe('Component > Button', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Button
@@ -20,7 +20,7 @@ describe('Button', () => {
   })
 })
 
-describe('Group', () => {
+describe('Component > Group', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Group justified />

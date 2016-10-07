@@ -7,7 +7,7 @@ jest.mock('../../lib/components/icon', () => 'Icon')
 
 import Scenario from '../../lib/components/scenario'
 
-describe('Scenario', () => {
+describe('Component > Scenario', () => {
   it('renders correctly', () => {
     const addComponentToMapFn = jest.fn()
     const loadFn = jest.fn()
@@ -24,7 +24,7 @@ describe('Scenario', () => {
       </Scenario>
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(addComponentToMapFn).not.toBeCalled
-    expect(loadFn).toBeCalled
+    expect(addComponentToMapFn).not.toBeCalled()
+    expect(loadFn).toBeCalled()
   })
 })

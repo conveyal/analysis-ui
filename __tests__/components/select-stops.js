@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 
 import SelectStops from '../../lib/components/select-stops'
 
-describe('SelectStops', () => {
+describe('Component > SelectStops', () => {
   it('renders correctly with no feed data', () => {
     const replaceModificationFn = jest.fn()
     const setMapStateFn = jest.fn()
@@ -17,7 +17,7 @@ describe('SelectStops', () => {
         />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(replaceModificationFn).not.toBeCalled
-    expect(setMapStateFn).not.toBeCalled
+    expect(replaceModificationFn).not.toBeCalled()
+    expect(setMapStateFn).not.toBeCalled()
   })
 })
