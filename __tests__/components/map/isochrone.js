@@ -3,10 +3,12 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Isochrone from '../../../lib/components/map/isochrone'
+import { mockComponents } from '../../../testUtils'
 
-jest.mock('react-dom')
-const {Map} = jest.genMockFromModule('react-leaflet')
+jest.mock('react-leaflet', () => { return mockComponents(['Marker']) })
+jest.mock('../../../lib/components/map/geojson', () => 'GeoJson')
+
+import Isochrone from '../../../lib/components/map/isochrone'
 
 describe('Components > Map > Isochrone', () => {
   it('renders correctly', () => {
@@ -23,11 +25,9 @@ describe('Components > Map > Isochrone', () => {
     }
 
     const tree = renderer.create(
-      <Map>
-        <Isochrone
-          {...props}
-          />
-      </Map>
+      <Isochrone
+        {...props}
+        />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })

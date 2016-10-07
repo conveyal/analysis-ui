@@ -17,6 +17,7 @@ describe('Component > Map > Control', () => {
         lon: -77.015
       },
       clearIsochroneResults: jest.fn(),
+      fetchIsochrone: jest.fn(),
       geocoderApiKey: 'MAPZEN_SEARCH_KEY',
       isochroneCutoff: 3600,
       isFetchingIsochrone: false,

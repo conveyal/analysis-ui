@@ -26,3 +26,35 @@ describe('Components > Map > GeoJSON', () => {
     expect(tree).toMatchSnapshot()
   })
 })
+
+/* Works with Jest 16
+jest.mock('react-leaflet', () => {
+  return {
+    GeoJson: class mockGeoJson extends React.Component {
+      render () {
+        return (
+          <mockGeoJson />
+        )
+      }
+    }
+  }
+})
+
+import GeoJSON from '../../../lib/components/map/geojson'
+
+describe('Components > Map > GeoJSON', () => {
+  it('renders correctly', () => {
+    const geojson = {
+      type: 'FeatureCollection',
+      features: []
+    }
+
+    const tree = renderer.create(
+      <GeoJSON
+        data={geojson}
+        />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+})
+*/
