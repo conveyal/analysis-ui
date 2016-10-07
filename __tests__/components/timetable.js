@@ -12,7 +12,7 @@ jest.mock('../../lib/components/timetable-entry', () => 'TimetableEntry')
 
 import Timetable from '../../lib/components/timetable'
 
-describe('Timetable', () => {
+describe('Component > Timetable', () => {
   it('renders correctly', () => {
     const timetable = {
       name: 'Test timetable',
@@ -39,7 +39,7 @@ describe('Timetable', () => {
         />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-    expect(removeTimetableFn).not.toBeCalled
-    expect(replaceTimetableFn).not.toBeCalled
+    expect(removeTimetableFn).not.toBeCalled()
+    expect(replaceTimetableFn).not.toBeCalled()
   })
 })

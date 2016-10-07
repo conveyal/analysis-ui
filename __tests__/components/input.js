@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 
 import { Checkbox, File, Group, Input, Number, Select, SelectMultiple, Text } from '../../lib/components/input'
 
-describe('Checkbox', () => {
+describe('Component > Checkbox', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Checkbox
@@ -17,7 +17,7 @@ describe('Checkbox', () => {
   })
 })
 
-describe('File', () => {
+describe('Component > File', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <File
@@ -31,7 +31,7 @@ describe('File', () => {
   })
 })
 
-describe('Group', () => {
+describe('Component > Group', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Group />
@@ -40,7 +40,7 @@ describe('Group', () => {
   })
 })
 
-describe('Input', () => {
+describe('Component > Input', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Input
@@ -53,7 +53,7 @@ describe('Input', () => {
   })
 })
 
-describe('Number', () => {
+describe('Component > Number', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Number
@@ -66,7 +66,7 @@ describe('Number', () => {
   })
 })
 
-describe('Select', () => {
+describe('Component > Select', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Select
@@ -81,7 +81,7 @@ describe('Select', () => {
   })
 })
 
-describe('SelectMultiple', () => {
+describe('Component > SelectMultiple', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <SelectMultiple
@@ -96,7 +96,7 @@ describe('SelectMultiple', () => {
   })
 })
 
-describe('Text', () => {
+describe('Component > Text', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Text

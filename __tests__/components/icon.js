@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer'
 
 import Icon from '../../lib/components/icon'
 
-describe('Icon', () => {
+describe('Component > Icon', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <Icon
