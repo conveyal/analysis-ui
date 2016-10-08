@@ -11,7 +11,7 @@
     "docs": "cd docs && mkdocs serve",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run build -- --serve --proxy http://localhost:7070/api",
-    "test": "mastarm lint && mastarm test"
+    "test": "mastarm lint && mastarm test --setup-files test-utils/jest-setup.js"
   },
   "repository": {
     "type": "git",
@@ -72,8 +72,10 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
+    "enzyme": "^2.4.1",
     "mastarm": "^1.1.0",
     "react-addons-perf": "^15.2.1",
+    "react-addons-test-utils": "^15.3.2",
     "react-test-renderer": "^15.3.1",
     "redux-devtools": "^3.3.1",
     "redux-logger": "^2.6.1",
