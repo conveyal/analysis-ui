@@ -1,10 +1,8 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-jest.mock('../../../lib/components/icon', () => 'Icon')
-jest.mock('../../../lib/components/modification/title', () => 'ModificationTitle')
 
 import ModificationGroup from '../../../lib/components/modification/group'
 
@@ -35,7 +33,7 @@ describe('Component > Map > ModificationGroup', () => {
       showOnMap: false
     }
     const replaceModificationFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <ModificationGroup
         activeModification={activeModification}
         modifications={[activeModification]}
@@ -44,8 +42,8 @@ describe('Component > Map > ModificationGroup', () => {
         scenarioId='1234'
         type='test'
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(replaceModificationFn).not.toBeCalled()
   })
 })

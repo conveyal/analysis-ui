@@ -1,14 +1,8 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../../test-utils'
-
-jest.mock('../../../lib/components/buttons', () => { return mockComponents(['Button']) })
-jest.mock('../../../lib/components/icon', () => 'Icon')
-jest.mock('../../../lib/components/input', () => { return mockComponents(['Checkbox', 'Number']) })
-jest.mock('../../../lib/components/timetable', () => 'Timetable')
 
 import AddTripPattern from '../../../lib/components/modification/add-trip-pattern'
 
@@ -46,7 +40,7 @@ describe('Component > Map > AddTripPattern', () => {
     const replaceModificationFn = jest.fn()
     const setMapStateFn = jest.fn()
     const updateFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <AddTripPattern
         mapState={mapState}
         modification={modification}
@@ -54,8 +48,8 @@ describe('Component > Map > AddTripPattern', () => {
         setMapState={setMapStateFn}
         update={updateFn}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(replaceModificationFn).not.toBeCalled()
     expect(setMapStateFn).not.toBeCalled()
     expect(updateFn).not.toBeCalled()

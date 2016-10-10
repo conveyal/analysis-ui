@@ -1,7 +1,8 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import Title from '../../../lib/components/modification/title'
 
@@ -30,7 +31,7 @@ describe('Component > Map > Scenario', () => {
       bidirectional: false
     }
     const replaceModificationFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <Title
         active
         modification={modification}
@@ -40,8 +41,8 @@ describe('Component > Map > Scenario', () => {
         scenarioId='1234'
         showOnMap
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(replaceModificationFn).not.toBeCalled()
   })
 })

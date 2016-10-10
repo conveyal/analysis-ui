@@ -1,85 +1,561 @@
 exports[`Component > Map > AddTripPattern renders correctly 1`] = `
-<div>
-  <Button
-    block={true}
-    onClick={[Function]}
-    style="warning">
-    <Icon
-      type="times-circle" />
-     Stop editing
-  </Button>
-  <Checkbox
-    defaultChecked={true}
-    label="Extend from end"
-    onChange={[Function]} />
-  <Checkbox
-    defaultChecked={true}
-    label="Follow streets"
-    onChange={[Function]} />
-  <Checkbox
-    defaultChecked={true}
-    label="Create stops automatically"
-    onChange={[Function]} />
-  <Number
-    label="Stop spacing (meters)"
-    onChange={[Function]}
-    value={400} />
-  <Checkbox
-    checked={false}
-    label="Bidirectional"
-    onChange={[Function]} />
-  <Timetable
-    index={1}
-    modification={
-      Object {
-        "bidirectional": false,
-        "id": "1234",
-        "segments": Array [],
-        "timetables": Array [
-          Object {
-            "dwellTime": 10,
-            "endTime": 57600,
-            "friday": true,
-            "headwaySecs": 900,
-            "monday": true,
-            "name": "Test timetable",
-            "saturday": false,
-            "speed": 40,
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-      }
+<AddTripPattern
+  mapState={
+    Object {
+      "allowExtend": true,
+      "extendFromEnd": true,
+      "followRoad": true,
+      "modificationId": "1234",
+      "state": "add-trip-pattern",
     }
-    removeTimetable={[Function]}
-    replaceTimetable={[Function]}
-    timetable={
-      Object {
-        "dwellTime": 10,
-        "endTime": 57600,
-        "friday": true,
-        "headwaySecs": 900,
-        "monday": true,
-        "name": "Test timetable",
-        "saturday": false,
-        "speed": 40,
-        "startTime": 28800,
-        "sunday": false,
-        "thursday": true,
-        "tuesday": true,
-        "wednesday": true,
+  }
+  modification={
+    Object {
+      "bidirectional": false,
+      "id": "1234",
+      "segments": Array [],
+      "timetables": Array [
+        Object {
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "saturday": false,
+          "speed": 40,
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
+        },
+      ],
+    }
+  }
+  replaceModification={[Function]}
+  setMapState={[Function]}
+  update={[Function]}>
+  <div>
+    <pure(Component)
+      block={true}
+      onClick={[Function]}
+      style="warning">
+      <a
+        className="btn btn-warning btn-block"
+        href="#"
+        onClick={[Function]}
+        target={undefined}>
+        <pure(Icon)
+          type="times-circle">
+          <i
+            className="fa fa-times-circle fa-fw " />
+        </pure(Icon)>
+      </a>
+    </pure(Component)>
+    <pure(Component)
+      defaultChecked={true}
+      label="Extend from end"
+      onChange={[Function]}>
+      <div
+        className="checkbox">
+        <label>
+          <input
+            defaultChecked={true}
+            onChange={[Function]}
+            type="checkbox" />
+        </label>
+      </div>
+    </pure(Component)>
+    <pure(Component)
+      defaultChecked={true}
+      label="Follow streets"
+      onChange={[Function]}>
+      <div
+        className="checkbox">
+        <label>
+          <input
+            defaultChecked={true}
+            onChange={[Function]}
+            type="checkbox" />
+        </label>
+      </div>
+    </pure(Component)>
+    <pure(Component)
+      defaultChecked={true}
+      label="Create stops automatically"
+      onChange={[Function]}>
+      <div
+        className="checkbox">
+        <label>
+          <input
+            defaultChecked={true}
+            onChange={[Function]}
+            type="checkbox" />
+        </label>
+      </div>
+    </pure(Component)>
+    <pure(Component)
+      label="Stop spacing (meters)"
+      onChange={[Function]}
+      value={400}>
+      <Group
+        label="Stop spacing (meters)"
+        onChange={[Function]}
+        value={400}>
+        <div
+          className="form-group">
+          <label>
+            Stop spacing (meters)
+          </label>
+          <pure(Component)
+            label="Stop spacing (meters)"
+            onChange={[Function]}
+            type="number"
+            value={400}>
+            <input
+              className="form-control"
+              defaultValue={400}
+              name={undefined}
+              onChange={[Function]}
+              placeholder="Stop spacing (meters)"
+              type="number"
+              value={400} />
+          </pure(Component)>
+        </div>
+      </Group>
+    </pure(Component)>
+    <pure(Component)
+      checked={false}
+      label="Bidirectional"
+      onChange={[Function]}>
+      <div
+        className="checkbox">
+        <label>
+          <input
+            checked={false}
+            onChange={[Function]}
+            type="checkbox" />
+        </label>
+      </div>
+    </pure(Component)>
+    <Timetable
+      index={1}
+      modification={
+        Object {
+          "bidirectional": false,
+          "id": "1234",
+          "segments": Array [],
+          "timetables": Array [
+            Object {
+              "dwellTime": 10,
+              "endTime": 57600,
+              "friday": true,
+              "headwaySecs": 900,
+              "monday": true,
+              "name": "Test timetable",
+              "saturday": false,
+              "speed": 40,
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+        }
       }
-    } />
-  <Button
-    block={true}
-    onClick={[Function]}
-    style="success">
-    <Icon
-      type="plus" />
-     Add timetable
-  </Button>
-</div>
+      removeTimetable={[Function]}
+      replaceTimetable={[Function]}
+      timetable={
+        Object {
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "saturday": false,
+          "speed": 40,
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
+        }
+      }>
+      <section
+        className="panel panel-default inner-panel">
+        <div
+          className="panel-heading clearfix">
+          <strong>
+            Test timetable
+          </strong>
+          <pure(Component)
+            className="pull-right"
+            onClick={[Function]}
+            size="sm"
+            style="danger"
+            title="Delete timetable">
+            <a
+              className="btn btn-danger btn-sm pull-right"
+              href="#"
+              onClick={[Function]}
+              target={undefined}
+              title="Delete timetable">
+              <pure(Icon)
+                type="close">
+                <i
+                  className="fa fa-close fa-fw " />
+              </pure(Icon)>
+            </a>
+          </pure(Component)>
+        </div>
+        <div
+          className="panel-body">
+          <pure(Component)
+            name="Name"
+            onChange={[Function]}
+            value="Test timetable">
+            <Group
+              name="Name"
+              onChange={[Function]}
+              value="Test timetable">
+              <div
+                className="form-group">
+                <pure(Component)
+                  name="Name"
+                  onChange={[Function]}
+                  type="text"
+                  value="Test timetable">
+                  <input
+                    className="form-control"
+                    defaultValue="Test timetable"
+                    name="Name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    type="text"
+                    value="Test timetable" />
+                </pure(Component)>
+              </div>
+            </Group>
+          </pure(Component)>
+          <TimetableEntry
+            replaceTimetable={[Function]}
+            timetable={
+              Object {
+                "dwellTime": 10,
+                "endTime": 57600,
+                "friday": true,
+                "headwaySecs": 900,
+                "monday": true,
+                "name": "Test timetable",
+                "saturday": false,
+                "speed": 40,
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              }
+            }>
+            <div>
+              <Days
+                setDay={[Function]}
+                timetable={
+                  Object {
+                    "dwellTime": 10,
+                    "endTime": 57600,
+                    "friday": true,
+                    "headwaySecs": 900,
+                    "monday": true,
+                    "name": "Test timetable",
+                    "saturday": false,
+                    "speed": 40,
+                    "startTime": 28800,
+                    "sunday": false,
+                    "thursday": true,
+                    "tuesday": true,
+                    "wednesday": true,
+                  }
+                }>
+                <div
+                  className="form-inline">
+                  <pure(Component)
+                    checked={true}
+                    label="Mon"
+                    onChange={[Function]}>
+                    <div
+                      className="checkbox">
+                      <label>
+                        <input
+                          checked={true}
+                          onChange={[Function]}
+                          type="checkbox" />
+                      </label>
+                    </div>
+                  </pure(Component)>
+                  <pure(Component)
+                    checked={true}
+                    label="Tue"
+                    onChange={[Function]}>
+                    <div
+                      className="checkbox">
+                      <label>
+                        <input
+                          checked={true}
+                          onChange={[Function]}
+                          type="checkbox" />
+                      </label>
+                    </div>
+                  </pure(Component)>
+                  <pure(Component)
+                    checked={true}
+                    label="Wed"
+                    onChange={[Function]}>
+                    <div
+                      className="checkbox">
+                      <label>
+                        <input
+                          checked={true}
+                          onChange={[Function]}
+                          type="checkbox" />
+                      </label>
+                    </div>
+                  </pure(Component)>
+                  <pure(Component)
+                    checked={true}
+                    label="Thu"
+                    onChange={[Function]}>
+                    <div
+                      className="checkbox">
+                      <label>
+                        <input
+                          checked={true}
+                          onChange={[Function]}
+                          type="checkbox" />
+                      </label>
+                    </div>
+                  </pure(Component)>
+                  <pure(Component)
+                    checked={true}
+                    label="Fri"
+                    onChange={[Function]}>
+                    <div
+                      className="checkbox">
+                      <label>
+                        <input
+                          checked={true}
+                          onChange={[Function]}
+                          type="checkbox" />
+                      </label>
+                    </div>
+                  </pure(Component)>
+                  <pure(Component)
+                    checked={false}
+                    label="Sat"
+                    onChange={[Function]}>
+                    <div
+                      className="checkbox">
+                      <label>
+                        <input
+                          checked={false}
+                          onChange={[Function]}
+                          type="checkbox" />
+                      </label>
+                    </div>
+                  </pure(Component)>
+                  <pure(Component)
+                    checked={false}
+                    label="Sun"
+                    onChange={[Function]}>
+                    <div
+                      className="checkbox">
+                      <label>
+                        <input
+                          checked={false}
+                          onChange={[Function]}
+                          type="checkbox" />
+                      </label>
+                    </div>
+                  </pure(Component)>
+                </div>
+              </Days>
+              <pure(Component)
+                label="Frequency (minutes)"
+                onChange={[Function]}
+                value={15}>
+                <Group
+                  label="Frequency (minutes)"
+                  onChange={[Function]}
+                  value={15}>
+                  <div
+                    className="form-group">
+                    <label>
+                      Frequency (minutes)
+                    </label>
+                    <pure(Component)
+                      label="Frequency (minutes)"
+                      onChange={[Function]}
+                      type="number"
+                      value={15}>
+                      <input
+                        className="form-control"
+                        defaultValue={15}
+                        name={undefined}
+                        onChange={[Function]}
+                        placeholder="Frequency (minutes)"
+                        type="number"
+                        value={15} />
+                    </pure(Component)>
+                  </div>
+                </Group>
+              </pure(Component)>
+              <pure(Component)
+                label="Start time"
+                onChange={[Function]}
+                type="time"
+                value="08:00">
+                <Group
+                  label="Start time"
+                  onChange={[Function]}
+                  type="time"
+                  value="08:00">
+                  <div
+                    className="form-group">
+                    <label>
+                      Start time
+                    </label>
+                    <pure(Component)
+                      label="Start time"
+                      onChange={[Function]}
+                      type="time"
+                      value="08:00">
+                      <input
+                        className="form-control"
+                        defaultValue="08:00"
+                        name={undefined}
+                        onChange={[Function]}
+                        placeholder="Start time"
+                        type="time"
+                        value="08:00" />
+                    </pure(Component)>
+                  </div>
+                </Group>
+              </pure(Component)>
+              <pure(Component)
+                label="End time"
+                onChange={[Function]}
+                type="time"
+                value="16:00">
+                <Group
+                  label="End time"
+                  onChange={[Function]}
+                  type="time"
+                  value="16:00">
+                  <div
+                    className="form-group">
+                    <label>
+                      End time
+                    </label>
+                    <pure(Component)
+                      label="End time"
+                      onChange={[Function]}
+                      type="time"
+                      value="16:00">
+                      <input
+                        className="form-control"
+                        defaultValue="16:00"
+                        name={undefined}
+                        onChange={[Function]}
+                        placeholder="End time"
+                        type="time"
+                        value="16:00" />
+                    </pure(Component)>
+                  </div>
+                </Group>
+              </pure(Component)>
+            </div>
+          </TimetableEntry>
+          <pure(Component)
+            label="Speed (km/h)"
+            onChange={[Function]}
+            value={40}>
+            <Group
+              label="Speed (km/h)"
+              onChange={[Function]}
+              value={40}>
+              <div
+                className="form-group">
+                <label>
+                  Speed (km/h)
+                </label>
+                <pure(Component)
+                  label="Speed (km/h)"
+                  onChange={[Function]}
+                  type="number"
+                  value={40}>
+                  <input
+                    className="form-control"
+                    defaultValue={40}
+                    name={undefined}
+                    onChange={[Function]}
+                    placeholder="Speed (km/h)"
+                    type="number"
+                    value={40} />
+                </pure(Component)>
+              </div>
+            </Group>
+          </pure(Component)>
+          <pure(Component)
+            label="Dwell time (seconds)"
+            onChange={[Function]}
+            value={10}>
+            <Group
+              label="Dwell time (seconds)"
+              onChange={[Function]}
+              value={10}>
+              <div
+                className="form-group">
+                <label>
+                  Dwell time (seconds)
+                </label>
+                <pure(Component)
+                  label="Dwell time (seconds)"
+                  onChange={[Function]}
+                  type="number"
+                  value={10}>
+                  <input
+                    className="form-control"
+                    defaultValue={10}
+                    name={undefined}
+                    onChange={[Function]}
+                    placeholder="Dwell time (seconds)"
+                    type="number"
+                    value={10} />
+                </pure(Component)>
+              </div>
+            </Group>
+          </pure(Component)>
+        </div>
+      </section>
+    </Timetable>
+    <pure(Component)
+      block={true}
+      onClick={[Function]}
+      style="success">
+      <a
+        className="btn btn-success btn-block"
+        href="#"
+        onClick={[Function]}
+        target={undefined}>
+        <pure(Icon)
+          type="plus">
+          <i
+            className="fa fa-plus fa-fw " />
+        </pure(Icon)>
+      </a>
+    </pure(Component)>
+  </div>
+</AddTripPattern>
 `;
