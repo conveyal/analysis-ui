@@ -1,36 +1,23 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
-import { mockComponents } from '../../test-utils'
-
-jest.mock('../../lib/components/input', () => { return mockComponents(['Checkbox', 'Number', 'Text']) })
+import { mockTimetable } from '../../test-utils/mock-data'
 
 import TimetableEntry from '../../lib/components/timetable-entry'
 
 describe('Component > TimetableEntry', () => {
   it('renders correctly', () => {
-    const timetable = {
-      monday: true,
-      tuesday: true,
-      wednesday: true,
-      thursday: true,
-      friday: true,
-      saturday: false,
-      sunday: false,
-      headwaySecs: 900, // 15 minutes
-      startTime: 28800, // 8am
-      endTime: 57600 // 4pm
-    }
     const replaceTimetableFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <TimetableEntry
-        timetable={timetable}
+        timetable={mockTimetable}
         replaceTimetable={replaceTimetableFn}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(replaceTimetableFn).not.toBeCalled()
   })
 })

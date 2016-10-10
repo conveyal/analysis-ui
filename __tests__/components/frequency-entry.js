@@ -1,16 +1,10 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
-import { mockComponents } from '../../test-utils'
-
-jest.mock('../../lib/components/buttons', () => { return mockComponents(['Button']) })
-jest.mock('../../lib/components/icon', () => 'Icon')
-jest.mock('../../lib/components/input', () => { return mockComponents(['Text']) })
-jest.mock('../../lib/components/select-patterns', () => 'SelectPatterns')
-jest.mock('../../lib/components/select-trip', () => 'SelectTrip')
-jest.mock('../../lib/components/timetable-entry', () => 'TimetableEntry')
+import { mockFeed, mockTimetable } from '../../test-utils/mock-data'
 
 import FrequencyEntry from '../../lib/components/frequency-entry'
 
@@ -19,23 +13,18 @@ describe('Component > FrequencyEntry', () => {
     const replaceTimetableFn = jest.fn()
     const removeTimetableFn = jest.fn()
     const setActiveTripsFn = jest.fn()
-    const timetable = {
-      name: 'mock timetable',
-      patternTrips: 'mockPatternTrips',
-      sourceTrip: 'mockSourceTrip'
-    }
-    const tree = renderer.create(
+    const tree = mount(
       <FrequencyEntry
-        feed={{}}
+        feed={mockFeed}
         replaceTimetable={replaceTimetableFn}
         removeTimetable={removeTimetableFn}
         setActiveTrips={setActiveTripsFn}
-        timetable={timetable}
-        routes={[]}
-        trip='mockTrip'
+        timetable={mockTimetable}
+        routes={['route1']}
+        trip='abcd'
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(replaceTimetableFn).not.toBeCalled()
     expect(removeTimetableFn).not.toBeCalled()
     expect(setActiveTripsFn).not.toBeCalled()

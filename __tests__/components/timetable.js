@@ -1,44 +1,25 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
-import { mockComponents } from '../../test-utils'
-
-jest.mock('../../lib/components/buttons', () => { return mockComponents(['Button']) })
-jest.mock('../../lib/components/icon', () => 'Icon')
-jest.mock('../../lib/components/input', () => { return mockComponents(['Number', 'Text']) })
-jest.mock('../../lib/components/timetable-entry', () => 'TimetableEntry')
+import { mockTimetable } from '../../test-utils/mock-data'
 
 import Timetable from '../../lib/components/timetable'
 
 describe('Component > Timetable', () => {
   it('renders correctly', () => {
-    const timetable = {
-      name: 'Test timetable',
-      speed: 40,
-      dwellTime: 10,
-      monday: true,
-      tuesday: true,
-      wednesday: true,
-      thursday: true,
-      friday: true,
-      saturday: false,
-      sunday: false,
-      headwaySecs: 900, // 15 minutes
-      startTime: 28800, // 8am
-      endTime: 57600 // 4pm
-    }
     const removeTimetableFn = jest.fn()
     const replaceTimetableFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <Timetable
-        timetable={timetable}
+        timetable={mockTimetable}
         removeTimetable={removeTimetableFn}
         replaceTimetable={replaceTimetableFn}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(removeTimetableFn).not.toBeCalled()
     expect(replaceTimetableFn).not.toBeCalled()
   })

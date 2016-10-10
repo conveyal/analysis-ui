@@ -1,113 +1,189 @@
 exports[`Component > Checkbox renders correctly 1`] = `
-<div
-  className="checkbox">
-  <label>
-    <input
-      checked={true}
-      type="checkbox" />
-     
-    Do the thing?
-  </label>
-</div>
+<pure(Component)
+  checked={true}
+  label="Do the thing?">
+  <div
+    className="checkbox">
+    <label>
+      <input
+        checked={true}
+        type="checkbox" />
+    </label>
+  </div>
+</pure(Component)>
 `;
 
 exports[`Component > File renders correctly 1`] = `
-<div
-  className="form-group">
-  <label>
-    Select files
-  </label>
-  <input
-    className="form-control"
+<pure(Component)
+  label="Select files"
+  multiple={true}
+  name="files"
+  value={undefined}>
+  <Group
+    label="Select files"
     multiple={true}
     name="files"
-    placeholder="Select files"
-    type="file"
-    value={undefined} />
-</div>
+    value={undefined}>
+    <div
+      className="form-group">
+      <label>
+        Select files
+      </label>
+      <pure(Component)
+        label="Select files"
+        multiple={true}
+        name="files"
+        type="file"
+        value={undefined}>
+        <input
+          className="form-control"
+          multiple={true}
+          name="files"
+          placeholder="Select files"
+          type="file"
+          value={undefined} />
+      </pure(Component)>
+    </div>
+  </Group>
+</pure(Component)>
 `;
 
 exports[`Component > Group renders correctly 1`] = `
-<div
-  className="form-group" />
+<Group>
+  <div
+    className="form-group" />
+</Group>
 `;
 
 exports[`Component > Input renders correctly 1`] = `
-<input
-  className="form-control"
+<pure(Component)
   name="someInput"
   placeholder="Enter Text"
-  value="" />
+  value="">
+  <input
+    className="form-control"
+    name="someInput"
+    placeholder="Enter Text"
+    value="" />
+</pure(Component)>
 `;
 
 exports[`Component > Number renders correctly 1`] = `
-<div
-  className="form-group">
-  <input
-    className="form-control"
+<pure(Component)
+  name="someNumber"
+  placeholder="Enter Number"
+  value={12345}>
+  <Group
     name="someNumber"
     placeholder="Enter Number"
-    type="number"
-    value={12345} />
-</div>
+    value={12345}>
+    <div
+      className="form-group">
+      <pure(Component)
+        name="someNumber"
+        placeholder="Enter Number"
+        type="number"
+        value={12345}>
+        <input
+          className="form-control"
+          name="someNumber"
+          placeholder="Enter Number"
+          type="number"
+          value={12345} />
+      </pure(Component)>
+    </div>
+  </Group>
+</pure(Component)>
 `;
 
 exports[`Component > Select renders correctly 1`] = `
-<div
-  className="form-group">
-  <label>
-    Select an option
-  </label>
-  <select
-    className="form-control"
+<pure(Component)
+  label="Select an option"
+  value="">
+  <Group
     label="Select an option"
     value="">
-    <option
-      value="1">
-      1
-    </option>
-    <option
-      value="2">
-      2
-    </option>
-  </select>
-</div>
+    <div
+      className="form-group">
+      <label>
+        Select an option
+      </label>
+      <select
+        className="form-control"
+        label="Select an option"
+        value="">
+        <option
+          value="1">
+          1
+        </option>
+        <option
+          value="2">
+          2
+        </option>
+      </select>
+    </div>
+  </Group>
+</pure(Component)>
 `;
 
 exports[`Component > SelectMultiple renders correctly 1`] = `
-<div
-  className="form-group">
-  <label>
-    Select multiple options
-  </label>
-  <select
-    className="form-control"
+<pure(Component)
+  label="Select multiple options"
+  value="">
+  <Group
     label="Select multiple options"
-    multiple={true}
     value="">
-    <option
-      value="1">
-      1
-    </option>
-    <option
-      value="2">
-      2
-    </option>
-  </select>
-</div>
+    <div
+      className="form-group">
+      <label>
+        Select multiple options
+      </label>
+      <select
+        className="form-control"
+        label="Select multiple options"
+        multiple={true}
+        value="">
+        <option
+          value="1">
+          1
+        </option>
+        <option
+          value="2">
+          2
+        </option>
+      </select>
+    </div>
+  </Group>
+</pure(Component)>
 `;
 
 exports[`Component > Text renders correctly 1`] = `
-<div
-  className="form-group">
-  <label>
-    Enter text
-  </label>
-  <input
-    className="form-control"
+<pure(Component)
+  label="Enter text"
+  name="someText"
+  value="blah">
+  <Group
+    label="Enter text"
     name="someText"
-    placeholder="Enter text"
-    type="text"
-    value="blah" />
-</div>
+    value="blah">
+    <div
+      className="form-group">
+      <label>
+        Enter text
+      </label>
+      <pure(Component)
+        label="Enter text"
+        name="someText"
+        type="text"
+        value="blah">
+        <input
+          className="form-control"
+          name="someText"
+          placeholder="Enter text"
+          type="text"
+          value="blah" />
+      </pure(Component)>
+    </div>
+  </Group>
+</pure(Component)>
 `;

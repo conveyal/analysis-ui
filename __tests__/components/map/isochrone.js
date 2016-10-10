@@ -1,12 +1,9 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import Leaflet from '../../../test-utils/mock-leaflet'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../../test-utils'
-
-jest.mock('react-leaflet', () => { return mockComponents(['Marker']) })
-jest.mock('../../../lib/components/map/geojson', () => 'GeoJson')
+import { Map } from 'react-leaflet'
 
 import Isochrone from '../../../lib/components/map/isochrone'
 
@@ -24,11 +21,15 @@ describe('Components > Map > Isochrone', () => {
       scenarioId: 'scenario-id'
     }
 
-    const tree = renderer.create(
-      <Isochrone
-        {...props}
-        />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    mount(
+      <Map>
+        <Isochrone
+          {...props}
+          />
+      </Map>
+      , {
+        attachTo: document.getElementById('test')
+      })
+    expect(Leaflet.marker.mock.calls[0][0]).toMatchSnapshot()
   })
 })
