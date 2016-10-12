@@ -1,13 +1,14 @@
 /* global describe, it, expect */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import { Group, Button } from '../../lib/components/buttons'
 
-describe('Button', () => {
+describe('Component > Button', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Button
         style='fabulous'
         block
@@ -15,16 +16,16 @@ describe('Button', () => {
         className='some-class'
         target='_blank'
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
-describe('Group', () => {
+describe('Component > Group', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Group justified />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })

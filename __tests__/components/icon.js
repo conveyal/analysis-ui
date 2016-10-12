@@ -1,18 +1,19 @@
 /* global describe, it, expect */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import Icon from '../../lib/components/icon'
 
-describe('Icon', () => {
+describe('Component > Icon', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Icon
         type='pencil'
         className='test'
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })

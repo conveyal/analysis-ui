@@ -1,60 +1,162 @@
-exports[`ModificationGroup renders correctly 1`] = `
-<div
-  className="ModificationGroup">
-  <div
-    className="ModificationGroupTitle"
-    onClick={[Function anonymous]}
-    title="Hide modification group">
-    <Icon
-      type="chevron-down" />
-    <span>
-       
-      Test
-    </span>
-    <a
-      className="pull-right"
-      onClick={[Function anonymous]}
-      title="Create test">
-      <Icon
-        type="plus" />
-       Create
-    </a>
-  </div>
-  <div
-    className="ModificationTitles">
-    <ModificationTitle
-      active={true}
-      modification={
+exports[`Component > Modification > ModificationGroup renders correctly 1`] = `
+<ModificationGroup
+  activeModification={
+    Object {
+      "bidirectional": false,
+      "id": "1234",
+      "name": "Test Modification",
+      "segments": Array [],
+      "showOnMap": false,
+      "timetables": Array [
         Object {
-          "bidirectional": false,
-          "id": "1234",
-          "name": "Test Modification",
-          "segments": Array [],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "dwellTime": 10,
-              "endTime": 57600,
-              "friday": true,
-              "headwaySecs": 900,
-              "monday": true,
-              "name": "Test timetable",
-              "saturday": false,
-              "speed": 40,
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true
-            }
-          ]
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
+          "saturday": false,
+          "sourceTrip": "abcd",
+          "speed": 40,
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
+        },
+      ],
+    }
+  }
+  modifications={
+    Array [
+      Object {
+        "bidirectional": false,
+        "id": "1234",
+        "name": "Test Modification",
+        "segments": Array [],
+        "showOnMap": false,
+        "timetables": Array [
+          Object {
+            "dwellTime": 10,
+            "endTime": 57600,
+            "friday": true,
+            "headwaySecs": 900,
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "saturday": false,
+            "sourceTrip": "abcd",
+            "speed": 40,
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          },
+        ],
+      },
+    ]
+  }
+  projectId="1234"
+  replaceModification={[Function]}
+  scenarioId="1234"
+  type="test">
+  <div
+    className="ModificationGroup">
+    <div
+      className="ModificationGroupTitle"
+      onClick={[Function]}
+      title="Hide modification group">
+      <pure(Icon)
+        type="chevron-down">
+        <i
+          className="fa fa-chevron-down fa-fw " />
+      </pure(Icon)>
+      <span />
+      <a
+        className="pull-right"
+        onClick={[Function]}
+        title="Create test">
+        <pure(Icon)
+          type="plus">
+          <i
+            className="fa fa-plus fa-fw " />
+        </pure(Icon)>
+      </a>
+    </div>
+    <div
+      className="ModificationTitles">
+      <ModificationTitle
+        active={true}
+        modification={
+          Object {
+            "bidirectional": false,
+            "id": "1234",
+            "name": "Test Modification",
+            "segments": Array [],
+            "showOnMap": false,
+            "timetables": Array [
+              Object {
+                "dwellTime": 10,
+                "endTime": 57600,
+                "friday": true,
+                "headwaySecs": 900,
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "saturday": false,
+                "sourceTrip": "abcd",
+                "speed": 40,
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+          }
         }
-      }
-      name="Test Modification"
-      projectId="1234"
-      replaceModification={[Function mockConstructor]}
-      scenarioId="1234"
-      showOnMap={false} />
+        name="Test Modification"
+        projectId="1234"
+        replaceModification={[Function]}
+        scenarioId="1234"
+        showOnMap={false}>
+        <div
+          className="ModificationTitle active">
+          <Link
+            onlyActiveOnIndex={false}
+            style={Object {}}
+            title="Edit modification"
+            to="/projects/1234/scenarios/1234/modifications/1234">
+            <a
+              onClick={[Function]}
+              style={Object {}}
+              title="Edit modification">
+              <span>
+                Test Modification
+              </span>
+            </a>
+          </Link>
+          <a
+            className="ShowOnMap pull-right dim fa-btn"
+            onClick={[Function]}
+            title="Toggle map display">
+            <pure(Icon)
+              type="eye-slash">
+              <i
+                className="fa fa-eye-slash fa-fw " />
+            </pure(Icon)>
+          </a>
+        </div>
+      </ModificationTitle>
+    </div>
   </div>
-</div>
+</ModificationGroup>
 `;

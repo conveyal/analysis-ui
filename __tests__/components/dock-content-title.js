@@ -1,15 +1,16 @@
 /* global describe, it, expect */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import Title from '../../lib/components/dock-content-title'
 
-describe('Title', () => {
+describe('Component > Title', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Title>Title text</Title>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })

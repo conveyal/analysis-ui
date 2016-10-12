@@ -1,23 +1,45 @@
-exports[`Map > Control renders correctly 1`] = `
-<div
-  className="MapControl">
+exports[`Component > Map > Control renders correctly 1`] = `
+<Control
+  addIsochroneLayerToMap={[Function]}
+  center={
+    Object {
+      "lat": 38.898,
+      "lon": -77.015,
+    }
+  }
+  clearIsochroneResults={[Function]}
+  fetchIsochrone={[Function]}
+  geocoderApiKey="MAPZEN_SEARCH_KEY"
+  isFetchingIsochrone={false}
+  isShowingIsochrone={false}
+  isochroneCutoff={3600}
+  removeIsochroneLayerFromMap={[Function]}
+  setIsochroneCutoff={[Function]}
+  setIsochroneLatLng={[Function]}>
   <div
-    className="block">
+    className="MapControl">
+    <div
+      className="block">
+      <a
+        onClick={[Function]}
+        title="Toggle isochrone">
+        <pure(Icon)
+          type="dot-circle-o">
+          <i
+            className="fa fa-dot-circle-o fa-fw " />
+        </pure(Icon)>
+      </a>
+    </div>
     <a
-      onClick={[Function anonymous]}
-      title="Toggle isochrone">
-      <i
-        className="fa fa-dot-circle-o fa-fw " />
-       Isochrone
+      className="block"
+      onClick={[Function]}
+      title="Search for an address">
+      <pure(Icon)
+        type="search">
+        <i
+          className="fa fa-search fa-fw " />
+      </pure(Icon)>
     </a>
   </div>
-  <a
-    className="block"
-    onClick={[Function anonymous]}
-    title="Search for an address">
-    <i
-      className="fa fa-search fa-fw " />
-     Search
-  </a>
-</div>
+</Control>
 `;

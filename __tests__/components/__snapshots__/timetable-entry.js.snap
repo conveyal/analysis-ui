@@ -1,49 +1,247 @@
-exports[`TimetableEntry renders correctly 1`] = `
-<div>
-  <div
-    className="form-inline">
-    <Checkbox
-      checked={true}
-      label="Mon"
-      onChange={[Function onChange]} />
-    <Checkbox
-      checked={true}
-      label="Tue"
-      onChange={[Function onChange]} />
-    <Checkbox
-      checked={true}
-      label="Wed"
-      onChange={[Function onChange]} />
-    <Checkbox
-      checked={true}
-      label="Thu"
-      onChange={[Function onChange]} />
-    <Checkbox
-      checked={true}
-      label="Fri"
-      onChange={[Function onChange]} />
-    <Checkbox
-      checked={false}
-      label="Sat"
-      onChange={[Function onChange]} />
-    <Checkbox
-      checked={false}
-      label="Sun"
-      onChange={[Function onChange]} />
+exports[`Component > TimetableEntry renders correctly 1`] = `
+<TimetableEntry
+  replaceTimetable={[Function]}
+  timetable={
+    Object {
+      "dwellTime": 10,
+      "endTime": 57600,
+      "friday": true,
+      "headwaySecs": 900,
+      "monday": true,
+      "name": "Test timetable",
+      "patternTrips": Array [
+        "abcd",
+      ],
+      "saturday": false,
+      "sourceTrip": "abcd",
+      "speed": 40,
+      "startTime": 28800,
+      "sunday": false,
+      "thursday": true,
+      "tuesday": true,
+      "wednesday": true,
+    }
+  }>
+  <div>
+    <Days
+      setDay={[Function]}
+      timetable={
+        Object {
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
+          "saturday": false,
+          "sourceTrip": "abcd",
+          "speed": 40,
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
+        }
+      }>
+      <div
+        className="form-inline">
+        <pure(Component)
+          checked={true}
+          label="Mon"
+          onChange={[Function]}>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox" />
+            </label>
+          </div>
+        </pure(Component)>
+        <pure(Component)
+          checked={true}
+          label="Tue"
+          onChange={[Function]}>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox" />
+            </label>
+          </div>
+        </pure(Component)>
+        <pure(Component)
+          checked={true}
+          label="Wed"
+          onChange={[Function]}>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox" />
+            </label>
+          </div>
+        </pure(Component)>
+        <pure(Component)
+          checked={true}
+          label="Thu"
+          onChange={[Function]}>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox" />
+            </label>
+          </div>
+        </pure(Component)>
+        <pure(Component)
+          checked={true}
+          label="Fri"
+          onChange={[Function]}>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={true}
+                onChange={[Function]}
+                type="checkbox" />
+            </label>
+          </div>
+        </pure(Component)>
+        <pure(Component)
+          checked={false}
+          label="Sat"
+          onChange={[Function]}>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox" />
+            </label>
+          </div>
+        </pure(Component)>
+        <pure(Component)
+          checked={false}
+          label="Sun"
+          onChange={[Function]}>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox" />
+            </label>
+          </div>
+        </pure(Component)>
+      </div>
+    </Days>
+    <pure(Component)
+      label="Frequency (minutes)"
+      onChange={[Function]}
+      value={15}>
+      <Group
+        label="Frequency (minutes)"
+        onChange={[Function]}
+        value={15}>
+        <div
+          className="form-group">
+          <label>
+            Frequency (minutes)
+          </label>
+          <pure(Component)
+            label="Frequency (minutes)"
+            onChange={[Function]}
+            type="number"
+            value={15}>
+            <input
+              className="form-control"
+              defaultValue={15}
+              name={undefined}
+              onChange={[Function]}
+              placeholder="Frequency (minutes)"
+              type="number"
+              value={15} />
+          </pure(Component)>
+        </div>
+      </Group>
+    </pure(Component)>
+    <pure(Component)
+      label="Start time"
+      onChange={[Function]}
+      type="time"
+      value="08:00">
+      <Group
+        label="Start time"
+        onChange={[Function]}
+        type="time"
+        value="08:00">
+        <div
+          className="form-group">
+          <label>
+            Start time
+          </label>
+          <pure(Component)
+            label="Start time"
+            onChange={[Function]}
+            type="time"
+            value="08:00">
+            <input
+              className="form-control"
+              defaultValue="08:00"
+              name={undefined}
+              onChange={[Function]}
+              placeholder="Start time"
+              type="time"
+              value="08:00" />
+          </pure(Component)>
+        </div>
+      </Group>
+    </pure(Component)>
+    <pure(Component)
+      label="End time"
+      onChange={[Function]}
+      type="time"
+      value="16:00">
+      <Group
+        label="End time"
+        onChange={[Function]}
+        type="time"
+        value="16:00">
+        <div
+          className="form-group">
+          <label>
+            End time
+          </label>
+          <pure(Component)
+            label="End time"
+            onChange={[Function]}
+            type="time"
+            value="16:00">
+            <input
+              className="form-control"
+              defaultValue="16:00"
+              name={undefined}
+              onChange={[Function]}
+              placeholder="End time"
+              type="time"
+              value="16:00" />
+          </pure(Component)>
+        </div>
+      </Group>
+    </pure(Component)>
   </div>
-  <Number
-    label="Frequency (minutes)"
-    onChange={[Function anonymous]}
-    value={15} />
-  <Text
-    label="Start time"
-    onChange={[Function anonymous]}
-    type="time"
-    value="08:00" />
-  <Text
-    label="End time"
-    onChange={[Function anonymous]}
-    type="time"
-    value="16:00" />
-</div>
+</TimetableEntry>
 `;

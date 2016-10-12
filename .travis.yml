@@ -1,14 +1,11 @@
 sudo: false
 language: node_js
-cache:
-  directories:
-    - node_modules
 notifications:
   email: false
 node_js:
   - '6'
 before_install:
-  - npm i -g npm@^3.0.0
+  - npm i -g npm@^3
 install:
   - npm i
   - npm install -g codecov
@@ -17,6 +14,7 @@ before_script:
 script:
   - npm test -- --coverage
   - codecov
+  - npm run build
 after_success:
   - npm run semantic-release
 branches:
