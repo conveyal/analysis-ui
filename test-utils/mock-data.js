@@ -18,6 +18,14 @@ export const mockFeed = {
   }
 }
 
+export const mockMapState = {
+  allowExtend: true,
+  extendFromEnd: true,
+  followRoad: true,
+  state: 'add-trip-pattern',
+  modificationId: '1234'
+}
+
 export const mockTimetable = {
   name: 'Test timetable',
   speed: 40,
@@ -34,4 +42,13 @@ export const mockTimetable = {
   endTime: 57600, // 4pm
   patternTrips: ['abcd'],
   sourceTrip: 'abcd'
+}
+
+export const mockModification = {
+  id: '1234',
+  name: 'Test Modification',
+  segments: [],
+  timetables: [mockTimetable],
+  bidirectional: false,
+  showOnMap: false
 }

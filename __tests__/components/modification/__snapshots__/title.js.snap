@@ -1,11 +1,13 @@
-exports[`Component > Map > Scenario renders correctly 1`] = `
+exports[`Component > Modification > Scenario renders correctly 1`] = `
 <ModificationTitle
   active={true}
   modification={
     Object {
       "bidirectional": false,
       "id": "1234",
+      "name": "Test Modification",
       "segments": Array [],
+      "showOnMap": false,
       "timetables": Array [
         Object {
           "dwellTime": 10,
@@ -14,7 +16,11 @@ exports[`Component > Map > Scenario renders correctly 1`] = `
           "headwaySecs": 900,
           "monday": true,
           "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
           "saturday": false,
+          "sourceTrip": "abcd",
           "speed": 40,
           "startTime": 28800,
           "sunday": false,
@@ -41,7 +47,9 @@ exports[`Component > Map > Scenario renders correctly 1`] = `
         onClick={[Function]}
         style={Object {}}
         title="Edit modification">
-        <span />
+        <span>
+          Test Modification
+        </span>
       </a>
     </Link>
     <a
