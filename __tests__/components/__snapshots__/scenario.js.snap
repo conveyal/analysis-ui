@@ -1,42 +1,89 @@
 exports[`Component > Scenario renders correctly 1`] = `
-<div
-  className="Scenario">
+<Scenario
+  addComponentToMap={[Function]}
+  id="1234"
+  isLoaded={false}
+  load={[Function]}
+  name="Test"
+  projectId="Test1234">
   <div
-    className="ScenarioTitle">
-    <Icon
-      type="code-fork" />
-    <a
-      onClick={[Function]}
-      style={Object {}}
-      title="Show scenario modifications">
-      <span>
-        Test
-      </span>
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-      title="Edit scenario">
-      <Icon
-        type="pencil" />
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-      title="Import shapefile">
-      <Icon
-        type="globe" />
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-      title="Import modifications from another scenario">
-      <Icon
-        type="upload" />
-    </a>
+    className="Scenario">
+    <div
+      className="ScenarioTitle">
+      <pure(Icon)
+        type="code-fork">
+        <i
+          className="fa fa-code-fork fa-fw " />
+      </pure(Icon)>
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        title="Show scenario modifications"
+        to="/projects/Test1234/scenarios/1234">
+        <a
+          onClick={[Function]}
+          style={Object {}}
+          title="Show scenario modifications">
+          <span>
+            Test
+          </span>
+        </a>
+      </Link>
+      <Link
+        className="pull-right"
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        title="Edit scenario"
+        to="/projects/Test1234/scenarios/1234/edit">
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          style={Object {}}
+          title="Edit scenario">
+          <pure(Icon)
+            type="pencil">
+            <i
+              className="fa fa-pencil fa-fw " />
+          </pure(Icon)>
+        </a>
+      </Link>
+      <Link
+        className="pull-right"
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        title="Import shapefile"
+        to="/projects/Test1234/scenarios/1234/import-shapefile">
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          style={Object {}}
+          title="Import shapefile">
+          <pure(Icon)
+            type="globe">
+            <i
+              className="fa fa-globe fa-fw " />
+          </pure(Icon)>
+        </a>
+      </Link>
+      <Link
+        className="pull-right"
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        title="Import modifications from another scenario"
+        to="/projects/Test1234/scenarios/1234/import-modifications">
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          style={Object {}}
+          title="Import modifications from another scenario">
+          <pure(Icon)
+            type="upload">
+            <i
+              className="fa fa-upload fa-fw " />
+          </pure(Icon)>
+        </a>
+      </Link>
+    </div>
   </div>
-</div>
+</Scenario>
 `;

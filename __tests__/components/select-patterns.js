@@ -1,12 +1,8 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../testUtils'
-
-jest.mock('react-select', () => 'React-Select')
-jest.mock('../../lib/components/input', () => { return mockComponents(['Group']) })
 
 import SelectPatterns from '../../lib/components/select-patterns'
 
@@ -20,13 +16,13 @@ describe('Component > SelectPatterns', () => {
         trips: []
       }
     ]
-    const tree = renderer.create(
+    const tree = mount(
       <SelectPatterns
         onChange={onChangeFn}
         routePatterns={routePatterns}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(onChangeFn).not.toBeCalled()
   })
 })

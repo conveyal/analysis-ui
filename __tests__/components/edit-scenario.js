@@ -1,15 +1,8 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../testUtils'
-
-jest.mock('react-select', () => 'React-Select')
-jest.mock('../../lib/components/buttons', () => { return mockComponents(['Button']) })
-jest.mock('../../lib/components/input', () => { return mockComponents(['Group', 'Text']) })
-jest.mock('../../lib/components/icon', () => 'Icon')
-jest.mock('../../lib/components/panel', () => { return mockComponents(['Body', 'Heading', 'Panel']) })
 
 import EditScenario from '../../lib/components/edit-scenario'
 
@@ -20,7 +13,7 @@ describe('Component > EditScenario', () => {
     const createFn = jest.fn()
     const deleteScenarioFn = jest.fn()
     const saveFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <EditScenario
         bundles={mockBundles}
         close={closeFn}
@@ -32,8 +25,8 @@ describe('Component > EditScenario', () => {
         variants={[]}
         save={saveFn}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(closeFn).not.toBeCalled()
     expect(createFn).not.toBeCalled()
     expect(deleteScenarioFn).not.toBeCalled()

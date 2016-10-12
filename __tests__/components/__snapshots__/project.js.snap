@@ -1,24 +1,46 @@
 exports[`Component > Project renders correctly 1`] = `
-<div>
-  <div
-    className="ProjectTitle">
-    <Icon
-      type="list" />
-    <a
-      onClick={[Function]}
-      style={Object {}}>
-      <span>
-        Test
-      </span>
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}>
-      <Icon
-        type="pencil" />
-    </a>
+<Project
+  description="A test project"
+  id="1234"
+  load={[Function]}
+  name="Test">
+  <div>
+    <div
+      className="ProjectTitle">
+      <pure(Icon)
+        type="list">
+        <i
+          className="fa fa-list fa-fw " />
+      </pure(Icon)>
+      <Link
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/projects/1234">
+        <a
+          onClick={[Function]}
+          style={Object {}}>
+          <span>
+            Test
+          </span>
+        </a>
+      </Link>
+      <Link
+        className="pull-right"
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/projects/1234/edit">
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          style={Object {}}>
+          <pure(Icon)
+            type="pencil">
+            <i
+              className="fa fa-pencil fa-fw " />
+          </pure(Icon)>
+        </a>
+      </Link>
+    </div>
   </div>
-  Project content
-</div>
+</Project>
 `;

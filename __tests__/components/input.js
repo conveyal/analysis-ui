@@ -1,74 +1,75 @@
 /* global describe, it, expect */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import { Checkbox, File, Group, Input, Number, Select, SelectMultiple, Text } from '../../lib/components/input'
 
 describe('Component > Checkbox', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Checkbox
         label='Do the thing?'
         checked
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > File', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <File
         label='Select files'
         multiple
         name='files'
         value={undefined}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > Group', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Group />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > Input', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Input
         name='someInput'
         placeholder='Enter Text'
         value=''
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > Number', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Number
         name='someNumber'
         placeholder='Enter Number'
         value={12345}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > Select', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Select
         label='Select an option'
         value=''
@@ -76,14 +77,14 @@ describe('Component > Select', () => {
         <option key='1' value='1'>1</option>
         <option key='2' value='2'>2</option>
       </Select>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > SelectMultiple', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <SelectMultiple
         label='Select multiple options'
         value=''
@@ -91,20 +92,20 @@ describe('Component > SelectMultiple', () => {
         <option key='1' value='1'>1</option>
         <option key='2' value='2'>2</option>
       </SelectMultiple>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > Text', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Text
         label='Enter text'
         name='someText'
         value='blah'
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })

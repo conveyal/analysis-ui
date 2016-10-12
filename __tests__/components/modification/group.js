@@ -1,51 +1,27 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
-jest.mock('../../../lib/components/icon', () => 'Icon')
-jest.mock('../../../lib/components/modification/title', () => 'ModificationTitle')
+import { mockModification } from '../../../test-utils/mock-data'
 
 import ModificationGroup from '../../../lib/components/modification/group'
 
-describe('Component > Map > ModificationGroup', () => {
+describe('Component > Modification > ModificationGroup', () => {
   it('renders correctly', () => {
-    const activeModification = {
-      id: '1234',
-      name: 'Test Modification',
-      segments: [],
-      timetables: [
-        {
-          name: 'Test timetable',
-          speed: 40,
-          dwellTime: 10,
-          monday: true,
-          tuesday: true,
-          wednesday: true,
-          thursday: true,
-          friday: true,
-          saturday: false,
-          sunday: false,
-          headwaySecs: 900, // 15 minutes
-          startTime: 28800, // 8am
-          endTime: 57600 // 4pm
-        }
-      ],
-      bidirectional: false,
-      showOnMap: false
-    }
     const replaceModificationFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <ModificationGroup
-        activeModification={activeModification}
-        modifications={[activeModification]}
+        activeModification={mockModification}
+        modifications={[mockModification]}
         projectId='1234'
         replaceModification={replaceModificationFn}
         scenarioId='1234'
         type='test'
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(replaceModificationFn).not.toBeCalled()
   })
 })

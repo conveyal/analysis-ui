@@ -1,10 +1,8 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-jest.mock('react-select-geocoder', () => 'ReactSelctGeocoder')
-jest.mock('../../../lib/components/icon', () => 'Icon')
 
 import Control from '../../../lib/components/map/control'
 
@@ -27,11 +25,11 @@ describe('Component > Map > Control', () => {
       setIsochroneLatLng: jest.fn()
     }
 
-    const tree = renderer.create(
+    const tree = mount(
       <Control
         {...props}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })

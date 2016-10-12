@@ -1,33 +1,34 @@
 /* global describe, it, expect */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import { Body, Heading, Panel } from '../../lib/components/panel'
 
 describe('Component > Panel', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Panel>Panel text</Panel>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > Heading', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Heading>Heading text</Heading>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })
 
 describe('Component > Body', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(
+    const tree = mount(
       <Body>Body text</Body>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
   })
 })

@@ -1,14 +1,8 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-import { mockComponents } from '../../testUtils'
-
-jest.mock('react-select', () => 'React-Select')
-jest.mock('../../lib/components/buttons', () => { return mockComponents(['Button']) })
-jest.mock('../../lib/components/input', () => { return mockComponents(['Group']) })
-jest.mock('../../lib/components/panel', () => { return mockComponents(['Body']) })
 
 import SelectProject from '../../lib/components/select-project'
 
@@ -17,14 +11,14 @@ describe('Component > SelectProject', () => {
     const createFn = jest.fn()
     const mockProjects = [{ id: 1, name: 'P1' }, { id: 2, name: 'P2' }]
     const pushFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <SelectProject
         create={createFn}
         projects={mockProjects}
         push={pushFn}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(createFn).not.toBeCalled()
     expect(pushFn).not.toBeCalled()
   })

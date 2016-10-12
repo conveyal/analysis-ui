@@ -1,21 +1,20 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
-
-jest.mock('react-modal', () => 'React-Modal')
 
 import Modal from '../../lib/components/modal'
 
 describe('Component > Modal', () => {
   it('renders correctly', () => {
     const onRequestCloseFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <Modal onRequestClose={onRequestCloseFn}>
         Modal content
       </Modal>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
     expect(onRequestCloseFn).not.toBeCalled()
   })
 })
