@@ -1,32 +1,31 @@
 /* global describe, it, expect */
 
 import { mount } from 'enzyme'
-import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
+import { Map } from 'react-leaflet'
 
-import { mockModification, mockSegment } from '../../test-utils/mock-data'
+import { mockSegment } from '../../test-utils/mock-data'
 import Leaflet from '../../test-utils/mock-leaflet'
 
-import AddTrips from '../../lib/report/add-trips'
+import AddTripPatternLayer from '../../lib/scenario-map/add-trip-pattern-layer'
 
-mockModification.segments.push(mockSegment)
-
-describe('Report > AddTrips', () => {
+describe('Scenario-Map > AddTripPatternLayer', () => {
   it('renders correctly', () => {
     const props = {
-      modification: mockModification
+      segments: [mockSegment]
     }
 
     // mount component
-    const tree = mount(
-      <AddTrips
-        {...props}
-        />
+    mount(
+      <Map>
+        <AddTripPatternLayer
+          {...props}
+          />
+      </Map>
       , {
         attachTo: document.getElementById('test')
       }
     )
-    expect(mountToJson(tree.find('.table'))).toMatchSnapshot()
     expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
     expect(Leaflet.circleMarker.mock.calls[0][0]).toMatchSnapshot()
   })
