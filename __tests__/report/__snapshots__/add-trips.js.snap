@@ -1,0 +1,159 @@
+exports[`Report > AddTrips renders correctly 1`] = `
+<table
+  className="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Start time
+      </th>
+      <th>
+        End time
+      </th>
+      <th>
+        Frequency
+      </th>
+      <th>
+        Speed
+      </th>
+      <th>
+        Days of service
+      </th>
+      <th>
+        Number of trips
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Test timetable
+      </td>
+      <td>
+        08:00
+      </td>
+      <td>
+        16:00
+      </td>
+      <td>
+        15
+      </td>
+      <td>
+        <pure(Component)
+          kmh={40}>
+          <span>
+            40 km/h (24.9 mph)
+          </span>
+        </pure(Component)>
+      </td>
+      <td>
+        <pure(Component)
+          dwellTime={10}
+          friday={true}
+          monday={true}
+          patternTrips={
+            Array [
+              "abcd",
+            ]
+          }
+          saturday={false}
+          sunday={false}
+          thursday={true}
+          tuesday={true}
+          wednesday={true}>
+          <span>
+            <span
+              aria-hidden={false}
+              className="DaysOfService-active">
+              Mo
+            </span>
+            <span
+              aria-hidden={false}
+              className="DaysOfService-active">
+              Tu
+            </span>
+            <span
+              aria-hidden={false}
+              className="DaysOfService-active">
+              We
+            </span>
+            <span
+              aria-hidden={false}
+              className="DaysOfService-active">
+              Th
+            </span>
+            <span
+              aria-hidden={false}
+              className="DaysOfService-active">
+              Fr
+            </span>
+            <span
+              aria-hidden={true}
+              className="DaysOfService-inactive">
+              Sa
+            </span>
+            <span
+              aria-hidden={true}
+              className="DaysOfService-inactive">
+              Su
+            </span>
+          </span>
+        </pure(Component)>
+      </td>
+      <td>
+        32
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Report > AddTrips renders correctly 2`] = `
+Object {
+  "features": Array [
+    Object {
+      "geometry": Object {
+        "coordinates": Array [
+          Array [
+            -122.0246,
+            36.9707,
+          ],
+          Array [
+            -122.0279,
+            37.049,
+          ],
+          Array [
+            -121.9799,
+            37.2299,
+          ],
+          Array [
+            -121.9445,
+            37.324,
+          ],
+          Array [
+            -121.936,
+            37.353,
+          ],
+          Array [
+            -121.924,
+            37.365,
+          ],
+        ],
+        "type": "LineString",
+      },
+      "properties": Object {},
+      "type": "Feature",
+    },
+  ],
+  "type": "FeatureCollection",
+}
+`;
+
+exports[`Report > AddTrips renders correctly 3`] = `
+Object {
+  "lat": 36.9707,
+  "lng": -122.0246,
+}
+`;

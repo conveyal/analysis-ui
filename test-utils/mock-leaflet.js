@@ -9,6 +9,9 @@ const div = document.createElement('div')
 div.id = 'test'
 document.body.appendChild(div)
 
+// mock tile layer urls
+process.env.LEAFLET_TILE_URL = 'mock.url/tile'
+
 // implementation for creating leaflet objects
 const makeUniqueLeafletIdFn = (prefix) => {
   return () => {
@@ -95,6 +98,7 @@ class MapMock extends Leaflet.Map {
 
 // mock these things w/ jest so that it can be verified that
 // elements are to be created by react-leaflet
+Leaflet.circleMarker = jest.fn(makeUniqueLeafletIdFn('circleMarker'))
 Leaflet.geoJson = jest.fn(makeUniqueLeafletIdFn('geoJson'))
 Leaflet.marker = jest.fn(makeUniqueLeafletIdFn('marker'))
 Leaflet.rectangle = jest.fn(makeUniqueLeafletIdFn('rectangle'))
