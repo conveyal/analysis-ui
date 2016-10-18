@@ -30,6 +30,8 @@ describe('Components > Map > Isochrone', () => {
       , {
         attachTo: document.getElementById('test')
       })
+
+    // expect isochrone marker to be added to map by intercepting call to Leaflet
     expect(Leaflet.marker.mock.calls[0][0]).toMatchSnapshot()
   })
 })

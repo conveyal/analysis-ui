@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Provider } from 'react-redux'
 
-import Leaflet from '../../test-utils/mock-leaflet'
+import '../../test-utils/mock-leaflet'
 import { mockFeed, mockMapState, mockModification } from '../../test-utils/mock-data.js'
 import makeMockStore from '../../test-utils/mock-store.js'
 
@@ -42,7 +42,6 @@ describe('Component > ScenarioMap', () => {
         attachTo: document.getElementById('test')
       }
     )
-    Leaflet.map // TODO test rendering of various modifications
 
     const noCalls = [
       'replaceModification',
