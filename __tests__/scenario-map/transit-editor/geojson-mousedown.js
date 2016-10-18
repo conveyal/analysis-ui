@@ -28,6 +28,8 @@ describe('Scenario-Map > Transit-Editor > GeoJsonMousedown', () => {
         attachTo: document.getElementById('test')
       }
     )
+
+    // expect geojson to be added to map by intercepting call to Leaflet
     expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
   })
 })

@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Provider } from 'react-redux'
 
-import Leaflet from '../../test-utils/mock-leaflet'
+import '../../test-utils/mock-leaflet'
 import makeMockStore from '../../test-utils/mock-store.js'
 
 import Application from '../../lib/components/application'
@@ -49,7 +49,6 @@ describe('Component > Application', () => {
         attachTo: document.getElementById('test')
       }
     )
-    Leaflet.map // not sure how to test
     // when trying to make a snapshot from mountToJson, I got an out of memory error
 
     expect(props.loadAllProjects).toBeCalled()

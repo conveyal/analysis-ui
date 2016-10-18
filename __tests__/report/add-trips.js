@@ -27,7 +27,11 @@ describe('Report > AddTrips', () => {
       }
     )
     expect(mountToJson(tree.find('.table'))).toMatchSnapshot()
+
+    // expect geojson to be added to map by intercepting call to Leaflet
     expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
+
+    // expect circleMarker to be added to map by intercepting call to Leaflet
     expect(Leaflet.circleMarker.mock.calls[0][0]).toMatchSnapshot()
   })
 })

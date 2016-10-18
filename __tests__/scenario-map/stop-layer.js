@@ -31,6 +31,8 @@ describe('Scenario-Map > StopLayer', () => {
         attachTo: document.getElementById('test')
       }
     )
+
+    // expect circleMarkers to be added to map by intercepting call to Leaflet
     expect(Leaflet.circleMarker.mock.calls[0][0]).toMatchSnapshot()
     expect(Leaflet.circleMarker.mock.calls[1][0]).toMatchSnapshot()
   })

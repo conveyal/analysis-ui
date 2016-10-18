@@ -35,7 +35,10 @@ describe('Report > Report', () => {
       }
     )
     expect(mountToJson(tree.find('ul'))).toMatchSnapshot()
+
+    // expect geojson to be added to map by intercepting call to Leaflet
     expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
+
     const calls = [
       'loadProject',
       'loadScenario'
