@@ -16,7 +16,9 @@ process.env.LEAFLET_TILE_URL = 'mock.url/tile'
 const makeUniqueLeafletIdFn = (prefix) => {
   return () => {
     return {
-      _leaflet_id: uniqueId(prefix)
+      _leaflet_id: uniqueId(prefix),
+      getLayers: () => [{ on: jest.fn() }],
+      bindPopup: jest.fn()
     }
   }
 }
@@ -106,3 +108,9 @@ Leaflet.Map = MapMock
 Leaflet.map = (id, options) => new MapMock(id, options)
 
 export default Leaflet
+
+export function drawMock () {
+  Leaflet.Draw = {
+    Polygon: jest.fn(() => { return { enable: jest.fn(), disable: jest.fn() } })
+  }
+}

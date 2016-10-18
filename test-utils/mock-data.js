@@ -1,36 +1,60 @@
+export const mockSegmentGeom = {
+  type: 'LineString',
+  coordinates: [
+    [
+      -122.0246,
+      36.9707
+    ],
+    [
+      -122.0279,
+      37.049
+    ],
+    [
+      -121.9799,
+      37.2299
+    ],
+    [
+      -121.9445,
+      37.324
+    ],
+    [
+      -121.936,
+      37.353
+    ],
+    [
+      -121.924,
+      37.365
+    ]
+  ]
+}
+
+export const mockSegment = {
+  type: 'Feature',
+  properties: {},
+  geometry: mockSegmentGeom
+}
+
+const mockStop1 = {
+  stop_id: '1',
+  stop_lat: 36.9707,
+  stop_lon: -122.0246,
+  stop_name: 'Santa Cruz'
+}
+
+const mockStop2 = {
+  stop_id: '2',
+  stop_lat: 37.049,
+  stop_lon: -122.0279,
+  stop_name: 'Scotts Valley'
+}
+
+export const mockStops = [mockStop1, mockStop2]
+
 const mockRoute = {
   patterns: [
     {
-      geometry: {
-        type: 'LineString',
-        coordinates: [
-          [
-            -122.0246,
-            36.9707
-          ],
-          [
-            -122.0279,
-            37.049
-          ],
-          [
-            -121.9799,
-            37.2299
-          ],
-          [
-            -121.9445,
-            37.324
-          ],
-          [
-            -121.936,
-            37.353
-          ],
-          [
-            -121.924,
-            37.365
-          ]
-        ]
-      },
-      stops: [],
+      geometry: mockSegmentGeom,
+      stops: mockStops,
       trips: [
         {
           trip_id: 'abcd',
@@ -48,6 +72,10 @@ export const mockFeed = {
   routes: [mockRoute],
   routesById: {
     route1: mockRoute
+  },
+  stopsById: {
+    '1': mockStop1,
+    '2': mockStop2
   }
 }
 

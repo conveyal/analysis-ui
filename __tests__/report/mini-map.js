@@ -27,6 +27,5 @@ describe('Report > MiniMap', () => {
         attachTo: document.getElementById('test')
       }
     )
-    Leaflet // not sure how to test
   })
 })
