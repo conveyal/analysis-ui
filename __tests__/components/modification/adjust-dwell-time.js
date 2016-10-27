@@ -18,8 +18,8 @@ describe('Component > Modification > AdjustDwellTime', () => {
       modification: mockModification,
       removeControl: jest.fn(),
       removeLayer: jest.fn(),
-      replaceModification: jest.fn(),
-      setMapState: jest.fn()
+      setMapState: jest.fn(),
+      update: jest.fn()
     }
     const tree = mount(
       <AdjustDwellTime
