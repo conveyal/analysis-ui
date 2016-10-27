@@ -176,7 +176,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
       <strong>
         Test timetable
       </strong>
-      <pure(Component)
+      <Button
         className="pull-right"
         onClick={[Function]}
         size="sm"
@@ -188,17 +188,17 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
           onClick={[Function]}
           target={undefined}
           title="Delete frequency entry">
-          <pure(Icon)
+          <Icon
             type="close">
             <i
               className="fa fa-close fa-fw " />
-          </pure(Icon)>
+          </Icon>
         </a>
-      </pure(Component)>
+      </Button>
     </div>
     <div
       className="panel-body">
-      <pure(Component)
+      <Text
         name="Name"
         onChange={[Function]}
         value="Test timetable">
@@ -208,23 +208,22 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
           value="Test timetable">
           <div
             className="form-group">
-            <pure(Component)
+            <Input
               name="Name"
               onChange={[Function]}
               type="text"
               value="Test timetable">
               <input
                 className="form-control"
-                defaultValue="Test timetable"
                 name="Name"
                 onChange={[Function]}
                 placeholder="Name"
                 type="text"
                 value="Test timetable" />
-            </pure(Component)>
+            </Input>
           </div>
         </Group>
-      </pure(Component)>
+      </Text>
       <SelectPatterns
         onChange={[Function]}
         routePatterns={
@@ -835,7 +834,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
             }>
             <div
               className="form-inline">
-              <pure(Component)
+              <Checkbox
                 checked={true}
                 label="Mon"
                 onChange={[Function]}>
@@ -848,8 +847,8 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 checked={true}
                 label="Tue"
                 onChange={[Function]}>
@@ -862,8 +861,8 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 checked={true}
                 label="Wed"
                 onChange={[Function]}>
@@ -876,8 +875,8 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 checked={true}
                 label="Thu"
                 onChange={[Function]}>
@@ -890,8 +889,8 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 checked={true}
                 label="Fri"
                 onChange={[Function]}>
@@ -904,8 +903,8 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 checked={false}
                 label="Sat"
                 onChange={[Function]}>
@@ -918,8 +917,8 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 checked={false}
                 label="Sun"
                 onChange={[Function]}>
@@ -932,10 +931,10 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
+              </Checkbox>
             </div>
           </Days>
-          <pure(Component)
+          <Number
             label="Frequency (minutes)"
             onChange={[Function]}
             value={15}>
@@ -948,24 +947,23 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                 <label>
                   Frequency (minutes)
                 </label>
-                <pure(Component)
+                <Input
                   label="Frequency (minutes)"
                   onChange={[Function]}
                   type="number"
                   value={15}>
                   <input
                     className="form-control"
-                    defaultValue={15}
                     name={undefined}
                     onChange={[Function]}
                     placeholder="Frequency (minutes)"
                     type="number"
                     value={15} />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
-          <pure(Component)
+          </Number>
+          <Text
             label="Start time"
             onChange={[Function]}
             type="time"
@@ -980,24 +978,23 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                 <label>
                   Start time
                 </label>
-                <pure(Component)
+                <Input
                   label="Start time"
                   onChange={[Function]}
                   type="time"
                   value="08:00">
                   <input
                     className="form-control"
-                    defaultValue="08:00"
                     name={undefined}
                     onChange={[Function]}
                     placeholder="Start time"
                     type="time"
                     value="08:00" />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
-          <pure(Component)
+          </Text>
+          <Text
             label="End time"
             onChange={[Function]}
             type="time"
@@ -1012,23 +1009,22 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                 <label>
                   End time
                 </label>
-                <pure(Component)
+                <Input
                   label="End time"
                   onChange={[Function]}
                   type="time"
                   value="16:00">
                   <input
                     className="form-control"
-                    defaultValue="16:00"
                     name={undefined}
                     onChange={[Function]}
                     placeholder="End time"
                     type="time"
                     value="16:00" />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
+          </Text>
         </div>
       </TimetableEntry>
     </div>

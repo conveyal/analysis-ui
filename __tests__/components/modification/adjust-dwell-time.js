@@ -1,10 +1,10 @@
 /* global describe, it, expect, jest */
 
-import { mount } from 'enzyme'
-import { mountToJson } from 'enzyme-to-json'
+import {mount} from 'enzyme'
+import {mountToJson} from 'enzyme-to-json'
 import React from 'react'
 
-import { mockFeed, mockModification } from '../../test-utils/mock-data'
+import {mockFeed, mockModification} from '../../test-utils/mock-data'
 
 import AdjustDwellTime from '../../../lib/components/modification/adjust-dwell-time'
 
@@ -18,8 +18,8 @@ describe('Component > Modification > AdjustDwellTime', () => {
       modification: mockModification,
       removeControl: jest.fn(),
       removeLayer: jest.fn(),
-      replaceModification: jest.fn(),
-      setMapState: jest.fn()
+      setMapState: jest.fn(),
+      update: jest.fn()
     }
     const tree = mount(
       <AdjustDwellTime
@@ -32,8 +32,8 @@ describe('Component > Modification > AdjustDwellTime', () => {
       'addLayer',
       'removeControl',
       'removeLayer',
-      'replaceModification',
-      'setMapState'
+      'setMapState',
+      'update'
     ]
     noCalls.forEach((fn) => {
       expect(props[fn]).not.toBeCalled()
