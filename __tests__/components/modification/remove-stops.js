@@ -14,8 +14,8 @@ describe('Component > Modification > RemoveStops', () => {
       feeds: [mockFeed],
       feedsById: { '1': mockFeed },
       modification: {},
-      replaceModification: jest.fn(),
-      setMapState: jest.fn()
+      setMapState: jest.fn(),
+      update: jest.fn()
     }
     const tree = mount(
       <RemoveStops
@@ -24,8 +24,8 @@ describe('Component > Modification > RemoveStops', () => {
     )
     expect(mountToJson(tree)).toMatchSnapshot()
     const noCalls = [
-      'replaceModification',
-      'setMapState'
+      'setMapState',
+      'update'
     ]
     noCalls.forEach((fn) => {
       expect(props[fn]).not.toBeCalled()

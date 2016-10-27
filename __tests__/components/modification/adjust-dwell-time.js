@@ -32,8 +32,8 @@ describe('Component > Modification > AdjustDwellTime', () => {
       'addLayer',
       'removeControl',
       'removeLayer',
-      'replaceModification',
-      'setMapState'
+      'setMapState',
+      'update'
     ]
     noCalls.forEach((fn) => {
       expect(props[fn]).not.toBeCalled()
