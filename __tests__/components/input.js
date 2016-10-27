@@ -11,7 +11,7 @@ describe('Component > Checkbox', () => {
     const tree = mount(
       <Checkbox
         label='Do the thing?'
-        checked
+        defaultChecked
         />
     )
     expect(mountToJson(tree)).toMatchSnapshot()
@@ -87,7 +87,7 @@ describe('Component > SelectMultiple', () => {
     const tree = mount(
       <SelectMultiple
         label='Select multiple options'
-        value=''
+        value={[]}
         >
         <option key='1' value='1'>1</option>
         <option key='2' value='2'>2</option>

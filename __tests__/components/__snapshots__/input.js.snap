@@ -1,12 +1,12 @@
 exports[`Component > Checkbox renders correctly 1`] = `
 <Checkbox
-  checked={true}
+  defaultChecked={true}
   label="Do the thing?">
   <div
     className="checkbox">
     <label>
       <input
-        checked={true}
+        defaultChecked={true}
         type="checkbox" />
     </label>
   </div>
@@ -114,6 +114,7 @@ exports[`Component > Select renders correctly 1`] = `
       <select
         className="form-control"
         label="Select an option"
+        onChange={[Function]}
         value="">
         <option
           value="1">
@@ -132,10 +133,10 @@ exports[`Component > Select renders correctly 1`] = `
 exports[`Component > SelectMultiple renders correctly 1`] = `
 <SelectMultiple
   label="Select multiple options"
-  value="">
+  value={Array []}>
   <Group
     label="Select multiple options"
-    value="">
+    value={Array []}>
     <div
       className="form-group">
       <label>
@@ -145,7 +146,8 @@ exports[`Component > SelectMultiple renders correctly 1`] = `
         className="form-control"
         label="Select multiple options"
         multiple={true}
-        value="">
+        onChange={[Function]}
+        value={Array []}>
         <option
           value="1">
           1
