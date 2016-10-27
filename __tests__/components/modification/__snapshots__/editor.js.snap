@@ -344,10 +344,10 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
     </div>
     <div
       className="InnerDock">
-      <pure(Body)>
+      <Body>
         <div
           className="panel-body">
-          <pure(Component)
+          <Text
             name="Name"
             onChange={[Function]}
             value="Test Modification">
@@ -357,7 +357,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
               value="Test Modification">
               <div
                 className="form-group">
-                <pure(Component)
+                <Input
                   name="Name"
                   onChange={[Function]}
                   type="text"
@@ -370,10 +370,10 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                     placeholder="Name"
                     type="text"
                     value="Test Modification" />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
+          </Text>
           <AddTripPattern
             feeds={
               Array [
@@ -707,7 +707,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
             setMapState={[Function]}
             update={[Function]}>
             <div>
-              <pure(Component)
+              <Button
                 block={true}
                 onClick={[Function]}
                 style="warning">
@@ -716,14 +716,14 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                   href="#"
                   onClick={[Function]}
                   target={undefined}>
-                  <pure(Icon)
+                  <Icon
                     type="times-circle">
                     <i
                       className="fa fa-times-circle fa-fw " />
-                  </pure(Icon)>
+                  </Icon>
                 </a>
-              </pure(Component)>
-              <pure(Component)
+              </Button>
+              <Checkbox
                 defaultChecked={true}
                 label="Extend from end"
                 onChange={[Function]}>
@@ -736,8 +736,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 defaultChecked={true}
                 label="Follow streets"
                 onChange={[Function]}>
@@ -750,8 +750,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Checkbox
                 defaultChecked={true}
                 label="Create stops automatically"
                 onChange={[Function]}>
@@ -764,8 +764,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
-              <pure(Component)
+              </Checkbox>
+              <Number
                 label="Stop spacing (meters)"
                 onChange={[Function]}
                 value={400}>
@@ -778,7 +778,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                     <label>
                       Stop spacing (meters)
                     </label>
-                    <pure(Component)
+                    <Input
                       label="Stop spacing (meters)"
                       onChange={[Function]}
                       type="number"
@@ -791,11 +791,11 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                         placeholder="Stop spacing (meters)"
                         type="number"
                         value={400} />
-                    </pure(Component)>
+                    </Input>
                   </div>
                 </Group>
-              </pure(Component)>
-              <pure(Component)
+              </Number>
+              <Checkbox
                 checked={false}
                 label="Bidirectional"
                 onChange={[Function]}>
@@ -808,7 +808,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                       type="checkbox" />
                   </label>
                 </div>
-              </pure(Component)>
+              </Checkbox>
               <Timetable
                 index={1}
                 modification={
@@ -879,7 +879,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                     <strong>
                       Test timetable
                     </strong>
-                    <pure(Component)
+                    <Button
                       className="pull-right"
                       onClick={[Function]}
                       size="sm"
@@ -891,17 +891,17 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                         onClick={[Function]}
                         target={undefined}
                         title="Delete timetable">
-                        <pure(Icon)
+                        <Icon
                           type="close">
                           <i
                             className="fa fa-close fa-fw " />
-                        </pure(Icon)>
+                        </Icon>
                       </a>
-                    </pure(Component)>
+                    </Button>
                   </div>
                   <div
                     className="panel-body">
-                    <pure(Component)
+                    <Text
                       name="Name"
                       onChange={[Function]}
                       value="Test timetable">
@@ -911,7 +911,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                         value="Test timetable">
                         <div
                           className="form-group">
-                          <pure(Component)
+                          <Input
                             name="Name"
                             onChange={[Function]}
                             type="text"
@@ -924,10 +924,10 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                               placeholder="Name"
                               type="text"
                               value="Test timetable" />
-                          </pure(Component)>
+                          </Input>
                         </div>
                       </Group>
-                    </pure(Component)>
+                    </Text>
                     <TimetableEntry
                       replaceTimetable={[Function]}
                       timetable={
@@ -977,7 +977,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                           }>
                           <div
                             className="form-inline">
-                            <pure(Component)
+                            <Checkbox
                               checked={true}
                               label="Mon"
                               onChange={[Function]}>
@@ -990,8 +990,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                     type="checkbox" />
                                 </label>
                               </div>
-                            </pure(Component)>
-                            <pure(Component)
+                            </Checkbox>
+                            <Checkbox
                               checked={true}
                               label="Tue"
                               onChange={[Function]}>
@@ -1004,8 +1004,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                     type="checkbox" />
                                 </label>
                               </div>
-                            </pure(Component)>
-                            <pure(Component)
+                            </Checkbox>
+                            <Checkbox
                               checked={true}
                               label="Wed"
                               onChange={[Function]}>
@@ -1018,8 +1018,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                     type="checkbox" />
                                 </label>
                               </div>
-                            </pure(Component)>
-                            <pure(Component)
+                            </Checkbox>
+                            <Checkbox
                               checked={true}
                               label="Thu"
                               onChange={[Function]}>
@@ -1032,8 +1032,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                     type="checkbox" />
                                 </label>
                               </div>
-                            </pure(Component)>
-                            <pure(Component)
+                            </Checkbox>
+                            <Checkbox
                               checked={true}
                               label="Fri"
                               onChange={[Function]}>
@@ -1046,8 +1046,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                     type="checkbox" />
                                 </label>
                               </div>
-                            </pure(Component)>
-                            <pure(Component)
+                            </Checkbox>
+                            <Checkbox
                               checked={false}
                               label="Sat"
                               onChange={[Function]}>
@@ -1060,8 +1060,8 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                     type="checkbox" />
                                 </label>
                               </div>
-                            </pure(Component)>
-                            <pure(Component)
+                            </Checkbox>
+                            <Checkbox
                               checked={false}
                               label="Sun"
                               onChange={[Function]}>
@@ -1074,10 +1074,10 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                     type="checkbox" />
                                 </label>
                               </div>
-                            </pure(Component)>
+                            </Checkbox>
                           </div>
                         </Days>
-                        <pure(Component)
+                        <Number
                           label="Frequency (minutes)"
                           onChange={[Function]}
                           value={15}>
@@ -1090,7 +1090,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                               <label>
                                 Frequency (minutes)
                               </label>
-                              <pure(Component)
+                              <Input
                                 label="Frequency (minutes)"
                                 onChange={[Function]}
                                 type="number"
@@ -1103,11 +1103,11 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                   placeholder="Frequency (minutes)"
                                   type="number"
                                   value={15} />
-                              </pure(Component)>
+                              </Input>
                             </div>
                           </Group>
-                        </pure(Component)>
-                        <pure(Component)
+                        </Number>
+                        <Text
                           label="Start time"
                           onChange={[Function]}
                           type="time"
@@ -1122,7 +1122,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                               <label>
                                 Start time
                               </label>
-                              <pure(Component)
+                              <Input
                                 label="Start time"
                                 onChange={[Function]}
                                 type="time"
@@ -1135,11 +1135,11 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                   placeholder="Start time"
                                   type="time"
                                   value="08:00" />
-                              </pure(Component)>
+                              </Input>
                             </div>
                           </Group>
-                        </pure(Component)>
-                        <pure(Component)
+                        </Text>
+                        <Text
                           label="End time"
                           onChange={[Function]}
                           type="time"
@@ -1154,7 +1154,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                               <label>
                                 End time
                               </label>
-                              <pure(Component)
+                              <Input
                                 label="End time"
                                 onChange={[Function]}
                                 type="time"
@@ -1167,13 +1167,13 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                                   placeholder="End time"
                                   type="time"
                                   value="16:00" />
-                              </pure(Component)>
+                              </Input>
                             </div>
                           </Group>
-                        </pure(Component)>
+                        </Text>
                       </div>
                     </TimetableEntry>
-                    <pure(Component)
+                    <Number
                       label="Speed (km/h)"
                       onChange={[Function]}
                       value={40}>
@@ -1186,7 +1186,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                           <label>
                             Speed (km/h)
                           </label>
-                          <pure(Component)
+                          <Input
                             label="Speed (km/h)"
                             onChange={[Function]}
                             type="number"
@@ -1199,11 +1199,11 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                               placeholder="Speed (km/h)"
                               type="number"
                               value={40} />
-                          </pure(Component)>
+                          </Input>
                         </div>
                       </Group>
-                    </pure(Component)>
-                    <pure(Component)
+                    </Number>
+                    <Number
                       label="Dwell time (seconds)"
                       onChange={[Function]}
                       value={10}>
@@ -1216,7 +1216,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                           <label>
                             Dwell time (seconds)
                           </label>
-                          <pure(Component)
+                          <Input
                             label="Dwell time (seconds)"
                             onChange={[Function]}
                             type="number"
@@ -1229,14 +1229,14 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                               placeholder="Dwell time (seconds)"
                               type="number"
                               value={10} />
-                          </pure(Component)>
+                          </Input>
                         </div>
                       </Group>
-                    </pure(Component)>
+                    </Number>
                   </div>
                 </section>
               </Timetable>
-              <pure(Component)
+              <Button
                 block={true}
                 onClick={[Function]}
                 style="success">
@@ -1245,13 +1245,13 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                   href="#"
                   onClick={[Function]}
                   target={undefined}>
-                  <pure(Icon)
+                  <Icon
                     type="plus">
                     <i
                       className="fa fa-plus fa-fw " />
-                  </pure(Icon)>
+                  </Icon>
                 </a>
-              </pure(Component)>
+              </Button>
             </div>
           </AddTripPattern>
           <br />
@@ -1260,7 +1260,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
           </legend>
           <div
             className="form-inline">
-            <pure(Component)
+            <Button
               block={true}
               className="pull-right"
               onClick={[Function]}
@@ -1272,16 +1272,16 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                 onClick={[Function]}
                 target={undefined}
                 title="Delete Modification">
-                <pure(Icon)
+                <Icon
                   type="close">
                   <i
                     className="fa fa-close fa-fw " />
-                </pure(Icon)>
+                </Icon>
               </a>
-            </pure(Component)>
+            </Button>
           </div>
         </div>
-      </pure(Body)>
+      </Body>
     </div>
   </div>
 </ModificationEditor>

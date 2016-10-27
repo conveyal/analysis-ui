@@ -1,7 +1,6 @@
 {
   "name": "scenario-editor",
   "description": "Conveyal's tool for editing land use/transportation scenarios.",
-  "main": "lib/index.js",
   "standard": {
     "parser": "babel-eslint"
   },
@@ -10,6 +9,7 @@
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "prestart": "yarn",
     "start": "npm run build -- --serve --proxy http://localhost:7070/api",
     "pretest": "node __tests__/test-utils/setup-teardown.js setup",
     "test": "mastarm lint && NODE_ENV=test mastarm test",
@@ -53,7 +53,6 @@
     "react-router-redux": "^4.0.5",
     "react-select": "^1.0.0-beta14",
     "react-select-geocoder": "^0.2.1",
-    "recompose": "^0.20.2",
     "redux": "^3.6.0",
     "redux-actions": "^0.12.0",
     "redux-promise": "^0.5.3",

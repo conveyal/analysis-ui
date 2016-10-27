@@ -7,23 +7,23 @@ exports[`Component > EditBundle renders correctly 1`] = `
   name="Test Bundle"
   projectId="1"
   saveBundle={[Function]}>
-  <pure(Panel)>
+  <Panel>
     <div
       className="panel panel-default">
-      <pure(Heading)>
+      <Heading>
         <div
           className="panel-heading clearfix ">
           Edit bundle
         </div>
-      </pure(Heading)>
-      <pure(Body)>
+      </Heading>
+      <Body>
         <div
           className="panel-body">
           <form
             encType="multipart/form-data"
             method="post"
             onSubmit={[Function]}>
-            <pure(Component)
+            <Text
               name="Name"
               onChange={[Function]}
               placeholder="Bundle name"
@@ -35,7 +35,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
                 value="Test Bundle">
                 <div
                   className="form-group">
-                  <pure(Component)
+                  <Input
                     name="Name"
                     onChange={[Function]}
                     placeholder="Bundle name"
@@ -49,10 +49,10 @@ exports[`Component > EditBundle renders correctly 1`] = `
                       placeholder="Bundle name"
                       type="text"
                       value="Test Bundle" />
-                  </pure(Component)>
+                  </Input>
                 </div>
               </Group>
-            </pure(Component)>
+            </Text>
             <input
               name="projectId"
               type="hidden"
@@ -62,7 +62,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
               disabled={false}
               type="submit"
               value="Edit bundle" />
-            <pure(Component)
+            <Button
               block={true}
               onClick={[Function]}
               style="danger">
@@ -71,17 +71,17 @@ exports[`Component > EditBundle renders correctly 1`] = `
                 href="#"
                 onClick={[Function]}
                 target={undefined}>
-                <pure(Icon)
+                <Icon
                   type="trash">
                   <i
                     className="fa fa-trash fa-fw " />
-                </pure(Icon)>
+                </Icon>
               </a>
-            </pure(Component)>
+            </Button>
           </form>
         </div>
-      </pure(Body)>
+      </Body>
     </div>
-  </pure(Panel)>
+  </Panel>
 </EditBundle>
 `;
