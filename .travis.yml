@@ -7,12 +7,11 @@ notifications:
   email: false
 node_js:
   - '6'
+  - node
 before_install:
   - npm i -g yarn codecov
 install:
   - yarn
-before_script:
-  - npm prune
 script:
   - npm test -- --coverage
   - codecov
