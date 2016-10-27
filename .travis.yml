@@ -13,11 +13,11 @@ before_install:
 install:
   - yarn
 script:
-  - npm test -- --coverage
+  - yarn test -- --coverage
   - codecov
-  - npm run build
+  - yarn run build
 after_success:
-  - npm run semantic-release
+  - yarn run semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
