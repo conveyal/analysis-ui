@@ -1,0 +1,62 @@
+exports[`actions > network > serverAction should handle unsuccessful request when onError is not provided 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > network > serverAction should handle unsuccessful request when onError is not provided 2`] = `
+Array [
+  Object {
+    "type": "decrement outstanding requests",
+  },
+  Object {
+    "payload": Object {
+      "detailMessage": "Internal Server Error",
+      "error": "Network error. Check your connection and reload the page?",
+    },
+    "type": "lock ui with error",
+  },
+]
+`;
+
+exports[`actions > network > serverAction should handle unsuccessful request when onError is provided 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > network > serverAction should handle unsuccessful request when onError is provided 2`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > network > serverAction should process successful request 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > network > serverAction should process successful request 2`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > network decrementOutstandingRequests should work 1`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > network incrementOutstandingRequests should work 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > network lockUiWithError should work 1`] = `
+Object {
+  "type": "lock ui with error",
+}
+`;

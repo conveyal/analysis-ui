@@ -1,22 +1,22 @@
 sudo: false
 language: node_js
+cache:
+  directories:
+    - ~/.yarn-cache
 notifications:
   email: false
 node_js:
   - '6'
 before_install:
-  - npm i -g npm@^3
+  - npm i -g yarn codecov
 install:
-  - npm i
-  - npm install -g codecov
-before_script:
-  - npm prune
+  - yarn
 script:
-  - npm test -- --coverage
+  - yarn test -- --coverage
   - codecov
-  - npm run build
+  - yarn run build
 after_success:
-  - npm run semantic-release
+  - yarn run semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

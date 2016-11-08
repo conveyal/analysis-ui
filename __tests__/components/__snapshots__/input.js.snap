@@ -1,20 +1,20 @@
 exports[`Component > Checkbox renders correctly 1`] = `
-<pure(Component)
-  checked={true}
+<Checkbox
+  defaultChecked={true}
   label="Do the thing?">
   <div
     className="checkbox">
     <label>
       <input
-        checked={true}
+        defaultChecked={true}
         type="checkbox" />
     </label>
   </div>
-</pure(Component)>
+</Checkbox>
 `;
 
 exports[`Component > File renders correctly 1`] = `
-<pure(Component)
+<File
   label="Select files"
   multiple={true}
   name="files"
@@ -29,7 +29,7 @@ exports[`Component > File renders correctly 1`] = `
       <label>
         Select files
       </label>
-      <pure(Component)
+      <Input
         label="Select files"
         multiple={true}
         name="files"
@@ -39,13 +39,14 @@ exports[`Component > File renders correctly 1`] = `
           className="form-control"
           multiple={true}
           name="files"
+          onChange={[Function]}
           placeholder="Select files"
           type="file"
           value={undefined} />
-      </pure(Component)>
+      </Input>
     </div>
   </Group>
-</pure(Component)>
+</File>
 `;
 
 exports[`Component > Group renders correctly 1`] = `
@@ -56,20 +57,21 @@ exports[`Component > Group renders correctly 1`] = `
 `;
 
 exports[`Component > Input renders correctly 1`] = `
-<pure(Component)
+<Input
   name="someInput"
   placeholder="Enter Text"
   value="">
   <input
     className="form-control"
     name="someInput"
+    onChange={[Function]}
     placeholder="Enter Text"
     value="" />
-</pure(Component)>
+</Input>
 `;
 
 exports[`Component > Number renders correctly 1`] = `
-<pure(Component)
+<Number
   name="someNumber"
   placeholder="Enter Number"
   value={12345}>
@@ -79,7 +81,7 @@ exports[`Component > Number renders correctly 1`] = `
     value={12345}>
     <div
       className="form-group">
-      <pure(Component)
+      <Input
         name="someNumber"
         placeholder="Enter Number"
         type="number"
@@ -87,17 +89,18 @@ exports[`Component > Number renders correctly 1`] = `
         <input
           className="form-control"
           name="someNumber"
+          onChange={[Function]}
           placeholder="Enter Number"
           type="number"
           value={12345} />
-      </pure(Component)>
+      </Input>
     </div>
   </Group>
-</pure(Component)>
+</Number>
 `;
 
 exports[`Component > Select renders correctly 1`] = `
-<pure(Component)
+<Select
   label="Select an option"
   value="">
   <Group
@@ -111,6 +114,7 @@ exports[`Component > Select renders correctly 1`] = `
       <select
         className="form-control"
         label="Select an option"
+        onChange={[Function]}
         value="">
         <option
           value="1">
@@ -123,16 +127,16 @@ exports[`Component > Select renders correctly 1`] = `
       </select>
     </div>
   </Group>
-</pure(Component)>
+</Select>
 `;
 
 exports[`Component > SelectMultiple renders correctly 1`] = `
-<pure(Component)
+<SelectMultiple
   label="Select multiple options"
-  value="">
+  value={Array []}>
   <Group
     label="Select multiple options"
-    value="">
+    value={Array []}>
     <div
       className="form-group">
       <label>
@@ -142,7 +146,8 @@ exports[`Component > SelectMultiple renders correctly 1`] = `
         className="form-control"
         label="Select multiple options"
         multiple={true}
-        value="">
+        onChange={[Function]}
+        value={Array []}>
         <option
           value="1">
           1
@@ -154,11 +159,11 @@ exports[`Component > SelectMultiple renders correctly 1`] = `
       </select>
     </div>
   </Group>
-</pure(Component)>
+</SelectMultiple>
 `;
 
 exports[`Component > Text renders correctly 1`] = `
-<pure(Component)
+<Text
   label="Enter text"
   name="someText"
   value="blah">
@@ -171,7 +176,7 @@ exports[`Component > Text renders correctly 1`] = `
       <label>
         Enter text
       </label>
-      <pure(Component)
+      <Input
         label="Enter text"
         name="someText"
         type="text"
@@ -179,11 +184,12 @@ exports[`Component > Text renders correctly 1`] = `
         <input
           className="form-control"
           name="someText"
+          onChange={[Function]}
           placeholder="Enter text"
           type="text"
           value="blah" />
-      </pure(Component)>
+      </Input>
     </div>
   </Group>
-</pure(Component)>
+</Text>
 `;

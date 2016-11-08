@@ -18,19 +18,19 @@ exports[`Component > EditProject renders correctly 1`] = `
   save={[Function]}
   setCenter={[Function]}
   setLocally={[Function]}>
-  <pure(Panel)>
+  <Panel>
     <div
       className="panel panel-default">
-      <pure(Heading)>
+      <Heading>
         <div
           className="panel-heading clearfix ">
           Edit project
         </div>
-      </pure(Heading)>
-      <pure(Body)>
+      </Heading>
+      <Body>
         <div
           className="panel-body">
-          <pure(Component)
+          <Text
             label="Name"
             onChange={[Function]}
             value="Test Scenario">
@@ -43,24 +43,23 @@ exports[`Component > EditProject renders correctly 1`] = `
                 <label>
                   Name
                 </label>
-                <pure(Component)
+                <Input
                   label="Name"
                   onChange={[Function]}
                   type="text"
                   value="Test Scenario">
                   <input
                     className="form-control"
-                    defaultValue="Test Scenario"
                     name={undefined}
                     onChange={[Function]}
                     placeholder="Name"
                     type="text"
                     value="Test Scenario" />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
-          <pure(Component)
+          </Text>
+          <Text
             label="Description"
             onChange={[Function]}
             value="A test scenario">
@@ -73,23 +72,22 @@ exports[`Component > EditProject renders correctly 1`] = `
                 <label>
                   Description
                 </label>
-                <pure(Component)
+                <Input
                   label="Description"
                   onChange={[Function]}
                   type="text"
                   value="A test scenario">
                   <input
                     className="form-control"
-                    defaultValue="A test scenario"
                     name={undefined}
                     onChange={[Function]}
                     placeholder="Description"
                     type="text"
                     value="A test scenario" />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
+          </Text>
           <R5Version
             label="Analysis backend version"
             onChange={[Function]}
@@ -233,8 +231,8 @@ exports[`Component > EditProject renders correctly 1`] = `
                       </div>
                     </div>
                   </Select>
-                  <pure(Icon)
-                    ariaLabel="Show all analysis backend versions (advanced)"
+                  <Icon
+                    aria-label="Show all analysis backend versions (advanced)"
                     onClick={[Function]}
                     style={
                       Object {
@@ -244,7 +242,7 @@ exports[`Component > EditProject renders correctly 1`] = `
                     title="Show all analysis backend versions (advanced)"
                     type="flask">
                     <i
-                      ariaLabel="Show all analysis backend versions (advanced)"
+                      aria-label="Show all analysis backend versions (advanced)"
                       className="fa fa-flask fa-fw "
                       onClick={[Function]}
                       style={
@@ -253,7 +251,7 @@ exports[`Component > EditProject renders correctly 1`] = `
                         }
                       }
                       title="Show all analysis backend versions (advanced)" />
-                  </pure(Icon)>
+                  </Icon>
                 </div>
               </Group>
             </div>
@@ -261,7 +259,7 @@ exports[`Component > EditProject renders correctly 1`] = `
           <legend>
             OSM Bounds
           </legend>
-          <pure(Component)
+          <Text
             disabled={true}
             label="North bound"
             value={1}>
@@ -274,7 +272,7 @@ exports[`Component > EditProject renders correctly 1`] = `
                 <label>
                   North bound
                 </label>
-                <pure(Component)
+                <Input
                   disabled={true}
                   label="North bound"
                   type="text"
@@ -283,14 +281,15 @@ exports[`Component > EditProject renders correctly 1`] = `
                     className="form-control"
                     disabled={true}
                     name={undefined}
+                    onChange={[Function]}
                     placeholder="North bound"
                     type="text"
                     value={1} />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
-          <pure(Component)
+          </Text>
+          <Text
             disabled={true}
             label="South bound"
             value={3}>
@@ -303,7 +302,7 @@ exports[`Component > EditProject renders correctly 1`] = `
                 <label>
                   South bound
                 </label>
-                <pure(Component)
+                <Input
                   disabled={true}
                   label="South bound"
                   type="text"
@@ -312,14 +311,15 @@ exports[`Component > EditProject renders correctly 1`] = `
                     className="form-control"
                     disabled={true}
                     name={undefined}
+                    onChange={[Function]}
                     placeholder="South bound"
                     type="text"
                     value={3} />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
-          <pure(Component)
+          </Text>
+          <Text
             disabled={true}
             label="East bound"
             value={2}>
@@ -332,7 +332,7 @@ exports[`Component > EditProject renders correctly 1`] = `
                 <label>
                   East bound
                 </label>
-                <pure(Component)
+                <Input
                   disabled={true}
                   label="East bound"
                   type="text"
@@ -341,14 +341,15 @@ exports[`Component > EditProject renders correctly 1`] = `
                     className="form-control"
                     disabled={true}
                     name={undefined}
+                    onChange={[Function]}
                     placeholder="East bound"
                     type="text"
                     value={2} />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
-          <pure(Component)
+          </Text>
+          <Text
             disabled={true}
             label="West bound"
             value={4}>
@@ -361,7 +362,7 @@ exports[`Component > EditProject renders correctly 1`] = `
                 <label>
                   West bound
                 </label>
-                <pure(Component)
+                <Input
                   disabled={true}
                   label="West bound"
                   type="text"
@@ -370,14 +371,15 @@ exports[`Component > EditProject renders correctly 1`] = `
                     className="form-control"
                     disabled={true}
                     name={undefined}
+                    onChange={[Function]}
                     placeholder="West bound"
                     type="text"
                     value={4} />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
-          <pure(Component)
+          </Text>
+          <Button
             block={true}
             onClick={[Function]}
             style="success">
@@ -388,8 +390,8 @@ exports[`Component > EditProject renders correctly 1`] = `
               target={undefined}>
               Save project
             </a>
-          </pure(Component)>
-          <pure(Component)
+          </Button>
+          <Button
             block={true}
             onClick={[Function]}
             style="danger">
@@ -398,16 +400,16 @@ exports[`Component > EditProject renders correctly 1`] = `
               href="#"
               onClick={[Function]}
               target={undefined}>
-              <pure(Icon)
+              <Icon
                 type="trash">
                 <i
                   className="fa fa-trash fa-fw " />
-              </pure(Icon)>
+              </Icon>
             </a>
-          </pure(Component)>
+          </Button>
         </div>
-      </pure(Body)>
+      </Body>
     </div>
-  </pure(Panel)>
+  </Panel>
 </EditProject>
 `;

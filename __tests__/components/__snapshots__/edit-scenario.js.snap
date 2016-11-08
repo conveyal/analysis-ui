@@ -20,19 +20,19 @@ exports[`Component > EditScenario renders correctly 1`] = `
   projectId="P1"
   save={[Function]}
   variants={Array []}>
-  <pure(Panel)>
+  <Panel>
     <div
       className="panel panel-default">
-      <pure(Heading)>
+      <Heading>
         <div
           className="panel-heading clearfix ">
           Create new scenario
         </div>
-      </pure(Heading)>
-      <pure(Body)>
+      </Heading>
+      <Body>
         <div
           className="panel-body">
-          <pure(Component)
+          <Text
             name="Scenario name"
             onChange={[Function]}
             value="Mock Scenario">
@@ -42,23 +42,22 @@ exports[`Component > EditScenario renders correctly 1`] = `
               value="Mock Scenario">
               <div
                 className="form-group">
-                <pure(Component)
+                <Input
                   name="Scenario name"
                   onChange={[Function]}
                   type="text"
                   value="Mock Scenario">
                   <input
                     className="form-control"
-                    defaultValue="Mock Scenario"
                     name="Scenario name"
                     onChange={[Function]}
                     placeholder="Scenario name"
                     type="text"
                     value="Mock Scenario" />
-                </pure(Component)>
+                </Input>
               </div>
             </Group>
-          </pure(Component)>
+          </Text>
           <Group>
             <div
               className="form-group">
@@ -203,7 +202,7 @@ exports[`Component > EditScenario renders correctly 1`] = `
               </Select>
             </div>
           </Group>
-          <pure(Component)
+          <Button
             block={true}
             onClick={undefined}
             style="success">
@@ -212,14 +211,14 @@ exports[`Component > EditScenario renders correctly 1`] = `
               href="#"
               onClick={[Function]}
               target={undefined}>
-              <pure(Icon)
+              <Icon
                 type="plus">
                 <i
                   className="fa fa-plus fa-fw " />
-              </pure(Icon)>
+              </Icon>
             </a>
-          </pure(Component)>
-          <pure(Component)
+          </Button>
+          <Button
             block={true}
             disabled={true}
             onClick={[Function]}
@@ -232,10 +231,10 @@ exports[`Component > EditScenario renders correctly 1`] = `
               target={undefined}>
               Create new scenario
             </a>
-          </pure(Component)>
+          </Button>
         </div>
-      </pure(Body)>
+      </Body>
     </div>
-  </pure(Panel)>
+  </Panel>
 </EditScenario>
 `;

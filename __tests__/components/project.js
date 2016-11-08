@@ -13,6 +13,7 @@ describe('Component > Project', () => {
       <Project
         description='A test project'
         id='1234'
+        isLoaded={false}
         load={loadFn}
         name='Test'
         >

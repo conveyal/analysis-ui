@@ -8,17 +8,17 @@ import SelectStops from '../../lib/components/select-stops'
 
 describe('Component > SelectStops', () => {
   it('renders correctly with no feed data', () => {
-    const replaceModificationFn = jest.fn()
+    const update = jest.fn()
     const setMapStateFn = jest.fn()
     const tree = mount(
       <SelectStops
         modification={{}}
-        replaceModification={replaceModificationFn}
         setMapState={setMapStateFn}
+        update={update}
         />
     )
     expect(mountToJson(tree)).toMatchSnapshot()
-    expect(replaceModificationFn).not.toBeCalled()
+    expect(update).not.toBeCalled()
     expect(setMapStateFn).not.toBeCalled()
   })
 })
