@@ -1,9 +1,8 @@
 /* global describe, it, expect */
 
-import { mount } from 'enzyme'
-import Leaflet from '../../test-utils/mock-leaflet'
 import React from 'react'
-import { Map } from 'react-leaflet'
+import {Map} from 'react-leaflet'
+import renderer from 'react-test-renderer'
 
 import Patterns from '../../../lib/components/map/geojson-patterns'
 
@@ -14,17 +13,17 @@ describe('Components > Map > GeoJSON-Patterns', () => {
       color: 'blue'
     }
 
-    mount(
+    const tree = renderer.create(
       <Map>
         <Patterns
           {...props}
           />
       </Map>
-    , {
-      attachTo: document.getElementById('test')
-    })
+    ).toJSON()
 
     // expect geojson to be added to map by intercepting call to Leaflet
-    expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
+    // expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
+
+    expect(tree).toMatchSnapshot()
   })
 })

@@ -1,4 +1,4 @@
-/* global describe, expect, it, jest */
+/* global describe, expect, it */
 
 import nock from 'nock'
 import React from 'react'
@@ -6,10 +6,6 @@ import { Provider } from 'react-redux'
 import renderer from 'react-test-renderer'
 
 import {makeMockStore, mockStores} from '../test-utils/mock-data'
-
-jest.mock('react-dom')
-jest.mock('react-leaflet')
-jest.mock('react/lib/ReactDefaultInjection')
 
 describe('Container > Application', () => {
   it('renders correctly', () => {

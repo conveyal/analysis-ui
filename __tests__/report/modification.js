@@ -1,13 +1,9 @@
-/* global describe, expect, it, jest */
+/* global describe, expect, it */
 
 import React from 'react'
 import renderer from 'react-test-renderer'
 
 import { mockFeed, mockModification } from '../test-utils/mock-data'
-
-jest.mock('react-dom')
-jest.mock('react-leaflet')
-jest.mock('react/lib/ReactDefaultInjection')
 
 mockModification.type = 'adjust-dwell-time'
 

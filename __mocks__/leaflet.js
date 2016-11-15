@@ -160,6 +160,15 @@ module.exports = {
   latLng: L.latLng,
   LatLngBounds: L.LatLngBounds,
   latLngBounds: L.latLngBounds,
+  geoJson (data, props) {
+    return {
+      data,
+      getLayers () {
+        return []
+      },
+      props
+    }
+  },
   Map: MapMock,
   map: (id, options) => new MapMock(id, options),
   Popup: PopupMock,
