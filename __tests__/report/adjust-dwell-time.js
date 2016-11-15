@@ -1,14 +1,13 @@
 /* global describe, it, expect */
 
-import { mount } from 'enzyme'
-import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
+import renderer from 'react-test-renderer'
 
 import { mockFeed, mockModification } from '../test-utils/mock-data'
 
-import AdjustDwellTime from '../../lib/report/adjust-dwell-time'
-
 describe('Report > AdjustDwellTime', () => {
+  const AdjustDwellTime = require('../../lib/report/adjust-dwell-time')
+
   it('renders correctly', () => {
     const props = {
       feedsById: { '1': mockFeed },
@@ -16,17 +15,11 @@ describe('Report > AdjustDwellTime', () => {
     }
 
     // mount component
-    const tree = mount(
+    const tree = renderer.create(
       <AdjustDwellTime
         {...props}
         />
-      , {
-        attachTo: document.getElementById('test')
-      }
-    )
-    expect(mountToJson(tree.find('ul'))).toMatchSnapshot()
-
-    // expect geojson to be added to map by intercepting call to Leaflet
-    // expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
