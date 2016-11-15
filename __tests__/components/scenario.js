@@ -1,15 +1,16 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import Scenario from '../../lib/components/scenario'
 
-describe('Scenario', () => {
+describe('Component > Scenario', () => {
   it('renders correctly', () => {
     const addComponentToMapFn = jest.fn()
     const loadFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <Scenario
         addComponentToMap={addComponentToMapFn}
         id='1234'
@@ -20,9 +21,9 @@ describe('Scenario', () => {
         >
         Scenario content
       </Scenario>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(addComponentToMapFn).not.toBeCalled
-    expect(loadFn).toBeCalled
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
+    expect(addComponentToMapFn).not.toBeCalled()
+    expect(loadFn).toBeCalled()
   })
 })

@@ -1,24 +1,26 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import Project from '../../lib/components/project'
 
-describe('Project', () => {
+describe('Component > Project', () => {
   it('renders correctly', () => {
     const loadFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <Project
         description='A test project'
         id='1234'
+        isLoaded={false}
         load={loadFn}
         name='Test'
         >
         Project content
       </Project>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(loadFn).toBeCalled
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
+    expect(loadFn).toBeCalled()
   })
 })

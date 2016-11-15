@@ -1,0 +1,166 @@
+exports[`actions > scenario create should work 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > scenario create should work 2`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > scenario create should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "id": "1",
+    },
+    "type": "add scenario",
+  },
+  Object {
+    "payload": Object {
+      "args": Array [
+        "/projects/1/scenarios/1",
+      ],
+      "method": "push",
+    },
+    "type": "@@router/CALL_HISTORY_METHOD",
+  },
+]
+`;
+
+exports[`actions > scenario createVariant should work 1`] = `
+Object {
+  "type": "create variant",
+}
+`;
+
+exports[`actions > scenario deleteScenario should work 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > scenario deleteScenario should work 2`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > scenario deleteScenario should work 3`] = `
+Array [
+  Object {
+    "payload": "1",
+    "type": "delete scenario",
+  },
+  Object {
+    "payload": Object {
+      "args": Array [
+        "/projects/1",
+      ],
+      "method": "push",
+    },
+    "type": "@@router/CALL_HISTORY_METHOD",
+  },
+]
+`;
+
+exports[`actions > scenario load should work 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > scenario load should work 2`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > scenario load should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "bundleId": "1",
+      "id": "1",
+    },
+    "type": "set scenario",
+  },
+  Array [
+    Object {
+      "type": "increment outstanding requests",
+    },
+    Promise {},
+  ],
+]
+`;
+
+exports[`actions > scenario saveToServer should work 1`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > scenario saveToServer should work 2`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > scenario saveToServer should work 3`] = `
+Object {
+  "payload": Object {
+    "id": "1",
+  },
+  "type": "set scenario",
+}
+`;
+
+exports[`actions > scenario set should work 1`] = `
+Object {
+  "type": "set scenario",
+}
+`;
+
+exports[`actions > scenario setAll should work 1`] = `
+Object {
+  "type": "set scenarios",
+}
+`;
+
+exports[`actions > scenario setAndLoadModifications should work 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "bundleId": "1",
+      "id": "1",
+    },
+    "type": "set scenario",
+  },
+  Array [
+    Object {
+      "type": "increment outstanding requests",
+    },
+    Promise {},
+  ],
+]
+`;
+
+exports[`actions > scenario showVariant should work 1`] = `
+Object {
+  "type": "show variant",
+}
+`;
+
+exports[`actions > scenario updateVariant should work 1`] = `
+Object {
+  "type": "update variant",
+}
+`;
+
+exports[`actions > scenario updateVariants should work 1`] = `
+Object {
+  "type": "update variants",
+}
+`;

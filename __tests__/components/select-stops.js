@@ -1,24 +1,24 @@
 /* global describe, it, expect, jest */
 
+import { mount } from 'enzyme'
+import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
-import renderer from 'react-test-renderer'
 
 import SelectStops from '../../lib/components/select-stops'
 
-describe('SelectStops', () => {
+describe('Component > SelectStops', () => {
   it('renders correctly with no feed data', () => {
-    const replaceModificationFn = jest.fn()
+    const update = jest.fn()
     const setMapStateFn = jest.fn()
-    const tree = renderer.create(
+    const tree = mount(
       <SelectStops
-        feed={null}
         modification={{}}
-        replaceModification={replaceModificationFn}
         setMapState={setMapStateFn}
+        update={update}
         />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-    expect(replaceModificationFn).not.toBeCalled
-    expect(setMapStateFn).not.toBeCalled
+    )
+    expect(mountToJson(tree)).toMatchSnapshot()
+    expect(update).not.toBeCalled()
+    expect(setMapStateFn).not.toBeCalled()
   })
 })
