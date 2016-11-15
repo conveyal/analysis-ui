@@ -1,17 +1,19 @@
-/* global describe, expect, it */
+/* global describe, expect, it, jest */
 
-import { mount } from 'enzyme'
 import nock from 'nock'
 import React from 'react'
 import { Provider } from 'react-redux'
+import renderer from 'react-test-renderer'
 
 import '../test-utils/mock-leaflet'
 import {makeMockStore, mockProject, mockScenario, mockStores} from '../test-utils/mock-data.js'
 
-import Report from '../../lib/containers/report'
+jest.mock('react-dom')
+jest.mock('react/lib/ReactDefaultInjection')
 
 describe('Container > Report', () => {
   it('renders correctly', () => {
+    const Report = require('../../lib/containers/report')
     mockStores.init.scenario.variants.push('Mock Variant')
     const mockStore = makeMockStore(mockStores.init)
 
@@ -34,20 +36,17 @@ describe('Container > Report', () => {
     }
 
     // mount component
-    const tree = mount(
+    const component = renderer.create(
       <Provider store={mockStore}>
         <Report
           {...props}
           />
       </Provider>
-      , {
-        attachTo: document.getElementById('test')
-      }
     )
-    // when trying to make a snapshot from mountToJson, I got an out of memory error
+    const tree = component.toJSON()
 
     // assert that application was rendered
-    expect(tree.find(Report).length).toBe(1)
+    expect(tree).toMatchSnapshot()
 
     // ensure that actions were dispatched to load project
     expect(mockStore.getActions().length).toBeGreaterThan(0)

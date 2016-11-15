@@ -1,17 +1,19 @@
-/* global describe, expect, it */
+/* global describe, expect, it, jest */
 
-import { mount } from 'enzyme'
-import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
+import renderer from 'react-test-renderer'
 
 import { mockFeed, mockModification } from '../test-utils/mock-data'
-import Leaflet from '../test-utils/mock-leaflet'
 
-import Modification from '../../lib/report/modification'
+jest.mock('react-dom')
+jest.mock('react-leaflet')
+jest.mock('react/lib/ReactDefaultInjection')
 
 mockModification.type = 'adjust-dwell-time'
 
 describe('Report > Modification', () => {
+  const Modification = require('../../lib/report/modification')
+
   it('renders correctly', () => {
     const props = {
       modification: mockModification,
@@ -19,17 +21,11 @@ describe('Report > Modification', () => {
     }
 
     // mount component
-    const tree = mount(
+    const tree = renderer.create(
       <Modification
         {...props}
         />
-      , {
-        attachTo: document.getElementById('test')
-      }
-    )
-    expect(mountToJson(tree.find('ul'))).toMatchSnapshot()
-
-    // expect geojson to be added to map by intercepting call to Leaflet
-    expect(Leaflet.geoJson.mock.calls[0][0]).toMatchSnapshot()
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
