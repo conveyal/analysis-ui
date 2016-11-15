@@ -1,19 +1,16 @@
-/* global describe, it, jest */
+/* global describe, expect, it, jest */
 
-import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
+import renderer from 'react-test-renderer'
 
 import { mockFeed, mockModification } from '../test-utils/mock-data'
-import { drawMock } from '../test-utils/mock-leaflet'
-
-import HopSelectPolygon from '../../lib/scenario-map/hop-select-polygon'
-
-drawMock()
 
 mockModification.hops = []
 
 describe('Scenario-Map > HopSelectPolygon', () => {
+  const HopSelectPolygon = require('../../lib/scenario-map/hop-select-polygon')
+
   it('renders correctly', () => {
     const props = {
       action: 'new',
@@ -24,15 +21,13 @@ describe('Scenario-Map > HopSelectPolygon', () => {
     }
 
     // mount component
-    mount(
+    const tree = renderer.create(
       <Map>
         <HopSelectPolygon
           {...props}
           />
       </Map>
-      , {
-        attachTo: document.getElementById('test')
-      }
-    )
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

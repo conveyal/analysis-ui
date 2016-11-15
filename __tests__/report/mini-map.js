@@ -1,16 +1,15 @@
-/* global describe, it */
+/* global describe, expect, it */
 
-import { mount } from 'enzyme'
+import {latLngBounds} from 'leaflet'
 import React from 'react'
-
-import Leaflet from '../test-utils/mock-leaflet'
-
-import MiniMap from '../../lib/report/mini-map'
+import renderer from 'react-test-renderer'
 
 describe('Report > MiniMap', () => {
+  const MiniMap = require('../../lib/report/mini-map')
+
   it('renders correctly', () => {
     const props = {
-      bounds: Leaflet.latLngBounds(
+      bounds: latLngBounds(
         [
           [40.712, -74.227],
           [40.774, -74.125]
@@ -19,13 +18,11 @@ describe('Report > MiniMap', () => {
     }
 
     // mount component
-    mount(
+    const tree = renderer.create(
       <MiniMap
         {...props}
         />
-      , {
-        attachTo: document.getElementById('test')
-      }
-    )
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

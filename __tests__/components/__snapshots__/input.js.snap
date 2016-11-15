@@ -1,191 +1,119 @@
-exports[`Component > Checkbox renders correctly 1`] = `
-<Checkbox
-  defaultChecked={true}
-  label="Do the thing?">
-  <div
-    className="checkbox">
-    <label>
-      <input
-        defaultChecked={true}
-        type="checkbox" />
-    </label>
-  </div>
-</Checkbox>
+exports[`Component > Input Checkbox renders correctly 1`] = `
+<div
+  className="checkbox">
+  <label>
+    <input
+      defaultChecked={true}
+      type="checkbox" />
+     
+    Do the thing?
+  </label>
+</div>
 `;
 
-exports[`Component > File renders correctly 1`] = `
-<File
-  label="Select files"
-  multiple={true}
-  name="files">
-  <Group
-    label="Select files"
-    multiple={true}
-    name="files">
-    <div
-      className="form-group">
-      <label>
-        Select files
-      </label>
-      <Input
-        label="Select files"
-        multiple={true}
-        name="files"
-        type="file">
-        <input
-          className="form-control"
-          multiple={true}
-          name="files"
-          onChange={[Function]}
-          placeholder="Select files"
-          type="file" />
-      </Input>
-    </div>
-  </Group>
-</File>
-`;
-
-exports[`Component > Group renders correctly 1`] = `
-<Group>
-  <div
-    className="form-group" />
-</Group>
-`;
-
-exports[`Component > Input renders correctly 1`] = `
-<Input
+exports[`Component > Input Component > Input renders correctly 1`] = `
+<input
+  className="form-control"
   name="someInput"
+  onChange={[Function]}
   placeholder="Enter Text"
-  value="">
+  value="" />
+`;
+
+exports[`Component > Input Component > Number renders correctly 1`] = `
+<div
+  className="form-group">
   <input
     className="form-control"
-    name="someInput"
-    onChange={[Function]}
-    placeholder="Enter Text"
-    value="" />
-</Input>
-`;
-
-exports[`Component > Number renders correctly 1`] = `
-<Number
-  name="someNumber"
-  placeholder="Enter Number"
-  value={12345}>
-  <Group
     name="someNumber"
+    onChange={[Function]}
     placeholder="Enter Number"
-    value={12345}>
-    <div
-      className="form-group">
-      <Input
-        name="someNumber"
-        placeholder="Enter Number"
-        type="number"
-        value={12345}>
-        <input
-          className="form-control"
-          name="someNumber"
-          onChange={[Function]}
-          placeholder="Enter Number"
-          type="number"
-          value={12345} />
-      </Input>
-    </div>
-  </Group>
-</Number>
+    type="number"
+    value={12345} />
+</div>
 `;
 
-exports[`Component > Select renders correctly 1`] = `
-<Select
-  label="Select an option"
-  value="">
-  <Group
+exports[`Component > Input Component > Select renders correctly 1`] = `
+<div
+  className="form-group">
+  <label>
+    Select an option
+  </label>
+  <select
+    className="form-control"
     label="Select an option"
+    onChange={[Function]}
     value="">
-    <div
-      className="form-group">
-      <label>
-        Select an option
-      </label>
-      <select
-        className="form-control"
-        label="Select an option"
-        onChange={[Function]}
-        value="">
-        <option
-          value="1">
-          1
-        </option>
-        <option
-          value="2">
-          2
-        </option>
-      </select>
-    </div>
-  </Group>
-</Select>
+    <option
+      value="1">
+      1
+    </option>
+    <option
+      value="2">
+      2
+    </option>
+  </select>
+</div>
 `;
 
-exports[`Component > SelectMultiple renders correctly 1`] = `
-<SelectMultiple
-  label="Select multiple options"
-  value={Array []}>
-  <Group
+exports[`Component > Input Component > SelectMultiple renders correctly 1`] = `
+<div
+  className="form-group">
+  <label>
+    Select multiple options
+  </label>
+  <select
+    className="form-control"
     label="Select multiple options"
+    multiple={true}
+    onChange={[Function]}
     value={Array []}>
-    <div
-      className="form-group">
-      <label>
-        Select multiple options
-      </label>
-      <select
-        className="form-control"
-        label="Select multiple options"
-        multiple={true}
-        onChange={[Function]}
-        value={Array []}>
-        <option
-          value="1">
-          1
-        </option>
-        <option
-          value="2">
-          2
-        </option>
-      </select>
-    </div>
-  </Group>
-</SelectMultiple>
+    <option
+      value="1">
+      1
+    </option>
+    <option
+      value="2">
+      2
+    </option>
+  </select>
+</div>
 `;
 
-exports[`Component > Text renders correctly 1`] = `
-<Text
-  label="Enter text"
-  name="someText"
-  value="blah">
-  <Group
-    label="Enter text"
+exports[`Component > Input Component > Text renders correctly 1`] = `
+<div
+  className="form-group">
+  <label>
+    Enter text
+  </label>
+  <input
+    className="form-control"
     name="someText"
-    value="blah">
-    <div
-      className="form-group">
-      <label>
-        Enter text
-      </label>
-      <Input
-        label="Enter text"
-        name="someText"
-        type="text"
-        value="blah">
-        <input
-          className="form-control"
-          name="someText"
-          onChange={[Function]}
-          placeholder="Enter text"
-          type="text"
-          value="blah" />
-      </Input>
-    </div>
-  </Group>
-</Text>
+    onChange={[Function]}
+    placeholder="Enter text"
+    type="text"
+    value="blah" />
+</div>
+`;
+
+exports[`Component > Input File renders correctly 1`] = `
+<div
+  className="form-group">
+  <label>
+    Select files
+  </label>
+  <input
+    className="form-control"
+    multiple={true}
+    name="files"
+    onChange={[Function]}
+    placeholder="Select files"
+    type="file"
+    value={undefined} />
+</div>
+`;
+
+exports[`Component > Input Group renders correctly 1`] = `
+<div
+  className="form-group" />
 `;

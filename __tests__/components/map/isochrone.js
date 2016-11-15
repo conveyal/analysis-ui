@@ -1,13 +1,12 @@
 /* global describe, it, expect, jest */
 
-import { mount } from 'enzyme'
-import Leaflet from '../../test-utils/mock-leaflet'
 import React from 'react'
 import { Map } from 'react-leaflet'
-
-import Isochrone from '../../../lib/components/map/isochrone'
+import renderer from 'react-test-renderer'
 
 describe('Components > Map > Isochrone', () => {
+  const Isochrone = require('../../../lib/components/map/isochrone')
+
   it('renders correctly', () => {
     const props = {
       bundleId: 'bundle-id',
@@ -21,17 +20,16 @@ describe('Components > Map > Isochrone', () => {
       scenarioId: 'scenario-id'
     }
 
-    mount(
+    const tree = renderer.create(
       <Map>
         <Isochrone
           {...props}
           />
       </Map>
-      , {
-        attachTo: document.getElementById('test')
-      })
+    )
+    expect(tree).toMatchSnapshot()
 
     // expect isochrone marker to be added to map by intercepting call to Leaflet
-    expect(Leaflet.marker.mock.calls[0][0]).toMatchSnapshot()
+    // expect(Leaflet.marker.mock.calls[0][0]).toMatchSnapshot()
   })
 })
