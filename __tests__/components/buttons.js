@@ -1,31 +1,32 @@
 /* global describe, it, expect */
 
-import { mount } from 'enzyme'
-import { mountToJson } from 'enzyme-to-json'
 import React from 'react'
+import renderer from 'react-test-renderer'
 
-import { Group, Button } from '../../lib/components/buttons'
+describe('Component > Buttons', () => {
+  const { Group, Button } = require('../../lib/components/buttons')
 
-describe('Component > Button', () => {
-  it('renders correctly', () => {
-    const tree = mount(
-      <Button
-        style='fabulous'
-        block
-        size='sm'
-        className='some-class'
-        target='_blank'
-        />
-    )
-    expect(mountToJson(tree)).toMatchSnapshot()
+  describe('Button', () => {
+    it('renders correctly', () => {
+      const tree = renderer.create(
+        <Button
+          style='fabulous'
+          block
+          size='sm'
+          className='some-class'
+          target='_blank'
+          />
+      ).toJSON()
+      expect(tree).toMatchSnapshot()
+    })
   })
-})
 
-describe('Component > Group', () => {
-  it('renders correctly', () => {
-    const tree = mount(
-      <Group justified />
-    )
-    expect(mountToJson(tree)).toMatchSnapshot()
+  describe('Group', () => {
+    it('renders correctly', () => {
+      const tree = renderer.create(
+        <Group justified />
+      ).toJSON()
+      expect(tree).toMatchSnapshot()
+    })
   })
 })

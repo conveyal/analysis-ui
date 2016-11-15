@@ -4,8 +4,6 @@ import { mount } from 'enzyme'
 import React from 'react'
 import { Map } from 'react-leaflet'
 
-import '../test-utils/mock-leaflet'
-
 import DirectionalMarkers from '../../lib/components/directional-markers'
 
 describe('Component > DirectionalMarkers', () => {
