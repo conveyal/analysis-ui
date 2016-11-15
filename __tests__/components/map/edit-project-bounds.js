@@ -27,18 +27,5 @@ describe('Components > Map > EditProjectBounds', () => {
       </Map>
     )
     expect(tree).toMatchSnapshot()
-
-    // expect map markers representing bounds to be added to map
-    // by intercepting call to Leaflet
-    // expect(Leaflet.marker.mock.calls[0][0]).toMatchSnapshot()
-    // expect(Leaflet.marker.mock.calls[1][0]).toMatchSnapshot()
-
-    // expect rectangle representing bounds to be added to map
-    // by intercepting call to Leaflet
-    // expect(Leaflet.rectangle.mock.calls[0][0]).toMatchSnapshot()
-
-    // expect map bounds to match snapshot
-    // const mountedMap = tree.find(Map)
-    // expect(mountedMap.node.leafletElement.getBounds()).toMatchSnapshot()
   })
 })
