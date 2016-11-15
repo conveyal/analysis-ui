@@ -85,7 +85,7 @@ input[type="month"].form-control,
   left: 320px;
 }
 
-.Fullscreen.hasActiveModification {
+.Fullscreen.hasActiveModification, .Fullscreen.analysisMode {
   left: 640px;
 }
 
@@ -102,6 +102,10 @@ input[type="month"].form-control,
   height: 100%;
   border-right: 1px solid #ddd;
   /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15); */
+}
+
+.ApplicationDock.analysisMode {
+  width: 640px;
 }
 
 .ModificationDock {
@@ -402,4 +406,14 @@ input[type="month"].form-control,
 
 .MapControl .Select-control .Select-input:focus {
   box-shadow: none;
+}
+
+.Analysis {
+  padding: 12px 6px;
+}
+
+.Analysis .block {
+  display: block;
+  padding: 6px 6px 3px;
+  width: 100%;
 }

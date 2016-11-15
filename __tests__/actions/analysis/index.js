@@ -1,7 +1,5 @@
 /* global describe, expect, it */
 
-// import { setGrids } from '../../../lib/utils/browsochrones'
-
 import * as analysis from '../../../lib/actions/analysis'
 
 describe('actions > analysis', () => {
@@ -34,8 +32,8 @@ describe('actions > analysis', () => {
       origin: 1
     }
     const actionResults = analysis.fetchIsochrone(actionArgs)
-    actionResults[2].then((result) => {
-      expect(result).toMatchSnapshot()
+    actionResults[2].catch((err) => {
+      expect(err).toMatchSnapshot()
       done()
     })
   })
