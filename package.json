@@ -11,9 +11,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prestart": "yarn",
     "start": "npm run build -- --serve --proxy http://localhost:7070/api",
-    "pretest": "node lib/__tests__/test-utils/setup-teardown.js setup",
-    "test": "mastarm lint && NODE_ENV=test mastarm test",
-    "posttest": "node lib/__tests__/test-utils/setup-teardown.js teardown"
+    "test": "mastarm lint && mastarm test --env test --config configurations/test"
   },
   "repository": {
     "type": "git",
