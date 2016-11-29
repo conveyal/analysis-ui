@@ -1,398 +1,160 @@
 exports[`Component > EditProject renders correctly 1`] = `
-<EditProject
-  addComponentToMap={[Function]}
-  bounds={
-    Object {
-      "east": 2,
-      "north": 1,
-      "south": 3,
-      "west": 4,
-    }
-  }
-  description="A test scenario"
-  id="1"
-  load={[Function]}
-  name="Test Scenario"
-  r5Version="1 billion"
-  removeComponentFromMap={[Function]}
-  save={[Function]}
-  setCenter={[Function]}
-  setLocally={[Function]}>
-  <Panel>
+<div
+  className="panel panel-default">
+  <div
+    className="panel-heading clearfix ">
+    Edit project
+  </div>
+  <div
+    className="panel-body">
     <div
-      className="panel panel-default">
-      <Heading>
-        <div
-          className="panel-heading clearfix ">
-          Edit project
-        </div>
-      </Heading>
-      <Body>
-        <div
-          className="panel-body">
-          <Text
-            label="Name"
-            onChange={[Function]}
-            value="Test Scenario">
-            <Group
-              label="Name"
-              onChange={[Function]}
-              value="Test Scenario">
-              <div
-                className="form-group">
-                <label>
-                  Name
-                </label>
-                <Input
-                  label="Name"
-                  onChange={[Function]}
-                  type="text"
-                  value="Test Scenario">
-                  <input
-                    className="form-control"
-                    onChange={[Function]}
-                    placeholder="Name"
-                    type="text"
-                    value="Test Scenario" />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            label="Description"
-            onChange={[Function]}
-            value="A test scenario">
-            <Group
-              label="Description"
-              onChange={[Function]}
-              value="A test scenario">
-              <div
-                className="form-group">
-                <label>
-                  Description
-                </label>
-                <Input
-                  label="Description"
-                  onChange={[Function]}
-                  type="text"
-                  value="A test scenario">
-                  <input
-                    className="form-control"
-                    onChange={[Function]}
-                    placeholder="Description"
-                    type="text"
-                    value="A test scenario" />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <R5Version
-            label="Analysis backend version"
-            onChange={[Function]}
-            value="1 billion">
-            <div>
-              <Group
-                label="Analysis backend version"
-                onChange={[Function]}
-                value="1 billion">
-                <div
-                  className="form-group">
-                  <label>
-                    Analysis backend version
-                  </label>
-                  <Select
-                    addLabelText="Add \"{label}\"?"
-                    arrowRenderer={[Function]}
-                    autosize={true}
-                    backspaceRemoves={true}
-                    backspaceToRemoveMessage="Press backspace to remove {label}"
-                    clearAllText="Clear all"
-                    clearValueText="Clear value"
-                    clearable={false}
-                    delimiter=","
-                    disabled={false}
-                    escapeClearsValue={true}
-                    filterOptions={[Function]}
-                    ignoreAccents={true}
-                    ignoreCase={true}
-                    inputProps={Object {}}
-                    isLoading={false}
-                    joinValues={false}
-                    label="Analysis backend version"
-                    labelKey="label"
-                    matchPos="any"
-                    matchProp="any"
-                    menuBuffer={0}
-                    menuRenderer={[Function]}
-                    multi={false}
-                    noResultsText="No results found"
-                    onBlurResetsInput={true}
-                    onChange={[Function]}
-                    onCloseResetsInput={true}
-                    openAfterFocus={false}
-                    optionComponent={[Function]}
-                    options={Array []}
-                    pageSize={5}
-                    placeholder="Select..."
-                    required={false}
-                    scrollMenuIntoView={true}
-                    searchable={true}
-                    simpleValue={false}
-                    tabSelectsValue={true}
-                    value="1 billion"
-                    valueComponent={[Function]}
-                    valueKey="value">
-                    <div
-                      className="Select Select--single is-searchable">
-                      <div
-                        className="Select-control"
-                        onKeyDown={[Function]}
-                        onMouseDown={[Function]}
-                        onTouchEnd={[Function]}
-                        onTouchMove={[Function]}
-                        onTouchStart={[Function]}>
-                        <span
-                          className="Select-multi-value-wrapper"
-                          id="react-select-2--value">
-                          <div
-                            className="Select-placeholder">
-                            Select...
-                          </div>
-                          <AutosizeInput
-                            aria-activedescendant="react-select-2--value"
-                            aria-expanded="false"
-                            aria-haspopup="false"
-                            aria-owns=""
-                            className="Select-input"
-                            minWidth="5px"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onFocus={[Function]}
-                            required={false}
-                            role="combobox"
-                            value="">
-                            <div
-                              className="Select-input"
-                              style={
-                                Object {
-                                  "display": "inline-block",
-                                }
-                              }>
-                              <input
-                                aria-activedescendant="react-select-2--value"
-                                aria-expanded="false"
-                                aria-haspopup="false"
-                                aria-owns=""
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onFocus={[Function]}
-                                required={false}
-                                role="combobox"
-                                style={
-                                  Object {
-                                    "boxSizing": "content-box",
-                                    "width": "5pxpx",
-                                  }
-                                }
-                                value="" />
-                              <div
-                                style={
-                                  Object {
-                                    "height": 0,
-                                    "left": 0,
-                                    "overflow": "scroll",
-                                    "position": "absolute",
-                                    "top": 0,
-                                    "visibility": "hidden",
-                                    "whiteSpace": "pre",
-                                  }
-                                } />
-                            </div>
-                          </AutosizeInput>
-                        </span>
-                        <span
-                          className="Select-arrow-zone"
-                          onMouseDown={[Function]}>
-                          <span
-                            className="Select-arrow"
-                            onMouseDown={[Function]} />
-                        </span>
-                      </div>
-                    </div>
-                  </Select>
-                  <Icon
-                    aria-label="Show all analysis backend versions (advanced)"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "color": "#aaa",
-                      }
-                    }
-                    title="Show all analysis backend versions (advanced)"
-                    type="flask">
-                    <i
-                      aria-label="Show all analysis backend versions (advanced)"
-                      className="fa fa-flask fa-fw "
-                      onClick={[Function]}
-                      style={
-                        Object {
-                          "color": "#aaa",
-                        }
-                      }
-                      title="Show all analysis backend versions (advanced)" />
-                  </Icon>
-                </div>
-              </Group>
-            </div>
-          </R5Version>
-          <legend>
-            OSM Bounds
-          </legend>
-          <Text
-            disabled={true}
-            label="North bound"
-            value={1}>
-            <Group
-              disabled={true}
-              label="North bound"
-              value={1}>
-              <div
-                className="form-group">
-                <label>
-                  North bound
-                </label>
-                <Input
-                  disabled={true}
-                  label="North bound"
-                  type="text"
-                  value={1}>
-                  <input
-                    className="form-control"
-                    disabled={true}
-                    onChange={[Function]}
-                    placeholder="North bound"
-                    type="text"
-                    value={1} />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            disabled={true}
-            label="South bound"
-            value={3}>
-            <Group
-              disabled={true}
-              label="South bound"
-              value={3}>
-              <div
-                className="form-group">
-                <label>
-                  South bound
-                </label>
-                <Input
-                  disabled={true}
-                  label="South bound"
-                  type="text"
-                  value={3}>
-                  <input
-                    className="form-control"
-                    disabled={true}
-                    onChange={[Function]}
-                    placeholder="South bound"
-                    type="text"
-                    value={3} />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            disabled={true}
-            label="East bound"
-            value={2}>
-            <Group
-              disabled={true}
-              label="East bound"
-              value={2}>
-              <div
-                className="form-group">
-                <label>
-                  East bound
-                </label>
-                <Input
-                  disabled={true}
-                  label="East bound"
-                  type="text"
-                  value={2}>
-                  <input
-                    className="form-control"
-                    disabled={true}
-                    onChange={[Function]}
-                    placeholder="East bound"
-                    type="text"
-                    value={2} />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            disabled={true}
-            label="West bound"
-            value={4}>
-            <Group
-              disabled={true}
-              label="West bound"
-              value={4}>
-              <div
-                className="form-group">
-                <label>
-                  West bound
-                </label>
-                <Input
-                  disabled={true}
-                  label="West bound"
-                  type="text"
-                  value={4}>
-                  <input
-                    className="form-control"
-                    disabled={true}
-                    onChange={[Function]}
-                    placeholder="West bound"
-                    type="text"
-                    value={4} />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="success">
-            <a
-              className="btn btn-success btn-block"
-              href="#"
-              onClick={[Function]}>
-              Save project
-            </a>
-          </Button>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="danger">
-            <a
-              className="btn btn-danger btn-block"
-              href="#"
-              onClick={[Function]}>
-              <Icon
-                type="trash">
-                <i
-                  className="fa fa-trash fa-fw " />
-              </Icon>
-            </a>
-          </Button>
-        </div>
-      </Body>
+      className="form-group">
+      <label>
+        Name
+      </label>
+      <input
+        className="form-control"
+        name={undefined}
+        onChange={[Function]}
+        placeholder="Name"
+        type="text"
+        value="Test Scenario" />
     </div>
-  </Panel>
-</EditProject>
+    <div
+      className="form-group">
+      <label>
+        Description
+      </label>
+      <input
+        className="form-control"
+        name={undefined}
+        onChange={[Function]}
+        placeholder="Description"
+        type="text"
+        value="A test scenario" />
+    </div>
+    <div>
+      <div
+        className="form-group">
+        <label>
+          Analysis backend version
+        </label>
+        <div
+          className="Select Select--single is-searchable"
+          style={undefined}>
+          <div
+            className="Select-control"
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={undefined}>
+            <span
+              className="Select-multi-value-wrapper"
+              id="react-select-2--value">
+              <div
+                className="Select-placeholder">
+                Select...
+              </div>
+            </span>
+            <span
+              className="Select-arrow-zone"
+              onMouseDown={[Function]}>
+              <span
+                className="Select-arrow"
+                onMouseDown={[Function]} />
+            </span>
+          </div>
+        </div>
+        <i
+          aria-label="Show all analysis backend versions (advanced)"
+          className="fa fa-flask fa-fw "
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#aaa",
+            }
+          }
+          title="Show all analysis backend versions (advanced)" />
+      </div>
+    </div>
+    <legend>
+      OSM Bounds
+    </legend>
+    <div
+      className="form-group">
+      <label>
+        North bound
+      </label>
+      <input
+        className="form-control"
+        disabled={true}
+        name={undefined}
+        onChange={[Function]}
+        placeholder="North bound"
+        type="text"
+        value={1} />
+    </div>
+    <div
+      className="form-group">
+      <label>
+        South bound
+      </label>
+      <input
+        className="form-control"
+        disabled={true}
+        name={undefined}
+        onChange={[Function]}
+        placeholder="South bound"
+        type="text"
+        value={3} />
+    </div>
+    <div
+      className="form-group">
+      <label>
+        East bound
+      </label>
+      <input
+        className="form-control"
+        disabled={true}
+        name={undefined}
+        onChange={[Function]}
+        placeholder="East bound"
+        type="text"
+        value={2} />
+    </div>
+    <div
+      className="form-group">
+      <label>
+        West bound
+      </label>
+      <input
+        className="form-control"
+        disabled={true}
+        name={undefined}
+        onChange={[Function]}
+        placeholder="West bound"
+        type="text"
+        value={4} />
+    </div>
+    <a
+      className="btn btn-success btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}>
+      Save project
+    </a>
+    <a
+      className="btn btn-danger btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}>
+      <i
+        className="fa fa-trash fa-fw " />
+       
+      Delete this project. WARNING: This deletes all scenarios and modifications associated with this project.
+    </a>
+  </div>
+</div>
 `;

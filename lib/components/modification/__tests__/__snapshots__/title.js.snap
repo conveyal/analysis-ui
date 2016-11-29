@@ -1,75 +1,20 @@
 exports[`Component > Modification > Scenario renders correctly 1`] = `
-<ModificationTitle
-  active={true}
-  modification={
-    Object {
-      "bidirectional": false,
-      "entries": Array [],
-      "feed": "1",
-      "id": "1234",
-      "name": "Test Modification",
-      "routes": Array [
-        "route1",
-      ],
-      "segments": Array [],
-      "showOnMap": false,
-      "timetables": Array [
-        Object {
-          "dwellTime": 10,
-          "endTime": 57600,
-          "friday": true,
-          "headwaySecs": 900,
-          "monday": true,
-          "name": "Test timetable",
-          "patternTrips": Array [
-            "abcd",
-          ],
-          "saturday": false,
-          "sourceTrip": "abcd",
-          "speed": 40,
-          "startTime": 28800,
-          "sunday": false,
-          "thursday": true,
-          "tuesday": true,
-          "wednesday": true,
-        },
-      ],
-      "trips": Array [
-        "abcd",
-      ],
-    }
-  }
-  name="Title"
-  projectId="1234"
-  replaceModification={[Function]}
-  scenarioId="1234"
-  showOnMap={true}>
-  <div
-    className="ModificationTitle active">
-    <Link
-      onlyActiveOnIndex={false}
-      style={Object {}}
-      title="Edit modification"
-      to="/projects/1234/scenarios/1234/modifications/1234">
-      <a
-        onClick={[Function]}
-        style={Object {}}
-        title="Edit modification">
-        <span>
-          Test Modification
-        </span>
-      </a>
-    </Link>
-    <a
-      className="ShowOnMap pull-right active fa-btn"
-      onClick={[Function]}
-      title="Toggle map display">
-      <Icon
-        type="eye">
-        <i
-          className="fa fa-eye fa-fw " />
-      </Icon>
-    </a>
-  </div>
-</ModificationTitle>
+<div
+  className="ModificationTitle active">
+  <a
+    onClick={[Function]}
+    style={Object {}}
+    title="Edit modification">
+    <span>
+      Test Modification
+    </span>
+  </a>
+  <a
+    className="ShowOnMap pull-right active fa-btn"
+    onClick={[Function]}
+    title="Toggle map display">
+    <i
+      className="fa fa-eye fa-fw " />
+  </a>
+</div>
 `;
