@@ -1,1009 +1,262 @@
 exports[`Component > FrequencyEntry renders correctly 1`] = `
-<FrequencyEntry
-  feed={
-    Object {
-      "routes": Array [
-        Object {
-          "patterns": Array [
-            Object {
-              "geometry": Object {
-                "coordinates": Array [
-                  Array [
-                    -122.0246,
-                    36.9707,
-                  ],
-                  Array [
-                    -122.0279,
-                    37.049,
-                  ],
-                  Array [
-                    -121.9799,
-                    37.2299,
-                  ],
-                  Array [
-                    -121.9445,
-                    37.324,
-                  ],
-                  Array [
-                    -121.936,
-                    37.353,
-                  ],
-                  Array [
-                    -121.924,
-                    37.365,
-                  ],
-                ],
-                "type": "LineString",
-              },
-              "stops": Array [
-                Object {
-                  "stop_id": "1",
-                  "stop_lat": 36.9707,
-                  "stop_lon": -122.0246,
-                  "stop_name": "Santa Cruz",
-                },
-                Object {
-                  "stop_id": "2",
-                  "stop_lat": 37.049,
-                  "stop_lon": -122.0279,
-                  "stop_name": "Scotts Valley",
-                },
-              ],
-              "trips": Array [
-                Object {
-                  "duration": 1234,
-                  "start_time": 12345,
-                  "trip_headsign": "To Downtown",
-                  "trip_id": "abcd",
-                  "trip_short_name": "The Express",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-      "routesById": Object {
-        "route1": Object {
-          "patterns": Array [
-            Object {
-              "geometry": Object {
-                "coordinates": Array [
-                  Array [
-                    -122.0246,
-                    36.9707,
-                  ],
-                  Array [
-                    -122.0279,
-                    37.049,
-                  ],
-                  Array [
-                    -121.9799,
-                    37.2299,
-                  ],
-                  Array [
-                    -121.9445,
-                    37.324,
-                  ],
-                  Array [
-                    -121.936,
-                    37.353,
-                  ],
-                  Array [
-                    -121.924,
-                    37.365,
-                  ],
-                ],
-                "type": "LineString",
-              },
-              "stops": Array [
-                Object {
-                  "stop_id": "1",
-                  "stop_lat": 36.9707,
-                  "stop_lon": -122.0246,
-                  "stop_name": "Santa Cruz",
-                },
-                Object {
-                  "stop_id": "2",
-                  "stop_lat": 37.049,
-                  "stop_lon": -122.0279,
-                  "stop_name": "Scotts Valley",
-                },
-              ],
-              "trips": Array [
-                Object {
-                  "duration": 1234,
-                  "start_time": 12345,
-                  "trip_headsign": "To Downtown",
-                  "trip_id": "abcd",
-                  "trip_short_name": "The Express",
-                },
-              ],
-            },
-          ],
-        },
-      },
-      "stopsById": Object {
-        "1": Object {
-          "stop_id": "1",
-          "stop_lat": 36.9707,
-          "stop_lon": -122.0246,
-          "stop_name": "Santa Cruz",
-        },
-        "2": Object {
-          "stop_id": "2",
-          "stop_lat": 37.049,
-          "stop_lon": -122.0279,
-          "stop_name": "Scotts Valley",
-        },
-      },
-    }
-  }
-  removeTimetable={[Function]}
-  replaceTimetable={[Function]}
-  routes={
-    Array [
-      "route1",
-    ]
-  }
-  setActiveTrips={[Function]}
-  timetable={
-    Object {
-      "dwellTime": 10,
-      "endTime": 57600,
-      "friday": true,
-      "headwaySecs": 900,
-      "monday": true,
-      "name": "Test timetable",
-      "patternTrips": Array [
-        "abcd",
-      ],
-      "saturday": false,
-      "sourceTrip": "abcd",
-      "speed": 40,
-      "startTime": 28800,
-      "sunday": false,
-      "thursday": true,
-      "tuesday": true,
-      "wednesday": true,
-    }
-  }
-  trip="abcd">
+<div
+  className="panel panel-default inner-panel"
+  onFocus={[Function]}>
   <div
-    className="panel panel-default inner-panel"
-    onFocus={[Function]}>
+    className="panel-heading clearfix">
+    <strong>
+      Test timetable
+    </strong>
+    <a
+      className="btn btn-danger btn-sm pull-right"
+      href="#"
+      onClick={[Function]}
+      target={undefined}
+      title="Delete frequency entry">
+      <i
+        className="fa fa-close fa-fw " />
+    </a>
+  </div>
+  <div
+    className="panel-body">
     <div
-      className="panel-heading clearfix">
-      <strong>
-        Test timetable
-      </strong>
-      <Button
-        className="pull-right"
-        onClick={[Function]}
-        size="sm"
-        style="danger"
-        title="Delete frequency entry">
-        <a
-          className="btn btn-danger btn-sm pull-right"
-          href="#"
-          onClick={[Function]}
-          title="Delete frequency entry">
-          <Icon
-            type="close">
-            <i
-              className="fa fa-close fa-fw " />
-          </Icon>
-        </a>
-      </Button>
-    </div>
-    <div
-      className="panel-body">
-      <Text
+      className="form-group">
+      <input
+        className="form-control"
         name="Name"
         onChange={[Function]}
-        value="Test timetable">
-        <Group
-          name="Name"
-          onChange={[Function]}
-          value="Test timetable">
-          <div
-            className="form-group">
-            <Input
-              name="Name"
-              onChange={[Function]}
-              type="text"
-              value="Test timetable">
-              <input
-                className="form-control"
-                name="Name"
-                onChange={[Function]}
-                placeholder="Name"
-                type="text"
-                value="Test timetable" />
-            </Input>
-          </div>
-        </Group>
-      </Text>
-      <SelectPatterns
-        onChange={[Function]}
-        routePatterns={
-          Array [
-            Object {
-              "geometry": Object {
-                "coordinates": Array [
-                  Array [
-                    -122.0246,
-                    36.9707,
-                  ],
-                  Array [
-                    -122.0279,
-                    37.049,
-                  ],
-                  Array [
-                    -121.9799,
-                    37.2299,
-                  ],
-                  Array [
-                    -121.9445,
-                    37.324,
-                  ],
-                  Array [
-                    -121.936,
-                    37.353,
-                  ],
-                  Array [
-                    -121.924,
-                    37.365,
-                  ],
-                ],
-                "type": "LineString",
-              },
-              "stops": Array [
-                Object {
-                  "stop_id": "1",
-                  "stop_lat": 36.9707,
-                  "stop_lon": -122.0246,
-                  "stop_name": "Santa Cruz",
-                },
-                Object {
-                  "stop_id": "2",
-                  "stop_lat": 37.049,
-                  "stop_lon": -122.0279,
-                  "stop_name": "Scotts Valley",
-                },
-              ],
-              "trips": Array [
-                Object {
-                  "duration": 1234,
-                  "start_time": 12345,
-                  "trip_headsign": "To Downtown",
-                  "trip_id": "abcd",
-                  "trip_short_name": "The Express",
-                },
-              ],
-            },
-          ]
-        }
-        trips={
-          Array [
-            "abcd",
-          ]
-        }>
-        <Group>
-          <div
-            className="form-group">
-            <Select
-              addLabelText="Add \"{label}\"?"
-              arrowRenderer={[Function]}
-              autosize={true}
-              backspaceRemoves={true}
-              backspaceToRemoveMessage="Press backspace to remove {label}"
-              clearAllText="Clear all"
-              clearValueText="Clear value"
-              clearable={true}
-              delimiter=","
-              disabled={false}
-              escapeClearsValue={true}
-              filterOptions={[Function]}
-              ignoreAccents={true}
-              ignoreCase={true}
-              inputProps={Object {}}
-              isLoading={false}
-              joinValues={false}
-              labelKey="label"
-              matchPos="any"
-              matchProp="any"
-              menuBuffer={0}
-              menuRenderer={[Function]}
-              multi={true}
-              name="Patterns"
-              noResultsText="No results found"
-              onBlurResetsInput={true}
-              onChange={[Function]}
-              onCloseResetsInput={true}
-              openAfterFocus={false}
-              optionComponent={[Function]}
-              options={
-                Array [
-                  Object {
-                    "label": undefined,
-                    "value": undefined,
-                  },
-                ]
-              }
-              pageSize={5}
-              placeholder="Select patterns"
-              required={false}
-              scrollMenuIntoView={true}
-              searchable={true}
-              simpleValue={false}
-              tabSelectsValue={true}
-              value={
-                Array [
-                  undefined,
-                ]
-              }
-              valueComponent={[Function]}
-              valueKey="value">
-              <div
-                className="Select Select--multi is-searchable">
-                <div
-                  className="Select-control"
-                  onKeyDown={[Function]}
-                  onMouseDown={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchMove={[Function]}
-                  onTouchStart={[Function]}>
-                  <span
-                    className="Select-multi-value-wrapper"
-                    id="react-select-2--value">
-                    <div
-                      className="Select-placeholder">
-                      Select patterns
-                    </div>
-                    <AutosizeInput
-                      aria-activedescendant="react-select-2--value"
-                      aria-expanded="false"
-                      aria-haspopup="false"
-                      aria-owns=""
-                      className="Select-input"
-                      minWidth="5px"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onFocus={[Function]}
-                      required={false}
-                      role="combobox"
-                      value="">
-                      <div
-                        className="Select-input"
-                        style={
-                          Object {
-                            "display": "inline-block",
-                          }
-                        }>
-                        <input
-                          aria-activedescendant="react-select-2--value"
-                          aria-expanded="false"
-                          aria-haspopup="false"
-                          aria-owns=""
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          required={false}
-                          role="combobox"
-                          style={
-                            Object {
-                              "boxSizing": "content-box",
-                              "width": "5pxpx",
-                            }
-                          }
-                          value="" />
-                        <div
-                          style={
-                            Object {
-                              "height": 0,
-                              "left": 0,
-                              "overflow": "scroll",
-                              "position": "absolute",
-                              "top": 0,
-                              "visibility": "hidden",
-                              "whiteSpace": "pre",
-                            }
-                          } />
-                      </div>
-                    </AutosizeInput>
-                  </span>
-                  <span
-                    aria-label="Clear all"
-                    className="Select-clear-zone"
-                    onMouseDown={[Function]}
-                    onTouchEnd={[Function]}
-                    onTouchMove={[Function]}
-                    onTouchStart={[Function]}
-                    title="Clear all">
-                    <span
-                      className="Select-clear"
-                      dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "&times;",
-                        }
-                      } />
-                  </span>
-                  <span
-                    className="Select-arrow-zone"
-                    onMouseDown={[Function]}>
-                    <span
-                      className="Select-arrow"
-                      onMouseDown={[Function]} />
-                  </span>
-                </div>
-              </div>
-            </Select>
-          </div>
-        </Group>
-      </SelectPatterns>
-      <SelectTrip
-        feed={
-          Object {
-            "routes": Array [
-              Object {
-                "patterns": Array [
-                  Object {
-                    "geometry": Object {
-                      "coordinates": Array [
-                        Array [
-                          -122.0246,
-                          36.9707,
-                        ],
-                        Array [
-                          -122.0279,
-                          37.049,
-                        ],
-                        Array [
-                          -121.9799,
-                          37.2299,
-                        ],
-                        Array [
-                          -121.9445,
-                          37.324,
-                        ],
-                        Array [
-                          -121.936,
-                          37.353,
-                        ],
-                        Array [
-                          -121.924,
-                          37.365,
-                        ],
-                      ],
-                      "type": "LineString",
-                    },
-                    "stops": Array [
-                      Object {
-                        "stop_id": "1",
-                        "stop_lat": 36.9707,
-                        "stop_lon": -122.0246,
-                        "stop_name": "Santa Cruz",
-                      },
-                      Object {
-                        "stop_id": "2",
-                        "stop_lat": 37.049,
-                        "stop_lon": -122.0279,
-                        "stop_name": "Scotts Valley",
-                      },
-                    ],
-                    "trips": Array [
-                      Object {
-                        "duration": 1234,
-                        "start_time": 12345,
-                        "trip_headsign": "To Downtown",
-                        "trip_id": "abcd",
-                        "trip_short_name": "The Express",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-            "routesById": Object {
-              "route1": Object {
-                "patterns": Array [
-                  Object {
-                    "geometry": Object {
-                      "coordinates": Array [
-                        Array [
-                          -122.0246,
-                          36.9707,
-                        ],
-                        Array [
-                          -122.0279,
-                          37.049,
-                        ],
-                        Array [
-                          -121.9799,
-                          37.2299,
-                        ],
-                        Array [
-                          -121.9445,
-                          37.324,
-                        ],
-                        Array [
-                          -121.936,
-                          37.353,
-                        ],
-                        Array [
-                          -121.924,
-                          37.365,
-                        ],
-                      ],
-                      "type": "LineString",
-                    },
-                    "stops": Array [
-                      Object {
-                        "stop_id": "1",
-                        "stop_lat": 36.9707,
-                        "stop_lon": -122.0246,
-                        "stop_name": "Santa Cruz",
-                      },
-                      Object {
-                        "stop_id": "2",
-                        "stop_lat": 37.049,
-                        "stop_lon": -122.0279,
-                        "stop_name": "Scotts Valley",
-                      },
-                    ],
-                    "trips": Array [
-                      Object {
-                        "duration": 1234,
-                        "start_time": 12345,
-                        "trip_headsign": "To Downtown",
-                        "trip_id": "abcd",
-                        "trip_short_name": "The Express",
-                      },
-                    ],
-                  },
-                ],
-              },
-            },
-            "stopsById": Object {
-              "1": Object {
-                "stop_id": "1",
-                "stop_lat": 36.9707,
-                "stop_lon": -122.0246,
-                "stop_name": "Santa Cruz",
-              },
-              "2": Object {
-                "stop_id": "2",
-                "stop_lat": 37.049,
-                "stop_lon": -122.0279,
-                "stop_name": "Scotts Valley",
-              },
-            },
-          }
-        }
-        onChange={[Function]}
-        patternTrips={
-          Array [
-            "abcd",
-          ]
-        }
-        routes={
-          Array [
-            "route1",
-          ]
-        }
-        trip="abcd">
-        <Group>
-          <div
-            className="form-group">
-            <Select
-              addLabelText="Add \"{label}\"?"
-              arrowRenderer={[Function]}
-              autosize={true}
-              backspaceRemoves={true}
-              backspaceToRemoveMessage="Press backspace to remove {label}"
-              clearAllText="Clear all"
-              clearValueText="Clear value"
-              clearable={true}
-              delimiter=","
-              disabled={false}
-              escapeClearsValue={true}
-              filterOptions={[Function]}
-              ignoreAccents={true}
-              ignoreCase={true}
-              inputProps={Object {}}
-              isLoading={false}
-              joinValues={false}
-              labelKey="label"
-              matchPos="any"
-              matchProp="any"
-              menuBuffer={0}
-              menuRenderer={[Function]}
-              multi={false}
-              name="Trip"
-              noResultsText="No results found"
-              onBlurResetsInput={true}
-              onChange={[Function]}
-              onCloseResetsInput={true}
-              openAfterFocus={false}
-              optionComponent={[Function]}
-              options={
-                Array [
-                  Object {
-                    "label": "The Express , starting 03:26 (21 minute trip)",
-                    "value": "abcd",
-                  },
-                ]
-              }
-              pageSize={5}
-              placeholder="Select Trip"
-              required={false}
-              scrollMenuIntoView={true}
-              searchable={true}
-              simpleValue={false}
-              tabSelectsValue={true}
-              value="abcd"
-              valueComponent={[Function]}
-              valueKey="value">
-              <div
-                className="Select Select--single is-searchable has-value">
-                <input
-                  disabled={false}
-                  name="Trip"
-                  type="hidden"
-                  value="abcd" />
-                <div
-                  className="Select-control"
-                  onKeyDown={[Function]}
-                  onMouseDown={[Function]}
-                  onTouchEnd={[Function]}
-                  onTouchMove={[Function]}
-                  onTouchStart={[Function]}>
-                  <span
-                    className="Select-multi-value-wrapper"
-                    id="react-select-3--value">
-                    <Value
-                      disabled={false}
-                      id="react-select-3--value-item"
-                      instancePrefix="react-select-3-"
-                      onClick={null}
-                      value={
-                        Object {
-                          "label": "The Express , starting 03:26 (21 minute trip)",
-                          "value": "abcd",
-                        }
-                      }>
-                      <div
-                        className="Select-value">
-                        <span
-                          aria-selected="true"
-                          className="Select-value-label"
-                          id="react-select-3--value-item"
-                          role="option">
-                          The Express , starting 03:26 (21 minute trip)
-                        </span>
-                      </div>
-                    </Value>
-                    <AutosizeInput
-                      aria-activedescendant="react-select-3--value"
-                      aria-expanded="false"
-                      aria-haspopup="false"
-                      aria-owns=""
-                      className="Select-input"
-                      minWidth="5px"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onFocus={[Function]}
-                      required={false}
-                      role="combobox"
-                      value="">
-                      <div
-                        className="Select-input"
-                        style={
-                          Object {
-                            "display": "inline-block",
-                          }
-                        }>
-                        <input
-                          aria-activedescendant="react-select-3--value"
-                          aria-expanded="false"
-                          aria-haspopup="false"
-                          aria-owns=""
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          required={false}
-                          role="combobox"
-                          style={
-                            Object {
-                              "boxSizing": "content-box",
-                              "width": "5pxpx",
-                            }
-                          }
-                          value="" />
-                        <div
-                          style={
-                            Object {
-                              "height": 0,
-                              "left": 0,
-                              "overflow": "scroll",
-                              "position": "absolute",
-                              "top": 0,
-                              "visibility": "hidden",
-                              "whiteSpace": "pre",
-                            }
-                          } />
-                      </div>
-                    </AutosizeInput>
-                  </span>
-                  <span
-                    aria-label="Clear value"
-                    className="Select-clear-zone"
-                    onMouseDown={[Function]}
-                    onTouchEnd={[Function]}
-                    onTouchMove={[Function]}
-                    onTouchStart={[Function]}
-                    title="Clear value">
-                    <span
-                      className="Select-clear"
-                      dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "&times;",
-                        }
-                      } />
-                  </span>
-                  <span
-                    className="Select-arrow-zone"
-                    onMouseDown={[Function]}>
-                    <span
-                      className="Select-arrow"
-                      onMouseDown={[Function]} />
-                  </span>
-                </div>
-              </div>
-            </Select>
-          </div>
-        </Group>
-      </SelectTrip>
-      <TimetableEntry
-        replaceTimetable={[Function]}
-        timetable={
-          Object {
-            "dwellTime": 10,
-            "endTime": 57600,
-            "friday": true,
-            "headwaySecs": 900,
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "saturday": false,
-            "sourceTrip": "abcd",
-            "speed": 40,
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          }
-        }>
-        <div>
-          <Days
-            setDay={[Function]}
-            timetable={
-              Object {
-                "dwellTime": 10,
-                "endTime": 57600,
-                "friday": true,
-                "headwaySecs": 900,
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "saturday": false,
-                "sourceTrip": "abcd",
-                "speed": 40,
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              }
-            }>
+        placeholder="Name"
+        type="text"
+        value="Test timetable" />
+    </div>
+    <div
+      className="form-group">
+      <div
+        className="Select Select--multi is-searchable"
+        style={undefined}>
+        <div
+          className="Select-control"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={undefined}>
+          <span
+            className="Select-multi-value-wrapper"
+            id="react-select-2--value">
             <div
-              className="form-inline">
-              <Checkbox
-                checked={true}
-                label="Mon"
-                onChange={[Function]}>
-                <div
-                  className="checkbox">
-                  <label>
-                    <input
-                      checked={true}
-                      onChange={[Function]}
-                      type="checkbox" />
-                  </label>
-                </div>
-              </Checkbox>
-              <Checkbox
-                checked={true}
-                label="Tue"
-                onChange={[Function]}>
-                <div
-                  className="checkbox">
-                  <label>
-                    <input
-                      checked={true}
-                      onChange={[Function]}
-                      type="checkbox" />
-                  </label>
-                </div>
-              </Checkbox>
-              <Checkbox
-                checked={true}
-                label="Wed"
-                onChange={[Function]}>
-                <div
-                  className="checkbox">
-                  <label>
-                    <input
-                      checked={true}
-                      onChange={[Function]}
-                      type="checkbox" />
-                  </label>
-                </div>
-              </Checkbox>
-              <Checkbox
-                checked={true}
-                label="Thu"
-                onChange={[Function]}>
-                <div
-                  className="checkbox">
-                  <label>
-                    <input
-                      checked={true}
-                      onChange={[Function]}
-                      type="checkbox" />
-                  </label>
-                </div>
-              </Checkbox>
-              <Checkbox
-                checked={true}
-                label="Fri"
-                onChange={[Function]}>
-                <div
-                  className="checkbox">
-                  <label>
-                    <input
-                      checked={true}
-                      onChange={[Function]}
-                      type="checkbox" />
-                  </label>
-                </div>
-              </Checkbox>
-              <Checkbox
-                checked={false}
-                label="Sat"
-                onChange={[Function]}>
-                <div
-                  className="checkbox">
-                  <label>
-                    <input
-                      checked={false}
-                      onChange={[Function]}
-                      type="checkbox" />
-                  </label>
-                </div>
-              </Checkbox>
-              <Checkbox
-                checked={false}
-                label="Sun"
-                onChange={[Function]}>
-                <div
-                  className="checkbox">
-                  <label>
-                    <input
-                      checked={false}
-                      onChange={[Function]}
-                      type="checkbox" />
-                  </label>
-                </div>
-              </Checkbox>
+              className="Select-placeholder">
+              Select patterns
             </div>
-          </Days>
-          <Number
-            label="Frequency (minutes)"
-            onChange={[Function]}
-            value={15}>
-            <Group
-              label="Frequency (minutes)"
-              onChange={[Function]}
-              value={15}>
-              <div
-                className="form-group">
-                <label>
-                  Frequency (minutes)
-                </label>
-                <Input
-                  label="Frequency (minutes)"
-                  onChange={[Function]}
-                  type="number"
-                  value={15}>
-                  <input
-                    className="form-control"
-                    onChange={[Function]}
-                    placeholder="Frequency (minutes)"
-                    type="number"
-                    value={15} />
-                </Input>
-              </div>
-            </Group>
-          </Number>
-          <Text
-            label="Start time"
-            onChange={[Function]}
-            type="time"
-            value="08:00">
-            <Group
-              label="Start time"
-              onChange={[Function]}
-              type="time"
-              value="08:00">
-              <div
-                className="form-group">
-                <label>
-                  Start time
-                </label>
-                <Input
-                  label="Start time"
-                  onChange={[Function]}
-                  type="time"
-                  value="08:00">
-                  <input
-                    className="form-control"
-                    onChange={[Function]}
-                    placeholder="Start time"
-                    type="time"
-                    value="08:00" />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            label="End time"
-            onChange={[Function]}
-            type="time"
-            value="16:00">
-            <Group
-              label="End time"
-              onChange={[Function]}
-              type="time"
-              value="16:00">
-              <div
-                className="form-group">
-                <label>
-                  End time
-                </label>
-                <Input
-                  label="End time"
-                  onChange={[Function]}
-                  type="time"
-                  value="16:00">
-                  <input
-                    className="form-control"
-                    onChange={[Function]}
-                    placeholder="End time"
-                    type="time"
-                    value="16:00" />
-                </Input>
-              </div>
-            </Group>
-          </Text>
+          </span>
+          <span
+            aria-label="Clear all"
+            className="Select-clear-zone"
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            title="Clear all">
+            <span
+              className="Select-clear"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&times;",
+                }
+              } />
+          </span>
+          <span
+            className="Select-arrow-zone"
+            onMouseDown={[Function]}>
+            <span
+              className="Select-arrow"
+              onMouseDown={[Function]} />
+          </span>
         </div>
-      </TimetableEntry>
+      </div>
+    </div>
+    <div
+      className="form-group">
+      <div
+        className="Select Select--single is-searchable has-value"
+        style={undefined}>
+        <input
+          disabled={false}
+          name="Trip"
+          type="hidden"
+          value="abcd" />
+        <div
+          className="Select-control"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={undefined}>
+          <span
+            className="Select-multi-value-wrapper"
+            id="react-select-3--value">
+            <div
+              className="Select-value"
+              style={undefined}
+              title={undefined}>
+              <span
+                aria-selected="true"
+                className="Select-value-label"
+                id="react-select-3--value-item"
+                role="option">
+                The Express , starting 03:26 (21 minute trip)
+              </span>
+            </div>
+          </span>
+          <span
+            aria-label="Clear value"
+            className="Select-clear-zone"
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            title="Clear value">
+            <span
+              className="Select-clear"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&times;",
+                }
+              } />
+          </span>
+          <span
+            className="Select-arrow-zone"
+            onMouseDown={[Function]}>
+            <span
+              className="Select-arrow"
+              onMouseDown={[Function]} />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        className="form-inline">
+        <div
+          className="checkbox">
+          <label>
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Mon
+          </label>
+        </div>
+        <div
+          className="checkbox">
+          <label>
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Tue
+          </label>
+        </div>
+        <div
+          className="checkbox">
+          <label>
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Wed
+          </label>
+        </div>
+        <div
+          className="checkbox">
+          <label>
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Thu
+          </label>
+        </div>
+        <div
+          className="checkbox">
+          <label>
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Fri
+          </label>
+        </div>
+        <div
+          className="checkbox">
+          <label>
+            <input
+              checked={false}
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Sat
+          </label>
+        </div>
+        <div
+          className="checkbox">
+          <label>
+            <input
+              checked={false}
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Sun
+          </label>
+        </div>
+      </div>
+      <div
+        className="form-group">
+        <label>
+          Frequency (minutes)
+        </label>
+        <input
+          className="form-control"
+          name={undefined}
+          onChange={[Function]}
+          placeholder="Frequency (minutes)"
+          type="number"
+          value={15} />
+      </div>
+      <div
+        className="form-group">
+        <label>
+          Start time
+        </label>
+        <input
+          className="form-control"
+          name={undefined}
+          onChange={[Function]}
+          placeholder="Start time"
+          type="time"
+          value="08:00" />
+      </div>
+      <div
+        className="form-group">
+        <label>
+          End time
+        </label>
+        <input
+          className="form-control"
+          name={undefined}
+          onChange={[Function]}
+          placeholder="End time"
+          type="time"
+          value="16:00" />
+      </div>
     </div>
   </div>
-</FrequencyEntry>
+</div>
 `;
