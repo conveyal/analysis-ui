@@ -34,6 +34,49 @@ Object {
 }
 `;
 
+exports[`actions > analysis setComparisonScenario should work 1`] = `
+Object {
+  "payload": Object {
+    "bundleId": "BUNDLE ID",
+    "id": "COMPARISON_ID",
+    "variantIndex": 1,
+  },
+  "type": "set comparison scenario",
+}
+`;
+
+exports[`actions > analysis setComparisonScenario should work 2`] = `
+Object {
+  "type": "increment outstanding requests",
+}
+`;
+
+exports[`actions > analysis setComparisonScenario should work 3`] = `
+Object {
+  "type": "decrement outstanding requests",
+}
+`;
+
+exports[`actions > analysis setComparisonScenario should work 4`] = `
+Object {
+  "payload": Object {
+    "bundleId": "BUNDLE ID",
+    "id": "COMPARISON_ID",
+    "modifications": Array [
+      Object {
+        "name": "MODIFICATION",
+        "variants": Array [
+          false,
+          true,
+        ],
+      },
+    ],
+    "variantIndex": 1,
+  },
+  "type": "set comparison modifications",
+}
+`;
+
 exports[`actions > analysis setComparisonScenarioId should work 1`] = `
 Object {
   "type": "set comparison scenario",

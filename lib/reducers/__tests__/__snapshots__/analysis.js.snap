@@ -231,10 +231,14 @@ exports[`reducers > analysis should handle set isochrone results 1`] = `
 Object {
   "accessibility": 42,
   "active": false,
-  "comparisonAccessibility": undefined,
+  "comparisonAccessibility": 55,
   "comparisonInProgress": false,
-  "comparisonIsochrone": undefined,
-  "comparisonSpectrogramData": undefined,
+  "comparisonIsochrone": Object {
+    "comparison": true,
+  },
+  "comparisonSpectrogramData": Array [
+    "COMPARISON",
+  ],
   "currentIndicator": "Jobs_total",
   "grid": Object {},
   "isFetchingIsochrone": false,
@@ -249,7 +253,9 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
-  "spectrogramData": Array [],
+  "spectrogramData": Array [
+    "SCENARIO",
+  ],
 }
 `;
 
