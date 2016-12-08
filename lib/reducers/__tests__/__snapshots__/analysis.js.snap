@@ -36,6 +36,142 @@ Object {
 }
 `;
 
+exports[`reducers > analysis should handle enter analysis mode 1`] = `
+Object {
+  "active": true,
+  "comparisonInProgress": false,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+}
+`;
+
+exports[`reducers > analysis should handle exit analysis mode 1`] = `
+Object {
+  "active": false,
+  "comparisonInProgress": false,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+}
+`;
+
+exports[`reducers > analysis should handle set active regional analyses 1`] = `
+Object {
+  "active": false,
+  "comparisonInProgress": false,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": null,
+    "comparisonId": "comparison id",
+    "grid": null,
+    "id": "scenario id",
+    "minimumImprovementProbability": 0.95,
+    "probabilityGrid": null,
+  },
+}
+`;
+
+exports[`reducers > analysis should handle set active variant 1`] = `
+Object {
+  "active": false,
+  "activeVariant": 21,
+  "comparisonInProgress": false,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+}
+`;
+
+exports[`reducers > analysis should handle set comparison in progress 1`] = `
+Object {
+  "active": false,
+  "comparisonInProgress": true,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+}
+`;
+
+exports[`reducers > analysis should handle set comparison modifications 1`] = `
+Object {
+  "active": false,
+  "comparisonBundleId": "COMPARISON BUNDLE ID",
+  "comparisonInProgress": false,
+  "comparisonModifications": Array [
+    "MODIFICATIONS",
+  ],
+  "comparisonScenarioId": "COMPARISON SCENARIO ID",
+  "comparisonVariant": 16,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+}
+`;
+
+exports[`reducers > analysis should handle set comparison scenario 1`] = `
+Object {
+  "active": false,
+  "comparisonBundleId": "COMPARISON BUNDLE ID",
+  "comparisonInProgress": false,
+  "comparisonModifications": null,
+  "comparisonScenarioId": "COMPARISON SCENARIO ID",
+  "comparisonVariant": 16,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+}
+`;
+
 exports[`reducers > analysis should handle set isochrone cutoff 1`] = `
 Object {
   "active": false,
@@ -114,5 +250,29 @@ Object {
     "probabilityGrid": null,
   },
   "spectrogramData": Array [],
+}
+`;
+
+exports[`reducers > analysis should handle set regional analysis grids 1`] = `
+Object {
+  "active": false,
+  "comparisonInProgress": false,
+  "isFetchingIsochrone": false,
+  "isochroneCutoff": 60,
+  "regional": Object {
+    "comparisonGrid": Object {
+      "which": "COMPARISON GRID",
+    },
+    "comparisonId": null,
+    "grid": Object {
+      "which": "GRID",
+    },
+    "id": null,
+    "minimumImprovementProbability": 0.95,
+    "percentile": 50,
+    "probabilityGrid": Object {
+      "which": "PROBABILITY GRID",
+    },
+  },
 }
 `;
