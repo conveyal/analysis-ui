@@ -10,13 +10,13 @@ exports[`Component > EditProject renders correctly 1`] = `
     <div
       className="form-group">
       <label>
-        Name
+        Project Name
       </label>
       <input
         className="form-control"
-        name={undefined}
+        name="Project Name"
         onChange={[Function]}
-        placeholder="Name"
+        placeholder="Project Name"
         type="text"
         value="Test Scenario" />
     </div>
@@ -27,7 +27,7 @@ exports[`Component > EditProject renders correctly 1`] = `
       </label>
       <input
         className="form-control"
-        name={undefined}
+        name="Description"
         onChange={[Function]}
         placeholder="Description"
         type="text"
@@ -90,7 +90,7 @@ exports[`Component > EditProject renders correctly 1`] = `
       <input
         className="form-control"
         disabled={true}
-        name={undefined}
+        name="North bound"
         onChange={[Function]}
         placeholder="North bound"
         type="text"
@@ -104,7 +104,7 @@ exports[`Component > EditProject renders correctly 1`] = `
       <input
         className="form-control"
         disabled={true}
-        name={undefined}
+        name="South bound"
         onChange={[Function]}
         placeholder="South bound"
         type="text"
@@ -118,7 +118,7 @@ exports[`Component > EditProject renders correctly 1`] = `
       <input
         className="form-control"
         disabled={true}
-        name={undefined}
+        name="East bound"
         onChange={[Function]}
         placeholder="East bound"
         type="text"
@@ -132,7 +132,7 @@ exports[`Component > EditProject renders correctly 1`] = `
       <input
         className="form-control"
         disabled={true}
-        name={undefined}
+        name="West bound"
         onChange={[Function]}
         placeholder="West bound"
         type="text"
@@ -140,20 +140,12 @@ exports[`Component > EditProject renders correctly 1`] = `
     </div>
     <a
       className="btn btn-success btn-block"
+      disabled={false}
       href="#"
+      name="Save Project"
       onClick={[Function]}
       target={undefined}>
-      Save project
-    </a>
-    <a
-      className="btn btn-danger btn-block"
-      href="#"
-      onClick={[Function]}
-      target={undefined}>
-      <i
-        className="fa fa-trash fa-fw " />
-       
-      Delete this project. WARNING: This deletes all scenarios and modifications associated with this project.
+      Create a new project
     </a>
   </div>
 </div>
