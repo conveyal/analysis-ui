@@ -39,6 +39,17 @@ exports[`Component > EditProject renders correctly 1`] = `
         <label>
           Analysis backend version
         </label>
+        <i
+          aria-label="Show all analysis backend versions (advanced)"
+          className="fa fa-flask fa-fw "
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#aaa",
+              "cursor": "pointer",
+            }
+          }
+          title="Show all analysis backend versions (advanced)" />
         <div
           className="Select Select--single is-searchable"
           style={undefined}>
@@ -67,16 +78,6 @@ exports[`Component > EditProject renders correctly 1`] = `
             </span>
           </div>
         </div>
-        <i
-          aria-label="Show all analysis backend versions (advanced)"
-          className="fa fa-flask fa-fw "
-          onClick={[Function]}
-          style={
-            Object {
-              "color": "#aaa",
-            }
-          }
-          title="Show all analysis backend versions (advanced)" />
       </div>
     </div>
     <legend>
@@ -145,7 +146,17 @@ exports[`Component > EditProject renders correctly 1`] = `
       name="Save Project"
       onClick={[Function]}
       target={undefined}>
-      Create a new project
+      Save project
+    </a>
+    <a
+      className="btn btn-danger btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}>
+      <i
+        className="fa fa-trash fa-fw " />
+       
+      DANGER: Delete this project
     </a>
   </div>
 </div>
