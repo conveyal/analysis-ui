@@ -231,3 +231,160 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
   </Panel>
 </CreateGrid>
 `;
+
+exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
+<CreateGrid
+  finish={[Function]}
+  projectId="PROJECT ID">
+  <Panel>
+    <div
+      className="panel panel-default">
+      <Heading>
+        <div
+          className="panel-heading clearfix " />
+      </Heading>
+      <Body>
+        <div
+          className="panel-body">
+          <form
+            enctype="multipart/form-data"
+            method="post"
+            onSubmit={[Function]}>
+            <Text
+              label="Grid name"
+              name="Name"
+              onChange={[Function]}
+              placeholder="Grid name">
+              <Group
+                label="Grid name"
+                name="Name"
+                onChange={[Function]}
+                placeholder="Grid name">
+                <div
+                  className="form-group">
+                  <label>
+                    Grid name
+                  </label>
+                  <Input
+                    label="Grid name"
+                    name="Name"
+                    onChange={[Function]}
+                    placeholder="Grid name"
+                    type="text">
+                    <input
+                      className="form-control"
+                      name="Name"
+                      onChange={[Function]}
+                      placeholder="Grid name"
+                      type="text" />
+                  </Input>
+                </div>
+              </Group>
+            </Text>
+            <File
+              files={
+                Array [
+                  Object {
+                    "name": "TEST.shp",
+                  },
+                  Object {
+                    "name": "TEST.shx",
+                  },
+                  Object {
+                    "name": "TEST.dbf",
+                  },
+                  Object {
+                    "name": "TEST.prj",
+                  },
+                ]
+              }
+              label="Grid files"
+              multiple={true}
+              name="files"
+              onChange={[Function]}>
+              <Group
+                files={
+                  Array [
+                    Object {
+                      "name": "TEST.shp",
+                    },
+                    Object {
+                      "name": "TEST.shx",
+                    },
+                    Object {
+                      "name": "TEST.dbf",
+                    },
+                    Object {
+                      "name": "TEST.prj",
+                    },
+                  ]
+                }
+                label="Grid files"
+                multiple={true}
+                name="files"
+                onChange={[Function]}>
+                <div
+                  className="form-group">
+                  <label>
+                    Grid files
+                  </label>
+                  <Input
+                    files={
+                      Array [
+                        Object {
+                          "name": "TEST.shp",
+                        },
+                        Object {
+                          "name": "TEST.shx",
+                        },
+                        Object {
+                          "name": "TEST.dbf",
+                        },
+                        Object {
+                          "name": "TEST.prj",
+                        },
+                      ]
+                    }
+                    label="Grid files"
+                    multiple={true}
+                    name="files"
+                    onChange={[Function]}
+                    type="file">
+                    <input
+                      className="form-control"
+                      files={
+                        Array [
+                          Object {
+                            "name": "TEST.shp",
+                          },
+                          Object {
+                            "name": "TEST.shx",
+                          },
+                          Object {
+                            "name": "TEST.dbf",
+                          },
+                          Object {
+                            "name": "TEST.prj",
+                          },
+                        ]
+                      }
+                      multiple={true}
+                      name="files"
+                      onChange={[Function]}
+                      placeholder="Grid files"
+                      type="file" />
+                  </Input>
+                </div>
+              </Group>
+            </File>
+            <input
+              className="btn btn-block btn-success"
+              disabled={true}
+              type="submit" />
+          </form>
+        </div>
+      </Body>
+    </div>
+  </Panel>
+</CreateGrid>
+`;
