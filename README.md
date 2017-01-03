@@ -10,7 +10,7 @@ The Scenario Editor needs an Analyst backend running to point at. By default it 
 
 ### Authentication with [Auth0](https://auth0.com/)
 
-Copy the `/configurations/default/env.yml.tmp` to `/configurations/env.yml` and add your credentials.
+Copy the `/configurations/default/env.yml.tmp` to `/configurations/default/env.yml` and add your Auth0 credentials. If you're running locally (for testing or development) you don't need to use Auth0. Just comment out the Auth0 lines and it should work. You'll also need some tile URLs for Leaflet. The default Mapbox URLs require an access key. If you're at Conveyal, you can grab these keys and other settings from our se-configurations repository on Github.
 
 ## Install & Run with [Node 6+](https://nodejs.org/en/download/current/)
 
