@@ -1,190 +1,1079 @@
-exports[`Components > Analysis > Regional renders a comparison correctly 1`] = `
-<ul
-  className="list-group">
-  <li
-    className="list-group-item">
-    ANALYSIS 1
-    <span
-      className="pull-right">
-      <a
-        onClick={[Function]}
-        title="Download GeoTIFF">
-        <i
-          className="fa fa-download fa-fw " />
-      </a>
-      <a
-        ariaChecked={true}
-        className="ShowOnMap active fa-btn"
-        onClick={[Function]}
-        role="checkbox"
-        title="Toggle map display">
-        <i
-          className="fa fa-eye fa-fw " />
-      </a>
-    </span>
+exports[`Components > Analysis > Regional should handle rendering comparison 1`] = `
+<RegionalAnalysis
+  addRegionalAnalysisLayerToMap={[Function]}
+  analysis={
+    Object {
+      "bundleId": "5678",
+      "cutoffMinutes": 60,
+      "grid": "Jobs_total",
+      "height": 300,
+      "id": "abcd",
+      "name": "ANALYSIS 1",
+      "north": 20024,
+      "request": Object {
+        "accessModes": "WALK",
+        "bikeSafe": 1,
+        "bikeSlope": 1,
+        "bikeSpeed": 4.166666666666667,
+        "bikeTime": 1,
+        "bikeTrafficStress": 4,
+        "carSpeed": 20,
+        "date": "2016-01-16",
+        "directModes": "WALK",
+        "egressModes": "WALK",
+        "fromTime": 25200,
+        "maxBikeTime": 20,
+        "maxCarTime": 45,
+        "maxRides": 4,
+        "maxWalkTime": 20,
+        "minBikeTime": 10,
+        "minCarTime": 10,
+        "monteCarloDraws": 200,
+        "reachabilityThreshold": 0,
+        "streetTime": 90,
+        "suboptimalMinutes": 5,
+        "toTime": 32400,
+        "transitModes": "TRANSIT",
+        "walkSpeed": 1.3888888888888888,
+      },
+      "scenarioId": "1234",
+      "variant": 0,
+      "west": 20015,
+      "width": 300,
+      "zoom": 9,
+    }
+  }
+  analysisId="abcd"
+  breaks={
+    Array [
+      100,
+      500,
+      1000,
+      2000,
+    ]
+  }
+  comparisonAnalysis={
+    Object {
+      "bundleId": "5678",
+      "cutoffMinutes": 60,
+      "grid": "Jobs_total",
+      "height": 300,
+      "id": "efgh",
+      "name": "ANALYSIS 2",
+      "north": 20024,
+      "request": Object {
+        "accessModes": "WALK",
+        "bikeSafe": 1,
+        "bikeSlope": 1,
+        "bikeSpeed": 4.166666666666667,
+        "bikeTime": 1,
+        "bikeTrafficStress": 4,
+        "carSpeed": 20,
+        "date": "2016-01-16",
+        "directModes": "WALK",
+        "egressModes": "WALK",
+        "fromTime": 25200,
+        "maxBikeTime": 20,
+        "maxCarTime": 45,
+        "maxRides": 4,
+        "maxWalkTime": 20,
+        "minBikeTime": 10,
+        "minCarTime": 10,
+        "monteCarloDraws": 200,
+        "reachabilityThreshold": 0,
+        "streetTime": 90,
+        "suboptimalMinutes": 5,
+        "toTime": 32400,
+        "transitModes": "TRANSIT",
+        "walkSpeed": 1.3888888888888888,
+      },
+      "scenarioId": "4321",
+      "variant": 1,
+      "west": 20015,
+      "width": 300,
+      "zoom": 9,
+    }
+  }
+  differenceGrid={
+    Object {
+      "data": Array [],
+      "height": 300,
+      "max": 2000,
+      "min": 0,
+      "north": 20024,
+      "west": 20015,
+      "width": 300,
+      "zoom": 9,
+    }
+  }
+  grid={
+    Object {
+      "data": Array [],
+      "height": 300,
+      "max": 2000,
+      "min": 0,
+      "north": 20024,
+      "west": 20015,
+      "width": 300,
+      "zoom": 9,
+    }
+  }
+  indicators={
+    Array [
+      Object {
+        "key": "Jobs_total",
+        "name": "Total jobs",
+      },
+    ]
+  }
+  minimumImprovementProbability={0.83}
+  projectId="MOCK"
+  regionalAnalyses={
+    Array [
+      Object {
+        "bundleId": "5678",
+        "cutoffMinutes": 60,
+        "grid": "Jobs_total",
+        "height": 300,
+        "id": "abcd",
+        "name": "ANALYSIS 1",
+        "north": 20024,
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        },
+        "scenarioId": "1234",
+        "variant": 0,
+        "west": 20015,
+        "width": 300,
+        "zoom": 9,
+      },
+      Object {
+        "bundleId": "5678",
+        "cutoffMinutes": 60,
+        "grid": "Jobs_total",
+        "height": 300,
+        "id": "efgh",
+        "name": "ANALYSIS 2",
+        "north": 20024,
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        },
+        "scenarioId": "4321",
+        "variant": 1,
+        "west": 20015,
+        "width": 300,
+        "zoom": 9,
+      },
+    ]
+  }
+  setActiveRegionalAnalysis={[Function]}
+  setMinimumImprovementProbability={[Function]}>
+  <div>
+    <h3>
+      ANALYSIS 1
+    </h3>
     <div>
-      <div
-        className="Select Select--single is-searchable has-value"
-        style={undefined}>
+      <Select
+        addLabelText="Add \"{label}\"?"
+        arrowRenderer={[Function]}
+        autosize={true}
+        backspaceRemoves={true}
+        backspaceToRemoveMessage="Press backspace to remove {label}"
+        clearAllText="Clear all"
+        clearValueText="Clear value"
+        clearable={true}
+        delimiter=","
+        disabled={false}
+        escapeClearsValue={true}
+        filterOptions={[Function]}
+        ignoreAccents={true}
+        ignoreCase={true}
+        inputProps={Object {}}
+        isLoading={false}
+        joinValues={false}
+        labelKey="label"
+        matchPos="any"
+        matchProp="any"
+        menuBuffer={0}
+        menuRenderer={[Function]}
+        multi={false}
+        noResultsText="No results found"
+        onBlurResetsInput={true}
+        onChange={[Function]}
+        onCloseResetsInput={true}
+        openAfterFocus={false}
+        optionComponent={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "ANALYSIS 2",
+              "value": "efgh",
+            },
+          ]
+        }
+        pageSize={5}
+        placeholder="Compare to"
+        required={false}
+        scrollMenuIntoView={true}
+        searchable={true}
+        simpleValue={false}
+        tabSelectsValue={true}
+        value="efgh"
+        valueComponent={[Function]}
+        valueKey="value">
         <div
-          className="Select-control"
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          style={undefined}>
-          <span
-            className="Select-multi-value-wrapper"
-            id="react-select-3--value">
-            <div
-              className="Select-value"
-              style={undefined}
-              title={undefined}>
-              <span
-                aria-selected="true"
-                className="Select-value-label"
-                id="react-select-3--value-item"
-                role="option">
-                ANALYSIS 2
-              </span>
-            </div>
-          </span>
-          <span
-            aria-label="Clear value"
-            className="Select-clear-zone"
+          className="Select Select--single is-searchable has-value">
+          <div
+            className="Select-control"
+            onKeyDown={[Function]}
             onMouseDown={[Function]}
             onTouchEnd={[Function]}
             onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            title="Clear value">
+            onTouchStart={[Function]}>
             <span
-              className="Select-clear"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&times;",
-                }
-              } />
-          </span>
-          <span
-            className="Select-arrow-zone"
-            onMouseDown={[Function]}>
+              className="Select-multi-value-wrapper"
+              id="react-select-3--value">
+              <Value
+                disabled={false}
+                id="react-select-3--value-item"
+                instancePrefix="react-select-3-"
+                onClick={null}
+                value={
+                  Object {
+                    "label": "ANALYSIS 2",
+                    "value": "efgh",
+                  }
+                }>
+                <div
+                  className="Select-value">
+                  <span
+                    aria-selected="true"
+                    className="Select-value-label"
+                    id="react-select-3--value-item"
+                    role="option">
+                    ANALYSIS 2
+                  </span>
+                </div>
+              </Value>
+              <AutosizeInput
+                aria-activedescendant="react-select-3--value"
+                aria-expanded="false"
+                aria-haspopup="false"
+                aria-owns=""
+                className="Select-input"
+                minWidth="5px"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                required={false}
+                role="combobox"
+                value="" />
+            </span>
             <span
-              className="Select-arrow"
-              onMouseDown={[Function]} />
-          </span>
+              aria-label="Clear value"
+              className="Select-clear-zone"
+              onMouseDown={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              title="Clear value">
+              <span
+                className="Select-clear"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "&times;",
+                  }
+                } />
+            </span>
+            <span
+              className="Select-arrow-zone"
+              onMouseDown={[Function]}>
+              <span
+                className="Select-arrow"
+                onMouseDown={[Function]} />
+            </span>
+          </div>
         </div>
-      </div>
+      </Select>
     </div>
-    <div
-      className="form-group">
-      <label>
-        <input
-          id="improvementProbabilitySlider"
-          max={1}
-          min={0}
-          onChange={[Function]}
-          step={0.01}
-          type="range"
-          value={0.75} />
-      </label>
-      <output
-        for="improvementProbabilitySlider">
-        Show areas with probability of improvement > 0.75
-      </output>
-      <a
-        onClick={[Function]}
-        title="Download comparison GeoTIFF">
-        <i
-          className="fa fa-download fa-fw " />
-      </a>
-    </div>
-  </li>
-</ul>
-`;
-
-exports[`Components > Analysis > Regional renders a comparison selection correctly 1`] = `
-<ul
-  className="list-group">
-  <li
-    className="list-group-item">
-    ANALYSIS 1
-    <span
-      className="pull-right">
-      <a
-        onClick={[Function]}
-        title="Download GeoTIFF">
-        <i
-          className="fa fa-download fa-fw " />
-      </a>
-      <a
-        ariaChecked={true}
-        className="ShowOnMap active fa-btn"
-        onClick={[Function]}
-        role="checkbox"
-        title="Toggle map display">
-        <i
-          className="fa fa-eye fa-fw " />
-      </a>
-    </span>
-    <div>
-      <div
-        className="Select Select--single is-searchable"
-        style={undefined}>
+    <Slider
+      format=".2f"
+      label="Minimum probability of improvement"
+      max={1}
+      min={0}
+      onChange={[Function]}
+      output={true}
+      step={0.01}
+      value={0.83}>
+      <Group
+        label="Minimum probability of improvement"
+        max={1}
+        min={0}
+        onChange={[Function]}
+        step={0.01}
+        value={0.83}>
         <div
-          className="Select-control"
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          style={undefined}>
-          <span
-            className="Select-multi-value-wrapper"
-            id="react-select-2--value">
-            <div
-              className="Select-placeholder">
-              Select...
-            </div>
-          </span>
-          <span
-            className="Select-arrow-zone"
-            onMouseDown={[Function]}>
-            <span
-              className="Select-arrow"
-              onMouseDown={[Function]} />
-          </span>
+          className="form-group">
+          <label>
+            Minimum probability of improvement
+          </label>
+          <input
+            className="form-control"
+            id="00000000-0000-0000-0000-000000000000"
+            label="Minimum probability of improvement"
+            max={1}
+            min={0}
+            onChange={[Function]}
+            step={0.01}
+            type="range"
+            value={0.83} />
+          <output
+            className="pull-right"
+            htmlFor="00000000-0000-0000-0000-000000000000">
+            0.55
+          </output>
+        </div>
+      </Group>
+    </Slider>
+    <div>
+      <i>
+        Total jobs within 60 minutes
+      </i>
+    </div>
+    <div>
+      <i>
+        compared with Total jobs within 60 minutes
+      </i>
+    </div>
+    <Legend
+      breaks={
+        Array [
+          100,
+          500,
+          1000,
+          2000,
+        ]
+      }
+      colors={
+        Array [
+          "#d7191c",
+          "#fdae61",
+          "#ffffbf",
+          "#abd9e9",
+          "#2c7bb6",
+        ]
+      }
+      min={0}>
+      <ul
+        className="Legend">
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#d7191c",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          0
+          –
+          100
+        </li>
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#fdae61",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          100
+          –
+          500
+        </li>
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#ffffbf",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          500
+          –
+          1,000
+        </li>
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#abd9e9",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          1,000
+          –
+          2,000
+        </li>
+      </ul>
+    </Legend>
+    <Collapsible
+      defaultExpanded={false}
+      title="ANALYSIS 1 settings">
+      <div>
+        <div
+          aria-level={3}
+          role="heading">
+          <div
+            aria-expanded={false}
+            onClick={[Function]}
+            role="button"
+            style={
+              Object {
+                "cursor": "pointer",
+                "paddingBottom": "12px",
+              }
+            }>
+            <Icon
+              type="chevron-right">
+              <i
+                className="fa fa-chevron-right fa-fw " />
+            </Icon>
+            <strong>
+              ANALYSIS 1 settings
+            </strong>
+          </div>
         </div>
       </div>
+    </Collapsible>
+    <Collapsible
+      defaultExpanded={false}
+      title="ANALYSIS 2 settings">
+      <div>
+        <div
+          aria-level={3}
+          role="heading">
+          <div
+            aria-expanded={false}
+            onClick={[Function]}
+            role="button"
+            style={
+              Object {
+                "cursor": "pointer",
+                "paddingBottom": "12px",
+              }
+            }>
+            <Icon
+              type="chevron-right">
+              <i
+                className="fa fa-chevron-right fa-fw " />
+            </Icon>
+            <strong>
+              ANALYSIS 2 settings
+            </strong>
+          </div>
+        </div>
+      </div>
+    </Collapsible>
+    <div>
+      <b>
+        <Icon
+          type="map-o">
+          <i
+            className="fa fa-map-o fa-fw " />
+        </Icon>
+        Export to GIS
+      </b>
+      <ul>
+        <li>
+          <a
+            href="#"
+            onClick={[Function]}>
+            Download ANALYSIS 1
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            onClick={[Function]}>
+            Download ANALYSIS 2
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            onClick={[Function]}>
+            Download probability of improvement
+          </a>
+        </li>
+      </ul>
     </div>
-  </li>
-</ul>
+  </div>
+</RegionalAnalysis>
 `;
 
-exports[`Components > Analysis > Regional renders correctly 1`] = `
-<ul
-  className="list-group">
-  <li
-    className="list-group-item">
-    ANALYSIS 1
-    <span
-      className="pull-right">
-      <a
-        onClick={[Function]}
-        title="Download GeoTIFF">
-        <i
-          className="fa fa-download fa-fw " />
-      </a>
-      <a
-        ariaChecked={false}
-        className="ShowOnMap dim fa-btn"
-        onClick={[Function]}
-        role="checkbox"
-        title="Toggle map display">
-        <i
-          className="fa fa-eye-slash fa-fw " />
-      </a>
-    </span>
-  </li>
-</ul>
+exports[`Components > Analysis > Regional should load analysis if it is not loaded 1`] = `
+<RegionalAnalysis
+  addRegionalAnalysisLayerToMap={[Function]}
+  analysisId="abcd"
+  breaks={
+    Array [
+      100,
+      500,
+      1000,
+      2000,
+    ]
+  }
+  grid={
+    Object {
+      "data": Array [],
+      "height": 300,
+      "max": 2000,
+      "min": 0,
+      "north": 20024,
+      "west": 20015,
+      "width": 300,
+      "zoom": 9,
+    }
+  }
+  indicators={
+    Array [
+      Object {
+        "key": "Jobs_total",
+        "name": "Total jobs",
+      },
+    ]
+  }
+  loadRegionalAnalyses={[Function]}
+  minimumImprovementProbability={0.83}
+  projectId="MOCK"
+  regionalAnalyses={
+    Array [
+      Object {
+        "bundleId": "5678",
+        "cutoffMinutes": 60,
+        "grid": "Jobs_total",
+        "height": 300,
+        "id": "abcd",
+        "name": "ANALYSIS 1",
+        "north": 20024,
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        },
+        "scenarioId": "1234",
+        "variant": 0,
+        "west": 20015,
+        "width": 300,
+        "zoom": 9,
+      },
+      Object {
+        "bundleId": "5678",
+        "cutoffMinutes": 60,
+        "grid": "Jobs_total",
+        "height": 300,
+        "id": "efgh",
+        "name": "ANALYSIS 2",
+        "north": 20024,
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        },
+        "scenarioId": "4321",
+        "variant": 1,
+        "west": 20015,
+        "width": 300,
+        "zoom": 9,
+      },
+    ]
+  }
+  setActiveRegionalAnalysis={[Function]} />
+`;
+
+exports[`Components > Analysis > Regional should render correctly 1`] = `
+<RegionalAnalysis
+  addRegionalAnalysisLayerToMap={[Function]}
+  analysis={
+    Object {
+      "bundleId": "5678",
+      "cutoffMinutes": 60,
+      "grid": "Jobs_total",
+      "height": 300,
+      "id": "abcd",
+      "name": "ANALYSIS 1",
+      "north": 20024,
+      "request": Object {
+        "accessModes": "WALK",
+        "bikeSafe": 1,
+        "bikeSlope": 1,
+        "bikeSpeed": 4.166666666666667,
+        "bikeTime": 1,
+        "bikeTrafficStress": 4,
+        "carSpeed": 20,
+        "date": "2016-01-16",
+        "directModes": "WALK",
+        "egressModes": "WALK",
+        "fromTime": 25200,
+        "maxBikeTime": 20,
+        "maxCarTime": 45,
+        "maxRides": 4,
+        "maxWalkTime": 20,
+        "minBikeTime": 10,
+        "minCarTime": 10,
+        "monteCarloDraws": 200,
+        "reachabilityThreshold": 0,
+        "streetTime": 90,
+        "suboptimalMinutes": 5,
+        "toTime": 32400,
+        "transitModes": "TRANSIT",
+        "walkSpeed": 1.3888888888888888,
+      },
+      "scenarioId": "1234",
+      "variant": 0,
+      "west": 20015,
+      "width": 300,
+      "zoom": 9,
+    }
+  }
+  analysisId="abcd"
+  breaks={
+    Array [
+      100,
+      500,
+      1000,
+      2000,
+    ]
+  }
+  grid={
+    Object {
+      "data": Array [],
+      "height": 300,
+      "max": 2000,
+      "min": 0,
+      "north": 20024,
+      "west": 20015,
+      "width": 300,
+      "zoom": 9,
+    }
+  }
+  indicators={
+    Array [
+      Object {
+        "key": "Jobs_total",
+        "name": "Total jobs",
+      },
+    ]
+  }
+  minimumImprovementProbability={0.83}
+  projectId="MOCK"
+  regionalAnalyses={
+    Array [
+      Object {
+        "bundleId": "5678",
+        "cutoffMinutes": 60,
+        "grid": "Jobs_total",
+        "height": 300,
+        "id": "abcd",
+        "name": "ANALYSIS 1",
+        "north": 20024,
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        },
+        "scenarioId": "1234",
+        "variant": 0,
+        "west": 20015,
+        "width": 300,
+        "zoom": 9,
+      },
+      Object {
+        "bundleId": "5678",
+        "cutoffMinutes": 60,
+        "grid": "Jobs_total",
+        "height": 300,
+        "id": "efgh",
+        "name": "ANALYSIS 2",
+        "north": 20024,
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        },
+        "scenarioId": "4321",
+        "variant": 1,
+        "west": 20015,
+        "width": 300,
+        "zoom": 9,
+      },
+    ]
+  }
+  setActiveRegionalAnalysis={[Function]}>
+  <div>
+    <h3>
+      ANALYSIS 1
+    </h3>
+    <div>
+      <Select
+        addLabelText="Add \"{label}\"?"
+        arrowRenderer={[Function]}
+        autosize={true}
+        backspaceRemoves={true}
+        backspaceToRemoveMessage="Press backspace to remove {label}"
+        clearAllText="Clear all"
+        clearValueText="Clear value"
+        clearable={true}
+        delimiter=","
+        disabled={false}
+        escapeClearsValue={true}
+        filterOptions={[Function]}
+        ignoreAccents={true}
+        ignoreCase={true}
+        inputProps={Object {}}
+        isLoading={false}
+        joinValues={false}
+        labelKey="label"
+        matchPos="any"
+        matchProp="any"
+        menuBuffer={0}
+        menuRenderer={[Function]}
+        multi={false}
+        noResultsText="No results found"
+        onBlurResetsInput={true}
+        onChange={[Function]}
+        onCloseResetsInput={true}
+        openAfterFocus={false}
+        optionComponent={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "ANALYSIS 2",
+              "value": "efgh",
+            },
+          ]
+        }
+        pageSize={5}
+        placeholder="Compare to"
+        required={false}
+        scrollMenuIntoView={true}
+        searchable={true}
+        simpleValue={false}
+        tabSelectsValue={true}
+        value={null}
+        valueComponent={[Function]}
+        valueKey="value">
+        <div
+          className="Select Select--single is-searchable">
+          <div
+            className="Select-control"
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}>
+            <span
+              className="Select-multi-value-wrapper"
+              id="react-select-2--value">
+              <div
+                className="Select-placeholder">
+                Compare to
+              </div>
+              <AutosizeInput
+                aria-activedescendant="react-select-2--value"
+                aria-expanded="false"
+                aria-haspopup="false"
+                aria-owns=""
+                className="Select-input"
+                minWidth="5px"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                required={false}
+                role="combobox"
+                value="" />
+            </span>
+            <span
+              className="Select-arrow-zone"
+              onMouseDown={[Function]}>
+              <span
+                className="Select-arrow"
+                onMouseDown={[Function]} />
+            </span>
+          </div>
+        </div>
+      </Select>
+    </div>
+    <div>
+      <i>
+        Total jobs within 60 minutes
+      </i>
+    </div>
+    <Legend
+      breaks={
+        Array [
+          100,
+          500,
+          1000,
+          2000,
+        ]
+      }
+      colors={
+        Array [
+          "#f1eef6",
+          "#bdc9e1",
+          "#74a9cf",
+          "#2b8cbe",
+          "#045a8d",
+        ]
+      }
+      min={0}>
+      <ul
+        className="Legend">
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#f1eef6",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          0
+          –
+          100
+        </li>
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#bdc9e1",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          100
+          –
+          500
+        </li>
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#74a9cf",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          500
+          –
+          1,000
+        </li>
+        <li>
+          <div
+            style={
+              Object {
+                "backgroundColor": "#2b8cbe",
+                "border": "1px solid #000",
+                "height": 25,
+                "width": 50,
+              }
+            } />
+          1,000
+          –
+          2,000
+        </li>
+      </ul>
+    </Legend>
+    <Collapsible
+      defaultExpanded={false}
+      title="ANALYSIS 1 settings">
+      <div>
+        <div
+          aria-level={3}
+          role="heading">
+          <div
+            aria-expanded={false}
+            onClick={[Function]}
+            role="button"
+            style={
+              Object {
+                "cursor": "pointer",
+                "paddingBottom": "12px",
+              }
+            }>
+            <Icon
+              type="chevron-right">
+              <i
+                className="fa fa-chevron-right fa-fw " />
+            </Icon>
+            <strong>
+              ANALYSIS 1 settings
+            </strong>
+          </div>
+        </div>
+      </div>
+    </Collapsible>
+    <div>
+      <b>
+        <Icon
+          type="map-o">
+          <i
+            className="fa fa-map-o fa-fw " />
+        </Icon>
+        Export to GIS
+      </b>
+      <ul>
+        <li>
+          <a
+            href="#"
+            onClick={[Function]}>
+            Download ANALYSIS 1
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</RegionalAnalysis>
 `;
