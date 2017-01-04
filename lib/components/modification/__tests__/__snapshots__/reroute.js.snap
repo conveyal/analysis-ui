@@ -35,46 +35,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       </div>
     </div>
   </div>
-  <div
-    className="form-group">
-    <label>
-      Speed (km/h):
-    </label>
-    <input
-      className="form-control"
-      name={undefined}
-      onChange={[Function]}
-      placeholder="Speed (km/h):"
-      type="number"
-      value={undefined} />
-  </div>
-  <div
-    className="form-group">
-    <label>
-      Dwell time (seconds):
-    </label>
-    <input
-      className="form-control"
-      name={undefined}
-      onChange={[Function]}
-      placeholder="Dwell time (seconds):"
-      step={1}
-      type="number"
-      value={undefined} />
-  </div>
-  <div
-    className="form-group">
-    <label>
-      Length of segment (mins)
-    </label>
-    <input
-      className="form-control"
-      name={undefined}
-      onChange={[Function]}
-      placeholder="Length of segment (mins)"
-      type="number"
-      value={0} />
-  </div>
   <a
     className="btn btn-warning btn-block"
     href="#"
@@ -98,15 +58,103 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
   <div
     className="form-group">
     <label>
-      Stop spacing (meters)
+      Stop spacing
     </label>
     <input
       className="form-control"
+      min={0}
       name={undefined}
       onChange={[Function]}
-      placeholder="Stop spacing (meters)"
+      placeholder="Stop spacing"
       type="number"
       value={400} />
+  </div>
+  <div>
+    <div
+      className="form-group">
+      <label>
+        Dwell time
+      </label>
+      <div
+        className="InputWithUnits">
+        <input
+          className="form-control"
+          min={0}
+          name={undefined}
+          onChange={[Function]}
+          placeholder="seconds"
+          type="number"
+          value={undefined} />
+        <span
+          className="InputUnits">
+          seconds
+        </span>
+      </div>
+    </div>
+    <div
+      className="form-group">
+      <label>
+        Average segment speed
+      </label>
+      <div
+        className="InputWithUnits">
+        <input
+          className="form-control"
+          min={1}
+          name={undefined}
+          onChange={[Function]}
+          placeholder="km/h"
+          type="number"
+          value={15} />
+        <span
+          className="InputUnits">
+          km/h
+        </span>
+      </div>
+    </div>
+    <div
+      className="form-group">
+      <label>
+        Total travel time
+      </label>
+      <div
+        className="InputWithUnits">
+        <input
+          className="form-control"
+          min={1}
+          name={undefined}
+          onChange={[Function]}
+          placeholder="minutes"
+          type="number"
+          value={0} />
+        <span
+          className="InputUnits">
+          minutes
+        </span>
+      </div>
+    </div>
+    <div>
+      <div
+        aria-level={3}
+        role="heading">
+        <div
+          aria-expanded={false}
+          onClick={[Function]}
+          role="button"
+          style={
+            Object {
+              "cursor": "pointer",
+              "paddingBottom": "12px",
+            }
+          }>
+          <i
+            className="fa fa-chevron-right fa-fw " />
+          <strong>
+            Set individual segment speeds
+          </strong>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

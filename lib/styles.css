@@ -64,6 +64,15 @@ input[type="month"].form-control,
   padding: 6px;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .form-inline .checkbox label {
   padding: 0 12px 12px 0;
 }
@@ -76,6 +85,18 @@ input[type="month"].form-control,
   line-height: 20px;
   margin-top: 12px;
   margin-bottom: 12px;
+}
+
+.InputWithUnits {
+  position: relative;
+}
+
+.InputUnits {
+  position: absolute;
+  line-height: 30px;
+  right: 10px;
+  top: 0;
+  opacity: 0.5;
 }
 
 .Fullscreen {
@@ -324,7 +345,7 @@ input[type="month"].form-control,
   margin-bottom: 12px;
 }
 
-.ModificationGroup .Variants-Variant label+.form-control {
+.ModificationGroup .Variants-Variant .form-control {
   width: 99px;
 }
 

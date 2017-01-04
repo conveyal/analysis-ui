@@ -2,19 +2,19 @@ exports[`Component > Timetable renders correctly 1`] = `
 <section
   className="panel panel-default inner-panel">
   <div
-    className="panel-heading clearfix">
+    className="panel-heading clearfix"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }>
+    <i
+      className="fa fa-chevron-down fa-fw " />
     <strong>
+       
       Test timetable
     </strong>
-    <a
-      className="btn btn-danger btn-sm pull-right"
-      href="#"
-      onClick={[Function]}
-      target={undefined}
-      title="Delete timetable">
-      <i
-        className="fa fa-close fa-fw " />
-    </a>
   </div>
   <div
     className="panel-body">
@@ -112,15 +112,23 @@ exports[`Component > Timetable renders correctly 1`] = `
       <div
         className="form-group">
         <label>
-          Frequency (minutes)
+          Frequency
         </label>
-        <input
-          className="form-control"
-          name={undefined}
-          onChange={[Function]}
-          placeholder="Frequency (minutes)"
-          type="number"
-          value={15} />
+        <div
+          className="InputWithUnits">
+          <input
+            className="form-control"
+            min={0}
+            name={undefined}
+            onChange={[Function]}
+            placeholder="minutes"
+            type="number"
+            value={15} />
+          <span
+            className="InputUnits">
+            minutes
+          </span>
+        </div>
       </div>
       <div
         className="form-group">
@@ -149,32 +157,103 @@ exports[`Component > Timetable renders correctly 1`] = `
           value="16:00" />
       </div>
     </div>
-    <div
-      className="form-group">
-      <label>
-        Speed (km/h)
-      </label>
-      <input
-        className="form-control"
-        name={undefined}
-        onChange={[Function]}
-        placeholder="Speed (km/h)"
-        type="number"
-        value={40} />
+    <div>
+      <div
+        className="form-group">
+        <label>
+          Dwell time
+        </label>
+        <div
+          className="InputWithUnits">
+          <input
+            className="form-control"
+            min={0}
+            name={undefined}
+            onChange={[Function]}
+            placeholder="seconds"
+            type="number"
+            value={10} />
+          <span
+            className="InputUnits">
+            seconds
+          </span>
+        </div>
+      </div>
+      <div
+        className="form-group">
+        <label>
+          Average segment speed
+        </label>
+        <div
+          className="InputWithUnits">
+          <input
+            className="form-control"
+            min={1}
+            name={undefined}
+            onChange={[Function]}
+            placeholder="km/h"
+            type="number"
+            value={15} />
+          <span
+            className="InputUnits">
+            km/h
+          </span>
+        </div>
+      </div>
+      <div
+        className="form-group">
+        <label>
+          Total travel time
+        </label>
+        <div
+          className="InputWithUnits">
+          <input
+            className="form-control"
+            min={1}
+            name={undefined}
+            onChange={[Function]}
+            placeholder="minutes"
+            type="number"
+            value={0} />
+          <span
+            className="InputUnits">
+            minutes
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          aria-level={3}
+          role="heading">
+          <div
+            aria-expanded={false}
+            onClick={[Function]}
+            role="button"
+            style={
+              Object {
+                "cursor": "pointer",
+                "paddingBottom": "12px",
+              }
+            }>
+            <i
+              className="fa fa-chevron-right fa-fw " />
+            <strong>
+              Set individual segment speeds
+            </strong>
+          </div>
+        </div>
+      </div>
     </div>
-    <div
-      className="form-group">
-      <label>
-        Dwell time (seconds)
-      </label>
-      <input
-        className="form-control"
-        name={undefined}
-        onChange={[Function]}
-        placeholder="Dwell time (seconds)"
-        type="number"
-        value={10} />
-    </div>
+    <a
+      className="btn btn-danger btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}
+      title="Delete timetable">
+      <i
+        className="fa fa-close fa-fw " />
+       Delete Timetable
+    </a>
   </div>
 </section>
 `;
