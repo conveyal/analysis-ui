@@ -6,7 +6,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
   <div
     className="panel-body">
     <form
-      enctype="multipart/form-data"
+      encType="multipart/form-data"
       method="post"
       onSubmit={[Function]}>
       <div
@@ -29,7 +29,6 @@ exports[`Component > EditBundle renders correctly 1`] = `
         </label>
         <input
           className="form-control"
-          files={undefined}
           multiple={true}
           name="files"
           onChange={[Function]}
@@ -62,7 +61,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
         <div
           className="panel-body">
           <form
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
             method="post"
             onSubmit={[Function]}>
             <Text
@@ -97,61 +96,61 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
               </Group>
             </Text>
             <File
-              files={
+              label="Grid files"
+              multiple={true}
+              name="files"
+              onChange={[Function]}
+              value={
                 Array [
                   Object {
                     "name": "TEST.CSV",
                   },
                 ]
-              }
-              label="Grid files"
-              multiple={true}
-              name="files"
-              onChange={[Function]}>
+              }>
               <Group
-                files={
+                label="Grid files"
+                multiple={true}
+                name="files"
+                onChange={[Function]}
+                value={
                   Array [
                     Object {
                       "name": "TEST.CSV",
                     },
                   ]
-                }
-                label="Grid files"
-                multiple={true}
-                name="files"
-                onChange={[Function]}>
+                }>
                 <div
                   className="form-group">
                   <label>
                     Grid files
                   </label>
                   <Input
-                    files={
+                    label="Grid files"
+                    multiple={true}
+                    name="files"
+                    onChange={[Function]}
+                    type="file"
+                    value={
                       Array [
                         Object {
                           "name": "TEST.CSV",
                         },
                       ]
-                    }
-                    label="Grid files"
-                    multiple={true}
-                    name="files"
-                    onChange={[Function]}
-                    type="file">
+                    }>
                     <input
                       className="form-control"
-                      files={
+                      multiple={true}
+                      name="files"
+                      onChange={[Function]}
+                      placeholder="Grid files"
+                      type="file"
+                      value={
                         Array [
                           Object {
                             "name": "TEST.CSV",
                           },
                         ]
-                      }
-                      multiple={true}
-                      name="files"
-                      onChange={[Function]}
-                      placeholder="Grid files"
-                      type="file" />
+                      } />
                   </Input>
                 </div>
               </Group>
@@ -247,7 +246,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
         <div
           className="panel-body">
           <form
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
             method="post"
             onSubmit={[Function]}>
             <Text
@@ -282,7 +281,11 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
               </Group>
             </Text>
             <File
-              files={
+              label="Grid files"
+              multiple={true}
+              name="files"
+              onChange={[Function]}
+              value={
                 Array [
                   Object {
                     "name": "TEST.shp",
@@ -297,13 +300,13 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                     "name": "TEST.prj",
                   },
                 ]
-              }
-              label="Grid files"
-              multiple={true}
-              name="files"
-              onChange={[Function]}>
+              }>
               <Group
-                files={
+                label="Grid files"
+                multiple={true}
+                name="files"
+                onChange={[Function]}
+                value={
                   Array [
                     Object {
                       "name": "TEST.shp",
@@ -318,18 +321,19 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                       "name": "TEST.prj",
                     },
                   ]
-                }
-                label="Grid files"
-                multiple={true}
-                name="files"
-                onChange={[Function]}>
+                }>
                 <div
                   className="form-group">
                   <label>
                     Grid files
                   </label>
                   <Input
-                    files={
+                    label="Grid files"
+                    multiple={true}
+                    name="files"
+                    onChange={[Function]}
+                    type="file"
+                    value={
                       Array [
                         Object {
                           "name": "TEST.shp",
@@ -344,15 +348,15 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                           "name": "TEST.prj",
                         },
                       ]
-                    }
-                    label="Grid files"
-                    multiple={true}
-                    name="files"
-                    onChange={[Function]}
-                    type="file">
+                    }>
                     <input
                       className="form-control"
-                      files={
+                      multiple={true}
+                      name="files"
+                      onChange={[Function]}
+                      placeholder="Grid files"
+                      type="file"
+                      value={
                         Array [
                           Object {
                             "name": "TEST.shp",
@@ -367,12 +371,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                             "name": "TEST.prj",
                           },
                         ]
-                      }
-                      multiple={true}
-                      name="files"
-                      onChange={[Function]}
-                      placeholder="Grid files"
-                      type="file" />
+                      } />
                   </Input>
                 </div>
               </Group>
