@@ -4,8 +4,10 @@ notifications:
   email: false
 node_js:
   - '6'
+cache:
+  yarn: true
 before_install:
-  - npm i -g yarn codecov
+  - npm i -g codecov
 script:
   - yarn test -- --coverage
   - codecov
