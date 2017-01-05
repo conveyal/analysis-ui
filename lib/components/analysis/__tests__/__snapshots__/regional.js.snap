@@ -1,6 +1,7 @@
 exports[`Components > Analysis > Regional should handle rendering comparison 1`] = `
 <RegionalAnalysis
   addRegionalAnalysisLayerToMap={[Function]}
+  addRegionalComparisonLayerToMap={[Function]}
   analysis={
     Object {
       "bundleId": "5678",
@@ -126,6 +127,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
       },
     ]
   }
+  loadRegionalAnalyses={[Function]}
   minimumImprovementProbability={0.83}
   projectId="MOCK"
   regionalAnalyses={
@@ -212,6 +214,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
       },
     ]
   }
+  removeRegionalAnalysisLayerFromMap={[Function]}
+  removeRegionalComparisonLayerFromMap={[Function]}
   setActiveRegionalAnalysis={[Function]}
   setMinimumImprovementProbability={[Function]}>
   <div>
@@ -342,45 +346,49 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         </div>
       </Select>
     </div>
-    <Slider
-      format=".2f"
-      label="Minimum probability of improvement"
-      max={1}
-      min={0}
-      onChange={[Function]}
-      output={true}
-      step={0.01}
-      value={0.83}>
-      <Group
+    <MinimumImprovementProbabilitySelector
+      minimumImprovementProbability={0.83}
+      setMinimumImprovementProbability={[Function]}>
+      <Slider
+        format=".2f"
         label="Minimum probability of improvement"
         max={1}
         min={0}
         onChange={[Function]}
+        output={true}
         step={0.01}
         value={0.83}>
-        <div
-          className="form-group">
-          <label>
-            Minimum probability of improvement
-          </label>
-          <input
-            className="form-control"
-            id="00000000-0000-0000-0000-000000000000"
-            label="Minimum probability of improvement"
-            max={1}
-            min={0}
-            onChange={[Function]}
-            step={0.01}
-            type="range"
-            value={0.83} />
-          <output
-            className="pull-right"
-            htmlFor="00000000-0000-0000-0000-000000000000">
-            0.55
-          </output>
-        </div>
-      </Group>
-    </Slider>
+        <Group
+          label="Minimum probability of improvement"
+          max={1}
+          min={0}
+          onChange={[Function]}
+          step={0.01}
+          value={0.83}>
+          <div
+            className="form-group">
+            <label>
+              Minimum probability of improvement
+            </label>
+            <input
+              className="form-control"
+              id="00000000-0000-0000-0000-000000000000"
+              label="Minimum probability of improvement"
+              max={1}
+              min={0}
+              onChange={[Function]}
+              step={0.01}
+              type="range"
+              value={0.83} />
+            <output
+              className="pull-right"
+              htmlFor="00000000-0000-0000-0000-000000000000">
+              0.55
+            </output>
+          </div>
+        </Group>
+      </Slider>
+    </MinimumImprovementProbabilitySelector>
     <div>
       <i>
         Total jobs within 60 minutes
@@ -568,6 +576,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
 exports[`Components > Analysis > Regional should load analysis if it is not loaded 1`] = `
 <RegionalAnalysis
   addRegionalAnalysisLayerToMap={[Function]}
+  addRegionalComparisonLayerToMap={[Function]}
   analysisId="abcd"
   breaks={
     Array [
@@ -684,12 +693,16 @@ exports[`Components > Analysis > Regional should load analysis if it is not load
       },
     ]
   }
-  setActiveRegionalAnalysis={[Function]} />
+  removeRegionalAnalysisLayerFromMap={[Function]}
+  removeRegionalComparisonLayerFromMap={[Function]}
+  setActiveRegionalAnalysis={[Function]}
+  setMinimumImprovementProbability={[Function]} />
 `;
 
 exports[`Components > Analysis > Regional should render correctly 1`] = `
 <RegionalAnalysis
   addRegionalAnalysisLayerToMap={[Function]}
+  addRegionalComparisonLayerToMap={[Function]}
   analysis={
     Object {
       "bundleId": "5678",
@@ -761,6 +774,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
       },
     ]
   }
+  loadRegionalAnalyses={[Function]}
   minimumImprovementProbability={0.83}
   projectId="MOCK"
   regionalAnalyses={
@@ -847,7 +861,10 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
       },
     ]
   }
-  setActiveRegionalAnalysis={[Function]}>
+  removeRegionalAnalysisLayerFromMap={[Function]}
+  removeRegionalComparisonLayerFromMap={[Function]}
+  setActiveRegionalAnalysis={[Function]}
+  setMinimumImprovementProbability={[Function]}>
   <div>
     <h3>
       ANALYSIS 1
