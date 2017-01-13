@@ -14,16 +14,16 @@ file in your GTFS feed, simply extract it, add the `feed_id` column, and add the
 
 of course replacing the second line with the `feed_id` you'd like to use, which should be a short, unique string which contains no colons. Zip this file into the feed.
 
-Once you've gathered GTFS data, you can log into scenario editor. 
+Once you've gathered GTFS data, you can log into scenario editor.
 
 First, you will select an existing project, or create one using the "create a new project" button:
 
-<img src="../img/select-project.png" alt="selecting a project in scenario editor" />
+<img src="/img/select-project.png" alt="selecting a project in scenario editor" />
 
 When creating a new project, you specify a name as well as geographic bounds, which will in the future be used to fetch appropriate OpenStreetMap
 and Census data. When done, click "Save Project."
 
-<img src="../img/create-project.png" alt="creating a new project in scenario editor" />
+<img src="/img/create-project.png" alt="creating a new project in scenario editor" />
 
 Once you have done that, you can upload your GTFS to the project. Select "Create a new Scenario." Here you can create scenarios based on the
 GTFS feeds uploaded to your project. Since you have not yet uploaded any GTFS, choose "Create a bundle." You can give your bundle a name and upload your GTFS.
@@ -31,7 +31,6 @@ Note that, if you have multiple GTFS feeds, you can upload all of them at once (
 upload your feeds. "Uploading..." will appear; it may take several minutes to upload the bundle. Once it's complete, you will be returned to the "Create a Scenario" page, where
 you can select the bundle you just uploaded and give your scenario a name, and then click "Create new Scenario."
 
-<img src="../img/create-bundle.png" alt="creating a new bundle" />
+<img src="/img/create-bundle.png" alt="creating a new bundle" />
 
-You are now ready to move on to <a href="../edit-scenario/">editing your scenario</a>
-
+You are now ready to move on to <a href="/edit-scenario/">editing your scenario</a>
