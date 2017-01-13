@@ -10,7 +10,7 @@ depends on your browser and operating system, but generally will involve shift-c
 control-clicking or command-clicking.
 
 <figure>
-  <img src="/img/upload-shapefile.png" />
+  <img src="../../img/upload-shapefile.png" />
   <figcaption>Uploading a Shapefile by selecting all constituent files</figcaption>
 </figure>
 
@@ -18,6 +18,6 @@ If you upload a CSV file, two extra fields will appear, in which you must type t
 latitude and longitude fields (we currently only support CSV files in WGS 84 Latitude/Longitude coordinates).
 
 <figure>
-  <img src="/img/upload-csv.png" />
+  <img src="../../img/upload-csv.png" />
   <figcaption>Uploading a CSV file and entering the latitude and longitude columns</figcaption>
 </figure>

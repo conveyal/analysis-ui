@@ -3,7 +3,7 @@
 Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency modification. First, create an adjust frequency modification, and choose
 the feed and route you want to adjust the frequency of.
 
-<img src="/img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
+<img src="../../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
 
 You then create any number of frequency entries, which represent a particular frequency on a particular trip pattern at a particular time of day. Typically, there will be at least
 two entries (one for each direction).
@@ -35,4 +35,4 @@ to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end ti
 You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful
 when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
 
-<img src="/img/frequency-entry.png" alt="Editing a frequency entry" />
+<img src="../../img/frequency-entry.png" alt="Editing a frequency entry" />

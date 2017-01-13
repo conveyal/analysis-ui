@@ -5,7 +5,7 @@ a reroute can apply to multiple patterns in a single direction as long as they b
 button, and then choosing the stop on the map. If you leave the from stop blank, the entire route up to the from stop will be rerouted. If you leave the to stop blank, the entire route
 after that point will be rerouted. This can be used to extend routes, or to divert the ends of routes (e.g. to new rail stations).
 
-<img src="/img/reroute.png" alt="Rerouting" />
+<img src="../../img/reroute.png" alt="Rerouting" />
 
 You can then edit the alignment and the intermediate stops by clicking on "Edit Alignment." This uses the same tools that are used when adding trip patterns.
 

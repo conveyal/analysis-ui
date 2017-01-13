@@ -3,7 +3,7 @@ impacts of your scenario. To enter the analysis mode, click on the graph button 
 The analysis mode requires choosing a particular variant, which represents an exact subset of modifications
 to analyze.
 
-<img src="/img/select-analysis.png" alt="Selecting the button to enter analysis mode" />
+<img src="../img/select-analysis.png" alt="Selecting the button to enter analysis mode" />
 
 If your project is in the United States, you should shortly see an isochrone and several accessibility plots.
 If your project is outside the US, or if you want to compute accessibility using a land use dataset other than the
@@ -15,7 +15,7 @@ the first time you use it on a particular day while the compute cluster starts u
 variant name will indicate that the cluster is initializing.
 
 <figure>
-  <img src="/img/analysis-start.png" />
+  <img src="../img/analysis-start.png" />
   <figcaption>The initial analysis page</figcaption>
 </figure>
 
@@ -40,7 +40,7 @@ refresh button, used to reload scenario results after editing parameters.
 Below that, the analysis settings can be expanded and different parameters for the analysis can be set:
 
 <figure>
-  <img src="/img/analysis-settings.png" />
+  <img src="../img/analysis-settings.png" />
   <figcaption>The analysis settings pane</figcaption>
 </figure>
 
@@ -79,7 +79,7 @@ the baseline variant. Once you have enabled this checkbox and selected a scenari
 view the comparison by clicking the "Refresh" icon near the top of the left sidebar.
 
 <figure>
-  <img src="/img/analysis-comparison.png" />
+  <img src="../img/analysis-comparison.png" />
   <figcaption>Comparison analysis in Atlanta, Georgia, USA</figcaption>
 </figure>
 
@@ -97,7 +97,7 @@ average accessibility (number of jobs reachable) from the chosen origin under th
 ## Spectrogram
 
 <figure>
-  <img src="/img/analysis-spectrogram.png" />
+  <img src="../img/analysis-spectrogram.png" />
   <figcaption>A spectrogram</figcaption>
 </figure>
 
@@ -137,7 +137,7 @@ in red. Both are on the same scale to facilitate comparisons. Additionally, you 
 of the differences:
 
 <figure>
-  <img src="/img/difference-spectrogram.png" />
+  <img src="../img/difference-spectrogram.png" />
   <figcaption>A spectrogram of the difference between two scenarios</figcaption>
 </figure>
 
@@ -165,7 +165,7 @@ within 60 minutes, depending on when exactly you leave during the time window an
 are ultimately operated, and it is most likely that 500,000 jobs will be accessible.
 
 <figure>
-  <img src="/img/analysis-histogram.png" />
+  <img src="../img/analysis-histogram.png" />
   <figcaption>A histogram of the job access</figcaption>
 </figure>
 
@@ -173,7 +173,7 @@ When comparing two scenarios, histograms from both scenarios will be displayed i
 Just as on the map, the active scenario will be shown in blue, and the comparison scenario in red.
 
 <figure>
-  <img src="/img/difference-histogram.png" />
+  <img src="../img/difference-histogram.png" />
   <figcaption>A histogram comparing two scenarios</figcaption>
 </figure>
 
@@ -184,7 +184,7 @@ messages will be displayed detailing the issues, as shown below. One simply need
 and correct the errors in the relevant modifications.
 
 <figure>
-  <img src="/img/scenario-error.png" />
+  <img src="../img/scenario-error.png" />
   <figcaption>Scenario errors displayed in the editor</figcaption>
 </figure>
 
@@ -198,7 +198,7 @@ for your regional analysis in the box that appears, and click the checkmark to c
 analysis.
 
 <figure>
-  <img src="/img/create-regional-analysis.png" />
+  <img src="../img/create-regional-analysis.png" />
   <figcaption>Creating a regional analysis</figcaption>
 </figure>
 
@@ -207,7 +207,7 @@ we are computing the accessibility for every origin in the city, it can take a s
 for all of the number-crunching to occur.
 
 <figure>
-  <img src="/img/regional-progress.png" />
+  <img src="../img/regional-progress.png" />
   <figcaption>Displaying the progress of a regional analysis</figcaption>
 </figure>
 

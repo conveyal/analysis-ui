@@ -4,4 +4,4 @@ remove stops (with new selection, add and remove buttons). The difference is tha
 Finally, enter a scale, which is the factor to multiply the speed by. For instance, if you enter 2, vehicles will travel twice as fast between stops (this modification does not affect dwell times;
 to model changes in dwell time, see the adjust dwell time modification below).
 
-<img src="/img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
+<img src="../../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />

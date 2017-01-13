@@ -2,7 +2,7 @@ After a regional analysis has completed, you can access it by selecting it from 
 Upon selecting a regional analysis, you will see a screen like the following:
 
 <figure>
-  <img src="/img/regional.png" />
+  <img src="../../img/regional.png" />
   <figcaption>Viewing a regional analysis</figcaption>
 </figure>
 

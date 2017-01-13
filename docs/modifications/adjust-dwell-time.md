@@ -4,4 +4,4 @@ dwell times adjusted). You can then choose to either enter a new dwell time (in 
 
 Unfortunately, many source GTFS feeds do not contain any dwell time, meaning that this modification is of limited usefulness in some cases.
 
-<img src="/img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
+<img src="../../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />

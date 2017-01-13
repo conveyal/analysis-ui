@@ -4,11 +4,11 @@ of the modifications in that variant will be displayed. Keep in mind that some b
 more than 30 pages or so of a very long report.
 
 <figure>
-  <img src="/img/select-report.png" />
+  <img src="../img/select-report.png" />
   <figcaption>Generating a report on a variant</figcaption>
 </figure>
 
 <figure>
-  <img src="/img/report.png" />
+  <img src="../img/report.png" />
   <figcaption>A report for a variant</figcaption>
 </figure>
