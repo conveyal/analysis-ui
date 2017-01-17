@@ -14,7 +14,7 @@ file in your GTFS feed, simply extract it, add the `feed_id` column, and add the
 
 of course replacing the second line with the `feed_id` you'd like to use, which should be a short, unique string which contains no colons. Zip this file into the feed.
 
-Once you've gathered GTFS data, you can log into scenario editor. 
+Once you've gathered GTFS data, you can log into scenario editor.
 
 First, you will select an existing project, or create one using the "create a new project" button:
 
@@ -33,5 +33,4 @@ you can select the bundle you just uploaded and give your scenario a name, and t
 
 <img src="../img/create-bundle.png" alt="creating a new bundle" />
 
-You are now ready to move on to <a href="../edit-scenario/">editing your scenario</a>
-
+You are now ready to move on to <a href="/edit-scenario/">editing your scenario</a>
