@@ -13,27 +13,43 @@ Object {
 exports[`actions > modifications copyFromScenario should work 3`] = `
 Object {
   "payload": Object {
-    "feed": Object {
-      "id": "1",
-    },
+    "bidirectional": false,
+    "entries": Array [],
+    "feed": "1",
+    "name": "Test Modification",
     "routes": Array [
-      Object {
-        "id": "1",
-      },
+      "route1",
     ],
     "scenario": 2,
-    "stops": Array [
+    "segments": Array [],
+    "showOnMap": false,
+    "timetables": Array [
       Object {
-        "id": "1",
+        "dwellTime": 10,
+        "endTime": 57600,
+        "friday": true,
+        "headwaySecs": 900,
+        "monday": true,
+        "name": "Test timetable",
+        "patternTrips": Array [
+          "abcd",
+        ],
+        "saturday": false,
+        "segmentSpeeds": Array [],
+        "sourceTrip": "abcd",
+        "startTime": 28800,
+        "sunday": false,
+        "thursday": true,
+        "tuesday": true,
+        "wednesday": true,
       },
     ],
     "trips": Array [
-      Object {
-        "id": "1",
-      },
+      "abcd",
     ],
+    "type": "add-trip-pattern",
     "variants": Array [
-      "2",
+      0,
     ],
   },
   "type": "set modification",
@@ -65,27 +81,43 @@ exports[`actions > modifications create should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "feed": Object {
-        "id": "1",
-      },
-      "id": "1",
+      "bidirectional": false,
+      "entries": Array [],
+      "feed": "1",
+      "id": "1234",
+      "name": "Test Modification",
       "routes": Array [
-        Object {
-          "id": "1",
-        },
+        "route1",
       ],
-      "stops": Array [
+      "segments": Array [],
+      "showOnMap": false,
+      "timetables": Array [
         Object {
-          "id": "1",
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
+          "saturday": false,
+          "segmentSpeeds": Array [],
+          "sourceTrip": "abcd",
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
         },
       ],
       "trips": Array [
-        Object {
-          "id": "1",
-        },
+        "abcd",
       ],
+      "type": "add-trip-pattern",
       "variants": Array [
-        "2",
+        0,
       ],
     },
     "type": "set modification",
@@ -93,7 +125,7 @@ Array [
   Object {
     "payload": Object {
       "args": Array [
-        "/projects/1/scenarios/1/modifications/1",
+        "/projects/1/scenarios/1/modifications/1234",
       ],
       "method": "push",
     },
@@ -139,27 +171,43 @@ exports[`actions > modifications getForScenario should work 3`] = `
 Object {
   "payload": Array [
     Object {
-      "feed": Object {
-        "id": "1",
-      },
-      "id": "1",
+      "bidirectional": false,
+      "entries": Array [],
+      "feed": "1",
+      "id": "1234",
+      "name": "Test Modification",
       "routes": Array [
-        Object {
-          "id": "1",
-        },
+        "route1",
       ],
-      "stops": Array [
+      "segments": Array [],
+      "showOnMap": false,
+      "timetables": Array [
         Object {
-          "id": "1",
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
+          "saturday": false,
+          "segmentSpeeds": Array [],
+          "sourceTrip": "abcd",
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
         },
       ],
       "trips": Array [
-        Object {
-          "id": "1",
-        },
+        "abcd",
       ],
+      "type": "add-trip-pattern",
       "variants": Array [
-        "2",
+        0,
       ],
     },
   ],
@@ -191,27 +239,43 @@ Object {
 exports[`actions > modifications set should work 1`] = `
 Object {
   "payload": Object {
-    "feed": Object {
-      "id": "1",
-    },
-    "id": "1",
+    "bidirectional": false,
+    "entries": Array [],
+    "feed": "1",
+    "id": "1234",
+    "name": "Test Modification",
     "routes": Array [
-      Object {
-        "id": "1",
-      },
+      "route1",
     ],
-    "stops": Array [
+    "segments": Array [],
+    "showOnMap": false,
+    "timetables": Array [
       Object {
-        "id": "1",
+        "dwellTime": 10,
+        "endTime": 57600,
+        "friday": true,
+        "headwaySecs": 900,
+        "monday": true,
+        "name": "Test timetable",
+        "patternTrips": Array [
+          "abcd",
+        ],
+        "saturday": false,
+        "segmentSpeeds": Array [],
+        "sourceTrip": "abcd",
+        "startTime": 28800,
+        "sunday": false,
+        "thursday": true,
+        "tuesday": true,
+        "wednesday": true,
       },
     ],
     "trips": Array [
-      Object {
-        "id": "1",
-      },
+      "abcd",
     ],
+    "type": "add-trip-pattern",
     "variants": Array [
-      "2",
+      0,
     ],
   },
   "type": "set modification",
@@ -237,27 +301,43 @@ exports[`actions > modifications setAndRetrieveData should work 1`] = `
 Array [
   Object {
     "payload": Object {
-      "feed": Object {
-        "id": "1",
-      },
-      "id": "1",
+      "bidirectional": false,
+      "entries": Array [],
+      "feed": "1",
+      "id": "1234",
+      "name": "Test Modification",
       "routes": Array [
-        Object {
-          "id": "1",
-        },
+        "route1",
       ],
-      "stops": Array [
+      "segments": Array [],
+      "showOnMap": false,
+      "timetables": Array [
         Object {
-          "id": "1",
+          "dwellTime": 10,
+          "endTime": 57600,
+          "friday": true,
+          "headwaySecs": 900,
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
+          "saturday": false,
+          "segmentSpeeds": Array [],
+          "sourceTrip": "abcd",
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
         },
       ],
       "trips": Array [
-        Object {
-          "id": "1",
-        },
+        "abcd",
       ],
+      "type": "add-trip-pattern",
       "variants": Array [
-        "2",
+        0,
       ],
     },
     "type": "set modification",
