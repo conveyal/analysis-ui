@@ -44,6 +44,7 @@ transitEditor:
   extendFromEnd: Extend from end
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
+  invalidShapefileType: Shapefile type must be LineString or MultiLineString
 network:
   error: Network error. Check your connection and reload the page?
   serverError: Server error, please reload the page and try again in a few minutes.
@@ -62,6 +63,9 @@ modificationType:
   adjust-speed: Adjust speed
   remove-stops: Remove stops
 analysis:
+  squareRoot: Square root scale
+  log: Logarithmic scale
+  linear: Linear scale
   accessibility: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
   createGrid: Create a new grid
   indicator: Indicator
@@ -90,7 +94,8 @@ analysis:
   regionalAnalysisName: Regional analysis name
   deleteRegionalAnalysis: Delete regional analysis
   openRegionalAnalysis: Open regional analysis
-  startRegionalAnalysis: Start regional analysis
+  newRegionalAnalysis: New regional analysis # this begins the process of creating a regional analysis
+  startRegionalAnalysis: Start regional analysis # once a regional analysis is named, this kicks it off
   accessTo: %s within %d minutes
   compareAccessTo: compared with %s within %d minutes
   compareTo: Compare to
