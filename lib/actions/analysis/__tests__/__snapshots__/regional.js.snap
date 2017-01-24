@@ -1,26 +1,29 @@
-exports[`reducers > project should handle default state 1`] = `
+exports[`Actions > Analysis > Regional deleteRegionalAnalysis should work 1`] = `
 Object {
-  "currentProject": null,
-  "projects": Array [],
-  "projectsById": Object {},
+  "payload": "12321a",
+  "type": "delete regional analysis",
 }
 `;
 
-exports[`reducers > project should handle delete project 1`] = `
+exports[`Actions > Analysis > Regional setActiveRegionalAnalyses should work 1`] = `
 Object {
-  "currentProject": null,
-  "projects": Array [],
-  "projectsById": Object {},
+  "type": "set active regional analyses",
 }
 `;
 
-exports[`reducers > project should handle delete regional analysis 1`] = `
+exports[`Actions > Analysis > Regional setMinimumImprovementProbability should work 1`] = `
 Object {
-  "regionalAnalyses": Array [
+  "payload": 0.42,
+  "type": "set minimum improvement probability",
+}
+`;
+
+exports[`Actions > Analysis > Regional setRegionalAnalyses should work 1`] = `
+Object {
+  "payload": Array [
     Object {
       "bundleId": "5678",
       "cutoffMinutes": 60,
-      "deleted": true,
       "grid": "Jobs_total",
       "height": 300,
       "id": "abcd",
@@ -99,79 +102,12 @@ Object {
       "zoom": 9,
     },
   ],
+  "type": "set regional analyses",
 }
 `;
 
-exports[`reducers > project should handle set all projects 1`] = `
+exports[`Actions > Analysis > Regional setRegionalAnalysisGrids should work 1`] = `
 Object {
-  "currentProject": null,
-  "projects": Array [
-    Object {
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "description": "Project description",
-      "id": "1",
-      "name": "Mock Project",
-    },
-  ],
-  "projectsById": Object {
-    "1": Object {
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "description": "Project description",
-      "id": "1",
-      "name": "Mock Project",
-    },
-  },
-}
-`;
-
-exports[`reducers > project should handle set project 1`] = `
-Object {
-  "currentProject": Object {
-    "bounds": Object {
-      "east": -76,
-      "north": 39,
-      "south": 38,
-      "west": -77,
-    },
-    "description": "Project description",
-    "id": "1",
-    "name": "Mock Project",
-  },
-  "projects": Array [
-    Object {
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "description": "Project description",
-      "id": "1",
-      "name": "Mock Project",
-    },
-  ],
-  "projectsById": Object {
-    "1": Object {
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "description": "Project description",
-      "id": "1",
-      "name": "Mock Project",
-    },
-  },
+  "type": "set regional analysis grids",
 }
 `;
