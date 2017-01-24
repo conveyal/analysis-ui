@@ -2,11 +2,12 @@
 # yarn lockfile v1
 
 
-"@conveyal/gridualizer@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@conveyal/gridualizer/-/gridualizer-1.8.0.tgz#3244f56ad99537c2ab415bbe1d22e98267836cea"
+"@conveyal/gridualizer@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@conveyal/gridualizer/-/gridualizer-2.0.0.tgz#178539185db0d0f5475114b458feeb46dab0fdc2"
   dependencies:
     d3-color "^1.0.2"
+    d3-scale "^1.0.4"
     lodash.range "^3.2.0"
     xorshift "^1.0.0"
 
@@ -330,7 +331,17 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-auth0-js@7.6.1, auth0-js@^7.3.0:
+auth0-js@8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-8.0.4.tgz#c107caf363e97d1593298164717c5351d0ffd8ff"
+  dependencies:
+    base64-js "^1.2.0"
+    idtoken-verifier "^1.0.1"
+    superagent "^3.3.1"
+    url-join "^1.1.0"
+    winchan "^0.1.4"
+
+auth0-js@^7.3.0:
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-7.6.1.tgz#5baea8603133bb143bd2c327b55a57da7afdf97c"
   dependencies:
@@ -343,16 +354,6 @@ auth0-js@7.6.1, auth0-js@^7.3.0:
     winchan "0.1.4"
     xtend "~2.1.1"
 
-auth0-js@8.0.4:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-8.0.4.tgz#c107caf363e97d1593298164717c5351d0ffd8ff"
-  dependencies:
-    base64-js "^1.2.0"
-    idtoken-verifier "^1.0.1"
-    superagent "^3.3.1"
-    url-join "^1.1.0"
-    winchan "^0.1.4"
-
 auth0-js@^8.0.4:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-8.1.1.tgz#df7e231a84a1eaaf2d3437629f6717a8d5e2c428"
@@ -363,23 +364,7 @@ auth0-js@^8.0.4:
     url-join "^1.1.0"
     winchan "^0.1.4"
 
-auth0-lock@^10.5.1:
-  version "10.8.1"
-  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-10.8.1.tgz#4ce9342b7c6382d71a92a6d99d7fb8656457b212"
-  dependencies:
-    auth0-js "7.6.1"
-    blueimp-md5 "2.3.1"
-    fbjs "^0.3.1"
-    immutable "^3.7.3"
-    jsonp "^0.2.0"
-    password-sheriff "^1.0.0"
-    react "^15.0.0 || ^16.0.0"
-    react-addons-css-transition-group "^15.0.0 || ^16.0.0"
-    react-dom "^15.0.0 || ^16.0.0"
-    trim "0.0.1"
-    url-join "^1.1.0"
-
-auth0-lock@^10.9.2:
+auth0-lock@^10.5.1, auth0-lock@^10.9.2:
   version "10.9.2"
   resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-10.9.2.tgz#7da607830d8194180d2c59608725976b405fbadc"
   dependencies:
@@ -2073,7 +2058,7 @@ d3-request@1.0.3:
     d3-dsv "1"
     xmlhttprequest "1"
 
-d3-scale@1.0.4:
+d3-scale@1.0.4, d3-scale@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-1.0.4.tgz#50e28bf6a193b706745528515ed9b3d44205a033"
   dependencies:
