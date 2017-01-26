@@ -5,6 +5,7 @@
 @import url(node_modules/leaflet/dist/leaflet.css);
 @import url(node_modules/leaflet-draw/dist/leaflet.draw.css);
 @import url(node_modules/react-select/dist/react-select.css);
+@import url(node_modules/react-datetime/css/react-datetime.css);
 @import url(lib/map.css);
 
 html,
@@ -14,6 +15,15 @@ body,
   margin: 0;
   color: #414C59;
   font-size: 12px;
+  font-family: -apple-system,
+               BlinkMacSystemFont,
+               "Segoe UI",
+               Roboto,
+               Oxygen-Sans,
+               Ubuntu,
+               Cantarell,
+               "Helvetica Neue",
+               sans-serif;
 }
 
 body.Editor, #editor {
@@ -63,6 +73,15 @@ input[type="month"].form-control,
   padding: 6px;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .form-inline .checkbox label {
   padding: 0 12px 12px 0;
 }
@@ -77,6 +96,18 @@ input[type="month"].form-control,
   margin-bottom: 12px;
 }
 
+.InputWithUnits {
+  position: relative;
+}
+
+.InputUnits {
+  position: absolute;
+  line-height: 30px;
+  right: 10px;
+  top: 0;
+  opacity: 0.5;
+}
+
 .Fullscreen {
   height: 100%;
   position: absolute;
@@ -85,7 +116,7 @@ input[type="month"].form-control,
   left: 320px;
 }
 
-.Fullscreen.hasActiveModification {
+.Fullscreen.hasActiveModification, .Fullscreen.analysisMode {
   left: 640px;
 }
 
@@ -104,6 +135,10 @@ input[type="month"].form-control,
   /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15); */
 }
 
+.ApplicationDock.analysisMode {
+  width: 640px;
+}
+
 .ModificationDock {
   left: 320px;
 }
@@ -112,7 +147,11 @@ input[type="month"].form-control,
   position: relative;
   height: 100%;
   overflow-y: scroll;
-  padding-bottom: 24px;
+  padding-bottom: 48px;
+}
+
+.Analysis, .ScenarioContent {
+  min-height: 500px;
 }
 
 .InnerDock::-webkit-scrollbar {
@@ -132,6 +171,10 @@ input[type="month"].form-control,
   background-color: #ddd;
 }
 
+.InnerDock .block {
+  padding: 0 12px;
+}
+
 .ModificationDockTitle {
   font-size: 14px;
   padding: 6px 12px;
@@ -147,20 +190,39 @@ input[type="month"].form-control,
 
 .ApplicationTitle {
   font-size: 14px;
-  padding: 6px 12px;
+  padding: 12px 12px 6px;
   border-bottom: 1px solid #ddd;
 }
 
-.ProjectTitle,
-.ScenarioTitle {
-  margin: 0;
-  padding: 6px 12px;
-  font-size: 14px;
-  cursor: pointer;
+.ApplicationTitle > .logo {
+  font-family: "Gill Sans";
+  letter-spacing: 0;
+  font-size: 20px;
+  padding-left: 26px;
+  background-image: url(https://s3-eu-west-1.amazonaws.com/analyst-logos/conveyal-128x128.png);
+  background-size: 20px;
+  line-height: 20px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-weight: 100;
 }
 
-.ProjectTitle a > .fa,
-.ScenarioTitle a > .fa {
+.ApplicationTitle > .badge {
+  font-size: 10px;
+  font-weight: normal;
+  background-color: #337ab7;
+  margin-top: -2px;
+  padding: 2px 7px 3px;
+}
+
+.DockTitle {
+  margin: 0;
+  padding: 12px 12px 6px;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+}
+
+.DockTitle a > .fa {
   padding: 6px 12px;
   margin-top: -6px;
 }
@@ -261,6 +323,7 @@ input[type="month"].form-control,
 .ModificationTitle {
   padding: 6px 0 6px 18px;
   font-size: 10px;
+  cursor: pointer;
 }
 
 .ModificationTitle > a > .fa {
@@ -310,14 +373,14 @@ input[type="month"].form-control,
 }
 
 .Variants {
-  padding: 0 12px;
+  padding: 6px 12px;
 }
 
 .Variants-Variant {
   margin-bottom: 12px;
 }
 
-.ModificationGroup .Variants-Variant label+.form-control {
+.ModificationGroup .Variants-Variant .form-control {
   width: 99px;
 }
 
@@ -326,7 +389,8 @@ input[type="month"].form-control,
 }
 
 .LoggedInAs {
-  font-size: 9px;
+  padding-top: 6px;
+  font-size: 10px;
 }
 
 .Report-Modification {
@@ -402,4 +466,16 @@ input[type="month"].form-control,
 
 .MapControl .Select-control .Select-input:focus {
   box-shadow: none;
+}
+
+
+
+.Legend div {
+  display: inline-block;
+  margin: 6px;
+  vertical-align: middle;
+}
+
+.Legend {
+  list-style: none
 }

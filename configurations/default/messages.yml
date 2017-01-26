@@ -1,3 +1,6 @@
+common:
+  scenario: Scenario
+  variant: Variant
 authentication:
   logIn: Log in
   logOut: Log out
@@ -17,8 +20,8 @@ nav:
 project:
   createAction: Create a new project
   createTitle: Create new project
-  deleteAction: Delete this project
-  deleteConfirmation: Are you sure you would like to delete this project?
+  deleteAction: DANGER: Delete this project
+  deleteConfirmation: Are you sure you would like to delete this project? This will delete all scenarios and modifications associated with this project.
   editAction: Save project
   editTitle: Edit project
   r5Version: Analysis backend version
@@ -36,17 +39,20 @@ transitEditor:
   makeStop: make stop
   makeControlPoint: make control point
   deletePoint: delete
-  stopSpacingMeters: Stop spacing (meters)
+  stopSpacingMeters: Stop spacing
   autoCreateStops: Create stops automatically
   extendFromEnd: Extend from end
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
+  invalidShapefileType: Shapefile type must be LineString or MultiLineString
 network:
   error: Network error. Check your connection and reload the page?
   serverError: Server error, please reload the page and try again in a few minutes.
   timeout: Request timed out.
   checkConnection: Check your connection and reload the page?
   saving: Saving . . .
+modification:
+  deleteConfirmation: Are you sure you would like to delete this modification?
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -56,6 +62,54 @@ modificationType:
   reroute: Reroute
   adjust-speed: Adjust speed
   remove-stops: Remove stops
+analysis:
+  squareRoot: Square root scale
+  log: Logarithmic scale
+  linear: Linear scale
+  accessibility: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
+  createGrid: Create a new grid
+  indicator: Indicator
+  cutoff: Travel time cutoff (minutes)
+  addGrid: Add grid
+  uploading: uploading...
+  gridName: Grid name
+  gridFiles: Grid files
+  latField: Latitude field
+  lonField: Longitude field
+  errorsInScenario: Errors were found in the scenario:
+  errorsInModification: in modification %s
+  runAnalysis: Perform regional analysis
+  minimumImprovementProbability: Minimum probability of improvement
+  probabilityImprovement: Show areas with probability of improvement > %01.2f
+  compare: Compare to another scenario
+  difference: Difference
+  baseline: Baseline
+  fromTime: From time
+  toTime: To time
+  date: Date
+  transfers: Maximum transfers
+  monteCarloDraws: Number of simulated schedules
+  settings: Analysis settings
+  regionalAnalyses: Regional analyses
+  regionalAnalysisName: Regional analysis name
+  deleteRegionalAnalysis: Delete regional analysis
+  openRegionalAnalysis: Open regional analysis
+  newRegionalAnalysis: New regional analysis # this begins the process of creating a regional analysis
+  startRegionalAnalysis: Start regional analysis # once a regional analysis is named, this kicks it off
+  accessTo: %s within %d minutes
+  compareAccessTo: compared with %s within %d minutes
+  compareTo: Compare to
+  settingsFor: %s settings
+  accessModes: Access modes
+  gisExport: Export to GIS
+  downloadRegional: Download %s
+  downloadRegionalProbability: Download probability of improvement
+  modes:
+    walk: Walk
+    bicycle: Bike
+    car: Automobile (kiss-and-ride)
+    bicycleRent: Bikeshare (bike rental)
+    carPark: Automobile (park-and-ride)
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
