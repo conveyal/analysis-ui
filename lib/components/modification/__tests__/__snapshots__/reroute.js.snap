@@ -35,39 +35,82 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       </div>
     </div>
   </div>
-  <a
-    className="btn btn-warning btn-block"
-    href="#"
-    onClick={[Function]}
-    target={undefined}>
-    <i
-      className="fa fa-pencil fa-fw " />
-     Edit alignment
-  </a>
-  <div
-    className="checkbox">
-    <label>
-      <input
-        checked={true}
-        onChange={[Function]}
-        type="checkbox" />
+  <div>
+    <a
+      className="btn btn-warning btn-block"
+      href="#"
+      onClick={[Function]}
+      target={undefined}>
+      <i
+        className="fa fa-times-circle fa-fw " />
        
-      Create stops automatically
-    </label>
-  </div>
-  <div
-    className="form-group">
-    <label>
-      Stop spacing
-    </label>
-    <input
-      className="form-control"
-      min={0}
-      name={undefined}
-      onChange={[Function]}
-      placeholder="Stop spacing"
-      type="number"
-      value={400} />
+      Stop editing
+    </a>
+    <div
+      className="checkbox">
+      <label>
+        <input
+          defaultChecked={true}
+          onChange={[Function]}
+          type="checkbox" />
+         
+        Create stops automatically
+      </label>
+    </div>
+    <div
+      className="form-group">
+      <label>
+        Stop spacing
+      </label>
+      <div
+        className="InputWithUnits">
+        <input
+          className="form-control"
+          min={0}
+          name={undefined}
+          onChange={[Function]}
+          placeholder="meters"
+          type="number"
+          value={400} />
+        <span
+          className="InputUnits">
+          meters
+        </span>
+      </div>
+    </div>
+    <div
+      className="checkbox">
+      <label>
+        <input
+          defaultChecked={true}
+          onChange={[Function]}
+          type="checkbox" />
+         
+        Extend from end
+      </label>
+    </div>
+    <div
+      className="checkbox">
+      <label>
+        <input
+          defaultChecked={undefined}
+          onChange={[Function]}
+          type="checkbox" />
+         
+        Follow streets
+      </label>
+    </div>
+    <div
+      className="checkbox">
+      <label>
+        <input
+          checked={undefined}
+          onChange={[Function]}
+          type="checkbox" />
+         
+        Bidirectional
+      </label>
+    </div>
   </div>
   <div>
     <div
