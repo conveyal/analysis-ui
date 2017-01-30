@@ -27,7 +27,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
             onClick={[Function]}
             target={undefined}>
             <i
-              className="fa fa-times-circle fa-fw " />
+              className="fa fa-stop-circle fa-fw " />
              
             Stop editing
           </a>
@@ -67,6 +67,17 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
             className="checkbox">
             <label>
               <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox" />
+               
+              Bidirectional
+            </label>
+          </div>
+          <div
+            className="checkbox">
+            <label>
+              <input
                 defaultChecked={true}
                 onChange={[Function]}
                 type="checkbox" />
@@ -83,17 +94,6 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                 type="checkbox" />
                
               Follow streets
-            </label>
-          </div>
-          <div
-            className="checkbox">
-            <label>
-              <input
-                checked={false}
-                onChange={[Function]}
-                type="checkbox" />
-               
-              Bidirectional
             </label>
           </div>
         </div>
