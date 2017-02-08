@@ -1,0 +1,254 @@
+exports[`Components > Analysis > Single Point should render correctly 1`] = `
+<SinglePointAnalysis
+  accessibility={0}
+  bundleId=""
+  clearIsochroneResults={[Function]}
+  comparisonAccessibility={0}
+  comparisonBundleId=""
+  comparisonInProgress={false}
+  comparisonScenarioId=""
+  comparisonSpectrogramData={Array []}
+  comparisonVariant={0}
+  currentIndicator=""
+  deleteRegionalAnalysis={[Function]}
+  enterAnalysisMode={[Function]}
+  exitAnalysisMode={[Function]}
+  fetchIsochrone={[Function]}
+  indicators={Array []}
+  isFetchingIsochrone={false}
+  isShowingIsochrone={false}
+  isShowingOpportunities={false}
+  isochroneCutoff={0}
+  isochroneFetchStatusMessag=""
+  isochroneLonLat={Object {}}
+  loadRegionalAnalyses={[Function]}
+  modifications={Array []}
+  profileRequest={Object {}}
+  projectId=""
+  removeIsochroneLayerFromMap={[Function]}
+  removeOpportunityLayerFromMap={[Function]}
+  runAnalysis={[Function]}
+  scenarioApplicationErrors={Array []}
+  scenarioId=""
+  scenarioName=""
+  selectRegionalAnalysis={[Function]}
+  setActiveVariant={[Function]}
+  setComparisonInProgress={[Function]}
+  setComparisonScenario={[Function]}
+  setCurrentIndicator={[Function]}
+  setIsochroneCutoff={[Function]}
+  setProfileRequest={[Function]}
+  spectrogramData={Array []}
+  variantIndex={0}
+  variantName=""
+  workerVersion="">
+  <div>
+    <div
+      className="DockTitle">
+      Variant: 
+      <span
+        className="pull-right">
+        <small />
+        <button
+          className="btn btn-link"
+          disabled={false}
+          onClick={[Function]}>
+          Update results
+           
+          <Icon
+            className=""
+            type="refresh">
+            <i
+              className="fa fa-refresh fa-fw " />
+          </Icon>
+        </button>
+      </span>
+    </div>
+    <div
+      className="block">
+      <Collapsible
+        defaultExpanded={false}
+        title="Analysis settings">
+        <div>
+          <div
+            aria-level={3}
+            role="heading">
+            <div
+              aria-expanded={false}
+              onClick={[Function]}
+              role="button"
+              style={
+                Object {
+                  "cursor": "pointer",
+                  "paddingBottom": "12px",
+                }
+              }>
+              <Icon
+                type="caret-right">
+                <i
+                  className="fa fa-caret-right fa-fw " />
+              </Icon>
+              <strong>
+                Analysis settings
+              </strong>
+            </div>
+          </div>
+        </div>
+      </Collapsible>
+      <Group>
+        <div
+          className="form-group">
+          <Select
+            addLabelText="Add \"{label}\"?"
+            arrowRenderer={[Function]}
+            autosize={true}
+            backspaceRemoves={true}
+            backspaceToRemoveMessage="Press backspace to remove {label}"
+            clearAllText="Clear all"
+            clearRenderer={[Function]}
+            clearValueText="Clear value"
+            clearable={true}
+            deleteRemoves={true}
+            delimiter=","
+            disabled={false}
+            escapeClearsValue={true}
+            filterOptions={[Function]}
+            ignoreAccents={true}
+            ignoreCase={true}
+            inputProps={Object {}}
+            isLoading={false}
+            joinValues={false}
+            labelKey="label"
+            matchPos="any"
+            matchProp="any"
+            menuBuffer={0}
+            menuRenderer={[Function]}
+            multi={false}
+            name="Indicator"
+            noResultsText="No results found"
+            onBlurResetsInput={true}
+            onChange={[Function]}
+            onCloseResetsInput={true}
+            openAfterFocus={false}
+            optionComponent={[Function]}
+            options={Array []}
+            pageSize={5}
+            placeholder="Select a grid..."
+            required={false}
+            scrollMenuIntoView={true}
+            searchable={true}
+            simpleValue={false}
+            tabSelectsValue={true}
+            value=""
+            valueComponent={[Function]}
+            valueKey="value"
+            width={600}>
+            <div
+              className="Select Select--single is-searchable">
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}>
+                <span
+                  className="Select-multi-value-wrapper"
+                  id="react-select-2--value">
+                  <div
+                    className="Select-placeholder">
+                    Select a grid...
+                  </div>
+                  <AutosizeInput
+                    aria-activedescendant="react-select-2--value"
+                    aria-expanded="false"
+                    aria-haspopup="false"
+                    aria-owns=""
+                    className="Select-input"
+                    minWidth="5"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    role="combobox"
+                    value="" />
+                </span>
+                <span
+                  className="Select-arrow-zone"
+                  onMouseDown={[Function]}>
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]} />
+                </span>
+              </div>
+            </div>
+          </Select>
+        </div>
+      </Group>
+      <Link
+        className="btn btn-success btn-block"
+        onlyActiveOnIndex={false}
+        style={Object {}}
+        to="/projects//grids/create">
+        <a
+          className="btn btn-success btn-block"
+          onClick={[Function]}
+          style={Object {}}>
+          <Icon
+            type="upload">
+            <i
+              className="fa fa-upload fa-fw " />
+          </Icon>
+           Create a new grid
+        </a>
+      </Link>
+      <Checkbox
+        label="Compare to another scenario"
+        onChange={[Function]}>
+        <div
+          className="checkbox">
+          <label>
+            <input
+              onChange={[Function]}
+              type="checkbox" />
+             
+            Compare to another scenario
+          </label>
+        </div>
+      </Checkbox>
+    </div>
+    <div
+      className="DockTitle">
+      Regional analyses
+    </div>
+    <div
+      className="block">
+      <Button
+        block={true}
+        onClick={[Function]}
+        style="success">
+        <a
+          className="btn btn-success btn-block"
+          href="#"
+          onClick={[Function]}>
+          <Icon
+            type="plus">
+            <i
+              className="fa fa-plus fa-fw " />
+          </Icon>
+          New regional analysis
+        </a>
+      </Button>
+      <RegionalAnalysisSelector
+        deleteRegionalAnalysis={[Function]}
+        loadRegionalAnalyses={[Function]}
+        projectId=""
+        scenarioId=""
+        selectRegionalAnalysis={[Function]}>
+        <ul
+          className="list-group" />
+      </RegionalAnalysisSelector>
+    </div>
+  </div>
+</SinglePointAnalysis>
+`;
