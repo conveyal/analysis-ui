@@ -1,3 +1,34 @@
+exports[`actions > getFeedsRoutesAndStops should lock ui when no bundles are returned 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "url": "/api/graphql?query=%0Aquery%20routeQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%222%22%5D%7D",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > getFeedsRoutesAndStops should lock ui when no bundles are returned 2`] = `
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > getFeedsRoutesAndStops should lock ui when no bundles are returned 3`] = `
+Array [
+  Object {
+    "type": "decrement outstanding fetches",
+  },
+  Object {
+    "payload": "No bundles were returned.",
+    "type": "lock ui with error",
+  },
+]
+`;
+
 exports[`actions > getFeedsRoutesAndStops should work when fetching via getAllRoutesAndStops 1`] = `
 Object {
   "payload": Object {
@@ -33,12 +64,22 @@ Array [
             "route_id": "1",
             "route_short_name": "1",
           },
+          Object {
+            "label": "2 ",
+            "route_id": "2",
+            "route_short_name": "2",
+          },
         ],
         "routesById": Object {
           "1": Object {
             "label": "1 ",
             "route_id": "1",
             "route_short_name": "1",
+          },
+          "2": Object {
+            "label": "2 ",
+            "route_id": "2",
+            "route_short_name": "2",
           },
         },
         "stops": Array [
@@ -93,12 +134,22 @@ Array [
             "route_id": "1",
             "route_short_name": "1",
           },
+          Object {
+            "label": "2 ",
+            "route_id": "2",
+            "route_short_name": "2",
+          },
         ],
         "routesById": Object {
           "1": Object {
             "label": "1 ",
             "route_id": "1",
             "route_short_name": "1",
+          },
+          "2": Object {
+            "label": "2 ",
+            "route_id": "2",
+            "route_short_name": "2",
           },
         },
         "stops": Array [
