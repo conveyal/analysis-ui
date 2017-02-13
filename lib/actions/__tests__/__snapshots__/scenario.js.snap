@@ -1,32 +1,55 @@
 exports[`actions > scenario create should work 1`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "body": Object {
+        "bundleId": "1",
+        "name": "test",
+        "projectId": "1",
+        "variants": Array [
+          "Default",
+        ],
+      },
+      "method": "post",
+    },
+    "url": "/api/scenario",
+  },
+  "type": "fetch",
 }
 `;
 
 exports[`actions > scenario create should work 2`] = `
-Object {
-  "type": "decrement outstanding requests",
-}
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
 `;
 
 exports[`actions > scenario create should work 3`] = `
 Array [
   Object {
-    "payload": Object {
-      "id": "1",
-    },
-    "type": "add scenario",
+    "type": "decrement outstanding fetches",
   },
-  Object {
-    "payload": Object {
-      "args": Array [
-        "/projects/1/scenarios/1",
-      ],
-      "method": "push",
+  Array [
+    Object {
+      "payload": Object {
+        "id": "1",
+      },
+      "type": "add scenario",
     },
-    "type": "@@router/CALL_HISTORY_METHOD",
-  },
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/projects/1/scenarios/1",
+        ],
+        "method": "push",
+      },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
+  ],
 ]
 `;
 
@@ -38,83 +61,128 @@ Object {
 
 exports[`actions > scenario deleteScenario should work 1`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "method": "delete",
+    },
+    "url": "/api/scenario/1",
+  },
+  "type": "fetch",
 }
 `;
 
 exports[`actions > scenario deleteScenario should work 2`] = `
-Object {
-  "type": "decrement outstanding requests",
-}
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
 `;
 
 exports[`actions > scenario deleteScenario should work 3`] = `
 Array [
   Object {
-    "payload": "1",
-    "type": "delete scenario",
+    "type": "decrement outstanding fetches",
   },
-  Object {
-    "payload": Object {
-      "args": Array [
-        "/projects/1",
-      ],
-      "method": "push",
+  Array [
+    Object {
+      "payload": "1",
+      "type": "delete scenario",
     },
-    "type": "@@router/CALL_HISTORY_METHOD",
-  },
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/projects/1",
+        ],
+        "method": "push",
+      },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
+  ],
 ]
 `;
 
 exports[`actions > scenario load should work 1`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "next": [Function],
+    "url": "/api/scenario/1",
+  },
+  "type": "fetch",
 }
 `;
 
 exports[`actions > scenario load should work 2`] = `
-Object {
-  "type": "decrement outstanding requests",
-}
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
 `;
 
 exports[`actions > scenario load should work 3`] = `
 Array [
   Object {
-    "payload": Object {
-      "bundleId": "1",
-      "id": "1",
-    },
-    "type": "set scenario",
+    "type": "decrement outstanding fetches",
   },
   Array [
     Object {
-      "type": "increment outstanding requests",
+      "payload": Object {
+        "bundleId": "1",
+        "id": "1",
+      },
+      "type": "set scenario",
     },
-    Promise {},
+    Array [
+      Object {
+        "type": "increment outstanding fetches",
+      },
+      Promise {},
+    ],
   ],
 ]
 `;
 
 exports[`actions > scenario saveToServer should work 1`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "body": Object {
+        "id": "1",
+      },
+      "method": "put",
+    },
+    "url": "/api/scenario/1",
+  },
+  "type": "fetch",
 }
 `;
 
 exports[`actions > scenario saveToServer should work 2`] = `
-Object {
-  "type": "decrement outstanding requests",
-}
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
 `;
 
 exports[`actions > scenario saveToServer should work 3`] = `
-Object {
-  "payload": Object {
-    "id": "1",
+Array [
+  Object {
+    "type": "decrement outstanding fetches",
   },
-  "type": "set scenario",
-}
+  Object {
+    "payload": Object {
+      "id": "1",
+    },
+    "type": "set scenario",
+  },
+]
 `;
 
 exports[`actions > scenario set should work 1`] = `
@@ -138,12 +206,40 @@ Array [
     },
     "type": "set scenario",
   },
+  Object {
+    "payload": Object {
+      "next": [Function],
+      "url": "/api/scenario/1/modifications",
+    },
+    "type": "fetch",
+  },
+]
+`;
+
+exports[`actions > scenario setAndLoadModifications should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "bundleId": "1",
+      "id": "1",
+    },
+    "type": "set scenario",
+  },
   Array [
     Object {
-      "type": "increment outstanding requests",
+      "type": "increment outstanding fetches",
     },
     Promise {},
   ],
+]
+`;
+
+exports[`actions > scenario setAndLoadModifications should work 3`] = `
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
 ]
 `;
 
