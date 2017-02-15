@@ -1,117 +1,249 @@
+exports[`actions > project create should work 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "body": Object {
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "description": "Project description",
+        "id": 1,
+        "name": "Mock Project",
+      },
+      "method": "post",
+    },
+    "url": "/api/project",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > project create should work 2`] = `
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > project create should work 3`] = `
+Array [
+  Object {
+    "type": "decrement outstanding fetches",
+  },
+  Array [
+    Object {
+      "payload": Object {
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "description": "Project description",
+        "id": 1,
+        "name": "Mock Project",
+      },
+      "type": "set project",
+    },
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/projects/1",
+        ],
+        "method": "push",
+      },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
+  ],
+]
+`;
+
 exports[`actions > project deleteProject should work 1`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "method": "delete",
+    },
+    "url": "/api/project/1",
+  },
+  "type": "fetch",
 }
 `;
 
 exports[`actions > project deleteProject should work 2`] = `
-Object {
-  "type": "decrement outstanding requests",
-}
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
 `;
 
 exports[`actions > project deleteProject should work 3`] = `
 Array [
   Object {
-    "payload": "1",
-    "type": "delete project",
+    "type": "decrement outstanding fetches",
   },
-  Object {
-    "payload": Object {
-      "args": Array [
-        "/",
-      ],
-      "method": "push",
+  Array [
+    Object {
+      "payload": "1",
+      "type": "delete project",
     },
-    "type": "@@router/CALL_HISTORY_METHOD",
-  },
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/",
+        ],
+        "method": "push",
+      },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
+  ],
 ]
 `;
 
 exports[`actions > project load should work 1`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "next": [Function],
+    "url": "/api/project/1",
+  },
+  "type": "fetch",
 }
 `;
 
 exports[`actions > project load should work 2`] = `
-Object {
-  "type": "decrement outstanding requests",
-}
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
 `;
 
 exports[`actions > project load should work 3`] = `
 Array [
   Object {
-    "payload": Object {
-      "bounds": Object {
-        "east": -76.81503295898438,
-        "north": 39.02345139405932,
-        "south": 38.777640223073355,
-        "west": -77.25723266601562,
+    "type": "decrement outstanding fetches",
+  },
+  Array [
+    Object {
+      "payload": Object {
+        "bounds": Object {
+          "east": -76.81503295898438,
+          "north": 39.02345139405932,
+          "south": 38.777640223073355,
+          "west": -77.25723266601562,
+        },
+        "bundles": Array [],
+        "description": "Project description",
+        "name": "Project name",
+        "scenarios": Array [],
       },
-      "bundles": Array [],
-      "description": "Project description",
-      "name": "Project name",
-      "scenarios": Array [],
+      "type": "set project",
     },
-    "type": "set project",
-  },
-  Object {
-    "payload": Object {
-      "lat": 38.900545808566335,
-      "lon": -77.0361328125,
+    Object {
+      "payload": Object {
+        "lat": 38.900545808566335,
+        "lon": -77.0361328125,
+      },
+      "type": "set map center",
     },
-    "type": "set map center",
-  },
-  Object {
-    "type": "set bundles",
-  },
-  Object {
-    "type": "set scenarios",
-  },
+    Object {
+      "type": "set bundles",
+    },
+    Object {
+      "type": "set scenarios",
+    },
+  ],
 ]
 `;
 
 exports[`actions > project loadAll should work 1`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "next": [Function],
+    "url": "/api/project",
+  },
+  "type": "fetch",
 }
 `;
 
 exports[`actions > project loadAll should work 2`] = `
-Object {
-  "type": "decrement outstanding requests",
-}
+Array [
+  Object {
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
 `;
 
 exports[`actions > project loadAll should work 3`] = `
-Object {
-  "payload": Array [],
-  "type": "set all projects",
-}
+Array [
+  Object {
+    "type": "decrement outstanding fetches",
+  },
+  Object {
+    "payload": Array [],
+    "type": "set all projects",
+  },
+]
 `;
 
 exports[`actions > project save should work 1`] = `
-Object {
-  "payload": Object {
-    "id": "1",
+Array [
+  Object {
+    "payload": Object {
+      "id": "1",
+    },
+    "type": "set project",
   },
-  "type": "set project",
-}
+  Object {
+    "payload": Object {
+      "next": [Function],
+      "options": Object {
+        "body": Object {
+          "id": "1",
+        },
+        "method": "put",
+      },
+      "url": "/api/project/1",
+    },
+    "type": "fetch",
+  },
+]
 `;
 
 exports[`actions > project save should work 2`] = `
-Object {
-  "type": "increment outstanding requests",
-}
+Array [
+  Object {
+    "payload": Object {
+      "id": "1",
+    },
+    "type": "set project",
+  },
+  Array [
+    Object {
+      "type": "increment outstanding fetches",
+    },
+    Promise {},
+  ],
+]
 `;
 
 exports[`actions > project save should work 3`] = `
 Array [
   Object {
-    "type": "decrement outstanding requests",
+    "type": "increment outstanding fetches",
   },
+  Promise {},
 ]
 `;
 
