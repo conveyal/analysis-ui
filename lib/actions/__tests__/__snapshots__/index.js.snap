@@ -5,46 +5,95 @@ Object {
 `;
 
 exports[`actions > index > bundle deleteBundle should work 1`] = `
-Object {
-  "payload": 1,
-  "type": "delete bundle",
-}
+Array [
+  Object {
+    "payload": 1,
+    "type": "delete bundle",
+  },
+  Object {
+    "payload": Object {
+      "next": [Function],
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/bundle/1",
+    },
+    "type": "fetch",
+  },
+]
 `;
 
 exports[`actions > index > bundle deleteBundle should work 2`] = `
-Object {
-  "type": "increment outstanding requests",
-}
+Array [
+  Object {
+    "payload": 1,
+    "type": "delete bundle",
+  },
+  Array [
+    Object {
+      "type": "increment outstanding fetches",
+    },
+    Promise {},
+  ],
+]
 `;
 
 exports[`actions > index > bundle deleteBundle should work 3`] = `
 Array [
   Object {
-    "type": "decrement outstanding requests",
+    "type": "increment outstanding fetches",
   },
+  Promise {},
 ]
 `;
 
 exports[`actions > index > bundle saveBundle should work 1`] = `
-Object {
-  "payload": Object {
-    "id": 1,
+Array [
+  Object {
+    "payload": Object {
+      "id": 1,
+    },
+    "type": "set bundle",
   },
-  "type": "set bundle",
-}
+  Object {
+    "payload": Object {
+      "next": [Function],
+      "options": Object {
+        "body": Object {
+          "id": 1,
+        },
+        "method": "put",
+      },
+      "url": "/api/bundle/1",
+    },
+    "type": "fetch",
+  },
+]
 `;
 
 exports[`actions > index > bundle saveBundle should work 2`] = `
-Object {
-  "type": "increment outstanding requests",
-}
+Array [
+  Object {
+    "payload": Object {
+      "id": 1,
+    },
+    "type": "set bundle",
+  },
+  Array [
+    Object {
+      "type": "increment outstanding fetches",
+    },
+    Promise {},
+  ],
+]
 `;
 
 exports[`actions > index > bundle saveBundle should work 3`] = `
 Array [
   Object {
-    "type": "decrement outstanding requests",
+    "type": "increment outstanding fetches",
   },
+  Promise {},
 ]
 `;
 

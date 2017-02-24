@@ -1,6 +1,7 @@
 common:
   scenario: Scenario
   variant: Variant
+  help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
 authentication:
   logIn: Log in
   logOut: Log out
@@ -35,6 +36,9 @@ scenario:
   editTitle: Edit scenario
   route: Route
 transitEditor:
+  startEdit: Edit route geometry
+  stopEdit: Stop editing
+  bidirectional: Bidirectional
   followRoad: Follow streets
   makeStop: make stop
   makeControlPoint: make control point
@@ -53,6 +57,9 @@ network:
   saving: Saving . . .
 modification:
   deleteConfirmation: Are you sure you would like to delete this modification?
+  filter: Search modifications
+  removeStops:
+    removeSeconds: Time savings per removed stop
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -77,6 +84,7 @@ analysis:
   latField: Latitude field
   lonField: Longitude field
   errorsInScenario: Errors were found in the scenario:
+  warningsInScenario: Warnings were found applying the scenario
   errorsInModification: in modification %s
   runAnalysis: Perform regional analysis
   minimumImprovementProbability: Minimum probability of improvement
@@ -110,6 +118,13 @@ analysis:
     car: Automobile (kiss-and-ride)
     bicycleRent: Bikeshare (bike rental)
     carPark: Automobile (park-and-ride)
+  fetchStatus:
+    LOADING_GRID: Loading grid…
+    APPLYING_SCENARIO: Applying scenario…
+    PERFORMING_ANALYSIS: Performing analysis…
+    COMPUTING_ISOCHRONE: Computing isochrone…
+    INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)…
+  refresh: Update results
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
@@ -165,6 +180,7 @@ report:
     kmh: km/h
     mph: mph
     ff: furlongs per fortnight
+    second: seconds
   addTrips:
     bidirectional: bidirectional
     unidirectional: unidirectional

@@ -1,3 +1,13 @@
+exports[`Component > Modification > ModificationEditor render just the title if not loaded 1`] = `
+<div
+  className="ModificationDock">
+  <div
+    className="ModificationDockTitle">
+    Test Modification
+  </div>
+</div>
+`;
+
 exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
 <div
   className="ModificationDock">
@@ -20,58 +30,82 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
           value="Test Modification" />
       </div>
       <div>
-        <a
-          className="btn btn-warning btn-block"
-          href="#"
-          onClick={[Function]}
-          target={undefined}>
-          <i
-            className="fa fa-times-circle fa-fw " />
-           Stop editing
-        </a>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              defaultChecked={true}
-              onChange={[Function]}
-              type="checkbox" />
+        <div>
+          <a
+            className="btn btn-warning btn-block"
+            href="#"
+            onClick={[Function]}
+            target={undefined}>
+            <i
+              className="fa fa-stop-circle fa-fw " />
              
-            Extend from end
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              defaultChecked={true}
-              onChange={[Function]}
-              type="checkbox" />
-             
-            Follow streets
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              defaultChecked={undefined}
-              onChange={[Function]}
-              type="checkbox" />
-             
-            Create stops automatically
-          </label>
-        </div>
-        <div
-          className="checkbox">
-          <label>
-            <input
-              checked={false}
-              onChange={[Function]}
-              type="checkbox" />
-             
-            Bidirectional
-          </label>
+            Stop editing
+          </a>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                defaultChecked={true}
+                onChange={[Function]}
+                type="checkbox" />
+               
+              Create stops automatically
+            </label>
+          </div>
+          <div
+            className="form-group">
+            <label>
+              Stop spacing
+            </label>
+            <div
+              className="InputWithUnits">
+              <input
+                className="form-control"
+                min={0}
+                name={undefined}
+                onChange={[Function]}
+                placeholder="meters"
+                type="number"
+                value={400} />
+              <span
+                className="InputUnits">
+                meters
+              </span>
+            </div>
+          </div>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                checked={false}
+                onChange={[Function]}
+                type="checkbox" />
+               
+              Bidirectional
+            </label>
+          </div>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                defaultChecked={true}
+                onChange={[Function]}
+                type="checkbox" />
+               
+              Extend from end
+            </label>
+          </div>
+          <div
+            className="checkbox">
+            <label>
+              <input
+                defaultChecked={true}
+                onChange={[Function]}
+                type="checkbox" />
+               
+              Follow streets
+            </label>
+          </div>
         </div>
         <div>
           <section
@@ -322,7 +356,7 @@ exports[`Component > Modification > ModificationEditor renders correctly 1`] = `
                         }
                       }>
                       <i
-                        className="fa fa-chevron-right fa-fw " />
+                        className="fa fa-caret-right fa-fw " />
                       <strong>
                         Set individual segment speeds
                       </strong>
