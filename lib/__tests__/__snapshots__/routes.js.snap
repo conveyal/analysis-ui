@@ -1432,21 +1432,31 @@ exports[`Routes should render 1`] = `
                     className="badge">
                     beta
                   </span>
-                  <LogInLogOut
-                    login={[Function]}
-                    logout={[Function]}
-                    userIsLoggedIn={false}>
-                    <Button
-                      className="btn-xs pull-right"
-                      onClick={[Function]}>
-                      <a
-                        className="btn btn-default btn-xs pull-right"
-                        href="#"
+                  <div
+                    className="pull-right">
+                    <a
+                      className="HelpLink"
+                      href="http://docs.analysis.conveyal.com/"
+                      target="_blank">
+                      help
+                    </a>
+                     
+                    <LogInLogOut
+                      login={[Function]}
+                      logout={[Function]}
+                      userIsLoggedIn={false}>
+                      <Button
+                        className="btn-xs"
                         onClick={[Function]}>
-                        Log in
-                      </a>
-                    </Button>
-                  </LogInLogOut>
+                        <a
+                          className="btn btn-default btn-xs"
+                          href="#"
+                          onClick={[Function]}>
+                          Log in
+                        </a>
+                      </Button>
+                    </LogInLogOut>
+                  </div>
                   <div
                     className="LoggedInAs">
                     Logged in as undefined
