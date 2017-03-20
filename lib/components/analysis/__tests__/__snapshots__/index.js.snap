@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Components > Analysis > Single Point should render correctly 1`] = `
 <SinglePointAnalysis
   accessibility={0}
@@ -45,65 +47,74 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
   spectrogramData={Array []}
   variantIndex={0}
   variantName=""
-  workerVersion="">
+  workerVersion=""
+>
   <div>
     <div
-      className="DockTitle">
+      className="DockTitle"
+    >
       Variant: 
       <span
-        className="pull-right">
+        className="pull-right"
+      >
         <small />
         <button
           className="btn btn-link"
           disabled={false}
-          onClick={[Function]}>
+          onClick={[Function]}
+        >
           Update results
            
           <Icon
             className=""
-            type="refresh">
+            type="refresh"
+          >
             <i
-              className="fa fa-refresh fa-fw " />
+              className="fa fa-refresh fa-fw "
+            />
           </Icon>
         </button>
       </span>
     </div>
     <div
-      className="block">
+      className="block"
+    >
       <Collapsible
         defaultExpanded={false}
-        title="Analysis settings">
+        title="Analysis settings"
+      >
         <div>
           <div
             aria-level={3}
-            role="heading">
-            <div
+            role="heading"
+          >
+            <a
               aria-expanded={false}
+              className="CollapsibleButton"
               onClick={[Function]}
               role="button"
-              style={
-                Object {
-                  "cursor": "pointer",
-                  "paddingBottom": "12px",
-                }
-              }>
+              tabIndex={0}
+            >
               <Icon
-                type="caret-right">
+                type="caret-right"
+              >
                 <i
-                  className="fa fa-caret-right fa-fw " />
+                  className="fa fa-caret-right fa-fw "
+                />
               </Icon>
               <strong>
                 Analysis settings
               </strong>
-            </div>
+            </a>
           </div>
         </div>
       </Collapsible>
       <Group>
         <div
-          className="form-group">
+          className="form-group"
+        >
           <Select
-            addLabelText="Add \"{label}\"?"
+            addLabelText="Add \\"{label}\\"?"
             arrowRenderer={[Function]}
             autosize={true}
             backspaceRemoves={true}
@@ -146,21 +157,26 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             value=""
             valueComponent={[Function]}
             valueKey="value"
-            width={600}>
+            width={600}
+          >
             <div
-              className="Select Select--single is-searchable">
+              className="Select Select--single is-searchable"
+            >
               <div
                 className="Select-control"
                 onKeyDown={[Function]}
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
                 onTouchMove={[Function]}
-                onTouchStart={[Function]}>
+                onTouchStart={[Function]}
+              >
                 <span
                   className="Select-multi-value-wrapper"
-                  id="react-select-2--value">
+                  id="react-select-2--value"
+                >
                   <div
-                    className="Select-placeholder">
+                    className="Select-placeholder"
+                  >
                     Select a grid...
                   </div>
                   <AutosizeInput
@@ -175,14 +191,17 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     onFocus={[Function]}
                     required={false}
                     role="combobox"
-                    value="" />
+                    value=""
+                  />
                 </span>
                 <span
                   className="Select-arrow-zone"
-                  onMouseDown={[Function]}>
+                  onMouseDown={[Function]}
+                >
                   <span
                     className="Select-arrow"
-                    onMouseDown={[Function]} />
+                    onMouseDown={[Function]}
+                  />
                 </span>
               </div>
             </div>
@@ -193,28 +212,37 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
         className="btn btn-success btn-block"
         onlyActiveOnIndex={false}
         style={Object {}}
-        to="/projects//grids/create">
+        to="/projects//grids/create"
+      >
         <a
           className="btn btn-success btn-block"
           onClick={[Function]}
-          style={Object {}}>
+          style={Object {}}
+        >
           <Icon
-            type="upload">
+            type="upload"
+          >
             <i
-              className="fa fa-upload fa-fw " />
+              className="fa fa-upload fa-fw "
+            />
           </Icon>
            Create a new grid
         </a>
       </Link>
       <Checkbox
         label="Compare to another scenario"
-        onChange={[Function]}>
+        onChange={[Function]}
+      >
         <div
-          className="checkbox">
-          <label>
+          className="checkbox"
+        >
+          <label
+            htmlFor="Compare to another scenario"
+          >
             <input
               onChange={[Function]}
-              type="checkbox" />
+              type="checkbox"
+            />
              
             Compare to another scenario
           </label>
@@ -222,23 +250,30 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       </Checkbox>
     </div>
     <div
-      className="DockTitle">
+      className="DockTitle"
+    >
       Regional analyses
     </div>
     <div
-      className="block">
+      className="block"
+    >
       <Button
         block={true}
         onClick={[Function]}
-        style="success">
+        style="success"
+      >
         <a
           className="btn btn-success btn-block"
           href="#"
-          onClick={[Function]}>
+          onClick={[Function]}
+          tabIndex={0}
+        >
           <Icon
-            type="plus">
+            type="plus"
+          >
             <i
-              className="fa fa-plus fa-fw " />
+              className="fa fa-plus fa-fw "
+            />
           </Icon>
           New regional analysis
         </a>
@@ -248,9 +283,11 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
         loadRegionalAnalyses={[Function]}
         projectId=""
         scenarioId=""
-        selectRegionalAnalysis={[Function]}>
+        selectRegionalAnalysis={[Function]}
+      >
         <ul
-          className="list-group" />
+          className="list-group"
+        />
       </RegionalAnalysisSelector>
     </div>
   </div>

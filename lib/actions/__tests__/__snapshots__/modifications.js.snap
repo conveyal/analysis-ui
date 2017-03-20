@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`actions > modifications > copyFromScenario should work 1`] = `
 Object {
   "payload": Object {
@@ -11,6 +13,10 @@ Object {
 exports[`actions > modifications > copyFromScenario should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/scenario/1/modifications",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -20,6 +26,10 @@ Array [
 exports[`actions > modifications > copyFromScenario should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/scenario/1/modifications",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
@@ -69,6 +79,53 @@ Array [
       },
       Array [
         Object {
+          "payload": Object {
+            "options": Object {
+              "body": Object {
+                "bidirectional": false,
+                "entries": Array [],
+                "feed": "1",
+                "id": "b979a579-9aae-4dd6-9d10-f0b31c933900",
+                "name": "Test Modification",
+                "routes": Array [
+                  "route1",
+                ],
+                "scenario": 2,
+                "segments": Array [],
+                "showOnMap": false,
+                "timetables": Array [
+                  Object {
+                    "dwellTime": 10,
+                    "endTime": 57600,
+                    "friday": true,
+                    "headwaySecs": 900,
+                    "monday": true,
+                    "name": "Test timetable",
+                    "patternTrips": Array [
+                      "abcd",
+                    ],
+                    "saturday": false,
+                    "segmentSpeeds": Array [],
+                    "sourceTrip": "abcd",
+                    "startTime": 28800,
+                    "sunday": false,
+                    "thursday": true,
+                    "tuesday": true,
+                    "wednesday": true,
+                  },
+                ],
+                "trips": Array [
+                  "abcd",
+                ],
+                "type": "add-trip-pattern",
+                "variants": Array [
+                  0,
+                ],
+              },
+              "method": "put",
+            },
+            "url": "/api/modification/b979a579-9aae-4dd6-9d10-f0b31c933900",
+          },
           "type": "increment outstanding fetches",
         },
         Promise {},
@@ -105,6 +162,23 @@ Object {
 exports[`actions > modifications > create should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "expanded": false,
+          "id": 1,
+          "name": "Add Trip Pattern",
+          "scenario": "1",
+          "segments": Array [],
+          "showOnMap": true,
+          "timetables": Array [],
+          "type": "add-trip-pattern",
+          "variants": Array [],
+        },
+        "method": "post",
+      },
+      "url": "/api/modification",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -114,6 +188,23 @@ Array [
 exports[`actions > modifications > create should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "expanded": false,
+          "id": 1,
+          "name": "Add Trip Pattern",
+          "scenario": "1",
+          "segments": Array [],
+          "showOnMap": true,
+          "timetables": Array [],
+          "type": "add-trip-pattern",
+          "variants": Array [],
+        },
+        "method": "post",
+      },
+      "url": "/api/modification",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
@@ -200,6 +291,12 @@ Array [
   },
   Array [
     Object {
+      "payload": Object {
+        "options": Object {
+          "method": "delete",
+        },
+        "url": "/api/modification/1",
+      },
       "type": "increment outstanding fetches",
     },
     Promise {},
@@ -210,6 +307,12 @@ Array [
 exports[`actions > modifications > deleteModification should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/modification/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -229,6 +332,10 @@ Object {
 exports[`actions > modifications > getForScenario should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/scenario/1/modifications",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -238,6 +345,10 @@ Array [
 exports[`actions > modifications > getForScenario should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/scenario/1/modifications",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
@@ -288,6 +399,10 @@ Array [
     },
     Array [
       Object {
+        "payload": Object {
+          "options": Object {},
+          "url": "/api/graphql?query=%0Aquery%20dataQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20checksum%2C%0A%20%20%20%20%20%20routes%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20detailRoutes%3A%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20direction_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20stop_id%2C%0A%20%20%20%20%20%20%20%20stop_name%2C%0A%20%20%20%20%20%20%20%20stop_lat%2C%0A%20%20%20%20%20%20%20%20stop_lon%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=%7B%22bundleId%22%3A%221%22%2C%22routeIds%22%3A%5B%5D%7D",
+        },
         "type": "increment outstanding fetches",
       },
       Promise {},
@@ -352,6 +467,52 @@ Object {
 exports[`actions > modifications > saveToServer should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bidirectional": false,
+          "entries": Array [],
+          "feed": "1",
+          "id": "1234",
+          "name": "Test Modification",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "dwellTime": 10,
+              "endTime": 57600,
+              "friday": true,
+              "headwaySecs": 900,
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "variants": Array [
+            0,
+          ],
+        },
+        "method": "put",
+      },
+      "url": "/api/modification/1234",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -361,6 +522,52 @@ Array [
 exports[`actions > modifications > saveToServer should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bidirectional": false,
+          "entries": Array [],
+          "feed": "1",
+          "id": "1234",
+          "name": "Test Modification",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "dwellTime": 10,
+              "endTime": 57600,
+              "friday": true,
+              "headwaySecs": 900,
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "variants": Array [
+            0,
+          ],
+        },
+        "method": "put",
+      },
+      "url": "/api/modification/1234",
+    },
     "type": "decrement outstanding fetches",
   },
 ]
@@ -511,6 +718,52 @@ Array [
   },
   Array [
     Object {
+      "payload": Object {
+        "options": Object {
+          "body": Object {
+            "bidirectional": false,
+            "entries": Array [],
+            "feed": "1",
+            "id": "1234",
+            "name": "Test Modification",
+            "routes": Array [
+              "route1",
+            ],
+            "segments": Array [],
+            "showOnMap": false,
+            "timetables": Array [
+              Object {
+                "dwellTime": 10,
+                "endTime": 57600,
+                "friday": true,
+                "headwaySecs": 900,
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "variants": Array [
+              0,
+            ],
+          },
+          "method": "put",
+        },
+        "url": "/api/modification/1234",
+      },
       "type": "increment outstanding fetches",
     },
     Promise {},
@@ -521,6 +774,52 @@ Array [
 exports[`actions > modifications > set should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bidirectional": false,
+          "entries": Array [],
+          "feed": "1",
+          "id": "1234",
+          "name": "Test Modification",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "dwellTime": 10,
+              "endTime": 57600,
+              "friday": true,
+              "headwaySecs": 900,
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "variants": Array [
+            0,
+          ],
+        },
+        "method": "put",
+      },
+      "url": "/api/modification/1234",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
