@@ -59,7 +59,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             className="form-group"
           >
             <label
-              htmlFor="From time"
+              htmlFor="from-time-input"
             >
               From time
             </label>
@@ -73,6 +73,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             >
               <input
                 className="form-control"
+                id="from-time-input"
                 name="fromTime"
                 onChange={[Function]}
                 onWheel={[Function]}
@@ -111,7 +112,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             className="form-group"
           >
             <label
-              htmlFor="To time"
+              htmlFor="to-time-input"
             >
               To time
             </label>
@@ -125,6 +126,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             >
               <input
                 className="form-control"
+                id="to-time-input"
                 name="toTime"
                 onChange={[Function]}
                 onWheel={[Function]}
@@ -143,7 +145,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
       value="2016-01-16"
     >
       <label
-        htmlFor="Date"
+        htmlFor="date-picker-1"
       >
         Date
         <Component
@@ -153,7 +155,11 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           dateFormat={true}
           defaultValue=""
           input={true}
-          inputProps={Object {}}
+          inputProps={
+            Object {
+              "id": "date-picker-1",
+            }
+          }
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -169,6 +175,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           >
             <input
               className="form-control"
+              id="date-picker-1"
               onChange={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
@@ -603,7 +610,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="form-group"
         >
           <label
-            htmlFor="Maximum transfers"
+            htmlFor="max-transfers-input"
           >
             Maximum transfers
           </label>
@@ -620,6 +627,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           >
             <input
               className="form-control"
+              id="max-transfers-input"
               max={7}
               min={0}
               name="maxTransfers"
@@ -656,7 +664,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="form-group"
         >
           <label
-            htmlFor="Number of simulated schedules"
+            htmlFor="monte-carlo-draws-input"
           >
             Number of simulated schedules
           </label>
@@ -673,6 +681,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           >
             <input
               className="form-control"
+              id="monte-carlo-draws-input"
               max={10000}
               min={1}
               name="monteCarloDraws"

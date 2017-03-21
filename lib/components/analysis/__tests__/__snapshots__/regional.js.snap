@@ -379,10 +379,12 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         value={0.83}
       >
         <Group
+          format=".2f"
           label="Minimum probability of improvement"
           max={1}
           min={0}
           onChange={[Function]}
+          output={true}
           step={0.01}
           value={0.83}
         >
@@ -390,24 +392,26 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             className="form-group"
           >
             <label
-              htmlFor="Minimum probability of improvement"
+              htmlFor="minimum-probability-of-improvement-input"
             >
               Minimum probability of improvement
             </label>
             <input
               className="form-control"
-              id="00000000-0000-0000-0000-000000000000"
+              format=".2f"
+              id="minimum-probability-of-improvement-input"
               label="Minimum probability of improvement"
               max={1}
               min={0}
               onChange={[Function]}
+              output={true}
               step={0.01}
               type="range"
               value={0.83}
             />
             <output
               className="pull-right"
-              htmlFor="00000000-0000-0000-0000-000000000000"
+              htmlFor="minimum-probability-of-improvement-input"
             >
               0.55
             </output>
