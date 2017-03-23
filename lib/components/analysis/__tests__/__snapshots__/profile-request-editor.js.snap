@@ -48,6 +48,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         value="07:00"
       >
         <Group
+          id="from-time-input-0"
           label="From time"
           name="fromTime"
           onChange={[Function]}
@@ -59,11 +60,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             className="form-group"
           >
             <label
-              htmlFor="from-time-input"
+              htmlFor="from-time-input-0"
             >
               From time
             </label>
             <Input
+              id="from-time-input-0"
               label="From time"
               name="fromTime"
               onChange={[Function]}
@@ -73,7 +75,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             >
               <input
                 className="form-control"
-                id="from-time-input"
+                id="from-time-input-0"
                 name="fromTime"
                 onChange={[Function]}
                 onWheel={[Function]}
@@ -101,6 +103,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         value="09:00"
       >
         <Group
+          id="to-time-input-1"
           label="To time"
           name="toTime"
           onChange={[Function]}
@@ -112,11 +115,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             className="form-group"
           >
             <label
-              htmlFor="to-time-input"
+              htmlFor="to-time-input-1"
             >
               To time
             </label>
             <Input
+              id="to-time-input-1"
               label="To time"
               name="toTime"
               onChange={[Function]}
@@ -126,7 +130,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             >
               <input
                 className="form-control"
-                id="to-time-input"
+                id="to-time-input-1"
                 name="toTime"
                 onChange={[Function]}
                 onWheel={[Function]}
@@ -598,6 +602,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
       value={3}
     >
       <Group
+        id="max-transfers-input-2"
         label="Maximum transfers"
         max={7}
         min={0}
@@ -610,11 +615,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="form-group"
         >
           <label
-            htmlFor="max-transfers-input"
+            htmlFor="max-transfers-input-2"
           >
             Maximum transfers
           </label>
           <Input
+            id="max-transfers-input-2"
             label="Maximum transfers"
             max={7}
             min={0}
@@ -627,7 +633,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           >
             <input
               className="form-control"
-              id="max-transfers-input"
+              id="max-transfers-input-2"
               max={7}
               min={0}
               name="maxTransfers"
@@ -652,6 +658,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
       value={200}
     >
       <Group
+        id="monte-carlo-draws-input-3"
         label="Number of simulated schedules"
         max={10000}
         min={1}
@@ -664,11 +671,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="form-group"
         >
           <label
-            htmlFor="monte-carlo-draws-input"
+            htmlFor="monte-carlo-draws-input-3"
           >
             Number of simulated schedules
           </label>
           <Input
+            id="monte-carlo-draws-input-3"
             label="Number of simulated schedules"
             max={10000}
             min={1}
@@ -681,7 +689,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           >
             <input
               className="form-control"
-              id="monte-carlo-draws-input"
+              id="monte-carlo-draws-input-3"
               max={10000}
               min={1}
               name="monteCarloDraws"
