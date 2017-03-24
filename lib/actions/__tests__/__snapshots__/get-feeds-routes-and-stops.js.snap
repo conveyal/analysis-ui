@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`actions > getFeedsRoutesAndStops should lock ui when no bundles are returned 1`] = `
 Object {
   "payload": Object {
@@ -11,6 +13,10 @@ Object {
 exports[`actions > getFeedsRoutesAndStops should lock ui when no bundles are returned 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/graphql?query=%0Aquery%20routeQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%222%22%5D%7D",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -20,6 +26,10 @@ Array [
 exports[`actions > getFeedsRoutesAndStops should lock ui when no bundles are returned 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/graphql?query=%0Aquery%20routeQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%222%22%5D%7D",
+    },
     "type": "decrement outstanding fetches",
   },
   Object {
@@ -45,6 +55,10 @@ Object {
 exports[`actions > getFeedsRoutesAndStops should work when fetching via getAllRoutesAndStops 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/graphql?query=%0Aquery%20dataQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20checksum%2C%0A%20%20%20%20%20%20routes%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20detailRoutes%3A%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20direction_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20stop_id%2C%0A%20%20%20%20%20%20%20%20stop_name%2C%0A%20%20%20%20%20%20%20%20stop_lat%2C%0A%20%20%20%20%20%20%20%20stop_lon%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%5D%7D",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -54,6 +68,10 @@ Array [
 exports[`actions > getFeedsRoutesAndStops should work when fetching via getAllRoutesAndStops 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/graphql?query=%0Aquery%20dataQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20checksum%2C%0A%20%20%20%20%20%20routes%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20detailRoutes%3A%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20direction_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20stop_id%2C%0A%20%20%20%20%20%20%20%20stop_name%2C%0A%20%20%20%20%20%20%20%20stop_lat%2C%0A%20%20%20%20%20%20%20%20stop_lon%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%5D%7D",
+    },
     "type": "decrement outstanding fetches",
   },
   Object {
@@ -115,6 +133,10 @@ Object {
 exports[`actions > getFeedsRoutesAndStops should work when fetching with getUnfetchedRoutes 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/graphql?query=%0Aquery%20routeQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%222%22%5D%7D",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -124,6 +146,10 @@ Array [
 exports[`actions > getFeedsRoutesAndStops should work when fetching with getUnfetchedRoutes 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/graphql?query=%0Aquery%20routeQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%222%22%5D%7D",
+    },
     "type": "decrement outstanding fetches",
   },
   Object {
