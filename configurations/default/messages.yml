@@ -28,6 +28,13 @@ project:
   r5Version: Analysis backend version
   showAllVersions: Show all analysis backend versions (advanced)
   showReleaseVersions: Show only release backend versions
+  loadStatus:
+    DOWNLOADING_OSM: Downloading OpenStreetMap data…
+    DOWNLOADING_CENSUS: Downloading Census data…
+    EXTRACTING_CENSUS_COLUMNS: Processing Census data…
+    PROJECTING_CENSUS: Projecting Census data to project grid…
+    STORING_CENSUS: Storing census data…
+    DONE: Done
 scenario:
   createAction: Create new scenario
   delete: Delete scenario
@@ -125,6 +132,10 @@ analysis:
     COMPUTING_ISOCHRONE: Computing isochrone…
     INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)…
   refresh: Update results
+  regionalBounds: Bounds of analysis
+  regionalBoundsSame: Same as %s
+  regionalBoundsCustom: Custom
+  regionalBoundsProject: Same as project
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
