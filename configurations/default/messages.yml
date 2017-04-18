@@ -24,9 +24,9 @@ phasing:
   fromTimetable: Phase from timetable
   fromStop: Phase from stop
   minutes: Phase minutes
-  headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway)s minute headway does not equal this timetables headway which could cause unintended behavior.
+  headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway)s minute headway does not equal this timetable's headway, which could cause unintended behavior.
   noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
-  exactTimesWarning: Heads up! Time tables with exact times cannot phase.
+  exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
 project:
   createAction: Create a new project
   createTitle: Create new project
@@ -55,7 +55,7 @@ transitEditor:
   startEdit: Edit route geometry
   stopEdit: Stop editing
   bidirectional: Bidirectional
-  bidirectionalWarning: Heads up! Bidirectional modifications cannot phase.
+  bidirectionalWarning: Modification cannot be bidirectional because timetables in this modification have phasing information.
   followRoad: Follow streets
   makeStop: make stop
   makeControlPoint: make control point
