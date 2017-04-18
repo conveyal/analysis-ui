@@ -73,20 +73,26 @@ Array [
     "type": "decrement outstanding fetches",
   },
   Array [
-    Object {
-      "payload": Object {
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
+    Array [
+      Object {
+        "payload": Object {
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "description": "Project description",
+          "id": 1,
+          "name": "Mock Project",
         },
-        "description": "Project description",
-        "id": 1,
-        "name": "Mock Project",
+        "type": "set project",
       },
-      "type": "set project",
-    },
+      Object {
+        "payload": null,
+        "type": "set current indicator",
+      },
+    ],
     Array [
       Object {
         "payload": Object {
@@ -191,21 +197,27 @@ Array [
     "type": "decrement outstanding fetches",
   },
   Array [
-    Object {
-      "payload": Object {
-        "bounds": Object {
-          "east": -76.81503295898438,
-          "north": 39.02345139405932,
-          "south": 38.777640223073355,
-          "west": -77.25723266601562,
+    Array [
+      Object {
+        "payload": Object {
+          "bounds": Object {
+            "east": -76.81503295898438,
+            "north": 39.02345139405932,
+            "south": 38.777640223073355,
+            "west": -77.25723266601562,
+          },
+          "bundles": Array [],
+          "description": "Project description",
+          "name": "Project name",
+          "scenarios": Array [],
         },
-        "bundles": Array [],
-        "description": "Project description",
-        "name": "Project name",
-        "scenarios": Array [],
+        "type": "set project",
       },
-      "type": "set project",
-    },
+      Object {
+        "payload": null,
+        "type": "set current indicator",
+      },
+    ],
     Object {
       "payload": Object {
         "lat": 38.900545808566335,
@@ -264,12 +276,18 @@ Array [
 
 exports[`actions > project save should work 1`] = `
 Array [
-  Object {
-    "payload": Object {
-      "id": "1",
+  Array [
+    Object {
+      "payload": Object {
+        "id": "1",
+      },
+      "type": "set project",
     },
-    "type": "set project",
-  },
+    Object {
+      "payload": null,
+      "type": "set current indicator",
+    },
+  ],
   Object {
     "payload": Object {
       "next": [Function],
@@ -288,12 +306,18 @@ Array [
 
 exports[`actions > project save should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "id": "1",
+  Array [
+    Object {
+      "payload": Object {
+        "id": "1",
+      },
+      "type": "set project",
     },
-    "type": "set project",
-  },
+    Object {
+      "payload": null,
+      "type": "set current indicator",
+    },
+  ],
   Array [
     Object {
       "payload": Object {
