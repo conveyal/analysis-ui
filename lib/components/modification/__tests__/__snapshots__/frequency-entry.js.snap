@@ -1,17 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > FrequencyEntry renders correctly 1`] = `
-<div
+<section
   className="panel panel-default inner-panel"
   onFocus={[Function]}
 >
-  <div
+  <a
     className="panel-heading clearfix"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+    tabIndex={0}
   >
+    <i
+      className="fa fa-caret-down fa-fw "
+    />
     <strong>
+       
       Test timetable
     </strong>
-  </div>
+  </a>
   <div
     className="panel-body"
   >
@@ -124,24 +135,6 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
                 The Express , starting 03:26 (21 minute trip)
               </span>
             </div>
-          </span>
-          <span
-            aria-label="Clear value"
-            className="Select-clear-zone"
-            onMouseDown={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            title="Clear value"
-          >
-            <span
-              className="Select-clear"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&times;",
-                }
-              }
-            />
           </span>
           <span
             className="Select-arrow-zone"
@@ -347,6 +340,7 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
         >
           <input
             checked={undefined}
+            disabled={false}
             id="times-are-exact-input-11"
             onChange={[Function]}
             type="checkbox"
@@ -354,6 +348,51 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
            
           Times are exact
         </label>
+      </div>
+      <div>
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="phase-at-stop-input-12"
+          >
+            Phase at stop
+          </label>
+          <div
+            className="Select Select--single is-searchable"
+            style={undefined}
+          >
+            <div
+              className="Select-control"
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              style={undefined}
+            >
+              <span
+                className="Select-multi-value-wrapper"
+                id="react-select-4--value"
+              >
+                <div
+                  className="Select-placeholder"
+                >
+                  Phase at stop
+                </div>
+              </span>
+              <span
+                className="Select-arrow-zone"
+                onMouseDown={[Function]}
+              >
+                <span
+                  className="Select-arrow"
+                  onMouseDown={[Function]}
+                />
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <a
@@ -369,5 +408,5 @@ exports[`Component > FrequencyEntry renders correctly 1`] = `
        Delete frequency entry
     </a>
   </div>
-</div>
+</section>
 `;
