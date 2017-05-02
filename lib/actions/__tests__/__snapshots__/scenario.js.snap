@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`actions > scenario create should work 1`] = `
 Object {
   "payload": Object {
@@ -22,6 +24,20 @@ Object {
 exports[`actions > scenario create should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bundleId": "1",
+          "name": "test",
+          "projectId": "1",
+          "variants": Array [
+            "Default",
+          ],
+        },
+        "method": "post",
+      },
+      "url": "/api/scenario",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -31,6 +47,20 @@ Array [
 exports[`actions > scenario create should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bundleId": "1",
+          "name": "test",
+          "projectId": "1",
+          "variants": Array [
+            "Default",
+          ],
+        },
+        "method": "post",
+      },
+      "url": "/api/scenario",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
@@ -75,6 +105,12 @@ Object {
 exports[`actions > scenario deleteScenario should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/scenario/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -84,6 +120,12 @@ Array [
 exports[`actions > scenario deleteScenario should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/scenario/1",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
@@ -117,6 +159,10 @@ Object {
 exports[`actions > scenario load should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/scenario/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -126,6 +172,10 @@ Array [
 exports[`actions > scenario load should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/scenario/1",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
@@ -138,6 +188,10 @@ Array [
     },
     Array [
       Object {
+        "payload": Object {
+          "options": Object {},
+          "url": "/api/scenario/1/modifications",
+        },
         "type": "increment outstanding fetches",
       },
       Promise {},
@@ -165,6 +219,15 @@ Object {
 exports[`actions > scenario saveToServer should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "id": "1",
+        },
+        "method": "put",
+      },
+      "url": "/api/scenario/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -174,6 +237,15 @@ Array [
 exports[`actions > scenario saveToServer should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "id": "1",
+        },
+        "method": "put",
+      },
+      "url": "/api/scenario/1",
+    },
     "type": "decrement outstanding fetches",
   },
   Object {
@@ -227,6 +299,10 @@ Array [
   },
   Array [
     Object {
+      "payload": Object {
+        "options": Object {},
+        "url": "/api/scenario/1/modifications",
+      },
       "type": "increment outstanding fetches",
     },
     Promise {},
@@ -237,6 +313,10 @@ Array [
 exports[`actions > scenario setAndLoadModifications should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/scenario/1/modifications",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},

@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`actions > project create should work 1`] = `
 Object {
   "payload": Object {
@@ -25,6 +27,23 @@ Object {
 exports[`actions > project create should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "description": "Project description",
+          "id": 1,
+          "name": "Mock Project",
+        },
+        "method": "post",
+      },
+      "url": "/api/project",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -34,32 +53,56 @@ Array [
 exports[`actions > project create should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "description": "Project description",
+          "id": 1,
+          "name": "Mock Project",
+        },
+        "method": "post",
+      },
+      "url": "/api/project",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
-    Object {
-      "payload": Object {
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
+    Array [
+      Object {
+        "payload": Object {
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "description": "Project description",
+          "id": 1,
+          "name": "Mock Project",
         },
-        "description": "Project description",
-        "id": 1,
-        "name": "Mock Project",
+        "type": "set project",
       },
-      "type": "set project",
-    },
-    Object {
-      "payload": Object {
-        "args": Array [
-          "/projects/1",
-        ],
-        "method": "push",
+      Object {
+        "payload": null,
+        "type": "set current indicator",
       },
-      "type": "@@router/CALL_HISTORY_METHOD",
-    },
+    ],
+    Array [
+      Object {
+        "payload": Object {
+          "options": Object {},
+          "url": "/api/project/1",
+        },
+        "type": "increment outstanding fetches",
+      },
+      Promise {},
+    ],
   ],
 ]
 `;
@@ -80,6 +123,12 @@ Object {
 exports[`actions > project deleteProject should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/project/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -89,6 +138,12 @@ Array [
 exports[`actions > project deleteProject should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/project/1",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
@@ -122,6 +177,10 @@ Object {
 exports[`actions > project load should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/project/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -131,24 +190,34 @@ Array [
 exports[`actions > project load should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/project/1",
+    },
     "type": "decrement outstanding fetches",
   },
   Array [
-    Object {
-      "payload": Object {
-        "bounds": Object {
-          "east": -76.81503295898438,
-          "north": 39.02345139405932,
-          "south": 38.777640223073355,
-          "west": -77.25723266601562,
+    Array [
+      Object {
+        "payload": Object {
+          "bounds": Object {
+            "east": -76.81503295898438,
+            "north": 39.02345139405932,
+            "south": 38.777640223073355,
+            "west": -77.25723266601562,
+          },
+          "bundles": Array [],
+          "description": "Project description",
+          "name": "Project name",
+          "scenarios": Array [],
         },
-        "bundles": Array [],
-        "description": "Project description",
-        "name": "Project name",
-        "scenarios": Array [],
+        "type": "set project",
       },
-      "type": "set project",
-    },
+      Object {
+        "payload": null,
+        "type": "set current indicator",
+      },
+    ],
     Object {
       "payload": Object {
         "lat": 38.900545808566335,
@@ -179,6 +248,10 @@ Object {
 exports[`actions > project loadAll should work 2`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/project",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -188,6 +261,10 @@ Array [
 exports[`actions > project loadAll should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/project",
+    },
     "type": "decrement outstanding fetches",
   },
   Object {
@@ -199,12 +276,18 @@ Array [
 
 exports[`actions > project save should work 1`] = `
 Array [
-  Object {
-    "payload": Object {
-      "id": "1",
+  Array [
+    Object {
+      "payload": Object {
+        "id": "1",
+      },
+      "type": "set project",
     },
-    "type": "set project",
-  },
+    Object {
+      "payload": null,
+      "type": "set current indicator",
+    },
+  ],
   Object {
     "payload": Object {
       "next": [Function],
@@ -223,14 +306,29 @@ Array [
 
 exports[`actions > project save should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "id": "1",
-    },
-    "type": "set project",
-  },
   Array [
     Object {
+      "payload": Object {
+        "id": "1",
+      },
+      "type": "set project",
+    },
+    Object {
+      "payload": null,
+      "type": "set current indicator",
+    },
+  ],
+  Array [
+    Object {
+      "payload": Object {
+        "options": Object {
+          "body": Object {
+            "id": "1",
+          },
+          "method": "put",
+        },
+        "url": "/api/project/1",
+      },
       "type": "increment outstanding fetches",
     },
     Promise {},
@@ -241,6 +339,15 @@ Array [
 exports[`actions > project save should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "id": "1",
+        },
+        "method": "put",
+      },
+      "url": "/api/project/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},

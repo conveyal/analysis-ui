@@ -1,10 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Component > Input Checkbox renders correctly 1`] = `
 <div
-  className="checkbox">
-  <label>
+  className="checkbox"
+>
+  <label
+    htmlFor="do-the-thing-input-0"
+  >
     <input
       defaultChecked={true}
-      type="checkbox" />
+      id="do-the-thing-input-0"
+      type="checkbox"
+    />
      
     Do the thing?
   </label>
@@ -13,66 +20,85 @@ exports[`Component > Input Checkbox renders correctly 1`] = `
 
 exports[`Component > Input File renders correctly 1`] = `
 <div
-  className="form-group">
-  <label>
+  className="form-group"
+>
+  <label
+    htmlFor="files-input-1"
+  >
     Select files
   </label>
   <input
     className="form-control"
+    id="files-input-1"
     multiple={true}
     name="files"
     onChange={[Function]}
     placeholder="Select files"
     type="file"
-    value={undefined} />
+    value={undefined}
+  />
 </div>
 `;
 
 exports[`Component > Input Group renders correctly 1`] = `
 <div
-  className="form-group" />
+  className="form-group"
+/>
 `;
 
 exports[`Component > Input Input renders correctly 1`] = `
 <input
   className="form-control"
+  id="some-input-input-2"
   name="someInput"
   onChange={[Function]}
   placeholder="Enter Text"
-  value="" />
+  value=""
+/>
 `;
 
 exports[`Component > Input Number renders correctly 1`] = `
 <div
-  className="form-group">
+  className="form-group"
+>
   <input
     className="form-control"
+    id="some-number-input-3"
     min={0}
     name="someNumber"
     onChange={[Function]}
+    onWheel={[Function]}
     placeholder="Enter Number"
     type="number"
-    value={12345} />
+    value={12345}
+  />
 </div>
 `;
 
 exports[`Component > Input Select renders correctly 1`] = `
 <div
-  className="form-group">
-  <label>
+  className="form-group"
+>
+  <label
+    htmlFor="select-an-option-input-4"
+  >
     Select an option
   </label>
   <select
     className="form-control"
+    id="select-an-option-input-4"
     label="Select an option"
-    onChange={[Function]}
-    value="">
+    onBlur={[Function]}
+    value=""
+  >
     <option
-      value="1">
+      value="1"
+    >
       1
     </option>
     <option
-      value="2">
+      value="2"
+    >
       2
     </option>
   </select>
@@ -81,22 +107,29 @@ exports[`Component > Input Select renders correctly 1`] = `
 
 exports[`Component > Input SelectMultiple renders correctly 1`] = `
 <div
-  className="form-group">
-  <label>
+  className="form-group"
+>
+  <label
+    htmlFor="select-multiple-options-input-5"
+  >
     Select multiple options
   </label>
   <select
     className="form-control"
+    id="select-multiple-options-input-5"
     label="Select multiple options"
     multiple={true}
-    onChange={[Function]}
-    value={Array []}>
+    onBlur={[Function]}
+    value={Array []}
+  >
     <option
-      value="1">
+      value="1"
+    >
       1
     </option>
     <option
-      value="2">
+      value="2"
+    >
       2
     </option>
   </select>
@@ -105,16 +138,21 @@ exports[`Component > Input SelectMultiple renders correctly 1`] = `
 
 exports[`Component > Input Text renders correctly 1`] = `
 <div
-  className="form-group">
-  <label>
+  className="form-group"
+>
+  <label
+    htmlFor="some-text-input-6"
+  >
     Enter text
   </label>
   <input
     className="form-control"
+    id="some-text-input-6"
     name="someText"
     onChange={[Function]}
     placeholder="Enter text"
     type="text"
-    value="blah" />
+    value="blah"
+  />
 </div>
 `;

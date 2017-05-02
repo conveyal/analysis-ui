@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Components > Analysis > Regional should handle rendering comparison 1`] = `
 <RegionalAnalysis
   addRegionalAnalysisLayerToMap={[Function]}
@@ -218,14 +220,15 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
   removeRegionalAnalysisLayerFromMap={[Function]}
   removeRegionalComparisonLayerFromMap={[Function]}
   setActiveRegionalAnalysis={[Function]}
-  setMinimumImprovementProbability={[Function]}>
+  setMinimumImprovementProbability={[Function]}
+>
   <div>
     <h3>
       ANALYSIS 1
     </h3>
     <div>
       <Select
-        addLabelText="Add \"{label}\"?"
+        addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}
         autosize={true}
         backspaceRemoves={true}
@@ -273,19 +276,23 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         tabSelectsValue={true}
         value="efgh"
         valueComponent={[Function]}
-        valueKey="value">
+        valueKey="value"
+      >
         <div
-          className="Select Select--single is-searchable has-value">
+          className="Select Select--single is-searchable has-value"
+        >
           <div
             className="Select-control"
             onKeyDown={[Function]}
             onMouseDown={[Function]}
             onTouchEnd={[Function]}
             onTouchMove={[Function]}
-            onTouchStart={[Function]}>
+            onTouchStart={[Function]}
+          >
             <span
               className="Select-multi-value-wrapper"
-              id="react-select-3--value">
+              id="react-select-3--value"
+            >
               <Value
                 disabled={false}
                 id="react-select-3--value-item"
@@ -296,14 +303,17 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                     "label": "ANALYSIS 2",
                     "value": "efgh",
                   }
-                }>
+                }
+              >
                 <div
-                  className="Select-value">
+                  className="Select-value"
+                >
                   <span
                     aria-selected="true"
                     className="Select-value-label"
                     id="react-select-3--value-item"
-                    role="option">
+                    role="option"
+                  >
                     ANALYSIS 2
                   </span>
                 </div>
@@ -320,7 +330,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                 onFocus={[Function]}
                 required={false}
                 role="combobox"
-                value="" />
+                value=""
+              />
             </span>
             <span
               aria-label="Clear value"
@@ -329,21 +340,25 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
               onTouchEnd={[Function]}
               onTouchMove={[Function]}
               onTouchStart={[Function]}
-              title="Clear value">
+              title="Clear value"
+            >
               <span
                 className="Select-clear"
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "&times;",
                   }
-                } />
+                }
+              />
             </span>
             <span
               className="Select-arrow-zone"
-              onMouseDown={[Function]}>
+              onMouseDown={[Function]}
+            >
               <span
                 className="Select-arrow"
-                onMouseDown={[Function]} />
+                onMouseDown={[Function]}
+              />
             </span>
           </div>
         </div>
@@ -351,7 +366,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
     </div>
     <MinimumImprovementProbabilitySelector
       minimumImprovementProbability={0.83}
-      setMinimumImprovementProbability={[Function]}>
+      setMinimumImprovementProbability={[Function]}
+    >
       <Slider
         format=".2f"
         label="Minimum probability of improvement"
@@ -360,32 +376,40 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         onChange={[Function]}
         output={true}
         step={0.01}
-        value={0.83}>
+        value={0.83}
+      >
         <Group
+          id="minimum-probability-of-improvement-input-1"
           label="Minimum probability of improvement"
           max={1}
           min={0}
           onChange={[Function]}
           step={0.01}
-          value={0.83}>
+          value={0.83}
+        >
           <div
-            className="form-group">
-            <label>
+            className="form-group"
+          >
+            <label
+              htmlFor="minimum-probability-of-improvement-input-1"
+            >
               Minimum probability of improvement
             </label>
             <input
               className="form-control"
-              id="00000000-0000-0000-0000-000000000000"
+              id="minimum-probability-of-improvement-input-1"
               label="Minimum probability of improvement"
               max={1}
               min={0}
               onChange={[Function]}
               step={0.01}
               type="range"
-              value={0.83} />
+              value={0.83}
+            />
             <output
               className="pull-right"
-              htmlFor="00000000-0000-0000-0000-000000000000">
+              htmlFor="minimum-probability-of-improvement-input-1"
+            >
               0.55
             </output>
           </div>
@@ -420,9 +444,11 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           "rgba(44, 123, 182, 0.42)",
         ]
       }
-      min={0}>
+      min={0}
+    >
       <ul
-        className="Legend">
+        className="Legend"
+      >
         <li>
           <div
             style={
@@ -432,7 +458,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           0
           –
           100
@@ -446,7 +473,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           100
           –
           500
@@ -460,7 +488,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           500
           –
           1,000
@@ -474,7 +503,8 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           1,000
           –
           2,000
@@ -483,90 +513,97 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
     </Legend>
     <Collapsible
       defaultExpanded={false}
-      title="ANALYSIS 1 settings">
+      title="ANALYSIS 1 settings"
+    >
       <div>
         <div
           aria-level={3}
-          role="heading">
-          <div
+          role="heading"
+        >
+          <a
             aria-expanded={false}
+            className="CollapsibleButton"
             onClick={[Function]}
             role="button"
-            style={
-              Object {
-                "cursor": "pointer",
-                "paddingBottom": "12px",
-              }
-            }>
+            tabIndex={0}
+          >
             <Icon
-              type="caret-right">
+              type="caret-right"
+            >
               <i
-                className="fa fa-caret-right fa-fw " />
+                className="fa fa-caret-right fa-fw "
+              />
             </Icon>
             <strong>
               ANALYSIS 1 settings
             </strong>
-          </div>
+          </a>
         </div>
       </div>
     </Collapsible>
     <Collapsible
       defaultExpanded={false}
-      title="ANALYSIS 2 settings">
+      title="ANALYSIS 2 settings"
+    >
       <div>
         <div
           aria-level={3}
-          role="heading">
-          <div
+          role="heading"
+        >
+          <a
             aria-expanded={false}
+            className="CollapsibleButton"
             onClick={[Function]}
             role="button"
-            style={
-              Object {
-                "cursor": "pointer",
-                "paddingBottom": "12px",
-              }
-            }>
+            tabIndex={0}
+          >
             <Icon
-              type="caret-right">
+              type="caret-right"
+            >
               <i
-                className="fa fa-caret-right fa-fw " />
+                className="fa fa-caret-right fa-fw "
+              />
             </Icon>
             <strong>
               ANALYSIS 2 settings
             </strong>
-          </div>
+          </a>
         </div>
       </div>
     </Collapsible>
     <div>
       <b>
         <Icon
-          type="map-o">
+          type="map-o"
+        >
           <i
-            className="fa fa-map-o fa-fw " />
+            className="fa fa-map-o fa-fw "
+          />
         </Icon>
         Export to GIS
       </b>
       <ul>
         <li>
           <a
-            href="#"
-            onClick={[Function]}>
+            onClick={[Function]}
+            tabIndex={0}
+          >
             Download ANALYSIS 1
           </a>
         </li>
         <li>
           <a
-            href="#"
-            onClick={[Function]}>
+            onClick={[Function]}
+            tabIndex={0}
+          >
             Download ANALYSIS 2
           </a>
         </li>
         <li>
           <a
-            href="#"
-            onClick={[Function]}>
+            onClick={[Function]}
+            tabIndex={0}
+          >
             Download probability of improvement
           </a>
         </li>
@@ -700,7 +737,8 @@ exports[`Components > Analysis > Regional should load analysis if it is not load
   removeRegionalAnalysisLayerFromMap={[Function]}
   removeRegionalComparisonLayerFromMap={[Function]}
   setActiveRegionalAnalysis={[Function]}
-  setMinimumImprovementProbability={[Function]} />
+  setMinimumImprovementProbability={[Function]}
+/>
 `;
 
 exports[`Components > Analysis > Regional should render correctly 1`] = `
@@ -869,14 +907,15 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
   removeRegionalAnalysisLayerFromMap={[Function]}
   removeRegionalComparisonLayerFromMap={[Function]}
   setActiveRegionalAnalysis={[Function]}
-  setMinimumImprovementProbability={[Function]}>
+  setMinimumImprovementProbability={[Function]}
+>
   <div>
     <h3>
       ANALYSIS 1
     </h3>
     <div>
       <Select
-        addLabelText="Add \"{label}\"?"
+        addLabelText="Add \\"{label}\\"?"
         arrowRenderer={[Function]}
         autosize={true}
         backspaceRemoves={true}
@@ -924,21 +963,26 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
         tabSelectsValue={true}
         value={null}
         valueComponent={[Function]}
-        valueKey="value">
+        valueKey="value"
+      >
         <div
-          className="Select Select--single is-searchable">
+          className="Select Select--single is-searchable"
+        >
           <div
             className="Select-control"
             onKeyDown={[Function]}
             onMouseDown={[Function]}
             onTouchEnd={[Function]}
             onTouchMove={[Function]}
-            onTouchStart={[Function]}>
+            onTouchStart={[Function]}
+          >
             <span
               className="Select-multi-value-wrapper"
-              id="react-select-2--value">
+              id="react-select-2--value"
+            >
               <div
-                className="Select-placeholder">
+                className="Select-placeholder"
+              >
                 Compare to
               </div>
               <AutosizeInput
@@ -953,14 +997,17 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                 onFocus={[Function]}
                 required={false}
                 role="combobox"
-                value="" />
+                value=""
+              />
             </span>
             <span
               className="Select-arrow-zone"
-              onMouseDown={[Function]}>
+              onMouseDown={[Function]}
+            >
               <span
                 className="Select-arrow"
-                onMouseDown={[Function]} />
+                onMouseDown={[Function]}
+              />
             </span>
           </div>
         </div>
@@ -989,9 +1036,11 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           "rgba(4, 90, 142, 0.42)",
         ]
       }
-      min={0}>
+      min={0}
+    >
       <ul
-        className="Legend">
+        className="Legend"
+      >
         <li>
           <div
             style={
@@ -1001,7 +1050,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           0
           –
           100
@@ -1015,7 +1065,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           100
           –
           500
@@ -1029,7 +1080,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           500
           –
           1,000
@@ -1043,7 +1095,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                 "height": 25,
                 "width": 50,
               }
-            } />
+            }
+          />
           1,000
           –
           2,000
@@ -1052,47 +1105,51 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
     </Legend>
     <Collapsible
       defaultExpanded={false}
-      title="ANALYSIS 1 settings">
+      title="ANALYSIS 1 settings"
+    >
       <div>
         <div
           aria-level={3}
-          role="heading">
-          <div
+          role="heading"
+        >
+          <a
             aria-expanded={false}
+            className="CollapsibleButton"
             onClick={[Function]}
             role="button"
-            style={
-              Object {
-                "cursor": "pointer",
-                "paddingBottom": "12px",
-              }
-            }>
+            tabIndex={0}
+          >
             <Icon
-              type="caret-right">
+              type="caret-right"
+            >
               <i
-                className="fa fa-caret-right fa-fw " />
+                className="fa fa-caret-right fa-fw "
+              />
             </Icon>
             <strong>
               ANALYSIS 1 settings
             </strong>
-          </div>
+          </a>
         </div>
       </div>
     </Collapsible>
     <div>
       <b>
         <Icon
-          type="map-o">
+          type="map-o"
+        >
           <i
-            className="fa fa-map-o fa-fw " />
+            className="fa fa-map-o fa-fw "
+          />
         </Icon>
         Export to GIS
       </b>
       <ul>
         <li>
           <a
-            href="#"
-            onClick={[Function]}>
+            onClick={[Function]}
+            tabIndex={0}
+          >
             Download ANALYSIS 1
           </a>
         </li>

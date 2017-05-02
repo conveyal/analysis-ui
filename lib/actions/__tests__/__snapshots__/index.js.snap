@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`actions > index > bundle addBundle should work 1`] = `
 Object {
   "type": "add bundle",
@@ -31,6 +33,12 @@ Array [
   },
   Array [
     Object {
+      "payload": Object {
+        "options": Object {
+          "method": "delete",
+        },
+        "url": "/api/bundle/1",
+      },
       "type": "increment outstanding fetches",
     },
     Promise {},
@@ -41,6 +49,12 @@ Array [
 exports[`actions > index > bundle deleteBundle should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/bundle/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -81,6 +95,15 @@ Array [
   },
   Array [
     Object {
+      "payload": Object {
+        "options": Object {
+          "body": Object {
+            "id": 1,
+          },
+          "method": "put",
+        },
+        "url": "/api/bundle/1",
+      },
       "type": "increment outstanding fetches",
     },
     Promise {},
@@ -91,6 +114,15 @@ Array [
 exports[`actions > index > bundle saveBundle should work 3`] = `
 Array [
   Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "id": 1,
+        },
+        "method": "put",
+      },
+      "url": "/api/bundle/1",
+    },
     "type": "increment outstanding fetches",
   },
   Promise {},
@@ -127,19 +159,13 @@ Object {
 }
 `;
 
-exports[`actions > index > map state setActiveTrips should work 1`] = `
+exports[`actions > index > user setActiveTrips should work 1`] = `
 Object {
   "type": "set active trips",
 }
 `;
 
-exports[`actions > index > map state setMapState should work 1`] = `
-Object {
-  "type": "set map state",
-}
-`;
-
-exports[`actions > index > map state setUser should work 1`] = `
+exports[`actions > index > user setUser should work 1`] = `
 Object {
   "type": "set user",
 }

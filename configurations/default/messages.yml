@@ -18,6 +18,16 @@ nav:
   openScenario: Open Scenario
   importShapefile: Import Shapefile
   selectBundle: Select Bundle
+phasing:
+  phase: Phase
+  atStop: Phase at stop
+  fromTimetable: Phase from timetable
+  fromStop: Phase from stop
+  minutes: Phase minutes
+  disabled: Phasing is disabled when a modification is bidirectional or a timetable uses exact times.
+  headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway)s minute headway does not equal this timetable's headway, which could cause unintended behavior.
+  noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
+  exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
 project:
   createAction: Create a new project
   createTitle: Create new project
@@ -28,6 +38,13 @@ project:
   r5Version: Analysis backend version
   showAllVersions: Show all analysis backend versions (advanced)
   showReleaseVersions: Show only release backend versions
+  loadStatus:
+    DOWNLOADING_OSM: Downloading OpenStreetMap data…
+    DOWNLOADING_CENSUS: Downloading Census data…
+    EXTRACTING_CENSUS_COLUMNS: Processing Census data…
+    PROJECTING_CENSUS: Projecting Census data to project grid…
+    STORING_CENSUS: Storing census data…
+    DONE: Done
 scenario:
   createAction: Create new scenario
   delete: Delete scenario
@@ -39,6 +56,7 @@ transitEditor:
   startEdit: Edit route geometry
   stopEdit: Stop editing
   bidirectional: Bidirectional
+  bidirectionalWarning: Modification cannot be bidirectional because timetables in this modification have phasing information.
   followRoad: Follow streets
   makeStop: make stop
   makeControlPoint: make control point
@@ -125,6 +143,13 @@ analysis:
     COMPUTING_ISOCHRONE: Computing isochrone…
     INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)…
   refresh: Update results
+  regionalBounds: Bounds of analysis
+  regionalBoundsSame: Same as %s
+  regionalBoundsCustom: Custom
+  regionalBoundsProject: Same as project
+  bookmark: Bookmark
+  createBookmark: Create bookmark
+  bookmarkName: Bookmark name
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
