@@ -44,7 +44,15 @@ Below that, the analysis settings can be expanded and different parameters for t
   <figcaption>The analysis settings pane</figcaption>
 </figure>
 
-Here you can set a number of parameters. First are the from and to time; these represent the time period
+Here you can set a number of parameters. The first panel allows the creation and use of "bookmarks,"
+which store particular analysis settings (e.g. origin location, type of opportunity, departure date
+and time, travel time cutoff, etc.). Once you have a set of settings you would like save, you can choose
+"Create Bookmark," enter a name for the bookmark, and click "Create Bookmark" again to save it. Once that is
+done, you can select a bookmark from the dropdown box to automatically fill in all of the settings from
+that bookmark. Bookmarks are shared by all scenarios in a project; this way, the same locations and
+settings can be used to analyze the effects of multiple scenarios.
+
+Next are the from and to time; these represent the time period
 you are analyzing. These default to 7:00 and 9:00, meaning our accessibility results will display
 the opportunities accessible by someone leaving the chosen origin point between 7:00 and 9:00. Below
 that is the date of the analysis. This date determines what service will be included in the analysis.
