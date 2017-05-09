@@ -32,6 +32,9 @@ at the start time, and then additional departures with exactly the specified fre
 including) the end time. For example, in the scenario given above, the vehicles would be scheduled
 to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end time is not included).
 
+If the schedule is not known, but it is known that the schedules of two lines will be related, the
+[phasing feature](phasing) may be enabled.
+
 You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful
 when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
 
