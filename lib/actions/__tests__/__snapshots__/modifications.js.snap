@@ -267,25 +267,6 @@ Array [
     "payload": "1",
     "type": "delete modification",
   },
-  Object {
-    "payload": Object {
-      "next": [Function],
-      "options": Object {
-        "method": "delete",
-      },
-      "url": "/api/modification/1",
-    },
-    "type": "fetch",
-  },
-]
-`;
-
-exports[`actions > modifications > deleteModification should work 2`] = `
-Array [
-  Object {
-    "payload": "1",
-    "type": "delete modification",
-  },
   Array [
     Object {
       "payload": Object {
@@ -298,10 +279,14 @@ Array [
     },
     Promise {},
   ],
+  Object {
+    "payload": Array [],
+    "type": "clear references to modification",
+  },
 ]
 `;
 
-exports[`actions > modifications > deleteModification should work 3`] = `
+exports[`actions > modifications > deleteModification should work 2`] = `
 Array [
   Object {
     "payload": Object {
