@@ -860,6 +860,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                       onChange={[Function]}
                                       onWheel={[Function]}
                                       type="time"
+                                      units="hh:mm"
                                       value="08:00"
                                     >
                                       <Group
@@ -868,6 +869,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         onChange={[Function]}
                                         onWheel={[Function]}
                                         type="time"
+                                        units="hh:mm"
                                         value="08:00"
                                       >
                                         <div
@@ -884,17 +886,27 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             onChange={[Function]}
                                             onWheel={[Function]}
                                             type="time"
+                                            units="hh:mm"
                                             value="08:00"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="start-time-input-34"
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="Start time"
-                                              type="time"
-                                              value="08:00"
-                                            />
+                                            <div
+                                              className="InputWithUnits"
+                                            >
+                                              <input
+                                                className="form-control"
+                                                id="start-time-input-34"
+                                                onChange={[Function]}
+                                                onWheel={[Function]}
+                                                placeholder="hh:mm"
+                                                type="time"
+                                                value="08:00"
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                hh:mm
+                                              </span>
+                                            </div>
                                           </Input>
                                         </div>
                                       </Group>
@@ -910,6 +922,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                       onChange={[Function]}
                                       onWheel={[Function]}
                                       type="time"
+                                      units="hh:mm"
                                       value="16:00"
                                     >
                                       <Group
@@ -918,6 +931,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         onChange={[Function]}
                                         onWheel={[Function]}
                                         type="time"
+                                        units="hh:mm"
                                         value="16:00"
                                       >
                                         <div
@@ -934,17 +948,27 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             onChange={[Function]}
                                             onWheel={[Function]}
                                             type="time"
+                                            units="hh:mm"
                                             value="16:00"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="end-time-input-35"
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="End time"
-                                              type="time"
-                                              value="16:00"
-                                            />
+                                            <div
+                                              className="InputWithUnits"
+                                            >
+                                              <input
+                                                className="form-control"
+                                                id="end-time-input-35"
+                                                onChange={[Function]}
+                                                onWheel={[Function]}
+                                                placeholder="hh:mm"
+                                                type="time"
+                                                value="16:00"
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                hh:mm
+                                              </span>
+                                            </div>
                                           </Input>
                                         </div>
                                       </Group>
@@ -1096,60 +1120,70 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 update={[Function]}
                               >
                                 <div>
-                                  <Number
+                                  <MinutesSeconds
                                     label="Dwell time"
                                     onChange={[Function]}
-                                    units="seconds"
-                                    value={10}
+                                    seconds={10}
                                   >
-                                    <Group
-                                      id="dwell-time-input-38"
+                                    <Text
                                       label="Dwell time"
+                                      onBlur={[Function]}
                                       onChange={[Function]}
-                                      units="seconds"
-                                      value={10}
+                                      onKeyDown={[Function]}
+                                      units="mm:ss"
+                                      value="00:10"
                                     >
-                                      <div
-                                        className="form-group"
+                                      <Group
+                                        id="dwell-time-input-38"
+                                        label="Dwell time"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onKeyDown={[Function]}
+                                        units="mm:ss"
+                                        value="00:10"
                                       >
-                                        <label
-                                          htmlFor="dwell-time-input-38"
+                                        <div
+                                          className="form-group"
                                         >
-                                          Dwell time
-                                        </label>
-                                        <Input
-                                          id="dwell-time-input-38"
-                                          label="Dwell time"
-                                          min={0}
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="number"
-                                          units="seconds"
-                                          value={10}
-                                        >
-                                          <div
-                                            className="InputWithUnits"
+                                          <label
+                                            htmlFor="dwell-time-input-38"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="dwell-time-input-38"
-                                              min={0}
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="seconds"
-                                              type="number"
-                                              value={10}
-                                            />
-                                            <span
-                                              className="InputUnits"
+                                            Dwell time
+                                          </label>
+                                          <Input
+                                            id="dwell-time-input-38"
+                                            label="Dwell time"
+                                            onBlur={[Function]}
+                                            onChange={[Function]}
+                                            onKeyDown={[Function]}
+                                            type="text"
+                                            units="mm:ss"
+                                            value="00:10"
+                                          >
+                                            <div
+                                              className="InputWithUnits"
                                             >
-                                              seconds
-                                            </span>
-                                          </div>
-                                        </Input>
-                                      </div>
-                                    </Group>
-                                  </Number>
+                                              <input
+                                                className="form-control"
+                                                id="dwell-time-input-38"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onKeyDown={[Function]}
+                                                placeholder="mm:ss"
+                                                type="text"
+                                                value="00:10"
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                mm:ss
+                                              </span>
+                                            </div>
+                                          </Input>
+                                        </div>
+                                      </Group>
+                                    </Text>
+                                  </MinutesSeconds>
                                   <Number
                                     label="Average segment speed"
                                     min={1}
@@ -1206,62 +1240,70 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                       </div>
                                     </Group>
                                   </Number>
-                                  <Number
+                                  <MinutesSeconds
                                     label="Total travel time"
-                                    min={1}
                                     onChange={[Function]}
-                                    units="minutes"
-                                    value={0}
+                                    seconds={0}
                                   >
-                                    <Group
-                                      id="total-travel-time-input-40"
+                                    <Text
                                       label="Total travel time"
-                                      min={1}
+                                      onBlur={[Function]}
                                       onChange={[Function]}
-                                      units="minutes"
-                                      value={0}
+                                      onKeyDown={[Function]}
+                                      units="mm:ss"
+                                      value=""
                                     >
-                                      <div
-                                        className="form-group"
+                                      <Group
+                                        id="total-travel-time-input-40"
+                                        label="Total travel time"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onKeyDown={[Function]}
+                                        units="mm:ss"
+                                        value=""
                                       >
-                                        <label
-                                          htmlFor="total-travel-time-input-40"
+                                        <div
+                                          className="form-group"
                                         >
-                                          Total travel time
-                                        </label>
-                                        <Input
-                                          id="total-travel-time-input-40"
-                                          label="Total travel time"
-                                          min={1}
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="number"
-                                          units="minutes"
-                                          value={0}
-                                        >
-                                          <div
-                                            className="InputWithUnits"
+                                          <label
+                                            htmlFor="total-travel-time-input-40"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="total-travel-time-input-40"
-                                              min={1}
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="minutes"
-                                              type="number"
-                                              value={0}
-                                            />
-                                            <span
-                                              className="InputUnits"
+                                            Total travel time
+                                          </label>
+                                          <Input
+                                            id="total-travel-time-input-40"
+                                            label="Total travel time"
+                                            onBlur={[Function]}
+                                            onChange={[Function]}
+                                            onKeyDown={[Function]}
+                                            type="text"
+                                            units="mm:ss"
+                                            value=""
+                                          >
+                                            <div
+                                              className="InputWithUnits"
                                             >
-                                              minutes
-                                            </span>
-                                          </div>
-                                        </Input>
-                                      </div>
-                                    </Group>
-                                  </Number>
+                                              <input
+                                                className="form-control"
+                                                id="total-travel-time-input-40"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onKeyDown={[Function]}
+                                                placeholder="mm:ss"
+                                                type="text"
+                                                value=""
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                mm:ss
+                                              </span>
+                                            </div>
+                                          </Input>
+                                        </div>
+                                      </Group>
+                                    </Text>
+                                  </MinutesSeconds>
                                   <Collapsible
                                     defaultExpanded={false}
                                     title="Set individual segment speeds"
@@ -2384,6 +2426,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                       onChange={[Function]}
                                       onWheel={[Function]}
                                       type="time"
+                                      units="hh:mm"
                                       value="08:00"
                                     >
                                       <Group
@@ -2392,6 +2435,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                         onChange={[Function]}
                                         onWheel={[Function]}
                                         type="time"
+                                        units="hh:mm"
                                         value="08:00"
                                       >
                                         <div
@@ -2408,17 +2452,27 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                             onChange={[Function]}
                                             onWheel={[Function]}
                                             type="time"
+                                            units="hh:mm"
                                             value="08:00"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="start-time-input-13"
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="Start time"
-                                              type="time"
-                                              value="08:00"
-                                            />
+                                            <div
+                                              className="InputWithUnits"
+                                            >
+                                              <input
+                                                className="form-control"
+                                                id="start-time-input-13"
+                                                onChange={[Function]}
+                                                onWheel={[Function]}
+                                                placeholder="hh:mm"
+                                                type="time"
+                                                value="08:00"
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                hh:mm
+                                              </span>
+                                            </div>
                                           </Input>
                                         </div>
                                       </Group>
@@ -2434,6 +2488,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                       onChange={[Function]}
                                       onWheel={[Function]}
                                       type="time"
+                                      units="hh:mm"
                                       value="16:00"
                                     >
                                       <Group
@@ -2442,6 +2497,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                         onChange={[Function]}
                                         onWheel={[Function]}
                                         type="time"
+                                        units="hh:mm"
                                         value="16:00"
                                       >
                                         <div
@@ -2458,17 +2514,27 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                             onChange={[Function]}
                                             onWheel={[Function]}
                                             type="time"
+                                            units="hh:mm"
                                             value="16:00"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="end-time-input-14"
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="End time"
-                                              type="time"
-                                              value="16:00"
-                                            />
+                                            <div
+                                              className="InputWithUnits"
+                                            >
+                                              <input
+                                                className="form-control"
+                                                id="end-time-input-14"
+                                                onChange={[Function]}
+                                                onWheel={[Function]}
+                                                placeholder="hh:mm"
+                                                type="time"
+                                                value="16:00"
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                hh:mm
+                                              </span>
+                                            </div>
                                           </Input>
                                         </div>
                                       </Group>
@@ -2620,60 +2686,70 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                 update={[Function]}
                               >
                                 <div>
-                                  <Number
+                                  <MinutesSeconds
                                     label="Dwell time"
                                     onChange={[Function]}
-                                    units="seconds"
-                                    value={10}
+                                    seconds={10}
                                   >
-                                    <Group
-                                      id="dwell-time-input-17"
+                                    <Text
                                       label="Dwell time"
+                                      onBlur={[Function]}
                                       onChange={[Function]}
-                                      units="seconds"
-                                      value={10}
+                                      onKeyDown={[Function]}
+                                      units="mm:ss"
+                                      value="00:10"
                                     >
-                                      <div
-                                        className="form-group"
+                                      <Group
+                                        id="dwell-time-input-17"
+                                        label="Dwell time"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onKeyDown={[Function]}
+                                        units="mm:ss"
+                                        value="00:10"
                                       >
-                                        <label
-                                          htmlFor="dwell-time-input-17"
+                                        <div
+                                          className="form-group"
                                         >
-                                          Dwell time
-                                        </label>
-                                        <Input
-                                          id="dwell-time-input-17"
-                                          label="Dwell time"
-                                          min={0}
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="number"
-                                          units="seconds"
-                                          value={10}
-                                        >
-                                          <div
-                                            className="InputWithUnits"
+                                          <label
+                                            htmlFor="dwell-time-input-17"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="dwell-time-input-17"
-                                              min={0}
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="seconds"
-                                              type="number"
-                                              value={10}
-                                            />
-                                            <span
-                                              className="InputUnits"
+                                            Dwell time
+                                          </label>
+                                          <Input
+                                            id="dwell-time-input-17"
+                                            label="Dwell time"
+                                            onBlur={[Function]}
+                                            onChange={[Function]}
+                                            onKeyDown={[Function]}
+                                            type="text"
+                                            units="mm:ss"
+                                            value="00:10"
+                                          >
+                                            <div
+                                              className="InputWithUnits"
                                             >
-                                              seconds
-                                            </span>
-                                          </div>
-                                        </Input>
-                                      </div>
-                                    </Group>
-                                  </Number>
+                                              <input
+                                                className="form-control"
+                                                id="dwell-time-input-17"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onKeyDown={[Function]}
+                                                placeholder="mm:ss"
+                                                type="text"
+                                                value="00:10"
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                mm:ss
+                                              </span>
+                                            </div>
+                                          </Input>
+                                        </div>
+                                      </Group>
+                                    </Text>
+                                  </MinutesSeconds>
                                   <Number
                                     label="Average segment speed"
                                     min={1}
@@ -2730,62 +2806,70 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                       </div>
                                     </Group>
                                   </Number>
-                                  <Number
+                                  <MinutesSeconds
                                     label="Total travel time"
-                                    min={1}
                                     onChange={[Function]}
-                                    units="minutes"
-                                    value={0}
+                                    seconds={0}
                                   >
-                                    <Group
-                                      id="total-travel-time-input-19"
+                                    <Text
                                       label="Total travel time"
-                                      min={1}
+                                      onBlur={[Function]}
                                       onChange={[Function]}
-                                      units="minutes"
-                                      value={0}
+                                      onKeyDown={[Function]}
+                                      units="mm:ss"
+                                      value=""
                                     >
-                                      <div
-                                        className="form-group"
+                                      <Group
+                                        id="total-travel-time-input-19"
+                                        label="Total travel time"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        onKeyDown={[Function]}
+                                        units="mm:ss"
+                                        value=""
                                       >
-                                        <label
-                                          htmlFor="total-travel-time-input-19"
+                                        <div
+                                          className="form-group"
                                         >
-                                          Total travel time
-                                        </label>
-                                        <Input
-                                          id="total-travel-time-input-19"
-                                          label="Total travel time"
-                                          min={1}
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="number"
-                                          units="minutes"
-                                          value={0}
-                                        >
-                                          <div
-                                            className="InputWithUnits"
+                                          <label
+                                            htmlFor="total-travel-time-input-19"
                                           >
-                                            <input
-                                              className="form-control"
-                                              id="total-travel-time-input-19"
-                                              min={1}
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              placeholder="minutes"
-                                              type="number"
-                                              value={0}
-                                            />
-                                            <span
-                                              className="InputUnits"
+                                            Total travel time
+                                          </label>
+                                          <Input
+                                            id="total-travel-time-input-19"
+                                            label="Total travel time"
+                                            onBlur={[Function]}
+                                            onChange={[Function]}
+                                            onKeyDown={[Function]}
+                                            type="text"
+                                            units="mm:ss"
+                                            value=""
+                                          >
+                                            <div
+                                              className="InputWithUnits"
                                             >
-                                              minutes
-                                            </span>
-                                          </div>
-                                        </Input>
-                                      </div>
-                                    </Group>
-                                  </Number>
+                                              <input
+                                                className="form-control"
+                                                id="total-travel-time-input-19"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onKeyDown={[Function]}
+                                                placeholder="mm:ss"
+                                                type="text"
+                                                value=""
+                                              />
+                                              <span
+                                                className="InputUnits"
+                                              >
+                                                mm:ss
+                                              </span>
+                                            </div>
+                                          </Input>
+                                        </div>
+                                      </Group>
+                                    </Text>
+                                  </MinutesSeconds>
                                   <Collapsible
                                     defaultExpanded={false}
                                     title="Set individual segment speeds"

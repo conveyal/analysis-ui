@@ -302,16 +302,25 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
             >
               Start time
             </label>
-            <input
-              className="form-control"
-              id="start-time-input-14"
-              name={undefined}
-              onChange={[Function]}
-              onWheel={[Function]}
-              placeholder="Start time"
-              type="time"
-              value="08:00"
-            />
+            <div
+              className="InputWithUnits"
+            >
+              <input
+                className="form-control"
+                id="start-time-input-14"
+                name={undefined}
+                onChange={[Function]}
+                onWheel={[Function]}
+                placeholder="hh:mm"
+                type="time"
+                value="08:00"
+              />
+              <span
+                className="InputUnits"
+              >
+                hh:mm
+              </span>
+            </div>
           </div>
           <div
             className="form-group"
@@ -321,16 +330,25 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
             >
               End time
             </label>
-            <input
-              className="form-control"
-              id="end-time-input-15"
-              name={undefined}
-              onChange={[Function]}
-              onWheel={[Function]}
-              placeholder="End time"
-              type="time"
-              value="16:00"
-            />
+            <div
+              className="InputWithUnits"
+            >
+              <input
+                className="form-control"
+                id="end-time-input-15"
+                name={undefined}
+                onChange={[Function]}
+                onWheel={[Function]}
+                placeholder="hh:mm"
+                type="time"
+                value="16:00"
+              />
+              <span
+                className="InputUnits"
+              >
+                hh:mm
+              </span>
+            </div>
           </div>
           <div
             className="checkbox"
@@ -410,18 +428,18 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
               <input
                 className="form-control"
                 id="dwell-time-input-18"
-                min={0}
                 name={undefined}
+                onBlur={[Function]}
                 onChange={[Function]}
-                onWheel={[Function]}
-                placeholder="seconds"
-                type="number"
-                value={10}
+                onKeyDown={[Function]}
+                placeholder="mm:ss"
+                type="text"
+                value="00:10"
               />
               <span
                 className="InputUnits"
               >
-                seconds
+                mm:ss
               </span>
             </div>
           </div>
@@ -468,18 +486,18 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
               <input
                 className="form-control"
                 id="total-travel-time-input-20"
-                min={1}
                 name={undefined}
+                onBlur={[Function]}
                 onChange={[Function]}
-                onWheel={[Function]}
-                placeholder="minutes"
-                type="number"
-                value={0}
+                onKeyDown={[Function]}
+                placeholder="mm:ss"
+                type="text"
+                value=""
               />
               <span
                 className="InputUnits"
               >
-                minutes
+                mm:ss
               </span>
             </div>
           </div>
