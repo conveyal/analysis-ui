@@ -45,6 +45,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         onChange={[Function]}
         onWheel={[Function]}
         type="time"
+        units="hh:mm"
         value="07:00"
       >
         <Group
@@ -54,6 +55,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           onChange={[Function]}
           onWheel={[Function]}
           type="time"
+          units="hh:mm"
           value="07:00"
         >
           <div
@@ -71,18 +73,28 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               onChange={[Function]}
               onWheel={[Function]}
               type="time"
+              units="hh:mm"
               value="07:00"
             >
-              <input
-                className="form-control"
-                id="from-time-input-0"
-                name="fromTime"
-                onChange={[Function]}
-                onWheel={[Function]}
-                placeholder="From time"
-                type="time"
-                value="07:00"
-              />
+              <div
+                className="InputWithUnits"
+              >
+                <input
+                  className="form-control"
+                  id="from-time-input-0"
+                  name="fromTime"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  placeholder="hh:mm"
+                  type="time"
+                  value="07:00"
+                />
+                <span
+                  className="InputUnits"
+                >
+                  hh:mm
+                </span>
+              </div>
             </Input>
           </div>
         </Group>
@@ -100,6 +112,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         onChange={[Function]}
         onWheel={[Function]}
         type="time"
+        units="hh:mm"
         value="09:00"
       >
         <Group
@@ -109,6 +122,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           onChange={[Function]}
           onWheel={[Function]}
           type="time"
+          units="hh:mm"
           value="09:00"
         >
           <div
@@ -126,18 +140,28 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               onChange={[Function]}
               onWheel={[Function]}
               type="time"
+              units="hh:mm"
               value="09:00"
             >
-              <input
-                className="form-control"
-                id="to-time-input-1"
-                name="toTime"
-                onChange={[Function]}
-                onWheel={[Function]}
-                placeholder="To time"
-                type="time"
-                value="09:00"
-              />
+              <div
+                className="InputWithUnits"
+              >
+                <input
+                  className="form-control"
+                  id="to-time-input-1"
+                  name="toTime"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  placeholder="hh:mm"
+                  type="time"
+                  value="09:00"
+                />
+                <span
+                  className="InputUnits"
+                >
+                  hh:mm
+                </span>
+              </div>
             </Input>
           </div>
         </Group>
