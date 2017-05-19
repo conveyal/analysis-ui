@@ -142,14 +142,10 @@ Object {
 
 exports[`reducers > analysis should handle exit analysis mode 1`] = `
 Object {
-  "accessibility": null,
   "active": false,
-  "comparisonAccessibility": null,
   "comparisonInProgress": false,
-  "comparisonIsochrone": null,
-  "comparisonSpectrogramData": null,
+  "comparisonTravelTimeSurface": null,
   "isFetchingIsochrone": false,
-  "isochrone": null,
   "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
@@ -188,7 +184,8 @@ Object {
     "probabilityGrid": null,
   },
   "scenarioApplicationErrors": null,
-  "spectrogramData": null,
+  "scenarioApplicationWarnings": null,
+  "travelTimeSurface": null,
 }
 `;
 
@@ -571,67 +568,6 @@ Object {
 }
 `;
 
-exports[`reducers > analysis should handle set isochrone results 1`] = `
-Object {
-  "accessibility": 42,
-  "active": false,
-  "comparisonAccessibility": 55,
-  "comparisonInProgress": false,
-  "comparisonIsochrone": Object {
-    "comparison": true,
-  },
-  "comparisonSpectrogramData": Array [
-    "COMPARISON",
-  ],
-  "currentIndicator": "Jobs_total",
-  "grid": Object {},
-  "isFetchingIsochrone": false,
-  "isochrone": Object {},
-  "isochroneCutoff": 60,
-  "profileRequest": Object {
-    "accessModes": "WALK",
-    "bikeSafe": 1,
-    "bikeSlope": 1,
-    "bikeSpeed": 4.166666666666667,
-    "bikeTime": 1,
-    "bikeTrafficStress": 4,
-    "carSpeed": 20,
-    "date": "2016-12-20",
-    "directModes": "WALK",
-    "egressModes": "WALK",
-    "fromTime": 25200,
-    "maxBikeTime": 20,
-    "maxCarTime": 45,
-    "maxRides": 4,
-    "maxWalkTime": 20,
-    "minBikeTime": 10,
-    "minCarTime": 10,
-    "monteCarloDraws": 200,
-    "reachabilityThreshold": 0,
-    "streetTime": 90,
-    "suboptimalMinutes": 5,
-    "toTime": 32400,
-    "transitModes": "TRANSIT",
-    "walkSpeed": 1.3888888888888888,
-  },
-  "regional": Object {
-    "breaks": Array [],
-    "comparisonGrid": null,
-    "comparisonId": null,
-    "grid": null,
-    "id": null,
-    "minimumImprovementProbability": 0.95,
-    "percentile": 50,
-    "probabilityGrid": null,
-  },
-  "scenarioApplicationErrors": null,
-  "scenarioApplicationWarnings": undefined,
-  "spectrogramData": Array [
-    "SCENARIO",
-  ],
-}
-`;
-
 exports[`reducers > analysis should handle set profile request 1`] = `
 Object {
   "active": false,
@@ -712,7 +648,7 @@ Object {
 }
 `;
 
-exports[`reducers > analysis should handle show scenario application errors 1`] = `
+exports[`reducers > analysis should handle set scenario application errors 1`] = `
 Object {
   "active": false,
   "comparisonInProgress": false,
