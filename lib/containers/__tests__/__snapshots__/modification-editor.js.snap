@@ -465,6 +465,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       numberOfStops={0}
                       scenarioTimetables={Array []}
                       segmentDistances={Array []}
+                      setMapState={[Function]}
                       timetables={
                         Array [
                           Object {
@@ -491,7 +492,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       update={[Function]}
                     >
                       <div>
-                        <Timetable
+                        <TimetableComponent
                           allPhaseFromTimetableStops={Object {}}
                           bidirectional={false}
                           modificationStops={Array []}
@@ -499,6 +500,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           remove={[Function]}
                           scenarioTimetables={Array []}
                           segmentDistances={Array []}
+                          setMapState={[Function]}
                           timetable={
                             Object {
                               "dwellTime": 10,
@@ -1114,6 +1116,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               </TimetableEntry>
                               <SegmentSpeeds
                                 dwellTime={10}
+                                highlightSegment={[Function]}
+                                highlightStop={[Function]}
+                                modificationStops={Array []}
                                 numberOfStops={0}
                                 segmentDistances={Array []}
                                 segmentSpeeds={Array []}
@@ -1184,6 +1189,36 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                       </Group>
                                     </Text>
                                   </MinutesSeconds>
+                                  <Collapsible
+                                    defaultExpanded={false}
+                                    title="Set individual stop dwell times"
+                                  >
+                                    <div>
+                                      <div
+                                        aria-level={3}
+                                        role="heading"
+                                      >
+                                        <a
+                                          aria-expanded={false}
+                                          className="CollapsibleButton"
+                                          onClick={[Function]}
+                                          role="button"
+                                          tabIndex={0}
+                                        >
+                                          <Icon
+                                            type="caret-right"
+                                          >
+                                            <i
+                                              className="fa fa-caret-right fa-fw "
+                                            />
+                                          </Icon>
+                                          <strong>
+                                            Set individual stop dwell times
+                                          </strong>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </Collapsible>
                                   <Number
                                     label="Average segment speed"
                                     min={1}
@@ -1361,7 +1396,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               </Button>
                             </div>
                           </section>
-                        </Timetable>
+                        </TimetableComponent>
                         <Button
                           block={true}
                           onClick={[Function]}
@@ -2031,6 +2066,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                       numberOfStops={0}
                       scenarioTimetables={Array []}
                       segmentDistances={Array []}
+                      setMapState={[Function]}
                       timetables={
                         Array [
                           Object {
@@ -2057,7 +2093,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                       update={[Function]}
                     >
                       <div>
-                        <Timetable
+                        <TimetableComponent
                           allPhaseFromTimetableStops={Object {}}
                           bidirectional={false}
                           modificationStops={Array []}
@@ -2065,6 +2101,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                           remove={[Function]}
                           scenarioTimetables={Array []}
                           segmentDistances={Array []}
+                          setMapState={[Function]}
                           timetable={
                             Object {
                               "dwellTime": 10,
@@ -2680,6 +2717,9 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                               </TimetableEntry>
                               <SegmentSpeeds
                                 dwellTime={10}
+                                highlightSegment={[Function]}
+                                highlightStop={[Function]}
+                                modificationStops={Array []}
                                 numberOfStops={0}
                                 segmentDistances={Array []}
                                 segmentSpeeds={Array []}
@@ -2750,6 +2790,36 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                                       </Group>
                                     </Text>
                                   </MinutesSeconds>
+                                  <Collapsible
+                                    defaultExpanded={false}
+                                    title="Set individual stop dwell times"
+                                  >
+                                    <div>
+                                      <div
+                                        aria-level={3}
+                                        role="heading"
+                                      >
+                                        <a
+                                          aria-expanded={false}
+                                          className="CollapsibleButton"
+                                          onClick={[Function]}
+                                          role="button"
+                                          tabIndex={0}
+                                        >
+                                          <Icon
+                                            type="caret-right"
+                                          >
+                                            <i
+                                              className="fa fa-caret-right fa-fw "
+                                            />
+                                          </Icon>
+                                          <strong>
+                                            Set individual stop dwell times
+                                          </strong>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </Collapsible>
                                   <Number
                                     label="Average segment speed"
                                     min={1}
@@ -2927,7 +2997,7 @@ exports[`Container > Modification Editor renders correctly 2`] = `
                               </Button>
                             </div>
                           </section>
-                        </Timetable>
+                        </TimetableComponent>
                         <Button
                           block={true}
                           onClick={[Function]}
