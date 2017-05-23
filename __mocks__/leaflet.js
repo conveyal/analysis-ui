@@ -132,6 +132,10 @@ class MapMock extends LeafletMock.Map {
   setZoom (zoom) {
     return this.setView(this.getCenter(), zoom)
   }
+
+  unproject (point, zoom) {
+    return L.Map.prototype.unproject(point, zoom || 9)
+  }
 }
 
 class PopupMock extends LeafletMock.Popup {
