@@ -91,6 +91,7 @@ analysis:
   squareRoot: Square root scale
   log: Logarithmic scale
   linear: Linear scale
+  travelTimePercentile: Percentile of travel time (reliability)
   accessibility: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
   createGrid: Create a new grid
   indicator: Indicator
@@ -122,8 +123,10 @@ analysis:
   openRegionalAnalysis: Open regional analysis
   newRegionalAnalysis: New regional analysis # this begins the process of creating a regional analysis
   startRegionalAnalysis: Start regional analysis # once a regional analysis is named, this kicks it off
-  accessTo: %s within %d minutes
-  compareAccessTo: compared with %s within %d minutes
+  accessTo: %(opportunity)s within %(cutoff)d minutes (percentile %(percentile)d)
+  accessToInstantaneous: %(opportunity)s within %(cutoff)d minutes (average instantaneous accessibility)
+  comparisonAccessTo: compared with %(opportunity)s within %(cutoff)d minutes (percentile %(percentile)d)
+  comparisonAccessToInstantaneous: compared with %(opportunity)s within %(cutoff)d minutes (average instantaneous accessibility)
   compareTo: Compare to
   settingsFor: %s settings
   accessModes: Access modes
