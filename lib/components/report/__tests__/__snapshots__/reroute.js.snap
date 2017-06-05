@@ -96,21 +96,26 @@ exports[`Report > Reroute renders correctly 1`] = `
             <g
               data={
                 {
-                  "type": "Feature",
-                  "properties": {},
-                  "geometry": {
-                    "type": "LineString",
-                    "coordinates": [
-                      [
-                        "-122.02460000",
-                        "36.97070000"
-                      ],
-                      [
-                        "-122.02790000",
-                        "37.04900000"
-                      ]
-                    ]
-                  }
+                  "type": "FeatureCollection",
+                  "features": [
+                    {
+                      "type": "Feature",
+                      "properties": {},
+                      "geometry": {
+                        "type": "LineString",
+                        "coordinates": [
+                          [
+                            "-122.02460000",
+                            "36.97070000"
+                          ],
+                          [
+                            "-122.02790000",
+                            "37.04900000"
+                          ]
+                        ]
+                      }
+                    }
+                  ]
                 }
               }
               type="GeoJson"
