@@ -23,9 +23,15 @@ exports[`Component > R5Version renders correctly 1`] = `
       title="Show all analysis backend versions (advanced)"
     />
     <div
-      className="Select Select--single is-searchable"
+      className="Select Select--single is-searchable has-value"
       style={undefined}
     >
+      <input
+        disabled={false}
+        name="Name"
+        type="hidden"
+        value="v3.0.0"
+      />
       <div
         className="Select-control"
         onKeyDown={[Function]}
@@ -40,9 +46,18 @@ exports[`Component > R5Version renders correctly 1`] = `
           id="react-select-2--value"
         >
           <div
-            className="Select-placeholder"
+            className="Select-value"
+            style={undefined}
+            title={undefined}
           >
-            Select...
+            <span
+              aria-selected="true"
+              className="Select-value-label"
+              id="react-select-2--value-item"
+              role="option"
+            >
+              v3.0.0
+            </span>
           </div>
         </span>
         <span
@@ -56,6 +71,260 @@ exports[`Component > R5Version renders correctly 1`] = `
         </span>
       </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Component > R5Version should show flask for non-release versions 1`] = `
+<div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="name-input-2"
+    >
+      Label
+    </label>
+    <i
+      aria-label="Show only release backend versions"
+      className="fa fa-flask fa-fw "
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "#000",
+          "cursor": "pointer",
+        }
+      }
+      title="Show only release backend versions"
+    />
+    <div
+      className="Select Select--single is-searchable has-value"
+      style={undefined}
+    >
+      <input
+        disabled={false}
+        name="Name"
+        type="hidden"
+        value="v2.0.0-19-g589f32f"
+      />
+      <div
+        className="Select-control"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <span
+          className="Select-multi-value-wrapper"
+          id="react-select-4--value"
+        >
+          <div
+            className="Select-value"
+            style={undefined}
+            title={undefined}
+          >
+            <span
+              aria-selected="true"
+              className="Select-value-label"
+              id="react-select-4--value-item"
+              role="option"
+            >
+              v2.0.0-19-g589f32f
+            </span>
+          </div>
+        </span>
+        <span
+          className="Select-arrow-zone"
+          onMouseDown={[Function]}
+        >
+          <span
+            className="Select-arrow"
+            onMouseDown={[Function]}
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="alert alert-warning"
+  >
+    There is a more recent version of the analysis backend available.
+    Changing backend versions may enable new features or increased performance, but may also cause
+    existing analysis results to change slightly.
+  </div>
+</div>
+`;
+
+exports[`Component > R5Version should show struck-out value for unknown/unsupported versions 1`] = `
+<div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="name-input-3"
+    >
+      Label
+    </label>
+    <i
+      aria-label="Show all analysis backend versions (advanced)"
+      className="fa fa-flask fa-fw "
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "#aaa",
+          "cursor": "pointer",
+        }
+      }
+      title="Show all analysis backend versions (advanced)"
+    />
+    <div
+      className="Select Select--single is-searchable has-value"
+      style={undefined}
+    >
+      <input
+        disabled={false}
+        name="Name"
+        type="hidden"
+        value="v2.0.1992"
+      />
+      <div
+        className="Select-control"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <span
+          className="Select-multi-value-wrapper"
+          id="react-select-5--value"
+        >
+          <div
+            className="Select-value"
+            style={undefined}
+            title={undefined}
+          >
+            <span
+              aria-selected="true"
+              className="Select-value-label"
+              id="react-select-5--value-item"
+              role="option"
+            >
+              <span
+                style={
+                  Object {
+                    "textDecoration": "line-through",
+                  }
+                }
+              >
+                v2.0.1992
+              </span>
+            </span>
+          </div>
+        </span>
+        <span
+          className="Select-arrow-zone"
+          onMouseDown={[Function]}
+        >
+          <span
+            className="Select-arrow"
+            onMouseDown={[Function]}
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="alert alert-warning"
+  >
+    There is a more recent version of the analysis backend available.
+    Changing backend versions may enable new features or increased performance, but may also cause
+    existing analysis results to change slightly.
+  </div>
+</div>
+`;
+
+exports[`Component > R5Version should show warning with out of date r5 version 1`] = `
+<div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="name-input-1"
+    >
+      Label
+    </label>
+    <i
+      aria-label="Show all analysis backend versions (advanced)"
+      className="fa fa-flask fa-fw "
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "#aaa",
+          "cursor": "pointer",
+        }
+      }
+      title="Show all analysis backend versions (advanced)"
+    />
+    <div
+      className="Select Select--single is-searchable has-value"
+      style={undefined}
+    >
+      <input
+        disabled={false}
+        name="Name"
+        type="hidden"
+        value="v2.2.0"
+      />
+      <div
+        className="Select-control"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <span
+          className="Select-multi-value-wrapper"
+          id="react-select-3--value"
+        >
+          <div
+            className="Select-value"
+            style={undefined}
+            title={undefined}
+          >
+            <span
+              aria-selected="true"
+              className="Select-value-label"
+              id="react-select-3--value-item"
+              role="option"
+            >
+              v2.2.0
+            </span>
+          </div>
+        </span>
+        <span
+          className="Select-arrow-zone"
+          onMouseDown={[Function]}
+        >
+          <span
+            className="Select-arrow"
+            onMouseDown={[Function]}
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="alert alert-warning"
+  >
+    There is a more recent version of the analysis backend available.
+    Changing backend versions may enable new features or increased performance, but may also cause
+    existing analysis results to change slightly.
   </div>
 </div>
 `;
