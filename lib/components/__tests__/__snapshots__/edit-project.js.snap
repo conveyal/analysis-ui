@@ -70,9 +70,15 @@ exports[`Component > EditProject renders correctly 1`] = `
           title="Show all analysis backend versions (advanced)"
         />
         <div
-          className="Select Select--single is-searchable"
+          className="Select Select--single is-searchable has-value"
           style={undefined}
         >
+          <input
+            disabled={false}
+            name="Analysis backend version"
+            type="hidden"
+            value="v3.0.0"
+          />
           <div
             className="Select-control"
             onKeyDown={[Function]}
@@ -87,9 +93,18 @@ exports[`Component > EditProject renders correctly 1`] = `
               id="react-select-2--value"
             >
               <div
-                className="Select-placeholder"
+                className="Select-value"
+                style={undefined}
+                title={undefined}
               >
-                Select...
+                <span
+                  aria-selected="true"
+                  className="Select-value-label"
+                  id="react-select-2--value-item"
+                  role="option"
+                >
+                  v3.0.0
+                </span>
               </div>
             </span>
             <span

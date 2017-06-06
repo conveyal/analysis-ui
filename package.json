@@ -28,7 +28,7 @@
   "dependencies": {
     "@conveyal/gridualizer": "^2.0.1",
     "@conveyal/lonlat": "^1.3.0",
-    "@conveyal/woonerf": "^2.2.1",
+    "@conveyal/woonerf": "^2.4.0",
     "@mapbox/polyline": "^0.2.0",
     "@turf/bearing": "^3.7.5",
     "@turf/destination": "^3.7.5",
@@ -40,19 +40,22 @@
     "auth0-js": "^8.0.4",
     "auth0-lock": "^10.9.2",
     "bootstrap": "^3.3.6",
-    "browsochrones": "^0.13.0",
+    "browsochrones": "^1.0.0",
     "canvas": "^1.6.2",
     "chart.js": "^1.1.1",
+    "compare-versions": "^3.0.1",
     "crc": "^3.4.0",
     "d3-color": "^1.0.2",
     "d3-format": "^1.0.2",
     "d3-interpolate": "^1.1.3",
+    "d3-shape": "^1.2.0",
     "date-fns": "^1.28.2",
     "debug": "^2.2.0",
     "deep-extend": "^0.4.1",
     "font-awesome": "^4.6.3",
     "http-errors": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
+    "jsolines": "^1.0.0",
     "leaflet": "^0.7.7",
     "leaflet-draw": "^0.4.9",
     "lodash": "^4.17.4",
@@ -80,6 +83,7 @@
     "reselect": "^2.5.3",
     "shpjs": "^3.3.2",
     "sprintf.js": "^0.1.4",
+    "text-encoding": "^0.6.4",
     "uuid": "^3.0.1",
     "xorshift": "^1.0.0"
   },
@@ -88,7 +92,7 @@
     "enzyme-to-json": "^1.4.5",
     "lodash.assign": "^4.2.0",
     "lodash.uniqueid": "^4.0.1",
-    "mastarm": "^3.9.2",
+    "mastarm": "^3.10.0",
     "nock": "^9.0.0",
     "react-addons-perf": "^15.4.1",
     "react-addons-test-utils": "^15.4.0",
@@ -100,6 +104,11 @@
   "mastarm lint": {
     "ignore": [
       "flow-typed"
+    ]
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "./lib/utils/geojson-snapshot-serializer"
     ]
   }
 }

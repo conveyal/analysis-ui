@@ -87,7 +87,11 @@ Object {
 
 exports[`actions > analysis setCurrentIndicator should work 1`] = `
 Object {
-  "type": "set current indicator",
+  "payload": Object {
+    "next": [Function],
+    "url": "/api/grid/undefined/undefined?redirect=false",
+  },
+  "type": "fetch",
 }
 `;
 
@@ -128,7 +132,7 @@ Object {
 }
 `;
 
-exports[`actions > analysis showScenarioApplicationErrors should work 1`] = `
+exports[`actions > analysis setScenarioApplicationErrors should work 1`] = `
 Object {
   "payload": Array [
     Object {
@@ -139,6 +143,6 @@ Object {
       "title": "Error while applying the modification entitled 'Add Trip Pattern'.",
     },
   ],
-  "type": "show scenario application errors",
+  "type": "set scenario application errors",
 }
 `;
