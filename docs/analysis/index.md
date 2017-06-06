@@ -52,6 +52,11 @@ done, you can select a bookmark from the dropdown box to automatically fill in a
 that bookmark. Bookmarks are shared by all scenarios in a project; this way, the same locations and
 settings can be used to analyze the effects of multiple scenarios.
 
+Next is the mode selector; you can choose to perform your analysis with or without transit, and using
+walking, biking or driving. For instance, in the image above, a combination of walking and transit has
+been chosen. Note that, due to data availability, traffic congestion is not taken into account in
+driving time estimates.
+
 Next are the from and to time; these represent the time period
 you are analyzing. These default to 7:00 and 9:00, meaning our accessibility results will display
 the opportunities accessible by someone leaving the chosen origin point between 7:00 and 9:00. Below
@@ -88,7 +93,7 @@ view the comparison by clicking the "Refresh" icon near the top of the left side
 
 <figure>
   <img src="../img/analysis-comparison.png" />
-  <figcaption>Comparison analysis in Atlanta, Georgia, USA</figcaption>
+  <figcaption>Comparison analysis in New York, New York, USA</figcaption>
 </figure>
 
 When performing a comparison, the isochrone for the originally chosen scenario remains blue, while the isochrone
@@ -97,93 +102,49 @@ scenario are blue, and the areas reachable only under the comparison scenario is
 
 # Accessibility display
 
-Below the comparison controls are the displays of accessibility. These consist of two main components: the
-spectrogram and the histogram. Additionally, directly below the comparison controls are readouts of the
-average accessibility (number of jobs reachable) from the chosen origin under the scenario and
+Below the comparison controls are the displays of accessibility. The main component is the stacked
+percentile plot, described in the next section. Additionally, directly below the comparison controls
+are readouts of the accessibility (number of opportunities reachable) from the chosen origin under the scenario and
 (if applicable) any comparison scenario.
 
-## Spectrogram
+## Stacked percentiles
 
 <figure>
-  <img src="../img/analysis-spectrogram.png" />
-  <figcaption>A spectrogram</figcaption>
+  <img src="../img/analysis-stacked-percentile.png" />
+  <figcaption>A stacked percentile plot</figcaption>
 </figure>
 
-The first plot is what we refer to as a "spectrogram." It is akin to a cumulative accessibility plot,
-showing the number of opportunities that can be reached from each origin with different travel times.
-Travel times from the origin are on the X axis, and the number of opportunities that can be accessed
-is on the Y axis. There is not a single line showing the number of opportunities that can be accessed,
-but rather a field. The number of opportunities accessible within a given travel time budget is not constant,
-but varies due to differing amounts of waiting depending on departure time (within the specified time window),
-and due to uncertainty introduced by routes that have only headways rather than complete schedules
-(see [Methodology](/analysis/methodology)).
+The main display of accessibility results is the stacked percentile plot. The right portion of the plot
+shows the distribution of cumulative accessibility, i.e. the number of opportunities reachable given
+varying travel time budgets. The graph is not a single line, because there is variation in transit travel
+time depending on when a user of the transport system leaves their origin.
+Rather, the graph shows the number of opportunities given 95th, 75th, 50th, 25th, and 5th percentile
+travel time. The bottom of the shaded area is the number of opportunities which are almost always
+reachable, while the top is the number of opportunities that are occasionally reachable. The darkened
+line is the number of opportunities that are reachable at least half the time (i.e. have a median travel
+  time of less than the travel time cutoff). For a more detailed explanation, see the [methodology](/analysis/methodology)
+  page.
 
-The width of the shaded area indicates the variability in the number of opportunities that can be accessed.
-Where it is wide, the transit service is relatively unreliable; depending on when you leave the
-origin and how well lines without schedules are ultimately synchronized with other lines, you may be
-able to access many jobs, or not very many. If the shaded area is narrow, the transit service is reliable;
-you can count on being able to access most jobs regardless of when you leave and how lines without schedules
-are ultimately operated. The darkness of the shaded area represents the probability of experiencing
-a particular accessibility given a particular travel time budget. The darkest blues and blacks indicate
-a high probability of being able to reach a particular number of opportunities in a particular travel
-time. The scale is in units of probability, so 1 (black) indicates that a particular accessibility
-value will always be experienced, and 0 (white) indicates it never will be.
+The currently-selected travel time budget is indicated by the vertical line on the plot, and can be controlled using
+the slider below the plot. This also controls the isochrone.
 
-The vertical line across the spectrogram indicates the current travel time cutoff for the isochrone
-on the map as well as the [histogram of accessibility](#histogram). The cutoff can be adjusted using
-the slider below the spectrogram.
-
-On the right side of the spectrogram is a selector that
-allows you to change the scale on the Y-axis between square root, logarithmic, and linear. It defaults
-to square root, for a simple geometric reason: if opportunities were evenly distributed, and travel speed
-were constant, a square root scale would make the cumulative accessibility curve a straight line due
-to growth in two dimensions.
-
-If you are performing a comparison, several more options are available. Above the spectrogram is a selector
-that allows you to toggle between the two scenarios, with the active scenario in blue, and the comparison scenario
-in red. Both are on the same scale to facilitate comparisons. Additionally, you can view a spectrogram
-of the differences:
+To the left of the Y axis labels is a box-and-whisker plot. This shows the same information as the cumulative
+plot, but only for the currently selected travel time budget. The lowest whisker shows the number of
+opportunities accessible given 95th percentile travel time, the box shows the number of opportunities
+accessible given 75th, 50th and 25th percentile travel time, and the top whisker shows the number of
+opportunities reachable given 5th percentile travel time.
 
 <figure>
-  <img src="../img/difference-spectrogram.png" />
-  <figcaption>A spectrogram of the difference between two scenarios</figcaption>
+  <img src="../img/stacked-percentile-comparison.png" />
+  <figcaption>A stacked percentile plot comparing two scenarios</figcaption>
 </figure>
 
-The image shows the distribution of the differences between two scenarios. Blue indicates that
-that the active scenario performs better, and red indicates that the comparison scenario performs better.
-This is computed by subtracting the accessibility distribution of the comparison scenario from that of the
-active scenario (for the mathematically minded, it is a convolution). Only in the most extreme scenarios will
-one scenario be uniformly better than the other; for this to occur, the best possible user experience
-(i.e. the maximum accessibility, realized through minimal waiting for transit vehicles at a particular time
-  of departure within the specified time window) given one scenario must be worse than the worst possible user experience
-experienced given the other. To put this more concretely, travel times must be faster under one scenario
-when you arrive at the station just as the transit vehicle is leaving than they are if you arrive at the station
-just as the transit vehicle is arriving under the other scenario. The difference spectrogram is often
-easiest to interpret with the linear scale selected.
-
-For more on the spectrogram visualization, you can read our
-[blog post introducing it](https://blog.conveyal.com/exploring-and-visualizing-variation-in-accessibility-measures-5247aa49043c).
-
-## Histogram
-
-Below the spectrogram is a histogram. This histogram shows the distribution of accessibility values
-for the currently selected travel time cutoff. It is effectively a vertical "slice" through the spectrogram.
-For instance, the histogram below shows that there are between 380,000 and 580,000 jobs accessible
-within 60 minutes, depending on when exactly you leave during the time window and how lines without schedules
-are ultimately operated, and it is most likely that 500,000 jobs will be accessible.
-
-<figure>
-  <img src="../img/analysis-histogram.png" />
-  <figcaption>A histogram of the job access</figcaption>
-</figure>
-
-When comparing two scenarios, histograms from both scenarios will be displayed in an overlapping fashion.
-Just as on the map, the active scenario will be shown in blue, and the comparison scenario in red.
-
-<figure>
-  <img src="../img/difference-histogram.png" />
-  <figcaption>A histogram comparing two scenarios</figcaption>
-</figure>
+When performing a comparison, the display is similar; the main difference is that two box plots will be
+displayed, in red and blue, to the left of the axis. The blue box plot is for the scenario currently
+being analyzed, while the red one is for the scenario being compared against. Above the chart, there
+is a selector that allows you to select whether to view the cumulative curves for the scenario being
+analyzed, the scenario being compared against, or both (in which case the plots will be simplified and
+  only the bands between the 75th and 25th percentile travel times will be shown, for visual simplicity).
 
 # Errors when analyzing scenarios
 
@@ -201,9 +162,16 @@ and correct the errors in the relevant modifications.
 The analysis interface also allows starting regional analyses, which involves computing the accessibility
 for every location in a regular grid across the region. To start a regional analysis, first set the
 appropriate parameters using the controls in this view, and confirm that the isochrones and accessibility
-plots are as expected. When you are ready, choose the "Create regional analysis" button, enter a name
-for your regional analysis in the box that appears, and click the checkmark to confirm and start the
-analysis.
+plots are as expected. When you are ready, choose the "Create regional analysis" button. You can then
+enter a name for your regional analysis, and choose the bounds you want to use; by default, the entire
+project area is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set
+the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis
+and using the same bounds. If you plan to compare two regional analyses, they must have the same bounds.
+Finally, there is a slider where you can select the percentile of travel time you wish to use for this
+analysis (for example, you might be analyzing accessibility to a class of employment that generally requires
+  workers to arrive at a particular time, and workers thus need a reliable trip where they have a
+  very high probability of arriving within the travel time budget, regardless of the exact timing of
+  their departure/arrival).
 
 <figure>
   <img src="../img/create-regional-analysis.png" />

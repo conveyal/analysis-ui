@@ -16,20 +16,22 @@ publication-quality maps using the download link.
 # Comparing regional analyses
 
 You can also compare two regional analyses from different scenarios in the same project by selecting
-a comparison scenario. The map will show the differences in the averages between the two analyses,
-with blue areas showing increased average job access, and red areas showing decreased average job access
+a comparison scenario. The map will show the differences in accessibility between the two analyses,
+with blue areas showing increased accessibility, and red areas showing decreased accessibility,
 relative to the comparison analysis.
 
-You can also filter the displayed locations by the probability of improvement. When we compare two scenarios,
-some of the differences in the averages is due to changes in the network, and some of it is due to uncertainty
-in the scenario. By dragging the minimum improvement probability slider above zero, you can filter what
-is displayed on the map by the probability of improvement. We compute this by sampling from the distributions
-of accessibility (displayed as histograms in the main analysis mode) and computing how often the
-active regional analysis has higher accessibility than the comparison regional analysis at each location,
-and show only those locations where the active regional analysis is higher than the comparison at
-least the selected proportion of the time. Note that this is taking into account the variation due to
-departure time as well, so similar to the difference spectrogram, for the probability of improvement
-at a given location to be 1, the best possible user experience
-(i.e. the maximum accessibility, realized through minimal waiting for transit vehicles at a particular time
-  of departure within the specified time window) in the comparison regional analysis must be worse than the worst possible user experience
-experienced in the active regional analysis.
+You can also filter the displayed locations by the probability of change using the slider. When there are trips that
+have headways rather than explicit timetables, the exact performance of the network, particularly the
+transfer timing, is not known, and thus there is random variation in the results. In order to account for
+this variation, we use a Monte Carlo approach of generating random timetables that meet the constraints
+of the scenario. Thus, there is random variation in the accessibility numbers. We use a
+statistical bootstrapping technique to estimate this variation and produce a _p_-value that a change
+at a particular origin is due to the scenario, rather than simply random variation. We can use that _p_-value
+to determine which changes are statistically significant. For instance, if
+the slider is set at 0.98, only changes that we are 98% sure are not due to random variation will be shown.
+The analyst should note that, given the large number of cells in a regional analysis, it is likely
+that a small number of cells may show as having a 98% probability of change even when there is in fact no change.
+Generally, changes that are in fact due to the scenario rather than due to random variation will appear
+geographically clustered.
+
+For more information, see the [methodology](/analysis/methodology) page.
