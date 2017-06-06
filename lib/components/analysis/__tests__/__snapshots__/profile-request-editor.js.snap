@@ -33,6 +33,133 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
   setProfileRequest={[Function]}
 >
   <div>
+    <ModeSelector
+      profileRequest={
+        Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        }
+      }
+      setProfileRequest={[Function]}
+    >
+      <div
+        aria-label="Mode of travel"
+        className="btn-group"
+        role="group"
+      >
+        <label
+          className="btn btn-default active"
+          htmlFor="mode-walk"
+        >
+          <input
+            aria-label="Walk"
+            checked={true}
+            className="sr-only"
+            id="mode-walk"
+            name="streetMode"
+            onChange={[Function]}
+            type="radio"
+            value="WALK"
+          />
+          <Icon
+            type="male"
+          >
+            <i
+              className="fa fa-male fa-fw "
+            />
+          </Icon>
+           
+        </label>
+        <label
+          className="btn btn-default "
+          htmlFor="mode-bike"
+        >
+          <input
+            aria-label="Bike"
+            checked={false}
+            className="sr-only"
+            id="mode-bike"
+            name="streetMode"
+            onChange={[Function]}
+            type="radio"
+            value="BICYCLE"
+          />
+          <Icon
+            type="bicycle"
+          >
+            <i
+              className="fa fa-bicycle fa-fw "
+            />
+          </Icon>
+        </label>
+        <label
+          className="btn btn-default "
+          htmlFor="mode-car"
+        >
+          <input
+            aria-label="Automobile (kiss-and-ride)"
+            checked={false}
+            className="sr-only"
+            id="mode-car"
+            name="streetMode"
+            onChange={[Function]}
+            type="radio"
+            value="CAR"
+          />
+          <Icon
+            type="car"
+          >
+            <i
+              className="fa fa-car fa-fw "
+            />
+          </Icon>
+        </label>
+        <label
+          className="btn btn-default active"
+          htmlFor="mode-transit"
+        >
+          <input
+            aria-label="Transit"
+            checked={true}
+            className="sr-only"
+            id="mode-transit"
+            name="streetMode"
+            onChange={[Function]}
+            type="checkbox"
+            value="transit"
+          />
+          <Icon
+            type="bus"
+          >
+            <i
+              className="fa fa-bus fa-fw "
+            />
+          </Icon>
+        </label>
+      </div>
+    </ModeSelector>
     <TimePicker
       label="From time"
       name="fromTime"

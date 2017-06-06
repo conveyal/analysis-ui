@@ -2,6 +2,8 @@ common:
   scenario: Scenario
   variant: Variant
   help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
+  yes: yes
+  no: no
 authentication:
   logIn: Log in
   logOut: Log out
@@ -35,7 +37,12 @@ project:
   deleteConfirmation: Are you sure you would like to delete this project? This will delete all scenarios and modifications associated with this project.
   editAction: Save project
   editTitle: Edit project
+  versionOutdated: The chosen analysis backend version of this project is outdated.
+  editProject: Edit project.
   r5Version: Analysis backend version
+  latestReleaseVersionNotSelected: There is a more recent version of the analysis backend available.
+    Changing backend versions may enable new features or increased performance, but may also cause
+    existing analysis results to change slightly.
   showAllVersions: Show all analysis backend versions (advanced)
   showReleaseVersions: Show only release backend versions
   loadStatus:
@@ -90,6 +97,8 @@ modificationType:
   adjust-speed: Adjust speed
   remove-stops: Remove stops
 analysis:
+  mode: Mode of travel
+  minutes: %s minutes
   squareRoot: Square root scale
   log: Logarithmic scale
   linear: Linear scale
@@ -108,10 +117,10 @@ analysis:
   warningsInScenario: Warnings were found applying the scenario
   errorsInModification: in modification %s
   runAnalysis: Perform regional analysis
-  minimumImprovementProbability: Minimum probability of improvement
-  probabilityImprovement: Show areas with probability of improvement > %01.2f
+  minimumImprovementProbability: Minimum probability of change
+  probabilityImprovement: Show areas with probability of change > %01.2f
   compare: Compare to another scenario
-  difference: Difference
+  comparison: Comparison
   baseline: Baseline
   fromTime: From time
   toTime: To time
@@ -141,6 +150,7 @@ analysis:
     car: Automobile (kiss-and-ride)
     bicycleRent: Bikeshare (bike rental)
     carPark: Automobile (park-and-ride)
+    transit: Transit
   fetchStatus:
     LOADING_GRID: Loading grid…
     APPLYING_SCENARIO: Applying scenario…
