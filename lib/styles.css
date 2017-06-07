@@ -7,6 +7,7 @@
 @import url(node_modules/react-select/dist/react-select.css);
 @import url(node_modules/react-datetime/css/react-datetime.css);
 @import url(lib/map.css);
+@import url(lib/sidebar.css);
 
 html,
 body,
@@ -67,6 +68,10 @@ ul, ol {
   margin-bottom: 12px;
 }
 
+.center {
+  text-align: center;
+}
+
 input[type="date"].form-control,
 input[type="time"].form-control,
 input[type="datetime-local"].form-control,
@@ -124,11 +129,11 @@ input[type="number"] {
   position: absolute;
   padding: 0px;
   right: 0;
-  left: 320px;
+  left: 360px;
 }
 
 .Fullscreen.hasActiveModification, .Fullscreen.analysisMode {
-  left: 640px;
+  left: 680px;
 }
 
 .Fullscreen > div {
@@ -140,10 +145,9 @@ input[type="number"] {
   position: absolute;
   width: 320px;
   top: 0;
-  left: 0;
+  left: 40px;
   height: 100%;
   border-right: 1px solid #ddd;
-  /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15); */
 }
 
 .ApplicationDock.analysisMode {
@@ -151,7 +155,7 @@ input[type="number"] {
 }
 
 .ModificationDock {
-  left: 320px;
+  left: 360px;
 }
 
 .InnerDock {
@@ -212,7 +216,7 @@ input[type="number"] {
   font-size: 20px;
   padding-left: 26px;
   padding-right: 6px;
-  background-image: url(https://s3-eu-west-1.amazonaws.com/analyst-logos/conveyal-128x128.png);
+  background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
   background-size: 20px;
   line-height: 20px;
   height: 20px;
@@ -229,11 +233,41 @@ input[type="number"] {
   padding: 2px 7px 3px;
 }
 
+.WelcomeTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.WelcomeTitle > .logo {
+  font-family: "Gill Sans";
+  display: inline-block;
+  letter-spacing: 0;
+  font-size: 26px;
+  padding-left: 32px;
+  padding-right: 6px;
+  background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
+  background-size: 26px;
+  line-height: 26px;
+  height: 26px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-weight: 100;
+}
+
+.WelcomeTitle > .badge {
+  font-size: 10px;
+  font-weight: normal;
+  background-color: #337ab7;
+  margin-top: -6px;
+  padding: 2px 7px 3px;
+}
+
 .DockTitle {
   margin: 0;
-  padding: 12px 12px 6px;
+  padding: 12px;
   font-size: 14px;
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd; */
 }
 
 .DockTitle a > .fa {
