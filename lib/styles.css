@@ -72,6 +72,10 @@ ul, ol {
   text-align: center;
 }
 
+.danger {
+  color: red;
+}
+
 input[type="date"].form-control,
 input[type="time"].form-control,
 input[type="datetime-local"].form-control,
@@ -132,7 +136,8 @@ input[type="number"] {
   left: 360px;
 }
 
-.Fullscreen.hasActiveModification, .Fullscreen.analysisMode {
+.Fullscreen.hasActiveModification,
+.Fullscreen.analysisMode {
   left: 680px;
 }
 
@@ -150,7 +155,8 @@ input[type="number"] {
   border-right: 1px solid #ddd;
 }
 
-.ApplicationDock.analysisMode {
+.ApplicationDock.analysisMode,
+.ApplicationDock.analysisMode .InnerDock {
   width: 640px;
 }
 
@@ -159,10 +165,11 @@ input[type="number"] {
 }
 
 .InnerDock {
-  position: relative;
+  position: absolute;
   height: 100%;
   overflow-y: scroll;
-  padding-bottom: 80px;
+  padding-bottom: 45px;
+  width: 320px;
 }
 
 .Analysis, .ScenarioContent {
@@ -190,47 +197,24 @@ input[type="number"] {
   padding: 0 12px;
 }
 
+.ApplicationDockTitle,
 .ModificationDockTitle {
   font-size: 14px;
-  padding: 6px 12px;
+  padding: 12px 9px 12px 12px;
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   z-index: 100;
 }
 
+.ApplicationDockTitle > a,
+.ModificationDockTitle > a {
+  display: inline-block;
+  padding: 0 3px;
+}
+
 .DockContent {
   position: relative;
-}
-
-.ApplicationTitle {
-  font-size: 14px;
-  padding: 12px 12px 6px;
-  border-bottom: 1px solid #ddd;
-}
-
-.ApplicationTitle > .logo {
-  font-family: "Gill Sans";
-  display: inline-block;
-  letter-spacing: 0;
-  font-size: 20px;
-  padding-left: 26px;
-  padding-right: 6px;
-  background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
-  background-size: 20px;
-  line-height: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-position: left center;
-  font-weight: 100;
-}
-
-.ApplicationTitle > .badge {
-  font-size: 10px;
-  font-weight: normal;
-  background-color: #337ab7;
-  margin-top: -2px;
-  padding: 2px 7px 3px;
 }
 
 .WelcomeTitle {
@@ -273,10 +257,6 @@ input[type="number"] {
 .DockTitle a > .fa {
   padding: 6px 12px;
   margin-top: -6px;
-}
-
-.Scenario {
-  overflow: scroll;
 }
 
 .DockContent > .btn-group-justified > .btn {
@@ -418,6 +398,10 @@ input[type="number"] {
 
 :not(.Select--multi) > .Select-control .Select-value {
   padding-right: 42px;
+}
+
+.Select-menu-outer {
+  z-index: 3;
 }
 
 .Variants {
