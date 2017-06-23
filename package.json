@@ -9,11 +9,12 @@
     "build": "mastarm build lib/index.js:assets/index.js lib/styles.css:assets/index.css",
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
+    "flow": "mastarm flow",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prestart": "yarn",
     "start": "npm run build -- --serve --proxy http://localhost:7070/api",
     "pretest": "yarn",
-    "test": "mastarm lint && mastarm test --env test --config configurations/test"
+    "test": "mastarm lint && mastarm flow && mastarm test --env test --config configurations/test"
   },
   "repository": {
     "type": "git",
