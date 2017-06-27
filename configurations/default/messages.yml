@@ -39,6 +39,7 @@ project:
   editTitle: Edit project
   versionOutdated: The chosen analysis backend version of this project is outdated.
   editProject: Edit project.
+  loadingProject: Loading project...
   r5Version: Analysis backend version
   latestReleaseVersionNotSelected: There is a more recent version of the analysis backend available.
     Changing backend versions may enable new features or increased performance, but may also cause
@@ -60,6 +61,11 @@ scenario:
   deleteConfirmation: Are you sure you would like to delete this scenario?
   editAction: Save changes to scenario
   editTitle: Edit scenario
+  editName: Edit scenario name
+  importShapefile: Import shapefile
+  importModifications: Import modifications from another scenario
+  loading: Loading scenario...
+  loadingGTFS: Loading GTFS bundle & modifications...
   route: Route
 transitEditor:
   startEdit: Edit route geometry
@@ -89,6 +95,8 @@ modification:
     removeSeconds: Time savings per removed stop
   description: Description
   addDescription: Add description…
+  deleteModification: Delete modification
+  copyModification: Copy modification
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -106,13 +114,14 @@ analysis:
   linear: Linear scale
   travelTimePercentile: Percentile of travel time (reliability)
   accessibility: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
-  createGrid: Upload new opportunity data
-  indicator: Indicator
+  createGrid: Upload new opportunity dataset
+  opportunityDataset: Opportunity dataset
+  selectOpportunityDataset: Select an opportunity dataset...
   cutoff: Travel time cutoff (minutes)
-  addGrid: Add opportunity data
+  addGrid: Add opportunity dataset
   uploading: uploading...
-  gridName: Opportunity data name
-  gridFiles: Select opportunity data files
+  gridName: Opportunity dataset
+  gridFiles: Select opportunity dataset
   latField: Latitude field
   lonField: Longitude field
   travelTime: Travel time
@@ -155,7 +164,7 @@ analysis:
     carPark: Automobile (park-and-ride)
     transit: Transit
   fetchStatus:
-    LOADING_GRID: Loading opportunity data…
+    LOADING_GRID: Loading opportunity dataset…
     APPLYING_SCENARIO: Applying scenario…
     PERFORMING_ANALYSIS: Performing analysis…
     COMPUTING_ISOCHRONE: Computing isochrone…
@@ -168,6 +177,8 @@ analysis:
   bookmark: Bookmark
   createBookmark: Create bookmark
   bookmarkName: Bookmark name
+  selectComparisonScenario: Select comparison scenario...
+  selectComparisonScenarioVariant: Select comparison scenario variant...
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
@@ -194,6 +205,7 @@ report:
     stopsModified: Stops modified:
   adjustSpeed:
     scale: Scale speed by %sx
+    scaleLabel: Scale speed by
   patternLength: Length
   patternName: Pattern
   reroute:
@@ -210,6 +222,7 @@ report:
     removePatterns: Some patterns are removed:
   removeStops:
     allPatterns: All patterns are affected.
+    secondsSaved: Seconds saved %s
     somePatterns: Some patterns are affected:
     stopsRemoved: Stops removed:
   days:
