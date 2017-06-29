@@ -1922,64 +1922,68 @@ exports[`Routes should render 1`] = `
                       ]
                     }
                   >
-                    <Body>
-                      <div
-                        className="panel-body"
-                      >
+                    <div
+                      className="InnerDock"
+                    >
+                      <Body>
                         <div
-                          className="WelcomeTitle"
+                          className="panel-body"
                         >
-                          <p
-                            style={
-                              Object {
-                                "textAlign": "center",
-                              }
-                            }
-                          >
-                            welcome to
-                          </p>
-                          <span
-                            className="logo"
-                            to="/"
-                          >
-                            conveyal analysis 
-                          </span>
-                          <span
-                            className="badge"
-                          >
-                            beta
-                          </span>
-                        </div>
-                        <Group>
                           <div
-                            className="form-group"
+                            className="WelcomeTitle"
                           >
-                            <Button
-                              block={true}
-                              onClick={[Function]}
-                              style="success"
+                            <p
+                              style={
+                                Object {
+                                  "textAlign": "center",
+                                }
+                              }
                             >
-                              <a
-                                className="btn btn-success btn-block"
-                                href="#"
-                                onClick={[Function]}
-                                tabIndex={0}
-                              >
-                                <Icon
-                                  type="cubes"
-                                >
-                                  <i
-                                    className="fa fa-cubes fa-fw "
-                                  />
-                                </Icon>
-                                 
-                                Create a new Project
-                              </a>
-                            </Button>
+                              welcome to
+                            </p>
+                            <span
+                              className="logo"
+                              to="/"
+                            >
+                              conveyal analysis 
+                            </span>
+                            <span
+                              className="badge"
+                            >
+                              beta
+                            </span>
                           </div>
-                        </Group>
-                      </div>
-                    </Body>
+                          <Group>
+                            <div
+                              className="form-group"
+                            >
+                              <Button
+                                block={true}
+                                onClick={[Function]}
+                                style="success"
+                              >
+                                <a
+                                  className="btn btn-success btn-block"
+                                  href="#"
+                                  onClick={[Function]}
+                                  tabIndex={0}
+                                >
+                                  <Icon
+                                    type="cubes"
+                                  >
+                                    <i
+                                      className="fa fa-cubes fa-fw "
+                                    />
+                                  </Icon>
+                                   
+                                  Create a new Project
+                                </a>
+                              </Button>
+                            </div>
+                          </Group>
+                        </div>
+                      </Body>
+                    </div>
                   </SelectProject>
                 </Connect(SelectProject)>
               </div>
