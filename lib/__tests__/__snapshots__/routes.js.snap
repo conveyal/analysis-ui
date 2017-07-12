@@ -1002,37 +1002,31 @@ exports[`Routes should render 1`] = `
                     <SidebarNavItem
                       href="http://docs.analysis.conveyal.com/"
                       icon="question-circle"
+                      newTab={true}
                       text="help"
                     >
                       <div
                         className="Sidebar-navItem"
                         title="help"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="http://docs.analysis.conveyal.com/"
+                        <a
+                          href="http://docs.analysis.conveyal.com/"
+                          target="_blank"
                         >
-                          <a
-                            href="http://docs.analysis.conveyal.com/"
-                            onClick={[Function]}
-                            style={Object {}}
+                          <Icon
+                            type="question-circle"
                           >
-                            <Icon
-                              type="question-circle"
-                            >
-                              <i
-                                className="fa fa-question-circle fa-fw "
-                              />
-                            </Icon>
-                            <span
-                              className="Sidebar-navItem-text"
-                            >
-                               
-                              help
-                            </span>
-                          </a>
-                        </Link>
+                            <i
+                              className="fa fa-question-circle fa-fw "
+                            />
+                          </Icon>
+                          <span
+                            className="Sidebar-navItem-text"
+                          >
+                             
+                            help
+                          </span>
+                        </a>
                       </div>
                     </SidebarNavItem>
                   </div>
