@@ -131,7 +131,10 @@ analysis:
   linear: Linear scale
   travelTimePercentile: Percentile of travel time (reliability)
   accessibility: Accessibility
-  accessibility: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
+  accessibilityWithin: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
+  selectPercentileOfAccessibility: Percentile of accessibility
+  # accessibility pre-formatted as string, don't use %d
+  percentileOfAccessibility: %(percentage)d%% of %(weightByName)s can access at least %(accessibility)s %(accessToName)s
   createGrid: Upload new opportunity dataset
   opportunityDataset: Opportunity dataset
   selectOpportunityDataset: Select an opportunity dataset...
