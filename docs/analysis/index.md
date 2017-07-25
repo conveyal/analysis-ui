@@ -1,7 +1,5 @@
 Once you have prepared a scenario, you can use the analysis functionality to evaluate the accessibility
-impacts of your scenario. To enter the analysis mode, click on the graph button next to a variant name.
-The analysis mode requires choosing a particular variant, which represents an exact subset of modifications
-to analyze.
+impacts of your scenario. To enter the analysis mode, click on the graph button in the sidebar.
 
 <img src="../img/select-analysis.png" alt="Selecting the button to enter analysis mode" />
 
@@ -11,7 +9,7 @@ US Census [LODES](https://lehd.ces.census.gov/data/#lodes), you'll need to [uplo
 to complete analysis.
 
 Once you have opportunity data loaded, you will see the following when you enter analysis mode. It will take several minutes to load
-the first time you use it on a particular day while the compute cluster starts up. The spinner to the right of the
+the first time you use it, while the compute cluster starts up. The spinner to the right of the
 variant name will indicate that the cluster is initializing.
 
 <figure>
@@ -31,11 +29,23 @@ can be reached from the marker location within a given travel time (the default 
 is controlled by the slider in the left panel.) To change the origin of the analysis, simply drag the marker
 to a new location.
 
+Clicking on the map will display the distribution of travel times from the origin to that location.
+For example, in the image below, the travel time varies between about 30 and 50 minutes depending on
+when one leaves.
+
+<figure>
+  <img src="../img/destination-travel-time-distribution.png" />
+  <figcaption>The travel time distribution from an origin to a destination</figcaption>
+</figure>
+
 # Routing controls
 
 The left panel has a number of controls for the analysis, and displays the accessibility afforded by the
-scenario. At the top of the panel, the variant of the scenario is listed; to the right of that is a
-refresh button, used to reload scenario results after editing parameters.
+scenario. At the top of the panel, the variant of the scenario is listed, and can be changed to
+analyze a different variant. Below that, a second scenario and a variant within that scenario may be selected
+in order to perform a comparison. A comparison with baseline GTFS data with no modifications applied
+is possible by choosing the current scenario and the "Baseline" variant, which exists automatically
+for every scenario.
 
 Below that, the analysis settings can be expanded and different parameters for the analysis can be set:
 
@@ -81,28 +91,11 @@ dataset. If you are outside the US, or if you want to use data that isn't includ
 [upload alternate data](/analysis/upload-opportunity-data). The opportunities from the selected category
 will be displayed on the map as dots.
 
-# Performing a comparison
-
-Below the dropdown box is a checkbox which can be selected to perform a comparison between two scenarios.
-When activated, two more dropdown boxes will appear allowing you to select a scenario and variant to
-compare against. Each scenario will also show a "Baseline" variant allowing you to compare against the
-bundle selected for that scenario with no modifications. To compare a scenario to the existing conditions
-described by the bundle it is based upon, you would choose the scenario you are working with, and then
-the baseline variant. Once you have enabled this checkbox and selected a scenario and variant, you can
-view the comparison by clicking the "Refresh" icon near the top of the left sidebar.
-
-<figure>
-  <img src="../img/analysis-comparison.png" />
-  <figcaption>Comparison analysis in New York, New York, USA</figcaption>
-</figure>
-
-When performing a comparison, the isochrone for the originally chosen scenario remains blue, while the isochrone
-for the comparison scenario is red. Thus, the areas reachable under both scenarios are purple, the areas reachable under the originally chosen
-scenario are blue, and the areas reachable only under the comparison scenario is red.
+The last item in the analysis settings area is a refresh button, used to reload scenario results after editing parameters.
 
 # Accessibility display
 
-Below the comparison controls are the displays of accessibility. The main component is the stacked
+Below the analysis controls are the displays of accessibility. The main component is the stacked
 percentile plot, described in the next section. Additionally, directly below the comparison controls
 are readouts of the accessibility (number of opportunities reachable) from the chosen origin under the scenario and
 (if applicable) any comparison scenario.
@@ -134,19 +127,33 @@ opportunities accessible given 95th percentile travel time, the box shows the nu
 accessible given 75th, 50th and 25th percentile travel time, and the top whisker shows the number of
 opportunities reachable given 5th percentile travel time.
 
+
+## Comparing scenarios
+
+When a comparison scenario and variant are selected in the analysis settings panel, the display will
+be slightly different, because it will include information for both scenarios. The isochrone for the
+originally chosen scenario remains blue, while the isochrone
+for the comparison scenario is red. Thus, the areas reachable under both scenarios are purple, the areas reachable under the originally chosen
+scenario are blue, and the areas reachable only under the comparison scenario are red.
+
 <figure>
-  <img src="../img/stacked-percentile-comparison.png" />
-  <figcaption>A stacked percentile plot comparing two scenarios</figcaption>
+  <img src="../img/analysis-comparison.png" />
+  <figcaption>Comparison analysis in Atlanta, Georgia, USA</figcaption>
 </figure>
 
-When performing a comparison, the display is similar; the main difference is that two box plots will be
+The stacked percentile plot is similar as well. The main difference is that two box plots will be
 displayed, in red and blue, to the left of the axis. The blue box plot is for the scenario currently
 being analyzed, while the red one is for the scenario being compared against. Above the chart, there
 is a selector that allows you to select whether to view the cumulative curves for the scenario being
 analyzed, the scenario being compared against, or both (in which case the plots will be simplified and
   only the bands between the 75th and 25th percentile travel times will be shown, for visual simplicity).
 
-# Errors when analyzing scenarios
+<figure>
+  <img src="../img/stacked-percentile-comparison.png" />
+  <figcaption>A stacked percentile plot comparing two scenarios</figcaption>
+</figure>
+
+# Errors and warnings when analyzing scenarios
 
 Occasionally, analysis will fail because there is an error in a scenario. When this occurs, error
 messages will be displayed detailing the issues, as shown below. One simply needs to return to the modification editor
@@ -155,6 +162,14 @@ and correct the errors in the relevant modifications.
 <figure>
   <img src="../img/scenario-error.png" />
   <figcaption>Scenario errors displayed in the editor</figcaption>
+</figure>
+
+In other cases, the scenario may generate a warning, for instance if you remove more time from a segment
+when speeding it up than the length of that segment. This is not necessarily an error, but may require attention.
+
+<figure>
+  <img src="../img/scenario-warning.png" />
+  <figcaption>Scenario warnings displayed in the editor</figcaption>
 </figure>
 
 # Starting a regional analysis

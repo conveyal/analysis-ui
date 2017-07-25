@@ -1,8 +1,7 @@
-In the United State, we automatically populate opportunity data from [LODES](https://lehd.ces.census.gov/data/#lodes),
+In the United States, we automatically populate opportunity data from [LODES](https://lehd.ces.census.gov/data/#lodes),
 which contains location information about jobs and worker residences. If you wish to compute accessibility
 using other information, or if you are outside the US, you will need to upload opportunity data. You can
-do this by entering analysis mode and choosing "Create a new grid." You will be taken to a page where
-you can upload a file. We support uploading either Shapefiles or CSV files with point information.
+do this by selecting the "Opportunity Datasets" <i class="fa fa-th"></i> button on the sidebar.
 
 If you are uploading a shapefile, it should not be zipped. Select all of the files in the Shapefile
 when uploading (at the very least, `.shp`, `.shx`, `.dbf` and `.prj`). How you select multiple files
@@ -21,3 +20,5 @@ latitude and longitude fields (we currently only support CSV files in WGS 84 Lat
   <img src="../../img/upload-csv.png" />
   <figcaption>Uploading a CSV file and entering the latitude and longitude columns</figcaption>
 </figure>
+
+Once you have done this, click "Upload new opportunity dataset" to start the upload.
