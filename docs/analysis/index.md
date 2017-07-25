@@ -29,6 +29,15 @@ can be reached from the marker location within a given travel time (the default 
 is controlled by the slider in the left panel.) To change the origin of the analysis, simply drag the marker
 to a new location.
 
+Clicking on the map will display the distribution of travel times from the origin to that location.
+For example, in the image below, the travel time varies between about 30 and 50 minutes depending on
+when one leaves.
+
+<figure>
+  <img src="../img/destination-travel-time-distribution.png" />
+  <figcaption>The travel time distribution from an origin to a destination</figcaption>
+</figure>
+
 # Routing controls
 
 The left panel has a number of controls for the analysis, and displays the accessibility afforded by the
