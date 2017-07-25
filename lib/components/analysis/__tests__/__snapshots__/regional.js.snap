@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Regional should handle rendering comparison 1`] = `
-<RegionalAnalysis
+<RegionalAnalysisDisplay
   addRegionalAnalysisLayerToMap={[Function]}
   addRegionalComparisonLayerToMap={[Function]}
+  aggregationAreas={Array []}
   analysis={
     Object {
       "bundleId": "5678",
@@ -295,12 +296,12 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           >
             <span
               className="Select-multi-value-wrapper"
-              id="react-select-3--value"
+              id="react-select-4--value"
             >
               <Value
                 disabled={false}
-                id="react-select-3--value-item"
-                instancePrefix="react-select-3-"
+                id="react-select-4--value-item"
+                instancePrefix="react-select-4-"
                 onClick={null}
                 value={
                   Object {
@@ -315,7 +316,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                   <span
                     aria-selected="true"
                     className="Select-value-label"
-                    id="react-select-3--value-item"
+                    id="react-select-4--value-item"
                     role="option"
                   >
                     ANALYSIS 2
@@ -323,7 +324,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                 </div>
               </Value>
               <AutosizeInput
-                aria-activedescendant="react-select-3--value"
+                aria-activedescendant="react-select-4--value"
                 aria-expanded="false"
                 aria-haspopup="false"
                 aria-owns=""
@@ -383,7 +384,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         value={0.83}
       >
         <Group
-          id="minimum-probability-of-change-input-1"
+          id="minimum-probability-of-change-input-3"
           label="Minimum probability of change"
           max={1}
           min={0}
@@ -395,19 +396,19 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             className="form-group"
           >
             <label
-              htmlFor="minimum-probability-of-change-input-1"
+              htmlFor="minimum-probability-of-change-input-3"
             >
               Minimum probability of change
             </label>
             <output
               className="pull-right"
-              htmlFor="minimum-probability-of-change-input-1"
+              htmlFor="minimum-probability-of-change-input-3"
             >
               0.55
             </output>
             <input
               className="form-control"
-              id="minimum-probability-of-change-input-1"
+              id="minimum-probability-of-change-input-3"
               label="Minimum probability of change"
               max={1}
               min={0}
@@ -576,6 +577,119 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
       </div>
     </Collapsible>
     <div>
+      <Group
+        label="Aggregate results to"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="aggregate-results-to-input-2"
+          >
+            Aggregate results to
+          </label>
+          <Select
+            addLabelText="Add \\"{label}\\"?"
+            arrowRenderer={[Function]}
+            autosize={true}
+            backspaceRemoves={true}
+            backspaceToRemoveMessage="Press backspace to remove {label}"
+            clearAllText="Clear all"
+            clearRenderer={[Function]}
+            clearValueText="Clear value"
+            clearable={true}
+            deleteRemoves={true}
+            delimiter=","
+            disabled={false}
+            escapeClearsValue={true}
+            filterOptions={[Function]}
+            ignoreAccents={true}
+            ignoreCase={true}
+            inputProps={Object {}}
+            isLoading={false}
+            joinValues={false}
+            labelKey="label"
+            matchPos="any"
+            matchProp="any"
+            menuBuffer={0}
+            menuRenderer={[Function]}
+            multi={false}
+            name="aggregateTo"
+            noResultsText="No results found"
+            onBlurResetsInput={true}
+            onChange={[Function]}
+            onCloseResetsInput={true}
+            openAfterFocus={false}
+            optionComponent={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "Upload new aggregation area",
+                  "value": "new-aggregation-area",
+                },
+              ]
+            }
+            pageSize={5}
+            placeholder="Select..."
+            required={false}
+            scrollMenuIntoView={true}
+            searchable={true}
+            simpleValue={false}
+            tabSelectsValue={true}
+            valueComponent={[Function]}
+            valueKey="value"
+          >
+            <div
+              className="Select Select--single is-searchable"
+            >
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+              >
+                <span
+                  className="Select-multi-value-wrapper"
+                  id="react-select-5--value"
+                >
+                  <div
+                    className="Select-placeholder"
+                  >
+                    Select...
+                  </div>
+                  <AutosizeInput
+                    aria-activedescendant="react-select-5--value"
+                    aria-expanded="false"
+                    aria-haspopup="false"
+                    aria-owns=""
+                    className="Select-input"
+                    minWidth="5"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    role="combobox"
+                    value=""
+                  />
+                </span>
+                <span
+                  className="Select-arrow-zone"
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]}
+                  />
+                </span>
+              </div>
+            </div>
+          </Select>
+        </div>
+      </Group>
+    </div>
+    <div>
       <b>
         <Icon
           type="map-o"
@@ -614,11 +728,11 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
       </ul>
     </div>
   </div>
-</RegionalAnalysis>
+</RegionalAnalysisDisplay>
 `;
 
 exports[`Components > Analysis > Regional should load analysis if it is not loaded 1`] = `
-<RegionalAnalysis
+<RegionalAnalysisDisplay
   addRegionalAnalysisLayerToMap={[Function]}
   addRegionalComparisonLayerToMap={[Function]}
   analysisId="abcd"
@@ -748,9 +862,10 @@ exports[`Components > Analysis > Regional should load analysis if it is not load
 `;
 
 exports[`Components > Analysis > Regional should render correctly 1`] = `
-<RegionalAnalysis
+<RegionalAnalysisDisplay
   addRegionalAnalysisLayerToMap={[Function]}
   addRegionalComparisonLayerToMap={[Function]}
+  aggregationAreas={Array []}
   analysis={
     Object {
       "bundleId": "5678",
@@ -1143,6 +1258,119 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
       </div>
     </Collapsible>
     <div>
+      <Group
+        label="Aggregate results to"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="aggregate-results-to-input-0"
+          >
+            Aggregate results to
+          </label>
+          <Select
+            addLabelText="Add \\"{label}\\"?"
+            arrowRenderer={[Function]}
+            autosize={true}
+            backspaceRemoves={true}
+            backspaceToRemoveMessage="Press backspace to remove {label}"
+            clearAllText="Clear all"
+            clearRenderer={[Function]}
+            clearValueText="Clear value"
+            clearable={true}
+            deleteRemoves={true}
+            delimiter=","
+            disabled={false}
+            escapeClearsValue={true}
+            filterOptions={[Function]}
+            ignoreAccents={true}
+            ignoreCase={true}
+            inputProps={Object {}}
+            isLoading={false}
+            joinValues={false}
+            labelKey="label"
+            matchPos="any"
+            matchProp="any"
+            menuBuffer={0}
+            menuRenderer={[Function]}
+            multi={false}
+            name="aggregateTo"
+            noResultsText="No results found"
+            onBlurResetsInput={true}
+            onChange={[Function]}
+            onCloseResetsInput={true}
+            openAfterFocus={false}
+            optionComponent={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "Upload new aggregation area",
+                  "value": "new-aggregation-area",
+                },
+              ]
+            }
+            pageSize={5}
+            placeholder="Select..."
+            required={false}
+            scrollMenuIntoView={true}
+            searchable={true}
+            simpleValue={false}
+            tabSelectsValue={true}
+            valueComponent={[Function]}
+            valueKey="value"
+          >
+            <div
+              className="Select Select--single is-searchable"
+            >
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+              >
+                <span
+                  className="Select-multi-value-wrapper"
+                  id="react-select-3--value"
+                >
+                  <div
+                    className="Select-placeholder"
+                  >
+                    Select...
+                  </div>
+                  <AutosizeInput
+                    aria-activedescendant="react-select-3--value"
+                    aria-expanded="false"
+                    aria-haspopup="false"
+                    aria-owns=""
+                    className="Select-input"
+                    minWidth="5"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    role="combobox"
+                    value=""
+                  />
+                </span>
+                <span
+                  className="Select-arrow-zone"
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]}
+                  />
+                </span>
+              </div>
+            </div>
+          </Select>
+        </div>
+      </Group>
+    </div>
+    <div>
       <b>
         <Icon
           type="map-o"
@@ -1165,5 +1393,5 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
       </ul>
     </div>
   </div>
-</RegionalAnalysis>
+</RegionalAnalysisDisplay>
 `;
