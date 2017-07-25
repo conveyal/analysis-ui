@@ -1,3 +1,5 @@
+# Regional analysis
+
 After a regional analysis has completed, you can access it by selecting it from the main analysis screen.
 Upon selecting a regional analysis, you will see a screen like the following:
 
@@ -9,11 +11,11 @@ Upon selecting a regional analysis, you will see a screen like the following:
 The map shows the average accessibility experienced at each location, with the legend to the left.
 This is the number of opportunities reachable from each location within the travel time budget
 used to create the analysis. You can view the parameters used to create this regional analysis by
-clicking on the "<title of regional analysis> settings" button below the legend to unfold the settings
+clicking on the "&lt;title of regional analysis&gt; settings" button below the legend to unfold the settings
 used for the analysis. You can also export a regional analysis to GIS in GeoTIFF format in order to create
 publication-quality maps using the download link.
 
-# Comparing regional analyses
+## Comparing regional analyses
 
 You can also compare two regional analyses from different scenarios in the same project by selecting
 a comparison scenario. The map will show the differences in accessibility between the two analyses,
