@@ -1,6 +1,6 @@
 /* global jest, module, require */
 
-import assign from 'lodash.assign'
+import assign from 'lodash/assign'
 
 const L = require.requireActual('leaflet')
 const LeafletMock = jest.genMockFromModule('leaflet')
