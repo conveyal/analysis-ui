@@ -1,11 +1,8 @@
 /* global jest */
 
-import Leaflet from './leaflet'
+// import Leaflet from './leaflet'
 
-Leaflet.Control.Draw = function DrawControl () {
-  this.options = {}
-}
+// const Draw = require.requireActual('leaflet-draw')
+// const DrawMockup = jest.genMockFromModule('leaflet-draw')
 
-Leaflet.Draw = {
-  Polygon: jest.fn(() => { return { enable: jest.fn(), disable: jest.fn() } })
-}
+module.exports = {}
