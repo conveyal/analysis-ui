@@ -1002,7 +1002,6 @@ exports[`Routes should render 1`] = `
                     <SidebarNavItem
                       href="http://docs.analysis.conveyal.com/"
                       icon="question-circle"
-                      newTab={true}
                       text="help"
                     >
                       <div
@@ -1013,19 +1012,26 @@ exports[`Routes should render 1`] = `
                           href="http://docs.analysis.conveyal.com/"
                           target="_blank"
                         >
-                          <Icon
-                            type="question-circle"
+                          <ItemContents
+                            icon="question-circle"
+                            text="help"
                           >
-                            <i
-                              className="fa fa-question-circle fa-fw "
-                            />
-                          </Icon>
-                          <span
-                            className="Sidebar-navItem-text"
-                          >
-                             
-                            help
-                          </span>
+                            <span>
+                              <Icon
+                                type="question-circle"
+                              >
+                                <i
+                                  className="fa fa-question-circle fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                help
+                              </span>
+                            </span>
+                          </ItemContents>
                         </a>
                       </div>
                     </SidebarNavItem>
