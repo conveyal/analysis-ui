@@ -278,14 +278,6 @@ input[type="number"] {
   font-weight: 100;
 }
 
-.WelcomeTitle > .badge {
-  font-size: 10px;
-  font-weight: normal;
-  background-color: #337ab7;
-  margin-top: -6px;
-  padding: 2px 7px 3px;
-}
-
 .DockTitle {
   margin: 0;
   padding: 12px;
@@ -396,7 +388,6 @@ input[type="number"] {
 .ModificationTitlePlaceholder,
 .ModificationTitle {
   padding: 6px 0 6px 18px;
-  font-size: 10px;
   display: block;
 }
 
@@ -451,15 +442,17 @@ input[type="number"] {
 }
 
 .Variants {
-  padding: 0 12px;
+  padding: 0 9px 0 12px;
 }
 
-.Variants-Variant {
-  margin-bottom: 12px;
+.Variant {
+  padding-bottom: 6px;
+  line-height: 18px;
 }
 
-.Variants-Variant .form-control {
-  width: 140px;
+.Variant > .pull-right {
+  display: inline-block;
+  padding: 3px;
 }
 
 .DirectionIcon {
@@ -468,7 +461,6 @@ input[type="number"] {
 
 .LoggedInAs {
   padding-top: 6px;
-  font-size: 10px;
 }
 
 .Report-Modification {
@@ -557,4 +549,19 @@ input[type="number"] {
 .Legend {
   list-style: none;
   padding-left: 0;
+}
+
+.CustomModal {
+  width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 12px;
+  top: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  overflow: scroll;
+  border: 1px solid #eee;
+  border-radius: 3px;
 }

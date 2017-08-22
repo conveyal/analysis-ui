@@ -6,7 +6,10 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
     <div
       className="DockTitle"
     >
-      Variants
+      <i
+        className="fa fa-clone fa-fw "
+      />
+       Variants
       <a
         className="pull-right"
         onClick={[Function]}
@@ -15,12 +18,37 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
         <i
           className="fa fa-plus fa-fw "
         />
-         Create
       </a>
     </div>
-    <form
-      className="Variants form-inline"
-    />
+    <div
+      className="Variants"
+    >
+      <div
+        className="Variant"
+      >
+        Default
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          tabIndex={0}
+          title="Show modifications for this variant on the map"
+        >
+          <i
+            className="fa fa-eye fa-fw "
+          />
+        </a>
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          tabIndex={0}
+          title="Edit this variant name"
+        >
+          <i
+            className="fa fa-pencil fa-fw "
+          />
+        </a>
+      </div>
+    </div>
   </div>
   <div
     className="DockTitle"
