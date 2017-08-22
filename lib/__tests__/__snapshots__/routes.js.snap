@@ -626,6 +626,7 @@ exports[`Routes should render 1`] = `
           }
         >
           <Application
+            bundleId="1"
             center={
               Object {
                 "lat": 38.8886,
@@ -1330,6 +1331,10 @@ exports[`Routes should render 1`] = `
                       attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
                       url="mock.url/tile"
                       zIndex={-10}
+                    />
+                    <TileLayer
+                      url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
+                      zIndex={40}
                     />
                   </div>
                 </Map>
