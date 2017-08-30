@@ -153,7 +153,8 @@ input[type="number"] {
   left: 360px;
 }
 
-.Fullscreen.hasActiveModification {
+.Fullscreen.hasActiveModification,
+.Fullscreen.analysisMode {
   left: 680px;
 }
 
@@ -170,6 +171,11 @@ input[type="number"] {
   height: 100%;
   border-right: 1px solid #ddd;
   overflow: hidden;
+}
+
+.ApplicationDock.analysisMode,
+.ApplicationDock.analysisMode .InnerDock {
+  width: 640px;
 }
 
 .ModificationDock {
@@ -300,6 +306,10 @@ input[type="number"] {
 
 .DockContent > .btn-group-justified > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
   border-right: none;
+}
+
+.btn-group-justified {
+  margin-bottom: 8px;
 }
 
 .panel, .panel-heading {
@@ -580,4 +590,13 @@ input[type="number"] {
 
 .CustomModal:focus {
   outline: none;
+}
+
+.list-group-item {
+  padding: 12px;
+}
+
+.progress {
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
