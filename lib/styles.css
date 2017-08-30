@@ -153,8 +153,7 @@ input[type="number"] {
   left: 360px;
 }
 
-.Fullscreen.hasActiveModification,
-.Fullscreen.analysisMode {
+.Fullscreen.hasActiveModification {
   left: 680px;
 }
 
@@ -173,11 +172,6 @@ input[type="number"] {
   overflow: hidden;
 }
 
-.ApplicationDock.analysisMode,
-.ApplicationDock.analysisMode .InnerDock {
-  width: 640px;
-}
-
 .ModificationDock {
   left: 360px;
 }
@@ -186,7 +180,7 @@ input[type="number"] {
   position: absolute;
   height: 100%;
   overflow-y: auto;
-  padding-bottom: 45px;
+  padding-bottom: 90px;
   width: 320px;
 }
 
@@ -251,6 +245,11 @@ input[type="number"] {
 .ModificationDockTitle > a {
   display: inline-block;
   padding: 0 3px;
+}
+
+.ApplicationDockTitle > .btn {
+  padding: 4px 8px;
+  margin-top: -3px;
 }
 
 .DockContent {
