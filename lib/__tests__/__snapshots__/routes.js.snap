@@ -180,6 +180,14 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
+                        "path": "regional",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "regional/:regionalAnalysisId",
+                      },
+                      Object {
+                        "component": [Function],
                         "path": "analysis/regional/:regionalAnalysisId",
                       },
                     ],
@@ -275,6 +283,14 @@ exports[`Routes should render 1`] = `
                     Object {
                       "component": [Function],
                       "path": "analysis/:variantId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "regional",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "regional/:regionalAnalysisId",
                     },
                     Object {
                       "component": [Function],
@@ -382,6 +398,14 @@ exports[`Routes should render 1`] = `
                     Object {
                       "component": [Function],
                       "path": "analysis/:variantId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "regional",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "regional/:regionalAnalysisId",
                     },
                     Object {
                       "component": [Function],
@@ -501,6 +525,14 @@ exports[`Routes should render 1`] = `
                         },
                         Object {
                           "component": [Function],
+                          "path": "regional",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "regional/:regionalAnalysisId",
+                        },
+                        Object {
+                          "component": [Function],
                           "path": "analysis/regional/:regionalAnalysisId",
                         },
                       ],
@@ -599,6 +631,14 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
+                        "path": "regional",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "regional/:regionalAnalysisId",
+                      },
+                      Object {
+                        "component": [Function],
                         "path": "analysis/regional/:regionalAnalysisId",
                       },
                     ],
@@ -633,6 +673,7 @@ exports[`Routes should render 1`] = `
                 "lon": -77.043,
               }
             }
+            clearError={[Function]}
             error=""
             errorMessage=""
             hasError={false}
@@ -719,6 +760,14 @@ exports[`Routes should render 1`] = `
                       Object {
                         "component": [Function],
                         "path": "analysis/:variantId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "regional",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "regional/:regionalAnalysisId",
                       },
                       Object {
                         "component": [Function],
@@ -838,6 +887,14 @@ exports[`Routes should render 1`] = `
                           },
                           Object {
                             "component": [Function],
+                            "path": "regional",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "regional/:regionalAnalysisId",
+                          },
+                          Object {
+                            "component": [Function],
                             "path": "analysis/regional/:regionalAnalysisId",
                           },
                         ],
@@ -936,6 +993,14 @@ exports[`Routes should render 1`] = `
                         },
                         Object {
                           "component": [Function],
+                          "path": "regional",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "regional/:regionalAnalysisId",
+                        },
+                        Object {
+                          "component": [Function],
                           "path": "analysis/regional/:regionalAnalysisId",
                         },
                       ],
@@ -962,7 +1027,7 @@ exports[`Routes should render 1`] = `
               ]
             }
             scenarioId="1"
-            scenarioIsLoaded={false}
+            scenarioIsLoaded={true}
             setMapCenter={[Function]}
             variants={
               Array [
@@ -1269,6 +1334,50 @@ exports[`Routes should render 1`] = `
                         </Link>
                       </div>
                     </SidebarNavItem>
+                    <SidebarNavItem
+                      active={null}
+                      href="/scenarios/1/regional"
+                      icon="server"
+                      text="Regional Analysis"
+                    >
+                      <div
+                        className="Sidebar-navItem"
+                        title="Regional Analysis"
+                      >
+                        <Link
+                          onlyActiveOnIndex={false}
+                          style={Object {}}
+                          to="/scenarios/1/regional"
+                        >
+                          <a
+                            href="/scenarios/1/regional"
+                            onClick={[Function]}
+                            style={Object {}}
+                          >
+                            <ItemContents
+                              icon="server"
+                              text="Regional Analysis"
+                            >
+                              <span>
+                                <Icon
+                                  type="server"
+                                >
+                                  <i
+                                    className="fa fa-server fa-fw "
+                                  />
+                                </Icon>
+                                <span
+                                  className="Sidebar-navItem-text"
+                                >
+                                   
+                                  Regional Analysis
+                                </span>
+                              </span>
+                            </ItemContents>
+                          </a>
+                        </Link>
+                      </div>
+                    </SidebarNavItem>
                   </div>
                   <div
                     className="Sidebar-bottom"
@@ -1336,6 +1445,361 @@ exports[`Routes should render 1`] = `
                       url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
                       zIndex={40}
                     />
+                    <Connect(ScenarioMap)
+                      zIndex={50}
+                    >
+                      <ScenarioMap
+                        bundleId="1"
+                        centerLonLat={
+                          Object {
+                            "lat": 38.90124,
+                            "lon": -77.015615,
+                          }
+                        }
+                        feeds={
+                          Array [
+                            Object {
+                              "id": "1",
+                              "routes": Array [
+                                Object {
+                                  "id": "route1",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              ],
+                              "routesById": Object {
+                                "route1": Object {
+                                  "id": "route1",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              },
+                              "stops": Array [
+                                Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              ],
+                              "stopsById": Object {
+                                "1": Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                "2": Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              },
+                            },
+                          ]
+                        }
+                        feedsById={
+                          Object {
+                            "1": Object {
+                              "id": "1",
+                              "routes": Array [
+                                Object {
+                                  "id": "route1",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              ],
+                              "routesById": Object {
+                                "route1": Object {
+                                  "id": "route1",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                              },
+                              "stops": Array [
+                                Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              ],
+                              "stopsById": Object {
+                                "1": Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                "2": Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              },
+                            },
+                          }
+                        }
+                        mapState={
+                          Object {
+                            "activeTrips": Array [],
+                            "center": Object {
+                              "lat": 38.8886,
+                              "lon": -77.043,
+                            },
+                            "components": Array [],
+                            "zoom": 12,
+                          }
+                        }
+                        modificationsOnMap={Array []}
+                        qualifiedStops={Array []}
+                        replaceModification={[Function]}
+                        setMapState={[Function]}
+                        zIndex={50}
+                      >
+                        <FeatureGroup>
+                          <div
+                            style={
+                              Object {
+                                "display": "none",
+                              }
+                            }
+                          >
+                            }
+                          </div>
+                        </FeatureGroup>
+                      </ScenarioMap>
+                    </Connect(ScenarioMap)>
                   </div>
                 </Map>
               </div>
@@ -1455,6 +1919,14 @@ exports[`Routes should render 1`] = `
                                 },
                                 Object {
                                   "component": [Function],
+                                  "path": "regional",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "regional/:regionalAnalysisId",
+                                },
+                                Object {
+                                  "component": [Function],
                                   "path": "analysis/regional/:regionalAnalysisId",
                                 },
                               ],
@@ -1550,6 +2022,14 @@ exports[`Routes should render 1`] = `
                               Object {
                                 "component": [Function],
                                 "path": "analysis/:variantId",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "regional",
+                              },
+                              Object {
+                                "component": [Function],
+                                "path": "regional/:regionalAnalysisId",
                               },
                               Object {
                                 "component": [Function],
@@ -1695,6 +2175,14 @@ exports[`Routes should render 1`] = `
                                   },
                                   Object {
                                     "component": [Function],
+                                    "path": "regional",
+                                  },
+                                  Object {
+                                    "component": [Function],
+                                    "path": "regional/:regionalAnalysisId",
+                                  },
+                                  Object {
+                                    "component": [Function],
                                     "path": "analysis/regional/:regionalAnalysisId",
                                   },
                                 ],
@@ -1790,6 +2278,14 @@ exports[`Routes should render 1`] = `
                                 Object {
                                   "component": [Function],
                                   "path": "analysis/:variantId",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "regional",
+                                },
+                                Object {
+                                  "component": [Function],
+                                  "path": "regional/:regionalAnalysisId",
                                 },
                                 Object {
                                   "component": [Function],
