@@ -63,6 +63,7 @@ ul, ol {
 .btn {
   font-size: 12px;
   line-height: 1.4;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1), rgba(51, 51, 51, 0.1));
 }
 
 .btn-primary {
@@ -93,9 +94,15 @@ input[type="datetime-local"].form-control,
 input[type="month"].form-control,
 .form-control {
   font-size: 12px;
-  height: 30px;
   line-height: 1em;
-  padding: 6px;
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .1);
+}
+
+input[type="file"].form-control {
+  padding-top: 9px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -107,12 +114,20 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+input[type="range"].form-control {
+  box-shadow: none;
+}
+
 .form-inline .checkbox label {
   padding: 0 12px 12px 0;
 }
 
 .form-inline .form-control {
   margin: 0 6px;
+}
+
+label {
+  margin-bottom: 2px;
 }
 
 .CollapsibleButton {
@@ -174,6 +189,7 @@ input[type="number"] {
   height: 100%;
   border-right: 1px solid #ddd;
   overflow: hidden;
+  background-color: #fff;
 }
 
 .ApplicationDock.analysisMode,
@@ -195,28 +211,6 @@ input[type="number"] {
 
 .Analysis, .ScenarioContent {
   min-height: 500px;
-}
-
-.BlockLink {
-  display: block;
-  border: 1px solid rgba(51, 122, 183, 0.4);
-  color: #337ab7;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  padding: 0 6px 0 12px;
-  line-height: 38px;
-  cursor: pointer;
-}
-
-.BlockLink:hover,
-.BlockLink:active {
-  border-color: rgba(35, 82, 124, 0.4);
-  color: #23527c;
-  text-decoration: none;
-}
-
-.BlockLink > a {
-  padding: 0 6px;
 }
 
 .InnerDock::-webkit-scrollbar {
@@ -259,6 +253,7 @@ input[type="number"] {
 .ApplicationDockTitle > .btn {
   padding: 4px 8px;
   margin-top: -3px;
+  margin-left: 8px;
 }
 
 .DockContent {
@@ -272,7 +267,16 @@ input[type="number"] {
 }
 
 .WelcomeTitle > .logo {
-  font-family: "Gill Sans";
+  font-family: "Gill Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen-Sans,
+    Ubuntu,
+    Cantarell,
+    "Helvetica Neue",
+    sans-serif;
   display: inline-block;
   letter-spacing: 0;
   font-size: 26px;
@@ -315,8 +319,14 @@ input[type="number"] {
   margin-bottom: 8px;
 }
 
-.panel, .panel-heading {
-  border-radius: 0;
+.panel-heading {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.panel {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .alert {
@@ -426,11 +436,24 @@ input[type="number"] {
 }
 
 .Select-control {
-  height: 28px;
+  height: 34px;
+  background-color: #ddd;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .1);
+  border: none;
+  color: #333;
+}
+
+.is-open > .Select-control {
+  background-color: #ddd;
+  border: none;
+}
+
+.Select-control:hover {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .1);
 }
 
 .Select-input {
-  height: 28px;
+  height: 34px;
 }
 
 .Select-placeholder {
@@ -439,7 +462,11 @@ input[type="number"] {
 }
 
 .Select-placeholder, .Select--single > .Select-control .Select-value {
-  line-height: 28px;
+  line-height: 34px;
+}
+
+.Select-arrow {
+  border-color: #333 transparent transparent;
 }
 
 .Selet-arrow-zone {
@@ -452,6 +479,7 @@ input[type="number"] {
 
 .Select-menu-outer {
   z-index: 3;
+  border-color: #ddd;
 }
 
 .Variants {
@@ -565,7 +593,7 @@ input[type="number"] {
 }
 
 .CustomModal {
-  width: 400px;
+  width: 600px;
   margin: 0 auto;
   background-color: #fff;
   top: 40px;
@@ -574,20 +602,20 @@ input[type="number"] {
   right: 0;
   bottom: 40px;
   overflow: scroll;
-  border-radius: 3px;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-  border-top: 6px solid #337ab7;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px 0 rgba(51, 122, 183, 0.2);
+  border: 1px solid #337ab7;
 }
 
 .CustomModal-title {
   font-size: 16px;
   display: block;
   width: 100%;
-  padding: 12px;
+  padding: 24px;
 }
 
 .CustomModal-block {
-  padding: 0 12px;
+  padding: 0 24px;
   word-wrap: break-word;
 }
 
@@ -597,9 +625,40 @@ input[type="number"] {
 
 .list-group-item {
   padding: 12px;
+  background-image: linear-gradient(to bottom, #fff, #fff, rgba(51, 122, 183, 0.1));
 }
 
 .progress {
   margin-top: 6px;
   margin-bottom: 6px;
+}
+
+.pad-right {
+  padding-right: 12px;
+}
+
+.tooltip {
+  opacity: 1;
+  max-width: 1000px;
+  white-space: nowrap;
+}
+
+.tooltip.right {
+  left: 40px;
+}
+
+.tooltip-inner {
+  background-color: #333;
+}
+
+.tooltip.right .tooltip-arrow {
+  border-right-color: #333;
+}
+
+.help-tooltip {
+  max-width: 400px;
+  z-index: 1000 !important;
+  opacity: 100 !important;
+  background-color: #333 !important;
+  box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.2);
 }

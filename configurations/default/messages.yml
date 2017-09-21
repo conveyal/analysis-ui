@@ -11,7 +11,7 @@ authentication:
 bundle:
   create: Create a bundle
   delete: Delete this bundle
-  deleteConfirmation: Are you sure you would like to delete this bundle?
+  deleteConfirmation: Are you sure you would like to delete this bundle? Scenarios using this bundle will no longer work.
   edit: Edit bundle
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
@@ -22,7 +22,7 @@ nav:
   selectBundle: Select Bundle
   projects: Projects
   projectSettings: Project Settings
-  scenarios: Scenarios
+  scenarios: Project Scenarios
   gtfsBundles: GTFS Bundles
   opportunityDatasets: Opportunity Datasets
   editScenario: Edit Scenario
@@ -67,9 +67,10 @@ project:
     PROJECTING_CENSUS: Projecting Census data to project grid…
     STORING_CENSUS: Storing census data…
     DONE: Done
-  customOpenStreetMapData: Custom OpenStreetMap data in PBF format (optional)
+  customOpenStreetMapData: Custom OpenStreetMap data in PBF format
 scenario:
   createAction: Create a new Scenario
+  createActionTooltip: Each scenario can include variants with modifications that are applied to the same GTFS bundle.
   delete: Delete scenario
   deleteConfirmation: Are you sure you would like to delete this scenario?
   editAction: Save changes to scenario
@@ -136,6 +137,7 @@ analysis:
   # accessibility pre-formatted as string, don't use %d
   percentileOfAccessibility: %(name)s: %(percentage)d%% of %(weightByName)s can access at least %(accessibility)s %(accessToName)s
   createGrid: Upload new opportunity dataset
+  createGridTooltip: Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj)
   opportunityDataset: Opportunity dataset
   selectOpportunityDataset: Select an opportunity dataset...
   cutoff: Travel time cutoff (minutes)
