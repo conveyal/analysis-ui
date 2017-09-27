@@ -1,59 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > EditBundle renders correctly 1`] = `
-<div
-  className="panel panel-default"
->
-  <div
-    className="panel-heading clearfix "
-  >
+<div>
+  <h5>
     Edit bundle
-  </div>
+  </h5>
   <div
-    className="panel-body"
+    className="form-group"
   >
-    <form
-      encType="multipart/form-data"
-      method="post"
-      onSubmit={[Function]}
+    <label
+      htmlFor="name-input-0"
     >
-      <div
-        className="form-group"
-      >
-        <input
-          className="form-control"
-          id="name-input-0"
-          name="Name"
-          onChange={[Function]}
-          placeholder="Bundle name"
-          type="text"
-          value="Test Bundle"
-        />
-      </div>
-      <input
-        name="projectId"
-        type="hidden"
-        value="1"
-      />
-      <input
-        className="btn btn-block btn-success"
-        disabled={false}
-        type="submit"
-        value="Edit bundle"
-      />
-      <a
-        className="btn btn-danger btn-block"
-        href="#"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-trash fa-fw "
-        />
-         
-        Delete this bundle
-      </a>
-    </form>
+      Bundle name
+    </label>
+    <input
+      className="form-control"
+      id="name-input-0"
+      name="Name"
+      onChange={[Function]}
+      placeholder="Bundle name"
+      type="text"
+      value="Test Bundle"
+    />
   </div>
+  <a
+    className="btn btn-success btn-block"
+    href="#"
+    onClick={[Function]}
+    tabIndex={0}
+  >
+    <i
+      className="fa fa-save fa-fw "
+    />
+     
+    Edit bundle
+  </a>
+  <a
+    className="btn btn-danger btn-block"
+    href="#"
+    onClick={[Function]}
+    tabIndex={0}
+  >
+    <i
+      className="fa fa-trash fa-fw "
+    />
+     
+    Delete this bundle
+  </a>
 </div>
 `;

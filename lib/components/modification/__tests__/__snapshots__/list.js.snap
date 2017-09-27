@@ -2,68 +2,13 @@
 
 exports[`Component > Modification > ModificationsList renders correctly 1`] = `
 <div>
-  <div>
-    <div
-      className="DockTitle"
-    >
-      <i
-        className="fa fa-clone fa-fw "
-      />
-       Variants
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-      </a>
-    </div>
-    <div
-      className="Variants"
-    >
-      <div
-        className="Variant"
-      >
-        Default
-        <a
-          className="pull-right"
-          onClick={[Function]}
-          tabIndex={0}
-          title="Show modifications for this variant on the map"
-        >
-          <i
-            className="fa fa-eye fa-fw "
-          />
-        </a>
-        <a
-          className="pull-right"
-          onClick={[Function]}
-          tabIndex={0}
-          title="Edit this variant name"
-        >
-          <i
-            className="fa fa-pencil fa-fw "
-          />
-        </a>
-      </div>
-    </div>
-  </div>
   <div
-    className="DockTitle"
+    className="ApplicationDockTitle"
   >
-    Modifications
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      tabIndex={0}
-      title="Create a new modification"
-    >
-      <i
-        className="fa fa-plus fa-fw "
-      />
-    </a>
+    <i
+      className="fa fa-pencil fa-fw "
+    />
+     Modifications
     <a
       className="ShowOnMap pull-right active fa-btn"
       onClick={[Function]}
@@ -86,21 +31,91 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
     </a>
   </div>
   <div
-    className="block"
+    className="InnerDock"
   >
+    <div>
+      <div
+        className="DockTitle"
+      >
+        <i
+          className="fa fa-clone fa-fw "
+        />
+         Variants
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          tabIndex={0}
+          title="Create a new variant"
+        >
+          <i
+            className="fa fa-plus fa-fw "
+          />
+           Create
+        </a>
+      </div>
+      <div
+        className="Variants"
+      >
+        <div
+          className="Variant"
+        >
+          Default
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Show modifications for this variant on the map"
+          >
+            <i
+              className="fa fa-eye fa-fw "
+            />
+          </a>
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Edit this variant name"
+          >
+            <i
+              className="fa fa-pencil fa-fw "
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <br />
     <div
-      className="form-group"
+      className="block"
     >
-      <input
-        aria-label="Search modifications"
-        className="form-control"
-        id="search-modifications-input-0"
-        name="Search modifications"
-        onChange={[Function]}
-        placeholder="Search modifications"
-        type="text"
-        value=""
-      />
+      <div
+        className="form-group"
+      >
+        <a
+          className="btn btn-success btn-block"
+          href="#"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          <i
+            className="fa fa-plus fa-fw "
+          />
+           Create a modification
+        </a>
+      </div>
+      <div
+        className="form-group"
+      >
+        <input
+          aria-label="Search modifications"
+          className="form-control"
+          id="search-modifications-input-0"
+          name="Search modifications"
+          onChange={[Function]}
+          placeholder="Search modifications"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>

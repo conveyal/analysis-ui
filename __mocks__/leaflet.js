@@ -133,8 +133,12 @@ class MapMock extends LeafletMock.Map {
     return this.setView(this.getCenter(), zoom)
   }
 
-  unproject (point, zoom) {
-    return L.Map.prototype.unproject(point, zoom || 9)
+  project (point, zoom = 9) {
+    return L.Map.prototype.project(point, zoom)
+  }
+
+  unproject (point, zoom = 9) {
+    return L.Map.prototype.unproject(point, zoom)
   }
 }
 

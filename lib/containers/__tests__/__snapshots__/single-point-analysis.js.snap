@@ -1,0 +1,2573 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components > Analysis > Single Point should render correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(SinglePointAnalysis)
+    params={Object {}}
+  >
+    <SinglePointAnalysis
+      addEditRegionalAnalysisBoundsLayerToMap={[Function]}
+      addIsochroneLayerToMap={[Function]}
+      addOpportunityLayerToMap={[Function]}
+      bundleId="1"
+      clearComparisonScenario={[Function]}
+      clearIsochroneResults={[Function]}
+      createRegionalAnalysis={[Function]}
+      enterAnalysisMode={[Function]}
+      exitAnalysisMode={[Function]}
+      fetchTravelTimeSurface={[Function]}
+      indicators={Array []}
+      isFetchingIsochrone={false}
+      isShowingIsochrone={false}
+      isShowingOpportunities={false}
+      isochroneLonLat={
+        Object {
+          "lat": 38.8886,
+          "lon": -77.043,
+        }
+      }
+      modifications={
+        Array [
+          Object {
+            "bidirectional": false,
+            "entries": Array [],
+            "feed": "1",
+            "id": "1234",
+            "name": "Test Modification",
+            "routes": Array [
+              "route1",
+            ],
+            "segments": Array [
+              {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                "-122.02460000",
+                "36.97070000"
+              ],
+              [
+                "-122.02790000",
+                "37.04900000"
+              ],
+              [
+                "-121.97990000",
+                "37.22990000"
+              ],
+              [
+                "-121.94450000",
+                "37.32400000"
+              ],
+              [
+                "-121.93600000",
+                "37.35300000"
+              ],
+              [
+                "-121.92400000",
+                "37.36500000"
+              ]
+            ]
+          }
+        },
+            ],
+            "showOnMap": false,
+            "timetables": Array [
+              Object {
+                "dwellTime": 10,
+                "endTime": 57600,
+                "friday": true,
+                "headwaySecs": 900,
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "variants": Array [
+              true,
+            ],
+          },
+        ]
+      }
+      params={Object {}}
+      profileRequest={
+        Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bikeTrafficStress": 4,
+          "carSpeed": 20,
+          "date": "2016-01-16",
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxCarTime": 45,
+          "maxRides": 4,
+          "maxWalkTime": 20,
+          "minBikeTime": 10,
+          "minCarTime": 10,
+          "monteCarloDraws": 200,
+          "reachabilityThreshold": 0,
+          "streetTime": 90,
+          "suboptimalMinutes": 5,
+          "toTime": 32400,
+          "transitModes": "TRANSIT",
+          "walkSpeed": 1.3888888888888888,
+        }
+      }
+      projectBounds={
+        Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        }
+      }
+      projectId="1"
+      push={[Function]}
+      regionalAnalyses={Array []}
+      regionalAnalysisBounds={
+        Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        }
+      }
+      removeEditRegionalAnalysisBoundsLayerFromMap={[Function]}
+      removeIsochroneLayerFromMap={[Function]}
+      removeOpportunityLayerFromMap={[Function]}
+      scenarioId="1"
+      scenarioName="Mock Scenario"
+      scenarios={
+        Array [
+          Object {
+            "bundleId": "1",
+            "feeds": Array [
+              Object {
+                "id": "1",
+                "routes": Array [
+                  Object {
+                    "id": "route1",
+                    "patterns": Array [
+                      Object {
+                        "geometry": Object {
+                          "coordinates": Array [
+                            Array [
+                              -122.0246,
+                              36.9707,
+                            ],
+                            Array [
+                              -122.0279,
+                              37.049,
+                            ],
+                            Array [
+                              -121.9799,
+                              37.2299,
+                            ],
+                            Array [
+                              -121.9445,
+                              37.324,
+                            ],
+                            Array [
+                              -121.936,
+                              37.353,
+                            ],
+                            Array [
+                              -121.924,
+                              37.365,
+                            ],
+                          ],
+                          "type": "LineString",
+                        },
+                        "stops": Array [
+                          Object {
+                            "stop_id": "1",
+                            "stop_lat": 36.9707,
+                            "stop_lon": -122.0246,
+                            "stop_name": "Santa Cruz",
+                          },
+                          Object {
+                            "stop_id": "2",
+                            "stop_lat": 37.049,
+                            "stop_lon": -122.0279,
+                            "stop_name": "Scotts Valley",
+                          },
+                        ],
+                        "trips": Array [
+                          Object {
+                            "duration": 1234,
+                            "start_time": 12345,
+                            "trip_headsign": "To Downtown",
+                            "trip_id": "abcd",
+                            "trip_short_name": "The Express",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+                "routesById": Object {
+                  "route1": Object {
+                    "id": "route1",
+                    "patterns": Array [
+                      Object {
+                        "geometry": Object {
+                          "coordinates": Array [
+                            Array [
+                              -122.0246,
+                              36.9707,
+                            ],
+                            Array [
+                              -122.0279,
+                              37.049,
+                            ],
+                            Array [
+                              -121.9799,
+                              37.2299,
+                            ],
+                            Array [
+                              -121.9445,
+                              37.324,
+                            ],
+                            Array [
+                              -121.936,
+                              37.353,
+                            ],
+                            Array [
+                              -121.924,
+                              37.365,
+                            ],
+                          ],
+                          "type": "LineString",
+                        },
+                        "stops": Array [
+                          Object {
+                            "stop_id": "1",
+                            "stop_lat": 36.9707,
+                            "stop_lon": -122.0246,
+                            "stop_name": "Santa Cruz",
+                          },
+                          Object {
+                            "stop_id": "2",
+                            "stop_lat": 37.049,
+                            "stop_lon": -122.0279,
+                            "stop_name": "Scotts Valley",
+                          },
+                        ],
+                        "trips": Array [
+                          Object {
+                            "duration": 1234,
+                            "start_time": 12345,
+                            "trip_headsign": "To Downtown",
+                            "trip_id": "abcd",
+                            "trip_short_name": "The Express",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                "stops": Array [
+                  Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                ],
+                "stopsById": Object {
+                  "1": Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  "2": Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                },
+              },
+            ],
+            "feedsById": Object {
+              "1": Object {
+                "id": "1",
+                "routes": Array [
+                  Object {
+                    "id": "route1",
+                    "patterns": Array [
+                      Object {
+                        "geometry": Object {
+                          "coordinates": Array [
+                            Array [
+                              -122.0246,
+                              36.9707,
+                            ],
+                            Array [
+                              -122.0279,
+                              37.049,
+                            ],
+                            Array [
+                              -121.9799,
+                              37.2299,
+                            ],
+                            Array [
+                              -121.9445,
+                              37.324,
+                            ],
+                            Array [
+                              -121.936,
+                              37.353,
+                            ],
+                            Array [
+                              -121.924,
+                              37.365,
+                            ],
+                          ],
+                          "type": "LineString",
+                        },
+                        "stops": Array [
+                          Object {
+                            "stop_id": "1",
+                            "stop_lat": 36.9707,
+                            "stop_lon": -122.0246,
+                            "stop_name": "Santa Cruz",
+                          },
+                          Object {
+                            "stop_id": "2",
+                            "stop_lat": 37.049,
+                            "stop_lon": -122.0279,
+                            "stop_name": "Scotts Valley",
+                          },
+                        ],
+                        "trips": Array [
+                          Object {
+                            "duration": 1234,
+                            "start_time": 12345,
+                            "trip_headsign": "To Downtown",
+                            "trip_id": "abcd",
+                            "trip_short_name": "The Express",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+                "routesById": Object {
+                  "route1": Object {
+                    "id": "route1",
+                    "patterns": Array [
+                      Object {
+                        "geometry": Object {
+                          "coordinates": Array [
+                            Array [
+                              -122.0246,
+                              36.9707,
+                            ],
+                            Array [
+                              -122.0279,
+                              37.049,
+                            ],
+                            Array [
+                              -121.9799,
+                              37.2299,
+                            ],
+                            Array [
+                              -121.9445,
+                              37.324,
+                            ],
+                            Array [
+                              -121.936,
+                              37.353,
+                            ],
+                            Array [
+                              -121.924,
+                              37.365,
+                            ],
+                          ],
+                          "type": "LineString",
+                        },
+                        "stops": Array [
+                          Object {
+                            "stop_id": "1",
+                            "stop_lat": 36.9707,
+                            "stop_lon": -122.0246,
+                            "stop_name": "Santa Cruz",
+                          },
+                          Object {
+                            "stop_id": "2",
+                            "stop_lat": 37.049,
+                            "stop_lon": -122.0279,
+                            "stop_name": "Scotts Valley",
+                          },
+                        ],
+                        "trips": Array [
+                          Object {
+                            "duration": 1234,
+                            "start_time": 12345,
+                            "trip_headsign": "To Downtown",
+                            "trip_id": "abcd",
+                            "trip_short_name": "The Express",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                "stops": Array [
+                  Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                ],
+                "stopsById": Object {
+                  "1": Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  "2": Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                },
+              },
+            },
+            "id": "1",
+            "name": "Mock Scenario",
+            "projectId": "1",
+            "variants": Array [
+              "Default",
+            ],
+          },
+        ]
+      }
+      setActiveVariant={[Function]}
+      setComparisonScenario={[Function]}
+      setCurrentIndicator={[Function]}
+      setProfileRequest={[Function]}
+      setRegionalAnalysisBounds={[Function]}
+      variantIndex={0}
+      variantName="Default"
+      variants={
+        Array [
+          "Default",
+        ]
+      }
+    >
+      <div>
+        <div
+          className="ApplicationDockTitle"
+        >
+          <Icon
+            type="area-chart"
+          >
+            <i
+              className="fa fa-area-chart fa-fw "
+            />
+          </Icon>
+           Analysis
+          <Button
+            className="pull-right"
+            disabled={false}
+            onClick={[Function]}
+            style="primary"
+          >
+            <a
+              className="btn btn-primary pull-right"
+              disabled={false}
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              <Icon
+                className=""
+                type="refresh"
+              >
+                <i
+                  className="fa fa-refresh fa-fw "
+                />
+              </Icon>
+               
+              Update results
+            </a>
+          </Button>
+          <Button
+            className="pad-right pull-right"
+            disabled={false}
+            onClick={[Function]}
+            style="success"
+          >
+            <a
+              className="btn btn-success pad-right pull-right"
+              disabled={false}
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              <Icon
+                type="plus"
+              >
+                <i
+                  className="fa fa-plus fa-fw "
+                />
+              </Icon>
+              New regional analysis
+            </a>
+          </Button>
+        </div>
+        <div
+          className="InnerDock"
+        >
+          <div
+            className="block"
+          >
+            <br />
+            <div
+              className="row"
+            >
+              <Group
+                className="col-xs-6"
+                label="Variant"
+              >
+                <div
+                  className="form-group col-xs-6"
+                >
+                  <label
+                    htmlFor="variant-input-0"
+                  >
+                    Variant
+                  </label>
+                  <Select
+                    addLabelText="Add \\"{label}\\"?"
+                    arrowRenderer={[Function]}
+                    autosize={true}
+                    backspaceRemoves={true}
+                    backspaceToRemoveMessage="Press backspace to remove {label}"
+                    clearAllText="Clear all"
+                    clearRenderer={[Function]}
+                    clearValueText="Clear value"
+                    clearable={false}
+                    deleteRemoves={true}
+                    delimiter=","
+                    disabled={false}
+                    escapeClearsValue={true}
+                    filterOptions={[Function]}
+                    ignoreAccents={true}
+                    ignoreCase={true}
+                    inputProps={Object {}}
+                    isLoading={false}
+                    joinValues={false}
+                    labelKey="label"
+                    matchPos="any"
+                    matchProp="any"
+                    menuBuffer={0}
+                    menuRenderer={[Function]}
+                    multi={false}
+                    noResultsText="No results found"
+                    onBlurResetsInput={true}
+                    onChange={[Function]}
+                    onCloseResetsInput={true}
+                    optionComponent={[Function]}
+                    options={
+                      Array [
+                        Object {
+                          "label": "Default",
+                          "value": 0,
+                        },
+                      ]
+                    }
+                    pageSize={5}
+                    placeholder="Select..."
+                    required={false}
+                    scrollMenuIntoView={true}
+                    searchable={true}
+                    simpleValue={false}
+                    tabSelectsValue={true}
+                    value={0}
+                    valueComponent={[Function]}
+                    valueKey="value"
+                  >
+                    <div
+                      className="Select Select--single is-searchable has-value"
+                    >
+                      <div
+                        className="Select-control"
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                      >
+                        <span
+                          className="Select-multi-value-wrapper"
+                          id="react-select-2--value"
+                        >
+                          <Value
+                            disabled={false}
+                            id="react-select-2--value-item"
+                            instancePrefix="react-select-2-"
+                            onClick={null}
+                            value={
+                              Object {
+                                "label": "Default",
+                                "value": 0,
+                              }
+                            }
+                          >
+                            <div
+                              className="Select-value"
+                            >
+                              <span
+                                aria-selected="true"
+                                className="Select-value-label"
+                                id="react-select-2--value-item"
+                                role="option"
+                              >
+                                Default
+                              </span>
+                            </div>
+                          </Value>
+                          <mockConstructor
+                            aria-activedescendant="react-select-2--value"
+                            aria-expanded="false"
+                            aria-haspopup="false"
+                            aria-owns=""
+                            className="Select-input"
+                            minWidth="5"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            required={false}
+                            role="combobox"
+                            value=""
+                          />
+                        </span>
+                        <span
+                          className="Select-arrow-zone"
+                          onMouseDown={[Function]}
+                        >
+                          <span
+                            className="Select-arrow"
+                            onMouseDown={[Function]}
+                          />
+                        </span>
+                      </div>
+                    </div>
+                  </Select>
+                </div>
+              </Group>
+              <Group
+                className="col-xs-6"
+                label="Opportunity Data"
+              >
+                <div
+                  className="form-group col-xs-6"
+                >
+                  <label
+                    htmlFor="opportunity-data-input-1"
+                  >
+                    Opportunity Data
+                  </label>
+                  <Select
+                    addLabelText="Add \\"{label}\\"?"
+                    arrowRenderer={[Function]}
+                    autosize={true}
+                    backspaceRemoves={true}
+                    backspaceToRemoveMessage="Press backspace to remove {label}"
+                    clearAllText="Clear all"
+                    clearRenderer={[Function]}
+                    clearValueText="Clear value"
+                    clearable={false}
+                    deleteRemoves={true}
+                    delimiter=","
+                    disabled={false}
+                    escapeClearsValue={true}
+                    filterOptions={[Function]}
+                    id="select-analysis-indicator"
+                    ignoreAccents={true}
+                    ignoreCase={true}
+                    inputProps={Object {}}
+                    isLoading={false}
+                    joinValues={false}
+                    labelKey="label"
+                    matchPos="any"
+                    matchProp="any"
+                    menuBuffer={0}
+                    menuRenderer={[Function]}
+                    multi={false}
+                    name="Opportunity dataset"
+                    noResultsText="No results found"
+                    onBlurResetsInput={true}
+                    onChange={[Function]}
+                    onCloseResetsInput={true}
+                    optionComponent={[Function]}
+                    options={Array []}
+                    pageSize={5}
+                    placeholder="Select an opportunity dataset..."
+                    required={false}
+                    scrollMenuIntoView={true}
+                    searchable={true}
+                    simpleValue={false}
+                    tabSelectsValue={true}
+                    valueComponent={[Function]}
+                    valueKey="value"
+                  >
+                    <div
+                      className="Select Select--single is-searchable"
+                    >
+                      <div
+                        className="Select-control"
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                      >
+                        <span
+                          className="Select-multi-value-wrapper"
+                          id="react-select-3--value"
+                        >
+                          <div
+                            className="Select-placeholder"
+                          >
+                            Select an opportunity dataset...
+                          </div>
+                          <mockConstructor
+                            aria-activedescendant="react-select-3--value"
+                            aria-expanded="false"
+                            aria-haspopup="false"
+                            aria-owns=""
+                            className="Select-input"
+                            minWidth="5"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            required={false}
+                            role="combobox"
+                            value=""
+                          />
+                        </span>
+                        <span
+                          className="Select-arrow-zone"
+                          onMouseDown={[Function]}
+                        >
+                          <span
+                            className="Select-arrow"
+                            onMouseDown={[Function]}
+                          />
+                        </span>
+                      </div>
+                    </div>
+                  </Select>
+                </div>
+              </Group>
+            </div>
+            <div
+              className="row"
+            >
+              <Group
+                className="col-xs-6"
+                label="Comparison scenario"
+              >
+                <div
+                  className="form-group col-xs-6"
+                >
+                  <label
+                    htmlFor="comparison-scenario-input-2"
+                  >
+                    Comparison scenario
+                  </label>
+                  <Select
+                    addLabelText="Add \\"{label}\\"?"
+                    arrowRenderer={[Function]}
+                    autosize={true}
+                    backspaceRemoves={true}
+                    backspaceToRemoveMessage="Press backspace to remove {label}"
+                    clearAllText="Clear all"
+                    clearRenderer={[Function]}
+                    clearValueText="Clear value"
+                    clearable={true}
+                    deleteRemoves={true}
+                    delimiter=","
+                    disabled={false}
+                    escapeClearsValue={true}
+                    filterOptions={[Function]}
+                    ignoreAccents={true}
+                    ignoreCase={true}
+                    inputProps={Object {}}
+                    isLoading={false}
+                    joinValues={false}
+                    labelKey="label"
+                    matchPos="any"
+                    matchProp="any"
+                    menuBuffer={0}
+                    menuRenderer={[Function]}
+                    multi={false}
+                    name="Scenario"
+                    noResultsText="No results found"
+                    onBlurResetsInput={true}
+                    onChange={[Function]}
+                    onCloseResetsInput={true}
+                    optionComponent={[Function]}
+                    options={
+                      Array [
+                        Object {
+                          "label": "Mock Scenario",
+                          "value": "1",
+                        },
+                      ]
+                    }
+                    pageSize={5}
+                    placeholder="Select comparison scenario..."
+                    required={false}
+                    scrollMenuIntoView={true}
+                    searchable={true}
+                    simpleValue={false}
+                    tabSelectsValue={true}
+                    valueComponent={[Function]}
+                    valueKey="value"
+                  >
+                    <div
+                      className="Select Select--single is-clearable is-searchable"
+                    >
+                      <div
+                        className="Select-control"
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                      >
+                        <span
+                          className="Select-multi-value-wrapper"
+                          id="react-select-4--value"
+                        >
+                          <div
+                            className="Select-placeholder"
+                          >
+                            Select comparison scenario...
+                          </div>
+                          <mockConstructor
+                            aria-activedescendant="react-select-4--value"
+                            aria-expanded="false"
+                            aria-haspopup="false"
+                            aria-owns=""
+                            className="Select-input"
+                            minWidth="5"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            required={false}
+                            role="combobox"
+                            value=""
+                          />
+                        </span>
+                        <span
+                          className="Select-arrow-zone"
+                          onMouseDown={[Function]}
+                        >
+                          <span
+                            className="Select-arrow"
+                            onMouseDown={[Function]}
+                          />
+                        </span>
+                      </div>
+                    </div>
+                  </Select>
+                </div>
+              </Group>
+              <Group
+                className="col-xs-6"
+                label="Comparison variant"
+              >
+                <div
+                  className="form-group col-xs-6"
+                >
+                  <label
+                    htmlFor="comparison-variant-input-3"
+                  >
+                    Comparison variant
+                  </label>
+                  <Select
+                    addLabelText="Add \\"{label}\\"?"
+                    arrowRenderer={[Function]}
+                    autosize={true}
+                    backspaceRemoves={true}
+                    backspaceToRemoveMessage="Press backspace to remove {label}"
+                    clearAllText="Clear all"
+                    clearRenderer={[Function]}
+                    clearValueText="Clear value"
+                    clearable={false}
+                    deleteRemoves={true}
+                    delimiter=","
+                    disabled={true}
+                    escapeClearsValue={true}
+                    filterOptions={[Function]}
+                    ignoreAccents={true}
+                    ignoreCase={true}
+                    inputProps={Object {}}
+                    isLoading={false}
+                    joinValues={false}
+                    labelKey="label"
+                    matchPos="any"
+                    matchProp="any"
+                    menuBuffer={0}
+                    menuRenderer={[Function]}
+                    multi={false}
+                    name="Variant"
+                    noResultsText="No results found"
+                    onBlurResetsInput={true}
+                    onChange={[Function]}
+                    onCloseResetsInput={true}
+                    optionComponent={[Function]}
+                    options={Array []}
+                    pageSize={5}
+                    placeholder="Select comparison scenario variant..."
+                    required={false}
+                    scrollMenuIntoView={true}
+                    searchable={true}
+                    simpleValue={false}
+                    tabSelectsValue={true}
+                    valueComponent={[Function]}
+                    valueKey="value"
+                  >
+                    <div
+                      className="Select Select--single is-disabled is-searchable"
+                    >
+                      <div
+                        className="Select-control"
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                      >
+                        <span
+                          className="Select-multi-value-wrapper"
+                          id="react-select-5--value"
+                        >
+                          <div
+                            className="Select-placeholder"
+                          >
+                            Select comparison scenario variant...
+                          </div>
+                          <div
+                            aria-activedescendant="react-select-5--value"
+                            aria-expanded={false}
+                            aria-owns=""
+                            aria-readonly="true"
+                            className="Select-input"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
+                            role="combobox"
+                            style={
+                              Object {
+                                "border": 0,
+                                "display": "inline-block",
+                                "width": 1,
+                              }
+                            }
+                            tabIndex={0}
+                          />
+                        </span>
+                        <span
+                          className="Select-arrow-zone"
+                          onMouseDown={[Function]}
+                        >
+                          <span
+                            className="Select-arrow"
+                            onMouseDown={[Function]}
+                          />
+                        </span>
+                      </div>
+                    </div>
+                  </Select>
+                </div>
+              </Group>
+            </div>
+          </div>
+          <Connect(StackedPercentileSelector)>
+            <StackedPercentileSelector
+              accessibility={null}
+              comparisonAccessibility={null}
+              comparisonInProgress={false}
+              comparisonPercentileCurves={null}
+              comparisonScenarioName={null}
+              isFetchingIsochrone={false}
+              isochroneCutoff={60}
+              maxAccessibility={-Infinity}
+              scenarioName="Mock Scenario: Default"
+              setIsochroneCutoff={[Function]}
+            >
+              <div
+                className="block"
+              >
+                <h5>
+                  Aggregate accessibility to
+                   
+                  <strong />
+                   
+                  within
+                   
+                  <strong>
+                    60
+                  </strong>
+                   
+                  minutes
+                </h5>
+                <div
+                  className="progress"
+                >
+                  <div
+                    className="progress-bar"
+                    role="progressbar"
+                    style={
+                      Object {
+                        "backgroundColor": "rgba(32, 67, 249, 0.6)",
+                        "width": "0%",
+                      }
+                    }
+                  >
+                    Mock Scenario: Default 0
+                  </div>
+                </div>
+                <Group
+                  justified={true}
+                >
+                  <div
+                    className="btn-group btn-group-justified"
+                  >
+                    <Button
+                      active={true}
+                      disabled={true}
+                      onClick={[Function]}
+                      size="sm"
+                      value="scenario"
+                    >
+                      <a
+                        className="btn btn-default btn-sm active"
+                        disabled={true}
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
+                        value="scenario"
+                      >
+                        Mock Scenario: Default
+                      </a>
+                    </Button>
+                    <Button
+                      active={false}
+                      disabled={true}
+                      onClick={[Function]}
+                      size="sm"
+                    >
+                      <a
+                        className="btn btn-default btn-sm"
+                        disabled={true}
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
+                      >
+                        No comparison selected
+                      </a>
+                    </Button>
+                    <Button
+                      active={false}
+                      disabled={true}
+                      onClick={[Function]}
+                      size="sm"
+                    >
+                      <a
+                        className="btn btn-default btn-sm"
+                        disabled={true}
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
+                      >
+                        Comparison
+                      </a>
+                    </Button>
+                  </div>
+                </Group>
+                <input
+                  className="form-control"
+                  max={120}
+                  min={1}
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "boxShadow": "none",
+                      "left": 46,
+                      "position": "relative",
+                      "width": 568,
+                    }
+                  }
+                  title="Travel time cutoff (minutes)"
+                  type="range"
+                  value={60}
+                />
+              </div>
+            </StackedPercentileSelector>
+          </Connect(StackedPercentileSelector)>
+          <div
+            className="block"
+          >
+            <Connect(BookmarkChooser)>
+              <BookmarkChooser
+                bookmarkData={
+                  Object {
+                    "destinationGrid": undefined,
+                    "isochroneCutoff": 60,
+                    "profileRequest": Object {
+                      "accessModes": "WALK",
+                      "bikeSafe": 1,
+                      "bikeSlope": 1,
+                      "bikeSpeed": 4.166666666666667,
+                      "bikeTime": 1,
+                      "bikeTrafficStress": 4,
+                      "carSpeed": 20,
+                      "date": "2016-01-16",
+                      "directModes": "WALK",
+                      "egressModes": "WALK",
+                      "fromLat": undefined,
+                      "fromLon": undefined,
+                      "fromTime": 25200,
+                      "maxBikeTime": 20,
+                      "maxCarTime": 45,
+                      "maxRides": 4,
+                      "maxWalkTime": 20,
+                      "minBikeTime": 10,
+                      "minCarTime": 10,
+                      "monteCarloDraws": 200,
+                      "reachabilityThreshold": 0,
+                      "streetTime": 90,
+                      "suboptimalMinutes": 5,
+                      "toTime": 32400,
+                      "transitModes": "TRANSIT",
+                      "walkSpeed": 1.3888888888888888,
+                    },
+                    "projectId": "1",
+                  }
+                }
+                createBookmark={[Function]}
+                disabled={true}
+                fetchTravelTimeSurface={[Function]}
+                selectBookmark={[Function]}
+              >
+                <Group
+                  label="Bookmark"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="bookmark-input-4"
+                    >
+                      Bookmark
+                    </label>
+                    <div
+                      className="row"
+                    >
+                      <div
+                        className="col-xs-6"
+                      >
+                        <Select
+                          addLabelText="Add \\"{label}\\"?"
+                          arrowRenderer={[Function]}
+                          autosize={true}
+                          backspaceRemoves={true}
+                          backspaceToRemoveMessage="Press backspace to remove {label}"
+                          clearAllText="Clear all"
+                          clearRenderer={[Function]}
+                          clearValueText="Clear value"
+                          clearable={true}
+                          deleteRemoves={true}
+                          delimiter=","
+                          disabled={true}
+                          escapeClearsValue={true}
+                          filterOptions={[Function]}
+                          ignoreAccents={true}
+                          ignoreCase={true}
+                          inputProps={Object {}}
+                          isLoading={false}
+                          joinValues={false}
+                          labelKey="label"
+                          matchPos="any"
+                          matchProp="any"
+                          menuBuffer={0}
+                          menuRenderer={[Function]}
+                          multi={false}
+                          noResultsText="No results found"
+                          onBlurResetsInput={true}
+                          onChange={[Function]}
+                          onCloseResetsInput={true}
+                          optionComponent={[Function]}
+                          options={Array []}
+                          pageSize={5}
+                          placeholder="Select..."
+                          required={false}
+                          scrollMenuIntoView={true}
+                          searchable={true}
+                          simpleValue={false}
+                          tabSelectsValue={true}
+                          valueComponent={[Function]}
+                          valueKey="value"
+                        >
+                          <div
+                            className="Select Select--single is-clearable is-disabled is-searchable"
+                          >
+                            <div
+                              className="Select-control"
+                              onKeyDown={[Function]}
+                              onMouseDown={[Function]}
+                              onTouchEnd={[Function]}
+                              onTouchMove={[Function]}
+                              onTouchStart={[Function]}
+                            >
+                              <span
+                                className="Select-multi-value-wrapper"
+                                id="react-select-6--value"
+                              >
+                                <div
+                                  className="Select-placeholder"
+                                >
+                                  Select...
+                                </div>
+                                <div
+                                  aria-activedescendant="react-select-6--value"
+                                  aria-expanded={false}
+                                  aria-owns=""
+                                  aria-readonly="true"
+                                  className="Select-input"
+                                  onBlur={[Function]}
+                                  onFocus={[Function]}
+                                  role="combobox"
+                                  style={
+                                    Object {
+                                      "border": 0,
+                                      "display": "inline-block",
+                                      "width": 1,
+                                    }
+                                  }
+                                  tabIndex={0}
+                                />
+                              </span>
+                              <span
+                                className="Select-arrow-zone"
+                                onMouseDown={[Function]}
+                              >
+                                <span
+                                  className="Select-arrow"
+                                  onMouseDown={[Function]}
+                                />
+                              </span>
+                            </div>
+                          </div>
+                        </Select>
+                      </div>
+                      <div
+                        className="col-xs-6"
+                      >
+                        <Button
+                          block={true}
+                          disabled={true}
+                          onClick={[Function]}
+                          style="success"
+                        >
+                          <a
+                            className="btn btn-success btn-block"
+                            disabled={true}
+                            href="#"
+                            onClick={[Function]}
+                            tabIndex={0}
+                          >
+                            <Icon
+                              type="plus"
+                            >
+                              <i
+                                className="fa fa-plus fa-fw "
+                              />
+                            </Icon>
+                             
+                            Create bookmark
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </Group>
+              </BookmarkChooser>
+            </Connect(BookmarkChooser)>
+            <ProfileRequestEditor
+              disabled={false}
+              profileRequest={
+                Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bikeTrafficStress": 4,
+                  "carSpeed": 20,
+                  "date": "2016-01-16",
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxCarTime": 45,
+                  "maxRides": 4,
+                  "maxWalkTime": 20,
+                  "minBikeTime": 10,
+                  "minCarTime": 10,
+                  "monteCarloDraws": 200,
+                  "reachabilityThreshold": 0,
+                  "streetTime": 90,
+                  "suboptimalMinutes": 5,
+                  "toTime": 32400,
+                  "transitModes": "TRANSIT",
+                  "walkSpeed": 1.3888888888888888,
+                }
+              }
+              setProfileRequest={[Function]}
+            >
+              <div>
+                <ModeSelector
+                  disabled={false}
+                  profileRequest={
+                    Object {
+                      "accessModes": "WALK",
+                      "bikeSafe": 1,
+                      "bikeSlope": 1,
+                      "bikeSpeed": 4.166666666666667,
+                      "bikeTime": 1,
+                      "bikeTrafficStress": 4,
+                      "carSpeed": 20,
+                      "date": "2016-01-16",
+                      "directModes": "WALK",
+                      "egressModes": "WALK",
+                      "fromTime": 25200,
+                      "maxBikeTime": 20,
+                      "maxCarTime": 45,
+                      "maxRides": 4,
+                      "maxWalkTime": 20,
+                      "minBikeTime": 10,
+                      "minCarTime": 10,
+                      "monteCarloDraws": 200,
+                      "reachabilityThreshold": 0,
+                      "streetTime": 90,
+                      "suboptimalMinutes": 5,
+                      "toTime": 32400,
+                      "transitModes": "TRANSIT",
+                      "walkSpeed": 1.3888888888888888,
+                    }
+                  }
+                  setProfileRequest={[Function]}
+                >
+                  <Group
+                    label="Modes"
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="modes-input-5"
+                      >
+                        Modes
+                      </label>
+                      <br />
+                      <Group
+                        disabled={false}
+                        justified={true}
+                      >
+                        <div
+                          className="btn-group btn-group-justified"
+                          disabled={false}
+                        >
+                          <Button
+                            active={true}
+                            onClick={[Function]}
+                            title="Walk"
+                          >
+                            <a
+                              className="btn btn-default active"
+                              href="#"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              title="Walk"
+                            >
+                              <Icon
+                                type="male"
+                              >
+                                <i
+                                  className="fa fa-male fa-fw "
+                                />
+                              </Icon>
+                            </a>
+                          </Button>
+                          <Button
+                            active={false}
+                            onClick={[Function]}
+                            title="Bike"
+                          >
+                            <a
+                              className="btn btn-default"
+                              href="#"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              title="Bike"
+                            >
+                              <Icon
+                                type="bicycle"
+                              >
+                                <i
+                                  className="fa fa-bicycle fa-fw "
+                                />
+                              </Icon>
+                            </a>
+                          </Button>
+                          <Button
+                            active={false}
+                            onClick={[Function]}
+                            title="Automobile (kiss-and-ride)"
+                          >
+                            <a
+                              className="btn btn-default"
+                              href="#"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              title="Automobile (kiss-and-ride)"
+                            >
+                              <Icon
+                                type="car"
+                              >
+                                <i
+                                  className="fa fa-car fa-fw "
+                                />
+                              </Icon>
+                            </a>
+                          </Button>
+                          <Button
+                            active={false}
+                            onClick={[Function]}
+                            title="Automobile (park-and-ride)"
+                          >
+                            <a
+                              className="btn btn-default"
+                              href="#"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              title="Automobile (park-and-ride)"
+                            >
+                              <strong>
+                                P
+                              </strong>
+                            </a>
+                          </Button>
+                          <Button
+                            active={true}
+                            onClick={[Function]}
+                            title="Transit"
+                          >
+                            <a
+                              className="btn btn-default active"
+                              href="#"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              title="Transit"
+                            >
+                              <Icon
+                                type="bus"
+                              >
+                                <i
+                                  className="fa fa-bus fa-fw "
+                                />
+                              </Icon>
+                            </a>
+                          </Button>
+                        </div>
+                      </Group>
+                    </div>
+                  </Group>
+                </ModeSelector>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="form-group col-xs-4"
+                  >
+                    <label
+                      htmlFor="Date"
+                    >
+                      Date
+                    </label>
+                    <DatePicker
+                      disabled={false}
+                      onChange={[Function]}
+                      value="2016-01-16"
+                    >
+                      <Component
+                        className=""
+                        closeOnSelect={false}
+                        closeOnTab={true}
+                        dateFormat={true}
+                        defaultValue=""
+                        disabled={false}
+                        input={true}
+                        inputProps={
+                          Object {
+                            "id": "date-picker-1",
+                          }
+                        }
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        onViewModeChange={[Function]}
+                        strictParsing={true}
+                        timeConstraints={Object {}}
+                        timeFormat={false}
+                        type="date"
+                        utc={true}
+                        value={2016-01-16T00:00:00.000Z}
+                      >
+                        <div
+                          className="rdt"
+                        >
+                          <input
+                            className="form-control"
+                            id="date-picker-1"
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            type="text"
+                            value="01/16/2016"
+                          />
+                          <div
+                            className="rdtPicker"
+                          >
+                            <Component
+                              onClickOutside={[Function]}
+                              view="days"
+                              viewProps={
+                                Object {
+                                  "addTime": [Function],
+                                  "dateFormat": "MM/DD/YYYY",
+                                  "handleClickOutside": [Function],
+                                  "isValidDate": undefined,
+                                  "localMoment": [Function],
+                                  "renderDay": undefined,
+                                  "renderMonth": undefined,
+                                  "renderYear": undefined,
+                                  "selectedDate": "2016-01-16T00:00:00.000Z",
+                                  "setDate": [Function],
+                                  "setTime": [Function],
+                                  "showView": [Function],
+                                  "subtractTime": [Function],
+                                  "timeConstraints": Object {},
+                                  "timeFormat": "",
+                                  "updateOn": "days",
+                                  "updateSelectedDate": [Function],
+                                  "value": 2016-01-16T00:00:00.000Z,
+                                  "viewDate": "2016-01-01T00:00:00.000Z",
+                                }
+                              }
+                            >
+                              <OnClickOutside(Component)
+                                addTime={[Function]}
+                                dateFormat="MM/DD/YYYY"
+                                handleClickOutside={[Function]}
+                                localMoment={[Function]}
+                                selectedDate={"2016-01-16T00:00:00.000Z"}
+                                setDate={[Function]}
+                                setTime={[Function]}
+                                showView={[Function]}
+                                subtractTime={[Function]}
+                                timeConstraints={Object {}}
+                                timeFormat=""
+                                updateOn="days"
+                                updateSelectedDate={[Function]}
+                                value={2016-01-16T00:00:00.000Z}
+                                viewDate={"2016-01-01T00:00:00.000Z"}
+                              >
+                                <Component
+                                  addTime={[Function]}
+                                  dateFormat="MM/DD/YYYY"
+                                  disableOnClickOutside={[Function]}
+                                  enableOnClickOutside={[Function]}
+                                  handleClickOutside={[Function]}
+                                  localMoment={[Function]}
+                                  selectedDate={"2016-01-16T00:00:00.000Z"}
+                                  setDate={[Function]}
+                                  setTime={[Function]}
+                                  showView={[Function]}
+                                  subtractTime={[Function]}
+                                  timeConstraints={Object {}}
+                                  timeFormat=""
+                                  updateOn="days"
+                                  updateSelectedDate={[Function]}
+                                  value={2016-01-16T00:00:00.000Z}
+                                  viewDate={"2016-01-01T00:00:00.000Z"}
+                                >
+                                  <div
+                                    className="rdtDays"
+                                  >
+                                    <table>
+                                      <thead>
+                                        <tr>
+                                          <th
+                                            className="rdtPrev"
+                                            onClick={[Function]}
+                                          >
+                                            <span>
+                                              ‹
+                                            </span>
+                                          </th>
+                                          <th
+                                            className="rdtSwitch"
+                                            colSpan={5}
+                                            data-value={0}
+                                            onClick={[Function]}
+                                          >
+                                            January 2016
+                                          </th>
+                                          <th
+                                            className="rdtNext"
+                                            onClick={[Function]}
+                                          >
+                                            <span>
+                                              ›
+                                            </span>
+                                          </th>
+                                        </tr>
+                                        <tr>
+                                          <th
+                                            className="dow"
+                                          >
+                                            Su
+                                          </th>
+                                          <th
+                                            className="dow"
+                                          >
+                                            Mo
+                                          </th>
+                                          <th
+                                            className="dow"
+                                          >
+                                            Tu
+                                          </th>
+                                          <th
+                                            className="dow"
+                                          >
+                                            We
+                                          </th>
+                                          <th
+                                            className="dow"
+                                          >
+                                            Th
+                                          </th>
+                                          <th
+                                            className="dow"
+                                          >
+                                            Fr
+                                          </th>
+                                          <th
+                                            className="dow"
+                                          >
+                                            Sa
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            className="rdtDay rdtOld"
+                                            data-value={27}
+                                            onClick={[Function]}
+                                          >
+                                            27
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtOld"
+                                            data-value={28}
+                                            onClick={[Function]}
+                                          >
+                                            28
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtOld"
+                                            data-value={29}
+                                            onClick={[Function]}
+                                          >
+                                            29
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtOld"
+                                            data-value={30}
+                                            onClick={[Function]}
+                                          >
+                                            30
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtOld"
+                                            data-value={31}
+                                            onClick={[Function]}
+                                          >
+                                            31
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={1}
+                                            onClick={[Function]}
+                                          >
+                                            1
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={2}
+                                            onClick={[Function]}
+                                          >
+                                            2
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={3}
+                                            onClick={[Function]}
+                                          >
+                                            3
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={4}
+                                            onClick={[Function]}
+                                          >
+                                            4
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={5}
+                                            onClick={[Function]}
+                                          >
+                                            5
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={6}
+                                            onClick={[Function]}
+                                          >
+                                            6
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={7}
+                                            onClick={[Function]}
+                                          >
+                                            7
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={8}
+                                            onClick={[Function]}
+                                          >
+                                            8
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={9}
+                                            onClick={[Function]}
+                                          >
+                                            9
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={10}
+                                            onClick={[Function]}
+                                          >
+                                            10
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={11}
+                                            onClick={[Function]}
+                                          >
+                                            11
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={12}
+                                            onClick={[Function]}
+                                          >
+                                            12
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={13}
+                                            onClick={[Function]}
+                                          >
+                                            13
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={14}
+                                            onClick={[Function]}
+                                          >
+                                            14
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={15}
+                                            onClick={[Function]}
+                                          >
+                                            15
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtActive"
+                                            data-value={16}
+                                            onClick={[Function]}
+                                          >
+                                            16
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={17}
+                                            onClick={[Function]}
+                                          >
+                                            17
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={18}
+                                            onClick={[Function]}
+                                          >
+                                            18
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={19}
+                                            onClick={[Function]}
+                                          >
+                                            19
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={20}
+                                            onClick={[Function]}
+                                          >
+                                            20
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={21}
+                                            onClick={[Function]}
+                                          >
+                                            21
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={22}
+                                            onClick={[Function]}
+                                          >
+                                            22
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={23}
+                                            onClick={[Function]}
+                                          >
+                                            23
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={24}
+                                            onClick={[Function]}
+                                          >
+                                            24
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={25}
+                                            onClick={[Function]}
+                                          >
+                                            25
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={26}
+                                            onClick={[Function]}
+                                          >
+                                            26
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={27}
+                                            onClick={[Function]}
+                                          >
+                                            27
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={28}
+                                            onClick={[Function]}
+                                          >
+                                            28
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={29}
+                                            onClick={[Function]}
+                                          >
+                                            29
+                                          </td>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={30}
+                                            onClick={[Function]}
+                                          >
+                                            30
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            className="rdtDay"
+                                            data-value={31}
+                                            onClick={[Function]}
+                                          >
+                                            31
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtNew"
+                                            data-value={1}
+                                            onClick={[Function]}
+                                          >
+                                            1
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtNew"
+                                            data-value={2}
+                                            onClick={[Function]}
+                                          >
+                                            2
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtNew"
+                                            data-value={3}
+                                            onClick={[Function]}
+                                          >
+                                            3
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtNew"
+                                            data-value={4}
+                                            onClick={[Function]}
+                                          >
+                                            4
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtNew"
+                                            data-value={5}
+                                            onClick={[Function]}
+                                          >
+                                            5
+                                          </td>
+                                          <td
+                                            className="rdtDay rdtNew"
+                                            data-value={6}
+                                            onClick={[Function]}
+                                          >
+                                            6
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </Component>
+                              </OnClickOutside(Component)>
+                            </Component>
+                          </div>
+                        </div>
+                      </Component>
+                    </DatePicker>
+                  </div>
+                  <div
+                    className="col-xs-4"
+                  >
+                    <TimePicker
+                      disabled={false}
+                      label="From time"
+                      name="fromTime"
+                      onChange={[Function]}
+                      value={25200}
+                    >
+                      <Text
+                        disabled={false}
+                        label="From time"
+                        name="fromTime"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        type="time"
+                        units="hh:mm"
+                        value="07:00"
+                      >
+                        <Group
+                          disabled={false}
+                          id="from-time-input-6"
+                          label="From time"
+                          name="fromTime"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          type="time"
+                          units="hh:mm"
+                          value="07:00"
+                        >
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="from-time-input-6"
+                            >
+                              From time
+                            </label>
+                            <Input
+                              disabled={false}
+                              id="from-time-input-6"
+                              label="From time"
+                              name="fromTime"
+                              onChange={[Function]}
+                              onWheel={[Function]}
+                              type="time"
+                              units="hh:mm"
+                              value="07:00"
+                            >
+                              <div
+                                className="InputWithUnits"
+                              >
+                                <input
+                                  className="form-control"
+                                  disabled={false}
+                                  id="from-time-input-6"
+                                  name="fromTime"
+                                  onChange={[Function]}
+                                  onWheel={[Function]}
+                                  placeholder="hh:mm"
+                                  type="time"
+                                  value="07:00"
+                                />
+                                <span
+                                  className="InputUnits"
+                                >
+                                  hh:mm
+                                </span>
+                              </div>
+                            </Input>
+                          </div>
+                        </Group>
+                      </Text>
+                    </TimePicker>
+                  </div>
+                  <div
+                    className="col-xs-4"
+                  >
+                    <TimePicker
+                      disabled={false}
+                      label="To time"
+                      name="toTime"
+                      onChange={[Function]}
+                      value={32400}
+                    >
+                      <Text
+                        disabled={false}
+                        label="To time"
+                        name="toTime"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        type="time"
+                        units="hh:mm"
+                        value="09:00"
+                      >
+                        <Group
+                          disabled={false}
+                          id="to-time-input-7"
+                          label="To time"
+                          name="toTime"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          type="time"
+                          units="hh:mm"
+                          value="09:00"
+                        >
+                          <div
+                            className="form-group"
+                          >
+                            <label
+                              htmlFor="to-time-input-7"
+                            >
+                              To time
+                            </label>
+                            <Input
+                              disabled={false}
+                              id="to-time-input-7"
+                              label="To time"
+                              name="toTime"
+                              onChange={[Function]}
+                              onWheel={[Function]}
+                              type="time"
+                              units="hh:mm"
+                              value="09:00"
+                            >
+                              <div
+                                className="InputWithUnits"
+                              >
+                                <input
+                                  className="form-control"
+                                  disabled={false}
+                                  id="to-time-input-7"
+                                  name="toTime"
+                                  onChange={[Function]}
+                                  onWheel={[Function]}
+                                  placeholder="hh:mm"
+                                  type="time"
+                                  value="09:00"
+                                />
+                                <span
+                                  className="InputUnits"
+                                >
+                                  hh:mm
+                                </span>
+                              </div>
+                            </Input>
+                          </div>
+                        </Group>
+                      </Text>
+                    </TimePicker>
+                  </div>
+                </div>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-xs-6"
+                  >
+                    <Number
+                      disabled={false}
+                      label="Maximum transfers"
+                      max={7}
+                      min={0}
+                      name="maxTransfers"
+                      onChange={[Function]}
+                      step={1}
+                      value={3}
+                    >
+                      <Group
+                        disabled={false}
+                        id="max-transfers-input-8"
+                        label="Maximum transfers"
+                        max={7}
+                        min={0}
+                        name="maxTransfers"
+                        onChange={[Function]}
+                        step={1}
+                        value={3}
+                      >
+                        <div
+                          className="form-group"
+                        >
+                          <label
+                            htmlFor="max-transfers-input-8"
+                          >
+                            Maximum transfers
+                          </label>
+                          <Input
+                            disabled={false}
+                            id="max-transfers-input-8"
+                            label="Maximum transfers"
+                            max={7}
+                            min={0}
+                            name="maxTransfers"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            step={1}
+                            type="number"
+                            value={3}
+                          >
+                            <input
+                              className="form-control"
+                              disabled={false}
+                              id="max-transfers-input-8"
+                              max={7}
+                              min={0}
+                              name="maxTransfers"
+                              onChange={[Function]}
+                              onWheel={[Function]}
+                              placeholder="Maximum transfers"
+                              step={1}
+                              type="number"
+                              value={3}
+                            />
+                          </Input>
+                        </div>
+                      </Group>
+                    </Number>
+                  </div>
+                  <div
+                    className="col-xs-6"
+                  >
+                    <Number
+                      disabled={false}
+                      label="Number of simulated schedules"
+                      max={10000}
+                      min={1}
+                      name="monteCarloDraws"
+                      onChange={[Function]}
+                      step={1}
+                      value={200}
+                    >
+                      <Group
+                        disabled={false}
+                        id="monte-carlo-draws-input-9"
+                        label="Number of simulated schedules"
+                        max={10000}
+                        min={1}
+                        name="monteCarloDraws"
+                        onChange={[Function]}
+                        step={1}
+                        value={200}
+                      >
+                        <div
+                          className="form-group"
+                        >
+                          <label
+                            htmlFor="monte-carlo-draws-input-9"
+                          >
+                            Number of simulated schedules
+                          </label>
+                          <Input
+                            disabled={false}
+                            id="monte-carlo-draws-input-9"
+                            label="Number of simulated schedules"
+                            max={10000}
+                            min={1}
+                            name="monteCarloDraws"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            step={1}
+                            type="number"
+                            value={200}
+                          >
+                            <input
+                              className="form-control"
+                              disabled={false}
+                              id="monte-carlo-draws-input-9"
+                              max={10000}
+                              min={1}
+                              name="monteCarloDraws"
+                              onChange={[Function]}
+                              onWheel={[Function]}
+                              placeholder="Number of simulated schedules"
+                              step={1}
+                              type="number"
+                              value={200}
+                            />
+                          </Input>
+                        </div>
+                      </Group>
+                    </Number>
+                  </div>
+                </div>
+              </div>
+            </ProfileRequestEditor>
+            <Group
+              label="Bounds of analysis"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="bounds-of-analysis-input-10"
+                >
+                  Bounds of analysis
+                </label>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-xs-6"
+                  >
+                    <Select
+                      addLabelText="Add \\"{label}\\"?"
+                      arrowRenderer={[Function]}
+                      autosize={true}
+                      backspaceRemoves={true}
+                      backspaceToRemoveMessage="Press backspace to remove {label}"
+                      clearAllText="Clear all"
+                      clearRenderer={[Function]}
+                      clearValueText="Clear value"
+                      clearable={true}
+                      deleteRemoves={true}
+                      delimiter=","
+                      disabled={false}
+                      escapeClearsValue={true}
+                      filterOptions={[Function]}
+                      ignoreAccents={true}
+                      ignoreCase={true}
+                      inputProps={Object {}}
+                      isLoading={false}
+                      joinValues={false}
+                      labelKey="label"
+                      matchPos="any"
+                      matchProp="any"
+                      menuBuffer={0}
+                      menuRenderer={[Function]}
+                      multi={false}
+                      noResultsText="No results found"
+                      onBlurResetsInput={true}
+                      onChange={[Function]}
+                      onCloseResetsInput={true}
+                      optionComponent={[Function]}
+                      options={
+                        Array [
+                          Object {
+                            "label": "Same as project",
+                            "value": "__PROJECT",
+                          },
+                        ]
+                      }
+                      pageSize={5}
+                      placeholder="Select..."
+                      required={false}
+                      scrollMenuIntoView={true}
+                      searchable={true}
+                      simpleValue={false}
+                      tabSelectsValue={true}
+                      value="__PROJECT"
+                      valueComponent={[Function]}
+                      valueKey="value"
+                    >
+                      <div
+                        className="Select Select--single is-clearable is-searchable has-value"
+                      >
+                        <div
+                          className="Select-control"
+                          onKeyDown={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchMove={[Function]}
+                          onTouchStart={[Function]}
+                        >
+                          <span
+                            className="Select-multi-value-wrapper"
+                            id="react-select-7--value"
+                          >
+                            <Value
+                              disabled={false}
+                              id="react-select-7--value-item"
+                              instancePrefix="react-select-7-"
+                              onClick={null}
+                              value={
+                                Object {
+                                  "label": "Same as project",
+                                  "value": "__PROJECT",
+                                }
+                              }
+                            >
+                              <div
+                                className="Select-value"
+                              >
+                                <span
+                                  aria-selected="true"
+                                  className="Select-value-label"
+                                  id="react-select-7--value-item"
+                                  role="option"
+                                >
+                                  Same as project
+                                </span>
+                              </div>
+                            </Value>
+                            <mockConstructor
+                              aria-activedescendant="react-select-7--value"
+                              aria-expanded="false"
+                              aria-haspopup="false"
+                              aria-owns=""
+                              className="Select-input"
+                              minWidth="5"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              required={false}
+                              role="combobox"
+                              value=""
+                            />
+                          </span>
+                          <span
+                            aria-label="Clear value"
+                            className="Select-clear-zone"
+                            onMouseDown={[Function]}
+                            onTouchEnd={[Function]}
+                            onTouchMove={[Function]}
+                            onTouchStart={[Function]}
+                            title="Clear value"
+                          >
+                            <span
+                              className="Select-clear"
+                              dangerouslySetInnerHTML={
+                                Object {
+                                  "__html": "&times;",
+                                }
+                              }
+                            />
+                          </span>
+                          <span
+                            className="Select-arrow-zone"
+                            onMouseDown={[Function]}
+                          >
+                            <span
+                              className="Select-arrow"
+                              onMouseDown={[Function]}
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </Select>
+                  </div>
+                  <div
+                    className="col-xs-6"
+                  >
+                    <Button
+                      block={true}
+                      disabled={false}
+                      onClick={[Function]}
+                      style="warning"
+                    >
+                      <a
+                        className="btn btn-warning btn-block"
+                        disabled={false}
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
+                      >
+                        <Icon
+                          type="pencil"
+                        >
+                          <i
+                            className="fa fa-pencil fa-fw "
+                          />
+                        </Icon>
+                         Set custom geographic bounds
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Group>
+            <Slider
+              disabled={false}
+              format=".1f"
+              label="Percentile of travel time (reliability) -- Regional analysis only"
+              max={99}
+              min={1}
+              onChange={[Function]}
+              output={true}
+              step={1}
+              value={50}
+            >
+              <Group
+                disabled={false}
+                id="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                label="Percentile of travel time (reliability) -- Regional analysis only"
+                max={99}
+                min={1}
+                onChange={[Function]}
+                step={1}
+                value={50}
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                  >
+                    Percentile of travel time (reliability) -- Regional analysis only
+                  </label>
+                  <output
+                    className="pull-right"
+                    htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                  >
+                    50.0
+                  </output>
+                  <input
+                    className="form-control"
+                    disabled={false}
+                    id="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                    label="Percentile of travel time (reliability) -- Regional analysis only"
+                    max={99}
+                    min={1}
+                    onChange={[Function]}
+                    step={1}
+                    type="range"
+                    value={50}
+                  />
+                </div>
+              </Group>
+            </Slider>
+          </div>
+        </div>
+      </div>
+    </SinglePointAnalysis>
+  </Connect(SinglePointAnalysis)>
+</Provider>
+`;
