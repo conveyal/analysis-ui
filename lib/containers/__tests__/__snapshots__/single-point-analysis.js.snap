@@ -24,11 +24,14 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       clearComparisonScenario={[Function]}
       clearIsochroneResults={[Function]}
       createRegionalAnalysis={[Function]}
+      downloadComparisonIsochrone={[Function]}
+      downloadIsochrone={[Function]}
       enterAnalysisMode={[Function]}
       exitAnalysisMode={[Function]}
       fetchTravelTimeSurface={[Function]}
       indicators={Array []}
       isFetchingIsochrone={false}
+      isShowingComparisonIsochrone={false}
       isShowingIsochrone={false}
       isShowingOpportunities={false}
       isochroneLonLat={
@@ -1162,6 +1165,59 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           <div
             className="block"
           >
+            <br />
+            <Group
+              justified={true}
+            >
+              <div
+                className="btn-group btn-group-justified"
+              >
+                <Button
+                  disabled={true}
+                  onClick={[Function]}
+                  style="info"
+                >
+                  <a
+                    className="btn btn-info"
+                    disabled={true}
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                  >
+                    <Icon
+                      type="download"
+                    >
+                      <i
+                        className="fa fa-download fa-fw "
+                      />
+                    </Icon>
+                     Isochrone as GeoJSON
+                  </a>
+                </Button>
+                <Button
+                  disabled={true}
+                  onClick={[Function]}
+                  style="info"
+                >
+                  <a
+                    className="btn btn-info"
+                    disabled={true}
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                  >
+                    <Icon
+                      type="download"
+                    >
+                      <i
+                        className="fa fa-download fa-fw "
+                      />
+                    </Icon>
+                     Comparison Isochrone as GeoJSON
+                  </a>
+                </Button>
+              </div>
+            </Group>
             <Connect(BookmarkChooser)>
               <BookmarkChooser
                 bookmarkData={
