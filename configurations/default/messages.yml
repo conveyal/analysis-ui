@@ -18,9 +18,9 @@ map:
 nav:
   createBundle: Create Bundle
   selectBundle: Select Bundle
-  projects: Projects
-  projectSettings: Project Settings
-  scenarios: Project Scenarios
+  projects: Regions
+  projectSettings: Shared Settings
+  scenarios: Projects
   gtfsBundles: GTFS Bundles
   opportunityDatasets: Opportunity Datasets
   editScenario: Edit Scenario
@@ -37,20 +37,22 @@ phasing:
   headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway)s minute headway does not equal this timetable's headway, which could cause unintended behavior.
   noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
   exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
-project:
+region:
   welcome: welcome to
-  createAction: Create a new Project
-  goToExisting: or go to an existing project
-  goToProject: Go to Project
-  createTitle: Create a new Project
-  configure: Configure project settings
-  deleteAction: DANGER: Delete this project
-  deleteConfirmation: Are you sure you would like to delete this project? This will delete all scenarios and modifications associated with this project.
-  editAction: Save project
-  editTitle: Edit project
-  versionOutdated: The chosen analysis backend version of this project is outdated.
-  editProject: Edit project.
-  loadingProject: Loading project...
+  createAction: Set up a new region
+  goToExisting: or go to an existing region
+  goToProject: Go to region
+  name:  Region Name
+  description: Description
+  configure: Configure shared settings for region
+  deleteAction: DANGER: Delete this region
+  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated scenarios and modifications.
+  editAction: Save changes
+  editTitle: Edit region
+  versionOutdated: The chosen analysis backend version of this region is outdated.
+  editProject: Edit region
+  loadingProject: Loading region...
+  osmBounds: OpenStreetMap bounds
   r5Version: Analysis backend version
   latestReleaseVersionNotSelected: There is a more recent version of the analysis backend available.
     Changing backend versions may enable new features or increased performance, but may also cause
