@@ -63,7 +63,12 @@ ul, ol {
 .btn {
   font-size: 12px;
   line-height: 1.4;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1), rgba(51, 51, 51, 0.1));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05),
+    rgba(51, 51, 51, 0.05)
+  );
 }
 
 .btn-primary {
@@ -98,7 +103,7 @@ input[type="month"].form-control,
   background-color: #ddd;
   color: #333;
   border: none;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .1);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
 }
 
 input[type="file"].form-control {
@@ -438,7 +443,7 @@ label {
 .Select-control {
   height: 34px;
   background-color: #ddd;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .1);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
   border: none;
   color: #333;
 }
@@ -449,7 +454,7 @@ label {
 }
 
 .Select-control:hover {
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .1);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
 }
 
 .Select-input {
@@ -523,62 +528,6 @@ label {
   z-index: 10000;
 }
 
-/**
- * MAP CONTROL
- */
-
-.MapControl {
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-color: #fff; /* #0b2b40; Conveyal blue down to 25% brightness in HSB */
-  box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15);
-  border-bottom-left-radius: 3px;
-  width: 320px;
-  padding: 3px 0;
-}
-
-.MapControl .block {
-  display: block;
-  padding: 6px 6px 3px;
-  width: 100%;
-}
-
-.MapControl a:hover,
-.MapControl a:active,
-.MapControl a:focus,
-.MapControl a.active {
-  text-decoration: none;
-  outline: none;
-}
-
-.MapControl input[type=range] {
-  display: inline-block;
-  width: 70%;
-  margin-left: 4px;
-  margin-top: 1px;
-  vertical-align: middle;
-}
-
-.MapControl .Isochrone {
-  padding-left: 6px;
-}
-
-.MapControl .Select-control,
-.MapControl .Select-placeholder {
-  border: none;
-  box-shadow: none;
-  outline: none;
-}
-
-.MapControl .Select-menu-outer {
-  border: none;
-}
-
-.MapControl .Select-control .Select-input:focus {
-  box-shadow: none;
-}
-
 .Legend-Item {
   display: inline-block;
   margin-right: 10px;
@@ -603,7 +552,7 @@ label {
   bottom: 40px;
   overflow: scroll;
   border-radius: 12px;
-  box-shadow: 0 12px 36px 0 rgba(51, 122, 183, 0.2);
+  box-shadow: 0 12px 36px 0 rgba(51, 122, 183, 0.1);
   border: 1px solid #337ab7;
 }
 
@@ -625,7 +574,12 @@ label {
 
 .list-group-item {
   padding: 12px;
-  background-image: linear-gradient(to bottom, #fff, #fff, rgba(51, 122, 183, 0.1));
+  background-image: linear-gradient(
+    to bottom,
+    #fff,
+    #fff,
+    rgba(51, 122, 183, 0.5)
+  );
 }
 
 .progress {
@@ -660,5 +614,5 @@ label {
   z-index: 1000 !important;
   opacity: 100 !important;
   background-color: #333 !important;
-  box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.2);
+  box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.1);
 }
