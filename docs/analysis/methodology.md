@@ -1,25 +1,9 @@
-This is a summary of the methodology used in Conveyal Analysis. For a more complete treatment of the
-subject, please see
+This is a summary of the accessibility indicators used in Conveyal Analysis. For more details, please see Conway, Matthew Wigginton, Andrew Byrd, and Marco van der Linden (2017). “[Evidence-Based Transit and Land Use Sketch Planning Using Interactive Accessibility Methods on Combined Schedule and Headway-Based Networks](http://trrjournalonline.trb.org/doi/abs/10.3141/2653-06)”
 
-Conway, Matthew Wigginton, Andrew Byrd, and Marco van der Linden. “Evidence-Based Transit and Land Use Sketch Planning Using Interactive Accessibility Methods on Combined Schedule and Headway-Based Networks.” _Transportation Research Record_ 2653 (2017). doi:10.3141/2653-06.
+Our method to compute accessibility works by exhaustively planning trips from an origin to all destinations in the analysis area. Those destinations are cells of a fine regular grid. We project all uploaded opportunity data into this grid. When we plan trips to each cell, we then simply sum the opportunity values of all cells that are within the travel time threshold.
 
-Our method to compute accessibility works by exhaustively planning trips from an origin to all destinations
-in the analysis area. Those destinations are cells of a fine regular grid. We project all uploaded
-opportunity data into this grid. When we plan trips to each cell, we then simply sum the opportunity
-values of all cells that are within the travel time threshold.
+However, you may recall that we don't compute a single travel time but rather look at the travel time over a time window. To do this, we compute the travel times for a trip departing at each minute within the time window (for example 7:00, 7:01, 7:02...8:59 for a 7:00–9:00 time window). We then compute different percentiles of travel time (e.g. the median) to each location in the region, and sum the number of opportunities at locations with a median travel time less than the user-specified travel time cutoff.
 
-However, you may recall that we don't compute a single travel time but rather look at the travel time
-over a time window. To do this, we compute the travel times for a trip departing at each minute within
-the time window (for example 7:00, 7:01, 7:02&nbsp;.&nbsp;.&nbsp;.&nbsp;8:59 for a 7:00–9:00 time window).
-We then compute the median, or other percentile, travel time to each location in the region, and sum the number of opportunities
-at locations with a median travel time less than the travel time budget.
+We use the median or percentile travel time, rather than the mean, because it can handle travel times that are infinite or undefined (for example, because the only route to a particular destination uses a bus that stops running before the end of the time window).
 
-We use the median or percentile travel time, rather than the mean as was used in Conveyal's previous
-Transport Analyst project, because it can handle travel times that are infinite or undefined (for example,
-because the only route to a particular destination uses a bus that stops running before the end of the
-time window).
-
-Others simply calculate the accessibility at each departure
-time and taking a mean of accessibility as is done by the University of Minnesota
-[Accessibility Observatory](http://ao.umn.edu/). Conveyal Analysis does not do this because the
-travel time to each opportunity should be treated independently. Consider a situation of a small town situated between two major cities each with 500,000 jobs, with hourly train service to each city. Suppose that we’re interested in the number of jobs reachable in one hour, given departure during a time window of 8:00 to 9:00 AM. Further suppose that, due to how the train schedules are written, it is possible to commute to all jobs in the first city in under an hour if you leave between 8:00 and 8:15, and all the jobs in the second city are accessible if you leave between 8:30 and 8:45, and at other times no jobs are accessible. This corresponds to hourly trains to each city, leaving at 8:15 in one direction and 8:45 in the other, and needing 45 minutes to travel to the respective city. Using the average of accessibility, this location would have an accessibility of 250,000, because ¼ of the time 500,000 jobs are accessible in the first city, ¼ of the time 500,000 jobs are accessible in the second city, and ½ of the time no jobs are accessible. Thus the accessibility value would be 250,000 even though there is no job that can be reached in an average travel time of less than 60 minutes.
+Others  calculate the accessibility at each departure time and taking a mean of accessibility as is done by the University of Minnesota [Accessibility Observatory](http://ao.umn.edu/). Conveyal Analysis does not use this approach because the travel time to each opportunity should be treated independently. Consider a situation of a small town situated between two major cities each with 500,000 jobs, with hourly train service to each city. Suppose that we’re interested in the number of jobs reachable in one hour, given departure during a time window of 8:00 to 9:00 AM. Further suppose that, due to how the train schedules are written, it is possible to commute to all jobs in the first city in under an hour if you leave between 8:00 and 8:15, and all the jobs in the second city are accessible if you leave between 8:30 and 8:45, and at other times no jobs are accessible. This corresponds to hourly trains to each city, leaving at 8:15 in one direction and 8:45 in the other, and needing 45 minutes to travel to the respective city. Using the average of accessibility, this location would have an accessibility of 250,000, because ¼ of the time 500,000 jobs are accessible in the first city, ¼ of the time 500,000 jobs are accessible in the second city, and ½ of the time no jobs are accessible. Thus the accessibility value would be 250,000 even though there is no job that can be reached in an average travel time of less than 60 minutes.
