@@ -23,7 +23,7 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
       className="pull-right"
       onClick={[Function]}
       style={Object {}}
-      title="Import modifications from another scenario"
+      title="Import modifications from another project"
     >
       <i
         className="fa fa-download fa-fw "
@@ -40,12 +40,12 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
         <i
           className="fa fa-clone fa-fw "
         />
-         Variants
+        Scenarios
         <a
           className="pull-right"
           onClick={[Function]}
           tabIndex={0}
-          title="Create a new variant"
+          title="Create new scenario"
         >
           <i
             className="fa fa-plus fa-fw "
@@ -56,31 +56,36 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
       <div
         className="Variants"
       >
-        <div
-          className="Variant"
-        >
-          Default
-          <a
-            className="pull-right"
-            onClick={[Function]}
-            tabIndex={0}
-            title="Show modifications for this variant on the map"
+        <ol>
+          <div
+            className="Variant"
           >
-            <i
-              className="fa fa-eye fa-fw "
-            />
-          </a>
-          <a
-            className="pull-right"
-            onClick={[Function]}
-            tabIndex={0}
-            title="Edit this variant name"
-          >
-            <i
-              className="fa fa-pencil fa-fw "
-            />
-          </a>
-        </div>
+            <li>
+               
+              Default
+              <a
+                className="pull-right"
+                onClick={[Function]}
+                tabIndex={0}
+                title="Show modifications for this scenario on the map"
+              >
+                <i
+                  className="fa fa-eye fa-fw "
+                />
+              </a>
+              <a
+                className="pull-right"
+                onClick={[Function]}
+                tabIndex={0}
+                title="Rename this scenario"
+              >
+                <i
+                  className="fa fa-pencil fa-fw "
+                />
+              </a>
+            </li>
+          </div>
+        </ol>
       </div>
     </div>
     <br />
