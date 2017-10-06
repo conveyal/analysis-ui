@@ -1081,7 +1081,16 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       }
                     }
                   >
-                    Mock Scenario: Default 0
+                    <div
+                      className="scenario-name"
+                    >
+                      Mock Scenario: Default (Median)
+                    </div>
+                  </div>
+                  <div
+                    className="statistic"
+                  >
+                    0
                   </div>
                 </div>
                 <Group
@@ -1573,10 +1582,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           </Button>
                           <Button
                             active={true}
+                            disabled={true}
+                            onClick={[Function]}
                             title="Transit"
                           >
                             <a
                               className="btn btn-default active"
+                              disabled={true}
                               href="#"
                               onClick={[Function]}
                               tabIndex={0}
