@@ -65,15 +65,15 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
       setProfileRequest={[Function]}
     >
       <Group
-        label="Modes"
+        label="Access and Transit Modes"
       >
         <div
           className="form-group"
         >
           <label
-            htmlFor="modes-input-0"
+            htmlFor="access-and-transit-modes-input-0"
           >
-            Modes
+            Access and Transit Modes
           </label>
           <br />
           <Group
@@ -105,11 +105,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               </Button>
               <Button
                 active={false}
+                disabled={true}
                 onClick={[Function]}
                 title="Bike"
               >
                 <a
                   className="btn btn-default"
+                  disabled={true}
                   href="#"
                   onClick={[Function]}
                   tabIndex={0}
@@ -164,11 +166,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               </Button>
               <Button
                 active={true}
+                disabled={true}
                 onClick={[Function]}
                 title="Transit"
               >
                 <a
                   className="btn btn-default active"
+                  disabled={true}
                   href="#"
                   onClick={[Function]}
                   tabIndex={0}
@@ -188,6 +192,238 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         </div>
       </Group>
     </ModeSelector>
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-4"
+      >
+        <EgressModeSelector
+          disabled={true}
+          profileRequest={
+            Object {
+              "accessModes": "WALK",
+              "bikeSafe": 1,
+              "bikeSlope": 1,
+              "bikeSpeed": 4.166666666666667,
+              "bikeTime": 1,
+              "bikeTrafficStress": 4,
+              "carSpeed": 20,
+              "date": "2016-01-16",
+              "directModes": "WALK",
+              "egressModes": "WALK",
+              "fromTime": 25200,
+              "maxBikeTime": 20,
+              "maxCarTime": 45,
+              "maxRides": 4,
+              "maxWalkTime": 20,
+              "minBikeTime": 10,
+              "minCarTime": 10,
+              "monteCarloDraws": 200,
+              "reachabilityThreshold": 0,
+              "streetTime": 90,
+              "suboptimalMinutes": 5,
+              "toTime": 32400,
+              "transitModes": "TRANSIT",
+              "walkSpeed": 1.3888888888888888,
+            }
+          }
+          setProfileRequest={[Function]}
+        >
+          <Group
+            label="Egress Modes"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="egress-modes-input-1"
+              >
+                Egress Modes
+              </label>
+              <br />
+              <Group
+                disabled={true}
+              >
+                <div
+                  className="btn-group"
+                  disabled={true}
+                >
+                  <Button
+                    active={true}
+                    onClick={[Function]}
+                    title="Walk"
+                  >
+                    <a
+                      className="btn btn-default active"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      title="Walk"
+                    >
+                      <Icon
+                        type="male"
+                      >
+                        <i
+                          className="fa fa-male fa-fw "
+                        />
+                      </Icon>
+                    </a>
+                  </Button>
+                  <Button
+                    active={false}
+                    disabled={true}
+                    onClick={[Function]}
+                    title="Bike"
+                  >
+                    <a
+                      className="btn btn-default"
+                      disabled={true}
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      title="Bike"
+                    >
+                      <Icon
+                        type="bicycle"
+                      >
+                        <i
+                          className="fa fa-bicycle fa-fw "
+                        />
+                      </Icon>
+                    </a>
+                  </Button>
+                </div>
+              </Group>
+            </div>
+          </Group>
+        </EgressModeSelector>
+      </div>
+      <div
+        className="col-xs-4"
+      >
+        <Number
+          label="Walk Speed (km/h)"
+          max={15}
+          min={3}
+          name="walkSpeed"
+          onChange={[Function]}
+          step={0.1}
+          value={5}
+        >
+          <Group
+            id="walk-speed-input-2"
+            label="Walk Speed (km/h)"
+            max={15}
+            min={3}
+            name="walkSpeed"
+            onChange={[Function]}
+            step={0.1}
+            value={5}
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="walk-speed-input-2"
+              >
+                Walk Speed (km/h)
+              </label>
+              <Input
+                id="walk-speed-input-2"
+                label="Walk Speed (km/h)"
+                max={15}
+                min={3}
+                name="walkSpeed"
+                onChange={[Function]}
+                onWheel={[Function]}
+                step={0.1}
+                type="number"
+                value={5}
+              >
+                <input
+                  className="form-control"
+                  id="walk-speed-input-2"
+                  max={15}
+                  min={3}
+                  name="walkSpeed"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  placeholder="Walk Speed (km/h)"
+                  step={0.1}
+                  type="number"
+                  value={5}
+                />
+              </Input>
+            </div>
+          </Group>
+        </Number>
+      </div>
+      <div
+        className="col-xs-4"
+      >
+        <Number
+          disabled={true}
+          label="Bike Speed (km/h)"
+          max={20}
+          min={5}
+          name="bikeSpeed"
+          onChange={[Function]}
+          step={0.1}
+          value={15}
+        >
+          <Group
+            disabled={true}
+            id="bike-speed-input-3"
+            label="Bike Speed (km/h)"
+            max={20}
+            min={5}
+            name="bikeSpeed"
+            onChange={[Function]}
+            step={0.1}
+            value={15}
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="bike-speed-input-3"
+              >
+                Bike Speed (km/h)
+              </label>
+              <Input
+                disabled={true}
+                id="bike-speed-input-3"
+                label="Bike Speed (km/h)"
+                max={20}
+                min={5}
+                name="bikeSpeed"
+                onChange={[Function]}
+                onWheel={[Function]}
+                step={0.1}
+                type="number"
+                value={15}
+              >
+                <input
+                  className="form-control"
+                  disabled={true}
+                  id="bike-speed-input-3"
+                  max={20}
+                  min={5}
+                  name="bikeSpeed"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  placeholder="Bike Speed (km/h)"
+                  step={0.1}
+                  type="number"
+                  value={15}
+                />
+              </Input>
+            </div>
+          </Group>
+        </Number>
+      </div>
+    </div>
     <div
       className="row"
     >
@@ -710,7 +946,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             value="07:00"
           >
             <Group
-              id="from-time-input-1"
+              id="from-time-input-4"
               label="From time"
               name="fromTime"
               onChange={[Function]}
@@ -723,12 +959,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                 className="form-group"
               >
                 <label
-                  htmlFor="from-time-input-1"
+                  htmlFor="from-time-input-4"
                 >
                   From time
                 </label>
                 <Input
-                  id="from-time-input-1"
+                  id="from-time-input-4"
                   label="From time"
                   name="fromTime"
                   onChange={[Function]}
@@ -742,7 +978,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   >
                     <input
                       className="form-control"
-                      id="from-time-input-1"
+                      id="from-time-input-4"
                       name="fromTime"
                       onChange={[Function]}
                       onWheel={[Function]}
@@ -781,7 +1017,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             value="09:00"
           >
             <Group
-              id="to-time-input-2"
+              id="to-time-input-5"
               label="To time"
               name="toTime"
               onChange={[Function]}
@@ -794,12 +1030,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                 className="form-group"
               >
                 <label
-                  htmlFor="to-time-input-2"
+                  htmlFor="to-time-input-5"
                 >
                   To time
                 </label>
                 <Input
-                  id="to-time-input-2"
+                  id="to-time-input-5"
                   label="To time"
                   name="toTime"
                   onChange={[Function]}
@@ -813,7 +1049,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   >
                     <input
                       className="form-control"
-                      id="to-time-input-2"
+                      id="to-time-input-5"
                       name="toTime"
                       onChange={[Function]}
                       onWheel={[Function]}
@@ -850,7 +1086,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           value={3}
         >
           <Group
-            id="max-transfers-input-3"
+            id="max-transfers-input-6"
             label="Maximum transfers"
             max={7}
             min={0}
@@ -863,12 +1099,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               className="form-group"
             >
               <label
-                htmlFor="max-transfers-input-3"
+                htmlFor="max-transfers-input-6"
               >
                 Maximum transfers
               </label>
               <Input
-                id="max-transfers-input-3"
+                id="max-transfers-input-6"
                 label="Maximum transfers"
                 max={7}
                 min={0}
@@ -881,7 +1117,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               >
                 <input
                   className="form-control"
-                  id="max-transfers-input-3"
+                  id="max-transfers-input-6"
                   max={7}
                   min={0}
                   name="maxTransfers"
@@ -910,7 +1146,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           value={200}
         >
           <Group
-            id="monte-carlo-draws-input-4"
+            id="monte-carlo-draws-input-7"
             label="Number of simulated schedules"
             max={10000}
             min={1}
@@ -923,12 +1159,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               className="form-group"
             >
               <label
-                htmlFor="monte-carlo-draws-input-4"
+                htmlFor="monte-carlo-draws-input-7"
               >
                 Number of simulated schedules
               </label>
               <Input
-                id="monte-carlo-draws-input-4"
+                id="monte-carlo-draws-input-7"
                 label="Number of simulated schedules"
                 max={10000}
                 min={1}
@@ -941,7 +1177,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               >
                 <input
                   className="form-control"
-                  id="monte-carlo-draws-input-4"
+                  id="monte-carlo-draws-input-7"
                   max={10000}
                   min={1}
                   name="monteCarloDraws"
