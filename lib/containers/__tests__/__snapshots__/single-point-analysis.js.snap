@@ -1470,15 +1470,15 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                   setProfileRequest={[Function]}
                 >
                   <Group
-                    label="Modes"
+                    label="Access and Transit Modes"
                   >
                     <div
                       className="form-group"
                     >
                       <label
-                        htmlFor="modes-input-5"
+                        htmlFor="access-and-transit-modes-input-5"
                       >
-                        Modes
+                        Access and Transit Modes
                       </label>
                       <br />
                       <Group
@@ -1512,11 +1512,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           </Button>
                           <Button
                             active={false}
+                            disabled={true}
                             onClick={[Function]}
                             title="Bike"
                           >
                             <a
                               className="btn btn-default"
+                              disabled={true}
                               href="#"
                               onClick={[Function]}
                               tabIndex={0}
@@ -1571,7 +1573,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           </Button>
                           <Button
                             active={true}
-                            onClick={[Function]}
                             title="Transit"
                           >
                             <a
@@ -1595,6 +1596,242 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     </div>
                   </Group>
                 </ModeSelector>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-xs-4"
+                  >
+                    <EgressModeSelector
+                      disabled={true}
+                      profileRequest={
+                        Object {
+                          "accessModes": "WALK",
+                          "bikeSafe": 1,
+                          "bikeSlope": 1,
+                          "bikeSpeed": 4.166666666666667,
+                          "bikeTime": 1,
+                          "bikeTrafficStress": 4,
+                          "carSpeed": 20,
+                          "date": "2016-01-16",
+                          "directModes": "WALK",
+                          "egressModes": "WALK",
+                          "fromTime": 25200,
+                          "maxBikeTime": 20,
+                          "maxCarTime": 45,
+                          "maxRides": 4,
+                          "maxWalkTime": 20,
+                          "minBikeTime": 10,
+                          "minCarTime": 10,
+                          "monteCarloDraws": 200,
+                          "reachabilityThreshold": 0,
+                          "streetTime": 90,
+                          "suboptimalMinutes": 5,
+                          "toTime": 32400,
+                          "transitModes": "TRANSIT",
+                          "walkSpeed": 1.3888888888888888,
+                        }
+                      }
+                      setProfileRequest={[Function]}
+                    >
+                      <Group
+                        label="Egress Modes"
+                      >
+                        <div
+                          className="form-group"
+                        >
+                          <label
+                            htmlFor="egress-modes-input-6"
+                          >
+                            Egress Modes
+                          </label>
+                          <br />
+                          <Group
+                            disabled={true}
+                          >
+                            <div
+                              className="btn-group"
+                              disabled={true}
+                            >
+                              <Button
+                                active={true}
+                                onClick={[Function]}
+                                title="Walk"
+                              >
+                                <a
+                                  className="btn btn-default active"
+                                  href="#"
+                                  onClick={[Function]}
+                                  tabIndex={0}
+                                  title="Walk"
+                                >
+                                  <Icon
+                                    type="male"
+                                  >
+                                    <i
+                                      className="fa fa-male fa-fw "
+                                    />
+                                  </Icon>
+                                </a>
+                              </Button>
+                              <Button
+                                active={false}
+                                disabled={true}
+                                onClick={[Function]}
+                                title="Bike"
+                              >
+                                <a
+                                  className="btn btn-default"
+                                  disabled={true}
+                                  href="#"
+                                  onClick={[Function]}
+                                  tabIndex={0}
+                                  title="Bike"
+                                >
+                                  <Icon
+                                    type="bicycle"
+                                  >
+                                    <i
+                                      className="fa fa-bicycle fa-fw "
+                                    />
+                                  </Icon>
+                                </a>
+                              </Button>
+                            </div>
+                          </Group>
+                        </div>
+                      </Group>
+                    </EgressModeSelector>
+                  </div>
+                  <div
+                    className="col-xs-4"
+                  >
+                    <Number
+                      disabled={false}
+                      label="Walk Speed (km/h)"
+                      max={15}
+                      min={3}
+                      name="walkSpeed"
+                      onChange={[Function]}
+                      step={0.1}
+                      value={5}
+                    >
+                      <Group
+                        disabled={false}
+                        id="walk-speed-input-7"
+                        label="Walk Speed (km/h)"
+                        max={15}
+                        min={3}
+                        name="walkSpeed"
+                        onChange={[Function]}
+                        step={0.1}
+                        value={5}
+                      >
+                        <div
+                          className="form-group"
+                        >
+                          <label
+                            htmlFor="walk-speed-input-7"
+                          >
+                            Walk Speed (km/h)
+                          </label>
+                          <Input
+                            disabled={false}
+                            id="walk-speed-input-7"
+                            label="Walk Speed (km/h)"
+                            max={15}
+                            min={3}
+                            name="walkSpeed"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            step={0.1}
+                            type="number"
+                            value={5}
+                          >
+                            <input
+                              className="form-control"
+                              disabled={false}
+                              id="walk-speed-input-7"
+                              max={15}
+                              min={3}
+                              name="walkSpeed"
+                              onChange={[Function]}
+                              onWheel={[Function]}
+                              placeholder="Walk Speed (km/h)"
+                              step={0.1}
+                              type="number"
+                              value={5}
+                            />
+                          </Input>
+                        </div>
+                      </Group>
+                    </Number>
+                  </div>
+                  <div
+                    className="col-xs-4"
+                  >
+                    <Number
+                      disabled={true}
+                      label="Bike Speed (km/h)"
+                      max={20}
+                      min={5}
+                      name="bikeSpeed"
+                      onChange={[Function]}
+                      step={0.1}
+                      value={15}
+                    >
+                      <Group
+                        disabled={true}
+                        id="bike-speed-input-8"
+                        label="Bike Speed (km/h)"
+                        max={20}
+                        min={5}
+                        name="bikeSpeed"
+                        onChange={[Function]}
+                        step={0.1}
+                        value={15}
+                      >
+                        <div
+                          className="form-group"
+                        >
+                          <label
+                            htmlFor="bike-speed-input-8"
+                          >
+                            Bike Speed (km/h)
+                          </label>
+                          <Input
+                            disabled={true}
+                            id="bike-speed-input-8"
+                            label="Bike Speed (km/h)"
+                            max={20}
+                            min={5}
+                            name="bikeSpeed"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            step={0.1}
+                            type="number"
+                            value={15}
+                          >
+                            <input
+                              className="form-control"
+                              disabled={true}
+                              id="bike-speed-input-8"
+                              max={20}
+                              min={5}
+                              name="bikeSpeed"
+                              onChange={[Function]}
+                              onWheel={[Function]}
+                              placeholder="Bike Speed (km/h)"
+                              step={0.1}
+                              type="number"
+                              value={15}
+                            />
+                          </Input>
+                        </div>
+                      </Group>
+                    </Number>
+                  </div>
+                </div>
                 <div
                   className="row"
                 >
@@ -2122,7 +2359,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       >
                         <Group
                           disabled={false}
-                          id="from-time-input-6"
+                          id="from-time-input-9"
                           label="From time"
                           name="fromTime"
                           onChange={[Function]}
@@ -2135,13 +2372,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             className="form-group"
                           >
                             <label
-                              htmlFor="from-time-input-6"
+                              htmlFor="from-time-input-9"
                             >
                               From time
                             </label>
                             <Input
                               disabled={false}
-                              id="from-time-input-6"
+                              id="from-time-input-9"
                               label="From time"
                               name="fromTime"
                               onChange={[Function]}
@@ -2156,7 +2393,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                 <input
                                   className="form-control"
                                   disabled={false}
-                                  id="from-time-input-6"
+                                  id="from-time-input-9"
                                   name="fromTime"
                                   onChange={[Function]}
                                   onWheel={[Function]}
@@ -2198,7 +2435,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       >
                         <Group
                           disabled={false}
-                          id="to-time-input-7"
+                          id="to-time-input-10"
                           label="To time"
                           name="toTime"
                           onChange={[Function]}
@@ -2211,13 +2448,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             className="form-group"
                           >
                             <label
-                              htmlFor="to-time-input-7"
+                              htmlFor="to-time-input-10"
                             >
                               To time
                             </label>
                             <Input
                               disabled={false}
-                              id="to-time-input-7"
+                              id="to-time-input-10"
                               label="To time"
                               name="toTime"
                               onChange={[Function]}
@@ -2232,7 +2469,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                 <input
                                   className="form-control"
                                   disabled={false}
-                                  id="to-time-input-7"
+                                  id="to-time-input-10"
                                   name="toTime"
                                   onChange={[Function]}
                                   onWheel={[Function]}
@@ -2271,7 +2508,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     >
                       <Group
                         disabled={false}
-                        id="max-transfers-input-8"
+                        id="max-transfers-input-11"
                         label="Maximum transfers"
                         max={7}
                         min={0}
@@ -2284,13 +2521,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           className="form-group"
                         >
                           <label
-                            htmlFor="max-transfers-input-8"
+                            htmlFor="max-transfers-input-11"
                           >
                             Maximum transfers
                           </label>
                           <Input
                             disabled={false}
-                            id="max-transfers-input-8"
+                            id="max-transfers-input-11"
                             label="Maximum transfers"
                             max={7}
                             min={0}
@@ -2304,7 +2541,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             <input
                               className="form-control"
                               disabled={false}
-                              id="max-transfers-input-8"
+                              id="max-transfers-input-11"
                               max={7}
                               min={0}
                               name="maxTransfers"
@@ -2335,7 +2572,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     >
                       <Group
                         disabled={false}
-                        id="monte-carlo-draws-input-9"
+                        id="monte-carlo-draws-input-12"
                         label="Number of simulated schedules"
                         max={10000}
                         min={1}
@@ -2348,13 +2585,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           className="form-group"
                         >
                           <label
-                            htmlFor="monte-carlo-draws-input-9"
+                            htmlFor="monte-carlo-draws-input-12"
                           >
                             Number of simulated schedules
                           </label>
                           <Input
                             disabled={false}
-                            id="monte-carlo-draws-input-9"
+                            id="monte-carlo-draws-input-12"
                             label="Number of simulated schedules"
                             max={10000}
                             min={1}
@@ -2368,7 +2605,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             <input
                               className="form-control"
                               disabled={false}
-                              id="monte-carlo-draws-input-9"
+                              id="monte-carlo-draws-input-12"
                               max={10000}
                               min={1}
                               name="monteCarloDraws"
@@ -2394,7 +2631,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                 className="form-group"
               >
                 <label
-                  htmlFor="bounds-of-analysis-input-10"
+                  htmlFor="bounds-of-analysis-input-13"
                 >
                   Bounds of analysis
                 </label>
@@ -2583,7 +2820,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             >
               <Group
                 disabled={false}
-                id="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                id="percentile-of-travel-time-reliability-regional-analysis-only-input-14"
                 label="Percentile of travel time (reliability) -- Regional analysis only"
                 max={99}
                 min={1}
@@ -2595,20 +2832,20 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                    htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-14"
                   >
                     Percentile of travel time (reliability) -- Regional analysis only
                   </label>
                   <output
                     className="pull-right"
-                    htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                    htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-14"
                   >
                     50.0
                   </output>
                   <input
                     className="form-control"
                     disabled={false}
-                    id="percentile-of-travel-time-reliability-regional-analysis-only-input-11"
+                    id="percentile-of-travel-time-reliability-regional-analysis-only-input-14"
                     label="Percentile of travel time (reliability) -- Regional analysis only"
                     max={99}
                     min={1}
