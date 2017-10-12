@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container > Edit Bundle renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(EditBundle)
+    params={
+      Object {
+        "bundleId": "1",
+      }
+    }
+  >
+    <EditBundle
+      bundle={
+        Object {
+          "centerLat": 38.90124,
+          "centerLon": -77.015615,
+          "feeds": Array [],
+          "id": "1",
+          "name": "Mock Bundle",
+        }
+      }
+      bundleId="1"
+      deleteBundle={[Function]}
+      params={
+        Object {
+          "bundleId": "1",
+        }
+      }
+      saveBundle={[Function]}
+    >
+      <div>
+        <h5>
+          Edit Bundle
+        </h5>
+        <Text
+          label="Bundle name"
+          name="Name"
+          onChange={[Function]}
+          placeholder="Bundle name"
+          value="Mock Bundle"
+        >
+          <Group
+            id="name-input-0"
+            label="Bundle name"
+            name="Name"
+            onChange={[Function]}
+            placeholder="Bundle name"
+            value="Mock Bundle"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="name-input-0"
+              >
+                Bundle name
+              </label>
+              <Input
+                id="name-input-0"
+                label="Bundle name"
+                name="Name"
+                onChange={[Function]}
+                placeholder="Bundle name"
+                type="text"
+                value="Mock Bundle"
+              >
+                <input
+                  className="form-control"
+                  id="name-input-0"
+                  name="Name"
+                  onChange={[Function]}
+                  placeholder="Bundle name"
+                  type="text"
+                  value="Mock Bundle"
+                />
+              </Input>
+            </div>
+          </Group>
+        </Text>
+        <Button
+          block={true}
+          onClick={[Function]}
+          style="success"
+          title="Save bundle"
+        >
+          <a
+            className="btn btn-success btn-block"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Save bundle"
+          >
+            <Icon
+              type="save"
+            >
+              <i
+                className="fa fa-save fa-fw "
+              />
+            </Icon>
+             
+            Save bundle
+          </a>
+        </Button>
+        <Button
+          block={true}
+          onClick={[Function]}
+          style="danger"
+        >
+          <a
+            className="btn btn-danger btn-block"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            <Icon
+              type="trash"
+            >
+              <i
+                className="fa fa-trash fa-fw "
+              />
+            </Icon>
+             
+            Delete this bundle
+          </a>
+        </Button>
+      </div>
+    </EditBundle>
+  </Connect(EditBundle)>
+</Provider>
+`;
