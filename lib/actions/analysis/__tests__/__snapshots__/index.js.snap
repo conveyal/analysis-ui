@@ -43,13 +43,21 @@ Object {
 
 exports[`actions > analysis setComparisonScenario should work 2`] = `
 Object {
-  "type": "increment outstanding requests",
+  "payload": Object {
+    "options": Object {},
+    "url": "/api/scenario/COMPARISON_ID/modifications",
+  },
+  "type": "increment outstanding fetches",
 }
 `;
 
 exports[`actions > analysis setComparisonScenario should work 3`] = `
 Object {
-  "type": "decrement outstanding requests",
+  "payload": Object {
+    "options": Object {},
+    "url": "/api/scenario/COMPARISON_ID/modifications",
+  },
+  "type": "decrement outstanding fetches",
 }
 `;
 

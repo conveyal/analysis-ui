@@ -7,7 +7,20 @@ exports[`Component > EditBundle renders correctly 1`] = `
   <div
     className="panel-heading clearfix "
   >
-    Upload new opportunity dataset
+    Upload a new opportunity dataset
+    <a
+      data-tip="Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj)"
+    >
+      <i
+        className="fa fa-question-circle-o fa-fw fa-lg pull-right"
+      />
+      <div
+        className="__react_component_tooltip place-top type-dark "
+        data-id="tooltip"
+      >
+        
+      </div>
+    </a>
   </div>
   <div
     className="panel-body"
@@ -23,7 +36,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
         <label
           htmlFor="name-input-0"
         >
-          Opportunity dataset
+          Opportunity dataset*
         </label>
         <input
           className="form-control"
@@ -41,7 +54,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
         <label
           htmlFor="files-input-1"
         >
-          Select opportunity dataset
+          Select opportunity dataset*
         </label>
         <input
           className="form-control"
@@ -49,7 +62,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
           multiple={true}
           name="files"
           onChange={[Function]}
-          placeholder="Select opportunity dataset"
+          placeholder="Select opportunity dataset*"
           type="file"
           value={undefined}
         />
@@ -58,7 +71,7 @@ exports[`Component > EditBundle renders correctly 1`] = `
         className="btn btn-block btn-success"
         disabled={true}
         type="submit"
-        value="Upload new opportunity dataset"
+        value="Upload a new opportunity dataset"
       />
     </form>
   </div>
@@ -79,7 +92,31 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
         <div
           className="panel-heading clearfix "
         >
-          Upload new opportunity dataset
+          Upload a new opportunity dataset
+          <a
+            data-tip="Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj)"
+          >
+            <Icon
+              className="fa-lg pull-right"
+              type="question-circle-o"
+            >
+              <i
+                className="fa fa-question-circle-o fa-fw fa-lg pull-right"
+              />
+            </Icon>
+            <ReactTooltip
+              className="help-tooltip"
+              insecure={true}
+              place="right"
+              resizeHide={true}
+              wrapper="div"
+            >
+              <div
+                className="__react_component_tooltip place-top type-dark "
+                data-id="tooltip"
+              />
+            </ReactTooltip>
+          </a>
         </div>
       </Heading>
       <Body>
@@ -92,14 +129,14 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
             onSubmit={[Function]}
           >
             <Text
-              label="Opportunity dataset"
+              label="Opportunity dataset*"
               name="Name"
               onChange={[Function]}
               placeholder="Opportunity dataset"
             >
               <Group
                 id="name-input-4"
-                label="Opportunity dataset"
+                label="Opportunity dataset*"
                 name="Name"
                 onChange={[Function]}
                 placeholder="Opportunity dataset"
@@ -110,11 +147,11 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                   <label
                     htmlFor="name-input-4"
                   >
-                    Opportunity dataset
+                    Opportunity dataset*
                   </label>
                   <Input
                     id="name-input-4"
-                    label="Opportunity dataset"
+                    label="Opportunity dataset*"
                     name="Name"
                     onChange={[Function]}
                     placeholder="Opportunity dataset"
@@ -133,14 +170,14 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
               </Group>
             </Text>
             <File
-              label="Select opportunity dataset"
+              label="Select opportunity dataset*"
               multiple={true}
               name="files"
               onChange={[Function]}
             >
               <Group
-                id="files-input-5"
-                label="Select opportunity dataset"
+                id="files-input-3"
+                label="Select opportunity dataset*"
                 multiple={true}
                 name="files"
                 onChange={[Function]}
@@ -149,13 +186,13 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="files-input-5"
+                    htmlFor="files-input-3"
                   >
-                    Select opportunity dataset
+                    Select opportunity dataset*
                   </label>
                   <Input
-                    id="files-input-5"
-                    label="Select opportunity dataset"
+                    id="files-input-3"
+                    label="Select opportunity dataset*"
                     multiple={true}
                     name="files"
                     onChange={[Function]}
@@ -163,11 +200,11 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                   >
                     <input
                       className="form-control"
-                      id="files-input-5"
+                      id="files-input-3"
                       multiple={true}
                       name="files"
                       onChange={[Function]}
-                      placeholder="Select opportunity dataset"
+                      placeholder="Select opportunity dataset*"
                       type="file"
                     />
                   </Input>
@@ -182,7 +219,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                 placeholder="Latitude field"
               >
                 <Group
-                  id="lat-field-input-6"
+                  id="lat-field-input-5"
                   label="Latitude field"
                   name="latField"
                   onChange={[Function]}
@@ -192,12 +229,12 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                     className="form-group"
                   >
                     <label
-                      htmlFor="lat-field-input-6"
+                      htmlFor="lat-field-input-5"
                     >
                       Latitude field
                     </label>
                     <Input
-                      id="lat-field-input-6"
+                      id="lat-field-input-5"
                       label="Latitude field"
                       name="latField"
                       onChange={[Function]}
@@ -206,7 +243,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                     >
                       <input
                         className="form-control"
-                        id="lat-field-input-6"
+                        id="lat-field-input-5"
                         name="latField"
                         onChange={[Function]}
                         placeholder="Latitude field"
@@ -223,7 +260,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                 placeholder="Longitude field"
               >
                 <Group
-                  id="lon-field-input-7"
+                  id="lon-field-input-6"
                   label="Longitude field"
                   name="lonField"
                   onChange={[Function]}
@@ -233,12 +270,12 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                     className="form-group"
                   >
                     <label
-                      htmlFor="lon-field-input-7"
+                      htmlFor="lon-field-input-6"
                     >
                       Longitude field
                     </label>
                     <Input
-                      id="lon-field-input-7"
+                      id="lon-field-input-6"
                       label="Longitude field"
                       name="lonField"
                       onChange={[Function]}
@@ -247,7 +284,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
                     >
                       <input
                         className="form-control"
-                        id="lon-field-input-7"
+                        id="lon-field-input-6"
                         name="lonField"
                         onChange={[Function]}
                         placeholder="Longitude field"
@@ -262,7 +299,7 @@ exports[`Component > EditBundle renders csv upload correctly 1`] = `
               className="btn btn-block btn-success"
               disabled={true}
               type="submit"
-              value="Upload new opportunity dataset"
+              value="Upload a new opportunity dataset"
             />
           </form>
         </div>
@@ -286,7 +323,31 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
         <div
           className="panel-heading clearfix "
         >
-          Upload new opportunity dataset
+          Upload a new opportunity dataset
+          <a
+            data-tip="Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj)"
+          >
+            <Icon
+              className="fa-lg pull-right"
+              type="question-circle-o"
+            >
+              <i
+                className="fa fa-question-circle-o fa-fw fa-lg pull-right"
+              />
+            </Icon>
+            <ReactTooltip
+              className="help-tooltip"
+              insecure={true}
+              place="right"
+              resizeHide={true}
+              wrapper="div"
+            >
+              <div
+                className="__react_component_tooltip place-top type-dark "
+                data-id="tooltip"
+              />
+            </ReactTooltip>
+          </a>
         </div>
       </Heading>
       <Body>
@@ -299,14 +360,14 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
             onSubmit={[Function]}
           >
             <Text
-              label="Opportunity dataset"
+              label="Opportunity dataset*"
               name="Name"
               onChange={[Function]}
               placeholder="Opportunity dataset"
             >
               <Group
-                id="name-input-10"
-                label="Opportunity dataset"
+                id="name-input-9"
+                label="Opportunity dataset*"
                 name="Name"
                 onChange={[Function]}
                 placeholder="Opportunity dataset"
@@ -315,13 +376,13 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="name-input-10"
+                    htmlFor="name-input-9"
                   >
-                    Opportunity dataset
+                    Opportunity dataset*
                   </label>
                   <Input
-                    id="name-input-10"
-                    label="Opportunity dataset"
+                    id="name-input-9"
+                    label="Opportunity dataset*"
                     name="Name"
                     onChange={[Function]}
                     placeholder="Opportunity dataset"
@@ -329,7 +390,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                   >
                     <input
                       className="form-control"
-                      id="name-input-10"
+                      id="name-input-9"
                       name="Name"
                       onChange={[Function]}
                       placeholder="Opportunity dataset"
@@ -340,14 +401,14 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
               </Group>
             </Text>
             <File
-              label="Select opportunity dataset"
+              label="Select opportunity dataset*"
               multiple={true}
               name="files"
               onChange={[Function]}
             >
               <Group
-                id="files-input-11"
-                label="Select opportunity dataset"
+                id="files-input-8"
+                label="Select opportunity dataset*"
                 multiple={true}
                 name="files"
                 onChange={[Function]}
@@ -356,13 +417,13 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="files-input-11"
+                    htmlFor="files-input-8"
                   >
-                    Select opportunity dataset
+                    Select opportunity dataset*
                   </label>
                   <Input
-                    id="files-input-11"
-                    label="Select opportunity dataset"
+                    id="files-input-8"
+                    label="Select opportunity dataset*"
                     multiple={true}
                     name="files"
                     onChange={[Function]}
@@ -370,11 +431,11 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
                   >
                     <input
                       className="form-control"
-                      id="files-input-11"
+                      id="files-input-8"
                       multiple={true}
                       name="files"
                       onChange={[Function]}
-                      placeholder="Select opportunity dataset"
+                      placeholder="Select opportunity dataset*"
                       type="file"
                     />
                   </Input>
@@ -385,7 +446,7 @@ exports[`Component > EditBundle renders shapefile upload correctly 1`] = `
               className="btn btn-block btn-success"
               disabled={true}
               type="submit"
-              value="Upload new opportunity dataset"
+              value="Upload a new opportunity dataset"
             />
           </form>
         </div>

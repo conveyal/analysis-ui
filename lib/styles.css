@@ -1,8 +1,6 @@
 /** References to CSS files that should be included. They will be packed by browserify-css */
 
 @import url(node_modules/bootstrap/dist/css/bootstrap.css);
-@import url(node_modules/font-awesome/css/font-awesome.css);
-@import url(node_modules/leaflet/dist/leaflet.css);
 @import url(node_modules/leaflet-draw/dist/leaflet.draw.css);
 @import url(node_modules/react-select/dist/react-select.css);
 @import url(node_modules/react-datetime/css/react-datetime.css);
@@ -37,6 +35,7 @@ body.Editor, #editor {
 }
 
 a,
+a.list-group-item,
 .link {
   cursor: pointer;
   color: #337ab7;
@@ -45,6 +44,8 @@ a,
 
 a:hover,
 a:focus,
+a:hover.list-group-item,
+a:focus.list-group-item,
 .link:hover,
 .link:focus {
   color: #23527c;
@@ -62,9 +63,16 @@ ul, ol {
 .btn {
   font-size: 12px;
   line-height: 1.4;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05),
+    rgba(51, 51, 51, 0.05)
+  );
 }
 
 .btn-primary {
+  color: #fff!important;
   background-color: #337ab7;
   border-color: color(#337ab7 shade(20%));
 }
@@ -72,6 +80,10 @@ ul, ol {
 .btn-primary:active, .btn-primary.active, .btn-primary:hover {
   background-color: color(#337ab7 shade(20%));
   border-color: color(#337ab7 shade(40%));
+}
+
+.btn-danger {
+  color: #fff!important;
 }
 
 .form-group {
@@ -92,9 +104,15 @@ input[type="datetime-local"].form-control,
 input[type="month"].form-control,
 .form-control {
   font-size: 12px;
-  height: 30px;
   line-height: 1em;
-  padding: 6px;
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
+}
+
+input[type="file"].form-control {
+  padding-top: 9px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -106,12 +124,20 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+input[type="range"].form-control {
+  box-shadow: none;
+}
+
 .form-inline .checkbox label {
   padding: 0 12px 12px 0;
 }
 
 .form-inline .form-control {
   margin: 0 6px;
+}
+
+label {
+  margin-bottom: 2px;
 }
 
 .CollapsibleButton {
@@ -172,6 +198,8 @@ input[type="number"] {
   left: 40px;
   height: 100%;
   border-right: 1px solid #ddd;
+  overflow: hidden;
+  background-color: #fff;
 }
 
 .ApplicationDock.analysisMode,
@@ -187,34 +215,12 @@ input[type="number"] {
   position: absolute;
   height: 100%;
   overflow-y: auto;
-  padding-bottom: 45px;
+  padding-bottom: 90px;
   width: 320px;
 }
 
 .Analysis, .ScenarioContent {
   min-height: 500px;
-}
-
-.BlockLink {
-  display: block;
-  border: 1px solid rgba(51, 122, 183, 0.4);
-  color: #337ab7;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  padding: 0 6px 0 12px;
-  line-height: 38px;
-  cursor: pointer;
-}
-
-.BlockLink:hover,
-.BlockLink:active {
-  border-color: rgba(35, 82, 124, 0.4);
-  color: #23527c;
-  text-decoration: none;
-}
-
-.BlockLink > a {
-  padding: 0 6px;
 }
 
 .InnerDock::-webkit-scrollbar {
@@ -254,6 +260,12 @@ input[type="number"] {
   padding: 0 3px;
 }
 
+.ApplicationDockTitle > .btn {
+  padding: 4px 8px;
+  margin-top: -3px;
+  margin-left: 8px;
+}
+
 .DockContent {
   position: relative;
 }
@@ -265,7 +277,16 @@ input[type="number"] {
 }
 
 .WelcomeTitle > .logo {
-  font-family: "Gill Sans";
+  font-family: "Gill Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen-Sans,
+    Ubuntu,
+    Cantarell,
+    "Helvetica Neue",
+    sans-serif;
   display: inline-block;
   letter-spacing: 0;
   font-size: 26px;
@@ -278,14 +299,6 @@ input[type="number"] {
   background-repeat: no-repeat;
   background-position: left center;
   font-weight: 100;
-}
-
-.WelcomeTitle > .badge {
-  font-size: 10px;
-  font-weight: normal;
-  background-color: #337ab7;
-  margin-top: -6px;
-  padding: 2px 7px 3px;
 }
 
 .DockTitle {
@@ -312,8 +325,18 @@ input[type="number"] {
   border-right: none;
 }
 
-.panel, .panel-heading {
-  border-radius: 0;
+.btn-group-justified {
+  margin-bottom: 8px;
+}
+
+.panel-heading {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.panel {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .alert {
@@ -398,7 +421,6 @@ input[type="number"] {
 .ModificationTitlePlaceholder,
 .ModificationTitle {
   padding: 6px 0 6px 18px;
-  font-size: 10px;
   display: block;
 }
 
@@ -424,11 +446,24 @@ input[type="number"] {
 }
 
 .Select-control {
-  height: 28px;
+  height: 34px;
+  background-color: #ddd;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
+  border: none;
+  color: #333;
+}
+
+.is-open > .Select-control {
+  background-color: #ddd;
+  border: none;
+}
+
+.Select-control:hover {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
 }
 
 .Select-input {
-  height: 28px;
+  height: 34px;
 }
 
 .Select-placeholder {
@@ -437,7 +472,11 @@ input[type="number"] {
 }
 
 .Select-placeholder, .Select--single > .Select-control .Select-value {
-  line-height: 28px;
+  line-height: 34px;
+}
+
+.Select-arrow {
+  border-color: #333 transparent transparent;
 }
 
 .Selet-arrow-zone {
@@ -450,18 +489,21 @@ input[type="number"] {
 
 .Select-menu-outer {
   z-index: 3;
+  border-color: #ddd;
 }
 
 .Variants {
-  padding: 0 12px;
+  padding: 0 9px 0 12px;
 }
 
-.Variants-Variant {
-  margin-bottom: 12px;
+.Variant {
+  padding-bottom: 6px;
+  line-height: 18px;
 }
 
-.Variants-Variant .form-control {
-  width: 140px;
+.Variant > .pull-right {
+  display: inline-block;
+  padding: 3px;
 }
 
 .DirectionIcon {
@@ -470,7 +512,6 @@ input[type="number"] {
 
 .LoggedInAs {
   padding-top: 6px;
-  font-size: 10px;
 }
 
 .Report-Modification {
@@ -492,70 +533,102 @@ input[type="number"] {
   z-index: 10000;
 }
 
-/**
- * MAP CONTROL
- */
-
-.MapControl {
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-color: #fff; /* #0b2b40; Conveyal blue down to 25% brightness in HSB */
-  box-shadow: 0 0 25px 0 rgba(0, 0, 0, .15);
-  border-bottom-left-radius: 3px;
-  width: 320px;
-  padding: 3px 0;
-}
-
-.MapControl .block {
-  display: block;
-  padding: 6px 6px 3px;
-  width: 100%;
-}
-
-.MapControl a:hover,
-.MapControl a:active,
-.MapControl a:focus,
-.MapControl a.active {
-  text-decoration: none;
-  outline: none;
-}
-
-.MapControl input[type=range] {
+.Legend-Item {
   display: inline-block;
-  width: 70%;
-  margin-left: 4px;
-  margin-top: 1px;
+  margin-right: 10px;
   vertical-align: middle;
-}
-
-.MapControl .Isochrone {
-  padding-left: 6px;
-}
-
-.MapControl .Select-control,
-.MapControl .Select-placeholder {
-  border: none;
-  box-shadow: none;
-  outline: none;
-}
-
-.MapControl .Select-menu-outer {
-  border: none;
-}
-
-.MapControl .Select-control .Select-input:focus {
-  box-shadow: none;
-}
-
-
-
-.Legend div {
-  display: inline-block;
-  margin: 6px;
-  vertical-align: middle;
+  width: 50%;
+  height: 2em;
 }
 
 .Legend {
-  list-style: none
+  list-style: none;
+  padding-left: 0;
+}
+
+.CustomModal {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  top: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  overflow: scroll;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px 0 rgba(51, 122, 183, 0.1);
+  border: 1px solid #337ab7;
+}
+
+.CustomModal-title {
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  padding: 24px;
+}
+
+.CustomModal-block {
+  padding: 0 24px;
+  word-wrap: break-word;
+}
+
+.CustomModal:focus {
+  outline: none;
+}
+
+.list-group-item {
+  padding: 12px;
+  background-image: linear-gradient(
+    to bottom,
+    #fff,
+    #fff,
+    rgba(51, 122, 183, 0.05)
+  );
+}
+
+.progress {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.progress-bar .scenario-name {
+  color: #333;
+  text-align: left;
+}
+
+.progress .statistic {
+  color: #333;
+  position: absolute;
+  right: 18px;
+}
+
+.pad-right {
+  padding-right: 12px;
+}
+
+.tooltip {
+  opacity: 1;
+  max-width: 1000px;
+  white-space: nowrap;
+}
+
+.tooltip.right {
+  left: 40px;
+}
+
+.tooltip-inner {
+  background-color: #333;
+}
+
+.tooltip.right .tooltip-arrow {
+  border-right-color: #333;
+}
+
+.help-tooltip {
+  max-width: 400px;
+  z-index: 1000 !important;
+  opacity: 100 !important;
+  background-color: #333 !important;
+  box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.1);
 }

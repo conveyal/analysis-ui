@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Regional should handle rendering comparison 1`] = `
-<RegionalAnalysis
+<RegionalResults
   addRegionalAnalysisLayerToMap={[Function]}
   addRegionalComparisonLayerToMap={[Function]}
+  aggregationAreas={Array []}
   analysis={
     Object {
       "bundleId": "5678",
@@ -227,530 +228,749 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
   setMinimumImprovementProbability={[Function]}
 >
   <div>
-    <h3>
+    <div
+      className="DockTitle"
+    >
       ANALYSIS 1
-    </h3>
-    <div>
-      <Select
-        addLabelText="Add \\"{label}\\"?"
-        arrowRenderer={[Function]}
-        autosize={true}
-        backspaceRemoves={true}
-        backspaceToRemoveMessage="Press backspace to remove {label}"
-        clearAllText="Clear all"
-        clearRenderer={[Function]}
-        clearValueText="Clear value"
-        clearable={true}
-        deleteRemoves={true}
-        delimiter=","
-        disabled={false}
-        escapeClearsValue={true}
-        filterOptions={[Function]}
-        ignoreAccents={true}
-        ignoreCase={true}
-        inputProps={Object {}}
-        isLoading={false}
-        joinValues={false}
-        labelKey="label"
-        matchPos="any"
-        matchProp="any"
-        menuBuffer={0}
-        menuRenderer={[Function]}
-        multi={false}
-        noResultsText="No results found"
-        onBlurResetsInput={true}
-        onChange={[Function]}
-        onCloseResetsInput={true}
-        openAfterFocus={false}
-        optionComponent={[Function]}
-        options={
-          Array [
-            Object {
-              "label": "ANALYSIS 2",
-              "value": "efgh",
-            },
-          ]
-        }
-        pageSize={5}
-        placeholder="Compare to"
-        required={false}
-        scrollMenuIntoView={true}
-        searchable={true}
-        simpleValue={false}
-        tabSelectsValue={true}
-        value="efgh"
-        valueComponent={[Function]}
-        valueKey="value"
+      <a
+        className="pull-right"
+        onClick={[Function]}
+        tabIndex={0}
+        title="Delete regional analysis"
+        type="button"
+      >
+        <Icon
+          type="trash"
+        >
+          <i
+            className="fa fa-trash fa-fw "
+          />
+        </Icon>
+      </a>
+    </div>
+    <div
+      className="block"
+    >
+      <Group
+        label="Compare to"
       >
         <div
-          className="Select Select--single is-searchable has-value"
+          className="form-group"
         >
-          <div
-            className="Select-control"
-            onKeyDown={[Function]}
-            onMouseDown={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
+          <label
+            htmlFor="compare-to-input-4"
           >
-            <span
-              className="Select-multi-value-wrapper"
-              id="react-select-3--value"
+            Compare to
+          </label>
+          <Select
+            addLabelText="Add \\"{label}\\"?"
+            arrowRenderer={[Function]}
+            autosize={true}
+            backspaceRemoves={true}
+            backspaceToRemoveMessage="Press backspace to remove {label}"
+            clearAllText="Clear all"
+            clearRenderer={[Function]}
+            clearValueText="Clear value"
+            clearable={true}
+            deleteRemoves={true}
+            delimiter=","
+            disabled={false}
+            escapeClearsValue={true}
+            filterOptions={[Function]}
+            ignoreAccents={true}
+            ignoreCase={true}
+            inputProps={Object {}}
+            isLoading={false}
+            joinValues={false}
+            labelKey="label"
+            matchPos="any"
+            matchProp="any"
+            menuBuffer={0}
+            menuRenderer={[Function]}
+            multi={false}
+            noResultsText="No results found"
+            onBlurResetsInput={true}
+            onChange={[Function]}
+            onCloseResetsInput={true}
+            optionComponent={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "ANALYSIS 2",
+                  "value": "efgh",
+                },
+              ]
+            }
+            pageSize={5}
+            placeholder="Select..."
+            required={false}
+            scrollMenuIntoView={true}
+            searchable={true}
+            simpleValue={false}
+            tabSelectsValue={true}
+            value="efgh"
+            valueComponent={[Function]}
+            valueKey="value"
+          >
+            <div
+              className="Select Select--single is-clearable is-searchable has-value"
             >
-              <Value
-                disabled={false}
-                id="react-select-3--value-item"
-                instancePrefix="react-select-3-"
-                onClick={null}
-                value={
-                  Object {
-                    "label": "ANALYSIS 2",
-                    "value": "efgh",
-                  }
-                }
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
               >
-                <div
-                  className="Select-value"
+                <span
+                  className="Select-multi-value-wrapper"
+                  id="react-select-4--value"
+                >
+                  <Value
+                    disabled={false}
+                    id="react-select-4--value-item"
+                    instancePrefix="react-select-4-"
+                    onClick={null}
+                    value={
+                      Object {
+                        "label": "ANALYSIS 2",
+                        "value": "efgh",
+                      }
+                    }
+                  >
+                    <div
+                      className="Select-value"
+                    >
+                      <span
+                        aria-selected="true"
+                        className="Select-value-label"
+                        id="react-select-4--value-item"
+                        role="option"
+                      >
+                        ANALYSIS 2
+                      </span>
+                    </div>
+                  </Value>
+                  <mockConstructor
+                    aria-activedescendant="react-select-4--value"
+                    aria-expanded="false"
+                    aria-haspopup="false"
+                    aria-owns=""
+                    className="Select-input"
+                    minWidth="5"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    role="combobox"
+                    value=""
+                  />
+                </span>
+                <span
+                  aria-label="Clear value"
+                  className="Select-clear-zone"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                  title="Clear value"
                 >
                   <span
-                    aria-selected="true"
-                    className="Select-value-label"
-                    id="react-select-3--value-item"
-                    role="option"
-                  >
-                    ANALYSIS 2
-                  </span>
-                </div>
-              </Value>
-              <AutosizeInput
-                aria-activedescendant="react-select-3--value"
-                aria-expanded="false"
-                aria-haspopup="false"
-                aria-owns=""
-                className="Select-input"
-                minWidth="5"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                role="combobox"
-                value=""
-              />
-            </span>
-            <span
-              aria-label="Clear value"
-              className="Select-clear-zone"
-              onMouseDown={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-              title="Clear value"
-            >
-              <span
-                className="Select-clear"
-                dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "&times;",
-                  }
-                }
-              />
-            </span>
-            <span
-              className="Select-arrow-zone"
-              onMouseDown={[Function]}
-            >
-              <span
-                className="Select-arrow"
-                onMouseDown={[Function]}
-              />
-            </span>
-          </div>
+                    className="Select-clear"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "&times;",
+                      }
+                    }
+                  />
+                </span>
+                <span
+                  className="Select-arrow-zone"
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]}
+                  />
+                </span>
+              </div>
+            </div>
+          </Select>
         </div>
-      </Select>
-    </div>
-    <MinimumImprovementProbabilitySelector
-      minimumImprovementProbability={0.83}
-      setMinimumImprovementProbability={[Function]}
-    >
-      <Slider
-        format=".2f"
-        label="Minimum probability of change"
-        max={1}
-        min={0}
-        onChange={[Function]}
-        output={true}
-        step={0.01}
-        value={0.83}
+      </Group>
+      <MinimumImprovementProbabilitySelector
+        minimumImprovementProbability={0.83}
+        setMinimumImprovementProbability={[Function]}
       >
-        <Group
-          id="minimum-probability-of-change-input-1"
+        <Slider
+          format=".2f"
           label="Minimum probability of change"
           max={1}
           min={0}
           onChange={[Function]}
+          output={true}
           step={0.01}
           value={0.83}
+        >
+          <Group
+            id="minimum-probability-of-change-input-10"
+            label="Minimum probability of change"
+            max={1}
+            min={0}
+            onChange={[Function]}
+            step={0.01}
+            value={0.83}
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="minimum-probability-of-change-input-10"
+              >
+                Minimum probability of change
+              </label>
+              <output
+                className="pull-right"
+                htmlFor="minimum-probability-of-change-input-10"
+              >
+                0.55
+              </output>
+              <input
+                className="form-control"
+                id="minimum-probability-of-change-input-10"
+                label="Minimum probability of change"
+                max={1}
+                min={0}
+                onChange={[Function]}
+                step={0.01}
+                type="range"
+                value={0.83}
+              />
+            </div>
+          </Group>
+        </Slider>
+      </MinimumImprovementProbabilitySelector>
+      <p>
+        Total jobs within 60 minutes (average instantaneous accessibility)
+      </p>
+      <p>
+        compared with Total jobs within 60 minutes (percentile 42)
+      </p>
+      <Legend
+        breaks={
+          Array [
+            100,
+            500,
+            1000,
+            2000,
+          ]
+        }
+        colors={
+          Array [
+            "rgba(215, 25, 28, 0.42)",
+            "rgba(252, 174, 97, 0.42)",
+            "rgba(255, 255, 191, 0.42)",
+            "rgba(171, 217, 233, 0.42)",
+            "rgba(44, 123, 182, 0.42)",
+          ]
+        }
+        min={0}
+      >
+        <ul
+          className="Legend"
+        >
+          <Break
+            bottom={0}
+            color="rgba(215, 25, 28, 0.42)"
+            top={100}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(215, 25, 28)",
+                  }
+                }
+              />
+              0
+              –
+              100
+            </li>
+          </Break>
+          <Break
+            bottom={100}
+            color="rgba(252, 174, 97, 0.42)"
+            top={500}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(252, 174, 97)",
+                  }
+                }
+              />
+              100
+              –
+              500
+            </li>
+          </Break>
+          <Break
+            bottom={500}
+            color="rgba(255, 255, 191, 0.42)"
+            top={1000}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(255, 255, 191)",
+                  }
+                }
+              />
+              500
+              –
+              1,000
+            </li>
+          </Break>
+          <Break
+            bottom={1000}
+            color="rgba(171, 217, 233, 0.42)"
+            top={2000}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(171, 217, 233)",
+                  }
+                }
+              />
+              1,000
+              –
+              2,000
+            </li>
+          </Break>
+        </ul>
+      </Legend>
+      <Group
+        label="ANALYSIS 1 settings"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="analysis-1-settings-input-6"
+          >
+            ANALYSIS 1 settings
+          </label>
+          <ProfileRequestDisplay
+            accessModes="WALK"
+            bikeSafe={1}
+            bikeSlope={1}
+            bikeSpeed={4.166666666666667}
+            bikeTime={1}
+            bikeTrafficStress={4}
+            carSpeed={20}
+            date="2016-01-16"
+            directModes="WALK"
+            egressModes="WALK"
+            fromTime={25200}
+            maxBikeTime={20}
+            maxCarTime={45}
+            maxRides={4}
+            maxWalkTime={20}
+            minBikeTime={10}
+            minCarTime={10}
+            monteCarloDraws={200}
+            reachabilityThreshold={0}
+            streetTime={90}
+            suboptimalMinutes={5}
+            toTime={32400}
+            transitModes="TRANSIT"
+            walkSpeed={1.3888888888888888}
+          >
+            <table
+              className="table table-striped table-condensed"
+            >
+              <tbody>
+                <tr>
+                  <th>
+                    Date
+                  </th>
+                  <td>
+                    2016-01-16
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    From time
+                  </th>
+                  <td>
+                    07:00
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    To time
+                  </th>
+                  <td>
+                    09:00
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Maximum transfers
+                  </th>
+                  <td>
+                    3
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Number of simulated schedules
+                  </th>
+                  <td>
+                    200
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Access modes
+                  </th>
+                  <td>
+                    <Modes
+                      modes="WALK"
+                    >
+                      <span>
+                        <Icon
+                          aria-label="Walk"
+                          title="Walk"
+                          type="male"
+                        >
+                          <i
+                            aria-label="Walk"
+                            className="fa fa-male fa-fw "
+                            title="Walk"
+                          />
+                        </Icon>
+                      </span>
+                    </Modes>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Transit
+                  </th>
+                  <td>
+                    yes
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ProfileRequestDisplay>
+        </div>
+      </Group>
+      <Group
+        label="ANALYSIS 2 settings"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="analysis-2-settings-input-7"
+          >
+            ANALYSIS 2 settings
+          </label>
+          <ProfileRequestDisplay
+            accessModes="WALK"
+            bikeSafe={1}
+            bikeSlope={1}
+            bikeSpeed={4.166666666666667}
+            bikeTime={1}
+            bikeTrafficStress={4}
+            carSpeed={20}
+            date="2016-01-16"
+            directModes="WALK"
+            egressModes="WALK"
+            fromTime={25200}
+            maxBikeTime={20}
+            maxCarTime={45}
+            maxRides={4}
+            maxWalkTime={20}
+            minBikeTime={10}
+            minCarTime={10}
+            monteCarloDraws={200}
+            reachabilityThreshold={0}
+            streetTime={90}
+            suboptimalMinutes={5}
+            toTime={32400}
+            transitModes="TRANSIT"
+            walkSpeed={1.3888888888888888}
+          >
+            <table
+              className="table table-striped table-condensed"
+            >
+              <tbody>
+                <tr>
+                  <th>
+                    Date
+                  </th>
+                  <td>
+                    2016-01-16
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    From time
+                  </th>
+                  <td>
+                    07:00
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    To time
+                  </th>
+                  <td>
+                    09:00
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Maximum transfers
+                  </th>
+                  <td>
+                    3
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Number of simulated schedules
+                  </th>
+                  <td>
+                    200
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Access modes
+                  </th>
+                  <td>
+                    <Modes
+                      modes="WALK"
+                    >
+                      <span>
+                        <Icon
+                          aria-label="Walk"
+                          title="Walk"
+                          type="male"
+                        >
+                          <i
+                            aria-label="Walk"
+                            className="fa fa-male fa-fw "
+                            title="Walk"
+                          />
+                        </Icon>
+                      </span>
+                    </Modes>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Transit
+                  </th>
+                  <td>
+                    yes
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ProfileRequestDisplay>
+        </div>
+      </Group>
+      <div>
+        <Group
+          label="Aggregate results to"
         >
           <div
             className="form-group"
           >
             <label
-              htmlFor="minimum-probability-of-change-input-1"
+              htmlFor="aggregate-results-to-input-8"
             >
-              Minimum probability of change
+              Aggregate results to
             </label>
-            <output
-              className="pull-right"
-              htmlFor="minimum-probability-of-change-input-1"
-            >
-              0.55
-            </output>
-            <input
-              className="form-control"
-              id="minimum-probability-of-change-input-1"
-              label="Minimum probability of change"
-              max={1}
-              min={0}
+            <Select
+              addLabelText="Add \\"{label}\\"?"
+              arrowRenderer={[Function]}
+              autosize={true}
+              backspaceRemoves={true}
+              backspaceToRemoveMessage="Press backspace to remove {label}"
+              clearAllText="Clear all"
+              clearRenderer={[Function]}
+              clearValueText="Clear value"
+              clearable={true}
+              deleteRemoves={true}
+              delimiter=","
+              disabled={false}
+              escapeClearsValue={true}
+              filterOptions={[Function]}
+              ignoreAccents={true}
+              ignoreCase={true}
+              inputProps={Object {}}
+              isLoading={false}
+              joinValues={false}
+              labelKey="label"
+              matchPos="any"
+              matchProp="any"
+              menuBuffer={0}
+              menuRenderer={[Function]}
+              multi={false}
+              name="aggregateTo"
+              noResultsText="No results found"
+              onBlurResetsInput={true}
               onChange={[Function]}
-              step={0.01}
-              type="range"
-              value={0.83}
-            />
+              onCloseResetsInput={true}
+              optionComponent={[Function]}
+              options={
+                Array [
+                  Object {
+                    "label": "Upload new aggregation area",
+                    "value": "new-aggregation-area",
+                  },
+                ]
+              }
+              pageSize={5}
+              placeholder="Select..."
+              required={false}
+              scrollMenuIntoView={true}
+              searchable={true}
+              simpleValue={false}
+              tabSelectsValue={true}
+              valueComponent={[Function]}
+              valueKey="value"
+            >
+              <div
+                className="Select Select--single is-clearable is-searchable"
+              >
+                <div
+                  className="Select-control"
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <span
+                    className="Select-multi-value-wrapper"
+                    id="react-select-5--value"
+                  >
+                    <div
+                      className="Select-placeholder"
+                    >
+                      Select...
+                    </div>
+                    <mockConstructor
+                      aria-activedescendant="react-select-5--value"
+                      aria-expanded="false"
+                      aria-haspopup="false"
+                      aria-owns=""
+                      className="Select-input"
+                      minWidth="5"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      role="combobox"
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="Select-arrow-zone"
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="Select-arrow"
+                      onMouseDown={[Function]}
+                    />
+                  </span>
+                </div>
+              </div>
+            </Select>
           </div>
         </Group>
-      </Slider>
-    </MinimumImprovementProbabilitySelector>
-    <div>
-      <i>
-        Total jobs within 60 minutes (average instantaneous accessibility)
-      </i>
-    </div>
-    <div>
-      <i>
-        compared with Total jobs within 60 minutes (percentile 42)
-      </i>
-    </div>
-    <Legend
-      breaks={
-        Array [
-          100,
-          500,
-          1000,
-          2000,
-        ]
-      }
-      colors={
-        Array [
-          "rgba(215, 25, 28, 0.42)",
-          "rgba(252, 174, 97, 0.42)",
-          "rgba(255, 255, 191, 0.42)",
-          "rgba(171, 217, 233, 0.42)",
-          "rgba(44, 123, 182, 0.42)",
-        ]
-      }
-      min={0}
-    >
-      <ul
-        className="Legend"
+      </div>
+      <Group
+        label="Export to GIS"
       >
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(215, 25, 28)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          0
-          –
-          100
-        </li>
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(252, 174, 97)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          100
-          –
-          500
-        </li>
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(255, 255, 191)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          500
-          –
-          1,000
-        </li>
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(171, 217, 233)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          1,000
-          –
-          2,000
-        </li>
-      </ul>
-    </Legend>
-    <Collapsible
-      defaultExpanded={false}
-      title="ANALYSIS 1 settings"
-    >
-      <div>
         <div
-          aria-level={3}
-          role="heading"
+          className="form-group"
         >
-          <a
-            aria-expanded={false}
-            className="CollapsibleButton"
-            onClick={[Function]}
-            role="button"
-            tabIndex={0}
+          <label
+            htmlFor="export-to-gis-input-9"
           >
-            <Icon
-              type="caret-right"
+            Export to GIS
+          </label>
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="info"
+          >
+            <a
+              className="btn btn-info btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
             >
-              <i
-                className="fa fa-caret-right fa-fw "
-              />
-            </Icon>
-            <strong>
-              ANALYSIS 1 settings
-            </strong>
-          </a>
-        </div>
-      </div>
-    </Collapsible>
-    <Collapsible
-      defaultExpanded={false}
-      title="ANALYSIS 2 settings"
-    >
-      <div>
-        <div
-          aria-level={3}
-          role="heading"
-        >
-          <a
-            aria-expanded={false}
-            className="CollapsibleButton"
+              Download ANALYSIS 1
+            </a>
+          </Button>
+          <Button
+            block={true}
             onClick={[Function]}
-            role="button"
-            tabIndex={0}
+            style="info"
           >
-            <Icon
-              type="caret-right"
+            <a
+              className="btn btn-info btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
             >
-              <i
-                className="fa fa-caret-right fa-fw "
-              />
-            </Icon>
-            <strong>
-              ANALYSIS 2 settings
-            </strong>
-          </a>
+              Download ANALYSIS 2
+            </a>
+          </Button>
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="info"
+          >
+            <a
+              className="btn btn-info btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              Download probability of improvement
+            </a>
+          </Button>
         </div>
-      </div>
-    </Collapsible>
-    <div>
-      <b>
-        <Icon
-          type="map-o"
-        >
-          <i
-            className="fa fa-map-o fa-fw "
-          />
-        </Icon>
-        Export to GIS
-      </b>
-      <ul>
-        <li>
-          <a
-            onClick={[Function]}
-            tabIndex={0}
-          >
-            Download ANALYSIS 1
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={[Function]}
-            tabIndex={0}
-          >
-            Download ANALYSIS 2
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={[Function]}
-            tabIndex={0}
-          >
-            Download probability of improvement
-          </a>
-        </li>
-      </ul>
+      </Group>
     </div>
   </div>
-</RegionalAnalysis>
-`;
-
-exports[`Components > Analysis > Regional should load analysis if it is not loaded 1`] = `
-<RegionalAnalysis
-  addRegionalAnalysisLayerToMap={[Function]}
-  addRegionalComparisonLayerToMap={[Function]}
-  analysisId="abcd"
-  breaks={
-    Array [
-      100,
-      500,
-      1000,
-      2000,
-    ]
-  }
-  fetch={[Function]}
-  grid={
-    Object {
-      "data": Array [],
-      "height": 300,
-      "max": 2000,
-      "min": 0,
-      "north": 20024,
-      "west": 20015,
-      "width": 300,
-      "zoom": 9,
-    }
-  }
-  indicators={
-    Array [
-      Object {
-        "key": "Jobs_total",
-        "name": "Total jobs",
-      },
-    ]
-  }
-  loadRegionalAnalyses={[Function]}
-  minimumImprovementProbability={0.83}
-  projectId="MOCK"
-  regionalAnalyses={
-    Array [
-      Object {
-        "bundleId": "5678",
-        "cutoffMinutes": 60,
-        "grid": "Jobs_total",
-        "height": 300,
-        "id": "abcd",
-        "name": "ANALYSIS 1",
-        "north": 20024,
-        "request": Object {
-          "accessModes": "WALK",
-          "bikeSafe": 1,
-          "bikeSlope": 1,
-          "bikeSpeed": 4.166666666666667,
-          "bikeTime": 1,
-          "bikeTrafficStress": 4,
-          "carSpeed": 20,
-          "date": "2016-01-16",
-          "directModes": "WALK",
-          "egressModes": "WALK",
-          "fromTime": 25200,
-          "maxBikeTime": 20,
-          "maxCarTime": 45,
-          "maxRides": 4,
-          "maxWalkTime": 20,
-          "minBikeTime": 10,
-          "minCarTime": 10,
-          "monteCarloDraws": 200,
-          "reachabilityThreshold": 0,
-          "streetTime": 90,
-          "suboptimalMinutes": 5,
-          "toTime": 32400,
-          "transitModes": "TRANSIT",
-          "walkSpeed": 1.3888888888888888,
-        },
-        "scenarioId": "1234",
-        "travelTimePercentile": -1,
-        "variant": 0,
-        "west": 20015,
-        "width": 300,
-        "zoom": 9,
-      },
-      Object {
-        "bundleId": "5678",
-        "cutoffMinutes": 60,
-        "grid": "Jobs_total",
-        "height": 300,
-        "id": "efgh",
-        "name": "ANALYSIS 2",
-        "north": 20024,
-        "request": Object {
-          "accessModes": "WALK",
-          "bikeSafe": 1,
-          "bikeSlope": 1,
-          "bikeSpeed": 4.166666666666667,
-          "bikeTime": 1,
-          "bikeTrafficStress": 4,
-          "carSpeed": 20,
-          "date": "2016-01-16",
-          "directModes": "WALK",
-          "egressModes": "WALK",
-          "fromTime": 25200,
-          "maxBikeTime": 20,
-          "maxCarTime": 45,
-          "maxRides": 4,
-          "maxWalkTime": 20,
-          "minBikeTime": 10,
-          "minCarTime": 10,
-          "monteCarloDraws": 200,
-          "reachabilityThreshold": 0,
-          "streetTime": 90,
-          "suboptimalMinutes": 5,
-          "toTime": 32400,
-          "transitModes": "TRANSIT",
-          "walkSpeed": 1.3888888888888888,
-        },
-        "scenarioId": "4321",
-        "travelTimePercentile": 42,
-        "variant": 1,
-        "west": 20015,
-        "width": 300,
-        "zoom": 9,
-      },
-    ]
-  }
-  removeRegionalAnalysisLayerFromMap={[Function]}
-  removeRegionalComparisonLayerFromMap={[Function]}
-  setActiveRegionalAnalysis={[Function]}
-  setMinimumImprovementProbability={[Function]}
-/>
+</RegionalResults>
 `;
 
 exports[`Components > Analysis > Regional should render correctly 1`] = `
-<RegionalAnalysis
+<RegionalResults
   addRegionalAnalysisLayerToMap={[Function]}
   addRegionalComparisonLayerToMap={[Function]}
+  aggregationAreas={Array []}
   analysis={
     Object {
       "bundleId": "5678",
@@ -919,251 +1139,501 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
   setMinimumImprovementProbability={[Function]}
 >
   <div>
-    <h3>
+    <div
+      className="DockTitle"
+    >
       ANALYSIS 1
-    </h3>
-    <div>
-      <Select
-        addLabelText="Add \\"{label}\\"?"
-        arrowRenderer={[Function]}
-        autosize={true}
-        backspaceRemoves={true}
-        backspaceToRemoveMessage="Press backspace to remove {label}"
-        clearAllText="Clear all"
-        clearRenderer={[Function]}
-        clearValueText="Clear value"
-        clearable={true}
-        deleteRemoves={true}
-        delimiter=","
-        disabled={false}
-        escapeClearsValue={true}
-        filterOptions={[Function]}
-        ignoreAccents={true}
-        ignoreCase={true}
-        inputProps={Object {}}
-        isLoading={false}
-        joinValues={false}
-        labelKey="label"
-        matchPos="any"
-        matchProp="any"
-        menuBuffer={0}
-        menuRenderer={[Function]}
-        multi={false}
-        noResultsText="No results found"
-        onBlurResetsInput={true}
-        onChange={[Function]}
-        onCloseResetsInput={true}
-        openAfterFocus={false}
-        optionComponent={[Function]}
-        options={
-          Array [
-            Object {
-              "label": "ANALYSIS 2",
-              "value": "efgh",
-            },
-          ]
-        }
-        pageSize={5}
-        placeholder="Compare to"
-        required={false}
-        scrollMenuIntoView={true}
-        searchable={true}
-        simpleValue={false}
-        tabSelectsValue={true}
-        value={null}
-        valueComponent={[Function]}
-        valueKey="value"
+      <a
+        className="pull-right"
+        onClick={[Function]}
+        tabIndex={0}
+        title="Delete regional analysis"
+        type="button"
       >
-        <div
-          className="Select Select--single is-searchable"
-        >
-          <div
-            className="Select-control"
-            onKeyDown={[Function]}
-            onMouseDown={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-          >
-            <span
-              className="Select-multi-value-wrapper"
-              id="react-select-2--value"
-            >
-              <div
-                className="Select-placeholder"
-              >
-                Compare to
-              </div>
-              <AutosizeInput
-                aria-activedescendant="react-select-2--value"
-                aria-expanded="false"
-                aria-haspopup="false"
-                aria-owns=""
-                className="Select-input"
-                minWidth="5"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                role="combobox"
-                value=""
-              />
-            </span>
-            <span
-              className="Select-arrow-zone"
-              onMouseDown={[Function]}
-            >
-              <span
-                className="Select-arrow"
-                onMouseDown={[Function]}
-              />
-            </span>
-          </div>
-        </div>
-      </Select>
-    </div>
-    <div>
-      <i>
-        Total jobs within 60 minutes (average instantaneous accessibility)
-      </i>
-    </div>
-    <Legend
-      breaks={
-        Array [
-          100,
-          500,
-          1000,
-          2000,
-        ]
-      }
-      colors={
-        Array [
-          "rgba(241, 237, 246, 0.42)",
-          "rgba(188, 200, 224, 0.42)",
-          "rgba(116, 169, 207, 0.42)",
-          "rgba(43, 140, 190, 0.42)",
-          "rgba(4, 90, 142, 0.42)",
-        ]
-      }
-      min={0}
-    >
-      <ul
-        className="Legend"
-      >
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(241, 237, 246)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          0
-          –
-          100
-        </li>
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(188, 200, 224)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          100
-          –
-          500
-        </li>
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(116, 169, 207)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          500
-          –
-          1,000
-        </li>
-        <li>
-          <div
-            style={
-              Object {
-                "backgroundColor": "rgb(43, 140, 190)",
-                "border": "1px solid #000",
-                "height": 25,
-                "width": 50,
-              }
-            }
-          />
-          1,000
-          –
-          2,000
-        </li>
-      </ul>
-    </Legend>
-    <Collapsible
-      defaultExpanded={false}
-      title="ANALYSIS 1 settings"
-    >
-      <div>
-        <div
-          aria-level={3}
-          role="heading"
-        >
-          <a
-            aria-expanded={false}
-            className="CollapsibleButton"
-            onClick={[Function]}
-            role="button"
-            tabIndex={0}
-          >
-            <Icon
-              type="caret-right"
-            >
-              <i
-                className="fa fa-caret-right fa-fw "
-              />
-            </Icon>
-            <strong>
-              ANALYSIS 1 settings
-            </strong>
-          </a>
-        </div>
-      </div>
-    </Collapsible>
-    <div>
-      <b>
         <Icon
-          type="map-o"
+          type="trash"
         >
           <i
-            className="fa fa-map-o fa-fw "
+            className="fa fa-trash fa-fw "
           />
         </Icon>
-        Export to GIS
-      </b>
-      <ul>
-        <li>
-          <a
-            onClick={[Function]}
-            tabIndex={0}
+      </a>
+    </div>
+    <div
+      className="block"
+    >
+      <Group
+        label="Compare to"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="compare-to-input-0"
           >
-            Download ANALYSIS 1
-          </a>
-        </li>
-      </ul>
+            Compare to
+          </label>
+          <Select
+            addLabelText="Add \\"{label}\\"?"
+            arrowRenderer={[Function]}
+            autosize={true}
+            backspaceRemoves={true}
+            backspaceToRemoveMessage="Press backspace to remove {label}"
+            clearAllText="Clear all"
+            clearRenderer={[Function]}
+            clearValueText="Clear value"
+            clearable={true}
+            deleteRemoves={true}
+            delimiter=","
+            disabled={false}
+            escapeClearsValue={true}
+            filterOptions={[Function]}
+            ignoreAccents={true}
+            ignoreCase={true}
+            inputProps={Object {}}
+            isLoading={false}
+            joinValues={false}
+            labelKey="label"
+            matchPos="any"
+            matchProp="any"
+            menuBuffer={0}
+            menuRenderer={[Function]}
+            multi={false}
+            noResultsText="No results found"
+            onBlurResetsInput={true}
+            onChange={[Function]}
+            onCloseResetsInput={true}
+            optionComponent={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "ANALYSIS 2",
+                  "value": "efgh",
+                },
+              ]
+            }
+            pageSize={5}
+            placeholder="Select..."
+            required={false}
+            scrollMenuIntoView={true}
+            searchable={true}
+            simpleValue={false}
+            tabSelectsValue={true}
+            value={null}
+            valueComponent={[Function]}
+            valueKey="value"
+          >
+            <div
+              className="Select Select--single is-clearable is-searchable"
+            >
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+              >
+                <span
+                  className="Select-multi-value-wrapper"
+                  id="react-select-2--value"
+                >
+                  <div
+                    className="Select-placeholder"
+                  >
+                    Select...
+                  </div>
+                  <mockConstructor
+                    aria-activedescendant="react-select-2--value"
+                    aria-expanded="false"
+                    aria-haspopup="false"
+                    aria-owns=""
+                    className="Select-input"
+                    minWidth="5"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    role="combobox"
+                    value=""
+                  />
+                </span>
+                <span
+                  className="Select-arrow-zone"
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]}
+                  />
+                </span>
+              </div>
+            </div>
+          </Select>
+        </div>
+      </Group>
+      <p>
+        Total jobs within 60 minutes (average instantaneous accessibility)
+      </p>
+      <Legend
+        breaks={
+          Array [
+            100,
+            500,
+            1000,
+            2000,
+          ]
+        }
+        colors={
+          Array [
+            "rgba(241, 237, 246, 0.42)",
+            "rgba(188, 200, 224, 0.42)",
+            "rgba(116, 169, 207, 0.42)",
+            "rgba(43, 140, 190, 0.42)",
+            "rgba(4, 90, 142, 0.42)",
+          ]
+        }
+        min={0}
+      >
+        <ul
+          className="Legend"
+        >
+          <Break
+            bottom={0}
+            color="rgba(241, 237, 246, 0.42)"
+            top={100}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(241, 237, 246)",
+                  }
+                }
+              />
+              0
+              –
+              100
+            </li>
+          </Break>
+          <Break
+            bottom={100}
+            color="rgba(188, 200, 224, 0.42)"
+            top={500}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(188, 200, 224)",
+                  }
+                }
+              />
+              100
+              –
+              500
+            </li>
+          </Break>
+          <Break
+            bottom={500}
+            color="rgba(116, 169, 207, 0.42)"
+            top={1000}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(116, 169, 207)",
+                  }
+                }
+              />
+              500
+              –
+              1,000
+            </li>
+          </Break>
+          <Break
+            bottom={1000}
+            color="rgba(43, 140, 190, 0.42)"
+            top={2000}
+          >
+            <li>
+              <div
+                className="Legend-Item"
+                style={
+                  Object {
+                    "backgroundColor": "rgb(43, 140, 190)",
+                  }
+                }
+              />
+              1,000
+              –
+              2,000
+            </li>
+          </Break>
+        </ul>
+      </Legend>
+      <Group
+        label="ANALYSIS 1 settings"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="analysis-1-settings-input-1"
+          >
+            ANALYSIS 1 settings
+          </label>
+          <ProfileRequestDisplay
+            accessModes="WALK"
+            bikeSafe={1}
+            bikeSlope={1}
+            bikeSpeed={4.166666666666667}
+            bikeTime={1}
+            bikeTrafficStress={4}
+            carSpeed={20}
+            date="2016-01-16"
+            directModes="WALK"
+            egressModes="WALK"
+            fromTime={25200}
+            maxBikeTime={20}
+            maxCarTime={45}
+            maxRides={4}
+            maxWalkTime={20}
+            minBikeTime={10}
+            minCarTime={10}
+            monteCarloDraws={200}
+            reachabilityThreshold={0}
+            streetTime={90}
+            suboptimalMinutes={5}
+            toTime={32400}
+            transitModes="TRANSIT"
+            walkSpeed={1.3888888888888888}
+          >
+            <table
+              className="table table-striped table-condensed"
+            >
+              <tbody>
+                <tr>
+                  <th>
+                    Date
+                  </th>
+                  <td>
+                    2016-01-16
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    From time
+                  </th>
+                  <td>
+                    07:00
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    To time
+                  </th>
+                  <td>
+                    09:00
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Maximum transfers
+                  </th>
+                  <td>
+                    3
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Number of simulated schedules
+                  </th>
+                  <td>
+                    200
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Access modes
+                  </th>
+                  <td>
+                    <Modes
+                      modes="WALK"
+                    >
+                      <span>
+                        <Icon
+                          aria-label="Walk"
+                          title="Walk"
+                          type="male"
+                        >
+                          <i
+                            aria-label="Walk"
+                            className="fa fa-male fa-fw "
+                            title="Walk"
+                          />
+                        </Icon>
+                      </span>
+                    </Modes>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Transit
+                  </th>
+                  <td>
+                    yes
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ProfileRequestDisplay>
+        </div>
+      </Group>
+      <div>
+        <Group
+          label="Aggregate results to"
+        >
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="aggregate-results-to-input-2"
+            >
+              Aggregate results to
+            </label>
+            <Select
+              addLabelText="Add \\"{label}\\"?"
+              arrowRenderer={[Function]}
+              autosize={true}
+              backspaceRemoves={true}
+              backspaceToRemoveMessage="Press backspace to remove {label}"
+              clearAllText="Clear all"
+              clearRenderer={[Function]}
+              clearValueText="Clear value"
+              clearable={true}
+              deleteRemoves={true}
+              delimiter=","
+              disabled={false}
+              escapeClearsValue={true}
+              filterOptions={[Function]}
+              ignoreAccents={true}
+              ignoreCase={true}
+              inputProps={Object {}}
+              isLoading={false}
+              joinValues={false}
+              labelKey="label"
+              matchPos="any"
+              matchProp="any"
+              menuBuffer={0}
+              menuRenderer={[Function]}
+              multi={false}
+              name="aggregateTo"
+              noResultsText="No results found"
+              onBlurResetsInput={true}
+              onChange={[Function]}
+              onCloseResetsInput={true}
+              optionComponent={[Function]}
+              options={
+                Array [
+                  Object {
+                    "label": "Upload new aggregation area",
+                    "value": "new-aggregation-area",
+                  },
+                ]
+              }
+              pageSize={5}
+              placeholder="Select..."
+              required={false}
+              scrollMenuIntoView={true}
+              searchable={true}
+              simpleValue={false}
+              tabSelectsValue={true}
+              valueComponent={[Function]}
+              valueKey="value"
+            >
+              <div
+                className="Select Select--single is-clearable is-searchable"
+              >
+                <div
+                  className="Select-control"
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <span
+                    className="Select-multi-value-wrapper"
+                    id="react-select-3--value"
+                  >
+                    <div
+                      className="Select-placeholder"
+                    >
+                      Select...
+                    </div>
+                    <mockConstructor
+                      aria-activedescendant="react-select-3--value"
+                      aria-expanded="false"
+                      aria-haspopup="false"
+                      aria-owns=""
+                      className="Select-input"
+                      minWidth="5"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      role="combobox"
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="Select-arrow-zone"
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="Select-arrow"
+                      onMouseDown={[Function]}
+                    />
+                  </span>
+                </div>
+              </div>
+            </Select>
+          </div>
+        </Group>
+      </div>
+      <Group
+        label="Export to GIS"
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="export-to-gis-input-3"
+          >
+            Export to GIS
+          </label>
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="info"
+          >
+            <a
+              className="btn btn-info btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              Download ANALYSIS 1
+            </a>
+          </Button>
+        </div>
+      </Group>
     </div>
   </div>
-</RegionalAnalysis>
+</RegionalResults>
 `;

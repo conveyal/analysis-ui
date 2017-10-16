@@ -23,6 +23,8 @@ segment is correct when used to calculate the travel times between stops. If you
 make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets,
 allowing you to draw part of a route on street and part off-street.
 
+Blue stops have been snapped to existing transit stops.  Black stops are new ones.
+
 To insert a stop into the middle of an alignment, first drag the alignment to the appropriate location, then click on the created control point and choose "make stop." You can also convert undesired stops into control points, or delete them, in this view.
 
 <img src="../../img/make-stop.png" alt="make a new stop" />

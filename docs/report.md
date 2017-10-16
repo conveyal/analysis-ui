@@ -1,7 +1,4 @@
-You can generate a report summarizing all of the modifications you have made to a network, for printing
-or reference. To access the report, click on the printer icon next to the name of a variant, and all
-of the modifications in that variant will be displayed. Keep in mind that some browsers may not print
-more than 30 pages or so of a very long report.
+You can generate a report summarizing all of the modifications you have made to a network, for printing or reference. To access the report, click on the printer icon next to the name of a project, then you will be able to choose which scenario to export. Keep in mind that some browsers may not print more than 30 pages or so of a very long report.
 
 <figure>
   <img src="../img/select-report.png" />

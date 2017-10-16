@@ -1,6 +1,6 @@
 common:
+  project: Project
   scenario: Scenario
-  variant: Variant
   help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
   yes: yes
   no: no
@@ -9,24 +9,23 @@ authentication:
   logOut: Log out
   username: Logged in as %s
 bundle:
-  create: Create a bundle
+  create: Create GTFS bundle
   delete: Delete this bundle
-  deleteConfirmation: Are you sure you would like to delete this bundle?
+  deleteConfirmation: Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.
   edit: Edit bundle
+  save: Save bundle
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
 nav:
   createBundle: Create Bundle
-  openScenario: Open Scenario
-  importShapefile: Import Shapefile
   selectBundle: Select Bundle
-  projects: Projects
-  projectSettings: Project Settings
-  scenarios: Scenarios
+  projects: Regions
+  projectSettings: Shared Settings
+  scenarios: Projects
   gtfsBundles: GTFS Bundles
   opportunityDatasets: Opportunity Datasets
-  editScenario: Edit Scenario
-  analyzeScenario: Analyze Scenario
+  editScenario: Edit Scenarios
+  analyzeScenario: Analyze Scenarios
   notConnectedToInternet: You are not connected to the internet
   unfinishedRequests: You have unfinished requests. Are you sure you want to exit?
 phasing:
@@ -39,26 +38,28 @@ phasing:
   headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway)s minute headway does not equal this timetable's headway, which could cause unintended behavior.
   noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
   exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
-project:
+region:
   welcome: welcome to
-  createAction: Create a new Project
-  goToExisting: or go to an existing project
-  goToProject: Go to Project
-  createTitle: Create a new Project
-  configure: Configure project settings
-  deleteAction: DANGER: Delete this project
-  deleteConfirmation: Are you sure you would like to delete this project? This will delete all scenarios and modifications associated with this project.
-  editAction: Save project
-  editTitle: Edit project
-  versionOutdated: The chosen analysis backend version of this project is outdated.
-  editProject: Edit project.
-  loadingProject: Loading project...
+  createAction: Set up a new region
+  goToExisting: or go to an existing region
+  goToProject: Go to region
+  name:  Region Name
+  description: Description
+  configure: Configure shared settings for region
+  deleteAction: DANGER: Delete this region
+  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated scenarios and modifications.
+  editAction: Save changes
+  editTitle: Edit region
+  versionOutdated: This region's Analysis backend is outdated and may cause errors.
+  editProject: Edit region
+  loadingProject: Loading region…
+  osmBounds: OpenStreetMap bounds
   r5Version: Analysis backend version
-  latestReleaseVersionNotSelected: There is a more recent version of the analysis backend available.
-    Changing backend versions may enable new features or increased performance, but may also cause
-    existing analysis results to change slightly.
-  showAllVersions: Show all analysis backend versions (advanced)
-  showReleaseVersions: Show only release backend versions
+  latestReleaseVersionNotSelected: There is an updated version of the Analysis backend available.
+    Changing versions may enable new features or increased performance, but may also cause
+    results to change slightly.
+  showAllVersions: Show all backend versions (advanced)
+  showReleaseVersions: Show only stable backend versions
   loadStatus:
     UPLOADING_OSM: Uploading OpenStreetMap data…
     DOWNLOADING_OSM: Downloading OpenStreetMap data…
@@ -67,23 +68,37 @@ project:
     PROJECTING_CENSUS: Projecting Census data to project grid…
     STORING_CENSUS: Storing census data…
     DONE: Done
-  customOpenStreetMapData: Custom OpenStreetMap data in PBF format (optional)
-scenario:
-  createAction: Create a new Scenario
-  delete: Delete scenario
-  deleteConfirmation: Are you sure you would like to delete this scenario?
-  editAction: Save changes to scenario
-  editTitle: Edit scenario
-  editName: Edit scenario name
-  importShapefile: Import shapefile
-  importModifications: Import modifications from another scenario
-  loading: Loading scenario...
-  loadingGTFS: Loading GTFS bundle & modifications...
+  customOpenStreetMapData: Custom OpenStreetMap data in PBF format
+project:
+  createAction: Create new Project
+  createActionTooltip: Each project can include scenarios with modifications that are applied to the same GTFS bundle.
+  delete: Delete project
+  name: Project name
+  deleteConfirmation: Are you sure you would like to delete this project?
+  editAction: Save project
+  editTitle: Edit project
+  editName: Edit project name
+  importShapefile: Import route alignment shapefile
+  importModifications: Import modifications from another project
+  importAction: Import modifications
+  loading: Loading project…
+  loadingGTFS: Loading GTFS bundle & modifications…
   route: Route
-  uploadBundle: Upload new GTFS Bundle
+  uploadBundle: Upload a new GTFS Bundle
   uploadOpportunityDataset: Upload a new Opportunity Dataset
-  goToExisting: or go to an existing scenario
-  goToScenario: Go to Scenario
+  goToExisting: or go to an existing project
+  goToScenario: Go to project
+  select: Select a project…
+scenario:
+  plural: Scenarios
+  enterName: Enter a name for your scenario:
+  editName: Rename this scenario
+  createAction: Create new scenario
+  showModifications: Show modifications for this scenario on the map
+  delete: Delete this scenario
+  deleteConfirmation: Are you sure you want to delete this scenario? Proceeding will clear references to it from all modifications.
+  activeIn: Active in scenario numbers
+  export: Select scenario to #followed by print, e.g.
 transitEditor:
   startEdit: Edit route geometry
   stopEdit: Stop editing
@@ -130,13 +145,19 @@ analysis:
   log: Logarithmic scale
   linear: Linear scale
   travelTimePercentile: Percentile of travel time (reliability)
-  accessibility: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
-  createGrid: Upload new opportunity dataset
+  accessibility: Accessibility
+  accessibilityWithin: %(name)s: %(number)s %(indicator)s within %(cutoff)d minutes
+  selectPercentileOfAccessibility: Percentile of accessibility
+  # accessibility pre-formatted as string, don't use %d
+  percentileOfAccessibility: %(name)s: %(percentage)d%% of %(weightByName)s can access at least %(accessibility)s %(accessToName)s
+  createGrid: Upload a new opportunity dataset
+  grid: Opportunity Data
+  createGridTooltip: Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj)
   opportunityDataset: Opportunity dataset
-  selectOpportunityDataset: Select an opportunity dataset...
+  selectOpportunityDataset: Select an opportunity dataset…
   cutoff: Travel time cutoff (minutes)
   addGrid: Add opportunity dataset
-  uploading: uploading...
+  uploading: uploading…
   gridName: Opportunity dataset
   gridFiles: Select opportunity dataset
   latField: Latitude field
@@ -145,7 +166,6 @@ analysis:
   errorsInScenario: Errors were found in the scenario:
   warningsInScenario: Warnings were found applying the scenario
   errorsInModification: in modification %s
-  runAnalysis: Perform regional analysis
   minimumImprovementProbability: Minimum probability of change
   probabilityImprovement: Show areas with probability of change > %01.2f
   compare: Compare to another scenario
@@ -185,22 +205,31 @@ analysis:
     APPLYING_SCENARIO: Applying scenario…
     PERFORMING_ANALYSIS: Performing analysis…
     COMPUTING_ISOCHRONE: Computing isochrone…
-    INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)…
+    INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)
+  aggregateTo: Aggregate results to
+  weightBy: Weighted by
+  newAggregationArea: Upload new aggregation area
+  uploadAggregationArea: Upload
+  aggregationAreaName: Aggregation area name
+  aggregationAreaFiles: Select aggregation area files (.shp)
+  # string not decimal, the number is preformatted
+  weightedAverageAccessibility: Weighted average accessibility: %s
+  weightedAverageAccessibilityWarning: Weighted average accessibility may not be representative of the experience of users of the system; we recommend using the histogram and percentile measures above.
   refresh: Update results
   regionalBounds: Bounds of analysis
   regionalBoundsSame: Same as %s
   regionalBoundsCustom: Custom
-  regionalBoundsProject: Same as project
+  regionalBoundsProject: Entire region
   bookmark: Bookmark
   createBookmark: Create bookmark
   bookmarkName: Bookmark name
-  selectComparisonScenario: Select comparison scenario...
-  selectComparisonScenarioVariant: Select comparison scenario variant...
+  selectComparisonScenario: Select comparison project…
+  selectComparisonScenarioVariant: Select comparison scenario…
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.
   newFrequencies: New frequencies
-  variant: Variant: %s
+  variant: Scenario: %s
   bundle: Using bundle: %s
   phasing:
     phaseFromSeconds: Phase: %(time)s from %(timetable)s
@@ -261,4 +290,3 @@ report:
   addTrips:
     bidirectional: bidirectional
     unidirectional: unidirectional
-welcome: welcome to

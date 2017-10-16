@@ -2,30 +2,13 @@
 
 exports[`Component > Modification > ModificationsList renders correctly 1`] = `
 <div>
-  <div>
-    <div
-      className="DockTitle"
-    >
-      Variants
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <form
-      className="Variants form-inline"
-    />
-  </div>
   <div
-    className="DockTitle"
+    className="ApplicationDockTitle"
   >
-    Modifications
+    <i
+      className="fa fa-pencil fa-fw "
+    />
+     Modifications
     <a
       className="ShowOnMap pull-right active fa-btn"
       onClick={[Function]}
@@ -36,295 +19,107 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
         className="fa fa-eye fa-fw "
       />
     </a>
-  </div>
-  <div
-    className="block"
-  >
-    <div
-      className="form-group"
+    <a
+      className="pull-right"
+      onClick={[Function]}
+      style={Object {}}
+      title="Import modifications from another project"
     >
-      <input
-        aria-label="Search modifications"
-        className="form-control"
-        id="search-modifications-input-0"
-        name="Search modifications"
-        onChange={[Function]}
-        placeholder="Search modifications"
-        type="text"
-        value=""
+      <i
+        className="fa fa-download fa-fw "
       />
-    </div>
+    </a>
   </div>
   <div
-    className="ModificationGroup"
+    className="InnerDock"
   >
-    <div
-      className="ModificationGroupTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Hide modification group"
-      >
-        <i
-          className="fa fa-caret-down fa-fw "
-        />
-         
-        Add trips
-      </a>
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Create add-trip-pattern"
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <div
-      className="ModificationTitles"
-    >
+    <div>
       <div
-        className="ModificationTitlePlaceholder"
+        className="DockTitle"
       >
-        No modifications of this type exist!
+        <i
+          className="fa fa-clone fa-fw "
+        />
+        Scenarios
+        <a
+          className="pull-right"
+          onClick={[Function]}
+          tabIndex={0}
+          title="Create new scenario"
+        >
+          <i
+            className="fa fa-plus fa-fw "
+          />
+           Create
+        </a>
+      </div>
+      <div
+        className="Variants"
+      >
+        <ol>
+          <div
+            className="Variant"
+          >
+            <li>
+               
+              Default
+              <a
+                className="pull-right"
+                onClick={[Function]}
+                tabIndex={0}
+                title="Show modifications for this scenario on the map"
+              >
+                <i
+                  className="fa fa-eye fa-fw "
+                />
+              </a>
+              <a
+                className="pull-right"
+                onClick={[Function]}
+                tabIndex={0}
+                title="Rename this scenario"
+              >
+                <i
+                  className="fa fa-pencil fa-fw "
+                />
+              </a>
+            </li>
+          </div>
+        </ol>
       </div>
     </div>
-  </div>
-  <div
-    className="ModificationGroup"
-  >
+    <br />
     <div
-      className="ModificationGroupTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Hide modification group"
-      >
-        <i
-          className="fa fa-caret-down fa-fw "
-        />
-         
-        Adjust dwell time
-      </a>
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Create adjust-dwell-time"
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <div
-      className="ModificationTitles"
+      className="block"
     >
       <div
-        className="ModificationTitlePlaceholder"
+        className="form-group"
       >
-        No modifications of this type exist!
+        <a
+          className="btn btn-success btn-block"
+          href="#"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          <i
+            className="fa fa-plus fa-fw "
+          />
+           Create a modification
+        </a>
       </div>
-    </div>
-  </div>
-  <div
-    className="ModificationGroup"
-  >
-    <div
-      className="ModificationGroupTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Hide modification group"
-      >
-        <i
-          className="fa fa-caret-down fa-fw "
-        />
-         
-        Adjust speed
-      </a>
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Create adjust-speed"
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <div
-      className="ModificationTitles"
-    >
       <div
-        className="ModificationTitlePlaceholder"
+        className="form-group"
       >
-        No modifications of this type exist!
-      </div>
-    </div>
-  </div>
-  <div
-    className="ModificationGroup"
-  >
-    <div
-      className="ModificationGroupTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Hide modification group"
-      >
-        <i
-          className="fa fa-caret-down fa-fw "
+        <input
+          aria-label="Search modifications"
+          className="form-control"
+          id="search-modifications-input-0"
+          name="Search modifications"
+          onChange={[Function]}
+          placeholder="Search modifications"
+          type="text"
+          value=""
         />
-         
-        Adjust frequency
-      </a>
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Create convert-to-frequency"
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <div
-      className="ModificationTitles"
-    >
-      <div
-        className="ModificationTitlePlaceholder"
-      >
-        No modifications of this type exist!
-      </div>
-    </div>
-  </div>
-  <div
-    className="ModificationGroup"
-  >
-    <div
-      className="ModificationGroupTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Hide modification group"
-      >
-        <i
-          className="fa fa-caret-down fa-fw "
-        />
-         
-        Remove stops
-      </a>
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Create remove-stops"
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <div
-      className="ModificationTitles"
-    >
-      <div
-        className="ModificationTitlePlaceholder"
-      >
-        No modifications of this type exist!
-      </div>
-    </div>
-  </div>
-  <div
-    className="ModificationGroup"
-  >
-    <div
-      className="ModificationGroupTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Hide modification group"
-      >
-        <i
-          className="fa fa-caret-down fa-fw "
-        />
-         
-        Remove trips
-      </a>
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Create remove-trips"
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <div
-      className="ModificationTitles"
-    >
-      <div
-        className="ModificationTitlePlaceholder"
-      >
-        No modifications of this type exist!
-      </div>
-    </div>
-  </div>
-  <div
-    className="ModificationGroup"
-  >
-    <div
-      className="ModificationGroupTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Hide modification group"
-      >
-        <i
-          className="fa fa-caret-down fa-fw "
-        />
-         
-        Reroute
-      </a>
-      <a
-        className="pull-right"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Create reroute"
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Create
-      </a>
-    </div>
-    <div
-      className="ModificationTitles"
-    >
-      <div
-        className="ModificationTitlePlaceholder"
-      >
-        No modifications of this type exist!
       </div>
     </div>
   </div>
