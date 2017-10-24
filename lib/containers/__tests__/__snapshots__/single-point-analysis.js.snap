@@ -29,7 +29,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       enterAnalysisMode={[Function]}
       exitAnalysisMode={[Function]}
       fetchTravelTimeSurface={[Function]}
-      indicators={Array []}
       isFetchingIsochrone={false}
       isShowingComparisonIsochrone={false}
       isShowingIsochrone={false}
@@ -496,7 +495,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       }
       setActiveVariant={[Function]}
       setComparisonScenario={[Function]}
-      setCurrentIndicator={[Function]}
       setProfileRequest={[Function]}
       setRegionalAnalysisBounds={[Function]}
       variantIndex={0}
@@ -711,107 +709,127 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               </Group>
               <Group
                 className="col-xs-6"
-                label="Opportunity Data"
+                label="Opportunity Dataset"
               >
                 <div
                   className="form-group col-xs-6"
                 >
                   <label
-                    htmlFor="opportunity-data-input-1"
+                    htmlFor="opportunity-dataset-input-1"
                   >
-                    Opportunity Data
+                    Opportunity Dataset
                   </label>
-                  <Select
-                    addLabelText="Add \\"{label}\\"?"
-                    arrowRenderer={[Function]}
-                    autosize={true}
-                    backspaceRemoves={true}
-                    backspaceToRemoveMessage="Press backspace to remove {label}"
-                    clearAllText="Clear all"
-                    clearRenderer={[Function]}
-                    clearValueText="Clear value"
-                    clearable={false}
-                    deleteRemoves={true}
-                    delimiter=","
-                    disabled={false}
-                    escapeClearsValue={true}
-                    filterOptions={[Function]}
-                    id="select-analysis-indicator"
-                    ignoreAccents={true}
-                    ignoreCase={true}
-                    inputProps={Object {}}
-                    isLoading={false}
-                    joinValues={false}
-                    labelKey="label"
-                    matchPos="any"
-                    matchProp="any"
-                    menuBuffer={0}
-                    menuRenderer={[Function]}
-                    multi={false}
-                    name="Opportunity dataset"
-                    noResultsText="No results found"
-                    onBlurResetsInput={true}
-                    onChange={[Function]}
-                    onCloseResetsInput={true}
-                    optionComponent={[Function]}
-                    options={Array []}
-                    pageSize={5}
-                    placeholder="Select an opportunity dataset…"
-                    required={false}
-                    scrollMenuIntoView={true}
-                    searchable={true}
-                    simpleValue={false}
-                    tabSelectsValue={true}
-                    valueComponent={[Function]}
-                    valueKey="value"
-                  >
-                    <div
-                      className="Select Select--single is-searchable"
+                  <Connect(OpportunityDatasetSelector)>
+                    <OpportunityDatasetSelector
+                      datasets={
+                        Array [
+                          Object {
+                            "dataSource": "lodes-data-2014",
+                            "key": "Workers_total",
+                            "name": "Workers total",
+                          },
+                        ]
+                      }
+                      load={[Function]}
                     >
-                      <div
-                        className="Select-control"
-                        onKeyDown={[Function]}
-                        onMouseDown={[Function]}
-                        onTouchEnd={[Function]}
-                        onTouchMove={[Function]}
-                        onTouchStart={[Function]}
+                      <Select
+                        addLabelText="Add \\"{label}\\"?"
+                        arrowRenderer={[Function]}
+                        autosize={true}
+                        backspaceRemoves={true}
+                        backspaceToRemoveMessage="Press backspace to remove {label}"
+                        clearAllText="Clear all"
+                        clearRenderer={[Function]}
+                        clearValueText="Clear value"
+                        clearable={false}
+                        deleteRemoves={true}
+                        delimiter=","
+                        disabled={false}
+                        escapeClearsValue={true}
+                        filterOptions={[Function]}
+                        ignoreAccents={true}
+                        ignoreCase={true}
+                        inputProps={Object {}}
+                        isLoading={false}
+                        joinValues={false}
+                        labelKey="label"
+                        matchPos="any"
+                        matchProp="any"
+                        menuBuffer={0}
+                        menuRenderer={[Function]}
+                        multi={false}
+                        noResultsText="No results found"
+                        onBlurResetsInput={true}
+                        onChange={[Function]}
+                        onCloseResetsInput={true}
+                        optionComponent={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "label": "lodes-data-2014: Workers total",
+                              "value": "Workers_total",
+                            },
+                          ]
+                        }
+                        pageSize={5}
+                        placeholder="Select..."
+                        required={false}
+                        scrollMenuIntoView={true}
+                        searchable={true}
+                        simpleValue={false}
+                        tabSelectsValue={true}
+                        valueComponent={[Function]}
+                        valueKey="value"
                       >
-                        <span
-                          className="Select-multi-value-wrapper"
-                          id="react-select-3--value"
+                        <div
+                          className="Select Select--single is-searchable"
                         >
                           <div
-                            className="Select-placeholder"
-                          >
-                            Select an opportunity dataset…
-                          </div>
-                          <mockConstructor
-                            aria-activedescendant="react-select-3--value"
-                            aria-expanded="false"
-                            aria-haspopup="false"
-                            aria-owns=""
-                            className="Select-input"
-                            minWidth="5"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onFocus={[Function]}
-                            required={false}
-                            role="combobox"
-                            value=""
-                          />
-                        </span>
-                        <span
-                          className="Select-arrow-zone"
-                          onMouseDown={[Function]}
-                        >
-                          <span
-                            className="Select-arrow"
+                            className="Select-control"
+                            onKeyDown={[Function]}
                             onMouseDown={[Function]}
-                          />
-                        </span>
-                      </div>
-                    </div>
-                  </Select>
+                            onTouchEnd={[Function]}
+                            onTouchMove={[Function]}
+                            onTouchStart={[Function]}
+                          >
+                            <span
+                              className="Select-multi-value-wrapper"
+                              id="react-select-3--value"
+                            >
+                              <div
+                                className="Select-placeholder"
+                              >
+                                Select...
+                              </div>
+                              <mockConstructor
+                                aria-activedescendant="react-select-3--value"
+                                aria-expanded="false"
+                                aria-haspopup="false"
+                                aria-owns=""
+                                className="Select-input"
+                                minWidth="5"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                required={false}
+                                role="combobox"
+                                value=""
+                              />
+                            </span>
+                            <span
+                              className="Select-arrow-zone"
+                              onMouseDown={[Function]}
+                            >
+                              <span
+                                className="Select-arrow"
+                                onMouseDown={[Function]}
+                              />
+                            </span>
+                          </div>
+                        </div>
+                      </Select>
+                    </OpportunityDatasetSelector>
+                  </Connect(OpportunityDatasetSelector)>
                 </div>
               </Group>
             </div>
@@ -1231,8 +1249,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               <BookmarkChooser
                 bookmarkData={
                   Object {
-                    "destinationGrid": undefined,
                     "isochroneCutoff": 60,
+                    "opportunityDataset": undefined,
                     "profileRequest": Object {
                       "accessModes": "WALK",
                       "bikeSafe": 1,
