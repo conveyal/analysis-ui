@@ -64,133 +64,214 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
       }
       setProfileRequest={[Function]}
     >
-      <Group
-        label="Access and Transit Modes"
+      <div
+        className="row"
       >
-        <div
-          className="form-group"
+        <Group
+          className="col-xs-6"
+          label="Access modes"
         >
-          <label
-            htmlFor="access-and-transit-modes-input-0"
+          <div
+            className="form-group col-xs-6"
           >
-            Access and Transit Modes
-          </label>
-          <br />
-          <Group
-            justified={true}
-          >
-            <div
-              className="btn-group btn-group-justified"
+            <label
+              htmlFor="access-modes-input-0"
             >
-              <Button
-                active={true}
-                onClick={[Function]}
-                title="Walk"
+              Access modes
+            </label>
+            <Group
+              justified={true}
+            >
+              <div
+                className="btn-group btn-group-justified"
               >
-                <a
-                  className="btn btn-default active"
-                  href="#"
+                <Button
+                  active={true}
                   onClick={[Function]}
-                  tabIndex={0}
                   title="Walk"
                 >
-                  <Icon
-                    type="male"
+                  <a
+                    className="btn btn-default active"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Walk"
                   >
-                    <i
-                      className="fa fa-male fa-fw "
-                    />
-                  </Icon>
-                </a>
-              </Button>
-              <Button
-                active={false}
-                disabled={true}
-                onClick={[Function]}
-                title="Bike"
-              >
-                <a
-                  className="btn btn-default"
+                    <Icon
+                      type="male"
+                    >
+                      <i
+                        className="fa fa-male fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Button>
+                <Button
+                  active={false}
                   disabled={true}
-                  href="#"
                   onClick={[Function]}
-                  tabIndex={0}
                   title="Bike"
                 >
-                  <Icon
-                    type="bicycle"
+                  <a
+                    className="btn btn-default"
+                    disabled={true}
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Bike"
                   >
-                    <i
-                      className="fa fa-bicycle fa-fw "
-                    />
-                  </Icon>
-                </a>
-              </Button>
-              <Button
-                active={false}
-                onClick={[Function]}
-                title="Automobile (kiss-and-ride)"
-              >
-                <a
-                  className="btn btn-default"
-                  href="#"
+                    <Icon
+                      type="bicycle"
+                    >
+                      <i
+                        className="fa fa-bicycle fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Button>
+                <Button
+                  active={false}
                   onClick={[Function]}
-                  tabIndex={0}
                   title="Automobile (kiss-and-ride)"
                 >
-                  <Icon
-                    type="car"
+                  <a
+                    className="btn btn-default"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Automobile (kiss-and-ride)"
                   >
-                    <i
-                      className="fa fa-car fa-fw "
-                    />
-                  </Icon>
-                </a>
-              </Button>
-              <Button
-                active={false}
-                onClick={[Function]}
-                title="Automobile (park-and-ride)"
-              >
-                <a
-                  className="btn btn-default"
-                  href="#"
+                    <Icon
+                      type="car"
+                    >
+                      <i
+                        className="fa fa-car fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Button>
+                <Button
+                  active={false}
                   onClick={[Function]}
-                  tabIndex={0}
                   title="Automobile (park-and-ride)"
                 >
-                  <strong>
-                    P
-                  </strong>
-                </a>
-              </Button>
-              <Button
-                active={true}
-                disabled={true}
-                onClick={[Function]}
-                title="Transit"
-              >
-                <a
-                  className="btn btn-default active"
-                  disabled={true}
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Transit"
-                >
-                  <Icon
-                    type="bus"
+                  <a
+                    className="btn btn-default"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Automobile (park-and-ride)"
                   >
-                    <i
-                      className="fa fa-bus fa-fw "
-                    />
-                  </Icon>
-                </a>
-              </Button>
-            </div>
-          </Group>
-        </div>
-      </Group>
+                    <strong>
+                      P
+                    </strong>
+                  </a>
+                </Button>
+              </div>
+            </Group>
+          </div>
+        </Group>
+        <Group
+          className="col-xs-6"
+          label="Transit modes"
+        >
+          <div
+            className="form-group col-xs-6"
+          >
+            <label
+              htmlFor="transit-modes-input-1"
+            >
+              Transit modes
+            </label>
+            <Group
+              justified={true}
+            >
+              <div
+                className="btn-group btn-group-justified"
+              >
+                <Button
+                  active={false}
+                  onClick={[Function]}
+                  title="Bus"
+                >
+                  <a
+                    className="btn btn-default"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Bus"
+                  >
+                    <Icon
+                      type="bus"
+                    >
+                      <i
+                        className="fa fa-bus fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Button>
+                <Button
+                  active={false}
+                  onClick={[Function]}
+                  title="Tram"
+                >
+                  <a
+                    className="btn btn-default"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Tram"
+                  >
+                    Tram
+                  </a>
+                </Button>
+                <Button
+                  active={false}
+                  onClick={[Function]}
+                  title="Subway"
+                >
+                  <a
+                    className="btn btn-default"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Subway"
+                  >
+                    <Icon
+                      type="subway"
+                    >
+                      <i
+                        className="fa fa-subway fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Button>
+                <Button
+                  active={false}
+                  onClick={[Function]}
+                  title="Rail"
+                >
+                  <a
+                    className="btn btn-default"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    title="Rail"
+                  >
+                    <Icon
+                      type="train"
+                    >
+                      <i
+                        className="fa fa-train fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Button>
+              </div>
+            </Group>
+          </div>
+        </Group>
+      </div>
     </ModeSelector>
     <div
       className="row"
@@ -237,7 +318,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               className="form-group"
             >
               <label
-                htmlFor="egress-modes-input-1"
+                htmlFor="egress-modes-input-2"
               >
                 Egress Modes
               </label>
@@ -312,7 +393,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           value={5}
         >
           <Group
-            id="walk-speed-input-2"
+            id="walk-speed-input-3"
             label="Walk Speed (km/h)"
             max={15}
             min={3}
@@ -325,12 +406,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               className="form-group"
             >
               <label
-                htmlFor="walk-speed-input-2"
+                htmlFor="walk-speed-input-3"
               >
                 Walk Speed (km/h)
               </label>
               <Input
-                id="walk-speed-input-2"
+                id="walk-speed-input-3"
                 label="Walk Speed (km/h)"
                 max={15}
                 min={3}
@@ -343,7 +424,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               >
                 <input
                   className="form-control"
-                  id="walk-speed-input-2"
+                  id="walk-speed-input-3"
                   max={15}
                   min={3}
                   name="walkSpeed"
@@ -374,7 +455,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         >
           <Group
             disabled={true}
-            id="bike-speed-input-3"
+            id="bike-speed-input-4"
             label="Bike Speed (km/h)"
             max={20}
             min={5}
@@ -387,13 +468,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               className="form-group"
             >
               <label
-                htmlFor="bike-speed-input-3"
+                htmlFor="bike-speed-input-4"
               >
                 Bike Speed (km/h)
               </label>
               <Input
                 disabled={true}
-                id="bike-speed-input-3"
+                id="bike-speed-input-4"
                 label="Bike Speed (km/h)"
                 max={20}
                 min={5}
@@ -407,7 +488,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                 <input
                   className="form-control"
                   disabled={true}
-                  id="bike-speed-input-3"
+                  id="bike-speed-input-4"
                   max={20}
                   min={5}
                   name="bikeSpeed"
@@ -946,7 +1027,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             value="07:00"
           >
             <Group
-              id="from-time-input-4"
+              id="from-time-input-5"
               label="From time"
               name="fromTime"
               onChange={[Function]}
@@ -959,12 +1040,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                 className="form-group"
               >
                 <label
-                  htmlFor="from-time-input-4"
+                  htmlFor="from-time-input-5"
                 >
                   From time
                 </label>
                 <Input
-                  id="from-time-input-4"
+                  id="from-time-input-5"
                   label="From time"
                   name="fromTime"
                   onChange={[Function]}
@@ -978,7 +1059,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   >
                     <input
                       className="form-control"
-                      id="from-time-input-4"
+                      id="from-time-input-5"
                       name="fromTime"
                       onChange={[Function]}
                       onWheel={[Function]}
@@ -1017,7 +1098,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             value="09:00"
           >
             <Group
-              id="to-time-input-5"
+              id="to-time-input-6"
               label="To time"
               name="toTime"
               onChange={[Function]}
@@ -1030,12 +1111,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                 className="form-group"
               >
                 <label
-                  htmlFor="to-time-input-5"
+                  htmlFor="to-time-input-6"
                 >
                   To time
                 </label>
                 <Input
-                  id="to-time-input-5"
+                  id="to-time-input-6"
                   label="To time"
                   name="toTime"
                   onChange={[Function]}
@@ -1049,7 +1130,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   >
                     <input
                       className="form-control"
-                      id="to-time-input-5"
+                      id="to-time-input-6"
                       name="toTime"
                       onChange={[Function]}
                       onWheel={[Function]}
@@ -1086,7 +1167,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           value={3}
         >
           <Group
-            id="max-transfers-input-6"
+            id="max-transfers-input-7"
             label="Maximum transfers"
             max={7}
             min={0}
@@ -1099,12 +1180,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               className="form-group"
             >
               <label
-                htmlFor="max-transfers-input-6"
+                htmlFor="max-transfers-input-7"
               >
                 Maximum transfers
               </label>
               <Input
-                id="max-transfers-input-6"
+                id="max-transfers-input-7"
                 label="Maximum transfers"
                 max={7}
                 min={0}
@@ -1117,7 +1198,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               >
                 <input
                   className="form-control"
-                  id="max-transfers-input-6"
+                  id="max-transfers-input-7"
                   max={7}
                   min={0}
                   name="maxTransfers"
@@ -1146,7 +1227,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           value={200}
         >
           <Group
-            id="monte-carlo-draws-input-7"
+            id="monte-carlo-draws-input-8"
             label="Number of simulated schedules"
             max={10000}
             min={1}
@@ -1159,12 +1240,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               className="form-group"
             >
               <label
-                htmlFor="monte-carlo-draws-input-7"
+                htmlFor="monte-carlo-draws-input-8"
               >
                 Number of simulated schedules
               </label>
               <Input
-                id="monte-carlo-draws-input-7"
+                id="monte-carlo-draws-input-8"
                 label="Number of simulated schedules"
                 max={10000}
                 min={1}
@@ -1177,7 +1258,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               >
                 <input
                   className="form-control"
-                  id="monte-carlo-draws-input-7"
+                  id="monte-carlo-draws-input-8"
                   max={10000}
                   min={1}
                   name="monteCarloDraws"
