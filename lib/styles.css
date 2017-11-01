@@ -14,6 +14,10 @@ body,
   margin: 0;
   color: #414C59;
   font-size: 12px;
+}
+
+/** Font reset for specific things */
+html, body, #root, .tooltip {
   font-family: -apple-system,
                BlinkMacSystemFont,
                "Segoe UI",
@@ -198,7 +202,6 @@ label {
   left: 40px;
   height: 100%;
   border-right: 1px solid #ddd;
-  overflow: hidden;
   background-color: #fff;
 }
 
@@ -254,10 +257,9 @@ label {
   z-index: 100;
 }
 
-.ApplicationDockTitle > a,
+.ApplicationDockTitle .fa-fw,
 .ModificationDockTitle > a {
-  display: inline-block;
-  padding: 0 3px;
+  width: 1.5em;
 }
 
 .ApplicationDockTitle > .btn {
@@ -611,10 +613,7 @@ label {
   opacity: 1;
   max-width: 1000px;
   white-space: nowrap;
-}
-
-.tooltip.right {
-  left: 40px;
+  font-size: 12px;
 }
 
 .tooltip-inner {
@@ -625,10 +624,19 @@ label {
   border-right-color: #333;
 }
 
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #333;
+}
+
 .help-tooltip {
   max-width: 400px;
   z-index: 1000 !important;
   opacity: 100 !important;
   background-color: #333 !important;
   box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.1);
+}
+
+.Tip {
+  position: relative;
+  display: inline-block;
 }

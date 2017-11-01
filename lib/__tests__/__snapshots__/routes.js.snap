@@ -741,6 +741,7 @@ exports[`Routes should render 1`] = `
           }
         >
           <Application
+            activeModificationId="1234"
             bundleId="1"
             center={
               Object {
@@ -766,6 +767,18 @@ exports[`Routes should render 1`] = `
               }
             }
             mapComponents={Array []}
+            modificationBounds={
+              Object {
+                "_northEast": Object {
+                  "lat": 37.365,
+                  "lng": -121.924,
+                },
+                "_southWest": Object {
+                  "lat": 36.9707,
+                  "lng": -122.0279,
+                },
+              }
+            }
             outstandingRequests={0}
             params={Object {}}
             projectId="1"
@@ -1566,10 +1579,22 @@ exports[`Routes should render 1`] = `
                 </div>
               </Sidebar>
               <div
-                className="Fullscreen  "
+                className="Fullscreen "
               >
                 <Map
                   animate={false}
+                  bounds={
+                    Object {
+                      "_northEast": Object {
+                        "lat": 37.365,
+                        "lng": -121.924,
+                      },
+                      "_southWest": Object {
+                        "lat": 36.9707,
+                        "lng": -122.0279,
+                      },
+                    }
+                  }
                   center={
                     Object {
                       "lat": 38.8886,
@@ -1593,6 +1618,177 @@ exports[`Routes should render 1`] = `
                       zIndex={50}
                     >
                       <ScenarioMap
+                        activeModification={
+                          Object {
+                            "bidirectional": false,
+                            "description": "Mock description",
+                            "entries": Array [],
+                            "feed": "1",
+                            "id": "1234",
+                            "name": "Test Modification",
+                            "routes": Array [
+                              "route1",
+                            ],
+                            "segments": Array [
+                              {
+                            "type": "Feature",
+                            "properties": {},
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
+                                ]
+                              ]
+                            }
+                          },
+                            ],
+                            "showOnMap": false,
+                            "timetables": Array [
+                              Object {
+                                "dwellTime": 10,
+                                "endTime": 57600,
+                                "friday": true,
+                                "headwaySecs": 900,
+                                "monday": true,
+                                "name": "Test timetable",
+                                "patternTrips": Array [
+                                  "abcd",
+                                ],
+                                "saturday": false,
+                                "segmentSpeeds": Array [],
+                                "sourceTrip": "abcd",
+                                "startTime": 28800,
+                                "sunday": false,
+                                "thursday": true,
+                                "tuesday": true,
+                                "wednesday": true,
+                              },
+                            ],
+                            "trips": Array [
+                              "abcd",
+                            ],
+                            "type": "add-trip-pattern",
+                            "variants": Array [
+                              true,
+                            ],
+                          }
+                        }
+                        activeModificationFeed={
+                          Object {
+                            "id": "1",
+                            "routes": Array [
+                              Object {
+                                "patterns": Array [
+                                  Object {
+                                    "geometry": Object {
+                                      "coordinates": Array [
+                                        Array [
+                                          -122.0246,
+                                          36.9707,
+                                        ],
+                                        Array [
+                                          -122.0279,
+                                          37.049,
+                                        ],
+                                        Array [
+                                          -121.9799,
+                                          37.2299,
+                                        ],
+                                        Array [
+                                          -121.9445,
+                                          37.324,
+                                        ],
+                                        Array [
+                                          -121.936,
+                                          37.353,
+                                        ],
+                                        Array [
+                                          -121.924,
+                                          37.365,
+                                        ],
+                                      ],
+                                      "type": "LineString",
+                                    },
+                                    "stops": Array [
+                                      Object {
+                                        "stop_id": "1",
+                                        "stop_lat": 36.9707,
+                                        "stop_lon": -122.0246,
+                                        "stop_name": "Santa Cruz",
+                                      },
+                                      Object {
+                                        "stop_id": "2",
+                                        "stop_lat": 37.049,
+                                        "stop_lon": -122.0279,
+                                        "stop_name": "Scotts Valley",
+                                      },
+                                    ],
+                                    "trips": Array [
+                                      Object {
+                                        "duration": 1234,
+                                        "start_time": 12345,
+                                        "trip_headsign": "To Downtown",
+                                        "trip_id": "abcd",
+                                        "trip_short_name": "The Express",
+                                      },
+                                    ],
+                                  },
+                                ],
+                                "route_id": "route1",
+                              },
+                            ],
+                            "stops": Array [
+                              Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            ],
+                            "stopsById": Object {
+                              "1": Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              "2": Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            },
+                          }
+                        }
                         bundleId="1"
                         centerLonLat={
                           Object {
@@ -1606,7 +1802,6 @@ exports[`Routes should render 1`] = `
                               "id": "1",
                               "routes": Array [
                                 Object {
-                                  "id": "route1",
                                   "patterns": Array [
                                     Object {
                                       "geometry": Object {
@@ -1663,69 +1858,9 @@ exports[`Routes should render 1`] = `
                                       ],
                                     },
                                   ],
+                                  "route_id": "route1",
                                 },
                               ],
-                              "routesById": Object {
-                                "route1": Object {
-                                  "id": "route1",
-                                  "patterns": Array [
-                                    Object {
-                                      "geometry": Object {
-                                        "coordinates": Array [
-                                          Array [
-                                            -122.0246,
-                                            36.9707,
-                                          ],
-                                          Array [
-                                            -122.0279,
-                                            37.049,
-                                          ],
-                                          Array [
-                                            -121.9799,
-                                            37.2299,
-                                          ],
-                                          Array [
-                                            -121.9445,
-                                            37.324,
-                                          ],
-                                          Array [
-                                            -121.936,
-                                            37.353,
-                                          ],
-                                          Array [
-                                            -121.924,
-                                            37.365,
-                                          ],
-                                        ],
-                                        "type": "LineString",
-                                      },
-                                      "stops": Array [
-                                        Object {
-                                          "stop_id": "1",
-                                          "stop_lat": 36.9707,
-                                          "stop_lon": -122.0246,
-                                          "stop_name": "Santa Cruz",
-                                        },
-                                        Object {
-                                          "stop_id": "2",
-                                          "stop_lat": 37.049,
-                                          "stop_lon": -122.0279,
-                                          "stop_name": "Scotts Valley",
-                                        },
-                                      ],
-                                      "trips": Array [
-                                        Object {
-                                          "duration": 1234,
-                                          "start_time": 12345,
-                                          "trip_headsign": "To Downtown",
-                                          "trip_id": "abcd",
-                                          "trip_short_name": "The Express",
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              },
                               "stops": Array [
                                 Object {
                                   "stop_id": "1",
@@ -1763,7 +1898,6 @@ exports[`Routes should render 1`] = `
                               "id": "1",
                               "routes": Array [
                                 Object {
-                                  "id": "route1",
                                   "patterns": Array [
                                     Object {
                                       "geometry": Object {
@@ -1820,69 +1954,9 @@ exports[`Routes should render 1`] = `
                                       ],
                                     },
                                   ],
+                                  "route_id": "route1",
                                 },
                               ],
-                              "routesById": Object {
-                                "route1": Object {
-                                  "id": "route1",
-                                  "patterns": Array [
-                                    Object {
-                                      "geometry": Object {
-                                        "coordinates": Array [
-                                          Array [
-                                            -122.0246,
-                                            36.9707,
-                                          ],
-                                          Array [
-                                            -122.0279,
-                                            37.049,
-                                          ],
-                                          Array [
-                                            -121.9799,
-                                            37.2299,
-                                          ],
-                                          Array [
-                                            -121.9445,
-                                            37.324,
-                                          ],
-                                          Array [
-                                            -121.936,
-                                            37.353,
-                                          ],
-                                          Array [
-                                            -121.924,
-                                            37.365,
-                                          ],
-                                        ],
-                                        "type": "LineString",
-                                      },
-                                      "stops": Array [
-                                        Object {
-                                          "stop_id": "1",
-                                          "stop_lat": 36.9707,
-                                          "stop_lon": -122.0246,
-                                          "stop_name": "Santa Cruz",
-                                        },
-                                        Object {
-                                          "stop_id": "2",
-                                          "stop_lat": 37.049,
-                                          "stop_lon": -122.0279,
-                                          "stop_name": "Scotts Valley",
-                                        },
-                                      ],
-                                      "trips": Array [
-                                        Object {
-                                          "duration": 1234,
-                                          "start_time": 12345,
-                                          "trip_headsign": "To Downtown",
-                                          "trip_id": "abcd",
-                                          "trip_short_name": "The Express",
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              },
                               "stops": Array [
                                 Object {
                                   "stop_id": "1",
