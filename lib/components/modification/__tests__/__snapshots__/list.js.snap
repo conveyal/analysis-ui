@@ -9,26 +9,40 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
       className="fa fa-pencil fa-fw "
     />
      Modifications
-    <a
-      className="ShowOnMap pull-right active fa-btn"
-      onClick={[Function]}
-      tabIndex={0}
-      title="Toggle all modifications map display"
+    <span
+      className="Tip ShowOnMap pull-right active fa-btn"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
-      <i
-        className="fa fa-eye fa-fw "
-      />
-    </a>
-    <a
-      className="pull-right"
-      onClick={[Function]}
-      style={Object {}}
-      title="Import modifications from another project"
+      <a
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <i
+          className="fa fa-eye fa-fw "
+        />
+      </a>
+    </span>
+    <span
+      className="Tip pull-right"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
-      <i
-        className="fa fa-download fa-fw "
-      />
-    </a>
+      <a
+        onClick={[Function]}
+        style={Object {}}
+        type="button"
+      >
+        <i
+          className="fa fa-download fa-fw "
+        />
+      </a>
+    </span>
   </div>
   <div
     className="InnerDock"
@@ -40,6 +54,7 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
         <i
           className="fa fa-clone fa-fw "
         />
+         
         Scenarios
         <a
           className="pull-right"
