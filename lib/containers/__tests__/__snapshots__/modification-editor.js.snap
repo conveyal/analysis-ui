@@ -120,24 +120,45 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       setModificationVariants={[Function]}
       update={[Function]}
     >
-      <div
-        className="ModificationDock"
-      >
+      <div>
         <div
-          className="ModificationDockTitle"
+          className="ApplicationDockTitle"
         >
-          <a
-            tabIndex={0}
-            title="Back to all modifications"
+          <Link
+            title="Modifications"
+            to="/scenarios/undefined"
           >
-            <Icon
-              type="arrow-left"
+            <Tip
+              tip="Modifications"
             >
-              <i
-                className="fa fa-arrow-left fa-fw "
-              />
-            </Icon>
-          </a>
+              <span
+                className="Tip "
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <Link
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/scenarios/undefined"
+                >
+                  <a
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <Icon
+                      type="chevron-left"
+                    >
+                      <i
+                        className="fa fa-chevron-left fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Link>
+              </span>
+            </Tip>
+          </Link>
           Test Modification
           <a
             className="pull-right"
@@ -2183,24 +2204,45 @@ exports[`Container > Modification Editor renders correctly 1`] = `
       setModificationVariants={[Function]}
       update={[Function]}
     >
-      <div
-        className="ModificationDock"
-      >
+      <div>
         <div
-          className="ModificationDockTitle"
+          className="ApplicationDockTitle"
         >
-          <a
-            tabIndex={0}
-            title="Back to all modifications"
+          <Link
+            title="Modifications"
+            to="/scenarios/undefined"
           >
-            <Icon
-              type="arrow-left"
+            <Tip
+              tip="Modifications"
             >
-              <i
-                className="fa fa-arrow-left fa-fw "
-              />
-            </Icon>
-          </a>
+              <span
+                className="Tip "
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <Link
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/scenarios/undefined"
+                >
+                  <a
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <Icon
+                      type="chevron-left"
+                    >
+                      <i
+                        className="fa fa-chevron-left fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Link>
+              </span>
+            </Tip>
+          </Link>
           Test Modification
           <a
             className="pull-right"
