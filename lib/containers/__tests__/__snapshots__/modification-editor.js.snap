@@ -124,70 +124,176 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
         <div
           className="ApplicationDockTitle"
         >
-          <Link
+          <IconLink
             title="Modifications"
             to="/scenarios/undefined"
+            type="chevron-left"
           >
-            <Tip
-              tip="Modifications"
+            <Link
+              title="Modifications"
+              to="/scenarios/undefined"
+              type="button"
             >
-              <span
-                className="Tip "
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+              <Tip
+                tip="Modifications"
               >
-                <Link
-                  onlyActiveOnIndex={false}
-                  style={Object {}}
-                  to="/scenarios/undefined"
+                <span
+                  className="Tip "
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <Link
+                    name="Modifications"
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/scenarios/undefined"
+                    type="button"
+                  >
+                    <a
+                      name="Modifications"
+                      onClick={[Function]}
+                      style={Object {}}
+                      type="button"
+                    >
+                      <Icon
+                        type="chevron-left"
+                      >
+                        <i
+                          className="fa fa-chevron-left fa-fw "
+                        />
+                      </Icon>
+                    </a>
+                  </Link>
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
+          Test Modification
+          <IconLink
+            className="pull-right"
+            onClick={[Function]}
+            title="Delete modification"
+            type="trash"
+          >
+            <Link
+              className="pull-right"
+              onClick={[Function]}
+              title="Delete modification"
+              type="button"
+            >
+              <Tip
+                className="pull-right"
+                tip="Delete modification"
+              >
+                <span
+                  className="Tip pull-right"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
                 >
                   <a
+                    name="Delete modification"
                     onClick={[Function]}
-                    style={Object {}}
+                    tabIndex={0}
+                    type="button"
                   >
                     <Icon
-                      type="chevron-left"
+                      type="trash"
                     >
                       <i
-                        className="fa fa-chevron-left fa-fw "
+                        className="fa fa-trash fa-fw "
                       />
                     </Icon>
                   </a>
-                </Link>
-              </span>
-            </Tip>
-          </Link>
-          Test Modification
-          <a
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
+          <IconLink
             className="pull-right"
             onClick={[Function]}
-            tabIndex={0}
-            title="Delete Modification"
+            title="Copy modification"
+            type="copy"
           >
-            <Icon
-              type="trash"
+            <Link
+              className="pull-right"
+              onClick={[Function]}
+              title="Copy modification"
+              type="button"
             >
-              <i
-                className="fa fa-trash fa-fw "
-              />
-            </Icon>
-          </a>
-          <a
+              <Tip
+                className="pull-right"
+                tip="Copy modification"
+              >
+                <span
+                  className="Tip pull-right"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <a
+                    name="Copy modification"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <Icon
+                      type="copy"
+                    >
+                      <i
+                        className="fa fa-copy fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
+          <IconLink
             className="pull-right"
             onClick={[Function]}
-            tabIndex={0}
-            title="Copy Modification"
+            title="Edit modification name"
+            type="pencil"
           >
-            <Icon
-              type="copy"
+            <Link
+              className="pull-right"
+              onClick={[Function]}
+              title="Edit modification name"
+              type="button"
             >
-              <i
-                className="fa fa-copy fa-fw "
-              />
-            </Icon>
-          </a>
+              <Tip
+                className="pull-right"
+                tip="Edit modification name"
+              >
+                <span
+                  className="Tip pull-right"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <a
+                    name="Edit modification name"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <Icon
+                      type="pencil"
+                    >
+                      <i
+                        className="fa fa-pencil fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
         </div>
         <div
           className="InnerDock"
@@ -196,47 +302,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
             <div
               className="panel-body"
             >
-              <Text
-                name="Modification Name"
-                onChange={[Function]}
-                value="Test Modification"
-              >
-                <Group
-                  id="modification-name-input-42"
-                  name="Modification Name"
-                  onChange={[Function]}
-                  value="Test Modification"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <Input
-                      id="modification-name-input-42"
-                      name="Modification Name"
-                      onChange={[Function]}
-                      type="text"
-                      value="Test Modification"
-                    >
-                      <input
-                        className="form-control"
-                        id="modification-name-input-42"
-                        name="Modification Name"
-                        onChange={[Function]}
-                        placeholder="Modification Name"
-                        type="text"
-                        value="Test Modification"
-                      />
-                    </Input>
-                  </div>
-                </Group>
-              </Text>
               <TextArea
                 label="Description"
                 onChange={[Function]}
                 value="Mock description"
               >
                 <Group
-                  id="description-input-43"
+                  id="description-input-42"
                   label="Description"
                   onChange={[Function]}
                 >
@@ -244,13 +316,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     className="form-group"
                   >
                     <label
-                      htmlFor="description-input-43"
+                      htmlFor="description-input-42"
                     >
                       Description
                     </label>
                     <textarea
                       className="form-control"
-                      id="description-input-43"
+                      id="description-input-42"
                       label="Description"
                       onChange={[Function]}
                     >
@@ -654,11 +726,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               className="checkbox"
                             >
                               <label
-                                htmlFor="create-stops-automatically-input-44"
+                                htmlFor="create-stops-automatically-input-43"
                               >
                                 <input
                                   defaultChecked={false}
-                                  id="create-stops-automatically-input-44"
+                                  id="create-stops-automatically-input-43"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
@@ -677,12 +749,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               className="checkbox"
                             >
                               <label
-                                htmlFor="bidirectional-input-45"
+                                htmlFor="bidirectional-input-44"
                               >
                                 <input
                                   checked={false}
                                   disabled={false}
-                                  id="bidirectional-input-45"
+                                  id="bidirectional-input-44"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
@@ -803,7 +875,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                   value="Test timetable"
                                 >
                                   <Group
-                                    id="name-input-46"
+                                    id="name-input-45"
                                     name="Name"
                                     onChange={[Function]}
                                     value="Test timetable"
@@ -812,7 +884,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                       className="form-group"
                                     >
                                       <Input
-                                        id="name-input-46"
+                                        id="name-input-45"
                                         name="Name"
                                         onChange={[Function]}
                                         type="text"
@@ -820,7 +892,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                       >
                                         <input
                                           className="form-control"
-                                          id="name-input-46"
+                                          id="name-input-45"
                                           name="Name"
                                           onChange={[Function]}
                                           placeholder="Name"
@@ -896,11 +968,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="mon-input-47"
+                                              htmlFor="mon-input-46"
                                             >
                                               <input
                                                 checked={true}
-                                                id="mon-input-47"
+                                                id="mon-input-46"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -918,11 +990,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="tue-input-48"
+                                              htmlFor="tue-input-47"
                                             >
                                               <input
                                                 checked={true}
-                                                id="tue-input-48"
+                                                id="tue-input-47"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -940,11 +1012,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="wed-input-49"
+                                              htmlFor="wed-input-48"
                                             >
                                               <input
                                                 checked={true}
-                                                id="wed-input-49"
+                                                id="wed-input-48"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -962,11 +1034,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="thu-input-50"
+                                              htmlFor="thu-input-49"
                                             >
                                               <input
                                                 checked={true}
-                                                id="thu-input-50"
+                                                id="thu-input-49"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -984,11 +1056,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="fri-input-51"
+                                              htmlFor="fri-input-50"
                                             >
                                               <input
                                                 checked={true}
-                                                id="fri-input-51"
+                                                id="fri-input-50"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -1006,11 +1078,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="sat-input-52"
+                                              htmlFor="sat-input-51"
                                             >
                                               <input
                                                 checked={false}
-                                                id="sat-input-52"
+                                                id="sat-input-51"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -1028,11 +1100,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="sun-input-53"
+                                              htmlFor="sun-input-52"
                                             >
                                               <input
                                                 checked={false}
-                                                id="sun-input-53"
+                                                id="sun-input-52"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -1057,7 +1129,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         value="15:00"
                                       >
                                         <Group
-                                          id="frequency-input-54"
+                                          id="frequency-input-53"
                                           label="Frequency"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -1069,12 +1141,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="frequency-input-54"
+                                              htmlFor="frequency-input-53"
                                             >
                                               Frequency
                                             </label>
                                             <Input
-                                              id="frequency-input-54"
+                                              id="frequency-input-53"
                                               label="Frequency"
                                               onBlur={[Function]}
                                               onChange={[Function]}
@@ -1088,7 +1160,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="frequency-input-54"
+                                                  id="frequency-input-53"
                                                   onBlur={[Function]}
                                                   onChange={[Function]}
                                                   onKeyDown={[Function]}
@@ -1121,7 +1193,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         value="08:00"
                                       >
                                         <Group
-                                          id="start-time-input-55"
+                                          id="start-time-input-54"
                                           label="Start time"
                                           onChange={[Function]}
                                           onWheel={[Function]}
@@ -1133,12 +1205,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="start-time-input-55"
+                                              htmlFor="start-time-input-54"
                                             >
                                               Start time
                                             </label>
                                             <Input
-                                              id="start-time-input-55"
+                                              id="start-time-input-54"
                                               label="Start time"
                                               onChange={[Function]}
                                               onWheel={[Function]}
@@ -1151,7 +1223,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="start-time-input-55"
+                                                  id="start-time-input-54"
                                                   onChange={[Function]}
                                                   onWheel={[Function]}
                                                   placeholder="hh:mm"
@@ -1183,7 +1255,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         value="16:00"
                                       >
                                         <Group
-                                          id="end-time-input-56"
+                                          id="end-time-input-55"
                                           label="End time"
                                           onChange={[Function]}
                                           onWheel={[Function]}
@@ -1195,12 +1267,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="end-time-input-56"
+                                              htmlFor="end-time-input-55"
                                             >
                                               End time
                                             </label>
                                             <Input
-                                              id="end-time-input-56"
+                                              id="end-time-input-55"
                                               label="End time"
                                               onChange={[Function]}
                                               onWheel={[Function]}
@@ -1213,7 +1285,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="end-time-input-56"
+                                                  id="end-time-input-55"
                                                   onChange={[Function]}
                                                   onWheel={[Function]}
                                                   placeholder="hh:mm"
@@ -1240,11 +1312,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         className="checkbox"
                                       >
                                         <label
-                                          htmlFor="times-are-exact-input-57"
+                                          htmlFor="times-are-exact-input-56"
                                         >
                                           <input
                                             disabled={false}
-                                            id="times-are-exact-input-57"
+                                            id="times-are-exact-input-56"
                                             onChange={[Function]}
                                             type="checkbox"
                                           />
@@ -1268,7 +1340,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="phase-at-stop-input-58"
+                                              htmlFor="phase-at-stop-input-57"
                                             >
                                               Phase at stop
                                             </label>
@@ -1398,7 +1470,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         value="00:10"
                                       >
                                         <Group
-                                          id="dwell-time-input-59"
+                                          id="dwell-time-input-58"
                                           label="Dwell time"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -1410,12 +1482,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="dwell-time-input-59"
+                                              htmlFor="dwell-time-input-58"
                                             >
                                               Dwell time
                                             </label>
                                             <Input
-                                              id="dwell-time-input-59"
+                                              id="dwell-time-input-58"
                                               label="Dwell time"
                                               onBlur={[Function]}
                                               onChange={[Function]}
@@ -1429,7 +1501,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="dwell-time-input-59"
+                                                  id="dwell-time-input-58"
                                                   onBlur={[Function]}
                                                   onChange={[Function]}
                                                   onKeyDown={[Function]}
@@ -1486,7 +1558,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                       value={15}
                                     >
                                       <Group
-                                        id="average-segment-speed-input-60"
+                                        id="average-segment-speed-input-59"
                                         label="Average segment speed"
                                         min={1}
                                         onChange={[Function]}
@@ -1497,12 +1569,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                           className="form-group"
                                         >
                                           <label
-                                            htmlFor="average-segment-speed-input-60"
+                                            htmlFor="average-segment-speed-input-59"
                                           >
                                             Average segment speed
                                           </label>
                                           <Input
-                                            id="average-segment-speed-input-60"
+                                            id="average-segment-speed-input-59"
                                             label="Average segment speed"
                                             min={1}
                                             onChange={[Function]}
@@ -1516,7 +1588,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             >
                                               <input
                                                 className="form-control"
-                                                id="average-segment-speed-input-60"
+                                                id="average-segment-speed-input-59"
                                                 min={1}
                                                 onChange={[Function]}
                                                 onWheel={[Function]}
@@ -1548,7 +1620,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                         value="181:03"
                                       >
                                         <Group
-                                          id="total-travel-time-input-61"
+                                          id="total-travel-time-input-60"
                                           label="Total travel time"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -1560,12 +1632,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="total-travel-time-input-61"
+                                              htmlFor="total-travel-time-input-60"
                                             >
                                               Total travel time
                                             </label>
                                             <Input
-                                              id="total-travel-time-input-61"
+                                              id="total-travel-time-input-60"
                                               label="Total travel time"
                                               onBlur={[Function]}
                                               onChange={[Function]}
@@ -1579,7 +1651,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="total-travel-time-input-61"
+                                                  id="total-travel-time-input-60"
                                                   onBlur={[Function]}
                                                   onChange={[Function]}
                                                   onKeyDown={[Function]}
@@ -1714,11 +1786,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         className="checkbox"
                       >
                         <label
-                          htmlFor="1-input-62"
+                          htmlFor="1-input-61"
                         >
                           <input
                             checked={true}
-                            id="1-input-62"
+                            id="1-input-61"
                             onChange={[Function]}
                             title="Default"
                             type="checkbox"
@@ -2208,70 +2280,176 @@ exports[`Container > Modification Editor renders correctly 1`] = `
         <div
           className="ApplicationDockTitle"
         >
-          <Link
+          <IconLink
             title="Modifications"
             to="/scenarios/undefined"
+            type="chevron-left"
           >
-            <Tip
-              tip="Modifications"
+            <Link
+              title="Modifications"
+              to="/scenarios/undefined"
+              type="button"
             >
-              <span
-                className="Tip "
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+              <Tip
+                tip="Modifications"
               >
-                <Link
-                  onlyActiveOnIndex={false}
-                  style={Object {}}
-                  to="/scenarios/undefined"
+                <span
+                  className="Tip "
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <Link
+                    name="Modifications"
+                    onlyActiveOnIndex={false}
+                    style={Object {}}
+                    to="/scenarios/undefined"
+                    type="button"
+                  >
+                    <a
+                      name="Modifications"
+                      onClick={[Function]}
+                      style={Object {}}
+                      type="button"
+                    >
+                      <Icon
+                        type="chevron-left"
+                      >
+                        <i
+                          className="fa fa-chevron-left fa-fw "
+                        />
+                      </Icon>
+                    </a>
+                  </Link>
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
+          Test Modification
+          <IconLink
+            className="pull-right"
+            onClick={[Function]}
+            title="Delete modification"
+            type="trash"
+          >
+            <Link
+              className="pull-right"
+              onClick={[Function]}
+              title="Delete modification"
+              type="button"
+            >
+              <Tip
+                className="pull-right"
+                tip="Delete modification"
+              >
+                <span
+                  className="Tip pull-right"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
                 >
                   <a
+                    name="Delete modification"
                     onClick={[Function]}
-                    style={Object {}}
+                    tabIndex={0}
+                    type="button"
                   >
                     <Icon
-                      type="chevron-left"
+                      type="trash"
                     >
                       <i
-                        className="fa fa-chevron-left fa-fw "
+                        className="fa fa-trash fa-fw "
                       />
                     </Icon>
                   </a>
-                </Link>
-              </span>
-            </Tip>
-          </Link>
-          Test Modification
-          <a
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
+          <IconLink
             className="pull-right"
             onClick={[Function]}
-            tabIndex={0}
-            title="Delete Modification"
+            title="Copy modification"
+            type="copy"
           >
-            <Icon
-              type="trash"
+            <Link
+              className="pull-right"
+              onClick={[Function]}
+              title="Copy modification"
+              type="button"
             >
-              <i
-                className="fa fa-trash fa-fw "
-              />
-            </Icon>
-          </a>
-          <a
+              <Tip
+                className="pull-right"
+                tip="Copy modification"
+              >
+                <span
+                  className="Tip pull-right"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <a
+                    name="Copy modification"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <Icon
+                      type="copy"
+                    >
+                      <i
+                        className="fa fa-copy fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
+          <IconLink
             className="pull-right"
             onClick={[Function]}
-            tabIndex={0}
-            title="Copy Modification"
+            title="Edit modification name"
+            type="pencil"
           >
-            <Icon
-              type="copy"
+            <Link
+              className="pull-right"
+              onClick={[Function]}
+              title="Edit modification name"
+              type="button"
             >
-              <i
-                className="fa fa-copy fa-fw "
-              />
-            </Icon>
-          </a>
+              <Tip
+                className="pull-right"
+                tip="Edit modification name"
+              >
+                <span
+                  className="Tip pull-right"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <a
+                    name="Edit modification name"
+                    onClick={[Function]}
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <Icon
+                      type="pencil"
+                    >
+                      <i
+                        className="fa fa-pencil fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </span>
+              </Tip>
+            </Link>
+          </IconLink>
         </div>
         <div
           className="InnerDock"
@@ -2280,47 +2458,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
             <div
               className="panel-body"
             >
-              <Text
-                name="Modification Name"
-                onChange={[Function]}
-                value="Test Modification"
-              >
-                <Group
-                  id="modification-name-input-0"
-                  name="Modification Name"
-                  onChange={[Function]}
-                  value="Test Modification"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <Input
-                      id="modification-name-input-0"
-                      name="Modification Name"
-                      onChange={[Function]}
-                      type="text"
-                      value="Test Modification"
-                    >
-                      <input
-                        className="form-control"
-                        id="modification-name-input-0"
-                        name="Modification Name"
-                        onChange={[Function]}
-                        placeholder="Modification Name"
-                        type="text"
-                        value="Test Modification"
-                      />
-                    </Input>
-                  </div>
-                </Group>
-              </Text>
               <TextArea
                 label="Description"
                 onChange={[Function]}
                 value="Mock description"
               >
                 <Group
-                  id="description-input-1"
+                  id="description-input-0"
                   label="Description"
                   onChange={[Function]}
                 >
@@ -2328,13 +2472,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     className="form-group"
                   >
                     <label
-                      htmlFor="description-input-1"
+                      htmlFor="description-input-0"
                     >
                       Description
                     </label>
                     <textarea
                       className="form-control"
-                      id="description-input-1"
+                      id="description-input-0"
                       label="Description"
                       onChange={[Function]}
                     >
@@ -2738,11 +2882,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               className="checkbox"
                             >
                               <label
-                                htmlFor="create-stops-automatically-input-2"
+                                htmlFor="create-stops-automatically-input-1"
                               >
                                 <input
                                   defaultChecked={false}
-                                  id="create-stops-automatically-input-2"
+                                  id="create-stops-automatically-input-1"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
@@ -2761,12 +2905,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               className="checkbox"
                             >
                               <label
-                                htmlFor="bidirectional-input-3"
+                                htmlFor="bidirectional-input-2"
                               >
                                 <input
                                   checked={false}
                                   disabled={false}
-                                  id="bidirectional-input-3"
+                                  id="bidirectional-input-2"
                                   onChange={[Function]}
                                   type="checkbox"
                                 />
@@ -2887,7 +3031,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                   value="Test timetable"
                                 >
                                   <Group
-                                    id="name-input-4"
+                                    id="name-input-3"
                                     name="Name"
                                     onChange={[Function]}
                                     value="Test timetable"
@@ -2896,7 +3040,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                       className="form-group"
                                     >
                                       <Input
-                                        id="name-input-4"
+                                        id="name-input-3"
                                         name="Name"
                                         onChange={[Function]}
                                         type="text"
@@ -2904,7 +3048,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                       >
                                         <input
                                           className="form-control"
-                                          id="name-input-4"
+                                          id="name-input-3"
                                           name="Name"
                                           onChange={[Function]}
                                           placeholder="Name"
@@ -2980,11 +3124,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="mon-input-5"
+                                              htmlFor="mon-input-4"
                                             >
                                               <input
                                                 checked={true}
-                                                id="mon-input-5"
+                                                id="mon-input-4"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -3002,11 +3146,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="tue-input-6"
+                                              htmlFor="tue-input-5"
                                             >
                                               <input
                                                 checked={true}
-                                                id="tue-input-6"
+                                                id="tue-input-5"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -3024,11 +3168,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="wed-input-7"
+                                              htmlFor="wed-input-6"
                                             >
                                               <input
                                                 checked={true}
-                                                id="wed-input-7"
+                                                id="wed-input-6"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -3046,11 +3190,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="thu-input-8"
+                                              htmlFor="thu-input-7"
                                             >
                                               <input
                                                 checked={true}
-                                                id="thu-input-8"
+                                                id="thu-input-7"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -3068,11 +3212,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="fri-input-9"
+                                              htmlFor="fri-input-8"
                                             >
                                               <input
                                                 checked={true}
-                                                id="fri-input-9"
+                                                id="fri-input-8"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -3090,11 +3234,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="sat-input-10"
+                                              htmlFor="sat-input-9"
                                             >
                                               <input
                                                 checked={false}
-                                                id="sat-input-10"
+                                                id="sat-input-9"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -3112,11 +3256,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="checkbox"
                                           >
                                             <label
-                                              htmlFor="sun-input-11"
+                                              htmlFor="sun-input-10"
                                             >
                                               <input
                                                 checked={false}
-                                                id="sun-input-11"
+                                                id="sun-input-10"
                                                 onChange={[Function]}
                                                 type="checkbox"
                                               />
@@ -3141,7 +3285,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                         value="15:00"
                                       >
                                         <Group
-                                          id="frequency-input-12"
+                                          id="frequency-input-11"
                                           label="Frequency"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -3153,12 +3297,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="frequency-input-12"
+                                              htmlFor="frequency-input-11"
                                             >
                                               Frequency
                                             </label>
                                             <Input
-                                              id="frequency-input-12"
+                                              id="frequency-input-11"
                                               label="Frequency"
                                               onBlur={[Function]}
                                               onChange={[Function]}
@@ -3172,7 +3316,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="frequency-input-12"
+                                                  id="frequency-input-11"
                                                   onBlur={[Function]}
                                                   onChange={[Function]}
                                                   onKeyDown={[Function]}
@@ -3205,7 +3349,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                         value="08:00"
                                       >
                                         <Group
-                                          id="start-time-input-13"
+                                          id="start-time-input-12"
                                           label="Start time"
                                           onChange={[Function]}
                                           onWheel={[Function]}
@@ -3217,12 +3361,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="start-time-input-13"
+                                              htmlFor="start-time-input-12"
                                             >
                                               Start time
                                             </label>
                                             <Input
-                                              id="start-time-input-13"
+                                              id="start-time-input-12"
                                               label="Start time"
                                               onChange={[Function]}
                                               onWheel={[Function]}
@@ -3235,7 +3379,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="start-time-input-13"
+                                                  id="start-time-input-12"
                                                   onChange={[Function]}
                                                   onWheel={[Function]}
                                                   placeholder="hh:mm"
@@ -3267,7 +3411,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                         value="16:00"
                                       >
                                         <Group
-                                          id="end-time-input-14"
+                                          id="end-time-input-13"
                                           label="End time"
                                           onChange={[Function]}
                                           onWheel={[Function]}
@@ -3279,12 +3423,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="end-time-input-14"
+                                              htmlFor="end-time-input-13"
                                             >
                                               End time
                                             </label>
                                             <Input
-                                              id="end-time-input-14"
+                                              id="end-time-input-13"
                                               label="End time"
                                               onChange={[Function]}
                                               onWheel={[Function]}
@@ -3297,7 +3441,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="end-time-input-14"
+                                                  id="end-time-input-13"
                                                   onChange={[Function]}
                                                   onWheel={[Function]}
                                                   placeholder="hh:mm"
@@ -3324,11 +3468,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                         className="checkbox"
                                       >
                                         <label
-                                          htmlFor="times-are-exact-input-15"
+                                          htmlFor="times-are-exact-input-14"
                                         >
                                           <input
                                             disabled={false}
-                                            id="times-are-exact-input-15"
+                                            id="times-are-exact-input-14"
                                             onChange={[Function]}
                                             type="checkbox"
                                           />
@@ -3352,7 +3496,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="phase-at-stop-input-16"
+                                              htmlFor="phase-at-stop-input-15"
                                             >
                                               Phase at stop
                                             </label>
@@ -3482,7 +3626,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                         value="00:10"
                                       >
                                         <Group
-                                          id="dwell-time-input-17"
+                                          id="dwell-time-input-16"
                                           label="Dwell time"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -3494,12 +3638,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="dwell-time-input-17"
+                                              htmlFor="dwell-time-input-16"
                                             >
                                               Dwell time
                                             </label>
                                             <Input
-                                              id="dwell-time-input-17"
+                                              id="dwell-time-input-16"
                                               label="Dwell time"
                                               onBlur={[Function]}
                                               onChange={[Function]}
@@ -3513,7 +3657,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="dwell-time-input-17"
+                                                  id="dwell-time-input-16"
                                                   onBlur={[Function]}
                                                   onChange={[Function]}
                                                   onKeyDown={[Function]}
@@ -3570,7 +3714,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                       value={15}
                                     >
                                       <Group
-                                        id="average-segment-speed-input-18"
+                                        id="average-segment-speed-input-17"
                                         label="Average segment speed"
                                         min={1}
                                         onChange={[Function]}
@@ -3581,12 +3725,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                           className="form-group"
                                         >
                                           <label
-                                            htmlFor="average-segment-speed-input-18"
+                                            htmlFor="average-segment-speed-input-17"
                                           >
                                             Average segment speed
                                           </label>
                                           <Input
-                                            id="average-segment-speed-input-18"
+                                            id="average-segment-speed-input-17"
                                             label="Average segment speed"
                                             min={1}
                                             onChange={[Function]}
@@ -3600,7 +3744,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             >
                                               <input
                                                 className="form-control"
-                                                id="average-segment-speed-input-18"
+                                                id="average-segment-speed-input-17"
                                                 min={1}
                                                 onChange={[Function]}
                                                 onWheel={[Function]}
@@ -3632,7 +3776,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                         value="181:03"
                                       >
                                         <Group
-                                          id="total-travel-time-input-19"
+                                          id="total-travel-time-input-18"
                                           label="Total travel time"
                                           onBlur={[Function]}
                                           onChange={[Function]}
@@ -3644,12 +3788,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                             className="form-group"
                                           >
                                             <label
-                                              htmlFor="total-travel-time-input-19"
+                                              htmlFor="total-travel-time-input-18"
                                             >
                                               Total travel time
                                             </label>
                                             <Input
-                                              id="total-travel-time-input-19"
+                                              id="total-travel-time-input-18"
                                               label="Total travel time"
                                               onBlur={[Function]}
                                               onChange={[Function]}
@@ -3663,7 +3807,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                               >
                                                 <input
                                                   className="form-control"
-                                                  id="total-travel-time-input-19"
+                                                  id="total-travel-time-input-18"
                                                   onBlur={[Function]}
                                                   onChange={[Function]}
                                                   onKeyDown={[Function]}
@@ -3798,11 +3942,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         className="checkbox"
                       >
                         <label
-                          htmlFor="1-input-20"
+                          htmlFor="1-input-19"
                         >
                           <input
                             checked={true}
-                            id="1-input-20"
+                            id="1-input-19"
                             onChange={[Function]}
                             title="Default"
                             type="checkbox"
