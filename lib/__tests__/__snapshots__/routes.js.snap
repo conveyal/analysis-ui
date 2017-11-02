@@ -2078,7 +2078,85 @@ exports[`Routes should render 1`] = `
                             "zoom": 12,
                           }
                         }
-                        modificationsOnMap={Array []}
+                        modificationsOnMap={
+                          Array [
+                            Object {
+                              "bidirectional": false,
+                              "description": "Mock description",
+                              "entries": Array [],
+                              "feed": "1",
+                              "id": "1234",
+                              "name": "Test Modification",
+                              "routes": Array [
+                                "route1",
+                              ],
+                              "segments": Array [
+                                {
+                            "type": "Feature",
+                            "properties": {},
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
+                                ]
+                              ]
+                            }
+                          },
+                              ],
+                              "showOnMap": false,
+                              "timetables": Array [
+                                Object {
+                                  "dwellTime": 10,
+                                  "endTime": 57600,
+                                  "friday": true,
+                                  "headwaySecs": 900,
+                                  "monday": true,
+                                  "name": "Test timetable",
+                                  "patternTrips": Array [
+                                    "abcd",
+                                  ],
+                                  "saturday": false,
+                                  "segmentSpeeds": Array [],
+                                  "sourceTrip": "abcd",
+                                  "startTime": 28800,
+                                  "sunday": false,
+                                  "thursday": true,
+                                  "tuesday": true,
+                                  "wednesday": true,
+                                },
+                              ],
+                              "trips": Array [
+                                "abcd",
+                              ],
+                              "type": "add-trip-pattern",
+                              "variants": Array [
+                                true,
+                              ],
+                            },
+                          ]
+                        }
                         qualifiedStops={Array []}
                         replaceModification={[Function]}
                         setMapState={[Function]}
@@ -2093,6 +2171,217 @@ exports[`Routes should render 1`] = `
                             }
                           >
                             }
+                            <AddTripPatternLayer
+                              bidirectional={false}
+                              highlightSegment={-1}
+                              highlightStop={null}
+                              segments={
+                                Array [
+                                  {
+                                  "type": "Feature",
+                                  "properties": {},
+                                  "geometry": {
+                                    "type": "LineString",
+                                    "coordinates": [
+                                      [
+                                        "-122.02460000",
+                                        "36.97070000"
+                                      ],
+                                      [
+                                        "-122.02790000",
+                                        "37.04900000"
+                                      ],
+                                      [
+                                        "-121.97990000",
+                                        "37.22990000"
+                                      ],
+                                      [
+                                        "-121.94450000",
+                                        "37.32400000"
+                                      ],
+                                      [
+                                        "-121.93600000",
+                                        "37.35300000"
+                                      ],
+                                      [
+                                        "-121.92400000",
+                                        "37.36500000"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                ]
+                              }
+                            >
+                              <FeatureGroup>
+                                <div
+                                  style={
+                                    Object {
+                                      "display": "none",
+                                    }
+                                  }
+                                >
+                                  <GeoJSON
+                                    color="#55b"
+                                    data={
+                                      {
+                                        "type": "FeatureCollection",
+                                        "features": [
+                                          {
+                                            "type": "Feature",
+                                            "properties": {},
+                                            "geometry": {
+                                              "type": "LineString",
+                                              "coordinates": [
+                                                [
+                                                  "-122.02460000",
+                                                  "36.97070000"
+                                                ],
+                                                [
+                                                  "-122.02790000",
+                                                  "37.04900000"
+                                                ],
+                                                [
+                                                  "-121.97990000",
+                                                  "37.22990000"
+                                                ],
+                                                [
+                                                  "-121.94450000",
+                                                  "37.32400000"
+                                                ],
+                                                [
+                                                  "-121.93600000",
+                                                  "37.35300000"
+                                                ],
+                                                [
+                                                  "-121.92400000",
+                                                  "37.36500000"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                    weight={3}
+                                  >
+                                    <g
+                                      data={
+                                        {
+                                          "type": "FeatureCollection",
+                                          "features": [
+                                            {
+                                              "type": "Feature",
+                                              "properties": {},
+                                              "geometry": {
+                                                "type": "LineString",
+                                                "coordinates": [
+                                                  [
+                                                    "-122.02460000",
+                                                    "36.97070000"
+                                                  ],
+                                                  [
+                                                    "-122.02790000",
+                                                    "37.04900000"
+                                                  ],
+                                                  [
+                                                    "-121.97990000",
+                                                    "37.22990000"
+                                                  ],
+                                                  [
+                                                    "-121.94450000",
+                                                    "37.32400000"
+                                                  ],
+                                                  [
+                                                    "-121.93600000",
+                                                    "37.35300000"
+                                                  ],
+                                                  [
+                                                    "-121.92400000",
+                                                    "37.36500000"
+                                                  ]
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                      type="GeoJSON"
+                                    />
+                                  </GeoJSON>
+                                  <DirectionalMarkers
+                                    color="#55b"
+                                    patterns={
+                                      Array [
+                                        Object {
+                                          "geometry": Object {
+                                            "coordinates": Array [
+                                              Array [
+                                                -122.0246,
+                                                36.9707,
+                                              ],
+                                              Array [
+                                                -122.0279,
+                                                37.049,
+                                              ],
+                                              Array [
+                                                -121.9799,
+                                                37.2299,
+                                              ],
+                                              Array [
+                                                -121.9445,
+                                                37.324,
+                                              ],
+                                              Array [
+                                                -121.936,
+                                                37.353,
+                                              ],
+                                              Array [
+                                                -121.924,
+                                                37.365,
+                                              ],
+                                            ],
+                                          },
+                                        },
+                                      ]
+                                    }
+                                  />
+                                  <StopIcons
+                                    id="00000000-0000-0000-0000-000000000000-stop-icons"
+                                    stops={
+                                      Array [
+                                        Object {
+                                          "autoCreated": true,
+                                          "bearing": -1.9265463557264133,
+                                          "center": Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          "distanceFromStart": 0,
+                                          "index": 0,
+                                          "lat": 36.9707,
+                                          "lon": -122.0246,
+                                          "stopId": undefined,
+                                        },
+                                      ]
+                                    }
+                                  >
+                                    <g>
+                                      <CircleMarker
+                                        center={
+                                          Object {
+                                            "lat": 36.9707,
+                                            "lng": -122.0246,
+                                          }
+                                        }
+                                        color="#55b"
+                                        radius={2.5}
+                                      />
+                                    </g>
+                                  </StopIcons>
+                                </div>
+                              </FeatureGroup>
+                            </AddTripPatternLayer>
                           </div>
                         </FeatureGroup>
                       </ScenarioMap>
