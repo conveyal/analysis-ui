@@ -25,7 +25,7 @@ Object {
       "streetTime": 90,
       "suboptimalMinutes": 5,
       "toTime": 32400,
-      "transitModes": "TRANSIT",
+      "transitModes": "BUS,TRAM,RAIL,SUBWAY",
       "walkSpeed": 1.3888888888888888,
     },
     "regional": Object {
@@ -51,8 +51,16 @@ Object {
     "zoom": 12,
   },
   "network": Object {
+    "allFetches": Array [],
     "error": null,
-    "outstandingRequests": Array [],
+    "erroredFetches": Array [],
+    "finishedFetches": Array [],
+    "outstandingRequests": 0,
+  },
+  "opportunityDatasets": Object {
+    "activeDataset": undefined,
+    "datasets": Array [],
+    "uploadStatuses": Array [],
   },
   "project": Object {
     "currentProject": undefined,
@@ -61,12 +69,8 @@ Object {
   },
   "scenario": Object {
     "bundles": Array [],
-    "currentScenario": null,
     "feeds": Array [],
     "feedsById": Object {},
-    "modifications": null,
-    "modificationsById": null,
-    "modificationsByType": null,
     "scenarios": Array [],
     "scenariosById": Object {},
   },
