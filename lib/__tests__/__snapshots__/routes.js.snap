@@ -2995,32 +2995,37 @@ exports[`Routes should render 1`] = `
                       ]
                     }
                   >
-                    <div
-                      className="InnerDock"
-                    >
-                      <Body>
+                    <InnerDock>
+                      <div
+                        className="InnerDock "
+                        style={
+                          Object {
+                            "height": 768,
+                          }
+                        }
+                      >
                         <div
-                          className="panel-body"
+                          className="WelcomeTitle"
                         >
-                          <div
-                            className="WelcomeTitle"
-                          >
-                            <p
-                              style={
-                                Object {
-                                  "textAlign": "center",
-                                }
+                          <p
+                            style={
+                              Object {
+                                "textAlign": "center",
                               }
-                            >
-                              welcome to
-                            </p>
-                            <span
-                              className="logo"
-                              to="/"
-                            >
-                              conveyal analysis
-                            </span>
-                          </div>
+                            }
+                          >
+                            welcome to
+                          </p>
+                          <span
+                            className="logo"
+                            to="/"
+                          >
+                            conveyal analysis
+                          </span>
+                        </div>
+                        <div
+                          className="block"
+                        >
                           <Group>
                             <div
                               className="form-group"
@@ -3096,8 +3101,8 @@ exports[`Routes should render 1`] = `
                             </div>
                           </div>
                         </div>
-                      </Body>
-                    </div>
+                      </div>
+                    </InnerDock>
                   </SelectProject>
                 </Connect(SelectProject)>
               </div>

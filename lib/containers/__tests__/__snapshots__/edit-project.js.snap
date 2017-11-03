@@ -56,490 +56,489 @@ exports[`Container > Edit Project renders correctly 1`] = `
            
           Set up a new region
         </div>
-        <div
-          className="InnerDock"
-        >
-          <Panel>
+        <InnerDock>
+          <div
+            className="InnerDock "
+            style={
+              Object {
+                "height": 768,
+              }
+            }
+          >
             <div
-              className="panel panel-default"
+              className="block"
             >
-              <Body>
-                <div
-                  className="panel-body"
+              <Text
+                label="Region Name*"
+                name="Region Name"
+                onChange={[Function]}
+                value="New Project Name"
+              >
+                <Group
+                  id="region-name-input-8"
+                  label="Region Name*"
+                  name="Region Name"
+                  onChange={[Function]}
+                  value="New Project Name"
                 >
-                  <Text
-                    label="Region Name*"
-                    name="Region Name"
-                    onChange={[Function]}
-                    value="New Project Name"
+                  <div
+                    className="form-group"
                   >
-                    <Group
+                    <label
+                      htmlFor="region-name-input-8"
+                    >
+                      Region Name*
+                    </label>
+                    <Input
                       id="region-name-input-8"
                       label="Region Name*"
                       name="Region Name"
                       onChange={[Function]}
+                      type="text"
                       value="New Project Name"
                     >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="region-name-input-8"
-                        >
-                          Region Name*
-                        </label>
-                        <Input
-                          id="region-name-input-8"
-                          label="Region Name*"
-                          name="Region Name"
-                          onChange={[Function]}
-                          type="text"
-                          value="New Project Name"
-                        >
-                          <input
-                            className="form-control"
-                            id="region-name-input-8"
-                            name="Region Name"
-                            onChange={[Function]}
-                            placeholder="Region Name*"
-                            type="text"
-                            value="New Project Name"
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
-                    label="Description"
-                    name="Description"
-                    onChange={[Function]}
+                      <input
+                        className="form-control"
+                        id="region-name-input-8"
+                        name="Region Name"
+                        onChange={[Function]}
+                        placeholder="Region Name*"
+                        type="text"
+                        value="New Project Name"
+                      />
+                    </Input>
+                  </div>
+                </Group>
+              </Text>
+              <Text
+                label="Description"
+                name="Description"
+                onChange={[Function]}
+              >
+                <Group
+                  id="description-input-1"
+                  label="Description"
+                  name="Description"
+                  onChange={[Function]}
+                >
+                  <div
+                    className="form-group"
                   >
-                    <Group
+                    <label
+                      htmlFor="description-input-1"
+                    >
+                      Description
+                    </label>
+                    <Input
                       id="description-input-1"
                       label="Description"
                       name="Description"
                       onChange={[Function]}
+                      type="text"
                     >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="description-input-1"
-                        >
-                          Description
-                        </label>
-                        <Input
-                          id="description-input-1"
-                          label="Description"
-                          name="Description"
-                          onChange={[Function]}
-                          type="text"
-                        >
-                          <input
-                            className="form-control"
-                            id="description-input-1"
-                            name="Description"
-                            onChange={[Function]}
-                            placeholder="Description"
-                            type="text"
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <R5Version
+                      <input
+                        className="form-control"
+                        id="description-input-1"
+                        name="Description"
+                        onChange={[Function]}
+                        placeholder="Description"
+                        type="text"
+                      />
+                    </Input>
+                  </div>
+                </Group>
+              </Text>
+              <R5Version
+                allVersions={Array []}
+                label="Analysis backend version"
+                name="Analysis backend version"
+                onChange={[Function]}
+                releaseVersions={Array []}
+              >
+                <div>
+                  <Group
                     allVersions={Array []}
                     label="Analysis backend version"
                     name="Analysis backend version"
                     onChange={[Function]}
                     releaseVersions={Array []}
                   >
-                    <div>
-                      <Group
-                        allVersions={Array []}
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="analysis-backend-version-input-9"
+                      >
+                        Analysis backend version
+                      </label>
+                      <Icon
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "#000",
+                            "cursor": "pointer",
+                          }
+                        }
+                        title="Show only stable backend versions"
+                        type="flask"
+                      >
+                        <i
+                          className="fa fa-flask fa-fw "
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "color": "#000",
+                              "cursor": "pointer",
+                            }
+                          }
+                          title="Show only stable backend versions"
+                        />
+                      </Icon>
+                      <Select
+                        addLabelText="Add \\"{label}\\"?"
+                        arrowRenderer={[Function]}
+                        autosize={true}
+                        backspaceRemoves={true}
+                        backspaceToRemoveMessage="Press backspace to remove {label}"
+                        clearAllText="Clear all"
+                        clearRenderer={[Function]}
+                        clearValueText="Clear value"
+                        clearable={false}
+                        deleteRemoves={true}
+                        delimiter=","
+                        disabled={false}
+                        escapeClearsValue={true}
+                        filterOptions={[Function]}
+                        ignoreAccents={true}
+                        ignoreCase={true}
+                        inputProps={Object {}}
+                        isLoading={false}
+                        joinValues={false}
                         label="Analysis backend version"
+                        labelKey="label"
+                        matchPos="any"
+                        matchProp="any"
+                        menuBuffer={0}
+                        menuRenderer={[Function]}
+                        multi={false}
                         name="Analysis backend version"
+                        noResultsText="No results found"
+                        onBlurResetsInput={true}
                         onChange={[Function]}
-                        releaseVersions={Array []}
+                        onCloseResetsInput={true}
+                        optionComponent={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "label": <span
+                                style={
+                                      Object {
+                                            "textDecoration": "line-through",
+                                          }
+                                }
+                          />,
+                              "value": undefined,
+                            },
+                          ]
+                        }
+                        pageSize={5}
+                        placeholder="Select..."
+                        required={false}
+                        scrollMenuIntoView={true}
+                        searchable={true}
+                        simpleValue={false}
+                        tabSelectsValue={true}
+                        valueComponent={[Function]}
+                        valueKey="value"
                       >
                         <div
-                          className="form-group"
+                          className="Select Select--single is-searchable"
                         >
-                          <label
-                            htmlFor="analysis-backend-version-input-9"
+                          <div
+                            className="Select-control"
+                            onKeyDown={[Function]}
+                            onMouseDown={[Function]}
+                            onTouchEnd={[Function]}
+                            onTouchMove={[Function]}
+                            onTouchStart={[Function]}
                           >
-                            Analysis backend version
-                          </label>
-                          <Icon
-                            onClick={[Function]}
-                            style={
-                              Object {
-                                "color": "#000",
-                                "cursor": "pointer",
-                              }
-                            }
-                            title="Show only stable backend versions"
-                            type="flask"
-                          >
-                            <i
-                              className="fa fa-flask fa-fw "
-                              onClick={[Function]}
-                              style={
-                                Object {
-                                  "color": "#000",
-                                  "cursor": "pointer",
-                                }
-                              }
-                              title="Show only stable backend versions"
-                            />
-                          </Icon>
-                          <Select
-                            addLabelText="Add \\"{label}\\"?"
-                            arrowRenderer={[Function]}
-                            autosize={true}
-                            backspaceRemoves={true}
-                            backspaceToRemoveMessage="Press backspace to remove {label}"
-                            clearAllText="Clear all"
-                            clearRenderer={[Function]}
-                            clearValueText="Clear value"
-                            clearable={false}
-                            deleteRemoves={true}
-                            delimiter=","
-                            disabled={false}
-                            escapeClearsValue={true}
-                            filterOptions={[Function]}
-                            ignoreAccents={true}
-                            ignoreCase={true}
-                            inputProps={Object {}}
-                            isLoading={false}
-                            joinValues={false}
-                            label="Analysis backend version"
-                            labelKey="label"
-                            matchPos="any"
-                            matchProp="any"
-                            menuBuffer={0}
-                            menuRenderer={[Function]}
-                            multi={false}
-                            name="Analysis backend version"
-                            noResultsText="No results found"
-                            onBlurResetsInput={true}
-                            onChange={[Function]}
-                            onCloseResetsInput={true}
-                            optionComponent={[Function]}
-                            options={
-                              Array [
-                                Object {
-                                  "label": <span
-                                    style={
-                                          Object {
-                                                "textDecoration": "line-through",
-                                              }
-                                    }
-                              />,
-                                  "value": undefined,
-                                },
-                              ]
-                            }
-                            pageSize={5}
-                            placeholder="Select..."
-                            required={false}
-                            scrollMenuIntoView={true}
-                            searchable={true}
-                            simpleValue={false}
-                            tabSelectsValue={true}
-                            valueComponent={[Function]}
-                            valueKey="value"
-                          >
-                            <div
-                              className="Select Select--single is-searchable"
+                            <span
+                              className="Select-multi-value-wrapper"
+                              id="react-select-2--value"
                             >
                               <div
-                                className="Select-control"
-                                onKeyDown={[Function]}
-                                onMouseDown={[Function]}
-                                onTouchEnd={[Function]}
-                                onTouchMove={[Function]}
-                                onTouchStart={[Function]}
+                                className="Select-placeholder"
                               >
-                                <span
-                                  className="Select-multi-value-wrapper"
-                                  id="react-select-2--value"
-                                >
-                                  <div
-                                    className="Select-placeholder"
-                                  >
-                                    Select...
-                                  </div>
-                                  <mockConstructor
-                                    aria-activedescendant="react-select-2--value"
-                                    aria-expanded="false"
-                                    aria-haspopup="false"
-                                    aria-owns=""
-                                    className="Select-input"
-                                    minWidth="5"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    required={false}
-                                    role="combobox"
-                                    value=""
-                                  />
-                                </span>
-                                <span
-                                  className="Select-arrow-zone"
-                                  onMouseDown={[Function]}
-                                >
-                                  <span
-                                    className="Select-arrow"
-                                    onMouseDown={[Function]}
-                                  />
-                                </span>
+                                Select...
                               </div>
-                            </div>
-                          </Select>
+                              <mockConstructor
+                                aria-activedescendant="react-select-2--value"
+                                aria-expanded="false"
+                                aria-haspopup="false"
+                                aria-owns=""
+                                className="Select-input"
+                                minWidth="5"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                required={false}
+                                role="combobox"
+                                value=""
+                              />
+                            </span>
+                            <span
+                              className="Select-arrow-zone"
+                              onMouseDown={[Function]}
+                            >
+                              <span
+                                className="Select-arrow"
+                                onMouseDown={[Function]}
+                              />
+                            </span>
+                          </div>
                         </div>
-                      </Group>
-                      <div
-                        className="alert alert-warning"
-                      >
-                        There is an updated version of the Analysis backend available.
-                        Changing versions may enable new features or increased performance, but may also cause
-                        results to change slightly.
-                      </div>
+                      </Select>
                     </div>
-                  </R5Version>
-                  <h5>
-                    OpenStreetMap bounds
-                  </h5>
-                  <Text
-                    label="North bound"
-                    name="North bound"
-                    onChange={[Function]}
-                    value={39.02345139405932}
+                  </Group>
+                  <div
+                    className="alert alert-warning"
                   >
-                    <Group
+                    There is an updated version of the Analysis backend available.
+                    Changing versions may enable new features or increased performance, but may also cause
+                    results to change slightly.
+                  </div>
+                </div>
+              </R5Version>
+              <h5>
+                OpenStreetMap bounds
+              </h5>
+              <Text
+                label="North bound"
+                name="North bound"
+                onChange={[Function]}
+                value={39.02345139405932}
+              >
+                <Group
+                  id="north-bound-input-3"
+                  label="North bound"
+                  name="North bound"
+                  onChange={[Function]}
+                  value={39.02345139405932}
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      htmlFor="north-bound-input-3"
+                    >
+                      North bound
+                    </label>
+                    <Input
                       id="north-bound-input-3"
                       label="North bound"
                       name="North bound"
                       onChange={[Function]}
+                      type="text"
                       value={39.02345139405932}
                     >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="north-bound-input-3"
-                        >
-                          North bound
-                        </label>
-                        <Input
-                          id="north-bound-input-3"
-                          label="North bound"
-                          name="North bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={39.02345139405932}
-                        >
-                          <input
-                            className="form-control"
-                            id="north-bound-input-3"
-                            name="North bound"
-                            onChange={[Function]}
-                            placeholder="North bound"
-                            type="text"
-                            value={39.02345139405932}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
-                    label="South bound"
-                    name="South bound"
-                    onChange={[Function]}
-                    value={38.777640223073355}
+                      <input
+                        className="form-control"
+                        id="north-bound-input-3"
+                        name="North bound"
+                        onChange={[Function]}
+                        placeholder="North bound"
+                        type="text"
+                        value={39.02345139405932}
+                      />
+                    </Input>
+                  </div>
+                </Group>
+              </Text>
+              <Text
+                label="South bound"
+                name="South bound"
+                onChange={[Function]}
+                value={38.777640223073355}
+              >
+                <Group
+                  id="south-bound-input-4"
+                  label="South bound"
+                  name="South bound"
+                  onChange={[Function]}
+                  value={38.777640223073355}
+                >
+                  <div
+                    className="form-group"
                   >
-                    <Group
+                    <label
+                      htmlFor="south-bound-input-4"
+                    >
+                      South bound
+                    </label>
+                    <Input
                       id="south-bound-input-4"
                       label="South bound"
                       name="South bound"
                       onChange={[Function]}
+                      type="text"
                       value={38.777640223073355}
                     >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="south-bound-input-4"
-                        >
-                          South bound
-                        </label>
-                        <Input
-                          id="south-bound-input-4"
-                          label="South bound"
-                          name="South bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={38.777640223073355}
-                        >
-                          <input
-                            className="form-control"
-                            id="south-bound-input-4"
-                            name="South bound"
-                            onChange={[Function]}
-                            placeholder="South bound"
-                            type="text"
-                            value={38.777640223073355}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
-                    label="East bound"
-                    name="East bound"
-                    onChange={[Function]}
-                    value={-76.81503295898438}
+                      <input
+                        className="form-control"
+                        id="south-bound-input-4"
+                        name="South bound"
+                        onChange={[Function]}
+                        placeholder="South bound"
+                        type="text"
+                        value={38.777640223073355}
+                      />
+                    </Input>
+                  </div>
+                </Group>
+              </Text>
+              <Text
+                label="East bound"
+                name="East bound"
+                onChange={[Function]}
+                value={-76.81503295898438}
+              >
+                <Group
+                  id="east-bound-input-5"
+                  label="East bound"
+                  name="East bound"
+                  onChange={[Function]}
+                  value={-76.81503295898438}
+                >
+                  <div
+                    className="form-group"
                   >
-                    <Group
+                    <label
+                      htmlFor="east-bound-input-5"
+                    >
+                      East bound
+                    </label>
+                    <Input
                       id="east-bound-input-5"
                       label="East bound"
                       name="East bound"
                       onChange={[Function]}
+                      type="text"
                       value={-76.81503295898438}
                     >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="east-bound-input-5"
-                        >
-                          East bound
-                        </label>
-                        <Input
-                          id="east-bound-input-5"
-                          label="East bound"
-                          name="East bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={-76.81503295898438}
-                        >
-                          <input
-                            className="form-control"
-                            id="east-bound-input-5"
-                            name="East bound"
-                            onChange={[Function]}
-                            placeholder="East bound"
-                            type="text"
-                            value={-76.81503295898438}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
-                    label="West bound"
-                    name="West bound"
-                    onChange={[Function]}
-                    value={-77.25723266601562}
+                      <input
+                        className="form-control"
+                        id="east-bound-input-5"
+                        name="East bound"
+                        onChange={[Function]}
+                        placeholder="East bound"
+                        type="text"
+                        value={-76.81503295898438}
+                      />
+                    </Input>
+                  </div>
+                </Group>
+              </Text>
+              <Text
+                label="West bound"
+                name="West bound"
+                onChange={[Function]}
+                value={-77.25723266601562}
+              >
+                <Group
+                  id="west-bound-input-6"
+                  label="West bound"
+                  name="West bound"
+                  onChange={[Function]}
+                  value={-77.25723266601562}
+                >
+                  <div
+                    className="form-group"
                   >
-                    <Group
+                    <label
+                      htmlFor="west-bound-input-6"
+                    >
+                      West bound
+                    </label>
+                    <Input
                       id="west-bound-input-6"
                       label="West bound"
                       name="West bound"
                       onChange={[Function]}
+                      type="text"
                       value={-77.25723266601562}
                     >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="west-bound-input-6"
-                        >
-                          West bound
-                        </label>
-                        <Input
-                          id="west-bound-input-6"
-                          label="West bound"
-                          name="West bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={-77.25723266601562}
-                        >
-                          <input
-                            className="form-control"
-                            id="west-bound-input-6"
-                            name="West bound"
-                            onChange={[Function]}
-                            placeholder="West bound"
-                            type="text"
-                            value={-77.25723266601562}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <File
-                    label="Custom OpenStreetMap data in PBF format"
-                    name="customOpenStreetMapData"
-                    onChange={[Function]}
+                      <input
+                        className="form-control"
+                        id="west-bound-input-6"
+                        name="West bound"
+                        onChange={[Function]}
+                        placeholder="West bound"
+                        type="text"
+                        value={-77.25723266601562}
+                      />
+                    </Input>
+                  </div>
+                </Group>
+              </Text>
+              <File
+                label="Custom OpenStreetMap data in PBF format"
+                name="customOpenStreetMapData"
+                onChange={[Function]}
+              >
+                <Group
+                  id="custom-open-street-map-data-input-7"
+                  label="Custom OpenStreetMap data in PBF format"
+                  name="customOpenStreetMapData"
+                  onChange={[Function]}
+                >
+                  <div
+                    className="form-group"
                   >
-                    <Group
+                    <label
+                      htmlFor="custom-open-street-map-data-input-7"
+                    >
+                      Custom OpenStreetMap data in PBF format
+                    </label>
+                    <Input
                       id="custom-open-street-map-data-input-7"
                       label="Custom OpenStreetMap data in PBF format"
                       name="customOpenStreetMapData"
                       onChange={[Function]}
+                      type="file"
                     >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="custom-open-street-map-data-input-7"
-                        >
-                          Custom OpenStreetMap data in PBF format
-                        </label>
-                        <Input
-                          id="custom-open-street-map-data-input-7"
-                          label="Custom OpenStreetMap data in PBF format"
-                          name="customOpenStreetMapData"
-                          onChange={[Function]}
-                          type="file"
-                        >
-                          <input
-                            className="form-control"
-                            id="custom-open-street-map-data-input-7"
-                            name="customOpenStreetMapData"
-                            onChange={[Function]}
-                            placeholder="Custom OpenStreetMap data in PBF format"
-                            type="file"
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </File>
-                  <Button
-                    block={true}
-                    disabled={false}
-                    name="Save changes"
-                    onClick={[Function]}
-                    style="success"
-                  >
-                    <a
-                      className="btn btn-success btn-block"
-                      disabled={false}
-                      href="#"
-                      name="Save changes"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      Set up a new region
-                    </a>
-                  </Button>
-                </div>
-              </Body>
+                      <input
+                        className="form-control"
+                        id="custom-open-street-map-data-input-7"
+                        name="customOpenStreetMapData"
+                        onChange={[Function]}
+                        placeholder="Custom OpenStreetMap data in PBF format"
+                        type="file"
+                      />
+                    </Input>
+                  </div>
+                </Group>
+              </File>
+              <Button
+                block={true}
+                disabled={false}
+                name="Save changes"
+                onClick={[Function]}
+                style="success"
+              >
+                <a
+                  className="btn btn-success btn-block"
+                  disabled={false}
+                  href="#"
+                  name="Save changes"
+                  onClick={[Function]}
+                  tabIndex={0}
+                >
+                  Set up a new region
+                </a>
+              </Button>
             </div>
-          </Panel>
-        </div>
+          </div>
+        </InnerDock>
       </div>
     </EditProject>
   </Connect(EditProject)>
