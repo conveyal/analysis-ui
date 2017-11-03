@@ -57,7 +57,7 @@ region:
   r5Version: Analysis backend version
   latestReleaseVersionNotSelected: An updated version of the Analysis backend is available.
     Changing versions should improve performance, but it may require a longer wait the first time you initialize a compute cluster for analysis.
-    Using a different major version (e.g. 2.x.x vs. 3.x.x) may also cause results to differ slightly.
+    Using a different version may also change analysis results slightly.
   showAllVersions: Show all backend versions (advanced)
   showReleaseVersions: Show only stable backend versions
   loadStatus:
@@ -68,7 +68,7 @@ region:
     PROJECTING_CENSUS: Projecting Census data to project grid…
     STORING_CENSUS: Storing census data…
     DONE: Done
-  customOpenStreetMapData: Custom OpenStreetMap data in PBF format
+  customOpenStreetMapData: OpenStreetMap data in PBF format (required for regions outside the USA; OSM extracts are available from Mapzen).
 project:
   createAction: Create new Project
   createActionTooltip: Each project can include scenarios with modifications that are applied to the same GTFS bundle.
@@ -130,6 +130,8 @@ modification:
   deleteModification: Delete modification
   copyModification: Copy modification
   editModificationName: Edit modification name
+  clearBundleInfo: If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
+  clearBundleConfirm: Clear selected bundle
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
