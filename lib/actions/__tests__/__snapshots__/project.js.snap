@@ -10,7 +10,7 @@ Object {
           "_entries": Array [
             Object {
               "name": "project",
-              "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"indicators\\":[]}",
+              "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"r5Version\\":\\"v3.2.0\\"}",
             },
           ],
           Symbol(wrapper): [Circular],
@@ -34,7 +34,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "project",
-                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"indicators\\":[]}",
+                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"r5Version\\":\\"v3.2.0\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -60,7 +60,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "project",
-                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"indicators\\":[]}",
+                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"r5Version\\":\\"v3.2.0\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -73,21 +73,41 @@ Array [
     "type": "decrement outstanding fetches",
   },
   Array [
-    Object {
-      "payload": Object {
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
+    Array [
+      Object {
+        "payload": Object {
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "description": "Project description",
+          "id": 1,
+          "name": "Mock Project",
+          "opportunityDatasets": Array [
+            Object {
+              "dataSource": "lodes-data-2014",
+              "key": "Workers_total",
+              "name": "Workers total",
+            },
+          ],
+          "r5Version": "v3.2.0",
         },
-        "description": "Project description",
-        "id": 1,
-        "indicators": Array [],
-        "name": "Mock Project",
+        "type": "set project",
       },
-      "type": "set project",
-    },
+      Object {
+        "payload": Array [
+          Object {
+            "dataSource": "lodes-data-2014",
+            "key": "Workers_total",
+            "name": "Workers total",
+          },
+        ],
+        "type": "opportunityDatasets/SET_ALL",
+      },
+      undefined,
+    ],
     Array [
       Object {
         "payload": Object {
@@ -265,12 +285,41 @@ Array [
 
 exports[`actions > project save should work 1`] = `
 Array [
-  Object {
-    "payload": Object {
-      "id": "1",
+  Array [
+    Object {
+      "payload": Object {
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "description": "Project description",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "name": "Mock Project",
+        "opportunityDatasets": Array [
+          Object {
+            "dataSource": "lodes-data-2014",
+            "key": "Workers_total",
+            "name": "Workers total",
+          },
+        ],
+        "r5Version": "v3.2.0",
+      },
+      "type": "set project",
     },
-    "type": "set project",
-  },
+    Object {
+      "payload": Array [
+        Object {
+          "dataSource": "lodes-data-2014",
+          "key": "Workers_total",
+          "name": "Workers total",
+        },
+      ],
+      "type": "opportunityDatasets/SET_ALL",
+    },
+    [Function],
+  ],
   Object {
     "payload": Object {
       "next": [Function],
@@ -280,7 +329,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "project",
-                "value": "{\\"id\\":\\"1\\"}",
+                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"r5Version\\":\\"v3.2.0\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -288,7 +337,7 @@ Array [
         },
         "method": "put",
       },
-      "url": "/api/project/1",
+      "url": "/api/project/00000000-0000-0000-0000-000000000000",
     },
     "type": "fetch",
   },
@@ -297,12 +346,41 @@ Array [
 
 exports[`actions > project save should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "id": "1",
+  Array [
+    Object {
+      "payload": Object {
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "description": "Project description",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "name": "Mock Project",
+        "opportunityDatasets": Array [
+          Object {
+            "dataSource": "lodes-data-2014",
+            "key": "Workers_total",
+            "name": "Workers total",
+          },
+        ],
+        "r5Version": "v3.2.0",
+      },
+      "type": "set project",
     },
-    "type": "set project",
-  },
+    Object {
+      "payload": Array [
+        Object {
+          "dataSource": "lodes-data-2014",
+          "key": "Workers_total",
+          "name": "Workers total",
+        },
+      ],
+      "type": "opportunityDatasets/SET_ALL",
+    },
+    undefined,
+  ],
   Array [
     Object {
       "payload": Object {
@@ -312,7 +390,7 @@ Array [
               "_entries": Array [
                 Object {
                   "name": "project",
-                  "value": "{\\"id\\":\\"1\\"}",
+                  "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"r5Version\\":\\"v3.2.0\\"}",
                 },
               ],
               Symbol(wrapper): [Circular],
@@ -320,7 +398,7 @@ Array [
           },
           "method": "put",
         },
-        "url": "/api/project/1",
+        "url": "/api/project/00000000-0000-0000-0000-000000000000",
       },
       "type": "increment outstanding fetches",
     },
@@ -339,7 +417,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "project",
-                "value": "{\\"id\\":\\"1\\"}",
+                "value": "{\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"id\\":\\"00000000-0000-0000-0000-000000000000\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"r5Version\\":\\"v3.2.0\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -347,7 +425,7 @@ Array [
         },
         "method": "put",
       },
-      "url": "/api/project/1",
+      "url": "/api/project/00000000-0000-0000-0000-000000000000",
     },
     "type": "increment outstanding fetches",
   },

@@ -2,51 +2,123 @@
 
 exports[`Component > EditBundle renders correctly 1`] = `
 <div>
-  <h5>
-    Edit Bundle
-  </h5>
+  <p>
+    Bundles are a collection of one or more GTFS feeds.
+  </p>
   <div
     className="form-group"
   >
-    <label
-      htmlFor="name-input-0"
+    <a
+      className="btn btn-success btn-block"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
     >
-      Bundle name
-    </label>
-    <input
-      className="form-control"
-      id="name-input-0"
-      name="Name"
-      onChange={[Function]}
-      placeholder="Bundle name"
-      type="text"
-      value="Test Bundle"
-    />
+      <i
+        className="fa fa-plus fa-fw "
+      />
+       Create a bundle
+    </a>
   </div>
-  <a
-    className="btn btn-success btn-block"
-    href="#"
-    onClick={[Function]}
-    tabIndex={0}
-    title="Save bundle"
+  <p
+    className="center"
   >
-    <i
-      className="fa fa-save fa-fw "
-    />
-     
-    Save bundle
-  </a>
-  <a
-    className="btn btn-danger btn-block"
-    href="#"
-    onClick={[Function]}
-    tabIndex={0}
+    or select an existing one
+  </p>
+  <div
+    className="form-group"
   >
-    <i
-      className="fa fa-trash fa-fw "
-    />
-     
-    Delete this bundle
-  </a>
+    <div
+      className="Select Select--single is-searchable has-value"
+      style={undefined}
+    >
+      <div
+        className="Select-control"
+        onKeyDown={[Function]}
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <span
+          className="Select-multi-value-wrapper"
+          id="react-select-2--value"
+        >
+          <div
+            className="Select-value"
+            style={undefined}
+            title={undefined}
+          >
+            <span
+              aria-selected="true"
+              className="Select-value-label"
+              id="react-select-2--value-item"
+              role="option"
+            >
+              Test Bundle
+            </span>
+          </div>
+        </span>
+        <span
+          className="Select-arrow-zone"
+          onMouseDown={[Function]}
+        >
+          <span
+            className="Select-arrow"
+            onMouseDown={[Function]}
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h5>
+      Edit Bundle
+    </h5>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="name-input-0"
+      >
+        Bundle name
+      </label>
+      <input
+        className="form-control"
+        id="name-input-0"
+        name="Name"
+        onChange={[Function]}
+        placeholder="Bundle name"
+        type="text"
+        value="Test Bundle"
+      />
+    </div>
+    <a
+      className="btn btn-success btn-block"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
+      title="Save bundle"
+    >
+      <i
+        className="fa fa-save fa-fw "
+      />
+       
+      Save bundle
+    </a>
+    <a
+      className="btn btn-danger btn-block"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
+    >
+      <i
+        className="fa fa-trash fa-fw "
+      />
+       
+      Delete this bundle
+    </a>
+  </div>
 </div>
 `;

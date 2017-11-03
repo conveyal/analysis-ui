@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Opportunity Datasets > Components > Upload should render 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(UploadOpportunityDataset)>
+    <UploadOpportunityDataset
+      uploadOpportunityDataset={[Function]}
+    >
+      <div>
+        <h5>
+          Upload a new opportunity dataset
+        </h5>
+        <p>
+          Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj). Dataset name and indicator name combinations must be unique within a project. Uploading a CSV with the name "population" with a column "males" will overwrite any previous value uploaded with that combination in this project.
+        </p>
+        <form
+          encType="multipart/form-data"
+        >
+          <Text
+            label="Opportunity dataset*"
+            name="Name"
+            onChange={[Function]}
+            placeholder="Opportunity dataset"
+            value={null}
+          >
+            <Group
+              id="name-input-0"
+              label="Opportunity dataset*"
+              name="Name"
+              onChange={[Function]}
+              placeholder="Opportunity dataset"
+              value={null}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="name-input-0"
+                >
+                  Opportunity dataset*
+                </label>
+                <Input
+                  id="name-input-0"
+                  label="Opportunity dataset*"
+                  name="Name"
+                  onChange={[Function]}
+                  placeholder="Opportunity dataset"
+                  type="text"
+                  value={null}
+                >
+                  <input
+                    className="form-control"
+                    id="name-input-0"
+                    name="Name"
+                    onChange={[Function]}
+                    placeholder="Opportunity dataset"
+                    type="text"
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Text>
+          <File
+            label="Select opportunity dataset*"
+            multiple={true}
+            name="files"
+            onChange={[Function]}
+          >
+            <Group
+              id="files-input-1"
+              label="Select opportunity dataset*"
+              multiple={true}
+              name="files"
+              onChange={[Function]}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="files-input-1"
+                >
+                  Select opportunity dataset*
+                </label>
+                <Input
+                  id="files-input-1"
+                  label="Select opportunity dataset*"
+                  multiple={true}
+                  name="files"
+                  onChange={[Function]}
+                  type="file"
+                >
+                  <input
+                    className="form-control"
+                    id="files-input-1"
+                    multiple={true}
+                    name="files"
+                    onChange={[Function]}
+                    placeholder="Select opportunity dataset*"
+                    type="file"
+                  />
+                </Input>
+              </div>
+            </Group>
+          </File>
+          <Button
+            className="btn btn-block btn-success"
+            disabled={true}
+            onClick={[Function]}
+            type="success"
+          >
+            <a
+              className="btn btn-default btn btn-block btn-success"
+              disabled={true}
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+              type="success"
+            >
+              <span>
+                <Icon
+                  type="plus"
+                >
+                  <i
+                    className="fa fa-plus fa-fw "
+                  />
+                </Icon>
+                 
+                Upload a new opportunity dataset
+              </span>
+            </a>
+          </Button>
+        </form>
+      </div>
+    </UploadOpportunityDataset>
+  </Connect(UploadOpportunityDataset)>
+</Provider>
+`;

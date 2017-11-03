@@ -36,11 +36,10 @@
 }
 
 .Sidebar-navItem {
-
+  display: block;
 }
 
-.Sidebar-navItem > a,
-.Sidebar-navItem > span {
+.Sidebar-navItem-contents {
   padding: 10px;
   display: inline-block;
   line-height: 20px;
@@ -55,8 +54,7 @@
   box-shadow: 0 6px 6px 0 rgba(51, 122, 183, 0.1);
 }
 
-.Sidebar-navItem.active > a,
-.Sidebar-navItem.active > span {
+.Sidebar-navItem.active > .Sidebar-navItem-contents {
   padding-bottom: 8px;
 }
 
@@ -66,8 +64,4 @@
 
 .expanded .Sidebar-navItem-text {
   display: inline;
-}
-
-.Sidebar-navItem > .tooltip {
-  margin-top: 8.5px;
 }

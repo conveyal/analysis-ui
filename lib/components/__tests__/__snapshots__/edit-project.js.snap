@@ -2,242 +2,234 @@
 
 exports[`Component > EditProject renders correctly 1`] = `
 <div
-  className="InnerDock"
+  className="InnerDock "
+  style={null}
 >
   <div
-    className="panel panel-default"
+    className="block"
   >
     <div
-      className="panel-body"
+      className="form-group"
     >
+      <label
+        htmlFor="region-name-input-0"
+      >
+        Region Name*
+      </label>
+      <input
+        className="form-control"
+        id="region-name-input-0"
+        name="Region Name"
+        onChange={[Function]}
+        placeholder="Region Name*"
+        type="text"
+        value="Test Scenario"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="description-input-1"
+      >
+        Description
+      </label>
+      <input
+        className="form-control"
+        id="description-input-1"
+        name="Description"
+        onChange={[Function]}
+        placeholder="Description"
+        type="text"
+        value="A test scenario"
+      />
+    </div>
+    <div>
       <div
         className="form-group"
       >
         <label
-          htmlFor="region-name-input-0"
+          htmlFor="analysis-backend-version-input-2"
         >
-          Region Name*
+          Analysis backend version
         </label>
-        <input
-          className="form-control"
-          id="region-name-input-0"
-          name="Region Name"
-          onChange={[Function]}
-          placeholder="Region Name*"
-          type="text"
-          value="Test Scenario"
-        />
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="description-input-1"
-        >
-          Description
-        </label>
-        <input
-          className="form-control"
-          id="description-input-1"
-          name="Description"
-          onChange={[Function]}
-          placeholder="Description"
-          type="text"
-          value="A test scenario"
-        />
-      </div>
-      <div>
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="analysis-backend-version-input-2"
-          >
-            Analysis backend version
-          </label>
-          <i
-            aria-label="Show all backend versions (advanced)"
-            className="fa fa-flask fa-fw "
-            onClick={[Function]}
-            style={
-              Object {
-                "color": "#aaa",
-                "cursor": "pointer",
-              }
+        <i
+          className="fa fa-flask fa-fw "
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#aaa",
+              "cursor": "pointer",
             }
-            title="Show all backend versions (advanced)"
+          }
+          title="Show all backend versions (advanced)"
+        />
+        <div
+          className="Select Select--single is-searchable has-value"
+          style={undefined}
+        >
+          <input
+            disabled={false}
+            name="Analysis backend version"
+            type="hidden"
+            value="v3.0.0"
           />
           <div
-            className="Select Select--single is-searchable has-value"
+            className="Select-control"
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
             style={undefined}
           >
-            <input
-              disabled={false}
-              name="Analysis backend version"
-              type="hidden"
-              value="v3.0.0"
-            />
-            <div
-              className="Select-control"
-              onKeyDown={[Function]}
-              onMouseDown={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-              style={undefined}
+            <span
+              className="Select-multi-value-wrapper"
+              id="react-select-2--value"
             >
-              <span
-                className="Select-multi-value-wrapper"
-                id="react-select-2--value"
-              >
-                <div
-                  className="Select-value"
-                  style={undefined}
-                  title={undefined}
-                >
-                  <span
-                    aria-selected="true"
-                    className="Select-value-label"
-                    id="react-select-2--value-item"
-                    role="option"
-                  >
-                    v3.0.0
-                  </span>
-                </div>
-              </span>
-              <span
-                className="Select-arrow-zone"
-                onMouseDown={[Function]}
+              <div
+                className="Select-value"
+                style={undefined}
+                title={undefined}
               >
                 <span
-                  className="Select-arrow"
-                  onMouseDown={[Function]}
-                />
-              </span>
-            </div>
+                  aria-selected="true"
+                  className="Select-value-label"
+                  id="react-select-2--value-item"
+                  role="option"
+                >
+                  v3.0.0
+                </span>
+              </div>
+            </span>
+            <span
+              className="Select-arrow-zone"
+              onMouseDown={[Function]}
+            >
+              <span
+                className="Select-arrow"
+                onMouseDown={[Function]}
+              />
+            </span>
           </div>
         </div>
       </div>
-      <h5>
-        OpenStreetMap bounds
-      </h5>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="north-bound-input-3"
-        >
-          North bound
-        </label>
-        <input
-          className="form-control"
-          disabled={true}
-          id="north-bound-input-3"
-          name="North bound"
-          onChange={[Function]}
-          placeholder="North bound"
-          type="text"
-          value={1}
-        />
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="south-bound-input-4"
-        >
-          South bound
-        </label>
-        <input
-          className="form-control"
-          disabled={true}
-          id="south-bound-input-4"
-          name="South bound"
-          onChange={[Function]}
-          placeholder="South bound"
-          type="text"
-          value={3}
-        />
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="east-bound-input-5"
-        >
-          East bound
-        </label>
-        <input
-          className="form-control"
-          disabled={true}
-          id="east-bound-input-5"
-          name="East bound"
-          onChange={[Function]}
-          placeholder="East bound"
-          type="text"
-          value={2}
-        />
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="west-bound-input-6"
-        >
-          West bound
-        </label>
-        <input
-          className="form-control"
-          disabled={true}
-          id="west-bound-input-6"
-          name="West bound"
-          onChange={[Function]}
-          placeholder="West bound"
-          type="text"
-          value={4}
-        />
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="custom-open-street-map-data-input-7"
-        >
-          Custom OpenStreetMap data in PBF format
-        </label>
-        <input
-          className="form-control"
-          id="custom-open-street-map-data-input-7"
-          name="customOpenStreetMapData"
-          onChange={[Function]}
-          placeholder="Custom OpenStreetMap data in PBF format"
-          type="file"
-          value={undefined}
-        />
-      </div>
-      <a
-        className="btn btn-success btn-block"
-        disabled={false}
-        href="#"
-        name="Save changes"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Save changes
-      </a>
-      <a
-        className="btn btn-danger btn-block"
-        href="#"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-trash fa-fw "
-        />
-         
-        DANGER: Delete this region
-      </a>
     </div>
+    <h5>
+      OpenStreetMap bounds
+    </h5>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="north-bound-input-3"
+      >
+        North bound
+      </label>
+      <input
+        className="form-control"
+        id="north-bound-input-3"
+        name="North bound"
+        onChange={[Function]}
+        placeholder="North bound"
+        type="text"
+        value={1}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="south-bound-input-4"
+      >
+        South bound
+      </label>
+      <input
+        className="form-control"
+        id="south-bound-input-4"
+        name="South bound"
+        onChange={[Function]}
+        placeholder="South bound"
+        type="text"
+        value={3}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="east-bound-input-5"
+      >
+        East bound
+      </label>
+      <input
+        className="form-control"
+        id="east-bound-input-5"
+        name="East bound"
+        onChange={[Function]}
+        placeholder="East bound"
+        type="text"
+        value={2}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="west-bound-input-6"
+      >
+        West bound
+      </label>
+      <input
+        className="form-control"
+        id="west-bound-input-6"
+        name="West bound"
+        onChange={[Function]}
+        placeholder="West bound"
+        type="text"
+        value={4}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="custom-open-street-map-data-input-7"
+      >
+        Custom OpenStreetMap data in PBF format
+      </label>
+      <input
+        className="form-control"
+        id="custom-open-street-map-data-input-7"
+        name="customOpenStreetMapData"
+        onChange={[Function]}
+        placeholder="Custom OpenStreetMap data in PBF format"
+        type="file"
+        value={undefined}
+      />
+    </div>
+    <a
+      className="btn btn-success btn-block"
+      disabled={false}
+      href="#"
+      name="Save changes"
+      onClick={[Function]}
+      tabIndex={0}
+    >
+      Save changes
+    </a>
+    <a
+      className="btn btn-danger btn-block"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
+    >
+      <i
+        className="fa fa-trash fa-fw "
+      />
+       
+      DANGER: Delete this region
+    </a>
   </div>
 </div>
 `;
