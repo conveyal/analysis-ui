@@ -30,8 +30,29 @@ exports[`Container > Edit Bundle renders correctly 1`] = `
           "name": "Mock Bundle",
         }
       }
-      bundleId="1"
+      bundles={
+        Array [
+          Object {
+            "centerLat": 38.90124,
+            "centerLon": -77.015615,
+            "feeds": Array [],
+            "id": "1",
+            "name": "Mock Bundle",
+          },
+        ]
+      }
       deleteBundle={[Function]}
+      goToCreateBundle={[Function]}
+      goToEditBundle={[Function]}
+      isLoaded={
+        Object {
+          "centerLat": 38.90124,
+          "centerLon": -77.015615,
+          "feeds": Array [],
+          "id": "1",
+          "name": "Mock Bundle",
+        }
+      }
       params={
         Object {
           "bundleId": "1",
@@ -40,100 +61,260 @@ exports[`Container > Edit Bundle renders correctly 1`] = `
       saveBundle={[Function]}
     >
       <div>
-        <h5>
-          Edit Bundle
-        </h5>
-        <Text
-          label="Bundle name"
-          name="Name"
-          onChange={[Function]}
-          placeholder="Bundle name"
-          value="Mock Bundle"
+        <p>
+          Bundles are a collection of one or more GTFS feeds.
+        </p>
+        <Group>
+          <div
+            className="form-group"
+          >
+            <Button
+              block={true}
+              onClick={[Function]}
+              style="success"
+            >
+              <a
+                className="btn btn-success btn-block"
+                href="#"
+                onClick={[Function]}
+                tabIndex={0}
+              >
+                <Icon
+                  type="plus"
+                >
+                  <i
+                    className="fa fa-plus fa-fw "
+                  />
+                </Icon>
+                 Create a bundle
+              </a>
+            </Button>
+          </div>
+        </Group>
+        <p
+          className="center"
         >
-          <Group
-            id="name-input-0"
+          or select an existing one
+        </p>
+        <Group>
+          <div
+            className="form-group"
+          >
+            <Select
+              addLabelText="Add \\"{label}\\"?"
+              arrowRenderer={[Function]}
+              autosize={true}
+              backspaceRemoves={true}
+              backspaceToRemoveMessage="Press backspace to remove {label}"
+              clearAllText="Clear all"
+              clearRenderer={[Function]}
+              clearValueText="Clear value"
+              clearable={false}
+              deleteRemoves={true}
+              delimiter=","
+              disabled={false}
+              escapeClearsValue={true}
+              filterOptions={[Function]}
+              ignoreAccents={true}
+              ignoreCase={true}
+              inputProps={Object {}}
+              isLoading={false}
+              joinValues={false}
+              labelKey="label"
+              matchPos="any"
+              matchProp="any"
+              menuBuffer={0}
+              menuRenderer={[Function]}
+              multi={false}
+              noResultsText="No results found"
+              onBlurResetsInput={true}
+              onChange={[Function]}
+              onCloseResetsInput={true}
+              optionComponent={[Function]}
+              options={
+                Array [
+                  Object {
+                    "label": "Mock Bundle",
+                    "value": "1",
+                  },
+                ]
+              }
+              pageSize={5}
+              placeholder="Select..."
+              required={false}
+              scrollMenuIntoView={true}
+              searchable={true}
+              simpleValue={false}
+              tabSelectsValue={true}
+              value="1"
+              valueComponent={[Function]}
+              valueKey="value"
+            >
+              <div
+                className="Select Select--single is-searchable has-value"
+              >
+                <div
+                  className="Select-control"
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchMove={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <span
+                    className="Select-multi-value-wrapper"
+                    id="react-select-2--value"
+                  >
+                    <Value
+                      disabled={false}
+                      id="react-select-2--value-item"
+                      instancePrefix="react-select-2-"
+                      onClick={null}
+                      value={
+                        Object {
+                          "label": "Mock Bundle",
+                          "value": "1",
+                        }
+                      }
+                    >
+                      <div
+                        className="Select-value"
+                      >
+                        <span
+                          aria-selected="true"
+                          className="Select-value-label"
+                          id="react-select-2--value-item"
+                          role="option"
+                        >
+                          Mock Bundle
+                        </span>
+                      </div>
+                    </Value>
+                    <mockConstructor
+                      aria-activedescendant="react-select-2--value"
+                      aria-expanded="false"
+                      aria-haspopup="false"
+                      aria-owns=""
+                      className="Select-input"
+                      minWidth="5"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={false}
+                      role="combobox"
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="Select-arrow-zone"
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="Select-arrow"
+                      onMouseDown={[Function]}
+                    />
+                  </span>
+                </div>
+              </div>
+            </Select>
+          </div>
+        </Group>
+        <div>
+          <h5>
+            Edit Bundle
+          </h5>
+          <Text
             label="Bundle name"
             name="Name"
             onChange={[Function]}
             placeholder="Bundle name"
             value="Mock Bundle"
           >
-            <div
-              className="form-group"
+            <Group
+              id="name-input-0"
+              label="Bundle name"
+              name="Name"
+              onChange={[Function]}
+              placeholder="Bundle name"
+              value="Mock Bundle"
             >
-              <label
-                htmlFor="name-input-0"
+              <div
+                className="form-group"
               >
-                Bundle name
-              </label>
-              <Input
-                id="name-input-0"
-                label="Bundle name"
-                name="Name"
-                onChange={[Function]}
-                placeholder="Bundle name"
-                type="text"
-                value="Mock Bundle"
-              >
-                <input
-                  className="form-control"
+                <label
+                  htmlFor="name-input-0"
+                >
+                  Bundle name
+                </label>
+                <Input
                   id="name-input-0"
+                  label="Bundle name"
                   name="Name"
                   onChange={[Function]}
                   placeholder="Bundle name"
                   type="text"
                   value="Mock Bundle"
-                />
-              </Input>
-            </div>
-          </Group>
-        </Text>
-        <Button
-          block={true}
-          onClick={[Function]}
-          style="success"
-          title="Save bundle"
-        >
-          <a
-            className="btn btn-success btn-block"
-            href="#"
+                >
+                  <input
+                    className="form-control"
+                    id="name-input-0"
+                    name="Name"
+                    onChange={[Function]}
+                    placeholder="Bundle name"
+                    type="text"
+                    value="Mock Bundle"
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Text>
+          <Button
+            block={true}
             onClick={[Function]}
-            tabIndex={0}
+            style="success"
             title="Save bundle"
           >
-            <Icon
-              type="save"
+            <a
+              className="btn btn-success btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+              title="Save bundle"
             >
-              <i
-                className="fa fa-save fa-fw "
-              />
-            </Icon>
-             
-            Save bundle
-          </a>
-        </Button>
-        <Button
-          block={true}
-          onClick={[Function]}
-          style="danger"
-        >
-          <a
-            className="btn btn-danger btn-block"
-            href="#"
+              <Icon
+                type="save"
+              >
+                <i
+                  className="fa fa-save fa-fw "
+                />
+              </Icon>
+               
+              Save bundle
+            </a>
+          </Button>
+          <Button
+            block={true}
             onClick={[Function]}
-            tabIndex={0}
+            style="danger"
           >
-            <Icon
-              type="trash"
+            <a
+              className="btn btn-danger btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
             >
-              <i
-                className="fa fa-trash fa-fw "
-              />
-            </Icon>
-             
-            Delete this bundle
-          </a>
-        </Button>
+              <Icon
+                type="trash"
+              >
+                <i
+                  className="fa fa-trash fa-fw "
+                />
+              </Icon>
+               
+              Delete this bundle
+            </a>
+          </Button>
+        </div>
       </div>
     </EditBundle>
   </Connect(EditBundle)>

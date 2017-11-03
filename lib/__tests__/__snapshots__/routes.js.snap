@@ -133,6 +133,9 @@ exports[`Routes should render 1`] = `
                           },
                         ],
                         "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
                         "path": "bundles",
                       },
                       Object {
@@ -254,6 +257,9 @@ exports[`Routes should render 1`] = `
                         },
                       ],
                       "component": [Function],
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
                       "path": "bundles",
                     },
                     Object {
@@ -384,6 +390,9 @@ exports[`Routes should render 1`] = `
                         },
                       ],
                       "component": [Function],
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
                       "path": "bundles",
                     },
                     Object {
@@ -523,6 +532,9 @@ exports[`Routes should render 1`] = `
                             },
                           ],
                           "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
                           "path": "bundles",
                         },
                         Object {
@@ -644,6 +656,9 @@ exports[`Routes should render 1`] = `
                           },
                         ],
                         "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
                         "path": "bundles",
                       },
                       Object {
@@ -741,6 +756,7 @@ exports[`Routes should render 1`] = `
           }
         >
           <Application
+            activeModificationId="1234"
             bundleId="1"
             center={
               Object {
@@ -766,6 +782,18 @@ exports[`Routes should render 1`] = `
               }
             }
             mapComponents={Array []}
+            modificationBounds={
+              Object {
+                "_northEast": Object {
+                  "lat": 37.365,
+                  "lng": -121.924,
+                },
+                "_southWest": Object {
+                  "lat": 36.9707,
+                  "lng": -122.0279,
+                },
+              }
+            }
             outstandingRequests={0}
             params={Object {}}
             projectId="1"
@@ -791,6 +819,9 @@ exports[`Routes should render 1`] = `
                           },
                         ],
                         "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
                         "path": "bundles",
                       },
                       Object {
@@ -930,6 +961,9 @@ exports[`Routes should render 1`] = `
                               },
                             ],
                             "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
                             "path": "bundles",
                           },
                           Object {
@@ -1051,6 +1085,9 @@ exports[`Routes should render 1`] = `
                             },
                           ],
                           "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
                           "path": "bundles",
                         },
                         Object {
@@ -1194,46 +1231,53 @@ exports[`Routes should render 1`] = `
                       icon="cubes"
                       text="Projects"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem active"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="Projects"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="/projects/1"
+                        <span
+                          className="Tip Sidebar-navItem active"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <a
-                            href="/projects/1"
-                            onClick={[Function]}
+                          <Link
+                            className="Sidebar-navItem-contents"
+                            onlyActiveOnIndex={false}
                             style={Object {}}
+                            to="/projects/1"
                           >
-                            <ItemContents
-                              icon="cubes"
-                              text="Projects"
+                            <a
+                              className="Sidebar-navItem-contents"
+                              href="/projects/1"
+                              onClick={[Function]}
+                              style={Object {}}
                             >
-                              <span>
-                                <Icon
-                                  type="cubes"
-                                >
-                                  <i
-                                    className="fa fa-cubes fa-fw "
-                                  />
-                                </Icon>
-                                <span
-                                  className="Sidebar-navItem-text"
-                                >
-                                   
-                                  Projects
+                              <ItemContents
+                                icon="cubes"
+                                text="Projects"
+                              >
+                                <span>
+                                  <Icon
+                                    type="cubes"
+                                  >
+                                    <i
+                                      className="fa fa-cubes fa-fw "
+                                    />
+                                  </Icon>
+                                  <span
+                                    className="Sidebar-navItem-text"
+                                  >
+                                     
+                                    Projects
+                                  </span>
                                 </span>
-                              </span>
-                            </ItemContents>
-                          </a>
-                        </Link>
-                      </div>
+                              </ItemContents>
+                            </a>
+                          </Link>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
@@ -1241,46 +1285,53 @@ exports[`Routes should render 1`] = `
                       icon="gear"
                       text="Shared Settings"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="Shared Settings"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="/projects/1/edit"
+                        <span
+                          className="Tip Sidebar-navItem"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <a
-                            href="/projects/1/edit"
-                            onClick={[Function]}
+                          <Link
+                            className="Sidebar-navItem-contents"
+                            onlyActiveOnIndex={false}
                             style={Object {}}
+                            to="/projects/1/edit"
                           >
-                            <ItemContents
-                              icon="gear"
-                              text="Shared Settings"
+                            <a
+                              className="Sidebar-navItem-contents"
+                              href="/projects/1/edit"
+                              onClick={[Function]}
+                              style={Object {}}
                             >
-                              <span>
-                                <Icon
-                                  type="gear"
-                                >
-                                  <i
-                                    className="fa fa-gear fa-fw "
-                                  />
-                                </Icon>
-                                <span
-                                  className="Sidebar-navItem-text"
-                                >
-                                   
-                                  Shared Settings
+                              <ItemContents
+                                icon="gear"
+                                text="Shared Settings"
+                              >
+                                <span>
+                                  <Icon
+                                    type="gear"
+                                  >
+                                    <i
+                                      className="fa fa-gear fa-fw "
+                                    />
+                                  </Icon>
+                                  <span
+                                    className="Sidebar-navItem-text"
+                                  >
+                                     
+                                    Shared Settings
+                                  </span>
                                 </span>
-                              </span>
-                            </ItemContents>
-                          </a>
-                        </Link>
-                      </div>
+                              </ItemContents>
+                            </a>
+                          </Link>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
@@ -1288,46 +1339,53 @@ exports[`Routes should render 1`] = `
                       icon="database"
                       text="GTFS Bundles"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="GTFS Bundles"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="/projects/1/bundles"
+                        <span
+                          className="Tip Sidebar-navItem"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <a
-                            href="/projects/1/bundles"
-                            onClick={[Function]}
+                          <Link
+                            className="Sidebar-navItem-contents"
+                            onlyActiveOnIndex={false}
                             style={Object {}}
+                            to="/projects/1/bundles"
                           >
-                            <ItemContents
-                              icon="database"
-                              text="GTFS Bundles"
+                            <a
+                              className="Sidebar-navItem-contents"
+                              href="/projects/1/bundles"
+                              onClick={[Function]}
+                              style={Object {}}
                             >
-                              <span>
-                                <Icon
-                                  type="database"
-                                >
-                                  <i
-                                    className="fa fa-database fa-fw "
-                                  />
-                                </Icon>
-                                <span
-                                  className="Sidebar-navItem-text"
-                                >
-                                   
-                                  GTFS Bundles
+                              <ItemContents
+                                icon="database"
+                                text="GTFS Bundles"
+                              >
+                                <span>
+                                  <Icon
+                                    type="database"
+                                  >
+                                    <i
+                                      className="fa fa-database fa-fw "
+                                    />
+                                  </Icon>
+                                  <span
+                                    className="Sidebar-navItem-text"
+                                  >
+                                     
+                                    GTFS Bundles
+                                  </span>
                                 </span>
-                              </span>
-                            </ItemContents>
-                          </a>
-                        </Link>
-                      </div>
+                              </ItemContents>
+                            </a>
+                          </Link>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
@@ -1335,46 +1393,53 @@ exports[`Routes should render 1`] = `
                       icon="th"
                       text="Opportunity Datasets"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="Opportunity Datasets"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="/projects/1/opportunities"
+                        <span
+                          className="Tip Sidebar-navItem"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <a
-                            href="/projects/1/opportunities"
-                            onClick={[Function]}
+                          <Link
+                            className="Sidebar-navItem-contents"
+                            onlyActiveOnIndex={false}
                             style={Object {}}
+                            to="/projects/1/opportunities"
                           >
-                            <ItemContents
-                              icon="th"
-                              text="Opportunity Datasets"
+                            <a
+                              className="Sidebar-navItem-contents"
+                              href="/projects/1/opportunities"
+                              onClick={[Function]}
+                              style={Object {}}
                             >
-                              <span>
-                                <Icon
-                                  type="th"
-                                >
-                                  <i
-                                    className="fa fa-th fa-fw "
-                                  />
-                                </Icon>
-                                <span
-                                  className="Sidebar-navItem-text"
-                                >
-                                   
-                                  Opportunity Datasets
+                              <ItemContents
+                                icon="th"
+                                text="Opportunity Datasets"
+                              >
+                                <span>
+                                  <Icon
+                                    type="th"
+                                  >
+                                    <i
+                                      className="fa fa-th fa-fw "
+                                    />
+                                  </Icon>
+                                  <span
+                                    className="Sidebar-navItem-text"
+                                  >
+                                     
+                                    Opportunity Datasets
+                                  </span>
                                 </span>
-                              </span>
-                            </ItemContents>
-                          </a>
-                        </Link>
-                      </div>
+                              </ItemContents>
+                            </a>
+                          </Link>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                   </div>
                   <div>
@@ -1384,46 +1449,53 @@ exports[`Routes should render 1`] = `
                       icon="pencil"
                       text="Edit Scenarios"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="Edit Scenarios"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="/scenarios/1"
+                        <span
+                          className="Tip Sidebar-navItem"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <a
-                            href="/scenarios/1"
-                            onClick={[Function]}
+                          <Link
+                            className="Sidebar-navItem-contents"
+                            onlyActiveOnIndex={false}
                             style={Object {}}
+                            to="/scenarios/1"
                           >
-                            <ItemContents
-                              icon="pencil"
-                              text="Edit Scenarios"
+                            <a
+                              className="Sidebar-navItem-contents"
+                              href="/scenarios/1"
+                              onClick={[Function]}
+                              style={Object {}}
                             >
-                              <span>
-                                <Icon
-                                  type="pencil"
-                                >
-                                  <i
-                                    className="fa fa-pencil fa-fw "
-                                  />
-                                </Icon>
-                                <span
-                                  className="Sidebar-navItem-text"
-                                >
-                                   
-                                  Edit Scenarios
+                              <ItemContents
+                                icon="pencil"
+                                text="Edit Scenarios"
+                              >
+                                <span>
+                                  <Icon
+                                    type="pencil"
+                                  >
+                                    <i
+                                      className="fa fa-pencil fa-fw "
+                                    />
+                                  </Icon>
+                                  <span
+                                    className="Sidebar-navItem-text"
+                                  >
+                                     
+                                    Edit Scenarios
+                                  </span>
                                 </span>
-                              </span>
-                            </ItemContents>
-                          </a>
-                        </Link>
-                      </div>
+                              </ItemContents>
+                            </a>
+                          </Link>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
@@ -1431,46 +1503,53 @@ exports[`Routes should render 1`] = `
                       icon="area-chart"
                       text="Analyze Scenarios"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="Analyze Scenarios"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="/scenarios/1/analysis"
+                        <span
+                          className="Tip Sidebar-navItem"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <a
-                            href="/scenarios/1/analysis"
-                            onClick={[Function]}
+                          <Link
+                            className="Sidebar-navItem-contents"
+                            onlyActiveOnIndex={false}
                             style={Object {}}
+                            to="/scenarios/1/analysis"
                           >
-                            <ItemContents
-                              icon="area-chart"
-                              text="Analyze Scenarios"
+                            <a
+                              className="Sidebar-navItem-contents"
+                              href="/scenarios/1/analysis"
+                              onClick={[Function]}
+                              style={Object {}}
                             >
-                              <span>
-                                <Icon
-                                  type="area-chart"
-                                >
-                                  <i
-                                    className="fa fa-area-chart fa-fw "
-                                  />
-                                </Icon>
-                                <span
-                                  className="Sidebar-navItem-text"
-                                >
-                                   
-                                  Analyze Scenarios
+                              <ItemContents
+                                icon="area-chart"
+                                text="Analyze Scenarios"
+                              >
+                                <span>
+                                  <Icon
+                                    type="area-chart"
+                                  >
+                                    <i
+                                      className="fa fa-area-chart fa-fw "
+                                    />
+                                  </Icon>
+                                  <span
+                                    className="Sidebar-navItem-text"
+                                  >
+                                     
+                                    Analyze Scenarios
+                                  </span>
                                 </span>
-                              </span>
-                            </ItemContents>
-                          </a>
-                        </Link>
-                      </div>
+                              </ItemContents>
+                            </a>
+                          </Link>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
@@ -1478,46 +1557,53 @@ exports[`Routes should render 1`] = `
                       icon="server"
                       text="Regional Analysis"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="Regional Analysis"
                       >
-                        <Link
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          to="/scenarios/1/regional"
+                        <span
+                          className="Tip Sidebar-navItem"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <a
-                            href="/scenarios/1/regional"
-                            onClick={[Function]}
+                          <Link
+                            className="Sidebar-navItem-contents"
+                            onlyActiveOnIndex={false}
                             style={Object {}}
+                            to="/scenarios/1/regional"
                           >
-                            <ItemContents
-                              icon="server"
-                              text="Regional Analysis"
+                            <a
+                              className="Sidebar-navItem-contents"
+                              href="/scenarios/1/regional"
+                              onClick={[Function]}
+                              style={Object {}}
                             >
-                              <span>
-                                <Icon
-                                  type="server"
-                                >
-                                  <i
-                                    className="fa fa-server fa-fw "
-                                  />
-                                </Icon>
-                                <span
-                                  className="Sidebar-navItem-text"
-                                >
-                                   
-                                  Regional Analysis
+                              <ItemContents
+                                icon="server"
+                                text="Regional Analysis"
+                              >
+                                <span>
+                                  <Icon
+                                    type="server"
+                                  >
+                                    <i
+                                      className="fa fa-server fa-fw "
+                                    />
+                                  </Icon>
+                                  <span
+                                    className="Sidebar-navItem-text"
+                                  >
+                                     
+                                    Regional Analysis
+                                  </span>
                                 </span>
-                              </span>
-                            </ItemContents>
-                          </a>
-                        </Link>
-                      </div>
+                              </ItemContents>
+                            </a>
+                          </Link>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                   </div>
                   <div
@@ -1528,48 +1614,66 @@ exports[`Routes should render 1`] = `
                       icon="question-circle"
                       text="Help and Documentation"
                     >
-                      <div
+                      <Tip
                         className="Sidebar-navItem"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                        tip="Help and Documentation"
                       >
-                        <a
-                          href="http://docs.analysis.conveyal.com/"
-                          target="_blank"
+                        <span
+                          className="Tip Sidebar-navItem"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <ItemContents
-                            icon="question-circle"
-                            text="Help and Documentation"
+                          <a
+                            className="Sidebar-navItem-contents"
+                            href="http://docs.analysis.conveyal.com/"
+                            target="_blank"
                           >
-                            <span>
-                              <Icon
-                                type="question-circle"
-                              >
-                                <i
-                                  className="fa fa-question-circle fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Help and Documentation
+                            <ItemContents
+                              icon="question-circle"
+                              text="Help and Documentation"
+                            >
+                              <span>
+                                <Icon
+                                  type="question-circle"
+                                >
+                                  <i
+                                    className="fa fa-question-circle fa-fw "
+                                  />
+                                </Icon>
+                                <span
+                                  className="Sidebar-navItem-text"
+                                >
+                                   
+                                  Help and Documentation
+                                </span>
                               </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </div>
+                            </ItemContents>
+                          </a>
+                        </span>
+                      </Tip>
                     </SidebarNavItem>
                   </div>
                 </div>
               </Sidebar>
               <div
-                className="Fullscreen  "
+                className="Fullscreen "
               >
                 <Map
                   animate={false}
+                  bounds={
+                    Object {
+                      "_northEast": Object {
+                        "lat": 37.365,
+                        "lng": -121.924,
+                      },
+                      "_southWest": Object {
+                        "lat": 36.9707,
+                        "lng": -122.0279,
+                      },
+                    }
+                  }
                   center={
                     Object {
                       "lat": 38.8886,
@@ -1593,6 +1697,177 @@ exports[`Routes should render 1`] = `
                       zIndex={50}
                     >
                       <ScenarioMap
+                        activeModification={
+                          Object {
+                            "bidirectional": false,
+                            "description": "Mock description",
+                            "entries": Array [],
+                            "feed": "1",
+                            "id": "1234",
+                            "name": "Test Modification",
+                            "routes": Array [
+                              "route1",
+                            ],
+                            "segments": Array [
+                              {
+                            "type": "Feature",
+                            "properties": {},
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
+                                ]
+                              ]
+                            }
+                          },
+                            ],
+                            "showOnMap": false,
+                            "timetables": Array [
+                              Object {
+                                "dwellTime": 10,
+                                "endTime": 57600,
+                                "friday": true,
+                                "headwaySecs": 900,
+                                "monday": true,
+                                "name": "Test timetable",
+                                "patternTrips": Array [
+                                  "abcd",
+                                ],
+                                "saturday": false,
+                                "segmentSpeeds": Array [],
+                                "sourceTrip": "abcd",
+                                "startTime": 28800,
+                                "sunday": false,
+                                "thursday": true,
+                                "tuesday": true,
+                                "wednesday": true,
+                              },
+                            ],
+                            "trips": Array [
+                              "abcd",
+                            ],
+                            "type": "add-trip-pattern",
+                            "variants": Array [
+                              true,
+                            ],
+                          }
+                        }
+                        activeModificationFeed={
+                          Object {
+                            "id": "1",
+                            "routes": Array [
+                              Object {
+                                "patterns": Array [
+                                  Object {
+                                    "geometry": Object {
+                                      "coordinates": Array [
+                                        Array [
+                                          -122.0246,
+                                          36.9707,
+                                        ],
+                                        Array [
+                                          -122.0279,
+                                          37.049,
+                                        ],
+                                        Array [
+                                          -121.9799,
+                                          37.2299,
+                                        ],
+                                        Array [
+                                          -121.9445,
+                                          37.324,
+                                        ],
+                                        Array [
+                                          -121.936,
+                                          37.353,
+                                        ],
+                                        Array [
+                                          -121.924,
+                                          37.365,
+                                        ],
+                                      ],
+                                      "type": "LineString",
+                                    },
+                                    "stops": Array [
+                                      Object {
+                                        "stop_id": "1",
+                                        "stop_lat": 36.9707,
+                                        "stop_lon": -122.0246,
+                                        "stop_name": "Santa Cruz",
+                                      },
+                                      Object {
+                                        "stop_id": "2",
+                                        "stop_lat": 37.049,
+                                        "stop_lon": -122.0279,
+                                        "stop_name": "Scotts Valley",
+                                      },
+                                    ],
+                                    "trips": Array [
+                                      Object {
+                                        "duration": 1234,
+                                        "start_time": 12345,
+                                        "trip_headsign": "To Downtown",
+                                        "trip_id": "abcd",
+                                        "trip_short_name": "The Express",
+                                      },
+                                    ],
+                                  },
+                                ],
+                                "route_id": "route1",
+                              },
+                            ],
+                            "stops": Array [
+                              Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            ],
+                            "stopsById": Object {
+                              "1": Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              "2": Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            },
+                          }
+                        }
                         bundleId="1"
                         centerLonLat={
                           Object {
@@ -1606,7 +1881,6 @@ exports[`Routes should render 1`] = `
                               "id": "1",
                               "routes": Array [
                                 Object {
-                                  "id": "route1",
                                   "patterns": Array [
                                     Object {
                                       "geometry": Object {
@@ -1663,69 +1937,9 @@ exports[`Routes should render 1`] = `
                                       ],
                                     },
                                   ],
+                                  "route_id": "route1",
                                 },
                               ],
-                              "routesById": Object {
-                                "route1": Object {
-                                  "id": "route1",
-                                  "patterns": Array [
-                                    Object {
-                                      "geometry": Object {
-                                        "coordinates": Array [
-                                          Array [
-                                            -122.0246,
-                                            36.9707,
-                                          ],
-                                          Array [
-                                            -122.0279,
-                                            37.049,
-                                          ],
-                                          Array [
-                                            -121.9799,
-                                            37.2299,
-                                          ],
-                                          Array [
-                                            -121.9445,
-                                            37.324,
-                                          ],
-                                          Array [
-                                            -121.936,
-                                            37.353,
-                                          ],
-                                          Array [
-                                            -121.924,
-                                            37.365,
-                                          ],
-                                        ],
-                                        "type": "LineString",
-                                      },
-                                      "stops": Array [
-                                        Object {
-                                          "stop_id": "1",
-                                          "stop_lat": 36.9707,
-                                          "stop_lon": -122.0246,
-                                          "stop_name": "Santa Cruz",
-                                        },
-                                        Object {
-                                          "stop_id": "2",
-                                          "stop_lat": 37.049,
-                                          "stop_lon": -122.0279,
-                                          "stop_name": "Scotts Valley",
-                                        },
-                                      ],
-                                      "trips": Array [
-                                        Object {
-                                          "duration": 1234,
-                                          "start_time": 12345,
-                                          "trip_headsign": "To Downtown",
-                                          "trip_id": "abcd",
-                                          "trip_short_name": "The Express",
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              },
                               "stops": Array [
                                 Object {
                                   "stop_id": "1",
@@ -1763,7 +1977,6 @@ exports[`Routes should render 1`] = `
                               "id": "1",
                               "routes": Array [
                                 Object {
-                                  "id": "route1",
                                   "patterns": Array [
                                     Object {
                                       "geometry": Object {
@@ -1820,69 +2033,9 @@ exports[`Routes should render 1`] = `
                                       ],
                                     },
                                   ],
+                                  "route_id": "route1",
                                 },
                               ],
-                              "routesById": Object {
-                                "route1": Object {
-                                  "id": "route1",
-                                  "patterns": Array [
-                                    Object {
-                                      "geometry": Object {
-                                        "coordinates": Array [
-                                          Array [
-                                            -122.0246,
-                                            36.9707,
-                                          ],
-                                          Array [
-                                            -122.0279,
-                                            37.049,
-                                          ],
-                                          Array [
-                                            -121.9799,
-                                            37.2299,
-                                          ],
-                                          Array [
-                                            -121.9445,
-                                            37.324,
-                                          ],
-                                          Array [
-                                            -121.936,
-                                            37.353,
-                                          ],
-                                          Array [
-                                            -121.924,
-                                            37.365,
-                                          ],
-                                        ],
-                                        "type": "LineString",
-                                      },
-                                      "stops": Array [
-                                        Object {
-                                          "stop_id": "1",
-                                          "stop_lat": 36.9707,
-                                          "stop_lon": -122.0246,
-                                          "stop_name": "Santa Cruz",
-                                        },
-                                        Object {
-                                          "stop_id": "2",
-                                          "stop_lat": 37.049,
-                                          "stop_lon": -122.0279,
-                                          "stop_name": "Scotts Valley",
-                                        },
-                                      ],
-                                      "trips": Array [
-                                        Object {
-                                          "duration": 1234,
-                                          "start_time": 12345,
-                                          "trip_headsign": "To Downtown",
-                                          "trip_id": "abcd",
-                                          "trip_short_name": "The Express",
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              },
                               "stops": Array [
                                 Object {
                                   "stop_id": "1",
@@ -1925,7 +2078,85 @@ exports[`Routes should render 1`] = `
                             "zoom": 12,
                           }
                         }
-                        modificationsOnMap={Array []}
+                        modificationsOnMap={
+                          Array [
+                            Object {
+                              "bidirectional": false,
+                              "description": "Mock description",
+                              "entries": Array [],
+                              "feed": "1",
+                              "id": "1234",
+                              "name": "Test Modification",
+                              "routes": Array [
+                                "route1",
+                              ],
+                              "segments": Array [
+                                {
+                            "type": "Feature",
+                            "properties": {},
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
+                                ]
+                              ]
+                            }
+                          },
+                              ],
+                              "showOnMap": false,
+                              "timetables": Array [
+                                Object {
+                                  "dwellTime": 10,
+                                  "endTime": 57600,
+                                  "friday": true,
+                                  "headwaySecs": 900,
+                                  "monday": true,
+                                  "name": "Test timetable",
+                                  "patternTrips": Array [
+                                    "abcd",
+                                  ],
+                                  "saturday": false,
+                                  "segmentSpeeds": Array [],
+                                  "sourceTrip": "abcd",
+                                  "startTime": 28800,
+                                  "sunday": false,
+                                  "thursday": true,
+                                  "tuesday": true,
+                                  "wednesday": true,
+                                },
+                              ],
+                              "trips": Array [
+                                "abcd",
+                              ],
+                              "type": "add-trip-pattern",
+                              "variants": Array [
+                                true,
+                              ],
+                            },
+                          ]
+                        }
                         qualifiedStops={Array []}
                         replaceModification={[Function]}
                         setMapState={[Function]}
@@ -1940,6 +2171,217 @@ exports[`Routes should render 1`] = `
                             }
                           >
                             }
+                            <AddTripPatternLayer
+                              bidirectional={false}
+                              highlightSegment={-1}
+                              highlightStop={null}
+                              segments={
+                                Array [
+                                  {
+                                  "type": "Feature",
+                                  "properties": {},
+                                  "geometry": {
+                                    "type": "LineString",
+                                    "coordinates": [
+                                      [
+                                        "-122.02460000",
+                                        "36.97070000"
+                                      ],
+                                      [
+                                        "-122.02790000",
+                                        "37.04900000"
+                                      ],
+                                      [
+                                        "-121.97990000",
+                                        "37.22990000"
+                                      ],
+                                      [
+                                        "-121.94450000",
+                                        "37.32400000"
+                                      ],
+                                      [
+                                        "-121.93600000",
+                                        "37.35300000"
+                                      ],
+                                      [
+                                        "-121.92400000",
+                                        "37.36500000"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                ]
+                              }
+                            >
+                              <FeatureGroup>
+                                <div
+                                  style={
+                                    Object {
+                                      "display": "none",
+                                    }
+                                  }
+                                >
+                                  <GeoJSON
+                                    color="#55b"
+                                    data={
+                                      {
+                                        "type": "FeatureCollection",
+                                        "features": [
+                                          {
+                                            "type": "Feature",
+                                            "properties": {},
+                                            "geometry": {
+                                              "type": "LineString",
+                                              "coordinates": [
+                                                [
+                                                  "-122.02460000",
+                                                  "36.97070000"
+                                                ],
+                                                [
+                                                  "-122.02790000",
+                                                  "37.04900000"
+                                                ],
+                                                [
+                                                  "-121.97990000",
+                                                  "37.22990000"
+                                                ],
+                                                [
+                                                  "-121.94450000",
+                                                  "37.32400000"
+                                                ],
+                                                [
+                                                  "-121.93600000",
+                                                  "37.35300000"
+                                                ],
+                                                [
+                                                  "-121.92400000",
+                                                  "37.36500000"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                    weight={3}
+                                  >
+                                    <g
+                                      data={
+                                        {
+                                          "type": "FeatureCollection",
+                                          "features": [
+                                            {
+                                              "type": "Feature",
+                                              "properties": {},
+                                              "geometry": {
+                                                "type": "LineString",
+                                                "coordinates": [
+                                                  [
+                                                    "-122.02460000",
+                                                    "36.97070000"
+                                                  ],
+                                                  [
+                                                    "-122.02790000",
+                                                    "37.04900000"
+                                                  ],
+                                                  [
+                                                    "-121.97990000",
+                                                    "37.22990000"
+                                                  ],
+                                                  [
+                                                    "-121.94450000",
+                                                    "37.32400000"
+                                                  ],
+                                                  [
+                                                    "-121.93600000",
+                                                    "37.35300000"
+                                                  ],
+                                                  [
+                                                    "-121.92400000",
+                                                    "37.36500000"
+                                                  ]
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                      type="GeoJSON"
+                                    />
+                                  </GeoJSON>
+                                  <DirectionalMarkers
+                                    color="#55b"
+                                    patterns={
+                                      Array [
+                                        Object {
+                                          "geometry": Object {
+                                            "coordinates": Array [
+                                              Array [
+                                                -122.0246,
+                                                36.9707,
+                                              ],
+                                              Array [
+                                                -122.0279,
+                                                37.049,
+                                              ],
+                                              Array [
+                                                -121.9799,
+                                                37.2299,
+                                              ],
+                                              Array [
+                                                -121.9445,
+                                                37.324,
+                                              ],
+                                              Array [
+                                                -121.936,
+                                                37.353,
+                                              ],
+                                              Array [
+                                                -121.924,
+                                                37.365,
+                                              ],
+                                            ],
+                                          },
+                                        },
+                                      ]
+                                    }
+                                  />
+                                  <StopIcons
+                                    id="00000000-0000-0000-0000-000000000000-stop-icons"
+                                    stops={
+                                      Array [
+                                        Object {
+                                          "autoCreated": true,
+                                          "bearing": -1.9265463557264133,
+                                          "center": Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          "distanceFromStart": 0,
+                                          "index": 0,
+                                          "lat": 36.9707,
+                                          "lon": -122.0246,
+                                          "stopId": undefined,
+                                        },
+                                      ]
+                                    }
+                                  >
+                                    <g>
+                                      <CircleMarker
+                                        center={
+                                          Object {
+                                            "lat": 36.9707,
+                                            "lng": -122.0246,
+                                          }
+                                        }
+                                        color="#55b"
+                                        radius={2.5}
+                                      />
+                                    </g>
+                                  </StopIcons>
+                                </div>
+                              </FeatureGroup>
+                            </AddTripPatternLayer>
                           </div>
                         </FeatureGroup>
                       </ScenarioMap>
@@ -2016,6 +2458,9 @@ exports[`Routes should render 1`] = `
                                     },
                                   ],
                                   "component": [Function],
+                                  "indexRoute": Object {
+                                    "component": [Function],
+                                  },
                                   "path": "bundles",
                                 },
                                 Object {
@@ -2137,6 +2582,9 @@ exports[`Routes should render 1`] = `
                                   },
                                 ],
                                 "component": [Function],
+                                "indexRoute": Object {
+                                  "component": [Function],
+                                },
                                 "path": "bundles",
                               },
                               Object {
@@ -2324,6 +2772,9 @@ exports[`Routes should render 1`] = `
                                       },
                                     ],
                                     "component": [Function],
+                                    "indexRoute": Object {
+                                      "component": [Function],
+                                    },
                                     "path": "bundles",
                                   },
                                   Object {
@@ -2445,6 +2896,9 @@ exports[`Routes should render 1`] = `
                                     },
                                   ],
                                   "component": [Function],
+                                  "indexRoute": Object {
+                                    "component": [Function],
+                                  },
                                   "path": "bundles",
                                 },
                                 Object {
@@ -2541,32 +2995,37 @@ exports[`Routes should render 1`] = `
                       ]
                     }
                   >
-                    <div
-                      className="InnerDock"
-                    >
-                      <Body>
+                    <InnerDock>
+                      <div
+                        className="InnerDock "
+                        style={
+                          Object {
+                            "height": 768,
+                          }
+                        }
+                      >
                         <div
-                          className="panel-body"
+                          className="WelcomeTitle"
                         >
-                          <div
-                            className="WelcomeTitle"
-                          >
-                            <p
-                              style={
-                                Object {
-                                  "textAlign": "center",
-                                }
+                          <p
+                            style={
+                              Object {
+                                "textAlign": "center",
                               }
-                            >
-                              welcome to
-                            </p>
-                            <span
-                              className="logo"
-                              to="/"
-                            >
-                              conveyal analysis
-                            </span>
-                          </div>
+                            }
+                          >
+                            welcome to
+                          </p>
+                          <span
+                            className="logo"
+                            to="/"
+                          >
+                            conveyal analysis
+                          </span>
+                        </div>
+                        <div
+                          className="block"
+                        >
                           <Group>
                             <div
                               className="form-group"
@@ -2642,8 +3101,8 @@ exports[`Routes should render 1`] = `
                             </div>
                           </div>
                         </div>
-                      </Body>
-                    </div>
+                      </div>
+                    </InnerDock>
                   </SelectProject>
                 </Connect(SelectProject)>
               </div>
