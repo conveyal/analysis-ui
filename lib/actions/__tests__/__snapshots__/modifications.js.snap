@@ -4,7 +4,10 @@ exports[`actions > modifications > copyFromScenario should work 1`] = `
 Object {
   "payload": Object {
     "next": [Function],
-    "url": "/api/scenario/1/modifications",
+    "options": Object {
+      "method": "post",
+    },
+    "url": "/api/scenario/2/import/1",
   },
   "type": "fetch",
 }
@@ -14,8 +17,10 @@ exports[`actions > modifications > copyFromScenario should work 2`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {},
-      "url": "/api/scenario/1/modifications",
+      "options": Object {
+        "method": "post",
+      },
+      "url": "/api/scenario/2/import/1",
     },
     "type": "increment outstanding fetches",
   },
@@ -27,249 +32,25 @@ exports[`actions > modifications > copyFromScenario should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {},
+      "options": Object {
+        "method": "post",
+      },
     },
     "type": "decrement outstanding fetches",
   },
-  Array [
-    Array [
+  Object {
+    "payload": Array [
       Object {
-        "payload": Object {
-          "bidirectional": false,
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "name": "Test Modification",
-          "routes": Array [
-            "route1",
-          ],
-          "scenario": 2,
-          "segments": Array [
-            {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "dwellTime": 10,
-              "endTime": 57600,
-              "friday": true,
-              "headwaySecs": 900,
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
-        },
-        "type": "set modification",
-      },
-      Array [
-        Object {
-          "payload": Object {
-            "options": Object {
-              "body": Object {
-                "bidirectional": false,
-                "description": "Mock description",
-                "entries": Array [],
-                "feed": "1",
-                "name": "Test Modification",
-                "routes": Array [
-                  "route1",
-                ],
-                "scenario": 2,
-                "segments": Array [
-                  {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-                ],
-                "showOnMap": false,
-                "timetables": Array [
-                  Object {
-                    "dwellTime": 10,
-                    "endTime": 57600,
-                    "friday": true,
-                    "headwaySecs": 900,
-                    "monday": true,
-                    "name": "Test timetable",
-                    "patternTrips": Array [
-                      "abcd",
-                    ],
-                    "saturday": false,
-                    "segmentSpeeds": Array [],
-                    "sourceTrip": "abcd",
-                    "startTime": 28800,
-                    "sunday": false,
-                    "thursday": true,
-                    "tuesday": true,
-                    "wednesday": true,
-                  },
-                ],
-                "trips": Array [
-                  "abcd",
-                ],
-                "type": "add-trip-pattern",
-                "variants": Array [
-                  true,
-                ],
-              },
-              "method": "put",
-            },
-          },
-          "type": "increment outstanding fetches",
-        },
-        Promise {},
-      ],
-    ],
-  ],
-]
-`;
-
-exports[`actions > modifications > create should work 1`] = `[Function]`;
-
-exports[`actions > modifications > create should work 2`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bidirectional": true,
-          "expanded": false,
-          "id": "00000000-0000-0000-0000-000000000000",
-          "name": "Add Trip Pattern",
-          "scenario": "1",
-          "segments": Array [],
-          "showOnMap": true,
-          "timetables": Array [],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "post",
-      },
-      "url": "/api/modification",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Promise {},
-]
-`;
-
-exports[`actions > modifications > create should work 3`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bidirectional": true,
-          "expanded": false,
-          "id": "00000000-0000-0000-0000-000000000000",
-          "name": "Add Trip Pattern",
-          "scenario": "1",
-          "segments": Array [],
-          "showOnMap": true,
-          "timetables": Array [],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "post",
-      },
-      "url": "/api/modification",
-    },
-    "type": "decrement outstanding fetches",
-  },
-  Array [
-    Object {
-      "payload": Object {
+        "_id": "1234",
         "bidirectional": false,
         "description": "Mock description",
         "entries": Array [],
         "feed": "1",
-        "id": "1234",
         "name": "Test Modification",
         "routes": Array [
           "route1",
         ],
+        "scenarioId": "1",
         "segments": Array [
           {
   "type": "Feature",
@@ -308,15 +89,23 @@ Array [
         "showOnMap": false,
         "timetables": Array [
           Object {
+            "_id": "timetable-id",
             "dwellTime": 10,
             "endTime": 57600,
+            "exactTimes": false,
             "friday": true,
             "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
             "monday": true,
             "name": "Test timetable",
             "patternTrips": Array [
               "abcd",
             ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
             "saturday": false,
             "segmentSpeeds": Array [],
             "sourceTrip": "abcd",
@@ -335,7 +124,153 @@ Array [
           true,
         ],
       },
-      "type": "set modification",
+    ],
+    "type": "create modifications",
+  },
+]
+`;
+
+exports[`actions > modifications > create should work 1`] = `[Function]`;
+
+exports[`actions > modifications > create should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bidirectional": true,
+          "expanded": false,
+          "name": "Add Trip Pattern",
+          "scenarioId": "1",
+          "segments": Array [],
+          "showOnMap": true,
+          "timetables": Array [],
+          "type": "add-trip-pattern",
+          "variants": Array [
+            true,
+          ],
+        },
+        "method": "post",
+      },
+      "url": "/api/modification",
+    },
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > modifications > create should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "bidirectional": true,
+          "expanded": false,
+          "name": "Add Trip Pattern",
+          "scenarioId": "1",
+          "segments": Array [],
+          "showOnMap": true,
+          "timetables": Array [],
+          "type": "add-trip-pattern",
+          "variants": Array [
+            true,
+          ],
+        },
+        "method": "post",
+      },
+      "url": "/api/modification",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Array [
+    Object {
+      "payload": Object {
+        "_id": "1234",
+        "bidirectional": false,
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "routes": Array [
+          "route1",
+        ],
+        "scenarioId": "1",
+        "segments": Array [
+          {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  }
+},
+        ],
+        "showOnMap": false,
+        "timetables": Array [
+          Object {
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "variants": Array [
+          true,
+        ],
+      },
+      "type": "create modification",
     },
     Object {
       "payload": Object {
@@ -426,15 +361,16 @@ Array [
     Object {
       "payload": Array [
         Object {
+          "_id": "1234",
           "bidirectional": false,
           "description": "Mock description",
           "entries": Array [],
           "feed": "1",
-          "id": "1234",
           "name": "Test Modification",
           "routes": Array [
             "route1",
           ],
+          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -473,15 +409,23 @@ Array [
           "showOnMap": false,
           "timetables": Array [
             Object {
+              "_id": "timetable-id",
               "dwellTime": 10,
               "endTime": 57600,
+              "exactTimes": false,
               "friday": true,
               "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
               "monday": true,
               "name": "Test timetable",
               "patternTrips": Array [
                 "abcd",
               ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
               "saturday": false,
               "segmentSpeeds": Array [],
               "sourceTrip": "abcd",
@@ -523,15 +467,16 @@ Object {
     "next": [Function],
     "options": Object {
       "body": Object {
+        "_id": "1234",
         "bidirectional": false,
         "description": "Mock description",
         "entries": Array [],
         "feed": "1",
-        "id": "1234",
         "name": "Test Modification",
         "routes": Array [
           "route1",
         ],
+        "scenarioId": "1",
         "segments": Array [
           {
   "type": "Feature",
@@ -570,15 +515,23 @@ Object {
         "showOnMap": false,
         "timetables": Array [
           Object {
+            "_id": "timetable-id",
             "dwellTime": 10,
             "endTime": 57600,
+            "exactTimes": false,
             "friday": true,
             "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
             "monday": true,
             "name": "Test timetable",
             "patternTrips": Array [
               "abcd",
             ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
             "saturday": false,
             "segmentSpeeds": Array [],
             "sourceTrip": "abcd",
@@ -611,15 +564,16 @@ Array [
     "payload": Object {
       "options": Object {
         "body": Object {
+          "_id": "1234",
           "bidirectional": false,
           "description": "Mock description",
           "entries": Array [],
           "feed": "1",
-          "id": "1234",
           "name": "Test Modification",
           "routes": Array [
             "route1",
           ],
+          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -658,15 +612,23 @@ Array [
           "showOnMap": false,
           "timetables": Array [
             Object {
+              "_id": "timetable-id",
               "dwellTime": 10,
               "endTime": 57600,
+              "exactTimes": false,
               "friday": true,
               "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
               "monday": true,
               "name": "Test timetable",
               "patternTrips": Array [
                 "abcd",
               ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
               "saturday": false,
               "segmentSpeeds": Array [],
               "sourceTrip": "abcd",
@@ -701,15 +663,16 @@ Array [
     "payload": Object {
       "options": Object {
         "body": Object {
+          "_id": "1234",
           "bidirectional": false,
           "description": "Mock description",
           "entries": Array [],
           "feed": "1",
-          "id": "1234",
           "name": "Test Modification",
           "routes": Array [
             "route1",
           ],
+          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -748,15 +711,23 @@ Array [
           "showOnMap": false,
           "timetables": Array [
             Object {
+              "_id": "timetable-id",
               "dwellTime": 10,
               "endTime": 57600,
+              "exactTimes": false,
               "friday": true,
               "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
               "monday": true,
               "name": "Test timetable",
               "patternTrips": Array [
                 "abcd",
               ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
               "saturday": false,
               "segmentSpeeds": Array [],
               "sourceTrip": "abcd",
@@ -781,457 +752,29 @@ Array [
     },
     "type": "decrement outstanding fetches",
   },
+  Object {
+    "payload": "saved",
+    "type": "set modification",
+  },
 ]
 `;
 
 exports[`actions > modifications > set should work 1`] = `
-Array [
-  Object {
-    "payload": Object {
-      "bidirectional": false,
-      "description": "Mock description",
-      "entries": Array [],
-      "feed": "1",
-      "id": "1234",
-      "name": "Test Modification",
-      "routes": Array [
-        "route1",
-      ],
-      "segments": Array [
-        {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-      ],
-      "showOnMap": false,
-      "timetables": Array [
-        Object {
-          "dwellTime": 10,
-          "endTime": 57600,
-          "friday": true,
-          "headwaySecs": 900,
-          "monday": true,
-          "name": "Test timetable",
-          "patternTrips": Array [
-            "abcd",
-          ],
-          "saturday": false,
-          "segmentSpeeds": Array [],
-          "sourceTrip": "abcd",
-          "startTime": 28800,
-          "sunday": false,
-          "thursday": true,
-          "tuesday": true,
-          "wednesday": true,
-        },
-      ],
-      "trips": Array [
-        "abcd",
-      ],
-      "type": "add-trip-pattern",
-      "variants": Array [
-        true,
-      ],
-    },
-    "type": "set modification",
-  },
-  Object {
-    "payload": Object {
-      "next": [Function],
-      "options": Object {
-        "body": Object {
-          "bidirectional": false,
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "id": "1234",
-          "name": "Test Modification",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "dwellTime": 10,
-              "endTime": 57600,
-              "friday": true,
-              "headwaySecs": 900,
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "put",
-      },
-      "url": "/api/modification/1234",
-    },
-    "type": "fetch",
-  },
-]
-`;
-
-exports[`actions > modifications > set should work 2`] = `
-Array [
-  Object {
-    "payload": Object {
-      "bidirectional": false,
-      "description": "Mock description",
-      "entries": Array [],
-      "feed": "1",
-      "id": "1234",
-      "name": "Test Modification",
-      "routes": Array [
-        "route1",
-      ],
-      "segments": Array [
-        {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-      ],
-      "showOnMap": false,
-      "timetables": Array [
-        Object {
-          "dwellTime": 10,
-          "endTime": 57600,
-          "friday": true,
-          "headwaySecs": 900,
-          "monday": true,
-          "name": "Test timetable",
-          "patternTrips": Array [
-            "abcd",
-          ],
-          "saturday": false,
-          "segmentSpeeds": Array [],
-          "sourceTrip": "abcd",
-          "startTime": 28800,
-          "sunday": false,
-          "thursday": true,
-          "tuesday": true,
-          "wednesday": true,
-        },
-      ],
-      "trips": Array [
-        "abcd",
-      ],
-      "type": "add-trip-pattern",
-      "variants": Array [
-        true,
-      ],
-    },
-    "type": "set modification",
-  },
-  Array [
-    Object {
-      "payload": Object {
-        "options": Object {
-          "body": Object {
-            "bidirectional": false,
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "id": "1234",
-            "name": "Test Modification",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "dwellTime": 10,
-                "endTime": 57600,
-                "friday": true,
-                "headwaySecs": 900,
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "variants": Array [
-              true,
-            ],
-          },
-          "method": "put",
-        },
-        "url": "/api/modification/1234",
-      },
-      "type": "increment outstanding fetches",
-    },
-    Promise {},
-  ],
-]
-`;
-
-exports[`actions > modifications > set should work 3`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bidirectional": false,
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "id": "1234",
-          "name": "Test Modification",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "dwellTime": 10,
-              "endTime": 57600,
-              "friday": true,
-              "headwaySecs": 900,
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "put",
-      },
-      "url": "/api/modification/1234",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Promise {},
-]
-`;
-
-exports[`actions > modifications > setActive should work 1`] = `
 Object {
-  "type": "set active modification",
-}
-`;
-
-exports[`actions > modifications > setAndRetrieveData should work 1`] = `
-Array [
-  Array [
-    Object {
-      "payload": Object {
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "body": Object {
+        "_id": "1234",
         "bidirectional": false,
         "description": "Mock description",
         "entries": Array [],
         "feed": "1",
-        "id": "1234",
         "name": "Test Modification",
         "routes": Array [
           "route1",
         ],
+        "scenarioId": "1",
         "segments": Array [
           {
   "type": "Feature",
@@ -1270,15 +813,23 @@ Array [
         "showOnMap": false,
         "timetables": Array [
           Object {
+            "_id": "timetable-id",
             "dwellTime": 10,
             "endTime": 57600,
+            "exactTimes": false,
             "friday": true,
             "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
             "monday": true,
             "name": "Test timetable",
             "patternTrips": Array [
               "abcd",
             ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
             "saturday": false,
             "segmentSpeeds": Array [],
             "sourceTrip": "abcd",
@@ -1297,24 +848,32 @@ Array [
           true,
         ],
       },
-      "type": "set modification",
+      "method": "put",
     },
-    Object {
-      "payload": Object {
-        "next": [Function],
-        "options": Object {
-          "body": Object {
-            "bidirectional": false,
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "id": "1234",
-            "name": "Test Modification",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
+    "url": "/api/modification/1234",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > modifications > set should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "_id": "1234",
+          "bidirectional": false,
+          "description": "Mock description",
+          "entries": Array [],
+          "feed": "1",
+          "name": "Test Modification",
+          "routes": Array [
+            "route1",
+          ],
+          "scenarioId": "1",
+          "segments": Array [
+            {
   "type": "Feature",
   "properties": {},
   "geometry": {
@@ -1347,52 +906,161 @@ Array [
     ]
   }
 },
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "dwellTime": 10,
-                "endTime": 57600,
-                "friday": true,
-                "headwaySecs": 900,
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "variants": Array [
-              true,
-            ],
-          },
-          "method": "put",
+          ],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "_id": "timetable-id",
+              "dwellTime": 10,
+              "endTime": 57600,
+              "exactTimes": false,
+              "friday": true,
+              "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "variants": Array [
+            true,
+          ],
         },
-        "url": "/api/modification/1234",
+        "method": "put",
       },
-      "type": "fetch",
+      "url": "/api/modification/1234",
     },
-  ],
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > modifications > set should work 3`] = `
+Array [
   Object {
     "payload": Object {
-      "next": [Function],
-      "url": "/api/graphql?query=%0Aquery%20dataQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20checksum%2C%0A%20%20%20%20%20%20routes%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20detailRoutes%3A%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20direction_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20stop_id%2C%0A%20%20%20%20%20%20%20%20stop_name%2C%0A%20%20%20%20%20%20%20%20stop_lat%2C%0A%20%20%20%20%20%20%20%20stop_lon%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=%7B%22bundleId%22%3A1%2C%22routeIds%22%3A%5B%5D%7D",
+      "options": Object {
+        "body": Object {
+          "_id": "1234",
+          "bidirectional": false,
+          "description": "Mock description",
+          "entries": Array [],
+          "feed": "1",
+          "name": "Test Modification",
+          "routes": Array [
+            "route1",
+          ],
+          "scenarioId": "1",
+          "segments": Array [
+            {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  }
+},
+          ],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "_id": "timetable-id",
+              "dwellTime": 10,
+              "endTime": 57600,
+              "exactTimes": false,
+              "friday": true,
+              "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "variants": Array [
+            true,
+          ],
+        },
+        "method": "put",
+      },
+      "url": "/api/modification/1234",
     },
-    "type": "fetch",
+    "type": "decrement outstanding fetches",
+  },
+  Object {
+    "payload": "saved",
+    "type": "set modification",
   },
 ]
+`;
+
+exports[`actions > modifications > setActive should work 1`] = `
+Object {
+  "type": "set active modification",
+}
 `;
 
 exports[`actions > modifications > setLocally should work 1`] = `

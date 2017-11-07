@@ -4,11 +4,12 @@ exports[`reducers > scenario should handle add bundle 1`] = `
 Object {
   "bundles": Array [
     Object {
-      "id": "1",
+      "_id": "1",
     },
   ],
   "feeds": Array [],
   "feedsById": Object {},
+  "modifications": Array [],
   "scenarios": Array [],
   "scenariosById": Object {},
 }
@@ -19,14 +20,15 @@ Object {
   "bundles": Array [],
   "feeds": Array [],
   "feedsById": Object {},
+  "modifications": Array [],
   "scenarios": Array [
     Object {
-      "id": "1",
+      "_id": "1",
     },
   ],
   "scenariosById": Object {
     "1": Object {
-      "id": "1",
+      "_id": "1",
     },
   },
 }
@@ -37,6 +39,7 @@ Object {
   "bundles": Array [],
   "feeds": Array [],
   "feedsById": Object {},
+  "modifications": Array [],
   "scenarios": Array [],
   "scenariosById": Object {},
 }
@@ -51,8 +54,6 @@ Object {
 exports[`reducers > scenario should handle delete modification 1`] = `
 Object {
   "modifications": Array [],
-  "modificationsById": Object {},
-  "modificationsByType": Object {},
 }
 `;
 
@@ -69,6 +70,7 @@ Object {
   "bundles": Array [],
   "feeds": Array [],
   "feedsById": Object {},
+  "modifications": Array [],
   "scenarios": Array [],
   "scenariosById": Object {},
 }
@@ -78,7 +80,7 @@ exports[`reducers > scenario should handle set bundle 1`] = `
 Object {
   "bundles": Array [
     Object {
-      "id": "1",
+      "_id": "1",
     },
   ],
   "currentScenario": Object {},
@@ -89,7 +91,7 @@ exports[`reducers > scenario should handle set bundles 1`] = `
 Object {
   "bundles": Array [
     Object {
-      "id": "1",
+      "_id": "1",
     },
   ],
   "currentScenario": Object {
@@ -103,14 +105,15 @@ Object {
   "bundles": Array [],
   "feeds": Array [
     Object {
-      "id": "1",
+      "_id": "1",
     },
   ],
   "feedsById": Object {
     "1": Object {
-      "id": "1",
+      "_id": "1",
     },
   },
+  "modifications": Array [],
   "scenarios": Array [],
   "scenariosById": Object {},
 }
@@ -121,26 +124,7 @@ Object {
   "bundles": Array [],
   "feeds": Array [],
   "feedsById": Object {},
-  "modifications": Array [
-    Object {
-      "id": "1",
-      "type": "adjust-dwell-time",
-    },
-  ],
-  "modificationsById": Object {
-    "1": Object {
-      "id": "1",
-      "type": "adjust-dwell-time",
-    },
-  },
-  "modificationsByType": Object {
-    "adjust-dwell-time": Array [
-      Object {
-        "id": "1",
-        "type": "adjust-dwell-time",
-      },
-    ],
-  },
+  "modifications": Array [],
   "scenarios": Array [],
   "scenariosById": Object {},
 }
@@ -153,24 +137,10 @@ Object {
   "feedsById": Object {},
   "modifications": Array [
     Object {
-      "id": "1",
+      "_id": "1",
       "type": "adjust-dwell-time",
     },
   ],
-  "modificationsById": Object {
-    "1": Object {
-      "id": "1",
-      "type": "adjust-dwell-time",
-    },
-  },
-  "modificationsByType": Object {
-    "adjust-dwell-time": Array [
-      Object {
-        "id": "1",
-        "type": "adjust-dwell-time",
-      },
-    ],
-  },
   "scenarios": Array [],
   "scenariosById": Object {},
 }
@@ -180,23 +150,23 @@ exports[`reducers > scenario should handle set scenario 1`] = `
 Object {
   "bundles": Array [
     Object {
-      "id": "1",
+      "_id": "1",
     },
   ],
   "currentScenario": Object {
+    "_id": "1",
     "bundleId": "1",
-    "id": "1",
   },
   "scenarios": Array [
     Object {
+      "_id": "1",
       "bundleId": "1",
-      "id": "1",
     },
   ],
   "scenariosById": Object {
     "1": Object {
+      "_id": "1",
       "bundleId": "1",
-      "id": "1",
     },
   },
 }
@@ -207,14 +177,15 @@ Object {
   "bundles": Array [],
   "feeds": Array [],
   "feedsById": Object {},
+  "modifications": Array [],
   "scenarios": Array [
     Object {
-      "id": "1",
+      "_id": "1",
     },
   ],
   "scenariosById": Object {
     "1": Object {
-      "id": "1",
+      "_id": "1",
     },
   },
 }
@@ -224,29 +195,11 @@ exports[`reducers > scenario should handle show variant 1`] = `
 Object {
   "modifications": Array [
     Object {
-      "id": "1",
+      "_id": "1",
       "showOnMap": undefined,
       "type": "adjust-dwell-time",
       "variants": Array [],
     },
   ],
-  "modificationsById": Object {
-    "1": Object {
-      "id": "1",
-      "showOnMap": undefined,
-      "type": "adjust-dwell-time",
-      "variants": Array [],
-    },
-  },
-  "modificationsByType": Object {
-    "adjust-dwell-time": Array [
-      Object {
-        "id": "1",
-        "showOnMap": undefined,
-        "type": "adjust-dwell-time",
-        "variants": Array [],
-      },
-    ],
-  },
 }
 `;

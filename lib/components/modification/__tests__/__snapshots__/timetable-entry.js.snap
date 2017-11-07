@@ -210,7 +210,7 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
       htmlFor="times-are-exact-input-10"
     >
       <input
-        checked={undefined}
+        checked={false}
         disabled={false}
         id="times-are-exact-input-10"
         onChange={[Function]}
@@ -220,6 +220,7 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
       Times are exact
     </label>
   </div>
+  
   <div>
     <div
       className="form-group"
@@ -253,6 +254,24 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
             </div>
           </span>
           <span
+            aria-label="Clear value"
+            className="Select-clear-zone"
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            title="Clear value"
+          >
+            <span
+              className="Select-clear"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "&times;",
+                }
+              }
+            />
+          </span>
+          <span
             className="Select-arrow-zone"
             onMouseDown={[Function]}
           >
@@ -264,6 +283,7 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 `;

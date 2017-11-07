@@ -1699,15 +1699,16 @@ exports[`Routes should render 1`] = `
                       <ScenarioMap
                         activeModification={
                           Object {
+                            "_id": "1234",
                             "bidirectional": false,
                             "description": "Mock description",
                             "entries": Array [],
                             "feed": "1",
-                            "id": "1234",
                             "name": "Test Modification",
                             "routes": Array [
                               "route1",
                             ],
+                            "scenarioId": "1",
                             "segments": Array [
                               {
                             "type": "Feature",
@@ -1746,15 +1747,23 @@ exports[`Routes should render 1`] = `
                             "showOnMap": false,
                             "timetables": Array [
                               Object {
+                                "_id": "timetable-id",
                                 "dwellTime": 10,
                                 "endTime": 57600,
+                                "exactTimes": false,
                                 "friday": true,
                                 "headwaySecs": 900,
+                                "modificationId": "1234",
+                                "modificationName": "Test Modification",
                                 "monday": true,
                                 "name": "Test timetable",
                                 "patternTrips": Array [
                                   "abcd",
                                 ],
+                                "phaseAtStop": "",
+                                "phaseFromStop": "",
+                                "phaseFromTimetable": "",
+                                "phaseSeconds": 300,
                                 "saturday": false,
                                 "segmentSpeeds": Array [],
                                 "sourceTrip": "abcd",
@@ -2081,15 +2090,16 @@ exports[`Routes should render 1`] = `
                         modificationsOnMap={
                           Array [
                             Object {
+                              "_id": "1234",
                               "bidirectional": false,
                               "description": "Mock description",
                               "entries": Array [],
                               "feed": "1",
-                              "id": "1234",
                               "name": "Test Modification",
                               "routes": Array [
                                 "route1",
                               ],
+                              "scenarioId": "1",
                               "segments": Array [
                                 {
                             "type": "Feature",
@@ -2128,15 +2138,23 @@ exports[`Routes should render 1`] = `
                               "showOnMap": false,
                               "timetables": Array [
                                 Object {
+                                  "_id": "timetable-id",
                                   "dwellTime": 10,
                                   "endTime": 57600,
+                                  "exactTimes": false,
                                   "friday": true,
                                   "headwaySecs": 900,
+                                  "modificationId": "1234",
+                                  "modificationName": "Test Modification",
                                   "monday": true,
                                   "name": "Test timetable",
                                   "patternTrips": Array [
                                     "abcd",
                                   ],
+                                  "phaseAtStop": "",
+                                  "phaseFromStop": "",
+                                  "phaseFromTimetable": "",
+                                  "phaseSeconds": 300,
                                   "saturday": false,
                                   "segmentSpeeds": Array [],
                                   "sourceTrip": "abcd",
@@ -2698,6 +2716,7 @@ exports[`Routes should render 1`] = `
                     projects={
                       Array [
                         Object {
+                          "_id": "1",
                           "bounds": Object {
                             "east": -76,
                             "north": 39,
@@ -2705,7 +2724,6 @@ exports[`Routes should render 1`] = `
                             "west": -77,
                           },
                           "description": "Project description",
-                          "id": "1",
                           "name": "Mock Project",
                           "opportunityDatasets": Array [
                             Object {

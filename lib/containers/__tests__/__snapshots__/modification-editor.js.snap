@@ -17,6 +17,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
     params={
       Object {
         "modificationId": "1234",
+        "scenarioId": "1",
       }
     }
   >
@@ -31,15 +32,16 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       feedIsLoaded={true}
       modification={
         Object {
+          "_id": "1234",
           "bidirectional": false,
           "description": "Mock description",
           "entries": Array [],
           "feed": "1",
-          "id": "1234",
           "name": "Test Modification",
           "routes": Array [
             "route1",
           ],
+          "scenarioId": "1",
           "segments": Array [
             {
           "type": "Feature",
@@ -78,15 +80,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
           "showOnMap": false,
           "timetables": Array [
             Object {
+              "_id": "timetable-id",
               "dwellTime": 10,
               "endTime": 57600,
+              "exactTimes": false,
               "friday": true,
               "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
               "monday": true,
               "name": "Test timetable",
               "patternTrips": Array [
                 "abcd",
               ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
               "saturday": false,
               "segmentSpeeds": Array [],
               "sourceTrip": "abcd",
@@ -110,15 +120,16 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       params={
         Object {
           "modificationId": "1234",
+          "scenarioId": "1",
         }
       }
       removeModification={[Function]}
+      scenarioId="1"
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
-      setModificationName={[Function]}
-      setModificationVariants={[Function]}
       update={[Function]}
+      updateAndRetrieveFeedData={[Function]}
     >
       <div>
         <div
@@ -126,12 +137,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
         >
           <IconLink
             title="Modifications"
-            to="/scenarios/undefined"
+            to="/scenarios/1"
             type="chevron-left"
           >
             <Link
               title="Modifications"
-              to="/scenarios/undefined"
+              to="/scenarios/1"
               type="button"
             >
               <Tip
@@ -148,7 +159,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     name="Modifications"
                     onlyActiveOnIndex={false}
                     style={Object {}}
-                    to="/scenarios/undefined"
+                    to="/scenarios/1"
                     type="button"
                   >
                     <a
@@ -314,7 +325,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   value="Mock description"
                 >
                   <Group
-                    id="description-input-42"
+                    id="description-input-10"
                     label="Description"
                     onChange={[Function]}
                   >
@@ -322,13 +333,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       className="form-group"
                     >
                       <label
-                        htmlFor="description-input-42"
+                        htmlFor="description-input-10"
                       >
                         Description
                       </label>
                       <textarea
                         className="form-control"
-                        id="description-input-42"
+                        id="description-input-10"
                         label="Description"
                         onChange={[Function]}
                       >
@@ -340,15 +351,16 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                 <ModificationType
                   modification={
                     Object {
+                      "_id": "1234",
                       "bidirectional": false,
                       "description": "Mock description",
                       "entries": Array [],
                       "feed": "1",
-                      "id": "1234",
                       "name": "Test Modification",
                       "routes": Array [
                         "route1",
                       ],
+                      "scenarioId": "1",
                       "segments": Array [
                         {
                       "type": "Feature",
@@ -387,15 +399,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       "showOnMap": false,
                       "timetables": Array [
                         Object {
+                          "_id": "timetable-id",
                           "dwellTime": 10,
                           "endTime": 57600,
+                          "exactTimes": false,
                           "friday": true,
                           "headwaySecs": 900,
+                          "modificationId": "1234",
+                          "modificationName": "Test Modification",
                           "monday": true,
                           "name": "Test timetable",
                           "patternTrips": Array [
                             "abcd",
                           ],
+                          "phaseAtStop": "",
+                          "phaseFromStop": "",
+                          "phaseFromTimetable": "",
+                          "phaseSeconds": 300,
                           "saturday": false,
                           "segmentSpeeds": Array [],
                           "sourceTrip": "abcd",
@@ -418,19 +438,21 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   setMapState={[Function]}
                   type="add-trip-pattern"
                   update={[Function]}
+                  updateAndRetrieveFeedData={[Function]}
                 >
                   <Connect(Component)
                     modification={
                       Object {
+                        "_id": "1234",
                         "bidirectional": false,
                         "description": "Mock description",
                         "entries": Array [],
                         "feed": "1",
-                        "id": "1234",
                         "name": "Test Modification",
                         "routes": Array [
                           "route1",
                         ],
+                        "scenarioId": "1",
                         "segments": Array [
                           {
                         "type": "Feature",
@@ -469,15 +491,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         "showOnMap": false,
                         "timetables": Array [
                           Object {
+                            "_id": "timetable-id",
                             "dwellTime": 10,
                             "endTime": 57600,
+                            "exactTimes": false,
                             "friday": true,
                             "headwaySecs": 900,
+                            "modificationId": "1234",
+                            "modificationName": "Test Modification",
                             "monday": true,
                             "name": "Test timetable",
                             "patternTrips": Array [
                               "abcd",
                             ],
+                            "phaseAtStop": "",
+                            "phaseFromStop": "",
+                            "phaseFromTimetable": "",
+                            "phaseSeconds": 300,
                             "saturday": false,
                             "segmentSpeeds": Array [],
                             "sourceTrip": "abcd",
@@ -500,6 +530,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     setMapState={[Function]}
                     type="add-trip-pattern"
                     update={[Function]}
+                    updateAndRetrieveFeedData={[Function]}
                   >
                     <Component
                       allPhaseFromTimetableStops={Object {}}
@@ -519,15 +550,16 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       }
                       modification={
                         Object {
+                          "_id": "1234",
                           "bidirectional": false,
                           "description": "Mock description",
                           "entries": Array [],
                           "feed": "1",
-                          "id": "1234",
                           "name": "Test Modification",
                           "routes": Array [
                             "route1",
                           ],
+                          "scenarioId": "1",
                           "segments": Array [
                             {
                           "type": "Feature",
@@ -566,15 +598,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           "showOnMap": false,
                           "timetables": Array [
                             Object {
+                              "_id": "timetable-id",
                               "dwellTime": 10,
                               "endTime": 57600,
+                              "exactTimes": false,
                               "friday": true,
                               "headwaySecs": 900,
+                              "modificationId": "1234",
+                              "modificationName": "Test Modification",
                               "monday": true,
                               "name": "Test timetable",
                               "patternTrips": Array [
                                 "abcd",
                               ],
+                              "phaseAtStop": "",
+                              "phaseFromStop": "",
+                              "phaseFromTimetable": "",
+                              "phaseSeconds": 300,
                               "saturday": false,
                               "segmentSpeeds": Array [],
                               "sourceTrip": "abcd",
@@ -605,6 +645,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       setMapState={[Function]}
                       type="add-trip-pattern"
                       update={[Function]}
+                      updateAndRetrieveFeedData={[Function]}
                     >
                       <div>
                         <EditAlignment
@@ -622,15 +663,16 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           }
                           modification={
                             Object {
+                              "_id": "1234",
                               "bidirectional": false,
                               "description": "Mock description",
                               "entries": Array [],
                               "feed": "1",
-                              "id": "1234",
                               "name": "Test Modification",
                               "routes": Array [
                                 "route1",
                               ],
+                              "scenarioId": "1",
                               "segments": Array [
                                 {
                               "type": "Feature",
@@ -669,15 +711,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               "showOnMap": false,
                               "timetables": Array [
                                 Object {
+                                  "_id": "timetable-id",
                                   "dwellTime": 10,
                                   "endTime": 57600,
+                                  "exactTimes": false,
                                   "friday": true,
                                   "headwaySecs": 900,
+                                  "modificationId": "1234",
+                                  "modificationName": "Test Modification",
                                   "monday": true,
                                   "name": "Test timetable",
                                   "patternTrips": Array [
                                     "abcd",
                                   ],
+                                  "phaseAtStop": "",
+                                  "phaseFromStop": "",
+                                  "phaseFromTimetable": "",
+                                  "phaseSeconds": 300,
                                   "saturday": false,
                                   "segmentSpeeds": Array [],
                                   "sourceTrip": "abcd",
@@ -732,11 +782,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 className="checkbox"
                               >
                                 <label
-                                  htmlFor="create-stops-automatically-input-43"
+                                  htmlFor="create-stops-automatically-input-11"
                                 >
                                   <input
                                     defaultChecked={false}
-                                    id="create-stops-automatically-input-43"
+                                    id="create-stops-automatically-input-11"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
@@ -747,7 +797,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             </Checkbox>
                             <Checkbox
                               checked={false}
-                              disabled={false}
+                              disabled={true}
                               label="Bidirectional"
                               onChange={[Function]}
                             >
@@ -755,12 +805,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 className="checkbox"
                               >
                                 <label
-                                  htmlFor="bidirectional-input-44"
+                                  htmlFor="bidirectional-input-12"
                                 >
                                   <input
                                     checked={false}
-                                    disabled={false}
-                                    id="bidirectional-input-44"
+                                    disabled={true}
+                                    id="bidirectional-input-12"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
@@ -769,6 +819,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 </label>
                               </div>
                             </Checkbox>
+                            <div
+                              className="alert alert-info"
+                              role="alert"
+                            >
+                              Modification cannot be bidirectional because timetables in this modification have phasing information.
+                            </div>
                           </div>
                         </EditAlignment>
                         <Timetables
@@ -787,15 +843,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           timetables={
                             Array [
                               Object {
+                                "_id": "timetable-id",
                                 "dwellTime": 10,
                                 "endTime": 57600,
+                                "exactTimes": false,
                                 "friday": true,
                                 "headwaySecs": 900,
+                                "modificationId": "1234",
+                                "modificationName": "Test Modification",
                                 "monday": true,
                                 "name": "Test timetable",
                                 "patternTrips": Array [
                                   "abcd",
                                 ],
+                                "phaseAtStop": "",
+                                "phaseFromStop": "",
+                                "phaseFromTimetable": "",
+                                "phaseSeconds": 300,
                                 "saturday": false,
                                 "segmentSpeeds": Array [],
                                 "sourceTrip": "abcd",
@@ -810,6 +874,29 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           update={[Function]}
                         >
                           <div>
+                            <p>
+                              <Button
+                                block={true}
+                                onClick={[Function]}
+                                style="success"
+                              >
+                                <a
+                                  className="btn btn-success btn-block"
+                                  href="#"
+                                  onClick={[Function]}
+                                  tabIndex={0}
+                                >
+                                  <Icon
+                                    type="plus"
+                                  >
+                                    <i
+                                      className="fa fa-plus fa-fw "
+                                    />
+                                  </Icon>
+                                   Add timetable
+                                </a>
+                              </Button>
+                            </p>
                             <TimetableComponent
                               allPhaseFromTimetableStops={Object {}}
                               bidirectional={false}
@@ -826,15 +913,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               setMapState={[Function]}
                               timetable={
                                 Object {
+                                  "_id": "timetable-id",
                                   "dwellTime": 10,
                                   "endTime": 57600,
+                                  "exactTimes": false,
                                   "friday": true,
                                   "headwaySecs": 900,
+                                  "modificationId": "1234",
+                                  "modificationName": "Test Modification",
                                   "monday": true,
                                   "name": "Test timetable",
                                   "patternTrips": Array [
                                     "abcd",
                                   ],
+                                  "phaseAtStop": "",
+                                  "phaseFromStop": "",
+                                  "phaseFromTimetable": "",
+                                  "phaseSeconds": 300,
                                   "saturday": false,
                                   "segmentSpeeds": Array [],
                                   "sourceTrip": "abcd",
@@ -861,900 +956,27 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                   tabIndex={0}
                                 >
                                   <Icon
-                                    type="caret-down"
+                                    type="calendar"
                                   >
                                     <i
-                                      className="fa fa-caret-down fa-fw "
+                                      className="fa fa-calendar fa-fw "
                                     />
                                   </Icon>
                                   <strong>
                                      
                                     Test timetable
                                   </strong>
+                                  <Icon
+                                    className="pull-right"
+                                    type="caret-right"
+                                  >
+                                    <i
+                                      className="fa fa-caret-right fa-fw pull-right"
+                                    />
+                                  </Icon>
                                 </a>
-                                <div
-                                  className="panel-body"
-                                >
-                                  <Text
-                                    name="Name"
-                                    onChange={[Function]}
-                                    value="Test timetable"
-                                  >
-                                    <Group
-                                      id="name-input-45"
-                                      name="Name"
-                                      onChange={[Function]}
-                                      value="Test timetable"
-                                    >
-                                      <div
-                                        className="form-group"
-                                      >
-                                        <Input
-                                          id="name-input-45"
-                                          name="Name"
-                                          onChange={[Function]}
-                                          type="text"
-                                          value="Test timetable"
-                                        >
-                                          <input
-                                            className="form-control"
-                                            id="name-input-45"
-                                            name="Name"
-                                            onChange={[Function]}
-                                            placeholder="Name"
-                                            type="text"
-                                            value="Test timetable"
-                                          />
-                                        </Input>
-                                      </div>
-                                    </Group>
-                                  </Text>
-                                  <TimetableEntry
-                                    allPhaseFromTimetableStops={Object {}}
-                                    bidirectional={false}
-                                    modificationStops={Array []}
-                                    scenarioTimetables={Array []}
-                                    timetable={
-                                      Object {
-                                        "dwellTime": 10,
-                                        "endTime": 57600,
-                                        "friday": true,
-                                        "headwaySecs": 900,
-                                        "monday": true,
-                                        "name": "Test timetable",
-                                        "patternTrips": Array [
-                                          "abcd",
-                                        ],
-                                        "saturday": false,
-                                        "segmentSpeeds": Array [],
-                                        "sourceTrip": "abcd",
-                                        "startTime": 28800,
-                                        "sunday": false,
-                                        "thursday": true,
-                                        "tuesday": true,
-                                        "wednesday": true,
-                                      }
-                                    }
-                                    update={[Function]}
-                                  >
-                                    <div>
-                                      <Days
-                                        setDay={[Function]}
-                                        timetable={
-                                          Object {
-                                            "dwellTime": 10,
-                                            "endTime": 57600,
-                                            "friday": true,
-                                            "headwaySecs": 900,
-                                            "monday": true,
-                                            "name": "Test timetable",
-                                            "patternTrips": Array [
-                                              "abcd",
-                                            ],
-                                            "saturday": false,
-                                            "segmentSpeeds": Array [],
-                                            "sourceTrip": "abcd",
-                                            "startTime": 28800,
-                                            "sunday": false,
-                                            "thursday": true,
-                                            "tuesday": true,
-                                            "wednesday": true,
-                                          }
-                                        }
-                                      >
-                                        <div
-                                          className="form-inline"
-                                        >
-                                          <Checkbox
-                                            checked={true}
-                                            label="Mon"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="mon-input-46"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="mon-input-46"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Mon
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Tue"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="tue-input-47"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="tue-input-47"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Tue
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Wed"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="wed-input-48"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="wed-input-48"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Wed
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Thu"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="thu-input-49"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="thu-input-49"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Thu
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Fri"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="fri-input-50"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="fri-input-50"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Fri
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={false}
-                                            label="Sat"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="sat-input-51"
-                                              >
-                                                <input
-                                                  checked={false}
-                                                  id="sat-input-51"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Sat
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={false}
-                                            label="Sun"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="sun-input-52"
-                                              >
-                                                <input
-                                                  checked={false}
-                                                  id="sun-input-52"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Sun
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                        </div>
-                                      </Days>
-                                      <MinutesSeconds
-                                        label="Frequency"
-                                        onChange={[Function]}
-                                        seconds={900}
-                                      >
-                                        <Text
-                                          label="Frequency"
-                                          onBlur={[Function]}
-                                          onChange={[Function]}
-                                          onKeyDown={[Function]}
-                                          units="mm:ss"
-                                          value="15:00"
-                                        >
-                                          <Group
-                                            id="frequency-input-53"
-                                            label="Frequency"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onKeyDown={[Function]}
-                                            units="mm:ss"
-                                            value="15:00"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="frequency-input-53"
-                                              >
-                                                Frequency
-                                              </label>
-                                              <Input
-                                                id="frequency-input-53"
-                                                label="Frequency"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onKeyDown={[Function]}
-                                                type="text"
-                                                units="mm:ss"
-                                                value="15:00"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="frequency-input-53"
-                                                    onBlur={[Function]}
-                                                    onChange={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    placeholder="mm:ss"
-                                                    type="text"
-                                                    value="15:00"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    mm:ss
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </MinutesSeconds>
-                                      <TimePicker
-                                        label="Start time"
-                                        onChange={[Function]}
-                                        value={28800}
-                                      >
-                                        <Text
-                                          label="Start time"
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="time"
-                                          units="hh:mm"
-                                          value="08:00"
-                                        >
-                                          <Group
-                                            id="start-time-input-54"
-                                            label="Start time"
-                                            onChange={[Function]}
-                                            onWheel={[Function]}
-                                            type="time"
-                                            units="hh:mm"
-                                            value="08:00"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="start-time-input-54"
-                                              >
-                                                Start time
-                                              </label>
-                                              <Input
-                                                id="start-time-input-54"
-                                                label="Start time"
-                                                onChange={[Function]}
-                                                onWheel={[Function]}
-                                                type="time"
-                                                units="hh:mm"
-                                                value="08:00"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="start-time-input-54"
-                                                    onChange={[Function]}
-                                                    onWheel={[Function]}
-                                                    placeholder="hh:mm"
-                                                    type="time"
-                                                    value="08:00"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    hh:mm
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </TimePicker>
-                                      <TimePicker
-                                        label="End time"
-                                        onChange={[Function]}
-                                        value={57600}
-                                      >
-                                        <Text
-                                          label="End time"
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="time"
-                                          units="hh:mm"
-                                          value="16:00"
-                                        >
-                                          <Group
-                                            id="end-time-input-55"
-                                            label="End time"
-                                            onChange={[Function]}
-                                            onWheel={[Function]}
-                                            type="time"
-                                            units="hh:mm"
-                                            value="16:00"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="end-time-input-55"
-                                              >
-                                                End time
-                                              </label>
-                                              <Input
-                                                id="end-time-input-55"
-                                                label="End time"
-                                                onChange={[Function]}
-                                                onWheel={[Function]}
-                                                type="time"
-                                                units="hh:mm"
-                                                value="16:00"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="end-time-input-55"
-                                                    onChange={[Function]}
-                                                    onWheel={[Function]}
-                                                    placeholder="hh:mm"
-                                                    type="time"
-                                                    value="16:00"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    hh:mm
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </TimePicker>
-                                      <Checkbox
-                                        disabled={false}
-                                        label="Times are exact"
-                                        onChange={[Function]}
-                                      >
-                                        <div
-                                          className="checkbox"
-                                        >
-                                          <label
-                                            htmlFor="times-are-exact-input-56"
-                                          >
-                                            <input
-                                              disabled={false}
-                                              id="times-are-exact-input-56"
-                                              onChange={[Function]}
-                                              type="checkbox"
-                                            />
-                                             
-                                            Times are exact
-                                          </label>
-                                        </div>
-                                      </Checkbox>
-                                      <Phase
-                                        availableTimetables={Array []}
-                                        disabled={false}
-                                        modificationStops={Array []}
-                                        timetableHeadway={900}
-                                        update={[Function]}
-                                      >
-                                        <div>
-                                          <Group
-                                            label="Phase at stop"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="phase-at-stop-input-57"
-                                              >
-                                                Phase at stop
-                                              </label>
-                                              <Select
-                                                addLabelText="Add \\"{label}\\"?"
-                                                arrowRenderer={[Function]}
-                                                autosize={true}
-                                                backspaceRemoves={true}
-                                                backspaceToRemoveMessage="Press backspace to remove {label}"
-                                                clearAllText="Clear all"
-                                                clearRenderer={[Function]}
-                                                clearValueText="Clear value"
-                                                clearable={true}
-                                                deleteRemoves={true}
-                                                delimiter=","
-                                                disabled={false}
-                                                escapeClearsValue={true}
-                                                filterOptions={[Function]}
-                                                ignoreAccents={true}
-                                                ignoreCase={true}
-                                                inputProps={Object {}}
-                                                isLoading={false}
-                                                joinValues={false}
-                                                labelKey="label"
-                                                matchPos="any"
-                                                matchProp="any"
-                                                menuBuffer={0}
-                                                menuRenderer={[Function]}
-                                                multi={false}
-                                                name="Phase at stop"
-                                                noResultsText="No results found"
-                                                onBlurResetsInput={true}
-                                                onChange={[Function]}
-                                                onCloseResetsInput={true}
-                                                optionComponent={[Function]}
-                                                options={Array []}
-                                                pageSize={5}
-                                                placeholder="Phase at stop"
-                                                required={false}
-                                                scrollMenuIntoView={true}
-                                                searchable={true}
-                                                simpleValue={false}
-                                                tabSelectsValue={true}
-                                                valueComponent={[Function]}
-                                                valueKey="value"
-                                              >
-                                                <div
-                                                  className="Select Select--single is-clearable is-searchable"
-                                                >
-                                                  <div
-                                                    className="Select-control"
-                                                    onKeyDown={[Function]}
-                                                    onMouseDown={[Function]}
-                                                    onTouchEnd={[Function]}
-                                                    onTouchMove={[Function]}
-                                                    onTouchStart={[Function]}
-                                                  >
-                                                    <span
-                                                      className="Select-multi-value-wrapper"
-                                                      id="react-select-4--value"
-                                                    >
-                                                      <div
-                                                        className="Select-placeholder"
-                                                      >
-                                                        Phase at stop
-                                                      </div>
-                                                      <mockConstructor
-                                                        aria-activedescendant="react-select-4--value"
-                                                        aria-expanded="false"
-                                                        aria-haspopup="false"
-                                                        aria-owns=""
-                                                        className="Select-input"
-                                                        minWidth="5"
-                                                        onBlur={[Function]}
-                                                        onChange={[Function]}
-                                                        onFocus={[Function]}
-                                                        required={false}
-                                                        role="combobox"
-                                                        value=""
-                                                      />
-                                                    </span>
-                                                    <span
-                                                      className="Select-arrow-zone"
-                                                      onMouseDown={[Function]}
-                                                    >
-                                                      <span
-                                                        className="Select-arrow"
-                                                        onMouseDown={[Function]}
-                                                      />
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                              </Select>
-                                            </div>
-                                          </Group>
-                                        </div>
-                                      </Phase>
-                                    </div>
-                                  </TimetableEntry>
-                                  <SegmentSpeeds
-                                    dwellTime={10}
-                                    dwellTimes={Array []}
-                                    highlightSegment={[Function]}
-                                    highlightStop={[Function]}
-                                    numberOfStops={1}
-                                    qualifiedStops={Array []}
-                                    segmentDistances={
-                                      Array [
-                                        45.223652927700726,
-                                      ]
-                                    }
-                                    segmentSpeeds={Array []}
-                                    update={[Function]}
-                                  >
-                                    <div>
-                                      <MinutesSeconds
-                                        label="Dwell time"
-                                        onChange={[Function]}
-                                        seconds={10}
-                                      >
-                                        <Text
-                                          label="Dwell time"
-                                          onBlur={[Function]}
-                                          onChange={[Function]}
-                                          onKeyDown={[Function]}
-                                          units="mm:ss"
-                                          value="00:10"
-                                        >
-                                          <Group
-                                            id="dwell-time-input-58"
-                                            label="Dwell time"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onKeyDown={[Function]}
-                                            units="mm:ss"
-                                            value="00:10"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="dwell-time-input-58"
-                                              >
-                                                Dwell time
-                                              </label>
-                                              <Input
-                                                id="dwell-time-input-58"
-                                                label="Dwell time"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onKeyDown={[Function]}
-                                                type="text"
-                                                units="mm:ss"
-                                                value="00:10"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="dwell-time-input-58"
-                                                    onBlur={[Function]}
-                                                    onChange={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    placeholder="mm:ss"
-                                                    type="text"
-                                                    value="00:10"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    mm:ss
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </MinutesSeconds>
-                                      <Collapsible
-                                        defaultExpanded={false}
-                                        title="Set individual stop dwell times"
-                                      >
-                                        <div>
-                                          <div
-                                            aria-level={3}
-                                            role="heading"
-                                          >
-                                            <a
-                                              aria-expanded={false}
-                                              className="CollapsibleButton"
-                                              onClick={[Function]}
-                                              role="button"
-                                              tabIndex={0}
-                                            >
-                                              <Icon
-                                                type="caret-right"
-                                              >
-                                                <i
-                                                  className="fa fa-caret-right fa-fw "
-                                                />
-                                              </Icon>
-                                              <strong>
-                                                Set individual stop dwell times
-                                              </strong>
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </Collapsible>
-                                      <Number
-                                        label="Average segment speed"
-                                        min={1}
-                                        onChange={[Function]}
-                                        units="km/h"
-                                        value={15}
-                                      >
-                                        <Group
-                                          id="average-segment-speed-input-59"
-                                          label="Average segment speed"
-                                          min={1}
-                                          onChange={[Function]}
-                                          units="km/h"
-                                          value={15}
-                                        >
-                                          <div
-                                            className="form-group"
-                                          >
-                                            <label
-                                              htmlFor="average-segment-speed-input-59"
-                                            >
-                                              Average segment speed
-                                            </label>
-                                            <Input
-                                              id="average-segment-speed-input-59"
-                                              label="Average segment speed"
-                                              min={1}
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              type="number"
-                                              units="km/h"
-                                              value={15}
-                                            >
-                                              <div
-                                                className="InputWithUnits"
-                                              >
-                                                <input
-                                                  className="form-control"
-                                                  id="average-segment-speed-input-59"
-                                                  min={1}
-                                                  onChange={[Function]}
-                                                  onWheel={[Function]}
-                                                  placeholder="km/h"
-                                                  type="number"
-                                                  value={15}
-                                                />
-                                                <span
-                                                  className="InputUnits"
-                                                >
-                                                  km/h
-                                                </span>
-                                              </div>
-                                            </Input>
-                                          </div>
-                                        </Group>
-                                      </Number>
-                                      <MinutesSeconds
-                                        label="Total travel time"
-                                        onChange={[Function]}
-                                        seconds={10863.676702648174}
-                                      >
-                                        <Text
-                                          label="Total travel time"
-                                          onBlur={[Function]}
-                                          onChange={[Function]}
-                                          onKeyDown={[Function]}
-                                          units="mm:ss"
-                                          value="181:03"
-                                        >
-                                          <Group
-                                            id="total-travel-time-input-60"
-                                            label="Total travel time"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onKeyDown={[Function]}
-                                            units="mm:ss"
-                                            value="181:03"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="total-travel-time-input-60"
-                                              >
-                                                Total travel time
-                                              </label>
-                                              <Input
-                                                id="total-travel-time-input-60"
-                                                label="Total travel time"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onKeyDown={[Function]}
-                                                type="text"
-                                                units="mm:ss"
-                                                value="181:03"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="total-travel-time-input-60"
-                                                    onBlur={[Function]}
-                                                    onChange={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    placeholder="mm:ss"
-                                                    type="text"
-                                                    value="181:03"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    mm:ss
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </MinutesSeconds>
-                                      <Collapsible
-                                        defaultExpanded={false}
-                                        title="Set individual segment speeds"
-                                      >
-                                        <div>
-                                          <div
-                                            aria-level={3}
-                                            role="heading"
-                                          >
-                                            <a
-                                              aria-expanded={false}
-                                              className="CollapsibleButton"
-                                              onClick={[Function]}
-                                              role="button"
-                                              tabIndex={0}
-                                            >
-                                              <Icon
-                                                type="caret-right"
-                                              >
-                                                <i
-                                                  className="fa fa-caret-right fa-fw "
-                                                />
-                                              </Icon>
-                                              <strong>
-                                                Set individual segment speeds
-                                              </strong>
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </Collapsible>
-                                    </div>
-                                  </SegmentSpeeds>
-                                  <Button
-                                    block={true}
-                                    onClick={[Function]}
-                                    style="danger"
-                                    title="Delete timetable"
-                                  >
-                                    <a
-                                      className="btn btn-danger btn-block"
-                                      href="#"
-                                      onClick={[Function]}
-                                      tabIndex={0}
-                                      title="Delete timetable"
-                                    >
-                                      <Icon
-                                        type="close"
-                                      >
-                                        <i
-                                          className="fa fa-close fa-fw "
-                                        />
-                                      </Icon>
-                                       Delete Timetable
-                                    </a>
-                                  </Button>
-                                </div>
                               </section>
                             </TimetableComponent>
-                            <Button
-                              block={true}
-                              onClick={[Function]}
-                              style="success"
-                            >
-                              <a
-                                className="btn btn-success btn-block"
-                                href="#"
-                                onClick={[Function]}
-                                tabIndex={0}
-                              >
-                                <Icon
-                                  type="plus"
-                                >
-                                  <i
-                                    className="fa fa-plus fa-fw "
-                                  />
-                                </Icon>
-                                 Add timetable
-                              </a>
-                            </Button>
                           </div>
                         </Timetables>
                       </div>
@@ -1792,11 +1014,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           className="checkbox"
                         >
                           <label
-                            htmlFor="1-input-61"
+                            htmlFor="1-input-13"
                           >
                             <input
                               checked={true}
-                              id="1-input-61"
+                              id="1-input-13"
                               onChange={[Function]}
                               title="Default"
                               type="checkbox"
@@ -1822,273 +1044,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
 exports[`Container > Modification Editor renders and can change the name 1`] = `
 Array [
   Object {
-    "payload": Object {
-      "bidirectional": false,
-      "description": "Mock description",
-      "entries": Array [],
-      "feed": "1",
-      "id": "1234",
-      "name": "Test Modification",
-      "routes": Array [
-        "route1",
-      ],
-      "segments": Array [
-        {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-      ],
-      "showOnMap": false,
-      "timetables": Array [
-        Object {
-          "dwellTime": 10,
-          "endTime": 57600,
-          "friday": true,
-          "headwaySecs": 900,
-          "monday": true,
-          "name": "Test timetable",
-          "patternTrips": Array [
-            "abcd",
-          ],
-          "saturday": false,
-          "segmentSpeeds": Array [
-            15,
-          ],
-          "sourceTrip": "abcd",
-          "startTime": 28800,
-          "sunday": false,
-          "thursday": true,
-          "tuesday": true,
-          "wednesday": true,
-        },
-      ],
-      "trips": Array [
-        "abcd",
-      ],
-      "type": "add-trip-pattern",
-      "variants": Array [
-        true,
-      ],
-    },
-    "type": "set modification",
-  },
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bidirectional": false,
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "id": "1234",
-          "name": "Test Modification",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "dwellTime": 10,
-              "endTime": 57600,
-              "friday": true,
-              "headwaySecs": 900,
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "saturday": false,
-              "segmentSpeeds": Array [
-                15,
-              ],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "put",
-      },
-      "url": "/api/modification/1234",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Object {
-    "payload": Object {
-      "options": Object {},
-      "url": "/api/graphql?query=%0Aquery%20dataQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20checksum%2C%0A%20%20%20%20%20%20routes%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20detailRoutes%3A%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20direction_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20stop_id%2C%0A%20%20%20%20%20%20%20%20stop_name%2C%0A%20%20%20%20%20%20%20%20stop_lat%2C%0A%20%20%20%20%20%20%20%20stop_lon%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=%7B%22bundleId%22%3A%221%22%2C%22routeIds%22%3A%5B%5D%7D",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Object {
     "payload": "1234",
     "type": "set active modification",
   },
   Object {
     "payload": Object {
-      "bidirectional": false,
-      "description": "Mock description",
-      "entries": Array [],
-      "feed": "1",
-      "id": "1234",
-      "name": "Test Modification",
-      "routes": Array [
-        "route1",
-      ],
-      "segments": Array [
-        {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  }
-},
-      ],
-      "showOnMap": false,
-      "timetables": Array [
-        Object {
-          "dwellTime": 10,
-          "endTime": 57600,
-          "friday": true,
-          "headwaySecs": 900,
-          "monday": true,
-          "name": "Test timetable",
-          "patternTrips": Array [
-            "abcd",
-          ],
-          "saturday": false,
-          "segmentSpeeds": Array [],
-          "sourceTrip": "abcd",
-          "startTime": 28800,
-          "sunday": false,
-          "thursday": true,
-          "tuesday": true,
-          "wednesday": true,
-        },
-      ],
-      "trips": Array [
-        "abcd",
-      ],
-      "type": "add-trip-pattern",
-      "variants": Array [
-        true,
-      ],
-    },
-    "type": "set modification",
-  },
-  Object {
-    "payload": Object {
       "options": Object {
         "body": Object {
+          "_id": "1234",
           "bidirectional": false,
           "description": "Mock description",
           "entries": Array [],
           "feed": "1",
-          "id": "1234",
           "name": "Test Modification",
           "routes": Array [
             "route1",
           ],
+          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -2127,15 +1099,23 @@ Array [
           "showOnMap": false,
           "timetables": Array [
             Object {
+              "_id": "timetable-id",
               "dwellTime": 10,
               "endTime": 57600,
+              "exactTimes": false,
               "friday": true,
               "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
               "monday": true,
               "name": "Test timetable",
               "patternTrips": Array [
                 "abcd",
               ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
               "saturday": false,
               "segmentSpeeds": Array [],
               "sourceTrip": "abcd",
@@ -2180,6 +1160,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
     params={
       Object {
         "modificationId": "1234",
+        "scenarioId": "1",
       }
     }
   >
@@ -2194,15 +1175,16 @@ exports[`Container > Modification Editor renders correctly 1`] = `
       feedIsLoaded={true}
       modification={
         Object {
+          "_id": "1234",
           "bidirectional": false,
           "description": "Mock description",
           "entries": Array [],
           "feed": "1",
-          "id": "1234",
           "name": "Test Modification",
           "routes": Array [
             "route1",
           ],
+          "scenarioId": "1",
           "segments": Array [
             {
           "type": "Feature",
@@ -2241,15 +1223,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
           "showOnMap": false,
           "timetables": Array [
             Object {
+              "_id": "timetable-id",
               "dwellTime": 10,
               "endTime": 57600,
+              "exactTimes": false,
               "friday": true,
               "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
               "monday": true,
               "name": "Test timetable",
               "patternTrips": Array [
                 "abcd",
               ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
               "saturday": false,
               "segmentSpeeds": Array [],
               "sourceTrip": "abcd",
@@ -2273,15 +1263,16 @@ exports[`Container > Modification Editor renders correctly 1`] = `
       params={
         Object {
           "modificationId": "1234",
+          "scenarioId": "1",
         }
       }
       removeModification={[Function]}
+      scenarioId="1"
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
-      setModificationName={[Function]}
-      setModificationVariants={[Function]}
       update={[Function]}
+      updateAndRetrieveFeedData={[Function]}
     >
       <div>
         <div
@@ -2289,12 +1280,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
         >
           <IconLink
             title="Modifications"
-            to="/scenarios/undefined"
+            to="/scenarios/1"
             type="chevron-left"
           >
             <Link
               title="Modifications"
-              to="/scenarios/undefined"
+              to="/scenarios/1"
               type="button"
             >
               <Tip
@@ -2311,7 +1302,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     name="Modifications"
                     onlyActiveOnIndex={false}
                     style={Object {}}
-                    to="/scenarios/undefined"
+                    to="/scenarios/1"
                     type="button"
                   >
                     <a
@@ -2503,15 +1494,16 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                 <ModificationType
                   modification={
                     Object {
+                      "_id": "1234",
                       "bidirectional": false,
                       "description": "Mock description",
                       "entries": Array [],
                       "feed": "1",
-                      "id": "1234",
                       "name": "Test Modification",
                       "routes": Array [
                         "route1",
                       ],
+                      "scenarioId": "1",
                       "segments": Array [
                         {
                       "type": "Feature",
@@ -2550,15 +1542,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       "showOnMap": false,
                       "timetables": Array [
                         Object {
+                          "_id": "timetable-id",
                           "dwellTime": 10,
                           "endTime": 57600,
+                          "exactTimes": false,
                           "friday": true,
                           "headwaySecs": 900,
+                          "modificationId": "1234",
+                          "modificationName": "Test Modification",
                           "monday": true,
                           "name": "Test timetable",
                           "patternTrips": Array [
                             "abcd",
                           ],
+                          "phaseAtStop": "",
+                          "phaseFromStop": "",
+                          "phaseFromTimetable": "",
+                          "phaseSeconds": 300,
                           "saturday": false,
                           "segmentSpeeds": Array [],
                           "sourceTrip": "abcd",
@@ -2581,19 +1581,21 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                   setMapState={[Function]}
                   type="add-trip-pattern"
                   update={[Function]}
+                  updateAndRetrieveFeedData={[Function]}
                 >
                   <Connect(Component)
                     modification={
                       Object {
+                        "_id": "1234",
                         "bidirectional": false,
                         "description": "Mock description",
                         "entries": Array [],
                         "feed": "1",
-                        "id": "1234",
                         "name": "Test Modification",
                         "routes": Array [
                           "route1",
                         ],
+                        "scenarioId": "1",
                         "segments": Array [
                           {
                         "type": "Feature",
@@ -2632,15 +1634,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         "showOnMap": false,
                         "timetables": Array [
                           Object {
+                            "_id": "timetable-id",
                             "dwellTime": 10,
                             "endTime": 57600,
+                            "exactTimes": false,
                             "friday": true,
                             "headwaySecs": 900,
+                            "modificationId": "1234",
+                            "modificationName": "Test Modification",
                             "monday": true,
                             "name": "Test timetable",
                             "patternTrips": Array [
                               "abcd",
                             ],
+                            "phaseAtStop": "",
+                            "phaseFromStop": "",
+                            "phaseFromTimetable": "",
+                            "phaseSeconds": 300,
                             "saturday": false,
                             "segmentSpeeds": Array [],
                             "sourceTrip": "abcd",
@@ -2663,6 +1673,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     setMapState={[Function]}
                     type="add-trip-pattern"
                     update={[Function]}
+                    updateAndRetrieveFeedData={[Function]}
                   >
                     <Component
                       allPhaseFromTimetableStops={Object {}}
@@ -2682,15 +1693,16 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       }
                       modification={
                         Object {
+                          "_id": "1234",
                           "bidirectional": false,
                           "description": "Mock description",
                           "entries": Array [],
                           "feed": "1",
-                          "id": "1234",
                           "name": "Test Modification",
                           "routes": Array [
                             "route1",
                           ],
+                          "scenarioId": "1",
                           "segments": Array [
                             {
                           "type": "Feature",
@@ -2729,15 +1741,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           "showOnMap": false,
                           "timetables": Array [
                             Object {
+                              "_id": "timetable-id",
                               "dwellTime": 10,
                               "endTime": 57600,
+                              "exactTimes": false,
                               "friday": true,
                               "headwaySecs": 900,
+                              "modificationId": "1234",
+                              "modificationName": "Test Modification",
                               "monday": true,
                               "name": "Test timetable",
                               "patternTrips": Array [
                                 "abcd",
                               ],
+                              "phaseAtStop": "",
+                              "phaseFromStop": "",
+                              "phaseFromTimetable": "",
+                              "phaseSeconds": 300,
                               "saturday": false,
                               "segmentSpeeds": Array [],
                               "sourceTrip": "abcd",
@@ -2768,6 +1788,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       setMapState={[Function]}
                       type="add-trip-pattern"
                       update={[Function]}
+                      updateAndRetrieveFeedData={[Function]}
                     >
                       <div>
                         <EditAlignment
@@ -2785,15 +1806,16 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           }
                           modification={
                             Object {
+                              "_id": "1234",
                               "bidirectional": false,
                               "description": "Mock description",
                               "entries": Array [],
                               "feed": "1",
-                              "id": "1234",
                               "name": "Test Modification",
                               "routes": Array [
                                 "route1",
                               ],
+                              "scenarioId": "1",
                               "segments": Array [
                                 {
                               "type": "Feature",
@@ -2832,15 +1854,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               "showOnMap": false,
                               "timetables": Array [
                                 Object {
+                                  "_id": "timetable-id",
                                   "dwellTime": 10,
                                   "endTime": 57600,
+                                  "exactTimes": false,
                                   "friday": true,
                                   "headwaySecs": 900,
+                                  "modificationId": "1234",
+                                  "modificationName": "Test Modification",
                                   "monday": true,
                                   "name": "Test timetable",
                                   "patternTrips": Array [
                                     "abcd",
                                   ],
+                                  "phaseAtStop": "",
+                                  "phaseFromStop": "",
+                                  "phaseFromTimetable": "",
+                                  "phaseSeconds": 300,
                                   "saturday": false,
                                   "segmentSpeeds": Array [],
                                   "sourceTrip": "abcd",
@@ -2910,7 +1940,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             </Checkbox>
                             <Checkbox
                               checked={false}
-                              disabled={false}
+                              disabled={true}
                               label="Bidirectional"
                               onChange={[Function]}
                             >
@@ -2922,7 +1952,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 >
                                   <input
                                     checked={false}
-                                    disabled={false}
+                                    disabled={true}
                                     id="bidirectional-input-2"
                                     onChange={[Function]}
                                     type="checkbox"
@@ -2932,6 +1962,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 </label>
                               </div>
                             </Checkbox>
+                            <div
+                              className="alert alert-info"
+                              role="alert"
+                            >
+                              Modification cannot be bidirectional because timetables in this modification have phasing information.
+                            </div>
                           </div>
                         </EditAlignment>
                         <Timetables
@@ -2950,15 +1986,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           timetables={
                             Array [
                               Object {
+                                "_id": "timetable-id",
                                 "dwellTime": 10,
                                 "endTime": 57600,
+                                "exactTimes": false,
                                 "friday": true,
                                 "headwaySecs": 900,
+                                "modificationId": "1234",
+                                "modificationName": "Test Modification",
                                 "monday": true,
                                 "name": "Test timetable",
                                 "patternTrips": Array [
                                   "abcd",
                                 ],
+                                "phaseAtStop": "",
+                                "phaseFromStop": "",
+                                "phaseFromTimetable": "",
+                                "phaseSeconds": 300,
                                 "saturday": false,
                                 "segmentSpeeds": Array [],
                                 "sourceTrip": "abcd",
@@ -2973,6 +2017,29 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           update={[Function]}
                         >
                           <div>
+                            <p>
+                              <Button
+                                block={true}
+                                onClick={[Function]}
+                                style="success"
+                              >
+                                <a
+                                  className="btn btn-success btn-block"
+                                  href="#"
+                                  onClick={[Function]}
+                                  tabIndex={0}
+                                >
+                                  <Icon
+                                    type="plus"
+                                  >
+                                    <i
+                                      className="fa fa-plus fa-fw "
+                                    />
+                                  </Icon>
+                                   Add timetable
+                                </a>
+                              </Button>
+                            </p>
                             <TimetableComponent
                               allPhaseFromTimetableStops={Object {}}
                               bidirectional={false}
@@ -2989,15 +2056,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               setMapState={[Function]}
                               timetable={
                                 Object {
+                                  "_id": "timetable-id",
                                   "dwellTime": 10,
                                   "endTime": 57600,
+                                  "exactTimes": false,
                                   "friday": true,
                                   "headwaySecs": 900,
+                                  "modificationId": "1234",
+                                  "modificationName": "Test Modification",
                                   "monday": true,
                                   "name": "Test timetable",
                                   "patternTrips": Array [
                                     "abcd",
                                   ],
+                                  "phaseAtStop": "",
+                                  "phaseFromStop": "",
+                                  "phaseFromTimetable": "",
+                                  "phaseSeconds": 300,
                                   "saturday": false,
                                   "segmentSpeeds": Array [],
                                   "sourceTrip": "abcd",
@@ -3024,900 +2099,27 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                   tabIndex={0}
                                 >
                                   <Icon
-                                    type="caret-down"
+                                    type="calendar"
                                   >
                                     <i
-                                      className="fa fa-caret-down fa-fw "
+                                      className="fa fa-calendar fa-fw "
                                     />
                                   </Icon>
                                   <strong>
                                      
                                     Test timetable
                                   </strong>
+                                  <Icon
+                                    className="pull-right"
+                                    type="caret-right"
+                                  >
+                                    <i
+                                      className="fa fa-caret-right fa-fw pull-right"
+                                    />
+                                  </Icon>
                                 </a>
-                                <div
-                                  className="panel-body"
-                                >
-                                  <Text
-                                    name="Name"
-                                    onChange={[Function]}
-                                    value="Test timetable"
-                                  >
-                                    <Group
-                                      id="name-input-3"
-                                      name="Name"
-                                      onChange={[Function]}
-                                      value="Test timetable"
-                                    >
-                                      <div
-                                        className="form-group"
-                                      >
-                                        <Input
-                                          id="name-input-3"
-                                          name="Name"
-                                          onChange={[Function]}
-                                          type="text"
-                                          value="Test timetable"
-                                        >
-                                          <input
-                                            className="form-control"
-                                            id="name-input-3"
-                                            name="Name"
-                                            onChange={[Function]}
-                                            placeholder="Name"
-                                            type="text"
-                                            value="Test timetable"
-                                          />
-                                        </Input>
-                                      </div>
-                                    </Group>
-                                  </Text>
-                                  <TimetableEntry
-                                    allPhaseFromTimetableStops={Object {}}
-                                    bidirectional={false}
-                                    modificationStops={Array []}
-                                    scenarioTimetables={Array []}
-                                    timetable={
-                                      Object {
-                                        "dwellTime": 10,
-                                        "endTime": 57600,
-                                        "friday": true,
-                                        "headwaySecs": 900,
-                                        "monday": true,
-                                        "name": "Test timetable",
-                                        "patternTrips": Array [
-                                          "abcd",
-                                        ],
-                                        "saturday": false,
-                                        "segmentSpeeds": Array [],
-                                        "sourceTrip": "abcd",
-                                        "startTime": 28800,
-                                        "sunday": false,
-                                        "thursday": true,
-                                        "tuesday": true,
-                                        "wednesday": true,
-                                      }
-                                    }
-                                    update={[Function]}
-                                  >
-                                    <div>
-                                      <Days
-                                        setDay={[Function]}
-                                        timetable={
-                                          Object {
-                                            "dwellTime": 10,
-                                            "endTime": 57600,
-                                            "friday": true,
-                                            "headwaySecs": 900,
-                                            "monday": true,
-                                            "name": "Test timetable",
-                                            "patternTrips": Array [
-                                              "abcd",
-                                            ],
-                                            "saturday": false,
-                                            "segmentSpeeds": Array [],
-                                            "sourceTrip": "abcd",
-                                            "startTime": 28800,
-                                            "sunday": false,
-                                            "thursday": true,
-                                            "tuesday": true,
-                                            "wednesday": true,
-                                          }
-                                        }
-                                      >
-                                        <div
-                                          className="form-inline"
-                                        >
-                                          <Checkbox
-                                            checked={true}
-                                            label="Mon"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="mon-input-4"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="mon-input-4"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Mon
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Tue"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="tue-input-5"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="tue-input-5"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Tue
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Wed"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="wed-input-6"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="wed-input-6"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Wed
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Thu"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="thu-input-7"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="thu-input-7"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Thu
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={true}
-                                            label="Fri"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="fri-input-8"
-                                              >
-                                                <input
-                                                  checked={true}
-                                                  id="fri-input-8"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Fri
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={false}
-                                            label="Sat"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="sat-input-9"
-                                              >
-                                                <input
-                                                  checked={false}
-                                                  id="sat-input-9"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Sat
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                          <Checkbox
-                                            checked={false}
-                                            label="Sun"
-                                            onChange={[Function]}
-                                          >
-                                            <div
-                                              className="checkbox"
-                                            >
-                                              <label
-                                                htmlFor="sun-input-10"
-                                              >
-                                                <input
-                                                  checked={false}
-                                                  id="sun-input-10"
-                                                  onChange={[Function]}
-                                                  type="checkbox"
-                                                />
-                                                 
-                                                Sun
-                                              </label>
-                                            </div>
-                                          </Checkbox>
-                                        </div>
-                                      </Days>
-                                      <MinutesSeconds
-                                        label="Frequency"
-                                        onChange={[Function]}
-                                        seconds={900}
-                                      >
-                                        <Text
-                                          label="Frequency"
-                                          onBlur={[Function]}
-                                          onChange={[Function]}
-                                          onKeyDown={[Function]}
-                                          units="mm:ss"
-                                          value="15:00"
-                                        >
-                                          <Group
-                                            id="frequency-input-11"
-                                            label="Frequency"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onKeyDown={[Function]}
-                                            units="mm:ss"
-                                            value="15:00"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="frequency-input-11"
-                                              >
-                                                Frequency
-                                              </label>
-                                              <Input
-                                                id="frequency-input-11"
-                                                label="Frequency"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onKeyDown={[Function]}
-                                                type="text"
-                                                units="mm:ss"
-                                                value="15:00"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="frequency-input-11"
-                                                    onBlur={[Function]}
-                                                    onChange={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    placeholder="mm:ss"
-                                                    type="text"
-                                                    value="15:00"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    mm:ss
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </MinutesSeconds>
-                                      <TimePicker
-                                        label="Start time"
-                                        onChange={[Function]}
-                                        value={28800}
-                                      >
-                                        <Text
-                                          label="Start time"
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="time"
-                                          units="hh:mm"
-                                          value="08:00"
-                                        >
-                                          <Group
-                                            id="start-time-input-12"
-                                            label="Start time"
-                                            onChange={[Function]}
-                                            onWheel={[Function]}
-                                            type="time"
-                                            units="hh:mm"
-                                            value="08:00"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="start-time-input-12"
-                                              >
-                                                Start time
-                                              </label>
-                                              <Input
-                                                id="start-time-input-12"
-                                                label="Start time"
-                                                onChange={[Function]}
-                                                onWheel={[Function]}
-                                                type="time"
-                                                units="hh:mm"
-                                                value="08:00"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="start-time-input-12"
-                                                    onChange={[Function]}
-                                                    onWheel={[Function]}
-                                                    placeholder="hh:mm"
-                                                    type="time"
-                                                    value="08:00"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    hh:mm
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </TimePicker>
-                                      <TimePicker
-                                        label="End time"
-                                        onChange={[Function]}
-                                        value={57600}
-                                      >
-                                        <Text
-                                          label="End time"
-                                          onChange={[Function]}
-                                          onWheel={[Function]}
-                                          type="time"
-                                          units="hh:mm"
-                                          value="16:00"
-                                        >
-                                          <Group
-                                            id="end-time-input-13"
-                                            label="End time"
-                                            onChange={[Function]}
-                                            onWheel={[Function]}
-                                            type="time"
-                                            units="hh:mm"
-                                            value="16:00"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="end-time-input-13"
-                                              >
-                                                End time
-                                              </label>
-                                              <Input
-                                                id="end-time-input-13"
-                                                label="End time"
-                                                onChange={[Function]}
-                                                onWheel={[Function]}
-                                                type="time"
-                                                units="hh:mm"
-                                                value="16:00"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="end-time-input-13"
-                                                    onChange={[Function]}
-                                                    onWheel={[Function]}
-                                                    placeholder="hh:mm"
-                                                    type="time"
-                                                    value="16:00"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    hh:mm
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </TimePicker>
-                                      <Checkbox
-                                        disabled={false}
-                                        label="Times are exact"
-                                        onChange={[Function]}
-                                      >
-                                        <div
-                                          className="checkbox"
-                                        >
-                                          <label
-                                            htmlFor="times-are-exact-input-14"
-                                          >
-                                            <input
-                                              disabled={false}
-                                              id="times-are-exact-input-14"
-                                              onChange={[Function]}
-                                              type="checkbox"
-                                            />
-                                             
-                                            Times are exact
-                                          </label>
-                                        </div>
-                                      </Checkbox>
-                                      <Phase
-                                        availableTimetables={Array []}
-                                        disabled={false}
-                                        modificationStops={Array []}
-                                        timetableHeadway={900}
-                                        update={[Function]}
-                                      >
-                                        <div>
-                                          <Group
-                                            label="Phase at stop"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="phase-at-stop-input-15"
-                                              >
-                                                Phase at stop
-                                              </label>
-                                              <Select
-                                                addLabelText="Add \\"{label}\\"?"
-                                                arrowRenderer={[Function]}
-                                                autosize={true}
-                                                backspaceRemoves={true}
-                                                backspaceToRemoveMessage="Press backspace to remove {label}"
-                                                clearAllText="Clear all"
-                                                clearRenderer={[Function]}
-                                                clearValueText="Clear value"
-                                                clearable={true}
-                                                deleteRemoves={true}
-                                                delimiter=","
-                                                disabled={false}
-                                                escapeClearsValue={true}
-                                                filterOptions={[Function]}
-                                                ignoreAccents={true}
-                                                ignoreCase={true}
-                                                inputProps={Object {}}
-                                                isLoading={false}
-                                                joinValues={false}
-                                                labelKey="label"
-                                                matchPos="any"
-                                                matchProp="any"
-                                                menuBuffer={0}
-                                                menuRenderer={[Function]}
-                                                multi={false}
-                                                name="Phase at stop"
-                                                noResultsText="No results found"
-                                                onBlurResetsInput={true}
-                                                onChange={[Function]}
-                                                onCloseResetsInput={true}
-                                                optionComponent={[Function]}
-                                                options={Array []}
-                                                pageSize={5}
-                                                placeholder="Phase at stop"
-                                                required={false}
-                                                scrollMenuIntoView={true}
-                                                searchable={true}
-                                                simpleValue={false}
-                                                tabSelectsValue={true}
-                                                valueComponent={[Function]}
-                                                valueKey="value"
-                                              >
-                                                <div
-                                                  className="Select Select--single is-clearable is-searchable"
-                                                >
-                                                  <div
-                                                    className="Select-control"
-                                                    onKeyDown={[Function]}
-                                                    onMouseDown={[Function]}
-                                                    onTouchEnd={[Function]}
-                                                    onTouchMove={[Function]}
-                                                    onTouchStart={[Function]}
-                                                  >
-                                                    <span
-                                                      className="Select-multi-value-wrapper"
-                                                      id="react-select-2--value"
-                                                    >
-                                                      <div
-                                                        className="Select-placeholder"
-                                                      >
-                                                        Phase at stop
-                                                      </div>
-                                                      <mockConstructor
-                                                        aria-activedescendant="react-select-2--value"
-                                                        aria-expanded="false"
-                                                        aria-haspopup="false"
-                                                        aria-owns=""
-                                                        className="Select-input"
-                                                        minWidth="5"
-                                                        onBlur={[Function]}
-                                                        onChange={[Function]}
-                                                        onFocus={[Function]}
-                                                        required={false}
-                                                        role="combobox"
-                                                        value=""
-                                                      />
-                                                    </span>
-                                                    <span
-                                                      className="Select-arrow-zone"
-                                                      onMouseDown={[Function]}
-                                                    >
-                                                      <span
-                                                        className="Select-arrow"
-                                                        onMouseDown={[Function]}
-                                                      />
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                              </Select>
-                                            </div>
-                                          </Group>
-                                        </div>
-                                      </Phase>
-                                    </div>
-                                  </TimetableEntry>
-                                  <SegmentSpeeds
-                                    dwellTime={10}
-                                    dwellTimes={Array []}
-                                    highlightSegment={[Function]}
-                                    highlightStop={[Function]}
-                                    numberOfStops={1}
-                                    qualifiedStops={Array []}
-                                    segmentDistances={
-                                      Array [
-                                        45.223652927700726,
-                                      ]
-                                    }
-                                    segmentSpeeds={Array []}
-                                    update={[Function]}
-                                  >
-                                    <div>
-                                      <MinutesSeconds
-                                        label="Dwell time"
-                                        onChange={[Function]}
-                                        seconds={10}
-                                      >
-                                        <Text
-                                          label="Dwell time"
-                                          onBlur={[Function]}
-                                          onChange={[Function]}
-                                          onKeyDown={[Function]}
-                                          units="mm:ss"
-                                          value="00:10"
-                                        >
-                                          <Group
-                                            id="dwell-time-input-16"
-                                            label="Dwell time"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onKeyDown={[Function]}
-                                            units="mm:ss"
-                                            value="00:10"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="dwell-time-input-16"
-                                              >
-                                                Dwell time
-                                              </label>
-                                              <Input
-                                                id="dwell-time-input-16"
-                                                label="Dwell time"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onKeyDown={[Function]}
-                                                type="text"
-                                                units="mm:ss"
-                                                value="00:10"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="dwell-time-input-16"
-                                                    onBlur={[Function]}
-                                                    onChange={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    placeholder="mm:ss"
-                                                    type="text"
-                                                    value="00:10"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    mm:ss
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </MinutesSeconds>
-                                      <Collapsible
-                                        defaultExpanded={false}
-                                        title="Set individual stop dwell times"
-                                      >
-                                        <div>
-                                          <div
-                                            aria-level={3}
-                                            role="heading"
-                                          >
-                                            <a
-                                              aria-expanded={false}
-                                              className="CollapsibleButton"
-                                              onClick={[Function]}
-                                              role="button"
-                                              tabIndex={0}
-                                            >
-                                              <Icon
-                                                type="caret-right"
-                                              >
-                                                <i
-                                                  className="fa fa-caret-right fa-fw "
-                                                />
-                                              </Icon>
-                                              <strong>
-                                                Set individual stop dwell times
-                                              </strong>
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </Collapsible>
-                                      <Number
-                                        label="Average segment speed"
-                                        min={1}
-                                        onChange={[Function]}
-                                        units="km/h"
-                                        value={15}
-                                      >
-                                        <Group
-                                          id="average-segment-speed-input-17"
-                                          label="Average segment speed"
-                                          min={1}
-                                          onChange={[Function]}
-                                          units="km/h"
-                                          value={15}
-                                        >
-                                          <div
-                                            className="form-group"
-                                          >
-                                            <label
-                                              htmlFor="average-segment-speed-input-17"
-                                            >
-                                              Average segment speed
-                                            </label>
-                                            <Input
-                                              id="average-segment-speed-input-17"
-                                              label="Average segment speed"
-                                              min={1}
-                                              onChange={[Function]}
-                                              onWheel={[Function]}
-                                              type="number"
-                                              units="km/h"
-                                              value={15}
-                                            >
-                                              <div
-                                                className="InputWithUnits"
-                                              >
-                                                <input
-                                                  className="form-control"
-                                                  id="average-segment-speed-input-17"
-                                                  min={1}
-                                                  onChange={[Function]}
-                                                  onWheel={[Function]}
-                                                  placeholder="km/h"
-                                                  type="number"
-                                                  value={15}
-                                                />
-                                                <span
-                                                  className="InputUnits"
-                                                >
-                                                  km/h
-                                                </span>
-                                              </div>
-                                            </Input>
-                                          </div>
-                                        </Group>
-                                      </Number>
-                                      <MinutesSeconds
-                                        label="Total travel time"
-                                        onChange={[Function]}
-                                        seconds={10863.676702648174}
-                                      >
-                                        <Text
-                                          label="Total travel time"
-                                          onBlur={[Function]}
-                                          onChange={[Function]}
-                                          onKeyDown={[Function]}
-                                          units="mm:ss"
-                                          value="181:03"
-                                        >
-                                          <Group
-                                            id="total-travel-time-input-18"
-                                            label="Total travel time"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onKeyDown={[Function]}
-                                            units="mm:ss"
-                                            value="181:03"
-                                          >
-                                            <div
-                                              className="form-group"
-                                            >
-                                              <label
-                                                htmlFor="total-travel-time-input-18"
-                                              >
-                                                Total travel time
-                                              </label>
-                                              <Input
-                                                id="total-travel-time-input-18"
-                                                label="Total travel time"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onKeyDown={[Function]}
-                                                type="text"
-                                                units="mm:ss"
-                                                value="181:03"
-                                              >
-                                                <div
-                                                  className="InputWithUnits"
-                                                >
-                                                  <input
-                                                    className="form-control"
-                                                    id="total-travel-time-input-18"
-                                                    onBlur={[Function]}
-                                                    onChange={[Function]}
-                                                    onKeyDown={[Function]}
-                                                    placeholder="mm:ss"
-                                                    type="text"
-                                                    value="181:03"
-                                                  />
-                                                  <span
-                                                    className="InputUnits"
-                                                  >
-                                                    mm:ss
-                                                  </span>
-                                                </div>
-                                              </Input>
-                                            </div>
-                                          </Group>
-                                        </Text>
-                                      </MinutesSeconds>
-                                      <Collapsible
-                                        defaultExpanded={false}
-                                        title="Set individual segment speeds"
-                                      >
-                                        <div>
-                                          <div
-                                            aria-level={3}
-                                            role="heading"
-                                          >
-                                            <a
-                                              aria-expanded={false}
-                                              className="CollapsibleButton"
-                                              onClick={[Function]}
-                                              role="button"
-                                              tabIndex={0}
-                                            >
-                                              <Icon
-                                                type="caret-right"
-                                              >
-                                                <i
-                                                  className="fa fa-caret-right fa-fw "
-                                                />
-                                              </Icon>
-                                              <strong>
-                                                Set individual segment speeds
-                                              </strong>
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </Collapsible>
-                                    </div>
-                                  </SegmentSpeeds>
-                                  <Button
-                                    block={true}
-                                    onClick={[Function]}
-                                    style="danger"
-                                    title="Delete timetable"
-                                  >
-                                    <a
-                                      className="btn btn-danger btn-block"
-                                      href="#"
-                                      onClick={[Function]}
-                                      tabIndex={0}
-                                      title="Delete timetable"
-                                    >
-                                      <Icon
-                                        type="close"
-                                      >
-                                        <i
-                                          className="fa fa-close fa-fw "
-                                        />
-                                      </Icon>
-                                       Delete Timetable
-                                    </a>
-                                  </Button>
-                                </div>
                               </section>
                             </TimetableComponent>
-                            <Button
-                              block={true}
-                              onClick={[Function]}
-                              style="success"
-                            >
-                              <a
-                                className="btn btn-success btn-block"
-                                href="#"
-                                onClick={[Function]}
-                                tabIndex={0}
-                              >
-                                <Icon
-                                  type="plus"
-                                >
-                                  <i
-                                    className="fa fa-plus fa-fw "
-                                  />
-                                </Icon>
-                                 Add timetable
-                              </a>
-                            </Button>
                           </div>
                         </Timetables>
                       </div>
@@ -3955,11 +2157,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           className="checkbox"
                         >
                           <label
-                            htmlFor="1-input-19"
+                            htmlFor="1-input-3"
                           >
                             <input
                               checked={true}
-                              id="1-input-19"
+                              id="1-input-3"
                               onChange={[Function]}
                               title="Default"
                               type="checkbox"
