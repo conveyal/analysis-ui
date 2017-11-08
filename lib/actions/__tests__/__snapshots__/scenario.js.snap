@@ -86,10 +86,7 @@ Array [
 exports[`actions > scenario deleteScenario should work 1`] = `
 Array [
   Object {
-    "payload": Object {
-      "projectId": "1",
-      "scenarioId": "1",
-    },
+    "payload": "1",
     "type": "delete scenario",
   },
   Object {
@@ -98,7 +95,7 @@ Array [
       "options": Object {
         "method": "delete",
       },
-      "url": "/api/scenario/[object Object]",
+      "url": "/api/scenario/1",
     },
     "type": "fetch",
   },
@@ -108,10 +105,7 @@ Array [
 exports[`actions > scenario deleteScenario should work 2`] = `
 Array [
   Object {
-    "payload": Object {
-      "projectId": "1",
-      "scenarioId": "1",
-    },
+    "payload": "1",
     "type": "delete scenario",
   },
   Array [
@@ -120,7 +114,7 @@ Array [
         "options": Object {
           "method": "delete",
         },
-        "url": "/api/scenario/[object Object]",
+        "url": "/api/scenario/1",
       },
       "type": "increment outstanding fetches",
     },
@@ -136,7 +130,7 @@ Array [
       "options": Object {
         "method": "delete",
       },
-      "url": "/api/scenario/[object Object]",
+      "url": "/api/scenario/1",
     },
     "type": "increment outstanding fetches",
   },
@@ -215,6 +209,18 @@ Object {
     "options": Object {
       "body": Object {
         "_id": "1",
+        "accessGroup": "accessGroupName",
+        "bundleId": "1",
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "name": "Mock Scenario",
+        "nonce": "12345",
+        "projectId": "1",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          "Default",
+        ],
       },
       "method": "put",
     },
@@ -231,6 +237,18 @@ Array [
       "options": Object {
         "body": Object {
           "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bundleId": "1",
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "name": "Mock Scenario",
+          "nonce": "12345",
+          "projectId": "1",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            "Default",
+          ],
         },
         "method": "put",
       },
@@ -249,6 +267,18 @@ Array [
       "options": Object {
         "body": Object {
           "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bundleId": "1",
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "name": "Mock Scenario",
+          "nonce": "12345",
+          "projectId": "1",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            "Default",
+          ],
         },
         "method": "put",
       },
@@ -275,60 +305,6 @@ exports[`actions > scenario setAll should work 1`] = `
 Object {
   "type": "set scenarios",
 }
-`;
-
-exports[`actions > scenario setAndLoadModifications should work 1`] = `
-Array [
-  Object {
-    "payload": Object {
-      "_id": "1",
-      "bundleId": "1",
-    },
-    "type": "set scenario",
-  },
-  Object {
-    "payload": Object {
-      "next": [Function],
-      "url": "/api/scenario/1/modifications",
-    },
-    "type": "fetch",
-  },
-]
-`;
-
-exports[`actions > scenario setAndLoadModifications should work 2`] = `
-Array [
-  Object {
-    "payload": Object {
-      "_id": "1",
-      "bundleId": "1",
-    },
-    "type": "set scenario",
-  },
-  Array [
-    Object {
-      "payload": Object {
-        "options": Object {},
-        "url": "/api/scenario/1/modifications",
-      },
-      "type": "increment outstanding fetches",
-    },
-    Promise {},
-  ],
-]
-`;
-
-exports[`actions > scenario setAndLoadModifications should work 3`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {},
-      "url": "/api/scenario/1/modifications",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Promise {},
-]
 `;
 
 exports[`actions > scenario showVariant should work 1`] = `
