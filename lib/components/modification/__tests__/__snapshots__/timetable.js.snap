@@ -1,451 +1,1056 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Timetable renders correctly 1`] = `
-<section
-  className="panel panel-default inner-panel"
->
-  <a
-    className="panel-heading clearfix"
-    onClick={[Function]}
-    style={
-      Object {
-        "cursor": "pointer",
-      }
+<TimetableComponent
+  allPhaseFromTimetableStops={Object {}}
+  bidirectional={false}
+  modificationStops={Array []}
+  numberOfStops={0}
+  qualifiedStops={Array []}
+  remove={[Function]}
+  scenarioTimetables={Array []}
+  segmentDistances={Array []}
+  setMapState={[Function]}
+  timetable={
+    Object {
+      "_id": "timetable-id",
+      "dwellTime": 10,
+      "endTime": 57600,
+      "exactTimes": false,
+      "friday": true,
+      "headwaySecs": 900,
+      "modificationId": "1234",
+      "modificationName": "Test Modification",
+      "monday": true,
+      "name": "Test timetable",
+      "patternTrips": Array [
+        "abcd",
+      ],
+      "phaseAtStop": "",
+      "phaseFromStop": "",
+      "phaseFromTimetable": "",
+      "phaseSeconds": 300,
+      "saturday": false,
+      "segmentSpeeds": Array [],
+      "sourceTrip": "abcd",
+      "startTime": 28800,
+      "sunday": false,
+      "thursday": true,
+      "tuesday": true,
+      "wednesday": true,
     }
-    tabIndex={0}
+  }
+  update={[Function]}
+>
+  <section
+    className="panel panel-default inner-panel"
   >
-    <i
-      className="fa fa-caret-down fa-fw "
-    />
-    <strong>
-       
-      Test timetable
-    </strong>
-  </a>
-  <div
-    className="panel-body"
-  >
-    <div
-      className="form-group"
+    <a
+      className="panel-heading clearfix"
+      onClick={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+        }
+      }
+      tabIndex={0}
     >
-      <input
-        className="form-control"
-        id="name-input-0"
+      <Icon
+        type="calendar"
+      >
+        <i
+          className="fa fa-calendar fa-fw "
+        />
+      </Icon>
+      <strong>
+         
+        Test timetable
+      </strong>
+      <Icon
+        className="pull-right"
+        type="caret-right"
+      >
+        <i
+          className="fa fa-caret-right fa-fw pull-right"
+        />
+      </Icon>
+    </a>
+  </section>
+</TimetableComponent>
+`;
+
+exports[`Component > Timetable renders correctly 2`] = `
+<TimetableComponent
+  allPhaseFromTimetableStops={Object {}}
+  bidirectional={false}
+  modificationStops={Array []}
+  numberOfStops={0}
+  qualifiedStops={Array []}
+  remove={[Function]}
+  scenarioTimetables={Array []}
+  segmentDistances={Array []}
+  setMapState={[Function]}
+  timetable={
+    Object {
+      "_id": "timetable-id",
+      "dwellTime": 10,
+      "endTime": 57600,
+      "exactTimes": false,
+      "friday": true,
+      "headwaySecs": 900,
+      "modificationId": "1234",
+      "modificationName": "Test Modification",
+      "monday": true,
+      "name": "Test timetable",
+      "patternTrips": Array [
+        "abcd",
+      ],
+      "phaseAtStop": "",
+      "phaseFromStop": "",
+      "phaseFromTimetable": "",
+      "phaseSeconds": 300,
+      "saturday": false,
+      "segmentSpeeds": Array [],
+      "sourceTrip": "abcd",
+      "startTime": 28800,
+      "sunday": false,
+      "thursday": true,
+      "tuesday": true,
+      "wednesday": true,
+    }
+  }
+  update={[Function]}
+>
+  <section
+    className="panel panel-default inner-panel"
+  >
+    <a
+      className="panel-heading clearfix"
+      onClick={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
+        }
+      }
+      tabIndex={0}
+    >
+      <Icon
+        type="calendar"
+      >
+        <i
+          className="fa fa-calendar fa-fw "
+        />
+      </Icon>
+      <strong>
+         
+        Test timetable
+      </strong>
+      <Icon
+        className="pull-right"
+        type="caret-down"
+      >
+        <i
+          className="fa fa-caret-down fa-fw pull-right"
+        />
+      </Icon>
+    </a>
+    <div
+      className="panel-body"
+    >
+      <Text
         name="Name"
         onChange={[Function]}
-        placeholder="Name"
-        type="text"
         value="Test timetable"
-      />
-    </div>
-    <div>
-      <div
-        className="form-inline"
       >
-        <div
-          className="checkbox"
+        <Group
+          id="name-input-0"
+          name="Name"
+          onChange={[Function]}
+          value="Test timetable"
         >
-          <label
-            htmlFor="mon-input-1"
-          >
-            <input
-              checked={true}
-              id="mon-input-1"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Mon
-          </label>
-        </div>
-        <div
-          className="checkbox"
-        >
-          <label
-            htmlFor="tue-input-2"
-          >
-            <input
-              checked={true}
-              id="tue-input-2"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Tue
-          </label>
-        </div>
-        <div
-          className="checkbox"
-        >
-          <label
-            htmlFor="wed-input-3"
-          >
-            <input
-              checked={true}
-              id="wed-input-3"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Wed
-          </label>
-        </div>
-        <div
-          className="checkbox"
-        >
-          <label
-            htmlFor="thu-input-4"
-          >
-            <input
-              checked={true}
-              id="thu-input-4"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Thu
-          </label>
-        </div>
-        <div
-          className="checkbox"
-        >
-          <label
-            htmlFor="fri-input-5"
-          >
-            <input
-              checked={true}
-              id="fri-input-5"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Fri
-          </label>
-        </div>
-        <div
-          className="checkbox"
-        >
-          <label
-            htmlFor="sat-input-6"
-          >
-            <input
-              checked={false}
-              id="sat-input-6"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Sat
-          </label>
-        </div>
-        <div
-          className="checkbox"
-        >
-          <label
-            htmlFor="sun-input-7"
-          >
-            <input
-              checked={false}
-              id="sun-input-7"
-              onChange={[Function]}
-              type="checkbox"
-            />
-             
-            Sun
-          </label>
-        </div>
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="frequency-input-8"
-        >
-          Frequency
-        </label>
-        <div
-          className="InputWithUnits"
-        >
-          <input
-            className="form-control"
-            id="frequency-input-8"
-            name={undefined}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="mm:ss"
-            type="text"
-            value="15:00"
-          />
-          <span
-            className="InputUnits"
-          >
-            mm:ss
-          </span>
-        </div>
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="start-time-input-9"
-        >
-          Start time
-        </label>
-        <div
-          className="InputWithUnits"
-        >
-          <input
-            className="form-control"
-            id="start-time-input-9"
-            name={undefined}
-            onChange={[Function]}
-            onWheel={[Function]}
-            placeholder="hh:mm"
-            type="time"
-            value="08:00"
-          />
-          <span
-            className="InputUnits"
-          >
-            hh:mm
-          </span>
-        </div>
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="end-time-input-10"
-        >
-          End time
-        </label>
-        <div
-          className="InputWithUnits"
-        >
-          <input
-            className="form-control"
-            id="end-time-input-10"
-            name={undefined}
-            onChange={[Function]}
-            onWheel={[Function]}
-            placeholder="hh:mm"
-            type="time"
-            value="16:00"
-          />
-          <span
-            className="InputUnits"
-          >
-            hh:mm
-          </span>
-        </div>
-      </div>
-      <div
-        className="checkbox"
-      >
-        <label
-          htmlFor="times-are-exact-input-11"
-        >
-          <input
-            checked={undefined}
-            disabled={false}
-            id="times-are-exact-input-11"
-            onChange={[Function]}
-            type="checkbox"
-          />
-           
-          Times are exact
-        </label>
-      </div>
-      <div>
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="phase-at-stop-input-12"
-          >
-            Phase at stop
-          </label>
           <div
-            className="Select Select--single is-clearable is-searchable"
-            style={undefined}
+            className="form-group"
+          >
+            <Input
+              id="name-input-0"
+              name="Name"
+              onChange={[Function]}
+              type="text"
+              value="Test timetable"
+            >
+              <input
+                className="form-control"
+                id="name-input-0"
+                name="Name"
+                onChange={[Function]}
+                placeholder="Name"
+                type="text"
+                value="Test timetable"
+              />
+            </Input>
+          </div>
+        </Group>
+      </Text>
+      <TimetableEntry
+        allPhaseFromTimetableStops={Object {}}
+        bidirectional={false}
+        modificationStops={Array []}
+        scenarioTimetables={Array []}
+        timetable={
+          Object {
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          }
+        }
+        update={[Function]}
+      >
+        <div>
+          <Days
+            setDay={[Function]}
+            timetable={
+              Object {
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              }
+            }
           >
             <div
-              className="Select-control"
-              onKeyDown={[Function]}
-              onMouseDown={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-              style={undefined}
+              className="form-inline"
             >
-              <span
-                className="Select-multi-value-wrapper"
-                id="react-select-2--value"
+              <Checkbox
+                checked={true}
+                label="Mon"
+                onChange={[Function]}
               >
                 <div
-                  className="Select-placeholder"
+                  className="checkbox"
                 >
-                  Phase at stop
+                  <label
+                    htmlFor="mon-input-1"
+                  >
+                    <input
+                      checked={true}
+                      id="mon-input-1"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                     
+                    Mon
+                  </label>
                 </div>
-              </span>
-              <span
-                className="Select-arrow-zone"
-                onMouseDown={[Function]}
+              </Checkbox>
+              <Checkbox
+                checked={true}
+                label="Tue"
+                onChange={[Function]}
               >
-                <span
-                  className="Select-arrow"
-                  onMouseDown={[Function]}
-                />
-              </span>
+                <div
+                  className="checkbox"
+                >
+                  <label
+                    htmlFor="tue-input-2"
+                  >
+                    <input
+                      checked={true}
+                      id="tue-input-2"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                     
+                    Tue
+                  </label>
+                </div>
+              </Checkbox>
+              <Checkbox
+                checked={true}
+                label="Wed"
+                onChange={[Function]}
+              >
+                <div
+                  className="checkbox"
+                >
+                  <label
+                    htmlFor="wed-input-3"
+                  >
+                    <input
+                      checked={true}
+                      id="wed-input-3"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                     
+                    Wed
+                  </label>
+                </div>
+              </Checkbox>
+              <Checkbox
+                checked={true}
+                label="Thu"
+                onChange={[Function]}
+              >
+                <div
+                  className="checkbox"
+                >
+                  <label
+                    htmlFor="thu-input-4"
+                  >
+                    <input
+                      checked={true}
+                      id="thu-input-4"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                     
+                    Thu
+                  </label>
+                </div>
+              </Checkbox>
+              <Checkbox
+                checked={true}
+                label="Fri"
+                onChange={[Function]}
+              >
+                <div
+                  className="checkbox"
+                >
+                  <label
+                    htmlFor="fri-input-5"
+                  >
+                    <input
+                      checked={true}
+                      id="fri-input-5"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                     
+                    Fri
+                  </label>
+                </div>
+              </Checkbox>
+              <Checkbox
+                checked={false}
+                label="Sat"
+                onChange={[Function]}
+              >
+                <div
+                  className="checkbox"
+                >
+                  <label
+                    htmlFor="sat-input-6"
+                  >
+                    <input
+                      checked={false}
+                      id="sat-input-6"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                     
+                    Sat
+                  </label>
+                </div>
+              </Checkbox>
+              <Checkbox
+                checked={false}
+                label="Sun"
+                onChange={[Function]}
+              >
+                <div
+                  className="checkbox"
+                >
+                  <label
+                    htmlFor="sun-input-7"
+                  >
+                    <input
+                      checked={false}
+                      id="sun-input-7"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                     
+                    Sun
+                  </label>
+                </div>
+              </Checkbox>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="dwell-time-input-13"
-        >
-          Dwell time
-        </label>
-        <div
-          className="InputWithUnits"
-        >
-          <input
-            className="form-control"
-            id="dwell-time-input-13"
-            name={undefined}
-            onBlur={[Function]}
+          </Days>
+          <MinutesSeconds
+            label="Frequency"
             onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="mm:ss"
-            type="text"
-            value="00:10"
-          />
-          <span
-            className="InputUnits"
+            seconds={900}
           >
-            mm:ss
-          </span>
-        </div>
-      </div>
-      <div>
-        <div
-          aria-level={3}
-          role="heading"
-        >
-          <a
-            aria-expanded={false}
-            className="CollapsibleButton"
-            onClick={[Function]}
-            role="button"
-            tabIndex={0}
+            <Text
+              label="Frequency"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              units="mm:ss"
+              value="15:00"
+            >
+              <Group
+                id="frequency-input-8"
+                label="Frequency"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                units="mm:ss"
+                value="15:00"
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="frequency-input-8"
+                  >
+                    Frequency
+                  </label>
+                  <Input
+                    id="frequency-input-8"
+                    label="Frequency"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    units="mm:ss"
+                    value="15:00"
+                  >
+                    <div
+                      className="InputWithUnits"
+                    >
+                      <input
+                        className="form-control"
+                        id="frequency-input-8"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        placeholder="mm:ss"
+                        type="text"
+                        value="15:00"
+                      />
+                      <span
+                        className="InputUnits"
+                      >
+                        mm:ss
+                      </span>
+                    </div>
+                  </Input>
+                </div>
+              </Group>
+            </Text>
+          </MinutesSeconds>
+          <TimePicker
+            label="Start time"
+            onChange={[Function]}
+            value={28800}
           >
-            <i
-              className="fa fa-caret-right fa-fw "
-            />
-            <strong>
-              Set individual stop dwell times
-            </strong>
-          </a>
+            <Text
+              label="Start time"
+              onChange={[Function]}
+              onWheel={[Function]}
+              type="time"
+              units="hh:mm"
+              value="08:00"
+            >
+              <Group
+                id="start-time-input-9"
+                label="Start time"
+                onChange={[Function]}
+                onWheel={[Function]}
+                type="time"
+                units="hh:mm"
+                value="08:00"
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="start-time-input-9"
+                  >
+                    Start time
+                  </label>
+                  <Input
+                    id="start-time-input-9"
+                    label="Start time"
+                    onChange={[Function]}
+                    onWheel={[Function]}
+                    type="time"
+                    units="hh:mm"
+                    value="08:00"
+                  >
+                    <div
+                      className="InputWithUnits"
+                    >
+                      <input
+                        className="form-control"
+                        id="start-time-input-9"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        placeholder="hh:mm"
+                        type="time"
+                        value="08:00"
+                      />
+                      <span
+                        className="InputUnits"
+                      >
+                        hh:mm
+                      </span>
+                    </div>
+                  </Input>
+                </div>
+              </Group>
+            </Text>
+          </TimePicker>
+          <TimePicker
+            label="End time"
+            onChange={[Function]}
+            value={57600}
+          >
+            <Text
+              label="End time"
+              onChange={[Function]}
+              onWheel={[Function]}
+              type="time"
+              units="hh:mm"
+              value="16:00"
+            >
+              <Group
+                id="end-time-input-10"
+                label="End time"
+                onChange={[Function]}
+                onWheel={[Function]}
+                type="time"
+                units="hh:mm"
+                value="16:00"
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="end-time-input-10"
+                  >
+                    End time
+                  </label>
+                  <Input
+                    id="end-time-input-10"
+                    label="End time"
+                    onChange={[Function]}
+                    onWheel={[Function]}
+                    type="time"
+                    units="hh:mm"
+                    value="16:00"
+                  >
+                    <div
+                      className="InputWithUnits"
+                    >
+                      <input
+                        className="form-control"
+                        id="end-time-input-10"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        placeholder="hh:mm"
+                        type="time"
+                        value="16:00"
+                      />
+                      <span
+                        className="InputUnits"
+                      >
+                        hh:mm
+                      </span>
+                    </div>
+                  </Input>
+                </div>
+              </Group>
+            </Text>
+          </TimePicker>
+          <Checkbox
+            checked={false}
+            disabled={false}
+            label="Times are exact"
+            onChange={[Function]}
+          >
+            <div
+              className="checkbox"
+            >
+              <label
+                htmlFor="times-are-exact-input-11"
+              >
+                <input
+                  checked={false}
+                  disabled={false}
+                  id="times-are-exact-input-11"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                 
+                Times are exact
+              </label>
+            </div>
+          </Checkbox>
+          <Phase
+            availableTimetables={Array []}
+            disabled={false}
+            modificationStops={Array []}
+            phaseAtStop=""
+            phaseFromStop=""
+            phaseFromTimetable=""
+            phaseSeconds={300}
+            timetableHeadway={900}
+            update={[Function]}
+          >
+            <div>
+              <Group
+                label="Phase at stop"
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="phase-at-stop-input-12"
+                  >
+                    Phase at stop
+                  </label>
+                  <Select
+                    addLabelText="Add \\"{label}\\"?"
+                    arrowRenderer={[Function]}
+                    autosize={true}
+                    backspaceRemoves={true}
+                    backspaceToRemoveMessage="Press backspace to remove {label}"
+                    clearAllText="Clear all"
+                    clearRenderer={[Function]}
+                    clearValueText="Clear value"
+                    clearable={true}
+                    deleteRemoves={true}
+                    delimiter=","
+                    disabled={false}
+                    escapeClearsValue={true}
+                    filterOptions={[Function]}
+                    ignoreAccents={true}
+                    ignoreCase={true}
+                    inputProps={Object {}}
+                    isLoading={false}
+                    joinValues={false}
+                    labelKey="label"
+                    matchPos="any"
+                    matchProp="any"
+                    menuBuffer={0}
+                    menuRenderer={[Function]}
+                    multi={false}
+                    name="Phase at stop"
+                    noResultsText="No results found"
+                    onBlurResetsInput={true}
+                    onChange={[Function]}
+                    onCloseResetsInput={true}
+                    optionComponent={[Function]}
+                    options={Array []}
+                    pageSize={5}
+                    placeholder="Phase at stop"
+                    required={false}
+                    scrollMenuIntoView={true}
+                    searchable={true}
+                    simpleValue={false}
+                    tabSelectsValue={true}
+                    value=""
+                    valueComponent={[Function]}
+                    valueKey="value"
+                  >
+                    <div
+                      className="Select Select--single is-clearable is-searchable"
+                    >
+                      <div
+                        className="Select-control"
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                      >
+                        <span
+                          className="Select-multi-value-wrapper"
+                          id="react-select-2--value"
+                        >
+                          <div
+                            className="Select-placeholder"
+                          >
+                            Phase at stop
+                          </div>
+                          <mockConstructor
+                            aria-activedescendant="react-select-2--value"
+                            aria-expanded="false"
+                            aria-haspopup="false"
+                            aria-owns=""
+                            className="Select-input"
+                            minWidth="5"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            required={false}
+                            role="combobox"
+                            value=""
+                          />
+                        </span>
+                        <span
+                          aria-label="Clear value"
+                          className="Select-clear-zone"
+                          onMouseDown={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchMove={[Function]}
+                          onTouchStart={[Function]}
+                          title="Clear value"
+                        >
+                          <span
+                            className="Select-clear"
+                            dangerouslySetInnerHTML={
+                              Object {
+                                "__html": "&times;",
+                              }
+                            }
+                          />
+                        </span>
+                        <span
+                          className="Select-arrow-zone"
+                          onMouseDown={[Function]}
+                        >
+                          <span
+                            className="Select-arrow"
+                            onMouseDown={[Function]}
+                          />
+                        </span>
+                      </div>
+                    </div>
+                  </Select>
+                </div>
+              </Group>
+            </div>
+          </Phase>
         </div>
-      </div>
-      <div
-        className="form-group"
+      </TimetableEntry>
+      <SegmentSpeeds
+        dwellTime={10}
+        dwellTimes={Array []}
+        highlightSegment={[Function]}
+        highlightStop={[Function]}
+        numberOfStops={0}
+        qualifiedStops={Array []}
+        segmentDistances={Array []}
+        segmentSpeeds={Array []}
+        update={[Function]}
       >
-        <label
-          htmlFor="average-segment-speed-input-14"
-        >
-          Average segment speed
-        </label>
-        <div
-          className="InputWithUnits"
-        >
-          <input
-            className="form-control"
-            id="average-segment-speed-input-14"
+        <div>
+          <MinutesSeconds
+            label="Dwell time"
+            onChange={[Function]}
+            seconds={10}
+          >
+            <Text
+              label="Dwell time"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              units="mm:ss"
+              value="00:10"
+            >
+              <Group
+                id="dwell-time-input-13"
+                label="Dwell time"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                units="mm:ss"
+                value="00:10"
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="dwell-time-input-13"
+                  >
+                    Dwell time
+                  </label>
+                  <Input
+                    id="dwell-time-input-13"
+                    label="Dwell time"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    units="mm:ss"
+                    value="00:10"
+                  >
+                    <div
+                      className="InputWithUnits"
+                    >
+                      <input
+                        className="form-control"
+                        id="dwell-time-input-13"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        placeholder="mm:ss"
+                        type="text"
+                        value="00:10"
+                      />
+                      <span
+                        className="InputUnits"
+                      >
+                        mm:ss
+                      </span>
+                    </div>
+                  </Input>
+                </div>
+              </Group>
+            </Text>
+          </MinutesSeconds>
+          <Collapsible
+            defaultExpanded={false}
+            title="Set individual stop dwell times"
+          >
+            <div>
+              <div
+                aria-level={3}
+                role="heading"
+              >
+                <a
+                  aria-expanded={false}
+                  className="CollapsibleButton"
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <Icon
+                    type="caret-right"
+                  >
+                    <i
+                      className="fa fa-caret-right fa-fw "
+                    />
+                  </Icon>
+                  <strong>
+                    Set individual stop dwell times
+                  </strong>
+                </a>
+              </div>
+            </div>
+          </Collapsible>
+          <Number
+            label="Average segment speed"
             min={1}
-            name={undefined}
             onChange={[Function]}
-            onWheel={[Function]}
-            placeholder="km/h"
-            type="number"
+            units="km/h"
             value={15}
-          />
-          <span
-            className="InputUnits"
           >
-            km/h
-          </span>
-        </div>
-      </div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="total-travel-time-input-15"
-        >
-          Total travel time
-        </label>
-        <div
-          className="InputWithUnits"
-        >
-          <input
-            className="form-control"
-            id="total-travel-time-input-15"
-            name={undefined}
-            onBlur={[Function]}
+            <Group
+              id="average-segment-speed-input-14"
+              label="Average segment speed"
+              min={1}
+              onChange={[Function]}
+              units="km/h"
+              value={15}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="average-segment-speed-input-14"
+                >
+                  Average segment speed
+                </label>
+                <Input
+                  id="average-segment-speed-input-14"
+                  label="Average segment speed"
+                  min={1}
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  type="number"
+                  units="km/h"
+                  value={15}
+                >
+                  <div
+                    className="InputWithUnits"
+                  >
+                    <input
+                      className="form-control"
+                      id="average-segment-speed-input-14"
+                      min={1}
+                      onChange={[Function]}
+                      onWheel={[Function]}
+                      placeholder="km/h"
+                      type="number"
+                      value={15}
+                    />
+                    <span
+                      className="InputUnits"
+                    >
+                      km/h
+                    </span>
+                  </div>
+                </Input>
+              </div>
+            </Group>
+          </Number>
+          <MinutesSeconds
+            label="Total travel time"
             onChange={[Function]}
-            onKeyDown={[Function]}
-            placeholder="mm:ss"
-            type="text"
-            value="00:00"
-          />
-          <span
-            className="InputUnits"
+            seconds={0}
           >
-            mm:ss
-          </span>
+            <Text
+              label="Total travel time"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              units="mm:ss"
+              value="00:00"
+            >
+              <Group
+                id="total-travel-time-input-15"
+                label="Total travel time"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                units="mm:ss"
+                value="00:00"
+              >
+                <div
+                  className="form-group"
+                >
+                  <label
+                    htmlFor="total-travel-time-input-15"
+                  >
+                    Total travel time
+                  </label>
+                  <Input
+                    id="total-travel-time-input-15"
+                    label="Total travel time"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onKeyDown={[Function]}
+                    type="text"
+                    units="mm:ss"
+                    value="00:00"
+                  >
+                    <div
+                      className="InputWithUnits"
+                    >
+                      <input
+                        className="form-control"
+                        id="total-travel-time-input-15"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                        placeholder="mm:ss"
+                        type="text"
+                        value="00:00"
+                      />
+                      <span
+                        className="InputUnits"
+                      >
+                        mm:ss
+                      </span>
+                    </div>
+                  </Input>
+                </div>
+              </Group>
+            </Text>
+          </MinutesSeconds>
+          <Collapsible
+            defaultExpanded={false}
+            title="Set individual segment speeds"
+          >
+            <div>
+              <div
+                aria-level={3}
+                role="heading"
+              >
+                <a
+                  aria-expanded={false}
+                  className="CollapsibleButton"
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <Icon
+                    type="caret-right"
+                  >
+                    <i
+                      className="fa fa-caret-right fa-fw "
+                    />
+                  </Icon>
+                  <strong>
+                    Set individual segment speeds
+                  </strong>
+                </a>
+              </div>
+            </div>
+          </Collapsible>
         </div>
-      </div>
-      <div>
-        <div
-          aria-level={3}
-          role="heading"
+      </SegmentSpeeds>
+      <Button
+        block={true}
+        onClick={[Function]}
+        style="danger"
+        title="Delete timetable"
+      >
+        <a
+          className="btn btn-danger btn-block"
+          href="#"
+          onClick={[Function]}
+          tabIndex={0}
+          title="Delete timetable"
         >
-          <a
-            aria-expanded={false}
-            className="CollapsibleButton"
-            onClick={[Function]}
-            role="button"
-            tabIndex={0}
+          <Icon
+            type="close"
           >
             <i
-              className="fa fa-caret-right fa-fw "
+              className="fa fa-close fa-fw "
             />
-            <strong>
-              Set individual segment speeds
-            </strong>
-          </a>
-        </div>
-      </div>
+          </Icon>
+           Delete Timetable
+        </a>
+      </Button>
     </div>
-    <a
-      className="btn btn-danger btn-block"
-      href="#"
-      onClick={[Function]}
-      tabIndex={0}
-      title="Delete timetable"
-    >
-      <i
-        className="fa fa-close fa-fw "
-      />
-       Delete Timetable
-    </a>
-  </div>
-</section>
+  </section>
+</TimetableComponent>
 `;

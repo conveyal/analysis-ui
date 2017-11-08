@@ -43,15 +43,20 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       modifications={
         Array [
           Object {
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
             "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
             "description": "Mock description",
             "entries": Array [],
             "feed": "1",
-            "id": "1234",
             "name": "Test Modification",
+            "nonce": "12345",
             "routes": Array [
               "route1",
             ],
+            "scenarioId": "1",
             "segments": Array [
               {
           "type": "Feature",
@@ -90,15 +95,23 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             "showOnMap": false,
             "timetables": Array [
               Object {
+                "_id": "timetable-id",
                 "dwellTime": 10,
                 "endTime": 57600,
+                "exactTimes": false,
                 "friday": true,
                 "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
                 "monday": true,
                 "name": "Test timetable",
                 "patternTrips": Array [
                   "abcd",
                 ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
                 "saturday": false,
                 "segmentSpeeds": Array [],
                 "sourceTrip": "abcd",
@@ -113,6 +126,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               "abcd",
             ],
             "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
             "variants": Array [
               true,
             ],
@@ -175,198 +190,16 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       scenarios={
         Array [
           Object {
+            "_id": "1",
+            "accessGroup": "accessGroupName",
             "bundleId": "1",
-            "feeds": Array [
-              Object {
-                "id": "1",
-                "routes": Array [
-                  Object {
-                    "patterns": Array [
-                      Object {
-                        "geometry": Object {
-                          "coordinates": Array [
-                            Array [
-                              -122.0246,
-                              36.9707,
-                            ],
-                            Array [
-                              -122.0279,
-                              37.049,
-                            ],
-                            Array [
-                              -121.9799,
-                              37.2299,
-                            ],
-                            Array [
-                              -121.9445,
-                              37.324,
-                            ],
-                            Array [
-                              -121.936,
-                              37.353,
-                            ],
-                            Array [
-                              -121.924,
-                              37.365,
-                            ],
-                          ],
-                          "type": "LineString",
-                        },
-                        "stops": Array [
-                          Object {
-                            "stop_id": "1",
-                            "stop_lat": 36.9707,
-                            "stop_lon": -122.0246,
-                            "stop_name": "Santa Cruz",
-                          },
-                          Object {
-                            "stop_id": "2",
-                            "stop_lat": 37.049,
-                            "stop_lon": -122.0279,
-                            "stop_name": "Scotts Valley",
-                          },
-                        ],
-                        "trips": Array [
-                          Object {
-                            "duration": 1234,
-                            "start_time": 12345,
-                            "trip_headsign": "To Downtown",
-                            "trip_id": "abcd",
-                            "trip_short_name": "The Express",
-                          },
-                        ],
-                      },
-                    ],
-                    "route_id": "route1",
-                  },
-                ],
-                "stops": Array [
-                  Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                ],
-                "stopsById": Object {
-                  "1": Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  "2": Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                },
-              },
-            ],
-            "feedsById": Object {
-              "1": Object {
-                "id": "1",
-                "routes": Array [
-                  Object {
-                    "patterns": Array [
-                      Object {
-                        "geometry": Object {
-                          "coordinates": Array [
-                            Array [
-                              -122.0246,
-                              36.9707,
-                            ],
-                            Array [
-                              -122.0279,
-                              37.049,
-                            ],
-                            Array [
-                              -121.9799,
-                              37.2299,
-                            ],
-                            Array [
-                              -121.9445,
-                              37.324,
-                            ],
-                            Array [
-                              -121.936,
-                              37.353,
-                            ],
-                            Array [
-                              -121.924,
-                              37.365,
-                            ],
-                          ],
-                          "type": "LineString",
-                        },
-                        "stops": Array [
-                          Object {
-                            "stop_id": "1",
-                            "stop_lat": 36.9707,
-                            "stop_lon": -122.0246,
-                            "stop_name": "Santa Cruz",
-                          },
-                          Object {
-                            "stop_id": "2",
-                            "stop_lat": 37.049,
-                            "stop_lon": -122.0279,
-                            "stop_name": "Scotts Valley",
-                          },
-                        ],
-                        "trips": Array [
-                          Object {
-                            "duration": 1234,
-                            "start_time": 12345,
-                            "trip_headsign": "To Downtown",
-                            "trip_id": "abcd",
-                            "trip_short_name": "The Express",
-                          },
-                        ],
-                      },
-                    ],
-                    "route_id": "route1",
-                  },
-                ],
-                "stops": Array [
-                  Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                ],
-                "stopsById": Object {
-                  "1": Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  "2": Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                },
-              },
-            },
-            "id": "1",
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
             "name": "Mock Scenario",
+            "nonce": "12345",
             "projectId": "1",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
             "variants": Array [
               "Default",
             ],

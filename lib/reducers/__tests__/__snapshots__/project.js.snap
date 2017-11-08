@@ -2,17 +2,19 @@
 
 exports[`reducers > project should handle default state 1`] = `
 Object {
-  "currentProject": undefined,
+  "currentProjectId": undefined,
   "projects": Array [],
-  "projectsById": Object {},
+  "r5Versions": Object {
+    "all": Array [],
+    "release": Array [],
+  },
 }
 `;
 
 exports[`reducers > project should handle delete project 1`] = `
 Object {
-  "currentProject": undefined,
+  "currentProjectId": undefined,
   "projects": Array [],
-  "projectsById": Object {},
 }
 `;
 
@@ -20,12 +22,20 @@ exports[`reducers > project should handle delete regional analysis 1`] = `
 Object {
   "regionalAnalyses": Array [
     Object {
+      "_id": "efgh",
+      "accessGroup": "accessGroupName",
+      "bounds": Object {},
       "bundleId": "5678",
+      "complete": true,
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "creationTime": 20000,
       "cutoffMinutes": 60,
+      "deleted": false,
       "grid": "Jobs_total",
       "height": 300,
-      "id": "efgh",
       "name": "ANALYSIS 2",
+      "nonce": "12345",
       "north": 20024,
       "request": Object {
         "accessModes": "WALK",
@@ -54,10 +64,14 @@ Object {
         "walkSpeed": 1.3888888888888888,
       },
       "scenarioId": "4321",
+      "status": "DONE",
       "travelTimePercentile": 42,
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
       "variant": 1,
       "west": 20015,
       "width": 300,
+      "workerVersion": "v3.2.0",
       "zoom": 9,
     },
   ],
@@ -66,18 +80,22 @@ Object {
 
 exports[`reducers > project should handle set all projects 1`] = `
 Object {
-  "currentProject": undefined,
+  "currentProjectId": undefined,
   "projects": Array [
     Object {
+      "_id": "1",
+      "accessGroup": "accessGroupName",
       "bounds": Object {
         "east": -76,
         "north": 39,
         "south": 38,
         "west": -77,
       },
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
       "description": "Project description",
-      "id": "1",
       "name": "Mock Project",
+      "nonce": "12345",
       "opportunityDatasets": Array [
         Object {
           "dataSource": "lodes-data-2014",
@@ -86,64 +104,35 @@ Object {
         },
       ],
       "r5Version": "v3.2.0",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
     },
   ],
-  "projectsById": Object {
-    "1": Object {
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "description": "Project description",
-      "id": "1",
-      "name": "Mock Project",
-      "opportunityDatasets": Array [
-        Object {
-          "dataSource": "lodes-data-2014",
-          "key": "Workers_total",
-          "name": "Workers total",
-        },
-      ],
-      "r5Version": "v3.2.0",
-    },
+  "r5Versions": Object {
+    "all": Array [],
+    "release": Array [],
   },
 }
 `;
 
 exports[`reducers > project should handle set project 1`] = `
 Object {
-  "currentProject": Object {
-    "bounds": Object {
-      "east": -76,
-      "north": 39,
-      "south": 38,
-      "west": -77,
-    },
-    "description": "Project description",
-    "id": "1",
-    "name": "Mock Project",
-    "opportunityDatasets": Array [
-      Object {
-        "dataSource": "lodes-data-2014",
-        "key": "Workers_total",
-        "name": "Workers total",
-      },
-    ],
-    "r5Version": "v3.2.0",
-  },
+  "currentProjectId": "1",
   "projects": Array [
     Object {
+      "_id": "1",
+      "accessGroup": "accessGroupName",
       "bounds": Object {
         "east": -76,
         "north": 39,
         "south": 38,
         "west": -77,
       },
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
       "description": "Project description",
-      "id": "1",
       "name": "Mock Project",
+      "nonce": "12345",
       "opportunityDatasets": Array [
         Object {
           "dataSource": "lodes-data-2014",
@@ -152,28 +141,13 @@ Object {
         },
       ],
       "r5Version": "v3.2.0",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
     },
   ],
-  "projectsById": Object {
-    "1": Object {
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "description": "Project description",
-      "id": "1",
-      "name": "Mock Project",
-      "opportunityDatasets": Array [
-        Object {
-          "dataSource": "lodes-data-2014",
-          "key": "Workers_total",
-          "name": "Workers total",
-        },
-      ],
-      "r5Version": "v3.2.0",
-    },
+  "r5Versions": Object {
+    "all": Array [],
+    "release": Array [],
   },
 }
 `;
