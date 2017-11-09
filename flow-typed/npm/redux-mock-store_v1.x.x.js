@@ -2,8 +2,9 @@
 // flow-typed version: <<STUB>>/redux-mock-store_v^1.2.1/flow_>=v0.25.x
 
 declare module 'redux-mock-store' {
-  declare export default (middleware: Array) => (any) => {
+  declare export default (middleware: Array<any>) => (any) => {
     dispatch: (any) => any,
+    getActions(): any,
     getState(): any
   }
 }
