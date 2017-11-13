@@ -4,7 +4,7 @@ Conveyal's tools for editing land-use/transportation scenarios.
 
 ## Configuration
 
-### [Analysis Backend](https://github.com/conveyal/analysis-backend) Backend
+### [Analysis Backend](https://github.com/conveyal/analysis-backend)
 
 The Scenario Editor needs an Analysis Backend running to point at. By default it expects it to be running at `http://localhost:7070`.
 
