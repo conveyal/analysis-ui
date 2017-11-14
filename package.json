@@ -10,10 +10,11 @@
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
     "flow": "mastarm flow",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "prestart": "yarn",
-    "start": "npm run build -- --serve --proxy http://localhost:7070/api",
+    "predeploy": "yarn",
     "pretest": "yarn",
+    "prestart": "yarn",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "start": "npm run build -- --serve --proxy http://localhost:7070/api",
     "test": "mastarm lint && mastarm flow && mastarm test --env test --config configurations/test"
   },
   "repository": {
