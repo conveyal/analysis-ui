@@ -18,20 +18,22 @@ exports[`R5 Version > Components > Selector should render 1`] = `
       allVersions={Array []}
       currentVersion="v3.2.0"
       loadR5Versions={[Function]}
+      newerVersionIsAvailable={false}
       releaseVersions={Array []}
       setCurrentR5Version={[Function]}
     >
       <div>
         <Group
-          allVersions={Array []}
-          currentVersion="v3.2.0"
-          loadR5Versions={[Function]}
-          releaseVersions={Array []}
-          setCurrentR5Version={[Function]}
+          label="R5 Version"
         >
           <div
             className="form-group"
           >
+            <label
+              htmlFor="r-5-version-input-0"
+            >
+              R5 Version
+            </label>
             <Icon
               onClick={[Function]}
               style={
@@ -76,7 +78,6 @@ exports[`R5 Version > Components > Selector should render 1`] = `
               isLoading={false}
               joinValues={false}
               labelKey="label"
-              loadR5Versions={[Function]}
               matchPos="any"
               matchProp="any"
               menuBuffer={0}
@@ -108,7 +109,6 @@ exports[`R5 Version > Components > Selector should render 1`] = `
               required={false}
               scrollMenuIntoView={true}
               searchable={true}
-              setCurrentR5Version={[Function]}
               simpleValue={false}
               tabSelectsValue={true}
               value="v3.2.0"
@@ -200,13 +200,6 @@ exports[`R5 Version > Components > Selector should render 1`] = `
             </Select>
           </div>
         </Group>
-        <div
-          className="alert alert-warning"
-        >
-          An updated version of the Analysis backend is available.
-          Changing versions should improve performance, but it may require a longer wait the first time you initialize a compute cluster for analysis.
-          Using a different version may also change analysis results slightly.
-        </div>
       </div>
     </SelectR5Version>
   </Connect(SelectR5Version)>
