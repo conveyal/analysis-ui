@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`actions > scenario create should work 1`] = `
+exports[`actions > project create should work 1`] = `
 Object {
   "payload": Object {
     "next": [Function],
@@ -15,13 +15,13 @@ Object {
       },
       "method": "post",
     },
-    "url": "/api/scenario",
+    "url": "/api/project",
   },
   "type": "fetch",
 }
 `;
 
-exports[`actions > scenario create should work 2`] = `
+exports[`actions > project create should work 2`] = `
 Array [
   Object {
     "payload": Object {
@@ -36,7 +36,7 @@ Array [
         },
         "method": "post",
       },
-      "url": "/api/scenario",
+      "url": "/api/project",
     },
     "type": "increment outstanding fetches",
   },
@@ -44,7 +44,7 @@ Array [
 ]
 `;
 
-exports[`actions > scenario create should work 3`] = `
+exports[`actions > project create should work 3`] = `
 Array [
   Object {
     "payload": Object {
@@ -59,7 +59,7 @@ Array [
         },
         "method": "post",
       },
-      "url": "/api/scenario",
+      "url": "/api/project",
     },
     "type": "decrement outstanding fetches",
   },
@@ -68,12 +68,12 @@ Array [
       "payload": Object {
         "_id": "1",
       },
-      "type": "add scenario",
+      "type": "add project",
     },
     Object {
       "payload": Object {
         "args": Array [
-          "/scenarios/1",
+          "/projects/1",
         ],
         "method": "push",
       },
@@ -83,11 +83,11 @@ Array [
 ]
 `;
 
-exports[`actions > scenario deleteScenario should work 1`] = `
+exports[`actions > project deleteProject should work 1`] = `
 Array [
   Object {
     "payload": "1",
-    "type": "delete scenario",
+    "type": "delete project",
   },
   Object {
     "payload": Object {
@@ -95,18 +95,18 @@ Array [
       "options": Object {
         "method": "delete",
       },
-      "url": "/api/scenario/1",
+      "url": "/api/project/1",
     },
     "type": "fetch",
   },
 ]
 `;
 
-exports[`actions > scenario deleteScenario should work 2`] = `
+exports[`actions > project deleteProject should work 2`] = `
 Array [
   Object {
     "payload": "1",
-    "type": "delete scenario",
+    "type": "delete project",
   },
   Array [
     Object {
@@ -114,7 +114,7 @@ Array [
         "options": Object {
           "method": "delete",
         },
-        "url": "/api/scenario/1",
+        "url": "/api/project/1",
       },
       "type": "increment outstanding fetches",
     },
@@ -123,14 +123,14 @@ Array [
 ]
 `;
 
-exports[`actions > scenario deleteScenario should work 3`] = `
+exports[`actions > project deleteProject should work 3`] = `
 Array [
   Object {
     "payload": Object {
       "options": Object {
         "method": "delete",
       },
-      "url": "/api/scenario/1",
+      "url": "/api/project/1",
     },
     "type": "increment outstanding fetches",
   },
@@ -138,22 +138,22 @@ Array [
 ]
 `;
 
-exports[`actions > scenario load should work 1`] = `
+exports[`actions > project load should work 1`] = `
 Object {
   "payload": Object {
     "next": [Function],
-    "url": "/api/scenario/1",
+    "url": "/api/project/1",
   },
   "type": "fetch",
 }
 `;
 
-exports[`actions > scenario load should work 2`] = `
+exports[`actions > project load should work 2`] = `
 Array [
   Object {
     "payload": Object {
       "options": Object {},
-      "url": "/api/scenario/1",
+      "url": "/api/project/1",
     },
     "type": "increment outstanding fetches",
   },
@@ -161,12 +161,12 @@ Array [
 ]
 `;
 
-exports[`actions > scenario load should work 3`] = `
+exports[`actions > project load should work 3`] = `
 Array [
   Object {
     "payload": Object {
       "options": Object {},
-      "url": "/api/scenario/1",
+      "url": "/api/project/1",
     },
     "type": "decrement outstanding fetches",
   },
@@ -176,7 +176,7 @@ Array [
         "_id": "1",
         "bundleId": "1",
       },
-      "type": "set scenario",
+      "type": "set project",
     },
     Array [
       Object {
@@ -192,7 +192,7 @@ Array [
       Object {
         "payload": Object {
           "options": Object {},
-          "url": "/api/scenario/1/modifications",
+          "url": "/api/project/1/modifications",
         },
         "type": "increment outstanding fetches",
       },
@@ -202,7 +202,7 @@ Array [
 ]
 `;
 
-exports[`actions > scenario saveToServer should work 1`] = `
+exports[`actions > project saveToServer should work 1`] = `
 Object {
   "payload": Object {
     "next": [Function],
@@ -213,7 +213,7 @@ Object {
         "bundleId": "1",
         "createdAt": "2017-11-08T12:30:50.133Z",
         "createdBy": "person@gmail.com",
-        "name": "Mock Scenario",
+        "name": "Mock Project",
         "nonce": "12345",
         "regionId": "1",
         "updatedAt": "2017-11-08T12:31:19.602Z",
@@ -224,13 +224,13 @@ Object {
       },
       "method": "put",
     },
-    "url": "/api/scenario/1",
+    "url": "/api/project/1",
   },
   "type": "fetch",
 }
 `;
 
-exports[`actions > scenario saveToServer should work 2`] = `
+exports[`actions > project saveToServer should work 2`] = `
 Array [
   Object {
     "payload": Object {
@@ -241,7 +241,7 @@ Array [
           "bundleId": "1",
           "createdAt": "2017-11-08T12:30:50.133Z",
           "createdBy": "person@gmail.com",
-          "name": "Mock Scenario",
+          "name": "Mock Project",
           "nonce": "12345",
           "regionId": "1",
           "updatedAt": "2017-11-08T12:31:19.602Z",
@@ -252,7 +252,7 @@ Array [
         },
         "method": "put",
       },
-      "url": "/api/scenario/1",
+      "url": "/api/project/1",
     },
     "type": "increment outstanding fetches",
   },
@@ -260,7 +260,7 @@ Array [
 ]
 `;
 
-exports[`actions > scenario saveToServer should work 3`] = `
+exports[`actions > project saveToServer should work 3`] = `
 Array [
   Object {
     "payload": Object {
@@ -271,7 +271,7 @@ Array [
           "bundleId": "1",
           "createdAt": "2017-11-08T12:30:50.133Z",
           "createdBy": "person@gmail.com",
-          "name": "Mock Scenario",
+          "name": "Mock Project",
           "nonce": "12345",
           "regionId": "1",
           "updatedAt": "2017-11-08T12:31:19.602Z",
@@ -282,7 +282,7 @@ Array [
         },
         "method": "put",
       },
-      "url": "/api/scenario/1",
+      "url": "/api/project/1",
     },
     "type": "decrement outstanding fetches",
   },
@@ -290,24 +290,24 @@ Array [
     "payload": Object {
       "_id": "1",
     },
-    "type": "set scenario",
+    "type": "set project",
   },
 ]
 `;
 
-exports[`actions > scenario set should work 1`] = `
+exports[`actions > project set should work 1`] = `
 Object {
-  "type": "set scenario",
+  "type": "set project",
 }
 `;
 
-exports[`actions > scenario setAll should work 1`] = `
+exports[`actions > project setAll should work 1`] = `
 Object {
-  "type": "set scenarios",
+  "type": "set projects",
 }
 `;
 
-exports[`actions > scenario showVariant should work 1`] = `
+exports[`actions > project showVariant should work 1`] = `
 Object {
   "type": "show variant",
 }

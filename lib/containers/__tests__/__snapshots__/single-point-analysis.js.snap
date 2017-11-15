@@ -21,7 +21,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       addIsochroneLayerToMap={[Function]}
       addOpportunityLayerToMap={[Function]}
       bundleId="1"
-      clearComparisonScenario={[Function]}
+      clearComparisonProject={[Function]}
       clearIsochroneResults={[Function]}
       createRegionalAnalysis={[Function]}
       downloadComparisonIsochrone={[Function]}
@@ -53,10 +53,10 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             "feed": "1",
             "name": "Test Modification",
             "nonce": "12345",
+            "projectId": "1",
             "routes": Array [
               "route1",
             ],
-            "scenarioId": "1",
             "segments": Array [
               {
           "type": "Feature",
@@ -163,6 +163,27 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "walkSpeed": 1.3888888888888888,
         }
       }
+      projectId="1"
+      projectName="Mock Project"
+      projects={
+        Array [
+          Object {
+            "_id": "1",
+            "accessGroup": "accessGroupName",
+            "bundleId": "1",
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "name": "Mock Project",
+            "nonce": "12345",
+            "regionId": "1",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              "Default",
+            ],
+          },
+        ]
+      }
       push={[Function]}
       regionBounds={
         Object {
@@ -185,29 +206,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       removeEditRegionalAnalysisBoundsLayerFromMap={[Function]}
       removeIsochroneLayerFromMap={[Function]}
       removeOpportunityLayerFromMap={[Function]}
-      scenarioId="1"
-      scenarioName="Mock Scenario"
-      scenarios={
-        Array [
-          Object {
-            "_id": "1",
-            "accessGroup": "accessGroupName",
-            "bundleId": "1",
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "name": "Mock Scenario",
-            "nonce": "12345",
-            "regionId": "1",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              "Default",
-            ],
-          },
-        ]
-      }
       setActiveVariant={[Function]}
-      setComparisonScenario={[Function]}
+      setComparisonProject={[Function]}
       setProfileRequest={[Function]}
       setRegionalAnalysisBounds={[Function]}
       variantIndex={0}
@@ -296,15 +296,15 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               >
                 <Group
                   className="col-xs-6"
-                  label="Scenario"
+                  label="Project"
                 >
                   <div
                     className="form-group col-xs-6"
                   >
                     <label
-                      htmlFor="scenario-input-0"
+                      htmlFor="project-input-0"
                     >
-                      Scenario
+                      Project
                     </label>
                     <Select
                       addLabelText="Add \\"{label}\\"?"
@@ -601,7 +601,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       options={
                         Array [
                           Object {
-                            "label": "Mock Scenario",
+                            "label": "Mock Project",
                             "value": "1",
                           },
                         ]
@@ -667,15 +667,15 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                 </Group>
                 <Group
                   className="col-xs-6"
-                  label="Comparison Scenario"
+                  label="Comparison Project"
                 >
                   <div
                     className="form-group col-xs-6"
                   >
                     <label
-                      htmlFor="comparison-scenario-input-3"
+                      htmlFor="comparison-project-input-3"
                     >
-                      Comparison Scenario
+                      Comparison Project
                     </label>
                     <Select
                       addLabelText="Add \\"{label}\\"?"
@@ -703,7 +703,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       menuBuffer={0}
                       menuRenderer={[Function]}
                       multi={false}
-                      name="Scenario"
+                      name="Project"
                       noResultsText="No results found"
                       onBlurResetsInput={true}
                       onChange={[Function]}
@@ -781,11 +781,11 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                 comparisonAccessibility={null}
                 comparisonInProgress={false}
                 comparisonPercentileCurves={null}
-                comparisonScenarioName={null}
+                comparisonProjectName={null}
                 isFetchingIsochrone={false}
                 isochroneCutoff={60}
                 maxAccessibility={-Infinity}
-                scenarioName="Mock Scenario: Default"
+                projectName="Mock Project: Default"
                 setIsochroneCutoff={[Function]}
               >
                 <div
@@ -818,9 +818,9 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       }
                     >
                       <div
-                        className="scenario-name"
+                        className="project-name"
                       >
-                        Mock Scenario: Default (Median)
+                        Mock Project: Default (Median)
                       </div>
                     </div>
                     <div
@@ -840,7 +840,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         disabled={true}
                         onClick={[Function]}
                         size="sm"
-                        value="scenario"
+                        value="project"
                       >
                         <a
                           className="btn btn-default btn-sm active"
@@ -848,9 +848,9 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           href="#"
                           onClick={[Function]}
                           tabIndex={0}
-                          value="scenario"
+                          value="project"
                         >
-                          Mock Scenario: Default
+                          Mock Project: Default
                         </a>
                       </Button>
                       <Button

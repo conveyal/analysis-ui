@@ -25,11 +25,11 @@ nav:
   selectBundle: Select Bundle
   regions: Regions
   regionSettings: Shared Settings
-  scenarios: Projects
+  projects: Projects
   gtfsBundles: GTFS Bundles
   opportunityDatasets: Opportunity Datasets
-  editScenario: Edit Scenarios
-  analyzeScenario: Analyze Scenarios
+  editModifications: Edit Modifications
+  analyze: Analyze
   notConnectedToInternet: You are not connected to the internet
   unfinishedRequests: You have unfinished requests. Are you sure you want to exit?
 phasing:
@@ -60,7 +60,7 @@ region:
   description: Description
   configure: Configure shared settings for region
   deleteAction: DANGER: Delete this region
-  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated scenarios and modifications.
+  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated projects and modifications.
   editAction: Save changes
   editTitle: Edit region
   versionOutdated: An updated version of the Analysis backend is available. To avoid errors, please select the latest version in
@@ -79,7 +79,7 @@ region:
     ERROR: Error setting up region...
     DONE: Done
   customOpenStreetMapData: OpenStreetMap data in PBF format (required for regions outside the USA; OSM extracts are available from Mapzen).
-scenario:
+project:
   createAction: Create new Project
   createActionTooltip: Each project can include scenarios with modifications that are applied to the same GTFS bundle.
   delete: Delete project
@@ -98,7 +98,7 @@ scenario:
   uploadBundle: Upload a new GTFS Bundle
   uploadOpportunityDataset: Upload a new Opportunity Dataset
   goToExisting: or go to an existing project
-  goToScenario: Go to project
+  goToProject: Go to project
   select: Select a project…
 variant:
   name: Scenario
@@ -178,12 +178,12 @@ analysis:
   latField: Latitude field
   lonField: Longitude field
   travelTime: Travel time
-  errorsInScenario: Errors were found in the scenario:
-  warningsInScenario: Warnings were found applying the scenario
+  errorsInProject: Errors were found in the project:
+  warningsInProject: Warnings were found applying the project
   errorsInModification: in modification %s
   minimumImprovementProbability: Minimum probability of change
   probabilityImprovement: Show areas with probability of change > %01.2f
-  compare: Compare to another scenario
+  compare: Compare to another project
   comparison: Comparison
   baseline: Baseline
   fromTime: From time
@@ -217,7 +217,6 @@ analysis:
     transit: Transit
   fetchStatus:
     LOADING_GRID: Loading opportunity dataset…
-    APPLYING_SCENARIO: Applying scenario…
     PERFORMING_ANALYSIS: Performing analysis…
     COMPUTING_ISOCHRONE: Computing isochrone…
     INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)
@@ -238,8 +237,8 @@ analysis:
   bookmark: Bookmark
   createBookmark: Create bookmark
   bookmarkName: Bookmark name
-  selectComparisonScenario: Select comparison project…
-  selectComparisonScenarioVariant: Select comparison scenario…
+  selectComparisonProject: Select comparison project…
+  selectComparisonProjectVariant: Select comparison scenario…
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.

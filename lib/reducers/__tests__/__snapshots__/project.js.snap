@@ -1,137 +1,204 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`reducers > region should handle default state 1`] = `
+exports[`reducers > project should handle add bundle 1`] = `
 Object {
-  "currentRegionId": undefined,
-  "regions": Array [],
-}
-`;
-
-exports[`reducers > region should handle delete region 1`] = `
-Object {
-  "currentRegionId": undefined,
-  "regions": Array [],
-}
-`;
-
-exports[`reducers > region should handle delete regional analysis 1`] = `
-Object {
-  "regionalAnalyses": Array [
-    Object {
-      "_id": "efgh",
-      "accessGroup": "accessGroupName",
-      "bounds": Object {},
-      "bundleId": "5678",
-      "complete": true,
-      "createdAt": "2017-11-08T12:30:50.133Z",
-      "createdBy": "person@gmail.com",
-      "cutoffMinutes": 60,
-      "deleted": false,
-      "grid": "Jobs_total",
-      "height": 300,
-      "name": "ANALYSIS 2",
-      "nonce": "12345",
-      "north": 20024,
-      "request": Object {
-        "accessModes": "WALK",
-        "bikeSafe": 1,
-        "bikeSlope": 1,
-        "bikeSpeed": 4.166666666666667,
-        "bikeTime": 1,
-        "bikeTrafficStress": 4,
-        "carSpeed": 20,
-        "date": "2016-01-16",
-        "directModes": "WALK",
-        "egressModes": "WALK",
-        "fromTime": 25200,
-        "maxBikeTime": 20,
-        "maxCarTime": 45,
-        "maxRides": 4,
-        "maxWalkTime": 20,
-        "minBikeTime": 10,
-        "minCarTime": 10,
-        "monteCarloDraws": 200,
-        "reachabilityThreshold": 0,
-        "streetTime": 90,
-        "suboptimalMinutes": 5,
-        "toTime": 32400,
-        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-        "walkSpeed": 1.3888888888888888,
-      },
-      "scenarioId": "4321",
-      "status": "DONE",
-      "travelTimePercentile": 42,
-      "updatedAt": "2017-11-08T12:31:19.602Z",
-      "updatedBy": "person@gmail.com",
-      "variant": 1,
-      "west": 20015,
-      "width": 300,
-      "workerVersion": "v3.2.0",
-      "zoom": 9,
-    },
-  ],
-}
-`;
-
-exports[`reducers > region should handle set all regions 1`] = `
-Object {
-  "currentRegionId": undefined,
-  "regions": Array [
+  "bundles": Array [
     Object {
       "_id": "1",
-      "accessGroup": "accessGroupName",
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "createdAt": "2017-11-08T12:30:50.133Z",
-      "createdBy": "person@gmail.com",
-      "description": "Region description",
-      "name": "Mock Region",
-      "nonce": "12345",
-      "opportunityDatasets": Array [
-        Object {
-          "dataSource": "lodes-data-2014",
-          "key": "Workers_total",
-          "name": "Workers total",
-        },
-      ],
-      "updatedAt": "2017-11-08T12:31:19.602Z",
-      "updatedBy": "person@gmail.com",
     },
   ],
+  "feeds": Array [],
+  "feedsById": Object {},
+  "modifications": Array [],
+  "projects": Array [],
+  "projectsById": Object {},
 }
 `;
 
-exports[`reducers > region should handle set region 1`] = `
+exports[`reducers > project should handle add project 1`] = `
 Object {
-  "currentRegionId": "1",
-  "regions": Array [
+  "bundles": Array [],
+  "feeds": Array [],
+  "feedsById": Object {},
+  "modifications": Array [],
+  "projects": Array [
     Object {
       "_id": "1",
-      "accessGroup": "accessGroupName",
-      "bounds": Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      },
-      "createdAt": "2017-11-08T12:30:50.133Z",
-      "createdBy": "person@gmail.com",
-      "description": "Region description",
-      "name": "Mock Region",
-      "nonce": "12345",
-      "opportunityDatasets": Array [
-        Object {
-          "dataSource": "lodes-data-2014",
-          "key": "Workers_total",
-          "name": "Workers total",
-        },
-      ],
-      "updatedAt": "2017-11-08T12:31:19.602Z",
-      "updatedBy": "person@gmail.com",
+    },
+  ],
+  "projectsById": Object {
+    "1": Object {
+      "_id": "1",
+    },
+  },
+}
+`;
+
+exports[`reducers > project should handle default state 1`] = `
+Object {
+  "bundles": Array [],
+  "feeds": Array [],
+  "feedsById": Object {},
+  "modifications": Array [],
+  "projects": Array [],
+  "projectsById": Object {},
+}
+`;
+
+exports[`reducers > project should handle delete bundle 1`] = `
+Object {
+  "bundles": Array [],
+}
+`;
+
+exports[`reducers > project should handle delete modification 1`] = `
+Object {
+  "modifications": Array [],
+}
+`;
+
+exports[`reducers > project should handle delete project 1`] = `
+Object {
+  "currentProject": undefined,
+  "projects": Array [],
+  "projectsById": Object {},
+}
+`;
+
+exports[`reducers > project should handle log out 1`] = `
+Object {
+  "bundles": Array [],
+  "feeds": Array [],
+  "feedsById": Object {},
+  "modifications": Array [],
+  "projects": Array [],
+  "projectsById": Object {},
+}
+`;
+
+exports[`reducers > project should handle set bundle 1`] = `
+Object {
+  "bundles": Array [
+    Object {
+      "_id": "1",
+    },
+  ],
+  "currentProject": Object {},
+}
+`;
+
+exports[`reducers > project should handle set bundles 1`] = `
+Object {
+  "bundles": Array [
+    Object {
+      "_id": "1",
+    },
+  ],
+  "currentProject": Object {
+    "bundleId": "1",
+  },
+}
+`;
+
+exports[`reducers > project should handle set feeds 1`] = `
+Object {
+  "bundles": Array [],
+  "feeds": Array [
+    Object {
+      "_id": "1",
+    },
+  ],
+  "feedsById": Object {
+    "1": Object {
+      "_id": "1",
+    },
+  },
+  "modifications": Array [],
+  "projects": Array [],
+  "projectsById": Object {},
+}
+`;
+
+exports[`reducers > project should handle set modification 1`] = `
+Object {
+  "bundles": Array [],
+  "feeds": Array [],
+  "feedsById": Object {},
+  "modifications": Array [],
+  "projects": Array [],
+  "projectsById": Object {},
+}
+`;
+
+exports[`reducers > project should handle set modifications 1`] = `
+Object {
+  "bundles": Array [],
+  "feeds": Array [],
+  "feedsById": Object {},
+  "modifications": Array [
+    Object {
+      "_id": "1",
+      "type": "adjust-dwell-time",
+    },
+  ],
+  "projects": Array [],
+  "projectsById": Object {},
+}
+`;
+
+exports[`reducers > project should handle set project 1`] = `
+Object {
+  "bundles": Array [
+    Object {
+      "_id": "1",
+    },
+  ],
+  "currentProject": Object {
+    "_id": "1",
+    "bundleId": "1",
+  },
+  "projects": Array [
+    Object {
+      "_id": "1",
+      "bundleId": "1",
+    },
+  ],
+  "projectsById": Object {
+    "1": Object {
+      "_id": "1",
+      "bundleId": "1",
+    },
+  },
+}
+`;
+
+exports[`reducers > project should handle set projects 1`] = `
+Object {
+  "bundles": Array [],
+  "feeds": Array [],
+  "feedsById": Object {},
+  "modifications": Array [],
+  "projects": Array [
+    Object {
+      "_id": "1",
+    },
+  ],
+  "projectsById": Object {
+    "1": Object {
+      "_id": "1",
+    },
+  },
+}
+`;
+
+exports[`reducers > project should handle show variant 1`] = `
+Object {
+  "modifications": Array [
+    Object {
+      "_id": "1",
+      "showOnMap": undefined,
+      "type": "adjust-dwell-time",
+      "variants": Array [],
     },
   ],
 }

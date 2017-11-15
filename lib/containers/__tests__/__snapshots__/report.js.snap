@@ -16,8 +16,8 @@ exports[`Container > Report renders correctly 1`] = `
   <Connect(Report)
     params={
       Object {
+        "projectId": "1",
         "regionId": "1",
-        "scenarioId": "1",
         "variantId": "0",
       }
     }
@@ -153,8 +153,8 @@ exports[`Container > Report renders correctly 1`] = `
           },
         }
       }
+      loadProject={[Function]}
       loadRegion={[Function]}
-      loadScenario={[Function]}
       modifications={
         Array [
           Object {
@@ -168,10 +168,10 @@ exports[`Container > Report renders correctly 1`] = `
             "feed": "1",
             "name": "Test Modification",
             "nonce": "12345",
+            "projectId": "1",
             "routes": Array [
               "route1",
             ],
-            "scenarioId": "1",
             "segments": Array [
               {
           "type": "Feature",
@@ -251,20 +251,19 @@ exports[`Container > Report renders correctly 1`] = `
       }
       params={
         Object {
+          "projectId": "1",
           "regionId": "1",
-          "scenarioId": "1",
           "variantId": "0",
         }
       }
-      regionId="1"
-      scenario={
+      project={
         Object {
           "_id": "1",
           "accessGroup": "accessGroupName",
           "bundleId": "1",
           "createdAt": "2017-11-08T12:30:50.133Z",
           "createdBy": "person@gmail.com",
-          "name": "Mock Scenario",
+          "name": "Mock Project",
           "nonce": "12345",
           "regionId": "1",
           "updatedAt": "2017-11-08T12:31:19.602Z",
@@ -274,8 +273,9 @@ exports[`Container > Report renders correctly 1`] = `
           ],
         }
       }
-      scenarioId="1"
-      scenarioTimetables={Array []}
+      projectId="1"
+      projectTimetables={Array []}
+      regionId="1"
       variant="Default"
     >
       <div
@@ -294,7 +294,7 @@ exports[`Container > Report renders correctly 1`] = `
             }
           >
             <h1>
-              Mock Scenario
+              Mock Project
             </h1>
             <h2>
               Scenario: Default
@@ -426,10 +426,10 @@ exports[`Container > Report renders correctly 1`] = `
                   "feed": "1",
                   "name": "Test Modification",
                   "nonce": "12345",
+                  "projectId": "1",
                   "routes": Array [
                     "route1",
                   ],
-                  "scenarioId": "1",
                   "segments": Array [
                     {
                   "type": "Feature",
@@ -506,7 +506,7 @@ exports[`Container > Report renders correctly 1`] = `
                   ],
                 }
               }
-              scenarioTimetables={Array []}
+              projectTimetables={Array []}
               total={1}
             >
               <div
@@ -653,10 +653,10 @@ exports[`Container > Report renders correctly 1`] = `
                       "feed": "1",
                       "name": "Test Modification",
                       "nonce": "12345",
+                      "projectId": "1",
                       "routes": Array [
                         "route1",
                       ],
-                      "scenarioId": "1",
                       "segments": Array [
                         {
                       "type": "Feature",
@@ -733,7 +733,7 @@ exports[`Container > Report renders correctly 1`] = `
                       ],
                     }
                   }
-                  scenarioTimetables={Array []}
+                  projectTimetables={Array []}
                   total={1}
                 >
                   <div>
