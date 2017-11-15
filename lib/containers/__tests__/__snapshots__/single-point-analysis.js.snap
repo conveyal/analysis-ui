@@ -163,7 +163,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "walkSpeed": 1.3888888888888888,
         }
       }
-      projectBounds={
+      push={[Function]}
+      regionBounds={
         Object {
           "east": -76,
           "north": 39,
@@ -171,8 +172,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "west": -77,
         }
       }
-      projectId="1"
-      push={[Function]}
+      regionId="1"
       regionalAnalyses={Array []}
       regionalAnalysisBounds={
         Object {
@@ -197,7 +197,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             "createdBy": "person@gmail.com",
             "name": "Mock Scenario",
             "nonce": "12345",
-            "projectId": "1",
+            "regionId": "1",
             "updatedAt": "2017-11-08T12:31:19.602Z",
             "updatedBy": "person@gmail.com",
             "variants": Array [
@@ -556,15 +556,15 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               >
                 <Group
                   className="col-xs-6"
-                  label="Comparison Project"
+                  label="Comparison Region"
                 >
                   <div
                     className="form-group col-xs-6"
                   >
                     <label
-                      htmlFor="comparison-project-input-2"
+                      htmlFor="comparison-region-input-2"
                     >
-                      Comparison Project
+                      Comparison Region
                     </label>
                     <Select
                       addLabelText="Add \\"{label}\\"?"
@@ -592,7 +592,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       menuBuffer={0}
                       menuRenderer={[Function]}
                       multi={false}
-                      name="Project"
+                      name="Region"
                       noResultsText="No results found"
                       onBlurResetsInput={true}
                       onChange={[Function]}
@@ -996,7 +996,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         "transitModes": "BUS,TRAM,RAIL,SUBWAY",
                         "walkSpeed": 1.3888888888888888,
                       },
-                      "projectId": "1",
+                      "regionId": "1",
                     }
                   }
                   createBookmark={[Function]}
@@ -2487,7 +2487,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                       "cursor": "pointer",
                                     }
                                   }
-                                  title="Show all backend versions (advanced)"
+                                  title="Show all r5 versions (advanced)"
                                   type="flask"
                                 >
                                   <i
@@ -2499,7 +2499,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                         "cursor": "pointer",
                                       }
                                     }
-                                    title="Show all backend versions (advanced)"
+                                    title="Show all r5 versions (advanced)"
                                   />
                                 </Icon>
                                 <Select
@@ -2704,7 +2704,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           Array [
                             Object {
                               "label": "Entire region",
-                              "value": "__PROJECT",
+                              "value": "__REGION",
                             },
                           ]
                         }
@@ -2715,7 +2715,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         searchable={true}
                         simpleValue={false}
                         tabSelectsValue={true}
-                        value="__PROJECT"
+                        value="__REGION"
                         valueComponent={[Function]}
                         valueKey="value"
                       >
@@ -2742,7 +2742,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                 value={
                                   Object {
                                     "label": "Entire region",
-                                    "value": "__PROJECT",
+                                    "value": "__REGION",
                                   }
                                 }
                               >

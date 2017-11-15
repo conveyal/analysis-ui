@@ -1,9 +1,11 @@
 common:
+  region: Region
   project: Project
   scenario: Scenario
   help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
   yes: yes
   no: no
+  route: Route
 errorModal:
   title: Unfortunately it appears an error has occured...
 authentication:
@@ -21,8 +23,8 @@ map:
 nav:
   createBundle: Create Bundle
   selectBundle: Select Bundle
-  projects: Regions
-  projectSettings: Shared Settings
+  regions: Regions
+  regionSettings: Shared Settings
   scenarios: Projects
   gtfsBundles: GTFS Bundles
   opportunityDatasets: Opportunity Datasets
@@ -44,8 +46,10 @@ phasing:
 r5Version:
   analysisVersionDifferent: WARNING: You have completed regional analyses with a different r5 version which could change results slightly.
   comparisonIsDifferent: WARNING: The analyses you are comparing ran on different versions of r5 which could change results slightly.
-  latestReleaseVersionNotSelected: An updated version of the Analysis backend is available. Changing versions should improve performance, but it may require a longer wait the first time you initialize a compute cluster for analysis. Using a different version may also change analysis results slightly.
+  latestReleaseVersionNotSelected: An updated version of r5 is available. Changing versions should improve performance, but it may require a longer wait the first time you initialize a compute cluster for analysis. Using a different version may also change analysis results slightly.
   title: R5 Version
+  showAll: Show all r5 versions (advanced)
+  showRelease: Show only stable r5 versions
 
 region:
   welcome: welcome to
@@ -64,8 +68,6 @@ region:
   loadingRegion: Loading region…
   osmBounds: OpenStreetMap bounds
   r5Version: Analysis backend version
-  showAllVersions: Show all backend versions (advanced)
-  showReleaseVersions: Show only stable backend versions
   statusCode:
     STARTED: Setting up region…
     UPLOADING_OSM: Uploading OpenStreetMap data…
@@ -77,7 +79,7 @@ region:
     ERROR: Error setting up region...
     DONE: Done
   customOpenStreetMapData: OpenStreetMap data in PBF format (required for regions outside the USA; OSM extracts are available from Mapzen).
-project:
+scenario:
   createAction: Create new Project
   createActionTooltip: Each project can include scenarios with modifications that are applied to the same GTFS bundle.
   delete: Delete project
@@ -98,7 +100,8 @@ project:
   goToExisting: or go to an existing project
   goToScenario: Go to project
   select: Select a project…
-scenario:
+variant:
+  name: Scenario
   plural: Scenarios
   enterName: Enter a name for your scenario:
   editName: Rename this scenario
@@ -231,7 +234,7 @@ analysis:
   regionalBounds: Bounds of analysis
   regionalBoundsSame: Same as %s
   regionalBoundsCustom: Custom
-  regionalBoundsProject: Entire region
+  regionalBoundsRegion: Entire region
   bookmark: Bookmark
   createBookmark: Create bookmark
   bookmarkName: Bookmark name
