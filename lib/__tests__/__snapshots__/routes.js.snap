@@ -118,7 +118,7 @@ exports[`Routes should render 1`] = `
                 "childRoutes": Array [
                   Object {
                     "component": [Function],
-                    "path": "projects/create",
+                    "path": "regions/create",
                   },
                   Object {
                     "childRoutes": Array [
@@ -158,18 +158,18 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios",
+                        "path": "projects",
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios/create",
+                        "path": "projects/create",
                       },
                     ],
                     "component": [Function],
                     "indexRoute": Object {
                       "component": [Function],
                     },
-                    "path": "projects/:projectId",
+                    "path": "regions/:regionId",
                   },
                   Object {
                     "childRoutes": Array [
@@ -214,7 +214,7 @@ exports[`Routes should render 1`] = `
                     "indexRoute": Object {
                       "component": [Function],
                     },
-                    "path": "scenarios/:scenarioId",
+                    "path": "projects/:projectId",
                   },
                   Object {
                     "component": [Function],
@@ -242,7 +242,7 @@ exports[`Routes should render 1`] = `
               "childRoutes": Array [
                 Object {
                   "component": [Function],
-                  "path": "projects/create",
+                  "path": "regions/create",
                 },
                 Object {
                   "childRoutes": Array [
@@ -282,18 +282,18 @@ exports[`Routes should render 1`] = `
                     },
                     Object {
                       "component": [Function],
-                      "path": "scenarios",
+                      "path": "projects",
                     },
                     Object {
                       "component": [Function],
-                      "path": "scenarios/create",
+                      "path": "projects/create",
                     },
                   ],
                   "component": [Function],
                   "indexRoute": Object {
                     "component": [Function],
                   },
-                  "path": "projects/:projectId",
+                  "path": "regions/:regionId",
                 },
                 Object {
                   "childRoutes": Array [
@@ -338,7 +338,7 @@ exports[`Routes should render 1`] = `
                   "indexRoute": Object {
                     "component": [Function],
                   },
-                  "path": "scenarios/:scenarioId",
+                  "path": "projects/:projectId",
                 },
                 Object {
                   "component": [Function],
@@ -375,7 +375,7 @@ exports[`Routes should render 1`] = `
               "childRoutes": Array [
                 Object {
                   "component": [Function],
-                  "path": "projects/create",
+                  "path": "regions/create",
                 },
                 Object {
                   "childRoutes": Array [
@@ -415,18 +415,18 @@ exports[`Routes should render 1`] = `
                     },
                     Object {
                       "component": [Function],
-                      "path": "scenarios",
+                      "path": "projects",
                     },
                     Object {
                       "component": [Function],
-                      "path": "scenarios/create",
+                      "path": "projects/create",
                     },
                   ],
                   "component": [Function],
                   "indexRoute": Object {
                     "component": [Function],
                   },
-                  "path": "projects/:projectId",
+                  "path": "regions/:regionId",
                 },
                 Object {
                   "childRoutes": Array [
@@ -471,7 +471,7 @@ exports[`Routes should render 1`] = `
                   "indexRoute": Object {
                     "component": [Function],
                   },
-                  "path": "scenarios/:scenarioId",
+                  "path": "projects/:projectId",
                 },
                 Object {
                   "component": [Function],
@@ -517,7 +517,7 @@ exports[`Routes should render 1`] = `
                   "childRoutes": Array [
                     Object {
                       "component": [Function],
-                      "path": "projects/create",
+                      "path": "regions/create",
                     },
                     Object {
                       "childRoutes": Array [
@@ -557,18 +557,18 @@ exports[`Routes should render 1`] = `
                         },
                         Object {
                           "component": [Function],
-                          "path": "scenarios",
+                          "path": "projects",
                         },
                         Object {
                           "component": [Function],
-                          "path": "scenarios/create",
+                          "path": "projects/create",
                         },
                       ],
                       "component": [Function],
                       "indexRoute": Object {
                         "component": [Function],
                       },
-                      "path": "projects/:projectId",
+                      "path": "regions/:regionId",
                     },
                     Object {
                       "childRoutes": Array [
@@ -613,7 +613,7 @@ exports[`Routes should render 1`] = `
                       "indexRoute": Object {
                         "component": [Function],
                       },
-                      "path": "scenarios/:scenarioId",
+                      "path": "projects/:projectId",
                     },
                     Object {
                       "component": [Function],
@@ -641,7 +641,7 @@ exports[`Routes should render 1`] = `
                 "childRoutes": Array [
                   Object {
                     "component": [Function],
-                    "path": "projects/create",
+                    "path": "regions/create",
                   },
                   Object {
                     "childRoutes": Array [
@@ -681,18 +681,18 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios",
+                        "path": "projects",
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios/create",
+                        "path": "projects/create",
                       },
                     ],
                     "component": [Function],
                     "indexRoute": Object {
                       "component": [Function],
                     },
-                    "path": "projects/:projectId",
+                    "path": "regions/:regionId",
                   },
                   Object {
                     "childRoutes": Array [
@@ -737,7 +737,7 @@ exports[`Routes should render 1`] = `
                     "indexRoute": Object {
                       "component": [Function],
                     },
-                    "path": "scenarios/:scenarioId",
+                    "path": "projects/:projectId",
                   },
                   Object {
                     "component": [Function],
@@ -769,8 +769,8 @@ exports[`Routes should render 1`] = `
             error=""
             errorMessage=""
             hasError={false}
-            hasScenario={true}
-            loadProject={[Function]}
+            hasProject={true}
+            loadRegion={[Function]}
             location={
               Object {
                 "action": "POP",
@@ -798,13 +798,15 @@ exports[`Routes should render 1`] = `
             outstandingRequests={0}
             params={Object {}}
             projectId="1"
+            projectIsLoaded={true}
             push={[Function]}
+            regionId="1"
             route={
               Object {
                 "childRoutes": Array [
                   Object {
                     "component": [Function],
-                    "path": "projects/create",
+                    "path": "regions/create",
                   },
                   Object {
                     "childRoutes": Array [
@@ -844,18 +846,18 @@ exports[`Routes should render 1`] = `
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios",
+                        "path": "projects",
                       },
                       Object {
                         "component": [Function],
-                        "path": "scenarios/create",
+                        "path": "projects/create",
                       },
                     ],
                     "component": [Function],
                     "indexRoute": Object {
                       "component": [Function],
                     },
-                    "path": "projects/:projectId",
+                    "path": "regions/:regionId",
                   },
                   Object {
                     "childRoutes": Array [
@@ -900,7 +902,7 @@ exports[`Routes should render 1`] = `
                     "indexRoute": Object {
                       "component": [Function],
                     },
-                    "path": "scenarios/:scenarioId",
+                    "path": "projects/:projectId",
                   },
                   Object {
                     "component": [Function],
@@ -946,7 +948,7 @@ exports[`Routes should render 1`] = `
                     "childRoutes": Array [
                       Object {
                         "component": [Function],
-                        "path": "projects/create",
+                        "path": "regions/create",
                       },
                       Object {
                         "childRoutes": Array [
@@ -986,18 +988,18 @@ exports[`Routes should render 1`] = `
                           },
                           Object {
                             "component": [Function],
-                            "path": "scenarios",
+                            "path": "projects",
                           },
                           Object {
                             "component": [Function],
-                            "path": "scenarios/create",
+                            "path": "projects/create",
                           },
                         ],
                         "component": [Function],
                         "indexRoute": Object {
                           "component": [Function],
                         },
-                        "path": "projects/:projectId",
+                        "path": "regions/:regionId",
                       },
                       Object {
                         "childRoutes": Array [
@@ -1042,7 +1044,7 @@ exports[`Routes should render 1`] = `
                         "indexRoute": Object {
                           "component": [Function],
                         },
-                        "path": "scenarios/:scenarioId",
+                        "path": "projects/:projectId",
                       },
                       Object {
                         "component": [Function],
@@ -1070,7 +1072,7 @@ exports[`Routes should render 1`] = `
                   "childRoutes": Array [
                     Object {
                       "component": [Function],
-                      "path": "projects/create",
+                      "path": "regions/create",
                     },
                     Object {
                       "childRoutes": Array [
@@ -1110,18 +1112,18 @@ exports[`Routes should render 1`] = `
                         },
                         Object {
                           "component": [Function],
-                          "path": "scenarios",
+                          "path": "projects",
                         },
                         Object {
                           "component": [Function],
-                          "path": "scenarios/create",
+                          "path": "projects/create",
                         },
                       ],
                       "component": [Function],
                       "indexRoute": Object {
                         "component": [Function],
                       },
-                      "path": "projects/:projectId",
+                      "path": "regions/:regionId",
                     },
                     Object {
                       "childRoutes": Array [
@@ -1166,7 +1168,7 @@ exports[`Routes should render 1`] = `
                       "indexRoute": Object {
                         "component": [Function],
                       },
-                      "path": "scenarios/:scenarioId",
+                      "path": "projects/:projectId",
                     },
                     Object {
                       "component": [Function],
@@ -1184,8 +1186,6 @@ exports[`Routes should render 1`] = `
                 },
               ]
             }
-            scenarioId="1"
-            scenarioIsLoaded={true}
             setMapCenter={[Function]}
             variants={
               Array [
@@ -1201,7 +1201,7 @@ exports[`Routes should render 1`] = `
                 currentPath="/"
                 outstandingRequests={0}
                 projectId="1"
-                scenarioId="1"
+                regionId="1"
               >
                 <div
                   className="Sidebar"
@@ -1228,7 +1228,7 @@ exports[`Routes should render 1`] = `
                           "/",
                         ]
                       }
-                      href="/projects/1"
+                      href="/regions/1"
                       icon="cubes"
                       text="Projects"
                     >
@@ -1247,11 +1247,11 @@ exports[`Routes should render 1`] = `
                             className="Sidebar-navItem-contents"
                             onlyActiveOnIndex={false}
                             style={Object {}}
-                            to="/projects/1"
+                            to="/regions/1"
                           >
                             <a
                               className="Sidebar-navItem-contents"
-                              href="/projects/1"
+                              href="/regions/1"
                               onClick={[Function]}
                               style={Object {}}
                             >
@@ -1282,7 +1282,7 @@ exports[`Routes should render 1`] = `
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
-                      href="/projects/1/edit"
+                      href="/regions/1/edit"
                       icon="gear"
                       text="Shared Settings"
                     >
@@ -1301,11 +1301,11 @@ exports[`Routes should render 1`] = `
                             className="Sidebar-navItem-contents"
                             onlyActiveOnIndex={false}
                             style={Object {}}
-                            to="/projects/1/edit"
+                            to="/regions/1/edit"
                           >
                             <a
                               className="Sidebar-navItem-contents"
-                              href="/projects/1/edit"
+                              href="/regions/1/edit"
                               onClick={[Function]}
                               style={Object {}}
                             >
@@ -1336,7 +1336,7 @@ exports[`Routes should render 1`] = `
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
-                      href="/projects/1/bundles"
+                      href="/regions/1/bundles"
                       icon="database"
                       text="GTFS Bundles"
                     >
@@ -1355,11 +1355,11 @@ exports[`Routes should render 1`] = `
                             className="Sidebar-navItem-contents"
                             onlyActiveOnIndex={false}
                             style={Object {}}
-                            to="/projects/1/bundles"
+                            to="/regions/1/bundles"
                           >
                             <a
                               className="Sidebar-navItem-contents"
-                              href="/projects/1/bundles"
+                              href="/regions/1/bundles"
                               onClick={[Function]}
                               style={Object {}}
                             >
@@ -1390,7 +1390,7 @@ exports[`Routes should render 1`] = `
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
-                      href="/projects/1/opportunities"
+                      href="/regions/1/opportunities"
                       icon="th"
                       text="Opportunity Datasets"
                     >
@@ -1409,11 +1409,11 @@ exports[`Routes should render 1`] = `
                             className="Sidebar-navItem-contents"
                             onlyActiveOnIndex={false}
                             style={Object {}}
-                            to="/projects/1/opportunities"
+                            to="/regions/1/opportunities"
                           >
                             <a
                               className="Sidebar-navItem-contents"
-                              href="/projects/1/opportunities"
+                              href="/regions/1/opportunities"
                               onClick={[Function]}
                               style={Object {}}
                             >
@@ -1446,13 +1446,13 @@ exports[`Routes should render 1`] = `
                   <div>
                     <SidebarNavItem
                       active={null}
-                      href="/scenarios/1"
+                      href="/projects/1"
                       icon="pencil"
-                      text="Edit Scenarios"
+                      text="Edit Modifications"
                     >
                       <Tip
                         className="Sidebar-navItem"
-                        tip="Edit Scenarios"
+                        tip="Edit Modifications"
                       >
                         <span
                           className="Tip Sidebar-navItem"
@@ -1465,17 +1465,17 @@ exports[`Routes should render 1`] = `
                             className="Sidebar-navItem-contents"
                             onlyActiveOnIndex={false}
                             style={Object {}}
-                            to="/scenarios/1"
+                            to="/projects/1"
                           >
                             <a
                               className="Sidebar-navItem-contents"
-                              href="/scenarios/1"
+                              href="/projects/1"
                               onClick={[Function]}
                               style={Object {}}
                             >
                               <ItemContents
                                 icon="pencil"
-                                text="Edit Scenarios"
+                                text="Edit Modifications"
                               >
                                 <span>
                                   <Icon
@@ -1489,7 +1489,7 @@ exports[`Routes should render 1`] = `
                                     className="Sidebar-navItem-text"
                                   >
                                      
-                                    Edit Scenarios
+                                    Edit Modifications
                                   </span>
                                 </span>
                               </ItemContents>
@@ -1500,13 +1500,13 @@ exports[`Routes should render 1`] = `
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
-                      href="/scenarios/1/analysis"
+                      href="/projects/1/analysis"
                       icon="area-chart"
-                      text="Analyze Scenarios"
+                      text="Analyze"
                     >
                       <Tip
                         className="Sidebar-navItem"
-                        tip="Analyze Scenarios"
+                        tip="Analyze"
                       >
                         <span
                           className="Tip Sidebar-navItem"
@@ -1519,17 +1519,17 @@ exports[`Routes should render 1`] = `
                             className="Sidebar-navItem-contents"
                             onlyActiveOnIndex={false}
                             style={Object {}}
-                            to="/scenarios/1/analysis"
+                            to="/projects/1/analysis"
                           >
                             <a
                               className="Sidebar-navItem-contents"
-                              href="/scenarios/1/analysis"
+                              href="/projects/1/analysis"
                               onClick={[Function]}
                               style={Object {}}
                             >
                               <ItemContents
                                 icon="area-chart"
-                                text="Analyze Scenarios"
+                                text="Analyze"
                               >
                                 <span>
                                   <Icon
@@ -1543,7 +1543,7 @@ exports[`Routes should render 1`] = `
                                     className="Sidebar-navItem-text"
                                   >
                                      
-                                    Analyze Scenarios
+                                    Analyze
                                   </span>
                                 </span>
                               </ItemContents>
@@ -1554,7 +1554,7 @@ exports[`Routes should render 1`] = `
                     </SidebarNavItem>
                     <SidebarNavItem
                       active={null}
-                      href="/scenarios/1/regional"
+                      href="/projects/1/regional"
                       icon="server"
                       text="Regional Analysis"
                     >
@@ -1573,11 +1573,11 @@ exports[`Routes should render 1`] = `
                             className="Sidebar-navItem-contents"
                             onlyActiveOnIndex={false}
                             style={Object {}}
-                            to="/scenarios/1/regional"
+                            to="/projects/1/regional"
                           >
                             <a
                               className="Sidebar-navItem-contents"
-                              href="/scenarios/1/regional"
+                              href="/projects/1/regional"
                               onClick={[Function]}
                               style={Object {}}
                             >
@@ -1694,10 +1694,10 @@ exports[`Routes should render 1`] = `
                       url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
                       zIndex={40}
                     />
-                    <Connect(ScenarioMap)
+                    <Connect(ModificationsMap)
                       zIndex={50}
                     >
-                      <ScenarioMap
+                      <ModificationsMap
                         activeModification={
                           Object {
                             "_id": "1234",
@@ -1710,10 +1710,10 @@ exports[`Routes should render 1`] = `
                             "feed": "1",
                             "name": "Test Modification",
                             "nonce": "12345",
+                            "projectId": "1",
                             "routes": Array [
                               "route1",
                             ],
-                            "scenarioId": "1",
                             "segments": Array [
                               {
                             "type": "Feature",
@@ -2107,10 +2107,10 @@ exports[`Routes should render 1`] = `
                               "feed": "1",
                               "name": "Test Modification",
                               "nonce": "12345",
+                              "projectId": "1",
                               "routes": Array [
                                 "route1",
                               ],
-                              "scenarioId": "1",
                               "segments": Array [
                                 {
                             "type": "Feature",
@@ -2415,15 +2415,15 @@ exports[`Routes should render 1`] = `
                             </AddTripPatternLayer>
                           </div>
                         </FeatureGroup>
-                      </ScenarioMap>
-                    </Connect(ScenarioMap)>
+                      </ModificationsMap>
+                    </Connect(ModificationsMap)>
                   </div>
                 </Map>
               </div>
               <div
                 className="ApplicationDock "
               >
-                <Connect(SelectProject)
+                <Connect(SelectRegion)
                   location={
                     Object {
                       "action": "POP",
@@ -2473,7 +2473,7 @@ exports[`Routes should render 1`] = `
                           "childRoutes": Array [
                             Object {
                               "component": [Function],
-                              "path": "projects/create",
+                              "path": "regions/create",
                             },
                             Object {
                               "childRoutes": Array [
@@ -2513,18 +2513,18 @@ exports[`Routes should render 1`] = `
                                 },
                                 Object {
                                   "component": [Function],
-                                  "path": "scenarios",
+                                  "path": "projects",
                                 },
                                 Object {
                                   "component": [Function],
-                                  "path": "scenarios/create",
+                                  "path": "projects/create",
                                 },
                               ],
                               "component": [Function],
                               "indexRoute": Object {
                                 "component": [Function],
                               },
-                              "path": "projects/:projectId",
+                              "path": "regions/:regionId",
                             },
                             Object {
                               "childRoutes": Array [
@@ -2569,7 +2569,7 @@ exports[`Routes should render 1`] = `
                               "indexRoute": Object {
                                 "component": [Function],
                               },
-                              "path": "scenarios/:scenarioId",
+                              "path": "projects/:projectId",
                             },
                             Object {
                               "component": [Function],
@@ -2597,7 +2597,7 @@ exports[`Routes should render 1`] = `
                         "childRoutes": Array [
                           Object {
                             "component": [Function],
-                            "path": "projects/create",
+                            "path": "regions/create",
                           },
                           Object {
                             "childRoutes": Array [
@@ -2637,18 +2637,18 @@ exports[`Routes should render 1`] = `
                               },
                               Object {
                                 "component": [Function],
-                                "path": "scenarios",
+                                "path": "projects",
                               },
                               Object {
                                 "component": [Function],
-                                "path": "scenarios/create",
+                                "path": "projects/create",
                               },
                             ],
                             "component": [Function],
                             "indexRoute": Object {
                               "component": [Function],
                             },
-                            "path": "projects/:projectId",
+                            "path": "regions/:regionId",
                           },
                           Object {
                             "childRoutes": Array [
@@ -2693,7 +2693,7 @@ exports[`Routes should render 1`] = `
                             "indexRoute": Object {
                               "component": [Function],
                             },
-                            "path": "scenarios/:scenarioId",
+                            "path": "projects/:projectId",
                           },
                           Object {
                             "component": [Function],
@@ -2712,8 +2712,8 @@ exports[`Routes should render 1`] = `
                     ]
                   }
                 >
-                  <SelectProject
-                    loadAllProjects={[Function]}
+                  <SelectRegion
+                    loadAllRegions={[Function]}
                     location={
                       Object {
                         "action": "POP",
@@ -2726,7 +2726,8 @@ exports[`Routes should render 1`] = `
                       }
                     }
                     params={Object {}}
-                    projects={
+                    push={[Function]}
+                    regions={
                       Array [
                         Object {
                           "_id": "1",
@@ -2739,8 +2740,8 @@ exports[`Routes should render 1`] = `
                           },
                           "createdAt": "2017-11-08T12:30:50.133Z",
                           "createdBy": "person@gmail.com",
-                          "description": "Project description",
-                          "name": "Mock Project",
+                          "description": "Region description",
+                          "name": "Mock Region",
                           "nonce": "12345",
                           "opportunityDatasets": Array [
                             Object {
@@ -2754,7 +2755,6 @@ exports[`Routes should render 1`] = `
                         },
                       ]
                     }
-                    push={[Function]}
                     route={
                       Object {
                         "component": [Function],
@@ -2792,7 +2792,7 @@ exports[`Routes should render 1`] = `
                             "childRoutes": Array [
                               Object {
                                 "component": [Function],
-                                "path": "projects/create",
+                                "path": "regions/create",
                               },
                               Object {
                                 "childRoutes": Array [
@@ -2832,18 +2832,18 @@ exports[`Routes should render 1`] = `
                                   },
                                   Object {
                                     "component": [Function],
-                                    "path": "scenarios",
+                                    "path": "projects",
                                   },
                                   Object {
                                     "component": [Function],
-                                    "path": "scenarios/create",
+                                    "path": "projects/create",
                                   },
                                 ],
                                 "component": [Function],
                                 "indexRoute": Object {
                                   "component": [Function],
                                 },
-                                "path": "projects/:projectId",
+                                "path": "regions/:regionId",
                               },
                               Object {
                                 "childRoutes": Array [
@@ -2888,7 +2888,7 @@ exports[`Routes should render 1`] = `
                                 "indexRoute": Object {
                                   "component": [Function],
                                 },
-                                "path": "scenarios/:scenarioId",
+                                "path": "projects/:projectId",
                               },
                               Object {
                                 "component": [Function],
@@ -2916,7 +2916,7 @@ exports[`Routes should render 1`] = `
                           "childRoutes": Array [
                             Object {
                               "component": [Function],
-                              "path": "projects/create",
+                              "path": "regions/create",
                             },
                             Object {
                               "childRoutes": Array [
@@ -2956,18 +2956,18 @@ exports[`Routes should render 1`] = `
                                 },
                                 Object {
                                   "component": [Function],
-                                  "path": "scenarios",
+                                  "path": "projects",
                                 },
                                 Object {
                                   "component": [Function],
-                                  "path": "scenarios/create",
+                                  "path": "projects/create",
                                 },
                               ],
                               "component": [Function],
                               "indexRoute": Object {
                                 "component": [Function],
                               },
-                              "path": "projects/:projectId",
+                              "path": "regions/:regionId",
                             },
                             Object {
                               "childRoutes": Array [
@@ -3012,7 +3012,7 @@ exports[`Routes should render 1`] = `
                               "indexRoute": Object {
                                 "component": [Function],
                               },
-                              "path": "scenarios/:scenarioId",
+                              "path": "projects/:projectId",
                             },
                             Object {
                               "component": [Function],
@@ -3108,11 +3108,11 @@ exports[`Routes should render 1`] = `
                                 onlyActiveOnIndex={false}
                                 style={Object {}}
                                 title="Go to region"
-                                to="/projects/1"
+                                to="/regions/1"
                               >
                                 <a
                                   className="list-group-item"
-                                  href="/projects/1"
+                                  href="/regions/1"
                                   onClick={[Function]}
                                   style={Object {}}
                                   title="Go to region"
@@ -3128,7 +3128,7 @@ exports[`Routes should render 1`] = `
                                         />
                                       </Icon>
                                        
-                                      Mock Project
+                                      Mock Region
                                     </p>
                                     <em />
                                   </div>
@@ -3139,8 +3139,8 @@ exports[`Routes should render 1`] = `
                         </div>
                       </div>
                     </InnerDock>
-                  </SelectProject>
-                </Connect(SelectProject)>
+                  </SelectRegion>
+                </Connect(SelectRegion)>
               </div>
             </div>
           </Application>

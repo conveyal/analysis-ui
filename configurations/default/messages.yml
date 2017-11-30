@@ -1,9 +1,11 @@
 common:
+  region: Region
   project: Project
   scenario: Scenario
   help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
   yes: yes
   no: no
+  route: Route
 errorModal:
   title: Unfortunately it appears an error has occured...
 authentication:
@@ -21,13 +23,13 @@ map:
 nav:
   createBundle: Create Bundle
   selectBundle: Select Bundle
-  projects: Regions
-  projectSettings: Shared Settings
-  scenarios: Projects
+  regions: Regions
+  regionSettings: Shared Settings
+  projects: Projects
   gtfsBundles: GTFS Bundles
   opportunityDatasets: Opportunity Datasets
-  editScenario: Edit Scenarios
-  analyzeScenario: Analyze Scenarios
+  editModifications: Edit Modifications
+  analyze: Analyze
   notConnectedToInternet: You are not connected to the internet
   unfinishedRequests: You have unfinished requests. Are you sure you want to exit?
 phasing:
@@ -56,7 +58,7 @@ region:
   description: Description
   configure: Configure shared settings for region
   deleteAction: DANGER: Delete this region
-  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated scenarios and modifications.
+  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated projects and modifications.
   editAction: Save changes
   editTitle: Edit region
   versionOutdated: An updated version of the Analysis backend is available. To avoid errors, please select the latest version in
@@ -64,8 +66,6 @@ region:
   loadingRegion: Loading region…
   osmBounds: OpenStreetMap bounds
   r5Version: Analysis backend version
-  showAllVersions: Show all backend versions (advanced)
-  showReleaseVersions: Show only stable backend versions
   statusCode:
     STARTED: Setting up region…
     UPLOADING_OSM: Uploading OpenStreetMap data…
@@ -96,9 +96,10 @@ project:
   uploadBundle: Upload a new GTFS Bundle
   uploadOpportunityDataset: Upload a new Opportunity Dataset
   goToExisting: or go to an existing project
-  goToScenario: Go to project
+  goToProject: Go to project
   select: Select a project…
-scenario:
+variant:
+  name: Scenario
   plural: Scenarios
   enterName: Enter a name for your scenario:
   editName: Rename this scenario
@@ -175,12 +176,12 @@ analysis:
   latField: Latitude field
   lonField: Longitude field
   travelTime: Travel time
-  errorsInScenario: Errors were found in the scenario:
-  warningsInScenario: Warnings were found applying the scenario
+  errorsInProject: Errors were found in the project:
+  warningsInProject: Warnings were found applying the project
   errorsInModification: in modification %s
   minimumImprovementProbability: Minimum probability of change
   probabilityImprovement: Show areas with probability of change > %01.2f
-  compare: Compare to another scenario
+  compare: Compare to another project
   comparison: Comparison
   baseline: Baseline
   fromTime: From time
@@ -214,7 +215,6 @@ analysis:
     transit: Transit
   fetchStatus:
     LOADING_GRID: Loading opportunity dataset…
-    APPLYING_SCENARIO: Applying scenario…
     PERFORMING_ANALYSIS: Performing analysis…
     COMPUTING_ISOCHRONE: Computing isochrone…
     INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)
@@ -231,12 +231,12 @@ analysis:
   regionalBounds: Bounds of analysis
   regionalBoundsSame: Same as %s
   regionalBoundsCustom: Custom
-  regionalBoundsProject: Entire region
+  regionalBoundsRegion: Entire region
   bookmark: Bookmark
   createBookmark: Create bookmark
   bookmarkName: Bookmark name
-  selectComparisonScenario: Select comparison project…
-  selectComparisonScenarioVariant: Select comparison scenario…
+  selectComparisonProject: Select comparison project…
+  selectComparisonProjectVariant: Select comparison scenario…
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.

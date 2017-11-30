@@ -5,16 +5,13 @@ Object {
   "payload": Object {
     "next": [Function],
     "options": Object {
-      "body": FormData {
-        Symbol(impl): FormDataImpl {
-          "_entries": Array [
-            Object {
-              "name": "project",
-              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
-            },
-          ],
-          Symbol(wrapper): [Circular],
-        },
+      "body": Object {
+        "bundleId": "1",
+        "name": "test",
+        "regionId": "1",
+        "variants": Array [
+          "Default",
+        ],
       },
       "method": "post",
     },
@@ -29,16 +26,13 @@ Array [
   Object {
     "payload": Object {
       "options": Object {
-        "body": FormData {
-          Symbol(impl): FormDataImpl {
-            "_entries": Array [
-              Object {
-                "name": "project",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
-              },
-            ],
-            Symbol(wrapper): [Circular],
-          },
+        "body": Object {
+          "bundleId": "1",
+          "name": "test",
+          "regionId": "1",
+          "variants": Array [
+            "Default",
+          ],
         },
         "method": "post",
       },
@@ -55,16 +49,13 @@ Array [
   Object {
     "payload": Object {
       "options": Object {
-        "body": FormData {
-          Symbol(impl): FormDataImpl {
-            "_entries": Array [
-              Object {
-                "name": "project",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
-              },
-            ],
-            Symbol(wrapper): [Circular],
-          },
+        "body": Object {
+          "bundleId": "1",
+          "name": "test",
+          "regionId": "1",
+          "variants": Array [
+            "Default",
+          ],
         },
         "method": "post",
       },
@@ -75,60 +66,29 @@ Array [
   Array [
     Object {
       "payload": Object {
-        "_id": 1,
-        "accessGroup": "accessGroupName",
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        },
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Project description",
-        "name": "Mock Project",
-        "nonce": "12345",
-        "opportunityDatasets": Array [
-          Object {
-            "dataSource": "lodes-data-2014",
-            "key": "Workers_total",
-            "name": "Workers total",
-          },
-        ],
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
+        "_id": "1",
       },
-      "type": "set project",
+      "type": "add project",
     },
-    Array [
-      Object {
-        "payload": Object {
-          "options": Object {},
-          "url": "/api/project/1",
-        },
-        "type": "increment outstanding fetches",
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/projects/1",
+        ],
+        "method": "push",
       },
-      Promise {},
-    ],
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
   ],
 ]
 `;
 
 exports[`actions > project deleteProject should work 1`] = `
-Object {
-  "payload": Object {
-    "next": [Function],
-    "options": Object {
-      "method": "delete",
-    },
-    "url": "/api/project/1",
-  },
-  "type": "fetch",
-}
-`;
-
-exports[`actions > project deleteProject should work 2`] = `
 Array [
+  Object {
+    "payload": "1",
+    "type": "delete project",
+  },
   Object {
     "payload": Object {
       "options": Object {
@@ -136,9 +96,29 @@ Array [
       },
       "url": "/api/project/1",
     },
-    "type": "increment outstanding fetches",
+    "type": "fetch",
   },
-  Promise {},
+]
+`;
+
+exports[`actions > project deleteProject should work 2`] = `
+Array [
+  Object {
+    "payload": "1",
+    "type": "delete project",
+  },
+  Array [
+    Object {
+      "payload": Object {
+        "options": Object {
+          "method": "delete",
+        },
+        "url": "/api/project/1",
+      },
+      "type": "increment outstanding fetches",
+    },
+    Promise {},
+  ],
 ]
 `;
 
@@ -151,23 +131,9 @@ Array [
       },
       "url": "/api/project/1",
     },
-    "type": "decrement outstanding fetches",
+    "type": "increment outstanding fetches",
   },
-  Array [
-    Object {
-      "payload": "1",
-      "type": "delete project",
-    },
-    Object {
-      "payload": Object {
-        "args": Array [
-          "/",
-        ],
-        "method": "push",
-      },
-      "type": "@@router/CALL_HISTORY_METHOD",
-    },
-  ],
+  Promise {},
 ]
 `;
 
@@ -206,158 +172,26 @@ Array [
   Array [
     Object {
       "payload": Object {
-        "bounds": Object {
-          "east": -76.81503295898438,
-          "north": 39.02345139405932,
-          "south": 38.777640223073355,
-          "west": -77.25723266601562,
-        },
-        "bundles": Array [],
-        "description": "Project description",
-        "name": "Project name",
-        "scenarios": Array [],
+        "_id": "1",
+        "bundleId": "1",
       },
-      "type": "set project",
-    },
-    undefined,
-    Object {
-      "payload": Object {
-        "lat": 38.900545808566335,
-        "lon": -77.0361328125,
-      },
-      "type": "set map center",
-    },
-    Object {
-      "type": "set bundles",
-    },
-    Object {
-      "type": "set scenarios",
-    },
-  ],
-]
-`;
-
-exports[`actions > project loadAll should work 1`] = `
-Object {
-  "payload": Object {
-    "next": [Function],
-    "url": "/api/project",
-  },
-  "type": "fetch",
-}
-`;
-
-exports[`actions > project loadAll should work 2`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {},
-      "url": "/api/project",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Promise {},
-]
-`;
-
-exports[`actions > project loadAll should work 3`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {},
-      "url": "/api/project",
-    },
-    "type": "decrement outstanding fetches",
-  },
-  Object {
-    "payload": Array [],
-    "type": "set all projects",
-  },
-]
-`;
-
-exports[`actions > project save should work 1`] = `
-Object {
-  "payload": Object {
-    "next": [Function],
-    "options": Object {
-      "body": FormData {
-        Symbol(impl): FormDataImpl {
-          "_entries": Array [
-            Object {
-              "name": "project",
-              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
-            },
-          ],
-          Symbol(wrapper): [Circular],
-        },
-      },
-      "method": "put",
-    },
-    "url": "/api/project/1",
-  },
-  "type": "fetch",
-}
-`;
-
-exports[`actions > project save should work 2`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": FormData {
-          Symbol(impl): FormDataImpl {
-            "_entries": Array [
-              Object {
-                "name": "project",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
-              },
-            ],
-            Symbol(wrapper): [Circular],
-          },
-        },
-        "method": "put",
-      },
-      "url": "/api/project/1",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Promise {},
-]
-`;
-
-exports[`actions > project save should work 3`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": FormData {
-          Symbol(impl): FormDataImpl {
-            "_entries": Array [
-              Object {
-                "name": "project",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Project description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Project\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
-              },
-            ],
-            Symbol(wrapper): [Circular],
-          },
-        },
-        "method": "put",
-      },
-      "url": "/api/project/1",
-    },
-    "type": "decrement outstanding fetches",
-  },
-  Array [
-    Object {
-      "payload": "saved",
       "type": "set project",
     },
     Array [
       Object {
         "payload": Object {
           "options": Object {},
-          "url": "/api/project/undefined",
+          "url": "/api/bundle/1",
+        },
+        "type": "increment outstanding fetches",
+      },
+      Promise {},
+    ],
+    Array [
+      Object {
+        "payload": Object {
+          "options": Object {},
+          "url": "/api/project/1/modifications",
         },
         "type": "increment outstanding fetches",
       },
@@ -367,8 +201,113 @@ Array [
 ]
 `;
 
+exports[`actions > project saveToServer should work 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "body": Object {
+        "_id": "1",
+        "accessGroup": "accessGroupName",
+        "bundleId": "1",
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "name": "Mock Project",
+        "nonce": "12345",
+        "regionId": "1",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          "Default",
+        ],
+      },
+      "method": "put",
+    },
+    "url": "/api/project/1",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > project saveToServer should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bundleId": "1",
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "name": "Mock Project",
+          "nonce": "12345",
+          "regionId": "1",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            "Default",
+          ],
+        },
+        "method": "put",
+      },
+      "url": "/api/project/1",
+    },
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > project saveToServer should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bundleId": "1",
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "name": "Mock Project",
+          "nonce": "12345",
+          "regionId": "1",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            "Default",
+          ],
+        },
+        "method": "put",
+      },
+      "url": "/api/project/1",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Object {
+    "payload": Object {
+      "_id": "1",
+    },
+    "type": "set project",
+  },
+]
+`;
+
+exports[`actions > project set should work 1`] = `
+Object {
+  "type": "set project",
+}
+`;
+
 exports[`actions > project setAll should work 1`] = `
 Object {
-  "type": "set all projects",
+  "type": "set projects",
+}
+`;
+
+exports[`actions > project showVariant should work 1`] = `
+Object {
+  "type": "show variant",
 }
 `;
