@@ -39,7 +39,7 @@ exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
     >
       <input
         checked={false}
-        disabled={false}
+        disabled={true}
         id="bidirectional-input-1"
         onChange={[Function]}
         type="checkbox"
@@ -47,6 +47,12 @@ exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
        
       Bidirectional
     </label>
+  </div>
+  <div
+    className="alert alert-info"
+    role="alert"
+  >
+    Modification cannot be bidirectional because timetables in this modification have phasing information.
   </div>
 </div>
 `;
