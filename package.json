@@ -10,10 +10,11 @@
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
     "flow": "mastarm flow",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "prestart": "yarn",
-    "start": "npm run build -- --serve --proxy http://localhost:7070/api",
+    "predeploy": "yarn",
     "pretest": "yarn",
+    "prestart": "yarn",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "start": "npm run build -- --serve --proxy http://localhost:7070/api",
     "test": "mastarm lint && mastarm flow && mastarm test --env test --config configurations/test"
   },
   "repository": {
@@ -28,7 +29,7 @@
   "dependencies": {
     "@conveyal/gridualizer": "^2.1.0",
     "@conveyal/lonlat": "^1.3.0",
-    "@conveyal/woonerf": "^2.4.0",
+    "@conveyal/woonerf": "^3.0.0",
     "@mapbox/polyline": "^0.2.0",
     "@turf/bearing": "3.7.5",
     "@turf/destination": "3.7.5",

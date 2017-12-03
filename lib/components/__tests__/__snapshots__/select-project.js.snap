@@ -6,52 +6,65 @@ exports[`Component > SelectProject renders correctly 1`] = `
   style={null}
 >
   <div
-    className="WelcomeTitle"
-  >
-    <p
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
-    >
-      welcome to
-    </p>
-    <span
-      className="logo"
-      to="/"
-    >
-      conveyal analysis
-    </span>
-  </div>
-  <div
     className="block"
   >
     <div
       className="form-group"
     >
       <a
-        className="btn btn-success btn-block"
-        href="#"
+        className="btn btn-block btn-success"
         onClick={[Function]}
-        tabIndex={0}
+        style={Object {}}
+        title="Create new Project"
       >
         <i
-          className="fa fa-cubes fa-fw "
+          className="fa fa-cube fa-fw "
         />
          
-        Set up a new region
+        Create new Project
+      </a>
+      <a
+        className="btn btn-block btn-success"
+        onClick={[Function]}
+        style={Object {}}
+        title="Upload a new GTFS Bundle"
+      >
+        <i
+          className="fa fa-database fa-fw "
+        />
+         
+        Upload a new GTFS Bundle
+      </a>
+      <a
+        className="btn btn-block btn-success"
+        onClick={[Function]}
+        style={Object {}}
+        title="Upload a new Opportunity Dataset"
+      >
+        <i
+          className="fa fa-th fa-fw "
+        />
+         
+        Upload a new Opportunity Dataset
+      </a>
+      <a
+        className="btn btn-block btn-warning"
+        onClick={[Function]}
+        style={Object {}}
+        title="Configure shared settings for region"
+      >
+        <i
+          className="fa fa-gear fa-fw "
+        />
+         
+        Configure shared settings for region
       </a>
     </div>
     <div>
       <p
-        style={
-          Object {
-            "textAlign": "center",
-          }
-        }
+        className="center"
       >
-        or go to an existing region
+        or go to an existing project
       </p>
       <div
         className="list-group"
@@ -60,35 +73,25 @@ exports[`Component > SelectProject renders correctly 1`] = `
           className="list-group-item"
           onClick={[Function]}
           style={Object {}}
-          title="Go to region"
+          title="Go to project"
         >
-          <div>
-            <p>
-              <i
-                className="fa fa-spinner fa-fw fa-spin"
-              />
-               
-              P1
-            </p>
-            <em />
-          </div>
+          <i
+            className="fa fa-cube fa-fw "
+          />
+           
+          S1
         </a>
         <a
           className="list-group-item"
           onClick={[Function]}
           style={Object {}}
-          title="Go to region"
+          title="Go to project"
         >
-          <div>
-            <p>
-              <i
-                className="fa fa-spinner fa-fw fa-spin"
-              />
-               
-              P2
-            </p>
-            <em />
-          </div>
+          <i
+            className="fa fa-cube fa-fw "
+          />
+           
+          S2
         </a>
       </div>
     </div>

@@ -21,7 +21,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       addIsochroneLayerToMap={[Function]}
       addOpportunityLayerToMap={[Function]}
       bundleId="1"
-      clearComparisonScenario={[Function]}
+      clearComparisonProject={[Function]}
       clearIsochroneResults={[Function]}
       createRegionalAnalysis={[Function]}
       downloadComparisonIsochrone={[Function]}
@@ -43,12 +43,17 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       modifications={
         Array [
           Object {
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
             "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
             "description": "Mock description",
             "entries": Array [],
             "feed": "1",
-            "id": "1234",
             "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
             "routes": Array [
               "route1",
             ],
@@ -90,15 +95,23 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
             "showOnMap": false,
             "timetables": Array [
               Object {
+                "_id": "timetable-id",
                 "dwellTime": 10,
                 "endTime": 57600,
+                "exactTimes": false,
                 "friday": true,
                 "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
                 "monday": true,
                 "name": "Test timetable",
                 "patternTrips": Array [
                   "abcd",
                 ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
                 "saturday": false,
                 "segmentSpeeds": Array [],
                 "sourceTrip": "abcd",
@@ -113,6 +126,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               "abcd",
             ],
             "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
             "variants": Array [
               true,
             ],
@@ -127,28 +142,41 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "bikeSlope": 1,
           "bikeSpeed": 4.166666666666667,
           "bikeTime": 1,
-          "bikeTrafficStress": 4,
-          "carSpeed": 20,
           "date": "2016-01-16",
           "directModes": "WALK",
           "egressModes": "WALK",
           "fromTime": 25200,
-          "maxBikeTime": 20,
-          "maxCarTime": 45,
           "maxRides": 4,
-          "maxWalkTime": 20,
-          "minBikeTime": 10,
-          "minCarTime": 10,
           "monteCarloDraws": 200,
           "reachabilityThreshold": 0,
-          "streetTime": 90,
-          "suboptimalMinutes": 5,
           "toTime": 32400,
           "transitModes": "BUS,TRAM,RAIL,SUBWAY",
           "walkSpeed": 1.3888888888888888,
         }
       }
-      projectBounds={
+      projectId="1"
+      projectName="Mock Project"
+      projects={
+        Array [
+          Object {
+            "_id": "1",
+            "accessGroup": "accessGroupName",
+            "bundleId": "1",
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "name": "Mock Project",
+            "nonce": "12345",
+            "regionId": "1",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              "Default",
+            ],
+          },
+        ]
+      }
+      push={[Function]}
+      regionBounds={
         Object {
           "east": -76,
           "north": 39,
@@ -156,8 +184,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "west": -77,
         }
       }
-      projectId="1"
-      push={[Function]}
+      regionId="1"
       regionalAnalyses={Array []}
       regionalAnalysisBounds={
         Object {
@@ -170,211 +197,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       removeEditRegionalAnalysisBoundsLayerFromMap={[Function]}
       removeIsochroneLayerFromMap={[Function]}
       removeOpportunityLayerFromMap={[Function]}
-      scenarioId="1"
-      scenarioName="Mock Scenario"
-      scenarios={
-        Array [
-          Object {
-            "bundleId": "1",
-            "feeds": Array [
-              Object {
-                "id": "1",
-                "routes": Array [
-                  Object {
-                    "patterns": Array [
-                      Object {
-                        "geometry": Object {
-                          "coordinates": Array [
-                            Array [
-                              -122.0246,
-                              36.9707,
-                            ],
-                            Array [
-                              -122.0279,
-                              37.049,
-                            ],
-                            Array [
-                              -121.9799,
-                              37.2299,
-                            ],
-                            Array [
-                              -121.9445,
-                              37.324,
-                            ],
-                            Array [
-                              -121.936,
-                              37.353,
-                            ],
-                            Array [
-                              -121.924,
-                              37.365,
-                            ],
-                          ],
-                          "type": "LineString",
-                        },
-                        "stops": Array [
-                          Object {
-                            "stop_id": "1",
-                            "stop_lat": 36.9707,
-                            "stop_lon": -122.0246,
-                            "stop_name": "Santa Cruz",
-                          },
-                          Object {
-                            "stop_id": "2",
-                            "stop_lat": 37.049,
-                            "stop_lon": -122.0279,
-                            "stop_name": "Scotts Valley",
-                          },
-                        ],
-                        "trips": Array [
-                          Object {
-                            "duration": 1234,
-                            "start_time": 12345,
-                            "trip_headsign": "To Downtown",
-                            "trip_id": "abcd",
-                            "trip_short_name": "The Express",
-                          },
-                        ],
-                      },
-                    ],
-                    "route_id": "route1",
-                  },
-                ],
-                "stops": Array [
-                  Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                ],
-                "stopsById": Object {
-                  "1": Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  "2": Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                },
-              },
-            ],
-            "feedsById": Object {
-              "1": Object {
-                "id": "1",
-                "routes": Array [
-                  Object {
-                    "patterns": Array [
-                      Object {
-                        "geometry": Object {
-                          "coordinates": Array [
-                            Array [
-                              -122.0246,
-                              36.9707,
-                            ],
-                            Array [
-                              -122.0279,
-                              37.049,
-                            ],
-                            Array [
-                              -121.9799,
-                              37.2299,
-                            ],
-                            Array [
-                              -121.9445,
-                              37.324,
-                            ],
-                            Array [
-                              -121.936,
-                              37.353,
-                            ],
-                            Array [
-                              -121.924,
-                              37.365,
-                            ],
-                          ],
-                          "type": "LineString",
-                        },
-                        "stops": Array [
-                          Object {
-                            "stop_id": "1",
-                            "stop_lat": 36.9707,
-                            "stop_lon": -122.0246,
-                            "stop_name": "Santa Cruz",
-                          },
-                          Object {
-                            "stop_id": "2",
-                            "stop_lat": 37.049,
-                            "stop_lon": -122.0279,
-                            "stop_name": "Scotts Valley",
-                          },
-                        ],
-                        "trips": Array [
-                          Object {
-                            "duration": 1234,
-                            "start_time": 12345,
-                            "trip_headsign": "To Downtown",
-                            "trip_id": "abcd",
-                            "trip_short_name": "The Express",
-                          },
-                        ],
-                      },
-                    ],
-                    "route_id": "route1",
-                  },
-                ],
-                "stops": Array [
-                  Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                ],
-                "stopsById": Object {
-                  "1": Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  "2": Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                },
-              },
-            },
-            "id": "1",
-            "name": "Mock Scenario",
-            "projectId": "1",
-            "variants": Array [
-              "Default",
-            ],
-          },
-        ]
-      }
       setActiveVariant={[Function]}
-      setComparisonScenario={[Function]}
+      setComparisonProject={[Function]}
       setProfileRequest={[Function]}
       setRegionalAnalysisBounds={[Function]}
       variantIndex={0}
@@ -384,7 +208,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "Default",
         ]
       }
-      workerVersion="v3.2.0"
     >
       <div>
         <div
@@ -769,7 +592,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       options={
                         Array [
                           Object {
-                            "label": "Mock Scenario",
+                            "label": "Mock Project",
                             "value": "1",
                           },
                         ]
@@ -949,11 +772,11 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                 comparisonAccessibility={null}
                 comparisonInProgress={false}
                 comparisonPercentileCurves={null}
-                comparisonScenarioName={null}
+                comparisonProjectName={null}
                 isFetchingIsochrone={false}
                 isochroneCutoff={60}
                 maxAccessibility={-Infinity}
-                scenarioName="Mock Scenario: Default"
+                projectName="Mock Project: Default"
                 setIsochroneCutoff={[Function]}
               >
                 <div
@@ -986,9 +809,9 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       }
                     >
                       <div
-                        className="scenario-name"
+                        className="project-name"
                       >
-                        Mock Scenario: Default (Median)
+                        Mock Project: Default (Median)
                       </div>
                     </div>
                     <div
@@ -1008,7 +831,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         disabled={true}
                         onClick={[Function]}
                         size="sm"
-                        value="scenario"
+                        value="project"
                       >
                         <a
                           className="btn btn-default btn-sm active"
@@ -1016,9 +839,9 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           href="#"
                           onClick={[Function]}
                           tabIndex={0}
-                          value="scenario"
+                          value="project"
                         >
-                          Mock Scenario: Default
+                          Mock Project: Default
                         </a>
                       </Button>
                       <Button
@@ -1142,29 +965,20 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         "bikeSlope": 1,
                         "bikeSpeed": 4.166666666666667,
                         "bikeTime": 1,
-                        "bikeTrafficStress": 4,
-                        "carSpeed": 20,
                         "date": "2016-01-16",
                         "directModes": "WALK",
                         "egressModes": "WALK",
                         "fromLat": undefined,
                         "fromLon": undefined,
                         "fromTime": 25200,
-                        "maxBikeTime": 20,
-                        "maxCarTime": 45,
                         "maxRides": 4,
-                        "maxWalkTime": 20,
-                        "minBikeTime": 10,
-                        "minCarTime": 10,
                         "monteCarloDraws": 200,
                         "reachabilityThreshold": 0,
-                        "streetTime": 90,
-                        "suboptimalMinutes": 5,
                         "toTime": 32400,
                         "transitModes": "BUS,TRAM,RAIL,SUBWAY",
                         "walkSpeed": 1.3888888888888888,
                       },
-                      "projectId": "1",
+                      "regionId": "1",
                     }
                   }
                   createBookmark={[Function]}
@@ -1325,22 +1139,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     "bikeSlope": 1,
                     "bikeSpeed": 4.166666666666667,
                     "bikeTime": 1,
-                    "bikeTrafficStress": 4,
-                    "carSpeed": 20,
                     "date": "2016-01-16",
                     "directModes": "WALK",
                     "egressModes": "WALK",
                     "fromTime": 25200,
-                    "maxBikeTime": 20,
-                    "maxCarTime": 45,
                     "maxRides": 4,
-                    "maxWalkTime": 20,
-                    "minBikeTime": 10,
-                    "minCarTime": 10,
                     "monteCarloDraws": 200,
                     "reachabilityThreshold": 0,
-                    "streetTime": 90,
-                    "suboptimalMinutes": 5,
                     "toTime": 32400,
                     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
                     "walkSpeed": 1.3888888888888888,
@@ -1358,22 +1163,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         "bikeSlope": 1,
                         "bikeSpeed": 4.166666666666667,
                         "bikeTime": 1,
-                        "bikeTrafficStress": 4,
-                        "carSpeed": 20,
                         "date": "2016-01-16",
                         "directModes": "WALK",
                         "egressModes": "WALK",
                         "fromTime": 25200,
-                        "maxBikeTime": 20,
-                        "maxCarTime": 45,
                         "maxRides": 4,
-                        "maxWalkTime": 20,
-                        "minBikeTime": 10,
-                        "minCarTime": 10,
                         "monteCarloDraws": 200,
                         "reachabilityThreshold": 0,
-                        "streetTime": 90,
-                        "suboptimalMinutes": 5,
                         "toTime": 32400,
                         "transitModes": "BUS,TRAM,RAIL,SUBWAY",
                         "walkSpeed": 1.3888888888888888,
@@ -1607,22 +1403,13 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             "bikeSlope": 1,
                             "bikeSpeed": 4.166666666666667,
                             "bikeTime": 1,
-                            "bikeTrafficStress": 4,
-                            "carSpeed": 20,
                             "date": "2016-01-16",
                             "directModes": "WALK",
                             "egressModes": "WALK",
                             "fromTime": 25200,
-                            "maxBikeTime": 20,
-                            "maxCarTime": 45,
                             "maxRides": 4,
-                            "maxWalkTime": 20,
-                            "minBikeTime": 10,
-                            "minCarTime": 10,
                             "monteCarloDraws": 200,
                             "reachabilityThreshold": 0,
-                            "streetTime": 90,
-                            "suboptimalMinutes": 5,
                             "toTime": 32400,
                             "transitModes": "BUS,TRAM,RAIL,SUBWAY",
                             "walkSpeed": 1.3888888888888888,
@@ -2558,7 +2345,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     >
                       <Number
                         disabled={false}
-                        label="Number of simulated schedules"
+                        label="Simulated schedules"
                         max={10000}
                         min={1}
                         name="monteCarloDraws"
@@ -2569,7 +2356,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         <Group
                           disabled={false}
                           id="monte-carlo-draws-input-13"
-                          label="Number of simulated schedules"
+                          label="Simulated schedules"
                           max={10000}
                           min={1}
                           name="monteCarloDraws"
@@ -2583,12 +2370,12 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             <label
                               htmlFor="monte-carlo-draws-input-13"
                             >
-                              Number of simulated schedules
+                              Simulated schedules
                             </label>
                             <Input
                               disabled={false}
                               id="monte-carlo-draws-input-13"
-                              label="Number of simulated schedules"
+                              label="Simulated schedules"
                               max={10000}
                               min={1}
                               name="monteCarloDraws"
@@ -2607,7 +2394,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                 name="monteCarloDraws"
                                 onChange={[Function]}
                                 onWheel={[Function]}
-                                placeholder="Number of simulated schedules"
+                                placeholder="Simulated schedules"
                                 step={1}
                                 type="number"
                                 value={200}
@@ -2616,6 +2403,204 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           </div>
                         </Group>
                       </Number>
+                    </div>
+                  </div>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="col-xs-12"
+                    >
+                      <Connect(SelectR5Version)>
+                        <SelectR5Version
+                          allVersions={Array []}
+                          currentVersion="v3.2.0"
+                          loadR5Versions={[Function]}
+                          newerVersionIsAvailable={false}
+                          releaseVersions={Array []}
+                          setCurrentR5Version={[Function]}
+                        >
+                          <div>
+                            <Group
+                              label="Routing engine"
+                            >
+                              <div
+                                className="form-group"
+                              >
+                                <label
+                                  htmlFor="routing-engine-input-14"
+                                >
+                                  Routing engine
+                                </label>
+                                <Icon
+                                  onClick={[Function]}
+                                  style={
+                                    Object {
+                                      "color": "#aaa",
+                                      "cursor": "pointer",
+                                    }
+                                  }
+                                  title="Show all routing engine versions (advanced)"
+                                  type="flask"
+                                >
+                                  <i
+                                    className="fa fa-flask fa-fw "
+                                    onClick={[Function]}
+                                    style={
+                                      Object {
+                                        "color": "#aaa",
+                                        "cursor": "pointer",
+                                      }
+                                    }
+                                    title="Show all routing engine versions (advanced)"
+                                  />
+                                </Icon>
+                                <Select
+                                  addLabelText="Add \\"{label}\\"?"
+                                  arrowRenderer={[Function]}
+                                  autosize={true}
+                                  backspaceRemoves={true}
+                                  backspaceToRemoveMessage="Press backspace to remove {label}"
+                                  clearAllText="Clear all"
+                                  clearRenderer={[Function]}
+                                  clearValueText="Clear value"
+                                  clearable={false}
+                                  deleteRemoves={true}
+                                  delimiter=","
+                                  disabled={false}
+                                  escapeClearsValue={true}
+                                  filterOptions={[Function]}
+                                  ignoreAccents={true}
+                                  ignoreCase={true}
+                                  inputProps={Object {}}
+                                  isLoading={false}
+                                  joinValues={false}
+                                  labelKey="label"
+                                  matchPos="any"
+                                  matchProp="any"
+                                  menuBuffer={0}
+                                  menuRenderer={[Function]}
+                                  multi={false}
+                                  noResultsText="No results found"
+                                  onBlurResetsInput={true}
+                                  onChange={[Function]}
+                                  onCloseResetsInput={true}
+                                  optionComponent={[Function]}
+                                  options={
+                                    Array [
+                                      Object {
+                                        "label": <span
+                                          style={
+                                                Object {
+                                                      "textDecoration": "line-through",
+                                                    }
+                                          }
+                                    >
+                                          v3.2.0
+                                    </span>,
+                                        "value": "v3.2.0",
+                                      },
+                                    ]
+                                  }
+                                  pageSize={5}
+                                  placeholder="Select..."
+                                  required={false}
+                                  scrollMenuIntoView={true}
+                                  searchable={true}
+                                  simpleValue={false}
+                                  tabSelectsValue={true}
+                                  value="v3.2.0"
+                                  valueComponent={[Function]}
+                                  valueKey="value"
+                                >
+                                  <div
+                                    className="Select Select--single is-searchable has-value"
+                                  >
+                                    <div
+                                      className="Select-control"
+                                      onKeyDown={[Function]}
+                                      onMouseDown={[Function]}
+                                      onTouchEnd={[Function]}
+                                      onTouchMove={[Function]}
+                                      onTouchStart={[Function]}
+                                    >
+                                      <span
+                                        className="Select-multi-value-wrapper"
+                                        id="react-select-7--value"
+                                      >
+                                        <Value
+                                          disabled={false}
+                                          id="react-select-7--value-item"
+                                          instancePrefix="react-select-7-"
+                                          onClick={null}
+                                          value={
+                                            Object {
+                                              "label": <span
+                                                style={
+                                                    Object {
+                                                        "textDecoration": "line-through",
+                                                      }
+                                                }
+                                            >
+                                                v3.2.0
+                                            </span>,
+                                              "value": "v3.2.0",
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="Select-value"
+                                          >
+                                            <span
+                                              aria-selected="true"
+                                              className="Select-value-label"
+                                              id="react-select-7--value-item"
+                                              role="option"
+                                            >
+                                              <span
+                                                style={
+                                                  Object {
+                                                    "textDecoration": "line-through",
+                                                  }
+                                                }
+                                              >
+                                                v3.2.0
+                                              </span>
+                                            </span>
+                                          </div>
+                                        </Value>
+                                        <mockConstructor
+                                          aria-activedescendant="react-select-7--value"
+                                          aria-expanded="false"
+                                          aria-haspopup="false"
+                                          aria-owns=""
+                                          className="Select-input"
+                                          minWidth="5"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          required={false}
+                                          role="combobox"
+                                          value=""
+                                        />
+                                      </span>
+                                      <span
+                                        className="Select-arrow-zone"
+                                        onMouseDown={[Function]}
+                                      >
+                                        <span
+                                          className="Select-arrow"
+                                          onMouseDown={[Function]}
+                                        />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </Select>
+                              </div>
+                            </Group>
+                          </div>
+                        </SelectR5Version>
+                      </Connect(SelectR5Version)>
                     </div>
                   </div>
                 </div>
@@ -2627,7 +2612,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="bounds-of-analysis-input-14"
+                    htmlFor="bounds-of-analysis-input-15"
                   >
                     Bounds of analysis
                   </label>
@@ -2672,7 +2657,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           Array [
                             Object {
                               "label": "Entire region",
-                              "value": "__PROJECT",
+                              "value": "__REGION",
                             },
                           ]
                         }
@@ -2683,7 +2668,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         searchable={true}
                         simpleValue={false}
                         tabSelectsValue={true}
-                        value="__PROJECT"
+                        value="__REGION"
                         valueComponent={[Function]}
                         valueKey="value"
                       >
@@ -2700,17 +2685,17 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                           >
                             <span
                               className="Select-multi-value-wrapper"
-                              id="react-select-7--value"
+                              id="react-select-8--value"
                             >
                               <Value
                                 disabled={false}
-                                id="react-select-7--value-item"
-                                instancePrefix="react-select-7-"
+                                id="react-select-8--value-item"
+                                instancePrefix="react-select-8-"
                                 onClick={null}
                                 value={
                                   Object {
                                     "label": "Entire region",
-                                    "value": "__PROJECT",
+                                    "value": "__REGION",
                                   }
                                 }
                               >
@@ -2720,7 +2705,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                   <span
                                     aria-selected="true"
                                     className="Select-value-label"
-                                    id="react-select-7--value-item"
+                                    id="react-select-8--value-item"
                                     role="option"
                                   >
                                     Entire region
@@ -2728,7 +2713,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                                 </div>
                               </Value>
                               <mockConstructor
-                                aria-activedescendant="react-select-7--value"
+                                aria-activedescendant="react-select-8--value"
                                 aria-expanded="false"
                                 aria-haspopup="false"
                                 aria-owns=""
@@ -2798,7 +2783,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               >
                 <Group
                   disabled={false}
-                  id="percentile-of-travel-time-reliability-regional-analysis-only-input-15"
+                  id="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
                   label="Percentile of travel time (reliability) -- Regional analysis only"
                   max={99}
                   min={1}
@@ -2810,20 +2795,20 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     className="form-group"
                   >
                     <label
-                      htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-15"
+                      htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
                     >
                       Percentile of travel time (reliability) -- Regional analysis only
                     </label>
                     <output
                       className="pull-right"
-                      htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-15"
+                      htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
                     >
                       50.0
                     </output>
                     <input
                       className="form-control"
                       disabled={false}
-                      id="percentile-of-travel-time-reliability-regional-analysis-only-input-15"
+                      id="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
                       label="Percentile of travel time (reliability) -- Regional analysis only"
                       max={99}
                       min={1}

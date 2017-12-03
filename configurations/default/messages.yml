@@ -1,9 +1,17 @@
 common:
+  region: Region
   project: Project
   scenario: Scenario
   help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
   yes: yes
   no: no
+  select: Select
+  clear: Clear
+  addTo: Add to
+  removeFrom: Remove from
+  route: Route
+errorModal:
+  title: Unfortunately it appears an error has occured...
 authentication:
   logIn: Log in
   logOut: Log out
@@ -19,13 +27,13 @@ map:
 nav:
   createBundle: Create Bundle
   selectBundle: Select Bundle
-  projects: Regions
-  projectSettings: Shared Settings
-  scenarios: Projects
+  regions: Regions
+  regionSettings: Shared Settings
+  projects: Projects
   gtfsBundles: GTFS Bundles
   opportunityDatasets: Opportunity Datasets
-  editScenario: Edit Scenarios
-  analyzeScenario: Analyze Scenarios
+  editModifications: Edit Modifications
+  analyze: Analyze
   notConnectedToInternet: You are not connected to the internet
   unfinishedRequests: You have unfinished requests. Are you sure you want to exit?
 phasing:
@@ -38,6 +46,15 @@ phasing:
   headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway)s minute headway does not equal this timetable's headway, which could cause unintended behavior.
   noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
   exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
+
+r5Version:
+  analysisVersionDifferent: WARNING: You have completed regional analyses with a different routing engine. Using different routing engines may change results.
+  comparisonIsDifferent: WARNING: The analyses you are comparing ran on different routing engines. Changes in accessibility may be due to differences in the routing engines, rather than the transport scenarios.
+  latestReleaseVersionNotSelected: An updated version of the Analysis backend is available. Changing versions should improve performance, but it may require a longer wait the first time you initialize a compute cluster for analysis. Using a different version may also change analysis results slightly.
+  title: Routing engine
+  showAll: Show all routing engine versions (advanced)
+  showRelease: Show only stable routing engine versions
+
 region:
   welcome: welcome to
   createAction: Set up a new region
@@ -47,7 +64,7 @@ region:
   description: Description
   configure: Configure shared settings for region
   deleteAction: DANGER: Delete this region
-  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated scenarios and modifications.
+  deleteConfirmation: Are you sure you would like to delete this region? This will delete all associated projects and modifications.
   editAction: Save changes
   editTitle: Edit region
   versionOutdated: An updated version of the Analysis backend is available. To avoid errors, please select the latest version in
@@ -55,18 +72,15 @@ region:
   loadingRegion: Loading region…
   osmBounds: OpenStreetMap bounds
   r5Version: Analysis backend version
-  latestReleaseVersionNotSelected: An updated version of the Analysis backend is available.
-    Changing versions should improve performance, but it may require a longer wait the first time you initialize a compute cluster for analysis.
-    Using a different version may also change analysis results slightly.
-  showAllVersions: Show all backend versions (advanced)
-  showReleaseVersions: Show only stable backend versions
-  loadStatus:
+  statusCode:
+    STARTED: Setting up region…
     UPLOADING_OSM: Uploading OpenStreetMap data…
     DOWNLOADING_OSM: Downloading OpenStreetMap data…
     DOWNLOADING_CENSUS: Downloading Census data…
     EXTRACTING_CENSUS_COLUMNS: Processing Census data…
     PROJECTING_CENSUS: Projecting Census data to project grid…
     STORING_CENSUS: Storing census data…
+    ERROR: Error setting up region...
     DONE: Done
   customOpenStreetMapData: OpenStreetMap data in PBF format (required for regions outside the USA; OSM extracts are available from Mapzen).
 project:
@@ -83,13 +97,15 @@ project:
   importAction: Import modifications
   loading: Loading project…
   loadingGTFS: Loading GTFS bundle & modifications…
+  noBundles: To get started with projects in this region, first create a GTFS bundle.
   route: Route
   uploadBundle: Upload a new GTFS Bundle
   uploadOpportunityDataset: Upload a new Opportunity Dataset
   goToExisting: or go to an existing project
-  goToScenario: Go to project
+  goToProject: Go to project
   select: Select a project…
-scenario:
+variant:
+  name: Scenario
   plural: Scenarios
   enterName: Enter a name for your scenario:
   editName: Rename this scenario
@@ -111,6 +127,8 @@ transitEditor:
   stopSpacingMeters: Stop spacing
   autoCreateStops: Create stops automatically
   extendFromEnd: Extend from end
+  fromStopLabel: Start of reroute/extension (existing stop on pattern)
+  toStopLabel: End of reroute/extension (existing stop on pattern)
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
   invalidShapefileType: Shapefile type must be LineString or MultiLineString
@@ -141,6 +159,12 @@ modificationType:
   reroute: Reroute
   adjust-speed: Adjust speed
   remove-stops: Remove stops
+opportunityDatasets:
+  upload: Upload a new dataset
+  select: or select an existing one
+  delete: Delete this dataset
+  downloadTiff: Download as .tiff
+  downloadGrid: Download as .grid
 analysis:
   mode: Mode of travel
   minutes: %s minutes
@@ -166,19 +190,19 @@ analysis:
   latField: Latitude field
   lonField: Longitude field
   travelTime: Travel time
-  errorsInScenario: Errors were found in the scenario:
-  warningsInScenario: Warnings were found applying the scenario
+  errorsInProject: Errors were found in the project:
+  warningsInProject: Warnings were found applying the project
   errorsInModification: in modification %s
   minimumImprovementProbability: Minimum probability of change
   probabilityImprovement: Show areas with probability of change > %01.2f
-  compare: Compare to another scenario
+  compare: Compare to another project
   comparison: Comparison
   baseline: Baseline
   fromTime: From time
   toTime: To time
   date: Date
   transfers: Maximum transfers
-  monteCarloDraws: Number of simulated schedules
+  monteCarloDraws: Simulated schedules
   settings: Analysis settings
   regionalAnalyses: Regional analyses
   regionalAnalysisName: Regional analysis name
@@ -205,7 +229,6 @@ analysis:
     transit: Transit
   fetchStatus:
     LOADING_GRID: Loading opportunity dataset…
-    APPLYING_SCENARIO: Applying scenario…
     PERFORMING_ANALYSIS: Performing analysis…
     COMPUTING_ISOCHRONE: Computing isochrone…
     INITIALIZING_CLUSTER: Initializing compute cluster (may take several minutes)
@@ -222,12 +245,12 @@ analysis:
   regionalBounds: Bounds of analysis
   regionalBoundsSame: Same as %s
   regionalBoundsCustom: Custom
-  regionalBoundsProject: Entire region
+  regionalBoundsRegion: Entire region
   bookmark: Bookmark
   createBookmark: Create bookmark
   bookmarkName: Bookmark name
-  selectComparisonScenario: Select comparison project…
-  selectComparisonScenarioVariant: Select comparison scenario…
+  selectComparisonProject: Select comparison project…
+  selectComparisonProjectVariant: Select comparison scenario…
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.

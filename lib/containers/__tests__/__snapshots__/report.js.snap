@@ -1,267 +1,1184 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Container > Report renders correctly 1`] = `
-<div
-  className="container"
-  id="report"
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <div
-    className="row"
+  <Connect(Report)
+    params={
+      Object {
+        "projectId": "1",
+        "regionId": "1",
+        "variantId": "0",
+      }
+    }
   >
-    <div
-      className="col-md-6 col-offset-2"
-      style={
+    <Report
+      allFeedIds={Array []}
+      bundle={
         Object {
-          "float": "none",
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "centerLat": 38.90124,
+          "centerLon": -77.015615,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "feeds": Array [],
+          "name": "Mock Bundle",
+          "nonce": "12345",
+          "regionId": "1",
+          "totalFeeds": 0,
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
         }
       }
+      feedScopedStops={
+        Array [
+          Object {
+            "stop_id": "1:1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
+          Object {
+            "stop_id": "1:2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        ]
+      }
+      feedsById={
+        Object {
+          "1": Object {
+            "id": "1",
+            "routes": Array [
+              Object {
+                "patterns": Array [
+                  Object {
+                    "geometry": Object {
+                      "coordinates": Array [
+                        Array [
+                          -122.0246,
+                          36.9707,
+                        ],
+                        Array [
+                          -122.0279,
+                          37.049,
+                        ],
+                        Array [
+                          -121.9799,
+                          37.2299,
+                        ],
+                        Array [
+                          -121.9445,
+                          37.324,
+                        ],
+                        Array [
+                          -121.936,
+                          37.353,
+                        ],
+                        Array [
+                          -121.924,
+                          37.365,
+                        ],
+                      ],
+                      "type": "LineString",
+                    },
+                    "stops": Array [
+                      Object {
+                        "stop_id": "1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
+                      },
+                      Object {
+                        "stop_id": "2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
+                      },
+                    ],
+                    "trips": Array [
+                      Object {
+                        "duration": 1234,
+                        "start_time": 12345,
+                        "trip_headsign": "To Downtown",
+                        "trip_id": "abcd",
+                        "trip_short_name": "The Express",
+                      },
+                    ],
+                  },
+                ],
+                "route_id": "route1",
+              },
+            ],
+            "stops": Array [
+              Object {
+                "stop_id": "1",
+                "stop_lat": 36.9707,
+                "stop_lon": -122.0246,
+                "stop_name": "Santa Cruz",
+              },
+              Object {
+                "stop_id": "2",
+                "stop_lat": 37.049,
+                "stop_lon": -122.0279,
+                "stop_name": "Scotts Valley",
+              },
+            ],
+            "stopsById": Object {
+              "1": Object {
+                "stop_id": "1",
+                "stop_lat": 36.9707,
+                "stop_lon": -122.0246,
+                "stop_name": "Santa Cruz",
+              },
+              "2": Object {
+                "stop_id": "2",
+                "stop_lat": 37.049,
+                "stop_lon": -122.0279,
+                "stop_name": "Scotts Valley",
+              },
+            },
+          },
+        }
+      }
+      loadProject={[Function]}
+      loadRegion={[Function]}
+      modifications={
+        Array [
+          Object {
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
+            ],
+            "segments": Array [
+              {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                "-122.02460000",
+                "36.97070000"
+              ],
+              [
+                "-122.02790000",
+                "37.04900000"
+              ],
+              [
+                "-121.97990000",
+                "37.22990000"
+              ],
+              [
+                "-121.94450000",
+                "37.32400000"
+              ],
+              [
+                "-121.93600000",
+                "37.35300000"
+              ],
+              [
+                "-121.92400000",
+                "37.36500000"
+              ]
+            ]
+          }
+        },
+            ],
+            "showOnMap": false,
+            "timetables": Array [
+              Object {
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
+            ],
+          },
+        ]
+      }
+      params={
+        Object {
+          "projectId": "1",
+          "regionId": "1",
+          "variantId": "0",
+        }
+      }
+      project={
+        Object {
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bundleId": "1",
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "name": "Mock Project",
+          "nonce": "12345",
+          "regionId": "1",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            "Default",
+          ],
+        }
+      }
+      projectId="1"
+      projectTimetables={Array []}
+      regionId="1"
+      variant="Default"
     >
-      <h1>
-        Mock Scenario
-      </h1>
-      <h2>
-        Scenario: Default
-      </h2>
-      Using bundle: Mock Bundle
       <div
-        className="Report-Modification"
+        className="container"
+        id="report"
       >
-        <h3>
-          (
-          1
-           / 
-          1
-          )
-           
-          Add trips
-        </h3>
-        <h2>
-          Test Modification
-        </h2>
-        <i>
-          Mock description
-        </i>
-        <div>
+        <div
+          className="row"
+        >
           <div
+            className="col-md-6 col-offset-2"
             style={
               Object {
-                "height": 200,
-                "width": 720,
+                "float": "none",
               }
             }
           >
-            <div
-              className="MiniMap-northArrow"
-            >
-              <i
-                className="fa fa-arrow-left"
-              />
-               
-              N
-            </div>
-            <div
-              style={
+            <h1>
+              Mock Project
+            </h1>
+            <h2>
+              Scenario: Default
+            </h2>
+            Using bundle: Mock Bundle
+            <Modification
+              feedScopedStops={
+                Array [
+                  Object {
+                    "stop_id": "1:1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  Object {
+                    "stop_id": "1:2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                ]
+              }
+              feedsById={
                 Object {
-                  "transform": "rotate(-90deg) translate(520px)",
+                  "1": Object {
+                    "id": "1",
+                    "routes": Array [
+                      Object {
+                        "patterns": Array [
+                          Object {
+                            "geometry": Object {
+                              "coordinates": Array [
+                                Array [
+                                  -122.0246,
+                                  36.9707,
+                                ],
+                                Array [
+                                  -122.0279,
+                                  37.049,
+                                ],
+                                Array [
+                                  -121.9799,
+                                  37.2299,
+                                ],
+                                Array [
+                                  -121.9445,
+                                  37.324,
+                                ],
+                                Array [
+                                  -121.936,
+                                  37.353,
+                                ],
+                                Array [
+                                  -121.924,
+                                  37.365,
+                                ],
+                              ],
+                              "type": "LineString",
+                            },
+                            "stops": Array [
+                              Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            ],
+                            "trips": Array [
+                              Object {
+                                "duration": 1234,
+                                "start_time": 12345,
+                                "trip_headsign": "To Downtown",
+                                "trip_id": "abcd",
+                                "trip_short_name": "The Express",
+                              },
+                            ],
+                          },
+                        ],
+                        "route_id": "route1",
+                      },
+                    ],
+                    "stops": Array [
+                      Object {
+                        "stop_id": "1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
+                      },
+                      Object {
+                        "stop_id": "2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
+                      },
+                    ],
+                    "stopsById": Object {
+                      "1": Object {
+                        "stop_id": "1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
+                      },
+                      "2": Object {
+                        "stop_id": "2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
+                      },
+                    },
+                  },
                 }
               }
+              index={1}
+              modification={
+                Object {
+                  "_id": "1234",
+                  "accessGroup": "accessGroupName",
+                  "bidirectional": false,
+                  "createdAt": "2017-11-08T12:30:50.133Z",
+                  "createdBy": "person@gmail.com",
+                  "description": "Mock description",
+                  "entries": Array [],
+                  "feed": "1",
+                  "name": "Test Modification",
+                  "nonce": "12345",
+                  "projectId": "1",
+                  "routes": Array [
+                    "route1",
+                  ],
+                  "segments": Array [
+                    {
+                  "type": "Feature",
+                  "properties": {},
+                  "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                      [
+                        "-122.02460000",
+                        "36.97070000"
+                      ],
+                      [
+                        "-122.02790000",
+                        "37.04900000"
+                      ],
+                      [
+                        "-121.97990000",
+                        "37.22990000"
+                      ],
+                      [
+                        "-121.94450000",
+                        "37.32400000"
+                      ],
+                      [
+                        "-121.93600000",
+                        "37.35300000"
+                      ],
+                      [
+                        "-121.92400000",
+                        "37.36500000"
+                      ]
+                    ]
+                  }
+                },
+                  ],
+                  "showOnMap": false,
+                  "timetables": Array [
+                    Object {
+                      "_id": "timetable-id",
+                      "dwellTime": 10,
+                      "endTime": 57600,
+                      "exactTimes": false,
+                      "friday": true,
+                      "headwaySecs": 900,
+                      "modificationId": "1234",
+                      "modificationName": "Test Modification",
+                      "monday": true,
+                      "name": "Test timetable",
+                      "patternTrips": Array [
+                        "abcd",
+                      ],
+                      "phaseAtStop": "",
+                      "phaseFromStop": "",
+                      "phaseFromTimetable": "",
+                      "phaseSeconds": 300,
+                      "saturday": false,
+                      "segmentSpeeds": Array [],
+                      "sourceTrip": "abcd",
+                      "startTime": 28800,
+                      "sunday": false,
+                      "thursday": true,
+                      "tuesday": true,
+                      "wednesday": true,
+                    },
+                  ],
+                  "trips": Array [
+                    "abcd",
+                  ],
+                  "type": "add-trip-pattern",
+                  "updatedAt": "2017-11-08T12:31:19.602Z",
+                  "updatedBy": "person@gmail.com",
+                  "variants": Array [
+                    true,
+                  ],
+                }
+              }
+              projectTimetables={Array []}
+              total={1}
             >
               <div
-                style={
-                  Object {
-                    "height": 200,
-                    "width": 720,
-                  }
-                }
+                className="Report-Modification"
               >
-                <div
-                  className={undefined}
-                  id={undefined}
-                  style={undefined}
-                >
-                  <div
-                    style={
+                <h3>
+                  (
+                  1
+                   / 
+                  1
+                  )
+                   
+                  Add trips
+                </h3>
+                <h2>
+                  Test Modification
+                </h2>
+                <i>
+                  Mock description
+                </i>
+                <AddTrips
+                  feedScopedStops={
+                    Array [
                       Object {
-                        "display": "none",
-                      }
+                        "stop_id": "1:1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
+                      },
+                      Object {
+                        "stop_id": "1:2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
+                      },
+                    ]
+                  }
+                  feedsById={
+                    Object {
+                      "1": Object {
+                        "id": "1",
+                        "routes": Array [
+                          Object {
+                            "patterns": Array [
+                              Object {
+                                "geometry": Object {
+                                  "coordinates": Array [
+                                    Array [
+                                      -122.0246,
+                                      36.9707,
+                                    ],
+                                    Array [
+                                      -122.0279,
+                                      37.049,
+                                    ],
+                                    Array [
+                                      -121.9799,
+                                      37.2299,
+                                    ],
+                                    Array [
+                                      -121.9445,
+                                      37.324,
+                                    ],
+                                    Array [
+                                      -121.936,
+                                      37.353,
+                                    ],
+                                    Array [
+                                      -121.924,
+                                      37.365,
+                                    ],
+                                  ],
+                                  "type": "LineString",
+                                },
+                                "stops": Array [
+                                  Object {
+                                    "stop_id": "1",
+                                    "stop_lat": 36.9707,
+                                    "stop_lon": -122.0246,
+                                    "stop_name": "Santa Cruz",
+                                  },
+                                  Object {
+                                    "stop_id": "2",
+                                    "stop_lat": 37.049,
+                                    "stop_lon": -122.0279,
+                                    "stop_name": "Scotts Valley",
+                                  },
+                                ],
+                                "trips": Array [
+                                  Object {
+                                    "duration": 1234,
+                                    "start_time": 12345,
+                                    "trip_headsign": "To Downtown",
+                                    "trip_id": "abcd",
+                                    "trip_short_name": "The Express",
+                                  },
+                                ],
+                              },
+                            ],
+                            "route_id": "route1",
+                          },
+                        ],
+                        "stops": Array [
+                          Object {
+                            "stop_id": "1",
+                            "stop_lat": 36.9707,
+                            "stop_lon": -122.0246,
+                            "stop_name": "Santa Cruz",
+                          },
+                          Object {
+                            "stop_id": "2",
+                            "stop_lat": 37.049,
+                            "stop_lon": -122.0279,
+                            "stop_name": "Scotts Valley",
+                          },
+                        ],
+                        "stopsById": Object {
+                          "1": Object {
+                            "stop_id": "1",
+                            "stop_lat": 36.9707,
+                            "stop_lon": -122.0246,
+                            "stop_name": "Santa Cruz",
+                          },
+                          "2": Object {
+                            "stop_id": "2",
+                            "stop_lat": 37.049,
+                            "stop_lon": -122.0279,
+                            "stop_name": "Scotts Valley",
+                          },
+                        },
+                      },
                     }
-                  >
-                    <g
-                      data={
+                  }
+                  index={1}
+                  modification={
+                    Object {
+                      "_id": "1234",
+                      "accessGroup": "accessGroupName",
+                      "bidirectional": false,
+                      "createdAt": "2017-11-08T12:30:50.133Z",
+                      "createdBy": "person@gmail.com",
+                      "description": "Mock description",
+                      "entries": Array [],
+                      "feed": "1",
+                      "name": "Test Modification",
+                      "nonce": "12345",
+                      "projectId": "1",
+                      "routes": Array [
+                        "route1",
+                      ],
+                      "segments": Array [
                         {
-                          "type": "FeatureCollection",
-                          "features": [
-                            {
-                              "type": "Feature",
-                              "properties": {},
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              }
-                            }
+                      "type": "Feature",
+                      "properties": {},
+                      "geometry": {
+                        "type": "LineString",
+                        "coordinates": [
+                          [
+                            "-122.02460000",
+                            "36.97070000"
+                          ],
+                          [
+                            "-122.02790000",
+                            "37.04900000"
+                          ],
+                          [
+                            "-121.97990000",
+                            "37.22990000"
+                          ],
+                          [
+                            "-121.94450000",
+                            "37.32400000"
+                          ],
+                          [
+                            "-121.93600000",
+                            "37.35300000"
+                          ],
+                          [
+                            "-121.92400000",
+                            "37.36500000"
                           ]
+                        ]
+                      }
+                    },
+                      ],
+                      "showOnMap": false,
+                      "timetables": Array [
+                        Object {
+                          "_id": "timetable-id",
+                          "dwellTime": 10,
+                          "endTime": 57600,
+                          "exactTimes": false,
+                          "friday": true,
+                          "headwaySecs": 900,
+                          "modificationId": "1234",
+                          "modificationName": "Test Modification",
+                          "monday": true,
+                          "name": "Test timetable",
+                          "patternTrips": Array [
+                            "abcd",
+                          ],
+                          "phaseAtStop": "",
+                          "phaseFromStop": "",
+                          "phaseFromTimetable": "",
+                          "phaseSeconds": 300,
+                          "saturday": false,
+                          "segmentSpeeds": Array [],
+                          "sourceTrip": "abcd",
+                          "startTime": 28800,
+                          "sunday": false,
+                          "thursday": true,
+                          "tuesday": true,
+                          "wednesday": true,
+                        },
+                      ],
+                      "trips": Array [
+                        "abcd",
+                      ],
+                      "type": "add-trip-pattern",
+                      "updatedAt": "2017-11-08T12:31:19.602Z",
+                      "updatedBy": "person@gmail.com",
+                      "variants": Array [
+                        true,
+                      ],
+                    }
+                  }
+                  projectTimetables={Array []}
+                  total={1}
+                >
+                  <div>
+                    <MiniMap
+                      bounds={
+                        Object {
+                          "_northEast": Object {
+                            "lat": 37.365,
+                            "lng": -121.924,
+                          },
+                          "_southWest": Object {
+                            "lat": 36.9707,
+                            "lng": -122.0279,
+                          },
                         }
                       }
-                      type="GeoJSON"
-                    />
-                    <g />
+                    >
+                      <div
+                        style={
+                          Object {
+                            "height": 200,
+                            "width": 720,
+                          }
+                        }
+                      >
+                        <div
+                          className="MiniMap-northArrow"
+                        >
+                          <i
+                            className="fa fa-arrow-left"
+                          />
+                           
+                          N
+                        </div>
+                        <div
+                          style={
+                            Object {
+                              "transform": "rotate(-90deg) translate(520px)",
+                            }
+                          }
+                        >
+                          <Map
+                            bounds={
+                              Object {
+                                "_northEast": Object {
+                                  "lat": 37.365,
+                                  "lng": -121.924,
+                                },
+                                "_southWest": Object {
+                                  "lat": 36.9707,
+                                  "lng": -122.0279,
+                                },
+                              }
+                            }
+                            height={200}
+                            width={720}
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "height": 200,
+                                  "width": 720,
+                                }
+                              }
+                            >
+                              <Map
+                                animate={false}
+                                attributionControl={false}
+                                bounds={
+                                  Object {
+                                    "_northEast": Object {
+                                      "lat": 37.365,
+                                      "lng": -121.924,
+                                    },
+                                    "_southWest": Object {
+                                      "lat": 36.9707,
+                                      "lng": -122.0279,
+                                    },
+                                  }
+                                }
+                                boxZoom={false}
+                                doubleClickZoom={false}
+                                dragging={false}
+                                keyboard={false}
+                                scrollWheelZoom={false}
+                                touchZoom={false}
+                                useFlyTo={false}
+                                zoomControl={false}
+                              >
+                                <div>
+                                  <TileLayer
+                                    url="mock.url/tile"
+                                  />
+                                  <TileLayer
+                                    url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
+                                  />
+                                  <AddTripPatternLayer
+                                    bidirectional={true}
+                                    segments={
+                                      Array [
+                                        {
+                                        "type": "Feature",
+                                        "properties": {},
+                                        "geometry": {
+                                          "type": "LineString",
+                                          "coordinates": [
+                                            [
+                                              "-122.02460000",
+                                              "36.97070000"
+                                            ],
+                                            [
+                                              "-122.02790000",
+                                              "37.04900000"
+                                            ],
+                                            [
+                                              "-121.97990000",
+                                              "37.22990000"
+                                            ],
+                                            [
+                                              "-121.94450000",
+                                              "37.32400000"
+                                            ],
+                                            [
+                                              "-121.93600000",
+                                              "37.35300000"
+                                            ],
+                                            [
+                                              "-121.92400000",
+                                              "37.36500000"
+                                            ]
+                                          ]
+                                        }
+                                      },
+                                      ]
+                                    }
+                                  >
+                                    <FeatureGroup>
+                                      <div
+                                        style={
+                                          Object {
+                                            "display": "none",
+                                          }
+                                        }
+                                      >
+                                        <GeoJSON
+                                          color="#55b"
+                                          data={
+                                            {
+                                              "type": "FeatureCollection",
+                                              "features": [
+                                                {
+                                                  "type": "Feature",
+                                                  "properties": {},
+                                                  "geometry": {
+                                                    "type": "LineString",
+                                                    "coordinates": [
+                                                      [
+                                                        "-122.02460000",
+                                                        "36.97070000"
+                                                      ],
+                                                      [
+                                                        "-122.02790000",
+                                                        "37.04900000"
+                                                      ],
+                                                      [
+                                                        "-121.97990000",
+                                                        "37.22990000"
+                                                      ],
+                                                      [
+                                                        "-121.94450000",
+                                                        "37.32400000"
+                                                      ],
+                                                      [
+                                                        "-121.93600000",
+                                                        "37.35300000"
+                                                      ],
+                                                      [
+                                                        "-121.92400000",
+                                                        "37.36500000"
+                                                      ]
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                          weight={3}
+                                        >
+                                          <g
+                                            data={
+                                              {
+                                                "type": "FeatureCollection",
+                                                "features": [
+                                                  {
+                                                    "type": "Feature",
+                                                    "properties": {},
+                                                    "geometry": {
+                                                      "type": "LineString",
+                                                      "coordinates": [
+                                                        [
+                                                          "-122.02460000",
+                                                          "36.97070000"
+                                                        ],
+                                                        [
+                                                          "-122.02790000",
+                                                          "37.04900000"
+                                                        ],
+                                                        [
+                                                          "-121.97990000",
+                                                          "37.22990000"
+                                                        ],
+                                                        [
+                                                          "-121.94450000",
+                                                          "37.32400000"
+                                                        ],
+                                                        [
+                                                          "-121.93600000",
+                                                          "37.35300000"
+                                                        ],
+                                                        [
+                                                          "-121.92400000",
+                                                          "37.36500000"
+                                                        ]
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                            type="GeoJSON"
+                                          />
+                                        </GeoJSON>
+                                        <StopIcons
+                                          id="00000000-0000-0000-0000-000000000000-stop-icons"
+                                          stops={
+                                            Array [
+                                              Object {
+                                                "autoCreated": true,
+                                                "bearing": -1.9265463557264133,
+                                                "center": Array [
+                                                  -122.0246,
+                                                  36.9707,
+                                                ],
+                                                "distanceFromStart": 0,
+                                                "index": 0,
+                                                "lat": 36.9707,
+                                                "lon": -122.0246,
+                                                "stopId": undefined,
+                                              },
+                                            ]
+                                          }
+                                        >
+                                          <g>
+                                            <CircleMarker
+                                              center={
+                                                Object {
+                                                  "lat": 36.9707,
+                                                  "lng": -122.0246,
+                                                }
+                                              }
+                                              color="#55b"
+                                              radius={2.5}
+                                            />
+                                          </g>
+                                        </StopIcons>
+                                      </div>
+                                    </FeatureGroup>
+                                  </AddTripPatternLayer>
+                                </div>
+                              </Map>
+                            </div>
+                          </Map>
+                        </div>
+                      </div>
+                    </MiniMap>
+                    <i>
+                      <Distance
+                        km={45.223652927700726}
+                      >
+                        <span>
+                          45.2 km (28.1 mi)
+                        </span>
+                      </Distance>
+                      ,
+                       
+                      unidirectional
+                    </i>
+                    <table
+                      className="table table-striped"
+                    >
+                      <thead>
+                        <tr>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Start time
+                          </th>
+                          <th>
+                            End time
+                          </th>
+                          <th>
+                            Frequency
+                          </th>
+                          <th>
+                            Speed
+                          </th>
+                          <th>
+                            Days of service
+                          </th>
+                          <th>
+                            Number of trips
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            Test timetable
+                          </td>
+                          <td>
+                            08:00
+                          </td>
+                          <td>
+                            16:00
+                          </td>
+                          <td>
+                            15
+                          </td>
+                          <td>
+                            <Speed
+                              kmh={0}
+                            >
+                              <span>
+                                0 km/h (0 mph)
+                              </span>
+                            </Speed>
+                          </td>
+                          <td>
+                            <DaysOfService
+                              _id="timetable-id"
+                              dwellTime={10}
+                              endTime={57600}
+                              exactTimes={false}
+                              friday={true}
+                              headwaySecs={900}
+                              modificationId="1234"
+                              modificationName="Test Modification"
+                              monday={true}
+                              name="Test timetable"
+                              patternTrips={
+                                Array [
+                                  "abcd",
+                                ]
+                              }
+                              phaseAtStop=""
+                              phaseFromStop=""
+                              phaseFromTimetable=""
+                              phaseSeconds={300}
+                              saturday={false}
+                              segmentSpeeds={Array []}
+                              sourceTrip="abcd"
+                              startTime={28800}
+                              sunday={false}
+                              thursday={true}
+                              tuesday={true}
+                              wednesday={true}
+                            >
+                              <span>
+                                <span
+                                  aria-hidden={false}
+                                  className="DaysOfService-active"
+                                >
+                                  Mo
+                                </span>
+                                 
+                                <span
+                                  aria-hidden={false}
+                                  className="DaysOfService-active"
+                                >
+                                  Tu
+                                </span>
+                                 
+                                <span
+                                  aria-hidden={false}
+                                  className="DaysOfService-active"
+                                >
+                                  We
+                                </span>
+                                 
+                                <span
+                                  aria-hidden={false}
+                                  className="DaysOfService-active"
+                                >
+                                  Th
+                                </span>
+                                 
+                                <span
+                                  aria-hidden={false}
+                                  className="DaysOfService-active"
+                                >
+                                  Fr
+                                </span>
+                                 
+                                <span
+                                  aria-hidden={true}
+                                  className="DaysOfService-inactive"
+                                >
+                                  Sa
+                                </span>
+                                 
+                                <span
+                                  aria-hidden={true}
+                                  className="DaysOfService-inactive"
+                                >
+                                  Su
+                                </span>
+                              </span>
+                            </DaysOfService>
+                          </td>
+                          <td>
+                            32
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                </div>
+                </AddTrips>
               </div>
-            </div>
+            </Modification>
+            <i>
+              Map data:
+               
+              <span
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>",
+                  }
+                }
+              />
+            </i>
           </div>
-          <i>
-            <span>
-              45.2 km (28.1 mi)
-            </span>
-            ,
-             
-            unidirectional
-          </i>
-          <table
-            className="table table-striped"
-          >
-            <thead>
-              <tr>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Start time
-                </th>
-                <th>
-                  End time
-                </th>
-                <th>
-                  Frequency
-                </th>
-                <th>
-                  Speed
-                </th>
-                <th>
-                  Days of service
-                </th>
-                <th>
-                  Number of trips
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Test timetable
-                </td>
-                <td>
-                  08:00
-                </td>
-                <td>
-                  16:00
-                </td>
-                <td>
-                  15
-                </td>
-                <td>
-                  <span>
-                    0 km/h (0 mph)
-                  </span>
-                </td>
-                <td>
-                  <span>
-                    <span
-                      aria-hidden={false}
-                      className="DaysOfService-active"
-                    >
-                      Mo
-                    </span>
-                     
-                    <span
-                      aria-hidden={false}
-                      className="DaysOfService-active"
-                    >
-                      Tu
-                    </span>
-                     
-                    <span
-                      aria-hidden={false}
-                      className="DaysOfService-active"
-                    >
-                      We
-                    </span>
-                     
-                    <span
-                      aria-hidden={false}
-                      className="DaysOfService-active"
-                    >
-                      Th
-                    </span>
-                     
-                    <span
-                      aria-hidden={false}
-                      className="DaysOfService-active"
-                    >
-                      Fr
-                    </span>
-                     
-                    <span
-                      aria-hidden={true}
-                      className="DaysOfService-inactive"
-                    >
-                      Sa
-                    </span>
-                     
-                    <span
-                      aria-hidden={true}
-                      className="DaysOfService-inactive"
-                    >
-                      Su
-                    </span>
-                  </span>
-                </td>
-                <td>
-                  32
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
-      <i>
-        Map data:
-         
-        <span
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>",
-            }
-          }
-        />
-      </i>
-    </div>
-  </div>
-</div>
+    </Report>
+  </Connect(Report)>
+</Provider>
 `;
