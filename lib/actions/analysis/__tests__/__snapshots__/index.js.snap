@@ -24,66 +24,14 @@ Object {
 }
 `;
 
-exports[`actions > analysis setComparisonModifications should work 1`] = `
-Object {
-  "type": "set comparison modifications",
-}
-`;
-
-exports[`actions > analysis setComparisonScenario should work 1`] = `
+exports[`actions > analysis setComparisonProject should work 1`] = `
 Object {
   "payload": Object {
     "_id": "COMPARISON_ID",
     "bundleId": "BUNDLE ID",
     "variantIndex": 1,
   },
-  "type": "set comparison scenario",
-}
-`;
-
-exports[`actions > analysis setComparisonScenario should work 2`] = `
-Object {
-  "payload": Object {
-    "options": Object {},
-    "url": "/api/scenario/COMPARISON_ID/modifications",
-  },
-  "type": "increment outstanding fetches",
-}
-`;
-
-exports[`actions > analysis setComparisonScenario should work 3`] = `
-Object {
-  "payload": Object {
-    "options": Object {},
-    "url": "/api/scenario/COMPARISON_ID/modifications",
-  },
-  "type": "decrement outstanding fetches",
-}
-`;
-
-exports[`actions > analysis setComparisonScenario should work 4`] = `
-Object {
-  "payload": Object {
-    "_id": "COMPARISON_ID",
-    "bundleId": "BUNDLE ID",
-    "modifications": Array [
-      Object {
-        "name": "MODIFICATION",
-        "variants": Array [
-          false,
-          true,
-        ],
-      },
-    ],
-    "variantIndex": 1,
-  },
-  "type": "set comparison modifications",
-}
-`;
-
-exports[`actions > analysis setComparisonScenarioId should work 1`] = `
-Object {
-  "type": "set comparison scenario",
+  "type": "set comparison project",
 }
 `;
 
@@ -118,13 +66,13 @@ Object {
 exports[`actions > analysis setProfileRequest should work 1`] = `
 Object {
   "payload": Object {
-    "maxWalkTime": 20,
+    "maxRides": 20,
   },
   "type": "set profile request",
 }
 `;
 
-exports[`actions > analysis setScenarioApplicationErrors should work 1`] = `
+exports[`actions > analysis setProjectApplicationErrors should work 1`] = `
 Object {
   "payload": Array [
     Object {
@@ -135,6 +83,6 @@ Object {
       "title": "Error while applying the modification entitled 'Add Trip Pattern'.",
     },
   ],
-  "type": "set scenario application errors",
+  "type": "set project application errors",
 }
 `;

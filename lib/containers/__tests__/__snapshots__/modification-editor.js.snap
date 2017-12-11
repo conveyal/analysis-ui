@@ -17,7 +17,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
     params={
       Object {
         "modificationId": "1234",
-        "scenarioId": "1",
+        "projectId": "1",
       }
     }
   >
@@ -42,10 +42,10 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
           "type": "Feature",
@@ -126,11 +126,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       params={
         Object {
           "modificationId": "1234",
-          "scenarioId": "1",
+          "projectId": "1",
         }
       }
+      projectId="1"
       removeModification={[Function]}
-      scenarioId="1"
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
@@ -143,12 +143,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
         >
           <IconLink
             title="Modifications"
-            to="/scenarios/1"
+            to="/projects/1"
             type="chevron-left"
           >
             <Link
               title="Modifications"
-              to="/scenarios/1"
+              to="/projects/1"
               type="button"
             >
               <Tip
@@ -165,7 +165,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     name="Modifications"
                     onlyActiveOnIndex={false}
                     style={Object {}}
-                    to="/scenarios/1"
+                    to="/projects/1"
                     type="button"
                   >
                     <a
@@ -367,10 +367,10 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       "feed": "1",
                       "name": "Test Modification",
                       "nonce": "12345",
+                      "projectId": "1",
                       "routes": Array [
                         "route1",
                       ],
-                      "scenarioId": "1",
                       "segments": Array [
                         {
                       "type": "Feature",
@@ -465,10 +465,10 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         "feed": "1",
                         "name": "Test Modification",
                         "nonce": "12345",
+                        "projectId": "1",
                         "routes": Array [
                           "route1",
                         ],
-                        "scenarioId": "1",
                         "segments": Array [
                           {
                         "type": "Feature",
@@ -578,10 +578,10 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           "feed": "1",
                           "name": "Test Modification",
                           "nonce": "12345",
+                          "projectId": "1",
                           "routes": Array [
                             "route1",
                           ],
-                          "scenarioId": "1",
                           "segments": Array [
                             {
                           "type": "Feature",
@@ -659,8 +659,8 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         }
                       }
                       numberOfStops={1}
+                      projectTimetables={Array []}
                       qualifiedStops={Array []}
-                      scenarioTimetables={Array []}
                       segmentDistances={
                         Array [
                           45.223652927700726,
@@ -673,6 +673,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     >
                       <div>
                         <EditAlignment
+                          disabled={false}
                           extendFromEnd={true}
                           mapState={
                             Object {
@@ -697,10 +698,10 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               "feed": "1",
                               "name": "Test Modification",
                               "nonce": "12345",
+                              "projectId": "1",
                               "routes": Array [
                                 "route1",
                               ],
-                              "scenarioId": "1",
                               "segments": Array [
                                 {
                               "type": "Feature",
@@ -783,11 +784,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           <div>
                             <Button
                               block={true}
+                              disabled={false}
                               onClick={[Function]}
                               style="warning"
                             >
                               <a
                                 className="btn btn-warning btn-block"
+                                disabled={false}
                                 href="#"
                                 onClick={[Function]}
                                 tabIndex={0}
@@ -862,8 +865,8 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           bidirectional={false}
                           modificationStops={Array []}
                           numberOfStops={1}
+                          projectTimetables={Array []}
                           qualifiedStops={Array []}
-                          scenarioTimetables={Array []}
                           segmentDistances={
                             Array [
                               45.223652927700726,
@@ -932,9 +935,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               bidirectional={false}
                               modificationStops={Array []}
                               numberOfStops={1}
+                              projectTimetables={Array []}
                               qualifiedStops={Array []}
                               remove={[Function]}
-                              scenarioTimetables={Array []}
                               segmentDistances={
                                 Array [
                                   45.223652927700726,
@@ -1091,10 +1094,10 @@ Array [
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -1176,6 +1179,109 @@ Array [
     },
     "type": "increment outstanding fetches",
   },
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": Object {
+          "_id": "1234",
+          "accessGroup": "accessGroupName",
+          "bidirectional": false,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "description": "Mock description",
+          "entries": Array [],
+          "feed": "1",
+          "name": "Test Modification",
+          "nonce": "12345",
+          "projectId": "1",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [
+            {
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  }
+},
+          ],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "_id": "timetable-id",
+              "dwellTime": 10,
+              "endTime": 57600,
+              "exactTimes": false,
+              "friday": true,
+              "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            true,
+          ],
+        },
+        "method": "put",
+      },
+      "url": "/api/modification/1234",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Object {
+    "payload": Object {},
+    "type": "set modification",
+  },
 ]
 `;
 
@@ -1196,7 +1302,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
     params={
       Object {
         "modificationId": "1234",
-        "scenarioId": "1",
+        "projectId": "1",
       }
     }
   >
@@ -1221,10 +1327,10 @@ exports[`Container > Modification Editor renders correctly 1`] = `
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
           "type": "Feature",
@@ -1305,11 +1411,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
       params={
         Object {
           "modificationId": "1234",
-          "scenarioId": "1",
+          "projectId": "1",
         }
       }
+      projectId="1"
       removeModification={[Function]}
-      scenarioId="1"
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
@@ -1322,12 +1428,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
         >
           <IconLink
             title="Modifications"
-            to="/scenarios/1"
+            to="/projects/1"
             type="chevron-left"
           >
             <Link
               title="Modifications"
-              to="/scenarios/1"
+              to="/projects/1"
               type="button"
             >
               <Tip
@@ -1344,7 +1450,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     name="Modifications"
                     onlyActiveOnIndex={false}
                     style={Object {}}
-                    to="/scenarios/1"
+                    to="/projects/1"
                     type="button"
                   >
                     <a
@@ -1546,10 +1652,10 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       "feed": "1",
                       "name": "Test Modification",
                       "nonce": "12345",
+                      "projectId": "1",
                       "routes": Array [
                         "route1",
                       ],
-                      "scenarioId": "1",
                       "segments": Array [
                         {
                       "type": "Feature",
@@ -1644,10 +1750,10 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         "feed": "1",
                         "name": "Test Modification",
                         "nonce": "12345",
+                        "projectId": "1",
                         "routes": Array [
                           "route1",
                         ],
-                        "scenarioId": "1",
                         "segments": Array [
                           {
                         "type": "Feature",
@@ -1757,10 +1863,10 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           "feed": "1",
                           "name": "Test Modification",
                           "nonce": "12345",
+                          "projectId": "1",
                           "routes": Array [
                             "route1",
                           ],
-                          "scenarioId": "1",
                           "segments": Array [
                             {
                           "type": "Feature",
@@ -1838,8 +1944,8 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         }
                       }
                       numberOfStops={1}
+                      projectTimetables={Array []}
                       qualifiedStops={Array []}
-                      scenarioTimetables={Array []}
                       segmentDistances={
                         Array [
                           45.223652927700726,
@@ -1852,6 +1958,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     >
                       <div>
                         <EditAlignment
+                          disabled={false}
                           extendFromEnd={true}
                           mapState={
                             Object {
@@ -1876,10 +1983,10 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               "feed": "1",
                               "name": "Test Modification",
                               "nonce": "12345",
+                              "projectId": "1",
                               "routes": Array [
                                 "route1",
                               ],
-                              "scenarioId": "1",
                               "segments": Array [
                                 {
                               "type": "Feature",
@@ -1962,11 +2069,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           <div>
                             <Button
                               block={true}
+                              disabled={false}
                               onClick={[Function]}
                               style="warning"
                             >
                               <a
                                 className="btn btn-warning btn-block"
+                                disabled={false}
                                 href="#"
                                 onClick={[Function]}
                                 tabIndex={0}
@@ -2041,8 +2150,8 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           bidirectional={false}
                           modificationStops={Array []}
                           numberOfStops={1}
+                          projectTimetables={Array []}
                           qualifiedStops={Array []}
-                          scenarioTimetables={Array []}
                           segmentDistances={
                             Array [
                               45.223652927700726,
@@ -2111,9 +2220,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               bidirectional={false}
                               modificationStops={Array []}
                               numberOfStops={1}
+                              projectTimetables={Array []}
                               qualifiedStops={Array []}
                               remove={[Function]}
-                              scenarioTimetables={Array []}
                               segmentDistances={
                                 Array [
                                   45.223652927700726,

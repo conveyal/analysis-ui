@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`actions > modifications > copyFromScenario should work 1`] = `
+exports[`actions > modifications > copyFromProject should work 1`] = `
 Object {
   "payload": Object {
     "next": [Function],
     "options": Object {
       "method": "post",
     },
-    "url": "/api/scenario/2/import/1",
+    "url": "/api/project/2/import/1",
   },
   "type": "fetch",
 }
 `;
 
-exports[`actions > modifications > copyFromScenario should work 2`] = `
+exports[`actions > modifications > copyFromProject should work 2`] = `
 Array [
   Object {
     "payload": Object {
       "options": Object {
         "method": "post",
       },
-      "url": "/api/scenario/2/import/1",
+      "url": "/api/project/2/import/1",
     },
     "type": "increment outstanding fetches",
   },
@@ -28,7 +28,7 @@ Array [
 ]
 `;
 
-exports[`actions > modifications > copyFromScenario should work 3`] = `
+exports[`actions > modifications > copyFromProject should work 3`] = `
 Array [
   Object {
     "payload": Object {
@@ -38,25 +38,26 @@ Array [
     },
     "type": "decrement outstanding fetches",
   },
-  Object {
-    "payload": Array [
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "routes": Array [
-          "route1",
-        ],
-        "scenarioId": "1",
-        "segments": Array [
-          {
+  Array [
+    Object {
+      "payload": Array [
+        Object {
+          "_id": "1234",
+          "accessGroup": "accessGroupName",
+          "bidirectional": false,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "description": "Mock description",
+          "entries": Array [],
+          "feed": "1",
+          "name": "Test Modification",
+          "nonce": "12345",
+          "projectId": "1",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [
+            {
   "type": "Feature",
   "properties": {},
   "geometry": {
@@ -89,50 +90,60 @@ Array [
     ]
   }
 },
+          ],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "_id": "timetable-id",
+              "dwellTime": 10,
+              "endTime": 57600,
+              "exactTimes": false,
+              "friday": true,
+              "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            true,
+          ],
+        },
+      ],
+      "type": "create modifications",
+    },
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/projects/2",
         ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
+        "method": "push",
       },
-    ],
-    "type": "create modifications",
-  },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
+  ],
 ]
 `;
 
@@ -145,9 +156,8 @@ Array [
       "options": Object {
         "body": Object {
           "bidirectional": true,
-          "expanded": false,
           "name": "Add Trip Pattern",
-          "scenarioId": "1",
+          "projectId": "1",
           "segments": Array [],
           "showOnMap": true,
           "timetables": Array [],
@@ -173,9 +183,8 @@ Array [
       "options": Object {
         "body": Object {
           "bidirectional": true,
-          "expanded": false,
           "name": "Add Trip Pattern",
-          "scenarioId": "1",
+          "projectId": "1",
           "segments": Array [],
           "showOnMap": true,
           "timetables": Array [],
@@ -203,10 +212,10 @@ Array [
         "feed": "1",
         "name": "Test Modification",
         "nonce": "12345",
+        "projectId": "1",
         "routes": Array [
           "route1",
         ],
-        "scenarioId": "1",
         "segments": Array [
           {
   "type": "Feature",
@@ -285,9 +294,13 @@ Array [
       "type": "create modification",
     },
     Object {
+      "payload": "1234",
+      "type": "set active modification",
+    },
+    Object {
       "payload": Object {
         "args": Array [
-          "/scenarios/1/modifications/1234",
+          "/projects/1/modifications/1234",
         ],
         "method": "push",
       },
@@ -337,22 +350,22 @@ Array [
 ]
 `;
 
-exports[`actions > modifications > getForScenario should work 1`] = `
+exports[`actions > modifications > getForProject should work 1`] = `
 Object {
   "payload": Object {
     "next": [Function],
-    "url": "/api/scenario/1/modifications",
+    "url": "/api/project/1/modifications",
   },
   "type": "fetch",
 }
 `;
 
-exports[`actions > modifications > getForScenario should work 2`] = `
+exports[`actions > modifications > getForProject should work 2`] = `
 Array [
   Object {
     "payload": Object {
       "options": Object {},
-      "url": "/api/scenario/1/modifications",
+      "url": "/api/project/1/modifications",
     },
     "type": "increment outstanding fetches",
   },
@@ -360,12 +373,12 @@ Array [
 ]
 `;
 
-exports[`actions > modifications > getForScenario should work 3`] = `
+exports[`actions > modifications > getForProject should work 3`] = `
 Array [
   Object {
     "payload": Object {
       "options": Object {},
-      "url": "/api/scenario/1/modifications",
+      "url": "/api/project/1/modifications",
     },
     "type": "decrement outstanding fetches",
   },
@@ -383,10 +396,10 @@ Array [
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -495,10 +508,10 @@ Object {
         "feed": "1",
         "name": "Test Modification",
         "nonce": "12345",
+        "projectId": "1",
         "routes": Array [
           "route1",
         ],
-        "scenarioId": "1",
         "segments": Array [
           {
   "type": "Feature",
@@ -598,10 +611,10 @@ Array [
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -703,10 +716,10 @@ Array [
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -811,10 +824,10 @@ Object {
         "feed": "1",
         "name": "Test Modification",
         "nonce": "12345",
+        "projectId": "1",
         "routes": Array [
           "route1",
         ],
-        "scenarioId": "1",
         "segments": Array [
           {
   "type": "Feature",
@@ -914,10 +927,10 @@ Array [
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",
@@ -1019,10 +1032,10 @@ Array [
           "feed": "1",
           "name": "Test Modification",
           "nonce": "12345",
+          "projectId": "1",
           "routes": Array [
             "route1",
           ],
-          "scenarioId": "1",
           "segments": Array [
             {
   "type": "Feature",

@@ -2,16 +2,16 @@
 
 exports[`Component > ImportModifications renders correctly 1`] = `
 <ImportModifications
-  candidateScenarioOptions={
+  candidateProjectOptions={
     Array [
       Object {
-        "label": "Scenario 1",
-        "value": "scenario-1-id",
+        "label": "Project 1",
+        "value": "project-1-id",
       },
     ]
   }
-  copyFromScenario={[Function]}
-  toScenarioId="1"
+  copyFromProject={[Function]}
+  toProjectId="1"
   variants={Array []}
 >
   <InnerDock>
@@ -23,125 +23,129 @@ exports[`Component > ImportModifications renders correctly 1`] = `
         }
       }
     >
-      <h5>
-        Import modifications from another project
-      </h5>
       <div
-        className="form-group"
+        className="block"
       >
-        <Select
-          addLabelText="Add \\"{label}\\"?"
-          arrowRenderer={[Function]}
-          autosize={true}
-          backspaceRemoves={true}
-          backspaceToRemoveMessage="Press backspace to remove {label}"
-          clearAllText="Clear all"
-          clearRenderer={[Function]}
-          clearValueText="Clear value"
-          clearable={false}
-          deleteRemoves={true}
-          delimiter=","
-          disabled={false}
-          escapeClearsValue={true}
-          filterOptions={[Function]}
-          ignoreAccents={true}
-          ignoreCase={true}
-          inputProps={Object {}}
-          isLoading={false}
-          joinValues={false}
-          labelKey="label"
-          matchPos="any"
-          matchProp="any"
-          menuBuffer={0}
-          menuRenderer={[Function]}
-          multi={false}
-          noResultsText="No results found"
-          onBlurResetsInput={true}
-          onChange={[Function]}
-          onCloseResetsInput={true}
-          optionComponent={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "Scenario 1",
-                "value": "scenario-1-id",
-              },
-            ]
-          }
-          pageSize={5}
-          placeholder="Select a project…"
-          required={false}
-          scrollMenuIntoView={true}
-          searchable={true}
-          simpleValue={false}
-          tabSelectsValue={true}
-          valueComponent={[Function]}
-          valueKey="value"
+        <h5>
+          Import modifications from another project
+        </h5>
+        <div
+          className="form-group"
         >
-          <div
-            className="Select Select--single is-searchable"
+          <Select
+            addLabelText="Add \\"{label}\\"?"
+            arrowRenderer={[Function]}
+            autosize={true}
+            backspaceRemoves={true}
+            backspaceToRemoveMessage="Press backspace to remove {label}"
+            clearAllText="Clear all"
+            clearRenderer={[Function]}
+            clearValueText="Clear value"
+            clearable={false}
+            deleteRemoves={true}
+            delimiter=","
+            disabled={false}
+            escapeClearsValue={true}
+            filterOptions={[Function]}
+            ignoreAccents={true}
+            ignoreCase={true}
+            inputProps={Object {}}
+            isLoading={false}
+            joinValues={false}
+            labelKey="label"
+            matchPos="any"
+            matchProp="any"
+            menuBuffer={0}
+            menuRenderer={[Function]}
+            multi={false}
+            noResultsText="No results found"
+            onBlurResetsInput={true}
+            onChange={[Function]}
+            onCloseResetsInput={true}
+            optionComponent={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "Project 1",
+                  "value": "project-1-id",
+                },
+              ]
+            }
+            pageSize={5}
+            placeholder="Select a project…"
+            required={false}
+            scrollMenuIntoView={true}
+            searchable={true}
+            simpleValue={false}
+            tabSelectsValue={true}
+            valueComponent={[Function]}
+            valueKey="value"
           >
             <div
-              className="Select-control"
-              onKeyDown={[Function]}
-              onMouseDown={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
+              className="Select Select--single is-searchable"
             >
-              <span
-                className="Select-multi-value-wrapper"
-                id="react-select-2--value"
-              >
-                <div
-                  className="Select-placeholder"
-                >
-                  Select a project…
-                </div>
-                <mockConstructor
-                  aria-activedescendant="react-select-2--value"
-                  aria-expanded="false"
-                  aria-haspopup="false"
-                  aria-owns=""
-                  className="Select-input"
-                  minWidth="5"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  required={false}
-                  role="combobox"
-                  value=""
-                />
-              </span>
-              <span
-                className="Select-arrow-zone"
+              <div
+                className="Select-control"
+                onKeyDown={[Function]}
                 onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
               >
                 <span
-                  className="Select-arrow"
+                  className="Select-multi-value-wrapper"
+                  id="react-select-2--value"
+                >
+                  <div
+                    className="Select-placeholder"
+                  >
+                    Select a project…
+                  </div>
+                  <mockConstructor
+                    aria-activedescendant="react-select-2--value"
+                    aria-expanded="false"
+                    aria-haspopup="false"
+                    aria-owns=""
+                    className="Select-input"
+                    minWidth="5"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    required={false}
+                    role="combobox"
+                    value=""
+                  />
+                </span>
+                <span
+                  className="Select-arrow-zone"
                   onMouseDown={[Function]}
-                />
-              </span>
+                >
+                  <span
+                    className="Select-arrow"
+                    onMouseDown={[Function]}
+                  />
+                </span>
+              </div>
             </div>
-          </div>
-        </Select>
-      </div>
-      <Button
-        block={true}
-        disabled={true}
-        onClick={[Function]}
-        style="success"
-      >
-        <a
-          className="btn btn-success btn-block"
+          </Select>
+        </div>
+        <Button
+          block={true}
           disabled={true}
-          href="#"
           onClick={[Function]}
-          tabIndex={0}
+          style="success"
         >
-          Import modifications
-        </a>
-      </Button>
+          <a
+            className="btn btn-success btn-block"
+            disabled={true}
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            Import modifications
+          </a>
+        </Button>
+      </div>
     </div>
   </InnerDock>
 </ImportModifications>

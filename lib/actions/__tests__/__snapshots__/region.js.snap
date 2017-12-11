@@ -1,0 +1,374 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions > region create should work 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "body": FormData {
+        Symbol(impl): FormDataImpl {
+          "_entries": Array [
+            Object {
+              "name": "region",
+              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+            },
+          ],
+          Symbol(wrapper): [Circular],
+        },
+      },
+      "method": "post",
+    },
+    "url": "/api/region",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > region create should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": FormData {
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "region",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
+        },
+        "method": "post",
+      },
+      "url": "/api/region",
+    },
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > region create should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": FormData {
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "region",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
+        },
+        "method": "post",
+      },
+      "url": "/api/region",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Array [
+    Object {
+      "payload": Object {
+        "_id": 1,
+        "accessGroup": "accessGroupName",
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Region description",
+        "name": "Mock Region",
+        "nonce": "12345",
+        "opportunityDatasets": Array [
+          Object {
+            "dataSource": "lodes-data-2014",
+            "key": "Workers_total",
+            "name": "Workers total",
+          },
+        ],
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+      },
+      "type": "set region",
+    },
+    Array [
+      Object {
+        "payload": Object {
+          "options": Object {},
+          "url": "/api/region/1",
+        },
+        "type": "increment outstanding fetches",
+      },
+      Promise {},
+    ],
+  ],
+]
+`;
+
+exports[`actions > region deleteRegion should work 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "method": "delete",
+    },
+    "url": "/api/region/1",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > region deleteRegion should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/region/1",
+    },
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > region deleteRegion should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "method": "delete",
+      },
+      "url": "/api/region/1",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Array [
+    Object {
+      "payload": "1",
+      "type": "delete region",
+    },
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/",
+        ],
+        "method": "push",
+      },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
+  ],
+]
+`;
+
+exports[`actions > region load should work 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "url": "/api/region/1",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > region load should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/region/1",
+    },
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > region load should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/region/1",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Array [
+    Object {
+      "payload": Object {
+        "bounds": Object {
+          "east": -76.81503295898438,
+          "north": 39.02345139405932,
+          "south": 38.777640223073355,
+          "west": -77.25723266601562,
+        },
+        "bundles": Array [],
+        "description": "Region description",
+        "name": "Region name",
+        "projects": Array [],
+      },
+      "type": "set region",
+    },
+    undefined,
+    Object {
+      "payload": Object {
+        "lat": 38.900545808566335,
+        "lon": -77.0361328125,
+      },
+      "type": "set map center",
+    },
+    Object {
+      "type": "set bundles",
+    },
+    Object {
+      "type": "set projects",
+    },
+  ],
+]
+`;
+
+exports[`actions > region loadAll should work 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "url": "/api/region",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > region loadAll should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/region",
+    },
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > region loadAll should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {},
+      "url": "/api/region",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Object {
+    "payload": Array [],
+    "type": "set all regions",
+  },
+]
+`;
+
+exports[`actions > region save should work 1`] = `
+Object {
+  "payload": Object {
+    "next": [Function],
+    "options": Object {
+      "body": FormData {
+        Symbol(impl): FormDataImpl {
+          "_entries": Array [
+            Object {
+              "name": "region",
+              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+            },
+          ],
+          Symbol(wrapper): [Circular],
+        },
+      },
+      "method": "put",
+    },
+    "url": "/api/region/1",
+  },
+  "type": "fetch",
+}
+`;
+
+exports[`actions > region save should work 2`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": FormData {
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "region",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
+        },
+        "method": "put",
+      },
+      "url": "/api/region/1",
+    },
+    "type": "increment outstanding fetches",
+  },
+  Promise {},
+]
+`;
+
+exports[`actions > region save should work 3`] = `
+Array [
+  Object {
+    "payload": Object {
+      "options": Object {
+        "body": FormData {
+          Symbol(impl): FormDataImpl {
+            "_entries": Array [
+              Object {
+                "name": "region",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+              },
+            ],
+            Symbol(wrapper): [Circular],
+          },
+        },
+        "method": "put",
+      },
+      "url": "/api/region/1",
+    },
+    "type": "decrement outstanding fetches",
+  },
+  Array [
+    Object {
+      "payload": "saved",
+      "type": "set region",
+    },
+    Array [
+      Object {
+        "payload": Object {
+          "options": Object {},
+          "url": "/api/region/undefined",
+        },
+        "type": "increment outstanding fetches",
+      },
+      Promise {},
+    ],
+  ],
+]
+`;
+
+exports[`actions > region setAll should work 1`] = `
+Object {
+  "type": "set all regions",
+}
+`;
