@@ -197,9 +197,15 @@ exports[`Component > Modification > AdjustDwellTime renders with data correctly 
         Select patterns
       </label>
       <div
-        className="Select Select--multi is-clearable is-searchable"
+        className="Select Select--multi is-clearable is-searchable has-value"
         style={undefined}
       >
+        <input
+          disabled={false}
+          name="Patterns"
+          type="hidden"
+          value="mock-pattern-id"
+        />
         <div
           className="Select-control"
           onKeyDown={[Function]}
@@ -214,9 +220,33 @@ exports[`Component > Modification > AdjustDwellTime renders with data correctly 
             id="react-select-4--value"
           >
             <div
-              className="Select-placeholder"
+              className="Select-value"
+              style={undefined}
+              title={undefined}
             >
-              Select patterns
+              <span
+                aria-hidden="true"
+                className="Select-value-icon"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+              >
+                ×
+              </span>
+              <span
+                aria-selected="true"
+                className="Select-value-label"
+                id="react-select-4--value-0"
+                role="option"
+              >
+                Mock Pattern
+                <span
+                  className="Select-aria-only"
+                >
+                   
+                </span>
+              </span>
             </div>
           </span>
           <span
