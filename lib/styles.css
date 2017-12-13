@@ -53,7 +53,7 @@ a:focus.list-group-item,
 .link:hover,
 .link:focus {
   color: #23527c;
-  outline: none;
+  outline: !important none;
 }
 
 a.HelpLink {
@@ -88,6 +88,19 @@ ul, ol {
 
 .btn-danger {
   color: #fff!important;
+}
+
+.btn-default:focus {
+  background-color: inherit;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: none;
 }
 
 .form-group {
