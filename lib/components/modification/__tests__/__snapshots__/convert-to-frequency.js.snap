@@ -12,9 +12,15 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
         Select feed and routes
       </label>
       <div
-        className="Select Select--single is-searchable"
+        className="Select Select--single is-searchable has-value"
         style={undefined}
       >
+        <input
+          disabled={false}
+          name="Feed"
+          type="hidden"
+          value="1"
+        />
         <div
           className="Select-control"
           onKeyDown={[Function]}
@@ -29,10 +35,75 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
             id="react-select-2--value"
           >
             <div
+              className="Select-value"
+              style={undefined}
+              title={undefined}
+            >
+              <span
+                aria-selected="true"
+                className="Select-value-label"
+                id="react-select-2--value-item"
+                role="option"
+              >
+                1
+              </span>
+            </div>
+          </span>
+          <span
+            className="Select-arrow-zone"
+            onMouseDown={[Function]}
+          >
+            <span
+              className="Select-arrow"
+              onMouseDown={[Function]}
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="Select Select--single is-disabled is-searchable"
+        style={undefined}
+      >
+        <div
+          className="Select-control"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={undefined}
+        >
+          <span
+            className="Select-multi-value-wrapper"
+            id="react-select-3--value"
+          >
+            <div
               className="Select-placeholder"
             >
-              Select feed
+              All routes selected
             </div>
+            <div
+              aria-activedescendant="react-select-3--value"
+              aria-expanded={false}
+              aria-owns=""
+              aria-readonly="true"
+              className="Select-input"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              role="combobox"
+              style={
+                Object {
+                  "border": 0,
+                  "display": "inline-block",
+                  "width": 1,
+                }
+              }
+              tabIndex={0}
+            />
           </span>
           <span
             className="Select-arrow-zone"
@@ -63,5 +134,18 @@ exports[`Component > Modification > ConvertToFrequency renders correctly 1`] = `
       Retain existing scheduled trips at times without new frequencies specified
     </label>
   </div>
+  <p>
+    <a
+      className="btn btn-success btn-block"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
+    >
+      <i
+        className="fa fa-plus fa-fw "
+      />
+       Add frequency entry
+    </a>
+  </p>
 </div>
 `;
