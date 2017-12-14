@@ -48,8 +48,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
           ],
           "segments": Array [
             {
-          "type": "Feature",
-          "properties": {},
+          "fromStopId": "1",
           "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -78,7 +77,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                 "37.36500000"
               ]
             ]
-          }
+          },
+          "properties": {},
+          "spacing": "300.00000000",
+          "stopAtEnd": false,
+          "stopAtStart": false,
+          "toStopId": null,
+          "type": "Feature"
         },
           ],
           "showOnMap": false,
@@ -331,7 +336,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   value="Mock description"
                 >
                   <Group
-                    id="description-input-10"
+                    id="description-input-12"
                     label="Description"
                     onChange={[Function]}
                   >
@@ -339,13 +344,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       className="form-group"
                     >
                       <label
-                        htmlFor="description-input-10"
+                        htmlFor="description-input-12"
                       >
                         Description
                       </label>
                       <textarea
                         className="form-control"
-                        id="description-input-10"
+                        id="description-input-12"
                         label="Description"
                         onChange={[Function]}
                       >
@@ -373,8 +378,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       ],
                       "segments": Array [
                         {
-                      "type": "Feature",
-                      "properties": {},
+                      "fromStopId": "1",
                       "geometry": {
                         "type": "LineString",
                         "coordinates": [
@@ -403,7 +407,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             "37.36500000"
                           ]
                         ]
-                      }
+                      },
+                      "properties": {},
+                      "spacing": "300.00000000",
+                      "stopAtEnd": false,
+                      "stopAtStart": false,
+                      "toStopId": null,
+                      "type": "Feature"
                     },
                       ],
                       "showOnMap": false,
@@ -471,8 +481,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         ],
                         "segments": Array [
                           {
-                        "type": "Feature",
-                        "properties": {},
+                        "fromStopId": "1",
                         "geometry": {
                           "type": "LineString",
                           "coordinates": [
@@ -501,7 +510,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               "37.36500000"
                             ]
                           ]
-                        }
+                        },
+                        "properties": {},
+                        "spacing": "300.00000000",
+                        "stopAtEnd": false,
+                        "stopAtStart": false,
+                        "toStopId": null,
+                        "type": "Feature"
                       },
                         ],
                         "showOnMap": false,
@@ -554,7 +569,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       allPhaseFromTimetableStops={Object {}}
                       dispatch={[Function]}
                       extendFromEnd={true}
-                      gtfsStops={Array []}
+                      gtfsStops={
+                        Array [
+                          Object {
+                            "stop_id": "1:undefined",
+                          },
+                        ]
+                      }
                       mapState={
                         Object {
                           "activeTrips": Array [],
@@ -584,8 +605,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           ],
                           "segments": Array [
                             {
-                          "type": "Feature",
-                          "properties": {},
+                          "fromStopId": "1",
                           "geometry": {
                             "type": "LineString",
                             "coordinates": [
@@ -614,7 +634,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 "37.36500000"
                               ]
                             ]
-                          }
+                          },
+                          "properties": {},
+                          "spacing": "300.00000000",
+                          "stopAtEnd": false,
+                          "stopAtStart": false,
+                          "toStopId": null,
+                          "type": "Feature"
                         },
                           ],
                           "showOnMap": false,
@@ -658,7 +684,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           ],
                         }
                       }
-                      numberOfStops={1}
+                      numberOfStops={151}
                       projectTimetables={Array []}
                       qualifiedStops={Array []}
                       segmentDistances={
@@ -704,8 +730,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               ],
                               "segments": Array [
                                 {
-                              "type": "Feature",
-                              "properties": {},
+                              "fromStopId": "1",
                               "geometry": {
                                 "type": "LineString",
                                 "coordinates": [
@@ -734,7 +759,13 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                     "37.36500000"
                                   ]
                                 ]
-                              }
+                              },
+                              "properties": {},
+                              "spacing": "300.00000000",
+                              "stopAtEnd": false,
+                              "stopAtStart": false,
+                              "toStopId": null,
+                              "type": "Feature"
                             },
                               ],
                               "showOnMap": false,
@@ -807,7 +838,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                               </a>
                             </Button>
                             <Checkbox
-                              defaultChecked={false}
+                              defaultChecked={true}
                               label="Create stops automatically"
                               onChange={[Function]}
                             >
@@ -815,11 +846,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 className="checkbox"
                               >
                                 <label
-                                  htmlFor="create-stops-automatically-input-11"
+                                  htmlFor="create-stops-automatically-input-13"
                                 >
                                   <input
-                                    defaultChecked={false}
-                                    id="create-stops-automatically-input-11"
+                                    defaultChecked={true}
+                                    id="create-stops-automatically-input-13"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
@@ -828,6 +859,60 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 </label>
                               </div>
                             </Checkbox>
+                            <Number
+                              label="Stop spacing (minimum is 50)"
+                              onChange={[Function]}
+                              units="meters"
+                              value={300}
+                            >
+                              <Group
+                                id="stop-spacing-minimum-is-50-input-14"
+                                label="Stop spacing (minimum is 50)"
+                                onChange={[Function]}
+                                units="meters"
+                                value={300}
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <label
+                                    htmlFor="stop-spacing-minimum-is-50-input-14"
+                                  >
+                                    Stop spacing (minimum is 50)
+                                  </label>
+                                  <Input
+                                    id="stop-spacing-minimum-is-50-input-14"
+                                    label="Stop spacing (minimum is 50)"
+                                    min={0}
+                                    onChange={[Function]}
+                                    onWheel={[Function]}
+                                    type="number"
+                                    units="meters"
+                                    value={300}
+                                  >
+                                    <div
+                                      className="InputWithUnits"
+                                    >
+                                      <input
+                                        className="form-control"
+                                        id="stop-spacing-minimum-is-50-input-14"
+                                        min={0}
+                                        onChange={[Function]}
+                                        onWheel={[Function]}
+                                        placeholder="meters"
+                                        type="number"
+                                        value={300}
+                                      />
+                                      <span
+                                        className="InputUnits"
+                                      >
+                                        meters
+                                      </span>
+                                    </div>
+                                  </Input>
+                                </div>
+                              </Group>
+                            </Number>
                             <Checkbox
                               checked={false}
                               disabled={true}
@@ -838,12 +923,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                 className="checkbox"
                               >
                                 <label
-                                  htmlFor="bidirectional-input-12"
+                                  htmlFor="bidirectional-input-15"
                                 >
                                   <input
                                     checked={false}
                                     disabled={true}
-                                    id="bidirectional-input-12"
+                                    id="bidirectional-input-15"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
@@ -863,8 +948,14 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         <Timetables
                           allPhaseFromTimetableStops={Object {}}
                           bidirectional={false}
-                          modificationStops={Array []}
-                          numberOfStops={1}
+                          modificationStops={
+                            Array [
+                              Object {
+                                "stop_id": "1:undefined",
+                              },
+                            ]
+                          }
+                          numberOfStops={151}
                           projectTimetables={Array []}
                           qualifiedStops={Array []}
                           segmentDistances={
@@ -933,8 +1024,14 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             <TimetableComponent
                               allPhaseFromTimetableStops={Object {}}
                               bidirectional={false}
-                              modificationStops={Array []}
-                              numberOfStops={1}
+                              modificationStops={
+                                Array [
+                                  Object {
+                                    "stop_id": "1:undefined",
+                                  },
+                                ]
+                              }
+                              numberOfStops={151}
                               projectTimetables={Array []}
                               qualifiedStops={Array []}
                               remove={[Function]}
@@ -1047,11 +1144,11 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           className="checkbox"
                         >
                           <label
-                            htmlFor="1-input-13"
+                            htmlFor="1-input-16"
                           >
                             <input
                               checked={true}
-                              id="1-input-13"
+                              id="1-input-16"
                               onChange={[Function]}
                               title="Default"
                               type="checkbox"
@@ -1100,8 +1197,7 @@ Array [
           ],
           "segments": Array [
             {
-  "type": "Feature",
-  "properties": {},
+  "fromStopId": "1",
   "geometry": {
     "type": "LineString",
     "coordinates": [
@@ -1130,7 +1226,13 @@ Array [
         "37.36500000"
       ]
     ]
-  }
+  },
+  "properties": {},
+  "spacing": "300.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "toStopId": null,
+  "type": "Feature"
 },
           ],
           "showOnMap": false,
@@ -1199,8 +1301,7 @@ Array [
           ],
           "segments": Array [
             {
-  "type": "Feature",
-  "properties": {},
+  "fromStopId": "1",
   "geometry": {
     "type": "LineString",
     "coordinates": [
@@ -1229,7 +1330,13 @@ Array [
         "37.36500000"
       ]
     ]
-  }
+  },
+  "properties": {},
+  "spacing": "300.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "toStopId": null,
+  "type": "Feature"
 },
           ],
           "showOnMap": false,
@@ -1333,8 +1440,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
           ],
           "segments": Array [
             {
-          "type": "Feature",
-          "properties": {},
+          "fromStopId": "1",
           "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -1363,7 +1469,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                 "37.36500000"
               ]
             ]
-          }
+          },
+          "properties": {},
+          "spacing": "300.00000000",
+          "stopAtEnd": false,
+          "stopAtStart": false,
+          "toStopId": null,
+          "type": "Feature"
         },
           ],
           "showOnMap": false,
@@ -1658,8 +1770,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       ],
                       "segments": Array [
                         {
-                      "type": "Feature",
-                      "properties": {},
+                      "fromStopId": "1",
                       "geometry": {
                         "type": "LineString",
                         "coordinates": [
@@ -1688,7 +1799,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             "37.36500000"
                           ]
                         ]
-                      }
+                      },
+                      "properties": {},
+                      "spacing": "300.00000000",
+                      "stopAtEnd": false,
+                      "stopAtStart": false,
+                      "toStopId": null,
+                      "type": "Feature"
                     },
                       ],
                       "showOnMap": false,
@@ -1756,8 +1873,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         ],
                         "segments": Array [
                           {
-                        "type": "Feature",
-                        "properties": {},
+                        "fromStopId": "1",
                         "geometry": {
                           "type": "LineString",
                           "coordinates": [
@@ -1786,7 +1902,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               "37.36500000"
                             ]
                           ]
-                        }
+                        },
+                        "properties": {},
+                        "spacing": "300.00000000",
+                        "stopAtEnd": false,
+                        "stopAtStart": false,
+                        "toStopId": null,
+                        "type": "Feature"
                       },
                         ],
                         "showOnMap": false,
@@ -1839,7 +1961,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       allPhaseFromTimetableStops={Object {}}
                       dispatch={[Function]}
                       extendFromEnd={true}
-                      gtfsStops={Array []}
+                      gtfsStops={
+                        Array [
+                          Object {
+                            "stop_id": "1:undefined",
+                          },
+                        ]
+                      }
                       mapState={
                         Object {
                           "activeTrips": Array [],
@@ -1869,8 +1997,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           ],
                           "segments": Array [
                             {
-                          "type": "Feature",
-                          "properties": {},
+                          "fromStopId": "1",
                           "geometry": {
                             "type": "LineString",
                             "coordinates": [
@@ -1899,7 +2026,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 "37.36500000"
                               ]
                             ]
-                          }
+                          },
+                          "properties": {},
+                          "spacing": "300.00000000",
+                          "stopAtEnd": false,
+                          "stopAtStart": false,
+                          "toStopId": null,
+                          "type": "Feature"
                         },
                           ],
                           "showOnMap": false,
@@ -1943,7 +2076,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           ],
                         }
                       }
-                      numberOfStops={1}
+                      numberOfStops={151}
                       projectTimetables={Array []}
                       qualifiedStops={Array []}
                       segmentDistances={
@@ -1989,8 +2122,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               ],
                               "segments": Array [
                                 {
-                              "type": "Feature",
-                              "properties": {},
+                              "fromStopId": "1",
                               "geometry": {
                                 "type": "LineString",
                                 "coordinates": [
@@ -2019,7 +2151,13 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                     "37.36500000"
                                   ]
                                 ]
-                              }
+                              },
+                              "properties": {},
+                              "spacing": "300.00000000",
+                              "stopAtEnd": false,
+                              "stopAtStart": false,
+                              "toStopId": null,
+                              "type": "Feature"
                             },
                               ],
                               "showOnMap": false,
@@ -2092,7 +2230,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                               </a>
                             </Button>
                             <Checkbox
-                              defaultChecked={false}
+                              defaultChecked={true}
                               label="Create stops automatically"
                               onChange={[Function]}
                             >
@@ -2103,7 +2241,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                   htmlFor="create-stops-automatically-input-1"
                                 >
                                   <input
-                                    defaultChecked={false}
+                                    defaultChecked={true}
                                     id="create-stops-automatically-input-1"
                                     onChange={[Function]}
                                     type="checkbox"
@@ -2113,6 +2251,60 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 </label>
                               </div>
                             </Checkbox>
+                            <Number
+                              label="Stop spacing (minimum is 50)"
+                              onChange={[Function]}
+                              units="meters"
+                              value={300}
+                            >
+                              <Group
+                                id="stop-spacing-minimum-is-50-input-2"
+                                label="Stop spacing (minimum is 50)"
+                                onChange={[Function]}
+                                units="meters"
+                                value={300}
+                              >
+                                <div
+                                  className="form-group"
+                                >
+                                  <label
+                                    htmlFor="stop-spacing-minimum-is-50-input-2"
+                                  >
+                                    Stop spacing (minimum is 50)
+                                  </label>
+                                  <Input
+                                    id="stop-spacing-minimum-is-50-input-2"
+                                    label="Stop spacing (minimum is 50)"
+                                    min={0}
+                                    onChange={[Function]}
+                                    onWheel={[Function]}
+                                    type="number"
+                                    units="meters"
+                                    value={300}
+                                  >
+                                    <div
+                                      className="InputWithUnits"
+                                    >
+                                      <input
+                                        className="form-control"
+                                        id="stop-spacing-minimum-is-50-input-2"
+                                        min={0}
+                                        onChange={[Function]}
+                                        onWheel={[Function]}
+                                        placeholder="meters"
+                                        type="number"
+                                        value={300}
+                                      />
+                                      <span
+                                        className="InputUnits"
+                                      >
+                                        meters
+                                      </span>
+                                    </div>
+                                  </Input>
+                                </div>
+                              </Group>
+                            </Number>
                             <Checkbox
                               checked={false}
                               disabled={true}
@@ -2123,12 +2315,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                 className="checkbox"
                               >
                                 <label
-                                  htmlFor="bidirectional-input-2"
+                                  htmlFor="bidirectional-input-3"
                                 >
                                   <input
                                     checked={false}
                                     disabled={true}
-                                    id="bidirectional-input-2"
+                                    id="bidirectional-input-3"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
@@ -2148,8 +2340,14 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         <Timetables
                           allPhaseFromTimetableStops={Object {}}
                           bidirectional={false}
-                          modificationStops={Array []}
-                          numberOfStops={1}
+                          modificationStops={
+                            Array [
+                              Object {
+                                "stop_id": "1:undefined",
+                              },
+                            ]
+                          }
+                          numberOfStops={151}
                           projectTimetables={Array []}
                           qualifiedStops={Array []}
                           segmentDistances={
@@ -2218,8 +2416,14 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             <TimetableComponent
                               allPhaseFromTimetableStops={Object {}}
                               bidirectional={false}
-                              modificationStops={Array []}
-                              numberOfStops={1}
+                              modificationStops={
+                                Array [
+                                  Object {
+                                    "stop_id": "1:undefined",
+                                  },
+                                ]
+                              }
+                              numberOfStops={151}
                               projectTimetables={Array []}
                               qualifiedStops={Array []}
                               remove={[Function]}
@@ -2332,11 +2536,11 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           className="checkbox"
                         >
                           <label
-                            htmlFor="1-input-3"
+                            htmlFor="1-input-4"
                           >
                             <input
                               checked={true}
-                              id="1-input-3"
+                              id="1-input-4"
                               onChange={[Function]}
                               title="Default"
                               type="checkbox"

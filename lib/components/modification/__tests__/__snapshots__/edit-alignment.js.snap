@@ -22,7 +22,7 @@ exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
       htmlFor="create-stops-automatically-input-0"
     >
       <input
-        defaultChecked={false}
+        defaultChecked={true}
         id="create-stops-automatically-input-0"
         onChange={[Function]}
         type="checkbox"
@@ -32,15 +32,44 @@ exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
     </label>
   </div>
   <div
+    className="form-group"
+  >
+    <label
+      htmlFor="stop-spacing-minimum-is-50-input-1"
+    >
+      Stop spacing (minimum is 50)
+    </label>
+    <div
+      className="InputWithUnits"
+    >
+      <input
+        className="form-control"
+        id="stop-spacing-minimum-is-50-input-1"
+        min={0}
+        name={undefined}
+        onChange={[Function]}
+        onWheel={[Function]}
+        placeholder="meters"
+        type="number"
+        value={300}
+      />
+      <span
+        className="InputUnits"
+      >
+        meters
+      </span>
+    </div>
+  </div>
+  <div
     className="checkbox"
   >
     <label
-      htmlFor="bidirectional-input-1"
+      htmlFor="bidirectional-input-2"
     >
       <input
         checked={false}
         disabled={true}
-        id="bidirectional-input-1"
+        id="bidirectional-input-2"
         onChange={[Function]}
         type="checkbox"
       />

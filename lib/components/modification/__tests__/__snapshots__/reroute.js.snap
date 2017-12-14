@@ -48,67 +48,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
         </div>
       </div>
     </div>
-    <div
-      className="form-group"
-    >
-      <label
-        htmlFor="Patterns"
-      >
-        Select patterns
-      </label>
-      <div
-        className="Select Select--multi is-clearable is-searchable"
-        style={undefined}
-      >
-        <div
-          className="Select-control"
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          style={undefined}
-        >
-          <span
-            className="Select-multi-value-wrapper"
-            id="react-select-3--value"
-          >
-            <div
-              className="Select-placeholder"
-            >
-              Select patterns
-            </div>
-          </span>
-          <span
-            aria-label="Clear all"
-            className="Select-clear-zone"
-            onMouseDown={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-            title="Clear all"
-          >
-            <span
-              className="Select-clear"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "&times;",
-                }
-              }
-            />
-          </span>
-          <span
-            className="Select-arrow-zone"
-            onMouseDown={[Function]}
-          >
-            <span
-              className="Select-arrow"
-              onMouseDown={[Function]}
-            />
-          </span>
-        </div>
-      </div>
-    </div>
   </div>
   <div>
     <a
@@ -141,21 +80,10 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       </label>
     </div>
     <div
-      className="checkbox"
+      className="alert alert-info"
+      role="alert"
     >
-      <label
-        htmlFor="bidirectional-input-1"
-      >
-        <input
-          checked={undefined}
-          disabled={undefined}
-          id="bidirectional-input-1"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Bidirectional
-      </label>
+      Modification cannot be bidirectional because timetables in this modification have phasing information.
     </div>
   </div>
   <div>
@@ -163,7 +91,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       className="form-group"
     >
       <label
-        htmlFor="dwell-time-input-2"
+        htmlFor="dwell-time-input-1"
       >
         Dwell time
       </label>
@@ -172,7 +100,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       >
         <input
           className="form-control"
-          id="dwell-time-input-2"
+          id="dwell-time-input-1"
           name={undefined}
           onBlur={[Function]}
           onChange={[Function]}
@@ -188,11 +116,32 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
         </span>
       </div>
     </div>
+    <div>
+      <div
+        aria-level={3}
+        role="heading"
+      >
+        <a
+          aria-expanded={false}
+          className="CollapsibleButton"
+          onClick={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <i
+            className="fa fa-caret-right fa-fw "
+          />
+          <strong>
+            Set individual stop dwell times
+          </strong>
+        </a>
+      </div>
+    </div>
     <div
       className="form-group"
     >
       <label
-        htmlFor="average-segment-speed-input-3"
+        htmlFor="average-segment-speed-input-2"
       >
         Average segment speed
       </label>
@@ -201,7 +150,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       >
         <input
           className="form-control"
-          id="average-segment-speed-input-3"
+          id="average-segment-speed-input-2"
           min={1}
           name={undefined}
           onChange={[Function]}
@@ -221,7 +170,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       className="form-group"
     >
       <label
-        htmlFor="total-travel-time-input-4"
+        htmlFor="total-travel-time-input-3"
       >
         Total travel time
       </label>
@@ -230,7 +179,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       >
         <input
           className="form-control"
-          id="total-travel-time-input-4"
+          id="total-travel-time-input-3"
           name={undefined}
           onBlur={[Function]}
           onChange={[Function]}
