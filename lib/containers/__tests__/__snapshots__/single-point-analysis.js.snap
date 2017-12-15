@@ -13,9 +13,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
     }
   }
 >
-  <Connect(SinglePointAnalysis)
-    params={Object {}}
-  >
+  <Connect(SinglePointAnalysis)>
     <SinglePointAnalysis
       addEditRegionalAnalysisBoundsLayerToMap={[Function]}
       addIsochroneLayerToMap={[Function]}
@@ -139,7 +137,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           },
         ]
       }
-      params={Object {}}
       profileRequest={
         Object {
           "accessModes": "WALK",
@@ -156,6 +153,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "reachabilityThreshold": 0,
           "toTime": 32400,
           "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+          "travelTimePercentile": 50,
           "walkSpeed": 1.3888888888888888,
         }
       }
@@ -191,14 +189,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       }
       regionId="1"
       regionalAnalyses={Array []}
-      regionalAnalysisBounds={
-        Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        }
-      }
       removeEditRegionalAnalysisBoundsLayerFromMap={[Function]}
       removeIsochroneLayerFromMap={[Function]}
       removeOpportunityLayerFromMap={[Function]}
@@ -248,7 +238,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                 />
               </Icon>
                
-              Update results
+              Fetch results
             </a>
           </Button>
           <Button
@@ -348,12 +338,11 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                       searchable={true}
                       simpleValue={false}
                       tabSelectsValue={true}
-                      value={0}
                       valueComponent={[Function]}
                       valueKey="value"
                     >
                       <div
-                        className="Select Select--single is-searchable has-value"
+                        className="Select Select--single is-searchable"
                       >
                         <div
                           className="Select-control"
@@ -367,31 +356,11 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             className="Select-multi-value-wrapper"
                             id="react-select-2--value"
                           >
-                            <Value
-                              disabled={false}
-                              id="react-select-2--value-item"
-                              instancePrefix="react-select-2-"
-                              onClick={null}
-                              value={
-                                Object {
-                                  "label": "Default",
-                                  "value": 0,
-                                }
-                              }
+                            <div
+                              className="Select-placeholder"
                             >
-                              <div
-                                className="Select-value"
-                              >
-                                <span
-                                  aria-selected="true"
-                                  className="Select-value-label"
-                                  id="react-select-2--value-item"
-                                  role="option"
-                                >
-                                  Default
-                                </span>
-                              </div>
-                            </Value>
+                              Select...
+                            </div>
                             <mockConstructor
                               aria-activedescendant="react-select-2--value"
                               aria-expanded="false"
@@ -981,6 +950,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         "reachabilityThreshold": 0,
                         "toTime": 32400,
                         "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                        "travelTimePercentile": 50,
                         "walkSpeed": 1.3888888888888888,
                       },
                       "regionId": "1",
@@ -1153,34 +1123,19 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     "reachabilityThreshold": 0,
                     "toTime": 32400,
                     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                    "travelTimePercentile": 50,
                     "walkSpeed": 1.3888888888888888,
                   }
                 }
-                setProfileRequest={[Function]}
+                updateProfileRequest={[Function]}
               >
                 <div>
                   <ModeSelector
+                    accessModes="WALK"
+                    directModes="WALK"
                     disabled={false}
-                    profileRequest={
-                      Object {
-                        "accessModes": "WALK",
-                        "bikeSafe": 1,
-                        "bikeSlope": 1,
-                        "bikeSpeed": 4.166666666666667,
-                        "bikeTime": 1,
-                        "date": "2016-01-16",
-                        "directModes": "WALK",
-                        "egressModes": "WALK",
-                        "fromTime": 25200,
-                        "maxRides": 4,
-                        "monteCarloDraws": 200,
-                        "reachabilityThreshold": 0,
-                        "toTime": 32400,
-                        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                        "walkSpeed": 1.3888888888888888,
-                      }
-                    }
-                    setProfileRequest={[Function]}
+                    transitModes="BUS,TRAM,RAIL,SUBWAY"
+                    update={[Function]}
                   >
                     <div
                       className="row"
@@ -1401,26 +1356,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     >
                       <EgressModeSelector
                         disabled={false}
-                        profileRequest={
-                          Object {
-                            "accessModes": "WALK",
-                            "bikeSafe": 1,
-                            "bikeSlope": 1,
-                            "bikeSpeed": 4.166666666666667,
-                            "bikeTime": 1,
-                            "date": "2016-01-16",
-                            "directModes": "WALK",
-                            "egressModes": "WALK",
-                            "fromTime": 25200,
-                            "maxRides": 4,
-                            "monteCarloDraws": 200,
-                            "reachabilityThreshold": 0,
-                            "toTime": 32400,
-                            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                            "walkSpeed": 1.3888888888888888,
-                          }
-                        }
-                        setProfileRequest={[Function]}
+                        egressModes="WALK"
+                        update={[Function]}
                       >
                         <Group
                           label="Egress Modes"
@@ -2778,7 +2715,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               <Slider
                 disabled={false}
                 format=".1f"
-                label="Percentile of travel time (reliability) -- Regional analysis only"
+                label="Percentile of travel time (reliability) (Regional only)"
                 max={99}
                 min={1}
                 onChange={[Function]}
@@ -2788,8 +2725,8 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
               >
                 <Group
                   disabled={false}
-                  id="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
-                  label="Percentile of travel time (reliability) -- Regional analysis only"
+                  id="percentile-of-travel-time-reliability-regional-only-input-16"
+                  label="Percentile of travel time (reliability) (Regional only)"
                   max={99}
                   min={1}
                   onChange={[Function]}
@@ -2800,21 +2737,21 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     className="form-group"
                   >
                     <label
-                      htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
+                      htmlFor="percentile-of-travel-time-reliability-regional-only-input-16"
                     >
-                      Percentile of travel time (reliability) -- Regional analysis only
+                      Percentile of travel time (reliability) (Regional only)
                     </label>
                     <output
                       className="pull-right"
-                      htmlFor="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
+                      htmlFor="percentile-of-travel-time-reliability-regional-only-input-16"
                     >
                       50.0
                     </output>
                     <input
                       className="form-control"
                       disabled={false}
-                      id="percentile-of-travel-time-reliability-regional-analysis-only-input-16"
-                      label="Percentile of travel time (reliability) -- Regional analysis only"
+                      id="percentile-of-travel-time-reliability-regional-only-input-16"
+                      label="Percentile of travel time (reliability) (Regional only)"
                       max={99}
                       min={1}
                       onChange={[Function]}
