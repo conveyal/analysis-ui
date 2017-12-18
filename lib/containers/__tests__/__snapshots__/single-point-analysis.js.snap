@@ -149,6 +149,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
           "egressModes": "WALK",
           "fromTime": 25200,
           "maxRides": 4,
+          "maxTripDurationMinutes": 60,
           "monteCarloDraws": 200,
           "reachabilityThreshold": 0,
           "toTime": 32400,
@@ -195,7 +196,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
       setActiveVariant={[Function]}
       setComparisonProject={[Function]}
       setProfileRequest={[Function]}
-      setRegionalAnalysisBounds={[Function]}
       variantIndex={0}
       variantName="Default"
       variants={
@@ -931,7 +931,6 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                 <BookmarkChooser
                   bookmarkData={
                     Object {
-                      "isochroneCutoff": 60,
                       "opportunityDataset": undefined,
                       "profileRequest": Object {
                         "accessModes": "WALK",
@@ -946,6 +945,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                         "fromLon": undefined,
                         "fromTime": 25200,
                         "maxRides": 4,
+                        "maxTripDurationMinutes": 60,
                         "monteCarloDraws": 200,
                         "reachabilityThreshold": 0,
                         "toTime": 32400,
@@ -987,7 +987,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             clearAllText="Clear all"
                             clearRenderer={[Function]}
                             clearValueText="Clear value"
-                            clearable={true}
+                            clearable={false}
                             deleteRemoves={true}
                             delimiter=","
                             disabled={true}
@@ -1021,7 +1021,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                             valueKey="value"
                           >
                             <div
-                              className="Select Select--single is-clearable is-disabled is-searchable"
+                              className="Select Select--single is-disabled is-searchable"
                             >
                               <div
                                 className="Select-control"
@@ -1119,6 +1119,7 @@ exports[`Components > Analysis > Single Point should render correctly 1`] = `
                     "egressModes": "WALK",
                     "fromTime": 25200,
                     "maxRides": 4,
+                    "maxTripDurationMinutes": 60,
                     "monteCarloDraws": 200,
                     "reachabilityThreshold": 0,
                     "toTime": 32400,

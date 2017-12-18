@@ -5,7 +5,6 @@ Object {
   "active": false,
   "isFetchingIsochrone": false,
   "isochrone": null,
-  "isochroneCutoff": 60,
   "isochroneLonLat": null,
   "profileRequest": Object {
     "accessModes": "WALK",
@@ -15,6 +14,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -41,7 +41,6 @@ exports[`reducers > analysis should handle default state 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -50,6 +49,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -76,7 +76,6 @@ exports[`reducers > analysis should handle enter analysis mode 1`] = `
 Object {
   "active": true,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -85,6 +84,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -112,7 +112,6 @@ Object {
   "active": false,
   "comparisonTravelTimeSurface": null,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -121,6 +120,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -149,7 +149,6 @@ exports[`reducers > analysis should handle set active regional analyses 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -158,6 +157,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -184,7 +184,6 @@ Object {
   "active": false,
   "activeVariant": 21,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -193,6 +192,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -219,7 +219,6 @@ exports[`reducers > analysis should handle set comparison in progress 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -228,6 +227,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -260,7 +260,6 @@ Object {
   "comparisonProjectId": "COMPARISON PROJECT ID",
   "comparisonVariant": 16,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -269,6 +268,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -299,7 +299,6 @@ Object {
   "comparisonProjectId": "COMPARISON PROJECT ID",
   "comparisonVariant": 16,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -308,6 +307,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -334,7 +334,6 @@ exports[`reducers > analysis should handle set isochrone cutoff 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 123,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -343,6 +342,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -369,7 +369,6 @@ exports[`reducers > analysis should handle set isochrone fetch status 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": true,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -378,6 +377,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -404,7 +404,6 @@ exports[`reducers > analysis should handle set isochrone lonlat 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "isochroneLonLat": 123,
   "profileRequest": Object {
     "accessModes": "WALK",
@@ -414,6 +413,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -440,10 +440,21 @@ exports[`reducers > analysis should handle set profile request 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
+    "accessModes": "WALK",
+    "bikeSpeed": 4.166666666666667,
+    "date": "2016-12-20",
+    "directModes": "WALK",
+    "egressModes": "WALK",
     "fromTime": 24321,
+    "maxRides": 4,
+    "maxTripDurationMinutes": 60,
+    "monteCarloDraws": 200,
     "toTime": 25220,
+    "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+    "travelTimePercentile": 50,
+    "variantIndex": 0,
+    "walkSpeed": 1.3888888888888888,
   },
   "projectApplicationErrors": null,
   "regional": Object {
@@ -464,7 +475,6 @@ exports[`reducers > analysis should handle set project application errors 1`] = 
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -473,6 +483,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
@@ -507,7 +518,6 @@ exports[`reducers > analysis should handle set regional analysis grids 1`] = `
 Object {
   "active": false,
   "isFetchingIsochrone": false,
-  "isochroneCutoff": 60,
   "profileRequest": Object {
     "accessModes": "WALK",
     "bikeSpeed": 4.166666666666667,
@@ -516,6 +526,7 @@ Object {
     "egressModes": "WALK",
     "fromTime": 25200,
     "maxRides": 4,
+    "maxTripDurationMinutes": 60,
     "monteCarloDraws": 200,
     "toTime": 32400,
     "transitModes": "BUS,TRAM,RAIL,SUBWAY",
