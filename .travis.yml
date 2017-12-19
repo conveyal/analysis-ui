@@ -1,19 +1,19 @@
-sudo: false
-language: node_js
-notifications:
-  email: false
-node_js:
-  - '6'
-cache:
-  yarn: true
-before_install:
-  - npm i -g codecov
-script:
-  - yarn test -- --coverage
-  - codecov
-  - yarn run build
 after_success:
   - yarn run semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+cache:
+  yarn: true
+before_install:
+  - npm i -g codecov
+language: node_js
+notifications:
+  email: false
+node_js:
+  - '6'
+script:
+  - yarn test -- --coverage
+  - codecov
+  - yarn run build
+sudo: false
