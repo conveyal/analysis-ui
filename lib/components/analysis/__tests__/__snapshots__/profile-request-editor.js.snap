@@ -21,60 +21,28 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         "bikeSlope": 1,
         "bikeSpeed": 4.166666666666667,
         "bikeTime": 1,
-        "bikeTrafficStress": 4,
-        "carSpeed": 20,
         "date": "2016-01-16",
         "directModes": "WALK",
         "egressModes": "WALK",
         "fromTime": 25200,
-        "maxBikeTime": 20,
-        "maxCarTime": 45,
         "maxRides": 4,
-        "maxWalkTime": 20,
-        "minBikeTime": 10,
-        "minCarTime": 10,
+        "maxTripDurationMinutes": 60,
         "monteCarloDraws": 200,
         "reachabilityThreshold": 0,
-        "streetTime": 90,
-        "suboptimalMinutes": 5,
         "toTime": 32400,
-        "transitModes": "TRANSIT",
+        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+        "travelTimePercentile": 50,
         "walkSpeed": 1.3888888888888888,
       }
     }
-    setProfileRequest={[Function]}
+    updateProfileRequest={[Function]}
   >
     <div>
       <ModeSelector
-        profileRequest={
-          Object {
-            "accessModes": "WALK",
-            "bikeSafe": 1,
-            "bikeSlope": 1,
-            "bikeSpeed": 4.166666666666667,
-            "bikeTime": 1,
-            "bikeTrafficStress": 4,
-            "carSpeed": 20,
-            "date": "2016-01-16",
-            "directModes": "WALK",
-            "egressModes": "WALK",
-            "fromTime": 25200,
-            "maxBikeTime": 20,
-            "maxCarTime": 45,
-            "maxRides": 4,
-            "maxWalkTime": 20,
-            "minBikeTime": 10,
-            "minCarTime": 10,
-            "monteCarloDraws": 200,
-            "reachabilityThreshold": 0,
-            "streetTime": 90,
-            "suboptimalMinutes": 5,
-            "toTime": 32400,
-            "transitModes": "TRANSIT",
-            "walkSpeed": 1.3888888888888888,
-          }
-        }
-        setProfileRequest={[Function]}
+        accessModes="WALK"
+        directModes="WALK"
+        transitModes="BUS,TRAM,RAIL,SUBWAY"
+        update={[Function]}
       >
         <div
           className="row"
@@ -200,12 +168,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   className="btn-group btn-group-justified"
                 >
                   <Button
-                    active={false}
+                    active={true}
                     onClick={[Function]}
                     title="Bus"
                   >
                     <a
-                      className="btn btn-default"
+                      className="btn btn-default active"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
@@ -221,12 +189,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                     </a>
                   </Button>
                   <Button
-                    active={false}
+                    active={true}
                     onClick={[Function]}
                     title="Tram"
                   >
                     <a
-                      className="btn btn-default"
+                      className="btn btn-default active"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
@@ -236,12 +204,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                     </a>
                   </Button>
                   <Button
-                    active={false}
+                    active={true}
                     onClick={[Function]}
                     title="Subway"
                   >
                     <a
-                      className="btn btn-default"
+                      className="btn btn-default active"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
@@ -257,12 +225,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                     </a>
                   </Button>
                   <Button
-                    active={false}
+                    active={true}
                     onClick={[Function]}
                     title="Rail"
                   >
                     <a
-                      className="btn btn-default"
+                      className="btn btn-default active"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
@@ -290,35 +258,8 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="col-xs-4"
         >
           <EgressModeSelector
-            profileRequest={
-              Object {
-                "accessModes": "WALK",
-                "bikeSafe": 1,
-                "bikeSlope": 1,
-                "bikeSpeed": 4.166666666666667,
-                "bikeTime": 1,
-                "bikeTrafficStress": 4,
-                "carSpeed": 20,
-                "date": "2016-01-16",
-                "directModes": "WALK",
-                "egressModes": "WALK",
-                "fromTime": 25200,
-                "maxBikeTime": 20,
-                "maxCarTime": 45,
-                "maxRides": 4,
-                "maxWalkTime": 20,
-                "minBikeTime": 10,
-                "minCarTime": 10,
-                "monteCarloDraws": 200,
-                "reachabilityThreshold": 0,
-                "streetTime": 90,
-                "suboptimalMinutes": 5,
-                "toTime": 32400,
-                "transitModes": "TRANSIT",
-                "walkSpeed": 1.3888888888888888,
-              }
-            }
-            setProfileRequest={[Function]}
+            egressModes="WALK"
+            update={[Function]}
           >
             <Group
               label="Egress Modes"

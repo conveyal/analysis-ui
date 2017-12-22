@@ -13,9 +13,15 @@ exports[`Component > Modification > RemoveStops renders correctly 1`] = `
           Select feed and routes
         </label>
         <div
-          className="Select Select--single is-searchable"
+          className="Select Select--single is-searchable has-value"
           style={undefined}
         >
+          <input
+            disabled={false}
+            name="Feed"
+            type="hidden"
+            value="1"
+          />
           <div
             className="Select-control"
             onKeyDown={[Function]}
@@ -30,10 +36,75 @@ exports[`Component > Modification > RemoveStops renders correctly 1`] = `
               id="react-select-2--value"
             >
               <div
+                className="Select-value"
+                style={undefined}
+                title={undefined}
+              >
+                <span
+                  aria-selected="true"
+                  className="Select-value-label"
+                  id="react-select-2--value-item"
+                  role="option"
+                >
+                  1
+                </span>
+              </div>
+            </span>
+            <span
+              className="Select-arrow-zone"
+              onMouseDown={[Function]}
+            >
+              <span
+                className="Select-arrow"
+                onMouseDown={[Function]}
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="form-group"
+      >
+        <div
+          className="Select Select--single is-disabled is-searchable"
+          style={undefined}
+        >
+          <div
+            className="Select-control"
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            style={undefined}
+          >
+            <span
+              className="Select-multi-value-wrapper"
+              id="react-select-3--value"
+            >
+              <div
                 className="Select-placeholder"
               >
-                Select feed
+                All routes selected
               </div>
+              <div
+                aria-activedescendant="react-select-3--value"
+                aria-expanded={false}
+                aria-owns=""
+                aria-readonly="true"
+                className="Select-input"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                role="combobox"
+                style={
+                  Object {
+                    "border": 0,
+                    "display": "inline-block",
+                    "width": 1,
+                  }
+                }
+                tabIndex={0}
+              />
             </span>
             <span
               className="Select-arrow-zone"
@@ -57,9 +128,15 @@ exports[`Component > Modification > RemoveStops renders correctly 1`] = `
         Select patterns
       </label>
       <div
-        className="Select Select--multi is-clearable is-searchable"
+        className="Select Select--multi is-clearable is-searchable has-value"
         style={undefined}
       >
+        <input
+          disabled={false}
+          name="Patterns"
+          type="hidden"
+          value="mock-pattern-id"
+        />
         <div
           className="Select-control"
           onKeyDown={[Function]}
@@ -71,12 +148,36 @@ exports[`Component > Modification > RemoveStops renders correctly 1`] = `
         >
           <span
             className="Select-multi-value-wrapper"
-            id="react-select-3--value"
+            id="react-select-4--value"
           >
             <div
-              className="Select-placeholder"
+              className="Select-value"
+              style={undefined}
+              title={undefined}
             >
-              Select patterns
+              <span
+                aria-hidden="true"
+                className="Select-value-icon"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+              >
+                ×
+              </span>
+              <span
+                aria-selected="true"
+                className="Select-value-label"
+                id="react-select-4--value-0"
+                role="option"
+              >
+                Mock Pattern
+                <span
+                  className="Select-aria-only"
+                >
+                   
+                </span>
+              </span>
             </div>
           </span>
           <span
@@ -107,6 +208,49 @@ exports[`Component > Modification > RemoveStops renders correctly 1`] = `
             />
           </span>
         </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="Selection"
+      >
+        Selection
+      </label>
+      <div
+        className="btn-group btn-group-justified"
+      >
+        <a
+          className="btn btn-sm btn-default"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          New
+        </a>
+        <a
+          className="btn btn-sm btn-default"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Add to
+        </a>
+        <a
+          className="btn btn-sm btn-default"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Remove from
+        </a>
+        <a
+          className="btn btn-sm btn-default"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Clear
+        </a>
       </div>
     </div>
   </div>
