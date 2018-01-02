@@ -20,7 +20,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
       addOpportunityLayerToMap={[Function]}
       bundleId="1"
       clearComparisonProject={[Function]}
-      clearIsochroneResults={[Function]}
       createRegionalAnalysis={[Function]}
       downloadComparisonIsochrone={[Function]}
       downloadIsochrone={[Function]}
@@ -31,12 +30,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
       isShowingComparisonIsochrone={false}
       isShowingIsochrone={false}
       isShowingOpportunities={false}
-      isochroneLonLat={
-        Object {
-          "lat": 38.8886,
-          "lon": -77.043,
-        }
-      }
       loadAllRegionalAnalyses={[Function]}
       modifications={
         Array [
@@ -927,6 +920,34 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </Button>
                 </div>
               </Group>
+              <Group
+                justified={true}
+              >
+                <div
+                  className="btn-group btn-group-justified"
+                >
+                  <Button
+                    onClick={[Function]}
+                    style="info"
+                  >
+                    <a
+                      className="btn btn-info"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                    >
+                      <Icon
+                        type="globe"
+                      >
+                        <i
+                          className="fa fa-globe fa-fw "
+                        />
+                      </Icon>
+                       Generate & Download GeoTIFFs
+                    </a>
+                  </Button>
+                </div>
+              </Group>
               <Connect(BookmarkChooser)>
                 <BookmarkChooser
                   bookmarkData={
@@ -941,8 +962,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         "date": "2016-01-16",
                         "directModes": "WALK",
                         "egressModes": "WALK",
-                        "fromLat": undefined,
-                        "fromLon": undefined,
                         "fromTime": 25200,
                         "maxRides": 4,
                         "maxTripDurationMinutes": 60,
