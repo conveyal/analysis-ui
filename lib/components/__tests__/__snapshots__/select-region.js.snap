@@ -2,21 +2,11 @@
 
 exports[`Component > SelectRegion renders correctly 1`] = `
 <div
-  className="InnerDock "
-  style={null}
+  className="Welcome"
 >
   <div
     className="WelcomeTitle"
   >
-    <p
-      style={
-        Object {
-          "textAlign": "center",
-        }
-      }
-    >
-      welcome to
-    </p>
     <span
       className="logo"
       to="/"
@@ -25,55 +15,47 @@ exports[`Component > SelectRegion renders correctly 1`] = `
     </span>
   </div>
   <div
-    className="block"
+    className="form-group"
   >
+    <a
+      className="btn btn-success btn-block"
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <i
+        className="fa fa-plus fa-fw "
+      />
+       
+      Set up a new region
+    </a>
+  </div>
+  <div>
+    <p
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      or go to an existing region
+    </p>
     <div
-      className="form-group"
+      className="list-group"
     >
       <a
-        className="btn btn-success btn-block"
-        href="#"
+        className="list-group-item"
         onClick={[Function]}
-        tabIndex={0}
+        style={Object {}}
+        title="Go to region"
       >
-        <i
-          className="fa fa-cubes fa-fw "
-        />
-         
-        Set up a new region
+        <span>
+          <i
+            className="fa fa-map-o fa-fw "
+          />
+           
+          Mock Region
+        </span>
       </a>
-    </div>
-    <div>
-      <p
-        style={
-          Object {
-            "textAlign": "center",
-          }
-        }
-      >
-        or go to an existing region
-      </p>
-      <div
-        className="list-group"
-      >
-        <a
-          className="list-group-item"
-          onClick={[Function]}
-          style={Object {}}
-          title="Go to region"
-        >
-          <div>
-            <p>
-              <i
-                className="fa fa-spinner fa-fw fa-spin"
-              />
-               
-              Mock Region
-            </p>
-            <em />
-          </div>
-        </a>
-      </div>
     </div>
   </div>
 </div>

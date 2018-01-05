@@ -10,7 +10,7 @@ Object {
           "_entries": Array [
             Object {
               "name": "region",
-              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"statusCode\\":\\"DONE\\"}",
             },
           ],
           Symbol(wrapper): [Circular],
@@ -34,7 +34,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "region",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"statusCode\\":\\"DONE\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -60,7 +60,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "region",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"statusCode\\":\\"DONE\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -73,33 +73,6 @@ Array [
     "type": "decrement outstanding fetches",
   },
   Array [
-    Object {
-      "payload": Object {
-        "_id": 1,
-        "accessGroup": "accessGroupName",
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        },
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Region description",
-        "name": "Mock Region",
-        "nonce": "12345",
-        "opportunityDatasets": Array [
-          Object {
-            "dataSource": "lodes-data-2014",
-            "key": "Workers_total",
-            "name": "Workers total",
-          },
-        ],
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-      },
-      "type": "set region",
-    },
     Array [
       Object {
         "payload": Object {
@@ -110,6 +83,15 @@ Array [
       },
       Promise {},
     ],
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/regions/1",
+        ],
+        "method": "push",
+      },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
   ],
 ]
 `;
@@ -286,7 +268,7 @@ Object {
           "_entries": Array [
             Object {
               "name": "region",
-              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+              "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"statusCode\\":\\"DONE\\"}",
             },
           ],
           Symbol(wrapper): [Circular],
@@ -310,7 +292,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "region",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"statusCode\\":\\"DONE\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -336,7 +318,7 @@ Array [
             "_entries": Array [
               Object {
                 "name": "region",
-                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}]}",
+                "value": "{\\"accessGroup\\":\\"accessGroupName\\",\\"createdAt\\":\\"2017-11-08T12:30:50.133Z\\",\\"createdBy\\":\\"person@gmail.com\\",\\"nonce\\":\\"12345\\",\\"updatedAt\\":\\"2017-11-08T12:31:19.602Z\\",\\"updatedBy\\":\\"person@gmail.com\\",\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"description\\":\\"Region description\\",\\"_id\\":\\"1\\",\\"name\\":\\"Mock Region\\",\\"opportunityDatasets\\":[{\\"dataSource\\":\\"lodes-data-2014\\",\\"name\\":\\"Workers total\\",\\"key\\":\\"Workers_total\\"}],\\"statusCode\\":\\"DONE\\"}",
               },
             ],
             Symbol(wrapper): [Circular],
@@ -349,20 +331,25 @@ Array [
     "type": "decrement outstanding fetches",
   },
   Array [
-    Object {
-      "payload": "saved",
-      "type": "set region",
-    },
     Array [
       Object {
         "payload": Object {
           "options": Object {},
-          "url": "/api/region/undefined",
+          "url": "/api/region/1",
         },
         "type": "increment outstanding fetches",
       },
       Promise {},
     ],
+    Object {
+      "payload": Object {
+        "args": Array [
+          "/regions/1",
+        ],
+        "method": "push",
+      },
+      "type": "@@router/CALL_HISTORY_METHOD",
+    },
   ],
 ]
 `;
