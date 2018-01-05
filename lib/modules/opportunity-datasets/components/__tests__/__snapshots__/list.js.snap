@@ -15,13 +15,33 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
 >
   <Connect(ListOpportunityDatasets)>
     <ListOpportunityDatasets
+      activeOpportunityDatasetColorizer={[Function]}
       addOpportunityComponent={[Function]}
+      addOpportunityDataset={[Function]}
       checkUploadStatus={[Function]}
       clearStatus={[Function]}
+      createGoTo={[Function]}
       deleteOpportunityDataset={[Function]}
       downloadOpportunityDataset={[Function]}
       goToUpload={[Function]}
+      loadOpportunityDataset={[Function]}
+      opportunitiesUrl="/regions/1/opportunities"
+      opportunityDatasets={
+        Array [
+          Object {
+            "dataSource": "lodes-data-2014",
+            "key": "Workers_total",
+            "name": "Workers total",
+          },
+        ]
+      }
       removeOpportunityComponent={[Function]}
+      removeOpportunityDataset={[Function]}
+      setActiveOpportunityDataset={[Function]}
+      setOpportunityDatasets={[Function]}
+      updateOpportunityDataset={[Function]}
+      updateUploadStatuses={[Function]}
+      uploadOpportunityDataset={[Function]}
       uploadStatuses={Array []}
     >
       <div>
@@ -65,7 +85,10 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
           >
             <Connect(OpportunityDatasetSelector)>
               <OpportunityDatasetSelector
-                datasets={
+                activeOpportunityDatasetColorizer={[Function]}
+                load={[Function]}
+                opportunitiesUrl="/regions/1/opportunities"
+                opportunityDatasets={
                   Array [
                     Object {
                       "dataSource": "lodes-data-2014",
@@ -74,7 +97,7 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
                     },
                   ]
                 }
-                load={[Function]}
+                uploadStatuses={Array []}
               >
                 <Select
                   addLabelText="Add \\"{label}\\"?"
