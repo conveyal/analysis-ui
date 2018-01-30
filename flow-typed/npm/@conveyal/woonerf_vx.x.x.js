@@ -98,6 +98,10 @@ declare module '@conveyal/woonerf/html' {
   declare module.exports: any;
 }
 
+declare module '@conveyal/woonerf/message' {
+  declare module.exports: any;
+}
+
 declare module '@conveyal/woonerf/mount' {
   declare module.exports: any;
 }
