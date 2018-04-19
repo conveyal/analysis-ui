@@ -670,9 +670,10 @@ label {
 }
 
 .WorkerDashboard > .Workers {
+  justify-content: space-between;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  margin: -0.5rem 0 0 -0.5rem;
 }
 
 .Workers > .Worker {
@@ -681,7 +682,9 @@ label {
   background-color: #aab4bb;
   color: #fff;
   font-family: monospace;
-  margin: 0.5rem;
+  border: 0.1px solid #fff;
+  flex-grow: 1;
+  flex-basis: auto;
 }
 
 .Workers > .Worker.active {
@@ -726,7 +729,7 @@ label {
   width: 100%;
 }
 
-.JobTable > thead > th {
+.JobTable > thead > tr > th {
   white-space: nowrap;
 }
 
