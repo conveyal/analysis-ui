@@ -3,6 +3,9 @@
 exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
 <div>
   <div>
+    <h5>
+      Route Geometry
+    </h5>
     <a
       className="btn btn-warning btn-block"
       disabled={false}
@@ -16,6 +19,19 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
        
       Edit route geometry
     </a>
+    <div
+      className="block"
+    >
+      <div
+        className="alert alert-danger"
+        role="alert"
+      >
+        <i
+          className="fa fa-exclamation-circle fa-fw "
+        />
+        A route geometry must have at least 2 stops
+      </div>
+    </div>
     <div
       className="checkbox"
     >
@@ -86,6 +102,11 @@ exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
     </div>
   </div>
   <div>
+    <h5>
+      Timetables (
+      1
+      )
+    </h5>
     <p>
       <a
         className="btn btn-success btn-block"
