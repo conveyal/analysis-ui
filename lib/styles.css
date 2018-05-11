@@ -404,6 +404,10 @@ label {
   padding-right: 12px;
 }
 
+.advanced-panel {
+  border: 1px solid #ddd !important;
+}
+
 .modification-select.panel-heading {
   padding: 12px 12px 12px 12px;
   cursor: pointer;
@@ -658,4 +662,92 @@ label {
 .Tip {
   position: relative;
   display: inline-block;
+}
+
+/** Admin Dashboard **/
+.AdminDashboard {
+  padding: 3rem;
+}
+
+/** Workers **/
+.WorkerDashboard {
+}
+
+.WorkerDashboard > .Workers {
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.Workers > .Worker {
+  width: 400px;
+  max-width: 500px;
+  padding: 1rem;
+  background-color: #aab4bb;
+  color: #fff;
+  font-family: monospace;
+  border: 0.1px solid #fff;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.Workers > .Worker.active {
+  background-color: #36c923;
+}
+
+.Workers > .Worker.stale {
+  background-color: #c9b623;
+}
+
+.Workers > .Worker.dead {
+  background-color: #c92336;
+}
+
+.WorkerBundles {
+  margin-top: 1rem;
+}
+
+.Worker > .Bottom {
+  margin-top: 1rem;
+}
+
+.WorkerSparkline > span {
+  display: inline-block;
+}
+
+.Sparkline {
+  display: inline-block;
+  margin: 0 1rem 0 1rem;
+}
+
+.SparklineTitle {
+  width: 15.42px;
+}
+
+.SparklineValue {
+  text-align: right;
+}
+
+/** Jobs **/
+
+.JobTable {
+  width: 100%;
+}
+
+.JobTable > thead > tr > th {
+  white-space: nowrap;
+}
+
+.JobProgress {
+  color: #fff;
+  white-space: nowrap;
+}
+
+.JobProgress-complete {
+  background-color: #36c923;
+}
+
+.JobProgress-delivered {
+  background-color: #2389c9;
 }
