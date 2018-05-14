@@ -16,12 +16,12 @@ exports[`R5 Version > Components > Selector should render 1`] = `
   <Connect(SelectR5Version)>
     <SelectR5Version
       allValidVersions={Array []}
-      currentR5Version="v3.4.1"
+      currentR5Version="v4.0.0"
       loadR5Versions={[Function]}
       localState={
         Object {
           "analysisVersion": undefined,
-          "currentVersion": "v3.4.1",
+          "currentVersion": "v4.0.0",
           "versions": Array [],
         }
       }
@@ -66,7 +66,6 @@ exports[`R5 Version > Components > Selector should render 1`] = `
               />
             </Icon>
             <Select
-              addLabelText="Add \\"{label}\\"?"
               arrowRenderer={[Function]}
               autosize={true}
               backspaceRemoves={true}
@@ -75,6 +74,7 @@ exports[`R5 Version > Components > Selector should render 1`] = `
               clearRenderer={[Function]}
               clearValueText="Clear value"
               clearable={false}
+              closeOnSelect={true}
               deleteRemoves={true}
               delimiter=","
               disabled={false}
@@ -95,6 +95,8 @@ exports[`R5 Version > Components > Selector should render 1`] = `
               onBlurResetsInput={true}
               onChange={[Function]}
               onCloseResetsInput={true}
+              onSelectResetsInput={true}
+              openOnClick={true}
               optionComponent={[Function]}
               options={
                 Array [
@@ -106,25 +108,28 @@ exports[`R5 Version > Components > Selector should render 1`] = `
                                 }
                       }
                 >
-                      v3.4.1
+                      v4.0.0
                 </span>,
-                    "value": "v3.4.1",
+                    "value": "v4.0.0",
                   },
                 ]
               }
               pageSize={5}
               placeholder="Select..."
+              removeSelected={true}
               required={false}
+              rtl={false}
               scrollMenuIntoView={true}
               searchable={true}
               simpleValue={false}
               tabSelectsValue={true}
-              value="v3.4.1"
+              trimFilter={true}
+              value="v4.0.0"
               valueComponent={[Function]}
               valueKey="value"
             >
               <div
-                className="Select Select--single is-searchable has-value"
+                className="Select has-value is-searchable Select--single"
               >
                 <div
                   className="Select-control"
@@ -143,6 +148,7 @@ exports[`R5 Version > Components > Selector should render 1`] = `
                       id="react-select-2--value-item"
                       instancePrefix="react-select-2-"
                       onClick={null}
+                      placeholder="Select..."
                       value={
                         Object {
                           "label": <span
@@ -152,9 +158,9 @@ exports[`R5 Version > Components > Selector should render 1`] = `
                                   }
                             }
                         >
-                            v3.4.1
+                            v4.0.0
                         </span>,
-                          "value": "v3.4.1",
+                          "value": "v4.0.0",
                         }
                       }
                     >
@@ -174,17 +180,18 @@ exports[`R5 Version > Components > Selector should render 1`] = `
                               }
                             }
                           >
-                            v3.4.1
+                            v4.0.0
                           </span>
                         </span>
                       </div>
                     </Value>
-                    <mockConstructor
+                    <AutosizeInput
                       aria-activedescendant="react-select-2--value"
                       aria-expanded="false"
                       aria-haspopup="false"
                       aria-owns=""
                       className="Select-input"
+                      injectStyles={true}
                       minWidth="5"
                       onBlur={[Function]}
                       onChange={[Function]}
