@@ -14,6 +14,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
   }
 >
   <ProfileRequestEditor
+    disabled={false}
     profileRequest={
       Object {
         "accessModes": "WALK",
@@ -24,23 +25,29 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         "date": "2016-01-16",
         "directModes": "WALK",
         "egressModes": "WALK",
+        "fromLat": 12,
+        "fromLon": 34,
         "fromTime": 25200,
+        "maxBikeTime": 20,
         "maxRides": 4,
         "maxTripDurationMinutes": 60,
+        "maxWalkTime": 20,
         "monteCarloDraws": 200,
         "reachabilityThreshold": 0,
         "toTime": 32400,
         "transitModes": "BUS,TRAM,RAIL,SUBWAY",
         "travelTimePercentile": 50,
+        "variantIndex": 0,
         "walkSpeed": 1.3888888888888888,
       }
     }
-    updateProfileRequest={[Function]}
+    setProfileRequest={[Function]}
   >
     <div>
       <ModeSelector
         accessModes="WALK"
         directModes="WALK"
+        disabled={false}
         transitModes="BUS,TRAM,RAIL,SUBWAY"
         update={[Function]}
       >
@@ -60,10 +67,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                 Access modes
               </label>
               <Group
+                disabled={false}
                 justified={true}
               >
                 <div
                   className="btn-group btn-group-justified"
+                  disabled={false}
                 >
                   <Button
                     active={true}
@@ -162,10 +171,12 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                 Transit modes
               </label>
               <Group
+                disabled={false}
                 justified={true}
               >
                 <div
                   className="btn-group btn-group-justified"
+                  disabled={false}
                 >
                   <Button
                     active={true}
@@ -255,203 +266,6 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         className="row"
       >
         <div
-          className="col-xs-4"
-        >
-          <EgressModeSelector
-            egressModes="WALK"
-            update={[Function]}
-          >
-            <Group
-              label="Egress Modes"
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  htmlFor="egress-modes-input-2"
-                >
-                  Egress Modes
-                </label>
-                <br />
-                <Group>
-                  <div
-                    className="btn-group"
-                  >
-                    <Button
-                      active={true}
-                      onClick={[Function]}
-                      title="Walk"
-                    >
-                      <a
-                        className="btn btn-default active"
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                        title="Walk"
-                      >
-                        <Icon
-                          type="male"
-                        >
-                          <i
-                            className="fa fa-male fa-fw "
-                          />
-                        </Icon>
-                      </a>
-                    </Button>
-                    <Button
-                      active={false}
-                      disabled={true}
-                      onClick={[Function]}
-                      title="CURRENTLY DISABLED: Bike"
-                    >
-                      <a
-                        className="btn btn-default"
-                        disabled={true}
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                        title="CURRENTLY DISABLED: Bike"
-                      >
-                        <Icon
-                          type="bicycle"
-                        >
-                          <i
-                            className="fa fa-bicycle fa-fw "
-                          />
-                        </Icon>
-                      </a>
-                    </Button>
-                  </div>
-                </Group>
-              </div>
-            </Group>
-          </EgressModeSelector>
-        </div>
-        <div
-          className="col-xs-4"
-        >
-          <Number
-            label="Walk Speed (km/h)"
-            max={15}
-            min={3}
-            name="walkSpeed"
-            onChange={[Function]}
-            step={0.1}
-            value={5}
-          >
-            <Group
-              id="walk-speed-input-3"
-              label="Walk Speed (km/h)"
-              max={15}
-              min={3}
-              name="walkSpeed"
-              onChange={[Function]}
-              step={0.1}
-              value={5}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  htmlFor="walk-speed-input-3"
-                >
-                  Walk Speed (km/h)
-                </label>
-                <Input
-                  id="walk-speed-input-3"
-                  label="Walk Speed (km/h)"
-                  max={15}
-                  min={3}
-                  name="walkSpeed"
-                  onChange={[Function]}
-                  onWheel={[Function]}
-                  step={0.1}
-                  type="number"
-                  value={5}
-                >
-                  <input
-                    className="form-control"
-                    id="walk-speed-input-3"
-                    max={15}
-                    min={3}
-                    name="walkSpeed"
-                    onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Walk Speed (km/h)"
-                    step={0.1}
-                    type="number"
-                    value={5}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Number>
-        </div>
-        <div
-          className="col-xs-4"
-        >
-          <Number
-            label="Bike Speed (km/h)"
-            max={20}
-            min={5}
-            name="bikeSpeed"
-            onChange={[Function]}
-            step={0.1}
-            value={15}
-          >
-            <Group
-              id="bike-speed-input-4"
-              label="Bike Speed (km/h)"
-              max={20}
-              min={5}
-              name="bikeSpeed"
-              onChange={[Function]}
-              step={0.1}
-              value={15}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  htmlFor="bike-speed-input-4"
-                >
-                  Bike Speed (km/h)
-                </label>
-                <Input
-                  id="bike-speed-input-4"
-                  label="Bike Speed (km/h)"
-                  max={20}
-                  min={5}
-                  name="bikeSpeed"
-                  onChange={[Function]}
-                  onWheel={[Function]}
-                  step={0.1}
-                  type="number"
-                  value={15}
-                >
-                  <input
-                    className="form-control"
-                    id="bike-speed-input-4"
-                    max={20}
-                    min={5}
-                    name="bikeSpeed"
-                    onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Bike Speed (km/h)"
-                    step={0.1}
-                    type="number"
-                    value={15}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Number>
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
           className="form-group col-xs-4"
         >
           <label
@@ -460,6 +274,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             Date
           </label>
           <DatePicker
+            disabled={false}
             onChange={[Function]}
             value="2016-01-16"
           >
@@ -469,6 +284,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               closeOnTab={true}
               dateFormat={true}
               defaultValue=""
+              disabled={false}
               input={true}
               inputProps={
                 Object {
@@ -955,12 +771,14 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="col-xs-4"
         >
           <TimePicker
+            disabled={false}
             label="From time"
             name="fromTime"
             onChange={[Function]}
             value={25200}
           >
             <Text
+              disabled={false}
               label="From time"
               name="fromTime"
               onChange={[Function]}
@@ -970,7 +788,8 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               value="07:00"
             >
               <Group
-                id="from-time-input-5"
+                disabled={false}
+                id="from-time-input-2"
                 label="From time"
                 name="fromTime"
                 onChange={[Function]}
@@ -983,12 +802,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   className="form-group"
                 >
                   <label
-                    htmlFor="from-time-input-5"
+                    htmlFor="from-time-input-2"
                   >
                     From time
                   </label>
                   <Input
-                    id="from-time-input-5"
+                    disabled={false}
+                    id="from-time-input-2"
                     label="From time"
                     name="fromTime"
                     onChange={[Function]}
@@ -1002,7 +822,8 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                     >
                       <input
                         className="form-control"
-                        id="from-time-input-5"
+                        disabled={false}
+                        id="from-time-input-2"
                         name="fromTime"
                         onChange={[Function]}
                         onWheel={[Function]}
@@ -1026,12 +847,14 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="col-xs-4"
         >
           <TimePicker
+            disabled={false}
             label="To time"
             name="toTime"
             onChange={[Function]}
             value={32400}
           >
             <Text
+              disabled={false}
               label="To time"
               name="toTime"
               onChange={[Function]}
@@ -1041,7 +864,8 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
               value="09:00"
             >
               <Group
-                id="to-time-input-6"
+                disabled={false}
+                id="to-time-input-3"
                 label="To time"
                 name="toTime"
                 onChange={[Function]}
@@ -1054,12 +878,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   className="form-group"
                 >
                   <label
-                    htmlFor="to-time-input-6"
+                    htmlFor="to-time-input-3"
                   >
                     To time
                   </label>
                   <Input
-                    id="to-time-input-6"
+                    disabled={false}
+                    id="to-time-input-3"
                     label="To time"
                     name="toTime"
                     onChange={[Function]}
@@ -1073,7 +898,8 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                     >
                       <input
                         className="form-control"
-                        id="to-time-input-6"
+                        disabled={false}
+                        id="to-time-input-3"
                         name="toTime"
                         onChange={[Function]}
                         onWheel={[Function]}
@@ -1098,141 +924,17 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
         className="row"
       >
         <div
-          className="col-xs-6"
-        >
-          <Number
-            label="Maximum transfers"
-            max={7}
-            min={0}
-            name="maxTransfers"
-            onChange={[Function]}
-            step={1}
-            value={3}
-          >
-            <Group
-              id="max-transfers-input-7"
-              label="Maximum transfers"
-              max={7}
-              min={0}
-              name="maxTransfers"
-              onChange={[Function]}
-              step={1}
-              value={3}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  htmlFor="max-transfers-input-7"
-                >
-                  Maximum transfers
-                </label>
-                <Input
-                  id="max-transfers-input-7"
-                  label="Maximum transfers"
-                  max={7}
-                  min={0}
-                  name="maxTransfers"
-                  onChange={[Function]}
-                  onWheel={[Function]}
-                  step={1}
-                  type="number"
-                  value={3}
-                >
-                  <input
-                    className="form-control"
-                    id="max-transfers-input-7"
-                    max={7}
-                    min={0}
-                    name="maxTransfers"
-                    onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Maximum transfers"
-                    step={1}
-                    type="number"
-                    value={3}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Number>
-        </div>
-        <div
-          className="col-xs-6"
-        >
-          <Number
-            label="Simulated schedules"
-            max={10000}
-            min={1}
-            name="monteCarloDraws"
-            onChange={[Function]}
-            step={1}
-            value={200}
-          >
-            <Group
-              id="monte-carlo-draws-input-8"
-              label="Simulated schedules"
-              max={10000}
-              min={1}
-              name="monteCarloDraws"
-              onChange={[Function]}
-              step={1}
-              value={200}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  htmlFor="monte-carlo-draws-input-8"
-                >
-                  Simulated schedules
-                </label>
-                <Input
-                  id="monte-carlo-draws-input-8"
-                  label="Simulated schedules"
-                  max={10000}
-                  min={1}
-                  name="monteCarloDraws"
-                  onChange={[Function]}
-                  onWheel={[Function]}
-                  step={1}
-                  type="number"
-                  value={200}
-                >
-                  <input
-                    className="form-control"
-                    id="monte-carlo-draws-input-8"
-                    max={10000}
-                    min={1}
-                    name="monteCarloDraws"
-                    onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Simulated schedules"
-                    step={1}
-                    type="number"
-                    value={200}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Number>
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
           className="col-xs-12"
         >
           <Connect(SelectR5Version)>
             <SelectR5Version
               allValidVersions={Array []}
-              currentR5Version="v3.4.1"
+              currentR5Version="v4.0.0"
               loadR5Versions={[Function]}
               localState={
                 Object {
                   "analysisVersion": undefined,
-                  "currentVersion": "v3.4.1",
+                  "currentVersion": "v4.0.0",
                   "versions": Array [],
                 }
               }
@@ -1249,7 +951,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                     className="form-group"
                   >
                     <label
-                      htmlFor="routing-engine-input-9"
+                      htmlFor="routing-engine-input-4"
                     >
                       Routing engine
                     </label>
@@ -1319,9 +1021,9 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                                         }
                               }
                         >
-                              v3.4.1
+                              v4.0.0
                         </span>,
-                            "value": "v3.4.1",
+                            "value": "v4.0.0",
                           },
                         ]
                       }
@@ -1335,7 +1037,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                       simpleValue={false}
                       tabSelectsValue={true}
                       trimFilter={true}
-                      value="v3.4.1"
+                      value="v4.0.0"
                       valueComponent={[Function]}
                       valueKey="value"
                     >
@@ -1369,9 +1071,9 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                                           }
                                     }
                                 >
-                                    v3.4.1
+                                    v4.0.0
                                 </span>,
-                                  "value": "v3.4.1",
+                                  "value": "v4.0.0",
                                 }
                               }
                             >
@@ -1391,7 +1093,7 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                                       }
                                     }
                                   >
-                                    v3.4.1
+                                    v4.0.0
                                   </span>
                                 </span>
                               </div>

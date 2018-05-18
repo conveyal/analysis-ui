@@ -27,7 +27,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -38,6 +37,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -69,7 +69,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -80,6 +79,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -112,8 +112,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
-  "projectApplicationWarnings": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -124,6 +122,8 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
+  "scenarioApplicationWarnings": null,
   "selectedBookmark": null,
   "travelTimeSurface": null,
 }
@@ -156,7 +156,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": "project id",
     "breaks": Array [],
@@ -167,6 +166,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -199,7 +199,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -210,6 +209,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -241,7 +241,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -252,6 +251,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -289,7 +289,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -300,6 +299,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -335,7 +335,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -346,6 +345,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -377,7 +377,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -388,6 +387,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -419,7 +419,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -430,6 +429,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -461,7 +461,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": Array [],
@@ -472,56 +471,7 @@ Object {
     "percentile": 50,
     "probabilityGrid": null,
   },
-  "selectedBookmark": null,
-}
-`;
-
-exports[`reducers > analysis should handle set project application errors 1`] = `
-Object {
-  "active": false,
-  "isFetchingIsochrone": false,
-  "profileRequest": Object {
-    "accessModes": "WALK",
-    "bikeSpeed": 4.166666666666667,
-    "date": "2016-12-20",
-    "directModes": "WALK",
-    "egressModes": "WALK",
-    "fromTime": 25200,
-    "maxRides": 4,
-    "maxTripDurationMinutes": 60,
-    "monteCarloDraws": 200,
-    "percentiles": Array [
-      5,
-      25,
-      50,
-      75,
-      95,
-    ],
-    "toTime": 32400,
-    "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-    "travelTimePercentile": 50,
-    "variantIndex": 0,
-    "walkSpeed": 1.3888888888888888,
-  },
-  "projectApplicationErrors": Array [
-    Object {
-      "messages": Array [
-        "Headway is not greater than zero.",
-      ],
-      "modificationId": "Add Trip Pattern",
-      "title": "Error while applying the modification entitled 'Add Trip Pattern'.",
-    },
-  ],
-  "regional": Object {
-    "_id": null,
-    "breaks": Array [],
-    "comparisonGrid": null,
-    "comparisonId": null,
-    "grid": null,
-    "minimumImprovementProbability": 0,
-    "percentile": 50,
-    "probabilityGrid": null,
-  },
+  "scenarioApplicationErrors": null,
   "selectedBookmark": null,
 }
 `;
@@ -553,7 +503,6 @@ Object {
     "variantIndex": 0,
     "walkSpeed": 1.3888888888888888,
   },
-  "projectApplicationErrors": null,
   "regional": Object {
     "_id": null,
     "breaks": undefined,
@@ -573,6 +522,57 @@ Object {
       "which": "PROBABILITY GRID",
     },
   },
+  "scenarioApplicationErrors": null,
+  "selectedBookmark": null,
+}
+`;
+
+exports[`reducers > analysis should handle set scenario application errors 1`] = `
+Object {
+  "active": false,
+  "isFetchingIsochrone": false,
+  "profileRequest": Object {
+    "accessModes": "WALK",
+    "bikeSpeed": 4.166666666666667,
+    "date": "2016-12-20",
+    "directModes": "WALK",
+    "egressModes": "WALK",
+    "fromTime": 25200,
+    "maxRides": 4,
+    "maxTripDurationMinutes": 60,
+    "monteCarloDraws": 200,
+    "percentiles": Array [
+      5,
+      25,
+      50,
+      75,
+      95,
+    ],
+    "toTime": 32400,
+    "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+    "travelTimePercentile": 50,
+    "variantIndex": 0,
+    "walkSpeed": 1.3888888888888888,
+  },
+  "regional": Object {
+    "_id": null,
+    "breaks": Array [],
+    "comparisonGrid": null,
+    "comparisonId": null,
+    "grid": null,
+    "minimumImprovementProbability": 0,
+    "percentile": 50,
+    "probabilityGrid": null,
+  },
+  "scenarioApplicationErrors": Array [
+    Object {
+      "messages": Array [
+        "Headway is not greater than zero.",
+      ],
+      "modificationId": "Add Trip Pattern",
+      "title": "Error while applying the modification entitled 'Add Trip Pattern'.",
+    },
+  ],
   "selectedBookmark": null,
 }
 `;
