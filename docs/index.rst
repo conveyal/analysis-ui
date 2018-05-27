@@ -6,13 +6,43 @@
 User Manual for Conveyal Analysis
 =============================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Topics:
-   :numbered:
-   :glob:
+index.md
 
-   prepare-inputs.md
-   edit-scenario.md
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Setup
+    :glob:
+
+    Baseline Network <prepare-inputs>
+    Opportunity Datasets <analysis/upload-opportunity-data>
+
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Edit Modifications
+    :glob:
+
+    edit-scenario
+    modifications/*
+    report
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Analyze Scenarios
+    :glob:
+
+    analysis/index
+    analysis/regional
+
+.. toctree::
+    :maxdepth: 2
+    :caption: More Information
+    :glob:
+
+    glossary
+    analysis/methodology
+
+
 
 * :ref:`search`
