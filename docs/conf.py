@@ -41,6 +41,7 @@ release = 'v5.0.0'
 extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.ifconfig',
+    'm2r'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,9 +53,9 @@ templates_path = ['_templates']
 # source_suffix = ['.rst', '.md']
 from recommonmark.parser import CommonMarkParser
 
-source_parsers = {
-    '.md': CommonMarkParser,
-}
+# source_parsers = {
+#     '.md': CommonMarkParser,
+# }
 
 source_suffix = ['.rst', '.md']
 
