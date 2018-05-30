@@ -102,7 +102,7 @@ html_theme_options = {
     'titles_only': False
 }
 
-html_favicon = None
+html_favicon = 'media/img/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
