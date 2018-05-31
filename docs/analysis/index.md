@@ -1,8 +1,6 @@
-Once you have prepared a scenario, you can evaluate its accessibility impacts. To enter the Analyze Scenarios view, click on the graph button in the sidebar.
+# Overview of analysis mode
 
-<img src="../img/select-analysis.png" alt="Selecting the button to enter analysis mode" />
-
-If your project is in the United States, you should shortly see the accessibility results described below. If your project is outside the US, or if you want to compute accessibility using a land use dataset other than the US Census [LODES](https://lehd.ces.census.gov/data/#lodes), you'll first need to [upload opportunity data](upload-opportunity-data) (e.g. job locations).
+To enter analysis mode, click Analyze on the sidebar.  The main analysis page is for generating isochrones (travel time contours) from selected origins.  To start, click <i class="fa fa-refresh"></i> Fetch results.
 
 Once a compute cluster has initialized (which may take several minutes the first time you use a GTFS bundle), several components will be visible in the analysis mode.
 
@@ -12,6 +10,8 @@ Once a compute cluster has initialized (which may take several minutes the first
 </figure>
 
 # Isochrone map
+If your project is in the United States, you should shortly see the accessibility results described below. If your project is outside the US, or if you want to compute accessibility using a land use dataset other than the US Census [LODES](https://lehd.ces.census.gov/data/#lodes), you'll first need to [upload opportunity data](upload-opportunity-data) (e.g. job locations).
+
 On the map, gray dots represent the density of opportunities. For instance, if your selected Opportunity Data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities (e.g. jobs), and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents. Modifications on the map will be shown according to the visibility set in the Edit Scenarios view.
 
 The map will also show a blue isochrone, which represents the area reachable within a given travel time (the default is 60 minutes, and it is controlled by the slider in the left panel) from the origin marker. To change the origin of the analysis, simply drag the marker to a new location.
@@ -78,14 +78,9 @@ Next are the date, from time, and to time. These represent the time period you a
 
 Maximum transfers is an upper limit on the number of transfers that will be considered when finding optimal trips.  The next field is the number of simulated schedules. When your GTFS feeds or scenarios include frequency-based routes (i.e. routes that do not have timetables with exact times specified), this parameter controls the number of schedules simulated for sampling. Final results will be more accurate when it is set higher, but computation may take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000. For more on this, see [methodology](/analysis/methodology).
 
-# Errors and warnings when analyzing scenarios
+## Errors and warnings when analyzing scenarios
 
 Occasionally, analysis will fail because there is an error in a scenario. When this occurs, error messages will be displayed detailing the issues, as shown below. One simply needs to return to the modification editor and correct the errors in the relevant modifications.
-
-<figure>
-  <img src="../img/scenario-error.png" />
-  <figcaption>Scenario errors displayed in the editor</figcaption>
-</figure>
 
 In other cases, the scenario may generate a warning, for instance if you remove more time from a segment when speeding it up than the length of that segment. This is not necessarily an error, but may require attention.
 
@@ -94,7 +89,7 @@ In other cases, the scenario may generate a warning, for instance if you remove 
   <figcaption>Scenario warnings displayed in the editor</figcaption>
 </figure>
 
-# Starting a regional analysis
+## Starting a regional analysis
 The analysis interface also allows starting Regional Analyses, which involves repeating an accessibility calculation for every location in a regular grid. To start a regional analysis, first set the appropriate parameters using the controls in this view, and confirm that the isochrones and accessibility plots are as expected.
 
 You can also choose geographic bounds for your regional analysis. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, they must have the same bounds. Finally, there is a slider where you can select the percentile of travel time you wish to use for this analysis (for example, you might be analyzing accessibility to a class of employment that generally requires workers to arrive at a particular time, and workers thus need a reliable trip where they have a very high probability of arriving within the travel time budget, regardless of the exact timing of their departure/arrival).

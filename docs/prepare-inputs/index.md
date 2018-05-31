@@ -1,8 +1,6 @@
-# Preparing data inputs for Scenario Editor
+# Preparing baseline network
 
 Conveyal Analysis relies on [GTFS](https://developers.google.com/transit/gtfs/) feeds, .zip files with information about transit networks and schedules. Most transit agencies produce GTFS feeds to power customer-facing trip planning applications, but they are also useful for analysis. A first step is to gather GTFS files for the transit agencies whose service will be modified in your scenarios.
-
-Once you've gathered GTFS data, you can log into Conveyal Analysis.
 
 First, set up a new region by clicking on the green button, or go to an existing region for which you already have projects.
 

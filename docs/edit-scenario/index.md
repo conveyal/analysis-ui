@@ -1,4 +1,4 @@
-# Editing transport scenarios
+# Overview of editing mode
 
 Transport scenarios in Conveyal Analysis are made up of a series of modifications of various types. When all the modifications are strung together, they represent a new state of the transport system in a region. This page describes the available modification types; each type also has an individual page describing the specifics of how to use it.
 
@@ -30,16 +30,6 @@ Scenarios can be exported as .json by clicking the download icon next to modific
   <figcaption>Choosing the variants a modification is active in</figcaption>
 </figure>
 
-## Available modification types
-
-- [Add trips](modifications/add-trips)
-- [Remove trips](modifications/remove-trips)
-- [Remove stops](modifications/remove-stops)
-- [Adjust speed](modifications/adjust-speed)
-- [Adjust dwell time](modifications/adjust-dwell-time)
-- [Adjust frequency](modifications/adjust-frequency)
-- [Reroute](modifications/reroute)
-
 ## Importing modifications from another scenario
 
 Occasionally, you may want to copy all of the modifications from one project into another. This may be useful to make a copy of a project, or to combine modifications developed by different team members into a single project (for instance, one team member working on rail changes and another on bus changes).
@@ -47,7 +37,7 @@ To do this, click the arrow icon to the right of the project name <i class="fa f
 
 <figure>
   <img src="../img/select-import-modifications.png" />
-  <figcaption>Selecting that you want to import modifications from another scenario.</figcaption>
+  <figcaption>Selecting that you want to import modifications from another project.</figcaption>
 </figure>
 
 You can then choose the project from which to import modifications. Only projects which use the same GTFS bundle will be available. All modifications will be imported; when there are multiple scenarios, the scenarios in the project being imported will be mapped directly to the scenarios in the receiving project (i.e. modifications in the first scenario will remain in the first scenario in the new project).
@@ -57,7 +47,7 @@ You can then choose the project from which to import modifications. Only project
   <figcaption>Importing modifications from another scenario</figcaption>
 </figure>
 
-## Importing modifications from Shapefiles
+## Importing modifications from shapefiles
 
 In general, it is best to create all modifications directly in this editing tool as it allows full control over all aspects of transit network design. However, on occasion, it may be desirable to import modifications from a GIS shapefile. If you have a Shapefile containing lines, you can upload it to Conveyal Analysis and have it turned into a set of Add Trips modifications. You first need to zip the components of the shapefile, then you can select the "Import shapefile" <i class="fa fa-globe"></i> button to the right of the scenario name.
 
@@ -69,7 +59,7 @@ In general, it is best to create all modifications directly in this editing tool
 Once you have entered the Import Shapefile view and selected a zipped Shapefile, you will see the following.
 
 <figure>
-  <img src="../img/import-modifications-from-shapefile.png" />
+  <img src="../img/import-modifications-from-shapefile.png"/>
   <figcaption>Importing modifications from a Shapefile</figcaption>
 </figure>
 

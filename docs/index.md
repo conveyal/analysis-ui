@@ -1,5 +1,2 @@
-# Conveyal Analysis
-
-This is [Conveyal](http://conveyal.com)'s tool for creating, editing and analyzing public transport scenarios.
-
-To use it, you'll first have to [prepare data inputs](prepare-inputs). Once you've done that, you can [create your scenario](edit-scenario). Finally, you can use your scenario in [accessibility analysis](analysis), or export a [report](report) summarizing all the modifications you have made.
+This manual will help you use [Conveyal Analysis](http://conveyal.com/analysis) to edit public transit scenarios and evaluate them in terms of accessibility.
+Once you have logged in [here](http://analysis.conveyal.com), select a region and project to use.  You can then [edit](edit-scenarios) and [analyze](analysis) scenarios.  If you don't see a region or project when you log in, you'll first need to [prepare a baseline network](prepare-inputs).
