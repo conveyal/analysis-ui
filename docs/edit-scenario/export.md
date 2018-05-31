@@ -1,18 +1,16 @@
 # Exporting modifications
 
-You can generate a report summarizing all of the modifications you have made to a network, for printing or reference. To access the report, click <i class="fa fa-print" style="color:blue"></i> Print report next to the name of a project, then you will be able to choose which scenario to export. Keep in mind that some browsers may not print more than 30 pages or so of a very long report.
-
+In editing mode, at the top of the panel next to the project name, there are multiple options for exporting your modifications:
 <figure>
-  <img src="../img/select-report.png" />
-  <figcaption>Generating a report on a scenario</figcaption>
+  <img src="../img/export-modifications.png" />
+  <figcaption>Options for exporting modifications</figcaption>
 </figure>
+
+Modifications in a scenario can be downloaded as a `.json` file by clicking <span class="ui-icon"><i class="fa fa-download"></i> Export project</span>.
+
+You can also generate reports summarizing all modifications in a scenario, for printing or reference. To access these reports, click <span class="ui-icon"><i class="fa fa-print"></i>Print project</span>. Keep in mind that some browsers may not print more than 30 pages or so of a long report.
 
 <figure>
   <img src="../img/report.png" />
   <figcaption>A report for a scenario</figcaption>
 </figure>
-
-
-Scenarios can also be exported as a .json file by clicking <i class="fa fa-download" style="color:blue"></i> Download.
-
-<img src="../img/export.png" alt="Export as JSON" />
