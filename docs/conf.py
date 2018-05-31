@@ -112,6 +112,15 @@ html_static_path = ['../lib/styles.css']
 
 html_extra_path = ['static']
 
+# Add the analysis styles.css and our custom docs stylesheet, which are
+# transfered to _build/html/_static during build
+def setup(app):
+  app.add_stylesheet( "styles.css" )
+
+def setup(app):
+  app.add_stylesheet( "../css/docs-style.css" )
+
+
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
 #
