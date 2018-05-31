@@ -103,14 +103,14 @@ html_theme_options = {
     'titles_only': False
 }
 
-html_favicon = 'media/img/favicon.ico'
+html_favicon = 'static/img/favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['../lib/styles.css']
 
-html_extra_path = ['img']
+html_extra_path = ['static']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
