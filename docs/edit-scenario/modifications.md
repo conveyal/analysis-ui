@@ -1,6 +1,6 @@
 # Modification types
 
-All modifications can be renamed (<span class="ui-icon"><i class="fa fa-pencil"></i></span>), copied (<span class="ui-icon"><i class="fa fa-copy"></i></span>), and deleted (<span class="ui-icon"><i class="fa fa-trash"></i></span>). When the details of one modification are open, clicking <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> will save your changes and take you back to the list of all modifications.  Each type of modifiation is described in detail below.
+All modifications can be renamed (<span class="ui-icon"><i class="fa fa-pencil"></i></span>), copied (<span class="ui-icon"><i class="fa fa-copy"></i></span>), and deleted (<span class="ui-icon"><i class="fa fa-trash"></i></span>). When the details of one modification are open, clicking <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> will save your changes and take you back to the list of all modifications.  Each type of modification is described in detail below.
 
 ## Add trips
 
