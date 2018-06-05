@@ -1,3 +1,5 @@
+# Phasing
+
 The phasing feature can be used to tie the schedules of two [add trips](add-trips) or
 [adjust-frequency](adjust-frequency) modifications together. For example,
 if you are creating a [pulsed system](http://humantransit.org/2010/11/basics-finding-your-pulse.html)

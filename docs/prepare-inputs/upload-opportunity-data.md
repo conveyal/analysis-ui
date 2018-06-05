@@ -1,4 +1,6 @@
-In the United States, we automatically populate opportunity data from [LODES](https://lehd.ces.census.gov/data/#lodes), which contains location information about jobs and worker residences. If you wish to compute accessibility using other information, or if you are outside the US, you will need to upload opportunity data. You can do this by selecting the "Opportunity Datasets" <i class="fa fa-th"></i> button on the sidebar.
+# Preparing opportunity datasets
+
+In the United States, we automatically populate opportunity data from [LODES](https://lehd.ces.census.gov/data/#lodes), which contains location information about jobs and worker residences. If you wish to compute accessibility using other information, or if you are outside the US, you will need to upload opportunity data. You can do this by selecting <i class="fa fa-th"></i><span class="help-tooltip"> Opportunity Datasets</span> on the sidebar.
 
 If you are uploading a shapefile, it should not be zipped. Select all of the files in the Shapefile when uploading (at the very least, `.shp`, `.shx`, `.dbf` and `.prj`). How you select multiple files depends on your browser and operating system, but generally will involve shift-clicking, control-clicking or command-clicking.
 
