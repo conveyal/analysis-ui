@@ -11,4 +11,4 @@ When setting up a new region, you specify a name as well as boundaries. Based on
 ## Uploading a GTFS bundle
 After the shared settings for a region are configured, you can upload the GTFS feeds you prepared above. Select "Create a new Project." Here you can create projects based on a bundle of GTFS feeds uploaded for your region. Since you have not yet uploaded any GTFS, choose "Create a bundle." Note that, if you have multiple GTFS feeds, you can upload all of them at once (just make sure you have added unique feed IDs to all of them). Click "Create a bundle" to upload your feeds. "Uploading..." will appear; it may take several minutes to upload the bundle. Once it's complete, you will be returned to the "Create a Project" page, where you can select the bundle you just uploaded and give your project a name, and then click "Create new Project."
 
-You are now ready to move on to <a href="/edit-scenario/">editing scenarios</a>
+You are now ready to move on to [editing scenarios](../edit-scenario)</a>

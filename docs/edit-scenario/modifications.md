@@ -1,6 +1,8 @@
 # Modification types
 
-There are multiple actions available for all modifications, including: <span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>, <span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>, and <span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>. When the details of one modification are open, clicking <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> will save your changes and take you back to the list of all modifications.  Each type of modification has additional options available, as detailed below.
+There are multiple actions available for all modifications, including: <span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>, <span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>, and <span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>.
+
+When the details of one modification are open, clicking <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> will save your changes and take you back to the list of all modifications.  Each type of modification has additional options available, as detailed below.
 
 ## Add trips
 
@@ -11,15 +13,9 @@ one add-trip modification is used to model a new route, adding all of the trip p
 <img src="../img/new-add-trip-pattern.png" alt="a new add trips modification" />
 </figure>
 
-To create an alignment for the modification (or to edit the alignment you've previously created), click <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>. The button will change to a 'Stop editing' button, and you will then see this view.
+To create an alignment for the modification (or to edit the alignment you've previously created), click <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>. In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.  
 
-<figure>
-<img src="../img/blank-geometry.png" alt="the route alignment editor on a new route" />
-</figure>
-
-In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.  
-
-To insert a stop into the middle of an alignment, click any part of the alignment.  Once created, any stop can be dragged to move it.  Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
+To insert a stop into the middle of an alignment, click any part of the alignment.  Once created, any stop can be dragged to move it.  Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. Simiarly, control points can be converted back to stops or deleted by clicking on them.  It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
 <figure>
 <img src="../img/make-stop.png" alt="make a new stop" />
 </figure>
