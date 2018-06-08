@@ -13,6 +13,8 @@ Once a compute cluster has initialized (which may take several minutes the first
 
 After the server computes and returns results, the map will show a blue isochrone, which represents the area reachable within a given travel time (the default is 60 minutes, and it is controlled by the slider in the left panel) from the origin marker. To change the origin of the analysis, simply drag the marker to a new location.
 
+The modifications displayed can be controlled in (editing mode)[../edit-scenario/index.html#toggling-display-of-modifications-on-the-map].
+
 If opportunity datasets (e.g. job locations) are available (either automatically downloaded US Census [LODES](https://lehd.ces.census.gov/data/#lodes) data, or [user-uploaded opportunity data](../prepare-inputs/upload-opportunity-data.html)), the map will show gray dots representing the density of opportunities. For instance, if your selected Opportunity Data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities, and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents. Modifications on the map will be shown according to the visibility set in the editing mode.
 
 If multiple scenarios are being compared, the isochrone for the first scenario remains blue, while the isochrone for the second is red. Thus, areas reachable under both scenarios are purple, areas reachable only under the first scenario are blue, and areas reachable only under the second scenario are red.
@@ -72,21 +74,21 @@ Below the accessibility charts, different parameters for the analysis can be set
   <figcaption>The analysis settings pane</figcaption>
 </figure>
 
-The first panel allows the creation and use of *bookmarks*, which store particular analysis settings (e.g. origin location, type of opportunity, departure date and time, travel time cutoff, etc.). Once you have a set of settings you would like save, click <span class="btn btn-success"><i class="fa fa-plus"></i> Create bookmark</span>. Once that is done, you can select a bookmark from the dropdown box to automatically fill in all of the settings from that bookmark. Bookmarks are shared by all projects in a region.
+The first panel allows the creation and use of **bookmarks**, which store particular analysis settings (e.g. origin location, type of opportunity, departure date and time, travel time cutoff, etc.). Once you have a set of settings you would like save, click <span class="btn btn-success"><i class="fa fa-plus"></i> Create bookmark</span>. Once that is done, you can select a bookmark from the dropdown box to automatically fill in all of the settings from that bookmark. Bookmarks are shared by all projects in a region.
 
-Next are selectors for *access modes* and *transit modes*; you can choose to perform your analysis with or without transit, and using walking, biking or driving. For instance, in the image above, a combination of walking and transit has been chosen. Note that traffic congestion is not taken into account in driving time estimates, though this may be a feature of a future release when more detailed datasets are available.
+Next are selectors for **access modes** and **transit modes**; you can choose to perform your analysis with or without transit, and using walking, biking or driving. For instance, in the image above, a combination of walking and transit has been chosen. Note that traffic congestion is not taken into account in driving time estimates, though this may be a feature of a future release when more detailed datasets are available.
 
-Next are the *date*, *from time*, and *to time*, which define the time period analyzed. These default to 7:00 and 9:00, meaning our accessibility results will display the opportunities accessible by someone leaving the chosen origin point on the chosen day between 7:00 and 9:00. To avoid inadvertently introducing differences in results due to differences in service on different days, we recommend choosing a single date and using it for the duration of a project. You should check that the date chosen is sufficiently representative in the GTFS feeds you are using (e.g. a non-holiday weekday).
+Next are the **date**, **from time**, and **to time**, which define the time period analyzed. These default to 7:00 and 9:00, meaning our accessibility results will display the opportunities accessible by someone leaving the chosen origin point on the chosen day between 7:00 and 9:00. To avoid inadvertently introducing differences in results due to differences in service on different days, we recommend choosing a single date and using it for the duration of a project. You should check that the date chosen is sufficiently representative in the GTFS feeds you are using (e.g. a non-holiday weekday).
 
-You will also need to select a *Routing engine* version, which should default to the highest available version of [Conveyal R5](https://github.com/conveyal/r5).
+You will also need to select a **Routing engine** version, which should default to the highest available version of [Conveyal R5](https://github.com/conveyal/r5).
 
-The final option is the *Percentile of travel time*.  In single-point analyses, this is rounded to one of five pre-defined values (5, 25, 50, 75, and 95).  For more information, see [methodology](methodology.html#time-percentile).
+The final option is the **Percentile of travel time**.  In single-point analyses, this is rounded to one of five pre-defined values (5, 25, 50, 75, and 95).  For more information, see [methodology](methodology.html#time-percentile).
 
 ### Detailed settings
 
-*Maximum transfers* is an upper limit on the number of transfers that will be considered when finding optimal trips.  
+**Maximum transfers** is an upper limit on the number of transfers that will be considered when finding optimal trips.  
 
-When your GTFS feeds or scenarios include frequency-based routes (i.e. routes that do not have timetables with exact times specified), *simulated schedules*  controls the number of schedules simulated for sampling. Final results will be more accurate when it is set higher, but computation may take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000. For more information, see [methodology](methodology.html).
+When your GTFS feeds or scenarios include frequency-based routes (i.e. routes that do not have timetables with exact times specified), **simulated schedules**  controls the number of schedules simulated for sampling. Final results will be more accurate when it is set higher, but computation may take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000. For more information, see [methodology](methodology.html).
 
 ### Errors and warnings
 

@@ -1,8 +1,8 @@
-# Modification types
+# Modification details
 
-There are multiple actions available for all modifications, including: <span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>, <span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>, and <span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>.
+There are multiple actions available for every modification at the top of the modification details panel, including: <span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>, <span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>, and <span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>.
 
-When the details of one modification are open, clicking <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> will save your changes and take you back to the list of all modifications.  Each type of modification has additional options available, as detailed below.
+Clicking the small blue back arrow (<span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>) saves your changes and take you back to the list of all modifications.  Changes are also automatically saved every 10 seconds.  Each type of modification has additional options available, as detailed below.
 
 ## Add trips
 
