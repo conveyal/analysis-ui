@@ -5,14 +5,14 @@ In the United States, we automatically populate opportunity data from [LODES](ht
 If you are uploading a shapefile, it should not be zipped. Select all of the files in the Shapefile when uploading (at the very least, `.shp`, `.shx`, `.dbf` and `.prj`). How you select multiple files depends on your browser and operating system, but generally will involve shift-clicking, control-clicking or command-clicking.
 
 <figure>
-  <img src="../../img/upload-shapefile.png" />
+  <img src="../img/upload-shapefile.png" />
   <figcaption>Uploading a Shapefile by selecting all constituent files</figcaption>
 </figure>
 
 If you upload a CSV file, two extra fields will appear, in which you must type the field names of the latitude and longitude fields (we currently only support CSV files in WGS 84 Latitude/Longitude coordinates).
 
 <figure>
-  <img src="../../img/upload-csv.png" />
+  <img src="../img/upload-csv.png" />
   <figcaption>Uploading a CSV file and entering the latitude and longitude columns</figcaption>
 </figure>
 

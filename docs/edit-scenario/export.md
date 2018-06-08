@@ -1,10 +1,6 @@
 # Exporting modifications
 
-In editing mode, at the top of the panel next to the project name, there are multiple options for exporting your modifications:
-<figure>
-  <img src="../img/export-modifications.png" />
-  <figcaption>Options for exporting modifications</figcaption>
-</figure>
+In editing mode, at the top of the panel next to the project name, there are multiple options for exporting your modifications.
 
 Modifications in a scenario can be downloaded as a `.json` file by clicking <span class="ui-icon"><i class="fa fa-download"></i> Export project</span>.
 

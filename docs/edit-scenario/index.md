@@ -18,7 +18,7 @@ By default, each modification will be active in all scenarios that exist when th
 
 In the list of modifications back on the initial view in editing mode, <span class="ui-icon"><i class="fa fa-eye"></i>Toggle map display</span> controls whether each modification is displayed on the map. Clicking the title of a modification will open it and allow you to edit it.
 
-Projects start with only a Default scenario (plus a locked Baseline in which no modifications can be active) You can create additional scenarios by clicking <span class="ui-link"><i class="fa fa-plus"></i> Create</span> and entering a name. The buttons at the right of the list of scenarios allow deleting them, renaming them, and showing or hiding their constituent modifications on the map.
+Projects start with only a Default scenario (plus a locked Baseline in which no modifications can be active). You can create additional scenarios by clicking <span class="ui-link"><i class="fa fa-plus"></i> Create</span> and entering a name. The buttons at the right of the list of scenarios allow deleting them, renaming them, and showing or hiding their constituent modifications on the map.
 
 
 ## Importing modifications from another project
@@ -35,7 +35,7 @@ You can then choose the project from which to import modifications. Only project
 
 ## Importing modifications from Shapefiles
 
-In general, it is best to create all modifications directly in this editing tool as it allows full control over all aspects of transit network design. However, on occasion, it may be desirable to import modifications from a GIS Shapefile. If you have a Shapefile containing lines, you can upload it to Conveyal Analysis and have it turned into a set of Add Trips modifications. You first need to zip the components of the Shapefile, then you can select <span class="ui-icon"><i class="fa fa-globe"></i> Import route alignment shapefile</span>.
+In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However, on occasion, it may be desirable to import modifications from a GIS Shapefile. If you have a Shapefile containing lines, you can upload it to Conveyal Analysis and have it turned into a set of Add Trips modifications. You first need to zip the components of the Shapefile, then you can select <span class="ui-icon"><i class="fa fa-globe"></i> Import route alignment shapefile</span>.
 
 Once you have entered the Import Shapefile view and selected a zipped Shapefile, you will see the following.
 
