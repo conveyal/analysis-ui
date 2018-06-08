@@ -1,45 +1,38 @@
 # Modification types
 
-All modifications can be renamed (<span class="ui-icon"><i class="fa fa-pencil"></i></span>), copied (<span class="ui-icon"><i class="fa fa-copy"></i></span>), and deleted (<span class="ui-icon"><i class="fa fa-trash"></i></span>). When the details of one modification are open, clicking <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> will save your changes and take you back to the list of all modifications.  Each type of modification is described in detail below.
+There are multiple actions available for all modifications, including: <span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>, <span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>, and <span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>. When the details of one modification are open, clicking <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> will save your changes and take you back to the list of all modifications.  Each type of modification has additional options available, as detailed below.
 
 ## Add trips
 
-The add trips modification allows you to add new [trip patterns](../glossary#trip-pattern) to your transport scenario. Generally
-this would be used to model new routes, adding all of the trip patterns on the route. After creating the modification you will see this view:
+The add trips modification allows you to add new [trip patterns](../glossary.html#trip-pattern) to your transport scenario. Generally
+one add-trip modification is used to model a new route, adding all of the trip patterns on that route. After creating the modification you will see this view:
 
 <figure>
 <img src="../img/new-add-trip-pattern.png" alt="a new add trips modification" />
 </figure>
 
-Here you can enter a name for the modification, as you can with any modification. You can also specify whether the modification is bidirectional. If this checkbox is checked, vehicles will travel in both directions
-along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets
-or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval
-along the route, or if you will create all stops manually. To create an alignment for the modification (or to edit the alignment you've previously created), click <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>. The button will change to a 'Stop editing' button, and you will then see this view.
+To create an alignment for the modification (or to edit the alignment you've previously created), click <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>. The button will change to a 'Stop editing' button, and you will then see this view.
 
 <figure>
 <img src="../img/blank-geometry.png" alt="the route alignment editor on a new route" />
 </figure>
 
-Click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a gray circle), the icon for the new stop will be blue and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop will be created.  
+In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.  
 
+To insert a stop into the middle of an alignment, click any part of the alignment.  Once created, any stop can be dragged to move it.  Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
 <figure>
-<img src="../img/trip-drawn.png" alt="a new trip drawn in the editor" />
+<img src="../img/make-stop.png" alt="make a new stop" />
 </figure>
 
-If you want to edit the alignment to follow particular features, drag any part of the alignment to the path you would like it to take. This creates a "control point" which the route passes through but does not stop at. It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops. If you are modeling an on-street route, you can check the box that says "follow streets" to make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets,
-allowing you to draw part of a route on street and part off-street.
-
-Blue stops have been snapped to existing transit stops.  Black stops are new ones.
-
-To insert a stop into the middle of an alignment, first drag the alignment to the appropriate location, then click on the created control point and choose "make stop." You can also convert undesired stops into control points, or delete them, in this view.
-<figure>
-<img src="../../img/make-stop.png" alt="make a new stop" />
-</figure>
+Available options while editing an alignment include:
+* **Auto-create stops**: Whether stops should be created automatically at a specified interval along the route.
+* **Bidirectional**: If this checkbox is checked, vehicles will travel in both directions along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval along the route, or if you will create all stops manually.
+* **Follow streets**: Make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street.
 
 Once you have created an alignment, you need to specify when the routes run. You can do this by clicking <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>. You will see this view:
 
 <figure>
-<img src="../../img/new-timetable.png" alt="add timetable" />
+<img src="../img/new-timetable.png" alt="add timetable" />
 </figure>
 
 Here you can specify the days of service, span of service, frequency, speed and dwell time. You can add as many timetables as you need to specify different frequencies or speeds at different times of days.
@@ -67,7 +60,7 @@ dwell times adjusted). You can then choose to either enter a new dwell time (in 
 Unfortunately, many source GTFS feeds do not contain any dwell time, meaning that this modification is of limited usefulness in some cases.
 
 <figure>
-<img src="../../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
+<img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
 ## Adjust frequency
@@ -76,7 +69,7 @@ Often a scenario will include frequency changes to existing lines. We support th
 the feed and route you want to adjust the frequency of.
 
 <figure>
-<img src="../../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
+<img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
 </figure>
 
 You then create any number of frequency entries, which represent a particular frequency on a particular trip pattern at a particular time of day. Typically, there will be at least
@@ -113,7 +106,7 @@ You can choose to remove all existing trips on the route (the default) or choose
 when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
 
 <figure>
-<img src="../../img/frequency-entry.png" alt="Editing a frequency entry" />
+<img src="../img/frequency-entry.png" alt="Editing a frequency entry" />
 </figure>
 
 ## Adjust speed
@@ -128,7 +121,7 @@ This modification does not take into account the possibility of increased freque
 routes. However, it can be paired withe a change frequency modification to model that scenario.
 
 <figure>
-<img src="../../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
+<img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
 </figure>
 
 ## Remove stops
@@ -151,7 +144,7 @@ This modification does not take into account the possibility of increased freque
 routes. However, it can be paired withe a change frequency modification to model that scenario.
 
 <figure>
-<img src="../../img/remove-stops.png"  alt="Remove stops" />
+<img src="../img/remove-stops.png"  alt="Remove stops" />
 </figure>
 
 ## Remove trips
@@ -162,7 +155,7 @@ route/pattern combination will be removed, and the route will be shown in red on
 so in this case implies that the trips will be removed from the selected variants.
 
 <figure>
-<img src="../../img/remove-trips.png" alt="Remove trips" />
+<img src="../img/remove-trips.png" alt="Remove trips" />
 </figure>
 
 ## Reroute
@@ -175,7 +168,7 @@ button, and then choosing the stop on the map. If you leave the from stop blank,
 after that point will be rerouted. This can be used to extend routes, or to divert the ends of routes (e.g. to new rail stations).
 
 <figure>
-<img src="../../img/reroute.png" alt="Rerouting" />
+<img src="../img/reroute.png" alt="Rerouting" />
 </figure>
 
 You can then edit the alignment and the intermediate stops by clicking on <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>. This uses the same tools that are used when [adding trip patterns](#add-trips).

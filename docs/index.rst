@@ -27,6 +27,7 @@ Contents
 
     edit-scenario/index
     edit-scenario/modifications
+    edit-scenario/phasing
     edit-scenario/export
 
 .. toctree::
