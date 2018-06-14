@@ -180,11 +180,6 @@ exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
                 value="r1"
               >
                 <option
-                  value="5ae12de0fe63903d62fc7dd0"
-                >
-                  mock region with no projects
-                </option>
-                <option
                   value="r1"
                 >
                   mock region
@@ -293,6 +288,322 @@ exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
               <select
                 className="form-control"
                 id="timetable-input-3"
+                label="Timetable"
+                onBlur={[Function]}
+                onChange={[Function]}
+                value="t1"
+              >
+                <option
+                  value="t1"
+                >
+                  M-F
+                </option>
+              </select>
+            </div>
+          </Group>
+        </Select>
+        <p>
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="success"
+          >
+            <a
+              className="btn btn-success btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              <Icon
+                type="plus"
+              >
+                <i
+                  className="fa fa-plus fa-fw "
+                />
+              </Icon>
+               Copy into new timetable
+            </a>
+          </Button>
+        </p>
+      </div>
+    </ModalBody>
+  </CopyTimetable>
+</Provider>
+`;
+
+exports[`Component > Modification > CopyTimetable renders when no timetables exist in database 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <CopyTimetable
+    create={[Function]}
+    currentModification={
+      Object {
+        "_id": "m1",
+        "name": "mock modification",
+        "segments": Array [],
+        "timetables": Array [
+          Object {
+            "_id": "t1",
+            "dwellTimes": Array [],
+            "name": "mock timetable",
+            "segmentSpeeds": Array [],
+          },
+        ],
+      }
+    }
+    currentProject={
+      Object {
+        "_id": "p1",
+        "modifications": Array [
+          Object {
+            "_id": "m1",
+            "name": "mock modification",
+            "segments": Array [],
+            "timetables": Array [
+              Object {
+                "_id": "t1",
+                "dwellTimes": Array [],
+                "name": "mock timetable",
+                "segmentSpeeds": Array [],
+              },
+            ],
+          },
+        ],
+        "name": "mock project",
+      }
+    }
+    currentRegionId="r2"
+    getTimetables={[Function]}
+  >
+    <ModalBody>
+      <div
+        className="CustomModal-block"
+      >
+        <div
+          className="alert alert-danger"
+          role="alert"
+        >
+          <Icon
+            type="exclamation-circle"
+          >
+            <i
+              className="fa fa-exclamation-circle fa-fw "
+            />
+          </Icon>
+          No timetables available to copy from!  Please create a timetable manually.
+        </div>
+      </div>
+    </ModalBody>
+  </CopyTimetable>
+</Provider>
+`;
+
+exports[`Component > Modification > CopyTimetable renders with a region without timetables 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <CopyTimetable
+    create={[Function]}
+    currentModification={
+      Object {
+        "_id": "m1",
+        "name": "mock modification",
+        "segments": Array [],
+        "timetables": Array [
+          Object {
+            "_id": "t1",
+            "dwellTimes": Array [],
+            "name": "mock timetable",
+            "segmentSpeeds": Array [],
+          },
+        ],
+      }
+    }
+    currentProject={
+      Object {
+        "_id": "p1",
+        "modifications": Array [
+          Object {
+            "_id": "m1",
+            "name": "mock modification",
+            "segments": Array [],
+            "timetables": Array [
+              Object {
+                "_id": "t1",
+                "dwellTimes": Array [],
+                "name": "mock timetable",
+                "segmentSpeeds": Array [],
+              },
+            ],
+          },
+        ],
+        "name": "mock project",
+      }
+    }
+    currentRegionId="r2"
+    getTimetables={[Function]}
+  >
+    <ModalBody>
+      <div
+        className="CustomModal-block"
+      >
+        <Select
+          label="Region"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value="r1"
+        >
+          <Group
+            id="region-input-8"
+            label="Region"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value="r1"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="region-input-8"
+              >
+                Region
+              </label>
+              <select
+                className="form-control"
+                id="region-input-8"
+                label="Region"
+                onBlur={[Function]}
+                onChange={[Function]}
+                value="r1"
+              >
+                <option
+                  value="r1"
+                >
+                  mock region
+                </option>
+              </select>
+            </div>
+          </Group>
+        </Select>
+        <Select
+          label="Project"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value="p1"
+        >
+          <Group
+            id="project-input-9"
+            label="Project"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value="p1"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="project-input-9"
+              >
+                Project
+              </label>
+              <select
+                className="form-control"
+                id="project-input-9"
+                label="Project"
+                onBlur={[Function]}
+                onChange={[Function]}
+                value="p1"
+              >
+                <option
+                  value="p1"
+                >
+                  mock project
+                </option>
+              </select>
+            </div>
+          </Group>
+        </Select>
+        <Select
+          label="Modification"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value="m1"
+        >
+          <Group
+            id="modification-input-10"
+            label="Modification"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value="m1"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="modification-input-10"
+              >
+                Modification
+              </label>
+              <select
+                className="form-control"
+                id="modification-input-10"
+                label="Modification"
+                onBlur={[Function]}
+                onChange={[Function]}
+                value="m1"
+              >
+                <option
+                  value="m1"
+                >
+                  mock modification
+                </option>
+              </select>
+            </div>
+          </Group>
+        </Select>
+        <Select
+          label="Timetable"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value="t1"
+        >
+          <Group
+            id="timetable-input-11"
+            label="Timetable"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value="t1"
+          >
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="timetable-input-11"
+              >
+                Timetable
+              </label>
+              <select
+                className="form-control"
+                id="timetable-input-11"
                 label="Timetable"
                 onBlur={[Function]}
                 onChange={[Function]}
