@@ -15,9 +15,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
 >
   <RegionalResults
     accessToName="Grid name"
-    addAggregationAreaComponentToMap={[Function]}
-    addRegionalAnalysisLayerToMap={[Function]}
-    addRegionalComparisonLayerToMap={[Function]}
     aggregationAreas={Array []}
     analysis={
       Object {
@@ -42,7 +39,15 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           "bikeSlope": 1,
           "bikeSpeed": 4.166666666666667,
           "bikeTime": 1,
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "bundleId": "1",
           "date": "2016-01-16",
+          "defaultExpanded": true,
           "directModes": "WALK",
           "egressModes": "WALK",
           "fromLat": 12,
@@ -53,12 +58,16 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           "maxTripDurationMinutes": 60,
           "maxWalkTime": 20,
           "monteCarloDraws": 200,
+          "name": "Profile Request Test",
+          "projectId": "1",
           "reachabilityThreshold": 0,
+          "regionId": "1",
           "toTime": 32400,
           "transitModes": "BUS,TRAM,RAIL,SUBWAY",
           "travelTimePercentile": 50,
           "variantIndex": 0,
           "walkSpeed": 1.3888888888888888,
+          "workerVersion": "v4.0.0",
         },
         "status": "DONE",
         "travelTimePercentile": -1,
@@ -103,7 +112,15 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           "bikeSlope": 1,
           "bikeSpeed": 4.166666666666667,
           "bikeTime": 1,
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "bundleId": "1",
           "date": "2016-01-16",
+          "defaultExpanded": true,
           "directModes": "WALK",
           "egressModes": "WALK",
           "fromLat": 12,
@@ -114,12 +131,16 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           "maxTripDurationMinutes": 60,
           "maxWalkTime": 20,
           "monteCarloDraws": 200,
+          "name": "Profile Request Test",
+          "projectId": "1",
           "reachabilityThreshold": 0,
+          "regionId": "1",
           "toTime": 32400,
           "transitModes": "BUS,TRAM,RAIL,SUBWAY",
           "travelTimePercentile": 50,
           "variantIndex": 0,
           "walkSpeed": 1.3888888888888888,
+          "workerVersion": "v4.0.0",
         },
         "status": "DONE",
         "travelTimePercentile": 42,
@@ -197,7 +218,15 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             "bikeSlope": 1,
             "bikeSpeed": 4.166666666666667,
             "bikeTime": 1,
+            "bounds": Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            },
+            "bundleId": "1",
             "date": "2016-01-16",
+            "defaultExpanded": true,
             "directModes": "WALK",
             "egressModes": "WALK",
             "fromLat": 12,
@@ -208,12 +237,16 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             "maxTripDurationMinutes": 60,
             "maxWalkTime": 20,
             "monteCarloDraws": 200,
+            "name": "Profile Request Test",
+            "projectId": "1",
             "reachabilityThreshold": 0,
+            "regionId": "1",
             "toTime": 32400,
             "transitModes": "BUS,TRAM,RAIL,SUBWAY",
             "travelTimePercentile": 50,
             "variantIndex": 0,
             "walkSpeed": 1.3888888888888888,
+            "workerVersion": "v4.0.0",
           },
           "status": "DONE",
           "travelTimePercentile": -1,
@@ -247,7 +280,15 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             "bikeSlope": 1,
             "bikeSpeed": 4.166666666666667,
             "bikeTime": 1,
+            "bounds": Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            },
+            "bundleId": "1",
             "date": "2016-01-16",
+            "defaultExpanded": true,
             "directModes": "WALK",
             "egressModes": "WALK",
             "fromLat": 12,
@@ -258,12 +299,16 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             "maxTripDurationMinutes": 60,
             "maxWalkTime": 20,
             "monteCarloDraws": 200,
+            "name": "Profile Request Test",
+            "projectId": "1",
             "reachabilityThreshold": 0,
+            "regionId": "1",
             "toTime": 32400,
             "transitModes": "BUS,TRAM,RAIL,SUBWAY",
             "travelTimePercentile": 50,
             "variantIndex": 0,
             "walkSpeed": 1.3888888888888888,
+            "workerVersion": "v4.0.0",
           },
           "status": "DONE",
           "travelTimePercentile": 42,
@@ -277,9 +322,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         },
       ]
     }
-    removeAggregationAreaComponentFromMap={[Function]}
-    removeRegionalAnalysisLayerFromMap={[Function]}
-    removeRegionalComparisonLayerFromMap={[Function]}
     scenarioId="MOCK"
     setActiveRegionalAnalysis={[Function]}
     setAggregationArea={[Function]}
@@ -295,7 +337,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           className="form-group"
         >
           <label
-            htmlFor="compare-to-input-4"
+            htmlFor="compare-to-input-3"
           >
             Compare to
           </label>
@@ -443,6 +485,237 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           </Select>
         </div>
       </Group>
+      <div>
+        <ProfileRequestDisplay
+          _id="efgh"
+          accessGroup="accessGroupName"
+          accessModes="WALK"
+          bikeSafe={1}
+          bikeSlope={1}
+          bikeSpeed={4.166666666666667}
+          bikeTime={1}
+          bounds={
+            Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            }
+          }
+          bundleId="1"
+          complete={true}
+          createdAt="2017-11-08T12:30:50.133Z"
+          createdBy="person@gmail.com"
+          cutoffMinutes={60}
+          date="2016-01-16"
+          defaultExpanded={true}
+          deleted={false}
+          directModes="WALK"
+          egressModes="WALK"
+          fromLat={12}
+          fromLon={34}
+          fromTime={25200}
+          grid="Jobs_total"
+          height={300}
+          maxBikeTime={20}
+          maxRides={4}
+          maxTripDurationMinutes={60}
+          maxWalkTime={20}
+          monteCarloDraws={200}
+          name="Profile Request Test"
+          nonce="12345"
+          north={20024}
+          projectId="1"
+          reachabilityThreshold={0}
+          regionId="1"
+          request={
+            Object {
+              "accessModes": "WALK",
+              "bikeSafe": 1,
+              "bikeSlope": 1,
+              "bikeSpeed": 4.166666666666667,
+              "bikeTime": 1,
+              "bounds": Object {
+                "east": -76,
+                "north": 39,
+                "south": 38,
+                "west": -77,
+              },
+              "bundleId": "1",
+              "date": "2016-01-16",
+              "defaultExpanded": true,
+              "directModes": "WALK",
+              "egressModes": "WALK",
+              "fromLat": 12,
+              "fromLon": 34,
+              "fromTime": 25200,
+              "maxBikeTime": 20,
+              "maxRides": 4,
+              "maxTripDurationMinutes": 60,
+              "maxWalkTime": 20,
+              "monteCarloDraws": 200,
+              "name": "Profile Request Test",
+              "projectId": "1",
+              "reachabilityThreshold": 0,
+              "regionId": "1",
+              "toTime": 32400,
+              "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+              "travelTimePercentile": 50,
+              "variantIndex": 0,
+              "walkSpeed": 1.3888888888888888,
+              "workerVersion": "v4.0.0",
+            }
+          }
+          status="DONE"
+          toTime={32400}
+          transitModes="BUS,TRAM,RAIL,SUBWAY"
+          travelTimePercentile={50}
+          updatedAt="2017-11-08T12:31:19.602Z"
+          updatedBy="person@gmail.com"
+          variant={1}
+          variantIndex={0}
+          walkSpeed={1.3888888888888888}
+          west={20015}
+          width={300}
+          workerVersion="v4.0.0"
+          zoom={9}
+        >
+          <Collapsible
+            defaultExpanded={true}
+            title="Profile Request Test settings"
+          >
+            <div>
+              <div
+                aria-level={3}
+                role="heading"
+              >
+                <a
+                  aria-expanded={true}
+                  className="CollapsibleButton"
+                  onClick={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <Icon
+                    type="caret-down"
+                  >
+                    <i
+                      className="fa fa-caret-down fa-fw "
+                    />
+                  </Icon>
+                  <strong>
+                    Profile Request Test settings
+                  </strong>
+                </a>
+              </div>
+              <table
+                className="table table-striped table-condensed"
+              >
+                <tbody>
+                  <tr>
+                    <th>
+                      Resources
+                    </th>
+                    <td>
+                      <a
+                        href="/regions/1/bundles/1"
+                        target="_blank"
+                      >
+                        GTFS Bundle
+                      </a>
+                       / 
+                      <a
+                        href="/regions/1/projects/1"
+                        target="_blank"
+                      >
+                        Project
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Routing engine
+                    </th>
+                    <td>
+                      v4.0.0
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Date
+                    </th>
+                    <td>
+                      2016-01-16
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      From time
+                    </th>
+                    <td>
+                      07:00
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      To time
+                    </th>
+                    <td>
+                      09:00
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Maximum transfers
+                    </th>
+                    <td>
+                      3
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Simulated schedules
+                    </th>
+                    <td>
+                      200
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Access modes
+                    </th>
+                    <td>
+                      <Modes
+                        modes="WALK"
+                      >
+                        <span>
+                          <Icon
+                            title="Walk"
+                            type="male"
+                          >
+                            <i
+                              className="fa fa-male fa-fw "
+                              title="Walk"
+                            />
+                          </Icon>
+                        </span>
+                      </Modes>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      Transit
+                    </th>
+                    <td>
+                      yes
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Collapsible>
+        </ProfileRequestDisplay>
+      </div>
       <MinimumImprovementProbabilitySelector
         minimumImprovementProbability={0.83}
         setMinimumImprovementProbability={[Function]}
@@ -458,7 +731,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           value={0.83}
         >
           <Group
-            id="minimum-probability-of-change-input-10"
+            id="minimum-probability-of-change-input-7"
             label="Minimum probability of change"
             max={1}
             min={0}
@@ -470,19 +743,19 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
               className="form-group"
             >
               <label
-                htmlFor="minimum-probability-of-change-input-10"
+                htmlFor="minimum-probability-of-change-input-7"
               >
                 Minimum probability of change
               </label>
               <output
                 className="pull-right"
-                htmlFor="minimum-probability-of-change-input-10"
+                htmlFor="minimum-probability-of-change-input-7"
               >
                 0.55
               </output>
               <input
                 className="form-control"
-                id="minimum-probability-of-change-input-10"
+                id="minimum-probability-of-change-input-7"
                 label="Minimum probability of change"
                 max={1}
                 min={0}
@@ -602,388 +875,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           </Break>
         </ul>
       </Legend>
-      <Group
-        label="ANALYSIS 1 settings"
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="analysis-1-settings-input-6"
-          >
-            ANALYSIS 1 settings
-          </label>
-          <ProfileRequestDisplay
-            _id="abcd"
-            accessGroup="accessGroupName"
-            accessModes="WALK"
-            bikeSafe={1}
-            bikeSlope={1}
-            bikeSpeed={4.166666666666667}
-            bikeTime={1}
-            bounds={Object {}}
-            bundleId="5678"
-            complete={true}
-            createdAt="2017-11-08T12:30:50.133Z"
-            createdBy="person@gmail.com"
-            cutoffMinutes={60}
-            date="2016-01-16"
-            deleted={false}
-            directModes="WALK"
-            egressModes="WALK"
-            fromLat={12}
-            fromLon={34}
-            fromTime={25200}
-            grid="Jobs_total"
-            height={300}
-            maxBikeTime={20}
-            maxRides={4}
-            maxTripDurationMinutes={60}
-            maxWalkTime={20}
-            monteCarloDraws={200}
-            name="ANALYSIS 1"
-            nonce="12345"
-            north={20024}
-            projectId="1234"
-            reachabilityThreshold={0}
-            request={
-              Object {
-                "accessModes": "WALK",
-                "bikeSafe": 1,
-                "bikeSlope": 1,
-                "bikeSpeed": 4.166666666666667,
-                "bikeTime": 1,
-                "date": "2016-01-16",
-                "directModes": "WALK",
-                "egressModes": "WALK",
-                "fromLat": 12,
-                "fromLon": 34,
-                "fromTime": 25200,
-                "maxBikeTime": 20,
-                "maxRides": 4,
-                "maxTripDurationMinutes": 60,
-                "maxWalkTime": 20,
-                "monteCarloDraws": 200,
-                "reachabilityThreshold": 0,
-                "toTime": 32400,
-                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                "travelTimePercentile": 50,
-                "variantIndex": 0,
-                "walkSpeed": 1.3888888888888888,
-              }
-            }
-            status="DONE"
-            toTime={32400}
-            transitModes="BUS,TRAM,RAIL,SUBWAY"
-            travelTimePercentile={50}
-            updatedAt="2017-11-08T12:31:19.602Z"
-            updatedBy="person@gmail.com"
-            variant={0}
-            variantIndex={0}
-            walkSpeed={1.3888888888888888}
-            west={20015}
-            width={300}
-            workerVersion="v3.2.0"
-            zoom={9}
-          >
-            <table
-              className="table table-striped table-condensed"
-            >
-              <tbody>
-                <tr>
-                  <th>
-                    Resources
-                  </th>
-                  <td>
-                    <a
-                      href="/regions/undefined/bundles/5678"
-                      target="_blank"
-                    >
-                      GTFS Bundle
-                    </a>
-                     / 
-                    <a
-                      href="/projects/1234"
-                      target="_blank"
-                    >
-                      Project
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Routing engine
-                  </th>
-                  <td>
-                    v3.2.0
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Date
-                  </th>
-                  <td>
-                    2016-01-16
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    From time
-                  </th>
-                  <td>
-                    07:00
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    To time
-                  </th>
-                  <td>
-                    09:00
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Maximum transfers
-                  </th>
-                  <td>
-                    3
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Simulated schedules
-                  </th>
-                  <td>
-                    200
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Access modes
-                  </th>
-                  <td>
-                    <Modes
-                      modes="WALK"
-                    >
-                      <span>
-                        <Icon
-                          title="Walk"
-                          type="male"
-                        >
-                          <i
-                            className="fa fa-male fa-fw "
-                            title="Walk"
-                          />
-                        </Icon>
-                      </span>
-                    </Modes>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Transit
-                  </th>
-                  <td>
-                    yes
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </ProfileRequestDisplay>
-        </div>
-      </Group>
-      <Group
-        label="ANALYSIS 2 settings"
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="analysis-2-settings-input-7"
-          >
-            ANALYSIS 2 settings
-          </label>
-          <ProfileRequestDisplay
-            _id="efgh"
-            accessGroup="accessGroupName"
-            accessModes="WALK"
-            bikeSafe={1}
-            bikeSlope={1}
-            bikeSpeed={4.166666666666667}
-            bikeTime={1}
-            bounds={Object {}}
-            bundleId="5678"
-            complete={true}
-            createdAt="2017-11-08T12:30:50.133Z"
-            createdBy="person@gmail.com"
-            cutoffMinutes={60}
-            date="2016-01-16"
-            deleted={false}
-            directModes="WALK"
-            egressModes="WALK"
-            fromLat={12}
-            fromLon={34}
-            fromTime={25200}
-            grid="Jobs_total"
-            height={300}
-            maxBikeTime={20}
-            maxRides={4}
-            maxTripDurationMinutes={60}
-            maxWalkTime={20}
-            monteCarloDraws={200}
-            name="ANALYSIS 2"
-            nonce="12345"
-            north={20024}
-            projectId="4321"
-            reachabilityThreshold={0}
-            request={
-              Object {
-                "accessModes": "WALK",
-                "bikeSafe": 1,
-                "bikeSlope": 1,
-                "bikeSpeed": 4.166666666666667,
-                "bikeTime": 1,
-                "date": "2016-01-16",
-                "directModes": "WALK",
-                "egressModes": "WALK",
-                "fromLat": 12,
-                "fromLon": 34,
-                "fromTime": 25200,
-                "maxBikeTime": 20,
-                "maxRides": 4,
-                "maxTripDurationMinutes": 60,
-                "maxWalkTime": 20,
-                "monteCarloDraws": 200,
-                "reachabilityThreshold": 0,
-                "toTime": 32400,
-                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                "travelTimePercentile": 50,
-                "variantIndex": 0,
-                "walkSpeed": 1.3888888888888888,
-              }
-            }
-            status="DONE"
-            toTime={32400}
-            transitModes="BUS,TRAM,RAIL,SUBWAY"
-            travelTimePercentile={50}
-            updatedAt="2017-11-08T12:31:19.602Z"
-            updatedBy="person@gmail.com"
-            variant={1}
-            variantIndex={0}
-            walkSpeed={1.3888888888888888}
-            west={20015}
-            width={300}
-            workerVersion="v3.2.0"
-            zoom={9}
-          >
-            <table
-              className="table table-striped table-condensed"
-            >
-              <tbody>
-                <tr>
-                  <th>
-                    Resources
-                  </th>
-                  <td>
-                    <a
-                      href="/regions/undefined/bundles/5678"
-                      target="_blank"
-                    >
-                      GTFS Bundle
-                    </a>
-                     / 
-                    <a
-                      href="/projects/4321"
-                      target="_blank"
-                    >
-                      Project
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Routing engine
-                  </th>
-                  <td>
-                    v3.2.0
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Date
-                  </th>
-                  <td>
-                    2016-01-16
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    From time
-                  </th>
-                  <td>
-                    07:00
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    To time
-                  </th>
-                  <td>
-                    09:00
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Maximum transfers
-                  </th>
-                  <td>
-                    3
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Simulated schedules
-                  </th>
-                  <td>
-                    200
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Access modes
-                  </th>
-                  <td>
-                    <Modes
-                      modes="WALK"
-                    >
-                      <span>
-                        <Icon
-                          title="Walk"
-                          type="male"
-                        >
-                          <i
-                            className="fa fa-male fa-fw "
-                            title="Walk"
-                          />
-                        </Icon>
-                      </span>
-                    </Modes>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Transit
-                  </th>
-                  <td>
-                    yes
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </ProfileRequestDisplay>
-        </div>
-      </Group>
       <div>
         <Group
           label="Aggregate results to"
@@ -992,7 +883,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             className="form-group"
           >
             <label
-              htmlFor="aggregate-results-to-input-8"
+              htmlFor="aggregate-results-to-input-5"
             >
               Aggregate results to
             </label>
@@ -1109,7 +1000,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           className="form-group"
         >
           <label
-            htmlFor="export-to-gis-input-9"
+            htmlFor="export-to-gis-input-6"
           >
             Export to GIS
           </label>
@@ -1177,9 +1068,6 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
 >
   <RegionalResults
     accessToName="Grid name"
-    addAggregationAreaComponentToMap={[Function]}
-    addRegionalAnalysisLayerToMap={[Function]}
-    addRegionalComparisonLayerToMap={[Function]}
     aggregationAreas={Array []}
     analysis={
       Object {
@@ -1204,7 +1092,15 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           "bikeSlope": 1,
           "bikeSpeed": 4.166666666666667,
           "bikeTime": 1,
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "bundleId": "1",
           "date": "2016-01-16",
+          "defaultExpanded": true,
           "directModes": "WALK",
           "egressModes": "WALK",
           "fromLat": 12,
@@ -1215,12 +1111,16 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           "maxTripDurationMinutes": 60,
           "maxWalkTime": 20,
           "monteCarloDraws": 200,
+          "name": "Profile Request Test",
+          "projectId": "1",
           "reachabilityThreshold": 0,
+          "regionId": "1",
           "toTime": 32400,
           "transitModes": "BUS,TRAM,RAIL,SUBWAY",
           "travelTimePercentile": 50,
           "variantIndex": 0,
           "walkSpeed": 1.3888888888888888,
+          "workerVersion": "v4.0.0",
         },
         "status": "DONE",
         "travelTimePercentile": -1,
@@ -1294,7 +1194,15 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
             "bikeSlope": 1,
             "bikeSpeed": 4.166666666666667,
             "bikeTime": 1,
+            "bounds": Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            },
+            "bundleId": "1",
             "date": "2016-01-16",
+            "defaultExpanded": true,
             "directModes": "WALK",
             "egressModes": "WALK",
             "fromLat": 12,
@@ -1305,12 +1213,16 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
             "maxTripDurationMinutes": 60,
             "maxWalkTime": 20,
             "monteCarloDraws": 200,
+            "name": "Profile Request Test",
+            "projectId": "1",
             "reachabilityThreshold": 0,
+            "regionId": "1",
             "toTime": 32400,
             "transitModes": "BUS,TRAM,RAIL,SUBWAY",
             "travelTimePercentile": 50,
             "variantIndex": 0,
             "walkSpeed": 1.3888888888888888,
+            "workerVersion": "v4.0.0",
           },
           "status": "DONE",
           "travelTimePercentile": -1,
@@ -1344,7 +1256,15 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
             "bikeSlope": 1,
             "bikeSpeed": 4.166666666666667,
             "bikeTime": 1,
+            "bounds": Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            },
+            "bundleId": "1",
             "date": "2016-01-16",
+            "defaultExpanded": true,
             "directModes": "WALK",
             "egressModes": "WALK",
             "fromLat": 12,
@@ -1355,12 +1275,16 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
             "maxTripDurationMinutes": 60,
             "maxWalkTime": 20,
             "monteCarloDraws": 200,
+            "name": "Profile Request Test",
+            "projectId": "1",
             "reachabilityThreshold": 0,
+            "regionId": "1",
             "toTime": 32400,
             "transitModes": "BUS,TRAM,RAIL,SUBWAY",
             "travelTimePercentile": 50,
             "variantIndex": 0,
             "walkSpeed": 1.3888888888888888,
+            "workerVersion": "v4.0.0",
           },
           "status": "DONE",
           "travelTimePercentile": 42,
@@ -1374,9 +1298,6 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
         },
       ]
     }
-    removeAggregationAreaComponentFromMap={[Function]}
-    removeRegionalAnalysisLayerFromMap={[Function]}
-    removeRegionalComparisonLayerFromMap={[Function]}
     scenarioId="MOCK"
     setActiveRegionalAnalysis={[Function]}
     setAggregationArea={[Function]}
@@ -1605,197 +1526,6 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           </Break>
         </ul>
       </Legend>
-      <Group
-        label="ANALYSIS 1 settings"
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="analysis-1-settings-input-1"
-          >
-            ANALYSIS 1 settings
-          </label>
-          <ProfileRequestDisplay
-            _id="abcd"
-            accessGroup="accessGroupName"
-            accessModes="WALK"
-            bikeSafe={1}
-            bikeSlope={1}
-            bikeSpeed={4.166666666666667}
-            bikeTime={1}
-            bounds={Object {}}
-            bundleId="5678"
-            complete={true}
-            createdAt="2017-11-08T12:30:50.133Z"
-            createdBy="person@gmail.com"
-            cutoffMinutes={60}
-            date="2016-01-16"
-            deleted={false}
-            directModes="WALK"
-            egressModes="WALK"
-            fromLat={12}
-            fromLon={34}
-            fromTime={25200}
-            grid="Jobs_total"
-            height={300}
-            maxBikeTime={20}
-            maxRides={4}
-            maxTripDurationMinutes={60}
-            maxWalkTime={20}
-            monteCarloDraws={200}
-            name="ANALYSIS 1"
-            nonce="12345"
-            north={20024}
-            projectId="1234"
-            reachabilityThreshold={0}
-            request={
-              Object {
-                "accessModes": "WALK",
-                "bikeSafe": 1,
-                "bikeSlope": 1,
-                "bikeSpeed": 4.166666666666667,
-                "bikeTime": 1,
-                "date": "2016-01-16",
-                "directModes": "WALK",
-                "egressModes": "WALK",
-                "fromLat": 12,
-                "fromLon": 34,
-                "fromTime": 25200,
-                "maxBikeTime": 20,
-                "maxRides": 4,
-                "maxTripDurationMinutes": 60,
-                "maxWalkTime": 20,
-                "monteCarloDraws": 200,
-                "reachabilityThreshold": 0,
-                "toTime": 32400,
-                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                "travelTimePercentile": 50,
-                "variantIndex": 0,
-                "walkSpeed": 1.3888888888888888,
-              }
-            }
-            status="DONE"
-            toTime={32400}
-            transitModes="BUS,TRAM,RAIL,SUBWAY"
-            travelTimePercentile={50}
-            updatedAt="2017-11-08T12:31:19.602Z"
-            updatedBy="person@gmail.com"
-            variant={0}
-            variantIndex={0}
-            walkSpeed={1.3888888888888888}
-            west={20015}
-            width={300}
-            workerVersion="v3.2.0"
-            zoom={9}
-          >
-            <table
-              className="table table-striped table-condensed"
-            >
-              <tbody>
-                <tr>
-                  <th>
-                    Resources
-                  </th>
-                  <td>
-                    <a
-                      href="/regions/undefined/bundles/5678"
-                      target="_blank"
-                    >
-                      GTFS Bundle
-                    </a>
-                     / 
-                    <a
-                      href="/projects/1234"
-                      target="_blank"
-                    >
-                      Project
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Routing engine
-                  </th>
-                  <td>
-                    v3.2.0
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Date
-                  </th>
-                  <td>
-                    2016-01-16
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    From time
-                  </th>
-                  <td>
-                    07:00
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    To time
-                  </th>
-                  <td>
-                    09:00
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Maximum transfers
-                  </th>
-                  <td>
-                    3
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Simulated schedules
-                  </th>
-                  <td>
-                    200
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Access modes
-                  </th>
-                  <td>
-                    <Modes
-                      modes="WALK"
-                    >
-                      <span>
-                        <Icon
-                          title="Walk"
-                          type="male"
-                        >
-                          <i
-                            className="fa fa-male fa-fw "
-                            title="Walk"
-                          />
-                        </Icon>
-                      </span>
-                    </Modes>
-                  </td>
-                </tr>
-                <tr>
-                  <th>
-                    Transit
-                  </th>
-                  <td>
-                    yes
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </ProfileRequestDisplay>
-        </div>
-      </Group>
       <div>
         <Group
           label="Aggregate results to"
@@ -1804,7 +1534,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
             className="form-group"
           >
             <label
-              htmlFor="aggregate-results-to-input-2"
+              htmlFor="aggregate-results-to-input-1"
             >
               Aggregate results to
             </label>
@@ -1921,7 +1651,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           className="form-group"
         >
           <label
-            htmlFor="export-to-gis-input-3"
+            htmlFor="export-to-gis-input-2"
           >
             Export to GIS
           </label>

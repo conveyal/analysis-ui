@@ -1,158 +1,995 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > ImportModifications renders correctly 1`] = `
-<ImportModifications
-  candidateProjectOptions={
-    Array [
-      Object {
-        "label": "Project 1",
-        "value": "project-1-id",
-      },
-    ]
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
   }
-  copyFromProject={[Function]}
-  toProjectId="1"
-  variants={Array []}
 >
-  <InnerDock>
-    <div
-      className="InnerDock "
-      style={
+  <ImportModifications
+    candidateProjectOptions={
+      Array [
         Object {
-          "height": 768,
-        }
-      }
-    >
-      <div
-        className="block"
-      >
-        <h5>
-          Import modifications from another project
-        </h5>
-        <div
-          className="form-group"
-        >
-          <Select
-            arrowRenderer={[Function]}
-            autosize={true}
-            backspaceRemoves={true}
-            backspaceToRemoveMessage="Press backspace to remove {label}"
-            clearAllText="Clear all"
-            clearRenderer={[Function]}
-            clearValueText="Clear value"
-            clearable={false}
-            closeOnSelect={true}
-            deleteRemoves={true}
-            delimiter=","
-            disabled={false}
-            escapeClearsValue={true}
-            filterOptions={[Function]}
-            ignoreAccents={true}
-            ignoreCase={true}
-            inputProps={Object {}}
-            isLoading={false}
-            joinValues={false}
-            labelKey="label"
-            matchPos="any"
-            matchProp="any"
-            menuBuffer={0}
-            menuRenderer={[Function]}
-            multi={false}
-            noResultsText="No results found"
-            onBlurResetsInput={true}
-            onChange={[Function]}
-            onCloseResetsInput={true}
-            onSelectResetsInput={true}
-            openOnClick={true}
-            optionComponent={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "Project 1",
-                  "value": "project-1-id",
-                },
-              ]
-            }
-            pageSize={5}
-            placeholder="Select a project…"
-            removeSelected={true}
-            required={false}
-            rtl={false}
-            scrollMenuIntoView={true}
-            searchable={true}
-            simpleValue={false}
-            tabSelectsValue={true}
-            trimFilter={true}
-            valueComponent={[Function]}
-            valueKey="value"
+          "label": "Project 1",
+          "value": "project-1-id",
+        },
+      ]
+    }
+    copyFromProject={[Function]}
+    toProjectId="1"
+    variants={Array []}
+  >
+    <Application>
+      <div>
+        <Connect(ErrorModal)>
+          <ErrorModal
+            clearError={[Function]}
+          >
+            <span />
+          </ErrorModal>
+        </Connect(ErrorModal)>
+        <Connect(Sidebar)>
+          <Sidebar
+            currentPath="blank"
+            dispatch={[Function]}
+            outstandingRequests={0}
+            projectId="1"
+            regionId="1"
           >
             <div
-              className="Select is-searchable Select--single"
+              className="Sidebar"
             >
               <div
-                className="Select-control"
-                onKeyDown={[Function]}
-                onMouseDown={[Function]}
-                onTouchEnd={[Function]}
-                onTouchMove={[Function]}
-                onTouchStart={[Function]}
+                className="Sidebar-logo"
+              />
+              <SidebarNavItem
+                href="/"
+                icon="globe"
+                text="Regions"
               >
-                <span
-                  className="Select-multi-value-wrapper"
-                  id="react-select-2--value"
-                >
-                  <div
-                    className="Select-placeholder"
-                  >
-                    Select a project…
-                  </div>
-                  <AutosizeInput
-                    aria-activedescendant="react-select-2--value"
-                    aria-expanded="false"
-                    aria-haspopup="false"
-                    aria-owns=""
-                    className="Select-input"
-                    injectStyles={true}
-                    minWidth="5"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    required={false}
-                    role="combobox"
-                    value=""
-                  />
-                </span>
-                <span
-                  className="Select-arrow-zone"
-                  onMouseDown={[Function]}
+                <Tip
+                  className="Sidebar-navItem"
+                  tip="Regions"
                 >
                   <span
-                    className="Select-arrow"
-                    onMouseDown={[Function]}
-                  />
-                </span>
+                    className="Tip Sidebar-navItem"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <Link
+                      className="Sidebar-navItem-contents"
+                      onlyActiveOnIndex={false}
+                      style={Object {}}
+                      to="/"
+                    >
+                      <a
+                        className="Sidebar-navItem-contents"
+                        onClick={[Function]}
+                        style={Object {}}
+                      >
+                        <ItemContents
+                          icon="globe"
+                          text="Regions"
+                        >
+                          <span>
+                            <Icon
+                              type="globe"
+                            >
+                              <i
+                                className="fa fa-globe fa-fw "
+                              />
+                            </Icon>
+                            <span
+                              className="Sidebar-navItem-text"
+                            >
+                               
+                              Regions
+                            </span>
+                          </span>
+                        </ItemContents>
+                      </a>
+                    </Link>
+                  </span>
+                </Tip>
+              </SidebarNavItem>
+              <div>
+                <SidebarNavItem
+                  active={null}
+                  href="/regions/1/edit"
+                  icon="map-o"
+                  text="Region Settings"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="Region Settings"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <Link
+                        className="Sidebar-navItem-contents"
+                        onlyActiveOnIndex={false}
+                        style={Object {}}
+                        to="/regions/1/edit"
+                      >
+                        <a
+                          className="Sidebar-navItem-contents"
+                          onClick={[Function]}
+                          style={Object {}}
+                        >
+                          <ItemContents
+                            icon="map-o"
+                            text="Region Settings"
+                          >
+                            <span>
+                              <Icon
+                                type="map-o"
+                              >
+                                <i
+                                  className="fa fa-map-o fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                Region Settings
+                              </span>
+                            </span>
+                          </ItemContents>
+                        </a>
+                      </Link>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
+                <SidebarNavItem
+                  active={null}
+                  href="/regions/1"
+                  icon="cubes"
+                  text="Projects"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="Projects"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <Link
+                        className="Sidebar-navItem-contents"
+                        onlyActiveOnIndex={false}
+                        style={Object {}}
+                        to="/regions/1"
+                      >
+                        <a
+                          className="Sidebar-navItem-contents"
+                          onClick={[Function]}
+                          style={Object {}}
+                        >
+                          <ItemContents
+                            icon="cubes"
+                            text="Projects"
+                          >
+                            <span>
+                              <Icon
+                                type="cubes"
+                              >
+                                <i
+                                  className="fa fa-cubes fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                Projects
+                              </span>
+                            </span>
+                          </ItemContents>
+                        </a>
+                      </Link>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
+                <SidebarNavItem
+                  active={null}
+                  href="/regions/1/bundles"
+                  icon="database"
+                  text="GTFS Bundles"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="GTFS Bundles"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <Link
+                        className="Sidebar-navItem-contents"
+                        onlyActiveOnIndex={false}
+                        style={Object {}}
+                        to="/regions/1/bundles"
+                      >
+                        <a
+                          className="Sidebar-navItem-contents"
+                          onClick={[Function]}
+                          style={Object {}}
+                        >
+                          <ItemContents
+                            icon="database"
+                            text="GTFS Bundles"
+                          >
+                            <span>
+                              <Icon
+                                type="database"
+                              >
+                                <i
+                                  className="fa fa-database fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                GTFS Bundles
+                              </span>
+                            </span>
+                          </ItemContents>
+                        </a>
+                      </Link>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
+                <SidebarNavItem
+                  active={null}
+                  href="/regions/1/opportunities"
+                  icon="th"
+                  text="Opportunity Datasets"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="Opportunity Datasets"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <Link
+                        className="Sidebar-navItem-contents"
+                        onlyActiveOnIndex={false}
+                        style={Object {}}
+                        to="/regions/1/opportunities"
+                      >
+                        <a
+                          className="Sidebar-navItem-contents"
+                          onClick={[Function]}
+                          style={Object {}}
+                        >
+                          <ItemContents
+                            icon="th"
+                            text="Opportunity Datasets"
+                          >
+                            <span>
+                              <Icon
+                                type="th"
+                              >
+                                <i
+                                  className="fa fa-th fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                Opportunity Datasets
+                              </span>
+                            </span>
+                          </ItemContents>
+                        </a>
+                      </Link>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
+                <SidebarNavItem
+                  active={null}
+                  href="/regions/1/projects/1"
+                  icon="pencil"
+                  text="Edit Modifications"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="Edit Modifications"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <Link
+                        className="Sidebar-navItem-contents"
+                        onlyActiveOnIndex={false}
+                        style={Object {}}
+                        to="/regions/1/projects/1"
+                      >
+                        <a
+                          className="Sidebar-navItem-contents"
+                          onClick={[Function]}
+                          style={Object {}}
+                        >
+                          <ItemContents
+                            icon="pencil"
+                            text="Edit Modifications"
+                          >
+                            <span>
+                              <Icon
+                                type="pencil"
+                              >
+                                <i
+                                  className="fa fa-pencil fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                Edit Modifications
+                              </span>
+                            </span>
+                          </ItemContents>
+                        </a>
+                      </Link>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
+                <SidebarNavItem
+                  active={null}
+                  href="/regions/1/analysis"
+                  icon="area-chart"
+                  text="Analyze"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="Analyze"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <Link
+                        className="Sidebar-navItem-contents"
+                        onlyActiveOnIndex={false}
+                        style={Object {}}
+                        to="/regions/1/analysis"
+                      >
+                        <a
+                          className="Sidebar-navItem-contents"
+                          onClick={[Function]}
+                          style={Object {}}
+                        >
+                          <ItemContents
+                            icon="area-chart"
+                            text="Analyze"
+                          >
+                            <span>
+                              <Icon
+                                type="area-chart"
+                              >
+                                <i
+                                  className="fa fa-area-chart fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                Analyze
+                              </span>
+                            </span>
+                          </ItemContents>
+                        </a>
+                      </Link>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
+                <SidebarNavItem
+                  active={null}
+                  href="/regions/1/regional"
+                  icon="server"
+                  text="Regional Analysis"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="Regional Analysis"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <Link
+                        className="Sidebar-navItem-contents"
+                        onlyActiveOnIndex={false}
+                        style={Object {}}
+                        to="/regions/1/regional"
+                      >
+                        <a
+                          className="Sidebar-navItem-contents"
+                          onClick={[Function]}
+                          style={Object {}}
+                        >
+                          <ItemContents
+                            icon="server"
+                            text="Regional Analysis"
+                          >
+                            <span>
+                              <Icon
+                                type="server"
+                              >
+                                <i
+                                  className="fa fa-server fa-fw "
+                                />
+                              </Icon>
+                              <span
+                                className="Sidebar-navItem-text"
+                              >
+                                 
+                                Regional Analysis
+                              </span>
+                            </span>
+                          </ItemContents>
+                        </a>
+                      </Link>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
+              </div>
+              <div
+                className="Sidebar-bottom"
+              >
+                <SidebarNavItem
+                  href="http://docs.analysis.conveyal.com/"
+                  icon="question-circle"
+                  text="Help and Documentation"
+                >
+                  <Tip
+                    className="Sidebar-navItem"
+                    tip="Help and Documentation"
+                  >
+                    <span
+                      className="Tip Sidebar-navItem"
+                      onBlur={[Function]}
+                      onFocus={[Function]}
+                      onMouseOut={[Function]}
+                      onMouseOver={[Function]}
+                    >
+                      <a
+                        className="Sidebar-navItem-contents"
+                        href="http://docs.analysis.conveyal.com/"
+                        target="_blank"
+                      >
+                        <ItemContents
+                          icon="question-circle"
+                          text="Help and Documentation"
+                        >
+                          <span>
+                            <Icon
+                              type="question-circle"
+                            >
+                              <i
+                                className="fa fa-question-circle fa-fw "
+                              />
+                            </Icon>
+                            <span
+                              className="Sidebar-navItem-text"
+                            >
+                               
+                              Help and Documentation
+                            </span>
+                          </span>
+                        </ItemContents>
+                      </a>
+                    </span>
+                  </Tip>
+                </SidebarNavItem>
               </div>
             </div>
-          </Select>
-        </div>
-        <Button
-          block={true}
-          disabled={true}
-          onClick={[Function]}
-          style="success"
+          </Sidebar>
+        </Connect(Sidebar)>
+        <div
+          className="Fullscreen"
         >
-          <a
-            className="btn btn-success btn-block"
-            disabled={true}
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
-          >
-            Import modifications
-          </a>
-        </Button>
+          <Connect(Map)>
+            <Map
+              bounds={
+                Object {
+                  "_northEast": Object {
+                    "lat": 37.365,
+                    "lng": -121.924,
+                  },
+                  "_southWest": Object {
+                    "lat": 36.9707,
+                    "lng": -122.0279,
+                  },
+                }
+              }
+              center={
+                Object {
+                  "lat": 38.8886,
+                  "lon": -77.043,
+                }
+              }
+              dispatch={[Function]}
+              tileUrl="mock.url/tile"
+              zIndex={-10}
+              zoom={12}
+            >
+              <Map
+                animate={false}
+                bounds={
+                  Object {
+                    "_northEast": Object {
+                      "lat": 37.365,
+                      "lng": -121.924,
+                    },
+                    "_southWest": Object {
+                      "lat": 36.9707,
+                      "lng": -122.0279,
+                    },
+                  }
+                }
+                center={
+                  Object {
+                    "lat": 38.8886,
+                    "lon": -77.043,
+                  }
+                }
+                dispatch={[Function]}
+                useFlyTo={false}
+                zoom={12}
+              >
+                <div>
+                  <TileLayer
+                    attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
+                    url="mock.url/tile"
+                    zIndex={-10}
+                  />
+                  <LabelLayer>
+                    <TileLayer
+                      url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
+                      zIndex={40}
+                    />
+                  </LabelLayer>
+                </div>
+              </Map>
+            </Map>
+          </Connect(Map)>
+        </div>
+        <div
+          className="ApplicationDock"
+        >
+          <Connect(ProjectTitle)>
+            <ProjectTitle
+              _id="1"
+              deleteProject={[Function]}
+              downloadScenario={[Function]}
+              project={
+                Object {
+                  "_id": "1",
+                  "accessGroup": "accessGroupName",
+                  "bundleId": "1",
+                  "createdAt": "2017-11-08T12:30:50.133Z",
+                  "createdBy": "person@gmail.com",
+                  "name": "Mock Project",
+                  "nonce": "12345",
+                  "regionId": "1",
+                  "updatedAt": "2017-11-08T12:31:19.602Z",
+                  "updatedBy": "person@gmail.com",
+                  "variants": Array [
+                    "Default",
+                  ],
+                }
+              }
+            >
+              <Title>
+                <div
+                  className="ApplicationDockTitle"
+                >
+                  <Icon
+                    type="cube"
+                  >
+                    <i
+                      className="fa fa-cube fa-fw "
+                    />
+                  </Icon>
+                   
+                  Mock Project
+                  <span>
+                    <IconLink
+                      className="pull-right"
+                      onClick={[Function]}
+                      title="Delete project"
+                      type="trash"
+                    >
+                      <Link
+                        className="pull-right"
+                        onClick={[Function]}
+                        title="Delete project"
+                        type="button"
+                      >
+                        <Tip
+                          className="pull-right"
+                          tip="Delete project"
+                        >
+                          <span
+                            className="Tip pull-right"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                          >
+                            <a
+                              name="Delete project"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              type="button"
+                            >
+                              <Icon
+                                type="trash"
+                              >
+                                <i
+                                  className="fa fa-trash fa-fw "
+                                />
+                              </Icon>
+                            </a>
+                          </span>
+                        </Tip>
+                      </Link>
+                    </IconLink>
+                    <IconLink
+                      className="pull-right"
+                      title="Edit project name"
+                      to="/regions/1/projects/1/edit"
+                      type="gear"
+                    >
+                      <Link
+                        className="pull-right"
+                        title="Edit project name"
+                        to="/regions/1/projects/1/edit"
+                        type="button"
+                      >
+                        <Tip
+                          className="pull-right"
+                          tip="Edit project name"
+                        >
+                          <span
+                            className="Tip pull-right"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                          >
+                            <Link
+                              name="Edit project name"
+                              onlyActiveOnIndex={false}
+                              style={Object {}}
+                              to="/regions/1/projects/1/edit"
+                              type="button"
+                            >
+                              <a
+                                name="Edit project name"
+                                onClick={[Function]}
+                                style={Object {}}
+                                type="button"
+                              >
+                                <Icon
+                                  type="gear"
+                                >
+                                  <i
+                                    className="fa fa-gear fa-fw "
+                                  />
+                                </Icon>
+                              </a>
+                            </Link>
+                          </span>
+                        </Tip>
+                      </Link>
+                    </IconLink>
+                    <IconLink
+                      className="pull-right"
+                      title="Import route alignment shapefile"
+                      to="/regions/1/projects/1/import-shapefile"
+                      type="globe"
+                    >
+                      <Link
+                        className="pull-right"
+                        title="Import route alignment shapefile"
+                        to="/regions/1/projects/1/import-shapefile"
+                        type="button"
+                      >
+                        <Tip
+                          className="pull-right"
+                          tip="Import route alignment shapefile"
+                        >
+                          <span
+                            className="Tip pull-right"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                          >
+                            <Link
+                              name="Import route alignment shapefile"
+                              onlyActiveOnIndex={false}
+                              style={Object {}}
+                              to="/regions/1/projects/1/import-shapefile"
+                              type="button"
+                            >
+                              <a
+                                name="Import route alignment shapefile"
+                                onClick={[Function]}
+                                style={Object {}}
+                                type="button"
+                              >
+                                <Icon
+                                  type="globe"
+                                >
+                                  <i
+                                    className="fa fa-globe fa-fw "
+                                  />
+                                </Icon>
+                              </a>
+                            </Link>
+                          </span>
+                        </Tip>
+                      </Link>
+                    </IconLink>
+                    <Link
+                      className="pull-right"
+                      onClick={[Function]}
+                      title="Print project"
+                    >
+                      <Tip
+                        className="pull-right"
+                        tip="Print project"
+                      >
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
+                        >
+                          <a
+                            name="Print project"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
+                          >
+                            <Icon
+                              type="print"
+                            >
+                              <i
+                                className="fa fa-print fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                    <Link
+                      className="pull-right"
+                      onClick={[Function]}
+                      title="Export project"
+                    >
+                      <Tip
+                        className="pull-right"
+                        tip="Export project"
+                      >
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
+                        >
+                          <a
+                            name="Export project"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
+                          >
+                            <Icon
+                              type="upload"
+                            >
+                              <i
+                                className="fa fa-upload fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </span>
+                </div>
+              </Title>
+            </ProjectTitle>
+          </Connect(ProjectTitle)>
+          <Dock>
+            <InnerDock>
+              <div
+                className="InnerDock "
+                style={
+                  Object {
+                    "height": 768,
+                  }
+                }
+              >
+                <div
+                  className="block"
+                >
+                  <h5>
+                    Import modifications from another project
+                  </h5>
+                  <div
+                    className="form-group"
+                  >
+                    <Select
+                      arrowRenderer={[Function]}
+                      autosize={true}
+                      backspaceRemoves={true}
+                      backspaceToRemoveMessage="Press backspace to remove {label}"
+                      clearAllText="Clear all"
+                      clearRenderer={[Function]}
+                      clearValueText="Clear value"
+                      clearable={false}
+                      closeOnSelect={true}
+                      deleteRemoves={true}
+                      delimiter=","
+                      disabled={false}
+                      escapeClearsValue={true}
+                      filterOptions={[Function]}
+                      ignoreAccents={true}
+                      ignoreCase={true}
+                      inputProps={Object {}}
+                      isLoading={false}
+                      joinValues={false}
+                      labelKey="label"
+                      matchPos="any"
+                      matchProp="any"
+                      menuBuffer={0}
+                      menuRenderer={[Function]}
+                      multi={false}
+                      noResultsText="No results found"
+                      onBlurResetsInput={true}
+                      onChange={[Function]}
+                      onCloseResetsInput={true}
+                      onSelectResetsInput={true}
+                      openOnClick={true}
+                      optionComponent={[Function]}
+                      options={
+                        Array [
+                          Object {
+                            "label": "Project 1",
+                            "value": "project-1-id",
+                          },
+                        ]
+                      }
+                      pageSize={5}
+                      placeholder="Select a project…"
+                      removeSelected={true}
+                      required={false}
+                      rtl={false}
+                      scrollMenuIntoView={true}
+                      searchable={true}
+                      simpleValue={false}
+                      tabSelectsValue={true}
+                      trimFilter={true}
+                      valueComponent={[Function]}
+                      valueKey="value"
+                    >
+                      <div
+                        className="Select is-searchable Select--single"
+                      >
+                        <div
+                          className="Select-control"
+                          onKeyDown={[Function]}
+                          onMouseDown={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchMove={[Function]}
+                          onTouchStart={[Function]}
+                        >
+                          <span
+                            className="Select-multi-value-wrapper"
+                            id="react-select-2--value"
+                          >
+                            <div
+                              className="Select-placeholder"
+                            >
+                              Select a project…
+                            </div>
+                            <AutosizeInput
+                              aria-activedescendant="react-select-2--value"
+                              aria-expanded="false"
+                              aria-haspopup="false"
+                              aria-owns=""
+                              className="Select-input"
+                              injectStyles={true}
+                              minWidth="5"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              required={false}
+                              role="combobox"
+                              value=""
+                            />
+                          </span>
+                          <span
+                            className="Select-arrow-zone"
+                            onMouseDown={[Function]}
+                          >
+                            <span
+                              className="Select-arrow"
+                              onMouseDown={[Function]}
+                            />
+                          </span>
+                        </div>
+                      </div>
+                    </Select>
+                  </div>
+                  <Button
+                    block={true}
+                    disabled={true}
+                    onClick={[Function]}
+                    style="success"
+                  >
+                    <a
+                      className="btn btn-success btn-block"
+                      disabled={true}
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                    >
+                      Import modifications
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </InnerDock>
+          </Dock>
+        </div>
       </div>
-    </div>
-  </InnerDock>
-</ImportModifications>
+    </Application>
+  </ImportModifications>
+</Provider>
 `;
