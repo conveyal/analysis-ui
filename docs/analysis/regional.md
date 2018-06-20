@@ -1,32 +1,20 @@
-# Regional analysis
+# Regional analysis view
 
 After a regional analysis has completed, you can access it by selecting it in the Regional Analysis view. Upon selecting a regional analysis, you will see a screen like the following:
 
 <figure>
-  <img src="../../img/regional.png" />
+  <img src="../img/regional.png" />
   <figcaption>Viewing a regional analysis</figcaption>
 </figure>
 
-The map shows the average accessibility experienced at each location, with the legend to the left. This is the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis. You can view the parameters used to create this regional analysis by clicking on the "&lt;title of regional analysis&gt; settings" button below the legend to unfold the settings used for the analysis. You can also export a regional analysis to GIS in GeoTIFF format in order to create publication-quality maps using the download link.
+The map shows the accessibility experienced at each location, with the legend to the left. This is the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis. You can export a regional analysis to GIS in GeoTIFF format in order to create publication-quality maps using the download link.
 
-Clicking anywhere on the map will display the sampling distribution of the accessibility indicator at that location. This distribution represents how much random variation there could be in the indicator and how much it might vary if the analysis were run again. For instance, in the image below, the estimate of accessibility is 650,000, but if the analysis were re-run, we might be just as likely to get a value of 550,000 or 600,000, due to uncertainty due not knowing how the newly-added, frequency-based transit line here will eventually be scheduled. This is computed using a kernel density estimate from the distribution computed by the analysis backend.
-
-<figure>
-  <img src="../../img/sampling-distribution.png" />
-  <figcaption>Displaying a sampling distribution from a regional analysis</figcaption>
-</figure>
-
-# Comparing regional analyses
+## Comparing regional analyses
 
 You can also compare two regional analyses from different projects in the same region. The map will show the differences in accessibility between the two analyses, with blue areas showing increased accessibility, and red areas showing decreased accessibility, relative to the comparison analysis.
 
-You can also filter the displayed locations by the probability of change using the slider. When there are trips that have headways rather than explicit timetables, the exact performance of the network, particularly the transfer timing, is not known, and thus there is random variation in the results. In order to account for this variation, we use a Monte Carlo approach of generating random timetables that meet the constraints of the scenario. Thus, there is random variation in the accessibility numbers. We use a statistical bootstrapping technique to estimate this variation and produce a _p_-value that a change at a particular origin is due to the scenario, rather than simply random variation. We can use that _p_-value to determine which changes are statistically significant. For instance, if the slider is set at 0.98, only changes that we are 98% sure are not due to random variation will be shown. Note that, given the large number of cells in a regional analysis, it is likely that a small number of cells may show as having a 98% probability of change even when there is in fact no change. Generally, changes that are in fact due to the scenario rather than due to random variation will appear geographically clustered.
-
-For more information, see the [methodology](/analysis/methodology) page.
-
-# Measuring aggregate accessibility
-These regional analyses present a wealth of information, and maps of regional accessibility are frequently the best way to communicate the accessibility impacts of a transit plan. However, in some cases there is a need to summarize accessibility in a single metric for the purposes of setting measurable goals in planning practice. Conveyal Analysis allows aggregating the results of a regional analysis to a larger area, for example a neighborhood, city or region. The result of this aggregation is a histogram of the accessibility experienced by residents of the aggregation area, as well as quantiles
-of the level of accessibility experienced by the population (e.g. 80% of residents have access to at least 500,000 jobs within a 45 minute transit commute). This latter metric can be used a single number to set goals in transportation planning.
+## Measuring aggregate accessibility
+These regional analyses present a wealth of information, and maps of regional accessibility are frequently the best way to communicate the accessibility impacts of a transit plan. However, in some cases there is a need to summarize accessibility in a single metric for the purposes of setting measurable goals in planning practice. Conveyal Analysis allows aggregating the results of a regional analysis to a larger area, for example a neighborhood, city or region. The result of this aggregation is a histogram of the accessibility experienced by residents of the aggregation area, as well as quantiles of the level of accessibility experienced by the population (e.g. 80% of residents have access to at least 500,000 jobs within a 45 minute transit commute). This latter metric can be used a single number to set goals in transportation planning.
 
 In order to accomplish this aggregation, you first need to choose a region and code it as a polygon Shapefile. The choice of region can have a significant impact on the final metric. If a very large region is chosen, where much of the region does not have transit service, there will be a large number of people with very low job access via transit, deflating the aggregate numbers. Conversely, if a small region is chosen, segments of the population that should be served by transit will be excluded from the aggregate metrics.
 
@@ -35,7 +23,7 @@ This can be done within the regional analysis view by selecting "Upload new aggr
 the "Aggregate to" heading:
 
 <figure>
-  <img src="../../img/upload-aggregation-area.png" />
+  <img src="../img/upload-aggregation-area.png" />
   <figcaption>Uploading an aggregation area</figcaption>
 </figure>
 
@@ -46,7 +34,7 @@ Once the aggregation area is uploaded, you can perform the aggregation. You will
 Once you have an aggregation area and weight selected, you will see a display similar to this, showing a histogram of how many of the units you weighted by experience a particular level of access.
 
 <figure>
-  <img src="../../img/aggregate-accessibility.png" />
+  <img src="../img/aggregate-accessibility.png" />
   <figcaption>Aggregate accessibility in Brooklyn, New York, USA</figcaption>
 </figure>
 

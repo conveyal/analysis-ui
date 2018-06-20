@@ -1,5 +1,7 @@
-The phasing feature can be used to tie the schedules of two [add trips](add-trips) or
-[adjust-frequency](adjust-frequency) modifications together. For example,
+# Phasing
+
+The phasing feature can be used to tie the schedules of two [add trips](modifications.html#add-trips) or
+[adjust-frequency](modifications.html#adjust-frequency) modifications together. For example,
 if you are creating a [pulsed system](http://humantransit.org/2010/11/basics-finding-your-pulse.html)
 where buses run infrequently but are timed to meet at transfer points, you might want to specify that
 while you don't know the exact schedules of any of the lines, they will all meet at a central point
@@ -21,21 +23,20 @@ on the timetable "Weekday" in the
 three minutes after vehicles on the "Weekday" timetable of the Moreland route depart the stop
 "Memorial Drive SE at Moreland Ave SE."
 
-<img src="../../img/phase.png" alt="Phasing a route in Atlanta, Georgia, USA"/>
+<img src="../img/phase.png" alt="Phasing a route in Atlanta, Georgia, USA"/>
 
 First, you select one of the stops
 on this line to phase at (the "phase at stop"). You then can select a modification (either an Add Trips modification or an
 Adjust Frequency modification) and frequency entry or timetable to phase from (the "phase from timetable");
 the dropdown shows the name of the modification, as well as the name of the frequency entry and details
-about it. You can then choose the stop on the other modification where the phase should be applied (the
-  "phase from stop").
+about it. You can then choose the stop on the other modification where the phase should be applied (the "phase from stop").
 
 Finally, you can specify the phase in minutes, which is how long after the other vehicle departs
 that this one should depart (at the last stop on either modification, the arrival time will be used
 in lieu of the departure time).
 
 If you wish to create a pulse, generally you would want to specify a dwell time at the stop as well,
-to accommodate bidirectional transfers. Adjust frequency modifications may be paired with an [adjust dwell time](adjust-dwell-time)
+to accommodate bidirectional transfers. Adjust frequency modifications may be paired with an [adjust dwell time](modifications.html#adjust-dwell-time)
 modification to accommodate this. There is not currently a way to set the dwell time at a specific
 stop in an add trips modification, but this feature is on the short-term development roadmap. The analysis
 engine requires at least a minute between alighting from one vehicle and boarding the next to make a connection,
@@ -46,9 +47,7 @@ how to properly phase the directions together), or if either of the frequency en
 specified using "exact times" (because the times are already set and can't be adjusted to match the other entry).
 It is possible to phase two frequency entries which do not have the same headway, although this should
 be used with caution. If one headway is a factor of the other, they will just be lined up so that
-they occur together when possible (for instance, vehicles on frequency entries with headways of 15 minutes and 30 minutes set up to pulse will
-  arrive together every 30 minutes, with an additional trip from the 15 minute headway occurring in between).
+they occur together when possible (for instance, vehicles on frequency entries with headways of 15 minutes and 30 minutes set up to pulse will arrive together every 30 minutes, with an additional trip from the 15 minute headway occurring in between).
 However, if they are not factors of each other, the results will not be as desired. For instance,
 phasing frequency entries with headways of 15 and 20 minutes will result in trips being aligned as desired
-once per hour, with other trips misaligned (for example, vehicles on the frequency entry with 20-minute headway might arrive at 7:00, 7:20, 7:40 and 8:00,
-  while vehicles on the frequency entry with 15-minute headway might arrive at 7:00, 7:15, 7:30, 7:45 and 8:00).
+once per hour, with other trips misaligned (for example, vehicles on the frequency entry with 20-minute headway might arrive at 7:00, 7:20, 7:40 and 8:00, while vehicles on the frequency entry with 15-minute headway might arrive at 7:00, 7:15, 7:30, 7:45 and 8:00).
