@@ -44,39 +44,100 @@ exports[`Component > Modification > CopyTimetable renders correctly 1`] = `
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
-        "segments": Array [
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
         ],
+        "segments": Array [
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+        ],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -85,39 +146,100 @@ exports[`Component > Modification > CopyTimetable renders correctly 1`] = `
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
@@ -157,39 +279,100 @@ exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
-        "segments": Array [
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
         ],
+        "segments": Array [
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+        ],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -198,39 +381,100 @@ exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
@@ -442,39 +686,100 @@ exports[`Component > Modification > CopyTimetable renders when no timetables exi
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
-        "segments": Array [
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
         ],
+        "segments": Array [
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+        ],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -483,39 +788,100 @@ exports[`Component > Modification > CopyTimetable renders when no timetables exi
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
@@ -565,39 +931,100 @@ exports[`Component > Modification > CopyTimetable renders with a region without 
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
-        "segments": Array [
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
         ],
+        "segments": Array [
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+        ],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -606,39 +1033,100 @@ exports[`Component > Modification > CopyTimetable renders with a region without 
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
@@ -850,18 +1338,62 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
+        ],
         "segments": Array [],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -870,39 +1402,100 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
@@ -1130,59 +1723,137 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
-        "segments": Array [
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
         ],
+        "segments": Array [
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+        ],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -1191,39 +1862,100 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
@@ -1453,39 +2185,100 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
-        "segments": Array [
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
         ],
+        "segments": Array [
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+        ],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -1494,39 +2287,100 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
@@ -1755,39 +2609,100 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
     create={[Function]}
     currentModification={
       Object {
-        "_id": "m1",
-        "name": "mock modification",
-        "segments": Array [
-          Object {
-            "fromStopId": "1",
-            "geometry": Object {
-              "coordinates": Array [
-                Array [
-                  -122.073334,
-                  37.050961,
-                ],
-                Array [
-                  -122.073509,
-                  37.046589,
-                ],
-              ],
-              "type": "LineString",
-            },
-            "spacing": 0,
-            "stopAtEnd": true,
-            "stopAtStart": true,
-            "toStopId": "2",
-          },
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
         ],
+        "segments": Array [
+          {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+        ],
+        "showOnMap": false,
         "timetables": Array [
           Object {
-            "_id": "t1",
-            "dwellTimes": Array [],
-            "name": "mock timetable",
-            "segmentSpeeds": Array [
-              16,
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
           },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
         ],
       }
     }
@@ -1796,39 +2711,100 @@ exports[`Component > Modification > CopyTimetable segment warnings shows a warni
         "_id": "p1",
         "modifications": Array [
           Object {
-            "_id": "m1",
-            "name": "mock modification",
-            "segments": Array [
-              Object {
-                "fromStopId": "1",
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.073334,
-                      37.050961,
-                    ],
-                    Array [
-                      -122.073509,
-                      37.046589,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "spacing": 0,
-                "stopAtEnd": true,
-                "stopAtStart": true,
-                "toStopId": "2",
-              },
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
             ],
+            "segments": Array [
+              {
+        "fromStopId": "1",
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              "-122.02460000",
+              "36.97070000"
+            ],
+            [
+              "-122.02790000",
+              "37.04900000"
+            ],
+            [
+              "-121.97990000",
+              "37.22990000"
+            ],
+            [
+              "-121.94450000",
+              "37.32400000"
+            ],
+            [
+              "-121.93600000",
+              "37.35300000"
+            ],
+            [
+              "-121.92400000",
+              "37.36500000"
+            ]
+          ]
+        },
+        "properties": {},
+        "spacing": "3000.00000000",
+        "stopAtEnd": false,
+        "stopAtStart": false,
+        "type": "Feature"
+      },
+            ],
+            "showOnMap": false,
             "timetables": Array [
               Object {
-                "_id": "t1",
-                "dwellTimes": Array [],
-                "name": "mock timetable",
-                "segmentSpeeds": Array [
-                  16,
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
                 ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
               },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
             ],
           },
         ],
