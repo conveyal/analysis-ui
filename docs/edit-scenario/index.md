@@ -12,6 +12,30 @@ Each modification represents a single operation on the baseline [transport netwo
 
 This will open a window allowing you to select the [modification type](modifications.html) and enter a name.  After confirming these details, you will be taken to a modification detail panel that varies by modification type.
 
+# Basic example
+
+To create a sample modification, follow this quick-start guide:
+
+1. If you are not at the initial view in editing mode, with your project name at the top of the side panel, click <span class="ui-icon"><i class="fa fa-cubes"></i>Projects</span> then select your projects
+1. Click <span class="btn btn-success"><i class="fa fa-plus"></i> Create a modification</span>
+1. Leave "Add Trip" selected as the **Modification Type**, type "New Route" as the **Modification Name**, and confirm these options by clicking on the green button, which will create a modification and open the modification details panel for it
+1. In the modification details panel, click <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
+1. On the map, click to add stops for the new route.  More details on editing route alignments are [here](modifications.html#add-trips).
+1. In the modifications details panel, click <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
+1. Optionally, edit the default timetable parameters (e.g. set 5-minute headways for weekdays between 7 and 9 AM) and add additional timetables
+1. At the top of the modification details panel, click <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> to save your changes and return to the main list of Modifications
+1. Add more modifications or proceed to [analyze](../analysis/) your scenario.
+
+
+
+# Usage suggestions and details
+
+Modifications can be grouped by project and scenario, and different projects and scenarios can be compared against each other in analysis mode, giving you flexibility on how to use them. Depending on your use cases, different approaches may make sense.
+
+If one user will be responsible for analyses in your region, involving a relatively small number of modifications, we recommend doing your work in one project and assessing the impact of different combinations of modifications by creating and using scenarios within that project.
+
+If multiple users will be involved in editing scenarios, or if you want to assess more than 10 different combinations of modifications, which would make the list of scenarios annoyingly long, we recommend dividing the modifications among different projects.  For example, one team member could code rail scenarios in Project A, another team member could code bus scenarios in Project B, and modifications from these two projects could be [imported](#importing-modifications-from-another-project) into Project C to analyze different combinations.
+
 ## Toggling display of modifications on the map
 
 In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click<br>
