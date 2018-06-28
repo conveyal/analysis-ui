@@ -1,6 +1,9 @@
 # Modification details
 
-There are multiple actions available for every modification at the top of the modification details panel, including: <span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>, <span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>, and <span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>.
+At the top of the modification details panel, there are multiple actions for each modification, including:
+<br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>
+<br><span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>
+<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>
 
 Clicking the small blue back arrow (<span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>) saves your changes and take you back to the list of all modifications.  Changes are also automatically saved every 10 seconds.  Each type of modification has additional options available, as detailed below.
 
@@ -13,9 +16,12 @@ one add-trip modification is used to model a new route, adding all of the trip p
 <img src="../img/new-add-trip-pattern.png" alt="a new add trips modification" />
 </figure>
 
-To create an alignment for the modification (or to edit the alignment you've previously created), click <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>. In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.  
+To create an alignment for the modification (or to edit the alignment you've previously created), click
+<br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
 
-To insert a stop into the middle of an alignment, click any part of the alignment.  Once created, any stop can be dragged to move it.  Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. Simiarly, control points can be converted back to stops or deleted by clicking on them.  It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
+This will activate editing mode.  In editing mode, click once on the map to place the first stop, then again to place the second stop, and so on. If you click on an existing stop (indicated by a small gray circle), the icon for the new stop will be black and the new transit service will stop at that existing stop. If you click in a place where there is not an existing stop, a new stop (in blue) will be created.  
+
+To insert a stop into the middle of an alignment, click any part of the alignment.  Once created, any stop can be dragged to move it.  Clicking on a stop gives you the option to delete it, or convert it to a _control point_ through which the route will pass without stopping. Similarly, control points can be converted back to stops or deleted by clicking on them.  It's important to get the alignment approximately correct so that the length of each segment is correct when used to calculate the travel times between stops.
 <figure>
 <img src="../img/make-stop.png" alt="make a new stop" />
 </figure>
@@ -25,7 +31,10 @@ Available options while editing an alignment include:
 * **Bidirectional**: If this checkbox is checked, vehicles will travel in both directions along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval along the route, or if you will create all stops manually.
 * **Follow streets**: Make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street.
 
-Once you have created an alignment, you need to specify when the routes run. You can do this by clicking <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>. You will see this view:
+Once you have created an alignment, you need to specify when the routes run. You can do this by clicking
+<br><span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
+
+This will open options for creating and editing timetables:
 
 <figure>
 <img src="../img/new-timetable.png" alt="add timetable" />
@@ -167,6 +176,9 @@ after that point will be rerouted. This can be used to extend routes, or to dive
 <img src="../img/reroute.png" alt="Rerouting" />
 </figure>
 
-You can then edit the alignment and the intermediate stops by clicking on <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>. This uses the same tools that are used when [adding trip patterns](#add-trips).
+You can then edit the alignment and the intermediate stops by clicking
+<br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
+
+This activates editing mode, which is explained above for [adding trip patterns](#add-trips).
 
 This modification is displayed on the map with the route being modified in gray, any segments that are being replaced in red, and the new segments in blue.
