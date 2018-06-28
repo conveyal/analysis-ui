@@ -43,5 +43,6 @@ Contents
     :caption: Learn More
     :glob:
 
+    learn-more/*
     analysis/methodology
     glossary
