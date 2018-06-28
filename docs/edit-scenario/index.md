@@ -1,17 +1,20 @@
 # Overview of editing mode
 
-In Conveyal Analysis, various *modifications* to transit service in the baseline network can be created and grouped into *scenarios*. A transport scenario is made up of many modifications, each of which represents a single operation on the baseline transit network (for example adding a line, or adjusting the speed of an existing line) and can be activated in multiple scenarios. After logging in and selecting a project, you will arrive at the screen below, which has a numbered list of scenarios and a list of modifications.  
+After logging into Conveyal Analysis and selecting a project, you will arrive at the screen below.  Each project has a numbered list of **scenarios** followed by a list of **modifications**.  
 
 <figure>
   <img src="../img/create-scenario.png" />
   <figcaption>Initial view in editing mode</figcaption>
 </figure>
 
-<span class="btn btn-success"><i class="fa fa-plus"></i> Create a modification</span> opens a window allowing you to select the modification type and enter a name.  After confirming these details, you will be taken to a modification detail panel that varies by [modification type](modifications.html).
+Each modification represents a single operation on the baseline [transport network](../glossary.html#transport-network) (for example adding a line, or adjusting the speed of an existing line) and can be [activated](#activating-modifications-in-scenarios) in multiple scenarios. To add a modification, click
+<br><span class="btn btn-success"><i class="fa fa-plus"></i> Create a modification</span>
+
+This will open a window allowing you to select the [modification type](modifications.html) and enter a name.  After confirming these details, you will be taken to a modification detail panel that varies by modification type.
 
 ## Toggling display of modifications on the map
 
-In the list of modifications back on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click<br>
+In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click<br>
 <span class="ui-icon"><i class="fa fa-eye"></i>Toggle map display</span>
 
 Projects start with only a Default scenario (plus a hidden Baseline in which no modifications can be active). You can create additional scenarios by clicking <span class="ui-link"><i class="fa fa-plus"></i> Create</span> and entering a name. Next to each scenario are options to:

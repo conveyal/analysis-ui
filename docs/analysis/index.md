@@ -1,6 +1,6 @@
 # Overview of analysis mode
 
-To enter analysis mode, click <span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span> on the sidebar.  The main analysis page is for generating isochrones (travel time contours) from selected origins.  To start, click <span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>.
+To enter analysis mode, click <span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span> on the sidebar.  The main analysis page is for generating isochrones (travel time contours) from selected origins.  To start, click <br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
 Once a compute cluster has initialized (which may take several minutes the first time you use a GTFS bundle), several components will be visible in the analysis mode.
 
@@ -13,7 +13,7 @@ Once a compute cluster has initialized (which may take several minutes the first
 
 After the server computes and returns results, the map will show a blue isochrone, which represents the area reachable within a given travel time (the default is 60 minutes, and it is controlled by the slider in the left panel) from the origin marker. To change the origin of the analysis, simply drag the marker to a new location.
 
-The modifications displayed can be controlled in [editing mode](../edit-scenario/index.html#toggling-display-of-modifications-on-the-map).
+The modifications displayed on the map can be controlled in [editing mode](../edit-scenario/index.html#toggling-display-of-modifications-on-the-map).
 
 If opportunity datasets (e.g. job locations) are available (either automatically downloaded US Census [LODES](https://lehd.ces.census.gov/data/#lodes) data, or [user-uploaded opportunity data](../prepare-inputs/upload-opportunity-data.html)), the map will show gray dots representing the density of opportunities. For instance, if your selected Opportunity Data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities, and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents. Modifications on the map will be shown according to the visibility set in the editing mode.
 
