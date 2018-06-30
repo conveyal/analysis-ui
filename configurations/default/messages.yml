@@ -5,7 +5,10 @@ common:
   help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
   yes: yes
   no: no
+  or: or
+  name: Name
   select: Select
+  create: Create
   clear: Clear
   addTo: Add to
   removeFrom: Remove from
@@ -15,7 +18,7 @@ error:
   back: Go back
   close: Continue anyways
   details: Details
-  report: Continuing anyways and refreshing your browser may resolve the issue.  If not, please take a screenshot of your browser window and email it along with a description of what you were doing to your support team or 
+  report: Continuing anyways and refreshing your browser may resolve the issue.  If not, please take a screenshot of your browser window and email it along with a description of what you were doing to your support team or
   script: Refresh your browser to resolve this error...
   supportEmail: analysis@conveyal.com
   title: Unfortunately it appears an error has occured...
@@ -24,10 +27,15 @@ authentication:
   logOut: Log out
   username: Logged in as %s
 bundle:
+  name: Bundle Name
   create: Create GTFS bundle
+  failure: Upload Failed. Is this a valid GTFS bundle?
+  feed: Feed
+  files: GTFS .zip files
   delete: Delete this bundle
   deleteConfirmation: Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.
   edit: Edit bundle
+  processing: Bundle still being processed...
   save: Save bundle
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
@@ -43,6 +51,7 @@ nav:
   analyze: Analyze
   notConnectedToInternet: You are not connected to the internet
   unfinishedRequests: You have unfinished requests. Are you sure you want to exit?
+  help: Help and Documentation
 phasing:
   phase: Phase
   atStop: Phase at stop
@@ -102,6 +111,8 @@ project:
   importAction: Import
   loading: Loading project…
   loadingGTFS: Loading GTFS bundle & modifications…
+  bundle: Associated GTFS bundle
+  selectBundle: Select a GTFS bundle...
   noBundles: To get started with projects in this region, first create a GTFS bundle.
   print: Print a scenario from this project
   export: Download a scenario from this project
