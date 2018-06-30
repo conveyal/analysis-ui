@@ -97,14 +97,14 @@ project:
   name: Project name
   deleteConfirmation: Are you sure you would like to delete this project?
   editAction: Save project
-  editTitle: Edit project
-  editName: Edit project name
-  importShapefile: Import route alignment shapefile
-  importModifications: Import modifications from another project
-  importAction: Import modifications
+  editSettings: Edit project settings
+  importModifications: Upload/import modifications
+  importAction: Import
   loading: Loading project…
   loadingGTFS: Loading GTFS bundle & modifications…
   noBundles: To get started with projects in this region, first create a GTFS bundle.
+  print: Print a scenario from this project
+  export: Download a scenario from this project
   route: Route
   uploadBundle: Upload a new GTFS Bundle
   uploadOpportunityDataset: Upload a new Opportunity Dataset
@@ -146,6 +146,7 @@ transitEditor:
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
   invalidShapefileType: Shapefile type must be LineString or MultiLineString
+  selectZipped: Select Shapefile (zipped):
 network:
   error: Network error. Check your connection and reload the page?
   serverError: Server error, please reload the page and try again in a few minutes.
@@ -164,6 +165,8 @@ modification:
   editModificationName: Edit modification name
   clearBundleInfo: If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
   clearBundleConfirm: Clear selected bundle
+  importFromShapefile: Route alignments from shapefile
+  importFromProject: Modifications from another project
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
