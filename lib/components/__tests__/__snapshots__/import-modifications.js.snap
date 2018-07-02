@@ -601,7 +601,6 @@ exports[`Component > ImportModifications renders correctly 1`] = `
           <Connect(ProjectTitle)>
             <ProjectTitle
               _id="1"
-              deleteProject={[Function]}
               downloadScenario={[Function]}
               project={
                 Object {
@@ -635,153 +634,14 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                    
                   Mock Project
                   <span>
-                    <IconLink
-                      className="pull-right"
-                      onClick={[Function]}
-                      title="Delete project"
-                      type="trash"
-                    >
-                      <Link
-                        className="pull-right"
-                        onClick={[Function]}
-                        title="Delete project"
-                        type="button"
-                      >
-                        <Tip
-                          className="pull-right"
-                          tip="Delete project"
-                        >
-                          <span
-                            className="Tip pull-right"
-                            onBlur={[Function]}
-                            onFocus={[Function]}
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                          >
-                            <a
-                              name="Delete project"
-                              onClick={[Function]}
-                              tabIndex={0}
-                              type="button"
-                            >
-                              <Icon
-                                type="trash"
-                              >
-                                <i
-                                  className="fa fa-trash fa-fw "
-                                />
-                              </Icon>
-                            </a>
-                          </span>
-                        </Tip>
-                      </Link>
-                    </IconLink>
-                    <IconLink
-                      className="pull-right"
-                      title="Edit project name"
-                      to="/regions/1/projects/1/edit"
-                      type="gear"
-                    >
-                      <Link
-                        className="pull-right"
-                        title="Edit project name"
-                        to="/regions/1/projects/1/edit"
-                        type="button"
-                      >
-                        <Tip
-                          className="pull-right"
-                          tip="Edit project name"
-                        >
-                          <span
-                            className="Tip pull-right"
-                            onBlur={[Function]}
-                            onFocus={[Function]}
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                          >
-                            <Link
-                              name="Edit project name"
-                              onlyActiveOnIndex={false}
-                              style={Object {}}
-                              to="/regions/1/projects/1/edit"
-                              type="button"
-                            >
-                              <a
-                                name="Edit project name"
-                                onClick={[Function]}
-                                style={Object {}}
-                                type="button"
-                              >
-                                <Icon
-                                  type="gear"
-                                >
-                                  <i
-                                    className="fa fa-gear fa-fw "
-                                  />
-                                </Icon>
-                              </a>
-                            </Link>
-                          </span>
-                        </Tip>
-                      </Link>
-                    </IconLink>
-                    <IconLink
-                      className="pull-right"
-                      title="Import route alignment shapefile"
-                      to="/regions/1/projects/1/import-shapefile"
-                      type="globe"
-                    >
-                      <Link
-                        className="pull-right"
-                        title="Import route alignment shapefile"
-                        to="/regions/1/projects/1/import-shapefile"
-                        type="button"
-                      >
-                        <Tip
-                          className="pull-right"
-                          tip="Import route alignment shapefile"
-                        >
-                          <span
-                            className="Tip pull-right"
-                            onBlur={[Function]}
-                            onFocus={[Function]}
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                          >
-                            <Link
-                              name="Import route alignment shapefile"
-                              onlyActiveOnIndex={false}
-                              style={Object {}}
-                              to="/regions/1/projects/1/import-shapefile"
-                              type="button"
-                            >
-                              <a
-                                name="Import route alignment shapefile"
-                                onClick={[Function]}
-                                style={Object {}}
-                                type="button"
-                              >
-                                <Icon
-                                  type="globe"
-                                >
-                                  <i
-                                    className="fa fa-globe fa-fw "
-                                  />
-                                </Icon>
-                              </a>
-                            </Link>
-                          </span>
-                        </Tip>
-                      </Link>
-                    </IconLink>
                     <Link
                       className="pull-right"
                       onClick={[Function]}
-                      title="Print project"
+                      title="Print a scenario from this project"
                     >
                       <Tip
                         className="pull-right"
-                        tip="Print project"
+                        tip="Print a scenario from this project"
                       >
                         <span
                           className="Tip pull-right"
@@ -791,7 +651,7 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                           onMouseOver={[Function]}
                         >
                           <a
-                            name="Print project"
+                            name="Print a scenario from this project"
                             onClick={[Function]}
                             tabIndex={0}
                             type="button"
@@ -810,11 +670,11 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                     <Link
                       className="pull-right"
                       onClick={[Function]}
-                      title="Export project"
+                      title="Download a scenario from this project"
                     >
                       <Tip
                         className="pull-right"
-                        tip="Export project"
+                        tip="Download a scenario from this project"
                       >
                         <span
                           className="Tip pull-right"
@@ -824,22 +684,71 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                           onMouseOver={[Function]}
                         >
                           <a
-                            name="Export project"
+                            name="Download a scenario from this project"
                             onClick={[Function]}
                             tabIndex={0}
                             type="button"
                           >
                             <Icon
-                              type="upload"
+                              type="download"
                             >
                               <i
-                                className="fa fa-upload fa-fw "
+                                className="fa fa-download fa-fw "
                               />
                             </Icon>
                           </a>
                         </span>
                       </Tip>
                     </Link>
+                    <IconLink
+                      className="pull-right"
+                      title="Edit project settings"
+                      to="/regions/1/projects/1/edit"
+                      type="gear"
+                    >
+                      <Link
+                        className="pull-right"
+                        title="Edit project settings"
+                        to="/regions/1/projects/1/edit"
+                        type="button"
+                      >
+                        <Tip
+                          className="pull-right"
+                          tip="Edit project settings"
+                        >
+                          <span
+                            className="Tip pull-right"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                          >
+                            <Link
+                              name="Edit project settings"
+                              onlyActiveOnIndex={false}
+                              style={Object {}}
+                              to="/regions/1/projects/1/edit"
+                              type="button"
+                            >
+                              <a
+                                name="Edit project settings"
+                                onClick={[Function]}
+                                style={Object {}}
+                                type="button"
+                              >
+                                <Icon
+                                  type="gear"
+                                >
+                                  <i
+                                    className="fa fa-gear fa-fw "
+                                  />
+                                </Icon>
+                              </a>
+                            </Link>
+                          </span>
+                        </Tip>
+                      </Link>
+                    </IconLink>
                   </span>
                 </div>
               </Title>
@@ -859,7 +768,33 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                   className="block"
                 >
                   <h5>
-                    Import modifications from another project
+                    Route alignments from shapefile
+                  </h5>
+                  <Button
+                    block={true}
+                    onClick={[Function]}
+                    style="success"
+                  >
+                    <a
+                      className="btn btn-success btn-block"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                    >
+                      <Icon
+                        type="upload"
+                      >
+                        <i
+                          className="fa fa-upload fa-fw "
+                        />
+                      </Icon>
+                       
+                      Import
+                    </a>
+                  </Button>
+                  <br />
+                  <h5>
+                    Modifications from another project
                   </h5>
                   <div
                     className="form-group"
@@ -980,7 +915,15 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                       onClick={[Function]}
                       tabIndex={0}
                     >
-                      Import modifications
+                      <Icon
+                        type="copy"
+                      >
+                        <i
+                          className="fa fa-copy fa-fw "
+                        />
+                      </Icon>
+                       
+                      Import
                     </a>
                   </Button>
                 </div>

@@ -639,7 +639,7 @@ exports[`Component > EditProject renders correctly 1`] = `
             <div
               className="ApplicationDockTitle"
             >
-              Edit project
+              Edit project settings
             </div>
           </Title>
           <Dock>
@@ -716,7 +716,37 @@ exports[`Component > EditProject renders correctly 1`] = `
                       onClick={[Function]}
                       tabIndex={0}
                     >
+                      <Icon
+                        type="save"
+                      >
+                        <i
+                          className="fa fa-save fa-fw "
+                        />
+                      </Icon>
+                       
                       Save project
+                    </a>
+                  </Button>
+                  <Button
+                    block={true}
+                    onClick={[Function]}
+                    style="danger"
+                  >
+                    <a
+                      className="btn btn-danger btn-block"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                    >
+                      <Icon
+                        type="trash"
+                      >
+                        <i
+                          className="fa fa-trash fa-fw "
+                        />
+                      </Icon>
+                       
+                      Delete project
                     </a>
                   </Button>
                 </div>
