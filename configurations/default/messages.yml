@@ -5,23 +5,37 @@ common:
   help: help # stylized as lowercase since it's next to the conveyal analysis which is lowercase
   yes: yes
   no: no
+  or: or
+  name: Name
   select: Select
+  create: Create
   clear: Clear
   addTo: Add to
   removeFrom: Remove from
   route: Route
   loading: Loading...
-errorModal:
+error:
+  back: Go back
+  close: Continue anyways
+  details: Details
+  report: Continuing anyways and refreshing your browser may resolve the issue.  If not, please take a screenshot of your browser window and email it along with a description of what you were doing to your support team or
+  script: Refresh your browser to resolve this error...
+  supportEmail: analysis@conveyal.com
   title: Unfortunately it appears an error has occured...
 authentication:
   logIn: Log in
   logOut: Log out
   username: Logged in as %s
 bundle:
+  name: Bundle Name
   create: Create GTFS bundle
+  failure: Upload Failed. Is this a valid GTFS bundle?
+  feed: Feed
+  files: GTFS .zip files
   delete: Delete this bundle
   deleteConfirmation: Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.
   edit: Edit bundle
+  processing: Bundle still being processed...
   save: Save bundle
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
@@ -37,6 +51,7 @@ nav:
   analyze: Analyze
   notConnectedToInternet: You are not connected to the internet
   unfinishedRequests: You have unfinished requests. Are you sure you want to exit?
+  help: Help and Documentation
 phasing:
   phase: Phase
   atStop: Phase at stop
@@ -86,19 +101,21 @@ region:
   customOpenStreetMapData: OpenStreetMap data in PBF format (required for regions outside the USA).
 project:
   createAction: Create new Project
-  createActionTooltip: Each project can include scenarios with modifications that are applied to the same GTFS bundle.
+  createActionTooltip: Each project requires a name and an associated GTFS bundle.  Once a project is created, its associated bundle cannot be changed.
   delete: Delete project
   name: Project name
   deleteConfirmation: Are you sure you would like to delete this project?
   editAction: Save project
-  editTitle: Edit project
-  editName: Edit project name
-  importShapefile: Import route alignment shapefile
-  importModifications: Import modifications from another project
-  importAction: Import modifications
+  editSettings: Edit project settings
+  importModifications: Upload/import modifications
+  importAction: Import
   loading: Loading project…
   loadingGTFS: Loading GTFS bundle & modifications…
+  bundle: Associated GTFS bundle
+  selectBundle: Select a GTFS bundle...
   noBundles: To get started with projects in this region, first create a GTFS bundle.
+  print: Print a scenario from this project
+  export: Download a scenario from this project
   route: Route
   uploadBundle: Upload a new GTFS Bundle
   uploadOpportunityDataset: Upload a new Opportunity Dataset
@@ -140,6 +157,7 @@ transitEditor:
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
   invalidShapefileType: Shapefile type must be LineString or MultiLineString
+  selectZipped: Select Shapefile (zipped):
 network:
   error: Network error. Check your connection and reload the page?
   serverError: Server error, please reload the page and try again in a few minutes.
@@ -158,6 +176,10 @@ modification:
   editModificationName: Edit modification name
   clearBundleInfo: If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
   clearBundleConfirm: Clear selected bundle
+  importFromShapefile: Route alignments from shapefile
+  importFromProject: Modifications from another project
+  name: Modification name
+  type: Modification type
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
