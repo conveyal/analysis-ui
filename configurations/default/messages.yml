@@ -98,7 +98,7 @@ region:
     STORING_CENSUS: Storing census data…
     ERROR: Error setting up region...
     DONE: Done
-  customOpenStreetMapData: OpenStreetMap data in PBF format (required for regions outside the USA).
+  customOpenStreetMapData: OpenStreetMap data in PBF format
 project:
   createAction: Create new Project
   createActionTooltip: Each project requires a name and an associated GTFS bundle.  Once a project is created, its associated bundle cannot be changed.
@@ -180,6 +180,10 @@ modification:
   importFromProject: Modifications from another project
   name: Modification name
   type: Modification type
+  copyTimetable:
+    noSegments: The modification being copied to and/or from does not have any segments.  The default segment speed of %(segmentSpeed) km/h will be used.
+    curHasMoreSegments: The modification of the timetable you are copying from has less segments than the modification you are copying to.  The segment speeds will be copied %(numSegments) segment(s) and after that, the default segment speed of %(segmentSpeed) km/h will be used.
+    curHasLessSegments: The modification of the timetable you are copying to has less segments than the modification you are copying from.  The segment speeds will be copied %(numSegments) segment(s).
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency

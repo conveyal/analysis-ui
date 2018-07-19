@@ -596,6 +596,19 @@ exports[`Component > EditRegion renders correctly 1`] = `
                 }
               }
               dispatch={[Function]}
+              maxBounds={
+                Object {
+                  "_northEast": Object {
+                    "lat": 90,
+                    "lng": 200,
+                  },
+                  "_southWest": Object {
+                    "lat": -90,
+                    "lng": -200,
+                  },
+                }
+              }
+              minZoom={2}
               tileUrl="mock.url/tile"
               zIndex={-10}
               zoom={12}
@@ -620,7 +633,19 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     "lon": -77.043,
                   }
                 }
-                dispatch={[Function]}
+                maxBounds={
+                  Object {
+                    "_northEast": Object {
+                      "lat": 90,
+                      "lng": 200,
+                    },
+                    "_southWest": Object {
+                      "lat": -90,
+                      "lng": -200,
+                    },
+                  }
+                }
+                minZoom={2}
                 useFlyTo={false}
                 zoom={12}
               >
@@ -1039,13 +1064,13 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     </Group>
                   </Text>
                   <File
-                    label="OpenStreetMap data in PBF format (required for regions outside the USA)."
+                    label="OpenStreetMap data in PBF format"
                     name="customOpenStreetMapData"
                     onChange={[Function]}
                   >
                     <Group
                       id="custom-open-street-map-data-input-6"
-                      label="OpenStreetMap data in PBF format (required for regions outside the USA)."
+                      label="OpenStreetMap data in PBF format"
                       name="customOpenStreetMapData"
                       onChange={[Function]}
                     >
@@ -1055,11 +1080,11 @@ exports[`Component > EditRegion renders correctly 1`] = `
                         <label
                           htmlFor="custom-open-street-map-data-input-6"
                         >
-                          OpenStreetMap data in PBF format (required for regions outside the USA).
+                          OpenStreetMap data in PBF format
                         </label>
                         <Input
                           id="custom-open-street-map-data-input-6"
-                          label="OpenStreetMap data in PBF format (required for regions outside the USA)."
+                          label="OpenStreetMap data in PBF format"
                           name="customOpenStreetMapData"
                           onChange={[Function]}
                           type="file"
@@ -1069,7 +1094,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             id="custom-open-street-map-data-input-6"
                             name="customOpenStreetMapData"
                             onChange={[Function]}
-                            placeholder="OpenStreetMap data in PBF format (required for regions outside the USA)."
+                            placeholder="OpenStreetMap data in PBF format"
                             type="file"
                           />
                         </Input>
