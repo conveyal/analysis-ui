@@ -171,8 +171,16 @@ opportunityDatasets:
   upload: Upload a new dataset
   select: or select an existing one
   delete: Delete this dataset
+  deleteSource: Delete entire dataset source
   downloadTiff: Download as .tiff
   downloadGrid: Download as .grid
+  finishedUploading: Finished uploading $(total) features $(completedAt) ago.
+  reloadPage: Reload page to see results.
+  uploadProgress: Started $(createdAt) ago and completed $(completed)/$(total) features.
+  enterName: Please enter a new name.
+  confirmDelete: Are you sure you would like to delete this dataset?
+  confirmDeleteSource: Are you sure you would like to delete all opportunity datasets from this source?
+  editName: Edit Dataset Name
 analysis:
   mode: Mode of travel
   minutes: %s minutes
@@ -187,7 +195,7 @@ analysis:
   percentileOfAccessibility: %(name)s: %(percentage)d%% of %(weightByName)s can access at least %(accessibility)s %(accessToName)s
   createGrid: Upload a new opportunity dataset
   grid: Opportunity Dataset
-  createGridTooltip: Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj). Dataset name and indicator name combinations must be unique within a region. Uploading a CSV with the name "population" with a column "males" will overwrite any previous value uploaded with that combination in this region.
+  createGridTooltip: Upload a .csv with lat/lon columns, a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
   opportunityDataset: Opportunity dataset
   selectOpportunityDataset: Select an opportunity dataset…
   cutoff: Travel time cutoff (minutes)
