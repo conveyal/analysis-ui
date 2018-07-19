@@ -986,6 +986,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         multi={false}
                         noResultsText="No results found"
                         onBlurResetsInput={true}
+                        onChange={[Function]}
                         onCloseResetsInput={true}
                         onSelectResetsInput={true}
                         openOnClick={true}
@@ -1342,15 +1343,14 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       </label>
                       <Connect(OpportunityDatasetSelector)>
                         <OpportunityDatasetSelector
-                          activeOpportunityDatasetColorizer={[Function]}
                           load={[Function]}
                           opportunitiesUrl="/regions/1/opportunities"
                           opportunityDatasets={
                             Array [
                               Object {
-                                "dataSource": "lodes-data-2014",
-                                "key": "Workers_total",
+                                "_id": "Workers_total",
                                 "name": "Workers total",
+                                "sourceName": "lodes-data-2014",
                               },
                             ]
                           }

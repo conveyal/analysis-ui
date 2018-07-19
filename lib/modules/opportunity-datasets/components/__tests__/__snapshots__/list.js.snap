@@ -15,27 +15,27 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
 >
   <Connect(ListOpportunityDatasets)>
     <ListOpportunityDatasets
-      activeOpportunityDatasetColorizer={[Function]}
-      addOpportunityComponent={[Function]}
       addOpportunityDataset={[Function]}
       checkUploadStatus={[Function]}
       clearStatus={[Function]}
-      createGoTo={[Function]}
       deleteOpportunityDataset={[Function]}
+      deleteSourceSet={[Function]}
       downloadOpportunityDataset={[Function]}
+      editOpportunityDataset={[Function]}
+      goTo={[Function]}
       goToUpload={[Function]}
       loadOpportunityDataset={[Function]}
+      loadOpportunityDatasets={[Function]}
       opportunitiesUrl="/regions/1/opportunities"
       opportunityDatasets={
         Array [
           Object {
-            "dataSource": "lodes-data-2014",
-            "key": "Workers_total",
+            "_id": "Workers_total",
             "name": "Workers total",
+            "sourceName": "lodes-data-2014",
           },
         ]
       }
-      removeOpportunityComponent={[Function]}
       removeOpportunityDataset={[Function]}
       setActiveOpportunityDataset={[Function]}
       setOpportunityDatasets={[Function]}
@@ -85,15 +85,14 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
           >
             <Connect(OpportunityDatasetSelector)>
               <OpportunityDatasetSelector
-                activeOpportunityDatasetColorizer={[Function]}
                 load={[Function]}
                 opportunitiesUrl="/regions/1/opportunities"
                 opportunityDatasets={
                   Array [
                     Object {
-                      "dataSource": "lodes-data-2014",
-                      "key": "Workers_total",
+                      "_id": "Workers_total",
                       "name": "Workers total",
+                      "sourceName": "lodes-data-2014",
                     },
                   ]
                 }
