@@ -1,5 +1,4 @@
 /* global jest */
-
 import React from 'react'
 
 const ReactLeaflet = require.requireActual('react-leaflet')
@@ -24,9 +23,22 @@ ReactLeaflet.GeoJSON.prototype.render = function () {
   )
 }
 
+ReactLeaflet.Rectangle.prototype.createLeafletElement = function () {
+  return {
+    setBounds () {}
+  }
+}
+
+ReactLeaflet.Marker.prototype.createLeafletElement = function () {
+  return {
+    bindPopup () {},
+    setLatLng () {}
+  }
+}
+
 ReactLeaflet.Marker.prototype.render = function () {
   return (
-    <g type='Marker' {...this.props}>
+    <g type='Marker' data-props={this.props}>
       {this.props.children}
     </g>
   )
