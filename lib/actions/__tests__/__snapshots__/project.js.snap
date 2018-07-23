@@ -86,11 +86,8 @@ Array [
 exports[`actions > project deleteProject should work 1`] = `
 Array [
   Object {
-    "payload": "1",
-    "type": "delete project",
-  },
-  Object {
     "payload": Object {
+      "next": [Function],
       "options": Object {
         "method": "delete",
       },
@@ -103,10 +100,6 @@ Array [
 
 exports[`actions > project deleteProject should work 2`] = `
 Array [
-  Object {
-    "payload": "1",
-    "type": "delete project",
-  },
   Array [
     Object {
       "payload": Object {
@@ -122,20 +115,7 @@ Array [
 ]
 `;
 
-exports[`actions > project deleteProject should work 3`] = `
-Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "method": "delete",
-      },
-      "url": "/api/project/1",
-    },
-    "type": "increment outstanding fetches",
-  },
-  Promise {},
-]
-`;
+exports[`actions > project deleteProject should work 3`] = `undefined`;
 
 exports[`actions > project saveToServer should work 1`] = `
 Object {

@@ -604,6 +604,19 @@ exports[`Component > SelectProject renders correctly 1`] = `
                 }
               }
               dispatch={[Function]}
+              maxBounds={
+                Object {
+                  "_northEast": Object {
+                    "lat": 90,
+                    "lng": 200,
+                  },
+                  "_southWest": Object {
+                    "lat": -90,
+                    "lng": -200,
+                  },
+                }
+              }
+              minZoom={2}
               tileUrl="mock.url/tile"
               zIndex={-10}
               zoom={12}
@@ -628,7 +641,19 @@ exports[`Component > SelectProject renders correctly 1`] = `
                     "lon": -77.043,
                   }
                 }
-                dispatch={[Function]}
+                maxBounds={
+                  Object {
+                    "_northEast": Object {
+                      "lat": 90,
+                      "lng": 200,
+                    },
+                    "_southWest": Object {
+                      "lat": -90,
+                      "lng": -200,
+                    },
+                  }
+                }
+                minZoom={2}
                 useFlyTo={false}
                 zoom={12}
               >
@@ -717,99 +742,6 @@ exports[`Component > SelectProject renders correctly 1`] = `
                             </Icon>
                              
                             Create new Project
-                          </a>
-                        </Link>
-                      </ButtonLink>
-                      <ButtonLink
-                        block={true}
-                        style="success"
-                        title="Upload a new GTFS Bundle"
-                        to="/regions/1/bundles/create"
-                      >
-                        <Link
-                          className="btn btn-success btn-block"
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          title="Upload a new GTFS Bundle"
-                          to="/regions/1/bundles/create"
-                        >
-                          <a
-                            className="btn btn-success btn-block"
-                            onClick={[Function]}
-                            style={Object {}}
-                            title="Upload a new GTFS Bundle"
-                          >
-                            <Icon
-                              type="database"
-                            >
-                              <i
-                                className="fa fa-database fa-fw "
-                              />
-                            </Icon>
-                             
-                            Upload a new GTFS Bundle
-                          </a>
-                        </Link>
-                      </ButtonLink>
-                      <ButtonLink
-                        block={true}
-                        style="success"
-                        title="Upload a new Opportunity Dataset"
-                        to="/regions/1/opportunities"
-                      >
-                        <Link
-                          className="btn btn-success btn-block"
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          title="Upload a new Opportunity Dataset"
-                          to="/regions/1/opportunities"
-                        >
-                          <a
-                            className="btn btn-success btn-block"
-                            onClick={[Function]}
-                            style={Object {}}
-                            title="Upload a new Opportunity Dataset"
-                          >
-                            <Icon
-                              type="th"
-                            >
-                              <i
-                                className="fa fa-th fa-fw "
-                              />
-                            </Icon>
-                             
-                            Upload a new Opportunity Dataset
-                          </a>
-                        </Link>
-                      </ButtonLink>
-                      <ButtonLink
-                        block={true}
-                        style="warning"
-                        title="Configure shared settings for region"
-                        to="/regions/1/edit"
-                      >
-                        <Link
-                          className="btn btn-warning btn-block"
-                          onlyActiveOnIndex={false}
-                          style={Object {}}
-                          title="Configure shared settings for region"
-                          to="/regions/1/edit"
-                        >
-                          <a
-                            className="btn btn-warning btn-block"
-                            onClick={[Function]}
-                            style={Object {}}
-                            title="Configure shared settings for region"
-                          >
-                            <Icon
-                              type="gear"
-                            >
-                              <i
-                                className="fa fa-gear fa-fw "
-                              />
-                            </Icon>
-                             
-                            Configure shared settings for region
                           </a>
                         </Link>
                       </ButtonLink>

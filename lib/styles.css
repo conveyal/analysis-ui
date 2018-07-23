@@ -600,6 +600,10 @@ label {
   outline: none;
 }
 
+.CustomModal::-webkit-scrollbar {
+ display: none;
+}
+
 .list-group-item {
   padding: 12px;
   background-image: linear-gradient(
@@ -751,4 +755,11 @@ label {
 
 .JobProgress-delivered {
   background-color: #2389c9;
+}
+
+.all-copy {  
+  -webkit-user-select: all;  /* Chrome all / Safari all */
+  -moz-user-select: all;     /* Firefox all */
+  -ms-user-select: all;      /* IE 10+ */
+  user-select: all;          /* Likely future */
 }
