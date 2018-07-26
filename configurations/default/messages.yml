@@ -18,7 +18,7 @@ error:
   back: Go back
   close: Continue anyways
   details: Details
-  report: Continuing anyways and refreshing your browser may resolve the issue.  If not, please take a screenshot of your browser window and email it along with a description of what you were doing to your support team or
+  report: Continuing anyways and refreshing your browser may resolve the issue. If not, please take a screenshot of your browser window and email it along with a description of what you were doing to your support team or
   script: Refresh your browser to resolve this error...
   supportEmail: analysis@conveyal.com
   title: Unfortunately it appears an error has occured...
@@ -101,7 +101,7 @@ region:
   customOpenStreetMapData: OpenStreetMap data in PBF format
 project:
   createAction: Create new Project
-  createActionTooltip: Each project requires a name and an associated GTFS bundle.  Once a project is created, its associated bundle cannot be changed.
+  createActionTooltip: Each project requires a name and an associated GTFS bundle. Once a project is created, its associated bundle cannot be changed.
   delete: Delete project
   name: Project name
   deleteConfirmation: Are you sure you would like to delete this project?
@@ -181,9 +181,9 @@ modification:
   name: Modification name
   type: Modification type
   copyTimetable:
-    noSegments: The modification being copied to and/or from does not have any segments.  The default segment speed of %(segmentSpeed) km/h will be used.
-    curHasMoreSegments: The modification of the timetable you are copying from has less segments than the modification you are copying to.  The segment speeds will be copied %(numSegments) segment(s) and after that, the default segment speed of %(segmentSpeed) km/h will be used.
-    curHasLessSegments: The modification of the timetable you are copying to has less segments than the modification you are copying from.  The segment speeds will be copied %(numSegments) segment(s).
+    noSegments: The modification being copied to and/or from does not have any segments. The default segment speed of %(segmentSpeed) km/h will be used.
+    curHasMoreSegments: The modification of the timetable you are copying from has less segments than the modification you are copying to. The segment speeds will be copied %(numSegments) segment(s) and after that, the default segment speed of %(segmentSpeed) km/h will be used.
+    curHasLessSegments: The modification of the timetable you are copying to has less segments than the modification you are copying from. The segment speeds will be copied %(numSegments) segment(s).
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -197,8 +197,17 @@ opportunityDatasets:
   upload: Upload a new dataset
   select: or select an existing one
   delete: Delete this dataset
+  deleteSource: Delete entire dataset source
+  downloadLODES: Fetch LODES (2015)
   downloadTiff: Download as .tiff
   downloadGrid: Download as .grid
+  finishedUploading: Finished uploading %(total) features %(completedAt) ago.
+  reloadPage: Reload page to see results.
+  uploadProgress: Started %(createdAt) ago and completed %(completed) / %(total) features.
+  enterName: Please enter a new name.
+  confirmDelete: Are you sure you would like to delete this dataset?
+  confirmDeleteSource: Are you sure you would like to delete all opportunity datasets from this source?
+  editName: Edit Dataset Name
 analysis:
   mode: Mode of travel
   minutes: %s minutes
@@ -213,7 +222,7 @@ analysis:
   percentileOfAccessibility: %(name)s: %(percentage)d%% of %(weightByName)s can access at least %(accessibility)s %(accessToName)s
   createGrid: Upload a new opportunity dataset
   grid: Opportunity Dataset
-  createGridTooltip: Upload a .csv with lat/lon columns, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj). Dataset name and indicator name combinations must be unique within a region. Uploading a CSV with the name "population" with a column "males" will overwrite any previous value uploaded with that combination in this region.
+  createGridTooltip: Upload a .csv with lat/lon columns, a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
   opportunityDataset: Opportunity dataset
   selectOpportunityDataset: Select an opportunity dataset…
   cutoff: Travel time cutoff (minutes)
