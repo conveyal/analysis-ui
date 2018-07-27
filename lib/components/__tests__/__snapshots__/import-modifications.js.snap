@@ -14,15 +14,26 @@ exports[`Component > ImportModifications renders correctly 1`] = `
   }
 >
   <ImportModifications
-    candidateProjectOptions={
+    copyFromProject={[Function]}
+    projects={
       Array [
         Object {
-          "label": "Project 1",
-          "value": "project-1-id",
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bundleId": "1",
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "name": "Mock Project",
+          "nonce": "12345",
+          "regionId": "1",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            "Default",
+          ],
         },
       ]
     }
-    copyFromProject={[Function]}
     push={[Function]}
     regionId="1"
     toProjectId="1"
@@ -823,6 +834,9 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                   <h5>
                     Modifications from another project
                   </h5>
+                  <p>
+                    When importing from a project associated with a different bundle, only "Add Trips" modifications will be copied. If a modification uses an existing stop from the baseline GTFS, it will be replaced in the imported modification by a new stop at the same location.
+                  </p>
                   <div
                     className="form-group"
                   >
@@ -862,8 +876,8 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                       options={
                         Array [
                           Object {
-                            "label": "Project 1",
-                            "value": "project-1-id",
+                            "label": "Mock Project",
+                            "value": "1",
                           },
                         ]
                       }
