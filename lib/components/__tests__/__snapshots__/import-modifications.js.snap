@@ -835,7 +835,7 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                     Modifications from another project
                   </h5>
                   <p>
-                    Projects with different bundles will only have "Add Trips" modifications copied and those modifications will have stop references removed.
+                    When importing from a project associated with a different bundle, only "Add Trips" modifications will be copied. If a modification uses an existing stop from the baseline GTFS, it will be replaced in the imported modification by a new stop at the same location.
                   </p>
                   <div
                     className="form-group"
