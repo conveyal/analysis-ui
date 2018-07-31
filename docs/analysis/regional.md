@@ -31,7 +31,7 @@ You can then name your aggregation area and select the files to upload. Be sure 
 
 Once the aggregation area is uploaded, you can perform the aggregation. You will select the area you want to aggregate to, as well as what you want to weight by. For example, if you select "Workers total,"" your histogram will represent how many workers experience different levels of accessibility. If instead you select "Workers with earnings $1250 per month or less," you will see how accessibility is distributed among low income workers. Any opportunity dataset you have uploaded is available for use as weights.
 
-Once you have an aggregation area and weight selected, you will see a display similar to this, showing a histogram of how many of the units you weighted by experience a particular level of access.
+Once you have an aggregation area and weight selected, you will see a display similar to the one below, showing a histogram of how many of the units you weighted by experience a particular level of access.
 
 <figure>
   <img src="../img/aggregate-accessibility.png" />
