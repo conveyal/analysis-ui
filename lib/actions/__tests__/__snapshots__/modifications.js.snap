@@ -38,26 +38,25 @@ Array [
     },
     "type": "decrement outstanding fetches",
   },
-  Array [
-    Object {
-      "payload": Array [
-        Object {
-          "_id": "1234",
-          "accessGroup": "accessGroupName",
-          "bidirectional": false,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "name": "Test Modification",
-          "nonce": "12345",
-          "projectId": "1",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
+  Object {
+    "payload": Array [
+      Object {
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
+        ],
+        "segments": Array [
+          {
   "fromStopId": "1",
   "geometry": {
     "type": "LineString",
@@ -94,60 +93,53 @@ Array [
   "stopAtStart": false,
   "type": "Feature"
 },
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "_id": "timetable-id",
-              "dwellTime": 10,
-              "endTime": 57600,
-              "exactTimes": false,
-              "friday": true,
-              "headwaySecs": 900,
-              "modificationId": "1234",
-              "modificationName": "Test Modification",
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "phaseAtStop": "",
-              "phaseFromStop": "",
-              "phaseFromTimetable": "",
-              "phaseSeconds": 300,
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            true,
-          ],
-        },
-      ],
-      "type": "create modifications",
-    },
-    Object {
-      "payload": Object {
-        "args": Array [
-          "/projects/2",
         ],
-        "method": "push",
+        "showOnMap": false,
+        "timetables": Array [
+          Object {
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
+        ],
       },
-      "type": "@@router/CALL_HISTORY_METHOD",
-    },
-  ],
+    ],
+    "type": "create modifications",
+  },
 ]
 `;
 
@@ -264,6 +256,9 @@ Array [
           Object {
             "_id": "timetable-id",
             "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
             "endTime": 57600,
             "exactTimes": false,
             "friday": true,
@@ -302,13 +297,9 @@ Array [
       "type": "create modification",
     },
     Object {
-      "payload": "1234",
-      "type": "set active modification",
-    },
-    Object {
       "payload": Object {
         "args": Array [
-          "/projects/1/modifications/1234",
+          "/regions/1/projects/1/modifications/1234",
         ],
         "method": "push",
       },
@@ -452,6 +443,9 @@ Array [
             Object {
               "_id": "timetable-id",
               "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
               "endTime": 57600,
               "exactTimes": false,
               "friday": true,
@@ -568,6 +562,9 @@ Object {
           Object {
             "_id": "timetable-id",
             "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
             "endTime": 57600,
             "exactTimes": false,
             "friday": true,
@@ -675,6 +672,9 @@ Array [
             Object {
               "_id": "timetable-id",
               "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
               "endTime": 57600,
               "exactTimes": false,
               "friday": true,
@@ -784,6 +784,9 @@ Array [
             Object {
               "_id": "timetable-id",
               "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
               "endTime": 57600,
               "exactTimes": false,
               "friday": true,
@@ -896,6 +899,9 @@ Object {
           Object {
             "_id": "timetable-id",
             "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
             "endTime": 57600,
             "exactTimes": false,
             "friday": true,
@@ -1003,6 +1009,9 @@ Array [
             Object {
               "_id": "timetable-id",
               "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
               "endTime": 57600,
               "exactTimes": false,
               "friday": true,
@@ -1112,6 +1121,9 @@ Array [
             Object {
               "_id": "timetable-id",
               "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
               "endTime": 57600,
               "exactTimes": false,
               "friday": true,

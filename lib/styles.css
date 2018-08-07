@@ -321,7 +321,6 @@ label {
 
 .DockTitle {
   margin: 0;
-  padding: 12px;
   font-size: 14px;
   /*border-top: 1px solid #ddd; */
 }
@@ -431,11 +430,11 @@ label {
 }
 
 .ModificationGroupTitle {
-  padding: 6px 12px;
+  padding: 6px 0;
 }
 
 .ModificationGroup > .ShowMore {
-  padding: 6px 12px;
+  padding: 6px 0;
   display: inline-block;
   width: 100%;
 }
@@ -444,6 +443,8 @@ label {
 .ModificationTitle {
   padding: 6px 0 6px 18px;
   display: block;
+  margin-left: -12px;
+  margin-right: -12px;
 }
 
 .ModificationTitle > a > .fa {
@@ -515,7 +516,7 @@ label {
 }
 
 .Variants {
-  padding: 0 9px 0 12px;
+  margin-top: 12px;
 }
 
 .Variant {
@@ -597,6 +598,10 @@ label {
 
 .CustomModal:focus {
   outline: none;
+}
+
+.CustomModal::-webkit-scrollbar {
+ display: none;
 }
 
 .list-group-item {
@@ -750,4 +755,11 @@ label {
 
 .JobProgress-delivered {
   background-color: #2389c9;
+}
+
+.all-copy {  
+  -webkit-user-select: all;  /* Chrome all / Safari all */
+  -moz-user-select: all;     /* Firefox all */
+  -ms-user-select: all;      /* IE 10+ */
+  user-select: all;          /* Likely future */
 }

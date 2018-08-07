@@ -1,0 +1,468 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component > ProjectTitle renders correctly 1`] = `
+<div
+  className="ApplicationDockTitle"
+>
+  <i
+    className="fa fa-cube fa-fw "
+  />
+   
+  Mock Project
+  <span>
+    <span
+      className="Tip pull-right"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <a
+        name="Print a scenario from this project"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <i
+          className="fa fa-print fa-fw "
+        />
+      </a>
+    </span>
+    <span
+      className="Tip pull-right"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <a
+        name="Download a scenario from this project"
+        onClick={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <i
+          className="fa fa-download fa-fw "
+        />
+      </a>
+    </span>
+    <span
+      className="Tip pull-right"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <a
+        name="Edit project settings"
+        onClick={[Function]}
+        style={Object {}}
+        type="button"
+      >
+        <i
+          className="fa fa-gear fa-fw "
+        />
+      </a>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Component > ProjectTitle should show export select dialogue 1`] = `
+<ProjectTitle
+  _id="1"
+  downloadScenario={[Function]}
+  project={
+    Object {
+      "_id": "1",
+      "accessGroup": "accessGroupName",
+      "bundleId": "1",
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "name": "Mock Project",
+      "nonce": "12345",
+      "regionId": "1",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variants": Array [
+        "Default",
+      ],
+    }
+  }
+>
+  <Title>
+    <div
+      className="ApplicationDockTitle"
+    >
+      <Icon
+        type="cube"
+      >
+        <i
+          className="fa fa-cube fa-fw "
+        />
+      </Icon>
+       
+      Mock Project
+      <span>
+        <Link
+          className="pull-right"
+          onClick={[Function]}
+          title="Print a scenario from this project"
+        >
+          <Tip
+            className="pull-right"
+            tip="Print a scenario from this project"
+          >
+            <span
+              className="Tip pull-right"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <a
+                name="Print a scenario from this project"
+                onClick={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                <Icon
+                  type="print"
+                >
+                  <i
+                    className="fa fa-print fa-fw "
+                  />
+                </Icon>
+              </a>
+            </span>
+          </Tip>
+        </Link>
+        <Link
+          className="pull-right"
+          onClick={[Function]}
+          title="Download a scenario from this project"
+        >
+          <Tip
+            className="pull-right"
+            tip="Download a scenario from this project"
+          >
+            <span
+              className="Tip pull-right"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <a
+                name="Download a scenario from this project"
+                onClick={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                <Icon
+                  type="download"
+                >
+                  <i
+                    className="fa fa-download fa-fw "
+                  />
+                </Icon>
+                <SelectScenario
+                  action={[Function]}
+                  label="export"
+                  onHide={[Function]}
+                  scenarios={
+                    Array [
+                      "Default",
+                    ]
+                  }
+                >
+                  <Component
+                    onRequestClose={[Function]}
+                  >
+                    <Modal
+                      ariaHideApp={true}
+                      bodyOpenClassName="ReactModal__Body--open"
+                      className={
+                        Object {
+                          "base": "CustomModal",
+                        }
+                      }
+                      closeTimeoutMS={0}
+                      contentLabel="Modal"
+                      isOpen={true}
+                      onRequestClose={[Function]}
+                      parentSelector={[Function]}
+                      portalClassName="ReactModalPortal"
+                      shouldCloseOnOverlayClick={true}
+                      style={
+                        Object {
+                          "overlay": Object {
+                            "zIndex": 2500,
+                          },
+                        }
+                      }
+                    >
+                      <noscript />
+                    </Modal>
+                  </Component>
+                </SelectScenario>
+              </a>
+            </span>
+          </Tip>
+        </Link>
+        <IconLink
+          className="pull-right"
+          title="Edit project settings"
+          to="/regions/1/projects/1/edit"
+          type="gear"
+        >
+          <Link
+            className="pull-right"
+            title="Edit project settings"
+            to="/regions/1/projects/1/edit"
+            type="button"
+          >
+            <Tip
+              className="pull-right"
+              tip="Edit project settings"
+            >
+              <span
+                className="Tip pull-right"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <Link
+                  name="Edit project settings"
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/regions/1/projects/1/edit"
+                  type="button"
+                >
+                  <a
+                    name="Edit project settings"
+                    onClick={[Function]}
+                    style={Object {}}
+                    type="button"
+                  >
+                    <Icon
+                      type="gear"
+                    >
+                      <i
+                        className="fa fa-gear fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Link>
+              </span>
+            </Tip>
+          </Link>
+        </IconLink>
+      </span>
+    </div>
+  </Title>
+</ProjectTitle>
+`;
+
+exports[`Component > ProjectTitle should show export select dialogue 2`] = `"<ul><li><a href=\\"\\" tabindex=\\"0\\" target=\\"\\">Default</a></li></ul>"`;
+
+exports[`Component > ProjectTitle should show print select dialogue 1`] = `
+<ProjectTitle
+  _id="1"
+  downloadScenario={[Function]}
+  project={
+    Object {
+      "_id": "1",
+      "accessGroup": "accessGroupName",
+      "bundleId": "1",
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "name": "Mock Project",
+      "nonce": "12345",
+      "regionId": "1",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variants": Array [
+        "Default",
+      ],
+    }
+  }
+>
+  <Title>
+    <div
+      className="ApplicationDockTitle"
+    >
+      <Icon
+        type="cube"
+      >
+        <i
+          className="fa fa-cube fa-fw "
+        />
+      </Icon>
+       
+      Mock Project
+      <span>
+        <Link
+          className="pull-right"
+          onClick={[Function]}
+          title="Print a scenario from this project"
+        >
+          <Tip
+            className="pull-right"
+            tip="Print a scenario from this project"
+          >
+            <span
+              className="Tip pull-right"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <a
+                name="Print a scenario from this project"
+                onClick={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                <Icon
+                  type="print"
+                >
+                  <i
+                    className="fa fa-print fa-fw "
+                  />
+                </Icon>
+                <SelectScenario
+                  label="print"
+                  onHide={[Function]}
+                  projectId="1"
+                  regionId="1"
+                  scenarios={
+                    Array [
+                      "Default",
+                    ]
+                  }
+                >
+                  <Component
+                    onRequestClose={[Function]}
+                  >
+                    <Modal
+                      ariaHideApp={true}
+                      bodyOpenClassName="ReactModal__Body--open"
+                      className={
+                        Object {
+                          "base": "CustomModal",
+                        }
+                      }
+                      closeTimeoutMS={0}
+                      contentLabel="Modal"
+                      isOpen={true}
+                      onRequestClose={[Function]}
+                      parentSelector={[Function]}
+                      portalClassName="ReactModalPortal"
+                      shouldCloseOnOverlayClick={true}
+                      style={
+                        Object {
+                          "overlay": Object {
+                            "zIndex": 2500,
+                          },
+                        }
+                      }
+                    >
+                      <noscript />
+                    </Modal>
+                  </Component>
+                </SelectScenario>
+              </a>
+            </span>
+          </Tip>
+        </Link>
+        <Link
+          className="pull-right"
+          onClick={[Function]}
+          title="Download a scenario from this project"
+        >
+          <Tip
+            className="pull-right"
+            tip="Download a scenario from this project"
+          >
+            <span
+              className="Tip pull-right"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <a
+                name="Download a scenario from this project"
+                onClick={[Function]}
+                tabIndex={0}
+                type="button"
+              >
+                <Icon
+                  type="download"
+                >
+                  <i
+                    className="fa fa-download fa-fw "
+                  />
+                </Icon>
+              </a>
+            </span>
+          </Tip>
+        </Link>
+        <IconLink
+          className="pull-right"
+          title="Edit project settings"
+          to="/regions/1/projects/1/edit"
+          type="gear"
+        >
+          <Link
+            className="pull-right"
+            title="Edit project settings"
+            to="/regions/1/projects/1/edit"
+            type="button"
+          >
+            <Tip
+              className="pull-right"
+              tip="Edit project settings"
+            >
+              <span
+                className="Tip pull-right"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <Link
+                  name="Edit project settings"
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/regions/1/projects/1/edit"
+                  type="button"
+                >
+                  <a
+                    name="Edit project settings"
+                    onClick={[Function]}
+                    style={Object {}}
+                    type="button"
+                  >
+                    <Icon
+                      type="gear"
+                    >
+                      <i
+                        className="fa fa-gear fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Link>
+              </span>
+            </Tip>
+          </Link>
+        </IconLink>
+      </span>
+    </div>
+  </Title>
+</ProjectTitle>
+`;
+
+exports[`Component > ProjectTitle should show print select dialogue 2`] = `"<ul><li><a href=\\"/reports/1/projects/1/variants/0\\" tabindex=\\"0\\" target=\\"_blank\\">Default</a></li></ul>"`;

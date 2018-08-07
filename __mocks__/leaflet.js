@@ -158,6 +158,8 @@ class PopupMock extends LeafletMock.Popup {
   setContent (content) {
     this._content = content
   }
+
+  bindPopup () {}
 }
 
 module.exports = {

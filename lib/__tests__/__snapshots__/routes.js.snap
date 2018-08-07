@@ -118,83 +118,91 @@ exports[`Routes should render 1`] = `
                 "childRoutes": Array [
                   Object {
                     "component": [Function],
-                    "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                    "path": "regions",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/admin",
+                    "path": "reports/:regionId/projects/:projectId/variants/:variantId",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/admin/jobs",
+                    "path": "admin",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/admin/workers",
+                    "path": "admin/jobs",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/regions/create",
+                    "path": "admin/workers",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "regions/create",
                   },
                   Object {
                     "childRoutes": Array [
                       Object {
+                        "component": [Function],
+                        "onEnter": [Function],
+                        "path": "analysis",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "regional",
+                      },
+                      Object {
+                        "component": [Function],
+                        "onEnter": [Function],
+                        "path": "regional/:regionalAnalysisId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "projects",
+                      },
+                      Object {
                         "childRoutes": Array [
                           Object {
-                            "childRoutes": Array [
-                              Object {
-                                "component": [Function],
-                                "path": "create",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": ":bundleId",
-                              },
-                            ],
                             "component": [Function],
-                            "indexRoute": Object {
-                              "component": [Function],
-                            },
-                            "path": "bundles",
-                          },
-                          Object {
-                            "childRoutes": Array [
-                              Object {
-                                "component": [Function],
-                                "path": "upload",
-                              },
-                            ],
-                            "component": [Function],
-                            "indexRoute": Object {
-                              "component": [Function],
-                            },
-                            "path": "opportunities",
+                            "path": "create",
                           },
                           Object {
                             "component": [Function],
-                            "path": "edit",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "projects",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "projects/create",
+                            "path": ":bundleId",
                           },
                         ],
                         "component": [Function],
                         "indexRoute": Object {
                           "component": [Function],
                         },
-                        "path": ":regionId",
+                        "path": "bundles",
                       },
-                    ],
-                    "component": [Function],
-                    "path": "/regions",
-                  },
-                  Object {
-                    "childRoutes": Array [
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "component": [Function],
+                            "path": "upload",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "onEnter": [Function],
+                        "path": "opportunities",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "edit",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "projects",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "create-project",
+                      },
                       Object {
                         "childRoutes": Array [
                           Object {
@@ -211,42 +219,25 @@ exports[`Routes should render 1`] = `
                           },
                           Object {
                             "component": [Function],
+                            "path": "modifications",
+                          },
+                          Object {
+                            "component": [Function],
                             "path": "modifications/:modificationId",
                           },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/:variantId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "regional",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "regional/:regionalAnalysisId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/regional/:regionalAnalysisId",
-                          },
                         ],
-                        "component": [Function],
                         "indexRoute": Object {
                           "component": [Function],
                         },
-                        "path": ":projectId",
-                      },
-                      Object {
-                        "component": [Function],
-                        "path": "*",
+                        "onEnter": [Function],
+                        "path": "projects/:projectId",
                       },
                     ],
-                    "component": [Function],
-                    "path": "/projects",
+                    "indexRoute": Object {
+                      "component": [Function],
+                    },
+                    "onEnter": [Function],
+                    "path": "regions/:regionId",
                   },
                 ],
                 "indexRoute": Object {
@@ -270,83 +261,91 @@ exports[`Routes should render 1`] = `
               "childRoutes": Array [
                 Object {
                   "component": [Function],
-                  "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                  "path": "regions",
                 },
                 Object {
                   "component": [Function],
-                  "path": "/admin",
+                  "path": "reports/:regionId/projects/:projectId/variants/:variantId",
                 },
                 Object {
                   "component": [Function],
-                  "path": "/admin/jobs",
+                  "path": "admin",
                 },
                 Object {
                   "component": [Function],
-                  "path": "/admin/workers",
+                  "path": "admin/jobs",
                 },
                 Object {
                   "component": [Function],
-                  "path": "/regions/create",
+                  "path": "admin/workers",
+                },
+                Object {
+                  "component": [Function],
+                  "path": "regions/create",
                 },
                 Object {
                   "childRoutes": Array [
                     Object {
+                      "component": [Function],
+                      "onEnter": [Function],
+                      "path": "analysis",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "regional",
+                    },
+                    Object {
+                      "component": [Function],
+                      "onEnter": [Function],
+                      "path": "regional/:regionalAnalysisId",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "projects",
+                    },
+                    Object {
                       "childRoutes": Array [
                         Object {
-                          "childRoutes": Array [
-                            Object {
-                              "component": [Function],
-                              "path": "create",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": ":bundleId",
-                            },
-                          ],
                           "component": [Function],
-                          "indexRoute": Object {
-                            "component": [Function],
-                          },
-                          "path": "bundles",
-                        },
-                        Object {
-                          "childRoutes": Array [
-                            Object {
-                              "component": [Function],
-                              "path": "upload",
-                            },
-                          ],
-                          "component": [Function],
-                          "indexRoute": Object {
-                            "component": [Function],
-                          },
-                          "path": "opportunities",
+                          "path": "create",
                         },
                         Object {
                           "component": [Function],
-                          "path": "edit",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "projects",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "projects/create",
+                          "path": ":bundleId",
                         },
                       ],
                       "component": [Function],
                       "indexRoute": Object {
                         "component": [Function],
                       },
-                      "path": ":regionId",
+                      "path": "bundles",
                     },
-                  ],
-                  "component": [Function],
-                  "path": "/regions",
-                },
-                Object {
-                  "childRoutes": Array [
+                    Object {
+                      "childRoutes": Array [
+                        Object {
+                          "component": [Function],
+                          "path": "upload",
+                        },
+                      ],
+                      "component": [Function],
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
+                      "onEnter": [Function],
+                      "path": "opportunities",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "edit",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "projects",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "create-project",
+                    },
                     Object {
                       "childRoutes": Array [
                         Object {
@@ -363,42 +362,25 @@ exports[`Routes should render 1`] = `
                         },
                         Object {
                           "component": [Function],
+                          "path": "modifications",
+                        },
+                        Object {
+                          "component": [Function],
                           "path": "modifications/:modificationId",
                         },
-                        Object {
-                          "component": [Function],
-                          "path": "analysis",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "analysis/:variantId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "regional",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "regional/:regionalAnalysisId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "analysis/regional/:regionalAnalysisId",
-                        },
                       ],
-                      "component": [Function],
                       "indexRoute": Object {
                         "component": [Function],
                       },
-                      "path": ":projectId",
-                    },
-                    Object {
-                      "component": [Function],
-                      "path": "*",
+                      "onEnter": [Function],
+                      "path": "projects/:projectId",
                     },
                   ],
-                  "component": [Function],
-                  "path": "/projects",
+                  "indexRoute": Object {
+                    "component": [Function],
+                  },
+                  "onEnter": [Function],
+                  "path": "regions/:regionId",
                 },
               ],
               "indexRoute": Object {
@@ -463,83 +445,91 @@ exports[`Routes should render 1`] = `
                   "childRoutes": Array [
                     Object {
                       "component": [Function],
-                      "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                      "path": "regions",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/admin",
+                      "path": "reports/:regionId/projects/:projectId/variants/:variantId",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/admin/jobs",
+                      "path": "admin",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/admin/workers",
+                      "path": "admin/jobs",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/regions/create",
+                      "path": "admin/workers",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "regions/create",
                     },
                     Object {
                       "childRoutes": Array [
                         Object {
+                          "component": [Function],
+                          "onEnter": [Function],
+                          "path": "analysis",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "regional",
+                        },
+                        Object {
+                          "component": [Function],
+                          "onEnter": [Function],
+                          "path": "regional/:regionalAnalysisId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "projects",
+                        },
+                        Object {
                           "childRoutes": Array [
                             Object {
-                              "childRoutes": Array [
-                                Object {
-                                  "component": [Function],
-                                  "path": "create",
-                                },
-                                Object {
-                                  "component": [Function],
-                                  "path": ":bundleId",
-                                },
-                              ],
                               "component": [Function],
-                              "indexRoute": Object {
-                                "component": [Function],
-                              },
-                              "path": "bundles",
-                            },
-                            Object {
-                              "childRoutes": Array [
-                                Object {
-                                  "component": [Function],
-                                  "path": "upload",
-                                },
-                              ],
-                              "component": [Function],
-                              "indexRoute": Object {
-                                "component": [Function],
-                              },
-                              "path": "opportunities",
+                              "path": "create",
                             },
                             Object {
                               "component": [Function],
-                              "path": "edit",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "projects",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "projects/create",
+                              "path": ":bundleId",
                             },
                           ],
                           "component": [Function],
                           "indexRoute": Object {
                             "component": [Function],
                           },
-                          "path": ":regionId",
+                          "path": "bundles",
                         },
-                      ],
-                      "component": [Function],
-                      "path": "/regions",
-                    },
-                    Object {
-                      "childRoutes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "component": [Function],
+                              "path": "upload",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "onEnter": [Function],
+                          "path": "opportunities",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "edit",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "projects",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "create-project",
+                        },
                         Object {
                           "childRoutes": Array [
                             Object {
@@ -556,42 +546,25 @@ exports[`Routes should render 1`] = `
                             },
                             Object {
                               "component": [Function],
+                              "path": "modifications",
+                            },
+                            Object {
+                              "component": [Function],
                               "path": "modifications/:modificationId",
                             },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/:variantId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "regional",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "regional/:regionalAnalysisId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/regional/:regionalAnalysisId",
-                            },
                           ],
-                          "component": [Function],
                           "indexRoute": Object {
                             "component": [Function],
                           },
-                          "path": ":projectId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "*",
+                          "onEnter": [Function],
+                          "path": "projects/:projectId",
                         },
                       ],
-                      "component": [Function],
-                      "path": "/projects",
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
+                      "onEnter": [Function],
+                      "path": "regions/:regionId",
                     },
                   ],
                   "indexRoute": Object {
@@ -615,83 +588,91 @@ exports[`Routes should render 1`] = `
                 "childRoutes": Array [
                   Object {
                     "component": [Function],
-                    "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                    "path": "regions",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/admin",
+                    "path": "reports/:regionId/projects/:projectId/variants/:variantId",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/admin/jobs",
+                    "path": "admin",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/admin/workers",
+                    "path": "admin/jobs",
                   },
                   Object {
                     "component": [Function],
-                    "path": "/regions/create",
+                    "path": "admin/workers",
+                  },
+                  Object {
+                    "component": [Function],
+                    "path": "regions/create",
                   },
                   Object {
                     "childRoutes": Array [
                       Object {
+                        "component": [Function],
+                        "onEnter": [Function],
+                        "path": "analysis",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "regional",
+                      },
+                      Object {
+                        "component": [Function],
+                        "onEnter": [Function],
+                        "path": "regional/:regionalAnalysisId",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "projects",
+                      },
+                      Object {
                         "childRoutes": Array [
                           Object {
-                            "childRoutes": Array [
-                              Object {
-                                "component": [Function],
-                                "path": "create",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": ":bundleId",
-                              },
-                            ],
                             "component": [Function],
-                            "indexRoute": Object {
-                              "component": [Function],
-                            },
-                            "path": "bundles",
-                          },
-                          Object {
-                            "childRoutes": Array [
-                              Object {
-                                "component": [Function],
-                                "path": "upload",
-                              },
-                            ],
-                            "component": [Function],
-                            "indexRoute": Object {
-                              "component": [Function],
-                            },
-                            "path": "opportunities",
+                            "path": "create",
                           },
                           Object {
                             "component": [Function],
-                            "path": "edit",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "projects",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "projects/create",
+                            "path": ":bundleId",
                           },
                         ],
                         "component": [Function],
                         "indexRoute": Object {
                           "component": [Function],
                         },
-                        "path": ":regionId",
+                        "path": "bundles",
                       },
-                    ],
-                    "component": [Function],
-                    "path": "/regions",
-                  },
-                  Object {
-                    "childRoutes": Array [
+                      Object {
+                        "childRoutes": Array [
+                          Object {
+                            "component": [Function],
+                            "path": "upload",
+                          },
+                        ],
+                        "component": [Function],
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "onEnter": [Function],
+                        "path": "opportunities",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "edit",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "projects",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "create-project",
+                      },
                       Object {
                         "childRoutes": Array [
                           Object {
@@ -708,42 +689,25 @@ exports[`Routes should render 1`] = `
                           },
                           Object {
                             "component": [Function],
+                            "path": "modifications",
+                          },
+                          Object {
+                            "component": [Function],
                             "path": "modifications/:modificationId",
                           },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/:variantId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "regional",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "regional/:regionalAnalysisId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "analysis/regional/:regionalAnalysisId",
-                          },
                         ],
-                        "component": [Function],
                         "indexRoute": Object {
                           "component": [Function],
                         },
-                        "path": ":projectId",
-                      },
-                      Object {
-                        "component": [Function],
-                        "path": "*",
+                        "onEnter": [Function],
+                        "path": "projects/:projectId",
                       },
                     ],
-                    "component": [Function],
-                    "path": "/projects",
+                    "indexRoute": Object {
+                      "component": [Function],
+                    },
+                    "onEnter": [Function],
+                    "path": "regions/:regionId",
                   },
                 ],
                 "indexRoute": Object {
@@ -811,9 +775,9 @@ exports[`Routes should render 1`] = `
                   "nonce": "12345",
                   "opportunityDatasets": Array [
                     Object {
-                      "dataSource": "lodes-data-2014",
-                      "key": "Workers_total",
+                      "_id": "Workers_total",
                       "name": "Workers total",
+                      "sourceName": "lodes-data-2014",
                     },
                   ],
                   "statusCode": "DONE",
@@ -859,83 +823,91 @@ exports[`Routes should render 1`] = `
                     "childRoutes": Array [
                       Object {
                         "component": [Function],
-                        "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                        "path": "regions",
                       },
                       Object {
                         "component": [Function],
-                        "path": "/admin",
+                        "path": "reports/:regionId/projects/:projectId/variants/:variantId",
                       },
                       Object {
                         "component": [Function],
-                        "path": "/admin/jobs",
+                        "path": "admin",
                       },
                       Object {
                         "component": [Function],
-                        "path": "/admin/workers",
+                        "path": "admin/jobs",
                       },
                       Object {
                         "component": [Function],
-                        "path": "/regions/create",
+                        "path": "admin/workers",
+                      },
+                      Object {
+                        "component": [Function],
+                        "path": "regions/create",
                       },
                       Object {
                         "childRoutes": Array [
                           Object {
+                            "component": [Function],
+                            "onEnter": [Function],
+                            "path": "analysis",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "regional",
+                          },
+                          Object {
+                            "component": [Function],
+                            "onEnter": [Function],
+                            "path": "regional/:regionalAnalysisId",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "projects",
+                          },
+                          Object {
                             "childRoutes": Array [
                               Object {
-                                "childRoutes": Array [
-                                  Object {
-                                    "component": [Function],
-                                    "path": "create",
-                                  },
-                                  Object {
-                                    "component": [Function],
-                                    "path": ":bundleId",
-                                  },
-                                ],
                                 "component": [Function],
-                                "indexRoute": Object {
-                                  "component": [Function],
-                                },
-                                "path": "bundles",
-                              },
-                              Object {
-                                "childRoutes": Array [
-                                  Object {
-                                    "component": [Function],
-                                    "path": "upload",
-                                  },
-                                ],
-                                "component": [Function],
-                                "indexRoute": Object {
-                                  "component": [Function],
-                                },
-                                "path": "opportunities",
+                                "path": "create",
                               },
                               Object {
                                 "component": [Function],
-                                "path": "edit",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "projects",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "projects/create",
+                                "path": ":bundleId",
                               },
                             ],
                             "component": [Function],
                             "indexRoute": Object {
                               "component": [Function],
                             },
-                            "path": ":regionId",
+                            "path": "bundles",
                           },
-                        ],
-                        "component": [Function],
-                        "path": "/regions",
-                      },
-                      Object {
-                        "childRoutes": Array [
+                          Object {
+                            "childRoutes": Array [
+                              Object {
+                                "component": [Function],
+                                "path": "upload",
+                              },
+                            ],
+                            "component": [Function],
+                            "indexRoute": Object {
+                              "component": [Function],
+                            },
+                            "onEnter": [Function],
+                            "path": "opportunities",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "edit",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "projects",
+                          },
+                          Object {
+                            "component": [Function],
+                            "path": "create-project",
+                          },
                           Object {
                             "childRoutes": Array [
                               Object {
@@ -952,42 +924,25 @@ exports[`Routes should render 1`] = `
                               },
                               Object {
                                 "component": [Function],
+                                "path": "modifications",
+                              },
+                              Object {
+                                "component": [Function],
                                 "path": "modifications/:modificationId",
                               },
-                              Object {
-                                "component": [Function],
-                                "path": "analysis",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "analysis/:variantId",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "regional",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "regional/:regionalAnalysisId",
-                              },
-                              Object {
-                                "component": [Function],
-                                "path": "analysis/regional/:regionalAnalysisId",
-                              },
                             ],
-                            "component": [Function],
                             "indexRoute": Object {
                               "component": [Function],
                             },
-                            "path": ":projectId",
-                          },
-                          Object {
-                            "component": [Function],
-                            "path": "*",
+                            "onEnter": [Function],
+                            "path": "projects/:projectId",
                           },
                         ],
-                        "component": [Function],
-                        "path": "/projects",
+                        "indexRoute": Object {
+                          "component": [Function],
+                        },
+                        "onEnter": [Function],
+                        "path": "regions/:regionId",
                       },
                     ],
                     "indexRoute": Object {
@@ -1011,83 +966,91 @@ exports[`Routes should render 1`] = `
                   "childRoutes": Array [
                     Object {
                       "component": [Function],
-                      "path": "/reports/:regionId/projects/:projectId/variants/:variantId",
+                      "path": "regions",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/admin",
+                      "path": "reports/:regionId/projects/:projectId/variants/:variantId",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/admin/jobs",
+                      "path": "admin",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/admin/workers",
+                      "path": "admin/jobs",
                     },
                     Object {
                       "component": [Function],
-                      "path": "/regions/create",
+                      "path": "admin/workers",
+                    },
+                    Object {
+                      "component": [Function],
+                      "path": "regions/create",
                     },
                     Object {
                       "childRoutes": Array [
                         Object {
+                          "component": [Function],
+                          "onEnter": [Function],
+                          "path": "analysis",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "regional",
+                        },
+                        Object {
+                          "component": [Function],
+                          "onEnter": [Function],
+                          "path": "regional/:regionalAnalysisId",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "projects",
+                        },
+                        Object {
                           "childRoutes": Array [
                             Object {
-                              "childRoutes": Array [
-                                Object {
-                                  "component": [Function],
-                                  "path": "create",
-                                },
-                                Object {
-                                  "component": [Function],
-                                  "path": ":bundleId",
-                                },
-                              ],
                               "component": [Function],
-                              "indexRoute": Object {
-                                "component": [Function],
-                              },
-                              "path": "bundles",
-                            },
-                            Object {
-                              "childRoutes": Array [
-                                Object {
-                                  "component": [Function],
-                                  "path": "upload",
-                                },
-                              ],
-                              "component": [Function],
-                              "indexRoute": Object {
-                                "component": [Function],
-                              },
-                              "path": "opportunities",
+                              "path": "create",
                             },
                             Object {
                               "component": [Function],
-                              "path": "edit",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "projects",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "projects/create",
+                              "path": ":bundleId",
                             },
                           ],
                           "component": [Function],
                           "indexRoute": Object {
                             "component": [Function],
                           },
-                          "path": ":regionId",
+                          "path": "bundles",
                         },
-                      ],
-                      "component": [Function],
-                      "path": "/regions",
-                    },
-                    Object {
-                      "childRoutes": Array [
+                        Object {
+                          "childRoutes": Array [
+                            Object {
+                              "component": [Function],
+                              "path": "upload",
+                            },
+                          ],
+                          "component": [Function],
+                          "indexRoute": Object {
+                            "component": [Function],
+                          },
+                          "onEnter": [Function],
+                          "path": "opportunities",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "edit",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "projects",
+                        },
+                        Object {
+                          "component": [Function],
+                          "path": "create-project",
+                        },
                         Object {
                           "childRoutes": Array [
                             Object {
@@ -1104,42 +1067,25 @@ exports[`Routes should render 1`] = `
                             },
                             Object {
                               "component": [Function],
+                              "path": "modifications",
+                            },
+                            Object {
+                              "component": [Function],
                               "path": "modifications/:modificationId",
                             },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/:variantId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "regional",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "regional/:regionalAnalysisId",
-                            },
-                            Object {
-                              "component": [Function],
-                              "path": "analysis/regional/:regionalAnalysisId",
-                            },
                           ],
-                          "component": [Function],
                           "indexRoute": Object {
                             "component": [Function],
                           },
-                          "path": ":projectId",
-                        },
-                        Object {
-                          "component": [Function],
-                          "path": "*",
+                          "onEnter": [Function],
+                          "path": "projects/:projectId",
                         },
                       ],
-                      "component": [Function],
-                      "path": "/projects",
+                      "indexRoute": Object {
+                        "component": [Function],
+                      },
+                      "onEnter": [Function],
+                      "path": "regions/:regionId",
                     },
                   ],
                   "indexRoute": Object {
