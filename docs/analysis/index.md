@@ -1,13 +1,11 @@
 # Overview of analysis mode
 
-To enter analysis mode, click <span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span> on the sidebar.  The main analysis page is for generating isochrones (travel time contours) from selected origins.  To start, click <br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
+The main analysis page is for generating isochrones (travel time contours) from selected origins.  To enter analysis mode, click this icon on the sidebar: <br><span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span>
+
+To start an analysis, ensure a project and scenario are selected.  Results corresponding to this scenario will be shown in blue.  You may also select a comparison project and scenario, which will be shown in red.  Then click:
+<br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
 Once a compute cluster has initialized (which may take several minutes the first time you use a GTFS bundle), several components will be visible in the analysis mode.
-
-<figure>
-  <img src="../img/analysis-start.png" />
-  <figcaption>The initial analysis page</figcaption>
-</figure>
 
 ## Isochrone map
 
@@ -15,7 +13,7 @@ After the server computes and returns results, the map will show a blue isochron
 
 The modifications displayed on the map can be controlled in [editing mode](../edit-scenario/index.html#toggling-display-of-modifications-on-the-map).
 
-If opportunity datasets (e.g. job locations) are available (either automatically downloaded US Census [LODES](https://lehd.ces.census.gov/data/#lodes) data, or [user-uploaded opportunity data](../prepare-inputs/upload-opportunity-data.html)), the map will show gray dots representing the density of opportunities. For instance, if your selected Opportunity Data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities, and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents. Modifications on the map will be shown according to the visibility set in the editing mode.
+If an [opportunity dataset](../prepare-inputs/upload-opportunity-data.html) is selected in the drop-down menu in the settings panel, the map will show gray dots representing the density of opportunities. For instance, if your selected opportunity data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities, and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents.
 
 If multiple scenarios are being compared, the isochrone for the first scenario remains blue, while the isochrone for the second is red. Thus, areas reachable under both scenarios are purple, areas reachable only under the first scenario are blue, and areas reachable only under the second scenario are red.
 
@@ -63,8 +61,8 @@ Two box plots will be displayed, in red and blue, to the left of the axis. The b
 
 There are multiple options for downloading single-point analyses for use in GIS software:
 
-* <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> allows you to save the isochrone currently shown on the map.  The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org).
-* <span class="btn btn-info"><i class="fa fa-globe"></i> Generate & Download GeoTIFFs</span> allows you to save the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region.  This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95.
+* <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> saves the isochrone currently shown on the map.  The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org).
+* <span class="btn btn-info"><i class="fa fa-globe"></i> Generate & Download GeoTIFFs</span> saves the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region.  This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95.
 
 ### Analysis options
 Below the accessibility charts, different parameters for the analysis can be set:
