@@ -16,17 +16,16 @@ This will open a window allowing you to select the [modification type](modificat
 
 To create a sample modification, follow this quick-start guide:
 
-1. If you are not at the initial view in editing mode, with your project name at the top of the side panel, click <span class="ui-icon"><i class="fa fa-cubes"></i>Projects</span> then select your projects
-1. Click <span class="btn btn-success"><i class="fa fa-plus"></i> Create a modification</span>
-1. Leave "Add Trip" selected as the **Modification Type**, type "New Route" as the **Modification Name**, and confirm these options by clicking on the green button, which will create a modification and open the modification details panel for it
-1. In the modification details panel, click <span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
+1. If you are not at the initial view in editing mode, with your project name at the top of the side panel, click this icon on the sidebar: <br><span class="ui-icon"><i class="fa fa-cubes"></i>Projects</span>
+1. Select a project or add a new one
+1. Click: <br><span class="btn btn-success"><i class="fa fa-plus"></i> Create a modification</span>
+1. Leave "Add Trip" selected as the **Modification Type**, type "New Route Example" as the **Modification Name**, and confirm these options by clicking on the green button, which will create a modification and open the modification details panel for it
+1. In the modification details panel, click <br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
 1. On the map, click to add stops for the new route.  More details on editing route alignments are [here](modifications.html#add-trips).
-1. In the modifications details panel, click <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
+1. In the modifications details panel, click: <br><span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 1. Optionally, edit the default timetable parameters (e.g. set 5-minute headways for weekdays between 7 and 9 AM) and add additional timetables
-1. At the top of the modification details panel, click <span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span> to save your changes and return to the main list of Modifications
+1. To save your changes and return to the main list of Modifications, click this icon at the top of the modification details panel: <br><span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>
 1. Add more modifications or proceed to [analyze](../analysis/) your scenario.
-
-
 
 # Usage suggestions and details
 
@@ -52,7 +51,7 @@ By default, each modification is active in all scenarios that exist when the mod
 
 <figure>
   <img src="../img/scenario-chooser.png" />
-  <figcaption>Choosing the scenarios a modification is active in</figcaption>
+  <figcaption>Choosing the scenarios in which a modification is active</figcaption>
 </figure>
 
 
@@ -62,7 +61,11 @@ Occasionally, you may want to copy all of the modifications from one project int
 To do this, click
 <br><span class="ui-icon"><i class="fa fa-download"></i>Import modifications from another project</span>
 
-You can then choose the project from which to import modifications. Only projects which use the same GTFS bundle will be available. All modifications will be imported; when there are multiple scenarios, the scenarios in the project being imported will be mapped directly to the scenarios in the receiving project (i.e. modifications in the first scenario will remain in the first scenario in the new project).
+You can then choose the project from which to import modifications.
+
+If you choose a project associated with the same GTFS bundle, all modifications will be imported; when there are multiple scenarios, the scenarios in the project being imported will be mapped directly to the scenarios in the receiving project (i.e. modifications in the first scenario will remain in the first scenario in the new project).
+
+If you choose a project associated with a different GTFS, bundle, only add-trip modifications will be imported.
 
 <figure>
   <img src="../img/import-modifications.png" />
