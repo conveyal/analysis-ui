@@ -31,31 +31,9 @@ Available options while editing an alignment include:
 * **Bidirectional**: If this checkbox is checked, vehicles will travel in both directions along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval along the route, or if you will create all stops manually.
 * **Follow streets**: Make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street.
 
-Once you have created an alignment, you need to specify when the routes run. You can do this by clicking
+Once you have created an alignment, you need to specify when the routes run using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
 <br><span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
-This will open options for creating and editing timetables:
-
-<figure>
-<img src="../img/new-timetable.png" alt="add timetable" />
-</figure>
-
-Here you can specify the days of service, span of service, frequency, speed and dwell time. You can add as many timetables as you need to specify different frequencies or speeds at different times of days.
-
-You can additionally choose whether the frequency entry represents an assumed headway, or represents the
-exact schedule, using the "Times are exact" checkbox. For example, consider an entry specifying that
-a particular pattern runs every 15 minutes from 9 AM until 7 PM. If the checkbox is left unchecked,
-the software will assume that vehicles depart the first stop on the route every 15 minutes between
-9 AM and 7 PM, but with no assumptions as to exactly when that will happen. For example, vehicles might
-leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities will be tested and averaged in order to get a complete picture of how different possible schedules might perform. This option should be chosen when a frequency is known but a schedule has not yet been written for a future system.
-
-In the rare case in which the complete schedule is known at the time of scenario creation, the "Times are exact" checkbox can be activated. In this case, a single schedule will be created, with the first departure
-at the start time, and then additional departures with exactly the specified frequency until (but not
-including) the end time. For example, in the scenario given above, the vehicles would be scheduled
-to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end time is not included).
-
-If the schedule is not known, but it is known that the schedules of two lines will be related, the
-[phasing feature](phasing) may be enabled.
 
 ## Adjust dwell time
 You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular
@@ -70,49 +48,19 @@ Unfortunately, many source GTFS feeds do not contain any dwell time, meaning tha
 
 ## Adjust frequency
 
-Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency modification. First, create an adjust frequency modification, and choose
-the feed and route you want to adjust the frequency of.
+Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency/convert to frequency modification. First, create a "convert to frequency" modification, and choose the feed and route you want to adjust:
 
 <figure>
 <img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
 </figure>
 
-You then create any number of frequency entries, which represent a particular frequency on a particular trip pattern at a particular time of day. Typically, there will be at least
-two entries (one for each direction).
-A frequency entry is shown below. Here, you choose a template trip for the frequency entry, which determines the stop-to-stop travel times of the trips that are created with the
-given frequency. Oftentimes, travel time will vary throughout the day due to varying traffic and passenger loads, so it makes sense to choose a template trip that is representative
-of the time window for which you are creating frequency service. You can filter the list of possible template trips by choosing a trip pattern.
+You then create any number of frequency entries using [simple timetables](timetable.html). Typically, there will be at least two entries (one for each direction). Each frequency entry will follow one template trip, which determines the stop-to-stop travel times of the trips that are created with the given frequency.
 
-You then specify the parameters of the frequency entry: what days it runs on, the frequency of the trip, and the start and end time. Repeat this process until you have created frequency entries
-for all the service you want to retain, in both directions. The software will let you specify overlapping frequency windows, but keep in mind that this means that trips on _both_ entries
-will operate at the specified frequencies (e.g., if you have a ten-minute frequency and a 15-minute frequency overlapping, there will be one set of vehicles coming every ten minutes,
-and another, independent, set coming every 15).
+You then [add details to each frequency entry](timetable.html). Repeat this process until you have created frequency entries for all the service you want to retain, in both directions.
 
-You can additionally choose whether the frequency entry represents an assumed headway, or represents the
-exact schedule, using the "Times are exact" checkbox. For example, consider an entry specifying that
-a particular pattern runs every 15 minutes from 9 AM until 7 PM. If the checkbox is left unchecked,
-the software will assume that vehicles depart the first stop on the route every 15 minutes between
-9 AM and 7 PM, but with no assumptions as to exactly when that will happen. For example, vehicles might
-leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities
-will be tested and averaged in order to get a complete picture of how different possible schedules
-might perform. This option should be chosen when a frequency is known but a schedule has not yet been
-written for a future system.
+You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
 
-In the rare case in which the complete schedule is known at the time of scenario creation, the "Times are exact"
-checkbox can be activated. In this case, a single schedule will be created, with the first departure
-at the start time, and then additional departures with exactly the specified frequency until (but not
-including) the end time. For example, in the scenario given above, the vehicles would be scheduled
-to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end time is not included).
 
-If the schedule is not known, but it is known that the schedules of two lines will be related, the
-[phasing feature](phasing) may be enabled.
-
-You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful
-when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
-
-<figure>
-<img src="../img/frequency-entry.png" alt="Editing a frequency entry" />
-</figure>
 
 ## Adjust speed
 
@@ -123,7 +71,7 @@ Finally, enter a scale, which is the factor to multiply the speed by. For instan
 to model changes in dwell time, see the adjust dwell time modification below).
 
 This modification does not take into account the possibility of increased frequency due to more efficient
-routes. However, it can be paired withe a change frequency modification to model that scenario.
+routes. However, it can be paired with a change frequency modification to model that scenario.
 
 <figure>
 <img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
@@ -146,7 +94,7 @@ effectively as if the vehicles were leaving the original terminal at the same ti
 past all of the removed stops.
 
 This modification does not take into account the possibility of increased frequency due to more efficient
-routes. However, it can be paired withe a change frequency modification to model that scenario.
+routes. However, it can be paired with a change frequency modification to model that scenario.
 
 <figure>
 <img src="../img/remove-stops.png"  alt="Remove stops" />

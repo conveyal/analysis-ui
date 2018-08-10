@@ -2,7 +2,7 @@
 
 ### When starting an analysis, why does the "initializing cluster" message persist for so long?
 
-Three steps need to take place when startng a new analysis.
+Three steps need to take place when starting a new analysis.
 
 First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services.  For scalability, we start a cluster "worker" servers for each [transport network](../glossary.html#transport-network) being analyzed.  This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine.  
 

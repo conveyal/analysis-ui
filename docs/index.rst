@@ -27,6 +27,7 @@ Contents
 
     edit-scenario/index
     edit-scenario/modifications
+    edit-scenario/timetable
     edit-scenario/phasing
     edit-scenario/export
 
