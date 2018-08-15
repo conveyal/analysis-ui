@@ -5,7 +5,9 @@ To measure access to spatially distributed opportunities (e.g. jobs, people, sch
 
 ## Uploading opportunity datasets
 
-Opportunity datasets can be created by uploading point-based shapefiles, polygon-based shapefiles, or a .csv file of points.  To start an upload, click: <br><span class="btn btn-success"><i class="fa fa-plus"></i> Upload a new opportunity dataset</span>
+Opportunity datasets can be created by uploading point-based shapefiles, polygon-based shapefiles, or a .csv file of points.  Files must have at least one numeric attribute/column in addition to coordinates/geometries.  For point files, it often makes sense to include a "count" column filled with 1.
+
+To start an upload, click: <br><span class="btn btn-success"><i class="fa fa-plus"></i> Upload a new opportunity dataset</span>
 
 Enter a name for the opportunity dataset source, then select the appropriate files.
 
