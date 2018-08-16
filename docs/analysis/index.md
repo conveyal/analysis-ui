@@ -2,7 +2,7 @@
 
 The main analysis page is for generating isochrones (travel time contours) from selected origins.  To enter analysis mode, click this icon on the sidebar: <br><span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span>
 
-To start an analysis, ensure a project and scenario are selected.  Results corresponding to this scenario will be shown in blue.  You may also select a comparison project and scenario, which will be shown in red.  Then click:
+To start an analysis, ensure a project and scenario are selected.  On the rest of the page, isochrone and accessibility results corresponding to this scenario will be shown in blue.  You may also select a comparison project and scenario, which will be shown in red.  To retrieve results for the origin marker shown on the map, move the marker or click:
 <br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
 Once a compute cluster has initialized (which may take several minutes the first time you use a GTFS bundle), several components will be visible in the analysis mode.
