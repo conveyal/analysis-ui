@@ -671,7 +671,7 @@ label {
 
 /** Admin Dashboard **/
 .AdminDashboard {
-  padding: 3rem;
+  padding: 2rem;
 }
 
 /** Workers **/
@@ -689,24 +689,31 @@ label {
   width: 400px;
   max-width: 500px;
   padding: 1rem;
-  background-color: #aab4bb;
+  background-color: #c0c2ce;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
   color: #fff;
   font-family: monospace;
-  border: 0.1px solid #fff;
+  border: 0.1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
   flex-grow: 1;
   flex-basis: auto;
 }
 
+.Workers > .Worker a {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .Workers > .Worker.active {
-  background-color: #36c923;
+  background-color: #17c37b;
 }
 
 .Workers > .Worker.stale {
-  background-color: #c9b623;
+  background-color: #eeb200;
 }
 
 .Workers > .Worker.dead {
-  background-color: #c92336;
+  background-color: #e75152;
 }
 
 .WorkerBundles {
@@ -747,6 +754,7 @@ label {
 .JobProgress {
   color: #fff;
   white-space: nowrap;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
 .JobProgress-complete {
@@ -757,7 +765,7 @@ label {
   background-color: #2389c9;
 }
 
-.all-copy {  
+.all-copy {
   -webkit-user-select: all;  /* Chrome all / Safari all */
   -moz-user-select: all;     /* Firefox all */
   -ms-user-select: all;      /* IE 10+ */
