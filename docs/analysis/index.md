@@ -88,7 +88,7 @@ The final option is the **Percentile of travel time**.  In single-point analyses
 
 If your scenario includes frequency-based routes (either in the baseline GTFS or in modifications with [exact times](../edit-scenario/timetable.html#exact-times) not selected), **simulated schedules**  controls the number of schedules simulated for sampling. The sampling process introduces random uncertainty, so you may see results change slightly when you repeatedly request accessibility results.  When comparing regional analyses that include frequency-based routes, you may see small unexpected increases or decreases attributable to this random noise.  Final results will be more accurate when **simulated schedules** is set to higher values, but computation will take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000.  For more information, see [methodology](methodology.html).
 
-If your scenario does not include frequency-based routes, there is no need to simulate schedules, which speeds computation and eliminates random noise from sampling.  When departure times are explicitly specified for all trips in a scenario, only that single fully specified set of exact departure/arrival times needs to be tested.
+If your scenario does not include frequency-based routes, there is no need to simulate schedules, so the requested number of simulated schedules is ignored.  In other words, when departure times are explicitly specified for all trips in a scenario, only that single fully specified set of exact departure/arrival times needs to be tested, which speeds computation and eliminates random noise from sampling.
 
 ### Errors and warnings
 
