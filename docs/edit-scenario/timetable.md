@@ -11,21 +11,15 @@ Each timetable or frequency entry allows for the specification of days of servic
 
 For add trip modifications, speed and dwell time values can be set for each timetable, either at the segment level or as overall average values.  
 
-For convert to frequency modifications, these values cannot be set, as they are copied from the template trip. Oftentimes, travel time will vary throughout the day due to varying traffic and passenger loads, so it makes sense to choose a template trip that is representative of the time window for which you are creating frequency service.
+For convert to frequency modifications, speed and dwell time values are copied from the template trip. Oftentimes, travel time will vary throughout the day due to varying traffic and passenger loads, so it makes sense to choose a template trip that is representative of the time window for which you are creating frequency service.
 
-You can additionally choose whether the timetable represents an assumed headway, or represents the
-exact schedule, using the "Times are exact" checkbox. For example, consider an entry specifying that
-a particular pattern runs every 15 minutes from 9 AM until 7 PM. If the checkbox is left unchecked,
-the software will assume that vehicles depart the first stop on the route every 15 minutes between
-9 AM and 7 PM, but with no assumptions as to exactly when that will happen. For example, vehicles might
-leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities will be tested and averaged in order to get a complete picture of how different possible schedules might perform. This option should be chosen when a frequency is known but a schedule has not yet been written for a future system.
+## Exact Times
 
-In the rare case in which the complete schedule is known at the time of scenario creation, the "Times are exact" checkbox can be activated. In this case, a single schedule will be created, with the first departure
-at the start time, and then additional departures with exactly the specified frequency until (but not
-including) the end time. For example, in the scenario given above, the vehicles would be scheduled
-to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end time is not included).
+You can specify whether the timetable represents an assumed headway, or represents the exact schedule, using the "Times are exact" checkbox. The default setting, with this box unchecked, should be used when a trip pattern's frequency is known but an exact schedule has not yet been defined (e.g. for a new service still in the planning stages).  For example, consider an entry specifying that a particular pattern runs every 15 minutes from 9 AM until 7 PM. With the checkbox unchecked, the routing engine knows that vehicles depart the first stop on the route every 15 minutes between 9 AM and 7 PM, but has no information as to exactly when that will happen. For example, vehicles might leave at 9:02, 9:17, 9:32, and so on, or they might leave at 9:10, 9:25, 9:40, etc.; many of these possibilities will be simulated in order to get a complete picture of how different possible schedules might perform. See [methodology](../analysis/methodology.html) for more details.
 
-If the schedule is not known, but it is known that the schedules of two lines will be related, the [phasing feature](phasing.html) may be enabled.
+When the complete schedule is defined, it is appropriate to activate the "Times are exact" checkbox. In this case, a single schedule will be created, with the first departure at the start time, and then additional departures with exactly the specified frequency until (but not including) the end time. For example, in the scenario given above, the vehicles would be scheduled to depart at exactly 9:00, 9:15, 9:30 until 6:45 (not at 7:00 because the end time is not included).  
+
+If the schedule is not known, but it is known that the schedules of two lines will be related (e.g. using timed transfers or pulsed schedules), the [phasing feature](phasing.html) may be enabled.
 
 
 ## Copying Timetables
