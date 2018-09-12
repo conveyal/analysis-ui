@@ -1,6 +1,6 @@
 # Overview of editing mode
 
-After logging into Conveyal Analysis and selecting a project, you will arrive at the screen below.  Each project has a numbered list of **scenarios** followed by a list of **modifications**.  
+After logging into Conveyal Analysis and selecting a project, you will arrive at the screen below. Each project has a numbered list of **scenarios** followed by a list of **modifications**. To prevent data conflicts, the system does not allow multiple users or browser tabs to edit the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them, as suggested [below](#usage-suggestions-and-details).
 
 <figure>
   <img src="../img/create-scenario.png" />
@@ -33,7 +33,7 @@ Modifications can be grouped by project and scenario, and different projects and
 
 If one user will be responsible for analyses in your region, involving a relatively small number of modifications, we recommend doing your work in one project and assessing the impact of different combinations of modifications by creating and using scenarios within that project.
 
-If multiple users will be involved in editing scenarios, or if you want to assess more than 10 different combinations of modifications, which would make the list of scenarios annoyingly long, we recommend dividing the modifications among different projects.  For example, one team member could code rail scenarios in Project A, another team member could code bus scenarios in Project B, and modifications from these two projects could be [imported](#importing-modifications-from-another-project) into Project C to analyze different combinations.
+If multiple users will be involved in editing scenarios, or if you want to assess more than 10 different combinations of modifications, which would make the list of scenarios annoyingly long, we recommend dividing the modifications among different projects.  For example, one team member could code rail scenarios in Project A, another team member could code bus scenarios in Project B. Modifications can be [imported](#importing-modifications-from-another-project) between projects that use the same baseline GTFS bundle; in this example, modifications from the two projects could combined in a third Project C.
 
 ## Toggling display of modifications on the map
 
