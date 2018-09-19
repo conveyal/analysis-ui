@@ -183,7 +183,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
     }
     loadRegionalAnalyses={[Function]}
     loadRegionalAnalysisGrids={[Function]}
-    minimumImprovementProbability={0.83}
     opportunityDatasets={
       Array [
         Object {
@@ -326,7 +325,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
     setActiveRegionalAnalysis={[Function]}
     setAggregationArea={[Function]}
     setAggregationWeights={[Function]}
-    setMinimumImprovementProbability={[Function]}
     uploadAggregationArea={[Function]}
   >
     <div>
@@ -716,58 +714,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           </Collapsible>
         </ProfileRequestDisplay>
       </div>
-      <MinimumImprovementProbabilitySelector
-        minimumImprovementProbability={0.83}
-        setMinimumImprovementProbability={[Function]}
-      >
-        <Slider
-          format=".2f"
-          label="Minimum probability of change"
-          max={1}
-          min={0}
-          onChange={[Function]}
-          output={true}
-          step={0.01}
-          value={0.83}
-        >
-          <Group
-            id="minimum-probability-of-change-input-7"
-            label="Minimum probability of change"
-            max={1}
-            min={0}
-            onChange={[Function]}
-            step={0.01}
-            value={0.83}
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="minimum-probability-of-change-input-7"
-              >
-                Minimum probability of change
-              </label>
-              <output
-                className="pull-right"
-                htmlFor="minimum-probability-of-change-input-7"
-              >
-                0.55
-              </output>
-              <input
-                className="form-control"
-                id="minimum-probability-of-change-input-7"
-                label="Minimum probability of change"
-                max={1}
-                min={0}
-                onChange={[Function]}
-                step={0.01}
-                type="range"
-                value={0.55}
-              />
-            </div>
-          </Group>
-        </Slider>
-      </MinimumImprovementProbabilitySelector>
       <p>
         Total jobs within 60 minutes (average instantaneous accessibility)
       </p>
@@ -883,7 +829,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
             className="form-group"
           >
             <label
-              htmlFor="aggregate-results-to-input-5"
+              htmlFor="aggregate-results-to-input-4"
             >
               Aggregate results to
             </label>
@@ -1000,7 +946,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           className="form-group"
         >
           <label
-            htmlFor="export-to-gis-input-6"
+            htmlFor="export-to-gis-input-5"
           >
             Export to GIS
           </label>
@@ -1030,20 +976,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
               tabIndex={0}
             >
               Download ANALYSIS 2
-            </a>
-          </Button>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="info"
-          >
-            <a
-              className="btn btn-info btn-block"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              Download probability of improvement
             </a>
           </Button>
         </div>
