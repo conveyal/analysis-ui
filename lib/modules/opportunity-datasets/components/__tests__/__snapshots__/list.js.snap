@@ -15,27 +15,28 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
 >
   <Connect(ListOpportunityDatasets)>
     <ListOpportunityDatasets
-      activeOpportunityDatasetColorizer={[Function]}
-      addOpportunityComponent={[Function]}
       addOpportunityDataset={[Function]}
       checkUploadStatus={[Function]}
       clearStatus={[Function]}
-      createGoTo={[Function]}
       deleteOpportunityDataset={[Function]}
+      deleteSourceSet={[Function]}
+      downloadLODES={[Function]}
       downloadOpportunityDataset={[Function]}
+      editOpportunityDataset={[Function]}
+      goTo={[Function]}
       goToUpload={[Function]}
       loadOpportunityDataset={[Function]}
+      loadOpportunityDatasets={[Function]}
       opportunitiesUrl="/regions/1/opportunities"
       opportunityDatasets={
         Array [
           Object {
-            "dataSource": "lodes-data-2014",
-            "key": "Workers_total",
+            "_id": "Workers_total",
             "name": "Workers total",
+            "sourceName": "lodes-data-2014",
           },
         ]
       }
-      removeOpportunityComponent={[Function]}
       removeOpportunityDataset={[Function]}
       setActiveOpportunityDataset={[Function]}
       setOpportunityDatasets={[Function]}
@@ -69,7 +70,32 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
                     className="fa fa-plus fa-fw "
                   />
                 </Icon>
-                 Upload a new dataset
+                 
+                Upload a new dataset
+              </a>
+            </Button>
+            <Button
+              block={true}
+              onClick={[Function]}
+              style="primary"
+              title="Fetch LODES (2015)"
+            >
+              <a
+                className="btn btn-primary btn-block"
+                href="#"
+                onClick={[Function]}
+                tabIndex={0}
+                title="Fetch LODES (2015)"
+              >
+                <Icon
+                  type="users"
+                >
+                  <i
+                    className="fa fa-users fa-fw "
+                  />
+                </Icon>
+                 
+                Fetch LODES (2015)
               </a>
             </Button>
           </div>
@@ -85,18 +111,33 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
           >
             <Connect(OpportunityDatasetSelector)>
               <OpportunityDatasetSelector
-                activeOpportunityDatasetColorizer={[Function]}
-                load={[Function]}
+                addOpportunityDataset={[Function]}
+                checkUploadStatus={[Function]}
+                clearStatus={[Function]}
+                deleteOpportunityDataset={[Function]}
+                deleteSourceSet={[Function]}
+                downloadLODES={[Function]}
+                downloadOpportunityDataset={[Function]}
+                editOpportunityDataset={[Function]}
+                goTo={[Function]}
+                loadOpportunityDataset={[Function]}
+                loadOpportunityDatasets={[Function]}
                 opportunitiesUrl="/regions/1/opportunities"
                 opportunityDatasets={
                   Array [
                     Object {
-                      "dataSource": "lodes-data-2014",
-                      "key": "Workers_total",
+                      "_id": "Workers_total",
                       "name": "Workers total",
+                      "sourceName": "lodes-data-2014",
                     },
                   ]
                 }
+                removeOpportunityDataset={[Function]}
+                setActiveOpportunityDataset={[Function]}
+                setOpportunityDatasets={[Function]}
+                updateOpportunityDataset={[Function]}
+                updateUploadStatuses={[Function]}
+                uploadOpportunityDataset={[Function]}
                 uploadStatuses={Array []}
               >
                 <Select
@@ -107,7 +148,7 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
                   clearAllText="Clear all"
                   clearRenderer={[Function]}
                   clearValueText="Clear value"
-                  clearable={false}
+                  clearable={true}
                   closeOnSelect={true}
                   deleteRemoves={true}
                   delimiter=","
@@ -154,7 +195,7 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
                   valueKey="value"
                 >
                   <div
-                    className="Select is-searchable Select--single"
+                    className="Select is-clearable is-searchable Select--single"
                   >
                     <div
                       className="Select-control"

@@ -1,5 +1,9 @@
 # Glossary
 
+### GTFS
+
+[General Transit Feed Specification](https://developers.google.com/transit/gtfs/), a format for transit network and schedule data. Most transit agencies produce GTFS feeds to power customer-facing trip planning applications, but they are also useful for analysis. Conveyal Analysis uses bundles of GTFS .zip files to build the transit layer of the baseline network.
+
 ### routing engine
 
 [Conveyal R5](https://github.com/conveyal/r5) is the core computational software behind Conveyal Analysis.  It performs one-to-many searches on multimodal (transit/bike/walk/car) transport networks.

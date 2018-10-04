@@ -15,18 +15,33 @@ exports[`Opportunity Datasets > Components > Selector should render 1`] = `
 >
   <Connect(OpportunityDatasetSelector)>
     <OpportunityDatasetSelector
-      activeOpportunityDatasetColorizer={[Function]}
-      load={[Function]}
+      addOpportunityDataset={[Function]}
+      checkUploadStatus={[Function]}
+      clearStatus={[Function]}
+      deleteOpportunityDataset={[Function]}
+      deleteSourceSet={[Function]}
+      downloadLODES={[Function]}
+      downloadOpportunityDataset={[Function]}
+      editOpportunityDataset={[Function]}
+      goTo={[Function]}
+      loadOpportunityDataset={[Function]}
+      loadOpportunityDatasets={[Function]}
       opportunitiesUrl="/regions/1/opportunities"
       opportunityDatasets={
         Array [
           Object {
-            "dataSource": "lodes-data-2014",
-            "key": "Workers_total",
+            "_id": "Workers_total",
             "name": "Workers total",
+            "sourceName": "lodes-data-2014",
           },
         ]
       }
+      removeOpportunityDataset={[Function]}
+      setActiveOpportunityDataset={[Function]}
+      setOpportunityDatasets={[Function]}
+      updateOpportunityDataset={[Function]}
+      updateUploadStatuses={[Function]}
+      uploadOpportunityDataset={[Function]}
       uploadStatuses={Array []}
     >
       <Select
@@ -37,7 +52,7 @@ exports[`Opportunity Datasets > Components > Selector should render 1`] = `
         clearAllText="Clear all"
         clearRenderer={[Function]}
         clearValueText="Clear value"
-        clearable={false}
+        clearable={true}
         closeOnSelect={true}
         deleteRemoves={true}
         delimiter=","
@@ -84,7 +99,7 @@ exports[`Opportunity Datasets > Components > Selector should render 1`] = `
         valueKey="value"
       >
         <div
-          className="Select is-searchable Select--single"
+          className="Select is-clearable is-searchable Select--single"
         >
           <div
             className="Select-control"

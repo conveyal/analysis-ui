@@ -59,9 +59,9 @@ exports[`Container > Edit Region renders correctly 1`] = `
           "nonce": "12345",
           "opportunityDatasets": Array [
             Object {
-              "dataSource": "lodes-data-2014",
-              "key": "Workers_total",
+              "_id": "Workers_total",
               "name": "Workers total",
+              "sourceName": "lodes-data-2014",
             },
           ],
           "statusCode": "DONE",
@@ -795,7 +795,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
               <div
                 className="ApplicationDockTitle"
               >
-                Edit Region
+                Edit region
               </div>
             </Title>
             <Dock>
@@ -896,7 +896,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
                       </Group>
                     </Text>
                     <h5>
-                      OpenStreetMap bounds
+                      Analysis bounds
                     </h5>
                     <Text
                       label="North bound"
@@ -1066,44 +1066,11 @@ exports[`Container > Edit Region renders correctly 1`] = `
                         </div>
                       </Group>
                     </Text>
-                    <File
-                      label="OpenStreetMap data in PBF format"
-                      name="customOpenStreetMapData"
-                      onChange={[Function]}
-                    >
-                      <Group
-                        id="custom-open-street-map-data-input-6"
-                        label="OpenStreetMap data in PBF format"
-                        name="customOpenStreetMapData"
-                        onChange={[Function]}
-                      >
-                        <div
-                          className="form-group"
-                        >
-                          <label
-                            htmlFor="custom-open-street-map-data-input-6"
-                          >
-                            OpenStreetMap data in PBF format
-                          </label>
-                          <Input
-                            id="custom-open-street-map-data-input-6"
-                            label="OpenStreetMap data in PBF format"
-                            name="customOpenStreetMapData"
-                            onChange={[Function]}
-                            type="file"
-                          >
-                            <input
-                              className="form-control"
-                              id="custom-open-street-map-data-input-6"
-                              name="customOpenStreetMapData"
-                              onChange={[Function]}
-                              placeholder="OpenStreetMap data in PBF format"
-                              type="file"
-                            />
-                          </Input>
-                        </div>
-                      </Group>
-                    </File>
+                    <p>
+                      <em>
+                        OSM updates have been temporarily disabled and will be moved to the bundle management page.
+                      </em>
+                    </p>
                     <Button
                       block={true}
                       disabled={false}
