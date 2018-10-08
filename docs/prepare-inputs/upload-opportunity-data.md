@@ -22,6 +22,8 @@ If you upload a CSV file, two extra fields will appear, in which you must type t
 
 Once you have done this, click the upload button to start the upload.  Opportunity datasets will be saved with the source name you entered and the attribute/column names of the uploaded files.
 
+After processing is complete, you can refresh the page and see dot-density maps of your datasets, converted to the [analysis grid](../analysis/methodology.html#spatial-resolution) used in Conveyal Analysis.
+
 ## Avoiding common errors
 * Eliminate extraneous attributes/columns from your shapefile/csv before uploading.
 * Ensure entries are numeric, not text values (e.g. "N/A", numbers stored as text). Only columns with exclusively numeric entries will be saved.
