@@ -67,16 +67,16 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
           className="row"
         >
           <Group
-            className="col-xs-6"
-            label="Access modes"
+            className="col-xs-4"
+            label="Access mode"
           >
             <div
-              className="form-group col-xs-6"
+              className="form-group col-xs-4"
             >
               <label
-                htmlFor="access-modes-input-0"
+                htmlFor="access-mode-input-0"
               >
-                Access modes
+                Access mode
               </label>
               <Group
                 disabled={false}
@@ -131,14 +131,14 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   <Button
                     active={false}
                     onClick={[Function]}
-                    title="Automobile (kiss-and-ride)"
+                    title="Automobile (drop-off)"
                   >
                     <a
                       className="btn btn-default"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
-                      title="Automobile (kiss-and-ride)"
+                      title="Automobile (drop-off)"
                     >
                       <Icon
                         type="car"
@@ -151,11 +151,13 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   </Button>
                   <Button
                     active={false}
+                    disabled={false}
                     onClick={[Function]}
                     title="Automobile (park-and-ride)"
                   >
                     <a
                       className="btn btn-default"
+                      disabled={false}
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
@@ -171,11 +173,11 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
             </div>
           </Group>
           <Group
-            className="col-xs-6"
+            className="col-xs-8"
             label="Transit modes"
           >
             <div
-              className="form-group col-xs-6"
+              className="form-group col-xs-8"
             >
               <label
                 htmlFor="transit-modes-input-1"
@@ -190,6 +192,21 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   className="btn-group btn-group-justified"
                   disabled={false}
                 >
+                  <Button
+                    active={false}
+                    onClick={[Function]}
+                    title="All"
+                  >
+                    <a
+                      className="btn btn-default"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      title="All"
+                    >
+                      All
+                    </a>
+                  </Button>
                   <Button
                     active={true}
                     onClick={[Function]}
@@ -214,29 +231,31 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   <Button
                     active={true}
                     onClick={[Function]}
-                    title="Tram"
+                    title="Tram, Streetcar, Light rail"
                   >
                     <a
                       className="btn btn-default active"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
-                      title="Tram"
+                      title="Tram, Streetcar, Light rail"
                     >
-                      Tram
+                      <strong>
+                        T
+                      </strong>
                     </a>
                   </Button>
                   <Button
                     active={true}
                     onClick={[Function]}
-                    title="Subway"
+                    title="Subway, Metro"
                   >
                     <a
                       className="btn btn-default active"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
-                      title="Subway"
+                      title="Subway, Metro"
                     >
                       <Icon
                         type="subway"
@@ -250,14 +269,14 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                   <Button
                     active={true}
                     onClick={[Function]}
-                    title="Rail"
+                    title="Commuter rail, long-distance rail"
                   >
                     <a
                       className="btn btn-default active"
                       href="#"
                       onClick={[Function]}
                       tabIndex={0}
-                      title="Rail"
+                      title="Commuter rail, long-distance rail"
                     >
                       <Icon
                         type="train"
@@ -266,6 +285,78 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
                           className="fa fa-train fa-fw "
                         />
                       </Icon>
+                    </a>
+                  </Button>
+                  <Button
+                    active={false}
+                    onClick={[Function]}
+                    title="Ferry, long-distance boat"
+                  >
+                    <a
+                      className="btn btn-default"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      title="Ferry, long-distance boat"
+                    >
+                      <Icon
+                        type="ship"
+                      >
+                        <i
+                          className="fa fa-ship fa-fw "
+                        />
+                      </Icon>
+                    </a>
+                  </Button>
+                  <Button
+                    active={false}
+                    onClick={[Function]}
+                    title="Cable car"
+                  >
+                    <a
+                      className="btn btn-default"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      title="Cable car"
+                    >
+                      <strong>
+                        C
+                      </strong>
+                    </a>
+                  </Button>
+                  <Button
+                    active={false}
+                    onClick={[Function]}
+                    title="Gondola"
+                  >
+                    <a
+                      className="btn btn-default"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      title="Gondola"
+                    >
+                      <strong>
+                        G
+                      </strong>
+                    </a>
+                  </Button>
+                  <Button
+                    active={false}
+                    onClick={[Function]}
+                    title="Funicular"
+                  >
+                    <a
+                      className="btn btn-default"
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      title="Funicular"
+                    >
+                      <strong>
+                        F
+                      </strong>
                     </a>
                   </Button>
                 </div>
