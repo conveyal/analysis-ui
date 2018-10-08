@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > EditRegion renders correctly 1`] = `
+exports[`Components > Create Region renders correctly 1`] = `
 <Provider
   store={
     Object {
@@ -13,40 +13,8 @@ exports[`Component > EditRegion renders correctly 1`] = `
     }
   }
 >
-  <EditRegion
+  <CreateRegion
     create={[Function]}
-    deleteRegion={[Function]}
-    load={[Function]}
-    region={
-      Object {
-        "_id": "1",
-        "accessGroup": "accessGroupName",
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        },
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Region description",
-        "name": "Mock Region",
-        "nonce": "12345",
-        "opportunityDatasets": Array [
-          Object {
-            "_id": "Workers_total",
-            "name": "Workers total",
-            "sourceName": "lodes-data-2014",
-          },
-        ],
-        "statusCode": "DONE",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-      }
-    }
-    save={[Function]}
-    setCenter={[Function]}
-    setLocally={[Function]}
   >
     <Application
       map={[Function]}
@@ -633,135 +601,143 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     url="mock.url/tile"
                     zIndex={-10}
                   />
-                  <EditBounds
-                    bounds={
-                      Object {
-                        "_northEast": Object {
-                          "lat": 39,
-                          "lng": -76,
-                        },
-                        "_southWest": Object {
-                          "lat": 38,
-                          "lng": -77,
-                        },
-                      }
-                    }
-                    save={[Function]}
-                  >
-                    <g>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 38,
-                            "lng": -77,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 38,
-                                "lng": -77,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 39,
-                            "lng": -77,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 39,
-                                "lng": -77,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 39,
-                            "lng": -76,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 39,
-                                "lng": -76,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 38,
-                            "lng": -76,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 38,
-                                "lng": -76,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Rectangle
-                        bounds={
-                          Object {
-                            "_northEast": Object {
-                              "lat": 39,
-                              "lng": -76,
-                            },
-                            "_southWest": Object {
-                              "lat": 38,
-                              "lng": -77,
-                            },
-                          }
-                        }
-                        weight={2}
+                  <g>
+                    <LabelLayer>
+                      <TileLayer
+                        url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
+                        zIndex={40}
                       />
-                    </g>
-                  </EditBounds>
+                    </LabelLayer>
+                    <EditBounds
+                      bounds={
+                        Object {
+                          "_northEast": Object {
+                            "lat": 39.02345139405932,
+                            "lng": -76.81640625000001,
+                          },
+                          "_southWest": Object {
+                            "lat": 38.77764022307338,
+                            "lng": -77.25860595703126,
+                          },
+                        }
+                      }
+                      save={[Function]}
+                    >
+                      <g>
+                        <Marker
+                          draggable={true}
+                          onDragEnd={[Function]}
+                          position={
+                            Object {
+                              "lat": 38.77764022307338,
+                              "lng": -77.25860595703126,
+                            }
+                          }
+                        >
+                          <g
+                            data-props={
+                              Object {
+                                "draggable": true,
+                                "onDragEnd": [Function],
+                                "position": Object {
+                                  "lat": 38.77764022307338,
+                                  "lng": -77.25860595703126,
+                                },
+                              }
+                            }
+                            type="Marker"
+                          />
+                        </Marker>
+                        <Marker
+                          draggable={true}
+                          onDragEnd={[Function]}
+                          position={
+                            Object {
+                              "lat": 39.02345139405932,
+                              "lng": -77.25860595703126,
+                            }
+                          }
+                        >
+                          <g
+                            data-props={
+                              Object {
+                                "draggable": true,
+                                "onDragEnd": [Function],
+                                "position": Object {
+                                  "lat": 39.02345139405932,
+                                  "lng": -77.25860595703126,
+                                },
+                              }
+                            }
+                            type="Marker"
+                          />
+                        </Marker>
+                        <Marker
+                          draggable={true}
+                          onDragEnd={[Function]}
+                          position={
+                            Object {
+                              "lat": 39.02345139405932,
+                              "lng": -76.81640625000001,
+                            }
+                          }
+                        >
+                          <g
+                            data-props={
+                              Object {
+                                "draggable": true,
+                                "onDragEnd": [Function],
+                                "position": Object {
+                                  "lat": 39.02345139405932,
+                                  "lng": -76.81640625000001,
+                                },
+                              }
+                            }
+                            type="Marker"
+                          />
+                        </Marker>
+                        <Marker
+                          draggable={true}
+                          onDragEnd={[Function]}
+                          position={
+                            Object {
+                              "lat": 38.77764022307338,
+                              "lng": -76.81640625000001,
+                            }
+                          }
+                        >
+                          <g
+                            data-props={
+                              Object {
+                                "draggable": true,
+                                "onDragEnd": [Function],
+                                "position": Object {
+                                  "lat": 38.77764022307338,
+                                  "lng": -76.81640625000001,
+                                },
+                              }
+                            }
+                            type="Marker"
+                          />
+                        </Marker>
+                        <Rectangle
+                          bounds={
+                            Object {
+                              "_northEast": Object {
+                                "lat": 39.02345139405932,
+                                "lng": -76.81640625000001,
+                              },
+                              "_southWest": Object {
+                                "lat": 38.77764022307338,
+                                "lng": -77.25860595703126,
+                              },
+                            }
+                          }
+                          weight={2}
+                        />
+                      </g>
+                    </EditBounds>
+                  </g>
                 </div>
               </Map>
             </Map>
@@ -774,7 +750,15 @@ exports[`Component > EditRegion renders correctly 1`] = `
             <div
               className="ApplicationDockTitle"
             >
-              Edit region
+              <Icon
+                type="map-o"
+              >
+                <i
+                  className="fa fa-map-o fa-fw "
+                />
+              </Icon>
+               
+              Set up a new region
             </div>
           </Title>
           <Dock>
@@ -794,14 +778,12 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     label="Region Name*"
                     name="Region Name"
                     onChange={[Function]}
-                    value="Mock Region"
                   >
                     <Group
                       id="region-name-input-0"
                       label="Region Name*"
                       name="Region Name"
                       onChange={[Function]}
-                      value="Mock Region"
                     >
                       <div
                         className="form-group"
@@ -817,7 +799,6 @@ exports[`Component > EditRegion renders correctly 1`] = `
                           name="Region Name"
                           onChange={[Function]}
                           type="text"
-                          value="Mock Region"
                         >
                           <input
                             className="form-control"
@@ -826,7 +807,6 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             onChange={[Function]}
                             placeholder="Region Name*"
                             type="text"
-                            value="Mock Region"
                           />
                         </Input>
                       </div>
@@ -836,14 +816,14 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     label="Description"
                     name="Description"
                     onChange={[Function]}
-                    value="Region description"
+                    value=""
                   >
                     <Group
                       id="description-input-1"
                       label="Description"
                       name="Description"
                       onChange={[Function]}
-                      value="Region description"
+                      value=""
                     >
                       <div
                         className="form-group"
@@ -859,7 +839,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                           name="Description"
                           onChange={[Function]}
                           type="text"
-                          value="Region description"
+                          value=""
                         >
                           <input
                             className="form-control"
@@ -868,27 +848,25 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             onChange={[Function]}
                             placeholder="Description"
                             type="text"
-                            value="Region description"
+                            value=""
                           />
                         </Input>
                       </div>
                     </Group>
                   </Text>
-                  <h5>
-                    Analysis bounds
-                  </h5>
+                  <h5 />
                   <Text
                     label="North bound"
                     name="North bound"
                     onChange={[Function]}
-                    value={39}
+                    value={39.02345139405932}
                   >
                     <Group
                       id="north-bound-input-2"
                       label="North bound"
                       name="North bound"
                       onChange={[Function]}
-                      value={39}
+                      value={39.02345139405932}
                     >
                       <div
                         className="form-group"
@@ -904,7 +882,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                           name="North bound"
                           onChange={[Function]}
                           type="text"
-                          value={39}
+                          value={39.02345139405932}
                         >
                           <input
                             className="form-control"
@@ -913,7 +891,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             onChange={[Function]}
                             placeholder="North bound"
                             type="text"
-                            value={39}
+                            value={39.02345139405932}
                           />
                         </Input>
                       </div>
@@ -923,14 +901,14 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     label="South bound"
                     name="South bound"
                     onChange={[Function]}
-                    value={38}
+                    value={38.77764022307338}
                   >
                     <Group
                       id="south-bound-input-3"
                       label="South bound"
                       name="South bound"
                       onChange={[Function]}
-                      value={38}
+                      value={38.77764022307338}
                     >
                       <div
                         className="form-group"
@@ -946,7 +924,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                           name="South bound"
                           onChange={[Function]}
                           type="text"
-                          value={38}
+                          value={38.77764022307338}
                         >
                           <input
                             className="form-control"
@@ -955,7 +933,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             onChange={[Function]}
                             placeholder="South bound"
                             type="text"
-                            value={38}
+                            value={38.77764022307338}
                           />
                         </Input>
                       </div>
@@ -965,14 +943,14 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     label="East bound"
                     name="East bound"
                     onChange={[Function]}
-                    value={-76}
+                    value={-76.81640625000001}
                   >
                     <Group
                       id="east-bound-input-4"
                       label="East bound"
                       name="East bound"
                       onChange={[Function]}
-                      value={-76}
+                      value={-76.81640625000001}
                     >
                       <div
                         className="form-group"
@@ -988,7 +966,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                           name="East bound"
                           onChange={[Function]}
                           type="text"
-                          value={-76}
+                          value={-76.81640625000001}
                         >
                           <input
                             className="form-control"
@@ -997,7 +975,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             onChange={[Function]}
                             placeholder="East bound"
                             type="text"
-                            value={-76}
+                            value={-76.81640625000001}
                           />
                         </Input>
                       </div>
@@ -1007,14 +985,14 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     label="West bound"
                     name="West bound"
                     onChange={[Function]}
-                    value={-77}
+                    value={-77.25860595703126}
                   >
                     <Group
                       id="west-bound-input-5"
                       label="West bound"
                       name="West bound"
                       onChange={[Function]}
-                      value={-77}
+                      value={-77.25860595703126}
                     >
                       <div
                         className="form-group"
@@ -1030,7 +1008,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                           name="West bound"
                           onChange={[Function]}
                           type="text"
-                          value={-77}
+                          value={-77.25860595703126}
                         >
                           <input
                             className="form-control"
@@ -1039,55 +1017,80 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             onChange={[Function]}
                             placeholder="West bound"
                             type="text"
-                            value={-77}
+                            value={-77.25860595703126}
                           />
                         </Input>
                       </div>
                     </Group>
                   </Text>
-                  <p>
-                    <em>
-                      OSM updates have been temporarily disabled and will be moved to the bundle management page.
-                    </em>
-                  </p>
+                  osmconvert crop command
+                  <div
+                    className="alert alert-info all-copy"
+                  >
+                    osmconvert [file].pbf -b="undefined, undefined, undefined, undefined"--complete-ways -o=[file]-cropped.pbf
+                  </div>
+                  <File
+                    label="OpenStreetMap data in PBF format"
+                    name="customOpenStreetMapData"
+                    onChange={[Function]}
+                  >
+                    <Group
+                      id="custom-open-street-map-data-input-6"
+                      label="OpenStreetMap data in PBF format"
+                      name="customOpenStreetMapData"
+                      onChange={[Function]}
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <label
+                          htmlFor="custom-open-street-map-data-input-6"
+                        >
+                          OpenStreetMap data in PBF format
+                        </label>
+                        <Input
+                          id="custom-open-street-map-data-input-6"
+                          label="OpenStreetMap data in PBF format"
+                          name="customOpenStreetMapData"
+                          onChange={[Function]}
+                          type="file"
+                        >
+                          <input
+                            className="form-control"
+                            id="custom-open-street-map-data-input-6"
+                            name="customOpenStreetMapData"
+                            onChange={[Function]}
+                            placeholder="OpenStreetMap data in PBF format"
+                            type="file"
+                          />
+                        </Input>
+                      </div>
+                    </Group>
+                  </File>
                   <Button
                     block={true}
-                    disabled={false}
-                    name="Save changes"
+                    disabled={true}
+                    name="Set up a new region"
                     onClick={[Function]}
                     style="success"
                   >
                     <a
                       className="btn btn-success btn-block"
-                      disabled={false}
+                      disabled={true}
                       href="#"
-                      name="Save changes"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      Save changes
-                    </a>
-                  </Button>
-                  <Button
-                    block={true}
-                    onClick={[Function]}
-                    style="danger"
-                  >
-                    <a
-                      className="btn btn-danger btn-block"
-                      href="#"
+                      name="Set up a new region"
                       onClick={[Function]}
                       tabIndex={0}
                     >
                       <Icon
-                        type="trash"
+                        type="check"
                       >
                         <i
-                          className="fa fa-trash fa-fw "
+                          className="fa fa-check fa-fw "
                         />
                       </Icon>
                        
-                      DANGER: Delete this region
+                      Set up a new region
                     </a>
                   </Button>
                 </div>
@@ -1097,6 +1100,6 @@ exports[`Component > EditRegion renders correctly 1`] = `
         </div>
       </div>
     </Application>
-  </EditRegion>
+  </CreateRegion>
 </Provider>
 `;
