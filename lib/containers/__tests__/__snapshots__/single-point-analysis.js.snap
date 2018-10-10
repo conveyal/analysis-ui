@@ -756,6 +756,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   }
                 }
                 minZoom={2}
+                onClick={[Function]}
                 useFlyTo={false}
                 zoom={12}
               >
@@ -2015,7 +2016,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   <span
                     dangerouslySetInnerHTML={
                       Object {
-                        "__html": "Selected date <strong>2016-01-16</strong> is out of service for project <strong>Mock Project</strong>. Its bundle <strong>Mock Bundle</strong> only has service between <strong>2018-09-27</strong> and <strong>2018-09-28</strong>.",
+                        "__html": "Selected date <strong>2016-01-16</strong> is out of service for project <strong>Mock Project</strong>. Its bundle <strong>Mock Bundle</strong> only has service between <strong>2018-09-27</strong> and <strong>2018-09-28</strong>. There may also be days in between without service. Please be certain of your GTFS service dates and select an appropriate one below.",
                       }
                     }
                   />
@@ -2704,24 +2705,25 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     isFetchingIsochrone={false}
                     isochroneCutoff={60}
                     maxAccessibility={-Infinity}
+                    nearestPercentile={50}
                     projectName="Mock Project: Default"
                     setIsochroneCutoff={[Function]}
                   >
                     <div>
                       <h5>
-                        Aggregate accessibility to
-                         
+                        Accessibility to 
                         <strong>
                           [select opportunity dataset]
                         </strong>
-                         
-                        within
-                         
+                         in 
                         <strong>
                           60
                         </strong>
-                         
-                        minutes
+                         minutes (travel time percentile: 
+                        <strong>
+                          50
+                        </strong>
+                        th)
                       </h5>
                       <input
                         className="form-control"
@@ -3076,16 +3078,16 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         className="row"
                       >
                         <Group
-                          className="col-xs-6"
-                          label="Access modes"
+                          className="col-xs-4"
+                          label="Access mode"
                         >
                           <div
-                            className="form-group col-xs-6"
+                            className="form-group col-xs-4"
                           >
                             <label
-                              htmlFor="access-modes-input-6"
+                              htmlFor="access-mode-input-6"
                             >
-                              Access modes
+                              Access mode
                             </label>
                             <Group
                               disabled={false}
@@ -3140,14 +3142,14 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <Button
                                   active={false}
                                   onClick={[Function]}
-                                  title="Automobile (kiss-and-ride)"
+                                  title="Automobile (drop-off)"
                                 >
                                   <a
                                     className="btn btn-default"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Automobile (kiss-and-ride)"
+                                    title="Automobile (drop-off)"
                                   >
                                     <Icon
                                       type="car"
@@ -3160,11 +3162,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 </Button>
                                 <Button
                                   active={false}
+                                  disabled={false}
                                   onClick={[Function]}
                                   title="Automobile (park-and-ride)"
                                 >
                                   <a
                                     className="btn btn-default"
+                                    disabled={false}
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
@@ -3180,11 +3184,11 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           </div>
                         </Group>
                         <Group
-                          className="col-xs-6"
+                          className="col-xs-8"
                           label="Transit modes"
                         >
                           <div
-                            className="form-group col-xs-6"
+                            className="form-group col-xs-8"
                           >
                             <label
                               htmlFor="transit-modes-input-7"
@@ -3199,6 +3203,21 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 className="btn-group btn-group-justified"
                                 disabled={false}
                               >
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="All"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="All"
+                                  >
+                                    All
+                                  </a>
+                                </Button>
                                 <Button
                                   active={true}
                                   onClick={[Function]}
@@ -3223,29 +3242,31 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <Button
                                   active={true}
                                   onClick={[Function]}
-                                  title="Tram"
+                                  title="Tram, Streetcar, Light rail"
                                 >
                                   <a
                                     className="btn btn-default active"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Tram"
+                                    title="Tram, Streetcar, Light rail"
                                   >
-                                    Tram
+                                    <strong>
+                                      T
+                                    </strong>
                                   </a>
                                 </Button>
                                 <Button
                                   active={true}
                                   onClick={[Function]}
-                                  title="Subway"
+                                  title="Subway, Metro"
                                 >
                                   <a
                                     className="btn btn-default active"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Subway"
+                                    title="Subway, Metro"
                                   >
                                     <Icon
                                       type="subway"
@@ -3259,14 +3280,14 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <Button
                                   active={true}
                                   onClick={[Function]}
-                                  title="Rail"
+                                  title="Commuter rail, long-distance rail"
                                 >
                                   <a
                                     className="btn btn-default active"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Rail"
+                                    title="Commuter rail, long-distance rail"
                                   >
                                     <Icon
                                       type="train"
@@ -3275,6 +3296,78 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                         className="fa fa-train fa-fw "
                                       />
                                     </Icon>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Ferry, long-distance boat"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Ferry, long-distance boat"
+                                  >
+                                    <Icon
+                                      type="ship"
+                                    >
+                                      <i
+                                        className="fa fa-ship fa-fw "
+                                      />
+                                    </Icon>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Cable car"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Cable car"
+                                  >
+                                    <strong>
+                                      C
+                                    </strong>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Gondola"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Gondola"
+                                  >
+                                    <strong>
+                                      G
+                                    </strong>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Funicular"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Funicular"
+                                  >
+                                    <strong>
+                                      F
+                                    </strong>
                                   </a>
                                 </Button>
                               </div>
