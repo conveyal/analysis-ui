@@ -15,10 +15,54 @@ exports[`Containers > Single Point should render correctly 1`] = `
 >
   <Connect(SinglePointAnalysis)>
     <SinglePointAnalysis
+      bundles={
+        Array [
+          Object {
+            "_id": "1",
+            "accessGroup": "accessGroupName",
+            "centerLat": 38.90124,
+            "centerLon": -77.015615,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "errorCode": "",
+            "feeds": Array [],
+            "name": "Mock Bundle",
+            "nonce": "12345",
+            "regionId": "1",
+            "serviceEnd": "2018-09-28",
+            "serviceStart": "2018-09-27",
+            "status": "DONE",
+            "totalFeeds": 0,
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+          },
+        ]
+      }
       clearComparisonProject={[Function]}
       comparisonDestinationTravelTimeDistribution={null}
       comparisonIsochrone={null}
       createRegionalAnalysis={[Function]}
+      currentBundle={
+        Object {
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "centerLat": 38.90124,
+          "centerLon": -77.015615,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "errorCode": "",
+          "feeds": Array [],
+          "name": "Mock Bundle",
+          "nonce": "12345",
+          "regionId": "1",
+          "serviceEnd": "2018-09-28",
+          "serviceStart": "2018-09-27",
+          "status": "DONE",
+          "totalFeeds": 0,
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+        }
+      }
       currentProject={
         Object {
           "_id": "1",
@@ -910,12 +954,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         }
                       }
                       bundleId="1"
-                      centerLonLat={
-                        Object {
-                          "lat": 38.90124,
-                          "lon": -77.015615,
-                        }
-                      }
                       feeds={
                         Array [
                           Object {
@@ -1933,6 +1971,20 @@ exports[`Containers > Single Point should render correctly 1`] = `
               <div
                 className="block"
               >
+                <div
+                  className="alert alert-warning"
+                >
+                  <strong>
+                    Warning! 
+                  </strong>
+                  <span
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "Selected date <strong>2016-01-16</strong> is out of service for project <strong>Mock Project</strong>. Its bundle <strong>Mock Bundle</strong> only has service between <strong>2018-09-27</strong> and <strong>2018-09-28</strong>. There may also be days in between without service. Please be certain of your GTFS service dates and select an appropriate one below.",
+                      }
+                    }
+                  />
+                </div>
                 <div
                   className="row"
                 >
