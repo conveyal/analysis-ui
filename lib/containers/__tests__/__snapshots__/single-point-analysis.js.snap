@@ -15,6 +15,18 @@ exports[`Containers > Single Point should render correctly 1`] = `
 >
   <Connect(SinglePointAnalysis)>
     <SinglePointAnalysis
+      analysisBounds={
+        Object {
+          "_northEast": Object {
+            "lat": 39,
+            "lng": -76,
+          },
+          "_southWest": Object {
+            "lat": 38,
+            "lng": -77,
+          },
+        }
+      }
       bundles={
         Array [
           Object {
@@ -126,6 +138,12 @@ exports[`Containers > Single Point should render correctly 1`] = `
         }
       }
       profileRequestHasChanged={true}
+      profileRequestLatLng={
+        Object {
+          "lat": 38.5,
+          "lng": -76.5,
+        }
+      }
       projects={
         Array [
           Object {
@@ -752,6 +770,24 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       dispatch={[Function]}
                     />
                   </Connect(GridualizerLayer)>
+                  <Rectangle
+                    bounds={
+                      Object {
+                        "_northEast": Object {
+                          "lat": 39,
+                          "lng": -76,
+                        },
+                        "_southWest": Object {
+                          "lat": 38,
+                          "lng": -77,
+                        },
+                      }
+                    }
+                    dashArray="3 8"
+                    fillOpacity={0}
+                    pointerEvents="none"
+                    weight={1}
+                  />
                   <Connect(ModificationsMap)>
                     <ModificationsMap
                       activeModification={
@@ -1876,8 +1912,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     onDragEnd={[Function]}
                     position={
                       Object {
-                        "lat": 12,
-                        "lon": 34,
+                        "lat": 38.5,
+                        "lng": -76.5,
                       }
                     }
                   >
@@ -1888,8 +1924,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           "onDblclick": [Function],
                           "onDragEnd": [Function],
                           "position": Object {
-                            "lat": 12,
-                            "lon": 34,
+                            "lat": 38.5,
+                            "lng": -76.5,
                           },
                         }
                       }
