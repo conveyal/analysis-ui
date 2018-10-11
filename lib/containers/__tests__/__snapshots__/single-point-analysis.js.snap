@@ -15,10 +15,66 @@ exports[`Containers > Single Point should render correctly 1`] = `
 >
   <Connect(SinglePointAnalysis)>
     <SinglePointAnalysis
+      analysisBounds={
+        Object {
+          "_northEast": Object {
+            "lat": 39,
+            "lng": -76,
+          },
+          "_southWest": Object {
+            "lat": 38,
+            "lng": -77,
+          },
+        }
+      }
+      bundles={
+        Array [
+          Object {
+            "_id": "1",
+            "accessGroup": "accessGroupName",
+            "centerLat": 38.90124,
+            "centerLon": -77.015615,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "errorCode": "",
+            "feeds": Array [],
+            "name": "Mock Bundle",
+            "nonce": "12345",
+            "regionId": "1",
+            "serviceEnd": "2018-09-28",
+            "serviceStart": "2018-09-27",
+            "status": "DONE",
+            "totalFeeds": 0,
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+          },
+        ]
+      }
       clearComparisonProject={[Function]}
       comparisonDestinationTravelTimeDistribution={null}
       comparisonIsochrone={null}
       createRegionalAnalysis={[Function]}
+      currentBundle={
+        Object {
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "centerLat": 38.90124,
+          "centerLon": -77.015615,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "errorCode": "",
+          "feeds": Array [],
+          "name": "Mock Bundle",
+          "nonce": "12345",
+          "regionId": "1",
+          "serviceEnd": "2018-09-28",
+          "serviceStart": "2018-09-27",
+          "status": "DONE",
+          "totalFeeds": 0,
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+        }
+      }
       currentProject={
         Object {
           "_id": "1",
@@ -82,6 +138,12 @@ exports[`Containers > Single Point should render correctly 1`] = `
         }
       }
       profileRequestHasChanged={true}
+      profileRequestLatLng={
+        Object {
+          "lat": 38.5,
+          "lng": -76.5,
+        }
+      }
       projects={
         Array [
           Object {
@@ -112,14 +174,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
       }
       regionId="1"
       regionalAnalyses={Array []}
-      regionalAnalysisBounds={
-        Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        }
-      }
       removeDestination={[Function]}
       setComparisonProject={[Function]}
       setCurrentProject={[Function]}
@@ -702,6 +756,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   }
                 }
                 minZoom={2}
+                onClick={[Function]}
                 useFlyTo={false}
                 zoom={12}
               >
@@ -716,6 +771,24 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       dispatch={[Function]}
                     />
                   </Connect(GridualizerLayer)>
+                  <Rectangle
+                    bounds={
+                      Object {
+                        "_northEast": Object {
+                          "lat": 39,
+                          "lng": -76,
+                        },
+                        "_southWest": Object {
+                          "lat": 38,
+                          "lng": -77,
+                        },
+                      }
+                    }
+                    dashArray="3 8"
+                    fillOpacity={0}
+                    pointerEvents="none"
+                    weight={1}
+                  />
                   <Connect(ModificationsMap)>
                     <ModificationsMap
                       activeModification={
@@ -917,12 +990,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         }
                       }
                       bundleId="1"
-                      centerLonLat={
-                        Object {
-                          "lat": 38.90124,
-                          "lon": -77.015615,
-                        }
-                      }
                       feeds={
                         Array [
                           Object {
@@ -1840,8 +1907,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     onDragEnd={[Function]}
                     position={
                       Object {
-                        "lat": 12,
-                        "lon": 34,
+                        "lat": 38.5,
+                        "lng": -76.5,
                       }
                     }
                   >
@@ -1852,8 +1919,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           "onDblclick": [Function],
                           "onDragEnd": [Function],
                           "position": Object {
-                            "lat": 12,
-                            "lon": 34,
+                            "lat": 38.5,
+                            "lng": -76.5,
                           },
                         }
                       }
@@ -1940,6 +2007,20 @@ exports[`Containers > Single Point should render correctly 1`] = `
               <div
                 className="block"
               >
+                <div
+                  className="alert alert-warning"
+                >
+                  <strong>
+                    Warning! 
+                  </strong>
+                  <span
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "Selected date <strong>2016-01-16</strong> is out of service for project <strong>Mock Project</strong>. Its bundle <strong>Mock Bundle</strong> only has service between <strong>2018-09-27</strong> and <strong>2018-09-28</strong>. There may also be days in between without service. Please be certain of your GTFS service dates and select an appropriate one below.",
+                      }
+                    }
+                  />
+                </div>
                 <div
                   className="row"
                 >
@@ -2624,24 +2705,25 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     isFetchingIsochrone={false}
                     isochroneCutoff={60}
                     maxAccessibility={-Infinity}
+                    nearestPercentile={50}
                     projectName="Mock Project: Default"
                     setIsochroneCutoff={[Function]}
                   >
                     <div>
                       <h5>
-                        Aggregate accessibility to
-                         
+                        Accessibility to 
                         <strong>
                           [select opportunity dataset]
                         </strong>
-                         
-                        within
-                         
+                         in 
                         <strong>
                           60
                         </strong>
-                         
-                        minutes
+                         minutes (travel time percentile: 
+                        <strong>
+                          50
+                        </strong>
+                        th)
                       </h5>
                       <input
                         className="form-control"
@@ -2996,16 +3078,16 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         className="row"
                       >
                         <Group
-                          className="col-xs-6"
-                          label="Access modes"
+                          className="col-xs-4"
+                          label="Access mode"
                         >
                           <div
-                            className="form-group col-xs-6"
+                            className="form-group col-xs-4"
                           >
                             <label
-                              htmlFor="access-modes-input-6"
+                              htmlFor="access-mode-input-6"
                             >
-                              Access modes
+                              Access mode
                             </label>
                             <Group
                               disabled={false}
@@ -3060,14 +3142,14 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <Button
                                   active={false}
                                   onClick={[Function]}
-                                  title="Automobile (kiss-and-ride)"
+                                  title="Automobile (drop-off)"
                                 >
                                   <a
                                     className="btn btn-default"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Automobile (kiss-and-ride)"
+                                    title="Automobile (drop-off)"
                                   >
                                     <Icon
                                       type="car"
@@ -3080,11 +3162,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 </Button>
                                 <Button
                                   active={false}
+                                  disabled={false}
                                   onClick={[Function]}
                                   title="Automobile (park-and-ride)"
                                 >
                                   <a
                                     className="btn btn-default"
+                                    disabled={false}
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
@@ -3100,11 +3184,11 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           </div>
                         </Group>
                         <Group
-                          className="col-xs-6"
+                          className="col-xs-8"
                           label="Transit modes"
                         >
                           <div
-                            className="form-group col-xs-6"
+                            className="form-group col-xs-8"
                           >
                             <label
                               htmlFor="transit-modes-input-7"
@@ -3119,6 +3203,21 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 className="btn-group btn-group-justified"
                                 disabled={false}
                               >
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="All"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="All"
+                                  >
+                                    All
+                                  </a>
+                                </Button>
                                 <Button
                                   active={true}
                                   onClick={[Function]}
@@ -3143,29 +3242,31 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <Button
                                   active={true}
                                   onClick={[Function]}
-                                  title="Tram"
+                                  title="Tram, Streetcar, Light rail"
                                 >
                                   <a
                                     className="btn btn-default active"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Tram"
+                                    title="Tram, Streetcar, Light rail"
                                   >
-                                    Tram
+                                    <strong>
+                                      T
+                                    </strong>
                                   </a>
                                 </Button>
                                 <Button
                                   active={true}
                                   onClick={[Function]}
-                                  title="Subway"
+                                  title="Subway, Metro"
                                 >
                                   <a
                                     className="btn btn-default active"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Subway"
+                                    title="Subway, Metro"
                                   >
                                     <Icon
                                       type="subway"
@@ -3179,14 +3280,14 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <Button
                                   active={true}
                                   onClick={[Function]}
-                                  title="Rail"
+                                  title="Commuter rail, long-distance rail"
                                 >
                                   <a
                                     className="btn btn-default active"
                                     href="#"
                                     onClick={[Function]}
                                     tabIndex={0}
-                                    title="Rail"
+                                    title="Commuter rail, long-distance rail"
                                   >
                                     <Icon
                                       type="train"
@@ -3195,6 +3296,78 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                         className="fa fa-train fa-fw "
                                       />
                                     </Icon>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Ferry, long-distance boat"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Ferry, long-distance boat"
+                                  >
+                                    <Icon
+                                      type="ship"
+                                    >
+                                      <i
+                                        className="fa fa-ship fa-fw "
+                                      />
+                                    </Icon>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Cable car"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Cable car"
+                                  >
+                                    <strong>
+                                      C
+                                    </strong>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Gondola"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Gondola"
+                                  >
+                                    <strong>
+                                      G
+                                    </strong>
+                                  </a>
+                                </Button>
+                                <Button
+                                  active={false}
+                                  onClick={[Function]}
+                                  title="Funicular"
+                                >
+                                  <a
+                                    className="btn btn-default"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    title="Funicular"
+                                  >
+                                    <strong>
+                                      F
+                                    </strong>
                                   </a>
                                 </Button>
                               </div>
@@ -4078,19 +4251,17 @@ exports[`Containers > Single Point should render correctly 1`] = `
                 </ProfileRequestEditor>
                 <Slider
                   disabled={false}
-                  format=".1f"
-                  label="Percentile of travel time (reliability) (Regional only)"
+                  label="Travel time percentile: 50 (single-point), 50 (regional)"
                   max={99}
                   min={1}
                   onChange={[Function]}
-                  output={true}
                   step={1}
                   value={50}
                 >
                   <Group
                     disabled={false}
-                    id="percentile-of-travel-time-reliability-regional-only-input-11"
-                    label="Percentile of travel time (reliability) (Regional only)"
+                    id="travel-time-percentile-50-single-point-50-regional-input-11"
+                    label="Travel time percentile: 50 (single-point), 50 (regional)"
                     max={99}
                     min={1}
                     onChange={[Function]}
@@ -4101,21 +4272,15 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       className="form-group"
                     >
                       <label
-                        htmlFor="percentile-of-travel-time-reliability-regional-only-input-11"
+                        htmlFor="travel-time-percentile-50-single-point-50-regional-input-11"
                       >
-                        Percentile of travel time (reliability) (Regional only)
+                        Travel time percentile: 50 (single-point), 50 (regional)
                       </label>
-                      <output
-                        className="pull-right"
-                        htmlFor="percentile-of-travel-time-reliability-regional-only-input-11"
-                      >
-                        50.0
-                      </output>
                       <input
                         className="form-control"
                         disabled={false}
-                        id="percentile-of-travel-time-reliability-regional-only-input-11"
-                        label="Percentile of travel time (reliability) (Regional only)"
+                        id="travel-time-percentile-50-single-point-50-regional-input-11"
+                        label="Travel time percentile: 50 (single-point), 50 (regional)"
                         max={99}
                         min={1}
                         onChange={[Function]}

@@ -7,7 +7,9 @@ After a regional analysis has completed, you can access it by selecting it in th
   <figcaption>Viewing a regional analysis</figcaption>
 </figure>
 
-The map shows the accessibility experienced at each location, with the legend to the left. This is the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis. You can export a regional analysis to GIS in GeoTIFF format in order to create publication-quality maps using the download link.
+The map shows the accessibility experienced at each location, with the legend to the left. This is the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis.
+
+Using the download button, you can save regional analysis results in a raster format (GEOTIFF). These saved files can be opened in GIS to conduct additional analyses or create custom maps. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
 
 ## Comparing regional analyses
 

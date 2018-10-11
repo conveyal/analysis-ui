@@ -14,11 +14,8 @@ exports[`Component > EditRegion renders correctly 1`] = `
   }
 >
   <EditRegion
-    clearUncreatedRegion={[Function]}
     create={[Function]}
     deleteRegion={[Function]}
-    fetch={[Function]}
-    isEditing={true}
     load={[Function]}
     region={
       Object {
@@ -30,25 +27,6 @@ exports[`Component > EditRegion renders correctly 1`] = `
           "south": 38,
           "west": -77,
         },
-        "bundles": Array [
-          Object {
-            "_id": "1",
-            "accessGroup": "accessGroupName",
-            "centerLat": 38.90124,
-            "centerLon": -77.015615,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "errorCode": "",
-            "feeds": Array [],
-            "name": "Mock Bundle",
-            "nonce": "12345",
-            "regionId": "1",
-            "status": "DONE",
-            "totalFeeds": 0,
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-          },
-        ],
         "createdAt": "2017-11-08T12:30:50.133Z",
         "createdBy": "person@gmail.com",
         "description": "Region description",
@@ -658,10 +636,14 @@ exports[`Component > EditRegion renders correctly 1`] = `
                   <EditBounds
                     bounds={
                       Object {
-                        "east": -76,
-                        "north": 39,
-                        "south": 38,
-                        "west": -77,
+                        "_northEast": Object {
+                          "lat": 39,
+                          "lng": -76,
+                        },
+                        "_southWest": Object {
+                          "lat": 38,
+                          "lng": -77,
+                        },
                       }
                     }
                     save={[Function]}
@@ -671,10 +653,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                         draggable={true}
                         onDragEnd={[Function]}
                         position={
-                          Array [
-                            38,
-                            -77,
-                          ]
+                          Object {
+                            "lat": 38,
+                            "lng": -77,
+                          }
                         }
                       >
                         <g
@@ -682,10 +664,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             Object {
                               "draggable": true,
                               "onDragEnd": [Function],
-                              "position": Array [
-                                38,
-                                -77,
-                              ],
+                              "position": Object {
+                                "lat": 38,
+                                "lng": -77,
+                              },
                             }
                           }
                           type="Marker"
@@ -695,10 +677,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                         draggable={true}
                         onDragEnd={[Function]}
                         position={
-                          Array [
-                            39,
-                            -77,
-                          ]
+                          Object {
+                            "lat": 39,
+                            "lng": -77,
+                          }
                         }
                       >
                         <g
@@ -706,10 +688,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             Object {
                               "draggable": true,
                               "onDragEnd": [Function],
-                              "position": Array [
-                                39,
-                                -77,
-                              ],
+                              "position": Object {
+                                "lat": 39,
+                                "lng": -77,
+                              },
                             }
                           }
                           type="Marker"
@@ -719,10 +701,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                         draggable={true}
                         onDragEnd={[Function]}
                         position={
-                          Array [
-                            39,
-                            -76,
-                          ]
+                          Object {
+                            "lat": 39,
+                            "lng": -76,
+                          }
                         }
                       >
                         <g
@@ -730,10 +712,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             Object {
                               "draggable": true,
                               "onDragEnd": [Function],
-                              "position": Array [
-                                39,
-                                -76,
-                              ],
+                              "position": Object {
+                                "lat": 39,
+                                "lng": -76,
+                              },
                             }
                           }
                           type="Marker"
@@ -743,10 +725,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                         draggable={true}
                         onDragEnd={[Function]}
                         position={
-                          Array [
-                            38,
-                            -76,
-                          ]
+                          Object {
+                            "lat": 38,
+                            "lng": -76,
+                          }
                         }
                       >
                         <g
@@ -754,10 +736,10 @@ exports[`Component > EditRegion renders correctly 1`] = `
                             Object {
                               "draggable": true,
                               "onDragEnd": [Function],
-                              "position": Array [
-                                38,
-                                -76,
-                              ],
+                              "position": Object {
+                                "lat": 38,
+                                "lng": -76,
+                              },
                             }
                           }
                           type="Marker"
@@ -765,16 +747,16 @@ exports[`Component > EditRegion renders correctly 1`] = `
                       </Marker>
                       <Rectangle
                         bounds={
-                          Array [
-                            Array [
-                              38,
-                              -77,
-                            ],
-                            Array [
-                              39,
-                              -76,
-                            ],
-                          ]
+                          Object {
+                            "_northEast": Object {
+                              "lat": 39,
+                              "lng": -76,
+                            },
+                            "_southWest": Object {
+                              "lat": 38,
+                              "lng": -77,
+                            },
+                          }
                         }
                         weight={2}
                       />
@@ -895,6 +877,17 @@ exports[`Component > EditRegion renders correctly 1`] = `
                   <h5>
                     Analysis bounds
                   </h5>
+                  <div
+                    className="alert alert-warning"
+                  >
+                    Bounds are snapped to points on our regular grid.
+                    <a
+                      href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+                      target="_blank"
+                    >
+                       Learn more about spatial resolution here.
+                    </a>
+                  </div>
                   <Text
                     label="North bound"
                     name="North bound"

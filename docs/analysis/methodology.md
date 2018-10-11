@@ -2,7 +2,15 @@
 
 This is a summary of the accessibility indicators used in Conveyal Analysis. For more details, please see Conway, Matthew Wigginton, Andrew Byrd, and Marco van der Linden (2017). “[Evidence-Based Transit and Land Use Sketch Planning Using Interactive Accessibility Methods on Combined Schedule and Headway-Based Networks](http://trrjournalonline.trb.org/doi/abs/10.3141/2653-06)”
 
-Our method to compute accessibility works by exhaustively planning trips from an origin to all destinations in the analysis area. Those destinations are cells of a fine regular grid (about 300m by 300m). We project all uploaded opportunity data into this grid. When we plan trips to each cell, we then simply sum the opportunity values of all cells that are within the travel time threshold.
+##Spatial resolution
+
+As a shared geographic foundation for regions, opportunity datasets, and accessibility indicators, Conveyal Analysis uses a regular grid of cells measuring approximately 300 meters by 300 meters. Large regions may contain more than a million such cells, reflecting a much finer resolution than typical regional travel demand models.
+
+Opportunity datasets from uploaded files and LODES imports are converted to this regular grid. For example, if a large traffic analysis zone in an uploaded shapefile has 10 thousand jobs, those jobs are dispersed uniformly throughout the grid cells in that zone.  
+
+In analysis mode, travel times from the origin location to all grid cells in the region are calculated. Total travel time to a grid cell includes time  from the origin location to the nearest point in the street network, and from the street network to the center of the destination grid cell, as well as typical on-street, waiting, and in-vehicle components of travel time. Accessibility indicators are then calculated as the sum of the opportunity values of all cells reachable within the travel time threshold. In regional accessibility analyses, each grid cell of a region is treated as an origin, and this calculation is repeated in parallel for each cell.
+
+##Accounting for variability
 
 Travel times by transit are often highly variable, depending on when travelers start their journeys and the timetables of routes they use. To account for this variability, we calculate the  distribution of travel times experienced in a given departure window, then select specific values from this distribution according to a parameter we call the time percentile.  This percentile ranges from 0 to 100 and represents how reliably a destination is reachable for travelers starting journeys in the selected departure window.
 
