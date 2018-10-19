@@ -14,6 +14,7 @@ common:
   removeFrom: Remove from
   route: Route
   loading: Loading...
+  processing: Processing...
 error:
   back: Go back
   close: Continue anyways
@@ -28,15 +29,19 @@ authentication:
   username: Logged in as %(username)
 bundle:
   name: Bundle Name
+  explanation: Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
+  edit: Edit Bundle
   create: Create GTFS bundle
-  failure: Upload Failed. Is this a valid GTFS bundle?
+  failure: Error processing GTFS. Please upload valid GTFS .zip files.
   feed: Feed
   files: GTFS .zip files
   delete: Delete this bundle
   deleteConfirmation: Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.
   edit: Edit bundle
-  processing: Bundle still being processed...
-  save: Save bundle
+  processing: Wait until processing is complete before leaving this page. This may take a few minutes.
+  save: Save renamed bundle/feed names
+  select: or select an existing one
+  notice: After clicking "Create, you will need to wait a few minutes for GTFS feeds to be processed.
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
 mode:
