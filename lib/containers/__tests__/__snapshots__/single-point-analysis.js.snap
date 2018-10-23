@@ -51,6 +51,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
         ]
       }
       clearComparisonProject={[Function]}
+      clearTravelTimeSurfaces={[Function]}
       comparisonDestinationTravelTimeDistribution={null}
       comparisonIsochrone={null}
       createRegionalAnalysis={[Function]}
@@ -2808,11 +2809,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     className="btn-group btn-group-justified"
                   >
                     <Button
+                      disabled={false}
                       onClick={[Function]}
                       style="info"
                     >
                       <a
                         className="btn btn-info"
+                        disabled={false}
                         href="#"
                         onClick={[Function]}
                         tabIndex={0}
@@ -3402,6 +3405,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             input={true}
                             inputProps={
                               Object {
+                                "disabled": false,
                                 "id": "date-picker-1",
                               }
                             }
@@ -3421,6 +3425,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             >
                               <input
                                 className="form-control"
+                                disabled={false}
                                 id="date-picker-1"
                                 onChange={[Function]}
                                 onFocus={[Function]}
@@ -4250,7 +4255,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </div>
                 </ProfileRequestEditor>
                 <Slider
-                  disabled={false}
+                  disabled={true}
                   label="Travel time percentile: 50 (single-point), 50 (regional)"
                   max={99}
                   min={1}
@@ -4259,7 +4264,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   value={50}
                 >
                   <Group
-                    disabled={false}
+                    disabled={true}
                     id="travel-time-percentile-50-single-point-50-regional-input-11"
                     label="Travel time percentile: 50 (single-point), 50 (regional)"
                     max={99}
@@ -4278,7 +4283,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       </label>
                       <input
                         className="form-control"
-                        disabled={false}
+                        disabled={true}
                         id="travel-time-percentile-50-single-point-50-regional-input-11"
                         label="Travel time percentile: 50 (single-point), 50 (regional)"
                         max={99}
