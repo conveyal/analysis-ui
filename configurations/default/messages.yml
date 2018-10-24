@@ -14,6 +14,7 @@ common:
   removeFrom: Remove from
   route: Route
   loading: Loading...
+  processing: Processing...
 error:
   back: Go back
   close: Continue anyways
@@ -28,15 +29,19 @@ authentication:
   username: Logged in as %(username)
 bundle:
   name: Bundle Name
+  explanation: Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
+  edit: Edit Bundle
   create: Create GTFS bundle
-  failure: Upload Failed. Is this a valid GTFS bundle?
+  failure: Error processing GTFS. Please upload valid GTFS .zip files.
   feed: Feed
   files: GTFS .zip files
   delete: Delete this bundle
   deleteConfirmation: Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.
   edit: Edit bundle
-  processing: Bundle still being processed...
-  save: Save bundle
+  processing: Wait until processing is complete before leaving this page. This may take a few minutes.
+  save: Save renamed bundle/feed names
+  select: or select an existing one
+  notice: After clicking "Create, you will need to wait a few minutes for GTFS feeds to be processed.
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
 mode:
@@ -200,6 +205,7 @@ modification:
     noSegments: The modification being copied to and/or from does not have any segments. The default segment speed of %(segmentSpeed) km/h will be used.
     curHasMoreSegments: The modification of the timetable you are copying from has less segments than the modification you are copying to. The segment speeds will be copied %(numSegments) segment(s) and after that, the default segment speed of %(segmentSpeed) km/h will be used.
     curHasLessSegments: The modification of the timetable you are copying to has less segments than the modification you are copying from. The segment speeds will be copied %(numSegments) segment(s).
+  selectStopInstructions: Click on the `New` button to create a polygon that encloses the stops you wish to select.
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -341,6 +347,7 @@ report:
   adjustSpeed:
     scale: Scale speed by %(scale)x
     scaleLabel: Scale speed by
+    selectInstructions: Select the stop-to-stop segment(s) of the pattern(s) to scale the speed on.
   patternLength: Length
   patternName: Pattern
   reroute:
