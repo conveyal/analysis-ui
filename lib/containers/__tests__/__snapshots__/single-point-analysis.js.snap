@@ -1904,6 +1904,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </LabelLayer>
                   <Marker
                     draggable={true}
+                    interactive={true}
                     onDblclick={[Function]}
                     onDragEnd={[Function]}
                     position={
@@ -1917,6 +1918,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       data-props={
                         Object {
                           "draggable": true,
+                          "interactive": true,
                           "onDblclick": [Function],
                           "onDragEnd": [Function],
                           "position": Object {
@@ -1974,13 +1976,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
             </Button>
             <Button
               className="pad-right pull-right"
-              disabled={false}
+              disabled={true}
               onClick={[Function]}
               style="success"
             >
               <a
                 className="btn btn-success pad-right pull-right"
-                disabled={false}
+                disabled={true}
                 href="#"
                 onClick={[Function]}
                 tabIndex={0}
@@ -2696,19 +2698,23 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     </div>
                   </Group>
                 </div>
-                <Connect(StackedPercentileSelector)>
+                <Connect(StackedPercentileSelector)
+                  disabled={false}
+                  stale={true}
+                >
                   <StackedPercentileSelector
                     accessibility={null}
                     comparisonAccessibility={null}
                     comparisonInProgress={false}
                     comparisonPercentileCurves={null}
                     comparisonProjectName={null}
-                    isFetchingIsochrone={false}
+                    disabled={false}
                     isochroneCutoff={60}
                     maxAccessibility={-Infinity}
                     nearestPercentile={50}
                     projectName="Mock Project: Default"
                     setIsochroneCutoff={[Function]}
+                    stale={true}
                   >
                     <div>
                       <h5>
@@ -2728,6 +2734,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       </h5>
                       <input
                         className="form-control"
+                        disabled={false}
                         max={120}
                         min={1}
                         onChange={[Function]}
@@ -2809,13 +2816,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     className="btn-group btn-group-justified"
                   >
                     <Button
-                      disabled={false}
+                      disabled={true}
                       onClick={[Function]}
                       style="info"
                     >
                       <a
                         className="btn btn-info"
-                        disabled={false}
+                        disabled={true}
                         href="#"
                         onClick={[Function]}
                         tabIndex={0}
@@ -2832,7 +2839,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     </Button>
                   </div>
                 </Group>
-                <Connect(BookmarkChooser)>
+                <Connect(BookmarkChooser)
+                  disabled={false}
+                >
                   <BookmarkChooser
                     bookmarkData={
                       Object {
@@ -2876,9 +2885,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         "regionId": "1",
                       }
                     }
+                    bookmarks={Array []}
                     createBookmark={[Function]}
                     disabled={false}
-                    fetchTravelTimeSurface={[Function]}
                     selectBookmark={[Function]}
                   >
                     <Group
@@ -4255,7 +4264,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </div>
                 </ProfileRequestEditor>
                 <Slider
-                  disabled={true}
+                  disabled={false}
                   label="Travel time percentile: 50 (single-point), 50 (regional)"
                   max={99}
                   min={1}
@@ -4264,7 +4273,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   value={50}
                 >
                   <Group
-                    disabled={true}
+                    disabled={false}
                     id="travel-time-percentile-50-single-point-50-regional-input-11"
                     label="Travel time percentile: 50 (single-point), 50 (regional)"
                     max={99}
@@ -4283,7 +4292,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       </label>
                       <input
                         className="form-control"
-                        disabled={true}
+                        disabled={false}
                         id="travel-time-percentile-50-single-point-50-regional-input-11"
                         label="Travel time percentile: 50 (single-point), 50 (regional)"
                         max={99}
