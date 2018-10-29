@@ -16,6 +16,10 @@
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@conveyal/lonlat/-/lonlat-1.3.0.tgz#3fe586ee21a9159052156959bc3c3eaa22f056f5"
 
+"@conveyal/lonlat@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@conveyal/lonlat/-/lonlat-1.4.0.tgz#18a5c1349078a779e710d24af11bc02b24127ba0"
+
 "@conveyal/woonerf@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@conveyal/woonerf/-/woonerf-3.0.0.tgz#8575eab098c696e43423633f30bb9640eb5186a1"
@@ -96,6 +100,13 @@
   dependencies:
     "@turf/invariant" "^3.13.0"
 
+"@turf/boolean-point-in-polygon@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-6.0.1.tgz#5836677afd77d2ee391af0056a0c29b660edfa32"
+  dependencies:
+    "@turf/helpers" "6.x"
+    "@turf/invariant" "6.x"
+
 "@turf/clone@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/clone/-/clone-5.1.5.tgz#253e8d35477181976e33adfab50a0f02a7f0e367"
@@ -159,7 +170,7 @@
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-6.0.1.tgz#625112616159e519033dc5d24c094ccbce7a457f"
 
-"@turf/helpers@^3.10.3", "@turf/helpers@^3.13.0", "@turf/helpers@^3.7.5":
+"@turf/helpers@^3.13.0", "@turf/helpers@^3.7.5":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-3.13.0.tgz#d06078a1464cf56cdb7ea624ea1e13a71b88b806"
 
@@ -167,17 +178,15 @@
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.1.5.tgz#153405227ab933d004a5bb9641a9ed999fcbe0cf"
 
+"@turf/helpers@^6.1.4":
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-6.1.4.tgz#d6fd7ebe6782dd9c87dca5559bda5c48ae4c3836"
+
 "@turf/inside@3.7.5":
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-3.7.5.tgz#2bae1f70215900eae1b0c06ff1499ee8b10a3820"
   dependencies:
     "@turf/invariant" "^3.7.5"
-
-"@turf/inside@^3.10.3":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@turf/inside/-/inside-3.14.0.tgz#d6b6af55882cbdb8f9a558dca98689c67bd3c590"
-  dependencies:
-    "@turf/invariant" "^3.13.0"
 
 "@turf/invariant@6.x":
   version "6.0.1"
@@ -2424,7 +2433,7 @@ debug-log@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debug-log/-/debug-log-1.0.1.tgz#2307632d4c04382b8df8a32f70b895046d52745f"
 
-debug@2, debug@2.6.8, debug@^2.1.1, debug@^2.1.3, debug@^2.2.0, debug@^2.6.1, debug@^2.6.3, debug@^2.6.4, debug@^2.6.8:
+debug@2, debug@2.6.8, debug@^2.1.1, debug@^2.1.3, debug@^2.2.0, debug@^2.6.3, debug@^2.6.4, debug@^2.6.8:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
   dependencies:
@@ -2435,6 +2444,12 @@ debug@^3.1.0:
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
     ms "2.0.0"
+
+debug@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
+  dependencies:
+    ms "^2.1.1"
 
 debug@~0.7.4:
   version "0.7.4"
@@ -4545,13 +4560,13 @@ jsolines@^0.2.3:
     turf-inside "^3.0.12"
     turf-point "^2.0.1"
 
-jsolines@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/jsolines/-/jsolines-1.0.2.tgz#5332f7d77f5640054471a134317ae85346118c34"
+jsolines@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/jsolines/-/jsolines-2.0.2.tgz#104e3cd8f88f04152e5a2c1bb99448e6c25bfe71"
   dependencies:
-    "@turf/helpers" "^3.10.3"
-    "@turf/inside" "^3.10.3"
-    debug "^2.6.1"
+    "@turf/boolean-point-in-polygon" "^6.0.1"
+    "@turf/helpers" "^6.1.4"
+    debug "^4.1.0"
 
 json-schema@0.2.3:
   version "0.2.3"
@@ -5212,6 +5227,10 @@ ms@0.7.1:
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
+ms@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 
 mute-stream@0.0.5:
   version "0.0.5"
