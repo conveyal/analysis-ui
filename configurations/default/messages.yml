@@ -41,7 +41,7 @@ bundle:
   processing: Wait until processing is complete before leaving this page. This may take a few minutes.
   save: Save renamed bundle/feed names
   select: or select an existing one
-  notice: After clicking "Create, you will need to wait a few minutes for GTFS feeds to be processed.
+  notice: After clicking "Create", you will need to wait a few minutes for GTFS feeds to be processed.
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
 mode:
@@ -277,6 +277,7 @@ analysis:
   deleteRegionalAnalysis: Delete regional analysis
   openRegionalAnalysis: Open regional analysis
   newRegionalAnalysis: New regional analysis # this begins the process of creating a regional analysis
+  disableRegionalAnalysis: Fetch results for a single point before running a regional analysis
   startRegionalAnalysis: Start regional analysis # once a regional analysis is named, this kicks it off
   accessTo: %(opportunity) within %(cutoff) minutes (percentile %(percentile))
   accessToInstantaneous: %(opportunity) within %(cutoff) minutes (average instantaneous accessibility)
@@ -311,6 +312,7 @@ analysis:
   weightedAverageAccessibility: Weighted average accessibility: %(weightedAverage)
   weightedAverageAccessibilityWarning: Weighted average accessibility may not be representative of the experience of users of the system; we recommend using the histogram and percentile measures above.
   refresh: Fetch results
+  disableFetch: Select a project before fetching results
   regionalBounds: Bounds of analysis
   regionalBoundsSame: Same as %(name)
   regionalBoundsCustom: Custom
