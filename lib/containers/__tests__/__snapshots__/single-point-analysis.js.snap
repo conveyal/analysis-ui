@@ -51,6 +51,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
         ]
       }
       clearComparisonProject={[Function]}
+      clearTravelTimeSurfaces={[Function]}
       comparisonDestinationTravelTimeDistribution={null}
       comparisonIsochrone={null}
       createRegionalAnalysis={[Function]}
@@ -1903,8 +1904,10 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </LabelLayer>
                   <Marker
                     draggable={true}
+                    interactive={true}
                     onDblclick={[Function]}
                     onDragEnd={[Function]}
+                    opacity={1}
                     position={
                       Object {
                         "lat": 38.5,
@@ -1915,9 +1918,12 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     <g
                       data-props={
                         Object {
+                          "children": false,
                           "draggable": true,
+                          "interactive": true,
                           "onDblclick": [Function],
                           "onDragEnd": [Function],
+                          "opacity": 1,
                           "position": Object {
                             "lat": 38.5,
                             "lng": -76.5,
@@ -1951,6 +1957,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
               disabled={false}
               onClick={[Function]}
               style="primary"
+              title={false}
             >
               <a
                 className="btn btn-primary pull-right"
@@ -1958,6 +1965,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                 href="#"
                 onClick={[Function]}
                 tabIndex={0}
+                title={false}
               >
                 <Icon
                   className=""
@@ -1973,16 +1981,18 @@ exports[`Containers > Single Point should render correctly 1`] = `
             </Button>
             <Button
               className="pad-right pull-right"
-              disabled={false}
+              disabled={true}
               onClick={[Function]}
               style="success"
+              title="Fetch results for a single point before running a regional analysis"
             >
               <a
                 className="btn btn-success pad-right pull-right"
-                disabled={false}
+                disabled={true}
                 href="#"
                 onClick={[Function]}
                 tabIndex={0}
+                title="Fetch results for a single point before running a regional analysis"
               >
                 <Icon
                   type="plus"
@@ -2695,19 +2705,23 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     </div>
                   </Group>
                 </div>
-                <Connect(StackedPercentileSelector)>
+                <Connect(StackedPercentileSelector)
+                  disabled={false}
+                  stale={true}
+                >
                   <StackedPercentileSelector
                     accessibility={null}
                     comparisonAccessibility={null}
                     comparisonInProgress={false}
                     comparisonPercentileCurves={null}
                     comparisonProjectName={null}
-                    isFetchingIsochrone={false}
+                    disabled={false}
                     isochroneCutoff={60}
                     maxAccessibility={-Infinity}
                     nearestPercentile={50}
                     projectName="Mock Project: Default"
                     setIsochroneCutoff={[Function]}
+                    stale={true}
                   >
                     <div>
                       <h5>
@@ -2727,6 +2741,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       </h5>
                       <input
                         className="form-control"
+                        disabled={false}
                         max={120}
                         min={1}
                         onChange={[Function]}
@@ -2808,11 +2823,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     className="btn-group btn-group-justified"
                   >
                     <Button
+                      disabled={true}
                       onClick={[Function]}
                       style="info"
                     >
                       <a
                         className="btn btn-info"
+                        disabled={true}
                         href="#"
                         onClick={[Function]}
                         tabIndex={0}
@@ -2829,7 +2846,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     </Button>
                   </div>
                 </Group>
-                <Connect(BookmarkChooser)>
+                <Connect(BookmarkChooser)
+                  disabled={false}
+                >
                   <BookmarkChooser
                     bookmarkData={
                       Object {
@@ -2873,9 +2892,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         "regionId": "1",
                       }
                     }
+                    bookmarks={Array []}
                     createBookmark={[Function]}
                     disabled={false}
-                    fetchTravelTimeSurface={[Function]}
                     selectBookmark={[Function]}
                   >
                     <Group
@@ -3402,6 +3421,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             input={true}
                             inputProps={
                               Object {
+                                "disabled": false,
                                 "id": "date-picker-1",
                               }
                             }
@@ -3421,6 +3441,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             >
                               <input
                                 className="form-control"
+                                disabled={false}
                                 id="date-picker-1"
                                 onChange={[Function]}
                                 onFocus={[Function]}
