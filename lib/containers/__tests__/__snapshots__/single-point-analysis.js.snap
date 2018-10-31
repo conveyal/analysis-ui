@@ -98,8 +98,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
       downloadComparisonIsochrone={[Function]}
       downloadIsochrone={[Function]}
       fetchTravelTimeSurface={[Function]}
-      isFetchingIsochrone={false}
       isochrone={null}
+      isochroneFetchStatus={false}
       loadAllRegionalAnalyses={[Function]}
       profileRequest={
         Object {
@@ -1905,7 +1905,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </LabelLayer>
                   <Marker
                     draggable={true}
-                    interactive={true}
                     onDblclick={[Function]}
                     onDragEnd={[Function]}
                     opacity={1}
@@ -1921,7 +1920,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         Object {
                           "children": false,
                           "draggable": true,
-                          "interactive": true,
                           "onDblclick": [Function],
                           "onDragEnd": [Function],
                           "opacity": 1,
@@ -1952,7 +1950,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                 className="fa fa-area-chart fa-fw "
               />
             </Icon>
-             Analysis
+             
+            Analysis
             <Button
               className="pull-right"
               disabled={false}
@@ -1969,7 +1968,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
                 title=""
               >
                 <Icon
-                  className=""
                   type="refresh"
                 >
                   <i
