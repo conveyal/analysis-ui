@@ -684,49 +684,41 @@ exports[`Containers > Single Point should render correctly 1`] = `
         <div
           className="Fullscreen analysisMode"
         >
-          <Connect(Map)
-            onClick={[Function]}
+          <AnalysisMap
+            analysisBounds={
+              Object {
+                "_northEast": Object {
+                  "lat": 39,
+                  "lng": -76,
+                },
+                "_southWest": Object {
+                  "lat": 38,
+                  "lng": -77,
+                },
+              }
+            }
+            comparisonDistribution={null}
+            comparisonIsochrone={null}
+            disableMarker={false}
+            displayedDataIsCurrent={false}
+            distribution={null}
+            isochrone={null}
+            markerPosition={
+              Object {
+                "lat": 38.5,
+                "lng": -76.5,
+              }
+            }
+            removeDestination={[Function]}
+            setBounds={[Function]}
+            setDestination={[Function]}
+            setOrigin={[Function]}
+            showBoundsEditor={false}
           >
-            <Map
-              bounds={
-                Object {
-                  "_northEast": Object {
-                    "lat": 37.365,
-                    "lng": -121.924,
-                  },
-                  "_southWest": Object {
-                    "lat": 36.9707,
-                    "lng": -122.0279,
-                  },
-                }
-              }
-              center={
-                Object {
-                  "lat": 38.8886,
-                  "lon": -77.043,
-                }
-              }
-              dispatch={[Function]}
-              maxBounds={
-                Object {
-                  "_northEast": Object {
-                    "lat": 90,
-                    "lng": 200,
-                  },
-                  "_southWest": Object {
-                    "lat": -90,
-                    "lng": -200,
-                  },
-                }
-              }
-              minZoom={2}
+            <Connect(Map)
               onClick={[Function]}
-              tileUrl="mock.url/tile"
-              zIndex={-10}
-              zoom={12}
             >
               <Map
-                animate={false}
                 bounds={
                   Object {
                     "_northEast": Object {
@@ -745,6 +737,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     "lon": -77.043,
                   }
                 }
+                dispatch={[Function]}
                 maxBounds={
                   Object {
                     "_northEast": Object {
@@ -759,454 +752,79 @@ exports[`Containers > Single Point should render correctly 1`] = `
                 }
                 minZoom={2}
                 onClick={[Function]}
-                useFlyTo={false}
+                tileUrl="mock.url/tile"
+                zIndex={-10}
                 zoom={12}
               >
-                <div>
-                  <TileLayer
-                    attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
-                    url="mock.url/tile"
-                    zIndex={-10}
-                  />
-                  <Connect(GridualizerLayer)>
-                    <GridualizerLayer
-                      dispatch={[Function]}
-                    />
-                  </Connect(GridualizerLayer)>
-                  <Rectangle
-                    bounds={
-                      Object {
-                        "_northEast": Object {
-                          "lat": 38.99997583555928,
-                          "lng": -76.00067138671875,
-                        },
-                        "_southWest": Object {
-                          "lat": 38.000491450822885,
-                          "lng": -77.00042724609375,
-                        },
-                      }
+                <Map
+                  animate={false}
+                  bounds={
+                    Object {
+                      "_northEast": Object {
+                        "lat": 37.365,
+                        "lng": -121.924,
+                      },
+                      "_southWest": Object {
+                        "lat": 36.9707,
+                        "lng": -122.0279,
+                      },
                     }
-                    dashArray="3 8"
-                    fillOpacity={0}
-                    pointerEvents="none"
-                    weight={1}
-                  />
-                  <Connect(ModificationsMap)>
-                    <ModificationsMap
-                      activeModification={
+                  }
+                  center={
+                    Object {
+                      "lat": 38.8886,
+                      "lon": -77.043,
+                    }
+                  }
+                  maxBounds={
+                    Object {
+                      "_northEast": Object {
+                        "lat": 90,
+                        "lng": 200,
+                      },
+                      "_southWest": Object {
+                        "lat": -90,
+                        "lng": -200,
+                      },
+                    }
+                  }
+                  minZoom={2}
+                  onClick={[Function]}
+                  useFlyTo={false}
+                  zoom={12}
+                >
+                  <div>
+                    <TileLayer
+                      attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
+                      url="mock.url/tile"
+                      zIndex={-10}
+                    />
+                    <Connect(GridualizerLayer)>
+                      <GridualizerLayer
+                        dispatch={[Function]}
+                      />
+                    </Connect(GridualizerLayer)>
+                    <Rectangle
+                      bounds={
                         Object {
-                          "_id": "1234",
-                          "accessGroup": "accessGroupName",
-                          "bidirectional": false,
-                          "createdAt": "2017-11-08T12:30:50.133Z",
-                          "createdBy": "person@gmail.com",
-                          "description": "Mock description",
-                          "entries": Array [],
-                          "feed": "1",
-                          "name": "Test Modification",
-                          "nonce": "12345",
-                          "projectId": "1",
-                          "routes": Array [
-                            "route1",
-                          ],
-                          "segments": Array [
-                            {
-                          "fromStopId": "1",
-                          "geometry": {
-                            "type": "LineString",
-                            "coordinates": [
-                              [
-                                "-122.02460000",
-                                "36.97070000"
-                              ],
-                              [
-                                "-122.02790000",
-                                "37.04900000"
-                              ],
-                              [
-                                "-121.97990000",
-                                "37.22990000"
-                              ],
-                              [
-                                "-121.94450000",
-                                "37.32400000"
-                              ],
-                              [
-                                "-121.93600000",
-                                "37.35300000"
-                              ],
-                              [
-                                "-121.92400000",
-                                "37.36500000"
-                              ]
-                            ]
+                          "_northEast": Object {
+                            "lat": 38.99997583555928,
+                            "lng": -76.00067138671875,
                           },
-                          "properties": {},
-                          "spacing": "3000.00000000",
-                          "stopAtEnd": false,
-                          "stopAtStart": false,
-                          "type": "Feature"
-                        },
-                          ],
-                          "showOnMap": false,
-                          "timetables": Array [
-                            Object {
-                              "_id": "timetable-id",
-                              "dwellTime": 10,
-                              "dwellTimes": Array [
-                                12,
-                              ],
-                              "endTime": 57600,
-                              "exactTimes": false,
-                              "friday": true,
-                              "headwaySecs": 900,
-                              "modificationId": "1234",
-                              "modificationName": "Test Modification",
-                              "monday": true,
-                              "name": "Test timetable",
-                              "patternTrips": Array [
-                                "abcd",
-                              ],
-                              "phaseAtStop": "",
-                              "phaseFromStop": "",
-                              "phaseFromTimetable": "",
-                              "phaseSeconds": 300,
-                              "saturday": false,
-                              "segmentSpeeds": Array [],
-                              "sourceTrip": "abcd",
-                              "startTime": 28800,
-                              "sunday": false,
-                              "thursday": true,
-                              "tuesday": true,
-                              "wednesday": true,
-                            },
-                          ],
-                          "trips": Array [
-                            "abcd",
-                          ],
-                          "type": "add-trip-pattern",
-                          "updatedAt": "2017-11-08T12:31:19.602Z",
-                          "updatedBy": "person@gmail.com",
-                          "variants": Array [
-                            true,
-                          ],
-                        }
-                      }
-                      activeModificationFeed={
-                        Object {
-                          "checksum": "MOCK",
-                          "id": "1",
-                          "routes": Array [
-                            Object {
-                              "label": "mock-route-label",
-                              "patterns": Array [
-                                Object {
-                                  "geometry": Object {
-                                    "coordinates": Array [
-                                      Array [
-                                        -122.0246,
-                                        36.9707,
-                                      ],
-                                      Array [
-                                        -122.0279,
-                                        37.049,
-                                      ],
-                                      Array [
-                                        -121.9799,
-                                        37.2299,
-                                      ],
-                                      Array [
-                                        -121.9445,
-                                        37.324,
-                                      ],
-                                      Array [
-                                        -121.936,
-                                        37.353,
-                                      ],
-                                      Array [
-                                        -121.924,
-                                        37.365,
-                                      ],
-                                    ],
-                                    "type": "LineString",
-                                  },
-                                  "name": "Mock Pattern",
-                                  "pattern_id": "mock-pattern-id",
-                                  "stops": Array [
-                                    Object {
-                                      "stop_id": "1",
-                                      "stop_lat": 36.9707,
-                                      "stop_lon": -122.0246,
-                                      "stop_name": "Santa Cruz",
-                                    },
-                                    Object {
-                                      "stop_id": "2",
-                                      "stop_lat": 37.049,
-                                      "stop_lon": -122.0279,
-                                      "stop_name": "Scotts Valley",
-                                    },
-                                  ],
-                                  "trips": Array [
-                                    Object {
-                                      "duration": 1234,
-                                      "end_time": 13579,
-                                      "start_time": 12345,
-                                      "trip_headsign": "To Downtown",
-                                      "trip_id": "abcd",
-                                      "trip_short_name": "The Express",
-                                    },
-                                  ],
-                                },
-                              ],
-                              "route_id": "route1",
-                            },
-                          ],
-                          "stops": Array [
-                            Object {
-                              "stop_id": "1",
-                              "stop_lat": 36.9707,
-                              "stop_lon": -122.0246,
-                              "stop_name": "Santa Cruz",
-                            },
-                            Object {
-                              "stop_id": "2",
-                              "stop_lat": 37.049,
-                              "stop_lon": -122.0279,
-                              "stop_name": "Scotts Valley",
-                            },
-                          ],
-                          "stopsById": Object {
-                            "1": Object {
-                              "stop_id": "1",
-                              "stop_lat": 36.9707,
-                              "stop_lon": -122.0246,
-                              "stop_name": "Santa Cruz",
-                            },
-                            "2": Object {
-                              "stop_id": "2",
-                              "stop_lat": 37.049,
-                              "stop_lon": -122.0279,
-                              "stop_name": "Scotts Valley",
-                            },
+                          "_southWest": Object {
+                            "lat": 38.000491450822885,
+                            "lng": -77.00042724609375,
                           },
                         }
                       }
-                      bundleId="1"
-                      feeds={
-                        Array [
-                          Object {
-                            "checksum": "MOCK",
-                            "id": "1",
-                            "routes": Array [
-                              Object {
-                                "label": "mock-route-label",
-                                "patterns": Array [
-                                  Object {
-                                    "geometry": Object {
-                                      "coordinates": Array [
-                                        Array [
-                                          -122.0246,
-                                          36.9707,
-                                        ],
-                                        Array [
-                                          -122.0279,
-                                          37.049,
-                                        ],
-                                        Array [
-                                          -121.9799,
-                                          37.2299,
-                                        ],
-                                        Array [
-                                          -121.9445,
-                                          37.324,
-                                        ],
-                                        Array [
-                                          -121.936,
-                                          37.353,
-                                        ],
-                                        Array [
-                                          -121.924,
-                                          37.365,
-                                        ],
-                                      ],
-                                      "type": "LineString",
-                                    },
-                                    "name": "Mock Pattern",
-                                    "pattern_id": "mock-pattern-id",
-                                    "stops": Array [
-                                      Object {
-                                        "stop_id": "1",
-                                        "stop_lat": 36.9707,
-                                        "stop_lon": -122.0246,
-                                        "stop_name": "Santa Cruz",
-                                      },
-                                      Object {
-                                        "stop_id": "2",
-                                        "stop_lat": 37.049,
-                                        "stop_lon": -122.0279,
-                                        "stop_name": "Scotts Valley",
-                                      },
-                                    ],
-                                    "trips": Array [
-                                      Object {
-                                        "duration": 1234,
-                                        "end_time": 13579,
-                                        "start_time": 12345,
-                                        "trip_headsign": "To Downtown",
-                                        "trip_id": "abcd",
-                                        "trip_short_name": "The Express",
-                                      },
-                                    ],
-                                  },
-                                ],
-                                "route_id": "route1",
-                              },
-                            ],
-                            "stops": Array [
-                              Object {
-                                "stop_id": "1",
-                                "stop_lat": 36.9707,
-                                "stop_lon": -122.0246,
-                                "stop_name": "Santa Cruz",
-                              },
-                              Object {
-                                "stop_id": "2",
-                                "stop_lat": 37.049,
-                                "stop_lon": -122.0279,
-                                "stop_name": "Scotts Valley",
-                              },
-                            ],
-                            "stopsById": Object {
-                              "1": Object {
-                                "stop_id": "1",
-                                "stop_lat": 36.9707,
-                                "stop_lon": -122.0246,
-                                "stop_name": "Santa Cruz",
-                              },
-                              "2": Object {
-                                "stop_id": "2",
-                                "stop_lat": 37.049,
-                                "stop_lon": -122.0279,
-                                "stop_name": "Scotts Valley",
-                              },
-                            },
-                          },
-                        ]
-                      }
-                      feedsById={
-                        Object {
-                          "1": Object {
-                            "checksum": "MOCK",
-                            "id": "1",
-                            "routes": Array [
-                              Object {
-                                "label": "mock-route-label",
-                                "patterns": Array [
-                                  Object {
-                                    "geometry": Object {
-                                      "coordinates": Array [
-                                        Array [
-                                          -122.0246,
-                                          36.9707,
-                                        ],
-                                        Array [
-                                          -122.0279,
-                                          37.049,
-                                        ],
-                                        Array [
-                                          -121.9799,
-                                          37.2299,
-                                        ],
-                                        Array [
-                                          -121.9445,
-                                          37.324,
-                                        ],
-                                        Array [
-                                          -121.936,
-                                          37.353,
-                                        ],
-                                        Array [
-                                          -121.924,
-                                          37.365,
-                                        ],
-                                      ],
-                                      "type": "LineString",
-                                    },
-                                    "name": "Mock Pattern",
-                                    "pattern_id": "mock-pattern-id",
-                                    "stops": Array [
-                                      Object {
-                                        "stop_id": "1",
-                                        "stop_lat": 36.9707,
-                                        "stop_lon": -122.0246,
-                                        "stop_name": "Santa Cruz",
-                                      },
-                                      Object {
-                                        "stop_id": "2",
-                                        "stop_lat": 37.049,
-                                        "stop_lon": -122.0279,
-                                        "stop_name": "Scotts Valley",
-                                      },
-                                    ],
-                                    "trips": Array [
-                                      Object {
-                                        "duration": 1234,
-                                        "end_time": 13579,
-                                        "start_time": 12345,
-                                        "trip_headsign": "To Downtown",
-                                        "trip_id": "abcd",
-                                        "trip_short_name": "The Express",
-                                      },
-                                    ],
-                                  },
-                                ],
-                                "route_id": "route1",
-                              },
-                            ],
-                            "stops": Array [
-                              Object {
-                                "stop_id": "1",
-                                "stop_lat": 36.9707,
-                                "stop_lon": -122.0246,
-                                "stop_name": "Santa Cruz",
-                              },
-                              Object {
-                                "stop_id": "2",
-                                "stop_lat": 37.049,
-                                "stop_lon": -122.0279,
-                                "stop_name": "Scotts Valley",
-                              },
-                            ],
-                            "stopsById": Object {
-                              "1": Object {
-                                "stop_id": "1",
-                                "stop_lat": 36.9707,
-                                "stop_lon": -122.0246,
-                                "stop_name": "Santa Cruz",
-                              },
-                              "2": Object {
-                                "stop_id": "2",
-                                "stop_lat": 37.049,
-                                "stop_lon": -122.0279,
-                                "stop_name": "Scotts Valley",
-                              },
-                            },
-                          },
-                        }
-                      }
-                      mapState={
-                        Object {
-                          "activeTrips": Array [],
-                          "center": Object {
-                            "lat": 38.8886,
-                            "lon": -77.043,
-                          },
-                          "components": Array [],
-                          "zoom": 12,
-                        }
-                      }
-                      modificationsOnMap={
-                        Array [
+                      dashArray="3 8"
+                      fillOpacity={0}
+                      pointerEvents="none"
+                      weight={1}
+                    />
+                    <Connect(ModificationsMap)>
+                      <ModificationsMap
+                        activeModification={
                           Object {
                             "_id": "1234",
                             "accessGroup": "accessGroupName",
@@ -1224,42 +842,42 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             ],
                             "segments": Array [
                               {
-                          "fromStopId": "1",
-                          "geometry": {
-                            "type": "LineString",
-                            "coordinates": [
-                              [
-                                "-122.02460000",
-                                "36.97070000"
-                              ],
-                              [
-                                "-122.02790000",
-                                "37.04900000"
-                              ],
-                              [
-                                "-121.97990000",
-                                "37.22990000"
-                              ],
-                              [
-                                "-121.94450000",
-                                "37.32400000"
-                              ],
-                              [
-                                "-121.93600000",
-                                "37.35300000"
-                              ],
-                              [
-                                "-121.92400000",
-                                "37.36500000"
+                            "fromStopId": "1",
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
+                                ]
                               ]
-                            ]
+                            },
+                            "properties": {},
+                            "spacing": "3000.00000000",
+                            "stopAtEnd": false,
+                            "stopAtStart": false,
+                            "type": "Feature"
                           },
-                          "properties": {},
-                          "spacing": "3000.00000000",
-                          "stopAtEnd": false,
-                          "stopAtStart": false,
-                          "type": "Feature"
-                        },
                             ],
                             "showOnMap": false,
                             "timetables": Array [
@@ -1303,98 +921,16 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             "variants": Array [
                               true,
                             ],
-                          },
-                        ]
-                      }
-                      qualifiedStops={Array []}
-                      setAndRetrieveData={[Function]}
-                      setLocally={[Function]}
-                      setMapState={[Function]}
-                    >
-                      <g>
-                        <AddTripPatternLayer
-                          bidirectional={false}
-                          highlightSegment={-1}
-                          highlightStop={null}
-                          segments={
-                            Array [
-                              {
-                              "fromStopId": "1",
-                              "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                  [
-                                    "-122.02460000",
-                                    "36.97070000"
-                                  ],
-                                  [
-                                    "-122.02790000",
-                                    "37.04900000"
-                                  ],
-                                  [
-                                    "-121.97990000",
-                                    "37.22990000"
-                                  ],
-                                  [
-                                    "-121.94450000",
-                                    "37.32400000"
-                                  ],
-                                  [
-                                    "-121.93600000",
-                                    "37.35300000"
-                                  ],
-                                  [
-                                    "-121.92400000",
-                                    "37.36500000"
-                                  ]
-                                ]
-                              },
-                              "properties": {},
-                              "spacing": "3000.00000000",
-                              "stopAtEnd": false,
-                              "stopAtStart": false,
-                              "type": "Feature"
-                            },
-                            ]
                           }
-                        >
-                          <g>
-                            <Polyline
-                              color="#2389c9"
-                              positions={
-                                Array [
-                                  Object {
-                                    "lat": 36.9707,
-                                    "lng": -122.0246,
-                                  },
-                                  Object {
-                                    "lat": 37.049,
-                                    "lng": -122.0279,
-                                  },
-                                  Object {
-                                    "lat": 37.2299,
-                                    "lng": -121.9799,
-                                  },
-                                  Object {
-                                    "lat": 37.324,
-                                    "lng": -121.9445,
-                                  },
-                                  Object {
-                                    "lat": 37.353,
-                                    "lng": -121.936,
-                                  },
-                                  Object {
-                                    "lat": 37.365,
-                                    "lng": -121.924,
-                                  },
-                                ]
-                              }
-                              weight={3}
-                            />
-                            <DirectionalMarkers
-                              color="#2389c9"
-                              patterns={
-                                Array [
+                        }
+                        activeModificationFeed={
+                          Object {
+                            "checksum": "MOCK",
+                            "id": "1",
+                            "routes": Array [
+                              Object {
+                                "label": "mock-route-label",
+                                "patterns": Array [
                                   Object {
                                     "geometry": Object {
                                       "coordinates": Array [
@@ -1423,587 +959,1090 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                           37.365,
                                         ],
                                       ],
+                                      "type": "LineString",
                                     },
+                                    "name": "Mock Pattern",
+                                    "pattern_id": "mock-pattern-id",
+                                    "stops": Array [
+                                      Object {
+                                        "stop_id": "1",
+                                        "stop_lat": 36.9707,
+                                        "stop_lon": -122.0246,
+                                        "stop_name": "Santa Cruz",
+                                      },
+                                      Object {
+                                        "stop_id": "2",
+                                        "stop_lat": 37.049,
+                                        "stop_lon": -122.0279,
+                                        "stop_name": "Scotts Valley",
+                                      },
+                                    ],
+                                    "trips": Array [
+                                      Object {
+                                        "duration": 1234,
+                                        "end_time": 13579,
+                                        "start_time": 12345,
+                                        "trip_headsign": "To Downtown",
+                                        "trip_id": "abcd",
+                                        "trip_short_name": "The Express",
+                                      },
+                                    ],
                                   },
+                                ],
+                                "route_id": "route1",
+                              },
+                            ],
+                            "stops": Array [
+                              Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            ],
+                            "stopsById": Object {
+                              "1": Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              "2": Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            },
+                          }
+                        }
+                        bundleId="1"
+                        feeds={
+                          Array [
+                            Object {
+                              "checksum": "MOCK",
+                              "id": "1",
+                              "routes": Array [
+                                Object {
+                                  "label": "mock-route-label",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "name": "Mock Pattern",
+                                      "pattern_id": "mock-pattern-id",
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "end_time": 13579,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                  "route_id": "route1",
+                                },
+                              ],
+                              "stops": Array [
+                                Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              ],
+                              "stopsById": Object {
+                                "1": Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                "2": Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              },
+                            },
+                          ]
+                        }
+                        feedsById={
+                          Object {
+                            "1": Object {
+                              "checksum": "MOCK",
+                              "id": "1",
+                              "routes": Array [
+                                Object {
+                                  "label": "mock-route-label",
+                                  "patterns": Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                        "type": "LineString",
+                                      },
+                                      "name": "Mock Pattern",
+                                      "pattern_id": "mock-pattern-id",
+                                      "stops": Array [
+                                        Object {
+                                          "stop_id": "1",
+                                          "stop_lat": 36.9707,
+                                          "stop_lon": -122.0246,
+                                          "stop_name": "Santa Cruz",
+                                        },
+                                        Object {
+                                          "stop_id": "2",
+                                          "stop_lat": 37.049,
+                                          "stop_lon": -122.0279,
+                                          "stop_name": "Scotts Valley",
+                                        },
+                                      ],
+                                      "trips": Array [
+                                        Object {
+                                          "duration": 1234,
+                                          "end_time": 13579,
+                                          "start_time": 12345,
+                                          "trip_headsign": "To Downtown",
+                                          "trip_id": "abcd",
+                                          "trip_short_name": "The Express",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                  "route_id": "route1",
+                                },
+                              ],
+                              "stops": Array [
+                                Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              ],
+                              "stopsById": Object {
+                                "1": Object {
+                                  "stop_id": "1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                "2": Object {
+                                  "stop_id": "2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              },
+                            },
+                          }
+                        }
+                        mapState={
+                          Object {
+                            "activeTrips": Array [],
+                            "center": Object {
+                              "lat": 38.8886,
+                              "lon": -77.043,
+                            },
+                            "components": Array [],
+                            "zoom": 12,
+                          }
+                        }
+                        modificationsOnMap={
+                          Array [
+                            Object {
+                              "_id": "1234",
+                              "accessGroup": "accessGroupName",
+                              "bidirectional": false,
+                              "createdAt": "2017-11-08T12:30:50.133Z",
+                              "createdBy": "person@gmail.com",
+                              "description": "Mock description",
+                              "entries": Array [],
+                              "feed": "1",
+                              "name": "Test Modification",
+                              "nonce": "12345",
+                              "projectId": "1",
+                              "routes": Array [
+                                "route1",
+                              ],
+                              "segments": Array [
+                                {
+                            "fromStopId": "1",
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
                                 ]
-                              }
-                            />
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 0,
-                                  "index": 0,
-                                  "lat": 36.9707,
-                                  "lon": -122.0246,
-                                  "stopId": "1",
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 0,
-                                      "index": 0,
-                                      "lat": 36.9707,
-                                      "lon": -122.0246,
-                                      "stopId": "1",
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 3000,
-                                  "index": 0,
-                                  "lat": 36.99765592006801,
-                                  "lon": -122.02573607325958,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 3000,
-                                      "index": 0,
-                                      "lat": 36.99765592006801,
-                                      "lon": -122.02573607325958,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 6000,
-                                  "index": 0,
-                                  "lat": 37.02461184013602,
-                                  "lon": -122.02687214651915,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 6000,
-                                      "index": 0,
-                                      "lat": 37.02461184013602,
-                                      "lon": -122.02687214651915,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 9000,
-                                  "index": 0,
-                                  "lat": 37.05151359890414,
-                                  "lon": -122.02723304175015,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 9000,
-                                      "index": 0,
-                                      "lat": 37.05151359890414,
-                                      "lon": -122.02723304175015,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 12000,
-                                  "index": 0,
-                                  "lat": 37.07790094264308,
-                                  "lon": -122.02023142483766,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 12000,
-                                      "index": 0,
-                                      "lat": 37.07790094264308,
-                                      "lon": -122.02023142483766,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 15000,
-                                  "index": 0,
-                                  "lat": 37.10428828638203,
-                                  "lon": -122.01322980792517,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 15000,
-                                      "index": 0,
-                                      "lat": 37.10428828638203,
-                                      "lon": -122.01322980792517,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 18000,
-                                  "index": 0,
-                                  "lat": 37.13067563012098,
-                                  "lon": -122.00622819101268,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 18000,
-                                      "index": 0,
-                                      "lat": 37.13067563012098,
-                                      "lon": -122.00622819101268,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 21000,
-                                  "index": 0,
-                                  "lat": 37.15706297385993,
-                                  "lon": -121.99922657410019,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 21000,
-                                      "index": 0,
-                                      "lat": 37.15706297385993,
-                                      "lon": -121.99922657410019,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 24000,
-                                  "index": 0,
-                                  "lat": 37.183450317598876,
-                                  "lon": -121.9922249571877,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 24000,
-                                      "index": 0,
-                                      "lat": 37.183450317598876,
-                                      "lon": -121.9922249571877,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 27000,
-                                  "index": 0,
-                                  "lat": 37.20983766133782,
-                                  "lon": -121.98522334027521,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 27000,
-                                      "index": 0,
-                                      "lat": 37.20983766133782,
-                                      "lon": -121.98522334027521,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 30000,
-                                  "index": 0,
-                                  "lat": 37.23609341419046,
-                                  "lon": -121.97757006522484,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 30000,
-                                      "index": 0,
-                                      "lat": 37.23609341419046,
-                                      "lon": -121.97757006522484,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 33000,
-                                  "index": 0,
-                                  "lat": 37.261931772765294,
-                                  "lon": -121.96784979005429,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 33000,
-                                      "index": 0,
-                                      "lat": 37.261931772765294,
-                                      "lon": -121.96784979005429,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 36000,
-                                  "index": 0,
-                                  "lat": 37.28777013134013,
-                                  "lon": -121.95812951488374,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 36000,
-                                      "index": 0,
-                                      "lat": 37.28777013134013,
-                                      "lon": -121.95812951488374,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 39000,
-                                  "index": 0,
-                                  "lat": 37.31360848991497,
-                                  "lon": -121.94840923971319,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 39000,
-                                      "index": 0,
-                                      "lat": 37.31360848991497,
-                                      "lon": -121.94840923971319,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 42000,
-                                  "index": 0,
-                                  "lat": 37.339703323688006,
-                                  "lon": -121.93989730167766,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 42000,
-                                      "index": 0,
-                                      "lat": 37.339703323688006,
-                                      "lon": -121.93989730167766,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                            <Marker
-                              position={
-                                Object {
-                                  "autoCreated": true,
-                                  "distanceFromStart": 45000,
-                                  "index": 0,
-                                  "lat": 37.36342593800434,
-                                  "lon": -121.92557406199568,
-                                  "stopId": undefined,
-                                }
-                              }
-                            >
-                              <g
-                                data-props={
-                                  Object {
-                                    "icon": undefined,
-                                    "position": Object {
-                                      "autoCreated": true,
-                                      "distanceFromStart": 45000,
-                                      "index": 0,
-                                      "lat": 37.36342593800434,
-                                      "lon": -121.92557406199568,
-                                      "stopId": undefined,
-                                    },
-                                  }
-                                }
-                                type="Marker"
-                              />
-                            </Marker>
-                          </g>
-                        </AddTripPatternLayer>
-                      </g>
-                    </ModificationsMap>
-                  </Connect(ModificationsMap)>
-                  <LabelLayer>
-                    <TileLayer
-                      url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
-                      zIndex={40}
-                    />
-                  </LabelLayer>
-                  <Marker
-                    draggable={true}
-                    onDblclick={[Function]}
-                    onDragEnd={[Function]}
-                    opacity={1}
-                    position={
-                      Object {
-                        "lat": 38.5,
-                        "lng": -76.5,
-                      }
-                    }
-                  >
-                    <g
-                      data-props={
-                        Object {
-                          "children": false,
-                          "draggable": true,
-                          "onDblclick": [Function],
-                          "onDragEnd": [Function],
-                          "opacity": 1,
-                          "position": Object {
-                            "lat": 38.5,
-                            "lng": -76.5,
+                              ]
+                            },
+                            "properties": {},
+                            "spacing": "3000.00000000",
+                            "stopAtEnd": false,
+                            "stopAtStart": false,
+                            "type": "Feature"
                           },
+                              ],
+                              "showOnMap": false,
+                              "timetables": Array [
+                                Object {
+                                  "_id": "timetable-id",
+                                  "dwellTime": 10,
+                                  "dwellTimes": Array [
+                                    12,
+                                  ],
+                                  "endTime": 57600,
+                                  "exactTimes": false,
+                                  "friday": true,
+                                  "headwaySecs": 900,
+                                  "modificationId": "1234",
+                                  "modificationName": "Test Modification",
+                                  "monday": true,
+                                  "name": "Test timetable",
+                                  "patternTrips": Array [
+                                    "abcd",
+                                  ],
+                                  "phaseAtStop": "",
+                                  "phaseFromStop": "",
+                                  "phaseFromTimetable": "",
+                                  "phaseSeconds": 300,
+                                  "saturday": false,
+                                  "segmentSpeeds": Array [],
+                                  "sourceTrip": "abcd",
+                                  "startTime": 28800,
+                                  "sunday": false,
+                                  "thursday": true,
+                                  "tuesday": true,
+                                  "wednesday": true,
+                                },
+                              ],
+                              "trips": Array [
+                                "abcd",
+                              ],
+                              "type": "add-trip-pattern",
+                              "updatedAt": "2017-11-08T12:31:19.602Z",
+                              "updatedBy": "person@gmail.com",
+                              "variants": Array [
+                                true,
+                              ],
+                            },
+                          ]
+                        }
+                        qualifiedStops={Array []}
+                        setAndRetrieveData={[Function]}
+                        setLocally={[Function]}
+                        setMapState={[Function]}
+                      >
+                        <g>
+                          <AddTripPatternLayer
+                            bidirectional={false}
+                            highlightSegment={-1}
+                            highlightStop={null}
+                            segments={
+                              Array [
+                                {
+                                "fromStopId": "1",
+                                "geometry": {
+                                  "type": "LineString",
+                                  "coordinates": [
+                                    [
+                                      "-122.02460000",
+                                      "36.97070000"
+                                    ],
+                                    [
+                                      "-122.02790000",
+                                      "37.04900000"
+                                    ],
+                                    [
+                                      "-121.97990000",
+                                      "37.22990000"
+                                    ],
+                                    [
+                                      "-121.94450000",
+                                      "37.32400000"
+                                    ],
+                                    [
+                                      "-121.93600000",
+                                      "37.35300000"
+                                    ],
+                                    [
+                                      "-121.92400000",
+                                      "37.36500000"
+                                    ]
+                                  ]
+                                },
+                                "properties": {},
+                                "spacing": "3000.00000000",
+                                "stopAtEnd": false,
+                                "stopAtStart": false,
+                                "type": "Feature"
+                              },
+                              ]
+                            }
+                          >
+                            <g>
+                              <Polyline
+                                color="#2389c9"
+                                positions={
+                                  Array [
+                                    Object {
+                                      "lat": 36.9707,
+                                      "lng": -122.0246,
+                                    },
+                                    Object {
+                                      "lat": 37.049,
+                                      "lng": -122.0279,
+                                    },
+                                    Object {
+                                      "lat": 37.2299,
+                                      "lng": -121.9799,
+                                    },
+                                    Object {
+                                      "lat": 37.324,
+                                      "lng": -121.9445,
+                                    },
+                                    Object {
+                                      "lat": 37.353,
+                                      "lng": -121.936,
+                                    },
+                                    Object {
+                                      "lat": 37.365,
+                                      "lng": -121.924,
+                                    },
+                                  ]
+                                }
+                                weight={3}
+                              />
+                              <DirectionalMarkers
+                                color="#2389c9"
+                                patterns={
+                                  Array [
+                                    Object {
+                                      "geometry": Object {
+                                        "coordinates": Array [
+                                          Array [
+                                            -122.0246,
+                                            36.9707,
+                                          ],
+                                          Array [
+                                            -122.0279,
+                                            37.049,
+                                          ],
+                                          Array [
+                                            -121.9799,
+                                            37.2299,
+                                          ],
+                                          Array [
+                                            -121.9445,
+                                            37.324,
+                                          ],
+                                          Array [
+                                            -121.936,
+                                            37.353,
+                                          ],
+                                          Array [
+                                            -121.924,
+                                            37.365,
+                                          ],
+                                        ],
+                                      },
+                                    },
+                                  ]
+                                }
+                              />
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 0,
+                                    "index": 0,
+                                    "lat": 36.9707,
+                                    "lon": -122.0246,
+                                    "stopId": "1",
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 0,
+                                        "index": 0,
+                                        "lat": 36.9707,
+                                        "lon": -122.0246,
+                                        "stopId": "1",
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 3000,
+                                    "index": 0,
+                                    "lat": 36.99765592006801,
+                                    "lon": -122.02573607325958,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 3000,
+                                        "index": 0,
+                                        "lat": 36.99765592006801,
+                                        "lon": -122.02573607325958,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 6000,
+                                    "index": 0,
+                                    "lat": 37.02461184013602,
+                                    "lon": -122.02687214651915,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 6000,
+                                        "index": 0,
+                                        "lat": 37.02461184013602,
+                                        "lon": -122.02687214651915,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 9000,
+                                    "index": 0,
+                                    "lat": 37.05151359890414,
+                                    "lon": -122.02723304175015,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 9000,
+                                        "index": 0,
+                                        "lat": 37.05151359890414,
+                                        "lon": -122.02723304175015,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 12000,
+                                    "index": 0,
+                                    "lat": 37.07790094264308,
+                                    "lon": -122.02023142483766,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 12000,
+                                        "index": 0,
+                                        "lat": 37.07790094264308,
+                                        "lon": -122.02023142483766,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 15000,
+                                    "index": 0,
+                                    "lat": 37.10428828638203,
+                                    "lon": -122.01322980792517,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 15000,
+                                        "index": 0,
+                                        "lat": 37.10428828638203,
+                                        "lon": -122.01322980792517,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 18000,
+                                    "index": 0,
+                                    "lat": 37.13067563012098,
+                                    "lon": -122.00622819101268,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 18000,
+                                        "index": 0,
+                                        "lat": 37.13067563012098,
+                                        "lon": -122.00622819101268,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 21000,
+                                    "index": 0,
+                                    "lat": 37.15706297385993,
+                                    "lon": -121.99922657410019,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 21000,
+                                        "index": 0,
+                                        "lat": 37.15706297385993,
+                                        "lon": -121.99922657410019,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 24000,
+                                    "index": 0,
+                                    "lat": 37.183450317598876,
+                                    "lon": -121.9922249571877,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 24000,
+                                        "index": 0,
+                                        "lat": 37.183450317598876,
+                                        "lon": -121.9922249571877,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 27000,
+                                    "index": 0,
+                                    "lat": 37.20983766133782,
+                                    "lon": -121.98522334027521,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 27000,
+                                        "index": 0,
+                                        "lat": 37.20983766133782,
+                                        "lon": -121.98522334027521,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 30000,
+                                    "index": 0,
+                                    "lat": 37.23609341419046,
+                                    "lon": -121.97757006522484,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 30000,
+                                        "index": 0,
+                                        "lat": 37.23609341419046,
+                                        "lon": -121.97757006522484,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 33000,
+                                    "index": 0,
+                                    "lat": 37.261931772765294,
+                                    "lon": -121.96784979005429,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 33000,
+                                        "index": 0,
+                                        "lat": 37.261931772765294,
+                                        "lon": -121.96784979005429,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 36000,
+                                    "index": 0,
+                                    "lat": 37.28777013134013,
+                                    "lon": -121.95812951488374,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 36000,
+                                        "index": 0,
+                                        "lat": 37.28777013134013,
+                                        "lon": -121.95812951488374,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 39000,
+                                    "index": 0,
+                                    "lat": 37.31360848991497,
+                                    "lon": -121.94840923971319,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 39000,
+                                        "index": 0,
+                                        "lat": 37.31360848991497,
+                                        "lon": -121.94840923971319,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 42000,
+                                    "index": 0,
+                                    "lat": 37.339703323688006,
+                                    "lon": -121.93989730167766,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 42000,
+                                        "index": 0,
+                                        "lat": 37.339703323688006,
+                                        "lon": -121.93989730167766,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                              <Marker
+                                position={
+                                  Object {
+                                    "autoCreated": true,
+                                    "distanceFromStart": 45000,
+                                    "index": 0,
+                                    "lat": 37.36342593800434,
+                                    "lon": -121.92557406199568,
+                                    "stopId": undefined,
+                                  }
+                                }
+                              >
+                                <g
+                                  data-props={
+                                    Object {
+                                      "icon": undefined,
+                                      "position": Object {
+                                        "autoCreated": true,
+                                        "distanceFromStart": 45000,
+                                        "index": 0,
+                                        "lat": 37.36342593800434,
+                                        "lon": -121.92557406199568,
+                                        "stopId": undefined,
+                                      },
+                                    }
+                                  }
+                                  type="Marker"
+                                />
+                              </Marker>
+                            </g>
+                          </AddTripPatternLayer>
+                        </g>
+                      </ModificationsMap>
+                    </Connect(ModificationsMap)>
+                    <LabelLayer>
+                      <TileLayer
+                        url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
+                        zIndex={40}
+                      />
+                    </LabelLayer>
+                    <Marker
+                      draggable={true}
+                      onDragEnd={[Function]}
+                      opacity={1}
+                      position={
+                        Object {
+                          "lat": 38.5,
+                          "lng": -76.5,
                         }
                       }
-                      type="Marker"
-                    />
-                  </Marker>
-                </div>
+                    >
+                      <g
+                        data-props={
+                          Object {
+                            "children": undefined,
+                            "draggable": true,
+                            "onDragEnd": [Function],
+                            "opacity": 1,
+                            "position": Object {
+                              "lat": 38.5,
+                              "lng": -76.5,
+                            },
+                          }
+                        }
+                        type="Marker"
+                      />
+                    </Marker>
+                  </div>
+                </Map>
               </Map>
-            </Map>
-          </Connect(Map)>
+            </Connect(Map)>
+          </AnalysisMap>
         </div>
         <div
           className="ApplicationDock analysisMode"
         >
-          <div
-            className="ApplicationDockTitle"
+          <AnalysisTitle
+            abortFetchTravelTimeSurface={[Function]}
+            createRegionalAnalysis={[Function]}
+            disableCreateRegionalAnalysis={true}
+            disableFetchTravelTimeSurface={false}
+            fetchTravelTimeSurface={[Function]}
+            isochroneFetchStatus={false}
           >
-            <Icon
-              type="area-chart"
+            <div
+              className="ApplicationDockTitle"
             >
-              <i
-                className="fa fa-area-chart fa-fw "
-              />
-            </Icon>
-             
-            Analysis
-            <Button
-              className="pull-right"
-              disabled={false}
-              onClick={[Function]}
-              style="primary"
-              title=""
-            >
-              <a
-                className="btn btn-primary pull-right"
+              <Icon
+                type="area-chart"
+              >
+                <i
+                  className="fa fa-area-chart fa-fw "
+                />
+              </Icon>
+               
+              Analysis
+              <Button
+                className="pull-right"
                 disabled={false}
-                href="#"
                 onClick={[Function]}
-                tabIndex={0}
+                style="primary"
                 title=""
               >
-                <Icon
-                  type="refresh"
+                <a
+                  className="btn btn-primary pull-right"
+                  disabled={false}
+                  href="#"
+                  onClick={[Function]}
+                  tabIndex={0}
+                  title=""
                 >
-                  <i
-                    className="fa fa-refresh fa-fw "
-                  />
-                </Icon>
-                 
-                Fetch results
-              </a>
-            </Button>
-            <Button
-              className="pad-right pull-right"
-              disabled={true}
-              onClick={[Function]}
-              style="success"
-              title="Fetch results for a single point before running a regional analysis"
-            >
-              <a
-                className="btn btn-success pad-right pull-right"
+                  <Icon
+                    type="refresh"
+                  >
+                    <i
+                      className="fa fa-refresh fa-fw "
+                    />
+                  </Icon>
+                   
+                  Fetch results
+                </a>
+              </Button>
+              <Button
+                className="pad-right pull-right"
                 disabled={true}
-                href="#"
                 onClick={[Function]}
-                tabIndex={0}
+                style="success"
                 title="Fetch results for a single point before running a regional analysis"
               >
-                <Icon
-                  type="plus"
+                <a
+                  className="btn btn-success pad-right pull-right"
+                  disabled={true}
+                  href="#"
+                  onClick={[Function]}
+                  tabIndex={0}
+                  title="Fetch results for a single point before running a regional analysis"
                 >
-                  <i
-                    className="fa fa-plus fa-fw "
-                  />
-                </Icon>
-                New regional analysis
-              </a>
-            </Button>
-          </div>
+                  <Icon
+                    type="plus"
+                  >
+                    <i
+                      className="fa fa-plus fa-fw "
+                    />
+                  </Icon>
+                  New regional analysis
+                </a>
+              </Button>
+            </div>
+          </AnalysisTitle>
           <InnerDock>
             <div
               className="InnerDock "
