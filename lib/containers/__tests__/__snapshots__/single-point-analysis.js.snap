@@ -4063,20 +4063,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       >
                         <Connect(SelectR5Version)>
                           <SelectR5Version
-                            allValidVersions={Array []}
-                            currentR5Version="v4.1.1"
-                            loadR5Versions={[Function]}
-                            localState={
-                              Object {
-                                "analysisVersion": undefined,
-                                "currentVersion": "v4.1.1",
-                                "versions": Array [],
-                              }
-                            }
-                            newerVersionIsAvailable={false}
-                            releaseVersions={Array []}
+                            currentVersion="v4.1.1"
                             setCurrentR5Version={[Function]}
-                            versions={Array []}
+                            usedVersions={Array []}
                           >
                             <div>
                               <Group
@@ -4090,177 +4079,159 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   >
                                     Routing engine
                                   </label>
-                                  <Icon
-                                    onClick={[Function]}
-                                    style={
-                                      Object {
-                                        "color": "#aaa",
-                                        "cursor": "pointer",
-                                      }
-                                    }
-                                    title="Show all routing engine versions (advanced)"
-                                    type="flask"
-                                  >
-                                    <i
-                                      className="fa fa-flask fa-fw "
-                                      onClick={[Function]}
-                                      style={
-                                        Object {
-                                          "color": "#aaa",
-                                          "cursor": "pointer",
-                                        }
-                                      }
-                                      title="Show all routing engine versions (advanced)"
-                                    />
-                                  </Icon>
-                                  <Select
-                                    arrowRenderer={[Function]}
-                                    autosize={true}
-                                    backspaceRemoves={true}
-                                    backspaceToRemoveMessage="Press backspace to remove {label}"
-                                    clearAllText="Clear all"
-                                    clearRenderer={[Function]}
-                                    clearValueText="Clear value"
+                                  <CreatableSelect
                                     clearable={false}
-                                    closeOnSelect={true}
-                                    deleteRemoves={true}
-                                    delimiter=","
-                                    disabled={false}
-                                    escapeClearsValue={true}
                                     filterOptions={[Function]}
-                                    ignoreAccents={true}
-                                    ignoreCase={true}
-                                    inputProps={Object {}}
-                                    isLoading={false}
-                                    joinValues={false}
-                                    labelKey="label"
-                                    matchPos="any"
-                                    matchProp="any"
-                                    menuBuffer={0}
+                                    isOptionUnique={[Function]}
+                                    isValidNewOption={[Function]}
                                     menuRenderer={[Function]}
-                                    multi={false}
-                                    noResultsText="No results found"
-                                    onBlurResetsInput={true}
+                                    newOptionCreator={[Function]}
                                     onChange={[Function]}
-                                    onCloseResetsInput={true}
-                                    onSelectResetsInput={true}
-                                    openOnClick={true}
-                                    optionComponent={[Function]}
                                     options={
                                       Array [
                                         Object {
-                                          "label": <span
-                                            style={
-                                                  Object {
-                                                        "textDecoration": "line-through",
-                                                      }
-                                            }
-                                      >
-                                            v4.1.1
-                                      </span>,
+                                          "label": "v4.1.1 (recommended)",
                                           "value": "v4.1.1",
                                         },
                                       ]
                                     }
-                                    pageSize={5}
-                                    placeholder="Select..."
-                                    removeSelected={true}
-                                    required={false}
-                                    rtl={false}
-                                    scrollMenuIntoView={true}
-                                    searchable={true}
-                                    simpleValue={false}
-                                    tabSelectsValue={true}
-                                    trimFilter={true}
+                                    promptTextCreator={[Function]}
+                                    shouldKeyDownEventCreateNewOption={[Function]}
                                     value="v4.1.1"
-                                    valueComponent={[Function]}
-                                    valueKey="value"
                                   >
-                                    <div
-                                      className="Select has-value is-searchable Select--single"
+                                    <Select
+                                      allowCreate={true}
+                                      arrowRenderer={[Function]}
+                                      autosize={true}
+                                      backspaceRemoves={true}
+                                      backspaceToRemoveMessage="Press backspace to remove {label}"
+                                      clearAllText="Clear all"
+                                      clearRenderer={[Function]}
+                                      clearValueText="Clear value"
+                                      clearable={false}
+                                      closeOnSelect={true}
+                                      deleteRemoves={true}
+                                      delimiter=","
+                                      disabled={false}
+                                      escapeClearsValue={true}
+                                      filterOptions={[Function]}
+                                      ignoreAccents={true}
+                                      ignoreCase={true}
+                                      inputProps={Object {}}
+                                      isLoading={false}
+                                      isOptionUnique={[Function]}
+                                      isValidNewOption={[Function]}
+                                      joinValues={false}
+                                      labelKey="label"
+                                      matchPos="any"
+                                      matchProp="any"
+                                      menuBuffer={0}
+                                      menuRenderer={[Function]}
+                                      multi={false}
+                                      newOptionCreator={[Function]}
+                                      noResultsText="No results found"
+                                      onBlurResetsInput={true}
+                                      onChange={[Function]}
+                                      onCloseResetsInput={true}
+                                      onInputChange={[Function]}
+                                      onInputKeyDown={[Function]}
+                                      onSelectResetsInput={true}
+                                      openOnClick={true}
+                                      optionComponent={[Function]}
+                                      options={
+                                        Array [
+                                          Object {
+                                            "label": "v4.1.1 (recommended)",
+                                            "value": "v4.1.1",
+                                          },
+                                        ]
+                                      }
+                                      pageSize={5}
+                                      placeholder="Select..."
+                                      promptTextCreator={[Function]}
+                                      removeSelected={true}
+                                      required={false}
+                                      rtl={false}
+                                      scrollMenuIntoView={true}
+                                      searchable={true}
+                                      shouldKeyDownEventCreateNewOption={[Function]}
+                                      simpleValue={false}
+                                      tabSelectsValue={true}
+                                      trimFilter={true}
+                                      value="v4.1.1"
+                                      valueComponent={[Function]}
+                                      valueKey="value"
                                     >
                                       <div
-                                        className="Select-control"
-                                        onKeyDown={[Function]}
-                                        onMouseDown={[Function]}
-                                        onTouchEnd={[Function]}
-                                        onTouchMove={[Function]}
-                                        onTouchStart={[Function]}
+                                        className="Select has-value is-searchable Select--single"
                                       >
-                                        <span
-                                          className="Select-multi-value-wrapper"
-                                          id="react-select-8--value"
-                                        >
-                                          <Value
-                                            disabled={false}
-                                            id="react-select-8--value-item"
-                                            instancePrefix="react-select-8-"
-                                            onClick={null}
-                                            placeholder="Select..."
-                                            value={
-                                              Object {
-                                                "label": <span
-                                                  style={
-                                                      Object {
-                                                          "textDecoration": "line-through",
-                                                        }
-                                                  }
-                                              >
-                                                  v4.1.1
-                                              </span>,
-                                                "value": "v4.1.1",
-                                              }
-                                            }
-                                          >
-                                            <div
-                                              className="Select-value"
-                                            >
-                                              <span
-                                                aria-selected="true"
-                                                className="Select-value-label"
-                                                id="react-select-8--value-item"
-                                                role="option"
-                                              >
-                                                <span
-                                                  style={
-                                                    Object {
-                                                      "textDecoration": "line-through",
-                                                    }
-                                                  }
-                                                >
-                                                  v4.1.1
-                                                </span>
-                                              </span>
-                                            </div>
-                                          </Value>
-                                          <AutosizeInput
-                                            aria-activedescendant="react-select-8--value"
-                                            aria-expanded="false"
-                                            aria-haspopup="false"
-                                            aria-owns=""
-                                            className="Select-input"
-                                            injectStyles={true}
-                                            minWidth="5"
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            required={false}
-                                            role="combobox"
-                                            value=""
-                                          />
-                                        </span>
-                                        <span
-                                          className="Select-arrow-zone"
+                                        <div
+                                          className="Select-control"
+                                          onKeyDown={[Function]}
                                           onMouseDown={[Function]}
+                                          onTouchEnd={[Function]}
+                                          onTouchMove={[Function]}
+                                          onTouchStart={[Function]}
                                         >
                                           <span
-                                            className="Select-arrow"
+                                            className="Select-multi-value-wrapper"
+                                            id="react-select-8--value"
+                                          >
+                                            <Value
+                                              disabled={false}
+                                              id="react-select-8--value-item"
+                                              instancePrefix="react-select-8-"
+                                              onClick={null}
+                                              placeholder="Select..."
+                                              value={
+                                                Object {
+                                                  "label": "v4.1.1 (recommended)",
+                                                  "value": "v4.1.1",
+                                                }
+                                              }
+                                            >
+                                              <div
+                                                className="Select-value"
+                                              >
+                                                <span
+                                                  aria-selected="true"
+                                                  className="Select-value-label"
+                                                  id="react-select-8--value-item"
+                                                  role="option"
+                                                >
+                                                  v4.1.1 (recommended)
+                                                </span>
+                                              </div>
+                                            </Value>
+                                            <AutosizeInput
+                                              aria-activedescendant="react-select-8--value"
+                                              aria-expanded="false"
+                                              aria-haspopup="false"
+                                              aria-owns=""
+                                              className="Select-input"
+                                              injectStyles={true}
+                                              minWidth="5"
+                                              onBlur={[Function]}
+                                              onChange={[Function]}
+                                              onFocus={[Function]}
+                                              required={false}
+                                              role="combobox"
+                                              value=""
+                                            />
+                                          </span>
+                                          <span
+                                            className="Select-arrow-zone"
                                             onMouseDown={[Function]}
-                                          />
-                                        </span>
+                                          >
+                                            <span
+                                              className="Select-arrow"
+                                              onMouseDown={[Function]}
+                                            />
+                                          </span>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </Select>
+                                    </Select>
+                                  </CreatableSelect>
                                 </div>
                               </Group>
                             </div>
