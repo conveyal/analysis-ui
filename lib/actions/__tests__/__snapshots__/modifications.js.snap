@@ -15,15 +15,19 @@ Object {
 
 exports[`actions > modifications > copyFromProject should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "method": "post",
+  Array [
+    Object {
+      "payload": Object {
+        "id": 1,
+        "options": Object {
+          "method": "post",
+        },
+        "type": "__FETCH__",
+        "url": "/api/project/2/import/1",
       },
-      "url": "/api/project/2/import/1",
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -32,9 +36,7 @@ exports[`actions > modifications > copyFromProject should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {
-        "method": "post",
-      },
+      "type": "__FETCH__",
     },
     "type": "decrement outstanding fetches",
   },
@@ -158,27 +160,31 @@ exports[`actions > modifications > create should work 1`] = `[Function]`;
 
 exports[`actions > modifications > create should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bidirectional": true,
-          "name": "Add Trip Pattern",
-          "projectId": "1",
-          "segments": Array [],
-          "showOnMap": true,
-          "timetables": Array [],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
+  Array [
+    Object {
+      "payload": Object {
+        "id": 2,
+        "options": Object {
+          "body": Object {
+            "bidirectional": true,
+            "name": "Add Trip Pattern",
+            "projectId": "1",
+            "segments": Array [],
+            "showOnMap": true,
+            "timetables": Array [],
+            "type": "add-trip-pattern",
+            "variants": Array [
+              true,
+            ],
+          },
+          "method": "post",
         },
-        "method": "post",
+        "type": "__FETCH__",
+        "url": "/api/modification",
       },
-      "url": "/api/modification",
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -187,22 +193,8 @@ exports[`actions > modifications > create should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bidirectional": true,
-          "name": "Add Trip Pattern",
-          "projectId": "1",
-          "segments": Array [],
-          "showOnMap": true,
-          "timetables": Array [],
-          "type": "add-trip-pattern",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "post",
-      },
-      "url": "/api/modification",
+      "id": 2,
+      "type": "__FETCH__",
     },
     "type": "decrement outstanding fetches",
   },
@@ -327,15 +319,19 @@ Array [
     "type": "delete modification",
   },
   Array [
-    Object {
-      "payload": Object {
-        "options": Object {
-          "method": "delete",
+    Array [
+      Object {
+        "payload": Object {
+          "id": 3,
+          "options": Object {
+            "method": "delete",
+          },
+          "type": "__FETCH__",
+          "url": "/api/modification/1",
         },
-        "url": "/api/modification/1",
+        "type": "increment outstanding fetches",
       },
-      "type": "increment outstanding fetches",
-    },
+    ],
     Promise {},
   ],
   Object {
@@ -347,15 +343,19 @@ Array [
 
 exports[`actions > modifications > deleteModification should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "method": "delete",
+  Array [
+    Object {
+      "payload": Object {
+        "id": 3,
+        "options": Object {
+          "method": "delete",
+        },
+        "type": "__FETCH__",
+        "url": "/api/modification/1",
       },
-      "url": "/api/modification/1",
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -372,13 +372,17 @@ Object {
 
 exports[`actions > modifications > getForProject should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {},
-      "url": "/api/project/1/modifications",
+  Array [
+    Object {
+      "payload": Object {
+        "id": 4,
+        "options": Object {},
+        "type": "__FETCH__",
+        "url": "/api/project/1/modifications",
+      },
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -387,8 +391,8 @@ exports[`actions > modifications > getForProject should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {},
-      "url": "/api/project/1/modifications",
+      "id": 4,
+      "type": "__FETCH__",
     },
     "type": "decrement outstanding fetches",
   },
@@ -496,13 +500,17 @@ Array [
       "type": "set modifications",
     },
     Array [
-      Object {
-        "payload": Object {
-          "options": Object {},
-          "url": "/api/graphql?query=%0Aquery%20dataQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20checksum%2C%0A%20%20%20%20%20%20routes%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20detailRoutes%3A%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20direction_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20stop_id%2C%0A%20%20%20%20%20%20%20%20stop_name%2C%0A%20%20%20%20%20%20%20%20stop_lat%2C%0A%20%20%20%20%20%20%20%20stop_lon%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=%7B%22bundleId%22%3A%221%22%2C%22routeIds%22%3A%5B%5D%7D",
+      Array [
+        Object {
+          "payload": Object {
+            "id": 5,
+            "options": Object {},
+            "type": "__FETCH__",
+            "url": "/api/graphql?query=%0Aquery%20dataQuery(%24bundleId%3A%20String%2C%20%24routeIds%3A%20%5BString%5D)%20%7B%0A%20%20bundle%20(bundle_id%3A%20%5B%24bundleId%5D)%20%7B%0A%20%20%20%20feeds%20%7B%0A%20%20%20%20%20%20feed_id%2C%0A%20%20%20%20%20%20checksum%2C%0A%20%20%20%20%20%20routes%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20detailRoutes%3A%20routes(route_id%3A%20%24routeIds)%20%7B%0A%20%20%20%20%20%20%20%20route_id%0A%20%20%20%20%20%20%20%20route_short_name%0A%20%20%20%20%20%20%20%20route_long_name%0A%20%20%20%20%20%20%20%20patterns%20%7B%0A%20%20%20%20%20%20%20%20%20%20name%2C%0A%20%20%20%20%20%20%20%20%20%20pattern_id%2C%0A%20%20%20%20%20%20%20%20%20%20geometry%2C%0A%20%20%20%20%20%20%20%20%20%20trips%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_short_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20trip_headsign%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20start_time%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20direction_id%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20duration%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20stop_id%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20stops%20%7B%0A%20%20%20%20%20%20%20%20stop_id%2C%0A%20%20%20%20%20%20%20%20stop_name%2C%0A%20%20%20%20%20%20%20%20stop_lat%2C%0A%20%20%20%20%20%20%20%20stop_lon%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=%7B%22bundleId%22%3A%221%22%2C%22routeIds%22%3A%5B%5D%7D",
+          },
+          "type": "increment outstanding fetches",
         },
-        "type": "increment outstanding fetches",
-      },
+      ],
       Promise {},
     ],
   ],
@@ -621,26 +629,28 @@ Object {
 
 exports[`actions > modifications > saveToServer should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "_id": "1234",
-          "accessGroup": "accessGroupName",
-          "bidirectional": false,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "name": "Test Modification",
-          "nonce": "12345",
-          "projectId": "1",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
+  Array [
+    Object {
+      "payload": Object {
+        "id": 6,
+        "options": Object {
+          "body": Object {
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
+            ],
+            "segments": Array [
+              {
   "fromStopId": "1",
   "geometry": {
     "type": "LineString",
@@ -677,56 +687,58 @@ Array [
   "stopAtStart": false,
   "type": "Feature"
 },
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "_id": "timetable-id",
-              "dwellTime": 10,
-              "dwellTimes": Array [
-                12,
-              ],
-              "endTime": 57600,
-              "exactTimes": false,
-              "friday": true,
-              "headwaySecs": 900,
-              "modificationId": "1234",
-              "modificationName": "Test Modification",
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "phaseAtStop": "",
-              "phaseFromStop": "",
-              "phaseFromTimetable": "",
-              "phaseSeconds": 300,
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            true,
-          ],
+            ],
+            "showOnMap": false,
+            "timetables": Array [
+              Object {
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
+                ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
+            ],
+          },
+          "method": "put",
         },
-        "method": "put",
+        "type": "__FETCH__",
+        "url": "/api/modification/1234",
       },
-      "url": "/api/modification/1234",
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -735,112 +747,12 @@ exports[`actions > modifications > saveToServer should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {
-        "body": Object {
-          "_id": "1234",
-          "accessGroup": "accessGroupName",
-          "bidirectional": false,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "name": "Test Modification",
-          "nonce": "12345",
-          "projectId": "1",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "_id": "timetable-id",
-              "dwellTime": 10,
-              "dwellTimes": Array [
-                12,
-              ],
-              "endTime": 57600,
-              "exactTimes": false,
-              "friday": true,
-              "headwaySecs": 900,
-              "modificationId": "1234",
-              "modificationName": "Test Modification",
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "phaseAtStop": "",
-              "phaseFromStop": "",
-              "phaseFromTimetable": "",
-              "phaseSeconds": 300,
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "put",
-      },
-      "url": "/api/modification/1234",
+      "id": 6,
+      "type": "__FETCH__",
     },
     "type": "decrement outstanding fetches",
   },
   Object {
-    "payload": "saved",
     "type": "set modification",
   },
 ]
@@ -958,26 +870,28 @@ Object {
 
 exports[`actions > modifications > set should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "_id": "1234",
-          "accessGroup": "accessGroupName",
-          "bidirectional": false,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "name": "Test Modification",
-          "nonce": "12345",
-          "projectId": "1",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
+  Array [
+    Object {
+      "payload": Object {
+        "id": 7,
+        "options": Object {
+          "body": Object {
+            "_id": "1234",
+            "accessGroup": "accessGroupName",
+            "bidirectional": false,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "description": "Mock description",
+            "entries": Array [],
+            "feed": "1",
+            "name": "Test Modification",
+            "nonce": "12345",
+            "projectId": "1",
+            "routes": Array [
+              "route1",
+            ],
+            "segments": Array [
+              {
   "fromStopId": "1",
   "geometry": {
     "type": "LineString",
@@ -1014,56 +928,58 @@ Array [
   "stopAtStart": false,
   "type": "Feature"
 },
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "_id": "timetable-id",
-              "dwellTime": 10,
-              "dwellTimes": Array [
-                12,
-              ],
-              "endTime": 57600,
-              "exactTimes": false,
-              "friday": true,
-              "headwaySecs": 900,
-              "modificationId": "1234",
-              "modificationName": "Test Modification",
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "phaseAtStop": "",
-              "phaseFromStop": "",
-              "phaseFromTimetable": "",
-              "phaseSeconds": 300,
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            true,
-          ],
+            ],
+            "showOnMap": false,
+            "timetables": Array [
+              Object {
+                "_id": "timetable-id",
+                "dwellTime": 10,
+                "dwellTimes": Array [
+                  12,
+                ],
+                "endTime": 57600,
+                "exactTimes": false,
+                "friday": true,
+                "headwaySecs": 900,
+                "modificationId": "1234",
+                "modificationName": "Test Modification",
+                "monday": true,
+                "name": "Test timetable",
+                "patternTrips": Array [
+                  "abcd",
+                ],
+                "phaseAtStop": "",
+                "phaseFromStop": "",
+                "phaseFromTimetable": "",
+                "phaseSeconds": 300,
+                "saturday": false,
+                "segmentSpeeds": Array [],
+                "sourceTrip": "abcd",
+                "startTime": 28800,
+                "sunday": false,
+                "thursday": true,
+                "tuesday": true,
+                "wednesday": true,
+              },
+            ],
+            "trips": Array [
+              "abcd",
+            ],
+            "type": "add-trip-pattern",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              true,
+            ],
+          },
+          "method": "put",
         },
-        "method": "put",
+        "type": "__FETCH__",
+        "url": "/api/modification/1234",
       },
-      "url": "/api/modification/1234",
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -1072,112 +988,12 @@ exports[`actions > modifications > set should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {
-        "body": Object {
-          "_id": "1234",
-          "accessGroup": "accessGroupName",
-          "bidirectional": false,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": "Mock description",
-          "entries": Array [],
-          "feed": "1",
-          "name": "Test Modification",
-          "nonce": "12345",
-          "projectId": "1",
-          "routes": Array [
-            "route1",
-          ],
-          "segments": Array [
-            {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-          ],
-          "showOnMap": false,
-          "timetables": Array [
-            Object {
-              "_id": "timetable-id",
-              "dwellTime": 10,
-              "dwellTimes": Array [
-                12,
-              ],
-              "endTime": 57600,
-              "exactTimes": false,
-              "friday": true,
-              "headwaySecs": 900,
-              "modificationId": "1234",
-              "modificationName": "Test Modification",
-              "monday": true,
-              "name": "Test timetable",
-              "patternTrips": Array [
-                "abcd",
-              ],
-              "phaseAtStop": "",
-              "phaseFromStop": "",
-              "phaseFromTimetable": "",
-              "phaseSeconds": 300,
-              "saturday": false,
-              "segmentSpeeds": Array [],
-              "sourceTrip": "abcd",
-              "startTime": 28800,
-              "sunday": false,
-              "thursday": true,
-              "tuesday": true,
-              "wednesday": true,
-            },
-          ],
-          "trips": Array [
-            "abcd",
-          ],
-          "type": "add-trip-pattern",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            true,
-          ],
-        },
-        "method": "put",
-      },
-      "url": "/api/modification/1234",
+      "id": 7,
+      "type": "__FETCH__",
     },
     "type": "decrement outstanding fetches",
   },
   Object {
-    "payload": "saved",
     "type": "set modification",
   },
 ]
