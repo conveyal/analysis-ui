@@ -23,23 +23,27 @@ Object {
 
 exports[`actions > project create should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bundleId": "1",
-          "name": "test",
-          "regionId": "1",
-          "variants": Array [
-            "Default",
-          ],
+  Array [
+    Object {
+      "payload": Object {
+        "id": 1,
+        "options": Object {
+          "body": Object {
+            "bundleId": "1",
+            "name": "test",
+            "regionId": "1",
+            "variants": Array [
+              "Default",
+            ],
+          },
+          "method": "post",
         },
-        "method": "post",
+        "type": "__FETCH__",
+        "url": "/api/project",
       },
-      "url": "/api/project",
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -48,18 +52,8 @@ exports[`actions > project create should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {
-        "body": Object {
-          "bundleId": "1",
-          "name": "test",
-          "regionId": "1",
-          "variants": Array [
-            "Default",
-          ],
-        },
-        "method": "post",
-      },
-      "url": "/api/project",
+      "id": 1,
+      "type": "__FETCH__",
     },
     "type": "decrement outstanding fetches",
   },
@@ -101,15 +95,19 @@ Array [
 exports[`actions > project deleteProject should work 2`] = `
 Array [
   Array [
-    Object {
-      "payload": Object {
-        "options": Object {
-          "method": "delete",
+    Array [
+      Object {
+        "payload": Object {
+          "id": 2,
+          "options": Object {
+            "method": "delete",
+          },
+          "type": "__FETCH__",
+          "url": "/api/project/1",
         },
-        "url": "/api/project/1",
+        "type": "increment outstanding fetches",
       },
-      "type": "increment outstanding fetches",
-    },
+    ],
     Promise {},
   ],
 ]
@@ -147,30 +145,34 @@ Object {
 
 exports[`actions > project saveToServer should work 2`] = `
 Array [
-  Object {
-    "payload": Object {
-      "options": Object {
-        "body": Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "bundleId": "1",
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "name": "Mock Project",
-          "nonce": "12345",
-          "regionId": "1",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            "Default",
-          ],
+  Array [
+    Object {
+      "payload": Object {
+        "id": 4,
+        "options": Object {
+          "body": Object {
+            "_id": "1",
+            "accessGroup": "accessGroupName",
+            "bundleId": "1",
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "name": "Mock Project",
+            "nonce": "12345",
+            "regionId": "1",
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variants": Array [
+              "Default",
+            ],
+          },
+          "method": "put",
         },
-        "method": "put",
+        "type": "__FETCH__",
+        "url": "/api/project/1",
       },
-      "url": "/api/project/1",
+      "type": "increment outstanding fetches",
     },
-    "type": "increment outstanding fetches",
-  },
+  ],
   Promise {},
 ]
 `;
@@ -179,25 +181,8 @@ exports[`actions > project saveToServer should work 3`] = `
 Array [
   Object {
     "payload": Object {
-      "options": Object {
-        "body": Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "bundleId": "1",
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "name": "Mock Project",
-          "nonce": "12345",
-          "regionId": "1",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variants": Array [
-            "Default",
-          ],
-        },
-        "method": "put",
-      },
-      "url": "/api/project/1",
+      "id": 4,
+      "type": "__FETCH__",
     },
     "type": "decrement outstanding fetches",
   },
