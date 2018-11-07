@@ -533,42 +533,6 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
           onMouseOver={[Function]}
         >
           <a
-            name="Print a scenario from this project"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <i
-              className="fa fa-print fa-fw "
-            />
-          </a>
-        </span>
-        <span
-          className="Tip pull-right"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <a
-            name="Download a scenario from this project"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <i
-              className="fa fa-download fa-fw "
-            />
-          </a>
-        </span>
-        <span
-          className="Tip pull-right"
-          onBlur={[Function]}
-          onFocus={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <a
             name="Edit project settings"
             onClick={[Function]}
             style={Object {}}
@@ -576,6 +540,24 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
           >
             <i
               className="fa fa-gear fa-fw "
+            />
+          </a>
+        </span>
+        <span
+          className="Tip pull-right"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <a
+            name="Download or share this project"
+            onClick={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <i
+              className="fa fa-share-alt-square fa-fw "
             />
           </a>
         </span>
@@ -587,7 +569,8 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
       <i
         className="fa fa-pencil fa-fw "
       />
-       Modifications
+       
+      Modifications
       <span
         className="Tip ShowOnMap pull-right active fa-btn"
         onBlur={[Function]}
@@ -632,60 +615,29 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
       <div
         className="block"
       >
-        <div>
-          <div
-            className="DockTitle"
-          >
-            <i
-              className="fa fa-clone fa-fw "
-            />
-             
-            Scenarios
-            <a
-              className="pull-right"
-              onClick={[Function]}
-              tabIndex={0}
-              title="Create new scenario"
+        <div
+          className="Variants"
+        >
+          <div>
+            <div
+              aria-level={3}
+              role="heading"
             >
-              <i
-                className="fa fa-plus fa-fw "
-              />
-               Create
-            </a>
-          </div>
-          <div
-            className="Variants"
-          >
-            <ol>
-              <div
-                className="Variant"
+              <a
+                aria-expanded={false}
+                className="CollapsibleButton"
+                onClick={[Function]}
+                role="button"
+                tabIndex={0}
               >
-                <li>
-                   
-                  Default
-                  <a
-                    className="pull-right"
-                    onClick={[Function]}
-                    tabIndex={0}
-                    title="Show modifications for this scenario on the map"
-                  >
-                    <i
-                      className="fa fa-eye fa-fw "
-                    />
-                  </a>
-                  <a
-                    className="pull-right"
-                    onClick={[Function]}
-                    tabIndex={0}
-                    title="Rename this scenario"
-                  >
-                    <i
-                      className="fa fa-pencil fa-fw "
-                    />
-                  </a>
-                </li>
-              </div>
-            </ol>
+                <i
+                  className="fa fa-caret-right fa-fw "
+                />
+                <strong>
+                  Scenarios
+                </strong>
+              </a>
+            </div>
           </div>
         </div>
         <div
@@ -700,7 +652,7 @@ exports[`Component > Modification > ModificationsList renders correctly 1`] = `
             <i
               className="fa fa-plus fa-fw "
             />
-             Create a modification
+            Create a modification
           </a>
         </div>
         <div
