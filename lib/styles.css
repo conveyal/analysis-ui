@@ -53,7 +53,7 @@ a:focus.list-group-item,
 .link:hover,
 .link:focus {
   color: #23527c;
-  outline: !important none;
+  outline: none !important;
 }
 
 a.HelpLink {
@@ -515,13 +515,10 @@ label {
   border-color: #ddd;
 }
 
-.Variants {
-  margin-top: 12px;
-}
-
 .Variant {
   padding-bottom: 6px;
   line-height: 18px;
+  font-size: 12px;
 }
 
 .Variant > .pull-right {
@@ -667,6 +664,11 @@ label {
 .Tip {
   position: relative;
   display: inline-block;
+}
+
+/** Leaflet Tooltips */
+.leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before, .leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
+  display: none;
 }
 
 /** Admin Dashboard **/

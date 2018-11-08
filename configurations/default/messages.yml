@@ -14,6 +14,7 @@ common:
   removeFrom: Remove from
   route: Route
   loading: Loading...
+  processing: Processing...
 error:
   back: Go back
   close: Continue anyways
@@ -28,15 +29,19 @@ authentication:
   username: Logged in as %(username)
 bundle:
   name: Bundle Name
+  explanation: Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
+  edit: Edit Bundle
   create: Create GTFS bundle
-  failure: Upload Failed. Is this a valid GTFS bundle?
+  failure: Error processing GTFS. Please upload valid GTFS .zip files.
   feed: Feed
   files: GTFS .zip files
   delete: Delete this bundle
   deleteConfirmation: Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.
   edit: Edit bundle
-  processing: Bundle still being processed...
-  save: Save bundle
+  processing: Wait until processing is complete before leaving this page. This may take a few minutes.
+  save: Save renamed bundle/feed names
+  select: or select an existing one
+  notice: After clicking "Create," you will need to wait a few minutes for GTFS feeds to be processed.
 map:
   northAbbr: N # Local abbreviation for north, used to label north arrow
 mode:
@@ -82,7 +87,7 @@ r5Version:
   title: Routing engine
   showAll: Show all routing engine versions (advanced)
   showRelease: Show only stable routing engine versions
-
+  invalidVersion: %(version) is not a valid version. Please select an option > %(minimum).
 region:
   welcome: welcome
   createAction: Set up a new region
@@ -129,7 +134,7 @@ project:
   selectBundle: Select a GTFS bundle...
   noBundles: To get started with projects in this region, first create a GTFS bundle.
   print: Print a scenario from this project
-  export: Download a scenario from this project
+  export: Download or share this project
   route: Route
   uploadBundle: Upload a new GTFS Bundle
   uploadOpportunityDataset: Upload a new Opportunity Dataset
@@ -137,16 +142,22 @@ project:
   goToProject: Go to project
   select: Select a project…
 variant:
+  description: A Scenario is a collection of modifications within a project.
   name: Scenario
+  baseline: Baseline
   plural: Scenarios
   enterName: Enter a name for your scenario:
   editName: Rename this scenario
-  createAction: Create new scenario
+  createAction: Create a scenario
   showModifications: Show modifications for this scenario on the map
   delete: Delete this scenario
   deleteConfirmation: Are you sure you want to delete this scenario? Proceeding will clear references to it from all modifications.
   activeIn: Active in scenario numbers
-  export: Select scenario to #followed by print, e.g.
+  export: Select a scenario to download or share
+  saveJson: Scenario (.json)
+  saveGeojson: Add trips (.geojson)
+  print: Summary report
+  exportExplanation: Download a JSON representation of a scenario, GeoJSON shapes of Add Trips modifications from a scenario, or print a summary of the scenario.
 transitEditor:
   startEdit: Edit route geometry
   stopEdit: Stop editing
@@ -195,11 +206,14 @@ modification:
   importFromProjectInfo: When importing from a project associated with a different bundle, only "Add Trips" modifications will be copied. If a modification uses an existing stop from the baseline GTFS, it will be replaced in the imported modification by a new stop at the same location.
   name: Modification name
   type: Modification type
+  create: Create a modification
+  plural: Modifications
   onlyOneRoute: While all routes selected below will be included in analysis, only one will be shown on the map.
   copyTimetable:
     noSegments: The modification being copied to and/or from does not have any segments. The default segment speed of %(segmentSpeed) km/h will be used.
     curHasMoreSegments: The modification of the timetable you are copying from has less segments than the modification you are copying to. The segment speeds will be copied %(numSegments) segment(s) and after that, the default segment speed of %(segmentSpeed) km/h will be used.
     curHasLessSegments: The modification of the timetable you are copying to has less segments than the modification you are copying from. The segment speeds will be copied %(numSegments) segment(s).
+  selectStopInstructions: Click on the `New` button to create a polygon that encloses the stops you wish to select.
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -271,6 +285,7 @@ analysis:
   deleteRegionalAnalysis: Delete regional analysis
   openRegionalAnalysis: Open regional analysis
   newRegionalAnalysis: New regional analysis # this begins the process of creating a regional analysis
+  disableRegionalAnalysis: Fetch results for a single point before running a regional analysis
   startRegionalAnalysis: Start regional analysis # once a regional analysis is named, this kicks it off
   accessTo: %(opportunity) within %(cutoff) minutes (percentile %(percentile))
   accessToInstantaneous: %(opportunity) within %(cutoff) minutes (average instantaneous accessibility)
@@ -305,6 +320,7 @@ analysis:
   weightedAverageAccessibility: Weighted average accessibility: %(weightedAverage)
   weightedAverageAccessibilityWarning: Weighted average accessibility may not be representative of the experience of users of the system; we recommend using the histogram and percentile measures above.
   refresh: Fetch results
+  disableFetch: Select a project before fetching results
   regionalBounds: Bounds of analysis
   regionalBoundsSame: Same as %(name)
   regionalBoundsCustom: Custom
@@ -341,6 +357,7 @@ report:
   adjustSpeed:
     scale: Scale speed by %(scale)x
     scaleLabel: Scale speed by
+    selectInstructions: Select the stop-to-stop segment(s) of the pattern(s) to scale the speed on.
   patternLength: Length
   patternName: Pattern
   reroute:

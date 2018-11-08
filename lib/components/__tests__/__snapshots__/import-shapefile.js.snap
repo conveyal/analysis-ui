@@ -619,6 +619,7 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
           <Connect(ProjectTitle)>
             <ProjectTitle
               _id="1"
+              downloadGeojson={[Function]}
               downloadScenario={[Function]}
               project={
                 Object {
@@ -652,72 +653,6 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                    
                   Mock Project
                   <span>
-                    <Link
-                      className="pull-right"
-                      onClick={[Function]}
-                      title="Print a scenario from this project"
-                    >
-                      <Tip
-                        className="pull-right"
-                        tip="Print a scenario from this project"
-                      >
-                        <span
-                          className="Tip pull-right"
-                          onBlur={[Function]}
-                          onFocus={[Function]}
-                          onMouseOut={[Function]}
-                          onMouseOver={[Function]}
-                        >
-                          <a
-                            name="Print a scenario from this project"
-                            onClick={[Function]}
-                            tabIndex={0}
-                            type="button"
-                          >
-                            <Icon
-                              type="print"
-                            >
-                              <i
-                                className="fa fa-print fa-fw "
-                              />
-                            </Icon>
-                          </a>
-                        </span>
-                      </Tip>
-                    </Link>
-                    <Link
-                      className="pull-right"
-                      onClick={[Function]}
-                      title="Download a scenario from this project"
-                    >
-                      <Tip
-                        className="pull-right"
-                        tip="Download a scenario from this project"
-                      >
-                        <span
-                          className="Tip pull-right"
-                          onBlur={[Function]}
-                          onFocus={[Function]}
-                          onMouseOut={[Function]}
-                          onMouseOver={[Function]}
-                        >
-                          <a
-                            name="Download a scenario from this project"
-                            onClick={[Function]}
-                            tabIndex={0}
-                            type="button"
-                          >
-                            <Icon
-                              type="download"
-                            >
-                              <i
-                                className="fa fa-download fa-fw "
-                              />
-                            </Icon>
-                          </a>
-                        </span>
-                      </Tip>
-                    </Link>
                     <IconLink
                       className="pull-right"
                       title="Edit project settings"
@@ -763,6 +698,47 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                                 </Icon>
                               </a>
                             </Link>
+                          </span>
+                        </Tip>
+                      </Link>
+                    </IconLink>
+                    <IconLink
+                      className="pull-right"
+                      onClick={[Function]}
+                      title="Download or share this project"
+                      type="share-alt-square"
+                    >
+                      <Link
+                        className="pull-right"
+                        onClick={[Function]}
+                        title="Download or share this project"
+                        type="button"
+                      >
+                        <Tip
+                          className="pull-right"
+                          tip="Download or share this project"
+                        >
+                          <span
+                            className="Tip pull-right"
+                            onBlur={[Function]}
+                            onFocus={[Function]}
+                            onMouseOut={[Function]}
+                            onMouseOver={[Function]}
+                          >
+                            <a
+                              name="Download or share this project"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              type="button"
+                            >
+                              <Icon
+                                type="share-alt-square"
+                              >
+                                <i
+                                  className="fa fa-share-alt-square fa-fw "
+                                />
+                              </Icon>
+                            </a>
                           </span>
                         </Tip>
                       </Link>
