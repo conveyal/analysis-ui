@@ -138,6 +138,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       }
       projectId="1"
       removeModification={[Function]}
+      saveInProgress={false}
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
@@ -160,7 +161,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
             <Sidebar
               currentPath="blank"
               dispatch={[Function]}
-              outstandingRequests={0}
+              outstandingRequests={false}
               projectId="1"
               regionId="1"
             >
@@ -670,6 +671,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     "lon": -77.043,
                   }
                 }
+                disabled={false}
                 dispatch={[Function]}
                 maxBounds={
                   Object {
@@ -708,6 +710,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       "lon": -77.043,
                     }
                   }
+                  className=""
                   maxBounds={
                     Object {
                       "_northEast": Object {
@@ -724,7 +727,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   useFlyTo={false}
                   zoom={12}
                 >
-                  <div>
+                  <div
+                    className=""
+                  >
                     <TileLayer
                       attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
                       url="mock.url/tile"
@@ -2005,133 +2010,141 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   </Link>
                 </IconLink>
                 Test Modification
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Delete modification"
-                  type="trash"
+                <span
+                  className=""
                 >
-                  <Link
+                  <IconLink
                     className="pull-right"
                     onClick={[Function]}
                     title="Delete modification"
-                    type="button"
+                    type="trash"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Delete modification"
+                      onClick={[Function]}
+                      title="Delete modification"
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Delete modification"
                       >
-                        <a
-                          name="Delete modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="trash"
+                          <a
+                            name="Delete modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-trash fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Copy modification"
-                  type="copy"
-                >
-                  <Link
+                            <Icon
+                              type="trash"
+                            >
+                              <i
+                                className="fa fa-trash fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
                     onClick={[Function]}
                     title="Copy modification"
-                    type="button"
+                    type="copy"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Copy modification"
+                      onClick={[Function]}
+                      title="Copy modification"
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Copy modification"
                       >
-                        <a
-                          name="Copy modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="copy"
+                          <a
+                            name="Copy modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-copy fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Edit modification name"
-                  type="pencil"
-                >
-                  <Link
+                            <Icon
+                              type="copy"
+                            >
+                              <i
+                                className="fa fa-copy fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
                     onClick={[Function]}
                     title="Edit modification name"
-                    type="button"
+                    type="pencil"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Edit modification name"
+                      onClick={[Function]}
+                      title="Edit modification name"
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Edit modification name"
                       >
-                        <a
-                          name="Edit modification name"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="pencil"
+                          <a
+                            name="Edit modification name"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-pencil fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
+                            <Icon
+                              type="pencil"
+                            >
+                              <i
+                                className="fa fa-pencil fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                </span>
               </div>
             </Title>
-            <Dock>
-              <InnerDock>
+            <Dock
+              className=""
+            >
+              <InnerDock
+                className=""
+              >
                 <div
                   className="InnerDock "
                   style={
@@ -3291,6 +3304,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
       }
       projectId="1"
       removeModification={[Function]}
+      saveInProgress={false}
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
@@ -3313,7 +3327,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
             <Sidebar
               currentPath="blank"
               dispatch={[Function]}
-              outstandingRequests={0}
+              outstandingRequests={false}
               projectId="1"
               regionId="1"
             >
@@ -3823,6 +3837,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     "lon": -77.043,
                   }
                 }
+                disabled={false}
                 dispatch={[Function]}
                 maxBounds={
                   Object {
@@ -3861,6 +3876,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       "lon": -77.043,
                     }
                   }
+                  className=""
                   maxBounds={
                     Object {
                       "_northEast": Object {
@@ -3877,7 +3893,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                   useFlyTo={false}
                   zoom={12}
                 >
-                  <div>
+                  <div
+                    className=""
+                  >
                     <TileLayer
                       attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
                       url="mock.url/tile"
@@ -5158,133 +5176,141 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                   </Link>
                 </IconLink>
                 Test Modification
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Delete modification"
-                  type="trash"
+                <span
+                  className=""
                 >
-                  <Link
+                  <IconLink
                     className="pull-right"
                     onClick={[Function]}
                     title="Delete modification"
-                    type="button"
+                    type="trash"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Delete modification"
+                      onClick={[Function]}
+                      title="Delete modification"
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Delete modification"
                       >
-                        <a
-                          name="Delete modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="trash"
+                          <a
+                            name="Delete modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-trash fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Copy modification"
-                  type="copy"
-                >
-                  <Link
+                            <Icon
+                              type="trash"
+                            >
+                              <i
+                                className="fa fa-trash fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
                     onClick={[Function]}
                     title="Copy modification"
-                    type="button"
+                    type="copy"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Copy modification"
+                      onClick={[Function]}
+                      title="Copy modification"
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Copy modification"
                       >
-                        <a
-                          name="Copy modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="copy"
+                          <a
+                            name="Copy modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-copy fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Edit modification name"
-                  type="pencil"
-                >
-                  <Link
+                            <Icon
+                              type="copy"
+                            >
+                              <i
+                                className="fa fa-copy fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
                     onClick={[Function]}
                     title="Edit modification name"
-                    type="button"
+                    type="pencil"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Edit modification name"
+                      onClick={[Function]}
+                      title="Edit modification name"
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Edit modification name"
                       >
-                        <a
-                          name="Edit modification name"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="pencil"
+                          <a
+                            name="Edit modification name"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-pencil fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
+                            <Icon
+                              type="pencil"
+                            >
+                              <i
+                                className="fa fa-pencil fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                </span>
               </div>
             </Title>
-            <Dock>
-              <InnerDock>
+            <Dock
+              className=""
+            >
+              <InnerDock
+                className=""
+              >
                 <div
                   className="InnerDock "
                   style={
