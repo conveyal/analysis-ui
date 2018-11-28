@@ -63,7 +63,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
           <Sidebar
             currentPath="blank"
             dispatch={[Function]}
-            outstandingRequests={0}
+            outstandingRequests={false}
             projectId="1"
             regionId="1"
           >
@@ -573,6 +573,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                   "lon": -77.043,
                 }
               }
+              disabled={false}
               dispatch={[Function]}
               maxBounds={
                 Object {
@@ -611,6 +612,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
                     "lon": -77.043,
                   }
                 }
+                className=""
                 maxBounds={
                   Object {
                     "_northEast": Object {
@@ -627,7 +629,9 @@ exports[`Component > EditRegion renders correctly 1`] = `
                 useFlyTo={false}
                 zoom={12}
               >
-                <div>
+                <div
+                  className=""
+                >
                   <TileLayer
                     attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
                     url="mock.url/tile"

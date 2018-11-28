@@ -32,7 +32,7 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
           <Sidebar
             currentPath="blank"
             dispatch={[Function]}
-            outstandingRequests={0}
+            outstandingRequests={false}
             projectId="1"
             regionId="1"
           >
@@ -542,6 +542,7 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                   "lon": -77.043,
                 }
               }
+              disabled={false}
               dispatch={[Function]}
               maxBounds={
                 Object {
@@ -580,6 +581,7 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                     "lon": -77.043,
                   }
                 }
+                className=""
                 maxBounds={
                   Object {
                     "_northEast": Object {
@@ -596,7 +598,9 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                 useFlyTo={false}
                 zoom={12}
               >
-                <div>
+                <div
+                  className=""
+                >
                   <TileLayer
                     attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
                     url="mock.url/tile"
@@ -655,13 +659,13 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                   <span>
                     <IconLink
                       className="pull-right"
-                      title="Edit project settings"
+                      name="Edit project settings"
                       to="/regions/1/projects/1/edit"
                       type="gear"
                     >
                       <Link
                         className="pull-right"
-                        title="Edit project settings"
+                        name="Edit project settings"
                         to="/regions/1/projects/1/edit"
                         type="button"
                       >
@@ -704,14 +708,14 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                     </IconLink>
                     <IconLink
                       className="pull-right"
+                      name="Download or share this project"
                       onClick={[Function]}
-                      title="Download or share this project"
                       type="share-alt-square"
                     >
                       <Link
                         className="pull-right"
+                        name="Download or share this project"
                         onClick={[Function]}
-                        title="Download or share this project"
                         type="button"
                       >
                         <Tip
