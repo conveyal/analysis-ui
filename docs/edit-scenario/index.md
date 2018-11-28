@@ -1,6 +1,6 @@
 # Overview of editing mode
 
-After logging into Conveyal Analysis and selecting a project, you will arrive at the screen below. Each project has a numbered list of **scenarios** followed by a list of **modifications**. To prevent data conflicts, the system does not allow multiple users or browser tabs to edit the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them, as suggested [below](#usage-suggestions-and-details).
+After logging into Conveyal Analysis and selecting a project, you will arrive at the screen below. Each project has an expandable list of numbered **scenarios** followed by a list of **modifications**. To prevent data conflicts, the system does not allow multiple users or browser tabs to edit the same project simultaneously. If you expect multiple people in your organization to be using Conveyal Analysis at the same time, you may want to create projects for each of them, as suggested [below](#usage-suggestions-and-details).
 
 <figure>
   <img src="../img/create-scenario.png" />
@@ -40,10 +40,12 @@ If multiple users will be involved in editing scenarios, or if you want to asses
 In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click<br>
 <span class="ui-icon"><i class="fa fa-eye"></i>Toggle map display</span>
 
-Projects start with only a Default scenario (plus a hidden Baseline in which no modifications can be active). You can create additional scenarios by clicking <span class="ui-link"><i class="fa fa-plus"></i> Create</span> and entering a name. Next to each scenario are options to:
-<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span> the scenario (not available for the Default scenario)
+Projects start with only a Default scenario (plus a locked Baseline in which no modifications can be active). You can create additional scenarios expanding the list of scenarios, clicking the create button, and entering a name.
+
+Next to each added scenario are options to:
+<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span> the scenario
 <br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span> the scenario
-<br><span class="ui-icon"><i class="fa fa-eye"></i>Show on the map</span> the modifications active in a scenario
+<br><span class="ui-icon"><i class="fa fa-eye"></i>Show on the map</span> the modifications active in the scenario
 
 ## Activating modifications in scenarios
 
@@ -55,29 +57,30 @@ By default, each modification is active in all scenarios that exist when the mod
 </figure>
 
 
-## Importing modifications from another project
+## Importing modifications
+
+To import modifications from another project or a shapefile, click
+<br><span class="ui-icon"><i class="fa fa-upload"></i>Upload/import modifications</span>
+
+### From another project
 
 Occasionally, you may want to copy all of the modifications from one project into another. This may be useful to make a copy of a project, or to combine modifications developed by different team members into a single project (for instance, one team member working on rail changes and another on bus changes).
-To do this, click
-<br><span class="ui-icon"><i class="fa fa-download"></i>Import modifications from another project</span>
 
-You can then choose the project from which to import modifications.
+To do so, select a project in the upload/import panel and click
+<br><span class="btn btn-success"><i class="fa fa-copy"></i> Import</span>
 
 If you choose a project associated with the same GTFS bundle, all modifications will be imported; when there are multiple scenarios, the scenarios in the project being imported will be mapped directly to the scenarios in the receiving project (i.e. modifications in the first scenario will remain in the first scenario in the new project).
 
 If you choose a project associated with a different GTFS, bundle, only add-trip modifications will be imported.
 
-<figure>
-  <img src="../img/import-modifications.png" />
-  <figcaption>Importing modifications from another scenario</figcaption>
-</figure>
+### From Shapefiles
 
-## Importing modifications from Shapefiles
+In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However, on occasion, it may be desirable to import modifications from a GIS Shapefile. If you have a Shapefile containing lines, you can upload it to Conveyal Analysis and have it turned into a set of Add Trips modifications.
 
-In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However, on occasion, it may be desirable to import modifications from a GIS Shapefile. If you have a Shapefile containing lines, you can upload it to Conveyal Analysis and have it turned into a set of Add Trips modifications. You first need to zip the components of the Shapefile, then you can click
-<br><span class="ui-icon"><i class="fa fa-globe"></i> Import route alignment shapefile</span>
+To do so from the upload/import panel, click
+<br><span class="btn btn-success"><i class="fa fa-upload"></i> Import</span>
 
-Once you have entered the Import Shapefile view and selected a zipped Shapefile, you will see the following.
+Then, after selecting and importing a zipped Shapefile, you will see the following:
 
 <figure>
   <img src="../img/import-modifications-from-shapefile.png"/>
@@ -89,4 +92,4 @@ There are several fields that must be filled in, corresponding to attributes (co
 - Speed (in km/h)
 - Headway (in minutes)
 
-Finally, since Shapefiles only contain the route geometry and not the stop locations, stops can be created automatically. The stop spacing should be specified. The generated stop positions may be individually edited after import, for example to place a stop at a major transfer point.
+Finally, as Shapefiles only contain the route geometry and not the stop locations, stops can be created automatically at a specified spacing. The generated stop positions may be individually edited after import, for example to place a stop at a major transfer point.
