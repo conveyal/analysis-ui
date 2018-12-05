@@ -168,7 +168,8 @@ transitEditor:
   makeControlPoint: make control point
   deletePoint: delete
   stopSpacingMeters: Stop spacing
-  autoCreateStops: Auto-create stops
+  autoCreateStops: Auto-create stops at set spacing
+  extend: Extend
   extendFromEnd: Extend from end
   fromStopLabel: Start of reroute/extension (existing stop on pattern)
   toStopLabel: End of reroute/extension (existing stop on pattern)
@@ -179,6 +180,7 @@ transitEditor:
   autocreatedStopDescription: Auto-created stop
   snappedStopDescription: New stop snapped to an existing stop
   controlPointDescription: Control point for a segment
+  snap: Snap to existing stops (beta)
 shapefile:
   invalidMultiLineString: MultiLineString feature in input shapefile has disjoint segments, cannot process.
   invalidShapefileType: Shapefile type must be LineString or MultiLineString
@@ -330,6 +332,11 @@ analysis:
   bookmarkName: Bookmark name
   selectComparisonProject: Select comparison project…
   selectComparisonProjectVariant: Select comparison scenario…
+  customizeProfileRequest:
+    label: Customize Profile Request
+    description: Edit JSON directly that will be sent to the worker. For advanced users only. Notice: "percentiles" and "workerVersion" cannot be changed here.
+    error: Not saved due to invalid JSON.
+    update: Update Profile Request
 report:
   keepTripsOutside: Existing trips outside modified windows are kept.
   removeTripsOutside: All existing trips are removed.

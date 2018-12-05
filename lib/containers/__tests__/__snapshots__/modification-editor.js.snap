@@ -138,6 +138,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
       }
       projectId="1"
       removeModification={[Function]}
+      saveInProgress={false}
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
@@ -160,7 +161,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
             <Sidebar
               currentPath="blank"
               dispatch={[Function]}
-              outstandingRequests={0}
+              outstandingRequests={false}
               projectId="1"
               regionId="1"
             >
@@ -670,6 +671,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     "lon": -77.043,
                   }
                 }
+                disabled={false}
                 dispatch={[Function]}
                 maxBounds={
                   Object {
@@ -708,6 +710,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                       "lon": -77.043,
                     }
                   }
+                  className=""
                   maxBounds={
                     Object {
                       "_northEast": Object {
@@ -724,7 +727,9 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   useFlyTo={false}
                   zoom={12}
                 >
-                  <div>
+                  <div
+                    className=""
+                  >
                     <TileLayer
                       attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
                       url="mock.url/tile"
@@ -737,7 +742,109 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           zIndex={40}
                         />
                       </LabelLayer>
-                      <Connect(ModificationsMap)>
+                      <Connect(ModificationsMap)
+                        activeModification={
+                          Object {
+                            "_id": "1234",
+                            "accessGroup": "accessGroupName",
+                            "bidirectional": false,
+                            "createdAt": "2017-11-08T12:30:50.133Z",
+                            "createdBy": "person@gmail.com",
+                            "description": "Mock description",
+                            "entries": Array [],
+                            "feed": "1",
+                            "name": "Test Modification",
+                            "nonce": "12345",
+                            "projectId": "1",
+                            "routes": Array [
+                              "route1",
+                            ],
+                            "segments": Array [
+                              {
+                            "fromStopId": "1",
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
+                                ]
+                              ]
+                            },
+                            "properties": {},
+                            "spacing": "3000.00000000",
+                            "stopAtEnd": false,
+                            "stopAtStart": false,
+                            "type": "Feature"
+                          },
+                            ],
+                            "showOnMap": false,
+                            "timetables": Array [
+                              Object {
+                                "_id": "timetable-id",
+                                "dwellTime": 10,
+                                "dwellTimes": Array [
+                                  12,
+                                ],
+                                "endTime": 57600,
+                                "exactTimes": false,
+                                "friday": true,
+                                "headwaySecs": 900,
+                                "modificationId": "1234",
+                                "modificationName": "Test Modification",
+                                "monday": true,
+                                "name": "Test timetable",
+                                "patternTrips": Array [
+                                  "abcd",
+                                ],
+                                "phaseAtStop": "",
+                                "phaseFromStop": "",
+                                "phaseFromTimetable": "",
+                                "phaseSeconds": 300,
+                                "saturday": false,
+                                "segmentSpeeds": Array [],
+                                "sourceTrip": "abcd",
+                                "startTime": 28800,
+                                "sunday": false,
+                                "thursday": true,
+                                "tuesday": true,
+                                "wednesday": true,
+                              },
+                            ],
+                            "trips": Array [
+                              "abcd",
+                            ],
+                            "type": "add-trip-pattern",
+                            "updatedAt": "2017-11-08T12:31:19.602Z",
+                            "updatedBy": "person@gmail.com",
+                            "variants": Array [
+                              true,
+                            ],
+                          }
+                        }
+                        setMapState={[Function]}
+                        updateLocally={[Function]}
+                      >
                         <ModificationsMap
                           activeModification={
                             Object {
@@ -938,6 +1045,7 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             }
                           }
                           bundleId="1"
+                          dispatch={[Function]}
                           feeds={
                             Array [
                               Object {
@@ -1253,9 +1361,8 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                             ]
                           }
                           qualifiedStops={Array []}
-                          setAndRetrieveData={[Function]}
-                          setLocally={[Function]}
                           setMapState={[Function]}
+                          updateLocally={[Function]}
                         >
                           <g>
                             <AddTripPatternLayer
@@ -1857,12 +1964,12 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                 className="ApplicationDockTitle"
               >
                 <IconLink
-                  title="Modifications"
+                  name="Modifications"
                   to="/regions/undefined/projects/1/modifications"
                   type="chevron-left"
                 >
                   <Link
-                    title="Modifications"
+                    name="Modifications"
                     to="/regions/undefined/projects/1/modifications"
                     type="button"
                   >
@@ -1903,133 +2010,141 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                   </Link>
                 </IconLink>
                 Test Modification
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Delete modification"
-                  type="trash"
+                <span
+                  className=""
                 >
-                  <Link
+                  <IconLink
                     className="pull-right"
+                    name="Delete modification"
                     onClick={[Function]}
-                    title="Delete modification"
-                    type="button"
+                    type="trash"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Delete modification"
+                      name="Delete modification"
+                      onClick={[Function]}
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Delete modification"
                       >
-                        <a
-                          name="Delete modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="trash"
+                          <a
+                            name="Delete modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-trash fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Copy modification"
-                  type="copy"
-                >
-                  <Link
+                            <Icon
+                              type="trash"
+                            >
+                              <i
+                                className="fa fa-trash fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
+                    name="Copy modification"
                     onClick={[Function]}
-                    title="Copy modification"
-                    type="button"
+                    type="copy"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Copy modification"
+                      name="Copy modification"
+                      onClick={[Function]}
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Copy modification"
                       >
-                        <a
-                          name="Copy modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="copy"
+                          <a
+                            name="Copy modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-copy fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Edit modification name"
-                  type="pencil"
-                >
-                  <Link
+                            <Icon
+                              type="copy"
+                            >
+                              <i
+                                className="fa fa-copy fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
+                    name="Edit modification name"
                     onClick={[Function]}
-                    title="Edit modification name"
-                    type="button"
+                    type="pencil"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Edit modification name"
+                      name="Edit modification name"
+                      onClick={[Function]}
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Edit modification name"
                       >
-                        <a
-                          name="Edit modification name"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="pencil"
+                          <a
+                            name="Edit modification name"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-pencil fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
+                            <Icon
+                              type="pencil"
+                            >
+                              <i
+                                className="fa fa-pencil fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                </span>
               </div>
             </Title>
-            <Dock>
-              <InnerDock>
+            <Dock
+              className=""
+            >
+              <InnerDock
+                className=""
+              >
                 <div
                   className="InnerDock "
                   style={
@@ -2044,26 +2159,29 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                     <div>
                       <TextArea
                         label="Description"
+                        name="Edit description"
                         onChange={[Function]}
                         value="Mock description"
                       >
                         <Group
-                          id="description-input-12"
+                          id="edit-description-input-12"
                           label="Description"
+                          name="Edit description"
                           onChange={[Function]}
                         >
                           <div
                             className="form-group"
                           >
                             <label
-                              htmlFor="description-input-12"
+                              htmlFor="edit-description-input-12"
                             >
                               Description
                             </label>
                             <textarea
                               className="form-control"
-                              id="description-input-12"
+                              id="edit-description-input-12"
                               label="Description"
+                              name="Edit description"
                               onChange={[Function]}
                             >
                               Mock description
@@ -2283,6 +2401,22 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                         >
                           <AddTripPattern
                             allPhaseFromTimetableStops={Object {}}
+                            allStops={
+                              Array [
+                                Object {
+                                  "stop_id": "1:1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                Object {
+                                  "stop_id": "1:2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              ]
+                            }
                             dispatch={[Function]}
                             extendFromEnd={true}
                             gtfsStops={
@@ -2417,6 +2551,22 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                           >
                             <div>
                               <EditAlignment
+                                allStops={
+                                  Array [
+                                    Object {
+                                      "stop_id": "1:1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    Object {
+                                      "stop_id": "1:2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  ]
+                                }
                                 disabled={false}
                                 extendFromEnd={true}
                                 mapState={
@@ -2573,23 +2723,23 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
                                   </p>
                                   <Checkbox
                                     defaultChecked={true}
-                                    label="Auto-create stops"
+                                    label="Auto-create stops at set spacing"
                                     onChange={[Function]}
                                   >
                                     <div
                                       className="checkbox"
                                     >
                                       <label
-                                        htmlFor="auto-create-stops-input-13"
+                                        htmlFor="auto-create-stops-at-set-spacing-input-13"
                                       >
                                         <input
                                           defaultChecked={true}
-                                          id="auto-create-stops-input-13"
+                                          id="auto-create-stops-at-set-spacing-input-13"
                                           onChange={[Function]}
                                           type="checkbox"
                                         />
                                          
-                                        Auto-create stops
+                                        Auto-create stops at set spacing
                                       </label>
                                     </div>
                                   </Checkbox>
@@ -3189,6 +3339,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
       }
       projectId="1"
       removeModification={[Function]}
+      saveInProgress={false}
       setActive={[Function]}
       setActiveTrips={[Function]}
       setMapState={[Function]}
@@ -3211,7 +3362,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
             <Sidebar
               currentPath="blank"
               dispatch={[Function]}
-              outstandingRequests={0}
+              outstandingRequests={false}
               projectId="1"
               regionId="1"
             >
@@ -3721,6 +3872,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     "lon": -77.043,
                   }
                 }
+                disabled={false}
                 dispatch={[Function]}
                 maxBounds={
                   Object {
@@ -3759,6 +3911,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                       "lon": -77.043,
                     }
                   }
+                  className=""
                   maxBounds={
                     Object {
                       "_northEast": Object {
@@ -3775,7 +3928,9 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                   useFlyTo={false}
                   zoom={12}
                 >
-                  <div>
+                  <div
+                    className=""
+                  >
                     <TileLayer
                       attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
                       url="mock.url/tile"
@@ -3788,7 +3943,109 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           zIndex={40}
                         />
                       </LabelLayer>
-                      <Connect(ModificationsMap)>
+                      <Connect(ModificationsMap)
+                        activeModification={
+                          Object {
+                            "_id": "1234",
+                            "accessGroup": "accessGroupName",
+                            "bidirectional": false,
+                            "createdAt": "2017-11-08T12:30:50.133Z",
+                            "createdBy": "person@gmail.com",
+                            "description": "Mock description",
+                            "entries": Array [],
+                            "feed": "1",
+                            "name": "Test Modification",
+                            "nonce": "12345",
+                            "projectId": "1",
+                            "routes": Array [
+                              "route1",
+                            ],
+                            "segments": Array [
+                              {
+                            "fromStopId": "1",
+                            "geometry": {
+                              "type": "LineString",
+                              "coordinates": [
+                                [
+                                  "-122.02460000",
+                                  "36.97070000"
+                                ],
+                                [
+                                  "-122.02790000",
+                                  "37.04900000"
+                                ],
+                                [
+                                  "-121.97990000",
+                                  "37.22990000"
+                                ],
+                                [
+                                  "-121.94450000",
+                                  "37.32400000"
+                                ],
+                                [
+                                  "-121.93600000",
+                                  "37.35300000"
+                                ],
+                                [
+                                  "-121.92400000",
+                                  "37.36500000"
+                                ]
+                              ]
+                            },
+                            "properties": {},
+                            "spacing": "3000.00000000",
+                            "stopAtEnd": false,
+                            "stopAtStart": false,
+                            "type": "Feature"
+                          },
+                            ],
+                            "showOnMap": false,
+                            "timetables": Array [
+                              Object {
+                                "_id": "timetable-id",
+                                "dwellTime": 10,
+                                "dwellTimes": Array [
+                                  12,
+                                ],
+                                "endTime": 57600,
+                                "exactTimes": false,
+                                "friday": true,
+                                "headwaySecs": 900,
+                                "modificationId": "1234",
+                                "modificationName": "Test Modification",
+                                "monday": true,
+                                "name": "Test timetable",
+                                "patternTrips": Array [
+                                  "abcd",
+                                ],
+                                "phaseAtStop": "",
+                                "phaseFromStop": "",
+                                "phaseFromTimetable": "",
+                                "phaseSeconds": 300,
+                                "saturday": false,
+                                "segmentSpeeds": Array [],
+                                "sourceTrip": "abcd",
+                                "startTime": 28800,
+                                "sunday": false,
+                                "thursday": true,
+                                "tuesday": true,
+                                "wednesday": true,
+                              },
+                            ],
+                            "trips": Array [
+                              "abcd",
+                            ],
+                            "type": "add-trip-pattern",
+                            "updatedAt": "2017-11-08T12:31:19.602Z",
+                            "updatedBy": "person@gmail.com",
+                            "variants": Array [
+                              true,
+                            ],
+                          }
+                        }
+                        setMapState={[Function]}
+                        updateLocally={[Function]}
+                      >
                         <ModificationsMap
                           activeModification={
                             Object {
@@ -3989,6 +4246,7 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             }
                           }
                           bundleId="1"
+                          dispatch={[Function]}
                           feeds={
                             Array [
                               Object {
@@ -4304,9 +4562,8 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                             ]
                           }
                           qualifiedStops={Array []}
-                          setAndRetrieveData={[Function]}
-                          setLocally={[Function]}
                           setMapState={[Function]}
+                          updateLocally={[Function]}
                         >
                           <g>
                             <AddTripPatternLayer
@@ -4908,12 +5165,12 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                 className="ApplicationDockTitle"
               >
                 <IconLink
-                  title="Modifications"
+                  name="Modifications"
                   to="/regions/undefined/projects/1/modifications"
                   type="chevron-left"
                 >
                   <Link
-                    title="Modifications"
+                    name="Modifications"
                     to="/regions/undefined/projects/1/modifications"
                     type="button"
                   >
@@ -4954,133 +5211,141 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                   </Link>
                 </IconLink>
                 Test Modification
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Delete modification"
-                  type="trash"
+                <span
+                  className=""
                 >
-                  <Link
+                  <IconLink
                     className="pull-right"
+                    name="Delete modification"
                     onClick={[Function]}
-                    title="Delete modification"
-                    type="button"
+                    type="trash"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Delete modification"
+                      name="Delete modification"
+                      onClick={[Function]}
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Delete modification"
                       >
-                        <a
-                          name="Delete modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="trash"
+                          <a
+                            name="Delete modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-trash fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Copy modification"
-                  type="copy"
-                >
-                  <Link
+                            <Icon
+                              type="trash"
+                            >
+                              <i
+                                className="fa fa-trash fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
+                    name="Copy modification"
                     onClick={[Function]}
-                    title="Copy modification"
-                    type="button"
+                    type="copy"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Copy modification"
+                      name="Copy modification"
+                      onClick={[Function]}
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Copy modification"
                       >
-                        <a
-                          name="Copy modification"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="copy"
+                          <a
+                            name="Copy modification"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-copy fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
-                <IconLink
-                  className="pull-right"
-                  onClick={[Function]}
-                  title="Edit modification name"
-                  type="pencil"
-                >
-                  <Link
+                            <Icon
+                              type="copy"
+                            >
+                              <i
+                                className="fa fa-copy fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                  <IconLink
                     className="pull-right"
+                    name="Edit modification name"
                     onClick={[Function]}
-                    title="Edit modification name"
-                    type="button"
+                    type="pencil"
                   >
-                    <Tip
+                    <Link
                       className="pull-right"
-                      tip="Edit modification name"
+                      name="Edit modification name"
+                      onClick={[Function]}
+                      type="button"
                     >
-                      <span
-                        className="Tip pull-right"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
+                      <Tip
+                        className="pull-right"
+                        tip="Edit modification name"
                       >
-                        <a
-                          name="Edit modification name"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <span
+                          className="Tip pull-right"
+                          onBlur={[Function]}
+                          onFocus={[Function]}
+                          onMouseOut={[Function]}
+                          onMouseOver={[Function]}
                         >
-                          <Icon
-                            type="pencil"
+                          <a
+                            name="Edit modification name"
+                            onClick={[Function]}
+                            tabIndex={0}
+                            type="button"
                           >
-                            <i
-                              className="fa fa-pencil fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </span>
-                    </Tip>
-                  </Link>
-                </IconLink>
+                            <Icon
+                              type="pencil"
+                            >
+                              <i
+                                className="fa fa-pencil fa-fw "
+                              />
+                            </Icon>
+                          </a>
+                        </span>
+                      </Tip>
+                    </Link>
+                  </IconLink>
+                </span>
               </div>
             </Title>
-            <Dock>
-              <InnerDock>
+            <Dock
+              className=""
+            >
+              <InnerDock
+                className=""
+              >
                 <div
                   className="InnerDock "
                   style={
@@ -5095,26 +5360,29 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                     <div>
                       <TextArea
                         label="Description"
+                        name="Edit description"
                         onChange={[Function]}
                         value="Mock description"
                       >
                         <Group
-                          id="description-input-0"
+                          id="edit-description-input-0"
                           label="Description"
+                          name="Edit description"
                           onChange={[Function]}
                         >
                           <div
                             className="form-group"
                           >
                             <label
-                              htmlFor="description-input-0"
+                              htmlFor="edit-description-input-0"
                             >
                               Description
                             </label>
                             <textarea
                               className="form-control"
-                              id="description-input-0"
+                              id="edit-description-input-0"
                               label="Description"
+                              name="Edit description"
                               onChange={[Function]}
                             >
                               Mock description
@@ -5334,6 +5602,22 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                         >
                           <AddTripPattern
                             allPhaseFromTimetableStops={Object {}}
+                            allStops={
+                              Array [
+                                Object {
+                                  "stop_id": "1:1",
+                                  "stop_lat": 36.9707,
+                                  "stop_lon": -122.0246,
+                                  "stop_name": "Santa Cruz",
+                                },
+                                Object {
+                                  "stop_id": "1:2",
+                                  "stop_lat": 37.049,
+                                  "stop_lon": -122.0279,
+                                  "stop_name": "Scotts Valley",
+                                },
+                              ]
+                            }
                             dispatch={[Function]}
                             extendFromEnd={true}
                             gtfsStops={
@@ -5468,6 +5752,22 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                           >
                             <div>
                               <EditAlignment
+                                allStops={
+                                  Array [
+                                    Object {
+                                      "stop_id": "1:1",
+                                      "stop_lat": 36.9707,
+                                      "stop_lon": -122.0246,
+                                      "stop_name": "Santa Cruz",
+                                    },
+                                    Object {
+                                      "stop_id": "1:2",
+                                      "stop_lat": 37.049,
+                                      "stop_lon": -122.0279,
+                                      "stop_name": "Scotts Valley",
+                                    },
+                                  ]
+                                }
                                 disabled={false}
                                 extendFromEnd={true}
                                 mapState={
@@ -5624,23 +5924,23 @@ exports[`Container > Modification Editor renders correctly 1`] = `
                                   </p>
                                   <Checkbox
                                     defaultChecked={true}
-                                    label="Auto-create stops"
+                                    label="Auto-create stops at set spacing"
                                     onChange={[Function]}
                                   >
                                     <div
                                       className="checkbox"
                                     >
                                       <label
-                                        htmlFor="auto-create-stops-input-1"
+                                        htmlFor="auto-create-stops-at-set-spacing-input-1"
                                       >
                                         <input
                                           defaultChecked={true}
-                                          id="auto-create-stops-input-1"
+                                          id="auto-create-stops-at-set-spacing-input-1"
                                           onChange={[Function]}
                                           type="checkbox"
                                         />
                                          
-                                        Auto-create stops
+                                        Auto-create stops at set spacing
                                       </label>
                                     </div>
                                   </Checkbox>
