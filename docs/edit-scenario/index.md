@@ -40,6 +40,12 @@ If multiple users will be involved in editing scenarios, or if you want to asses
 In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click<br>
 <span class="ui-icon"><i class="fa fa-eye"></i>Toggle map display</span>
 
+Stops and segments representing modifications are displayed on the map, using different colors to indicate their state relative to the baseline GTFS:
+* Blue: Added
+* Red: Removed
+* Pink: Changed (e.g. modified frequency, speed, or dwell time)
+* Gray: Unchanged
+
 Projects start with only a Default scenario (plus a locked Baseline in which no modifications can be active). You can create additional scenarios expanding the list of scenarios, clicking the create button, and entering a name.
 
 Next to each added scenario are options to:
