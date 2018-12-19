@@ -27,9 +27,11 @@ To insert a stop into the middle of an alignment, click any part of the alignmen
 </figure>
 
 Available options while editing an alignment include:
-* **Auto-create stops**: Whether stops should be created automatically at a specified interval along the route.
+* **Auto-create stops at set spacing**: Whether stops should be created automatically at a specified interval along the route.
 * **Bidirectional**: If this checkbox is checked, vehicles will travel in both directions along the described geometry. If it is left unchecked, vehicles will only travel in the direction the line is drawn (which can be useful when there are couplets or other aspects of the route that don't follow the same alignment in both directions). You can choose whether stops should be created automatically at a specified interval along the route, or if you will create all stops manually.
 * **Follow streets**: Make the route follow the streets. This only applies to segments that are actively being edited, and will not cause already drawn segments to follow the streets, allowing you to draw part of a route on street and part off-street.
+* **Extend**: If this checkbox is checked, clicking on the map will extend the route by adding a new stop. If you wish to edit segments you already created, by adding stops or control points, it is often convenient to uncheck this option so that stray clicks do not extend the route from one if its termini.
+* **Extend from end**: When "Extend" is enabled, this option allows you to specify whether new stops will be added moving forward from the last stop of the route or backward from the first stop of the route.
 
 Once you have created an alignment, you need to specify when the routes run using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
 <br><span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
@@ -113,20 +115,24 @@ so in this case implies that the trips will be removed from the selected variant
 
 ## Reroute
 
-It is also possible to add stops to a route (i.e. reroute the route). You can do this at the beginning or end of a route, or have a reroute in the middle.
-First, create a Reroute modification, and select a route and patterns (as before). You then select the start and end stop of the reroute (i.e. where the route begins
-and ends its deviation from the its existing pattern). Note that you will need to select patterns appropriately and create one reroute for each direction of the route;
-a reroute can apply to multiple patterns in a single direction as long as they both contain the start and end stop in order. You select a stop by clicking the select stop
-button, and then choosing the stop on the map. If you leave the from stop blank, the entire route up to the from stop will be rerouted. If you leave the to stop blank, the entire route
-after that point will be rerouted. This can be used to extend routes, or to divert the ends of routes (e.g. to new rail stations).
+This modification type can be used to represent detours and extensions. When creating a Reroute modification, you specify first select a feed, route, and patterns. Once patterns are selected, you then select a stop at which the reroute segments will start, or a stop at which the reroute segments will end, or both, by clicking
+<br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
+<br> then clicking an existing stop on the baseline pattern.
 
 <figure>
 <img src="../img/reroute.png" alt="Rerouting" />
 </figure>
 
-You can then edit the alignment and the intermediate stops by clicking
+Once a start or end stop is specified, you can add and modify segments by clicking
 <br><span class="btn btn-warning"><i class="fa fa-pencil"></i> Edit route geometry</span>
+<br> then clicking on the map. Editing behavior is similar to editing mode for [adding trip patterns](#add-trips), with some options fixed:
+* If only the "start of reroute/extension" is set, new stops and segments will be added extending _forward_ from the selected stop on the baseline pattern ("Extend from end" turned on).  
+* If only the "end of reroute/extension" is set, new stops and segments will be added extending _backward_ from the selected stop on the baseline pattern ("Extend from end" turned off).
+* If both are set, the new segment between the stops cannot be extended, but it can be modified by clicking on it to add stops and control points ("Extend" turned off).
 
-This activates editing mode, which is explained above for [adding trip patterns](#add-trips).
+For example, consider a baseline pattern passing through stops A -> B -> C -> D:
+* To reroute this pattern from C to another stop X instead of D, select C as the "start of reroute/extension," activate route editing, and click on stop X to add a segment from C -> X. Speeds and dwell times can be set on this added segment. Baseline speeds and dwell times between A and C are not affected.
+* To extend this pattern backward, to originate at a stop Y, select A as the "end of reroute/extension," activate route editing, and click on stop Y to add a segment from Y -> A. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and D are not affected.
+* To detour this pattern so that it serves a stop Z between B and C, select B as the "start of reroute/extension", select C as the "end of reroute/extension", activate route editing, click on the new segment to add a stop, and drag the added stop to Z. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and B, and between C and D, are not affected.
 
-This modification is displayed on the map with the route being modified in gray, any segments that are being replaced in red, and the new segments in blue.
+A reroute modification can apply to multiple patterns in a single direction as long as the patterns all contain the start and end stop in order; you will generally need to create one reroute modification for each direction of the route.
