@@ -2675,34 +2675,22 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     comparisonAccessibility={null}
                     comparisonInProgress={false}
                     comparisonPercentileCurves={null}
-                    comparisonProjectName={null}
+                    comparisonProjectName="Not set"
                     disabled={false}
                     isochroneCutoff={60}
                     maxAccessibility={-Infinity}
                     nearestPercentile={50}
-                    projectName="Mock Project: Default"
+                    projectName="Not set"
                     setIsochroneCutoff={[Function]}
                     stale={true}
                   >
                     <div>
                       <h5>
-                        Accessibility to 
-                        <strong>
-                          [select opportunity dataset]
-                        </strong>
-                         in 
-                        <strong>
-                          60
-                        </strong>
-                         minutes (travel time percentile: 
-                        <strong>
-                          50
-                        </strong>
-                        th)
+                        Accessibility will update after fetching results.
                       </h5>
                       <input
                         className="form-control"
-                        disabled={false}
+                        disabled={true}
                         max={120}
                         min={1}
                         onChange={[Function]}
@@ -2725,88 +2713,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
               <div
                 className="block"
               >
-                <Group
-                  justified={true}
-                >
-                  <div
-                    className="btn-group btn-group-justified"
-                  >
-                    <Button
-                      disabled={true}
-                      onClick={[Function]}
-                      style="info"
-                    >
-                      <a
-                        className="btn btn-info"
-                        disabled={true}
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                      >
-                        <Icon
-                          type="download"
-                        >
-                          <i
-                            className="fa fa-download fa-fw "
-                          />
-                        </Icon>
-                         Isochrone as GeoJSON
-                      </a>
-                    </Button>
-                    <Button
-                      disabled={true}
-                      onClick={[Function]}
-                      style="info"
-                    >
-                      <a
-                        className="btn btn-info"
-                        disabled={true}
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                      >
-                        <Icon
-                          type="download"
-                        >
-                          <i
-                            className="fa fa-download fa-fw "
-                          />
-                        </Icon>
-                         Comparison Isochrone as GeoJSON
-                      </a>
-                    </Button>
-                  </div>
-                </Group>
-                <Group
-                  justified={true}
-                >
-                  <div
-                    className="btn-group btn-group-justified"
-                  >
-                    <Button
-                      disabled={true}
-                      onClick={[Function]}
-                      style="info"
-                    >
-                      <a
-                        className="btn btn-info"
-                        disabled={true}
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                      >
-                        <Icon
-                          type="globe"
-                        >
-                          <i
-                            className="fa fa-globe fa-fw "
-                          />
-                        </Icon>
-                         Generate & Download GeoTIFFs
-                      </a>
-                    </Button>
-                  </div>
-                </Group>
                 <Connect(BookmarkChooser)
                   disabled={false}
                 >
@@ -4203,7 +4109,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </div>
                 </ProfileRequestEditor>
                 <Slider
-                  disabled={false}
+                  disabled={true}
                   label="Travel time percentile: 50 (single-point), 50 (regional)"
                   max={99}
                   min={1}
@@ -4212,7 +4118,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   value={50}
                 >
                   <Group
-                    disabled={false}
+                    disabled={true}
                     id="travel-time-percentile-50-single-point-50-regional-input-11"
                     label="Travel time percentile: 50 (single-point), 50 (regional)"
                     max={99}
@@ -4231,7 +4137,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       </label>
                       <input
                         className="form-control"
-                        disabled={false}
+                        disabled={true}
                         id="travel-time-percentile-50-single-point-50-regional-input-11"
                         label="Travel time percentile: 50 (single-point), 50 (regional)"
                         max={99}
