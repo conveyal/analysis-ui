@@ -786,12 +786,12 @@ exports[`Component > Timetable renders correctly 2`] = `
       >
         <div>
           <MinutesSeconds
-            label="Dwell time"
+            label="Default dwell time"
             onChange={[Function]}
             seconds={10}
           >
             <Text
-              label="Dwell time"
+              label="Default dwell time"
               onBlur={[Function]}
               onChange={[Function]}
               onKeyDown={[Function]}
@@ -799,8 +799,8 @@ exports[`Component > Timetable renders correctly 2`] = `
               value="00:10"
             >
               <Group
-                id="dwell-time-input-13"
-                label="Dwell time"
+                id="default-dwell-time-input-13"
+                label="Default dwell time"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onKeyDown={[Function]}
@@ -811,13 +811,13 @@ exports[`Component > Timetable renders correctly 2`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="dwell-time-input-13"
+                    htmlFor="default-dwell-time-input-13"
                   >
-                    Dwell time
+                    Default dwell time
                   </label>
                   <Input
-                    id="dwell-time-input-13"
-                    label="Dwell time"
+                    id="default-dwell-time-input-13"
+                    label="Default dwell time"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -830,7 +830,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                     >
                       <input
                         className="form-control"
-                        id="dwell-time-input-13"
+                        id="default-dwell-time-input-13"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onKeyDown={[Function]}
@@ -849,6 +849,9 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Group>
             </Text>
           </MinutesSeconds>
+          <p>
+            The default time table dwell time will be used for each stop that does not have a custom one set.
+          </p>
           <Collapsible
             defaultExpanded={false}
             title="Set individual stop dwell times"
