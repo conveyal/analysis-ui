@@ -786,12 +786,12 @@ exports[`Component > Timetable renders correctly 2`] = `
       >
         <div>
           <MinutesSeconds
-            label="Dwell time"
+            label="Default dwell time"
             onChange={[Function]}
             seconds={10}
           >
             <Text
-              label="Dwell time"
+              label="Default dwell time"
               onBlur={[Function]}
               onChange={[Function]}
               onKeyDown={[Function]}
@@ -799,8 +799,8 @@ exports[`Component > Timetable renders correctly 2`] = `
               value="00:10"
             >
               <Group
-                id="dwell-time-input-13"
-                label="Dwell time"
+                id="default-dwell-time-input-13"
+                label="Default dwell time"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onKeyDown={[Function]}
@@ -811,13 +811,13 @@ exports[`Component > Timetable renders correctly 2`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="dwell-time-input-13"
+                    htmlFor="default-dwell-time-input-13"
                   >
-                    Dwell time
+                    Default dwell time
                   </label>
                   <Input
-                    id="dwell-time-input-13"
-                    label="Dwell time"
+                    id="default-dwell-time-input-13"
+                    label="Default dwell time"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -830,7 +830,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                     >
                       <input
                         className="form-control"
-                        id="dwell-time-input-13"
+                        id="default-dwell-time-input-13"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onKeyDown={[Function]}
@@ -849,6 +849,9 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Group>
             </Text>
           </MinutesSeconds>
+          <p>
+            The default time table dwell time will be used for each stop that does not have a custom one set.
+          </p>
           <Collapsible
             defaultExpanded={false}
             title="Set individual stop dwell times"
@@ -880,15 +883,15 @@ exports[`Component > Timetable renders correctly 2`] = `
             </div>
           </Collapsible>
           <Number
-            label="Average segment speed"
+            label="Average speed (along added segments)"
             min={1}
             onChange={[Function]}
             units="km/h"
             value={15}
           >
             <Group
-              id="average-segment-speed-input-14"
-              label="Average segment speed"
+              id="average-speed-along-added-segments-input-14"
+              label="Average speed (along added segments)"
               min={1}
               onChange={[Function]}
               units="km/h"
@@ -898,13 +901,13 @@ exports[`Component > Timetable renders correctly 2`] = `
                 className="form-group"
               >
                 <label
-                  htmlFor="average-segment-speed-input-14"
+                  htmlFor="average-speed-along-added-segments-input-14"
                 >
-                  Average segment speed
+                  Average speed (along added segments)
                 </label>
                 <Input
-                  id="average-segment-speed-input-14"
-                  label="Average segment speed"
+                  id="average-speed-along-added-segments-input-14"
+                  label="Average speed (along added segments)"
                   min={1}
                   onChange={[Function]}
                   onWheel={[Function]}
@@ -917,7 +920,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <input
                       className="form-control"
-                      id="average-segment-speed-input-14"
+                      id="average-speed-along-added-segments-input-14"
                       min={1}
                       onChange={[Function]}
                       onWheel={[Function]}
@@ -936,12 +939,12 @@ exports[`Component > Timetable renders correctly 2`] = `
             </Group>
           </Number>
           <MinutesSeconds
-            label="Total travel time"
+            label="Total travel time (added segments)"
             onChange={[Function]}
             seconds={0}
           >
             <Text
-              label="Total travel time"
+              label="Total travel time (added segments)"
               onBlur={[Function]}
               onChange={[Function]}
               onKeyDown={[Function]}
@@ -949,8 +952,8 @@ exports[`Component > Timetable renders correctly 2`] = `
               value="00:00"
             >
               <Group
-                id="total-travel-time-input-15"
-                label="Total travel time"
+                id="total-travel-time-added-segments-input-15"
+                label="Total travel time (added segments)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onKeyDown={[Function]}
@@ -961,13 +964,13 @@ exports[`Component > Timetable renders correctly 2`] = `
                   className="form-group"
                 >
                   <label
-                    htmlFor="total-travel-time-input-15"
+                    htmlFor="total-travel-time-added-segments-input-15"
                   >
-                    Total travel time
+                    Total travel time (added segments)
                   </label>
                   <Input
-                    id="total-travel-time-input-15"
-                    label="Total travel time"
+                    id="total-travel-time-added-segments-input-15"
+                    label="Total travel time (added segments)"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
@@ -980,7 +983,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                     >
                       <input
                         className="form-control"
-                        id="total-travel-time-input-15"
+                        id="total-travel-time-added-segments-input-15"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onKeyDown={[Function]}

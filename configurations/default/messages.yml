@@ -79,11 +79,10 @@ phasing:
   headwayMismatchWarning: Warning! The selected timetable's %(selectedTimetableHeadway) minute headway does not equal this timetable's headway, which could cause unintended behavior.
   noAvailableStopsWarning: The selected timetable does not contain stops available to phase from!
   exactTimesWarning: Exact times is not available because phasing is enabled on this timetable.
-
 r5Version:
   analysisVersionDifferent: WARNING: You have completed regional analyses with a different routing engine. Using different routing engines may change results.
   comparisonIsDifferent: WARNING: The analyses you are comparing ran on different routing engines. Changes in accessibility may be due to differences in the routing engines, rather than the transport scenarios.
-  latestReleaseVersionNotSelected: An updated version of the Analysis backend is available. Changing versions should improve performance, but it may require a longer wait the first time you initialize a compute cluster for analysis. Using a different version may also change analysis results slightly.
+  latestReleaseVersionNotSelected: An updated version of the Routing engine is available. Changing versions should improve performance but may change analysis results.
   title: Routing engine
   showAll: Show all routing engine versions (advanced)
   showRelease: Show only stable routing engine versions
@@ -154,10 +153,11 @@ variant:
   deleteConfirmation: Are you sure you want to delete this scenario? Proceeding will clear references to it from all modifications.
   activeIn: Active in scenario numbers
   export: Select a scenario to download or share
-  saveJson: Scenario (.json)
-  saveGeojson: Add trips (.geojson)
+  saveJson: Raw scenario (.json)
   print: Summary report
-  exportExplanation: Download a JSON representation of a scenario, GeoJSON shapes of Add Trips modifications from a scenario, or print a summary of the scenario.
+  saveGeojson: New alignments (.geojson)
+  saveStops: New stops (.geojson)
+  exportExplanation: Generate a JSON representation of a scenario, GeoJSON to map new features in GIS, or a printable summary of the scenario.
 transitEditor:
   startEdit: Edit route geometry
   stopEdit: Stop editing
@@ -173,7 +173,7 @@ transitEditor:
   extendFromEnd: Extend from end
   fromStopLabel: Start of reroute/extension (existing stop on pattern)
   toStopLabel: End of reroute/extension (existing stop on pattern)
-  instructions: Click the map to add a new stop in a fixed location. To extend backward from the route's first stop, unselect "Extend from end". Click an existing segment to add a stop to it. Click on a stop to delete it or change it into a control point, which helps define the alignment. Click an auto-created stop to fix its location.
+  instructions: Click the map to add a new stop in a fixed location. Click an existing segment to add a stop to it. Click on a stop to delete it or change it into a control point, which helps define the alignment. Click an auto-created stop to fix its location.
   instructionsTitle: Editing Instructions
   existingStops: Existing stops from GTFS Feed
   newStopDescription: New stop
@@ -210,12 +210,25 @@ modification:
   type: Modification type
   create: Create a modification
   plural: Modifications
-  onlyOneRoute: While all routes selected below will be included in analysis, only one will be shown on the map.
+  onlyOneRoute: Only one route may be shown on the map, even if multiple routes are selected below. If segments are not selected, the modification will apply to all selected routes. If segments are selected, the modification will apply to hops shown on the map (for all selected routes using the hops).
   copyTimetable:
     noSegments: The modification being copied to and/or from does not have any segments. The default segment speed of %(segmentSpeed) km/h will be used.
     curHasMoreSegments: The modification of the timetable you are copying from has less segments than the modification you are copying to. The segment speeds will be copied %(numSegments) segment(s) and after that, the default segment speed of %(segmentSpeed) km/h will be used.
     curHasLessSegments: The modification of the timetable you are copying to has less segments than the modification you are copying from. The segment speeds will be copied %(numSegments) segment(s).
-  selectStopInstructions: Click on the `New` button to create a polygon that encloses the stops you wish to select.
+  selectStopInstructions: Click 'New', then draw a polygon around the stops you wish to select.
+  dwellTimeDefault: Default dwell time
+  dwellTime: Dwell time
+  dwellTimeDescription: The default time table dwell time will be used for each stop that does not have a custom one set.
+  speed: Speed
+  time: Time
+  addedSegments:
+    dwell: Dwell time (added segments)
+    speed: Average speed (along added segments)
+    time: Total travel time (added segments)
+    confirmSpeedChange: Setting the average speed will affect speeds for all added segments. Do you wish to continue?
+    confirmTimeChange: Setting the total travel time will affect speeds for all added segments. Do you wish to continue?
+    individualDwell: Set individual stop dwell times
+    individualSpeed: Set individual segment speeds
 modificationType:
   add-trip-pattern: Add trips
   adjust-frequency: Adjust frequency
@@ -258,7 +271,7 @@ analysis:
   grid: Opportunity Dataset
   createGridTooltip: Upload a .csv (with lat, lon, and at least one additional numeric column), a .grid file, or the files making up a shapefile (unzipped .shp .shx .dbf and .prj).
   opportunityDataset: Opportunity dataset
-  selectOpportunityDataset: Select an opportunity dataset…
+  selectOpportunityDataset: select opportunity dataset
   cutoff: Travel time cutoff (minutes)
   addGrid: Add opportunity dataset
   uploading: uploading…
@@ -300,6 +313,8 @@ analysis:
   downloadRegional: Download %(name)
   downloadRegionalProbability: Download probability of improvement
   bundleOutOfDate: Selected date %(selectedDate) is out of service for project %(project). Its bundle %(bundle) only has service between %(serviceStart) and %(serviceEnd). There may also be days in between without service. Please be certain of your GTFS service dates and select an appropriate one below.
+  accessibilityTo: Accessibility to
+  willUpdate: Accessibility will update after fetching results.
   modes:
     walk: Walk
     bicycle: Bike
@@ -372,8 +387,6 @@ report:
     originalLength: Original length
     newLength: New length
     lengthDelta: Change in length
-    segmentSpeed: Speed over new segment
-    segmentDwell: Dwell time in new segment (seconds)
     nStopsRemoved: Stops removed
     nStopsAdded: Stops added
   removeTrips:
