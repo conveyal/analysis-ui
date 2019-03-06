@@ -153,7 +153,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         "zoom": 9,
       }
     }
-    deleteAnalysis={[Function]}
+    deleteAnalysis={[MockFunction]}
     differenceGrid={
       Object {
         "contains": [Function],
@@ -167,7 +167,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         "zoom": 9,
       }
     }
-    fetch={[Function]}
+    fetch={[MockFunction]}
     grid={
       Object {
         "contains": [Function],
@@ -181,8 +181,24 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
         "zoom": 9,
       }
     }
-    loadRegionalAnalyses={[Function]}
-    loadRegionalAnalysisGrids={[Function]}
+    loadRegionalAnalyses={[MockFunction]}
+    loadRegionalAnalysisGrids={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "_id": "abcd",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     opportunityDatasets={
       Array [
         Object {
@@ -322,10 +338,10 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
       ]
     }
     scenarioId="MOCK"
-    setActiveRegionalAnalysis={[Function]}
-    setAggregationArea={[Function]}
-    setAggregationWeights={[Function]}
-    uploadAggregationArea={[Function]}
+    setActiveRegionalAnalysis={[MockFunction]}
+    setAggregationArea={[MockFunction]}
+    setAggregationWeights={[MockFunction]}
+    uploadAggregationArea={[MockFunction]}
   >
     <div>
       <Group
@@ -405,7 +421,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                 onTouchMove={[Function]}
                 onTouchStart={[Function]}
               >
-                <span
+                <div
                   className="Select-multi-value-wrapper"
                   id="react-select-4--value"
                 >
@@ -450,7 +466,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                     role="combobox"
                     value=""
                   />
-                </span>
+                </div>
                 <span
                   aria-label="Clear value"
                   className="Select-clear-zone"
@@ -688,6 +704,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                       >
                         <span>
                           <Icon
+                            key="WALK"
                             title="Walk"
                             type="male"
                           >
@@ -746,10 +763,12 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           <Break
             bottom={0}
             color="rgba(215, 25, 28, 0.42)"
+            key="break-0"
             top={100}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(215, 25, 28)"
               style={
                 Object {
                   "backgroundColor": "rgb(215, 25, 28)",
@@ -765,10 +784,12 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           <Break
             bottom={100}
             color="rgba(252, 174, 97, 0.42)"
+            key="break-1"
             top={500}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(252, 174, 97)"
               style={
                 Object {
                   "backgroundColor": "rgb(252, 174, 97)",
@@ -784,10 +805,12 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           <Break
             bottom={500}
             color="rgba(255, 255, 191, 0.42)"
+            key="break-2"
             top={1000}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(255, 255, 191)"
               style={
                 Object {
                   "backgroundColor": "rgb(255, 255, 191)",
@@ -803,10 +826,12 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
           <Break
             bottom={1000}
             color="rgba(171, 217, 233, 0.42)"
+            key="break-3"
             top={2000}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(171, 217, 233)"
               style={
                 Object {
                   "backgroundColor": "rgb(171, 217, 233)",
@@ -899,7 +924,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                   onTouchMove={[Function]}
                   onTouchStart={[Function]}
                 >
-                  <span
+                  <div
                     className="Select-multi-value-wrapper"
                     id="react-select-5--value"
                   >
@@ -923,7 +948,7 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
                       role="combobox"
                       value=""
                     />
-                  </span>
+                  </div>
                   <span
                     className="Select-arrow-zone"
                     onMouseDown={[Function]}
@@ -1074,8 +1099,8 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
         2000,
       ]
     }
-    deleteAnalysis={[Function]}
-    fetch={[Function]}
+    deleteAnalysis={[MockFunction]}
+    fetch={[MockFunction]}
     grid={
       Object {
         "contains": [Function],
@@ -1089,8 +1114,24 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
         "zoom": 9,
       }
     }
-    loadRegionalAnalyses={[Function]}
-    loadRegionalAnalysisGrids={[Function]}
+    loadRegionalAnalyses={[MockFunction]}
+    loadRegionalAnalysisGrids={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "_id": "abcd",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     opportunityDatasets={
       Array [
         Object {
@@ -1230,10 +1271,10 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
       ]
     }
     scenarioId="MOCK"
-    setActiveRegionalAnalysis={[Function]}
-    setAggregationArea={[Function]}
-    setAggregationWeights={[Function]}
-    uploadAggregationArea={[Function]}
+    setActiveRegionalAnalysis={[MockFunction]}
+    setAggregationArea={[MockFunction]}
+    setAggregationWeights={[MockFunction]}
+    uploadAggregationArea={[MockFunction]}
   >
     <div>
       <Group
@@ -1313,7 +1354,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                 onTouchMove={[Function]}
                 onTouchStart={[Function]}
               >
-                <span
+                <div
                   className="Select-multi-value-wrapper"
                   id="react-select-2--value"
                 >
@@ -1337,7 +1378,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                     role="combobox"
                     value=""
                   />
-                </span>
+                </div>
                 <span
                   className="Select-arrow-zone"
                   onMouseDown={[Function]}
@@ -1381,10 +1422,12 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           <Break
             bottom={0}
             color="rgba(241, 237, 246, 0.42)"
+            key="break-0"
             top={100}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(241, 237, 246)"
               style={
                 Object {
                   "backgroundColor": "rgb(241, 237, 246)",
@@ -1400,10 +1443,12 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           <Break
             bottom={100}
             color="rgba(188, 200, 224, 0.42)"
+            key="break-1"
             top={500}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(188, 200, 224)"
               style={
                 Object {
                   "backgroundColor": "rgb(188, 200, 224)",
@@ -1419,10 +1464,12 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           <Break
             bottom={500}
             color="rgba(116, 169, 207, 0.42)"
+            key="break-2"
             top={1000}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(116, 169, 207)"
               style={
                 Object {
                   "backgroundColor": "rgb(116, 169, 207)",
@@ -1438,10 +1485,12 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
           <Break
             bottom={1000}
             color="rgba(43, 140, 190, 0.42)"
+            key="break-3"
             top={2000}
           >
             <li
               className="Legend-Item"
+              key="break-rgb(43, 140, 190)"
               style={
                 Object {
                   "backgroundColor": "rgb(43, 140, 190)",
@@ -1534,7 +1583,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                   onTouchMove={[Function]}
                   onTouchStart={[Function]}
                 >
-                  <span
+                  <div
                     className="Select-multi-value-wrapper"
                     id="react-select-3--value"
                   >
@@ -1558,7 +1607,7 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
                       role="combobox"
                       value=""
                     />
-                  </span>
+                  </div>
                   <span
                     className="Select-arrow-zone"
                     onMouseDown={[Function]}

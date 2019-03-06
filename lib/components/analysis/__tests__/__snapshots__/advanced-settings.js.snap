@@ -15,7 +15,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
 >
   <AdvancedSettings
     disabled={false}
-    hideBoundsEditor={[Function]}
+    hideBoundsEditor={[MockFunction]}
     profileRequest={
       Object {
         "accessModes": "WALK",
@@ -190,8 +190,8 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
         },
       ]
     }
-    setProfileRequest={[Function]}
-    showBoundsEditor={[Function]}
+    setProfileRequest={[MockFunction]}
+    showBoundsEditor={[MockFunction]}
   >
     <section
       className="panel panel-default inner-panel advanced-panel"
@@ -245,7 +245,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
 >
   <AdvancedSettings
     disabled={false}
-    hideBoundsEditor={[Function]}
+    hideBoundsEditor={[MockFunction]}
     profileRequest={
       Object {
         "accessModes": "WALK",
@@ -420,8 +420,8 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
         },
       ]
     }
-    setProfileRequest={[Function]}
-    showBoundsEditor={[Function]}
+    setProfileRequest={[MockFunction]}
+    showBoundsEditor={[MockFunction]}
   >
     <section
       className="panel panel-default inner-panel advanced-panel"
@@ -467,7 +467,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
             <EgressModeSelector
               disabled={false}
               egressModes="WALK"
-              update={[Function]}
+              update={[MockFunction]}
             >
               <Group
                 label="Egress Modes"
@@ -1017,7 +1017,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                       onTouchMove={[Function]}
                       onTouchStart={[Function]}
                     >
-                      <span
+                      <div
                         className="Select-multi-value-wrapper"
                         id="react-select-2--value"
                       >
@@ -1062,7 +1062,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                           role="combobox"
                           value=""
                         />
-                      </span>
+                      </div>
                       <span
                         className="Select-arrow-zone"
                         onMouseDown={[Function]}
@@ -1129,42 +1129,43 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                 <textarea
                   className="form-control monospace"
                   defaultValue="{
-                	\\"accessModes\\": \\"WALK\\",
-                	\\"bikeSafe\\": 1,
-                	\\"bikeSlope\\": 1,
-                	\\"bikeSpeed\\": 4.166666666666667,
-                	\\"bikeTime\\": 1,
-                	\\"bounds\\": {
-                		\\"north\\": 39,
-                		\\"east\\": -76,
-                		\\"south\\": 38,
-                		\\"west\\": -77
-                	},
-                	\\"bundleId\\": \\"1\\",
-                	\\"date\\": \\"2016-01-16\\",
-                	\\"defaultExpanded\\": true,
-                	\\"directModes\\": \\"WALK\\",
-                	\\"egressModes\\": \\"WALK\\",
-                	\\"fromLat\\": 12,
-                	\\"fromLon\\": 34,
-                	\\"fromTime\\": 25200,
-                	\\"maxBikeTime\\": 20,
-                	\\"maxRides\\": 4,
-                	\\"maxTripDurationMinutes\\": 60,
-                	\\"maxWalkTime\\": 20,
-                	\\"monteCarloDraws\\": 200,
-                	\\"name\\": \\"Profile Request Test\\",
-                	\\"projectId\\": \\"1\\",
-                	\\"reachabilityThreshold\\": 0,
-                	\\"regionId\\": \\"1\\",
-                	\\"toTime\\": 32400,
-                	\\"transitModes\\": \\"BUS,TRAM,RAIL,SUBWAY\\",
-                	\\"travelTimePercentile\\": 50,
-                	\\"variantIndex\\": 0,
-                	\\"walkSpeed\\": 1.3888888888888888,
-                	\\"workerVersion\\": \\"v4.0.0\\"
-                }"
+	\\"accessModes\\": \\"WALK\\",
+	\\"bikeSafe\\": 1,
+	\\"bikeSlope\\": 1,
+	\\"bikeSpeed\\": 4.166666666666667,
+	\\"bikeTime\\": 1,
+	\\"bounds\\": {
+		\\"north\\": 39,
+		\\"east\\": -76,
+		\\"south\\": 38,
+		\\"west\\": -77
+	},
+	\\"bundleId\\": \\"1\\",
+	\\"date\\": \\"2016-01-16\\",
+	\\"defaultExpanded\\": true,
+	\\"directModes\\": \\"WALK\\",
+	\\"egressModes\\": \\"WALK\\",
+	\\"fromLat\\": 12,
+	\\"fromLon\\": 34,
+	\\"fromTime\\": 25200,
+	\\"maxBikeTime\\": 20,
+	\\"maxRides\\": 4,
+	\\"maxTripDurationMinutes\\": 60,
+	\\"maxWalkTime\\": 20,
+	\\"monteCarloDraws\\": 200,
+	\\"name\\": \\"Profile Request Test\\",
+	\\"projectId\\": \\"1\\",
+	\\"reachabilityThreshold\\": 0,
+	\\"regionId\\": \\"1\\",
+	\\"toTime\\": 32400,
+	\\"transitModes\\": \\"BUS,TRAM,RAIL,SUBWAY\\",
+	\\"travelTimePercentile\\": 50,
+	\\"variantIndex\\": 0,
+	\\"walkSpeed\\": 1.3888888888888888,
+	\\"workerVersion\\": \\"v4.0.0\\"
+}"
                   disabled={false}
+                  key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
                   rows={10}
                 />
                 <br />
