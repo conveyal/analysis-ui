@@ -53,9 +53,9 @@ exports[`Component > ProjectTitle renders correctly 1`] = `
 exports[`Component > ProjectTitle should show export select dialogue 1`] = `
 <ProjectTitle
   _id="1"
-  downloadLines={[Function]}
-  downloadScenario={[Function]}
-  downloadStops={[Function]}
+  downloadLines={[MockFunction]}
+  downloadScenario={[MockFunction]}
+  downloadStops={[MockFunction]}
   project={
     Object {
       "_id": "1",
@@ -190,24 +190,24 @@ exports[`Component > ProjectTitle should show export select dialogue 1`] = `
             ]
           }
         >
-          <Component
+          <_default
             onRequestClose={[Function]}
           >
             <Modal
-              ariaHideApp={true}
+              ariaHideApp={false}
               bodyOpenClassName="ReactModal__Body--open"
-              className={
-                Object {
-                  "base": "CustomModal",
-                }
-              }
+              className="CustomModal"
               closeTimeoutMS={0}
               contentLabel="Modal"
               isOpen={true}
               onRequestClose={[Function]}
               parentSelector={[Function]}
               portalClassName="ReactModalPortal"
+              role="dialog"
+              shouldCloseOnEsc={true}
               shouldCloseOnOverlayClick={true}
+              shouldFocusAfterRender={true}
+              shouldReturnFocusAfterClose={true}
               style={
                 Object {
                   "overlay": Object {
@@ -216,9 +216,307 @@ exports[`Component > ProjectTitle should show export select dialogue 1`] = `
                 }
               }
             >
-              <noscript />
+              <Portal
+                containerInfo={
+                  <div
+                    class="ReactModalPortal"
+                  >
+                    <div
+                      class="ReactModal__Overlay ReactModal__Overlay--after-open"
+                      style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background-color: rgba(255, 255, 255, 0.75); z-index: 2500;"
+                    >
+                      <div
+                        aria-label="Modal"
+                        class="ReactModal__Content ReactModal__Content--after-open CustomModal"
+                        role="dialog"
+                        tabindex="-1"
+                      >
+                        <div
+                          class="CustomModal-title"
+                        >
+                          Select a scenario to download or share
+                        </div>
+                        <div
+                          class="CustomModal-block"
+                        >
+                          <p>
+                            Generate a JSON representation of a scenario, GeoJSON to map new features in GIS, or a printable summary of the scenario.
+                          </p>
+                          <div>
+                            <h6>
+                              1
+                              . 
+                              Default
+                            </h6>
+                            <div
+                              class="btn-group btn-group-justified"
+                            >
+                              <a
+                                class="btn btn-info"
+                                href="#"
+                                tabindex="0"
+                              >
+                                <i
+                                  class="fa fa-download fa-fw "
+                                />
+                                 
+                                Raw scenario (.json)
+                              </a>
+                              <a
+                                class="btn btn-info"
+                                href="/reports/1/projects/1/variants/0"
+                                tabindex="0"
+                                target="_blank"
+                              >
+                                <i
+                                  class="fa fa-print fa-fw "
+                                />
+                                 
+                                Summary report
+                              </a>
+                            </div>
+                            <div
+                              class="btn-group btn-group-justified"
+                            >
+                              <a
+                                class="btn btn-info"
+                                href="#"
+                                tabindex="0"
+                              >
+                                <i
+                                  class="fa fa-download fa-fw "
+                                />
+                                 
+                                New alignments (.geojson)
+                              </a>
+                              <a
+                                class="btn btn-info"
+                                href="#"
+                                tabindex="0"
+                              >
+                                <i
+                                  class="fa fa-download fa-fw "
+                                />
+                                 
+                                New stops (.geojson)
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                }
+              >
+                <ModalPortal
+                  ariaHideApp={false}
+                  bodyOpenClassName="ReactModal__Body--open"
+                  className="CustomModal"
+                  closeTimeoutMS={0}
+                  contentLabel="Modal"
+                  defaultStyles={
+                    Object {
+                      "content": Object {
+                        "WebkitOverflowScrolling": "touch",
+                        "background": "#fff",
+                        "border": "1px solid #ccc",
+                        "borderRadius": "4px",
+                        "bottom": "40px",
+                        "left": "40px",
+                        "outline": "none",
+                        "overflow": "auto",
+                        "padding": "20px",
+                        "position": "absolute",
+                        "right": "40px",
+                        "top": "40px",
+                      },
+                      "overlay": Object {
+                        "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "fixed",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    }
+                  }
+                  isOpen={true}
+                  onRequestClose={[Function]}
+                  parentSelector={[Function]}
+                  portalClassName="ReactModalPortal"
+                  role="dialog"
+                  shouldCloseOnEsc={true}
+                  shouldCloseOnOverlayClick={true}
+                  shouldFocusAfterRender={true}
+                  shouldReturnFocusAfterClose={true}
+                  style={
+                    Object {
+                      "overlay": Object {
+                        "zIndex": 2500,
+                      },
+                    }
+                  }
+                >
+                  <div
+                    className="ReactModal__Overlay ReactModal__Overlay--after-open"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "fixed",
+                        "right": 0,
+                        "top": 0,
+                        "zIndex": 2500,
+                      }
+                    }
+                  >
+                    <div
+                      aria-label="Modal"
+                      className="ReactModal__Content ReactModal__Content--after-open CustomModal"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onMouseUp={[Function]}
+                      role="dialog"
+                      style={Object {}}
+                      tabIndex="-1"
+                    >
+                      <ModalTitle>
+                        <div
+                          className="CustomModal-title"
+                        >
+                          Select a scenario to download or share
+                        </div>
+                      </ModalTitle>
+                      <ModalBody>
+                        <div
+                          className="CustomModal-block"
+                        >
+                          <p>
+                            Generate a JSON representation of a scenario, GeoJSON to map new features in GIS, or a printable summary of the scenario.
+                          </p>
+                          <div
+                            key="export-0"
+                          >
+                            <h6>
+                              1
+                              . 
+                              Default
+                            </h6>
+                            <Group
+                              justified={true}
+                            >
+                              <div
+                                className="btn-group btn-group-justified"
+                              >
+                                <Button
+                                  onClick={[Function]}
+                                  style="info"
+                                >
+                                  <a
+                                    className="btn btn-info"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                  >
+                                    <Icon
+                                      type="download"
+                                    >
+                                      <i
+                                        className="fa fa-download fa-fw "
+                                      />
+                                    </Icon>
+                                     
+                                    Raw scenario (.json)
+                                  </a>
+                                </Button>
+                                <Button
+                                  href="/reports/1/projects/1/variants/0"
+                                  style="info"
+                                  target="_blank"
+                                >
+                                  <a
+                                    className="btn btn-info"
+                                    href="/reports/1/projects/1/variants/0"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                    target="_blank"
+                                  >
+                                    <Icon
+                                      type="print"
+                                    >
+                                      <i
+                                        className="fa fa-print fa-fw "
+                                      />
+                                    </Icon>
+                                     
+                                    Summary report
+                                  </a>
+                                </Button>
+                              </div>
+                            </Group>
+                            <Group
+                              justified={true}
+                            >
+                              <div
+                                className="btn-group btn-group-justified"
+                              >
+                                <Button
+                                  onClick={[Function]}
+                                  style="info"
+                                >
+                                  <a
+                                    className="btn btn-info"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                  >
+                                    <Icon
+                                      type="download"
+                                    >
+                                      <i
+                                        className="fa fa-download fa-fw "
+                                      />
+                                    </Icon>
+                                     
+                                    New alignments (.geojson)
+                                  </a>
+                                </Button>
+                                <Button
+                                  onClick={[Function]}
+                                  style="info"
+                                >
+                                  <a
+                                    className="btn btn-info"
+                                    href="#"
+                                    onClick={[Function]}
+                                    tabIndex={0}
+                                  >
+                                    <Icon
+                                      type="download"
+                                    >
+                                      <i
+                                        className="fa fa-download fa-fw "
+                                      />
+                                    </Icon>
+                                     
+                                    New stops (.geojson)
+                                  </a>
+                                </Button>
+                              </div>
+                            </Group>
+                          </div>
+                        </div>
+                      </ModalBody>
+                    </div>
+                  </div>
+                </ModalPortal>
+              </Portal>
             </Modal>
-          </Component>
+          </_default>
         </SelectScenario>
       </span>
     </div>
@@ -226,4 +524,4 @@ exports[`Component > ProjectTitle should show export select dialogue 1`] = `
 </ProjectTitle>
 `;
 
-exports[`Component > ProjectTitle should show export select dialogue 2`] = `"<div class=\\"CustomModal undefined\\" tabindex=\\"-1\\" aria-label=\\"Modal\\"><div class=\\"CustomModal-title\\">Select a scenario to download or share</div><div class=\\"CustomModal-block\\"><p>Generate a JSON representation of a scenario, GeoJSON to map new features in GIS, or a printable summary of the scenario.</p><div><h6><!-- react-text: 8 -->1<!-- /react-text --><!-- react-text: 9 -->. <!-- /react-text --><!-- react-text: 10 -->Default<!-- /react-text --></h6><div class=\\"btn-group btn-group-justified\\"><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i><!-- react-text: 14 --> <!-- /react-text --><!-- react-text: 15 -->Raw scenario (.json)<!-- /react-text --></a><a target=\\"_blank\\" class=\\"btn btn-info\\" href=\\"/reports/1/projects/1/variants/0\\" tabindex=\\"0\\"><i class=\\"fa fa-print fa-fw \\"></i><!-- react-text: 18 --> <!-- /react-text --><!-- react-text: 19 -->Summary report<!-- /react-text --></a></div><div class=\\"btn-group btn-group-justified\\"><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i><!-- react-text: 23 --> <!-- /react-text --><!-- react-text: 24 -->New alignments (.geojson)<!-- /react-text --></a><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i><!-- react-text: 27 --> <!-- /react-text --><!-- react-text: 28 -->New stops (.geojson)<!-- /react-text --></a></div></div></div></div>"`;
+exports[`Component > ProjectTitle should show export select dialogue 2`] = `"<div class=\\"ReactModal__Content ReactModal__Content--after-open CustomModal\\" tabindex=\\"-1\\" role=\\"dialog\\" aria-label=\\"Modal\\"><div class=\\"CustomModal-title\\">Select a scenario to download or share</div><div class=\\"CustomModal-block\\"><p>Generate a JSON representation of a scenario, GeoJSON to map new features in GIS, or a printable summary of the scenario.</p><div><h6>1. Default</h6><div class=\\"btn-group btn-group-justified\\"><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i> Raw scenario (.json)</a><a target=\\"_blank\\" class=\\"btn btn-info\\" href=\\"/reports/1/projects/1/variants/0\\" tabindex=\\"0\\"><i class=\\"fa fa-print fa-fw \\"></i> Summary report</a></div><div class=\\"btn-group btn-group-justified\\"><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i> New alignments (.geojson)</a><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i> New stops (.geojson)</a></div></div></div></div>"`;

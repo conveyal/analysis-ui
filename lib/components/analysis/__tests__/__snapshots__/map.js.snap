@@ -22,10 +22,10 @@ exports[`Components > Analysis > Map should render with default props correctly 
       40,
     ]
   }
-  removeDestination={[Function]}
-  setBounds={[Function]}
-  setDestination={[Function]}
-  setOrigin={[Function]}
+  removeDestination={[MockFunction]}
+  setBounds={[MockFunction]}
+  setDestination={[MockFunction]}
+  setOrigin={[MockFunction]}
   showBoundsEditor={false}
 >
   <Connect(Map)
@@ -53,7 +53,6 @@ exports[`Components > Analysis > Map should render with default props correctly 
       zoom={12}
     >
       <Map
-        animate={false}
         className=""
         maxBounds={
           Object {
@@ -69,7 +68,6 @@ exports[`Components > Analysis > Map should render with default props correctly 
         }
         minZoom={2}
         onClick={[Function]}
-        useFlyTo={false}
         zoom={12}
       >
         <div
@@ -112,9 +110,7 @@ exports[`Components > Analysis > Map should render with default props correctly 
               mapState={Object {}}
               modificationsOnMap={Array []}
               qualifiedStops={Array []}
-            >
-              <g />
-            </ModificationsMap>
+            />
           </Connect(ModificationsMap)>
           <LabelLayer>
             <TileLayer

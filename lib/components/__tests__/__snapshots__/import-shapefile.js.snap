@@ -14,8 +14,8 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
   }
 >
   <ImportShapefile
-    close={[Function]}
-    createModifications={[Function]}
+    close={[MockFunction]}
+    createModifications={[MockFunction]}
     projectId="1"
     variants={Array []}
   >
@@ -30,7 +30,7 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
         </Connect(ErrorModal)>
         <Connect(Sidebar)>
           <Sidebar
-            currentPath="blank"
+            currentPath="/"
             dispatch={[Function]}
             outstandingRequests={false}
             projectId="1"
@@ -149,17 +149,21 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                   </Tip>
                 </SidebarNavItem>
                 <SidebarNavItem
-                  active={null}
+                  active={
+                    Array [
+                      "/",
+                    ]
+                  }
                   href="/regions/1"
                   icon="cubes"
                   text="Projects"
                 >
                   <Tip
-                    className="Sidebar-navItem"
+                    className="Sidebar-navItem active"
                     tip="Projects"
                   >
                     <span
-                      className="Tip Sidebar-navItem"
+                      className="Tip Sidebar-navItem active"
                       onBlur={[Function]}
                       onFocus={[Function]}
                       onMouseOut={[Function]}
@@ -562,7 +566,6 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
               zoom={12}
             >
               <Map
-                animate={false}
                 bounds={
                   Object {
                     "_northEast": Object {
@@ -595,7 +598,6 @@ exports[`Component > ImportShapefile renders correctly 1`] = `
                   }
                 }
                 minZoom={2}
-                useFlyTo={false}
                 zoom={12}
               >
                 <div

@@ -67,7 +67,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
           </Connect(ErrorModal)>
           <Connect(Sidebar)>
             <Sidebar
-              currentPath="blank"
+              currentPath="/"
               dispatch={[Function]}
               outstandingRequests={false}
               projectId="1"
@@ -186,17 +186,21 @@ exports[`Container > Edit Region renders correctly 1`] = `
                     </Tip>
                   </SidebarNavItem>
                   <SidebarNavItem
-                    active={null}
+                    active={
+                      Array [
+                        "/",
+                      ]
+                    }
                     href="/regions/1"
                     icon="cubes"
                     text="Projects"
                   >
                     <Tip
-                      className="Sidebar-navItem"
+                      className="Sidebar-navItem active"
                       tip="Projects"
                     >
                       <span
-                        className="Tip Sidebar-navItem"
+                        className="Tip Sidebar-navItem active"
                         onBlur={[Function]}
                         onFocus={[Function]}
                         onMouseOut={[Function]}
@@ -599,7 +603,6 @@ exports[`Container > Edit Region renders correctly 1`] = `
                 zoom={12}
               >
                 <Map
-                  animate={false}
                   bounds={
                     Object {
                       "_northEast": Object {
@@ -632,7 +635,6 @@ exports[`Container > Edit Region renders correctly 1`] = `
                     }
                   }
                   minZoom={2}
-                  useFlyTo={false}
                   zoom={12}
                 >
                   <div
@@ -658,119 +660,117 @@ exports[`Container > Edit Region renders correctly 1`] = `
                       }
                       save={[Function]}
                     >
-                      <g>
-                        <Marker
-                          draggable={true}
-                          onDragEnd={[Function]}
-                          position={
-                            Object {
-                              "lat": 38,
-                              "lng": -77,
-                            }
+                      <Marker
+                        draggable={true}
+                        onDragEnd={[Function]}
+                        position={
+                          Object {
+                            "lat": 38,
+                            "lng": -77,
                           }
-                        >
-                          <g
-                            data-props={
-                              Object {
-                                "draggable": true,
-                                "onDragEnd": [Function],
-                                "position": Object {
-                                  "lat": 38,
-                                  "lng": -77,
-                                },
-                              }
-                            }
-                            type="Marker"
-                          />
-                        </Marker>
-                        <Marker
-                          draggable={true}
-                          onDragEnd={[Function]}
-                          position={
+                        }
+                      >
+                        <g
+                          data-props={
                             Object {
-                              "lat": 39,
-                              "lng": -77,
-                            }
-                          }
-                        >
-                          <g
-                            data-props={
-                              Object {
-                                "draggable": true,
-                                "onDragEnd": [Function],
-                                "position": Object {
-                                  "lat": 39,
-                                  "lng": -77,
-                                },
-                              }
-                            }
-                            type="Marker"
-                          />
-                        </Marker>
-                        <Marker
-                          draggable={true}
-                          onDragEnd={[Function]}
-                          position={
-                            Object {
-                              "lat": 39,
-                              "lng": -76,
-                            }
-                          }
-                        >
-                          <g
-                            data-props={
-                              Object {
-                                "draggable": true,
-                                "onDragEnd": [Function],
-                                "position": Object {
-                                  "lat": 39,
-                                  "lng": -76,
-                                },
-                              }
-                            }
-                            type="Marker"
-                          />
-                        </Marker>
-                        <Marker
-                          draggable={true}
-                          onDragEnd={[Function]}
-                          position={
-                            Object {
-                              "lat": 38,
-                              "lng": -76,
-                            }
-                          }
-                        >
-                          <g
-                            data-props={
-                              Object {
-                                "draggable": true,
-                                "onDragEnd": [Function],
-                                "position": Object {
-                                  "lat": 38,
-                                  "lng": -76,
-                                },
-                              }
-                            }
-                            type="Marker"
-                          />
-                        </Marker>
-                        <Rectangle
-                          bounds={
-                            Object {
-                              "_northEast": Object {
-                                "lat": 39,
-                                "lng": -76,
-                              },
-                              "_southWest": Object {
+                              "draggable": true,
+                              "onDragEnd": [Function],
+                              "position": Object {
                                 "lat": 38,
                                 "lng": -77,
                               },
                             }
                           }
-                          weight={2}
+                          type="Marker"
                         />
-                      </g>
+                      </Marker>
+                      <Marker
+                        draggable={true}
+                        onDragEnd={[Function]}
+                        position={
+                          Object {
+                            "lat": 39,
+                            "lng": -77,
+                          }
+                        }
+                      >
+                        <g
+                          data-props={
+                            Object {
+                              "draggable": true,
+                              "onDragEnd": [Function],
+                              "position": Object {
+                                "lat": 39,
+                                "lng": -77,
+                              },
+                            }
+                          }
+                          type="Marker"
+                        />
+                      </Marker>
+                      <Marker
+                        draggable={true}
+                        onDragEnd={[Function]}
+                        position={
+                          Object {
+                            "lat": 39,
+                            "lng": -76,
+                          }
+                        }
+                      >
+                        <g
+                          data-props={
+                            Object {
+                              "draggable": true,
+                              "onDragEnd": [Function],
+                              "position": Object {
+                                "lat": 39,
+                                "lng": -76,
+                              },
+                            }
+                          }
+                          type="Marker"
+                        />
+                      </Marker>
+                      <Marker
+                        draggable={true}
+                        onDragEnd={[Function]}
+                        position={
+                          Object {
+                            "lat": 38,
+                            "lng": -76,
+                          }
+                        }
+                      >
+                        <g
+                          data-props={
+                            Object {
+                              "draggable": true,
+                              "onDragEnd": [Function],
+                              "position": Object {
+                                "lat": 38,
+                                "lng": -76,
+                              },
+                            }
+                          }
+                          type="Marker"
+                        />
+                      </Marker>
+                      <Rectangle
+                        bounds={
+                          Object {
+                            "_northEast": Object {
+                              "lat": 39,
+                              "lng": -76,
+                            },
+                            "_southWest": Object {
+                              "lat": 38,
+                              "lng": -77,
+                            },
+                          }
+                        }
+                        weight={2}
+                      />
                     </EditBounds>
                   </div>
                 </Map>
@@ -836,7 +836,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
                               onChange={[Function]}
                               placeholder="Region Name*"
                               type="text"
-                              value="New Region Name"
+                              value="Mock Region"
                             />
                           </Input>
                         </div>
@@ -899,6 +899,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
                       </a>
                     </div>
                     <Text
+                      key="bound-North"
                       label="North bound"
                       name="North bound"
                       onChange={[Function]}
@@ -941,6 +942,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
                       </Group>
                     </Text>
                     <Text
+                      key="bound-South"
                       label="South bound"
                       name="South bound"
                       onChange={[Function]}
@@ -983,6 +985,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
                       </Group>
                     </Text>
                     <Text
+                      key="bound-East"
                       label="East bound"
                       name="East bound"
                       onChange={[Function]}
@@ -1025,6 +1028,7 @@ exports[`Container > Edit Region renders correctly 1`] = `
                       </Group>
                     </Text>
                     <Text
+                      key="bound-West"
                       label="West bound"
                       name="West bound"
                       onChange={[Function]}
