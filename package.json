@@ -6,11 +6,9 @@
     "parser": "babel-eslint"
   },
   "scripts": {
-    "build": "mastarm build lib/index.js:assets/index.js lib/styles.css:assets/index.css",
-    "cover-flow": "flow-coverage-report -t html -t text -i 'lib/**/*.js' -o coverage-flow",
+    "build": "mastarm build",
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
-    "flow": "flow",
     "jest": "mastarm test --env test --config configurations/test --setup-files ./lib/utils/enzyme.js",
     "lint": "mastarm lint lib/",
     "predeploy": "yarn",
@@ -18,7 +16,7 @@
     "prestart": "yarn",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "mastarm build --serve",
-    "test": "mastarm lint && mastarm test --env test --config configurations/test"
+    "test": "mastarm lint lib/ && mastarm test --env test --config configurations/test --setup-files ./lib/utils/enzyme.js"
   },
   "repository": {
     "type": "git",
