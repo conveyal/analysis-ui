@@ -1,59 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Project-Map > RerouteLayer renders correctly 1`] = `
-<div>
-  <div
-    style={
-      Object {
-        "display": "none",
-      }
+<ForwardRef(Leaflet(FeatureGroup))>
+  <Patterns
+    color="#aab4bb"
+    patterns={
+      Array [
+        Object {
+          "geometry": Object {
+            "coordinates": Array [
+              Array [
+                -122.0246,
+                36.9707,
+              ],
+              Array [
+                -122.0279,
+                37.049,
+              ],
+              Array [
+                -121.9799,
+                37.2299,
+              ],
+              Array [
+                -121.9445,
+                37.324,
+              ],
+              Array [
+                -121.936,
+                37.353,
+              ],
+              Array [
+                -121.924,
+                37.365,
+              ],
+            ],
+            "type": "LineString",
+          },
+          "name": "Mock Pattern",
+          "pattern_id": "mock-pattern-id",
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          ],
+          "trips": Array [
+            Object {
+              "duration": 1234,
+              "end_time": 13579,
+              "start_time": 12345,
+              "trip_headsign": "To Downtown",
+              "trip_id": "abcd",
+              "trip_short_name": "The Express",
+            },
+          ],
+        },
+      ]
     }
-  >
-    <g
-      data={
-        {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            "-122.02460000",
-            "36.97070000"
+  />
+  <ForwardRef(Leaflet(DirectionalMarkers))
+    color="#aab4bb"
+    patterns={
+      Array [
+        Object {
+          "geometry": Object {
+            "coordinates": Array [
+              Array [
+                -122.0246,
+                36.9707,
+              ],
+              Array [
+                -122.0279,
+                37.049,
+              ],
+              Array [
+                -121.9799,
+                37.2299,
+              ],
+              Array [
+                -121.9445,
+                37.324,
+              ],
+              Array [
+                -121.936,
+                37.353,
+              ],
+              Array [
+                -121.924,
+                37.365,
+              ],
+            ],
+            "type": "LineString",
+          },
+          "name": "Mock Pattern",
+          "pattern_id": "mock-pattern-id",
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
           ],
-          [
-            "-122.02790000",
-            "37.04900000"
+          "trips": Array [
+            Object {
+              "duration": 1234,
+              "end_time": 13579,
+              "start_time": 12345,
+              "trip_headsign": "To Downtown",
+              "trip_id": "abcd",
+              "trip_short_name": "The Express",
+            },
           ],
-          [
-            "-121.97990000",
-            "37.22990000"
-          ],
-          [
-            "-121.94450000",
-            "37.32400000"
-          ],
-          [
-            "-121.93600000",
-            "37.35300000"
-          ],
-          [
-            "-121.92400000",
-            "37.36500000"
-          ]
-        ]
-      }
+        },
+      ]
     }
-  ]
-}
-      }
-      type="GeoJSON"
-    />
-    <g
-      data={
-        {
+  />
+  <ForwardRef(Leaflet(GeoJSON))
+    color="#c92336"
+    data={
+      {
   "type": "FeatureCollection",
   "features": [
     {
@@ -79,12 +159,15 @@ exports[`Project-Map > RerouteLayer renders correctly 1`] = `
     }
   ]
 }
-      }
-      type="GeoJSON"
-    />
-    <g
-      data={
-        {
+    }
+    key="00000000-0000-0000-0000-000000000000-removed-segments"
+    opacity={0.1}
+    weight={3}
+  />
+  <ForwardRef(Leaflet(GeoJSON))
+    color="#2389c9"
+    data={
+      {
   "type": "FeatureCollection",
   "features": [
     {
@@ -122,12 +205,15 @@ exports[`Project-Map > RerouteLayer renders correctly 1`] = `
     }
   ]
 }
-      }
-      type="GeoJSON"
-    />
-    <g
-      data={
-        {
+    }
+    key="00000000-0000-0000-0000-000000000000-added-segments}"
+    opacity={0.1}
+    weight={3}
+  />
+  <ForwardRef(Leaflet(GeoJSON))
+    color="#36c923"
+    data={
+      {
   "type": "Feature",
   "geometry": {
     "type": "LineString",
@@ -160,9 +246,20 @@ exports[`Project-Map > RerouteLayer renders correctly 1`] = `
   },
   "properties": {}
 }
-      }
-      type="GeoJSON"
-    />
-  </div>
-</div>
+    }
+    key="00000000-0000-0000-0000-000000000000-highlight-segment-0"
+    weight={6}
+  />
+  <ForwardRef(Leaflet(CircleMarker))
+    center={
+      Array [
+        36.9707,
+        -122.0246,
+      ]
+    }
+    color="#36c923"
+    fillOpacity={1}
+    radius={5}
+  />
+</ForwardRef(Leaflet(FeatureGroup))>
 `;

@@ -9,6 +9,34 @@ exports[`Report > MiniMap renders correctly 1`] = `
     }
   }
 >
-  <div />
+  <Map
+    attributionControl={false}
+    bounds={
+      Object {
+        "_northEast": Object {
+          "lat": 40.774,
+          "lng": -74.125,
+        },
+        "_southWest": Object {
+          "lat": 40.712,
+          "lng": -74.227,
+        },
+      }
+    }
+    boxZoom={false}
+    doubleClickZoom={false}
+    dragging={false}
+    keyboard={false}
+    scrollWheelZoom={false}
+    touchZoom={false}
+    zoomControl={false}
+  >
+    <ForwardRef(Leaflet(TileLayer))
+      url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
+    />
+    <ForwardRef(Leaflet(TileLayer))
+      url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
+    />
+  </Map>
 </div>
 `;

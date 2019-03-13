@@ -19,24 +19,20 @@ exports[`Component > Input Checkbox renders correctly 1`] = `
 `;
 
 exports[`Component > Input File renders correctly 1`] = `
-<div
-  className="form-group"
+<Group
+  id="files-input-1"
+  label="s"
+  multiple={true}
+  name="files"
 >
-  <label
-    htmlFor="files-input-1"
-  >
-    Select files
-  </label>
-  <input
-    className="form-control"
+  <Input
     id="files-input-1"
+    label="s"
     multiple={true}
     name="files"
-    onChange={[Function]}
-    placeholder="Select files"
     type="file"
   />
-</div>
+</Group>
 `;
 
 exports[`Component > Input Group renders correctly 1`] = `
@@ -57,11 +53,13 @@ exports[`Component > Input Input renders correctly 1`] = `
 `;
 
 exports[`Component > Input Number renders correctly 1`] = `
-<div
-  className="form-group"
+<Group
+  id="some-number-input-3"
+  name="someNumber"
+  placeholder="Enter Number"
+  value={12345}
 >
-  <input
-    className="form-control"
+  <Input
     id="some-number-input-3"
     min={0}
     name="someNumber"
@@ -71,38 +69,37 @@ exports[`Component > Input Number renders correctly 1`] = `
     type="number"
     value={12345}
   />
-</div>
+</Group>
 `;
 
 exports[`Component > Input Number renders correctly with invalid max value 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
+<Number
+  max={2}
+  name="someNumber3"
+  placeholder="Enter Number"
 >
-  <Number
+  <Group
+    className="has-error"
+    id="some-number-3-input-7"
     max={2}
     name="someNumber3"
     placeholder="Enter Number"
   >
-    <Group
-      className="has-error"
-      id="some-number-3-input-7"
-      max={2}
-      name="someNumber3"
-      placeholder="Enter Number"
+    <div
+      className="form-group has-error"
     >
-      <div
-        className="form-group has-error"
+      <Input
+        id="some-number-3-input-7"
+        max={2}
+        min={0}
+        name="someNumber3"
+        onChange={[Function]}
+        onWheel={[Function]}
+        placeholder="Enter Number"
+        type="number"
       >
-        <Input
+        <input
+          className="form-control"
           id="some-number-3-input-7"
           max={2}
           min={0}
@@ -111,59 +108,45 @@ exports[`Component > Input Number renders correctly with invalid max value 1`] =
           onWheel={[Function]}
           placeholder="Enter Number"
           type="number"
-        >
-          <input
-            className="form-control"
-            id="some-number-3-input-7"
-            max={2}
-            min={0}
-            name="someNumber3"
-            onChange={[Function]}
-            onWheel={[Function]}
-            placeholder="Enter Number"
-            type="number"
-          />
-        </Input>
-        <span
-          className="help-block"
-        >
-          Enter a number between 0-2
-        </span>
-      </div>
-    </Group>
-  </Number>
-</Provider>
+        />
+      </Input>
+      <span
+        className="help-block"
+      >
+        Enter a number between 0-2
+      </span>
+    </div>
+  </Group>
+</Number>
 `;
 
 exports[`Component > Input Number renders correctly with invalid min value 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
+<Number
+  min={5}
+  name="someNumber2"
+  placeholder="Enter Number"
 >
-  <Number
+  <Group
+    className="has-error"
+    id="some-number-2-input-5"
     min={5}
     name="someNumber2"
     placeholder="Enter Number"
   >
-    <Group
-      className="has-error"
-      id="some-number-2-input-5"
-      min={5}
-      name="someNumber2"
-      placeholder="Enter Number"
+    <div
+      className="form-group has-error"
     >
-      <div
-        className="form-group has-error"
+      <Input
+        id="some-number-2-input-5"
+        min={5}
+        name="someNumber2"
+        onChange={[Function]}
+        onWheel={[Function]}
+        placeholder="Enter Number"
+        type="number"
       >
-        <Input
+        <input
+          className="form-control"
           id="some-number-2-input-5"
           min={5}
           name="someNumber2"
@@ -171,38 +154,24 @@ exports[`Component > Input Number renders correctly with invalid min value 1`] =
           onWheel={[Function]}
           placeholder="Enter Number"
           type="number"
-        >
-          <input
-            className="form-control"
-            id="some-number-2-input-5"
-            min={5}
-            name="someNumber2"
-            onChange={[Function]}
-            onWheel={[Function]}
-            placeholder="Enter Number"
-            type="number"
-          />
-        </Input>
-        <span
-          className="help-block"
-        >
-          Enter a number ≥ 5
-        </span>
-      </div>
-    </Group>
-  </Number>
-</Provider>
+        />
+      </Input>
+      <span
+        className="help-block"
+      >
+        Enter a number ≥ 5
+      </span>
+    </div>
+  </Group>
+</Number>
 `;
 
 exports[`Component > Input Select renders correctly 1`] = `
-<div
-  className="form-group"
+<Group
+  id="select-an-option-input-8"
+  label="Select an option"
+  value=""
 >
-  <label
-    htmlFor="select-an-option-input-8"
-  >
-    Select an option
-  </label>
   <select
     className="form-control"
     id="select-an-option-input-8"
@@ -211,28 +180,27 @@ exports[`Component > Input Select renders correctly 1`] = `
     value=""
   >
     <option
+      key="1"
       value="1"
     >
       1
     </option>
     <option
+      key="2"
       value="2"
     >
       2
     </option>
   </select>
-</div>
+</Group>
 `;
 
 exports[`Component > Input SelectMultiple renders correctly 1`] = `
-<div
-  className="form-group"
+<Group
+  id="select-multiple-options-input-9"
+  label="Select multiple options"
+  value={Array []}
 >
-  <label
-    htmlFor="select-multiple-options-input-9"
-  >
-    Select multiple options
-  </label>
   <select
     className="form-control"
     id="select-multiple-options-input-9"
@@ -242,36 +210,34 @@ exports[`Component > Input SelectMultiple renders correctly 1`] = `
     value={Array []}
   >
     <option
+      key="1"
       value="1"
     >
       1
     </option>
     <option
+      key="2"
       value="2"
     >
       2
     </option>
   </select>
-</div>
+</Group>
 `;
 
 exports[`Component > Input Text renders correctly 1`] = `
-<div
-  className="form-group"
+<Group
+  id="some-text-input-10"
+  label="Enter text"
+  name="someText"
+  value="blah"
 >
-  <label
-    htmlFor="some-text-input-10"
-  >
-    Enter text
-  </label>
-  <input
-    className="form-control"
+  <Input
     id="some-text-input-10"
+    label="Enter text"
     name="someText"
-    onChange={[Function]}
-    placeholder="Enter text"
     type="text"
     value="blah"
   />
-</div>
+</Group>
 `;

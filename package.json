@@ -61,8 +61,8 @@
     "http-errors": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
     "jsolines": "^2.1.1",
-    "leaflet": "1.3.0",
-    "leaflet-draw": "^0.4.10",
+    "leaflet": "^1.4.0",
+    "leaflet-draw": "^1.0.4",
     "lodash": "^4.17.4",
     "logrocket": "^0.6.16",
     "memoize-one": "^5.0.0",
@@ -74,8 +74,8 @@
     "react-datetime": "^2.7.5",
     "react-dom": "^16.8.3",
     "react-ga": "^2.3.5",
-    "react-leaflet": "1.9.1",
-    "react-leaflet-draw": "^0.18.0",
+    "react-leaflet": "^2.2.1",
+    "react-leaflet-draw": "^0.19.0",
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.1",
     "react-router": "^3.0.2",
@@ -84,10 +84,9 @@
     "react-sparklines": "^1.7.0",
     "redux": "^4.0.1",
     "redux-actions": "^1.2.1",
-    "reselect": "^2.5.3",
-    "science": "^1.9.3",
+    "reselect": "^4.0.0",
     "shpjs": "^3.3.2",
-    "text-encoding": "^0.6.4",
+    "text-encoding": "^0.7.0",
     "uuid": "^3.0.1",
     "xorshift": "^1.0.0"
   },
@@ -109,7 +108,8 @@
   },
   "jest": {
     "snapshotSerializers": [
-      "./lib/utils/geojson-snapshot-serializer"
+      "./lib/utils/geojson-snapshot-serializer",
+      "enzyme-to-json/serializer"
     ]
   }
 }

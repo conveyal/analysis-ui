@@ -1,58 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Map > Edit Bounds renders correctly 1`] = `
-<div>
-  <g
-    data-props={
+<Fragment>
+  <ForwardRef(Leaflet(Marker))
+    draggable={true}
+    onDragEnd={[Function]}
+    position={
       Object {
-        "draggable": true,
-        "onDragEnd": [Function],
-        "position": Object {
+        "lat": 40,
+        "lng": -72,
+      }
+    }
+  />
+  <ForwardRef(Leaflet(Marker))
+    draggable={true}
+    onDragEnd={[Function]}
+    position={
+      Object {
+        "lat": 41,
+        "lng": -72,
+      }
+    }
+  />
+  <ForwardRef(Leaflet(Marker))
+    draggable={true}
+    onDragEnd={[Function]}
+    position={
+      Object {
+        "lat": 41,
+        "lng": -71,
+      }
+    }
+  />
+  <ForwardRef(Leaflet(Marker))
+    draggable={true}
+    onDragEnd={[Function]}
+    position={
+      Object {
+        "lat": 40,
+        "lng": -71,
+      }
+    }
+  />
+  <ForwardRef(Leaflet(Rectangle))
+    bounds={
+      Object {
+        "_northEast": Object {
+          "lat": 41,
+          "lng": -71,
+        },
+        "_southWest": Object {
           "lat": 40,
           "lng": -72,
         },
       }
     }
-    type="Marker"
+    weight={2}
   />
-  <g
-    data-props={
-      Object {
-        "draggable": true,
-        "onDragEnd": [Function],
-        "position": Object {
-          "lat": 41,
-          "lng": -72,
-        },
-      }
-    }
-    type="Marker"
-  />
-  <g
-    data-props={
-      Object {
-        "draggable": true,
-        "onDragEnd": [Function],
-        "position": Object {
-          "lat": 41,
-          "lng": -71,
-        },
-      }
-    }
-    type="Marker"
-  />
-  <g
-    data-props={
-      Object {
-        "draggable": true,
-        "onDragEnd": [Function],
-        "position": Object {
-          "lat": 40,
-          "lng": -71,
-        },
-      }
-    }
-    type="Marker"
-  />
-</div>
+</Fragment>
 `;

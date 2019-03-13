@@ -28,2822 +28,465 @@ Object {
 `;
 
 exports[`Component > Modification > CopyTimetable renders correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r1"
-    getTimetables={[Function]}
+<ModalBody>
+  <Select
+    label="Region"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="r1"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <p>
-          Loading...
-        </p>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
-`;
-
-exports[`Component > Modification > CopyTimetable renders correctly 2`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r1"
-    getTimetables={[Function]}
+    <option
+      key="regionOption-r1"
+      value="r1"
+    >
+      mock region
+    </option>
+  </Select>
+  <Select
+    label="Project"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="p1"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <p>
-          Loading...
-        </p>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
+    <option
+      key="projectOption-p1"
+      value="p1"
+    >
+      mock project
+    </option>
+  </Select>
+  <Select
+    label="Modification"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="m1"
+  >
+    <option
+      key="modificationOption-m1"
+      value="m1"
+    >
+      mock modification
+    </option>
+  </Select>
+  <Select
+    label="Timetable"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="t1"
+  >
+    <option
+      key="timetableOption-t1"
+      value="t1"
+    >
+      M-F
+    </option>
+  </Select>
+  <p>
+    <Button
+      block={true}
+      onClick={[Function]}
+      style="success"
+    >
+      <Icon
+        type="plus"
+      />
+       Copy into new timetable
+    </Button>
+  </p>
+</ModalBody>
 `;
 
 exports[`Component > Modification > CopyTimetable renders when no timetables exist in database 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r2"
-    getTimetables={[Function]}
+<ModalBody>
+  <div
+    className="alert alert-danger"
+    role="alert"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <div
-          className="alert alert-danger"
-          role="alert"
-        >
-          <Icon
-            type="exclamation-circle"
-          >
-            <i
-              className="fa fa-exclamation-circle fa-fw "
-            />
-          </Icon>
-          No timetables available to copy from! Please create a timetable manually.
-        </div>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
+    <Icon
+      type="exclamation-circle"
+    />
+    No timetables available to copy from! Please create a timetable manually.
+  </div>
+</ModalBody>
 `;
 
 exports[`Component > Modification > CopyTimetable renders with a region without timetables 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r2"
-    getTimetables={[Function]}
+<ModalBody>
+  <Select
+    label="Region"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="r1"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <Select
-          label="Region"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="r1"
-        >
-          <Group
-            id="region-input-8"
-            label="Region"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="r1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="region-input-8"
-              >
-                Region
-              </label>
-              <select
-                className="form-control"
-                id="region-input-8"
-                label="Region"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="r1"
-              >
-                <option
-                  key="regionOption-r1"
-                  value="r1"
-                >
-                  mock region
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Project"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="p1"
-        >
-          <Group
-            id="project-input-9"
-            label="Project"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="p1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="project-input-9"
-              >
-                Project
-              </label>
-              <select
-                className="form-control"
-                id="project-input-9"
-                label="Project"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="p1"
-              >
-                <option
-                  key="projectOption-p1"
-                  value="p1"
-                >
-                  mock project
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Modification"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="m1"
-        >
-          <Group
-            id="modification-input-10"
-            label="Modification"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="m1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="modification-input-10"
-              >
-                Modification
-              </label>
-              <select
-                className="form-control"
-                id="modification-input-10"
-                label="Modification"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="m1"
-              >
-                <option
-                  key="modificationOption-m1"
-                  value="m1"
-                >
-                  mock modification
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Timetable"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="t1"
-        >
-          <Group
-            id="timetable-input-11"
-            label="Timetable"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="t1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="timetable-input-11"
-              >
-                Timetable
-              </label>
-              <select
-                className="form-control"
-                id="timetable-input-11"
-                label="Timetable"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="t1"
-              >
-                <option
-                  key="timetableOption-t1"
-                  value="t1"
-                >
-                  M-F
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <p>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="success"
-          >
-            <a
-              className="btn btn-success btn-block"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              <Icon
-                type="plus"
-              >
-                <i
-                  className="fa fa-plus fa-fw "
-                />
-              </Icon>
-               Copy into new timetable
-            </a>
-          </Button>
-        </p>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
+    <option
+      key="regionOption-r1"
+      value="r1"
+    >
+      mock region
+    </option>
+  </Select>
+  <Select
+    label="Project"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="p1"
+  >
+    <option
+      key="projectOption-p1"
+      value="p1"
+    >
+      mock project
+    </option>
+  </Select>
+  <Select
+    label="Modification"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="m1"
+  >
+    <option
+      key="modificationOption-m1"
+      value="m1"
+    >
+      mock modification
+    </option>
+  </Select>
+  <Select
+    label="Timetable"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="t1"
+  >
+    <option
+      key="timetableOption-t1"
+      value="t1"
+    >
+      M-F
+    </option>
+  </Select>
+  <p>
+    <Button
+      block={true}
+      onClick={[Function]}
+      style="success"
+    >
+      <Icon
+        type="plus"
+      />
+       Copy into new timetable
+    </Button>
+  </p>
+</ModalBody>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when current modification has no segments 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r1"
-    getTimetables={[Function]}
+<ModalBody>
+  <Select
+    label="Region"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="r1"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <Select
-          label="Region"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="r1"
-        >
-          <Group
-            id="region-input-12"
-            label="Region"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="r1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="region-input-12"
-              >
-                Region
-              </label>
-              <select
-                className="form-control"
-                id="region-input-12"
-                label="Region"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="r1"
-              >
-                <option
-                  key="regionOption-r1"
-                  value="r1"
-                >
-                  mock region
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Project"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="p1"
-        >
-          <Group
-            id="project-input-13"
-            label="Project"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="p1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="project-input-13"
-              >
-                Project
-              </label>
-              <select
-                className="form-control"
-                id="project-input-13"
-                label="Project"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="p1"
-              >
-                <option
-                  key="projectOption-p1"
-                  value="p1"
-                >
-                  mock project
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Modification"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="m1"
-        >
-          <Group
-            id="modification-input-14"
-            label="Modification"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="m1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="modification-input-14"
-              >
-                Modification
-              </label>
-              <select
-                className="form-control"
-                id="modification-input-14"
-                label="Modification"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="m1"
-              >
-                <option
-                  key="modificationOption-m1"
-                  value="m1"
-                >
-                  mock modification
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Timetable"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="t1"
-        >
-          <Group
-            id="timetable-input-15"
-            label="Timetable"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="t1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="timetable-input-15"
-              >
-                Timetable
-              </label>
-              <select
-                className="form-control"
-                id="timetable-input-15"
-                label="Timetable"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="t1"
-              >
-                <option
-                  key="timetableOption-t1"
-                  value="t1"
-                >
-                  M-F
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <div
-          className="alert alert-info"
-          role="alert"
-        >
-          <Icon
-            type="exclamation-circle"
-          >
-            <i
-              className="fa fa-exclamation-circle fa-fw "
-            />
-          </Icon>
-          The modification being copied to and/or from does not have any segments. The default segment speed of 15 km/h will be used.
-        </div>
-        <p>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="success"
-          >
-            <a
-              className="btn btn-success btn-block"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              <Icon
-                type="plus"
-              >
-                <i
-                  className="fa fa-plus fa-fw "
-                />
-              </Icon>
-               Copy into new timetable
-            </a>
-          </Button>
-        </p>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
+    <option
+      key="regionOption-r1"
+      value="r1"
+    >
+      mock region
+    </option>
+  </Select>
+  <Select
+    label="Project"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="p1"
+  >
+    <option
+      key="projectOption-p1"
+      value="p1"
+    >
+      mock project
+    </option>
+  </Select>
+  <Select
+    label="Modification"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="m1"
+  >
+    <option
+      key="modificationOption-m1"
+      value="m1"
+    >
+      mock modification
+    </option>
+  </Select>
+  <Select
+    label="Timetable"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="t1"
+  >
+    <option
+      key="timetableOption-t1"
+      value="t1"
+    >
+      M-F
+    </option>
+  </Select>
+  <div
+    className="alert alert-info"
+    role="alert"
+  >
+    <Icon
+      type="exclamation-circle"
+    />
+    The modification being copied to and/or from does not have any segments. The default segment speed of 15 km/h will be used.
+  </div>
+  <p>
+    <Button
+      block={true}
+      onClick={[Function]}
+      style="success"
+    >
+      <Icon
+        type="plus"
+      />
+       Copy into new timetable
+    </Button>
+  </p>
+</ModalBody>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has less segments 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r1"
-    getTimetables={[Function]}
+<ModalBody>
+  <Select
+    label="Region"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="r1"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <Select
-          label="Region"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="r1"
-        >
-          <Group
-            id="region-input-24"
-            label="Region"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="r1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="region-input-24"
-              >
-                Region
-              </label>
-              <select
-                className="form-control"
-                id="region-input-24"
-                label="Region"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="r1"
-              >
-                <option
-                  key="regionOption-r1"
-                  value="r1"
-                >
-                  mock region
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Project"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="p1"
-        >
-          <Group
-            id="project-input-25"
-            label="Project"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="p1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="project-input-25"
-              >
-                Project
-              </label>
-              <select
-                className="form-control"
-                id="project-input-25"
-                label="Project"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="p1"
-              >
-                <option
-                  key="projectOption-p1"
-                  value="p1"
-                >
-                  mock project
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Modification"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="m1"
-        >
-          <Group
-            id="modification-input-26"
-            label="Modification"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="m1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="modification-input-26"
-              >
-                Modification
-              </label>
-              <select
-                className="form-control"
-                id="modification-input-26"
-                label="Modification"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="m1"
-              >
-                <option
-                  key="modificationOption-m1"
-                  value="m1"
-                >
-                  mock modification
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Timetable"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="t1"
-        >
-          <Group
-            id="timetable-input-27"
-            label="Timetable"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="t1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="timetable-input-27"
-              >
-                Timetable
-              </label>
-              <select
-                className="form-control"
-                id="timetable-input-27"
-                label="Timetable"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="t1"
-              >
-                <option
-                  key="timetableOption-t1"
-                  value="t1"
-                >
-                  M-F
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <div
-          className="alert alert-info"
-          role="alert"
-        >
-          <Icon
-            type="exclamation-circle"
-          >
-            <i
-              className="fa fa-exclamation-circle fa-fw "
-            />
-          </Icon>
-          The modification of the timetable you are copying from has less segments than the modification you are copying to. The segment speeds will be copied 1 segment(s) and after that, the default segment speed of 15 km/h will be used.
-        </div>
-        <p>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="success"
-          >
-            <a
-              className="btn btn-success btn-block"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              <Icon
-                type="plus"
-              >
-                <i
-                  className="fa fa-plus fa-fw "
-                />
-              </Icon>
-               Copy into new timetable
-            </a>
-          </Button>
-        </p>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
+    <option
+      key="regionOption-r1"
+      value="r1"
+    >
+      mock region
+    </option>
+  </Select>
+  <Select
+    label="Project"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="p1"
+  >
+    <option
+      key="projectOption-p1"
+      value="p1"
+    >
+      mock project
+    </option>
+  </Select>
+  <Select
+    label="Modification"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="m1"
+  >
+    <option
+      key="modificationOption-m1"
+      value="m1"
+    >
+      mock modification
+    </option>
+  </Select>
+  <Select
+    label="Timetable"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="t1"
+  >
+    <option
+      key="timetableOption-t1"
+      value="t1"
+    >
+      M-F
+    </option>
+  </Select>
+  <div
+    className="alert alert-info"
+    role="alert"
+  >
+    <Icon
+      type="exclamation-circle"
+    />
+    The modification of the timetable you are copying from has less segments than the modification you are copying to. The segment speeds will be copied 1 segment(s) and after that, the default segment speed of 15 km/h will be used.
+  </div>
+  <p>
+    <Button
+      block={true}
+      onClick={[Function]}
+      style="success"
+    >
+      <Icon
+        type="plus"
+      />
+       Copy into new timetable
+    </Button>
+  </p>
+</ModalBody>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has more segments 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r1"
-    getTimetables={[Function]}
+<ModalBody>
+  <Select
+    label="Region"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="r1"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <Select
-          label="Region"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="r1"
-        >
-          <Group
-            id="region-input-20"
-            label="Region"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="r1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="region-input-20"
-              >
-                Region
-              </label>
-              <select
-                className="form-control"
-                id="region-input-20"
-                label="Region"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="r1"
-              >
-                <option
-                  key="regionOption-r1"
-                  value="r1"
-                >
-                  mock region
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Project"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="p1"
-        >
-          <Group
-            id="project-input-21"
-            label="Project"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="p1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="project-input-21"
-              >
-                Project
-              </label>
-              <select
-                className="form-control"
-                id="project-input-21"
-                label="Project"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="p1"
-              >
-                <option
-                  key="projectOption-p1"
-                  value="p1"
-                >
-                  mock project
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Modification"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="m1"
-        >
-          <Group
-            id="modification-input-22"
-            label="Modification"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="m1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="modification-input-22"
-              >
-                Modification
-              </label>
-              <select
-                className="form-control"
-                id="modification-input-22"
-                label="Modification"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="m1"
-              >
-                <option
-                  key="modificationOption-m1"
-                  value="m1"
-                >
-                  mock modification
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Timetable"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="t1"
-        >
-          <Group
-            id="timetable-input-23"
-            label="Timetable"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="t1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="timetable-input-23"
-              >
-                Timetable
-              </label>
-              <select
-                className="form-control"
-                id="timetable-input-23"
-                label="Timetable"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="t1"
-              >
-                <option
-                  key="timetableOption-t1"
-                  value="t1"
-                >
-                  M-F
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <div
-          className="alert alert-info"
-          role="alert"
-        >
-          <Icon
-            type="exclamation-circle"
-          >
-            <i
-              className="fa fa-exclamation-circle fa-fw "
-            />
-          </Icon>
-          The modification of the timetable you are copying to has less segments than the modification you are copying from. The segment speeds will be copied 1 segment(s).
-        </div>
-        <p>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="success"
-          >
-            <a
-              className="btn btn-success btn-block"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              <Icon
-                type="plus"
-              >
-                <i
-                  className="fa fa-plus fa-fw "
-                />
-              </Icon>
-               Copy into new timetable
-            </a>
-          </Button>
-        </p>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
+    <option
+      key="regionOption-r1"
+      value="r1"
+    >
+      mock region
+    </option>
+  </Select>
+  <Select
+    label="Project"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="p1"
+  >
+    <option
+      key="projectOption-p1"
+      value="p1"
+    >
+      mock project
+    </option>
+  </Select>
+  <Select
+    label="Modification"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="m1"
+  >
+    <option
+      key="modificationOption-m1"
+      value="m1"
+    >
+      mock modification
+    </option>
+  </Select>
+  <Select
+    label="Timetable"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="t1"
+  >
+    <option
+      key="timetableOption-t1"
+      value="t1"
+    >
+      M-F
+    </option>
+  </Select>
+  <div
+    className="alert alert-info"
+    role="alert"
+  >
+    <Icon
+      type="exclamation-circle"
+    />
+    The modification of the timetable you are copying to has less segments than the modification you are copying from. The segment speeds will be copied 1 segment(s).
+  </div>
+  <p>
+    <Button
+      block={true}
+      onClick={[Function]}
+      style="success"
+    >
+      <Icon
+        type="plus"
+      />
+       Copy into new timetable
+    </Button>
+  </p>
+</ModalBody>
 `;
 
 exports[`Component > Modification > CopyTimetable segment warnings shows a warning when modification of timetable being copied has no segments 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <CopyTimetable
-    create={[MockFunction]}
-    currentModification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "showOnMap": false,
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-    currentProject={
-      Object {
-        "_id": "p1",
-        "modifications": Array [
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "entries": Array [],
-            "feed": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
-            ],
-            "segments": Array [
-              {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-            ],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "trips": Array [
-              "abcd",
-            ],
-            "type": "add-trip-pattern",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          },
-        ],
-        "name": "mock project",
-      }
-    }
-    currentRegionId="r1"
-    getTimetables={[Function]}
+<ModalBody>
+  <Select
+    label="Region"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="r1"
   >
-    <ModalBody>
-      <div
-        className="CustomModal-block"
-      >
-        <Select
-          label="Region"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="r1"
-        >
-          <Group
-            id="region-input-16"
-            label="Region"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="r1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="region-input-16"
-              >
-                Region
-              </label>
-              <select
-                className="form-control"
-                id="region-input-16"
-                label="Region"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="r1"
-              >
-                <option
-                  key="regionOption-r1"
-                  value="r1"
-                >
-                  mock region
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Project"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="p1"
-        >
-          <Group
-            id="project-input-17"
-            label="Project"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="p1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="project-input-17"
-              >
-                Project
-              </label>
-              <select
-                className="form-control"
-                id="project-input-17"
-                label="Project"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="p1"
-              >
-                <option
-                  key="projectOption-p1"
-                  value="p1"
-                >
-                  mock project
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Modification"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="m1"
-        >
-          <Group
-            id="modification-input-18"
-            label="Modification"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="m1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="modification-input-18"
-              >
-                Modification
-              </label>
-              <select
-                className="form-control"
-                id="modification-input-18"
-                label="Modification"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="m1"
-              >
-                <option
-                  key="modificationOption-m1"
-                  value="m1"
-                >
-                  mock modification
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <Select
-          label="Timetable"
-          onBlur={[Function]}
-          onChange={[Function]}
-          value="t1"
-        >
-          <Group
-            id="timetable-input-19"
-            label="Timetable"
-            onBlur={[Function]}
-            onChange={[Function]}
-            value="t1"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="timetable-input-19"
-              >
-                Timetable
-              </label>
-              <select
-                className="form-control"
-                id="timetable-input-19"
-                label="Timetable"
-                onBlur={[Function]}
-                onChange={[Function]}
-                value="t1"
-              >
-                <option
-                  key="timetableOption-t1"
-                  value="t1"
-                >
-                  M-F
-                </option>
-              </select>
-            </div>
-          </Group>
-        </Select>
-        <div
-          className="alert alert-info"
-          role="alert"
-        >
-          <Icon
-            type="exclamation-circle"
-          >
-            <i
-              className="fa fa-exclamation-circle fa-fw "
-            />
-          </Icon>
-          The modification being copied to and/or from does not have any segments. The default segment speed of 15 km/h will be used.
-        </div>
-        <p>
-          <Button
-            block={true}
-            onClick={[Function]}
-            style="success"
-          >
-            <a
-              className="btn btn-success btn-block"
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              <Icon
-                type="plus"
-              >
-                <i
-                  className="fa fa-plus fa-fw "
-                />
-              </Icon>
-               Copy into new timetable
-            </a>
-          </Button>
-        </p>
-      </div>
-    </ModalBody>
-  </CopyTimetable>
-</Provider>
+    <option
+      key="regionOption-r1"
+      value="r1"
+    >
+      mock region
+    </option>
+  </Select>
+  <Select
+    label="Project"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="p1"
+  >
+    <option
+      key="projectOption-p1"
+      value="p1"
+    >
+      mock project
+    </option>
+  </Select>
+  <Select
+    label="Modification"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="m1"
+  >
+    <option
+      key="modificationOption-m1"
+      value="m1"
+    >
+      mock modification
+    </option>
+  </Select>
+  <Select
+    label="Timetable"
+    onBlur={[Function]}
+    onChange={[Function]}
+    value="t1"
+  >
+    <option
+      key="timetableOption-t1"
+      value="t1"
+    >
+      M-F
+    </option>
+  </Select>
+  <div
+    className="alert alert-info"
+    role="alert"
+  >
+    <Icon
+      type="exclamation-circle"
+    />
+    The modification being copied to and/or from does not have any segments. The default segment speed of 15 km/h will be used.
+  </div>
+  <p>
+    <Button
+      block={true}
+      onClick={[Function]}
+      style="success"
+    >
+      <Icon
+        type="plus"
+      />
+       Copy into new timetable
+    </Button>
+  </p>
+</ModalBody>
 `;

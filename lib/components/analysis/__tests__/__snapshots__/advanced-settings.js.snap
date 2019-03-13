@@ -1,548 +1,345 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Advanced Settings should render correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
+<section
+  className="panel panel-default inner-panel advanced-panel"
 >
-  <AdvancedSettings
-    disabled={false}
-    hideBoundsEditor={[MockFunction]}
-    profileRequest={
+  <a
+    className="panel-heading clearfix"
+    onClick={[Function]}
+    style={
       Object {
-        "accessModes": "WALK",
-        "bikeSafe": 1,
-        "bikeSlope": 1,
-        "bikeSpeed": 4.166666666666667,
-        "bikeTime": 1,
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        },
-        "bundleId": "1",
-        "date": "2016-01-16",
-        "defaultExpanded": true,
-        "directModes": "WALK",
-        "egressModes": "WALK",
-        "fromLat": 12,
-        "fromLon": 34,
-        "fromTime": 25200,
-        "maxBikeTime": 20,
-        "maxRides": 4,
-        "maxTripDurationMinutes": 60,
-        "maxWalkTime": 20,
-        "monteCarloDraws": 200,
-        "name": "Profile Request Test",
-        "projectId": "1",
-        "reachabilityThreshold": 0,
-        "regionId": "1",
-        "toTime": 32400,
-        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-        "travelTimePercentile": 50,
-        "variantIndex": 0,
-        "walkSpeed": 1.3888888888888888,
-        "workerVersion": "v4.0.0",
+        "cursor": "pointer",
       }
     }
-    regionBounds={
-      Object {
-        "east": -76,
-        "north": 39,
-        "south": 38,
-        "west": -77,
-      }
-    }
-    regionalAnalyses={
-      Array [
-        Object {
-          "_id": "abcd",
-          "accessGroup": "accessGroupName",
-          "bounds": Object {},
-          "bundleId": "5678",
-          "complete": true,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "cutoffMinutes": 60,
-          "deleted": false,
-          "grid": "Jobs_total",
-          "height": 300,
-          "name": "ANALYSIS 1",
-          "nonce": "12345",
-          "north": 20024,
-          "projectId": "1234",
-          "request": Object {
-            "accessModes": "WALK",
-            "bikeSafe": 1,
-            "bikeSlope": 1,
-            "bikeSpeed": 4.166666666666667,
-            "bikeTime": 1,
-            "bounds": Object {
-              "east": -76,
-              "north": 39,
-              "south": 38,
-              "west": -77,
-            },
-            "bundleId": "1",
-            "date": "2016-01-16",
-            "defaultExpanded": true,
-            "directModes": "WALK",
-            "egressModes": "WALK",
-            "fromLat": 12,
-            "fromLon": 34,
-            "fromTime": 25200,
-            "maxBikeTime": 20,
-            "maxRides": 4,
-            "maxTripDurationMinutes": 60,
-            "maxWalkTime": 20,
-            "monteCarloDraws": 200,
-            "name": "Profile Request Test",
-            "projectId": "1",
-            "reachabilityThreshold": 0,
-            "regionId": "1",
-            "toTime": 32400,
-            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-            "travelTimePercentile": 50,
-            "variantIndex": 0,
-            "walkSpeed": 1.3888888888888888,
-            "workerVersion": "v4.0.0",
-          },
-          "status": "DONE",
-          "travelTimePercentile": -1,
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variant": 0,
-          "west": 20015,
-          "width": 300,
-          "workerVersion": "v3.2.0",
-          "zoom": 9,
-        },
-        Object {
-          "_id": "efgh",
-          "accessGroup": "accessGroupName",
-          "bounds": Object {},
-          "bundleId": "5678",
-          "complete": true,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "cutoffMinutes": 60,
-          "deleted": false,
-          "grid": "Jobs_total",
-          "height": 300,
-          "name": "ANALYSIS 2",
-          "nonce": "12345",
-          "north": 20024,
-          "projectId": "4321",
-          "request": Object {
-            "accessModes": "WALK",
-            "bikeSafe": 1,
-            "bikeSlope": 1,
-            "bikeSpeed": 4.166666666666667,
-            "bikeTime": 1,
-            "bounds": Object {
-              "east": -76,
-              "north": 39,
-              "south": 38,
-              "west": -77,
-            },
-            "bundleId": "1",
-            "date": "2016-01-16",
-            "defaultExpanded": true,
-            "directModes": "WALK",
-            "egressModes": "WALK",
-            "fromLat": 12,
-            "fromLon": 34,
-            "fromTime": 25200,
-            "maxBikeTime": 20,
-            "maxRides": 4,
-            "maxTripDurationMinutes": 60,
-            "maxWalkTime": 20,
-            "monteCarloDraws": 200,
-            "name": "Profile Request Test",
-            "projectId": "1",
-            "reachabilityThreshold": 0,
-            "regionId": "1",
-            "toTime": 32400,
-            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-            "travelTimePercentile": 50,
-            "variantIndex": 0,
-            "walkSpeed": 1.3888888888888888,
-            "workerVersion": "v4.0.0",
-          },
-          "status": "DONE",
-          "travelTimePercentile": 42,
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variant": 1,
-          "west": 20015,
-          "width": 300,
-          "workerVersion": "v3.2.0",
-          "zoom": 9,
-        },
-      ]
-    }
-    setProfileRequest={[MockFunction]}
-    showBoundsEditor={[MockFunction]}
+    tabIndex={0}
   >
-    <section
-      className="panel panel-default inner-panel advanced-panel"
-    >
-      <a
-        className="panel-heading clearfix"
-        onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
-        tabIndex={0}
-      >
-        <Icon
-          type="gear"
-        >
-          <i
-            className="fa fa-gear fa-fw "
-          />
-        </Icon>
-        <strong>
-          Advanced Settings
-        </strong>
-        <Icon
-          className="pull-right"
-          type="caret-right"
-        >
-          <i
-            className="fa fa-caret-right fa-fw pull-right"
-          />
-        </Icon>
-      </a>
-    </section>
-  </AdvancedSettings>
-</Provider>
+    <Icon
+      type="gear"
+    />
+    <strong>
+      Advanced Settings
+    </strong>
+    <Icon
+      className="pull-right"
+      type="caret-right"
+    />
+  </a>
+</section>
 `;
 
 exports[`Components > Analysis > Advanced Settings should render correctly with expanded advanced settings 1`] = `
-<Provider
-  store={
+<AdvancedSettings
+  disabled={false}
+  hideBoundsEditor={[MockFunction]}
+  profileRequest={
     Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <AdvancedSettings
-    disabled={false}
-    hideBoundsEditor={[MockFunction]}
-    profileRequest={
-      Object {
-        "accessModes": "WALK",
-        "bikeSafe": 1,
-        "bikeSlope": 1,
-        "bikeSpeed": 4.166666666666667,
-        "bikeTime": 1,
-        "bounds": Object {
-          "east": -76,
-          "north": 39,
-          "south": 38,
-          "west": -77,
-        },
-        "bundleId": "1",
-        "date": "2016-01-16",
-        "defaultExpanded": true,
-        "directModes": "WALK",
-        "egressModes": "WALK",
-        "fromLat": 12,
-        "fromLon": 34,
-        "fromTime": 25200,
-        "maxBikeTime": 20,
-        "maxRides": 4,
-        "maxTripDurationMinutes": 60,
-        "maxWalkTime": 20,
-        "monteCarloDraws": 200,
-        "name": "Profile Request Test",
-        "projectId": "1",
-        "reachabilityThreshold": 0,
-        "regionId": "1",
-        "toTime": 32400,
-        "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-        "travelTimePercentile": 50,
-        "variantIndex": 0,
-        "walkSpeed": 1.3888888888888888,
-        "workerVersion": "v4.0.0",
-      }
-    }
-    regionBounds={
-      Object {
+      "accessModes": "WALK",
+      "bikeSafe": 1,
+      "bikeSlope": 1,
+      "bikeSpeed": 4.166666666666667,
+      "bikeTime": 1,
+      "bounds": Object {
         "east": -76,
         "north": 39,
         "south": 38,
         "west": -77,
-      }
+      },
+      "bundleId": "1",
+      "date": "2016-01-16",
+      "defaultExpanded": true,
+      "directModes": "WALK",
+      "egressModes": "WALK",
+      "fromLat": 12,
+      "fromLon": 34,
+      "fromTime": 25200,
+      "maxBikeTime": 20,
+      "maxRides": 4,
+      "maxTripDurationMinutes": 60,
+      "maxWalkTime": 20,
+      "monteCarloDraws": 200,
+      "name": "Profile Request Test",
+      "projectId": "1",
+      "reachabilityThreshold": 0,
+      "regionId": "1",
+      "toTime": 32400,
+      "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+      "travelTimePercentile": 50,
+      "variantIndex": 0,
+      "walkSpeed": 1.3888888888888888,
+      "workerVersion": "v4.0.0",
     }
-    regionalAnalyses={
-      Array [
-        Object {
-          "_id": "abcd",
-          "accessGroup": "accessGroupName",
-          "bounds": Object {},
-          "bundleId": "5678",
-          "complete": true,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "cutoffMinutes": 60,
-          "deleted": false,
-          "grid": "Jobs_total",
-          "height": 300,
-          "name": "ANALYSIS 1",
-          "nonce": "12345",
-          "north": 20024,
-          "projectId": "1234",
-          "request": Object {
-            "accessModes": "WALK",
-            "bikeSafe": 1,
-            "bikeSlope": 1,
-            "bikeSpeed": 4.166666666666667,
-            "bikeTime": 1,
-            "bounds": Object {
-              "east": -76,
-              "north": 39,
-              "south": 38,
-              "west": -77,
-            },
-            "bundleId": "1",
-            "date": "2016-01-16",
-            "defaultExpanded": true,
-            "directModes": "WALK",
-            "egressModes": "WALK",
-            "fromLat": 12,
-            "fromLon": 34,
-            "fromTime": 25200,
-            "maxBikeTime": 20,
-            "maxRides": 4,
-            "maxTripDurationMinutes": 60,
-            "maxWalkTime": 20,
-            "monteCarloDraws": 200,
-            "name": "Profile Request Test",
-            "projectId": "1",
-            "reachabilityThreshold": 0,
-            "regionId": "1",
-            "toTime": 32400,
-            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-            "travelTimePercentile": 50,
-            "variantIndex": 0,
-            "walkSpeed": 1.3888888888888888,
-            "workerVersion": "v4.0.0",
-          },
-          "status": "DONE",
-          "travelTimePercentile": -1,
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variant": 0,
-          "west": 20015,
-          "width": 300,
-          "workerVersion": "v3.2.0",
-          "zoom": 9,
-        },
-        Object {
-          "_id": "efgh",
-          "accessGroup": "accessGroupName",
-          "bounds": Object {},
-          "bundleId": "5678",
-          "complete": true,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "cutoffMinutes": 60,
-          "deleted": false,
-          "grid": "Jobs_total",
-          "height": 300,
-          "name": "ANALYSIS 2",
-          "nonce": "12345",
-          "north": 20024,
-          "projectId": "4321",
-          "request": Object {
-            "accessModes": "WALK",
-            "bikeSafe": 1,
-            "bikeSlope": 1,
-            "bikeSpeed": 4.166666666666667,
-            "bikeTime": 1,
-            "bounds": Object {
-              "east": -76,
-              "north": 39,
-              "south": 38,
-              "west": -77,
-            },
-            "bundleId": "1",
-            "date": "2016-01-16",
-            "defaultExpanded": true,
-            "directModes": "WALK",
-            "egressModes": "WALK",
-            "fromLat": 12,
-            "fromLon": 34,
-            "fromTime": 25200,
-            "maxBikeTime": 20,
-            "maxRides": 4,
-            "maxTripDurationMinutes": 60,
-            "maxWalkTime": 20,
-            "monteCarloDraws": 200,
-            "name": "Profile Request Test",
-            "projectId": "1",
-            "reachabilityThreshold": 0,
-            "regionId": "1",
-            "toTime": 32400,
-            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-            "travelTimePercentile": 50,
-            "variantIndex": 0,
-            "walkSpeed": 1.3888888888888888,
-            "workerVersion": "v4.0.0",
-          },
-          "status": "DONE",
-          "travelTimePercentile": 42,
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-          "variant": 1,
-          "west": 20015,
-          "width": 300,
-          "workerVersion": "v3.2.0",
-          "zoom": 9,
-        },
-      ]
+  }
+  regionBounds={
+    Object {
+      "east": -76,
+      "north": 39,
+      "south": 38,
+      "west": -77,
     }
-    setProfileRequest={[MockFunction]}
-    showBoundsEditor={[MockFunction]}
+  }
+  regionalAnalyses={
+    Array [
+      Object {
+        "_id": "abcd",
+        "accessGroup": "accessGroupName",
+        "bounds": Object {},
+        "bundleId": "5678",
+        "complete": true,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "cutoffMinutes": 60,
+        "deleted": false,
+        "grid": "Jobs_total",
+        "height": 300,
+        "name": "ANALYSIS 1",
+        "nonce": "12345",
+        "north": 20024,
+        "projectId": "1234",
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "bundleId": "1",
+          "date": "2016-01-16",
+          "defaultExpanded": true,
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromLat": 12,
+          "fromLon": 34,
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxRides": 4,
+          "maxTripDurationMinutes": 60,
+          "maxWalkTime": 20,
+          "monteCarloDraws": 200,
+          "name": "Profile Request Test",
+          "projectId": "1",
+          "reachabilityThreshold": 0,
+          "regionId": "1",
+          "toTime": 32400,
+          "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+          "travelTimePercentile": 50,
+          "variantIndex": 0,
+          "walkSpeed": 1.3888888888888888,
+          "workerVersion": "v4.0.0",
+        },
+        "status": "DONE",
+        "travelTimePercentile": -1,
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variant": 0,
+        "west": 20015,
+        "width": 300,
+        "workerVersion": "v3.2.0",
+        "zoom": 9,
+      },
+      Object {
+        "_id": "efgh",
+        "accessGroup": "accessGroupName",
+        "bounds": Object {},
+        "bundleId": "5678",
+        "complete": true,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "cutoffMinutes": 60,
+        "deleted": false,
+        "grid": "Jobs_total",
+        "height": 300,
+        "name": "ANALYSIS 2",
+        "nonce": "12345",
+        "north": 20024,
+        "projectId": "4321",
+        "request": Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "bundleId": "1",
+          "date": "2016-01-16",
+          "defaultExpanded": true,
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromLat": 12,
+          "fromLon": 34,
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxRides": 4,
+          "maxTripDurationMinutes": 60,
+          "maxWalkTime": 20,
+          "monteCarloDraws": 200,
+          "name": "Profile Request Test",
+          "projectId": "1",
+          "reachabilityThreshold": 0,
+          "regionId": "1",
+          "toTime": 32400,
+          "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+          "travelTimePercentile": 50,
+          "variantIndex": 0,
+          "walkSpeed": 1.3888888888888888,
+          "workerVersion": "v4.0.0",
+        },
+        "status": "DONE",
+        "travelTimePercentile": 42,
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variant": 1,
+        "west": 20015,
+        "width": 300,
+        "workerVersion": "v3.2.0",
+        "zoom": 9,
+      },
+    ]
+  }
+  setProfileRequest={[MockFunction]}
+  showBoundsEditor={[MockFunction]}
+>
+  <section
+    className="panel panel-default inner-panel advanced-panel"
   >
-    <section
-      className="panel panel-default inner-panel advanced-panel"
-    >
-      <a
-        className="panel-heading clearfix"
-        onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
+    <a
+      className="panel-heading clearfix"
+      onClick={[Function]}
+      style={
+        Object {
+          "cursor": "pointer",
         }
-        tabIndex={0}
+      }
+      tabIndex={0}
+    >
+      <Icon
+        type="gear"
       >
-        <Icon
-          type="gear"
-        >
-          <i
-            className="fa fa-gear fa-fw "
-          />
-        </Icon>
-        <strong>
-          Advanced Settings
-        </strong>
-        <Icon
-          className="pull-right"
-          type="caret-down"
-        >
-          <i
-            className="fa fa-caret-down fa-fw pull-right"
-          />
-        </Icon>
-      </a>
+        <i
+          className="fa fa-gear fa-fw "
+        />
+      </Icon>
+      <strong>
+        Advanced Settings
+      </strong>
+      <Icon
+        className="pull-right"
+        type="caret-down"
+      >
+        <i
+          className="fa fa-caret-down fa-fw pull-right"
+        />
+      </Icon>
+    </a>
+    <div
+      className="panel-body"
+    >
       <div
-        className="panel-body"
+        className="row"
       >
         <div
-          className="row"
+          className="col-xs-4"
         >
-          <div
-            className="col-xs-4"
+          <EgressModeSelector
+            disabled={false}
+            egressModes="WALK"
+            update={[MockFunction]}
           >
-            <EgressModeSelector
-              disabled={false}
-              egressModes="WALK"
-              update={[MockFunction]}
+            <Group
+              label="Egress Modes"
             >
-              <Group
-                label="Egress Modes"
+              <div
+                className="form-group"
               >
-                <div
-                  className="form-group"
+                <label
+                  htmlFor="egress-modes-input-0"
                 >
-                  <label
-                    htmlFor="egress-modes-input-0"
-                  >
-                    Egress Modes
-                  </label>
-                  <br />
-                  <Group
+                  Egress Modes
+                </label>
+                <br />
+                <Group
+                  disabled={false}
+                >
+                  <div
+                    className="btn-group"
                     disabled={false}
                   >
-                    <div
-                      className="btn-group"
-                      disabled={false}
+                    <Button
+                      active={true}
+                      onClick={[Function]}
+                      title="Walk"
                     >
-                      <Button
-                        active={true}
+                      <a
+                        className="btn btn-default active"
+                        href="#"
                         onClick={[Function]}
+                        tabIndex={0}
                         title="Walk"
                       >
-                        <a
-                          className="btn btn-default active"
-                          href="#"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          title="Walk"
+                        <Icon
+                          type="male"
                         >
-                          <Icon
-                            type="male"
-                          >
-                            <i
-                              className="fa fa-male fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </Button>
-                      <Button
-                        active={false}
+                          <i
+                            className="fa fa-male fa-fw "
+                          />
+                        </Icon>
+                      </a>
+                    </Button>
+                    <Button
+                      active={false}
+                      disabled={true}
+                      onClick={[Function]}
+                      title="CURRENTLY DISABLED: Bike"
+                    >
+                      <a
+                        className="btn btn-default"
                         disabled={true}
+                        href="#"
                         onClick={[Function]}
+                        tabIndex={0}
                         title="CURRENTLY DISABLED: Bike"
                       >
-                        <a
-                          className="btn btn-default"
-                          disabled={true}
-                          href="#"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          title="CURRENTLY DISABLED: Bike"
+                        <Icon
+                          type="bicycle"
                         >
-                          <Icon
-                            type="bicycle"
-                          >
-                            <i
-                              className="fa fa-bicycle fa-fw "
-                            />
-                          </Icon>
-                        </a>
-                      </Button>
-                    </div>
-                  </Group>
-                </div>
-              </Group>
-            </EgressModeSelector>
-          </div>
-          <div
-            className="col-xs-4"
+                          <i
+                            className="fa fa-bicycle fa-fw "
+                          />
+                        </Icon>
+                      </a>
+                    </Button>
+                  </div>
+                </Group>
+              </div>
+            </Group>
+          </EgressModeSelector>
+        </div>
+        <div
+          className="col-xs-4"
+        >
+          <Number
+            disabled={false}
+            label="Walk Speed (km/h)"
+            max={15}
+            min={3}
+            name="walkSpeed"
+            onChange={[Function]}
+            step={0.1}
+            value={5}
           >
-            <Number
+            <Group
               disabled={false}
+              id="walk-speed-input-1"
               label="Walk Speed (km/h)"
               max={15}
               min={3}
@@ -551,62 +348,62 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               step={0.1}
               value={5}
             >
-              <Group
-                disabled={false}
-                id="walk-speed-input-1"
-                label="Walk Speed (km/h)"
-                max={15}
-                min={3}
-                name="walkSpeed"
-                onChange={[Function]}
-                step={0.1}
-                value={5}
+              <div
+                className="form-group"
               >
-                <div
-                  className="form-group"
+                <label
+                  htmlFor="walk-speed-input-1"
                 >
-                  <label
-                    htmlFor="walk-speed-input-1"
-                  >
-                    Walk Speed (km/h)
-                  </label>
-                  <Input
+                  Walk Speed (km/h)
+                </label>
+                <Input
+                  disabled={false}
+                  id="walk-speed-input-1"
+                  label="Walk Speed (km/h)"
+                  max={15}
+                  min={3}
+                  name="walkSpeed"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  step={0.1}
+                  type="number"
+                  value={5}
+                >
+                  <input
+                    className="form-control"
                     disabled={false}
                     id="walk-speed-input-1"
-                    label="Walk Speed (km/h)"
                     max={15}
                     min={3}
                     name="walkSpeed"
                     onChange={[Function]}
                     onWheel={[Function]}
+                    placeholder="Walk Speed (km/h)"
                     step={0.1}
                     type="number"
                     value={5}
-                  >
-                    <input
-                      className="form-control"
-                      disabled={false}
-                      id="walk-speed-input-1"
-                      max={15}
-                      min={3}
-                      name="walkSpeed"
-                      onChange={[Function]}
-                      onWheel={[Function]}
-                      placeholder="Walk Speed (km/h)"
-                      step={0.1}
-                      type="number"
-                      value={5}
-                    />
-                  </Input>
-                </div>
-              </Group>
-            </Number>
-          </div>
-          <div
-            className="col-xs-4"
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Number>
+        </div>
+        <div
+          className="col-xs-4"
+        >
+          <Number
+            disabled={false}
+            label="Bike Speed (km/h)"
+            max={20}
+            min={5}
+            name="bikeSpeed"
+            onChange={[Function]}
+            step={0.1}
+            value={15}
           >
-            <Number
+            <Group
               disabled={false}
+              id="bike-speed-input-2"
               label="Bike Speed (km/h)"
               max={20}
               min={5}
@@ -615,69 +412,68 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               step={0.1}
               value={15}
             >
-              <Group
-                disabled={false}
-                id="bike-speed-input-2"
-                label="Bike Speed (km/h)"
-                max={20}
-                min={5}
-                name="bikeSpeed"
-                onChange={[Function]}
-                step={0.1}
-                value={15}
+              <div
+                className="form-group"
               >
-                <div
-                  className="form-group"
+                <label
+                  htmlFor="bike-speed-input-2"
                 >
-                  <label
-                    htmlFor="bike-speed-input-2"
-                  >
-                    Bike Speed (km/h)
-                  </label>
-                  <Input
+                  Bike Speed (km/h)
+                </label>
+                <Input
+                  disabled={false}
+                  id="bike-speed-input-2"
+                  label="Bike Speed (km/h)"
+                  max={20}
+                  min={5}
+                  name="bikeSpeed"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  step={0.1}
+                  type="number"
+                  value={15}
+                >
+                  <input
+                    className="form-control"
                     disabled={false}
                     id="bike-speed-input-2"
-                    label="Bike Speed (km/h)"
                     max={20}
                     min={5}
                     name="bikeSpeed"
                     onChange={[Function]}
                     onWheel={[Function]}
+                    placeholder="Bike Speed (km/h)"
                     step={0.1}
                     type="number"
                     value={15}
-                  >
-                    <input
-                      className="form-control"
-                      disabled={false}
-                      id="bike-speed-input-2"
-                      max={20}
-                      min={5}
-                      name="bikeSpeed"
-                      onChange={[Function]}
-                      onWheel={[Function]}
-                      placeholder="Bike Speed (km/h)"
-                      step={0.1}
-                      type="number"
-                      value={15}
-                    />
-                  </Input>
-                </div>
-              </Group>
-            </Number>
-          </div>
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Number>
         </div>
+      </div>
+      <div
+        className="row"
+      >
         <div
-          className="row"
+          className="col-xs-4"
+        />
+        <div
+          className="col-xs-4"
         >
-          <div
-            className="col-xs-4"
-          />
-          <div
-            className="col-xs-4"
+          <Number
+            disabled={false}
+            label="Max Walk Time (min)"
+            min={1}
+            name="maxWalkTime"
+            onChange={[Function]}
+            step={1}
+            value={20}
           >
-            <Number
+            <Group
               disabled={false}
+              id="max-walk-time-input-3"
               label="Max Walk Time (min)"
               min={1}
               name="maxWalkTime"
@@ -685,59 +481,59 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               step={1}
               value={20}
             >
-              <Group
-                disabled={false}
-                id="max-walk-time-input-3"
-                label="Max Walk Time (min)"
-                min={1}
-                name="maxWalkTime"
-                onChange={[Function]}
-                step={1}
-                value={20}
+              <div
+                className="form-group"
               >
-                <div
-                  className="form-group"
+                <label
+                  htmlFor="max-walk-time-input-3"
                 >
-                  <label
-                    htmlFor="max-walk-time-input-3"
-                  >
-                    Max Walk Time (min)
-                  </label>
-                  <Input
+                  Max Walk Time (min)
+                </label>
+                <Input
+                  disabled={false}
+                  id="max-walk-time-input-3"
+                  label="Max Walk Time (min)"
+                  min={1}
+                  name="maxWalkTime"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  step={1}
+                  type="number"
+                  value={20}
+                >
+                  <input
+                    className="form-control"
                     disabled={false}
                     id="max-walk-time-input-3"
-                    label="Max Walk Time (min)"
                     min={1}
                     name="maxWalkTime"
                     onChange={[Function]}
                     onWheel={[Function]}
+                    placeholder="Max Walk Time (min)"
                     step={1}
                     type="number"
                     value={20}
-                  >
-                    <input
-                      className="form-control"
-                      disabled={false}
-                      id="max-walk-time-input-3"
-                      min={1}
-                      name="maxWalkTime"
-                      onChange={[Function]}
-                      onWheel={[Function]}
-                      placeholder="Max Walk Time (min)"
-                      step={1}
-                      type="number"
-                      value={20}
-                    />
-                  </Input>
-                </div>
-              </Group>
-            </Number>
-          </div>
-          <div
-            className="col-xs-4"
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Number>
+        </div>
+        <div
+          className="col-xs-4"
+        >
+          <Number
+            disabled={false}
+            label="Max Bike Time (min)"
+            min={1}
+            name="maxBikeTime"
+            onChange={[Function]}
+            step={1}
+            value={20}
           >
-            <Number
+            <Group
               disabled={false}
+              id="max-bike-time-input-4"
               label="Max Bike Time (min)"
               min={1}
               name="maxBikeTime"
@@ -745,63 +541,64 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               step={1}
               value={20}
             >
-              <Group
-                disabled={false}
-                id="max-bike-time-input-4"
-                label="Max Bike Time (min)"
-                min={1}
-                name="maxBikeTime"
-                onChange={[Function]}
-                step={1}
-                value={20}
+              <div
+                className="form-group"
               >
-                <div
-                  className="form-group"
+                <label
+                  htmlFor="max-bike-time-input-4"
                 >
-                  <label
-                    htmlFor="max-bike-time-input-4"
-                  >
-                    Max Bike Time (min)
-                  </label>
-                  <Input
+                  Max Bike Time (min)
+                </label>
+                <Input
+                  disabled={false}
+                  id="max-bike-time-input-4"
+                  label="Max Bike Time (min)"
+                  min={1}
+                  name="maxBikeTime"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  step={1}
+                  type="number"
+                  value={20}
+                >
+                  <input
+                    className="form-control"
                     disabled={false}
                     id="max-bike-time-input-4"
-                    label="Max Bike Time (min)"
                     min={1}
                     name="maxBikeTime"
                     onChange={[Function]}
                     onWheel={[Function]}
+                    placeholder="Max Bike Time (min)"
                     step={1}
                     type="number"
                     value={20}
-                  >
-                    <input
-                      className="form-control"
-                      disabled={false}
-                      id="max-bike-time-input-4"
-                      min={1}
-                      name="maxBikeTime"
-                      onChange={[Function]}
-                      onWheel={[Function]}
-                      placeholder="Max Bike Time (min)"
-                      step={1}
-                      type="number"
-                      value={20}
-                    />
-                  </Input>
-                </div>
-              </Group>
-            </Number>
-          </div>
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Number>
         </div>
+      </div>
+      <div
+        className="row"
+      >
         <div
-          className="row"
+          className="col-xs-6"
         >
-          <div
-            className="col-xs-6"
+          <Number
+            disabled={false}
+            label="Maximum transfers"
+            max={7}
+            min={0}
+            name="maxTransfers"
+            onChange={[Function]}
+            step={1}
+            value={3}
           >
-            <Number
+            <Group
               disabled={false}
+              id="max-transfers-input-5"
               label="Maximum transfers"
               max={7}
               min={0}
@@ -810,62 +607,62 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               step={1}
               value={3}
             >
-              <Group
-                disabled={false}
-                id="max-transfers-input-5"
-                label="Maximum transfers"
-                max={7}
-                min={0}
-                name="maxTransfers"
-                onChange={[Function]}
-                step={1}
-                value={3}
+              <div
+                className="form-group"
               >
-                <div
-                  className="form-group"
+                <label
+                  htmlFor="max-transfers-input-5"
                 >
-                  <label
-                    htmlFor="max-transfers-input-5"
-                  >
-                    Maximum transfers
-                  </label>
-                  <Input
+                  Maximum transfers
+                </label>
+                <Input
+                  disabled={false}
+                  id="max-transfers-input-5"
+                  label="Maximum transfers"
+                  max={7}
+                  min={0}
+                  name="maxTransfers"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  step={1}
+                  type="number"
+                  value={3}
+                >
+                  <input
+                    className="form-control"
                     disabled={false}
                     id="max-transfers-input-5"
-                    label="Maximum transfers"
                     max={7}
                     min={0}
                     name="maxTransfers"
                     onChange={[Function]}
                     onWheel={[Function]}
+                    placeholder="Maximum transfers"
                     step={1}
                     type="number"
                     value={3}
-                  >
-                    <input
-                      className="form-control"
-                      disabled={false}
-                      id="max-transfers-input-5"
-                      max={7}
-                      min={0}
-                      name="maxTransfers"
-                      onChange={[Function]}
-                      onWheel={[Function]}
-                      placeholder="Maximum transfers"
-                      step={1}
-                      type="number"
-                      value={3}
-                    />
-                  </Input>
-                </div>
-              </Group>
-            </Number>
-          </div>
-          <div
-            className="col-xs-6"
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Number>
+        </div>
+        <div
+          className="col-xs-6"
+        >
+          <Number
+            disabled={false}
+            label="Simulated schedules"
+            max={10000}
+            min={1}
+            name="monteCarloDraws"
+            onChange={[Function]}
+            step={1}
+            value={200}
           >
-            <Number
+            <Group
               disabled={false}
+              id="monte-carlo-draws-input-6"
               label="Simulated schedules"
               max={10000}
               min={1}
@@ -874,261 +671,250 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               step={1}
               value={200}
             >
-              <Group
-                disabled={false}
-                id="monte-carlo-draws-input-6"
-                label="Simulated schedules"
-                max={10000}
-                min={1}
-                name="monteCarloDraws"
-                onChange={[Function]}
-                step={1}
-                value={200}
+              <div
+                className="form-group"
               >
-                <div
-                  className="form-group"
+                <label
+                  htmlFor="monte-carlo-draws-input-6"
                 >
-                  <label
-                    htmlFor="monte-carlo-draws-input-6"
-                  >
-                    Simulated schedules
-                  </label>
-                  <Input
+                  Simulated schedules
+                </label>
+                <Input
+                  disabled={false}
+                  id="monte-carlo-draws-input-6"
+                  label="Simulated schedules"
+                  max={10000}
+                  min={1}
+                  name="monteCarloDraws"
+                  onChange={[Function]}
+                  onWheel={[Function]}
+                  step={1}
+                  type="number"
+                  value={200}
+                >
+                  <input
+                    className="form-control"
                     disabled={false}
                     id="monte-carlo-draws-input-6"
-                    label="Simulated schedules"
                     max={10000}
                     min={1}
                     name="monteCarloDraws"
                     onChange={[Function]}
                     onWheel={[Function]}
+                    placeholder="Simulated schedules"
                     step={1}
                     type="number"
                     value={200}
-                  >
-                    <input
-                      className="form-control"
-                      disabled={false}
-                      id="monte-carlo-draws-input-6"
-                      max={10000}
-                      min={1}
-                      name="monteCarloDraws"
-                      onChange={[Function]}
-                      onWheel={[Function]}
-                      placeholder="Simulated schedules"
-                      step={1}
-                      type="number"
-                      value={200}
-                    />
-                  </Input>
-                </div>
-              </Group>
-            </Number>
-          </div>
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Number>
         </div>
-        <Group
-          label="Bounds of analysis"
+      </div>
+      <Group
+        label="Bounds of analysis"
+      >
+        <div
+          className="form-group"
         >
-          <div
-            className="form-group"
+          <label
+            htmlFor="bounds-of-analysis-input-7"
           >
-            <label
-              htmlFor="bounds-of-analysis-input-7"
-            >
-              Bounds of analysis
-            </label>
+            Bounds of analysis
+          </label>
+          <div
+            className="row"
+          >
             <div
-              className="row"
+              className="col-xs-6"
             >
-              <div
-                className="col-xs-6"
+              <Select
+                arrowRenderer={[Function]}
+                autosize={true}
+                backspaceRemoves={true}
+                backspaceToRemoveMessage="Press backspace to remove {label}"
+                clearAllText="Clear all"
+                clearRenderer={[Function]}
+                clearValueText="Clear value"
+                clearable={false}
+                closeOnSelect={true}
+                deleteRemoves={true}
+                delimiter=","
+                disabled={false}
+                escapeClearsValue={true}
+                filterOptions={[Function]}
+                ignoreAccents={true}
+                ignoreCase={true}
+                inputProps={Object {}}
+                isLoading={false}
+                joinValues={false}
+                labelKey="label"
+                matchPos="any"
+                matchProp="any"
+                menuBuffer={0}
+                menuRenderer={[Function]}
+                multi={false}
+                noResultsText="No results found"
+                onBlurResetsInput={true}
+                onChange={[Function]}
+                onCloseResetsInput={true}
+                onSelectResetsInput={true}
+                openOnClick={true}
+                optionComponent={[Function]}
+                options={
+                  Array [
+                    Object {
+                      "label": "Entire region",
+                      "value": "__REGION",
+                    },
+                    Object {
+                      "label": "Same as ANALYSIS 1",
+                      "value": "abcd",
+                    },
+                    Object {
+                      "label": "Same as ANALYSIS 2",
+                      "value": "efgh",
+                    },
+                  ]
+                }
+                pageSize={5}
+                placeholder="Select..."
+                removeSelected={true}
+                required={false}
+                rtl={false}
+                scrollMenuIntoView={true}
+                searchable={true}
+                simpleValue={false}
+                tabSelectsValue={true}
+                trimFilter={true}
+                value="__REGION"
+                valueComponent={[Function]}
+                valueKey="value"
               >
-                <Select
-                  arrowRenderer={[Function]}
-                  autosize={true}
-                  backspaceRemoves={true}
-                  backspaceToRemoveMessage="Press backspace to remove {label}"
-                  clearAllText="Clear all"
-                  clearRenderer={[Function]}
-                  clearValueText="Clear value"
-                  clearable={false}
-                  closeOnSelect={true}
-                  deleteRemoves={true}
-                  delimiter=","
-                  disabled={false}
-                  escapeClearsValue={true}
-                  filterOptions={[Function]}
-                  ignoreAccents={true}
-                  ignoreCase={true}
-                  inputProps={Object {}}
-                  isLoading={false}
-                  joinValues={false}
-                  labelKey="label"
-                  matchPos="any"
-                  matchProp="any"
-                  menuBuffer={0}
-                  menuRenderer={[Function]}
-                  multi={false}
-                  noResultsText="No results found"
-                  onBlurResetsInput={true}
-                  onChange={[Function]}
-                  onCloseResetsInput={true}
-                  onSelectResetsInput={true}
-                  openOnClick={true}
-                  optionComponent={[Function]}
-                  options={
-                    Array [
-                      Object {
-                        "label": "Entire region",
-                        "value": "__REGION",
-                      },
-                      Object {
-                        "label": "Same as ANALYSIS 1",
-                        "value": "abcd",
-                      },
-                      Object {
-                        "label": "Same as ANALYSIS 2",
-                        "value": "efgh",
-                      },
-                    ]
-                  }
-                  pageSize={5}
-                  placeholder="Select..."
-                  removeSelected={true}
-                  required={false}
-                  rtl={false}
-                  scrollMenuIntoView={true}
-                  searchable={true}
-                  simpleValue={false}
-                  tabSelectsValue={true}
-                  trimFilter={true}
-                  value="__REGION"
-                  valueComponent={[Function]}
-                  valueKey="value"
+                <div
+                  className="Select has-value is-searchable Select--single"
                 >
                   <div
-                    className="Select has-value is-searchable Select--single"
+                    className="Select-control"
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
                   >
                     <div
-                      className="Select-control"
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onTouchEnd={[Function]}
-                      onTouchMove={[Function]}
-                      onTouchStart={[Function]}
+                      className="Select-multi-value-wrapper"
+                      id="react-select-2--value"
                     >
-                      <div
-                        className="Select-multi-value-wrapper"
-                        id="react-select-2--value"
-                      >
-                        <Value
-                          disabled={false}
-                          id="react-select-2--value-item"
-                          instancePrefix="react-select-2-"
-                          onClick={null}
-                          placeholder="Select..."
-                          value={
-                            Object {
-                              "label": "Entire region",
-                              "value": "__REGION",
-                            }
+                      <Value
+                        disabled={false}
+                        id="react-select-2--value-item"
+                        instancePrefix="react-select-2-"
+                        onClick={null}
+                        placeholder="Select..."
+                        value={
+                          Object {
+                            "label": "Entire region",
+                            "value": "__REGION",
                           }
-                        >
-                          <div
-                            className="Select-value"
-                          >
-                            <span
-                              aria-selected="true"
-                              className="Select-value-label"
-                              id="react-select-2--value-item"
-                              role="option"
-                            >
-                              Entire region
-                            </span>
-                          </div>
-                        </Value>
-                        <AutosizeInput
-                          aria-activedescendant="react-select-2--value"
-                          aria-expanded="false"
-                          aria-haspopup="false"
-                          aria-owns=""
-                          className="Select-input"
-                          injectStyles={true}
-                          minWidth="5"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          required={false}
-                          role="combobox"
-                          value=""
-                        />
-                      </div>
-                      <span
-                        className="Select-arrow-zone"
-                        onMouseDown={[Function]}
+                        }
                       >
-                        <span
-                          className="Select-arrow"
-                          onMouseDown={[Function]}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </Select>
-              </div>
-              <div
-                className="col-xs-6"
-              >
-                <Button
-                  block={true}
-                  disabled={false}
-                  onClick={[Function]}
-                  style="warning"
-                >
-                  <a
-                    className="btn btn-warning btn-block"
-                    disabled={false}
-                    href="#"
-                    onClick={[Function]}
-                    tabIndex={0}
-                  >
-                    <Icon
-                      type="pencil"
-                    >
-                      <i
-                        className="fa fa-pencil fa-fw "
+                        <div
+                          className="Select-value"
+                        >
+                          <span
+                            aria-selected="true"
+                            className="Select-value-label"
+                            id="react-select-2--value-item"
+                            role="option"
+                          >
+                            Entire region
+                          </span>
+                        </div>
+                      </Value>
+                      <AutosizeInput
+                        aria-activedescendant="react-select-2--value"
+                        aria-expanded="false"
+                        aria-haspopup="false"
+                        aria-owns=""
+                        className="Select-input"
+                        injectStyles={true}
+                        minWidth="5"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        required={false}
+                        role="combobox"
+                        value=""
                       />
-                    </Icon>
-                     Set custom geographic bounds
-                  </a>
-                </Button>
-              </div>
+                    </div>
+                    <span
+                      className="Select-arrow-zone"
+                      onMouseDown={[Function]}
+                    >
+                      <span
+                        className="Select-arrow"
+                        onMouseDown={[Function]}
+                      />
+                    </span>
+                  </div>
+                </div>
+              </Select>
+            </div>
+            <div
+              className="col-xs-6"
+            >
+              <Button
+                block={true}
+                disabled={false}
+                onClick={[Function]}
+                style="warning"
+              >
+                <a
+                  className="btn btn-warning btn-block"
+                  disabled={false}
+                  href="#"
+                  onClick={[Function]}
+                  tabIndex={0}
+                >
+                  <Icon
+                    type="pencil"
+                  >
+                    <i
+                      className="fa fa-pencil fa-fw "
+                    />
+                  </Icon>
+                   Set custom geographic bounds
+                </a>
+              </Button>
             </div>
           </div>
-        </Group>
+        </div>
+      </Group>
+      <div
+        className="row"
+      >
         <div
-          className="row"
+          className="col-xs-12"
         >
-          <div
-            className="col-xs-12"
+          <Group
+            label="Customize Profile Request"
           >
-            <Group
-              label="Customize Profile Request"
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                htmlFor="customize-profile-request-input-8"
               >
-                <label
-                  htmlFor="customize-profile-request-input-8"
-                >
-                  Customize Profile Request
-                </label>
-                <p>
-                  Edit JSON directly that will be sent to the worker. For advanced users only. Notice: "percentiles" and "workerVersion" cannot be changed here.
-                </p>
-                <textarea
-                  className="form-control monospace"
-                  defaultValue="{
+                Customize Profile Request
+              </label>
+              <p>
+                Edit JSON directly that will be sent to the worker. For advanced users only. Notice: "percentiles" and "workerVersion" cannot be changed here.
+              </p>
+              <textarea
+                className="form-control monospace"
+                defaultValue="{
 	\\"accessModes\\": \\"WALK\\",
 	\\"bikeSafe\\": 1,
 	\\"bikeSlope\\": 1,
@@ -1164,39 +950,38 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
 	\\"walkSpeed\\": 1.3888888888888888,
 	\\"workerVersion\\": \\"v4.0.0\\"
 }"
-                  disabled={false}
-                  key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
-                  rows={10}
-                />
-                <br />
-                <Button
-                  block={true}
+                disabled={false}
+                key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
+                rows={10}
+              />
+              <br />
+              <Button
+                block={true}
+                onClick={[Function]}
+                style="warning"
+              >
+                <a
+                  className="btn btn-warning btn-block"
+                  href="#"
                   onClick={[Function]}
-                  style="warning"
+                  tabIndex={0}
                 >
-                  <a
-                    className="btn btn-warning btn-block"
-                    href="#"
-                    onClick={[Function]}
-                    tabIndex={0}
+                  <Icon
+                    type="pencil"
                   >
-                    <Icon
-                      type="pencil"
-                    >
-                      <i
-                        className="fa fa-pencil fa-fw "
-                      />
-                    </Icon>
-                     
-                    Update Profile Request
-                  </a>
-                </Button>
-              </div>
-            </Group>
-          </div>
+                    <i
+                      className="fa fa-pencil fa-fw "
+                    />
+                  </Icon>
+                   
+                  Update Profile Request
+                </a>
+              </Button>
+            </div>
+          </Group>
         </div>
       </div>
-    </section>
-  </AdvancedSettings>
-</Provider>
+    </div>
+  </section>
+</AdvancedSettings>
 `;
