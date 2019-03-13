@@ -9,14 +9,14 @@
     "build": "mastarm build",
     "deploy": "mastarm deploy --config configurations/default",
     "docs": "cd docs && mkdocs serve",
-    "jest": "mastarm test --env test --config configurations/test --setup-files ./lib/utils/enzyme.js",
+    "jest": "mastarm test --env test --config configurations/test",
     "lint": "mastarm lint lib/",
     "predeploy": "yarn",
     "pretest": "yarn",
     "prestart": "yarn",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "mastarm build --serve",
-    "test": "mastarm lint lib/ && mastarm test --env test --config configurations/test --setup-files ./lib/utils/enzyme.js"
+    "test": "mastarm lint lib/ && mastarm test --env test --config configurations/test"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,6 @@
     "classnames": "^2.2.5",
     "compare-versions": "^3.0.1",
     "crc": "^3.4.0",
-    "create-react-class": "^15.6.0",
     "d3-color": "^1.0.2",
     "d3-format": "^1.0.2",
     "d3-interpolate": "^1.1.3",
@@ -69,7 +68,6 @@
     "moment": "^2.17.1",
     "path-to-regexp": "^1.7.0",
     "promise-polyfill": "^8.1.0",
-    "prop-types": "^15.5.10",
     "react": "^16.8.3",
     "react-datetime": "^2.7.5",
     "react-dom": "^16.8.3",
@@ -107,6 +105,9 @@
     ]
   },
   "jest": {
+    "setupFiles": [
+      "./lib/utils/enzyme"
+    ],
     "snapshotSerializers": [
       "./lib/utils/geojson-snapshot-serializer",
       "enzyme-to-json/serializer"
