@@ -12,8 +12,8 @@ exports[`Component > Modification > ModificationGroup renders correctly 1`] = `
       tabIndex={0}
       title="Hide modification group"
     >
-      <i
-        className="fa fa-caret-down fa-fw "
+      <Icon
+        type="caret-down"
       />
        
       Add trips
@@ -22,27 +22,112 @@ exports[`Component > Modification > ModificationGroup renders correctly 1`] = `
   <div
     className="ModificationTitles"
   >
-    <div
-      className="ModificationTitle"
-    >
-      <a
-        onClick={[Function]}
-        tabIndex={0}
-        title="Edit Modification"
-      >
-        Test Modification
-      </a>
-      <a
-        className="ShowOnMap pull-right dim fa-btn"
-        onClick={[Function]}
-        tabIndex={0}
-        title="Toggle map display"
-      >
-        <i
-          className="fa fa-eye-slash fa-fw "
-        />
-      </a>
-    </div>
+    <ModificationTitle
+      goToEditModification={[MockFunction]}
+      key="modification-1234"
+      modification={
+        Object {
+          "_id": "1234",
+          "accessGroup": "accessGroupName",
+          "bidirectional": false,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "description": "Mock description",
+          "entries": Array [],
+          "feed": "1",
+          "name": "Test Modification",
+          "nonce": "12345",
+          "projectId": "1",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [
+            {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+          ],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "_id": "timetable-id",
+              "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
+              "endTime": 57600,
+              "exactTimes": false,
+              "friday": true,
+              "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            true,
+          ],
+        }
+      }
+      name="Test Modification"
+      showOnMap={false}
+      updateModification={[MockFunction]}
+    />
   </div>
 </div>
 `;

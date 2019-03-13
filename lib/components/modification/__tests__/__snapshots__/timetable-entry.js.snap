@@ -2,265 +2,72 @@
 
 exports[`Component > TimetableEntry renders correctly 1`] = `
 <div>
-  <div
-    className="form-inline"
-  >
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="mon-input-0"
-      >
-        <input
-          checked={true}
-          id="mon-input-0"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Mon
-      </label>
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="tue-input-1"
-      >
-        <input
-          checked={true}
-          id="tue-input-1"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Tue
-      </label>
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="wed-input-2"
-      >
-        <input
-          checked={true}
-          id="wed-input-2"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Wed
-      </label>
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="thu-input-3"
-      >
-        <input
-          checked={true}
-          id="thu-input-3"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Thu
-      </label>
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="fri-input-4"
-      >
-        <input
-          checked={true}
-          id="fri-input-4"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Fri
-      </label>
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="sat-input-5"
-      >
-        <input
-          checked={false}
-          id="sat-input-5"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Sat
-      </label>
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="sun-input-6"
-      >
-        <input
-          checked={false}
-          id="sun-input-6"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Sun
-      </label>
-    </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      htmlFor="frequency-input-7"
-    >
-      Frequency
-    </label>
-    <div
-      className="InputWithUnits"
-    >
-      <input
-        className="form-control"
-        id="frequency-input-7"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        placeholder="mm:ss"
-        type="text"
-        value="15:00"
-      />
-      <span
-        className="InputUnits"
-      >
-        mm:ss
-      </span>
-    </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      htmlFor="start-time-input-8"
-    >
-      Start time
-    </label>
-    <div
-      className="InputWithUnits"
-    >
-      <input
-        className="form-control"
-        id="start-time-input-8"
-        onChange={[Function]}
-        onWheel={[Function]}
-        placeholder="hh:mm"
-        type="time"
-        value="08:00"
-      />
-      <span
-        className="InputUnits"
-      >
-        hh:mm
-      </span>
-    </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      htmlFor="end-time-input-9"
-    >
-      End time
-    </label>
-    <div
-      className="InputWithUnits"
-    >
-      <input
-        className="form-control"
-        id="end-time-input-9"
-        onChange={[Function]}
-        onWheel={[Function]}
-        placeholder="hh:mm"
-        type="time"
-        value="16:00"
-      />
-      <span
-        className="InputUnits"
-      >
-        hh:mm
-      </span>
-    </div>
-  </div>
-  <div
-    className="checkbox"
-  >
-    <label
-      htmlFor="times-are-exact-input-10"
-    >
-      <input
-        checked={false}
-        disabled={false}
-        id="times-are-exact-input-10"
-        onChange={[Function]}
-        type="checkbox"
-      />
-       
-      Times are exact
-    </label>
-  </div>
-  
-  <div>
-    <div
-      className="form-group"
-    >
-      <label
-        htmlFor="phase-at-stop-input-11"
-      >
-        Phase at stop
-      </label>
-      <div
-        className="Select is-clearable is-searchable Select--single"
-      >
-        <div
-          className="Select-control"
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-        >
-          <div
-            className="Select-multi-value-wrapper"
-            id="react-select-2--value"
-          >
-            <div
-              className="Select-placeholder"
-            >
-              Phase at stop
-            </div>
-          </div>
-          <span
-            className="Select-arrow-zone"
-            onMouseDown={[Function]}
-          >
-            <span
-              className="Select-arrow"
-              onMouseDown={[Function]}
-            />
-          </span>
-        </div>
-      </div>
-    </div>
-    
-  </div>
+  <Days
+    setDay={[Function]}
+    timetable={
+      Object {
+        "_id": "timetable-id",
+        "dwellTime": 10,
+        "dwellTimes": Array [
+          12,
+        ],
+        "endTime": 57600,
+        "exactTimes": false,
+        "friday": true,
+        "headwaySecs": 900,
+        "modificationId": "1234",
+        "modificationName": "Test Modification",
+        "monday": true,
+        "name": "Test timetable",
+        "patternTrips": Array [
+          "abcd",
+        ],
+        "phaseAtStop": "",
+        "phaseFromStop": "",
+        "phaseFromTimetable": "",
+        "phaseSeconds": 300,
+        "saturday": false,
+        "segmentSpeeds": Array [],
+        "sourceTrip": "abcd",
+        "startTime": 28800,
+        "sunday": false,
+        "thursday": true,
+        "tuesday": true,
+        "wednesday": true,
+      }
+    }
+  />
+  <MinutesSeconds
+    label="Frequency"
+    onChange={[Function]}
+    seconds={900}
+  />
+  <TimePicker
+    label="Start time"
+    onChange={[Function]}
+    value={28800}
+  />
+  <TimePicker
+    label="End time"
+    onChange={[Function]}
+    value={57600}
+  />
+  <Checkbox
+    checked={false}
+    disabled={false}
+    label="Times are exact"
+    onChange={[Function]}
+  />
+  <Phase
+    availableTimetables={Array []}
+    disabled={false}
+    modificationStops={Array []}
+    phaseAtStop=""
+    phaseFromStop=""
+    phaseFromTimetable=""
+    phaseSeconds={300}
+    timetableHeadway={900}
+    update={[MockFunction]}
+  />
 </div>
 `;

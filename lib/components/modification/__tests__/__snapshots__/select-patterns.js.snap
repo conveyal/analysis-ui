@@ -1,91 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > SelectPatterns renders correctly 1`] = `
-<div
-  className="form-group"
->
+<Group>
   <label
     htmlFor="Patterns"
   >
     Select patterns
   </label>
-  <div
-    className="Select has-value is-clearable is-searchable Select--multi"
-  >
-    <input
-      disabled={false}
-      name="Patterns"
-      type="hidden"
-      value="mock-pattern-id"
-    />
-    <div
-      className="Select-control"
-      onKeyDown={[Function]}
-      onMouseDown={[Function]}
-      onTouchEnd={[Function]}
-      onTouchMove={[Function]}
-      onTouchStart={[Function]}
-    >
-      <div
-        className="Select-multi-value-wrapper"
-        id="react-select-2--value"
-      >
-        <div
-          className="Select-value"
-        >
-          <span
-            aria-hidden="true"
-            className="Select-value-icon"
-            onMouseDown={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-          >
-            ×
-          </span>
-          <span
-            aria-selected="true"
-            className="Select-value-label"
-            id="react-select-2--value-0"
-            role="option"
-          >
-            Mock Pattern
-            <span
-              className="Select-aria-only"
-            >
-               
-            </span>
-          </span>
-        </div>
-      </div>
-      <span
-        aria-label="Clear all"
-        className="Select-clear-zone"
-        onMouseDown={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        title="Clear all"
-      >
-        <span
-          className="Select-clear"
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "&times;",
-            }
-          }
-        />
-      </span>
-      <span
-        className="Select-arrow-zone"
-        onMouseDown={[Function]}
-      >
-        <span
-          className="Select-arrow"
-          onMouseDown={[Function]}
-        />
-      </span>
-    </div>
-  </div>
-</div>
+  <Select
+    arrowRenderer={[Function]}
+    autosize={true}
+    backspaceRemoves={true}
+    backspaceToRemoveMessage="Press backspace to remove {label}"
+    clearAllText="Clear all"
+    clearRenderer={[Function]}
+    clearValueText="Clear value"
+    clearable={true}
+    closeOnSelect={true}
+    deleteRemoves={true}
+    delimiter=","
+    disabled={false}
+    escapeClearsValue={true}
+    filterOptions={[Function]}
+    ignoreAccents={true}
+    ignoreCase={true}
+    inputProps={Object {}}
+    isLoading={false}
+    joinValues={false}
+    labelKey="label"
+    matchPos="any"
+    matchProp="any"
+    menuBuffer={0}
+    menuRenderer={[Function]}
+    multi={true}
+    name="Patterns"
+    noResultsText="No results found"
+    onBlurResetsInput={true}
+    onChange={[Function]}
+    onCloseResetsInput={true}
+    onSelectResetsInput={true}
+    openOnClick={true}
+    optionComponent={[Function]}
+    options={
+      Array [
+        Object {
+          "label": "Mock Pattern",
+          "value": "mock-pattern-id",
+        },
+      ]
+    }
+    pageSize={5}
+    placeholder="Select patterns"
+    removeSelected={true}
+    required={false}
+    rtl={false}
+    scrollMenuIntoView={true}
+    searchable={true}
+    simpleValue={false}
+    tabSelectsValue={true}
+    trimFilter={true}
+    value={
+      Array [
+        "mock-pattern-id",
+      ]
+    }
+    valueComponent={[Function]}
+    valueKey="value"
+  />
+</Group>
 `;

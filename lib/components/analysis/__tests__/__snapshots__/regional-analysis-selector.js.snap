@@ -2,41 +2,65 @@
 
 exports[`Components > Analysis > Regional Analysis Selector renders correctly 1`] = `
 <div>
-  <div
-    className="form-group"
-  >
-    <div
-      className="Select is-clearable is-searchable Select--single"
-    >
-      <div
-        className="Select-control"
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-      >
-        <div
-          className="Select-multi-value-wrapper"
-          id="react-select-2--value"
-        >
-          <div
-            className="Select-placeholder"
-          >
-            View a regional analysis...
-          </div>
-        </div>
-        <span
-          className="Select-arrow-zone"
-          onMouseDown={[Function]}
-        >
-          <span
-            className="Select-arrow"
-            onMouseDown={[Function]}
-          />
-        </span>
-      </div>
-    </div>
-  </div>
+  <Group>
+    <Select
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
+      clearable={true}
+      closeOnSelect={true}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={false}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
+      noResultsText="No results found"
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      onSelectResetsInput={true}
+      openOnClick={true}
+      optionComponent={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "ANALYSIS 1",
+            "value": "abcd",
+          },
+          Object {
+            "label": "ANALYSIS 2",
+            "value": "efgh",
+          },
+        ]
+      }
+      pageSize={5}
+      placeholder="View a regional analysis..."
+      removeSelected={true}
+      required={false}
+      rtl={false}
+      scrollMenuIntoView={true}
+      searchable={true}
+      simpleValue={false}
+      tabSelectsValue={true}
+      trimFilter={true}
+      valueComponent={[Function]}
+      valueKey="value"
+    />
+  </Group>
 </div>
 `;

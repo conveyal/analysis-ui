@@ -1,53 +1,137 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > ProjectTitle renders correctly 1`] = `
-<div
-  className="ApplicationDockTitle"
+<ProjectTitle
+  _id="1"
+  downloadLines={[MockFunction]}
+  downloadScenario={[MockFunction]}
+  downloadStops={[MockFunction]}
+  project={
+    Object {
+      "_id": "1",
+      "accessGroup": "accessGroupName",
+      "bundleId": "1",
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "name": "Mock Project",
+      "nonce": "12345",
+      "regionId": "1",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variants": Array [
+        "Default",
+      ],
+    }
+  }
 >
-  <i
-    className="fa fa-cube fa-fw "
-  />
-   
-  Mock Project
-  <span>
-    <span
-      className="Tip pull-right"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
+  <Title>
+    <div
+      className="ApplicationDockTitle"
     >
-      <a
-        name="Edit project settings"
-        onClick={[Function]}
-        style={Object {}}
-        type="button"
+      <Icon
+        type="cube"
       >
         <i
-          className="fa fa-gear fa-fw "
+          className="fa fa-cube fa-fw "
         />
-      </a>
-    </span>
-    <span
-      className="Tip pull-right"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
-    >
-      <a
-        name="Download or share this project"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <i
-          className="fa fa-share-alt-square fa-fw "
-        />
-      </a>
-    </span>
-  </span>
-</div>
+      </Icon>
+       
+      Mock Project
+      <span>
+        <IconLink
+          className="pull-right"
+          name="Edit project settings"
+          to="/regions/1/projects/1/edit"
+          type="gear"
+        >
+          <Link
+            className="pull-right"
+            name="Edit project settings"
+            to="/regions/1/projects/1/edit"
+            type="button"
+          >
+            <Tip
+              className="pull-right"
+              tip="Edit project settings"
+            >
+              <span
+                className="Tip pull-right"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <Link
+                  name="Edit project settings"
+                  onlyActiveOnIndex={false}
+                  style={Object {}}
+                  to="/regions/1/projects/1/edit"
+                  type="button"
+                >
+                  <a
+                    name="Edit project settings"
+                    onClick={[Function]}
+                    style={Object {}}
+                    type="button"
+                  >
+                    <Icon
+                      type="gear"
+                    >
+                      <i
+                        className="fa fa-gear fa-fw "
+                      />
+                    </Icon>
+                  </a>
+                </Link>
+              </span>
+            </Tip>
+          </Link>
+        </IconLink>
+        <IconLink
+          className="pull-right"
+          name="Download or share this project"
+          onClick={[Function]}
+          type="share-alt-square"
+        >
+          <Link
+            className="pull-right"
+            name="Download or share this project"
+            onClick={[Function]}
+            type="button"
+          >
+            <Tip
+              className="pull-right"
+              tip="Download or share this project"
+            >
+              <span
+                className="Tip pull-right"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <a
+                  name="Download or share this project"
+                  onClick={[Function]}
+                  tabIndex={0}
+                  type="button"
+                >
+                  <Icon
+                    type="share-alt-square"
+                  >
+                    <i
+                      className="fa fa-share-alt-square fa-fw "
+                    />
+                  </Icon>
+                </a>
+              </span>
+            </Tip>
+          </Link>
+        </IconLink>
+      </span>
+    </div>
+  </Title>
+</ProjectTitle>
 `;
 
 exports[`Component > ProjectTitle should show export select dialogue 1`] = `

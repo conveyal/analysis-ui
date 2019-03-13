@@ -2,124 +2,168 @@
 
 exports[`Component > Modification > AdjustSpeed renders correctly 1`] = `
 <form>
-  <div>
-    <div>
-      <div
-        className="form-group"
-      >
-        <label
-          htmlFor="Feed"
-        >
-          Select feed and routes
-        </label>
-        <div
-          className="Select is-searchable Select--single"
-        >
-          <div
-            className="Select-control"
-            onKeyDown={[Function]}
-            onMouseDown={[Function]}
-            onTouchEnd={[Function]}
-            onTouchMove={[Function]}
-            onTouchStart={[Function]}
-          >
-            <div
-              className="Select-multi-value-wrapper"
-              id="react-select-2--value"
-            >
-              <div
-                className="Select-placeholder"
-              >
-                Select feed
-              </div>
-            </div>
-            <span
-              className="Select-arrow-zone"
-              onMouseDown={[Function]}
-            >
-              <span
-                className="Select-arrow"
-                onMouseDown={[Function]}
-              />
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    className="form-group"
-  >
+  <SelectFeedRouteAndPatterns
+    allowMultipleRoutes={true}
+    feeds={
+      Array [
+        Object {
+          "checksum": "MOCK",
+          "id": "1",
+          "routes": Array [
+            Object {
+              "label": "mock-route-label",
+              "patterns": Array [
+                Object {
+                  "geometry": Object {
+                    "coordinates": Array [
+                      Array [
+                        -122.0246,
+                        36.9707,
+                      ],
+                      Array [
+                        -122.0279,
+                        37.049,
+                      ],
+                      Array [
+                        -121.9799,
+                        37.2299,
+                      ],
+                      Array [
+                        -121.9445,
+                        37.324,
+                      ],
+                      Array [
+                        -121.936,
+                        37.353,
+                      ],
+                      Array [
+                        -121.924,
+                        37.365,
+                      ],
+                    ],
+                    "type": "LineString",
+                  },
+                  "name": "Mock Pattern",
+                  "pattern_id": "mock-pattern-id",
+                  "stops": Array [
+                    Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  ],
+                  "trips": Array [
+                    Object {
+                      "duration": 1234,
+                      "end_time": 13579,
+                      "start_time": 12345,
+                      "trip_headsign": "To Downtown",
+                      "trip_id": "abcd",
+                      "trip_short_name": "The Express",
+                    },
+                  ],
+                },
+              ],
+              "route_id": "route1",
+            },
+          ],
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          ],
+          "stopsById": Object {
+            "1": Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            "2": Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          },
+        },
+      ]
+    }
+    onChange={[Function]}
+    routePatterns={Array []}
+    routes={
+      Array [
+        "route1",
+      ]
+    }
+    trips={
+      Array [
+        "abcd",
+      ]
+    }
+  />
+  <Group>
     <label
       htmlFor="Segment"
     >
       Segment
     </label>
-    <div
-      className="btn-group btn-group-justified"
+    <Group
+      justified={true}
     >
-      <a
-        className="btn btn-default"
-        href="#"
+      <Button
         onClick={[Function]}
-        tabIndex={0}
       >
         Select
-      </a>
-      <a
-        className="btn btn-default"
-        href="#"
+      </Button>
+      <Button
         onClick={[Function]}
-        tabIndex={0}
       >
         Add to
-      </a>
-      <a
-        className="btn btn-default"
-        href="#"
+      </Button>
+      <Button
         onClick={[Function]}
-        tabIndex={0}
       >
         Remove from
-      </a>
-      <a
-        className="btn btn-default"
-        href="#"
+      </Button>
+      <Button
         onClick={[Function]}
-        tabIndex={0}
       >
         Clear
-      </a>
-    </div>
+      </Button>
+    </Group>
     <div
       className="alert alert-info"
       role="alert"
     >
-      <i
-        className="fa fa-exclamation-circle fa-fw "
+      <Icon
+        type="exclamation-circle"
       />
       Select the stop-to-stop segment(s) of the pattern(s) to scale the speed on.
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      htmlFor="scale-speed-by-input-0"
-    >
-      Scale speed by
-    </label>
-    <input
-      className="form-control"
-      id="scale-speed-by-input-0"
-      min={0}
-      name="Scale speed by"
-      onChange={[Function]}
-      onWheel={[Function]}
-      placeholder="Scale speed by"
-      step="any"
-      type="number"
-    />
-  </div>
+  </Group>
+  <Number
+    label="Scale speed by"
+    min={0}
+    name="Scale speed by"
+    onChange={[Function]}
+    step="any"
+  />
 </form>
 `;

@@ -1,26 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Profile Request Display should render correctly 1`] = `
-<div>
-  <div
-    aria-level={3}
-    role="heading"
-  >
-    <a
-      aria-expanded={true}
-      className="CollapsibleButton"
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
-    >
-      <i
-        className="fa fa-caret-down fa-fw "
-      />
-      <strong>
-        Profile Request Test settings
-      </strong>
-    </a>
-  </div>
+<Collapsible
+  defaultExpanded={true}
+  title="Profile Request Test settings"
+>
   <table
     className="table table-striped table-condensed"
   >
@@ -98,12 +82,9 @@ exports[`Components > Analysis > Profile Request Display should render correctly
           Access modes
         </th>
         <td>
-          <span>
-            <i
-              className="fa fa-male fa-fw "
-              title="Walk"
-            />
-          </span>
+          <Modes
+            modes="WALK"
+          />
         </td>
       </tr>
       <tr>
@@ -116,5 +97,5 @@ exports[`Components > Analysis > Profile Request Display should render correctly
       </tr>
     </tbody>
   </table>
-</div>
+</Collapsible>
 `;
