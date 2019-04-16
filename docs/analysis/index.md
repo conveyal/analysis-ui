@@ -59,10 +59,10 @@ Two box plots will be displayed, in red and blue, to the left of the axis. The b
   <figcaption>A stacked percentile plot comparing two scenarios</figcaption>
 </figure>
 
-There are multiple options for downloading single-point analyses for use in GIS software:
+There are multiple options for downloading single-point analyses:
 
-* <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> saves the isochrone currently shown on the map.  The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org).
-* <span class="btn btn-info"><i class="fa fa-globe"></i> Generate & Download GeoTIFFs</span> saves the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region.  This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95.
+* <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> saves the isochrone currently shown on the map.  The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org). Note that these vector isochrones are interpolations of the [underlying analysis grid](methodology.html#spatial-resolution). They can be useful for visualizing results in GIS, but additional steps may be needed to prepare them for geoprocessing.
+* <span class="btn btn-info"><i class="fa fa-globe"></i> Generate & Download GeoTIFFs</span> saves the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region.  This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95. For geoprocessing, we often suggest using band 3 (the 50th percentile travel times) of this raw output.
 
 ### Analysis options
 Below the accessibility charts, different parameters for the analysis can be set:
