@@ -1,8 +1,11 @@
 import {connect} from 'react-redux'
 
-import {clearCurrentRegion, loadAll as loadAllRegions} from '../actions/region'
-import SelectRegion from '../components/select-region'
-import selectRegions from '../selectors/regions'
+import {
+  clearCurrentRegion,
+  loadAll as loadAllRegions
+} from '../lib/actions/region'
+import SelectRegion from '../lib/components/select-region'
+import selectRegions from '../lib/selectors/regions'
 
 function mapStateToProps(state, ownProps) {
   return {

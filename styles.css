@@ -1,32 +1,19 @@
-/** References to CSS files that should be included. They will be packed by browserify-css */
-
-@import url(node_modules/bootstrap/dist/css/bootstrap.css);
-@import url(node_modules/leaflet-draw/dist/leaflet.draw.css);
-@import url(node_modules/react-select/dist/react-select.css);
-@import url(node_modules/react-datetime/css/react-datetime.css);
-@import url(lib/map.css);
-@import url(lib/sidebar.css);
-
 html,
 body,
 #root {
   padding: 0;
   margin: 0;
-  color: #414C59;
+  color: #414c59;
   font-size: 12px;
 }
 
 /** Font reset for specific things */
-html, body, #root, .tooltip {
-  font-family: -apple-system,
-               BlinkMacSystemFont,
-               "Segoe UI",
-               Roboto,
-               Oxygen-Sans,
-               Ubuntu,
-               Cantarell,
-               "Helvetica Neue",
-               sans-serif;
+html,
+body,
+#root,
+.tooltip {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 }
 
 .monospace {
@@ -38,12 +25,14 @@ html, body, #root, .tooltip {
   pointer-events: none;
 }
 
-body.Editor, #editor {
+body.Editor,
+#editor {
   overflow: hidden;
   height: 100%;
 }
 
-#report table, #report div {
+#report table,
+#report div {
   width: 100%;
 }
 
@@ -69,7 +58,8 @@ a.HelpLink {
   font-size: 12px;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 20px;
 }
 
@@ -85,18 +75,20 @@ ul, ol {
 }
 
 .btn-primary {
-  color: #fff!important;
+  color: #fff !important;
   background-color: #337ab7;
   border-color: color(#337ab7 shade(20%));
 }
 
-.btn-primary:active, .btn-primary.active, .btn-primary:hover {
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:hover {
   background-color: color(#337ab7 shade(20%));
   border-color: color(#337ab7 shade(40%));
 }
 
 .btn-danger {
-  color: #fff!important;
+  color: #fff !important;
 }
 
 .btn-default:focus {
@@ -124,33 +116,33 @@ ul, ol {
   color: red;
 }
 
-input[type="date"].form-control,
-input[type="time"].form-control,
-input[type="datetime-local"].form-control,
-input[type="month"].form-control,
+input[type='date'].form-control,
+input[type='time'].form-control,
+input[type='datetime-local'].form-control,
+input[type='month'].form-control,
 .form-control {
   font-size: 12px;
   line-height: 1em;
   background-color: #ddd;
   color: #333;
   border: none;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-input[type="file"].form-control {
+input[type='file'].form-control {
   padding-top: 9px;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
-input[type="range"].form-control {
+input[type='range'].form-control {
   box-shadow: none;
 }
 
@@ -241,7 +233,8 @@ label {
   padding-bottom: 12px;
 }
 
-.Analysis, .ProjectContent {
+.Analysis,
+.ProjectContent {
   min-height: 500px;
 }
 
@@ -304,16 +297,8 @@ label {
 }
 
 .WelcomeTitle > .logo {
-  font-family: "Gill Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen-Sans,
-    Ubuntu,
-    Cantarell,
-    "Helvetica Neue",
-    sans-serif;
+  font-family: 'Gill Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   display: inline-block;
   letter-spacing: 0;
   font-size: 3rem;
@@ -343,11 +328,14 @@ label {
   border-radius: 0;
 }
 
-.DockContent > .btn-group-justified > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+.DockContent
+  > .btn-group-justified
+  > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
   border-left: none;
 }
 
-.DockContent > .btn-group-justified > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+.DockContent > .btn-group-justified > .btn:last-child:not(:first-child),
+.btn-group > .dropdown-toggle:not(:first-child) {
   border-right: none;
 }
 
@@ -480,7 +468,7 @@ label {
 .Select-control {
   height: 34px;
   background-color: #ddd;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05);
   border: none;
   color: #333;
 }
@@ -491,7 +479,7 @@ label {
 }
 
 .Select-control:hover {
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .05);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .Select-input {
@@ -503,7 +491,8 @@ label {
   padding-left: 12px;
 }
 
-.Select-placeholder, .Select--single > .Select-control .Select-value {
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
   line-height: 34px;
 }
 
@@ -606,7 +595,7 @@ label {
 }
 
 .CustomModal::-webkit-scrollbar {
- display: none;
+  display: none;
 }
 
 .list-group-item {
@@ -676,7 +665,10 @@ label {
 }
 
 /** Leaflet Tooltips */
-.leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before, .leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
   display: none;
 }
 
@@ -777,8 +769,8 @@ label {
 }
 
 .all-copy {
-  -webkit-user-select: all;  /* Chrome all / Safari all */
-  -moz-user-select: all;     /* Firefox all */
-  -ms-user-select: all;      /* IE 10+ */
-  user-select: all;          /* Likely future */
+  -webkit-user-select: all; /* Chrome all / Safari all */
+  -moz-user-select: all; /* Firefox all */
+  -ms-user-select: all; /* IE 10+ */
+  user-select: all; /* Likely future */
 }

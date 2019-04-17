@@ -2,21 +2,19 @@
   "name": "@conveyal/analysis-ui",
   "version": "0.0.0-semantic.release",
   "description": "Conveyal's tool for editing land use/transportation scenarios.",
-  "standard": {
-    "parser": "babel-eslint"
-  },
   "scripts": {
-    "build": "mastarm build",
-    "deploy": "mastarm deploy --config configurations/default",
+    "build": "next build",
+    "check-format": "prettier -l \"src/**/*.js\" \"pages/**/*.js\"",
+    "dev": "next dev",
     "docs": "cd docs && mkdocs serve",
-    "jest": "mastarm test --env test --config configurations/test",
-    "lint": "mastarm lint lib/",
-    "predeploy": "yarn",
+    "format": "prettier --write \"src/**/*.js\" \"pages/**/*.js\"",
+    "jest": "jest",
+    "now-build": "next build",
     "pretest": "yarn",
-    "prestart": "yarn",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "start": "mastarm build --serve",
-    "test": "mastarm lint lib/ && mastarm test --env test --config configurations/test"
+    "semantic-release": "semantic-release",
+    "start": "next start",
+    "test": "jest",
+    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "repository": {
     "type": "git",
@@ -31,7 +29,11 @@
     "@conveyal/gridualizer": "^2.1.0",
     "@conveyal/lonlat": "^1.4.0",
     "@conveyal/woonerf": "^4.1.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@mapbox/polyline": "^1.0.0",
+    "@turf/bbox": "^6.0.1",
     "@turf/bearing": "^6.0.1",
     "@turf/boolean-point-in-polygon": "^6.0.1",
     "@turf/clusters-dbscan": "^6.0.1",
@@ -41,6 +43,7 @@
     "@turf/line-slice": "^5.1.5",
     "@turf/nearest-point-on-line": "^6.0.1",
     "@turf/point-to-line-distance": "^6.0.0",
+    "@zeit/next-css": "^1.0.1",
     "auth0-lock": "^11.3.1",
     "bootstrap": "^3.3.6",
     "browsochrones": "^1.0.0",
@@ -55,7 +58,6 @@
     "d3-shape": "^1.2.0",
     "date-fns": "^1.28.2",
     "debug": "^2.2.0",
-    "enzyme-adapter-react-16": "^1.10.0",
     "font-awesome": "^4.6.3",
     "http-errors": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
@@ -64,13 +66,19 @@
     "leaflet-draw": "^1.0.4",
     "lodash": "^4.17.4",
     "logrocket": "^0.6.16",
+    "mapbox.js": "^3.2.0",
     "memoize-one": "^5.0.0",
     "moment": "^2.17.1",
+    "next": "^8.0.4",
+    "next-cookies": "^1.1.2",
+    "next-optimized-images": "^2.4.0",
+    "normalize.css": "^8.0.1",
     "path-to-regexp": "^1.7.0",
     "promise-polyfill": "^8.1.0",
-    "react": "^16.8.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
     "react-datetime": "^2.7.5",
-    "react-dom": "^16.8.3",
+    "react-dom": "^16.8.6",
     "react-leaflet": "^2.2.1",
     "react-leaflet-draw": "^0.19.0",
     "react-modal": "^3.8.1",
@@ -83,19 +91,43 @@
     "redux-actions": "^1.2.1",
     "reselect": "^4.0.0",
     "shpjs": "^3.3.2",
+    "tachyons": "^4.11.1",
     "text-encoding": "^0.7.0",
     "uuid": "^3.0.1",
     "xorshift": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-transform-flow-strip-types": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "babel-jest": "^24.7.1",
+    "dotenv": "^7.0.0",
     "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
     "enzyme-to-json": "^3.3.5",
-    "mastarm": "^5.0.0",
+    "husky": "^1.3.1",
+    "jest": "^24.7.1",
     "nock": "^10.0.6",
+    "prettier": "^1.17.0",
+    "pretty-quick": "^1.10.0",
     "react-test-renderer": "^16.8.3",
     "redux-mock-store": "^1.2.1",
+    "regenerator-runtime": "^0.13.2",
     "rimraf": "^2.5.4",
-    "semantic-release": "^6.3.2"
+    "semantic-release": "^15.13.3"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-flow-strip-types"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "jest": {
     "setupFiles": [
@@ -104,6 +136,16 @@
     "snapshotSerializers": [
       "./lib/utils/geojson-snapshot-serializer",
       "enzyme-to-json/serializer"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/.next/",
+      "<rootDir>/node_modules/"
     ]
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "jsxSingleQuote": true,
+    "singleQuote": true,
+    "semi": false
   }
 }
