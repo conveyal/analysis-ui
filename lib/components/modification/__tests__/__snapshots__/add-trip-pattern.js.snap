@@ -2,160 +2,167 @@
 
 exports[`Component > Modification > AddTripPattern renders correctly 1`] = `
 <div>
-  <div>
-    <h5>
-      Route Geometry
-    </h5>
-    <p>
-      <a
-        className="btn btn-warning btn-block"
-        disabled={false}
-        href="#"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-pencil fa-fw "
-        />
-         
-        Edit route geometry
-      </a>
-    </p>
-    <div
-      className="alert alert-danger"
-      role="alert"
-    >
-      <i
-        className="fa fa-exclamation-circle fa-fw "
-      />
-       A route geometry must have at least 2 stops
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="auto-create-stops-at-set-spacing-input-0"
-      >
-        <input
-          defaultChecked={true}
-          id="auto-create-stops-at-set-spacing-input-0"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Auto-create stops at set spacing
-      </label>
-    </div>
-    <div
-      className="form-group"
-    >
-      <label
-        htmlFor="stop-spacing-minimum-is-50-input-1"
-      >
-        Stop spacing (minimum is 50)
-      </label>
-      <div
-        className="InputWithUnits"
-      >
-        <input
-          className="form-control"
-          id="stop-spacing-minimum-is-50-input-1"
-          min={0}
-          name={undefined}
-          onChange={[Function]}
-          onWheel={[Function]}
-          placeholder="meters"
-          type="number"
-          value={3000}
-        />
-        <span
-          className="InputUnits"
-        >
-          meters
-        </span>
-      </div>
-    </div>
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="bidirectional-input-2"
-      >
-        <input
-          checked={false}
-          disabled={true}
-          id="bidirectional-input-2"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Bidirectional
-      </label>
-    </div>
-    <div
-      className="alert alert-info"
-      role="alert"
-    >
-      Modification cannot be bidirectional because timetables in this modification have phasing information.
-    </div>
-  </div>
-  <div>
-    <h5>
-      Timetables (
-      1
-      )
-    </h5>
-    <p>
-      <a
-        className="btn btn-success btn-block"
-        href="#"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Add timetable
-      </a>
-    </p>
-    <p>
-      <a
-        className="btn btn-success btn-block"
-        href="#"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-plus fa-fw "
-        />
-         Copy timetable
-      </a>
-    </p>
-    <section
-      className="panel panel-default inner-panel"
-    >
-      <a
-        className="panel-heading clearfix"
-        onClick={[Function]}
-        style={
+  <EditAlignment
+    allStops={true}
+    disabled={false}
+    extendFromEnd={true}
+    mapState={
+      Object {
+        "allowExtend": true,
+        "extendFromEnd": true,
+        "followRoad": true,
+        "modificationId": "1234",
+        "state": "add-trip-pattern",
+      }
+    }
+    modification={
+      Object {
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
+        ],
+        "segments": Array [
+          {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+        ],
+        "showOnMap": false,
+        "timetables": Array [
           Object {
-            "cursor": "pointer",
-          }
-        }
-        tabIndex={0}
-      >
-        <i
-          className="fa fa-calendar fa-fw "
-        />
-        <strong>
-           
-          Test timetable
-        </strong>
-        <i
-          className="fa fa-caret-right fa-fw pull-right"
-        />
-      </a>
-    </section>
-  </div>
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
+        ],
+      }
+    }
+    numberOfStops={0}
+    segmentDistances={Array []}
+    setMapState={[MockFunction]}
+    update={[MockFunction]}
+  />
+  <Timetables
+    allPhaseFromTimetableStops={Object {}}
+    bidirectional={false}
+    modificationStops={Array []}
+    numberOfStops={0}
+    projectTimetables={Array []}
+    qualifiedStops={Array []}
+    segmentDistances={Array []}
+    setMapState={[MockFunction]}
+    timetables={
+      Array [
+        Object {
+          "_id": "timetable-id",
+          "dwellTime": 10,
+          "dwellTimes": Array [
+            12,
+          ],
+          "endTime": 57600,
+          "exactTimes": false,
+          "friday": true,
+          "headwaySecs": 900,
+          "modificationId": "1234",
+          "modificationName": "Test Modification",
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
+          "phaseAtStop": "",
+          "phaseFromStop": "",
+          "phaseFromTimetable": "",
+          "phaseSeconds": 300,
+          "saturday": false,
+          "segmentSpeeds": Array [],
+          "sourceTrip": "abcd",
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
+        },
+      ]
+    }
+    update={[MockFunction]}
+  />
 </div>
 `;

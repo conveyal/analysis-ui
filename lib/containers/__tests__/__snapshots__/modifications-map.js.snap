@@ -1,270 +1,438 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Containers > ModificationsMap renders correctly 1`] = `
-<div
-  className={undefined}
-  id={undefined}
-  style={undefined}
->
-  <g>
-    <g>
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 0,
-              "index": 0,
-              "lat": 36.9707,
-              "lon": -122.0246,
-              "stopId": "1",
+<ModificationsMap
+  activeModificationFeed={
+    Object {
+      "checksum": "MOCK",
+      "id": "1",
+      "routes": Array [
+        Object {
+          "label": "mock-route-label",
+          "patterns": Array [
+            Object {
+              "geometry": Object {
+                "coordinates": Array [
+                  Array [
+                    -122.0246,
+                    36.9707,
+                  ],
+                  Array [
+                    -122.0279,
+                    37.049,
+                  ],
+                  Array [
+                    -121.9799,
+                    37.2299,
+                  ],
+                  Array [
+                    -121.9445,
+                    37.324,
+                  ],
+                  Array [
+                    -121.936,
+                    37.353,
+                  ],
+                  Array [
+                    -121.924,
+                    37.365,
+                  ],
+                ],
+                "type": "LineString",
+              },
+              "name": "Mock Pattern",
+              "pattern_id": "mock-pattern-id",
+              "stops": Array [
+                Object {
+                  "stop_id": "1",
+                  "stop_lat": 36.9707,
+                  "stop_lon": -122.0246,
+                  "stop_name": "Santa Cruz",
+                },
+                Object {
+                  "stop_id": "2",
+                  "stop_lat": 37.049,
+                  "stop_lon": -122.0279,
+                  "stop_name": "Scotts Valley",
+                },
+              ],
+              "trips": Array [
+                Object {
+                  "duration": 1234,
+                  "end_time": 13579,
+                  "start_time": 12345,
+                  "trip_headsign": "To Downtown",
+                  "trip_id": "abcd",
+                  "trip_short_name": "The Express",
+                },
+              ],
             },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
+          ],
+          "route_id": "route1",
+        },
+      ],
+      "stops": Array [
+        Object {
+          "stop_id": "1",
+          "stop_lat": 36.9707,
+          "stop_lon": -122.0246,
+          "stop_name": "Santa Cruz",
+        },
+        Object {
+          "stop_id": "2",
+          "stop_lat": 37.049,
+          "stop_lon": -122.0279,
+          "stop_name": "Scotts Valley",
+        },
+      ],
+      "stopsById": Object {
+        "1": Object {
+          "stop_id": "1",
+          "stop_lat": 36.9707,
+          "stop_lon": -122.0246,
+          "stop_name": "Santa Cruz",
+        },
+        "2": Object {
+          "stop_id": "2",
+          "stop_lat": 37.049,
+          "stop_lon": -122.0279,
+          "stop_name": "Scotts Valley",
+        },
+      },
+    }
+  }
+  allStops={
+    Array [
+      Object {
+        "stop_id": "1:1",
+        "stop_lat": 36.9707,
+        "stop_lon": -122.0246,
+        "stop_name": "Santa Cruz",
+      },
+      Object {
+        "stop_id": "1:2",
+        "stop_lat": 37.049,
+        "stop_lon": -122.0279,
+        "stop_name": "Scotts Valley",
+      },
+    ]
+  }
+  bundleId="1"
+  dispatch={[Function]}
+  feeds={
+    Array [
+      Object {
+        "checksum": "MOCK",
+        "id": "1",
+        "routes": Array [
           Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 3000,
-              "index": 0,
-              "lat": 36.99765592006801,
-              "lon": -122.02573607325958,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
+            "label": "mock-route-label",
+            "patterns": Array [
+              Object {
+                "geometry": Object {
+                  "coordinates": Array [
+                    Array [
+                      -122.0246,
+                      36.9707,
+                    ],
+                    Array [
+                      -122.0279,
+                      37.049,
+                    ],
+                    Array [
+                      -121.9799,
+                      37.2299,
+                    ],
+                    Array [
+                      -121.9445,
+                      37.324,
+                    ],
+                    Array [
+                      -121.936,
+                      37.353,
+                    ],
+                    Array [
+                      -121.924,
+                      37.365,
+                    ],
+                  ],
+                  "type": "LineString",
+                },
+                "name": "Mock Pattern",
+                "pattern_id": "mock-pattern-id",
+                "stops": Array [
+                  Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                ],
+                "trips": Array [
+                  Object {
+                    "duration": 1234,
+                    "end_time": 13579,
+                    "start_time": 12345,
+                    "trip_headsign": "To Downtown",
+                    "trip_id": "abcd",
+                    "trip_short_name": "The Express",
+                  },
+                ],
+              },
+            ],
+            "route_id": "route1",
+          },
+        ],
+        "stops": Array [
           Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 6000,
-              "index": 0,
-              "lat": 37.02461184013602,
-              "lon": -122.02687214651915,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
           Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 9000,
-              "index": 0,
-              "lat": 37.05151359890414,
-              "lon": -122.02723304175015,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        ],
+        "stopsById": Object {
+          "1": Object {
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
+          "2": Object {
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        },
+      },
+    ]
+  }
+  feedsById={
+    Object {
+      "1": Object {
+        "checksum": "MOCK",
+        "id": "1",
+        "routes": Array [
           Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 12000,
-              "index": 0,
-              "lat": 37.07790094264308,
-              "lon": -122.02023142483766,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
+            "label": "mock-route-label",
+            "patterns": Array [
+              Object {
+                "geometry": Object {
+                  "coordinates": Array [
+                    Array [
+                      -122.0246,
+                      36.9707,
+                    ],
+                    Array [
+                      -122.0279,
+                      37.049,
+                    ],
+                    Array [
+                      -121.9799,
+                      37.2299,
+                    ],
+                    Array [
+                      -121.9445,
+                      37.324,
+                    ],
+                    Array [
+                      -121.936,
+                      37.353,
+                    ],
+                    Array [
+                      -121.924,
+                      37.365,
+                    ],
+                  ],
+                  "type": "LineString",
+                },
+                "name": "Mock Pattern",
+                "pattern_id": "mock-pattern-id",
+                "stops": Array [
+                  Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                ],
+                "trips": Array [
+                  Object {
+                    "duration": 1234,
+                    "end_time": 13579,
+                    "start_time": 12345,
+                    "trip_headsign": "To Downtown",
+                    "trip_id": "abcd",
+                    "trip_short_name": "The Express",
+                  },
+                ],
+              },
+            ],
+            "route_id": "route1",
+          },
+        ],
+        "stops": Array [
           Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 15000,
-              "index": 0,
-              "lat": 37.10428828638203,
-              "lon": -122.01322980792517,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
           Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 18000,
-              "index": 0,
-              "lat": 37.13067563012098,
-              "lon": -122.00622819101268,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        ],
+        "stopsById": Object {
+          "1": Object {
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
+          "2": Object {
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        },
+      },
+    }
+  }
+  mapState={
+    Object {
+      "activeTrips": Array [],
+      "center": Object {
+        "lat": 38.8886,
+        "lon": -77.043,
+      },
+      "components": Array [],
+      "zoom": 12,
+    }
+  }
+  modificationsOnMap={
+    Array [
+      Object {
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "entries": Array [],
+        "feed": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
+        ],
+        "segments": Array [
+          {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+        ],
+        "showOnMap": false,
+        "timetables": Array [
           Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 21000,
-              "index": 0,
-              "lat": 37.15706297385993,
-              "lon": -121.99922657410019,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 24000,
-              "index": 0,
-              "lat": 37.183450317598876,
-              "lon": -121.9922249571877,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 27000,
-              "index": 0,
-              "lat": 37.20983766133782,
-              "lon": -121.98522334027521,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 30000,
-              "index": 0,
-              "lat": 37.23609341419046,
-              "lon": -121.97757006522484,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 33000,
-              "index": 0,
-              "lat": 37.261931772765294,
-              "lon": -121.96784979005429,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 36000,
-              "index": 0,
-              "lat": 37.28777013134013,
-              "lon": -121.95812951488374,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 39000,
-              "index": 0,
-              "lat": 37.31360848991497,
-              "lon": -121.94840923971319,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 42000,
-              "index": 0,
-              "lat": 37.339703323688006,
-              "lon": -121.93989730167766,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-      <g
-        data-props={
-          Object {
-            "icon": undefined,
-            "position": Object {
-              "autoCreated": true,
-              "distanceFromStart": 45000,
-              "index": 0,
-              "lat": 37.36342593800434,
-              "lon": -121.92557406199568,
-              "stopId": undefined,
-            },
-          }
-        }
-        type="Marker"
-      />
-    </g>
-  </g>
-</div>
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          },
+        ],
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "add-trip-pattern",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
+        ],
+      },
+    ]
+  }
+  qualifiedStops={Array []}
+/>
 `;

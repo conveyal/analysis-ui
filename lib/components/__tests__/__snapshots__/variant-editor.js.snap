@@ -4,26 +4,56 @@ exports[`Component > VariantEditor renders correctly 1`] = `
 <div
   className="Variants"
 >
-  <div>
-    <div
-      aria-level={3}
-      role="heading"
-    >
-      <a
-        aria-expanded={false}
-        className="CollapsibleButton"
+  <Collapsible
+    title="Scenarios"
+  >
+    <p>
+      A Scenario is a collection of modifications within a project.
+    </p>
+    <Group>
+      <Button
+        block={true}
         onClick={[Function]}
-        role="button"
-        tabIndex={0}
+        style="success"
       >
-        <i
-          className="fa fa-caret-right fa-fw "
+        <Icon
+          type="plus"
         />
-        <strong>
-          Scenarios
-        </strong>
-      </a>
-    </div>
-  </div>
+        Create a scenario
+      </Button>
+    </Group>
+    <ol
+      start="0"
+    >
+      <div
+        className="Variant"
+        key="Baseline"
+      >
+        <li>
+          <i>
+            Baseline
+          </i>
+          <a
+            className="pull-right"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Hide all"
+          >
+            <Icon
+              type="eye"
+            />
+          </a>
+          <a
+            className="pull-right"
+            title="Baseline (empty scenario) cannot be modified"
+          >
+            <Icon
+              type="lock"
+            />
+          </a>
+        </li>
+      </div>
+    </ol>
+  </Collapsible>
 </div>
 `;

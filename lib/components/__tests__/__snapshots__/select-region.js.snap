@@ -14,21 +14,19 @@ exports[`Component > SelectRegion renders correctly 1`] = `
       conveyal analysis
     </span>
   </div>
-  <div
-    className="form-group"
-  >
-    <a
-      className="btn btn-success btn-block"
-      onClick={[Function]}
-      style={Object {}}
+  <Group>
+    <ButtonLink
+      block={true}
+      style="success"
+      to="/regions/create"
     >
-      <i
-        className="fa fa-plus fa-fw "
+      <Icon
+        type="plus"
       />
        
       Set up a new region
-    </a>
-  </div>
+    </ButtonLink>
+  </Group>
   <div>
     <p
       style={
@@ -42,20 +40,22 @@ exports[`Component > SelectRegion renders correctly 1`] = `
     <div
       className="list-group"
     >
-      <a
+      <Link
         className="list-group-item"
-        onClick={[Function]}
+        key="1"
+        onlyActiveOnIndex={false}
         style={Object {}}
         title="Go to region"
+        to="/regions/1"
       >
         <span>
-          <i
-            className="fa fa-map-o fa-fw "
+          <Icon
+            type="map-o"
           />
            
           Mock Region
         </span>
-      </a>
+      </Link>
     </div>
   </div>
   <p
@@ -64,8 +64,8 @@ exports[`Component > SelectRegion renders correctly 1`] = `
     <a
       href="/logout"
     >
-      <i
-        className="fa fa-sign-out fa-fw "
+      <Icon
+        type="sign-out"
       />
        
       Log out

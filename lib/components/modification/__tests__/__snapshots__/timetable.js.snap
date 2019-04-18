@@ -8,9 +8,9 @@ exports[`Component > Timetable renders correctly 1`] = `
   numberOfStops={0}
   projectTimetables={Array []}
   qualifiedStops={Array []}
-  remove={[Function]}
+  remove={[MockFunction]}
   segmentDistances={Array []}
-  setMapState={[Function]}
+  setMapState={[MockFunction]}
   timetable={
     Object {
       "_id": "timetable-id",
@@ -43,7 +43,7 @@ exports[`Component > Timetable renders correctly 1`] = `
       "wednesday": true,
     }
   }
-  update={[Function]}
+  update={[MockFunction]}
 >
   <section
     className="panel panel-default inner-panel"
@@ -90,9 +90,9 @@ exports[`Component > Timetable renders correctly 2`] = `
   numberOfStops={0}
   projectTimetables={Array []}
   qualifiedStops={Array []}
-  remove={[Function]}
+  remove={[MockFunction]}
   segmentDistances={Array []}
-  setMapState={[Function]}
+  setMapState={[MockFunction]}
   timetable={
     Object {
       "_id": "timetable-id",
@@ -125,7 +125,7 @@ exports[`Component > Timetable renders correctly 2`] = `
       "wednesday": true,
     }
   }
-  update={[Function]}
+  update={[MockFunction]}
 >
   <section
     className="panel panel-default inner-panel"
@@ -234,7 +234,7 @@ exports[`Component > Timetable renders correctly 2`] = `
             "wednesday": true,
           }
         }
-        update={[Function]}
+        update={[MockFunction]}
       >
         <div>
           <Days
@@ -277,6 +277,7 @@ exports[`Component > Timetable renders correctly 2`] = `
             >
               <Checkbox
                 checked={true}
+                key="monday-checkbox"
                 label="Mon"
                 onChange={[Function]}
               >
@@ -299,6 +300,7 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Checkbox>
               <Checkbox
                 checked={true}
+                key="tuesday-checkbox"
                 label="Tue"
                 onChange={[Function]}
               >
@@ -321,6 +323,7 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Checkbox>
               <Checkbox
                 checked={true}
+                key="wednesday-checkbox"
                 label="Wed"
                 onChange={[Function]}
               >
@@ -343,6 +346,7 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Checkbox>
               <Checkbox
                 checked={true}
+                key="thursday-checkbox"
                 label="Thu"
                 onChange={[Function]}
               >
@@ -365,6 +369,7 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Checkbox>
               <Checkbox
                 checked={true}
+                key="friday-checkbox"
                 label="Fri"
                 onChange={[Function]}
               >
@@ -387,6 +392,7 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Checkbox>
               <Checkbox
                 checked={false}
+                key="saturday-checkbox"
                 label="Sat"
                 onChange={[Function]}
               >
@@ -409,6 +415,7 @@ exports[`Component > Timetable renders correctly 2`] = `
               </Checkbox>
               <Checkbox
                 checked={false}
+                key="sunday-checkbox"
                 label="Sun"
                 onChange={[Function]}
               >
@@ -652,7 +659,7 @@ exports[`Component > Timetable renders correctly 2`] = `
             phaseFromTimetable=""
             phaseSeconds={300}
             timetableHeadway={900}
-            update={[Function]}
+            update={[MockFunction]}
           >
             <div>
               <Group
@@ -726,7 +733,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                         onTouchMove={[Function]}
                         onTouchStart={[Function]}
                       >
-                        <span
+                        <div
                           className="Select-multi-value-wrapper"
                           id="react-select-2--value"
                         >
@@ -750,7 +757,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                             role="combobox"
                             value=""
                           />
-                        </span>
+                        </div>
                         <span
                           className="Select-arrow-zone"
                           onMouseDown={[Function]}
@@ -782,7 +789,7 @@ exports[`Component > Timetable renders correctly 2`] = `
         qualifiedStops={Array []}
         segmentDistances={Array []}
         segmentSpeeds={Array []}
-        update={[Function]}
+        update={[MockFunction]}
       >
         <div>
           <MinutesSeconds
@@ -853,7 +860,6 @@ exports[`Component > Timetable renders correctly 2`] = `
             The default time table dwell time will be used for each stop that does not have a custom one set.
           </p>
           <Collapsible
-            defaultExpanded={false}
             title="Set individual stop dwell times"
           >
             <div>
@@ -1003,7 +1009,6 @@ exports[`Component > Timetable renders correctly 2`] = `
             </Text>
           </MinutesSeconds>
           <Collapsible
-            defaultExpanded={false}
             title="Set individual segment speeds"
           >
             <div>

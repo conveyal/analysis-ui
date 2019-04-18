@@ -5,120 +5,114 @@ exports[`Component > EditBundle renders correctly 1`] = `
   <p>
     Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
   </p>
-  <div
-    className="form-group"
-  >
-    <a
-      className="btn btn-success btn-block"
-      href="#"
-      onClick={[Function]}
-      tabIndex={0}
+  <Group>
+    <Button
+      block={true}
+      onClick={[MockFunction]}
+      style="success"
     >
-      <i
-        className="fa fa-plus fa-fw "
+      <Icon
+        type="plus"
       />
        Create a bundle
-    </a>
-  </div>
+    </Button>
+  </Group>
   <p
     className="center"
   >
     or select an existing one
   </p>
-  <div
-    className="form-group"
-  >
-    <div
-      className="Select has-value is-searchable Select--single"
-      style={undefined}
-    >
-      <div
-        className="Select-control"
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        style={undefined}
-      >
-        <span
-          className="Select-multi-value-wrapper"
-          id="react-select-2--value"
-        >
-          <div
-            className="Select-value"
-            style={undefined}
-            title={undefined}
-          >
-            <span
-              aria-selected="true"
-              className="Select-value-label"
-              id="react-select-2--value-item"
-              role="option"
-            >
-              Mock Bundle
-            </span>
-          </div>
-        </span>
-        <span
-          className="Select-arrow-zone"
-          onMouseDown={[Function]}
-        >
-          <span
-            className="Select-arrow"
-            onMouseDown={[Function]}
-          />
-        </span>
-      </div>
-    </div>
-  </div>
+  <Group>
+    <Select
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
+      clearable={false}
+      closeOnSelect={true}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={false}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
+      noResultsText="No results found"
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      onSelectResetsInput={true}
+      openOnClick={true}
+      optionComponent={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "Mock Bundle",
+            "value": "1",
+          },
+        ]
+      }
+      pageSize={5}
+      placeholder="Select..."
+      removeSelected={true}
+      required={false}
+      rtl={false}
+      scrollMenuIntoView={true}
+      searchable={true}
+      simpleValue={false}
+      tabSelectsValue={true}
+      trimFilter={true}
+      value="1"
+      valueComponent={[Function]}
+      valueKey="value"
+    />
+  </Group>
   <div>
     <h5>
       Edit Bundle
     </h5>
-    <div
-      className="form-group"
-    >
-      <label
-        htmlFor="name-input-0"
-      >
-        Bundle Name
-      </label>
-      <input
-        className="form-control"
-        id="name-input-0"
-        name="Name"
-        onChange={[Function]}
-        placeholder="Bundle name"
-        type="text"
-        value="Mock Bundle"
-      />
-    </div>
-    <a
-      className="btn btn-success btn-block"
-      href="#"
+    <Text
+      label="Bundle Name"
+      name="Name"
+      onChange={[Function]}
+      placeholder="Bundle name"
+      value="Mock Bundle"
+    />
+    <Button
+      block={true}
       onClick={[Function]}
-      tabIndex={0}
+      style="success"
       title="Save renamed bundle/feed names"
     >
-      <i
-        className="fa fa-save fa-fw "
+      <Icon
+        type="save"
       />
        
       Save renamed bundle/feed names
-    </a>
-    <a
-      className="btn btn-danger btn-block"
-      href="#"
+    </Button>
+    <Button
+      block={true}
       onClick={[Function]}
-      tabIndex={0}
+      style="danger"
     >
-      <i
-        className="fa fa-trash fa-fw "
+      <Icon
+        type="trash"
       />
        
       Delete this bundle
-    </a>
+    </Button>
   </div>
 </div>
 `;
