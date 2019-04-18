@@ -4,43 +4,5 @@
   "env": {
     "API_URL": "@api-url",
     "MAPBOX_ACCESS_TOKEN": "@mapbox-access-token"
-  },
-  "routes": [
-    {
-      "src": "/api*",
-      "dest": ""
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)$",
-      "dest": "/list-projects?regionId=$regionId"
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)/edit",
-      "dest": "/edit-region?regionId=$regionId"
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)/create-project",
-      "dest": "/create-project?regionId=$regionId"
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)/projects/(?<projectId>[^/]+)$",
-      "dest": "/view-project?regionId=$regionId&projectId=$projectId"
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)/bundles",
-      "dest": "/list-bundles?regionId=$regionId"
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)/bundles/(?<bundleId>[^/]+)$",
-      "dest": "/edit-bundle?regionId=$regionId&bundleId=$bundleId"
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)/opportunities",
-      "dest": "/list-opportunities?regionId=$regionId"
-    },
-    {
-      "src": "/regions/(?<regionId>[^/]+)/opportunities/upload",
-      "dest": "/upload-opportunities?regionId=$regionId"
-    }
-  ]
+  }
 }

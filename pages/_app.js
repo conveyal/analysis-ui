@@ -14,13 +14,28 @@ const iconLink = 'https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png'
  * Provides the redux store and provider for all pages.
  */
 export default class AnalysisNextApp extends App {
-  static async getInitialProps(appContext) {
+  static async getInitialProps({Component, ctx}) {
     const reduxStore = getReduxStore()
 
     // Provide the store to `getInitialProps` of pages
-    appContext.ctx.reduxStore = reduxStore
+    ctx.reduxStore = reduxStore
+
+    // Run `getInitialProps`
+    let initialProps = {}
+    if (Component.getInitialProps) {
+      initialProps = await Component.getInitialProps(ctx)
+    }
+
+    // Always pass the path information
+    const pageProps = {
+      ...initialProps,
+      pathname: ctx.pathname,
+      query: ctx.query,
+      asPath: ctx.asPath
+    }
 
     return {
+      pageProps,
       initialReduxState: reduxStore.getState()
     }
   }
