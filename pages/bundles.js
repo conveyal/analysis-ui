@@ -1,9 +1,8 @@
 import React from 'react'
 
-import {setBundles} from '../lib/actions'
+import {loadBundles} from '../lib/actions'
 import Bundles from '../lib/components/bundles'
 import EditBundle from '../lib/containers/edit-bundle'
-import * as API from '../lib/api'
 
 function BundlesView(p) {
   return (
@@ -14,10 +13,11 @@ function BundlesView(p) {
 }
 
 BundlesView.getInitialProps = async ctx => {
-  const bundles = await API.getBundles(ctx.query.regionId)
-  ctx.reduxStore.dispatch(setBundles(bundles))
-
-  return {bundles}
+  await ctx.reduxStore.dispatch(
+    loadBundles({
+      regionId: ctx.query.regionId
+    })
+  )
 }
 
 export default BundlesView

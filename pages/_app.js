@@ -3,10 +3,10 @@ import Head from 'next/head'
 import React from 'react'
 import {Provider} from 'react-redux'
 
-import getReduxStore from '../lib/store'
+import getReduxStore from 'lib/store'
 
 import 'bootstrap/dist/css/bootstrap.css'
-import '../styles.css'
+import '../static/styles.css'
 
 const iconLink = 'https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png'
 

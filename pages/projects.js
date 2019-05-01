@@ -1,13 +1,12 @@
 import React from 'react'
-import {setLocally as setRegionLocally} from '../lib/actions/region'
+
+import {loadProjects} from '../lib/actions/project'
+import {load} from '../lib/actions/region'
 import SelectProject from '../lib/containers/select-project'
-import * as API from '../lib/api'
 
 SelectProject.getInitialProps = async ctx => {
-  const region = await API.getRegion(ctx.query.regionId)
-  ctx.reduxStore.dispatch(setRegionLocally(region))
-
-  return {region}
+  await ctx.reduxStore.dispatch(load(ctx.query.regionId))
+  await ctx.reduxStore.dispatch(loadProjects({regionId: ctx.query.regionId}))
 }
 
 export default SelectProject

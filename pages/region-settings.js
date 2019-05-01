@@ -1,13 +1,8 @@
-import React from 'react'
-
-import {setLocally} from '../lib/actions/region'
-import * as API from '../lib/api'
+import {load} from '../lib/actions/region'
 import EditRegion from '../lib/containers/edit-region'
 
 EditRegion.getInitialProps = async ctx => {
-  const region = await API.getRegion(ctx.query.regionId)
-  ctx.reduxStore.dispatch(setLocally(region))
-  return {region}
+  await ctx.reduxStore.dispatch(load(ctx.query.regionId))
 }
 
 export default EditRegion

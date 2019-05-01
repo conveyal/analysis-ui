@@ -1,5 +1,6 @@
 const withCSS = require('@zeit/next-css')
 const withImages = require('next-optimized-images')
+const path = require('path')
 
 // Pull in .env
 require('dotenv').config()
@@ -15,6 +16,10 @@ module.exports = withImages(
     env: {
       API_URL: isProd ? '/api' : 'http://localhost:7070/api',
       MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
+    },
+    webpack(config, options) {
+      config.resolve.alias['lib'] = path.join(__dirname, 'lib')
+      return config
     }
   })
 )
