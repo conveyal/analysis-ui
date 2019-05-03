@@ -1,12 +1,10 @@
-import {
-  clearCurrentRegion,
-  loadAll as loadAllRegions
-} from '../lib/actions/region'
-import SelectRegion from '../lib/containers/select-region'
+import {clearCurrentRegion, loadAll} from 'lib/actions/region'
+import SelectRegion from 'lib/components/select-region'
 
 SelectRegion.getInitialProps = async ctx => {
   ctx.reduxStore.dispatch(clearCurrentRegion())
-  await ctx.reduxStore.dispatch(loadAllRegions())
+  const regions = await ctx.reduxStore.dispatch(loadAll())
+  return {regions}
 }
 
 export default SelectRegion
