@@ -1,16 +1,7 @@
 :root {
-  --sidebar-width: 40px;
+  --sidebar-width: 42px;
   --dock-width: 400px;
   --wide-dock-width: 640px;
-}
-
-html,
-body,
-#root {
-  padding: 0;
-  margin: 0;
-  color: #414c59;
-  font-size: 12px;
 }
 
 /** Font reset for specific things */
@@ -20,10 +11,7 @@ body,
 .tooltip {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-}
-
-h5 {
-  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
 }
 
 .monospace {
@@ -67,10 +55,6 @@ a:focus.list-group-item,
 .link:focus {
   color: #23527c;
   outline: none !important;
-}
-
-a.HelpLink {
-  font-size: 12px;
 }
 
 ul,
@@ -129,8 +113,8 @@ input[type='range'].form-control {
   box-shadow: none;
 }
 
-.form-inline .checkbox label {
-  padding: 0 12px 12px 0;
+.form-inline > .checkbox > label {
+  padding-right: 8px;
 }
 
 .form-inline .form-control {
@@ -185,7 +169,7 @@ input[type='range'].form-control {
 .ModificationDock {
   position: relative;
   width: var(--dock-width);
-  left: 40px;
+  left: var(--sidebar-width);
   border-right: 1px solid #ddd;
   background-color: #fff;
 }
@@ -246,35 +230,6 @@ input[type='range'].form-control {
   padding: 4px 8px;
   margin-top: -3px;
   margin-left: 8px;
-}
-
-.DockContent {
-  position: relative;
-}
-
-.Logo {
-  font-family: 'Gill Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  display: inline-block;
-  letter-spacing: 0;
-  padding-left: 4rem;
-  padding-right: 1rem;
-  background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
-  background-size: 3rem;
-  line-height: 3rem;
-  background-repeat: no-repeat;
-  font-weight: 100;
-}
-
-.DockTitle {
-  margin: 0;
-  font-size: 14px;
-  /*border-top: 1px solid #ddd; */
-}
-
-.DockTitle a > .fa {
-  padding: 6px 12px;
-  margin-top: -6px;
 }
 
 .DirectionIcon {
@@ -379,7 +334,6 @@ input[type='range'].form-control {
   opacity: 1;
   max-width: 1000px;
   white-space: nowrap;
-  font-size: 12px;
 }
 
 .tooltip-inner {
@@ -525,7 +479,7 @@ input[type='range'].form-control {
 .Sidebar {
   padding-top: 3px;
   position: absolute;
-  width: 40px;
+  width: var(--sidebar-width);
   top: 0;
   height: 100%;
   background-color: #ddd;
@@ -534,7 +488,7 @@ input[type='range'].form-control {
 
 .Sidebar-logo {
   background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
-  background-size: 20px;
+  background-size: 24px;
   background-repeat: no-repeat;
   background-position: center;
   height: 65px;
@@ -562,9 +516,8 @@ input[type='range'].form-control {
   padding: 10px;
   display: inline-block;
   line-height: 20px;
-  font-size: 14px;
   text-align: center;
-  width: 40px;
+  width: var(--sidebar-width);
 }
 
 .Sidebar-navItem.active {

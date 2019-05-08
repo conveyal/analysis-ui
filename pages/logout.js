@@ -1,6 +1,6 @@
-import {logout} from '../lib/utils/auth0'
+import {logout} from 'lib/utils/auth0'
 
-function Logout(p) {
+function Logout() {
   logout()
   return null
 }

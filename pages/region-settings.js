@@ -1,8 +1,8 @@
-import {load} from '../lib/actions/region'
-import EditRegion from '../lib/containers/edit-region'
+import {load} from 'lib/actions/region'
+import EditRegion from 'lib/containers/edit-region'
 
 EditRegion.getInitialProps = async ctx => {
-  await ctx.reduxStore.dispatch(load(ctx.query.regionId))
+  return await ctx.reduxStore.dispatch(load(ctx.query.regionId))
 }
 
 export default EditRegion
