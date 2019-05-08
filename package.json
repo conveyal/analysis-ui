@@ -103,8 +103,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@babel/plugin-transform-flow-strip-types": "^7.4.0",
     "@babel/preset-env": "^7.4.3",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
     "dotenv": "^7.0.0",
     "enzyme": "^3.9.0",
@@ -131,9 +131,6 @@
   "babel": {
     "presets": [
       "next/babel"
-    ],
-    "plugins": [
-      "@babel/plugin-transform-flow-strip-types"
     ]
   },
   "husky": {
@@ -156,6 +153,7 @@
       "Atomics": "readonly",
       "SharedArrayBuffer": "readonly"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
       "ecmaFeatures": {
         "jsx": true
@@ -169,8 +167,11 @@
       "react-hooks"
     ],
     "rules": {
+      "no-console": 0,
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn"
+      "react-hooks/exhaustive-deps": "warn",
+      "react/display-name": "warn",
+      "react/prop-types": 0
     }
   },
   "jest": {
