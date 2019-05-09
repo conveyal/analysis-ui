@@ -1,4 +1,4 @@
-import {load} from 'lib/actions/analysis/regional'
+import {load, setActiveRegionalAnalyses} from 'lib/actions/analysis/regional'
 import RegionalAnalysis from 'lib/containers/regional-analysis-results'
 
 RegionalAnalysis.getInitialProps = async ctx => {
