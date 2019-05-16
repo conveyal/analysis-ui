@@ -1,6 +1,6 @@
 :root {
-  --sidebar-width: 42px;
-  --dock-width: 400px;
+  --sidebar-width: 40px;
+  --dock-width: 320px;
   --wide-dock-width: 640px;
 }
 
@@ -306,26 +306,6 @@ input[type='range'].form-control {
   display: none;
 }
 
-.progress {
-  margin-top: 6px;
-  margin-bottom: 6px;
-  position: relative;
-}
-
-.progress-bar .project-name {
-  color: #333;
-  text-align: left;
-  position: absolute;
-  padding-left: 8px;
-}
-
-.progress .statistic {
-  color: #333;
-  position: absolute;
-  right: 8px;
-  top: 2px;
-}
-
 .pad-right {
   padding-right: 12px;
 }
@@ -536,4 +516,38 @@ input[type='range'].form-control {
 
 .expanded .Sidebar-navItem-text {
   display: inline;
+}
+
+/*
+ * react-leaflet is silly, you have to manually style the divs it creates
+ * https://github.com/PaulLeCam/react-leaflet/blob/master/example/index.html
+ * https://github.com/PaulLeCam/react-leaflet/issues/108
+ */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.CircleIconMarker {
+  border-radius: 50%;
+  background-color: #2389c9;
+}
+
+.CircleIconMarker.newSnappedStop {
+  background-color: #364046;
+}
+
+.CircleIconMarker.newStop > div,
+.CircleIconMarker.newSnappedStop > div {
+  background-color: #fff;
+  border-radius: 50%;
+  width: 70%;
+  height: 70%;
+  left: 15%;
+  top: 15%;
+  position: absolute;
+}
+
+.NoPointerEvents {
+  pointer-events: none;
 }

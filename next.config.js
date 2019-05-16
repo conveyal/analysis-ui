@@ -14,7 +14,9 @@ module.exports = withImages(
       url: false // enable importing CSS from node_modules
     },
     env: {
-      API_URL: isProd ? '/api' : 'http://localhost:7070/api',
+      API_URL: isProd ? '/api' : process.env.API_URL,
+      AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+      AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
       MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
     },
     webpack(config, options) {

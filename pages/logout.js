@@ -1,12 +1,12 @@
-import {logout} from 'lib/utils/auth0'
+import React from 'react'
 
-function Logout() {
-  logout()
+import {logout} from 'lib/auth'
+
+export default function Logout() {
+  // On client side mount
+  React.useEffect(() => {
+    logout()
+  }, [])
+
   return null
 }
-
-Logout.getInitialProps = async ctx => {
-  ctx.reduxStore.setState({})
-}
-
-export default Logout

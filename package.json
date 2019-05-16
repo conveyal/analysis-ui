@@ -14,7 +14,7 @@
     "pretest": "yarn",
     "semantic-release": "semantic-release",
     "start": "next start",
-    "test": "jest",
+    "test": "lint && jest",
     "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "repository": {
@@ -49,7 +49,7 @@
     "@turf/nearest-point-on-line": "^6.0.1",
     "@turf/point-to-line-distance": "^6.0.0",
     "@zeit/next-css": "^1.0.1",
-    "auth0-lock": "^11.3.1",
+    "auth0-js": "^9.10.2",
     "bootstrap": "^3.3.6",
     "browsochrones": "^1.0.0",
     "classnames": "^2.2.5",
@@ -66,6 +66,7 @@
     "font-awesome": "^4.6.3",
     "http-errors": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
+    "js-cookie": "^2.2.0",
     "jsolines": "^2.1.1",
     "leaflet": "^1.4.0",
     "leaflet-draw": "^1.0.4",
