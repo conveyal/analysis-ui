@@ -1,19 +1,26 @@
+language: node_js
+node_js:
+  - '8' # zeit/now runs on nodejs v8
+  - '10' # current LTS release (May, 2019)
+cache: yarn
+
+# Automate releases
 after_success:
   - yarn run semantic-release
 branches:
-  except:
+  except: # don't run on `vX.X.X` tagged releases
     - /^v\d+\.\d+\.\d+$/
-cache:
-  yarn: true
-before_install:
-  - npm i -g codecov
-language: node_js
+
+# Disable all email notifications
 notifications:
   email: false
-node_js:
-  - '10'
+
+# Install code coverage and run tests in order of speed and importance.
+before_install:
+  - npm i -g codecov
 script:
+  - yarn run lint
+  - yarn run jest --runInBand --maxWorkers=4 --coverage
   - yarn run build
-  - yarn test --coverage
+  - yarn run check-format
   - codecov
-sudo: false
