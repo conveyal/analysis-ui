@@ -1,5 +1,9 @@
 module.exports = {
-  moduleDirectories: ['node_modules', 'lib'],
+  moduleNameMapper: {
+    '\\.css$': '<rootDir>/__mocks__/css-import.js'
+  },
+  // Add the current working directory to the path to allow absolute imports from /lib
+  modulePaths: ['.'],
   setupFiles: ['./lib/utils/enzyme'],
   snapshotSerializers: [
     './lib/utils/geojson-snapshot-serializer',
