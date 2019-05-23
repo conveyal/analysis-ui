@@ -1,75 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > SelectRegion renders correctly 1`] = `
-<div
-  className="Welcome"
->
-  <div
-    className="WelcomeTitle"
+<Container>
+  <Logo />
+  <p>
+    <Link
+      href="/region-create"
+      prefetch={true}
+    >
+      <a
+        className="btn btn-success btn-block"
+      >
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "plus",
+              "prefix": "fas",
+            }
+          }
+        />
+         
+        Set up a new region
+      </a>
+    </Link>
+  </p>
+  <p
+    className="text-center"
   >
-    <span
-      className="logo"
-      to="/"
-    >
-      conveyal analysis
-    </span>
-  </div>
-  <Group>
-    <ButtonLink
-      block={true}
-      style="success"
-      to="/regions/create"
-    >
-      <Icon
-        type="plus"
-      />
-       
-      Set up a new region
-    </ButtonLink>
-  </Group>
-  <div>
-    <p
-      style={
+    or go to an existing region
+  </p>
+  <div
+    className="list-group"
+  >
+    <Link
+      href={
         Object {
-          "textAlign": "center",
+          "pathname": "/projects",
+          "query": Object {
+            "regionId": "1",
+          },
         }
       }
+      key="1"
     >
-      or go to an existing region
-    </p>
-    <div
-      className="list-group"
-    >
-      <Link
+      <a
         className="list-group-item"
-        key="1"
-        onlyActiveOnIndex={false}
-        style={Object {}}
         title="Go to region"
-        to="/regions/1"
       >
-        <span>
-          <Icon
-            type="map-o"
-          />
-           
-          Mock Region
-        </span>
-      </Link>
-    </div>
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "map",
+              "prefix": "fas",
+            }
+          }
+        />
+         
+        Mock Region
+      </a>
+    </Link>
   </div>
   <p
-    className="center"
+    className="text-center"
   >
-    <a
+    <Link
       href="/logout"
     >
-      <Icon
-        type="sign-out"
-      />
-       
-      Log out
-    </a>
+      <a>
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "sign-out-alt",
+              "prefix": "fas",
+            }
+          }
+        />
+         
+        Log out
+      </a>
+    </Link>
   </p>
-</div>
+</Container>
 `;

@@ -1,24 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > ImportModifications renders correctly 1`] = `
-<Application>
-  <Connect(ProjectTitle) />
-  <Dock>
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <ImportModifications
+    projectId="1"
+    projects={
+      Array [
+        Object {
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bundleId": "1",
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "name": "Mock Project",
+          "nonce": "12345",
+          "regionId": "1",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            "Default",
+          ],
+        },
+      ]
+    }
+    regionId="1"
+  >
     <h5>
       Route alignments from shapefile
     </h5>
-    <Button
+    <ButtonLink
       block={true}
+      href={
+        Object {
+          "pathname": "/import-shapefile",
+          "query": Object {
+            "projectId": "1",
+            "regionId": "1",
+          },
+        }
+      }
       name="Import"
-      onClick={[Function]}
       style="success"
     >
-      <Icon
-        type="upload"
-      />
-       
-      Import
-    </Button>
+      <Link
+        href={
+          Object {
+            "pathname": "/import-shapefile",
+            "query": Object {
+              "projectId": "1",
+              "regionId": "1",
+            },
+          }
+        }
+      >
+        <a
+          className="btn btn-success btn-block"
+          href="/import-shapefile?regionId=1&projectId=1"
+          name="Import"
+          onClick={[Function]}
+        >
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "upload",
+                "prefix": "fas",
+              }
+            }
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "upload",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              symbol={false}
+              title=""
+              transform={null}
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
+                data-icon="upload"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           
+          Import
+        </a>
+      </Link>
+    </ButtonLink>
     <br />
     <h5>
       Modifications from another project
@@ -82,7 +189,55 @@ exports[`Component > ImportModifications renders correctly 1`] = `
         trimFilter={true}
         valueComponent={[Function]}
         valueKey="value"
-      />
+      >
+        <div
+          className="Select is-searchable Select--single"
+        >
+          <div
+            className="Select-control"
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+          >
+            <div
+              className="Select-multi-value-wrapper"
+              id="react-select-2--value"
+            >
+              <div
+                className="Select-placeholder"
+              >
+                Select a project…
+              </div>
+              <AutosizeInput
+                aria-activedescendant="react-select-2--value"
+                aria-expanded="false"
+                aria-haspopup="false"
+                aria-owns=""
+                className="Select-input"
+                injectStyles={true}
+                minWidth="5"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                required={false}
+                role="combobox"
+                value=""
+              />
+            </div>
+            <span
+              className="Select-arrow-zone"
+              onMouseDown={[Function]}
+            >
+              <span
+                className="Select-arrow"
+                onMouseDown={[Function]}
+              />
+            </span>
+          </div>
+        </div>
+      </Select>
     </div>
     <Button
       block={true}
@@ -91,12 +246,69 @@ exports[`Component > ImportModifications renders correctly 1`] = `
       onClick={[Function]}
       style="success"
     >
-      <Icon
-        type="copy"
-      />
-       
-      Import
+      <a
+        className="btn btn-success btn-block"
+        disabled={true}
+        href="#"
+        name="Import"
+        onClick={[Function]}
+        tabIndex={0}
+      >
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "copy",
+              "prefix": "fas",
+            }
+          }
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={true}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "copy",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            symbol={false}
+            title=""
+            transform={null}
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-copy fa-w-NaN fa-fw "
+              data-icon="copy"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 undefined undefined"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </FontAwesomeIcon>
+        </Icon>
+         
+        Import
+      </a>
     </Button>
-  </Dock>
-</Application>
+  </ImportModifications>
+</Provider>
 `;

@@ -1,92 +1,643 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > EditRegion renders correctly 1`] = `
-<Application
-  map={[Function]}
+exports[`Component > EditRegion 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <Title>
-    Edit region
-  </Title>
-  <Dock>
-    <Text
-      label="Region Name*"
-      name="Region Name"
-      onChange={[Function]}
-      value="Mock Region"
-    />
-    <Text
-      label="Description"
-      name="Description"
-      onChange={[Function]}
-      value="Region description"
-    />
-    <h5>
-      Analysis bounds
-    </h5>
-    <div
-      className="alert alert-warning"
+  <EditRegion
+    region={
+      Object {
+        "_id": "1",
+        "accessGroup": "accessGroupName",
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Region description",
+        "name": "Mock Region",
+        "nonce": "12345",
+        "opportunityDatasets": Array [
+          Object {
+            "_id": "Workers_total",
+            "name": "Workers total",
+            "sourceName": "lodes-data-2014",
+          },
+        ],
+        "statusCode": "DONE",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+      }
+    }
+  >
+    <Application
+      map={[Function]}
     >
-      Bounds are snapped to points on our regular grid.
-      <a
-        href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
-        target="_blank"
+      <ConnectFunction>
+        <ErrorModal
+          clearError={[Function]}
+        />
+      </ConnectFunction>
+      <Sidebar>
+        <div
+          className="Sidebar"
+        >
+          <div
+            className="Sidebar-logo"
+          />
+          <ItemLink
+            href="/"
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "globe",
+                "prefix": "fas",
+              }
+            }
+            text="Regions"
+          >
+            <Tip
+              className="Sidebar-navItem"
+              tip="Regions"
+            >
+              <span
+                className="Tip Sidebar-navItem"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              >
+                <Link
+                  href="/"
+                  prefetch={true}
+                >
+                  <a
+                    className="Sidebar-navItem-contents"
+                    href="/"
+                    onClick={[Function]}
+                  >
+                    <Icon
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "globe",
+                          "prefix": "fas",
+                        }
+                      }
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "globe",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-globe fa-w-NaN fa-fw "
+                          data-icon="globe"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                  </a>
+                </Link>
+              </span>
+            </Tip>
+          </ItemLink>
+          <div
+            className="Sidebar-bottom"
+          >
+            <ExternalLink
+              href="http://docs.analysis.conveyal.com/"
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "question-circle",
+                  "prefix": "fas",
+                }
+              }
+              text="Help and Documentation"
+            >
+              <Tip
+                className="Sidebar-navItem"
+                tip="Help and Documentation"
+              >
+                <span
+                  className="Tip Sidebar-navItem"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <a
+                    className="Sidebar-navItem-contents"
+                    href="http://docs.analysis.conveyal.com/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Icon
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "question-circle",
+                          "prefix": "fas",
+                        }
+                      }
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "question-circle",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-question-circle fa-w-NaN fa-fw "
+                          data-icon="question-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                  </a>
+                </span>
+              </Tip>
+            </ExternalLink>
+          </div>
+        </div>
+      </Sidebar>
+      <div
+        className="Fullscreen"
       >
-         Learn more about spatial resolution here.
-      </a>
-    </div>
-    <Text
-      key="bound-North"
-      label="North bound"
-      name="North bound"
-      onChange={[Function]}
-      value={39}
-    />
-    <Text
-      key="bound-South"
-      label="South bound"
-      name="South bound"
-      onChange={[Function]}
-      value={38}
-    />
-    <Text
-      key="bound-East"
-      label="East bound"
-      name="East bound"
-      onChange={[Function]}
-      value={-76}
-    />
-    <Text
-      key="bound-West"
-      label="West bound"
-      name="West bound"
-      onChange={[Function]}
-      value={-77}
-    />
-    <p>
-      <em>
-        OSM updates have been temporarily disabled and will be moved to the bundle management page.
-      </em>
-    </p>
-    <Button
-      block={true}
-      disabled={false}
-      name="Save changes"
-      onClick={[Function]}
-      style="success"
-    >
-      Save changes
-    </Button>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="danger"
-    >
-      <Icon
-        type="trash"
-      />
-       
-      DANGER: Delete this region
-    </Button>
-  </Dock>
-</Application>
+        <LoadableComponent>
+          <loading
+            error={null}
+            isLoading={true}
+            pastDelay={false}
+            retry={[Function]}
+            timedOut={false}
+          />
+        </LoadableComponent>
+      </div>
+      <div
+        className="ApplicationDock"
+      >
+        <Dock>
+          <InnerDock>
+            <div
+              className="InnerDock "
+              style={
+                Object {
+                  "height": 768,
+                }
+              }
+            >
+              <div
+                className="block"
+              >
+                <legend>
+                  Edit region
+                </legend>
+                <Text
+                  label="Region Name*"
+                  name="Region Name"
+                  onChange={[Function]}
+                  value="Mock Region"
+                >
+                  <Group
+                    id="region-name-input-0"
+                    label="Region Name*"
+                    name="Region Name"
+                    onChange={[Function]}
+                    value="Mock Region"
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="region-name-input-0"
+                      >
+                        Region Name*
+                      </label>
+                      <Input
+                        id="region-name-input-0"
+                        label="Region Name*"
+                        name="Region Name"
+                        onChange={[Function]}
+                        type="text"
+                        value="Mock Region"
+                      >
+                        <input
+                          className="form-control"
+                          id="region-name-input-0"
+                          label="Region Name*"
+                          name="Region Name"
+                          onChange={[Function]}
+                          placeholder="Region Name*"
+                          type="text"
+                          value="Mock Region"
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </Text>
+                <Text
+                  label="Description"
+                  name="Description"
+                  onChange={[Function]}
+                  value="Region description"
+                >
+                  <Group
+                    id="description-input-1"
+                    label="Description"
+                    name="Description"
+                    onChange={[Function]}
+                    value="Region description"
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="description-input-1"
+                      >
+                        Description
+                      </label>
+                      <Input
+                        id="description-input-1"
+                        label="Description"
+                        name="Description"
+                        onChange={[Function]}
+                        type="text"
+                        value="Region description"
+                      >
+                        <input
+                          className="form-control"
+                          id="description-input-1"
+                          label="Description"
+                          name="Description"
+                          onChange={[Function]}
+                          placeholder="Description"
+                          type="text"
+                          value="Region description"
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </Text>
+                <h5>
+                  Analysis bounds
+                </h5>
+                <div
+                  className="alert alert-warning"
+                >
+                  Bounds are snapped to points on our regular grid.
+                  <a
+                    href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                     
+                    Learn more about spatial resolution here.
+                  </a>
+                </div>
+                <Text
+                  key="bound-North"
+                  label="North bound"
+                  name="North bound"
+                  onChange={[Function]}
+                  value={39}
+                >
+                  <Group
+                    id="north-bound-input-2"
+                    label="North bound"
+                    name="North bound"
+                    onChange={[Function]}
+                    value={39}
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="north-bound-input-2"
+                      >
+                        North bound
+                      </label>
+                      <Input
+                        id="north-bound-input-2"
+                        label="North bound"
+                        name="North bound"
+                        onChange={[Function]}
+                        type="text"
+                        value={39}
+                      >
+                        <input
+                          className="form-control"
+                          id="north-bound-input-2"
+                          label="North bound"
+                          name="North bound"
+                          onChange={[Function]}
+                          placeholder="North bound"
+                          type="text"
+                          value={39}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </Text>
+                <Text
+                  key="bound-South"
+                  label="South bound"
+                  name="South bound"
+                  onChange={[Function]}
+                  value={38}
+                >
+                  <Group
+                    id="south-bound-input-3"
+                    label="South bound"
+                    name="South bound"
+                    onChange={[Function]}
+                    value={38}
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="south-bound-input-3"
+                      >
+                        South bound
+                      </label>
+                      <Input
+                        id="south-bound-input-3"
+                        label="South bound"
+                        name="South bound"
+                        onChange={[Function]}
+                        type="text"
+                        value={38}
+                      >
+                        <input
+                          className="form-control"
+                          id="south-bound-input-3"
+                          label="South bound"
+                          name="South bound"
+                          onChange={[Function]}
+                          placeholder="South bound"
+                          type="text"
+                          value={38}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </Text>
+                <Text
+                  key="bound-East"
+                  label="East bound"
+                  name="East bound"
+                  onChange={[Function]}
+                  value={-76}
+                >
+                  <Group
+                    id="east-bound-input-4"
+                    label="East bound"
+                    name="East bound"
+                    onChange={[Function]}
+                    value={-76}
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="east-bound-input-4"
+                      >
+                        East bound
+                      </label>
+                      <Input
+                        id="east-bound-input-4"
+                        label="East bound"
+                        name="East bound"
+                        onChange={[Function]}
+                        type="text"
+                        value={-76}
+                      >
+                        <input
+                          className="form-control"
+                          id="east-bound-input-4"
+                          label="East bound"
+                          name="East bound"
+                          onChange={[Function]}
+                          placeholder="East bound"
+                          type="text"
+                          value={-76}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </Text>
+                <Text
+                  key="bound-West"
+                  label="West bound"
+                  name="West bound"
+                  onChange={[Function]}
+                  value={-77}
+                >
+                  <Group
+                    id="west-bound-input-5"
+                    label="West bound"
+                    name="West bound"
+                    onChange={[Function]}
+                    value={-77}
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        htmlFor="west-bound-input-5"
+                      >
+                        West bound
+                      </label>
+                      <Input
+                        id="west-bound-input-5"
+                        label="West bound"
+                        name="West bound"
+                        onChange={[Function]}
+                        type="text"
+                        value={-77}
+                      >
+                        <input
+                          className="form-control"
+                          id="west-bound-input-5"
+                          label="West bound"
+                          name="West bound"
+                          onChange={[Function]}
+                          placeholder="West bound"
+                          type="text"
+                          value={-77}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </Text>
+                <p>
+                  <em>
+                    OSM updates have been temporarily disabled and will be moved to the bundle management page.
+                  </em>
+                </p>
+                <Button
+                  block={true}
+                  disabled={true}
+                  name="Save changes"
+                  onClick={[Function]}
+                  style="success"
+                >
+                  <a
+                    className="btn btn-success btn-block"
+                    disabled={true}
+                    href="#"
+                    name="Save changes"
+                    onClick={[Function]}
+                    tabIndex={0}
+                  >
+                    Save changes
+                  </a>
+                </Button>
+                <Button
+                  block={true}
+                  onClick={[Function]}
+                  style="danger"
+                >
+                  <a
+                    className="btn btn-danger btn-block"
+                    href="#"
+                    onClick={[Function]}
+                    tabIndex={0}
+                  >
+                    <Icon
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "trash",
+                          "prefix": "fas",
+                        }
+                      }
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "trash",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
+                          data-icon="trash"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                     
+                    DANGER! Delete this region
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </InnerDock>
+        </Dock>
+      </div>
+    </Application>
+  </EditRegion>
+</Provider>
 `;

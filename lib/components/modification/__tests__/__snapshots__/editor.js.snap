@@ -5,54 +5,214 @@ exports[`Components > Modification > Editor should render and execute functions 
   map={[Function]}
 >
   <Title>
-    <IconLink
-      name="Modifications"
-      to="/regions/1/projects/1/modifications"
-      type="chevron-left"
+    <IconTip
+      href={
+        Object {
+          "pathname": "/modifications",
+          "query": Object {
+            "projectId": "1",
+            "regionId": "1",
+          },
+        }
+      }
+      icon={
+        Object {
+          "icon": Array [],
+          "iconName": "chevron-left",
+          "prefix": "fas",
+        }
+      }
+      tip="Modifications"
     />
     Test Modification
     <span
       className=""
     >
-      <IconLink
+      <IconTip
         className="pull-right"
-        name="Delete modification"
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "trash",
+            "prefix": "fas",
+          }
+        }
         onClick={[Function]}
-        type="trash"
+        tip="Delete modification"
       />
-      <IconLink
+      <IconTip
         className="pull-right"
-        name="Copy modification"
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "copy",
+            "prefix": "fas",
+          }
+        }
         onClick={[MockFunction]}
-        type="copy"
+        tip="Copy modification"
       />
-      <IconLink
+      <IconTip
         className="pull-right"
-        name="Edit modification name"
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "pencil-alt",
+            "prefix": "fas",
+          }
+        }
         onClick={[Function]}
-        type="pencil"
+        tip="Edit modification name"
       />
     </span>
   </Title>
   <Dock
     className=""
   >
-    <div>
-      <Group>
-        <Button
-          block={true}
-          name="Add description"
-          onClick={[Function]}
-          style="info"
-        >
-          <Icon
-            type="pencil"
-          />
-           
-          Add description…
-        </Button>
-      </Group>
-      <ModificationType
+    <Group>
+      <Button
+        block={true}
+        name="Add description"
+        onClick={[Function]}
+        style="info"
+      >
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "pencil-alt",
+              "prefix": "fas",
+            }
+          }
+        />
+         
+        Add description…
+      </Button>
+    </Group>
+    <ModificationType
+      modification={
+        Object {
+          "_id": "1234",
+          "accessGroup": "accessGroupName",
+          "bidirectional": false,
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "description": undefined,
+          "entries": Array [],
+          "feed": "1",
+          "name": "Test Modification",
+          "nonce": "12345",
+          "projectId": "1",
+          "routes": Array [
+            "route1",
+          ],
+          "segments": Array [
+            {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+          ],
+          "showOnMap": false,
+          "timetables": Array [
+            Object {
+              "_id": "timetable-id",
+              "dwellTime": 10,
+              "dwellTimes": Array [
+                12,
+              ],
+              "endTime": 57600,
+              "exactTimes": false,
+              "friday": true,
+              "headwaySecs": 900,
+              "modificationId": "1234",
+              "modificationName": "Test Modification",
+              "monday": true,
+              "name": "Test timetable",
+              "patternTrips": Array [
+                "abcd",
+              ],
+              "phaseAtStop": "",
+              "phaseFromStop": "",
+              "phaseFromTimetable": "",
+              "phaseSeconds": 300,
+              "saturday": false,
+              "segmentSpeeds": Array [],
+              "sourceTrip": "abcd",
+              "startTime": 28800,
+              "sunday": false,
+              "thursday": true,
+              "tuesday": true,
+              "wednesday": true,
+            },
+          ],
+          "trips": Array [
+            "abcd",
+          ],
+          "type": "add-trip-pattern",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+          "variants": Array [
+            true,
+          ],
+        }
+      }
+      setMapState={[MockFunction]}
+      type="add-trip-pattern"
+      update={[Function]}
+      updateAndRetrieveFeedData={[Function]}
+    />
+    <Variants
+      activeVariants={
+        Array [
+          true,
+        ]
+      }
+      allVariants={
+        Array [
+          "variant one",
+          "variant two",
+        ]
+      }
+      modificationId="1234"
+      setVariant={[Function]}
+    />
+    <Collapsible
+      title="Customize modification"
+    >
+      <JSONEditor
         modification={
           Object {
             "_id": "1234",
@@ -152,133 +312,9 @@ exports[`Components > Modification > Editor should render and execute functions 
             ],
           }
         }
-        setMapState={[MockFunction]}
-        type="add-trip-pattern"
-        update={[Function]}
-        updateAndRetrieveFeedData={[Function]}
+        save={[Function]}
       />
-      <Variants
-        activeVariants={
-          Array [
-            true,
-          ]
-        }
-        allVariants={
-          Array [
-            "variant one",
-            "variant two",
-          ]
-        }
-        modificationId="1234"
-        setVariant={[Function]}
-      />
-      <Collapsible
-        title="Customize modification"
-      >
-        <JSONEditor
-          modification={
-            Object {
-              "_id": "1234",
-              "accessGroup": "accessGroupName",
-              "bidirectional": false,
-              "createdAt": "2017-11-08T12:30:50.133Z",
-              "createdBy": "person@gmail.com",
-              "description": undefined,
-              "entries": Array [],
-              "feed": "1",
-              "name": "Test Modification",
-              "nonce": "12345",
-              "projectId": "1",
-              "routes": Array [
-                "route1",
-              ],
-              "segments": Array [
-                {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-              ],
-              "showOnMap": false,
-              "timetables": Array [
-                Object {
-                  "_id": "timetable-id",
-                  "dwellTime": 10,
-                  "dwellTimes": Array [
-                    12,
-                  ],
-                  "endTime": 57600,
-                  "exactTimes": false,
-                  "friday": true,
-                  "headwaySecs": 900,
-                  "modificationId": "1234",
-                  "modificationName": "Test Modification",
-                  "monday": true,
-                  "name": "Test timetable",
-                  "patternTrips": Array [
-                    "abcd",
-                  ],
-                  "phaseAtStop": "",
-                  "phaseFromStop": "",
-                  "phaseFromTimetable": "",
-                  "phaseSeconds": 300,
-                  "saturday": false,
-                  "segmentSpeeds": Array [],
-                  "sourceTrip": "abcd",
-                  "startTime": 28800,
-                  "sunday": false,
-                  "thursday": true,
-                  "tuesday": true,
-                  "wednesday": true,
-                },
-              ],
-              "trips": Array [
-                "abcd",
-              ],
-              "type": "add-trip-pattern",
-              "updatedAt": "2017-11-08T12:31:19.602Z",
-              "updatedBy": "person@gmail.com",
-              "variants": Array [
-                true,
-              ],
-            }
-          }
-          save={[Function]}
-        />
-      </Collapsible>
-    </div>
+    </Collapsible>
   </Dock>
 </Application>
 `;

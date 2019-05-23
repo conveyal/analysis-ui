@@ -15,36 +15,78 @@ exports[`Container > Modification Editor render just the title if not loaded 1`]
     <div
       className="block"
     >
-      <div>
-        <p>
-          Loading modification feed...
-        </p>
-        <p>
-          If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
-        </p>
-        <Button
-          block={true}
+      <p>
+        Loading modification feed...
+      </p>
+      <p>
+        If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
+      </p>
+      <Button
+        block={true}
+        onClick={[Function]}
+        style="warning"
+      >
+        <a
+          className="btn btn-warning btn-block"
+          href="#"
           onClick={[Function]}
-          style="warning"
+          tabIndex={0}
         >
-          <a
-            className="btn btn-warning btn-block"
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
+          <Icon
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "times",
+                "prefix": "fas",
+              }
+            }
           >
-            <Icon
-              type="times"
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={true}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "times",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              symbol={false}
+              title=""
+              transform={null}
             >
-              <i
-                className="fa fa-times fa-fw "
-              />
-            </Icon>
-             
-            Clear selected bundle
-          </a>
-        </Button>
-      </div>
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-times fa-w-NaN fa-fw "
+                data-icon="times"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 undefined undefined"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </FontAwesomeIcon>
+          </Icon>
+           
+          Clear selected bundle
+        </a>
+      </Button>
     </div>
   </div>
 </InnerDock>

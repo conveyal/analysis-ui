@@ -1,94 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Create Region renders correctly 1`] = `
-<Application
-  map={[Function]}
->
-  <Title>
-    <Icon
-      type="map-o"
-    />
-     
-    Set up a new region
-  </Title>
-  <Dock>
-    <Text
-      label="Region Name*"
-      name="Region Name"
-      onChange={[Function]}
-    />
-    <Text
-      label="Description"
-      name="Description"
-      onChange={[Function]}
-      value=""
-    />
-    <h5>
-      Analysis bounds
-    </h5>
-    <div
-      className="alert alert-warning"
-    >
-      Bounds are snapped to points on our regular grid.
-      <a
-        href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
-        target="_blank"
-      >
-         Learn more about spatial resolution here.
-      </a>
-    </div>
-    <Text
-      key="bound-North"
-      label="North bound"
-      name="North bound"
-      onChange={[Function]}
-      value={39.02345139405933}
-    />
-    <Text
-      key="bound-South"
-      label="South bound"
-      name="South bound"
-      onChange={[Function]}
-      value={38.77764022307335}
-    />
-    <Text
-      key="bound-East"
-      label="East bound"
-      name="East bound"
-      onChange={[Function]}
-      value={-76.81365966796875}
-    />
-    <Text
-      key="bound-West"
-      label="West bound"
-      name="West bound"
-      onChange={[Function]}
-      value={-77.255859375}
-    />
-    osmconvert crop command
-    <div
-      className="alert alert-info all-copy"
-    >
-      osmconvert [file].pbf -b="-77.255859375, 38.77764022307335, -76.81365966796875, 39.02345139405933" --complete-ways -o=[file]-cropped.pbf
-    </div>
-    <File
-      label="OpenStreetMap data in PBF format"
-      name="customOpenStreetMapData"
-      onChange={[Function]}
-    />
-    <Button
-      block={true}
-      disabled={true}
-      name="Set up a new region"
-      onClick={[Function]}
-      style="success"
-    >
-      <Icon
-        type="check"
+<Fragment>
+  <Sidebar />
+  <div
+    className="Fullscreen"
+  >
+    <LoadableComponent>
+      <LoadableComponent
+        bounds={
+          Object {
+            "east": -76.81365966796875,
+            "north": 39.02345139405933,
+            "south": 38.77764022307335,
+            "west": -77.255859375,
+          }
+        }
+        save={[Function]}
       />
-       
-      Set up a new region
-    </Button>
-  </Dock>
-</Application>
+    </LoadableComponent>
+  </div>
+  <div
+    className="ApplicationDock"
+  >
+    <Dock>
+      <legend>
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "map",
+              "prefix": "fas",
+            }
+          }
+        />
+         
+        Set up a new region
+      </legend>
+      <Text
+        label="Region Name*"
+        name="Region Name"
+        onChange={[Function]}
+        value=""
+      />
+      <Text
+        label="Description"
+        name="Description"
+        onChange={[Function]}
+        value=""
+      />
+      <h5>
+        Analysis bounds
+      </h5>
+      <div
+        className="alert alert-warning"
+      >
+        <p>
+          Bounds are snapped to points on our regular grid.
+        </p>
+        <a
+          href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Learn more about spatial resolution here.
+        </a>
+      </div>
+      <Text
+        key="bound-North"
+        label="North bound"
+        name="North bound"
+        onChange={[Function]}
+        value={39.02345139405933}
+      />
+      <Text
+        key="bound-South"
+        label="South bound"
+        name="South bound"
+        onChange={[Function]}
+        value={38.77764022307335}
+      />
+      <Text
+        key="bound-East"
+        label="East bound"
+        name="East bound"
+        onChange={[Function]}
+        value={-76.81365966796875}
+      />
+      <Text
+        key="bound-West"
+        label="West bound"
+        name="West bound"
+        onChange={[Function]}
+        value={-77.255859375}
+      />
+      osmconvert crop command
+      <div
+        className="alert alert-info all-copy"
+      >
+        osmconvert [file].pbf -b="-77.255859375, 38.77764022307335, -76.81365966796875, 39.02345139405933" --complete-ways -o=[file]-cropped.pbf
+      </div>
+      <File
+        label="OpenStreetMap data in PBF format"
+        name="customOpenStreetMapData"
+        onChange={[Function]}
+      />
+      <Button
+        block={true}
+        disabled={true}
+        name="Set up a new region"
+        onClick={[Function]}
+        style="success"
+      >
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "check",
+              "prefix": "fas",
+            }
+          }
+        />
+         
+        Set up a new region
+      </Button>
+    </Dock>
+  </div>
+</Fragment>
 `;

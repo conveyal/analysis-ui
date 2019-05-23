@@ -20,7 +20,7 @@ before_install:
   - npm i -g codecov
 script:
   - yarn run lint
-  - yarn run jest --runInBand --maxWorkers=4 --coverage
+  - yarn run jest --runInBand --maxWorkers=4 --coverage --ci
   - yarn run build
   - yarn run check-format
   - codecov

@@ -153,12 +153,18 @@ exports[`Component > Modification > AdjustSpeed renders correctly 1`] = `
       role="alert"
     >
       <Icon
-        type="exclamation-circle"
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "exclamation-circle",
+            "prefix": "fas",
+          }
+        }
       />
       Select the stop-to-stop segment(s) of the pattern(s) to scale the speed on.
     </div>
   </Group>
-  <Number
+  <NumberInput
     label="Scale speed by"
     min={0}
     name="Scale speed by"

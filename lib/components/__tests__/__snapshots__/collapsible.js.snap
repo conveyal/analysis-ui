@@ -1,101 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > Collapsible collapses correctly 1`] = `
-<Collapsible
-  defaultExpanded={true}
-  title="collapse"
->
-  <div>
-    <div
-      aria-level={3}
-      role="heading"
-    >
-      <a
-        aria-expanded={false}
-        className="CollapsibleButton"
-        onClick={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        <Icon
-          type="caret-right"
-        >
-          <i
-            className="fa fa-caret-right fa-fw "
-          />
-        </Icon>
-        <strong>
-          collapse
-        </strong>
-      </a>
-    </div>
-  </div>
-</Collapsible>
-`;
-
-exports[`Component > Collapsible expands correctly 1`] = `
+exports[`Component > Collapsible 1`] = `
 <Collapsible
   title="collapse"
 >
-  <div>
-    <div
-      aria-level={3}
-      role="heading"
+  <a
+    className="CollapsibleButton"
+    onClick={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <Icon
+      icon={
+        Object {
+          "icon": Array [],
+          "iconName": "caret-down",
+          "prefix": "fas",
+        }
+      }
     >
-      <a
-        aria-expanded={true}
-        className="CollapsibleButton"
-        onClick={[Function]}
-        role="button"
-        tabIndex={0}
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={true}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "caret-down",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        symbol={false}
+        title=""
+        transform={null}
       >
-        <Icon
-          type="caret-down"
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-caret-down fa-w-NaN fa-fw "
+          data-icon="caret-down"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 undefined undefined"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <i
-            className="fa fa-caret-down fa-fw "
+          <path
+            fill="currentColor"
+            style={Object {}}
           />
-        </Icon>
-        <strong>
-          collapse
-        </strong>
-      </a>
-    </div>
-    <div>
-      Lorem ipsum dolor sit amet.
-    </div>
-  </div>
-</Collapsible>
-`;
-
-exports[`Component > Collapsible renders correctly 1`] = `
-<Collapsible
-  title="collapse"
->
-  <div>
-    <div
-      aria-level={3}
-      role="heading"
-    >
-      <a
-        aria-expanded={false}
-        className="CollapsibleButton"
-        onClick={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        <Icon
-          type="caret-right"
-        >
-          <i
-            className="fa fa-caret-right fa-fw "
-          />
-        </Icon>
-        <strong>
-          collapse
-        </strong>
-      </a>
-    </div>
+        </svg>
+      </FontAwesomeIcon>
+    </Icon>
+    collapse
+  </a>
+  <div
+    id="Text"
+  >
+    Lorem ipsum dolor sit amet.
   </div>
 </Collapsible>
 `;

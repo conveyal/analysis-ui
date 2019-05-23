@@ -1,33 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
-<div>
+<Fragment>
   <h5>
     Route Geometry
   </h5>
   <p>
     16 stops over 45.22 km
   </p>
-  <p>
-    <Button
-      block={true}
-      disabled={false}
-      onClick={[Function]}
-      style="warning"
-    >
-      <Icon
-        type="pencil"
-      />
-       
-      Edit route geometry
-    </Button>
-  </p>
+  <Button
+    block={true}
+    disabled={false}
+    onClick={[Function]}
+    style="warning"
+  >
+    <Icon
+      icon={
+        Object {
+          "icon": Array [],
+          "iconName": "pencil-alt",
+          "prefix": "fas",
+        }
+      }
+    />
+     
+    Edit route geometry
+  </Button>
   <Checkbox
     defaultChecked={true}
     label="Auto-create stops at set spacing"
     onChange={[Function]}
   />
-  <Number
+  <NumberInput
     label="Stop spacing (minimum is 50)"
     onChange={[Function]}
     units="meters"
@@ -45,5 +49,5 @@ exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
   >
     Modification cannot be bidirectional because timetables in this modification have phasing information.
   </div>
-</div>
+</Fragment>
 `;
