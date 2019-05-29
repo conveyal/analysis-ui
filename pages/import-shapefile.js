@@ -2,7 +2,7 @@ import React from 'react'
 
 import {load as loadProject} from 'lib/actions/project'
 import {load as loadRegion} from 'lib/actions/region'
-import {Application, Dock} from 'lib/components/application'
+import {Application, Dock} from 'lib/components/base'
 import ProjectTitle from 'lib/components/project-title'
 import ImportShapefile from 'lib/components/import-shapefile'
 
