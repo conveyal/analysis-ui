@@ -19,8 +19,17 @@ module.exports = withImages(
       AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
       MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
     },
-    webpack(config, options) {
+    webpack: config => {
+      // Allow `import 'lib/message'`
       config.resolve.alias['lib'] = path.join(__dirname, 'lib')
+
+      // ESLint on build
+      config.module.rules.push({
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      })
+
       return config
     }
   })

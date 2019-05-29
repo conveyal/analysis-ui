@@ -7,8 +7,6 @@ RegionalAnalysis.getInitialProps = async ctx => {
   ctx.reduxStore.dispatch(setActiveRegionalAnalyses(analysisId))
   return {
     analysis: regionalAnalyses.find(a => a._id === analysisId),
-    analysisId,
-    regionId,
     regionalAnalyses
   }
 }

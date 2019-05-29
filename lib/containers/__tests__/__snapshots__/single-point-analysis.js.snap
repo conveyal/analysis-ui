@@ -79,8 +79,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
       }
     }
     destinationTravelTimeDistribution={null}
-    downloadComparisonIsochrone={[Function]}
     downloadIsochrone={[Function]}
+    fetchGeoTIFF={[Function]}
     fetchTravelTimeSurface={[Function]}
     isochrone={null}
     isochroneFetchStatus={false}
@@ -161,7 +161,6 @@ exports[`Containers > Single Point should render correctly 1`] = `
     regionalAnalyses={Array []}
     removeDestination={[Function]}
     setComparisonProject={[Function]}
-    setCurrentProject={[Function]}
     setDestination={[Function]}
     setProfileRequest={[Function]}
   >
@@ -1169,7 +1168,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Opportunity Dataset
                     </label>
-                    <ConnectFunction>
+                    <ConnectFunction
+                      regionId="1"
+                    >
                       <OpportunityDatasetSelector
                         addOpportunityDataset={[Function]}
                         checkUploadStatus={[Function]}
@@ -1190,6 +1191,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             },
                           ]
                         }
+                        regionId="1"
                         removeOpportunityDataset={[Function]}
                         setActiveOpportunityDataset={[Function]}
                         setOpportunityDatasets={[Function]}

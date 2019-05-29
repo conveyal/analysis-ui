@@ -14,7 +14,7 @@
     "pretest": "yarn",
     "semantic-release": "semantic-release",
     "start": "next start",
-    "test": "lint && jest",
+    "test": "yarn run lint && yarn run jest",
     "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "repository": {
@@ -62,7 +62,6 @@
     "d3-shape": "^1.2.0",
     "date-fns": "^1.28.2",
     "debug": "^2.2.0",
-    "font-awesome": "^4.6.3",
     "http-errors": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.0",
@@ -79,7 +78,6 @@
     "next-optimized-images": "^2.4.0",
     "node-fetch": "^2.3.0",
     "normalize.css": "^8.0.1",
-    "path-to-regexp": "^1.7.0",
     "promise-polyfill": "^8.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -111,6 +109,7 @@
     "enzyme-adapter-react-16": "^1.10.0",
     "enzyme-to-json": "^3.3.5",
     "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
     "eslint-plugin-jest": "^22.5.1",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",

@@ -5,8 +5,7 @@ RegionalResultsList.getInitialProps = async ctx => {
   const {regionId} = ctx.query
   const regionalAnalyses = await ctx.reduxStore.dispatch(load(regionId))
   return {
-    regionalAnalyses,
-    regionId
+    regionalAnalyses
   }
 }
 

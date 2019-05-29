@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '8' # zeit/now runs on nodejs v8
+  - '8' # zeit/now and AWS Lambda runs on nodejs v8
   - '10' # current LTS release (May, 2019)
 cache: yarn
 
@@ -20,7 +20,7 @@ before_install:
   - npm i -g codecov
 script:
   - yarn run lint
-  - yarn run jest --runInBand --maxWorkers=4 --coverage --ci
+  - yarn run jest --coverage --ci
   - yarn run build
   - yarn run check-format
   - codecov

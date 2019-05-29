@@ -4,7 +4,7 @@ import {loadProject} from 'lib/actions/project'
 import ModificationEditor from 'lib/containers/modification-editor'
 
 ModificationEditor.getInitialProps = async ctx => {
-  const {modificationId, projectId, regionId} = ctx.query
+  const {modificationId, projectId} = ctx.query
   const store = ctx.reduxStore
 
   // TODO check if project and feed are already loaded
@@ -24,8 +24,7 @@ ModificationEditor.getInitialProps = async ctx => {
   return {
     feeds,
     modification,
-    project,
-    regionId
+    project
   }
 }
 

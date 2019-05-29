@@ -26,8 +26,7 @@ ImportModificationsPage.getInitialProps = async ctx => {
   const {projects} = await store.dispatch(loadRegion(regionId))
   return {
     project: projects.find(p => p._id === projectId),
-    projects: projects.filter(p => p._id !== projectId),
-    regionId
+    projects: projects.filter(p => p._id !== projectId)
   }
 }
 

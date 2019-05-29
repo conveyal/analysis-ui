@@ -12,7 +12,7 @@ function ImportShapefilePage(p) {
       <ProjectTitle project={p.project} />
       <Dock>
         <ImportShapefile
-          projectId={p.project._id}
+          projectId={p.projectId}
           regionId={p.regionId}
           variants={p.project.variants}
         />
@@ -27,8 +27,7 @@ ImportShapefilePage.getInitialProps = async ctx => {
   await store.dispatch(loadRegion(regionId))
   const project = store.dispatch(loadProject(projectId))
   return {
-    project,
-    regionId
+    project
   }
 }
 

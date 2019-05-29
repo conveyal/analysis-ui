@@ -16,8 +16,6 @@ BundlesView.getInitialProps = async ctx => {
       regionId: ctx.query.regionId
     })
   )
-
-  return {bundleId: ctx.query.bundleId}
 }
 
 export default BundlesView

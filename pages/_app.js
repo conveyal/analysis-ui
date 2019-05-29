@@ -6,7 +6,7 @@ import nextCookies from 'next-cookies'
 import React from 'react'
 import {Provider} from 'react-redux'
 
-import {setUser} from 'lib/actions'
+import {setQueryString, setUser} from 'lib/actions'
 import {authIsRequired, COOKIE_KEY, isAuthenticated} from 'lib/auth'
 import {LOGO_URL, RouteTo} from 'lib/constants'
 import getReduxStore from 'lib/store'
@@ -69,9 +69,13 @@ export default class AnalysisNextApp extends App {
       initialProps = await Component.getInitialProps(ctx)
     }
 
+    // Set the query string in the store TODO make this unnecessary
+    reduxStore.dispatch(setQueryString(ctx.query))
+
     // Always pass the path information
     const pageProps = {
       ...initialProps,
+      ...(ctx.query || {}),
       pathname: ctx.pathname,
       query: ctx.query,
       asPath: ctx.asPath
@@ -93,9 +97,7 @@ export default class AnalysisNextApp extends App {
     return (
       <>
         <Head>
-          <title>
-            {get(p, 'initialReduxState.title', 'Conveyal Analysis')}
-          </title>
+          <title>Conveyal Analysis</title>
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
         </Head>
         <Container>
