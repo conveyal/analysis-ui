@@ -5,7 +5,6 @@ const path = require('path')
 // Pull in .env
 require('dotenv').config()
 
-const isProd = process.env.NODE_ENV === 'production'
 module.exports = withImages(
   withCSS({
     optimizeImages: false,
@@ -14,7 +13,7 @@ module.exports = withImages(
       url: false // enable importing CSS from node_modules
     },
     env: {
-      API_URL: isProd ? '/api' : process.env.API_URL,
+      API_URL: process.env.API_URL,
       AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
       AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
       GRAPHHOPPER_API_KEY: process.env.GRAPHHOPPER_API_KEY,

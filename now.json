@@ -1,12 +1,15 @@
 {
-  "name": "conveyal-analysis",
+  "name": "analysis",
+  "alias": "next.conveyal.com",
   "version": 2,
   "builds": [{"src": "next.config.js", "use": "@now/next"}],
-  "env": {
-    "API_URL": "@api-url",
-    "AUTH0_CLIENT_ID": "@auth0-client-id",
-    "AUTH0_DOMAIN": "@auth0-domain",
-    "GRAPHHOPPER_API_KEY": "@graphhopper-api-key",
-    "MAPTILER_KEY": "@maptiler-key"
+  "build": {
+    "env": {
+      "API_URL": "@api-url",
+      "AUTH0_CLIENT_ID": "@auth0-client-id",
+      "AUTH0_DOMAIN": "@auth0-domain",
+      "GRAPHHOPPER_API_KEY": "@graphhopper-api-key",
+      "MAPTILER_KEY": "@maptiler-key"
+    }
   }
 }
