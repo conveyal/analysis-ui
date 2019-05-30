@@ -17,7 +17,8 @@ module.exports = withImages(
       API_URL: isProd ? '/api' : process.env.API_URL,
       AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
       AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-      MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
+      GRAPHHOPPER_API_KEY: process.env.GRAPHHOPPER_API_KEY,
+      MAPTILER_KEY: process.env.MAPTILER_KEY
     },
     webpack: config => {
       // Allow `import 'lib/message'`
