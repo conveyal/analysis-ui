@@ -59,6 +59,8 @@ Two box plots will be displayed, in red and blue, to the left of the axis. The b
   <figcaption>A stacked percentile plot comparing two scenarios</figcaption>
 </figure>
 
+### Downloading
+
 There are multiple options for downloading single-point analyses:
 
 * <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> saves the isochrone currently shown on the map.  The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org). Note that these vector isochrones are interpolations of the [underlying analysis grid](methodology.html#spatial-resolution). They can be useful for visualizing results in GIS, but additional steps may be needed to prepare them for geoprocessing.
