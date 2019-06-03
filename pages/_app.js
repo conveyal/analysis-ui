@@ -20,7 +20,7 @@ export default class AnalysisNextApp extends App {
     ctx.reduxStore = getReduxStore()
 
     // TODO wrap components that need Auth
-    if (!isAuthenticated(ctx)) return
+    if (!isAuthenticated(ctx)) return {}
 
     // Run `getInitialProps`
     let initialProps = {}
