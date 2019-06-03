@@ -1,10 +1,11 @@
 {
   "name": "analysis",
   "scope": "conveyal",
+  "public": true,
   "version": 2,
   "builds": [
     {"src": "next.config.js", "use": "@now/next"},
-    {"src": "api/proxy", "use": "@now/node"}
+    {"src": "api/proxy/index.js", "use": "@now/node"}
   ],
   "routes": [
     {
