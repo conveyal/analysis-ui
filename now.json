@@ -1,12 +1,22 @@
 {
   "name": "analysis",
   "scope": "conveyal",
-  "alias": "next.conveyal.com",
   "version": 2,
-  "builds": [{"src": "next.config.js", "use": "@now/next"}],
+  "builds": [
+    {"src": "next.config.js", "use": "@now/next"},
+    {"src": "api/proxy", "use": "@now/node"}
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/proxy/index.js"
+    }
+  ],
+  "env": {
+    "API_URL": "@api-url"
+  },
   "build": {
     "env": {
-      "API_URL": "@api-url",
       "AUTH0_CLIENT_ID": "@auth0-client-id",
       "AUTH0_DOMAIN": "@auth0-domain",
       "GRAPHHOPPER_API_KEY": "@graphhopper-api-key",
