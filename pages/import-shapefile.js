@@ -24,10 +24,13 @@ function ImportShapefilePage(p) {
 ImportShapefilePage.getInitialProps = async ctx => {
   const store = ctx.reduxStore
   const {regionId, projectId} = ctx.query
-  await store.dispatch(loadRegion(regionId))
-  const project = store.dispatch(loadProject(projectId))
+  const [region, project] = await Promise.all([
+    store.dispatch(loadRegion(regionId)),
+    store.dispatch(loadProject(projectId))
+  ])
   return {
-    project
+    project,
+    region
   }
 }
 

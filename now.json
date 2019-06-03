@@ -3,6 +3,7 @@
   "scope": "conveyal",
   "public": true,
   "version": 2,
+  "regions": ["all"],
   "builds": [
     {"src": "next.config.js", "use": "@now/next"},
     {"src": "api/proxy/index.js", "use": "@now/node"}
@@ -14,15 +15,10 @@
     }
   ],
   "env": {
-    "API_URL": "@api-url"
-  },
-  "build": {
-    "env": {
-      "API_URL": "@api-url",
-      "AUTH0_CLIENT_ID": "@auth0-client-id",
-      "AUTH0_DOMAIN": "@auth0-domain",
-      "GRAPHHOPPER_API_KEY": "@graphhopper-api-key",
-      "MAPTILER_KEY": "@maptiler-key"
-    }
+    "API_URL": "@api-url",
+    "AUTH0_CLIENT_ID": "@auth0-client-id",
+    "AUTH0_DOMAIN": "@auth0-domain",
+    "GRAPHHOPPER_API_KEY": "@graphhopper-api-key",
+    "MAPTILER_KEY": "@maptiler-key"
   }
 }

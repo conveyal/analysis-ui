@@ -6,6 +6,7 @@ import {Provider} from 'react-redux'
 import {setQueryString} from 'lib/actions'
 import {isAuthenticated} from 'lib/auth'
 import {LOGO_URL} from 'lib/constants'
+import {timer} from 'lib/utils/metric'
 import getReduxStore from 'lib/store'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -16,11 +17,14 @@ import '../static/styles.css'
  */
 export default class AnalysisNextApp extends App {
   static async getInitialProps({Component, ctx}) {
+    const timeApp = timer('App.getInitialProps')
     // Provide the store to `getInitialProps` of pages
     ctx.reduxStore = getReduxStore()
 
+    const timeAuth = timer('auth')
     // TODO wrap components that need Auth
     if (!isAuthenticated(ctx)) return {}
+    timeAuth.end()
 
     // Run `getInitialProps`
     let initialProps = {}
@@ -41,10 +45,11 @@ export default class AnalysisNextApp extends App {
       asPath: ctx.asPath
     }
 
-    return {
-      pageProps,
-      initialReduxState: ctx.reduxStore.getState()
-    }
+    // Get the state
+    const initialReduxState = ctx.reduxStore.getState()
+
+    timeApp.end()
+    return {pageProps, initialReduxState}
   }
 
   constructor(props) {

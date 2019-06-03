@@ -8,10 +8,11 @@ ModificationEditor.getInitialProps = async ctx => {
   const store = ctx.reduxStore
 
   // TODO check if project and feed are already loaded
-  const project = await store.dispatch(loadProject(projectId))
-
-  // Always reload the modification to get recent changes
-  const modification = await store.dispatch(loadModification(modificationId))
+  const [project, modification] = await Promise.all([
+    store.dispatch(loadProject(projectId)),
+    // Always reload the modification to get recent changes
+    store.dispatch(loadModification(modificationId))
+  ])
 
   // Only gets unloaded feeds for modifications that have them
   const feeds = await store.dispatch(

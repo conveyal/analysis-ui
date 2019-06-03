@@ -1,87 +1,304 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > SelectRegion renders correctly 1`] = `
-<Container>
-  <Logo />
-  <p>
-    <Link
-      href="/region-create"
-      prefetch={true}
-    >
-      <a
-        className="btn btn-success btn-block"
-      >
-        <Icon
-          icon={
-            Object {
-              "icon": Array [],
-              "iconName": "plus",
-              "prefix": "fas",
-            }
-          }
-        />
-         
-        Set up a new region
-      </a>
-    </Link>
-  </p>
-  <p
-    className="text-center"
-  >
-    or go to an existing region
-  </p>
-  <div
-    className="list-group"
-  >
-    <Link
-      href={
+exports[`[SNAP] Component > SelectRegion 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <SelectRegion
+    regions={
+      Array [
         Object {
-          "pathname": "/projects",
-          "query": Object {
-            "regionId": "1",
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
           },
-        }
-      }
-      key="1"
-    >
-      <a
-        className="list-group-item"
-        title="Go to region"
-      >
-        <Icon
-          icon={
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "description": "Region description",
+          "name": "Mock Region",
+          "nonce": "12345",
+          "opportunityDatasets": Array [
             Object {
-              "icon": Array [],
-              "iconName": "map",
-              "prefix": "fas",
-            }
-          }
-        />
-         
-        Mock Region
-      </a>
-    </Link>
-  </div>
-  <p
-    className="text-center"
+              "_id": "Workers_total",
+              "name": "Workers total",
+              "sourceName": "lodes-data-2014",
+            },
+          ],
+          "statusCode": "DONE",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+        },
+      ]
+    }
   >
-    <Link
-      href="/logout"
-    >
-      <a>
-        <Icon
-          icon={
-            Object {
-              "icon": Array [],
-              "iconName": "sign-out-alt",
-              "prefix": "fas",
-            }
-          }
-        />
-         
-        Log out
-      </a>
-    </Link>
-  </p>
-</Container>
+    <Container>
+      <div
+        className="container"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3"
+          >
+            <Logo>
+              <div
+                className="page-header text-center"
+                style={
+                  Object {
+                    "borderBottom": "none",
+                  }
+                }
+              >
+                <h1
+                  style={
+                    Object {
+                      "backgroundImage": "url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png)",
+                      "backgroundRepeat": "no-repeat",
+                      "backgroundSize": "4rem",
+                      "display": "inline-block",
+                      "fontFamily": "'Gill Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+                      "fontWeight": 100,
+                      "letterSpacing": 0,
+                      "lineHeight": "4rem",
+                      "paddingLeft": "5.5rem",
+                    }
+                  }
+                >
+                  conveyal analysis
+                </h1>
+              </div>
+            </Logo>
+            <p>
+              <Link
+                href="/region-create"
+                prefetch={true}
+              >
+                <a
+                  className="btn btn-success btn-block"
+                  href="/region-create"
+                  onClick={[Function]}
+                >
+                  <Icon
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "plus",
+                        "prefix": "fas",
+                      }
+                    }
+                  >
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={true}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "plus",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                        data-icon="plus"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 undefined undefined"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </Icon>
+                   
+                  Set up a new region
+                </a>
+              </Link>
+            </p>
+            <p
+              className="text-center"
+            >
+              or go to an existing region
+            </p>
+            <div
+              className="list-group"
+            >
+              <Link
+                href={
+                  Object {
+                    "pathname": "/projects",
+                    "query": Object {
+                      "regionId": "1",
+                    },
+                  }
+                }
+                key="1"
+              >
+                <a
+                  className="list-group-item"
+                  href="/projects?regionId=1"
+                  onClick={[Function]}
+                  title="Go to region"
+                >
+                  <Icon
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "map",
+                        "prefix": "fas",
+                      }
+                    }
+                  >
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={true}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "map",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-map fa-w-NaN fa-fw "
+                        data-icon="map"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 undefined undefined"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </Icon>
+                   
+                  Mock Region
+                </a>
+              </Link>
+            </div>
+            <p
+              className="text-center"
+            >
+              <Link
+                href="/logout"
+              >
+                <a
+                  href="/logout"
+                  onClick={[Function]}
+                >
+                  <Icon
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "sign-out-alt",
+                        "prefix": "fas",
+                      }
+                    }
+                  >
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={true}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "sign-out-alt",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-sign-out-alt fa-w-NaN fa-fw "
+                        data-icon="sign-out-alt"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 undefined undefined"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </Icon>
+                   
+                  Log out
+                </a>
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </SelectRegion>
+</Provider>
 `;
