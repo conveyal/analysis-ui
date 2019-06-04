@@ -5,17 +5,13 @@ import {Provider} from 'react-redux'
 
 import {setQueryString} from 'lib/actions'
 import {isAuthenticated} from 'lib/auth'
-import {LOGO_URL} from 'lib/constants'
 import {timer} from 'lib/utils/metric'
 import getReduxStore from 'lib/store'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import '../static/styles.css'
 
 /**
  * Provides the redux store and provider for all pages.
  */
-export default class AnalysisNextApp extends App {
+export default class extends App {
   static async getInitialProps({Component, ctx}) {
     const timeApp = timer('App.getInitialProps')
     // Provide the store to `getInitialProps` of pages
@@ -62,8 +58,7 @@ export default class AnalysisNextApp extends App {
     return (
       <>
         <Head>
-          <title>Conveyal Analysis</title>
-          <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
+          <title key='title'>Conveyal Analysis</title>
         </Head>
         <Container>
           <Provider store={this.reduxStore}>
