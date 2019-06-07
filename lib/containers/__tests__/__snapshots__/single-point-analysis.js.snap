@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Containers > Single Point should render correctly 1`] = `
-<ConnectFunction>
+<Connect(SinglePointAnalysis)>
   <SinglePointAnalysis
     abortFetchTravelTimeSurface={[Function]}
     analysisBounds={
@@ -347,11 +347,11 @@ exports[`Containers > Single Point should render correctly 1`] = `
         </div>
       </div>
     </Sidebar>
-    <ConnectFunction>
+    <Connect(ErrorModal)>
       <ErrorModal
         clearError={[Function]}
       />
-    </ConnectFunction>
+    </Connect(ErrorModal)>
     <div
       className="Fullscreen analysisMode"
     >
@@ -643,130 +643,53 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Project
                     </label>
-                    <Select
-                      arrowRenderer={[Function]}
-                      autosize={true}
-                      backspaceRemoves={true}
-                      backspaceToRemoveMessage="Press backspace to remove {label}"
-                      clearAllText="Clear all"
-                      clearRenderer={[Function]}
-                      clearValueText="Clear value"
+                    <ReactSelect
                       clearable={false}
-                      closeOnSelect={true}
-                      deleteRemoves={true}
-                      delimiter=","
                       disabled={false}
-                      escapeClearsValue={true}
-                      filterOptions={[Function]}
-                      ignoreAccents={true}
-                      ignoreCase={true}
-                      inputProps={Object {}}
-                      isLoading={false}
-                      joinValues={false}
-                      labelKey="label"
-                      matchPos="any"
-                      matchProp="any"
-                      menuBuffer={0}
-                      menuRenderer={[Function]}
-                      multi={false}
-                      noResultsText="No results found"
-                      onBlurResetsInput={true}
+                      getOptionLabel={[Function]}
+                      getOptionValue={[Function]}
                       onChange={[Function]}
-                      onCloseResetsInput={true}
-                      onSelectResetsInput={true}
-                      openOnClick={true}
-                      optionComponent={[Function]}
                       options={
                         Array [
                           Object {
-                            "label": "Mock Project",
-                            "value": "1",
+                            "_id": "1",
+                            "accessGroup": "accessGroupName",
+                            "bundleId": "1",
+                            "createdAt": "2017-11-08T12:30:50.133Z",
+                            "createdBy": "person@gmail.com",
+                            "name": "Mock Project",
+                            "nonce": "12345",
+                            "regionId": "1",
+                            "updatedAt": "2017-11-08T12:31:19.602Z",
+                            "updatedBy": "person@gmail.com",
+                            "variants": Array [
+                              "Default",
+                            ],
                           },
                         ]
                       }
-                      pageSize={5}
-                      placeholder="Select..."
-                      removeSelected={true}
-                      required={false}
-                      rtl={false}
-                      scrollMenuIntoView={true}
-                      searchable={true}
-                      simpleValue={false}
-                      tabSelectsValue={true}
-                      trimFilter={true}
-                      value="1"
-                      valueComponent={[Function]}
-                      valueKey="value"
+                      value={
+                        Object {
+                          "_id": "1",
+                          "accessGroup": "accessGroupName",
+                          "bundleId": "1",
+                          "createdAt": "2017-11-08T12:30:50.133Z",
+                          "createdBy": "person@gmail.com",
+                          "name": "Mock Project",
+                          "nonce": "12345",
+                          "regionId": "1",
+                          "updatedAt": "2017-11-08T12:31:19.602Z",
+                          "updatedBy": "person@gmail.com",
+                          "variants": Array [
+                            "Default",
+                          ],
+                        }
+                      }
                     >
                       <div
-                        className="Select has-value is-searchable Select--single"
-                      >
-                        <div
-                          className="Select-control"
-                          onKeyDown={[Function]}
-                          onMouseDown={[Function]}
-                          onTouchEnd={[Function]}
-                          onTouchMove={[Function]}
-                          onTouchStart={[Function]}
-                        >
-                          <div
-                            className="Select-multi-value-wrapper"
-                            id="react-select-2--value"
-                          >
-                            <Value
-                              disabled={false}
-                              id="react-select-2--value-item"
-                              instancePrefix="react-select-2-"
-                              onClick={null}
-                              placeholder="Select..."
-                              value={
-                                Object {
-                                  "label": "Mock Project",
-                                  "value": "1",
-                                }
-                              }
-                            >
-                              <div
-                                className="Select-value"
-                              >
-                                <span
-                                  aria-selected="true"
-                                  className="Select-value-label"
-                                  id="react-select-2--value-item"
-                                  role="option"
-                                >
-                                  Mock Project
-                                </span>
-                              </div>
-                            </Value>
-                            <AutosizeInput
-                              aria-activedescendant="react-select-2--value"
-                              aria-expanded="false"
-                              aria-haspopup="false"
-                              aria-owns=""
-                              className="Select-input"
-                              injectStyles={true}
-                              minWidth="5"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              required={false}
-                              role="combobox"
-                              value=""
-                            />
-                          </div>
-                          <span
-                            className="Select-arrow-zone"
-                            onMouseDown={[Function]}
-                          >
-                            <span
-                              className="Select-arrow"
-                              onMouseDown={[Function]}
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    </Select>
+                        className="ReactSelectMock"
+                      />
+                    </ReactSelect>
                   </div>
                 </Group>
                 <Group
@@ -781,39 +704,10 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Scenario
                     </label>
-                    <Select
-                      arrowRenderer={[Function]}
-                      autosize={true}
-                      backspaceRemoves={true}
-                      backspaceToRemoveMessage="Press backspace to remove {label}"
-                      clearAllText="Clear all"
-                      clearRenderer={[Function]}
-                      clearValueText="Clear value"
+                    <ReactSelect
                       clearable={false}
-                      closeOnSelect={true}
-                      deleteRemoves={true}
-                      delimiter=","
                       disabled={false}
-                      escapeClearsValue={true}
-                      filterOptions={[Function]}
-                      ignoreAccents={true}
-                      ignoreCase={true}
-                      inputProps={Object {}}
-                      isLoading={false}
-                      joinValues={false}
-                      labelKey="label"
-                      matchPos="any"
-                      matchProp="any"
-                      menuBuffer={0}
-                      menuRenderer={[Function]}
-                      multi={false}
-                      noResultsText="No results found"
-                      onBlurResetsInput={true}
                       onChange={[Function]}
-                      onCloseResetsInput={true}
-                      onSelectResetsInput={true}
-                      openOnClick={true}
-                      optionComponent={[Function]}
                       options={
                         Array [
                           Object {
@@ -826,89 +720,17 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           },
                         ]
                       }
-                      pageSize={5}
-                      placeholder="Select..."
-                      removeSelected={true}
-                      required={false}
-                      rtl={false}
-                      scrollMenuIntoView={true}
-                      searchable={true}
-                      simpleValue={false}
-                      tabSelectsValue={true}
-                      trimFilter={true}
-                      value={0}
-                      valueComponent={[Function]}
-                      valueKey="value"
+                      value={
+                        Object {
+                          "label": "Default",
+                          "value": 0,
+                        }
+                      }
                     >
                       <div
-                        className="Select has-value is-searchable Select--single"
-                      >
-                        <div
-                          className="Select-control"
-                          onKeyDown={[Function]}
-                          onMouseDown={[Function]}
-                          onTouchEnd={[Function]}
-                          onTouchMove={[Function]}
-                          onTouchStart={[Function]}
-                        >
-                          <div
-                            className="Select-multi-value-wrapper"
-                            id="react-select-3--value"
-                          >
-                            <Value
-                              disabled={false}
-                              id="react-select-3--value-item"
-                              instancePrefix="react-select-3-"
-                              onClick={null}
-                              placeholder="Select..."
-                              value={
-                                Object {
-                                  "label": "Default",
-                                  "value": 0,
-                                }
-                              }
-                            >
-                              <div
-                                className="Select-value"
-                              >
-                                <span
-                                  aria-selected="true"
-                                  className="Select-value-label"
-                                  id="react-select-3--value-item"
-                                  role="option"
-                                >
-                                  Default
-                                </span>
-                              </div>
-                            </Value>
-                            <AutosizeInput
-                              aria-activedescendant="react-select-3--value"
-                              aria-expanded="false"
-                              aria-haspopup="false"
-                              aria-owns=""
-                              className="Select-input"
-                              injectStyles={true}
-                              minWidth="5"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              required={false}
-                              role="combobox"
-                              value=""
-                            />
-                          </div>
-                          <span
-                            className="Select-arrow-zone"
-                            onMouseDown={[Function]}
-                          >
-                            <span
-                              className="Select-arrow"
-                              onMouseDown={[Function]}
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    </Select>
+                        className="ReactSelectMock"
+                      />
+                    </ReactSelect>
                   </div>
                 </Group>
               </div>
@@ -927,109 +749,37 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Comparison Project
                     </label>
-                    <Select
-                      arrowRenderer={[Function]}
-                      autosize={true}
-                      backspaceRemoves={true}
-                      backspaceToRemoveMessage="Press backspace to remove {label}"
-                      clearAllText="Clear all"
-                      clearRenderer={[Function]}
-                      clearValueText="Clear value"
-                      clearable={true}
-                      closeOnSelect={true}
-                      deleteRemoves={true}
-                      delimiter=","
+                    <ReactSelect
                       disabled={false}
-                      escapeClearsValue={true}
-                      filterOptions={[Function]}
-                      ignoreAccents={true}
-                      ignoreCase={true}
-                      inputProps={Object {}}
-                      isLoading={false}
-                      joinValues={false}
-                      labelKey="label"
-                      matchPos="any"
-                      matchProp="any"
-                      menuBuffer={0}
-                      menuRenderer={[Function]}
-                      multi={false}
+                      getOptionLabel={[Function]}
+                      getOptionValue={[Function]}
                       name="Project"
-                      noResultsText="No results found"
-                      onBlurResetsInput={true}
                       onChange={[Function]}
-                      onCloseResetsInput={true}
-                      onSelectResetsInput={true}
-                      openOnClick={true}
-                      optionComponent={[Function]}
                       options={
                         Array [
                           Object {
-                            "label": "Mock Project",
-                            "value": "1",
+                            "_id": "1",
+                            "accessGroup": "accessGroupName",
+                            "bundleId": "1",
+                            "createdAt": "2017-11-08T12:30:50.133Z",
+                            "createdBy": "person@gmail.com",
+                            "name": "Mock Project",
+                            "nonce": "12345",
+                            "regionId": "1",
+                            "updatedAt": "2017-11-08T12:31:19.602Z",
+                            "updatedBy": "person@gmail.com",
+                            "variants": Array [
+                              "Default",
+                            ],
                           },
                         ]
                       }
-                      pageSize={5}
                       placeholder="Select comparison project…"
-                      removeSelected={true}
-                      required={false}
-                      rtl={false}
-                      scrollMenuIntoView={true}
-                      searchable={true}
-                      simpleValue={false}
-                      tabSelectsValue={true}
-                      trimFilter={true}
-                      valueComponent={[Function]}
-                      valueKey="value"
                     >
                       <div
-                        className="Select is-clearable is-searchable Select--single"
-                      >
-                        <div
-                          className="Select-control"
-                          onKeyDown={[Function]}
-                          onMouseDown={[Function]}
-                          onTouchEnd={[Function]}
-                          onTouchMove={[Function]}
-                          onTouchStart={[Function]}
-                        >
-                          <div
-                            className="Select-multi-value-wrapper"
-                            id="react-select-4--value"
-                          >
-                            <div
-                              className="Select-placeholder"
-                            >
-                              Select comparison project…
-                            </div>
-                            <AutosizeInput
-                              aria-activedescendant="react-select-4--value"
-                              aria-expanded="false"
-                              aria-haspopup="false"
-                              aria-owns=""
-                              className="Select-input"
-                              injectStyles={true}
-                              minWidth="5"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              required={false}
-                              role="combobox"
-                              value=""
-                            />
-                          </div>
-                          <span
-                            className="Select-arrow-zone"
-                            onMouseDown={[Function]}
-                          >
-                            <span
-                              className="Select-arrow"
-                              onMouseDown={[Function]}
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    </Select>
+                        className="ReactSelectMock"
+                      />
+                    </ReactSelect>
                   </div>
                 </Group>
                 <Group
@@ -1044,40 +794,11 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Comparison Scenario
                     </label>
-                    <Select
-                      arrowRenderer={[Function]}
-                      autosize={true}
-                      backspaceRemoves={true}
-                      backspaceToRemoveMessage="Press backspace to remove {label}"
-                      clearAllText="Clear all"
-                      clearRenderer={[Function]}
-                      clearValueText="Clear value"
+                    <ReactSelect
                       clearable={false}
-                      closeOnSelect={true}
-                      deleteRemoves={true}
-                      delimiter=","
                       disabled={true}
-                      escapeClearsValue={true}
-                      filterOptions={[Function]}
-                      ignoreAccents={true}
-                      ignoreCase={true}
-                      inputProps={Object {}}
-                      isLoading={false}
-                      joinValues={false}
-                      labelKey="label"
-                      matchPos="any"
-                      matchProp="any"
-                      menuBuffer={0}
-                      menuRenderer={[Function]}
-                      multi={false}
                       name="Scenario"
-                      noResultsText="No results found"
-                      onBlurResetsInput={true}
                       onChange={[Function]}
-                      onCloseResetsInput={true}
-                      onSelectResetsInput={true}
-                      openOnClick={true}
-                      optionComponent={[Function]}
                       options={
                         Array [
                           Object {
@@ -1086,70 +807,12 @@ exports[`Containers > Single Point should render correctly 1`] = `
                           },
                         ]
                       }
-                      pageSize={5}
                       placeholder="Select comparison scenario…"
-                      removeSelected={true}
-                      required={false}
-                      rtl={false}
-                      scrollMenuIntoView={true}
-                      searchable={true}
-                      simpleValue={false}
-                      tabSelectsValue={true}
-                      trimFilter={true}
-                      valueComponent={[Function]}
-                      valueKey="value"
                     >
                       <div
-                        className="Select is-disabled is-searchable Select--single"
-                      >
-                        <div
-                          className="Select-control"
-                          onKeyDown={[Function]}
-                          onMouseDown={[Function]}
-                          onTouchEnd={[Function]}
-                          onTouchMove={[Function]}
-                          onTouchStart={[Function]}
-                        >
-                          <div
-                            className="Select-multi-value-wrapper"
-                            id="react-select-5--value"
-                          >
-                            <div
-                              className="Select-placeholder"
-                            >
-                              Select comparison scenario…
-                            </div>
-                            <div
-                              aria-activedescendant="react-select-5--value"
-                              aria-disabled="true"
-                              aria-expanded={false}
-                              aria-owns=""
-                              className="Select-input"
-                              onBlur={[Function]}
-                              onFocus={[Function]}
-                              role="combobox"
-                              style={
-                                Object {
-                                  "border": 0,
-                                  "display": "inline-block",
-                                  "width": 1,
-                                }
-                              }
-                              tabIndex={0}
-                            />
-                          </div>
-                          <span
-                            className="Select-arrow-zone"
-                            onMouseDown={[Function]}
-                          >
-                            <span
-                              className="Select-arrow"
-                              onMouseDown={[Function]}
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    </Select>
+                        className="ReactSelectMock"
+                      />
+                    </ReactSelect>
                   </div>
                 </Group>
               </div>
@@ -1168,7 +831,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Opportunity Dataset
                     </label>
-                    <ConnectFunction
+                    <Connect(OpportunityDatasetSelector)
                       regionId="1"
                     >
                       <OpportunityDatasetSelector
@@ -1200,114 +863,30 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         uploadOpportunityDataset={[Function]}
                         uploadStatuses={Array []}
                       >
-                        <Select
-                          arrowRenderer={[Function]}
-                          autosize={true}
-                          backspaceRemoves={true}
-                          backspaceToRemoveMessage="Press backspace to remove {label}"
-                          clearAllText="Clear all"
-                          clearRenderer={[Function]}
-                          clearValueText="Clear value"
-                          clearable={true}
-                          closeOnSelect={true}
-                          deleteRemoves={true}
-                          delimiter=","
-                          disabled={false}
-                          escapeClearsValue={true}
-                          filterOptions={[Function]}
-                          ignoreAccents={true}
-                          ignoreCase={true}
-                          inputProps={Object {}}
-                          isLoading={false}
-                          joinValues={false}
-                          labelKey="label"
-                          matchPos="any"
-                          matchProp="any"
-                          menuBuffer={0}
-                          menuRenderer={[Function]}
-                          multi={false}
-                          noResultsText="No results found"
-                          onBlurResetsInput={true}
+                        <ReactSelect
+                          getOptionLabel={[Function]}
+                          getOptionValue={[Function]}
                           onChange={[Function]}
-                          onCloseResetsInput={true}
-                          onSelectResetsInput={true}
-                          openOnClick={true}
-                          optionComponent={[Function]}
                           options={
                             Array [
                               Object {
-                                "label": "lodes-data-2014: Workers total",
-                                "value": "Workers_total",
+                                "_id": "Workers_total",
+                                "name": "Workers total",
+                                "sourceName": "lodes-data-2014",
                               },
                             ]
                           }
-                          pageSize={5}
-                          placeholder="Select..."
-                          removeSelected={true}
-                          required={false}
-                          rtl={false}
-                          scrollMenuIntoView={true}
-                          searchable={true}
-                          simpleValue={false}
-                          tabSelectsValue={true}
-                          trimFilter={true}
-                          valueComponent={[Function]}
-                          valueKey="value"
                         >
                           <div
-                            className="Select is-clearable is-searchable Select--single"
-                          >
-                            <div
-                              className="Select-control"
-                              onKeyDown={[Function]}
-                              onMouseDown={[Function]}
-                              onTouchEnd={[Function]}
-                              onTouchMove={[Function]}
-                              onTouchStart={[Function]}
-                            >
-                              <div
-                                className="Select-multi-value-wrapper"
-                                id="react-select-6--value"
-                              >
-                                <div
-                                  className="Select-placeholder"
-                                >
-                                  Select...
-                                </div>
-                                <AutosizeInput
-                                  aria-activedescendant="react-select-6--value"
-                                  aria-expanded="false"
-                                  aria-haspopup="false"
-                                  aria-owns=""
-                                  className="Select-input"
-                                  injectStyles={true}
-                                  minWidth="5"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onFocus={[Function]}
-                                  required={false}
-                                  role="combobox"
-                                  value=""
-                                />
-                              </div>
-                              <span
-                                className="Select-arrow-zone"
-                                onMouseDown={[Function]}
-                              >
-                                <span
-                                  className="Select-arrow"
-                                  onMouseDown={[Function]}
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </Select>
+                            className="ReactSelectMock"
+                          />
+                        </ReactSelect>
                       </OpportunityDatasetSelector>
-                    </ConnectFunction>
+                    </Connect(OpportunityDatasetSelector)>
                   </div>
                 </Group>
               </div>
-              <ConnectFunction
+              <Connect(StackedPercentileSelector)
                 disabled={false}
                 stale={true}
               >
@@ -1325,8 +904,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   setIsochroneCutoff={[Function]}
                   stale={true}
                 />
-              </ConnectFunction>
-              <ConnectFunction
+              </Connect(StackedPercentileSelector)>
+              <Connect(BookmarkChooser)
                 disabled={false}
               >
                 <BookmarkChooser
@@ -1394,101 +973,18 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         <div
                           className="col-xs-6"
                         >
-                          <Select
-                            arrowRenderer={[Function]}
-                            autosize={true}
-                            backspaceRemoves={true}
-                            backspaceToRemoveMessage="Press backspace to remove {label}"
-                            clearAllText="Clear all"
-                            clearRenderer={[Function]}
-                            clearValueText="Clear value"
+                          <ReactSelect
                             clearable={false}
-                            closeOnSelect={true}
-                            deleteRemoves={true}
-                            delimiter=","
                             disabled={false}
-                            escapeClearsValue={true}
-                            filterOptions={[Function]}
-                            ignoreAccents={true}
-                            ignoreCase={true}
-                            inputProps={Object {}}
-                            isLoading={false}
-                            joinValues={false}
-                            labelKey="label"
-                            matchPos="any"
-                            matchProp="any"
-                            menuBuffer={0}
-                            menuRenderer={[Function]}
-                            multi={false}
-                            noResultsText="No results found"
-                            onBlurResetsInput={true}
+                            getOptionLabel={[Function]}
+                            getOptionValue={[Function]}
                             onChange={[Function]}
-                            onCloseResetsInput={true}
-                            onSelectResetsInput={true}
-                            openOnClick={true}
-                            optionComponent={[Function]}
                             options={Array []}
-                            pageSize={5}
-                            placeholder="Select..."
-                            removeSelected={true}
-                            required={false}
-                            rtl={false}
-                            scrollMenuIntoView={true}
-                            searchable={true}
-                            simpleValue={false}
-                            tabSelectsValue={true}
-                            trimFilter={true}
-                            valueComponent={[Function]}
-                            valueKey="value"
                           >
                             <div
-                              className="Select is-searchable Select--single"
-                            >
-                              <div
-                                className="Select-control"
-                                onKeyDown={[Function]}
-                                onMouseDown={[Function]}
-                                onTouchEnd={[Function]}
-                                onTouchMove={[Function]}
-                                onTouchStart={[Function]}
-                              >
-                                <div
-                                  className="Select-multi-value-wrapper"
-                                  id="react-select-7--value"
-                                >
-                                  <div
-                                    className="Select-placeholder"
-                                  >
-                                    Select...
-                                  </div>
-                                  <AutosizeInput
-                                    aria-activedescendant="react-select-7--value"
-                                    aria-expanded="false"
-                                    aria-haspopup="false"
-                                    aria-owns=""
-                                    className="Select-input"
-                                    injectStyles={true}
-                                    minWidth="5"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    required={false}
-                                    role="combobox"
-                                    value=""
-                                  />
-                                </div>
-                                <span
-                                  className="Select-arrow-zone"
-                                  onMouseDown={[Function]}
-                                >
-                                  <span
-                                    className="Select-arrow"
-                                    onMouseDown={[Function]}
-                                  />
-                                </span>
-                              </div>
-                            </div>
-                          </Select>
+                              className="ReactSelectMock"
+                            />
+                          </ReactSelect>
                         </div>
                         <div
                           className="col-xs-6"
@@ -1566,7 +1062,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     </div>
                   </Group>
                 </BookmarkChooser>
-              </ConnectFunction>
+              </Connect(BookmarkChooser)>
               <ProfileRequestEditor
                 disabled={false}
                 profileRequest={
@@ -2982,7 +2478,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   <div
                     className="col-xs-12"
                   >
-                    <ConnectFunction>
+                    <Connect(SelectR5Version)>
                       <SelectR5Version
                         currentVersion="v4.5.1"
                         setCurrentR5Version={[Function]}
@@ -3000,12 +2496,9 @@ exports[`Containers > Single Point should render correctly 1`] = `
                               >
                                 Routing engine
                               </label>
-                              <CreatableSelect
+                              <Creatable
                                 clearable={false}
-                                filterOptions={[Function]}
-                                isOptionUnique={[Function]}
                                 isValidNewOption={[Function]}
-                                menuRenderer={[Function]}
                                 newOptionCreator={[Function]}
                                 onChange={[Function]}
                                 options={
@@ -3017,149 +2510,22 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                   ]
                                 }
                                 promptTextCreator={[Function]}
-                                shouldKeyDownEventCreateNewOption={[Function]}
-                                showNewOptionAtTop={true}
-                                value="v4.5.1"
-                              >
-                                <Select
-                                  allowCreate={true}
-                                  arrowRenderer={[Function]}
-                                  autosize={true}
-                                  backspaceRemoves={true}
-                                  backspaceToRemoveMessage="Press backspace to remove {label}"
-                                  clearAllText="Clear all"
-                                  clearRenderer={[Function]}
-                                  clearValueText="Clear value"
-                                  clearable={false}
-                                  closeOnSelect={true}
-                                  deleteRemoves={true}
-                                  delimiter=","
-                                  disabled={false}
-                                  escapeClearsValue={true}
-                                  filterOptions={[Function]}
-                                  ignoreAccents={true}
-                                  ignoreCase={true}
-                                  inputProps={Object {}}
-                                  isLoading={false}
-                                  isOptionUnique={[Function]}
-                                  isValidNewOption={[Function]}
-                                  joinValues={false}
-                                  labelKey="label"
-                                  matchPos="any"
-                                  matchProp="any"
-                                  menuBuffer={0}
-                                  menuRenderer={[Function]}
-                                  multi={false}
-                                  newOptionCreator={[Function]}
-                                  noResultsText="No results found"
-                                  onBlurResetsInput={true}
-                                  onChange={[Function]}
-                                  onCloseResetsInput={true}
-                                  onInputChange={[Function]}
-                                  onInputKeyDown={[Function]}
-                                  onSelectResetsInput={true}
-                                  openOnClick={true}
-                                  optionComponent={[Function]}
-                                  options={
-                                    Array [
-                                      Object {
-                                        "label": "v4.5.1 (recommended)",
-                                        "value": "v4.5.1",
-                                      },
-                                    ]
+                                value={
+                                  Object {
+                                    "label": "v4.5.1 (recommended)",
+                                    "value": "v4.5.1",
                                   }
-                                  pageSize={5}
-                                  placeholder="Select..."
-                                  promptTextCreator={[Function]}
-                                  removeSelected={true}
-                                  required={false}
-                                  rtl={false}
-                                  scrollMenuIntoView={true}
-                                  searchable={true}
-                                  shouldKeyDownEventCreateNewOption={[Function]}
-                                  showNewOptionAtTop={true}
-                                  simpleValue={false}
-                                  tabSelectsValue={true}
-                                  trimFilter={true}
-                                  value="v4.5.1"
-                                  valueComponent={[Function]}
-                                  valueKey="value"
-                                >
-                                  <div
-                                    className="Select has-value is-searchable Select--single"
-                                  >
-                                    <div
-                                      className="Select-control"
-                                      onKeyDown={[Function]}
-                                      onMouseDown={[Function]}
-                                      onTouchEnd={[Function]}
-                                      onTouchMove={[Function]}
-                                      onTouchStart={[Function]}
-                                    >
-                                      <div
-                                        className="Select-multi-value-wrapper"
-                                        id="react-select-8--value"
-                                      >
-                                        <Value
-                                          disabled={false}
-                                          id="react-select-8--value-item"
-                                          instancePrefix="react-select-8-"
-                                          onClick={null}
-                                          placeholder="Select..."
-                                          value={
-                                            Object {
-                                              "label": "v4.5.1 (recommended)",
-                                              "value": "v4.5.1",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            className="Select-value"
-                                          >
-                                            <span
-                                              aria-selected="true"
-                                              className="Select-value-label"
-                                              id="react-select-8--value-item"
-                                              role="option"
-                                            >
-                                              v4.5.1 (recommended)
-                                            </span>
-                                          </div>
-                                        </Value>
-                                        <AutosizeInput
-                                          aria-activedescendant="react-select-8--value"
-                                          aria-expanded="false"
-                                          aria-haspopup="false"
-                                          aria-owns=""
-                                          className="Select-input"
-                                          injectStyles={true}
-                                          minWidth="5"
-                                          onBlur={[Function]}
-                                          onChange={[Function]}
-                                          onFocus={[Function]}
-                                          required={false}
-                                          role="combobox"
-                                          value=""
-                                        />
-                                      </div>
-                                      <span
-                                        className="Select-arrow-zone"
-                                        onMouseDown={[Function]}
-                                      >
-                                        <span
-                                          className="Select-arrow"
-                                          onMouseDown={[Function]}
-                                        />
-                                      </span>
-                                    </div>
-                                  </div>
-                                </Select>
-                              </CreatableSelect>
+                                }
+                              >
+                                <div
+                                  className="ReactSelect/Creatable"
+                                />
+                              </Creatable>
                             </div>
                           </Group>
                         </div>
                       </SelectR5Version>
-                    </ConnectFunction>
+                    </Connect(SelectR5Version)>
                   </div>
                 </div>
               </ProfileRequestEditor>
@@ -3404,5 +2770,5 @@ exports[`Containers > Single Point should render correctly 1`] = `
       </Dock>
     </div>
   </SinglePointAnalysis>
-</ConnectFunction>
+</Connect(SinglePointAnalysis)>
 `;

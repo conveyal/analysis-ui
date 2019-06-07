@@ -7,65 +7,135 @@ exports[`Component > SelectPatterns renders correctly 1`] = `
   >
     Select patterns
   </label>
-  <Select
-    arrowRenderer={[Function]}
-    autosize={true}
-    backspaceRemoves={true}
-    backspaceToRemoveMessage="Press backspace to remove {label}"
-    clearAllText="Clear all"
-    clearRenderer={[Function]}
-    clearValueText="Clear value"
-    clearable={true}
-    closeOnSelect={true}
-    deleteRemoves={true}
-    delimiter=","
-    disabled={false}
-    escapeClearsValue={true}
-    filterOptions={[Function]}
-    ignoreAccents={true}
-    ignoreCase={true}
-    inputProps={Object {}}
-    isLoading={false}
-    joinValues={false}
-    labelKey="label"
-    matchPos="any"
-    matchProp="any"
-    menuBuffer={0}
-    menuRenderer={[Function]}
+  <ReactSelect
+    getOptionLabel={[Function]}
+    getOptionValue={[Function]}
     multi={true}
     name="Patterns"
-    noResultsText="No results found"
-    onBlurResetsInput={true}
     onChange={[Function]}
-    onCloseResetsInput={true}
-    onSelectResetsInput={true}
-    openOnClick={true}
-    optionComponent={[Function]}
     options={
       Array [
         Object {
-          "label": "Mock Pattern",
-          "value": "mock-pattern-id",
+          "geometry": Object {
+            "coordinates": Array [
+              Array [
+                -122.0246,
+                36.9707,
+              ],
+              Array [
+                -122.0279,
+                37.049,
+              ],
+              Array [
+                -121.9799,
+                37.2299,
+              ],
+              Array [
+                -121.9445,
+                37.324,
+              ],
+              Array [
+                -121.936,
+                37.353,
+              ],
+              Array [
+                -121.924,
+                37.365,
+              ],
+            ],
+            "type": "LineString",
+          },
+          "name": "Mock Pattern",
+          "pattern_id": "mock-pattern-id",
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          ],
+          "trips": Array [
+            Object {
+              "duration": 1234,
+              "end_time": 13579,
+              "start_time": 12345,
+              "trip_headsign": "To Downtown",
+              "trip_id": "abcd",
+              "trip_short_name": "The Express",
+            },
+          ],
         },
       ]
     }
-    pageSize={5}
     placeholder="Select patterns"
-    removeSelected={true}
-    required={false}
-    rtl={false}
-    scrollMenuIntoView={true}
-    searchable={true}
-    simpleValue={false}
-    tabSelectsValue={true}
-    trimFilter={true}
     value={
       Array [
-        "mock-pattern-id",
+        Object {
+          "geometry": Object {
+            "coordinates": Array [
+              Array [
+                -122.0246,
+                36.9707,
+              ],
+              Array [
+                -122.0279,
+                37.049,
+              ],
+              Array [
+                -121.9799,
+                37.2299,
+              ],
+              Array [
+                -121.9445,
+                37.324,
+              ],
+              Array [
+                -121.936,
+                37.353,
+              ],
+              Array [
+                -121.924,
+                37.365,
+              ],
+            ],
+            "type": "LineString",
+          },
+          "name": "Mock Pattern",
+          "pattern_id": "mock-pattern-id",
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          ],
+          "trips": Array [
+            Object {
+              "duration": 1234,
+              "end_time": 13579,
+              "start_time": 12345,
+              "trip_headsign": "To Downtown",
+              "trip_id": "abcd",
+              "trip_short_name": "The Express",
+            },
+          ],
+        },
       ]
     }
-    valueComponent={[Function]}
-    valueKey="value"
   />
 </Group>
 `;

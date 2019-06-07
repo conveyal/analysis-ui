@@ -13,7 +13,7 @@ exports[`Containers > Bookmark Chooser should render correctly 1`] = `
     }
   }
 >
-  <ConnectFunction>
+  <Connect(BookmarkChooser)>
     <BookmarkChooser
       bookmarkData={
         Object {
@@ -78,101 +78,17 @@ exports[`Containers > Bookmark Chooser should render correctly 1`] = `
             <div
               className="col-xs-6"
             >
-              <Select
-                arrowRenderer={[Function]}
-                autosize={true}
-                backspaceRemoves={true}
-                backspaceToRemoveMessage="Press backspace to remove {label}"
-                clearAllText="Clear all"
-                clearRenderer={[Function]}
-                clearValueText="Clear value"
+              <ReactSelect
                 clearable={false}
-                closeOnSelect={true}
-                deleteRemoves={true}
-                delimiter=","
-                disabled={false}
-                escapeClearsValue={true}
-                filterOptions={[Function]}
-                ignoreAccents={true}
-                ignoreCase={true}
-                inputProps={Object {}}
-                isLoading={false}
-                joinValues={false}
-                labelKey="label"
-                matchPos="any"
-                matchProp="any"
-                menuBuffer={0}
-                menuRenderer={[Function]}
-                multi={false}
-                noResultsText="No results found"
-                onBlurResetsInput={true}
+                getOptionLabel={[Function]}
+                getOptionValue={[Function]}
                 onChange={[Function]}
-                onCloseResetsInput={true}
-                onSelectResetsInput={true}
-                openOnClick={true}
-                optionComponent={[Function]}
                 options={Array []}
-                pageSize={5}
-                placeholder="Select..."
-                removeSelected={true}
-                required={false}
-                rtl={false}
-                scrollMenuIntoView={true}
-                searchable={true}
-                simpleValue={false}
-                tabSelectsValue={true}
-                trimFilter={true}
-                valueComponent={[Function]}
-                valueKey="value"
               >
                 <div
-                  className="Select is-searchable Select--single"
-                >
-                  <div
-                    className="Select-control"
-                    onKeyDown={[Function]}
-                    onMouseDown={[Function]}
-                    onTouchEnd={[Function]}
-                    onTouchMove={[Function]}
-                    onTouchStart={[Function]}
-                  >
-                    <div
-                      className="Select-multi-value-wrapper"
-                      id="react-select-2--value"
-                    >
-                      <div
-                        className="Select-placeholder"
-                      >
-                        Select...
-                      </div>
-                      <AutosizeInput
-                        aria-activedescendant="react-select-2--value"
-                        aria-expanded="false"
-                        aria-haspopup="false"
-                        aria-owns=""
-                        className="Select-input"
-                        injectStyles={true}
-                        minWidth="5"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        required={false}
-                        role="combobox"
-                        value=""
-                      />
-                    </div>
-                    <span
-                      className="Select-arrow-zone"
-                      onMouseDown={[Function]}
-                    >
-                      <span
-                        className="Select-arrow"
-                        onMouseDown={[Function]}
-                      />
-                    </span>
-                  </div>
-                </div>
-              </Select>
+                  className="ReactSelectMock"
+                />
+              </ReactSelect>
             </div>
             <div
               className="col-xs-6"
@@ -248,6 +164,6 @@ exports[`Containers > Bookmark Chooser should render correctly 1`] = `
         </div>
       </Group>
     </BookmarkChooser>
-  </ConnectFunction>
+  </Connect(BookmarkChooser)>
 </Provider>
 `;

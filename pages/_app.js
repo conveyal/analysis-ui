@@ -50,7 +50,12 @@ export default class extends App {
 
   constructor(props) {
     super(props)
+    this.timer = timer('App.componentDidMount')
     this.reduxStore = getReduxStore(props.initialReduxState)
+  }
+
+  componentDidMount() {
+    this.timer.end()
   }
 
   render() {

@@ -3,25 +3,29 @@ import React from 'react'
 
 import {LOGO_URL} from 'lib/constants'
 
-const CDN = () => (
-  <>
-    <link
-      rel='stylesheet'
-      href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
-    />
-    <link
-      rel='stylesheet'
-      href='https://unpkg.com/leaflet@1.5.1/dist/leaflet.css'
-    />
-  </>
-)
-
-const LocalStylesheets = () => (
-  <>
-    <link rel='stylesheet' href='/static/bootstrap.min.css' />
-    <link rel='stylesheet' href='/static/leaflet/leaflet.css' />
-  </>
-)
+const Stylesheets = () =>
+  process.env.NODE_ENV === 'production' ? (
+    <>
+      <link
+        rel='stylesheet'
+        href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+      />
+      <link
+        rel='stylesheet'
+        href='https://unpkg.com/leaflet@1.5.1/dist/leaflet.css'
+      />
+      <link
+        rel='stylesheet'
+        href='https://use.fontawesome.com/releases/v5.9.0/css/svg-with-js.css'
+      />
+    </>
+  ) : (
+    <>
+      <link rel='stylesheet' href='/static/bootstrap.min.css' />
+      <link rel='stylesheet' href='/static/leaflet/leaflet.css' />
+      <link rel='stylesheet' href='/static/fontawesome.css' />
+    </>
+  )
 
 export default class extends Document {
   render() {
@@ -29,13 +33,8 @@ export default class extends Document {
       <Html>
         <Head>
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
-          {process.env.NODE_ENV === 'production' ? (
-            <CDN />
-          ) : (
-            <LocalStylesheets />
-          )}
+          <Stylesheets />
           <link rel='stylesheet' href='/static/react-datetime.css' />
-          <link rel='stylesheet' href='/static/fontawesome.css' />
           <link rel='stylesheet' href='/static/styles.css' />
         </Head>
         <body>

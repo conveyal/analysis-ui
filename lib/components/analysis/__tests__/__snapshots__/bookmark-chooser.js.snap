@@ -10,59 +10,64 @@ exports[`analysis > bookmark renders correctly 1`] = `
     <div
       className="col-xs-6"
     >
-      <Select
-        arrowRenderer={[Function]}
-        autosize={true}
-        backspaceRemoves={true}
-        backspaceToRemoveMessage="Press backspace to remove {label}"
-        clearAllText="Clear all"
-        clearRenderer={[Function]}
-        clearValueText="Clear value"
+      <ReactSelect
         clearable={false}
-        closeOnSelect={true}
-        deleteRemoves={true}
-        delimiter=","
-        disabled={false}
-        escapeClearsValue={true}
-        filterOptions={[Function]}
-        ignoreAccents={true}
-        ignoreCase={true}
-        inputProps={Object {}}
-        isLoading={false}
-        joinValues={false}
-        labelKey="label"
-        matchPos="any"
-        matchProp="any"
-        menuBuffer={0}
-        menuRenderer={[Function]}
-        multi={false}
-        noResultsText="No results found"
-        onBlurResetsInput={true}
+        getOptionLabel={[Function]}
+        getOptionValue={[Function]}
         onChange={[Function]}
-        onCloseResetsInput={true}
-        onSelectResetsInput={true}
-        openOnClick={true}
-        optionComponent={[Function]}
         options={
           Array [
             Object {
-              "label": "Bookmark",
-              "value": "bookmarkid",
+              "_id": "bookmarkid",
+              "accessGroup": "accessGroupName",
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "isochroneCutoff": 42,
+              "name": "Bookmark",
+              "nonce": "12345",
+              "opportunityDataset": "Workers_total",
+              "profileRequest": Object {
+                "accessModes": "WALK",
+                "bikeSafe": 1,
+                "bikeSlope": 1,
+                "bikeSpeed": 4.166666666666667,
+                "bikeTime": 1,
+                "bounds": Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                },
+                "bundleId": "1",
+                "date": "2016-01-16",
+                "defaultExpanded": true,
+                "directModes": "WALK",
+                "egressModes": "WALK",
+                "fromLat": 12,
+                "fromLon": 34,
+                "fromTime": 25200,
+                "maxBikeTime": 20,
+                "maxRides": 4,
+                "maxTripDurationMinutes": 60,
+                "maxWalkTime": 20,
+                "monteCarloDraws": 200,
+                "name": "Profile Request Test",
+                "projectId": "1",
+                "reachabilityThreshold": 0,
+                "regionId": "1",
+                "toTime": 32400,
+                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                "travelTimePercentile": 50,
+                "variantIndex": 0,
+                "walkSpeed": 1.3888888888888888,
+                "workerVersion": "v4.0.0",
+              },
+              "regionId": "REGION",
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
             },
           ]
         }
-        pageSize={5}
-        placeholder="Select..."
-        removeSelected={true}
-        required={false}
-        rtl={false}
-        scrollMenuIntoView={true}
-        searchable={true}
-        simpleValue={false}
-        tabSelectsValue={true}
-        trimFilter={true}
-        valueComponent={[Function]}
-        valueKey="value"
       />
     </div>
     <div
