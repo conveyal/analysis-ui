@@ -9,7 +9,7 @@ require('dotenv').config()
 module.exports = withBundleAnalyzer({
   target: 'serverless',
   env: {
-    API_URL: process.env.API_URL || '/api',
+    API_URL: process.env.API_URL,
     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
     GRAPHHOPPER_API_KEY: process.env.GRAPHHOPPER_API_KEY,
