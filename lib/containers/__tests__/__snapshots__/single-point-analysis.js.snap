@@ -83,6 +83,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
     fetchGeoTIFF={[Function]}
     fetchTravelTimeSurface={[Function]}
     isochrone={null}
+    isochroneCutoff={60}
     isochroneFetchStatus={false}
     loadAllRegionalAnalyses={[Function]}
     profileRequest={
@@ -886,6 +887,33 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   </div>
                 </Group>
               </div>
+              <div
+                className="row"
+              >
+                <Group
+                  className="col-xs-12"
+                  label="Time cutoff: 60 minutes"
+                >
+                  <div
+                    className="form-group col-xs-12"
+                  >
+                    <label
+                      htmlFor="time-cutoff-60-minutes-input-5"
+                    >
+                      Time cutoff: 60 minutes
+                    </label>
+                    <input
+                      disabled={true}
+                      max={120}
+                      min={1}
+                      onChange={[Function]}
+                      title="Travel time cutoff (minutes)"
+                      type="range"
+                      value={60}
+                    />
+                  </div>
+                </Group>
+              </div>
               <Connect(StackedPercentileSelector)
                 disabled={false}
                 stale={true}
@@ -897,11 +925,11 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   comparisonPercentileCurves={null}
                   comparisonProjectName="Not set"
                   disabled={false}
+                  dispatch={[Function]}
                   isochroneCutoff={60}
                   maxAccessibility={-Infinity}
                   nearestPercentile={50}
                   projectName="Not set"
-                  setIsochroneCutoff={[Function]}
                   stale={true}
                 />
               </Connect(StackedPercentileSelector)>
@@ -963,7 +991,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       className="form-group"
                     >
                       <label
-                        htmlFor="bookmark-input-5"
+                        htmlFor="bookmark-input-6"
                       >
                         Bookmark
                       </label>
@@ -1123,7 +1151,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         className="form-group col-xs-4"
                       >
                         <label
-                          htmlFor="access-mode-input-6"
+                          htmlFor="access-mode-input-7"
                         >
                           Access mode
                         </label>
@@ -1361,7 +1389,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         className="form-group col-xs-8"
                       >
                         <label
-                          htmlFor="transit-modes-input-7"
+                          htmlFor="transit-modes-input-8"
                         >
                           Transit modes
                         </label>
@@ -2337,7 +2365,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       >
                         <Group
                           disabled={false}
-                          id="from-time-input-8"
+                          id="from-time-input-9"
                           label="From time"
                           name="fromTime"
                           onChange={[Function]}
@@ -2350,13 +2378,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             className="form-group"
                           >
                             <label
-                              htmlFor="from-time-input-8"
+                              htmlFor="from-time-input-9"
                             >
                               From time
                             </label>
                             <Input
                               disabled={false}
-                              id="from-time-input-8"
+                              id="from-time-input-9"
                               label="From time"
                               name="fromTime"
                               onChange={[Function]}
@@ -2371,7 +2399,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <input
                                   className="form-control"
                                   disabled={false}
-                                  id="from-time-input-8"
+                                  id="from-time-input-9"
                                   label="From time"
                                   name="fromTime"
                                   onChange={[Function]}
@@ -2415,7 +2443,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       >
                         <Group
                           disabled={false}
-                          id="to-time-input-9"
+                          id="to-time-input-10"
                           label="To time"
                           name="toTime"
                           onChange={[Function]}
@@ -2428,13 +2456,13 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             className="form-group"
                           >
                             <label
-                              htmlFor="to-time-input-9"
+                              htmlFor="to-time-input-10"
                             >
                               To time
                             </label>
                             <Input
                               disabled={false}
-                              id="to-time-input-9"
+                              id="to-time-input-10"
                               label="To time"
                               name="toTime"
                               onChange={[Function]}
@@ -2449,7 +2477,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                                 <input
                                   className="form-control"
                                   disabled={false}
-                                  id="to-time-input-9"
+                                  id="to-time-input-10"
                                   label="To time"
                                   name="toTime"
                                   onChange={[Function]}
@@ -2492,7 +2520,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                               className="form-group"
                             >
                               <label
-                                htmlFor="routing-engine-input-10"
+                                htmlFor="routing-engine-input-11"
                               >
                                 Routing engine
                               </label>
@@ -2540,7 +2568,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
               >
                 <Group
                   disabled={true}
-                  id="travel-time-percentile-50-single-point-50-regional-input-11"
+                  id="travel-time-percentile-50-single-point-50-regional-input-12"
                   label="Travel time percentile: 50 (single-point), 50 (regional)"
                   max={99}
                   min={1}
@@ -2552,14 +2580,14 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     className="form-group"
                   >
                     <label
-                      htmlFor="travel-time-percentile-50-single-point-50-regional-input-11"
+                      htmlFor="travel-time-percentile-50-single-point-50-regional-input-12"
                     >
                       Travel time percentile: 50 (single-point), 50 (regional)
                     </label>
                     <input
                       className="form-control"
                       disabled={true}
-                      id="travel-time-percentile-50-single-point-50-regional-input-11"
+                      id="travel-time-percentile-50-single-point-50-regional-input-12"
                       label="Travel time percentile: 50 (single-point), 50 (regional)"
                       max={99}
                       min={1}
