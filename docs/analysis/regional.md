@@ -9,7 +9,9 @@ After a regional analysis has completed, you can access it by selecting it in th
 
 The map shows the accessibility experienced at each location, with the legend to the left. This is the number of opportunities reachable from each location within the travel time cutoff specified when creating the regional analysis.
 
-Using the download button, you can save regional analysis results in a raster format (GEOTIFF). These saved files can be opened in GIS to conduct additional analyses or create custom maps. In QGIS, you will likely want to [style](https://docs.qgis.org/2.8/en/docs/training_manual/rasters/changing_symbology.html#basic-fa-changing-raster-layer-symbology) the accessibilty layer with a singleband pseudocolor scheme. If you prefer to work with the results as a regular grid of vector points, you may find the "Raster values to points" tool in the QGIS processing toolbox helpful. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
+## Downloading regional results
+
+Using the download button, you can save regional analysis results in a raster format (GEOTIFF). These saved files can be opened in GIS to conduct additional analyses or create custom maps. In QGIS, you will likely want to [style](https://docs.qgis.org/2.8/en/docs/training_manual/rasters/changing_symbology.html#basic-fa-changing-raster-layer-symbology) the accessibility layer with a singleband pseudocolor scheme. If you prefer to work with the results as a regular grid of vector points, you may find the "Raster values to points" tool in the QGIS processing toolbox helpful. Downloading results also allows you to see the raw [grid cells](methodology.html#spatial-resolution) used for analysis, rather than the smoother interpolated results shown in your browser.
 
 ## Comparing regional analyses
 
