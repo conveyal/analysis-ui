@@ -93,6 +93,11 @@ exports[`Component > SelectProject 1`] = `
       <Sidebar>
         <div
           className="Sidebar"
+          style={
+            Object {
+              "pointerEvents": "auto",
+            }
+          }
         >
           <div
             className="Sidebar-logo"
@@ -286,37 +291,25 @@ exports[`Component > SelectProject 1`] = `
           />
         </LoadableComponent>
       </div>
-      <div
-        className="ApplicationDock"
-      >
-        <Dock>
-          <InnerDock>
-            <div
-              className="InnerDock "
-              style={
-                Object {
-                  "height": 768,
-                }
-              }
-            >
+      <Dock>
+        <div
+          className="ApplicationDock"
+        >
+          <Dock>
+            <InnerDock>
               <div
-                className="block"
+                className="InnerDock "
+                style={
+                  Object {
+                    "height": 768,
+                  }
+                }
               >
-                <legend>
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "map",
-                        "prefix": "fas",
-                      }
-                    }
-                  >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
+                <div
+                  className="block"
+                >
+                  <legend>
+                    <Icon
                       icon={
                         Object {
                           "icon": Array [],
@@ -324,60 +317,61 @@ exports[`Component > SelectProject 1`] = `
                           "prefix": "fas",
                         }
                       }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
                     >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-map fa-w-NaN fa-fw "
-                        data-icon="map"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                   
-                  Mock Region
-                </legend>
-                <Status
-                  code="DONE"
-                />
-                <Group>
-                  <div
-                    className="form-group"
-                  >
-                    <ButtonLink
-                      block={true}
-                      href={
-                        Object {
-                          "pathname": "/project-create",
-                          "query": Object {
-                            "regionId": "1",
-                          },
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "map",
+                            "prefix": "fas",
+                          }
                         }
-                      }
-                      style="success"
-                      title="Create new Project"
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-map fa-w-NaN fa-fw "
+                          data-icon="map"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                     
+                    Mock Region
+                  </legend>
+                  <Status
+                    code="DONE"
+                  />
+                  <Group>
+                    <div
+                      className="form-group"
                     >
-                      <Link
+                      <ButtonLink
+                        block={true}
                         href={
                           Object {
                             "pathname": "/project-create",
@@ -386,27 +380,26 @@ exports[`Component > SelectProject 1`] = `
                             },
                           }
                         }
+                        style="success"
+                        title="Create new Project"
                       >
-                        <a
-                          className="btn btn-success btn-block"
-                          href="/project-create?regionId=1"
-                          onClick={[Function]}
-                          title="Create new Project"
-                        >
-                          <Icon
-                            icon={
-                              Object {
-                                "icon": Array [],
-                                "iconName": "plus",
-                                "prefix": "fas",
-                              }
+                        <Link
+                          href={
+                            Object {
+                              "pathname": "/project-create",
+                              "query": Object {
+                                "regionId": "1",
+                              },
                             }
+                          }
+                        >
+                          <a
+                            className="btn btn-success btn-block"
+                            href="/project-create?regionId=1"
+                            onClick={[Function]}
+                            title="Create new Project"
                           >
-                            <FontAwesomeIcon
-                              border={false}
-                              className=""
-                              fixedWidth={true}
-                              flip={null}
+                            <Icon
                               icon={
                                 Object {
                                   "icon": Array [],
@@ -414,83 +407,83 @@ exports[`Component > SelectProject 1`] = `
                                   "prefix": "fas",
                                 }
                               }
-                              inverse={false}
-                              listItem={false}
-                              mask={null}
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              title=""
-                              transform={null}
                             >
-                              <svg
-                                aria-hidden="true"
-                                className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                                data-icon="plus"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                style={Object {}}
-                                viewBox="0 0 undefined undefined"
-                                xmlns="http://www.w3.org/2000/svg"
+                              <FontAwesomeIcon
+                                border={false}
+                                className=""
+                                fixedWidth={true}
+                                flip={null}
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "plus",
+                                    "prefix": "fas",
+                                  }
+                                }
+                                inverse={false}
+                                listItem={false}
+                                mask={null}
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                symbol={false}
+                                title=""
+                                transform={null}
                               >
-                                <path
-                                  fill="currentColor"
+                                <svg
+                                  aria-hidden="true"
+                                  className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                                  data-icon="plus"
+                                  data-prefix="fas"
+                                  focusable="false"
+                                  role="img"
                                   style={Object {}}
-                                />
-                              </svg>
-                            </FontAwesomeIcon>
-                          </Icon>
-                           
-                          Create new Project
-                        </a>
-                      </Link>
-                    </ButtonLink>
-                  </div>
-                </Group>
-                <p
-                  className="text-center"
-                >
-                  or go to an existing project
-                </p>
-                <div
-                  className="list-group"
-                >
-                  <Link
-                    href={
-                      Object {
-                        "pathname": "/modifications",
-                        "query": Object {
-                          "projectId": "1",
-                          "regionId": "1",
-                        },
-                      }
-                    }
-                    key="1"
+                                  viewBox="0 0 undefined undefined"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    style={Object {}}
+                                  />
+                                </svg>
+                              </FontAwesomeIcon>
+                            </Icon>
+                             
+                            Create new Project
+                          </a>
+                        </Link>
+                      </ButtonLink>
+                    </div>
+                  </Group>
+                  <p
+                    className="text-center"
                   >
-                    <a
-                      className="list-group-item"
-                      href="/modifications?regionId=1&projectId=1"
-                      onClick={[Function]}
-                      title="Go to project"
-                    >
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "cube",
-                            "prefix": "fas",
-                          }
+                    or go to an existing project
+                  </p>
+                  <div
+                    className="list-group"
+                  >
+                    <Link
+                      href={
+                        Object {
+                          "pathname": "/modifications",
+                          "query": Object {
+                            "projectId": "1",
+                            "regionId": "1",
+                          },
                         }
+                      }
+                      key="1"
+                    >
+                      <a
+                        className="list-group-item"
+                        href="/modifications?regionId=1&projectId=1"
+                        onClick={[Function]}
+                        title="Go to project"
                       >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
+                        <Icon
                           icon={
                             Object {
                               "icon": Array [],
@@ -498,46 +491,60 @@ exports[`Component > SelectProject 1`] = `
                               "prefix": "fas",
                             }
                           }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
                         >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
-                            data-icon="cube"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={true}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [],
+                                "iconName": "cube",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
                           >
-                            <path
-                              fill="currentColor"
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
+                              data-icon="cube"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
                               style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       
-                      Mock Project
-                    </a>
-                  </Link>
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                        </Icon>
+                         
+                        Mock Project
+                      </a>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </InnerDock>
-        </Dock>
-      </div>
+            </InnerDock>
+          </Dock>
+        </div>
+      </Dock>
     </Application>
   </SelectProject>
 </Provider>

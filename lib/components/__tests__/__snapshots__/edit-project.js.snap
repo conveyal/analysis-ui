@@ -62,6 +62,11 @@ exports[`Component > EditProject 1`] = `
         <Sidebar>
           <div
             className="Sidebar"
+            style={
+              Object {
+                "pointerEvents": "auto",
+              }
+            }
           >
             <div
               className="Sidebar-logo"
@@ -255,112 +260,100 @@ exports[`Component > EditProject 1`] = `
             />
           </LoadableComponent>
         </div>
-        <div
-          className="ApplicationDock"
-        >
-          <Dock>
-            <InnerDock>
-              <div
-                className="InnerDock "
-                style={
-                  Object {
-                    "height": 768,
-                  }
-                }
-              >
+        <Dock>
+          <div
+            className="ApplicationDock"
+          >
+            <Dock>
+              <InnerDock>
                 <div
-                  className="block"
+                  className="InnerDock "
+                  style={
+                    Object {
+                      "height": 768,
+                    }
+                  }
                 >
-                  <legend>
-                    Edit project settings
-                  </legend>
-                  <Text
-                    label="Project name"
-                    onChange={[Function]}
-                    value="Mock Project"
+                  <div
+                    className="block"
                   >
-                    <Group
-                      id="project-name-input-0"
+                    <legend>
+                      Edit project settings
+                    </legend>
+                    <Text
                       label="Project name"
                       onChange={[Function]}
                       value="Mock Project"
+                    >
+                      <Group
+                        id="project-name-input-0"
+                        label="Project name"
+                        onChange={[Function]}
+                        value="Mock Project"
+                      >
+                        <div
+                          className="form-group"
+                        >
+                          <label
+                            htmlFor="project-name-input-0"
+                          >
+                            Project name
+                          </label>
+                          <Input
+                            id="project-name-input-0"
+                            label="Project name"
+                            onChange={[Function]}
+                            type="text"
+                            value="Mock Project"
+                          >
+                            <input
+                              className="form-control"
+                              id="project-name-input-0"
+                              label="Project name"
+                              onChange={[Function]}
+                              placeholder="Project name"
+                              type="text"
+                              value="Mock Project"
+                            />
+                          </Input>
+                        </div>
+                      </Group>
+                    </Text>
+                    <Group
+                      label="Bundle"
                     >
                       <div
                         className="form-group"
                       >
                         <label
-                          htmlFor="project-name-input-0"
+                          htmlFor="bundle-input-1"
                         >
-                          Project name
+                          Bundle
                         </label>
-                        <Input
-                          id="project-name-input-0"
-                          label="Project name"
-                          onChange={[Function]}
-                          type="text"
-                          value="Mock Project"
-                        >
-                          <input
-                            className="form-control"
-                            id="project-name-input-0"
-                            label="Project name"
-                            onChange={[Function]}
-                            placeholder="Project name"
-                            type="text"
-                            value="Mock Project"
-                          />
-                        </Input>
+                        <p>
+                          Mock Bundle
+                        </p>
+                        <p>
+                          <em>
+                            Bundle cannot be changed once a project is created.
+                          </em>
+                        </p>
                       </div>
                     </Group>
-                  </Text>
-                  <Group
-                    label="Bundle"
-                  >
-                    <div
-                      className="form-group"
-                    >
-                      <label
-                        htmlFor="bundle-input-1"
-                      >
-                        Bundle
-                      </label>
-                      <p>
-                        Mock Bundle
-                      </p>
-                      <p>
-                        <em>
-                          Bundle cannot be changed once a project is created.
-                        </em>
-                      </p>
-                    </div>
-                  </Group>
-                  <Button
-                    block={true}
-                    disabled={true}
-                    onClick={[Function]}
-                    style="success"
-                  >
-                    <a
-                      className="btn btn-success btn-block"
+                    <Button
+                      block={true}
                       disabled={true}
-                      href="#"
                       onClick={[Function]}
-                      tabIndex={0}
+                      style="success"
                     >
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "save",
-                            "prefix": "fas",
-                          }
-                        }
+                      <a
+                        className="btn btn-success btn-block"
+                        disabled={true}
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
                       >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
+                        <Icon
                           icon={
                             Object {
                               "icon": Array [],
@@ -368,65 +361,65 @@ exports[`Component > EditProject 1`] = `
                               "prefix": "fas",
                             }
                           }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
                         >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-save fa-w-NaN fa-fw "
-                            data-icon="save"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={true}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [],
+                                "iconName": "save",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
                           >
-                            <path
-                              fill="currentColor"
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-save fa-w-NaN fa-fw "
+                              data-icon="save"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
                               style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       
-                      Save project
-                    </a>
-                  </Button>
-                  <Button
-                    block={true}
-                    onClick={[Function]}
-                    style="danger"
-                  >
-                    <a
-                      className="btn btn-danger btn-block"
-                      href="#"
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                        </Icon>
+                         
+                        Save project
+                      </a>
+                    </Button>
+                    <Button
+                      block={true}
                       onClick={[Function]}
-                      tabIndex={0}
+                      style="danger"
                     >
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "trash",
-                            "prefix": "fas",
-                          }
-                        }
+                      <a
+                        className="btn btn-danger btn-block"
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
                       >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
+                        <Icon
                           icon={
                             Object {
                               "icon": Array [],
@@ -434,45 +427,59 @@ exports[`Component > EditProject 1`] = `
                               "prefix": "fas",
                             }
                           }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
                         >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
-                            data-icon="trash"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={true}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [],
+                                "iconName": "trash",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
                           >
-                            <path
-                              fill="currentColor"
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
+                              data-icon="trash"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
                               style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       
-                      Delete project
-                    </a>
-                  </Button>
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                        </Icon>
+                         
+                        Delete project
+                      </a>
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </InnerDock>
-          </Dock>
-        </div>
+              </InnerDock>
+            </Dock>
+          </div>
+        </Dock>
       </Application>
     </EditProject>
   </withRouter(EditProject)>

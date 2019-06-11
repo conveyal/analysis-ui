@@ -25,6 +25,11 @@ exports[`Modification > List 1`] = `
       <Sidebar>
         <div
           className="Sidebar"
+          style={
+            Object {
+              "pointerEvents": "auto",
+            }
+          }
         >
           <div
             className="Sidebar-logo"
@@ -218,46 +223,34 @@ exports[`Modification > List 1`] = `
           />
         </LoadableComponent>
       </div>
-      <div
-        className="ApplicationDock"
-      >
-        <ProjectTitle
-          project={
-            Object {
-              "_id": "1",
-              "accessGroup": "accessGroupName",
-              "bundleId": "1",
-              "createdAt": "2017-11-08T12:30:50.133Z",
-              "createdBy": "person@gmail.com",
-              "name": "Mock Project",
-              "nonce": "12345",
-              "regionId": "1",
-              "updatedAt": "2017-11-08T12:31:19.602Z",
-              "updatedBy": "person@gmail.com",
-              "variants": Array [
-                "Default",
-              ],
-            }
-          }
+      <Dock>
+        <div
+          className="ApplicationDock"
         >
-          <Title>
-            <div
-              className="ApplicationDockTitle"
-            >
-              <Icon
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "cube",
-                    "prefix": "fas",
-                  }
-                }
+          <ProjectTitle
+            project={
+              Object {
+                "_id": "1",
+                "accessGroup": "accessGroupName",
+                "bundleId": "1",
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "name": "Mock Project",
+                "nonce": "12345",
+                "regionId": "1",
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variants": Array [
+                  "Default",
+                ],
+              }
+            }
+          >
+            <Title>
+              <div
+                className="ApplicationDockTitle"
               >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
+                <Icon
                   icon={
                     Object {
                       "icon": Array [],
@@ -265,69 +258,152 @@ exports[`Modification > List 1`] = `
                       "prefix": "fas",
                     }
                   }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
-                    data-icon="cube"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="currentColor"
-                      style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-               
-              Mock Project
-              <Tip
-                className="pull-right"
-                tip="Edit project settings"
-              >
-                <span
-                  className="Tip pull-right"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                  onMouseOut={[Function]}
-                  onMouseOver={[Function]}
-                >
-                  <Link
-                    href={
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
                       Object {
-                        "pathname": "/project-settings",
-                        "query": Object {
-                          "projectId": "1",
-                          "regionId": "1",
-                        },
+                        "icon": Array [],
+                        "iconName": "cube",
+                        "prefix": "fas",
                       }
                     }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
+                      data-icon="cube"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+                 
+                Mock Project
+                <Tip
+                  className="pull-right"
+                  tip="Edit project settings"
+                >
+                  <span
+                    className="Tip pull-right"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <Link
+                      href={
+                        Object {
+                          "pathname": "/project-settings",
+                          "query": Object {
+                            "projectId": "1",
+                            "regionId": "1",
+                          },
+                        }
+                      }
+                    >
+                      <a
+                        href="/project-settings?regionId=1&projectId=1"
+                        onClick={[Function]}
+                      >
+                        <Icon
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "cog",
+                              "prefix": "fas",
+                            }
+                          }
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={true}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [],
+                                "iconName": "cog",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
+                              data-icon="cog"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                        </Icon>
+                      </a>
+                    </Link>
+                  </span>
+                </Tip>
+                <Tip
+                  className="pull-right"
+                  tip="Download or share this project"
+                >
+                  <span
+                    className="Tip pull-right"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
                   >
                     <a
-                      href="/project-settings?regionId=1&projectId=1"
+                      name="Download or share this project"
                       onClick={[Function]}
                     >
                       <Icon
                         icon={
                           Object {
                             "icon": Array [],
-                            "iconName": "cog",
+                            "iconName": "share-alt-square",
                             "prefix": "fas",
                           }
                         }
@@ -340,7 +416,7 @@ exports[`Modification > List 1`] = `
                           icon={
                             Object {
                               "icon": Array [],
-                              "iconName": "cog",
+                              "iconName": "share-alt-square",
                               "prefix": "fas",
                             }
                           }
@@ -358,8 +434,216 @@ exports[`Modification > List 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
-                            data-icon="cog"
+                            className="svg-inline--fa fa-share-alt-square fa-w-NaN fa-fw "
+                            data-icon="share-alt-square"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            style={Object {}}
+                            viewBox="0 0 undefined undefined"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill="currentColor"
+                              style={Object {}}
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </Icon>
+                    </a>
+                  </span>
+                </Tip>
+              </div>
+            </Title>
+          </ProjectTitle>
+          <Title>
+            <div
+              className="ApplicationDockTitle"
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "pencil-alt",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "pencil-alt",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
+                    data-icon="pencil-alt"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+               
+              Modifications
+              <Tip
+                className="ShowOnMap pull-right fa-btn"
+                tip="Hide all modifications from map display"
+              >
+                <span
+                  className="Tip ShowOnMap pull-right fa-btn"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <a
+                    onClick={[Function]}
+                  >
+                    <Icon
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "eye-slash",
+                          "prefix": "fas",
+                        }
+                      }
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "eye-slash",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
+                          data-icon="eye-slash"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                  </a>
+                </span>
+              </Tip>
+              <Tip
+                className="pull-right"
+                tip="Upload/import modifications"
+              >
+                <span
+                  className="Tip pull-right"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <Link
+                    href={
+                      Object {
+                        "pathname": "/modification-import",
+                        "query": Object {
+                          "projectId": "1",
+                          "regionId": "1",
+                        },
+                      }
+                    }
+                  >
+                    <a
+                      href="/modification-import?projectId=1&regionId=1"
+                      onClick={[Function]}
+                    >
+                      <Icon
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "upload",
+                            "prefix": "fas",
+                          }
+                        }
+                      >
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={true}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "upload",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
+                            data-icon="upload"
                             data-prefix="fas"
                             focusable="false"
                             role="img"
@@ -378,325 +662,38 @@ exports[`Modification > List 1`] = `
                   </Link>
                 </span>
               </Tip>
-              <Tip
-                className="pull-right"
-                tip="Download or share this project"
-              >
-                <span
-                  className="Tip pull-right"
-                  onBlur={[Function]}
-                  onFocus={[Function]}
-                  onMouseOut={[Function]}
-                  onMouseOver={[Function]}
-                >
-                  <a
-                    name="Download or share this project"
-                    onClick={[Function]}
-                  >
-                    <Icon
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "share-alt-square",
-                          "prefix": "fas",
-                        }
-                      }
-                    >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={true}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "share-alt-square",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="svg-inline--fa fa-share-alt-square fa-w-NaN fa-fw "
-                          data-icon="share-alt-square"
-                          data-prefix="fas"
-                          focusable="false"
-                          role="img"
-                          style={Object {}}
-                          viewBox="0 0 undefined undefined"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill="currentColor"
-                            style={Object {}}
-                          />
-                        </svg>
-                      </FontAwesomeIcon>
-                    </Icon>
-                  </a>
-                </span>
-              </Tip>
             </div>
           </Title>
-        </ProjectTitle>
-        <Title>
-          <div
-            className="ApplicationDockTitle"
-          >
-            <Icon
-              icon={
-                Object {
-                  "icon": Array [],
-                  "iconName": "pencil-alt",
-                  "prefix": "fas",
-                }
-              }
-            >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "pencil-alt",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                symbol={false}
-                title=""
-                transform={null}
-              >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
-                  data-icon="pencil-alt"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
-                  style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Modifications
-            <Tip
-              className="ShowOnMap pull-right fa-btn"
-              tip="Hide all modifications from map display"
-            >
-              <span
-                className="Tip ShowOnMap pull-right fa-btn"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
-              >
-                <a
-                  onClick={[Function]}
-                >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "eye-slash",
-                        "prefix": "fas",
-                      }
-                    }
-                  >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "eye-slash",
-                          "prefix": "fas",
-                        }
-                      }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
-                        data-icon="eye-slash"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                </a>
-              </span>
-            </Tip>
-            <Tip
-              className="pull-right"
-              tip="Upload/import modifications"
-            >
-              <span
-                className="Tip pull-right"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
-              >
-                <Link
-                  href={
-                    Object {
-                      "pathname": "/modification-import",
-                      "query": Object {
-                        "projectId": "1",
-                        "regionId": "1",
-                      },
-                    }
-                  }
-                >
-                  <a
-                    href="/modification-import?projectId=1&regionId=1"
-                    onClick={[Function]}
-                  >
-                    <Icon
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "upload",
-                          "prefix": "fas",
-                        }
-                      }
-                    >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={true}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "upload",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
-                          data-icon="upload"
-                          data-prefix="fas"
-                          focusable="false"
-                          role="img"
-                          style={Object {}}
-                          viewBox="0 0 undefined undefined"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill="currentColor"
-                            style={Object {}}
-                          />
-                        </svg>
-                      </FontAwesomeIcon>
-                    </Icon>
-                  </a>
-                </Link>
-              </span>
-            </Tip>
-          </div>
-        </Title>
-        <Dock>
-          <InnerDock>
-            <div
-              className="InnerDock "
-              style={
-                Object {
-                  "height": 768,
-                }
-              }
-            >
+          <Dock>
+            <InnerDock>
               <div
-                className="block"
-              >
-                <Variants
-                  showVariant={[Function]}
-                  variants={
-                    Array [
-                      "Default",
-                    ]
+                className="InnerDock "
+                style={
+                  Object {
+                    "height": 768,
                   }
+                }
+              >
+                <div
+                  className="block"
                 >
-                  <Collapsible
-                    defaultExpanded={false}
-                    heading={[Function]}
+                  <Variants
+                    showVariant={[Function]}
+                    variants={
+                      Array [
+                        "Default",
+                      ]
+                    }
                   >
-                    <Panel>
-                      <div
-                        className="panel panel-default"
-                      >
-                        <Heading
-                          onClick={[Function]}
-                          style={
-                            Object {
-                              "cursor": "pointer",
-                            }
-                          }
+                    <Collapsible
+                      defaultExpanded={false}
+                      heading={[Function]}
+                    >
+                      <Panel>
+                        <div
+                          className="panel panel-default"
                         >
-                          <div
-                            className="panel-heading clearfix "
+                          <Heading
                             onClick={[Function]}
                             style={
                               Object {
@@ -704,24 +701,20 @@ exports[`Modification > List 1`] = `
                               }
                             }
                           >
-                            Scenarios
-                            <span
-                              className="pull-right"
-                            >
-                              <Icon
-                                icon={
-                                  Object {
-                                    "icon": Array [],
-                                    "iconName": "caret-right",
-                                    "prefix": "fas",
-                                  }
+                            <div
+                              className="panel-heading clearfix "
+                              onClick={[Function]}
+                              style={
+                                Object {
+                                  "cursor": "pointer",
                                 }
+                              }
+                            >
+                              Scenarios
+                              <span
+                                className="pull-right"
                               >
-                                <FontAwesomeIcon
-                                  border={false}
-                                  className=""
-                                  fixedWidth={true}
-                                  flip={null}
+                                <Icon
                                   icon={
                                     Object {
                                       "icon": Array [],
@@ -729,72 +722,72 @@ exports[`Modification > List 1`] = `
                                       "prefix": "fas",
                                     }
                                   }
-                                  inverse={false}
-                                  listItem={false}
-                                  mask={null}
-                                  pull={null}
-                                  pulse={false}
-                                  rotation={null}
-                                  size={null}
-                                  spin={false}
-                                  symbol={false}
-                                  title=""
-                                  transform={null}
                                 >
-                                  <svg
-                                    aria-hidden="true"
-                                    className="svg-inline--fa fa-caret-right fa-w-NaN fa-fw "
-                                    data-icon="caret-right"
-                                    data-prefix="fas"
-                                    focusable="false"
-                                    role="img"
-                                    style={Object {}}
-                                    viewBox="0 0 undefined undefined"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                  <FontAwesomeIcon
+                                    border={false}
+                                    className=""
+                                    fixedWidth={true}
+                                    flip={null}
+                                    icon={
+                                      Object {
+                                        "icon": Array [],
+                                        "iconName": "caret-right",
+                                        "prefix": "fas",
+                                      }
+                                    }
+                                    inverse={false}
+                                    listItem={false}
+                                    mask={null}
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    symbol={false}
+                                    title=""
+                                    transform={null}
                                   >
-                                    <path
-                                      fill="currentColor"
+                                    <svg
+                                      aria-hidden="true"
+                                      className="svg-inline--fa fa-caret-right fa-w-NaN fa-fw "
+                                      data-icon="caret-right"
+                                      data-prefix="fas"
+                                      focusable="false"
+                                      role="img"
                                       style={Object {}}
-                                    />
-                                  </svg>
-                                </FontAwesomeIcon>
-                              </Icon>
-                            </span>
-                          </div>
-                        </Heading>
-                      </div>
-                    </Panel>
-                  </Collapsible>
-                </Variants>
-                <Group>
-                  <div
-                    className="form-group"
-                  >
-                    <Button
-                      block={true}
-                      onClick={[Function]}
-                      style="success"
+                                      viewBox="0 0 undefined undefined"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill="currentColor"
+                                        style={Object {}}
+                                      />
+                                    </svg>
+                                  </FontAwesomeIcon>
+                                </Icon>
+                              </span>
+                            </div>
+                          </Heading>
+                        </div>
+                      </Panel>
+                    </Collapsible>
+                  </Variants>
+                  <Group>
+                    <div
+                      className="form-group"
                     >
-                      <a
-                        className="btn btn-success btn-block"
-                        href="#"
+                      <Button
+                        block={true}
                         onClick={[Function]}
-                        tabIndex={0}
+                        style="success"
                       >
-                        <Icon
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "plus",
-                              "prefix": "fas",
-                            }
-                          }
+                        <a
+                          className="btn btn-success btn-block"
+                          href="#"
+                          onClick={[Function]}
+                          tabIndex={0}
                         >
-                          <FontAwesomeIcon
-                            border={false}
-                            className=""
-                            fixedWidth={true}
-                            flip={null}
+                          <Icon
                             icon={
                               Object {
                                 "icon": Array [],
@@ -802,86 +795,90 @@ exports[`Modification > List 1`] = `
                                 "prefix": "fas",
                               }
                             }
-                            inverse={false}
-                            listItem={false}
-                            mask={null}
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            symbol={false}
-                            title=""
-                            transform={null}
                           >
-                            <svg
-                              aria-hidden="true"
-                              className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                              data-icon="plus"
-                              data-prefix="fas"
-                              focusable="false"
-                              role="img"
-                              style={Object {}}
-                              viewBox="0 0 undefined undefined"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <FontAwesomeIcon
+                              border={false}
+                              className=""
+                              fixedWidth={true}
+                              flip={null}
+                              icon={
+                                Object {
+                                  "icon": Array [],
+                                  "iconName": "plus",
+                                  "prefix": "fas",
+                                }
+                              }
+                              inverse={false}
+                              listItem={false}
+                              mask={null}
+                              pull={null}
+                              pulse={false}
+                              rotation={null}
+                              size={null}
+                              spin={false}
+                              symbol={false}
+                              title=""
+                              transform={null}
                             >
-                              <path
-                                fill="currentColor"
+                              <svg
+                                aria-hidden="true"
+                                className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                                data-icon="plus"
+                                data-prefix="fas"
+                                focusable="false"
+                                role="img"
                                 style={Object {}}
-                              />
-                            </svg>
-                          </FontAwesomeIcon>
-                        </Icon>
-                        Create a modification
-                      </a>
-                    </Button>
-                  </div>
-                </Group>
-                <Group>
-                  <div
-                    className="form-group"
-                  >
-                    <Input
-                      name="Search modifications"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
+                                viewBox="0 0 undefined undefined"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fill="currentColor"
+                                  style={Object {}}
+                                />
+                              </svg>
+                            </FontAwesomeIcon>
+                          </Icon>
+                          Create a modification
+                        </a>
+                      </Button>
+                    </div>
+                  </Group>
+                  <Group>
+                    <div
+                      className="form-group"
                     >
-                      <input
-                        className="form-control"
-                        id="search-modifications-input-1"
+                      <Input
                         name="Search modifications"
                         onChange={[Function]}
-                        placeholder="Search modifications"
                         type="text"
                         value=""
-                      />
-                    </Input>
-                  </div>
-                </Group>
-                <ModificationGroup
-                  defaultExpanded={true}
-                  key="modification-group-add-trip-pattern"
-                  type="add-trip-pattern"
-                >
-                  <Collapsible
-                    defaultExpanded={true}
-                    heading={[Function]}
-                  >
-                    <Panel>
-                      <div
-                        className="panel panel-default"
                       >
-                        <Heading
-                          onClick={[Function]}
-                          style={
-                            Object {
-                              "cursor": "pointer",
-                            }
-                          }
+                        <input
+                          className="form-control"
+                          id="search-modifications-input-1"
+                          name="Search modifications"
+                          onChange={[Function]}
+                          placeholder="Search modifications"
+                          type="text"
+                          value=""
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                  <ModificationGroup
+                    defaultExpanded={true}
+                    key="modification-group-add-trip-pattern"
+                    type="add-trip-pattern"
+                  >
+                    <Collapsible
+                      defaultExpanded={true}
+                      heading={[Function]}
+                    >
+                      <Panel>
+                        <div
+                          className="panel panel-default"
                         >
-                          <div
-                            className="panel-heading clearfix "
+                          <Heading
                             onClick={[Function]}
                             style={
                               Object {
@@ -889,24 +886,20 @@ exports[`Modification > List 1`] = `
                               }
                             }
                           >
-                            Add Trip Pattern
-                            <span
-                              className="pull-right"
-                            >
-                              <Icon
-                                icon={
-                                  Object {
-                                    "icon": Array [],
-                                    "iconName": "caret-down",
-                                    "prefix": "fas",
-                                  }
+                            <div
+                              className="panel-heading clearfix "
+                              onClick={[Function]}
+                              style={
+                                Object {
+                                  "cursor": "pointer",
                                 }
+                              }
+                            >
+                              Add Trip Pattern
+                              <span
+                                className="pull-right"
                               >
-                                <FontAwesomeIcon
-                                  border={false}
-                                  className=""
-                                  fixedWidth={true}
-                                  flip={null}
+                                <Icon
                                   icon={
                                     Object {
                                       "icon": Array [],
@@ -914,63 +907,76 @@ exports[`Modification > List 1`] = `
                                       "prefix": "fas",
                                     }
                                   }
-                                  inverse={false}
-                                  listItem={false}
-                                  mask={null}
-                                  pull={null}
-                                  pulse={false}
-                                  rotation={null}
-                                  size={null}
-                                  spin={false}
-                                  symbol={false}
-                                  title=""
-                                  transform={null}
                                 >
-                                  <svg
-                                    aria-hidden="true"
-                                    className="svg-inline--fa fa-caret-down fa-w-NaN fa-fw "
-                                    data-icon="caret-down"
-                                    data-prefix="fas"
-                                    focusable="false"
-                                    role="img"
-                                    style={Object {}}
-                                    viewBox="0 0 undefined undefined"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                  <FontAwesomeIcon
+                                    border={false}
+                                    className=""
+                                    fixedWidth={true}
+                                    flip={null}
+                                    icon={
+                                      Object {
+                                        "icon": Array [],
+                                        "iconName": "caret-down",
+                                        "prefix": "fas",
+                                      }
+                                    }
+                                    inverse={false}
+                                    listItem={false}
+                                    mask={null}
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    symbol={false}
+                                    title=""
+                                    transform={null}
                                   >
-                                    <path
-                                      fill="currentColor"
+                                    <svg
+                                      aria-hidden="true"
+                                      className="svg-inline--fa fa-caret-down fa-w-NaN fa-fw "
+                                      data-icon="caret-down"
+                                      data-prefix="fas"
+                                      focusable="false"
+                                      role="img"
                                       style={Object {}}
-                                    />
-                                  </svg>
-                                </FontAwesomeIcon>
-                              </Icon>
-                            </span>
-                          </div>
-                        </Heading>
-                        <div
-                          className="list-group"
-                        >
-                          <ModificationGroupItem
-                            hideFromMap={[Function]}
-                            key="1234"
-                            modification={
-                              Object {
-                                "_id": "1234",
-                                "accessGroup": "accessGroupName",
-                                "bidirectional": false,
-                                "createdAt": "2017-11-08T12:30:50.133Z",
-                                "createdBy": "person@gmail.com",
-                                "description": "Mock description",
-                                "entries": Array [],
-                                "feed": "1",
-                                "name": "Test Modification",
-                                "nonce": "12345",
-                                "projectId": "1",
-                                "routes": Array [
-                                  "route1",
-                                ],
-                                "segments": Array [
-                                  {
+                                      viewBox="0 0 undefined undefined"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill="currentColor"
+                                        style={Object {}}
+                                      />
+                                    </svg>
+                                  </FontAwesomeIcon>
+                                </Icon>
+                              </span>
+                            </div>
+                          </Heading>
+                          <div
+                            className="list-group"
+                          >
+                            <ModificationGroupItem
+                              hideFromMap={[Function]}
+                              key="1234"
+                              modification={
+                                Object {
+                                  "_id": "1234",
+                                  "accessGroup": "accessGroupName",
+                                  "bidirectional": false,
+                                  "createdAt": "2017-11-08T12:30:50.133Z",
+                                  "createdBy": "person@gmail.com",
+                                  "description": "Mock description",
+                                  "entries": Array [],
+                                  "feed": "1",
+                                  "name": "Test Modification",
+                                  "nonce": "12345",
+                                  "projectId": "1",
+                                  "routes": Array [
+                                    "route1",
+                                  ],
+                                  "segments": Array [
+                                    {
   "fromStopId": "1",
   "geometry": {
     "type": "LineString",
@@ -1007,96 +1013,83 @@ exports[`Modification > List 1`] = `
   "stopAtStart": false,
   "type": "Feature"
 },
-                                ],
-                                "timetables": Array [
-                                  Object {
-                                    "_id": "timetable-id",
-                                    "dwellTime": 10,
-                                    "dwellTimes": Array [
-                                      12,
-                                    ],
-                                    "endTime": 57600,
-                                    "exactTimes": false,
-                                    "friday": true,
-                                    "headwaySecs": 900,
-                                    "modificationId": "1234",
-                                    "modificationName": "Test Modification",
-                                    "monday": true,
-                                    "name": "Test timetable",
-                                    "patternTrips": Array [
-                                      "abcd",
-                                    ],
-                                    "phaseAtStop": "",
-                                    "phaseFromStop": "",
-                                    "phaseFromTimetable": "",
-                                    "phaseSeconds": 300,
-                                    "saturday": false,
-                                    "segmentSpeeds": Array [],
-                                    "sourceTrip": "abcd",
-                                    "startTime": 28800,
-                                    "sunday": false,
-                                    "thursday": true,
-                                    "tuesday": true,
-                                    "wednesday": true,
-                                  },
-                                ],
-                                "trips": Array [
-                                  "abcd",
-                                ],
-                                "type": "add-trip-pattern",
-                                "updatedAt": "2017-11-08T12:31:19.602Z",
-                                "updatedBy": "person@gmail.com",
-                                "variants": Array [
-                                  true,
-                                ],
-                              }
-                            }
-                            projectId="1"
-                            regionId="1"
-                            showOnMap={[Function]}
-                          >
-                            <Link
-                              href={
-                                Object {
-                                  "pathname": "/modification-edit",
-                                  "query": Object {
-                                    "modificationId": "1234",
-                                    "projectId": "1",
-                                    "regionId": "1",
-                                  },
+                                  ],
+                                  "timetables": Array [
+                                    Object {
+                                      "_id": "timetable-id",
+                                      "dwellTime": 10,
+                                      "dwellTimes": Array [
+                                        12,
+                                      ],
+                                      "endTime": 57600,
+                                      "exactTimes": false,
+                                      "friday": true,
+                                      "headwaySecs": 900,
+                                      "modificationId": "1234",
+                                      "modificationName": "Test Modification",
+                                      "monday": true,
+                                      "name": "Test timetable",
+                                      "patternTrips": Array [
+                                        "abcd",
+                                      ],
+                                      "phaseAtStop": "",
+                                      "phaseFromStop": "",
+                                      "phaseFromTimetable": "",
+                                      "phaseSeconds": 300,
+                                      "saturday": false,
+                                      "segmentSpeeds": Array [],
+                                      "sourceTrip": "abcd",
+                                      "startTime": 28800,
+                                      "sunday": false,
+                                      "thursday": true,
+                                      "tuesday": true,
+                                      "wednesday": true,
+                                    },
+                                  ],
+                                  "trips": Array [
+                                    "abcd",
+                                  ],
+                                  "type": "add-trip-pattern",
+                                  "updatedAt": "2017-11-08T12:31:19.602Z",
+                                  "updatedBy": "person@gmail.com",
+                                  "variants": Array [
+                                    true,
+                                  ],
                                 }
                               }
-                              key="1234"
+                              projectId="1"
+                              regionId="1"
+                              showOnMap={[Function]}
                             >
-                              <a
-                                className="list-group-item"
-                                href="/modification-edit?modificationId=1234&projectId=1&regionId=1"
-                                onClick={[Function]}
-                                style={
+                              <Link
+                                href={
                                   Object {
-                                    "cursor": "pointer",
+                                    "pathname": "/modification-edit",
+                                    "query": Object {
+                                      "modificationId": "1234",
+                                      "projectId": "1",
+                                      "regionId": "1",
+                                    },
                                   }
                                 }
+                                key="1234"
                               >
-                                Test Modification
-                                <span
-                                  className="pull-right"
+                                <a
+                                  className="list-group-item"
+                                  href="/modification-edit?modificationId=1234&projectId=1&regionId=1"
                                   onClick={[Function]}
-                                >
-                                  <Icon
-                                    icon={
-                                      Object {
-                                        "icon": Array [],
-                                        "iconName": "eye-slash",
-                                        "prefix": "fas",
-                                      }
+                                  style={
+                                    Object {
+                                      "cursor": "pointer",
                                     }
+                                  }
+                                >
+                                  Test Modification
+                                  <span
+                                    className="pull-right"
+                                    onClick={[Function]}
                                   >
-                                    <FontAwesomeIcon
-                                      border={false}
-                                      className=""
-                                      fixedWidth={true}
-                                      flip={null}
+                                    <Icon
                                       icon={
                                         Object {
                                           "icon": Array [],
@@ -1104,50 +1097,64 @@ exports[`Modification > List 1`] = `
                                           "prefix": "fas",
                                         }
                                       }
-                                      inverse={false}
-                                      listItem={false}
-                                      mask={null}
-                                      pull={null}
-                                      pulse={false}
-                                      rotation={null}
-                                      size={null}
-                                      spin={false}
-                                      symbol={false}
-                                      title=""
-                                      transform={null}
                                     >
-                                      <svg
-                                        aria-hidden="true"
-                                        className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
-                                        data-icon="eye-slash"
-                                        data-prefix="fas"
-                                        focusable="false"
-                                        role="img"
-                                        style={Object {}}
-                                        viewBox="0 0 undefined undefined"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                      <FontAwesomeIcon
+                                        border={false}
+                                        className=""
+                                        fixedWidth={true}
+                                        flip={null}
+                                        icon={
+                                          Object {
+                                            "icon": Array [],
+                                            "iconName": "eye-slash",
+                                            "prefix": "fas",
+                                          }
+                                        }
+                                        inverse={false}
+                                        listItem={false}
+                                        mask={null}
+                                        pull={null}
+                                        pulse={false}
+                                        rotation={null}
+                                        size={null}
+                                        spin={false}
+                                        symbol={false}
+                                        title=""
+                                        transform={null}
                                       >
-                                        <path
-                                          fill="currentColor"
+                                        <svg
+                                          aria-hidden="true"
+                                          className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
+                                          data-icon="eye-slash"
+                                          data-prefix="fas"
+                                          focusable="false"
+                                          role="img"
                                           style={Object {}}
-                                        />
-                                      </svg>
-                                    </FontAwesomeIcon>
-                                  </Icon>
-                                </span>
-                              </a>
-                            </Link>
-                          </ModificationGroupItem>
+                                          viewBox="0 0 undefined undefined"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            fill="currentColor"
+                                            style={Object {}}
+                                          />
+                                        </svg>
+                                      </FontAwesomeIcon>
+                                    </Icon>
+                                  </span>
+                                </a>
+                              </Link>
+                            </ModificationGroupItem>
+                          </div>
                         </div>
-                      </div>
-                    </Panel>
-                  </Collapsible>
-                </ModificationGroup>
+                      </Panel>
+                    </Collapsible>
+                  </ModificationGroup>
+                </div>
               </div>
-            </div>
-          </InnerDock>
-        </Dock>
-      </div>
+            </InnerDock>
+          </Dock>
+        </div>
+      </Dock>
     </Application>
   </ModificationsList>
 </Provider>

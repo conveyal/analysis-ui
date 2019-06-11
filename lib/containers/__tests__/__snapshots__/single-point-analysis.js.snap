@@ -168,6 +168,11 @@ exports[`Containers > Single Point should render correctly 1`] = `
     <Sidebar>
       <div
         className="Sidebar"
+        style={
+          Object {
+            "pointerEvents": "auto",
+          }
+        }
       >
         <div
           className="Sidebar-logo"
@@ -392,34 +397,24 @@ exports[`Containers > Single Point should render correctly 1`] = `
         />
       </LoadableComponent>
     </div>
-    <div
-      className="ApplicationDock analysisMode"
+    <Dock
+      className="analysisMode"
     >
-      <AnalysisTitle
-        abortFetchTravelTimeSurface={[Function]}
-        createRegionalAnalysis={[Function]}
-        disableCreateRegionalAnalysis={true}
-        disableFetchTravelTimeSurface={false}
-        fetchTravelTimeSurface={[Function]}
-        isochroneFetchStatus={false}
+      <div
+        className="ApplicationDock analysisMode"
       >
-        <div
-          className="ApplicationDockTitle"
+        <AnalysisTitle
+          abortFetchTravelTimeSurface={[Function]}
+          createRegionalAnalysis={[Function]}
+          disableCreateRegionalAnalysis={true}
+          disableFetchTravelTimeSurface={false}
+          fetchTravelTimeSurface={[Function]}
+          isochroneFetchStatus={false}
         >
-          <Icon
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "chart-area",
-                "prefix": "fas",
-              }
-            }
+          <div
+            className="ApplicationDockTitle"
           >
-            <FontAwesomeIcon
-              border={false}
-              className=""
-              fixedWidth={true}
-              flip={null}
+            <Icon
               icon={
                 Object {
                   "icon": Array [],
@@ -427,68 +422,68 @@ exports[`Containers > Single Point should render correctly 1`] = `
                   "prefix": "fas",
                 }
               }
-              inverse={false}
-              listItem={false}
-              mask={null}
-              pull={null}
-              pulse={false}
-              rotation={null}
-              size={null}
-              spin={false}
-              symbol={false}
-              title=""
-              transform={null}
             >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-chart-area fa-w-NaN fa-fw "
-                data-icon="chart-area"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 undefined undefined"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </FontAwesomeIcon>
-          </Icon>
-           
-          Analysis
-          <Button
-            className="pull-right"
-            disabled={false}
-            onClick={[Function]}
-            size="sm"
-            style="primary"
-            title=""
-          >
-            <a
-              className="btn btn-primary btn-sm pull-right"
-              disabled={false}
-              href="#"
-              onClick={[Function]}
-              tabIndex={0}
-              title=""
-            >
-              <Icon
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
                 icon={
                   Object {
                     "icon": Array [],
-                    "iconName": "sync",
+                    "iconName": "chart-area",
                     "prefix": "fas",
                   }
                 }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
               >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-chart-area fa-w-NaN fa-fw "
+                  data-icon="chart-area"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             
+            Analysis
+            <Button
+              className="pull-right"
+              disabled={false}
+              onClick={[Function]}
+              size="sm"
+              style="primary"
+              title=""
+            >
+              <a
+                className="btn btn-primary btn-sm pull-right"
+                disabled={false}
+                href="#"
+                onClick={[Function]}
+                tabIndex={0}
+                title=""
+              >
+                <Icon
                   icon={
                     Object {
                       "icon": Array [],
@@ -496,70 +491,70 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       "prefix": "fas",
                     }
                   }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-sync fa-w-NaN fa-fw "
-                    data-icon="sync"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "sync",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
                   >
-                    <path
-                      fill="currentColor"
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-sync fa-w-NaN fa-fw "
+                      data-icon="sync"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
                       style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-               
-              Fetch results
-            </a>
-          </Button>
-          <Button
-            className="pad-right pull-right"
-            disabled={true}
-            onClick={[Function]}
-            size="sm"
-            style="success"
-            title="Fetch results for a single point before running a regional analysis"
-          >
-            <a
-              className="btn btn-success btn-sm pad-right pull-right"
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+                 
+                Fetch results
+              </a>
+            </Button>
+            <Button
+              className="pad-right pull-right"
               disabled={true}
-              href="#"
               onClick={[Function]}
-              tabIndex={0}
+              size="sm"
+              style="success"
               title="Fetch results for a single point before running a regional analysis"
             >
-              <Icon
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "plus",
-                    "prefix": "fas",
-                  }
-                }
+              <a
+                className="btn btn-success btn-sm pad-right pull-right"
+                disabled={true}
+                href="#"
+                onClick={[Function]}
+                tabIndex={0}
+                title="Fetch results for a single point before running a regional analysis"
               >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
+                <Icon
                   icon={
                     Object {
                       "icon": Array [],
@@ -567,42 +562,54 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       "prefix": "fas",
                     }
                   }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                    data-icon="plus"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "plus",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
                   >
-                    <path
-                      fill="currentColor"
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                      data-icon="plus"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
                       style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-              New regional analysis
-            </a>
-          </Button>
-        </div>
-      </AnalysisTitle>
-      <Dock>
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+                New regional analysis
+              </a>
+            </Button>
+          </div>
+        </AnalysisTitle>
         <InnerDock>
           <div
             className="InnerDock "
@@ -2967,8 +2974,8 @@ exports[`Containers > Single Point should render correctly 1`] = `
             </div>
           </div>
         </InnerDock>
-      </Dock>
-    </div>
+      </div>
+    </Dock>
   </SinglePointAnalysis>
 </Connect(SinglePointAnalysis)>
 `;
