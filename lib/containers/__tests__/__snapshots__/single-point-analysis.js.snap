@@ -644,7 +644,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Project
                     </label>
-                    <ReactSelect
+                    <S
                       clearable={false}
                       disabled={false}
                       getOptionLabel={[Function]}
@@ -687,10 +687,60 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         }
                       }
                     >
-                      <div
-                        className="ReactSelectMock"
-                      />
-                    </ReactSelect>
+                      <ReactSelect
+                        clearable={false}
+                        disabled={false}
+                        getOptionLabel={[Function]}
+                        getOptionValue={[Function]}
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "_id": "1",
+                              "accessGroup": "accessGroupName",
+                              "bundleId": "1",
+                              "createdAt": "2017-11-08T12:30:50.133Z",
+                              "createdBy": "person@gmail.com",
+                              "name": "Mock Project",
+                              "nonce": "12345",
+                              "regionId": "1",
+                              "updatedAt": "2017-11-08T12:31:19.602Z",
+                              "updatedBy": "person@gmail.com",
+                              "variants": Array [
+                                "Default",
+                              ],
+                            },
+                          ]
+                        }
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
+                        value={
+                          Object {
+                            "_id": "1",
+                            "accessGroup": "accessGroupName",
+                            "bundleId": "1",
+                            "createdAt": "2017-11-08T12:30:50.133Z",
+                            "createdBy": "person@gmail.com",
+                            "name": "Mock Project",
+                            "nonce": "12345",
+                            "regionId": "1",
+                            "updatedAt": "2017-11-08T12:31:19.602Z",
+                            "updatedBy": "person@gmail.com",
+                            "variants": Array [
+                              "Default",
+                            ],
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </S>
                   </div>
                 </Group>
                 <Group
@@ -705,7 +755,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Scenario
                     </label>
-                    <ReactSelect
+                    <S
                       clearable={false}
                       disabled={false}
                       onChange={[Function]}
@@ -728,10 +778,40 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         }
                       }
                     >
-                      <div
-                        className="ReactSelectMock"
-                      />
-                    </ReactSelect>
+                      <ReactSelect
+                        clearable={false}
+                        disabled={false}
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "label": "Baseline",
+                              "value": -1,
+                            },
+                            Object {
+                              "label": "Default",
+                              "value": 0,
+                            },
+                          ]
+                        }
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
+                        value={
+                          Object {
+                            "label": "Default",
+                            "value": 0,
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </S>
                   </div>
                 </Group>
               </div>
@@ -750,7 +830,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Comparison Project
                     </label>
-                    <ReactSelect
+                    <S
                       disabled={false}
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
@@ -777,10 +857,44 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       }
                       placeholder="Select comparison project…"
                     >
-                      <div
-                        className="ReactSelectMock"
-                      />
-                    </ReactSelect>
+                      <ReactSelect
+                        disabled={false}
+                        getOptionLabel={[Function]}
+                        getOptionValue={[Function]}
+                        name="Project"
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "_id": "1",
+                              "accessGroup": "accessGroupName",
+                              "bundleId": "1",
+                              "createdAt": "2017-11-08T12:30:50.133Z",
+                              "createdBy": "person@gmail.com",
+                              "name": "Mock Project",
+                              "nonce": "12345",
+                              "regionId": "1",
+                              "updatedAt": "2017-11-08T12:31:19.602Z",
+                              "updatedBy": "person@gmail.com",
+                              "variants": Array [
+                                "Default",
+                              ],
+                            },
+                          ]
+                        }
+                        placeholder="Select comparison project…"
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </S>
                   </div>
                 </Group>
                 <Group
@@ -795,7 +909,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                     >
                       Comparison Scenario
                     </label>
-                    <ReactSelect
+                    <S
                       clearable={false}
                       disabled={true}
                       name="Scenario"
@@ -810,10 +924,32 @@ exports[`Containers > Single Point should render correctly 1`] = `
                       }
                       placeholder="Select comparison scenario…"
                     >
-                      <div
-                        className="ReactSelectMock"
-                      />
-                    </ReactSelect>
+                      <ReactSelect
+                        clearable={false}
+                        disabled={true}
+                        name="Scenario"
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "label": "Baseline",
+                              "value": -1,
+                            },
+                          ]
+                        }
+                        placeholder="Select comparison scenario…"
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </S>
                   </div>
                 </Group>
               </div>
@@ -864,7 +1000,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         uploadOpportunityDataset={[Function]}
                         uploadStatuses={Array []}
                       >
-                        <ReactSelect
+                        <S
                           getOptionLabel={[Function]}
                           getOptionValue={[Function]}
                           onChange={[Function]}
@@ -878,10 +1014,31 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             ]
                           }
                         >
-                          <div
-                            className="ReactSelectMock"
-                          />
-                        </ReactSelect>
+                          <ReactSelect
+                            getOptionLabel={[Function]}
+                            getOptionValue={[Function]}
+                            onChange={[Function]}
+                            options={
+                              Array [
+                                Object {
+                                  "_id": "Workers_total",
+                                  "name": "Workers total",
+                                  "sourceName": "lodes-data-2014",
+                                },
+                              ]
+                            }
+                            styles={
+                              Object {
+                                "control": [Function],
+                                "option": [Function],
+                              }
+                            }
+                          >
+                            <div
+                              className="ReactSelectMock"
+                            />
+                          </ReactSelect>
+                        </S>
                       </OpportunityDatasetSelector>
                     </Connect(OpportunityDatasetSelector)>
                   </div>
@@ -1001,7 +1158,7 @@ exports[`Containers > Single Point should render correctly 1`] = `
                         <div
                           className="col-xs-6"
                         >
-                          <ReactSelect
+                          <S
                             clearable={false}
                             disabled={false}
                             getOptionLabel={[Function]}
@@ -1009,10 +1166,25 @@ exports[`Containers > Single Point should render correctly 1`] = `
                             onChange={[Function]}
                             options={Array []}
                           >
-                            <div
-                              className="ReactSelectMock"
-                            />
-                          </ReactSelect>
+                            <ReactSelect
+                              clearable={false}
+                              disabled={false}
+                              getOptionLabel={[Function]}
+                              getOptionValue={[Function]}
+                              onChange={[Function]}
+                              options={Array []}
+                              styles={
+                                Object {
+                                  "control": [Function],
+                                  "option": [Function],
+                                }
+                              }
+                            >
+                              <div
+                                className="ReactSelectMock"
+                              />
+                            </ReactSelect>
+                          </S>
                         </div>
                         <div
                           className="col-xs-6"

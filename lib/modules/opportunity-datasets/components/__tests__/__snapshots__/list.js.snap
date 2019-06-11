@@ -211,7 +211,7 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
             uploadOpportunityDataset={[Function]}
             uploadStatuses={Array []}
           >
-            <ReactSelect
+            <S
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               onChange={[Function]}
@@ -225,10 +225,31 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                 ]
               }
             >
-              <div
-                className="ReactSelectMock"
-              />
-            </ReactSelect>
+              <ReactSelect
+                getOptionLabel={[Function]}
+                getOptionValue={[Function]}
+                onChange={[Function]}
+                options={
+                  Array [
+                    Object {
+                      "_id": "Workers_total",
+                      "name": "Workers total",
+                      "sourceName": "lodes-data-2014",
+                    },
+                  ]
+                }
+                styles={
+                  Object {
+                    "control": [Function],
+                    "option": [Function],
+                  }
+                }
+              >
+                <div
+                  className="ReactSelectMock"
+                />
+              </ReactSelect>
+            </S>
           </OpportunityDatasetSelector>
         </Connect(OpportunityDatasetSelector)>
       </div>

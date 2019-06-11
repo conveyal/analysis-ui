@@ -121,7 +121,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
         <div
           className="col-xs-6"
         >
-          <ReactSelect
+          <S
             clearable={false}
             disabled={false}
             onChange={[Function]}
@@ -1151,7 +1151,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                   <div
                     className="col-xs-6"
                   >
-                    <ReactSelect
+                    <S
                       clearable={false}
                       disabled={false}
                       onChange={[Function]}
@@ -1178,10 +1178,44 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         }
                       }
                     >
-                      <div
-                        className="ReactSelectMock"
-                      />
-                    </ReactSelect>
+                      <ReactSelect
+                        clearable={false}
+                        disabled={false}
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "label": "Entire region",
+                              "value": "__REGION",
+                            },
+                            Object {
+                              "label": "Same as ANALYSIS 1",
+                              "value": "abcd",
+                            },
+                            Object {
+                              "label": "Same as ANALYSIS 2",
+                              "value": "efgh",
+                            },
+                          ]
+                        }
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
+                        value={
+                          Object {
+                            "label": "Entire region",
+                            "value": "__REGION",
+                          }
+                        }
+                      >
+                        <div
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </S>
                   </div>
                   <div
                     className="col-xs-6"

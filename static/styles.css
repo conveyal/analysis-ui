@@ -2,6 +2,11 @@
   --sidebar-width: 40px;
   --dock-width: 320px;
   --wide-dock-width: 640px;
+
+  --cb: #2389c9;
+  --cb-light: #97cced; /** increased (HS)L by 30% */
+  --cb-dark1: #185c86; /** decreased (HS)L by 15% */
+  --cb-dark2: #0c2f45; /** decreased (HS)L by 30% */
 }
 
 /** Font reset for specific things */
@@ -44,7 +49,7 @@ a,
 a.list-group-item,
 .link {
   cursor: pointer;
-  color: #337ab7;
+  color: var(--cb);
   text-decoration: none;
 }
 
@@ -54,7 +59,7 @@ a:hover.list-group-item,
 a:focus.list-group-item,
 .link:hover,
 .link:focus {
-  color: #23527c;
+  color: var(--cb-dark1);
   outline: none !important;
 }
 
@@ -65,15 +70,15 @@ ol {
 
 .btn-primary {
   color: #fff !important;
-  background-color: #337ab7;
-  border-color: color(#337ab7 shade(20%));
+  background-color: var(--cb);
+  border-color: var(--cb-dark1);
 }
 
 .btn-primary:active,
 .btn-primary.active,
 .btn-primary:hover {
-  background-color: color(#337ab7 shade(20%));
-  border-color: color(#337ab7 shade(40%));
+  background-color: var(--cb-dark1);
+  border-color: var(--cb-dark2);
 }
 
 .btn-danger {
@@ -154,13 +159,6 @@ input[type='range'].form-control {
   right: 10px;
   top: 0;
   opacity: 0.5;
-}
-
-/**
- * Items that apply z-index will be "over" this if no z-index is applied.
- */
-.Select-menu-outer {
-  z-index: 3 !important;
 }
 
 /**
@@ -314,7 +312,7 @@ input[type='range'].form-control {
   overflow: scroll;
   border-radius: 12px;
   box-shadow: 0 12px 36px 0 rgba(51, 122, 183, 0.1);
-  border: 1px solid #337ab7;
+  border: 1px solid var(--cb-dark1);
 }
 
 .CustomModal-title {
@@ -510,7 +508,7 @@ input[type='range'].form-control {
 .Sidebar-spinner {
   font-size: 18px;
   padding: 22px 10px 20px;
-  color: #337ab7;
+  color: var(--cb);
   display: block;
 }
 
@@ -534,7 +532,7 @@ input[type='range'].form-control {
 
 .Sidebar-navItem.active {
   background-color: #fff;
-  border-bottom: 2px solid #337ab7;
+  border-bottom: 2px solid var(--cb);
   box-shadow: 0 6px 6px 0 rgba(51, 122, 183, 0.1);
 }
 

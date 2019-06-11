@@ -136,7 +136,7 @@ exports[`Component > ImportModifications renders correctly 1`] = `
     <div
       className="form-group"
     >
-      <ReactSelect
+      <S
         clearable={false}
         getOptionLabel={[Function]}
         getOptionValue={[Function]}
@@ -162,10 +162,43 @@ exports[`Component > ImportModifications renders correctly 1`] = `
         }
         placeholder="Select a project…"
       >
-        <div
-          className="ReactSelectMock"
-        />
-      </ReactSelect>
+        <ReactSelect
+          clearable={false}
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "_id": "1",
+                "accessGroup": "accessGroupName",
+                "bundleId": "1",
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "name": "Mock Project",
+                "nonce": "12345",
+                "regionId": "1",
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+                "variants": Array [
+                  "Default",
+                ],
+              },
+            ]
+          }
+          placeholder="Select a project…"
+          styles={
+            Object {
+              "control": [Function],
+              "option": [Function],
+            }
+          }
+        >
+          <div
+            className="ReactSelectMock"
+          />
+        </ReactSelect>
+      </S>
     </div>
     <Button
       block={true}
