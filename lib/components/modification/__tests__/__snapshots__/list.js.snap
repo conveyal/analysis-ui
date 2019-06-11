@@ -508,11 +508,11 @@ exports[`Modification > List 1`] = `
              
             Modifications
             <Tip
-              className="ShowOnMap pull-right active fa-btn"
-              tip="Toggle all modifications map display"
+              className="ShowOnMap pull-right fa-btn"
+              tip="Hide all modifications from map display"
             >
               <span
-                className="Tip ShowOnMap pull-right active fa-btn"
+                className="Tip ShowOnMap pull-right fa-btn"
                 onBlur={[Function]}
                 onFocus={[Function]}
                 onMouseOut={[Function]}
@@ -525,7 +525,7 @@ exports[`Modification > List 1`] = `
                     icon={
                       Object {
                         "icon": Array [],
-                        "iconName": "eye",
+                        "iconName": "eye-slash",
                         "prefix": "fas",
                       }
                     }
@@ -538,7 +538,7 @@ exports[`Modification > List 1`] = `
                       icon={
                         Object {
                           "icon": Array [],
-                          "iconName": "eye",
+                          "iconName": "eye-slash",
                           "prefix": "fas",
                         }
                       }
@@ -556,8 +556,8 @@ exports[`Modification > List 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        className="svg-inline--fa fa-eye fa-w-NaN fa-fw "
-                        data-icon="eye"
+                        className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
+                        data-icon="eye-slash"
                         data-prefix="fas"
                         focusable="false"
                         role="img"
@@ -672,6 +672,7 @@ exports[`Modification > List 1`] = `
                 className="block"
               >
                 <Variants
+                  showVariant={[Function]}
                   variants={
                     Array [
                       "Default",
@@ -859,112 +860,9 @@ exports[`Modification > List 1`] = `
                   </div>
                 </Group>
                 <ModificationGroup
+                  defaultExpanded={true}
                   key="modification-group-add-trip-pattern"
-                  modifications={
-                    Array [
-                      Object {
-                        "_id": "1234",
-                        "accessGroup": "accessGroupName",
-                        "bidirectional": false,
-                        "createdAt": "2017-11-08T12:30:50.133Z",
-                        "createdBy": "person@gmail.com",
-                        "description": "Mock description",
-                        "entries": Array [],
-                        "feed": "1",
-                        "name": "Test Modification",
-                        "nonce": "12345",
-                        "projectId": "1",
-                        "routes": Array [
-                          "route1",
-                        ],
-                        "segments": Array [
-                          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-                        ],
-                        "showOnMap": false,
-                        "timetables": Array [
-                          Object {
-                            "_id": "timetable-id",
-                            "dwellTime": 10,
-                            "dwellTimes": Array [
-                              12,
-                            ],
-                            "endTime": 57600,
-                            "exactTimes": false,
-                            "friday": true,
-                            "headwaySecs": 900,
-                            "modificationId": "1234",
-                            "modificationName": "Test Modification",
-                            "monday": true,
-                            "name": "Test timetable",
-                            "patternTrips": Array [
-                              "abcd",
-                            ],
-                            "phaseAtStop": "",
-                            "phaseFromStop": "",
-                            "phaseFromTimetable": "",
-                            "phaseSeconds": 300,
-                            "saturday": false,
-                            "segmentSpeeds": Array [],
-                            "sourceTrip": "abcd",
-                            "startTime": 28800,
-                            "sunday": false,
-                            "thursday": true,
-                            "tuesday": true,
-                            "wednesday": true,
-                          },
-                        ],
-                        "trips": Array [
-                          "abcd",
-                        ],
-                        "type": "add-trip-pattern",
-                        "updatedAt": "2017-11-08T12:31:19.602Z",
-                        "updatedBy": "person@gmail.com",
-                        "variants": Array [
-                          true,
-                        ],
-                      },
-                    ]
-                  }
-                  projectId="1"
-                  regionId="1"
                   type="add-trip-pattern"
-                  updateModification={[Function]}
                 >
                   <Collapsible
                     defaultExpanded={true}
@@ -1052,48 +950,140 @@ exports[`Modification > List 1`] = `
                         <div
                           className="list-group"
                         >
-                          <Link
-                            href={
+                          <ModificationGroupItem
+                            hideFromMap={[Function]}
+                            key="1234"
+                            modification={
                               Object {
-                                "pathname": "/modification-edit",
-                                "query": Object {
-                                  "modificationId": "1234",
-                                  "projectId": "1",
-                                  "regionId": "1",
-                                },
+                                "_id": "1234",
+                                "accessGroup": "accessGroupName",
+                                "bidirectional": false,
+                                "createdAt": "2017-11-08T12:30:50.133Z",
+                                "createdBy": "person@gmail.com",
+                                "description": "Mock description",
+                                "entries": Array [],
+                                "feed": "1",
+                                "name": "Test Modification",
+                                "nonce": "12345",
+                                "projectId": "1",
+                                "routes": Array [
+                                  "route1",
+                                ],
+                                "segments": Array [
+                                  {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+                                ],
+                                "timetables": Array [
+                                  Object {
+                                    "_id": "timetable-id",
+                                    "dwellTime": 10,
+                                    "dwellTimes": Array [
+                                      12,
+                                    ],
+                                    "endTime": 57600,
+                                    "exactTimes": false,
+                                    "friday": true,
+                                    "headwaySecs": 900,
+                                    "modificationId": "1234",
+                                    "modificationName": "Test Modification",
+                                    "monday": true,
+                                    "name": "Test timetable",
+                                    "patternTrips": Array [
+                                      "abcd",
+                                    ],
+                                    "phaseAtStop": "",
+                                    "phaseFromStop": "",
+                                    "phaseFromTimetable": "",
+                                    "phaseSeconds": 300,
+                                    "saturday": false,
+                                    "segmentSpeeds": Array [],
+                                    "sourceTrip": "abcd",
+                                    "startTime": 28800,
+                                    "sunday": false,
+                                    "thursday": true,
+                                    "tuesday": true,
+                                    "wednesday": true,
+                                  },
+                                ],
+                                "trips": Array [
+                                  "abcd",
+                                ],
+                                "type": "add-trip-pattern",
+                                "updatedAt": "2017-11-08T12:31:19.602Z",
+                                "updatedBy": "person@gmail.com",
+                                "variants": Array [
+                                  true,
+                                ],
                               }
                             }
-                            key="1234"
+                            projectId="1"
+                            regionId="1"
+                            showOnMap={[Function]}
                           >
-                            <a
-                              className="list-group-item"
-                              href="/modification-edit?modificationId=1234&projectId=1&regionId=1"
-                              onClick={[Function]}
-                              style={
+                            <Link
+                              href={
                                 Object {
-                                  "cursor": "pointer",
+                                  "pathname": "/modification-edit",
+                                  "query": Object {
+                                    "modificationId": "1234",
+                                    "projectId": "1",
+                                    "regionId": "1",
+                                  },
                                 }
                               }
+                              key="1234"
                             >
-                              Test Modification
-                              <span
-                                className="pull-right"
+                              <a
+                                className="list-group-item"
+                                href="/modification-edit?modificationId=1234&projectId=1&regionId=1"
                                 onClick={[Function]}
-                              >
-                                <Icon
-                                  icon={
-                                    Object {
-                                      "icon": Array [],
-                                      "iconName": "eye-slash",
-                                      "prefix": "fas",
-                                    }
+                                style={
+                                  Object {
+                                    "cursor": "pointer",
                                   }
+                                }
+                              >
+                                Test Modification
+                                <span
+                                  className="pull-right"
+                                  onClick={[Function]}
                                 >
-                                  <FontAwesomeIcon
-                                    border={false}
-                                    className=""
-                                    fixedWidth={true}
-                                    flip={null}
+                                  <Icon
                                     icon={
                                       Object {
                                         "icon": Array [],
@@ -1101,39 +1091,53 @@ exports[`Modification > List 1`] = `
                                         "prefix": "fas",
                                       }
                                     }
-                                    inverse={false}
-                                    listItem={false}
-                                    mask={null}
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    symbol={false}
-                                    title=""
-                                    transform={null}
                                   >
-                                    <svg
-                                      aria-hidden="true"
-                                      className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
-                                      data-icon="eye-slash"
-                                      data-prefix="fas"
-                                      focusable="false"
-                                      role="img"
-                                      style={Object {}}
-                                      viewBox="0 0 undefined undefined"
-                                      xmlns="http://www.w3.org/2000/svg"
+                                    <FontAwesomeIcon
+                                      border={false}
+                                      className=""
+                                      fixedWidth={true}
+                                      flip={null}
+                                      icon={
+                                        Object {
+                                          "icon": Array [],
+                                          "iconName": "eye-slash",
+                                          "prefix": "fas",
+                                        }
+                                      }
+                                      inverse={false}
+                                      listItem={false}
+                                      mask={null}
+                                      pull={null}
+                                      pulse={false}
+                                      rotation={null}
+                                      size={null}
+                                      spin={false}
+                                      symbol={false}
+                                      title=""
+                                      transform={null}
                                     >
-                                      <path
-                                        fill="currentColor"
+                                      <svg
+                                        aria-hidden="true"
+                                        className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
+                                        data-icon="eye-slash"
+                                        data-prefix="fas"
+                                        focusable="false"
+                                        role="img"
                                         style={Object {}}
-                                      />
-                                    </svg>
-                                  </FontAwesomeIcon>
-                                </Icon>
-                              </span>
-                            </a>
-                          </Link>
+                                        viewBox="0 0 undefined undefined"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          fill="currentColor"
+                                          style={Object {}}
+                                        />
+                                      </svg>
+                                    </FontAwesomeIcon>
+                                  </Icon>
+                                </span>
+                              </a>
+                            </Link>
+                          </ModificationGroupItem>
                         </div>
                       </div>
                     </Panel>
