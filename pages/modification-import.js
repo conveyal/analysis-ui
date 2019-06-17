@@ -1,22 +1,22 @@
 import React from 'react'
 
 import {load as loadRegion} from 'lib/actions/region'
-import {Application, Dock} from 'lib/components/base'
+import Dock from 'lib/components/inner-dock'
 import ProjectTitle from 'lib/components/project-title'
 import ImportModifications from 'lib/components/import-modifications'
 
 function ImportModificationsPage(p) {
   return (
-    <Application>
+    <>
       <ProjectTitle project={p.project} />
-      <Dock>
+      <Dock className='block'>
         <ImportModifications
           projects={p.projects}
           projectId={p.projectId}
           regionId={p.regionId}
         />
       </Dock>
-    </Application>
+    </>
   )
 }
 

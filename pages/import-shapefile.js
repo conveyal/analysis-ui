@@ -2,22 +2,22 @@ import React from 'react'
 
 import {loadProject} from 'lib/actions/project'
 import {load as loadRegion} from 'lib/actions/region'
-import {Application, Dock} from 'lib/components/base'
+import Dock from 'lib/components/inner-dock'
 import ProjectTitle from 'lib/components/project-title'
 import ImportShapefile from 'lib/components/import-shapefile'
 
 function ImportShapefilePage(p) {
   return (
-    <Application>
+    <>
       <ProjectTitle project={p.project} />
-      <Dock>
+      <Dock className='block'>
         <ImportShapefile
           projectId={p.projectId}
           regionId={p.regionId}
           variants={p.project.variants}
         />
       </Dock>
-    </Application>
+    </>
   )
 }
 

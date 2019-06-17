@@ -1,8 +1,8 @@
 import {load} from 'lib/actions/region'
-import SelectProject from 'lib/containers/select-project'
+import SelectProject from 'lib/components/select-project'
 
 SelectProject.getInitialProps = async ctx => {
-  await ctx.reduxStore.dispatch(load(ctx.query.regionId))
+  return await ctx.reduxStore.dispatch(load(ctx.query.regionId))
 }
 
 export default SelectProject
