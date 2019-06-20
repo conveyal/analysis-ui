@@ -6,14 +6,14 @@ import {Provider} from 'react-redux'
 
 import {setQueryString} from 'lib/actions'
 import {isAuthenticated} from 'lib/auth'
+import Dock from 'lib/components/dock'
+import Sidebar from 'lib/components/sidebar'
+import State from 'lib/components/state'
 import {timer} from 'lib/utils/metric'
 import getReduxStore from 'lib/store'
 
-const Dock = dynamic(() => import('lib/components/dock'))
 const ErrorModal = dynamic(() => import('lib/components/error-modal'))
 const Map = dynamic(() => import('lib/components/map'), {ssr: false})
-const Sidebar = dynamic(() => import('lib/components/sidebar'))
-const State = dynamic(() => import('lib/components/state'))
 
 /**
  * Function to check if the path needs the map.
@@ -103,7 +103,6 @@ export default class extends App {
   }
 }
 
-const noop = () => {}
 const noopFragment = () => <React.Fragment />
 
 /**
@@ -116,25 +115,14 @@ function ComponentWithMap(p) {
   return (
     <State initialState={noopFragment}>
       {(mapChildren, setMapChildren) => (
-        <State initialState={noop}>
-          {(onClick, setMapOnClick) => (
-            <>
-              <div
-                className={`Fullscreen ${isAnalysis ? 'analysisMode' : ''}`}
-                id='FullScreenMap'
-              >
-                <Map onClick={onClick}>{mapChildren}</Map>
-              </div>
-              <Dock className={isAnalysis ? 'analysisMode' : ''}>
-                <p.Component
-                  {...p.pageProps}
-                  setMapChildren={setMapChildren}
-                  setMapOnClick={setMapOnClick}
-                />
-              </Dock>
-            </>
-          )}
-        </State>
+        <>
+          <div className={`Fullscreen ${isAnalysis ? 'analysisMode' : ''}`}>
+            <Map>{mapChildren}</Map>
+          </div>
+          <Dock className={isAnalysis ? 'analysisMode' : ''}>
+            <p.Component {...p.pageProps} setMapChildren={setMapChildren} />
+          </Dock>
+        </>
       )}
     </State>
   )

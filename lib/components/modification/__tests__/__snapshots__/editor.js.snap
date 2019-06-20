@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Modification > Editor should render and execute functions properly 1`] = `
-<Application
-  map={[Function]}
->
-  <Title>
+<Fragment>
+  <div
+    className="ApplicationDockTitle"
+  >
     <IconTip
       href={
         Object {
@@ -26,7 +26,7 @@ exports[`Components > Modification > Editor should render and execute functions 
     />
     Test Modification
     <span
-      className=""
+      className="block "
     >
       <IconTip
         className="pull-right"
@@ -65,9 +65,9 @@ exports[`Components > Modification > Editor should render and execute functions 
         tip="Edit modification name"
       />
     </span>
-  </Title>
-  <Dock
-    className=""
+  </div>
+  <InnerDock
+    className="block "
   >
     <Group>
       <Button
@@ -90,6 +90,7 @@ exports[`Components > Modification > Editor should render and execute functions 
       </Button>
     </Group>
     <ModificationType
+      mapState={null}
       modification={
         Object {
           "_id": "1234",
@@ -188,7 +189,7 @@ exports[`Components > Modification > Editor should render and execute functions 
           ],
         }
       }
-      setMapState={[MockFunction]}
+      setMapState={[Function]}
       type="add-trip-pattern"
       update={[Function]}
       updateAndRetrieveFeedData={[Function]}
@@ -313,6 +314,6 @@ exports[`Components > Modification > Editor should render and execute functions 
         save={[Function]}
       />
     </Collapsible>
-  </Dock>
-</Application>
+  </InnerDock>
+</Fragment>
 `;

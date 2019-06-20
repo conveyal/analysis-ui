@@ -1,48 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > SelectStops renders correctly with no feed data 1`] = `
-<Fragment>
-  <div
-    className="form-group"
+<div
+  className="form-group"
+>
+  <label
+    htmlFor="Selection"
   >
-    <label
-      htmlFor="Selection"
-    >
-      Selection
-    </label>
-    <div
-      className="btn-group btn-group-justified"
-    >
-      <a
-        className="btn btn-sm btn-default"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        New
-      </a>
-      <a
-        className="btn btn-sm btn-default disabled"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Add to
-      </a>
-      <a
-        className="btn btn-sm btn-default disabled"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Remove from
-      </a>
-      <a
-        className="btn btn-sm btn-default disabled"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Clear
-      </a>
-    </div>
-  </div>
+    Selection
+  </label>
+  <Button
+    block={true}
+    onClick={[Function]}
+  >
+    New
+  </Button>
   <div
     className="alert alert-info"
     role="alert"
@@ -58,52 +30,35 @@ exports[`Component > SelectStops renders correctly with no feed data 1`] = `
     />
     Click 'New', then draw a polygon around the stops you wish to select.
   </div>
-</Fragment>
+</div>
 `;
 
 exports[`Component > SelectStops renders correctly with some selected stops 1`] = `
-<Fragment>
-  <div
-    className="form-group"
+<div
+  className="form-group"
+>
+  <label
+    htmlFor="Selection"
   >
-    <label
-      htmlFor="Selection"
+    Selection
+  </label>
+  <Group>
+    <Button
+      onClick={[Function]}
     >
-      Selection
-    </label>
-    <div
-      className="btn-group btn-group-justified"
+      Add to
+    </Button>
+    <Button
+      onClick={[Function]}
     >
-      <a
-        className="btn btn-sm btn-default disabled"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        New
-      </a>
-      <a
-        className="btn btn-sm btn-default"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Add to
-      </a>
-      <a
-        className="btn btn-sm btn-default"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Remove from
-      </a>
-      <a
-        className="btn btn-sm btn-default"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Clear
-      </a>
-    </div>
-  </div>
+      Remove from
+    </Button>
+    <Button
+      onClick={[Function]}
+    >
+      Clear
+    </Button>
+  </Group>
   <SelectedStops
     selectedStops={
       Array [
@@ -116,5 +71,5 @@ exports[`Component > SelectStops renders correctly with some selected stops 1`] 
       ]
     }
   />
-</Fragment>
+</div>
 `;

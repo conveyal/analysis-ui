@@ -32,11 +32,23 @@ exports[`Component > ProjectTitle 1`] = `
       }
     }
   >
-    <Title>
-      <div
-        className="ApplicationDockTitle"
+    <div
+      className="ApplicationDockTitle"
+    >
+      <Icon
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "cube",
+            "prefix": "fas",
+          }
+        }
       >
-        <Icon
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={true}
+          flip={null}
           icon={
             Object {
               "icon": Array [],
@@ -44,152 +56,69 @@ exports[`Component > ProjectTitle 1`] = `
               "prefix": "fas",
             }
           }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
         >
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={true}
-            flip={null}
-            icon={
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
+            data-icon="cube"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 undefined undefined"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </FontAwesomeIcon>
+      </Icon>
+       
+      Mock Project
+      <Tip
+        className="pull-right"
+        tip="Edit project settings"
+      >
+        <span
+          className="Tip pull-right"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <Link
+            href={
               Object {
-                "icon": Array [],
-                "iconName": "cube",
-                "prefix": "fas",
+                "pathname": "/project-settings",
+                "query": Object {
+                  "projectId": "1",
+                  "regionId": "1",
+                },
               }
             }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            symbol={false}
-            title=""
-            transform={null}
-          >
-            <svg
-              aria-hidden="true"
-              className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
-              data-icon="cube"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
-              style={Object {}}
-              viewBox="0 0 undefined undefined"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill="currentColor"
-                style={Object {}}
-              />
-            </svg>
-          </FontAwesomeIcon>
-        </Icon>
-         
-        Mock Project
-        <Tip
-          className="pull-right"
-          tip="Edit project settings"
-        >
-          <span
-            className="Tip pull-right"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
-          >
-            <Link
-              href={
-                Object {
-                  "pathname": "/project-settings",
-                  "query": Object {
-                    "projectId": "1",
-                    "regionId": "1",
-                  },
-                }
-              }
-            >
-              <a
-                href="/project-settings?regionId=1&projectId=1"
-                onClick={[Function]}
-              >
-                <Icon
-                  icon={
-                    Object {
-                      "icon": Array [],
-                      "iconName": "cog",
-                      "prefix": "fas",
-                    }
-                  }
-                >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={true}
-                    flip={null}
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "cog",
-                        "prefix": "fas",
-                      }
-                    }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
-                  >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
-                      data-icon="cog"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
-                      style={Object {}}
-                      viewBox="0 0 undefined undefined"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
-                </Icon>
-              </a>
-            </Link>
-          </span>
-        </Tip>
-        <Tip
-          className="pull-right"
-          tip="Download or share this project"
-        >
-          <span
-            className="Tip pull-right"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
           >
             <a
-              name="Download or share this project"
+              href="/project-settings?regionId=1&projectId=1"
               onClick={[Function]}
             >
               <Icon
                 icon={
                   Object {
                     "icon": Array [],
-                    "iconName": "share-alt-square",
+                    "iconName": "cog",
                     "prefix": "fas",
                   }
                 }
@@ -202,7 +131,7 @@ exports[`Component > ProjectTitle 1`] = `
                   icon={
                     Object {
                       "icon": Array [],
-                      "iconName": "share-alt-square",
+                      "iconName": "cog",
                       "prefix": "fas",
                     }
                   }
@@ -220,8 +149,8 @@ exports[`Component > ProjectTitle 1`] = `
                 >
                   <svg
                     aria-hidden="true"
-                    className="svg-inline--fa fa-share-alt-square fa-w-NaN fa-fw "
-                    data-icon="share-alt-square"
+                    className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
+                    data-icon="cog"
                     data-prefix="fas"
                     focusable="false"
                     role="img"
@@ -237,10 +166,79 @@ exports[`Component > ProjectTitle 1`] = `
                 </FontAwesomeIcon>
               </Icon>
             </a>
-          </span>
-        </Tip>
-      </div>
-    </Title>
+          </Link>
+        </span>
+      </Tip>
+      <Tip
+        className="pull-right"
+        tip="Download or share this project"
+      >
+        <span
+          className="Tip pull-right"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
+          <a
+            name="Download or share this project"
+            onClick={[Function]}
+          >
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "share-alt-square",
+                  "prefix": "fas",
+                }
+              }
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "share-alt-square",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-share-alt-square fa-w-NaN fa-fw "
+                  data-icon="share-alt-square"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+          </a>
+        </span>
+      </Tip>
+    </div>
   </ProjectTitle>
 </Provider>
 `;

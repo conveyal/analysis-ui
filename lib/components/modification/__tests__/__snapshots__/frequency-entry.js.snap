@@ -1,46 +1,251 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > FrequencyEntry renders correctly 1`] = `
-<section
-  className="panel panel-default inner-panel"
-  onFocus={[Function]}
+<Collapsible
+  heading={[Function]}
 >
-  <a
-    className="panel-heading clearfix"
-    onClick={[Function]}
-    style={
+  <Text
+    name="Name"
+    onChange={[Function]}
+    value="Test timetable"
+  />
+  <SelectPatterns
+    onChange={[Function]}
+    routePatterns={
+      Array [
+        Object {
+          "geometry": Object {
+            "coordinates": Array [
+              Array [
+                -122.0246,
+                36.9707,
+              ],
+              Array [
+                -122.0279,
+                37.049,
+              ],
+              Array [
+                -121.9799,
+                37.2299,
+              ],
+              Array [
+                -121.9445,
+                37.324,
+              ],
+              Array [
+                -121.936,
+                37.353,
+              ],
+              Array [
+                -121.924,
+                37.365,
+              ],
+            ],
+            "type": "LineString",
+          },
+          "name": "Mock Pattern",
+          "pattern_id": "mock-pattern-id",
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          ],
+          "trips": Array [
+            Object {
+              "duration": 1234,
+              "end_time": 13579,
+              "start_time": 12345,
+              "trip_headsign": "To Downtown",
+              "trip_id": "abcd",
+              "trip_short_name": "The Express",
+            },
+          ],
+        },
+      ]
+    }
+    trips={
+      Array [
+        "abcd",
+      ]
+    }
+  />
+  <SelectTrip
+    feed={
       Object {
-        "cursor": "pointer",
+        "checksum": "MOCK",
+        "id": "1",
+        "routes": Array [
+          Object {
+            "label": "mock-route-label",
+            "patterns": Array [
+              Object {
+                "geometry": Object {
+                  "coordinates": Array [
+                    Array [
+                      -122.0246,
+                      36.9707,
+                    ],
+                    Array [
+                      -122.0279,
+                      37.049,
+                    ],
+                    Array [
+                      -121.9799,
+                      37.2299,
+                    ],
+                    Array [
+                      -121.9445,
+                      37.324,
+                    ],
+                    Array [
+                      -121.936,
+                      37.353,
+                    ],
+                    Array [
+                      -121.924,
+                      37.365,
+                    ],
+                  ],
+                  "type": "LineString",
+                },
+                "name": "Mock Pattern",
+                "pattern_id": "mock-pattern-id",
+                "stops": Array [
+                  Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                ],
+                "trips": Array [
+                  Object {
+                    "duration": 1234,
+                    "end_time": 13579,
+                    "start_time": 12345,
+                    "trip_headsign": "To Downtown",
+                    "trip_id": "abcd",
+                    "trip_short_name": "The Express",
+                  },
+                ],
+              },
+            ],
+            "route_id": "route1",
+          },
+        ],
+        "stops": Array [
+          Object {
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
+          Object {
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        ],
+        "stopsById": Object {
+          "1": Object {
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
+          "2": Object {
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        },
       }
     }
-    tabIndex={0}
+    onChange={[Function]}
+    patternTrips={
+      Array [
+        "abcd",
+      ]
+    }
+    routes={
+      Array [
+        "route1",
+      ]
+    }
+    trip="abcd"
+  />
+  <TimetableEntry
+    allPhaseFromTimetableStops={Object {}}
+    bidirectional={false}
+    modificationStops={Array []}
+    projectTimetables={Array []}
+    timetable={
+      Object {
+        "_id": "timetable-id",
+        "dwellTime": 10,
+        "dwellTimes": Array [
+          12,
+        ],
+        "endTime": 57600,
+        "exactTimes": false,
+        "friday": true,
+        "headwaySecs": 900,
+        "modificationId": "1234",
+        "modificationName": "Test Modification",
+        "monday": true,
+        "name": "Test timetable",
+        "patternTrips": Array [
+          "abcd",
+        ],
+        "phaseAtStop": "",
+        "phaseFromStop": "",
+        "phaseFromTimetable": "",
+        "phaseSeconds": 300,
+        "saturday": false,
+        "segmentSpeeds": Array [],
+        "sourceTrip": "abcd",
+        "startTime": 28800,
+        "sunday": false,
+        "thursday": true,
+        "tuesday": true,
+        "wednesday": true,
+      }
+    }
+    update={[MockFunction]}
+  />
+  <Button
+    block={true}
+    onClick={[Function]}
+    style="danger"
+    title="Delete frequency entry"
   >
     <Icon
       icon={
         Object {
           "icon": Array [],
-          "iconName": "calendar",
+          "iconName": "times",
           "prefix": "fas",
         }
       }
     />
-    <strong>
-       
-      Test timetable
-    </strong>
-    <span
-      className="pull-right"
-    >
-      <Icon
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "caret-right",
-            "prefix": "fas",
-          }
-        }
-      />
-    </span>
-  </a>
-</section>
+     Delete frequency entry
+  </Button>
+</Collapsible>
 `;
