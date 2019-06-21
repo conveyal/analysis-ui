@@ -1,552 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Container > Modification Editor render just the title if not loaded 1`] = `
-Array [
-  <div
-    className="ApplicationDock"
+<div
+  className="InnerDock block "
+  style={
+    Object {
+      "height": 768,
+    }
+  }
+>
+  <p>
+    Loading modification feed...
+  </p>
+  <p>
+    If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
+  </p>
+  <Button
+    block={true}
+    onClick={[Function]}
+    style="warning"
   >
-    <Title>
-      <div
-        className="ApplicationDockTitle"
-      >
-        <IconTip
-          href={
-            Object {
-              "pathname": "/modifications",
-              "query": Object {
-                "projectId": undefined,
-                "regionId": undefined,
-              },
-            }
+    <a
+      className="btn btn-warning btn-block"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
+    >
+      <Icon
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "times",
+            "prefix": "fas",
           }
+        }
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={true}
+          flip={null}
           icon={
             Object {
               "icon": Array [],
-              "iconName": "chevron-left",
+              "iconName": "times",
               "prefix": "fas",
             }
           }
-          tip="Modifications"
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
         >
-          <Tip
-            tip="Modifications"
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-times fa-w-NaN fa-fw "
+            data-icon="times"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 undefined undefined"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              className="Tip "
-              onBlur={[Function]}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <Link
-                href={
-                  Object {
-                    "pathname": "/modifications",
-                    "query": Object {
-                      "projectId": undefined,
-                      "regionId": undefined,
-                    },
-                  }
-                }
-              >
-                <a
-                  href="/modifications?regionId=&projectId="
-                  name="Modifications"
-                  onClick={[Function]}
-                >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "chevron-left",
-                        "prefix": "fas",
-                      }
-                    }
-                  >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "chevron-left",
-                          "prefix": "fas",
-                        }
-                      }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-chevron-left fa-w-NaN fa-fw "
-                        data-icon="chevron-left"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                </a>
-              </Link>
-            </span>
-          </Tip>
-        </IconTip>
-        Test Modification
-        <span
-          className=""
-        >
-          <IconTip
-            className="pull-right"
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "trash",
-                "prefix": "fas",
-              }
-            }
-            onClick={[Function]}
-            tip="Delete modification"
-          >
-            <Tip
-              className="pull-right"
-              tip="Delete modification"
-            >
-              <span
-                className="Tip pull-right"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
-              >
-                <a
-                  name="Delete modification"
-                  onClick={[Function]}
-                >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "trash",
-                        "prefix": "fas",
-                      }
-                    }
-                  >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "trash",
-                          "prefix": "fas",
-                        }
-                      }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
-                        data-icon="trash"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                </a>
-              </span>
-            </Tip>
-          </IconTip>
-          <IconTip
-            className="pull-right"
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "copy",
-                "prefix": "fas",
-              }
-            }
-            onClick={[Function]}
-            tip="Copy modification"
-          >
-            <Tip
-              className="pull-right"
-              tip="Copy modification"
-            >
-              <span
-                className="Tip pull-right"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
-              >
-                <a
-                  name="Copy modification"
-                  onClick={[Function]}
-                >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "copy",
-                        "prefix": "fas",
-                      }
-                    }
-                  >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "copy",
-                          "prefix": "fas",
-                        }
-                      }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-copy fa-w-NaN fa-fw "
-                        data-icon="copy"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                </a>
-              </span>
-            </Tip>
-          </IconTip>
-          <IconTip
-            className="pull-right"
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "pencil-alt",
-                "prefix": "fas",
-              }
-            }
-            onClick={[Function]}
-            tip="Edit modification name"
-          >
-            <Tip
-              className="pull-right"
-              tip="Edit modification name"
-            >
-              <span
-                className="Tip pull-right"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
-              >
-                <a
-                  name="Edit modification name"
-                  onClick={[Function]}
-                >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "pencil-alt",
-                        "prefix": "fas",
-                      }
-                    }
-                  >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "pencil-alt",
-                          "prefix": "fas",
-                        }
-                      }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
-                        data-icon="pencil-alt"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                </a>
-              </span>
-            </Tip>
-          </IconTip>
-        </span>
-      </div>
-    </Title>
-    <Dock
-      className=""
-    >
-      <InnerDock
-        className=""
-      >
-        <div
-          className="InnerDock "
-          style={
-            Object {
-              "height": 768,
-            }
-          }
-        >
-          <div
-            className="block"
-          >
-            <p>
-              Loading modification feed...
-            </p>
-            <p>
-              If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
-            </p>
-            <Button
-              block={true}
-              onClick={[Function]}
-              style="warning"
-            >
-              <a
-                className="btn btn-warning btn-block"
-                href="#"
-                onClick={[Function]}
-                tabIndex={0}
-              >
-                <Icon
-                  icon={
-                    Object {
-                      "icon": Array [],
-                      "iconName": "times",
-                      "prefix": "fas",
-                    }
-                  }
-                >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={true}
-                    flip={null}
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "times",
-                        "prefix": "fas",
-                      }
-                    }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
-                  >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-times fa-w-NaN fa-fw "
-                      data-icon="times"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
-                      style={Object {}}
-                      viewBox="0 0 undefined undefined"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
-                </Icon>
-                 
-                Clear selected bundle
-              </a>
-            </Button>
-          </div>
-        </div>
-      </InnerDock>
-    </Dock>
-  </div>,
-  <InnerDock
-    className=""
-  >
-    <div
-      className="InnerDock "
-      style={
-        Object {
-          "height": 768,
-        }
-      }
-    >
-      <div
-        className="block"
-      >
-        <p>
-          Loading modification feed...
-        </p>
-        <p>
-          If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
-        </p>
-        <Button
-          block={true}
-          onClick={[Function]}
-          style="warning"
-        >
-          <a
-            className="btn btn-warning btn-block"
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
-          >
-            <Icon
-              icon={
-                Object {
-                  "icon": Array [],
-                  "iconName": "times",
-                  "prefix": "fas",
-                }
-              }
-            >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "times",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                symbol={false}
-                title=""
-                transform={null}
-              >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-times fa-w-NaN fa-fw "
-                  data-icon="times"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
-                  style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Clear selected bundle
-          </a>
-        </Button>
-      </div>
-    </div>
-  </InnerDock>,
-]
+            <path
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </FontAwesomeIcon>
+      </Icon>
+       
+      Clear selected bundle
+    </a>
+  </Button>
+</div>
 `;
 
 exports[`Container > Modification Editor renders and can change the name 1`] = `
