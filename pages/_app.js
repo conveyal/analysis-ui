@@ -40,7 +40,16 @@ export default class extends App {
     // Run `getInitialProps`
     let initialProps = {}
     if (Component.getInitialProps) {
-      initialProps = await Component.getInitialProps(ctx)
+      try {
+        initialProps = await Component.getInitialProps(ctx)
+      } catch (e) {
+        console.error(e)
+        ctx.res.writeHead(302, {
+          Location: `/login?redirectTo=${ctx.asPath}`
+        })
+        ctx.res.end()
+        return
+      }
     }
 
     // Set the query string in the store
