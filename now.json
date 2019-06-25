@@ -4,16 +4,7 @@
   "alias": "next.conveyal.com",
   "version": 2,
   "regions": ["all"],
-  "builds": [
-    {"src": "next.config.js", "use": "@now/next"},
-    {"src": "api/proxy/index.js", "use": "@now/node"}
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/proxy/index.js"
-    }
-  ],
+  "builds": [{"src": "next.config.js", "use": "@now/next"}],
   "env": {
     "API_URL": "@api-url"
   },
