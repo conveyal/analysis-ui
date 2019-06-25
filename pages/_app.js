@@ -7,13 +7,17 @@ import {Provider} from 'react-redux'
 import {setQueryString} from 'lib/actions'
 import {isAuthenticated} from 'lib/auth'
 import Dock from 'lib/components/dock'
+import LoadingScreen from 'lib/components/loading-screen'
 import Sidebar from 'lib/components/sidebar'
 import State from 'lib/components/state'
 import {timer} from 'lib/utils/metric'
 import getReduxStore from 'lib/store'
 
 const ErrorModal = dynamic(() => import('lib/components/error-modal'))
-const Map = dynamic(() => import('lib/components/map'), {ssr: false})
+const Map = dynamic(() => import('lib/components/map'), {
+  loading: () => <LoadingScreen />,
+  ssr: false
+})
 
 /**
  * Function to check if the path needs the map.
@@ -44,10 +48,12 @@ export default class extends App {
         initialProps = await Component.getInitialProps(ctx)
       } catch (e) {
         console.error(e)
-        ctx.res.writeHead(302, {
-          Location: `/login?redirectTo=${ctx.asPath}`
-        })
-        ctx.res.end()
+        if (ctx.res) {
+          ctx.res.writeHead(302, {
+            Location: `/login?redirectTo=${ctx.asPath}`
+          })
+          ctx.res.end()
+        }
         return
       }
     }
