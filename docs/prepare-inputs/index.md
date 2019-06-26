@@ -1,6 +1,11 @@
 # Preparing baseline network
 
-Start by gathering [GTFS](../glossary.html#GTFS) files for the transit agencies whose service will be included in your scenarios. If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
+Start by gathering [GTFS](../glossary.html#GTFS) files for the transit agencies whose service will be included in your scenarios. Ensure any GTFS you upload follows requirements of the specification. Various [validation tools](https://gtfs.org/testing/) are available.  Common issues include:
+* Missing required files
+* Calendar dates that do not cover an intended date of analysis.
+* Using values other than 0-7 in the route_type column of routes.txt
+
+If there is no GTFS available for your region, as a workaround you can use a valid GTFS feed from somewhere else in the world, follow the steps below, then attempt to [import route alignment shapefiles](../edit-scenario/index.html#importing-modifications-from-shapefiles) representing service in your region.
 
 ## Setting up a new region
 
