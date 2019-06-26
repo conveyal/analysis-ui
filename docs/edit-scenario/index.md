@@ -83,7 +83,13 @@ If you choose a project associated with a different GTFS, bundle, only add-trip 
 
 In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However, on occasion, it may be desirable to import modifications from a GIS Shapefile. If you have a Shapefile containing lines, you can upload it to Conveyal Analysis and have it turned into a set of Add Trips modifications.
 
-To do so from the upload/import panel, click
+When preparing a shapefile,
+- Check that it has columns specifying a route name, speed (in km/h), and headway (in minutes).
+- Ensure it has only valid lines, with no multigeometry features. 
+- Ensure that the node order of the shapefile represents a single, continuous direction. This may not be the case by default if route alignment shapefiles have been assembled by aggregating multiple features from a road layer.
+- Consider using a Generalize function in GIS to reduce the number of nodes, which will be translated to alignment control points in Conveyal Analysis. Modifications with excessive control points may be difficult to work with in the user interface.
+
+Once a shapefile is prepared, in the upload/import panel of Conveyal Analysis, click
 <br><span class="btn btn-success"><i class="fa fa-upload"></i> Import</span>
 
 Then, after selecting and importing a zipped Shapefile, you will see the following:
