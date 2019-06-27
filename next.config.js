@@ -14,7 +14,7 @@ const env = {
 }
 
 // Log env for sanity
-console.log(env)
+console.log('next.config.js -- process.env', env)
 
 module.exports = withBundleAnalyzer({
   target: 'serverless',
