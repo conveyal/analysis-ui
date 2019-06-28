@@ -37,6 +37,8 @@ The latter two commands expect bounding boxes to be specified in the format `min
 
 When creating a region, the panel will show an osmconvert command pre-filled with the current regional bouding box. If you have osmconvert installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
 
+Note that files larger than 500MB may be rejected on upload. Please contact us if you genuinely need to upload a file of this size, or need assistance in cropping and filtering OSM data.
+
 ## Uploading a GTFS bundle
 
 On the main page for a region, upload your first bundle of GTFS feeds by clicking:
@@ -46,6 +48,8 @@ You can also click this icon on the sidebar to access GTFS Bundles:
 <br><span class="ui-icon"><i class="fa fa-database"></i> GTFS Bundles</span>
 
 This will take you to the GTFS Bundles page, where you can give the Bundle a name and choose .zip files to upload. If you have multiple GTFS feed .zip files, you can select them by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system).  Finally, click the create button to confirm.
+
+Again, note that files larger than 500MB may be rejected on upload. The largest GTFS in regular use are below 400MB so a larger file may indicate a problem. Please contact us if you genuinely need to upload a file of this size.
 
 ## Creating a Project
 
