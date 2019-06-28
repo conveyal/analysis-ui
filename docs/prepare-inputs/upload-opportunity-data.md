@@ -18,7 +18,7 @@ If you are uploading a shapefile, it should not be zipped. Select all of the fil
   <figcaption>Uploading a Shapefile by selecting all constituent files</figcaption>
 </figure>
 
-If you upload a CSV file, two extra fields will appear, in which you must type the field names of the latitude and longitude fields (we currently only support CSV files in WGS 84 Latitude/Longitude coordinates).
+If you upload a CSV file, two extra fields will appear, in which you must type the field names of the latitude and longitude fields (we currently only support CSV files in WGS 84 Latitude/Longitude coordinates). Many minor variants of the CSV format exist. Rather venturing a guess at which variant is being used, the system expects the file to adhere to a particular definition of CSV: fields should be separated by commas (rather than semicolons for example) and the first row should be a header row containing the names of the fields. The latitude and longitude field names you specify in the web UI should be detected in that header row.
 
 Once you have done this, click the upload button to start the upload.  Opportunity datasets will be saved with the source name you entered and the attribute/column names of the uploaded files.
 
