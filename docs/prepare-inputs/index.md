@@ -33,7 +33,7 @@ Performing accessibility analysis with excessively large OSM data can lead to si
 
 **Osmium:** `osmium extract --strategy complete_ways --bbox 2.25,48.81,2.42,48.91 input.osm.pbf -o cropped.osm.pbf`
 
-The latter two commands expect bounding boxes to be specified in the format `lon1,lat1,lon2,lat2`. We frequently find bounding boxes using the convenient [Klokantech bounding box tool](https://boundingbox.klokantech.com/). Selecting the "CSV" format in the lower left will give exactly the format expected by these tools. You can also adapt the bounding box values shown in the region setup panel of Analysis.
+The latter two commands expect bounding boxes to be specified in the format `min_lon,min_lat,max_lon,max_lat`. We frequently find bounding boxes using the convenient [Klokantech bounding box tool](https://boundingbox.klokantech.com/). Selecting the "CSV" format in the lower left will give exactly the format expected by these tools. You can also adapt the bounding box values shown in the region setup panel of Analysis.
 
 When creating a region, the panel will show an osmconvert command pre-filled with the current regional bouding box. If you have osmconvert installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
 
