@@ -5,7 +5,7 @@ To measure access to spatially distributed opportunities (e.g. jobs, people, sch
 
 ## Uploading opportunity datasets
 
-Opportunity datasets can be created by uploading point-based shapefiles, polygon-based shapefiles, or a .csv file of points.  Files must have at least one numeric attribute/column in addition to coordinates/geometries.  For point files, it often makes sense to include a "count" column filled with 1.
+Opportunity datasets can be created by uploading shapefiles containing point features, shapefiles containing polygon features, or a CSV file with one point per row.  In addition to the coordinates or geometries, uploaded files must have at least one numeric attribute or column specifying the opportunity count within each polygon or at each point. In CSV files with each row representing a single opportunity at a specific location, this numeric column should be filled with the number 1 (i.e. one opportunity at each point).
 
 To start an upload, click: <br><span class="btn btn-success"><i class="fa fa-plus"></i> Upload a new opportunity dataset</span>
 
@@ -18,7 +18,7 @@ If you are uploading a shapefile, it should not be zipped. Select all of the fil
   <figcaption>Uploading a Shapefile by selecting all constituent files</figcaption>
 </figure>
 
-If you upload a CSV file, two extra fields will appear, in which you must type the field names of the latitude and longitude fields (we currently only support CSV files in WGS 84 Latitude/Longitude coordinates). Many minor variants of the CSV format exist. Rather venturing a guess at which variant is being used, the system expects the file to adhere to a particular definition of CSV: fields should be separated by commas (rather than semicolons for example) and the first row should be a header row containing the names of the fields. The latitude and longitude field names you specify in the web UI should be detected in that header row.
+If you select a CSV file (whose filename must end in `.csv`) two extra fields will appear in the interface, in which you must type the names of the latitude and longitude fields within the CSV. We currently only support CSV files which specify points in WGS 84 latitude/longitude coordinates. Many minor variants of the CSV format exist. Rather venturing a guess at which variant is being used, the system expects the file to adhere to a particular definition of CSV: fields should be separated by commas (rather than semicolons for example) and the first row should be a header row containing the names of the fields. The latitude and longitude field names you specify in the web UI should be detected in that header row.
 
 Once you have done this, click the upload button to start the upload.  Opportunity datasets will be saved with the source name you entered and the attribute/column names of the uploaded files.
 
