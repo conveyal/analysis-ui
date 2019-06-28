@@ -9,10 +9,33 @@ From the initial login page, set up a new region by clicking
 
 If any regions have already been created, they will be shown in a list below this button.
 
-When setting up a new region, enter a name and specify boundaries by moving the bounding box on the map. You must also upload an appropriate OpenStreetMap (OSM) extract in this view, which will serve as the road layer of the transport network. OSM extracts can be downloaded from services such as [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/).  
+When setting up a new region, enter a name and specify boundaries by moving the bounding box on the map. You must also upload an appropriate OpenStreetMap (OSM) extract in this view, which will serve as the road layer of the transport network. OSM extracts can be downloaded from services such as [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/). Note that several formats exist for OSM data. We always use the PBF format because it is more compact and faster to process.
 
-### Cropping an OSM extract
-To reduce computation time, we suggest cropping your OSM extract to the extent of your region.  If you have [osmconvert](https://wiki.openstreetmap.org/wiki/Osmconvert#Binaries) installed on your computer, you can copy the crop command shown in the panel, paste it to your local command line, run it, and upload the resulting cropped OSM file.
+### Filtering OSM data
+
+The OSM database contains a lot of other data besides the roads, paths, and public transportation platform data we need for accessibility analysis. As of this writing, according to https://taginfo.openstreetmap.org/ 59% of the entities in OSM are buildings, and only 23% are roads or paths. Buildings frequently have more complex shapes than roads, and objects like waterways or political boundaries can be very large in size. It has been jokingly said that OSM should be renamed "OpenBuildingMap" rather than "OpenStreetMap".
+
+Removing unneeded data will reduce the time and network bandwidth needed to the upload the file to Analysis, and will speed up the processing stages where the OSM data is converted into a routable street network. Several command tools exist to filter OSM data. If you are familiar with command line tools or comfortable experimenting with them, you may want to try [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis), [OSMFilter](https://wiki.openstreetmap.org/wiki/Osmfilter), or [Osmium-Tool](https://wiki.openstreetmap.org/wiki/Osmium). Osmium-tool is extremely fast but is only straightforward to install on Linux and MacOS platforms. In our experience Osmosis is significantly slower at processing but will also work on Windows as it's a multi-platform Java application. Below are some example commands for retaining only the OSM data useful for accessibility analysis. You would need to replace `input.osm.pbf` with the OSM data file you downloaded.
+
+**Osmosis:** `osmosis --rb input.osm.pbf --tf reject-ways building=* --tf reject-ways waterway=* --tf reject-ways landuse=* --tf reject-ways natural=* --used-node --wb output.osm.pbf`
+
+**Osmium:** `osmium tags-filter input.osm.pbf w/highway w/public_transport=platform w/railway=platform w/park_ride=yes r/type=restriction -o output.osm.pbf`
+
+### Cropping OSM data
+
+Services producing automated extracts of OSM data like [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/) are limited to predefined areas. You'll often need to select an extract for a country or region larger than your actual study area, then cut it down to size. Performing accessibility analysis with excessively large OSM data can lead to significant increases in computation time and complexity.
+
+Therefore we strongly recommend cropping the OSM data if they cover an area significantly larger than your transportation network or opportunity data. Several command line tools are also able to perform these cropping operations: [Osmosis](https://wiki.openstreetmap.org/wiki/Osmosis) is a multi-platform Java tool that works on Windows, Linux, and MacOS but is relatively slow, [OSMConvert](https://wiki.openstreetmap.org/wiki/Osmconvert) is a fast tool pre-built for Windows and Linux and available on MacOS and Linux distributions as part of `osmctools` package. [Osmium-Tool](https://wiki.openstreetmap.org/wiki/Osmium) is a personal favorite that is extremely fast but only straightforward to install on Linux and MacOS platforms. Below are some example crop commands for these different tools:
+
+**Osmosis:** `osmosis --rb input.osm.pbf --bounding-box left=4.34 right=5.84 bottom=43.10 top=43.97 --wb cropped.osm.pbf`
+
+**OsmConvert:** `osmconvert input.osm.pbf -b=-77.255859375,38.77764022307335,-76.81365966796875,39.02345139405933 --complete-ways -o=cropped.osm.pbf`
+
+**Osmium:** `osmium extract --strategy complete_ways --bbox 2.25,48.81,2.42,48.91 input.osm.pbf -o cropped.osm.pbf`
+
+The latter two commands expect bounding boxes to be specified in the format `lon1,lat1,lon2,lat2`. We frequently find bounding boxes using the convenient [Klokantech bounding box tool](https://boundingbox.klokantech.com/). Selecting the "CSV" format in the lower left will give exactly the format expected by these tools. You can also adapt the bounding box values shown in the region setup panel of Analysis.
+
+When creating a region, the panel will show an osmconvert command pre-filled with the current regional bouding box. If you have osmconvert installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
 
 ## Uploading a GTFS bundle
 
