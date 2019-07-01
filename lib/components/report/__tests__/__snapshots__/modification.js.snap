@@ -2,17 +2,23 @@
 
 exports[`Report > Modification renders correctly 1`] = `
 <div
-  className="Report-Modification"
+  style={
+    Object {
+      "pageBreakBefore": "always",
+    }
+  }
 >
   <h3>
-    (
-     / 
-    ) 
-    Adjust dwell time
-  </h3>
-  <h2>
     Test Modification
-  </h2>
+    <small
+      className="pull-right"
+    >
+      (
+       / 
+      ) 
+      Adjust dwell time
+    </small>
+  </h3>
   <i>
     Mock description
   </i>
@@ -218,5 +224,6 @@ exports[`Report > Modification renders correctly 1`] = `
       }
     }
   />
+  <hr />
 </div>
 `;
