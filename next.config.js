@@ -3,9 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const path = require('path')
 
-// Pull in .env
-require('dotenv').config()
-
 const env = {
   API_URL: process.env.API_URL,
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,

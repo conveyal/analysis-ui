@@ -29,6 +29,14 @@ body,
   margin-left: 0.5rem;
 }
 
+.list-group-item a {
+  margin-left: 0.5rem;
+}
+
+.list-group-item a:first-of-type {
+  margin-left: 0;
+}
+
 .disableAndDim {
   opacity: 0.4;
   pointer-events: none;
@@ -40,9 +48,9 @@ body.Editor,
   height: 100%;
 }
 
-#report table,
-#report div {
-  width: 100%;
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
 }
 
 a,
@@ -268,10 +276,6 @@ input[type='range'].form-control {
 
 .LoggedInAs {
   padding-top: 6px;
-}
-
-.Report-Modification {
-  page-break-before: always;
 }
 
 .DaysOfService-active {

@@ -16,6 +16,10 @@ const Stylesheets = () =>
       />
       <link
         rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css'
+      />
+      <link
+        rel='stylesheet'
         href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css'
       />
       <link
@@ -27,6 +31,7 @@ const Stylesheets = () =>
     <>
       <link rel='stylesheet' href='/static/bootstrap.min.css' />
       <link rel='stylesheet' href='/static/leaflet/leaflet.css' />
+      <link rel='stylesheet' href='/static/leaflet.draw.css' />
       <link rel='stylesheet' href='/static/mapbox-gl.css' />
       <link rel='stylesheet' href='/static/fontawesome.css' />
     </>
