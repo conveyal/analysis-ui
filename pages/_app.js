@@ -41,6 +41,10 @@ export default class extends App {
     if (!authenticated) return {} // redirecting to login screen...
     timeAuth.end()
 
+    // Set the query string in the store
+    // TODO ideally stop duplicating this data in the store
+    ctx.reduxStore.dispatch(setQueryString(ctx.query))
+
     // Run `getInitialProps`
     let initialProps = {}
     if (Component.getInitialProps) {
@@ -57,10 +61,6 @@ export default class extends App {
         return
       }
     }
-
-    // Set the query string in the store
-    // TODO ideally stop duplicating this data in the store
-    ctx.reduxStore.dispatch(setQueryString(ctx.query))
 
     // Always pass the path information
     const pageProps = {

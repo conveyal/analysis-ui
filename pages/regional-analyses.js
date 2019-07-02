@@ -1,12 +1,12 @@
 import {load} from 'lib/actions/analysis/regional'
 import RegionalResultsList from 'lib/components/analysis/regional-results-list'
+import withFetch from 'lib/with-fetch'
 
-RegionalResultsList.getInitialProps = async ctx => {
-  const {regionId} = ctx.query
-  const regionalAnalyses = await ctx.reduxStore.dispatch(load(regionId))
+async function fetchData(dispatch, query) {
+  const regionalAnalyses = await dispatch(load(query.regionId))
   return {
     regionalAnalyses
   }
 }
 
-export default RegionalResultsList
+export default withFetch(RegionalResultsList, fetchData)

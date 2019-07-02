@@ -3,6 +3,7 @@ import React from 'react'
 import {loadBundles} from 'lib/actions'
 import Bundles from 'lib/components/bundles'
 import EditBundle from 'lib/components/edit-bundle'
+import withFetch from 'lib/with-fetch'
 
 const BundlesView = p => (
   <Bundles>
@@ -10,12 +11,8 @@ const BundlesView = p => (
   </Bundles>
 )
 
-BundlesView.getInitialProps = async ctx => {
-  await ctx.reduxStore.dispatch(
-    loadBundles({
-      regionId: ctx.query.regionId
-    })
-  )
+function fetchData(dispatch, query) {
+  return dispatch(loadBundles({regionId: query.regionId}))
 }
 
-export default BundlesView
+export default withFetch(BundlesView, fetchData)

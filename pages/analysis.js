@@ -1,8 +1,9 @@
 import {load} from 'lib/actions/region'
 import SinglePointAnalysis from 'lib/containers/single-point-analysis'
+import withFetch from 'lib/with-fetch'
 
-SinglePointAnalysis.getInitialProps = async ctx => {
-  return await ctx.reduxStore.dispatch(load(ctx.query.regionId))
+function fetchData(dispatch, query) {
+  return dispatch(load(query.regionId))
 }
 
-export default SinglePointAnalysis
+export default withFetch(SinglePointAnalysis, fetchData)

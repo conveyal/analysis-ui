@@ -2,14 +2,15 @@ import React from 'react'
 
 import {loadProjectAndModifications} from 'lib/actions/project'
 import List from 'lib/components/modification/list'
+import withFetch from 'lib/with-fetch'
 
-import SelectProject from './projects'
+import SelectProject, {fetchData as selectProjectFetchData} from './projects'
 
 /**
  * Show Select Project if a project has not been selected
  */
 function Modifications(p) {
-  if (!p.projectId) {
+  if (!p.query.projectId) {
     return <SelectProject {...p} />
   } else {
     return <List {...p} />
@@ -19,10 +20,10 @@ function Modifications(p) {
 /**
  * Populates props with bundle, feeds, modifications, and project.
  */
-Modifications.getInitialProps = async ctx => {
-  const {projectId} = ctx.query
-  if (!projectId) return await SelectProject.getInitialProps(ctx)
-  return await ctx.reduxStore.dispatch(loadProjectAndModifications(projectId))
+function fetchData(dispatch, query) {
+  const {projectId} = query
+  if (!projectId) return selectProjectFetchData(dispatch, query)
+  return dispatch(loadProjectAndModifications(projectId))
 }
 
-export default Modifications
+export default withFetch(Modifications, fetchData)

@@ -1,13 +1,12 @@
 import {loadBundle} from 'lib/actions'
 import {loadProject} from 'lib/actions/project'
 import EditProject from 'lib/components/edit-project'
+import withFetch from 'lib/with-fetch'
 
-EditProject.getInitialProps = async ctx => {
-  const project = await ctx.reduxStore.dispatch(
-    loadProject(ctx.query.projectId)
-  )
-  const bundle = await ctx.reduxStore.dispatch(loadBundle(project.bundleId))
+async function fetchData(dispatch, query) {
+  const project = await dispatch(loadProject(query.projectId))
+  const bundle = await dispatch(loadBundle(project.bundleId))
   return {bundleName: bundle.name, project}
 }
 
-export default EditProject
+export default withFetch(EditProject, fetchData)

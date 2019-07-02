@@ -5,6 +5,7 @@ import {load} from 'lib/actions/region'
 import {loadOpportunityDatasets} from 'lib/modules/opportunity-datasets/actions'
 import Heading from 'lib/modules/opportunity-datasets/components/heading'
 import List from 'lib/modules/opportunity-datasets/components/list'
+import withFetch from 'lib/with-fetch'
 
 const Dotmap = dynamic(
   import('lib/modules/opportunity-datasets/components/dotmap'),
@@ -26,11 +27,11 @@ const Opportunities = React.memo(function Opportunities(p) {
   )
 })
 
-Opportunities.getInitialProps = async ctx => {
-  await Promise.all([
-    ctx.reduxStore.dispatch(loadOpportunityDatasets(ctx.query.regionId)),
-    ctx.reduxStore.dispatch(load(ctx.query.regionId))
+function fetchData(dispatch, query) {
+  return Promise.all([
+    dispatch(loadOpportunityDatasets(query.regionId)),
+    dispatch(load(query.regionId))
   ])
 }
 
-export default Opportunities
+export default withFetch(Opportunities, fetchData)

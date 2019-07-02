@@ -1,9 +1,10 @@
 import {loadRegion} from 'lib/actions/region'
 import EditRegion from 'lib/components/edit-region'
+import withFetch from 'lib/with-fetch'
 
-EditRegion.getInitialProps = async ctx => {
-  const region = await ctx.reduxStore.dispatch(loadRegion(ctx.query.regionId))
+async function fetchData(dispatch, query) {
+  const region = await dispatch(loadRegion(query.regionId))
   return {region}
 }
 
-export default EditRegion
+export default withFetch(EditRegion, fetchData)

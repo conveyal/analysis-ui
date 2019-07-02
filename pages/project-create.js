@@ -1,11 +1,10 @@
 import {loadBundles} from 'lib/actions'
 import CreateProject from 'lib/components/create-project'
+import withFetch from 'lib/with-fetch'
 
-CreateProject.getInitialProps = async ctx => {
-  const bundles = await ctx.reduxStore.dispatch(
-    loadBundles({regionId: ctx.query.regionId})
-  )
+async function fetchData(dispatch, query) {
+  const bundles = await dispatch(loadBundles({regionId: query.regionId}))
   return {bundles}
 }
 
-export default CreateProject
+export default withFetch(CreateProject, fetchData)

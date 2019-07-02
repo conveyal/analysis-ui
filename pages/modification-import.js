@@ -4,6 +4,7 @@ import {load as loadRegion} from 'lib/actions/region'
 import Dock from 'lib/components/inner-dock'
 import ProjectTitle from 'lib/components/project-title'
 import ImportModifications from 'lib/components/import-modifications'
+import withFetch from 'lib/with-fetch'
 
 function ImportModificationsPage(p) {
   return (
@@ -20,14 +21,13 @@ function ImportModificationsPage(p) {
   )
 }
 
-ImportModificationsPage.getInitialProps = async ctx => {
-  const store = ctx.reduxStore
-  const {regionId, projectId} = ctx.query
-  const {projects} = await store.dispatch(loadRegion(regionId))
+async function fetchData(dispatch, query) {
+  const {regionId, projectId} = query
+  const {projects} = await dispatch(loadRegion(regionId))
   return {
     project: projects.find(p => p._id === projectId),
     projects: projects.filter(p => p._id !== projectId)
   }
 }
 
-export default ImportModificationsPage
+export default withFetch(ImportModificationsPage, fetchData)
