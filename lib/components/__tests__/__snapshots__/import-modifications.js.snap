@@ -39,51 +39,34 @@ exports[`Component > ImportModifications renders correctly 1`] = `
     <h5>
       Route alignments from shapefile
     </h5>
-    <ButtonLink
-      block={true}
-      href={
-        Object {
-          "pathname": "/import-shapefile",
-          "query": Object {
-            "projectId": "1",
-            "regionId": "1",
-          },
-        }
-      }
-      name="Import"
-      style="success"
+    <Link
+      projectId="1"
+      regionId="1"
+      to="importShapefile"
     >
       <Link
-        href={
-          Object {
-            "pathname": "/import-shapefile",
-            "query": Object {
-              "projectId": "1",
-              "regionId": "1",
-            },
-          }
-        }
+        as="/regions/1/projects/1/import-shapefile"
+        href="/regions/[regionId]/projects/[projectId]/import-shapefile"
+        passHref={true}
+        prefetch={true}
       >
-        <a
-          className="btn btn-success btn-block"
-          href="/import-shapefile?regionId=1&projectId=1"
+        <Button
+          block={true}
+          href="/regions/1/projects/1/import-shapefile"
           name="Import"
           onClick={[Function]}
+          onMouseEnter={[Function]}
+          style="success"
         >
-          <Icon
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "upload",
-                "prefix": "fas",
-              }
-            }
+          <a
+            className="btn btn-success btn-block"
+            href="/regions/1/projects/1/import-shapefile"
+            name="Import"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            tabIndex={0}
           >
-            <FontAwesomeIcon
-              border={false}
-              className=""
-              fixedWidth={true}
-              flip={null}
+            <Icon
               icon={
                 Object {
                   "icon": Array [],
@@ -91,41 +74,55 @@ exports[`Component > ImportModifications renders correctly 1`] = `
                   "prefix": "fas",
                 }
               }
-              inverse={false}
-              listItem={false}
-              mask={null}
-              pull={null}
-              pulse={false}
-              rotation={null}
-              size={null}
-              spin={false}
-              symbol={false}
-              title=""
-              transform={null}
             >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
-                data-icon="upload"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 undefined undefined"
-                xmlns="http://www.w3.org/2000/svg"
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "upload",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
               >
-                <path
-                  fill="currentColor"
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
+                  data-icon="upload"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
                   style={Object {}}
-                />
-              </svg>
-            </FontAwesomeIcon>
-          </Icon>
-           
-          Import
-        </a>
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             
+            Import
+          </a>
+        </Button>
       </Link>
-    </ButtonLink>
+    </Link>
     <br />
     <h5>
       Modifications from another project

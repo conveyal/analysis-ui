@@ -22,9 +22,7 @@ const Map = dynamic(() => import('lib/components/map'), {
 /**
  * Function to check if the path needs the map.
  */
-const pathUsesMap = path =>
-  ['/admin', '/callback', '/login', '/logout', '/', '/report'].indexOf(path) ===
-  -1
+const pathUsesMap = path => path.startsWith('/region')
 
 /**
  * Provides the redux store and provider for all pages.

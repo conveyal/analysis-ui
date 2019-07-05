@@ -84,101 +84,25 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
             </Logo>
             <p>
               <Link
-                href="/region-create"
-                prefetch={true}
+                to="regionCreate"
               >
-                <a
-                  className="btn btn-success btn-block"
-                  href="/region-create"
-                  onClick={[Function]}
+                <Link
+                  as="/regions/create"
+                  href="/regions/create"
+                  passHref={true}
+                  prefetch={true}
                 >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "plus",
-                        "prefix": "fas",
-                      }
-                    }
+                  <a
+                    className="btn btn-success btn-block"
+                    href="/regions/create"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
                   >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "plus",
-                          "prefix": "fas",
-                        }
-                      }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                        data-icon="plus"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill="currentColor"
-                          style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                   
-                  Set up a new region
-                </a>
-              </Link>
-            </p>
-            <p
-              className="text-center"
-            >
-              or go to an existing region
-            </p>
-            <div
-              className="list-group"
-            >
-              <Link
-                href={
-                  Object {
-                    "pathname": "/projects",
-                    "query": Object {
-                      "regionId": "1",
-                    },
-                  }
-                }
-                key="1"
-              >
-                <a
-                  className="list-group-item"
-                  href="/projects?regionId=1"
-                  onClick={[Function]}
-                  title="Go to region"
-                >
-                  <span>
                     <Icon
                       icon={
                         Object {
                           "icon": Array [],
-                          "iconName": "map",
+                          "iconName": "plus",
                           "prefix": "fas",
                         }
                       }
@@ -191,7 +115,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                         icon={
                           Object {
                             "icon": Array [],
-                            "iconName": "map",
+                            "iconName": "plus",
                             "prefix": "fas",
                           }
                         }
@@ -209,8 +133,8 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                       >
                         <svg
                           aria-hidden="true"
-                          className="svg-inline--fa fa-map fa-w-NaN fa-fw "
-                          data-icon="map"
+                          className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                          data-icon="plus"
                           data-prefix="fas"
                           focusable="false"
                           role="img"
@@ -226,9 +150,94 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                       </FontAwesomeIcon>
                     </Icon>
                      
-                    Mock Region
-                  </span>
-                </a>
+                    Set up a new region
+                  </a>
+                </Link>
+              </Link>
+            </p>
+            <p
+              className="text-center"
+            >
+              or go to an existing region
+            </p>
+            <div
+              className="list-group"
+            >
+              <Link
+                key="1"
+                regionId="1"
+                to="projects"
+              >
+                <Link
+                  as="/regions/1"
+                  href="/regions/[regionId]"
+                  passHref={true}
+                  prefetch={true}
+                >
+                  <a
+                    className="list-group-item"
+                    href="/regions/1"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    title="Go to region"
+                  >
+                    <span>
+                      <Icon
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "map",
+                            "prefix": "fas",
+                          }
+                        }
+                      >
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={true}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "map",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-map fa-w-NaN fa-fw "
+                            data-icon="map"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            style={Object {}}
+                            viewBox="0 0 undefined undefined"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill="currentColor"
+                              style={Object {}}
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </Icon>
+                       
+                      Mock Region
+                    </span>
+                  </a>
+                </Link>
               </Link>
             </div>
             <p
@@ -240,26 +249,20 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
               }
             >
               <Link
-                href="/logout"
+                to="logout"
               >
-                <a
+                <Link
+                  as="/logout"
                   href="/logout"
-                  onClick={[Function]}
+                  passHref={true}
+                  prefetch={true}
                 >
-                  <Icon
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "sign-out-alt",
-                        "prefix": "fas",
-                      }
-                    }
+                  <a
+                    href="/logout"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
                   >
-                    <FontAwesomeIcon
-                      border={false}
-                      className=""
-                      fixedWidth={true}
-                      flip={null}
+                    <Icon
                       icon={
                         Object {
                           "icon": Array [],
@@ -267,39 +270,53 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                           "prefix": "fas",
                         }
                       }
-                      inverse={false}
-                      listItem={false}
-                      mask={null}
-                      pull={null}
-                      pulse={false}
-                      rotation={null}
-                      size={null}
-                      spin={false}
-                      symbol={false}
-                      title=""
-                      transform={null}
                     >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-sign-out-alt fa-w-NaN fa-fw "
-                        data-icon="sign-out-alt"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 undefined undefined"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "sign-out-alt",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
                       >
-                        <path
-                          fill="currentColor"
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-sign-out-alt fa-w-NaN fa-fw "
+                          data-icon="sign-out-alt"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
                           style={Object {}}
-                        />
-                      </svg>
-                    </FontAwesomeIcon>
-                  </Icon>
-                   
-                  Log out
-                </a>
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                     
+                    Log out
+                  </a>
+                </Link>
               </Link>
             </p>
           </div>

@@ -18,49 +18,32 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
       <div
         className="form-group"
       >
-        <ButtonLink
-          block={true}
-          href={
-            Object {
-              "pathname": "/opportunities-upload",
-              "query": Object {
-                "regionId": undefined,
-              },
-            }
-          }
-          style="success"
-          title="Upload a new dataset"
+        <Link
+          to="opportunitiesUpload"
         >
           <Link
-            href={
-              Object {
-                "pathname": "/opportunities-upload",
-                "query": Object {
-                  "regionId": undefined,
-                },
-              }
-            }
+            as="/regions/undefined/opportunities/upload"
+            href="/regions/[regionId]/opportunities/upload"
+            passHref={true}
+            prefetch={true}
           >
-            <a
-              className="btn btn-success btn-block"
-              href="/opportunities-upload?regionId="
+            <Button
+              block={true}
+              href="/regions/undefined/opportunities/upload"
               onClick={[Function]}
+              onMouseEnter={[Function]}
+              style="success"
               title="Upload a new dataset"
             >
-              <Icon
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "plus",
-                    "prefix": "fas",
-                  }
-                }
+              <a
+                className="btn btn-success btn-block"
+                href="/regions/undefined/opportunities/upload"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                tabIndex={0}
+                title="Upload a new dataset"
               >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
+                <Icon
                   icon={
                     Object {
                       "icon": Array [],
@@ -68,41 +51,55 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                       "prefix": "fas",
                     }
                   }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                    data-icon="plus"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "plus",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
                   >
-                    <path
-                      fill="currentColor"
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                      data-icon="plus"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
                       style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-               
-              Upload a new dataset
-            </a>
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+                 
+                Upload a new dataset
+              </a>
+            </Button>
           </Link>
-        </ButtonLink>
+        </Link>
         <Button
           block={true}
           onClick={[Function]}

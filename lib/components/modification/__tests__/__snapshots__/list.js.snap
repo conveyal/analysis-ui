@@ -117,34 +117,22 @@ exports[`Modification > List 1`] = `
             onMouseOver={[Function]}
           >
             <Link
-              href={
-                Object {
-                  "pathname": "/project-settings",
-                  "query": Object {
-                    "projectId": "1",
-                    "regionId": "1",
-                  },
-                }
-              }
+              projectId="1"
+              regionId="1"
+              to="projectSettings"
             >
-              <a
-                href="/project-settings?regionId=1&projectId=1"
-                onClick={[Function]}
+              <Link
+                as="/regions/1/projects/1/edit"
+                href="/regions/[regionId]/projects/[projectId]/edit"
+                passHref={true}
+                prefetch={true}
               >
-                <Icon
-                  icon={
-                    Object {
-                      "icon": Array [],
-                      "iconName": "cog",
-                      "prefix": "fas",
-                    }
-                  }
+                <a
+                  href="/regions/1/projects/1/edit"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
                 >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={true}
-                    flip={null}
+                  <Icon
                     icon={
                       Object {
                         "icon": Array [],
@@ -152,37 +140,51 @@ exports[`Modification > List 1`] = `
                         "prefix": "fas",
                       }
                     }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
                   >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
-                      data-icon="cog"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
-                      style={Object {}}
-                      viewBox="0 0 undefined undefined"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <FontAwesomeIcon
+                      border={false}
+                      className=""
+                      fixedWidth={true}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "cog",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
                     >
-                      <path
-                        fill="currentColor"
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
+                        data-icon="cog"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
                         style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
-                </Icon>
-              </a>
+                        viewBox="0 0 undefined undefined"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </FontAwesomeIcon>
+                  </Icon>
+                </a>
+              </Link>
             </Link>
           </span>
         </Tip>
@@ -393,34 +395,22 @@ exports[`Modification > List 1`] = `
           onMouseOver={[Function]}
         >
           <Link
-            href={
-              Object {
-                "pathname": "/modification-import",
-                "query": Object {
-                  "projectId": "1",
-                  "regionId": "1",
-                },
-              }
-            }
+            projectId="1"
+            regionId="1"
+            to="modificationImport"
           >
-            <a
-              href="/modification-import?projectId=1&regionId=1"
-              onClick={[Function]}
+            <Link
+              as="/regions/1/projects/1/import-modifications"
+              href="/regions/[regionId]/projects/[projectId]/import-modifications"
+              passHref={true}
+              prefetch={true}
             >
-              <Icon
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "upload",
-                    "prefix": "fas",
-                  }
-                }
+              <a
+                href="/regions/1/projects/1/import-modifications"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
               >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
+                <Icon
                   icon={
                     Object {
                       "icon": Array [],
@@ -428,37 +418,51 @@ exports[`Modification > List 1`] = `
                       "prefix": "fas",
                     }
                   }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
-                    data-icon="upload"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "upload",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
                   >
-                    <path
-                      fill="currentColor"
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-upload fa-w-NaN fa-fw "
+                      data-icon="upload"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
                       style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-            </a>
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+              </a>
+            </Link>
           </Link>
         </span>
       </Tip>
@@ -859,47 +863,36 @@ exports[`Modification > List 1`] = `
                     showOnMap={[Function]}
                   >
                     <Link
-                      href={
-                        Object {
-                          "pathname": "/modification-edit",
-                          "query": Object {
-                            "modificationId": "1234",
-                            "projectId": "1",
-                            "regionId": "1",
-                          },
-                        }
-                      }
-                      key="1234"
+                      modificationId="1234"
+                      projectId="1"
+                      regionId="1"
+                      to="modificationEdit"
                     >
-                      <a
-                        className="list-group-item"
-                        href="/modification-edit?modificationId=1234&projectId=1&regionId=1"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "cursor": "pointer",
-                          }
-                        }
+                      <Link
+                        as="/regions/1/projects/1/modifications/1234"
+                        href="/regions/[regionId]/projects/[projectId]/modifications/[modificationId]"
+                        passHref={true}
+                        prefetch={true}
                       >
-                        Test Modification
-                        <span
-                          className="pull-right"
+                        <a
+                          className="list-group-item"
+                          href="/regions/1/projects/1/modifications/1234"
                           onClick={[Function]}
-                        >
-                          <Icon
-                            icon={
-                              Object {
-                                "icon": Array [],
-                                "iconName": "eye-slash",
-                                "prefix": "fas",
-                              }
+                          onMouseEnter={[Function]}
+                          style={
+                            Object {
+                              "cursor": "pointer",
                             }
+                          }
+                        >
+                          <span>
+                            Test Modification
+                          </span>
+                          <span
+                            className="pull-right"
+                            onClick={[Function]}
                           >
-                            <FontAwesomeIcon
-                              border={false}
-                              className=""
-                              fixedWidth={true}
-                              flip={null}
+                            <Icon
                               icon={
                                 Object {
                                   "icon": Array [],
@@ -907,38 +900,52 @@ exports[`Modification > List 1`] = `
                                   "prefix": "fas",
                                 }
                               }
-                              inverse={false}
-                              listItem={false}
-                              mask={null}
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              title=""
-                              transform={null}
                             >
-                              <svg
-                                aria-hidden="true"
-                                className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
-                                data-icon="eye-slash"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                style={Object {}}
-                                viewBox="0 0 undefined undefined"
-                                xmlns="http://www.w3.org/2000/svg"
+                              <FontAwesomeIcon
+                                border={false}
+                                className=""
+                                fixedWidth={true}
+                                flip={null}
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "eye-slash",
+                                    "prefix": "fas",
+                                  }
+                                }
+                                inverse={false}
+                                listItem={false}
+                                mask={null}
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                symbol={false}
+                                title=""
+                                transform={null}
                               >
-                                <path
-                                  fill="currentColor"
+                                <svg
+                                  aria-hidden="true"
+                                  className="svg-inline--fa fa-eye-slash fa-w-NaN fa-fw "
+                                  data-icon="eye-slash"
+                                  data-prefix="fas"
+                                  focusable="false"
+                                  role="img"
                                   style={Object {}}
-                                />
-                              </svg>
-                            </FontAwesomeIcon>
-                          </Icon>
-                        </span>
-                      </a>
+                                  viewBox="0 0 undefined undefined"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    style={Object {}}
+                                  />
+                                </svg>
+                              </FontAwesomeIcon>
+                            </Icon>
+                          </span>
+                        </a>
+                      </Link>
                     </Link>
                   </ModificationGroupItem>
                 </div>

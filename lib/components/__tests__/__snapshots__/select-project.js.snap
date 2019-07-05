@@ -157,40 +157,124 @@ exports[`Component > SelectProject 1`] = `
           <div
             className="form-group"
           >
-            <ButtonLink
-              block={true}
-              href={
-                Object {
-                  "pathname": "/project-create",
-                  "query": Object {
-                    "regionId": "1",
-                  },
-                }
-              }
-              style="success"
-              title="Create new Project"
+            <Link
+              regionId="1"
+              to="projectCreate"
             >
               <Link
-                href={
-                  Object {
-                    "pathname": "/project-create",
-                    "query": Object {
-                      "regionId": "1",
-                    },
-                  }
-                }
+                as="/regions/1/create-project"
+                href="/regions/[regionId]/create-project"
+                passHref={true}
+                prefetch={true}
               >
-                <a
-                  className="btn btn-success btn-block"
-                  href="/project-create?regionId=1"
+                <Button
+                  block={true}
+                  href="/regions/1/create-project"
                   onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  style="success"
                   title="Create new Project"
                 >
+                  <a
+                    className="btn btn-success btn-block"
+                    href="/regions/1/create-project"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    tabIndex={0}
+                    title="Create new Project"
+                  >
+                    <Icon
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "plus",
+                          "prefix": "fas",
+                        }
+                      }
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "plus",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                          data-icon="plus"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                     
+                    Create new Project
+                  </a>
+                </Button>
+              </Link>
+            </Link>
+          </div>
+        </Group>
+        <p
+          className="text-center"
+        >
+          or go to an existing project
+        </p>
+        <div
+          className="list-group"
+        >
+          <Link
+            key="1"
+            projectId="1"
+            regionId="1"
+            to="modifications"
+          >
+            <Link
+              as="/regions/1/projects/1"
+              href="/regions/[regionId]/projects/[projectId]"
+              passHref={true}
+              prefetch={true}
+            >
+              <a
+                className="list-group-item"
+                href="/regions/1/projects/1"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                title="Go to project"
+              >
+                <span>
                   <Icon
                     icon={
                       Object {
                         "icon": Array [],
-                        "iconName": "plus",
+                        "iconName": "cube",
                         "prefix": "fas",
                       }
                     }
@@ -203,7 +287,7 @@ exports[`Component > SelectProject 1`] = `
                       icon={
                         Object {
                           "icon": Array [],
-                          "iconName": "plus",
+                          "iconName": "cube",
                           "prefix": "fas",
                         }
                       }
@@ -221,8 +305,8 @@ exports[`Component > SelectProject 1`] = `
                     >
                       <svg
                         aria-hidden="true"
-                        className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                        data-icon="plus"
+                        className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
+                        data-icon="cube"
                         data-prefix="fas"
                         focusable="false"
                         role="img"
@@ -238,94 +322,10 @@ exports[`Component > SelectProject 1`] = `
                     </FontAwesomeIcon>
                   </Icon>
                    
-                  Create new Project
-                </a>
-              </Link>
-            </ButtonLink>
-          </div>
-        </Group>
-        <p
-          className="text-center"
-        >
-          or go to an existing project
-        </p>
-        <div
-          className="list-group"
-        >
-          <Link
-            href={
-              Object {
-                "pathname": "/modifications",
-                "query": Object {
-                  "projectId": "1",
-                  "regionId": "1",
-                },
-              }
-            }
-            key="1"
-          >
-            <a
-              className="list-group-item"
-              href="/modifications?regionId=1&projectId=1"
-              onClick={[Function]}
-              title="Go to project"
-            >
-              <span>
-                <Icon
-                  icon={
-                    Object {
-                      "icon": Array [],
-                      "iconName": "cube",
-                      "prefix": "fas",
-                    }
-                  }
-                >
-                  <FontAwesomeIcon
-                    border={false}
-                    className=""
-                    fixedWidth={true}
-                    flip={null}
-                    icon={
-                      Object {
-                        "icon": Array [],
-                        "iconName": "cube",
-                        "prefix": "fas",
-                      }
-                    }
-                    inverse={false}
-                    listItem={false}
-                    mask={null}
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    title=""
-                    transform={null}
-                  >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
-                      data-icon="cube"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
-                      style={Object {}}
-                      viewBox="0 0 undefined undefined"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </FontAwesomeIcon>
-                </Icon>
-                 
-                Mock Project
-              </span>
-            </a>
+                  Mock Project
+                </span>
+              </a>
+            </Link>
           </Link>
         </div>
       </div>

@@ -15,15 +15,9 @@ exports[`Components > Analysis > Profile Request Display should render correctly
         </th>
         <td>
           <Link
-            href={
-              Object {
-                "pathname": "/bundles",
-                "query": Object {
-                  "bundleId": "1",
-                  "regionId": "1",
-                },
-              }
-            }
+            bundleId="1"
+            regionId="1"
+            to="bundleEdit"
           >
             <a>
               GTFS Bundle
@@ -31,15 +25,9 @@ exports[`Components > Analysis > Profile Request Display should render correctly
           </Link>
            / 
           <Link
-            href={
-              Object {
-                "pathname": "/modifications",
-                "query": Object {
-                  "projectId": "1",
-                  "regionId": "1",
-                },
-              }
-            }
+            projectId="1"
+            regionId="1"
+            to="modifications"
           >
             <a>
               Project
