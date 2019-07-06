@@ -33,8 +33,8 @@ export default class extends App {
     // Provide the store to `getInitialProps` of pages
     ctx.reduxStore = getReduxStore()
 
-    const timeAuth = timer('auth')
     // TODO wrap components that need Auth
+    const timeAuth = timer('auth')
     const authenticated = await isAuthenticated(ctx)
     if (!authenticated) return {} // redirecting to login screen...
     timeAuth.end()
@@ -124,15 +124,14 @@ const noopFragment = () => <React.Fragment />
  * but I have not figured out a better solution yet.
  */
 function ComponentWithMap(p) {
-  const isAnalysis = p.router.pathname === '/analysis'
   return (
     <State initialState={noopFragment}>
       {(mapChildren, setMapChildren) => (
         <>
-          <div className={`Fullscreen ${isAnalysis ? 'analysisMode' : ''}`}>
+          <div className='Fullscreen'>
             <Map>{mapChildren}</Map>
           </div>
-          <Dock className={isAnalysis ? 'analysisMode' : ''}>
+          <Dock>
             <p.Component {...p.pageProps} setMapChildren={setMapChildren} />
           </Dock>
         </>
