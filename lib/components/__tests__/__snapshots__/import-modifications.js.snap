@@ -39,29 +39,36 @@ exports[`Component > ImportModifications renders correctly 1`] = `
     <h5>
       Route alignments from shapefile
     </h5>
-    <Link
+    <ButtonLink
+      block={true}
+      name="Import"
       projectId="1"
       regionId="1"
+      style="success"
       to="importShapefile"
     >
       <Link
-        as="/regions/1/projects/1/import-shapefile"
-        href="/regions/[regionId]/projects/[projectId]/import-shapefile"
-        passHref={true}
-        prefetch={true}
+        name="Import"
+        projectId="1"
+        regionId="1"
+        to="importShapefile"
       >
-        <Button
-          block={true}
-          href="/regions/1/projects/1/import-shapefile"
-          name="Import"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          style="success"
+        <Link
+          as="/regions/1/projects/1/import-shapefile?name=Import"
+          href={
+            Object {
+              "pathname": "/regions/[regionId]/projects/[projectId]/import-shapefile",
+              "query": Object {
+                "name": "Import",
+              },
+            }
+          }
+          passHref={true}
+          prefetch={true}
         >
           <a
             className="btn btn-success btn-block"
-            href="/regions/1/projects/1/import-shapefile"
-            name="Import"
+            href="/regions/1/projects/1/import-shapefile?name=Import"
             onClick={[Function]}
             onMouseEnter={[Function]}
             tabIndex={0}
@@ -120,9 +127,9 @@ exports[`Component > ImportModifications renders correctly 1`] = `
              
             Import
           </a>
-        </Button>
+        </Link>
       </Link>
-    </Link>
+    </ButtonLink>
     <br />
     <h5>
       Modifications from another project

@@ -83,35 +83,33 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
               </div>
             </Logo>
             <p>
-              <Link
+              <ButtonLink
+                block={true}
+                style="success"
                 to="regionCreate"
               >
                 <Link
-                  as="/regions/create"
-                  href="/regions/create"
-                  passHref={true}
-                  prefetch={true}
+                  to="regionCreate"
                 >
-                  <a
-                    className="btn btn-success btn-block"
-                    href="/regions/create"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                  >
-                    <Icon
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "plus",
-                          "prefix": "fas",
-                        }
+                  <Link
+                    as="/regions/create"
+                    href={
+                      Object {
+                        "pathname": "/regions/create",
+                        "query": Object {},
                       }
+                    }
+                    passHref={true}
+                    prefetch={true}
+                  >
+                    <a
+                      className="btn btn-success btn-block"
+                      href="/regions/create"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      tabIndex={0}
                     >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={true}
-                        flip={null}
+                      <Icon
                         icon={
                           Object {
                             "icon": Array [],
@@ -119,41 +117,55 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                             "prefix": "fas",
                           }
                         }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
                       >
-                        <svg
-                          aria-hidden="true"
-                          className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                          data-icon="plus"
-                          data-prefix="fas"
-                          focusable="false"
-                          role="img"
-                          style={Object {}}
-                          viewBox="0 0 undefined undefined"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={true}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "plus",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
                         >
-                          <path
-                            fill="currentColor"
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                            data-icon="plus"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
                             style={Object {}}
-                          />
-                        </svg>
-                      </FontAwesomeIcon>
-                    </Icon>
-                     
-                    Set up a new region
-                  </a>
+                            viewBox="0 0 undefined undefined"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill="currentColor"
+                              style={Object {}}
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </Icon>
+                       
+                      Set up a new region
+                    </a>
+                  </Link>
                 </Link>
-              </Link>
+              </ButtonLink>
             </p>
             <p
               className="text-center"
@@ -170,7 +182,12 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
               >
                 <Link
                   as="/regions/1"
-                  href="/regions/[regionId]"
+                  href={
+                    Object {
+                      "pathname": "/regions/[regionId]",
+                      "query": Object {},
+                    }
+                  }
                   passHref={true}
                   prefetch={true}
                 >
@@ -253,7 +270,12 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
               >
                 <Link
                   as="/logout"
-                  href="/logout"
+                  href={
+                    Object {
+                      "pathname": "/logout",
+                      "query": Object {},
+                    }
+                  }
                   passHref={true}
                   prefetch={true}
                 >

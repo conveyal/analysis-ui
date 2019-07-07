@@ -157,31 +157,37 @@ exports[`Component > SelectProject 1`] = `
           <div
             className="form-group"
           >
-            <Link
+            <ButtonLink
+              block={true}
               regionId="1"
+              style="success"
+              title="Create new Project"
               to="projectCreate"
             >
               <Link
-                as="/regions/1/create-project"
-                href="/regions/[regionId]/create-project"
-                passHref={true}
-                prefetch={true}
+                regionId="1"
+                title="Create new Project"
+                to="projectCreate"
               >
-                <Button
-                  block={true}
-                  href="/regions/1/create-project"
-                  onClick={[Function]}
-                  onMouseEnter={[Function]}
-                  style="success"
-                  title="Create new Project"
+                <Link
+                  as="/regions/1/create-project?title=Create new Project"
+                  href={
+                    Object {
+                      "pathname": "/regions/[regionId]/create-project",
+                      "query": Object {
+                        "title": "Create new Project",
+                      },
+                    }
+                  }
+                  passHref={true}
+                  prefetch={true}
                 >
                   <a
                     className="btn btn-success btn-block"
-                    href="/regions/1/create-project"
+                    href="/regions/1/create-project?title=Create new Project"
                     onClick={[Function]}
                     onMouseEnter={[Function]}
                     tabIndex={0}
-                    title="Create new Project"
                   >
                     <Icon
                       icon={
@@ -237,9 +243,9 @@ exports[`Component > SelectProject 1`] = `
                      
                     Create new Project
                   </a>
-                </Button>
+                </Link>
               </Link>
-            </Link>
+            </ButtonLink>
           </div>
         </Group>
         <p
@@ -258,7 +264,12 @@ exports[`Component > SelectProject 1`] = `
           >
             <Link
               as="/regions/1/projects/1"
-              href="/regions/[regionId]/projects/[projectId]"
+              href={
+                Object {
+                  "pathname": "/regions/[regionId]/projects/[projectId]",
+                  "query": Object {},
+                }
+              }
               passHref={true}
               prefetch={true}
             >

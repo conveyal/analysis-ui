@@ -18,30 +18,35 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
       <div
         className="form-group"
       >
-        <Link
+        <ButtonLink
+          block={true}
+          style="success"
+          title="Upload a new dataset"
           to="opportunitiesUpload"
         >
           <Link
-            as="/regions/undefined/opportunities/upload"
-            href="/regions/[regionId]/opportunities/upload"
-            passHref={true}
-            prefetch={true}
+            title="Upload a new dataset"
+            to="opportunitiesUpload"
           >
-            <Button
-              block={true}
-              href="/regions/undefined/opportunities/upload"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              style="success"
-              title="Upload a new dataset"
+            <Link
+              as="/regions/undefined/opportunities/upload?title=Upload a new dataset"
+              href={
+                Object {
+                  "pathname": "/regions/[regionId]/opportunities/upload",
+                  "query": Object {
+                    "title": "Upload a new dataset",
+                  },
+                }
+              }
+              passHref={true}
+              prefetch={true}
             >
               <a
                 className="btn btn-success btn-block"
-                href="/regions/undefined/opportunities/upload"
+                href="/regions/undefined/opportunities/upload?title=Upload a new dataset"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
                 tabIndex={0}
-                title="Upload a new dataset"
               >
                 <Icon
                   icon={
@@ -97,9 +102,9 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                  
                 Upload a new dataset
               </a>
-            </Button>
+            </Link>
           </Link>
-        </Link>
+        </ButtonLink>
         <Button
           block={true}
           onClick={[Function]}
