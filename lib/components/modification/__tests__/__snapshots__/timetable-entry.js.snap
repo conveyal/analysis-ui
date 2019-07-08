@@ -37,21 +37,30 @@ exports[`Component > TimetableEntry renders correctly 1`] = `
       }
     }
   />
-  <MinutesSeconds
+  <Group
     label="Frequency"
-    onChange={[Function]}
-    seconds={900}
-  />
-  <TimePicker
+  >
+    <MinutesSeconds
+      onChange={[Function]}
+      seconds={900}
+    />
+  </Group>
+  <Group
     label="Start time"
-    onChange={[Function]}
-    value={28800}
-  />
-  <TimePicker
+  >
+    <TimePicker
+      onChange={[Function]}
+      value={28800}
+    />
+  </Group>
+  <Group
     label="End time"
-    onChange={[Function]}
-    value={57600}
-  />
+  >
+    <TimePicker
+      onChange={[Function]}
+      value={57600}
+    />
+  </Group>
   <Checkbox
     checked={false}
     disabled={false}
