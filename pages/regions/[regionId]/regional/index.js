@@ -5,14 +5,14 @@ import {loadOpportunityDatasets} from 'lib/modules/opportunity-datasets/actions'
 import withInitialFetch from 'lib/with-initial-fetch'
 
 async function initialFetch(store, query) {
-  const [regionalAnalyses, opportunitiyDatasets] = await Promise.all([
+  const [regionalAnalyses, opportunityDatasets] = await Promise.all([
     store.dispatch(load(query.regionId)),
     store.dispatch(loadOpportunityDatasets(query.regionId)),
     store.dispatch(loadRegion(query.regionId))
   ])
   return {
     analysis: regionalAnalyses.find(a => a._id === query.analysisId),
-    opportunitiyDatasets,
+    opportunityDatasets,
     regionalAnalyses
   }
 }
