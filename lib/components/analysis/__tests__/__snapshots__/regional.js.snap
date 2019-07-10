@@ -298,12 +298,16 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
     workerVersion="v4.0.0"
     zoom={9}
   />
-  <p>
-    Total jobs within 60 minutes (average instantaneous accessibility)
-  </p>
-  <p>
-    compared with Total jobs within 60 minutes (percentile 42)
-  </p>
+  <Group
+    label="Access to"
+  >
+    <p>
+      Total jobs within 60 minutes (average instantaneous accessibility)
+    </p>
+    <p>
+      compared with Total jobs within 60 minutes (percentile 42)
+    </p>
+  </Group>
   <Legend
     breaks={
       Array [
@@ -330,17 +334,6 @@ exports[`Components > Analysis > Regional should handle rendering comparison 1`]
     setActive={[Function]}
     uploadAggregationArea={[MockFunction]}
   />
-  <Group
-    label="Export to GIS"
-  >
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="info"
-    >
-      Download ANALYSIS 1
-    </Button>
-  </Group>
 </Fragment>
 `;
 
@@ -357,9 +350,13 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
       options={Array []}
     />
   </Group>
-  <p>
-    Total jobs within 60 minutes (average instantaneous accessibility)
-  </p>
+  <Group
+    label="Access to"
+  >
+    <p>
+      Total jobs within 60 minutes (average instantaneous accessibility)
+    </p>
+  </Group>
   <Legend
     breaks={
       Array [
@@ -386,16 +383,5 @@ exports[`Components > Analysis > Regional should render correctly 1`] = `
     setActive={[Function]}
     uploadAggregationArea={[MockFunction]}
   />
-  <Group
-    label="Export to GIS"
-  >
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="info"
-    >
-      Download ANALYSIS 1
-    </Button>
-  </Group>
 </Fragment>
 `;
