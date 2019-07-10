@@ -1,9 +1,9 @@
 import {load} from 'lib/actions/region'
 import SelectProject from 'lib/components/select-project'
-import withFetch from 'lib/with-fetch'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-export function fetchData(dispatch, query) {
-  return dispatch(load(query.regionId))
+export function initialFetch(store, query) {
+  return store.dispatch(load(query.regionId))
 }
 
-export default withFetch(SelectProject, fetchData)
+export default withInitialFetch(SelectProject, initialFetch)

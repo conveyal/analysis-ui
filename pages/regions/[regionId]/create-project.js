@@ -1,10 +1,10 @@
 import {loadBundles} from 'lib/actions'
 import CreateProject from 'lib/components/create-project'
-import withFetch from 'lib/with-fetch'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-async function fetchData(dispatch, query) {
-  const bundles = await dispatch(loadBundles({regionId: query.regionId}))
+async function initialFetch(store, query) {
+  const bundles = await store.dispatch(loadBundles({regionId: query.regionId}))
   return {bundles}
 }
 
-export default withFetch(CreateProject, fetchData)
+export default withInitialFetch(CreateProject, initialFetch)

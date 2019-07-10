@@ -1,9 +1,9 @@
 import {load} from 'lib/actions/region'
 import SinglePointAnalysis from 'lib/containers/single-point-analysis'
-import withFetch from 'lib/with-fetch'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-function fetchData(dispatch, query) {
-  return dispatch(load(query.regionId))
+function initialFetch(store, query) {
+  return store.dispatch(load(query.regionId))
 }
 
-export default withFetch(SinglePointAnalysis, fetchData)
+export default withInitialFetch(SinglePointAnalysis, initialFetch)

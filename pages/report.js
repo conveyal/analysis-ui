@@ -1,9 +1,9 @@
 import {loadProjectAndModifications} from 'lib/actions/project'
 import Report from 'lib/components/report'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-Report.getInitialProps = async ctx => {
-  const store = ctx.reduxStore
-  const {projectId, index} = ctx.query
+async function initialFetch(store, query) {
+  const {projectId, index} = query
   const {bundle, feeds, modifications, project} = await store.dispatch(
     loadProjectAndModifications(projectId)
   )
@@ -17,4 +17,4 @@ Report.getInitialProps = async ctx => {
   }
 }
 
-export default Report
+export default withInitialFetch(Report, initialFetch)

@@ -5,7 +5,7 @@ import {load as loadRegion} from 'lib/actions/region'
 import Dock from 'lib/components/inner-dock'
 import ProjectTitle from 'lib/components/project-title'
 import ImportShapefile from 'lib/components/import-shapefile'
-import withFetch from 'lib/with-fetch'
+import withInitialFetch from 'lib/with-initial-fetch'
 
 function ImportShapefilePage(p) {
   return (
@@ -22,12 +22,12 @@ function ImportShapefilePage(p) {
   )
 }
 
-function fetchData(dispatch, query) {
+function initialFetch(store, query) {
   const {regionId, projectId} = query
   return Promise.all([
-    dispatch(loadRegion(regionId)),
-    dispatch(loadProject(projectId))
+    store.dispatch(loadRegion(regionId)),
+    store.dispatch(loadProject(projectId))
   ]).then(([region, project]) => ({project, region}))
 }
 
-export default withFetch(ImportShapefilePage, fetchData)
+export default withInitialFetch(ImportShapefilePage, initialFetch)

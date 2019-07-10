@@ -1,13 +1,13 @@
 import {loadRegion} from 'lib/actions/region'
 import {load} from 'lib/actions/analysis/regional'
 import RegionalAnalysis from 'lib/containers/regional-analysis-results'
-import withFetch from 'lib/with-fetch'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-async function fetchData(dispatch, query) {
+async function initialFetch(store, query) {
   const {analysisId, regionId} = query
   const [regionalAnalyses, region] = await Promise.all([
-    dispatch(load(regionId)),
-    dispatch(loadRegion(regionId))
+    store.dispatch(load(regionId)),
+    store.dispatch(loadRegion(regionId))
   ])
   return {
     analysis: regionalAnalyses.find(a => a._id === analysisId),
@@ -16,4 +16,4 @@ async function fetchData(dispatch, query) {
   }
 }
 
-export default withFetch(RegionalAnalysis, fetchData)
+export default withInitialFetch(RegionalAnalysis, initialFetch)

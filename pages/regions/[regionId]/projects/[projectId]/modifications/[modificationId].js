@@ -1,32 +1,37 @@
+import {loadBundle} from 'lib/actions'
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 import {loadModification} from 'lib/actions/modifications'
 import {loadProject} from 'lib/actions/project'
 import ModificationEditor from 'lib/containers/modification-editor'
-import withFetch from 'lib/with-fetch'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-async function fetchData(dispatch, query) {
+async function initialFetch(store, query) {
   const {modificationId, projectId} = query
 
   // TODO check if project and feed are already loaded
   const [project, modification] = await Promise.all([
-    dispatch(loadProject(projectId)),
+    store.dispatch(loadProject(projectId)),
     // Always reload the modification to get recent changes
-    dispatch(loadModification(modificationId))
+    store.dispatch(loadModification(modificationId))
   ])
 
   // Only gets unloaded feeds for modifications that have them
-  const feeds = await dispatch(
-    getFeedsRoutesAndStops({
-      bundleId: project.bundleId,
-      modifications: [modification]
-    })
-  )
+  const [bundle, feeds] = await Promise.all([
+    store.dispatch(loadBundle(project.bundleId)),
+    store.dispatch(
+      getFeedsRoutesAndStops({
+        bundleId: project.bundleId,
+        modifications: [modification]
+      })
+    )
+  ])
 
   return {
+    bundle,
     feeds,
     modification,
     project
   }
 }
 
-export default withFetch(ModificationEditor, fetchData)
+export default withInitialFetch(ModificationEditor, initialFetch)

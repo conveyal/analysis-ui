@@ -1,9 +1,10 @@
 import {loadAll} from 'lib/actions/region'
 import SelectRegion from 'lib/components/select-region'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-SelectRegion.getInitialProps = async ctx => {
-  const regions = await ctx.reduxStore.dispatch(loadAll())
+async function initialFetch(store) {
+  const regions = await store.dispatch(loadAll())
   return {regions}
 }
 
-export default SelectRegion
+export default withInitialFetch(SelectRegion, initialFetch)

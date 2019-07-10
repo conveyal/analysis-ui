@@ -1,10 +1,11 @@
 import React from 'react'
 
-import {loadProjectAndModifications} from 'lib/actions/project'
-import {load} from 'lib/actions/region'
+import {loadBundles} from 'lib/actions'
+import {loadProjectAndModifications, loadProjects} from 'lib/actions/project'
+import {loadRegion} from 'lib/actions/region'
 import List from 'lib/components/modification/list'
 import SelectProject from 'lib/components/select-project'
-import withFetch from 'lib/with-fetch'
+import withInitialFetch from 'lib/with-initial-fetch'
 
 const noProjectId = pid => !pid || pid === 'undefined'
 
@@ -22,10 +23,18 @@ function Modifications(p) {
 /**
  * Populates props with bundle, feeds, modifications, and project.
  */
-function fetchData(dispatch, query) {
+async function initialFetch(store, query) {
   const {projectId, regionId} = query
-  if (noProjectId(projectId)) return dispatch(load(regionId))
-  return dispatch(loadProjectAndModifications(projectId))
+  if (noProjectId(projectId)) {
+    const [region, bundles, projects] = await Promise.all([
+      store.dispatch(loadRegion(regionId)),
+      store.dispatch(loadBundles(regionId)),
+      store.dispatch(loadProjects(regionId))
+    ])
+    return {bundles, projects, region}
+  } else {
+    return store.dispatch(loadProjectAndModifications(projectId))
+  }
 }
 
-export default withFetch(Modifications, fetchData)
+export default withInitialFetch(Modifications, initialFetch)
