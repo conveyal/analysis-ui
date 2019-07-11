@@ -1,16 +1,16 @@
 {
   "name": "analysis",
   "scope": "conveyal",
-  "alias": "analysis-staging.conveyal.com",
+  "alias": "analysis.conveyal.com",
   "version": 2,
   "regions": ["all"],
   "builds": [{"src": "next.config.js", "use": "@now/next"}],
   "env": {
-    "API_URL": "@staging-api-url"
+    "API_URL": "@api-url"
   },
   "build": {
     "env": {
-      "API_URL": "@staging-api-url",
+      "API_URL": "@api-url",
       "AUTH0_CLIENT_ID": "@auth0-client-id",
       "AUTH0_DOMAIN": "@auth0-domain",
       "MAPBOX_ACCESS_TOKEN": "@mapbox-access-token"
