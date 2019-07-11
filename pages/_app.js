@@ -49,14 +49,8 @@ export default class extends App {
       try {
         initialProps = await Component.getInitialProps(ctx)
       } catch (e) {
-        console.error(e)
-        if (ctx.res) {
-          ctx.res.writeHead(302, {
-            Location: `/login?redirectTo=${ctx.asPath}`
-          })
-          ctx.res.end()
-        }
-        return
+        timeApp.end()
+        return {error: e}
       }
     }
 
