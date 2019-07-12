@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Project-Map > RerouteLayer renders correctly 1`] = `
-<ForwardRef(Leaflet(FeatureGroup))>
-  <Patterns
-    color="#aab4bb"
+<Fragment>
+  <Memo(Patterns)
+    color="#777777"
+    dim={true}
     patterns={
       Array [
         Object {
@@ -67,7 +68,8 @@ exports[`Project-Map > RerouteLayer renders correctly 1`] = `
     }
   />
   <ForwardRef(Leaflet(DirectionalMarkers))
-    color="#aab4bb"
+    color="#777777"
+    dim={true}
     patterns={
       Array [
         Object {
@@ -130,7 +132,7 @@ exports[`Project-Map > RerouteLayer renders correctly 1`] = `
       ]
     }
   />
-  <ForwardRef(Leaflet(GeoJSON))
+  <Memo(KeyedGeoJSON)
     color="#c92336"
     data={
       {
@@ -160,11 +162,10 @@ exports[`Project-Map > RerouteLayer renders correctly 1`] = `
   ]
 }
     }
-    key="00000000-0000-0000-0000-000000000000-removed-segments"
-    opacity={0.1}
+    opacity={0.5}
     weight={3}
   />
-  <ForwardRef(Leaflet(GeoJSON))
+  <Memo(KeyedGeoJSON)
     color="#2389c9"
     data={
       {
@@ -206,60 +207,8 @@ exports[`Project-Map > RerouteLayer renders correctly 1`] = `
   ]
 }
     }
-    key="00000000-0000-0000-0000-000000000000-added-segments}"
-    opacity={0.1}
+    opacity={0.5}
     weight={3}
   />
-  <ForwardRef(Leaflet(GeoJSON))
-    color="#36c923"
-    data={
-      {
-  "type": "Feature",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {}
-}
-    }
-    key="00000000-0000-0000-0000-000000000000-highlight-segment-0"
-    weight={6}
-  />
-  <ForwardRef(Leaflet(CircleMarker))
-    center={
-      Array [
-        36.9707,
-        -122.0246,
-      ]
-    }
-    color="#36c923"
-    fillOpacity={1}
-    radius={5}
-  />
-</ForwardRef(Leaflet(FeatureGroup))>
+</Fragment>
 `;

@@ -1,24 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > ImportShapefile renders correctly 1`] = `
-<Application>
-  <Connect(ProjectTitle) />
-  <Dock>
-    <h5>
-      Route alignments from shapefile
-    </h5>
-    <File
-      label="Select Shapefile (zipped):"
-      onChange={[Function]}
-    />
-    <Button
-      block={true}
-      disabled={true}
-      onClick={[Function]}
-      style="success"
+exports[`Component > ImportShapefile 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(ImportShapefile)
+    projectId="1"
+    regionId="1"
+    variants={Array []}
+  >
+    <ImportShapefile
+      createModifications={[Function]}
+      projectId="1"
+      regionId="1"
+      variants={Array []}
     >
-      Import
-    </Button>
-  </Dock>
-</Application>
+      <h5>
+        Route alignments from shapefile
+      </h5>
+      <File
+        label="Select Shapefile (zipped):"
+        onChange={[Function]}
+      >
+        <Group
+          id="select-shapefile-zipped-input-0"
+          label="Select Shapefile (zipped):"
+          onChange={[Function]}
+        >
+          <div
+            className="form-group"
+          >
+            <label
+              className="control-label"
+              htmlFor="select-shapefile-zipped-input-0"
+            >
+              Select Shapefile (zipped):
+            </label>
+            <Input
+              id="select-shapefile-zipped-input-0"
+              label="Select Shapefile (zipped):"
+              onChange={[Function]}
+              type="file"
+            >
+              <input
+                className="form-control"
+                id="select-shapefile-zipped-input-0"
+                label="Select Shapefile (zipped):"
+                onChange={[Function]}
+                placeholder="Select Shapefile (zipped):"
+                type="file"
+              />
+            </Input>
+          </div>
+        </Group>
+      </File>
+      <Button
+        block={true}
+        disabled={true}
+        onClick={[Function]}
+        style="success"
+      >
+        <a
+          className="btn btn-success btn-block"
+          disabled={true}
+          href="#"
+          onClick={[Function]}
+          tabIndex={0}
+        >
+          Import
+        </a>
+      </Button>
+    </ImportShapefile>
+  </Connect(ImportShapefile)>
+</Provider>
 `;

@@ -3,7 +3,6 @@
 exports[`reducers > project should handle add bundle 1`] = `
 Object {
   "feeds": Array [],
-  "feedsById": Object {},
   "modifications": Array [],
   "projects": Array [],
 }
@@ -12,7 +11,6 @@ Object {
 exports[`reducers > project should handle add project 1`] = `
 Object {
   "feeds": Array [],
-  "feedsById": Object {},
   "modifications": Array [],
   "projects": Array [
     Object {
@@ -25,7 +23,6 @@ Object {
 exports[`reducers > project should handle default state 1`] = `
 Object {
   "feeds": Array [],
-  "feedsById": Object {},
   "modifications": Array [],
   "projects": Array [],
 }
@@ -49,7 +46,6 @@ Object {
 
 exports[`reducers > project should handle delete project 1`] = `
 Object {
-  "currentProject": undefined,
   "projects": Array [],
 }
 `;
@@ -57,7 +53,6 @@ Object {
 exports[`reducers > project should handle log out 1`] = `
 Object {
   "feeds": Array [],
-  "feedsById": Object {},
   "modifications": Array [],
   "projects": Array [],
 }
@@ -89,11 +84,6 @@ Object {
       "_id": "1",
     },
   ],
-  "feedsById": Object {
-    "1": Object {
-      "_id": "1",
-    },
-  },
   "modifications": Array [],
   "projects": Array [],
 }
@@ -102,8 +92,12 @@ Object {
 exports[`reducers > project should handle set modification 1`] = `
 Object {
   "feeds": Array [],
-  "feedsById": Object {},
-  "modifications": Array [],
+  "modifications": Array [
+    Object {
+      "_id": "1",
+      "type": "adjust-dwell-time",
+    },
+  ],
   "projects": Array [],
 }
 `;
@@ -111,7 +105,6 @@ Object {
 exports[`reducers > project should handle set modifications 1`] = `
 Object {
   "feeds": Array [],
-  "feedsById": Object {},
   "modifications": Array [
     Object {
       "_id": "1",
@@ -129,10 +122,6 @@ Object {
       "_id": "1",
     },
   ],
-  "currentProject": Object {
-    "_id": "1",
-    "bundleId": "1",
-  },
   "projects": Array [
     Object {
       "_id": "1",
@@ -145,7 +134,6 @@ Object {
 exports[`reducers > project should handle set projects 1`] = `
 Object {
   "feeds": Array [],
-  "feedsById": Object {},
   "modifications": Array [],
   "projects": Array [
     Object {
@@ -160,7 +148,6 @@ Object {
   "modifications": Array [
     Object {
       "_id": "1",
-      "showOnMap": undefined,
       "type": "adjust-dwell-time",
       "variants": Array [],
     },

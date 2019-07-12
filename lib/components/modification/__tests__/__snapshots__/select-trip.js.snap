@@ -2,61 +2,34 @@
 
 exports[`Component > SelectTrip renders correctly 1`] = `
 <Group>
-  <Select
-    arrowRenderer={[Function]}
-    autosize={true}
-    backspaceRemoves={true}
-    backspaceToRemoveMessage="Press backspace to remove {label}"
-    clearAllText="Clear all"
-    clearRenderer={[Function]}
-    clearValueText="Clear value"
-    clearable={false}
-    closeOnSelect={true}
-    deleteRemoves={true}
-    delimiter=","
-    disabled={false}
-    escapeClearsValue={true}
-    filterOptions={[Function]}
-    ignoreAccents={true}
-    ignoreCase={true}
-    inputProps={Object {}}
-    isLoading={false}
-    joinValues={false}
-    labelKey="label"
-    matchPos="any"
-    matchProp="any"
-    menuBuffer={0}
-    menuRenderer={[Function]}
-    multi={false}
+  <S
+    getOptionLabel={[Function]}
+    getOptionValue={[Function]}
     name="Trip"
-    noResultsText="No results found"
-    onBlurResetsInput={true}
     onChange={[Function]}
-    onCloseResetsInput={true}
-    onSelectResetsInput={true}
-    openOnClick={true}
-    optionComponent={[Function]}
     options={
       Array [
         Object {
-          "label": "The Express , starting 03:26 (21 minute trip)",
-          "value": "abcd",
+          "duration": 1234,
+          "end_time": 13579,
+          "start_time": 12345,
+          "trip_headsign": "To Downtown",
+          "trip_id": "abcd",
+          "trip_short_name": "The Express",
         },
       ]
     }
-    pageSize={5}
     placeholder="Select Trip"
-    removeSelected={true}
-    required={false}
-    rtl={false}
-    scrollMenuIntoView={true}
-    searchable={true}
-    simpleValue={false}
-    tabSelectsValue={true}
-    trimFilter={true}
-    value="abcd"
-    valueComponent={[Function]}
-    valueKey="value"
+    value={
+      Object {
+        "duration": 1234,
+        "end_time": 13579,
+        "start_time": 12345,
+        "trip_headsign": "To Downtown",
+        "trip_id": "abcd",
+        "trip_short_name": "The Express",
+      }
+    }
   />
 </Group>
 `;

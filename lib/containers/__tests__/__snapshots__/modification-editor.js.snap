@@ -1,61 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Container > Modification Editor render just the title if not loaded 1`] = `
-<InnerDock
-  className=""
->
-  <div
-    className="InnerDock "
-    style={
-      Object {
-        "height": 768,
-      }
+<div
+  className="InnerDock block "
+  style={
+    Object {
+      "height": 768,
     }
+  }
+>
+  <p>
+    Loading modification feed...
+  </p>
+  <p>
+    If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
+  </p>
+  <Button
+    block={true}
+    onClick={[Function]}
+    style="warning"
   >
-    <div
-      className="block"
+    <a
+      className="btn btn-warning btn-block"
+      href="#"
+      onClick={[Function]}
+      tabIndex={0}
     >
-      <div>
-        <p>
-          Loading modification feed...
-        </p>
-        <p>
-          If you deleted the GTFS bundle underlying this modification, you will need to clear the bundle or delete this modification.
-        </p>
-        <Button
-          block={true}
-          onClick={[Function]}
-          style="warning"
+      <Icon
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "times",
+            "prefix": "fas",
+          }
+        }
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={true}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "times",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
         >
-          <a
-            className="btn btn-warning btn-block"
-            href="#"
-            onClick={[Function]}
-            tabIndex={0}
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-times fa-w-NaN fa-fw "
+            data-icon="times"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 undefined undefined"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <Icon
-              type="times"
-            >
-              <i
-                className="fa fa-times fa-fw "
-              />
-            </Icon>
-             
-            Clear selected bundle
-          </a>
-        </Button>
-      </div>
-    </div>
-  </div>
-</InnerDock>
+            <path
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </FontAwesomeIcon>
+      </Icon>
+       
+      Clear selected bundle
+    </a>
+  </Button>
+</div>
 `;
 
 exports[`Container > Modification Editor renders and can change the name 1`] = `
 Array [
-  Object {
-    "payload": "1234",
-    "type": "set active modification",
-  },
   Object {
     "payload": Object {
       "_id": "1234",
@@ -111,7 +141,6 @@ Array [
   "type": "Feature"
 },
       ],
-      "showOnMap": false,
       "timetables": Array [
         Object {
           "_id": "timetable-id",

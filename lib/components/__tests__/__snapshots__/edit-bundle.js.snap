@@ -1,118 +1,171 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > EditBundle renders correctly 1`] = `
-<div>
-  <p>
-    Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
-  </p>
-  <Group>
-    <Button
-      block={true}
-      onClick={[MockFunction]}
-      style="success"
+exports[`Component EditBundle snapshot(mount) 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <EditBundle>
+    <p>
+      Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
+    </p>
+    <Group>
+      <div
+        className="form-group"
+      >
+        <Button
+          block={true}
+          onClick={[Function]}
+          style="success"
+        >
+          <a
+            className="btn btn-success btn-block"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "plus",
+                  "prefix": "fas",
+                }
+              }
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "plus",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                  data-icon="plus"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             Create a bundle
+          </a>
+        </Button>
+      </div>
+    </Group>
+    <p
+      className="text-center"
     >
-      <Icon
-        type="plus"
-      />
-       Create a bundle
-    </Button>
-  </Group>
-  <p
-    className="center"
-  >
-    or select an existing one
-  </p>
-  <Group>
-    <Select
-      arrowRenderer={[Function]}
-      autosize={true}
-      backspaceRemoves={true}
-      backspaceToRemoveMessage="Press backspace to remove {label}"
-      clearAllText="Clear all"
-      clearRenderer={[Function]}
-      clearValueText="Clear value"
-      clearable={false}
-      closeOnSelect={true}
-      deleteRemoves={true}
-      delimiter=","
-      disabled={false}
-      escapeClearsValue={true}
-      filterOptions={[Function]}
-      ignoreAccents={true}
-      ignoreCase={true}
-      inputProps={Object {}}
-      isLoading={false}
-      joinValues={false}
-      labelKey="label"
-      matchPos="any"
-      matchProp="any"
-      menuBuffer={0}
-      menuRenderer={[Function]}
-      multi={false}
-      noResultsText="No results found"
-      onBlurResetsInput={true}
-      onChange={[Function]}
-      onCloseResetsInput={true}
-      onSelectResetsInput={true}
-      openOnClick={true}
-      optionComponent={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "Mock Bundle",
-            "value": "1",
-          },
-        ]
-      }
-      pageSize={5}
-      placeholder="Select..."
-      removeSelected={true}
-      required={false}
-      rtl={false}
-      scrollMenuIntoView={true}
-      searchable={true}
-      simpleValue={false}
-      tabSelectsValue={true}
-      trimFilter={true}
-      value="1"
-      valueComponent={[Function]}
-      valueKey="value"
-    />
-  </Group>
-  <div>
-    <h5>
-      Edit Bundle
-    </h5>
-    <Text
-      label="Bundle Name"
-      name="Name"
-      onChange={[Function]}
-      placeholder="Bundle name"
-      value="Mock Bundle"
-    />
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="success"
-      title="Save renamed bundle/feed names"
-    >
-      <Icon
-        type="save"
-      />
-       
-      Save renamed bundle/feed names
-    </Button>
-    <Button
-      block={true}
-      onClick={[Function]}
-      style="danger"
-    >
-      <Icon
-        type="trash"
-      />
-       
-      Delete this bundle
-    </Button>
-  </div>
-</div>
+      or select an existing one
+    </p>
+    <Group>
+      <div
+        className="form-group"
+      >
+        <S
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "_id": "1",
+                "accessGroup": "accessGroupName",
+                "centerLat": 38.90124,
+                "centerLon": -77.015615,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "errorCode": "",
+                "feeds": Array [],
+                "name": "Mock Bundle",
+                "nonce": "12345",
+                "regionId": "1",
+                "serviceEnd": "2018-09-28",
+                "serviceStart": "2018-09-27",
+                "status": "DONE",
+                "totalFeeds": 0,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+              },
+            ]
+          }
+        >
+          <ReactSelect
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "_id": "1",
+                  "accessGroup": "accessGroupName",
+                  "centerLat": 38.90124,
+                  "centerLon": -77.015615,
+                  "createdAt": "2017-11-08T12:30:50.133Z",
+                  "createdBy": "person@gmail.com",
+                  "errorCode": "",
+                  "feeds": Array [],
+                  "name": "Mock Bundle",
+                  "nonce": "12345",
+                  "regionId": "1",
+                  "serviceEnd": "2018-09-28",
+                  "serviceStart": "2018-09-27",
+                  "status": "DONE",
+                  "totalFeeds": 0,
+                  "updatedAt": "2017-11-08T12:31:19.602Z",
+                  "updatedBy": "person@gmail.com",
+                },
+              ]
+            }
+            styles={
+              Object {
+                "control": [Function],
+                "option": [Function],
+              }
+            }
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </S>
+      </div>
+    </Group>
+  </EditBundle>
+</Provider>
 `;

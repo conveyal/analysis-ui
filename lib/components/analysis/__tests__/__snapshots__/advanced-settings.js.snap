@@ -1,31 +1,254 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Advanced Settings should render correctly 1`] = `
-<section
-  className="panel panel-default inner-panel advanced-panel"
+<Collapsible
+  defaultExpanded={false}
+  heading={[Function]}
 >
-  <a
-    className="panel-heading clearfix"
-    onClick={[Function]}
-    style={
-      Object {
-        "cursor": "pointer",
-      }
-    }
-    tabIndex={0}
-  >
-    <Icon
-      type="gear"
-    />
-    <strong>
-      Advanced Settings
-    </strong>
-    <Icon
-      className="pull-right"
-      type="caret-right"
-    />
-  </a>
-</section>
+  <Body>
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-4"
+      >
+        <EgressModeSelector
+          disabled={false}
+          egressModes="WALK"
+          update={[MockFunction]}
+        />
+      </div>
+      <div
+        className="col-xs-4"
+      >
+        <NumberInput
+          disabled={false}
+          label="Walk Speed (km/h)"
+          max={15}
+          min={3}
+          name="walkSpeed"
+          onChange={[Function]}
+          step={0.1}
+          value={5}
+        />
+      </div>
+      <div
+        className="col-xs-4"
+      >
+        <NumberInput
+          disabled={false}
+          label="Bike Speed (km/h)"
+          max={20}
+          min={5}
+          name="bikeSpeed"
+          onChange={[Function]}
+          step={0.1}
+          value={15}
+        />
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-4"
+      />
+      <div
+        className="col-xs-4"
+      >
+        <NumberInput
+          disabled={false}
+          label="Max Walk Time (min)"
+          min={1}
+          name="maxWalkTime"
+          onChange={[Function]}
+          step={1}
+          value={20}
+        />
+      </div>
+      <div
+        className="col-xs-4"
+      >
+        <NumberInput
+          disabled={false}
+          label="Max Bike Time (min)"
+          min={1}
+          name="maxBikeTime"
+          onChange={[Function]}
+          step={1}
+          value={20}
+        />
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-6"
+      >
+        <NumberInput
+          disabled={false}
+          label="Maximum transfers"
+          max={7}
+          min={0}
+          name="maxTransfers"
+          onChange={[Function]}
+          step={1}
+          value={3}
+        />
+      </div>
+      <div
+        className="col-xs-6"
+      >
+        <NumberInput
+          disabled={false}
+          label="Simulated schedules"
+          max={10000}
+          min={1}
+          name="monteCarloDraws"
+          onChange={[Function]}
+          step={1}
+          value={200}
+        />
+      </div>
+    </div>
+    <Group
+      label="Bounds of analysis"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-xs-6"
+        >
+          <S
+            isDisabled={false}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "Entire region",
+                  "value": "__REGION",
+                },
+                Object {
+                  "label": "Same as ANALYSIS 1",
+                  "value": "abcd",
+                },
+                Object {
+                  "label": "Same as ANALYSIS 2",
+                  "value": "efgh",
+                },
+              ]
+            }
+            value={
+              Object {
+                "label": "Entire region",
+                "value": "__REGION",
+              }
+            }
+          />
+        </div>
+        <div
+          className="col-xs-6"
+        >
+          <Button
+            block={true}
+            disabled={false}
+            onClick={[Function]}
+            style="warning"
+          >
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "pencil-alt",
+                  "prefix": "fas",
+                }
+              }
+            />
+             Set custom geographic bounds
+          </Button>
+        </div>
+      </div>
+    </Group>
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-12"
+      >
+        <Group
+          label="Customize Profile Request"
+        >
+          <p>
+            Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
+          </p>
+          <textarea
+            className="form-control monospace"
+            defaultValue="{
+	\\"accessModes\\": \\"WALK\\",
+	\\"bikeSafe\\": 1,
+	\\"bikeSlope\\": 1,
+	\\"bikeSpeed\\": 4.166666666666667,
+	\\"bikeTime\\": 1,
+	\\"bounds\\": {
+		\\"north\\": 39,
+		\\"east\\": -76,
+		\\"south\\": 38,
+		\\"west\\": -77
+	},
+	\\"bundleId\\": \\"1\\",
+	\\"date\\": \\"2016-01-16\\",
+	\\"defaultExpanded\\": true,
+	\\"directModes\\": \\"WALK\\",
+	\\"egressModes\\": \\"WALK\\",
+	\\"fromLat\\": 12,
+	\\"fromLon\\": 34,
+	\\"fromTime\\": 25200,
+	\\"maxBikeTime\\": 20,
+	\\"maxRides\\": 4,
+	\\"maxTripDurationMinutes\\": 60,
+	\\"maxWalkTime\\": 20,
+	\\"monteCarloDraws\\": 200,
+	\\"name\\": \\"Profile Request Test\\",
+	\\"projectId\\": \\"1\\",
+	\\"reachabilityThreshold\\": 0,
+	\\"regionId\\": \\"1\\",
+	\\"toTime\\": 32400,
+	\\"transitModes\\": \\"BUS,TRAM,RAIL,SUBWAY\\",
+	\\"travelTimePercentile\\": 50,
+	\\"variantIndex\\": 0,
+	\\"walkSpeed\\": 1.3888888888888888,
+	\\"workerVersion\\": \\"v4.0.0\\"
+}"
+            disabled={false}
+            key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
+            rows={10}
+          />
+          <br />
+          <Button
+            block={true}
+            disabled={false}
+            onClick={[Function]}
+            style="warning"
+          >
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "pencil-alt",
+                  "prefix": "fas",
+                }
+              }
+            />
+             
+            Update Profile Request
+          </Button>
+        </Group>
+      </div>
+    </div>
+  </Body>
+</Collapsible>
 `;
 
 exports[`Components > Analysis > Advanced Settings should render correctly with expanded advanced settings 1`] = `
@@ -209,610 +432,784 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
   setProfileRequest={[MockFunction]}
   showBoundsEditor={[MockFunction]}
 >
-  <section
-    className="panel panel-default inner-panel advanced-panel"
+  <Collapsible
+    defaultExpanded={false}
+    heading={[Function]}
   >
-    <a
-      className="panel-heading clearfix"
-      onClick={[Function]}
-      style={
-        Object {
-          "cursor": "pointer",
-        }
-      }
-      tabIndex={0}
-    >
-      <Icon
-        type="gear"
-      >
-        <i
-          className="fa fa-gear fa-fw "
-        />
-      </Icon>
-      <strong>
-        Advanced Settings
-      </strong>
-      <Icon
-        className="pull-right"
-        type="caret-down"
-      >
-        <i
-          className="fa fa-caret-down fa-fw pull-right"
-        />
-      </Icon>
-    </a>
-    <div
-      className="panel-body"
-    >
+    <Panel>
       <div
-        className="row"
+        className="panel panel-default"
       >
-        <div
-          className="col-xs-4"
+        <Heading
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
         >
-          <EgressModeSelector
-            disabled={false}
-            egressModes="WALK"
-            update={[MockFunction]}
+          <div
+            className="panel-heading clearfix "
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
           >
-            <Group
-              label="Egress Modes"
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "cog",
+                  "prefix": "fas",
+                }
+              }
             >
-              <div
-                className="form-group"
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "cog",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
               >
-                <label
-                  htmlFor="egress-modes-input-0"
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
+                  data-icon="cog"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Egress Modes
-                </label>
-                <br />
-                <Group
-                  disabled={false}
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+            <strong>
+               Advanced Settings
+            </strong>
+            <span
+              className="pull-right"
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "caret-down",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "caret-down",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
                 >
-                  <div
-                    className="btn-group"
-                    disabled={false}
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-caret-down fa-w-NaN fa-fw "
+                    data-icon="caret-down"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <Button
-                      active={true}
-                      onClick={[Function]}
-                      title="Walk"
-                    >
-                      <a
-                        className="btn btn-default active"
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                        title="Walk"
-                      >
-                        <Icon
-                          type="male"
-                        >
-                          <i
-                            className="fa fa-male fa-fw "
-                          />
-                        </Icon>
-                      </a>
-                    </Button>
-                    <Button
-                      active={false}
-                      disabled={true}
-                      onClick={[Function]}
-                      title="CURRENTLY DISABLED: Bike"
-                    >
-                      <a
-                        className="btn btn-default"
-                        disabled={true}
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                        title="CURRENTLY DISABLED: Bike"
-                      >
-                        <Icon
-                          type="bicycle"
-                        >
-                          <i
-                            className="fa fa-bicycle fa-fw "
-                          />
-                        </Icon>
-                      </a>
-                    </Button>
-                  </div>
-                </Group>
-              </div>
-            </Group>
-          </EgressModeSelector>
-        </div>
-        <div
-          className="col-xs-4"
-        >
-          <Number
-            disabled={false}
-            label="Walk Speed (km/h)"
-            max={15}
-            min={3}
-            name="walkSpeed"
-            onChange={[Function]}
-            step={0.1}
-            value={5}
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+            </span>
+          </div>
+        </Heading>
+        <Body>
+          <div
+            className="panel-body"
           >
-            <Group
-              disabled={false}
-              id="walk-speed-input-1"
-              label="Walk Speed (km/h)"
-              max={15}
-              min={3}
-              name="walkSpeed"
-              onChange={[Function]}
-              step={0.1}
-              value={5}
+            <div
+              className="row"
             >
               <div
-                className="form-group"
+                className="col-xs-4"
               >
-                <label
-                  htmlFor="walk-speed-input-1"
-                >
-                  Walk Speed (km/h)
-                </label>
-                <Input
+                <EgressModeSelector
                   disabled={false}
-                  id="walk-speed-input-1"
+                  egressModes="WALK"
+                  update={[MockFunction]}
+                >
+                  <Group
+                    label="Egress Modes"
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        className="control-label"
+                        htmlFor="egress-modes-input-0"
+                      >
+                        Egress Modes
+                      </label>
+                      <br />
+                      <Group
+                        disabled={false}
+                      >
+                        <div
+                          className="btn-group"
+                          disabled={false}
+                        >
+                          <Button
+                            active={true}
+                            onClick={[Function]}
+                            title="Walk"
+                          >
+                            <a
+                              className="btn btn-default active"
+                              href="#"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              title="Walk"
+                            >
+                              <Icon
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "walking",
+                                    "prefix": "fas",
+                                  }
+                                }
+                              >
+                                <FontAwesomeIcon
+                                  border={false}
+                                  className=""
+                                  fixedWidth={true}
+                                  flip={null}
+                                  icon={
+                                    Object {
+                                      "icon": Array [],
+                                      "iconName": "walking",
+                                      "prefix": "fas",
+                                    }
+                                  }
+                                  inverse={false}
+                                  listItem={false}
+                                  mask={null}
+                                  pull={null}
+                                  pulse={false}
+                                  rotation={null}
+                                  size={null}
+                                  spin={false}
+                                  symbol={false}
+                                  title=""
+                                  transform={null}
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className="svg-inline--fa fa-walking fa-w-NaN fa-fw "
+                                    data-icon="walking"
+                                    data-prefix="fas"
+                                    focusable="false"
+                                    role="img"
+                                    style={Object {}}
+                                    viewBox="0 0 undefined undefined"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      fill="currentColor"
+                                      style={Object {}}
+                                    />
+                                  </svg>
+                                </FontAwesomeIcon>
+                              </Icon>
+                            </a>
+                          </Button>
+                          <Button
+                            active={false}
+                            disabled={true}
+                            onClick={[Function]}
+                            title="CURRENTLY DISABLED: Bike"
+                          >
+                            <a
+                              className="btn btn-default"
+                              disabled={true}
+                              href="#"
+                              onClick={[Function]}
+                              tabIndex={0}
+                              title="CURRENTLY DISABLED: Bike"
+                            >
+                              <Icon
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "bicycle",
+                                    "prefix": "fas",
+                                  }
+                                }
+                              >
+                                <FontAwesomeIcon
+                                  border={false}
+                                  className=""
+                                  fixedWidth={true}
+                                  flip={null}
+                                  icon={
+                                    Object {
+                                      "icon": Array [],
+                                      "iconName": "bicycle",
+                                      "prefix": "fas",
+                                    }
+                                  }
+                                  inverse={false}
+                                  listItem={false}
+                                  mask={null}
+                                  pull={null}
+                                  pulse={false}
+                                  rotation={null}
+                                  size={null}
+                                  spin={false}
+                                  symbol={false}
+                                  title=""
+                                  transform={null}
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className="svg-inline--fa fa-bicycle fa-w-NaN fa-fw "
+                                    data-icon="bicycle"
+                                    data-prefix="fas"
+                                    focusable="false"
+                                    role="img"
+                                    style={Object {}}
+                                    viewBox="0 0 undefined undefined"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      fill="currentColor"
+                                      style={Object {}}
+                                    />
+                                  </svg>
+                                </FontAwesomeIcon>
+                              </Icon>
+                            </a>
+                          </Button>
+                        </div>
+                      </Group>
+                    </div>
+                  </Group>
+                </EgressModeSelector>
+              </div>
+              <div
+                className="col-xs-4"
+              >
+                <NumberInput
+                  disabled={false}
                   label="Walk Speed (km/h)"
                   max={15}
                   min={3}
                   name="walkSpeed"
                   onChange={[Function]}
-                  onWheel={[Function]}
                   step={0.1}
-                  type="number"
                   value={5}
                 >
-                  <input
-                    className="form-control"
+                  <Group
                     disabled={false}
                     id="walk-speed-input-1"
+                    label="Walk Speed (km/h)"
                     max={15}
                     min={3}
                     name="walkSpeed"
                     onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Walk Speed (km/h)"
                     step={0.1}
-                    type="number"
                     value={5}
-                  />
-                </Input>
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        className="control-label"
+                        htmlFor="walk-speed-input-1"
+                      >
+                        Walk Speed (km/h)
+                      </label>
+                      <Input
+                        disabled={false}
+                        id="walk-speed-input-1"
+                        label="Walk Speed (km/h)"
+                        max={15}
+                        min={3}
+                        name="walkSpeed"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        step={0.1}
+                        type="number"
+                        value={5}
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          id="walk-speed-input-1"
+                          label="Walk Speed (km/h)"
+                          max={15}
+                          min={3}
+                          name="walkSpeed"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          placeholder="Walk Speed (km/h)"
+                          step={0.1}
+                          type="number"
+                          value={5}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </NumberInput>
               </div>
-            </Group>
-          </Number>
-        </div>
-        <div
-          className="col-xs-4"
-        >
-          <Number
-            disabled={false}
-            label="Bike Speed (km/h)"
-            max={20}
-            min={5}
-            name="bikeSpeed"
-            onChange={[Function]}
-            step={0.1}
-            value={15}
-          >
-            <Group
-              disabled={false}
-              id="bike-speed-input-2"
-              label="Bike Speed (km/h)"
-              max={20}
-              min={5}
-              name="bikeSpeed"
-              onChange={[Function]}
-              step={0.1}
-              value={15}
-            >
               <div
-                className="form-group"
+                className="col-xs-4"
               >
-                <label
-                  htmlFor="bike-speed-input-2"
-                >
-                  Bike Speed (km/h)
-                </label>
-                <Input
+                <NumberInput
                   disabled={false}
-                  id="bike-speed-input-2"
                   label="Bike Speed (km/h)"
                   max={20}
                   min={5}
                   name="bikeSpeed"
                   onChange={[Function]}
-                  onWheel={[Function]}
                   step={0.1}
-                  type="number"
                   value={15}
                 >
-                  <input
-                    className="form-control"
+                  <Group
                     disabled={false}
                     id="bike-speed-input-2"
+                    label="Bike Speed (km/h)"
                     max={20}
                     min={5}
                     name="bikeSpeed"
                     onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Bike Speed (km/h)"
                     step={0.1}
-                    type="number"
                     value={15}
-                  />
-                </Input>
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        className="control-label"
+                        htmlFor="bike-speed-input-2"
+                      >
+                        Bike Speed (km/h)
+                      </label>
+                      <Input
+                        disabled={false}
+                        id="bike-speed-input-2"
+                        label="Bike Speed (km/h)"
+                        max={20}
+                        min={5}
+                        name="bikeSpeed"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        step={0.1}
+                        type="number"
+                        value={15}
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          id="bike-speed-input-2"
+                          label="Bike Speed (km/h)"
+                          max={20}
+                          min={5}
+                          name="bikeSpeed"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          placeholder="Bike Speed (km/h)"
+                          step={0.1}
+                          type="number"
+                          value={15}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </NumberInput>
               </div>
-            </Group>
-          </Number>
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-xs-4"
-        />
-        <div
-          className="col-xs-4"
-        >
-          <Number
-            disabled={false}
-            label="Max Walk Time (min)"
-            min={1}
-            name="maxWalkTime"
-            onChange={[Function]}
-            step={1}
-            value={20}
-          >
-            <Group
-              disabled={false}
-              id="max-walk-time-input-3"
-              label="Max Walk Time (min)"
-              min={1}
-              name="maxWalkTime"
-              onChange={[Function]}
-              step={1}
-              value={20}
+            </div>
+            <div
+              className="row"
             >
               <div
-                className="form-group"
+                className="col-xs-4"
+              />
+              <div
+                className="col-xs-4"
               >
-                <label
-                  htmlFor="max-walk-time-input-3"
-                >
-                  Max Walk Time (min)
-                </label>
-                <Input
+                <NumberInput
                   disabled={false}
-                  id="max-walk-time-input-3"
                   label="Max Walk Time (min)"
                   min={1}
                   name="maxWalkTime"
                   onChange={[Function]}
-                  onWheel={[Function]}
                   step={1}
-                  type="number"
                   value={20}
                 >
-                  <input
-                    className="form-control"
+                  <Group
                     disabled={false}
                     id="max-walk-time-input-3"
+                    label="Max Walk Time (min)"
                     min={1}
                     name="maxWalkTime"
                     onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Max Walk Time (min)"
                     step={1}
-                    type="number"
                     value={20}
-                  />
-                </Input>
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        className="control-label"
+                        htmlFor="max-walk-time-input-3"
+                      >
+                        Max Walk Time (min)
+                      </label>
+                      <Input
+                        disabled={false}
+                        id="max-walk-time-input-3"
+                        label="Max Walk Time (min)"
+                        min={1}
+                        name="maxWalkTime"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        step={1}
+                        type="number"
+                        value={20}
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          id="max-walk-time-input-3"
+                          label="Max Walk Time (min)"
+                          min={1}
+                          name="maxWalkTime"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          placeholder="Max Walk Time (min)"
+                          step={1}
+                          type="number"
+                          value={20}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </NumberInput>
               </div>
-            </Group>
-          </Number>
-        </div>
-        <div
-          className="col-xs-4"
-        >
-          <Number
-            disabled={false}
-            label="Max Bike Time (min)"
-            min={1}
-            name="maxBikeTime"
-            onChange={[Function]}
-            step={1}
-            value={20}
-          >
-            <Group
-              disabled={false}
-              id="max-bike-time-input-4"
-              label="Max Bike Time (min)"
-              min={1}
-              name="maxBikeTime"
-              onChange={[Function]}
-              step={1}
-              value={20}
-            >
               <div
-                className="form-group"
+                className="col-xs-4"
               >
-                <label
-                  htmlFor="max-bike-time-input-4"
-                >
-                  Max Bike Time (min)
-                </label>
-                <Input
+                <NumberInput
                   disabled={false}
-                  id="max-bike-time-input-4"
                   label="Max Bike Time (min)"
                   min={1}
                   name="maxBikeTime"
                   onChange={[Function]}
-                  onWheel={[Function]}
                   step={1}
-                  type="number"
                   value={20}
                 >
-                  <input
-                    className="form-control"
+                  <Group
                     disabled={false}
                     id="max-bike-time-input-4"
+                    label="Max Bike Time (min)"
                     min={1}
                     name="maxBikeTime"
                     onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Max Bike Time (min)"
                     step={1}
-                    type="number"
                     value={20}
-                  />
-                </Input>
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        className="control-label"
+                        htmlFor="max-bike-time-input-4"
+                      >
+                        Max Bike Time (min)
+                      </label>
+                      <Input
+                        disabled={false}
+                        id="max-bike-time-input-4"
+                        label="Max Bike Time (min)"
+                        min={1}
+                        name="maxBikeTime"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        step={1}
+                        type="number"
+                        value={20}
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          id="max-bike-time-input-4"
+                          label="Max Bike Time (min)"
+                          min={1}
+                          name="maxBikeTime"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          placeholder="Max Bike Time (min)"
+                          step={1}
+                          type="number"
+                          value={20}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </NumberInput>
               </div>
-            </Group>
-          </Number>
-        </div>
-      </div>
-      <div
-        className="row"
-      >
-        <div
-          className="col-xs-6"
-        >
-          <Number
-            disabled={false}
-            label="Maximum transfers"
-            max={7}
-            min={0}
-            name="maxTransfers"
-            onChange={[Function]}
-            step={1}
-            value={3}
-          >
-            <Group
-              disabled={false}
-              id="max-transfers-input-5"
-              label="Maximum transfers"
-              max={7}
-              min={0}
-              name="maxTransfers"
-              onChange={[Function]}
-              step={1}
-              value={3}
+            </div>
+            <div
+              className="row"
             >
               <div
-                className="form-group"
+                className="col-xs-6"
               >
-                <label
-                  htmlFor="max-transfers-input-5"
-                >
-                  Maximum transfers
-                </label>
-                <Input
+                <NumberInput
                   disabled={false}
-                  id="max-transfers-input-5"
                   label="Maximum transfers"
                   max={7}
                   min={0}
                   name="maxTransfers"
                   onChange={[Function]}
-                  onWheel={[Function]}
                   step={1}
-                  type="number"
                   value={3}
                 >
-                  <input
-                    className="form-control"
+                  <Group
                     disabled={false}
                     id="max-transfers-input-5"
+                    label="Maximum transfers"
                     max={7}
                     min={0}
                     name="maxTransfers"
                     onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Maximum transfers"
                     step={1}
-                    type="number"
                     value={3}
-                  />
-                </Input>
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        className="control-label"
+                        htmlFor="max-transfers-input-5"
+                      >
+                        Maximum transfers
+                      </label>
+                      <Input
+                        disabled={false}
+                        id="max-transfers-input-5"
+                        label="Maximum transfers"
+                        max={7}
+                        min={0}
+                        name="maxTransfers"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        step={1}
+                        type="number"
+                        value={3}
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          id="max-transfers-input-5"
+                          label="Maximum transfers"
+                          max={7}
+                          min={0}
+                          name="maxTransfers"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          placeholder="Maximum transfers"
+                          step={1}
+                          type="number"
+                          value={3}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </NumberInput>
               </div>
-            </Group>
-          </Number>
-        </div>
-        <div
-          className="col-xs-6"
-        >
-          <Number
-            disabled={false}
-            label="Simulated schedules"
-            max={10000}
-            min={1}
-            name="monteCarloDraws"
-            onChange={[Function]}
-            step={1}
-            value={200}
-          >
-            <Group
-              disabled={false}
-              id="monte-carlo-draws-input-6"
-              label="Simulated schedules"
-              max={10000}
-              min={1}
-              name="monteCarloDraws"
-              onChange={[Function]}
-              step={1}
-              value={200}
-            >
               <div
-                className="form-group"
+                className="col-xs-6"
               >
-                <label
-                  htmlFor="monte-carlo-draws-input-6"
-                >
-                  Simulated schedules
-                </label>
-                <Input
+                <NumberInput
                   disabled={false}
-                  id="monte-carlo-draws-input-6"
                   label="Simulated schedules"
                   max={10000}
                   min={1}
                   name="monteCarloDraws"
                   onChange={[Function]}
-                  onWheel={[Function]}
                   step={1}
-                  type="number"
                   value={200}
                 >
-                  <input
-                    className="form-control"
+                  <Group
                     disabled={false}
                     id="monte-carlo-draws-input-6"
+                    label="Simulated schedules"
                     max={10000}
                     min={1}
                     name="monteCarloDraws"
                     onChange={[Function]}
-                    onWheel={[Function]}
-                    placeholder="Simulated schedules"
                     step={1}
-                    type="number"
                     value={200}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Number>
-        </div>
-      </div>
-      <Group
-        label="Bounds of analysis"
-      >
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="bounds-of-analysis-input-7"
-          >
-            Bounds of analysis
-          </label>
-          <div
-            className="row"
-          >
-            <div
-              className="col-xs-6"
-            >
-              <Select
-                arrowRenderer={[Function]}
-                autosize={true}
-                backspaceRemoves={true}
-                backspaceToRemoveMessage="Press backspace to remove {label}"
-                clearAllText="Clear all"
-                clearRenderer={[Function]}
-                clearValueText="Clear value"
-                clearable={false}
-                closeOnSelect={true}
-                deleteRemoves={true}
-                delimiter=","
-                disabled={false}
-                escapeClearsValue={true}
-                filterOptions={[Function]}
-                ignoreAccents={true}
-                ignoreCase={true}
-                inputProps={Object {}}
-                isLoading={false}
-                joinValues={false}
-                labelKey="label"
-                matchPos="any"
-                matchProp="any"
-                menuBuffer={0}
-                menuRenderer={[Function]}
-                multi={false}
-                noResultsText="No results found"
-                onBlurResetsInput={true}
-                onChange={[Function]}
-                onCloseResetsInput={true}
-                onSelectResetsInput={true}
-                openOnClick={true}
-                optionComponent={[Function]}
-                options={
-                  Array [
-                    Object {
-                      "label": "Entire region",
-                      "value": "__REGION",
-                    },
-                    Object {
-                      "label": "Same as ANALYSIS 1",
-                      "value": "abcd",
-                    },
-                    Object {
-                      "label": "Same as ANALYSIS 2",
-                      "value": "efgh",
-                    },
-                  ]
-                }
-                pageSize={5}
-                placeholder="Select..."
-                removeSelected={true}
-                required={false}
-                rtl={false}
-                scrollMenuIntoView={true}
-                searchable={true}
-                simpleValue={false}
-                tabSelectsValue={true}
-                trimFilter={true}
-                value="__REGION"
-                valueComponent={[Function]}
-                valueKey="value"
-              >
-                <div
-                  className="Select has-value is-searchable Select--single"
-                >
-                  <div
-                    className="Select-control"
-                    onKeyDown={[Function]}
-                    onMouseDown={[Function]}
-                    onTouchEnd={[Function]}
-                    onTouchMove={[Function]}
-                    onTouchStart={[Function]}
                   >
                     <div
-                      className="Select-multi-value-wrapper"
-                      id="react-select-2--value"
+                      className="form-group"
                     >
-                      <Value
+                      <label
+                        className="control-label"
+                        htmlFor="monte-carlo-draws-input-6"
+                      >
+                        Simulated schedules
+                      </label>
+                      <Input
                         disabled={false}
-                        id="react-select-2--value-item"
-                        instancePrefix="react-select-2-"
-                        onClick={null}
-                        placeholder="Select..."
+                        id="monte-carlo-draws-input-6"
+                        label="Simulated schedules"
+                        max={10000}
+                        min={1}
+                        name="monteCarloDraws"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        step={1}
+                        type="number"
+                        value={200}
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          id="monte-carlo-draws-input-6"
+                          label="Simulated schedules"
+                          max={10000}
+                          min={1}
+                          name="monteCarloDraws"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          placeholder="Simulated schedules"
+                          step={1}
+                          type="number"
+                          value={200}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </NumberInput>
+              </div>
+            </div>
+            <Group
+              label="Bounds of analysis"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  className="control-label"
+                  htmlFor="bounds-of-analysis-input-7"
+                >
+                  Bounds of analysis
+                </label>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col-xs-6"
+                  >
+                    <S
+                      isDisabled={false}
+                      onChange={[Function]}
+                      options={
+                        Array [
+                          Object {
+                            "label": "Entire region",
+                            "value": "__REGION",
+                          },
+                          Object {
+                            "label": "Same as ANALYSIS 1",
+                            "value": "abcd",
+                          },
+                          Object {
+                            "label": "Same as ANALYSIS 2",
+                            "value": "efgh",
+                          },
+                        ]
+                      }
+                      value={
+                        Object {
+                          "label": "Entire region",
+                          "value": "__REGION",
+                        }
+                      }
+                    >
+                      <ReactSelect
+                        isDisabled={false}
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "label": "Entire region",
+                              "value": "__REGION",
+                            },
+                            Object {
+                              "label": "Same as ANALYSIS 1",
+                              "value": "abcd",
+                            },
+                            Object {
+                              "label": "Same as ANALYSIS 2",
+                              "value": "efgh",
+                            },
+                          ]
+                        }
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
                         value={
                           Object {
                             "label": "Entire region",
@@ -821,100 +1218,109 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         }
                       >
                         <div
-                          className="Select-value"
-                        >
-                          <span
-                            aria-selected="true"
-                            className="Select-value-label"
-                            id="react-select-2--value-item"
-                            role="option"
-                          >
-                            Entire region
-                          </span>
-                        </div>
-                      </Value>
-                      <AutosizeInput
-                        aria-activedescendant="react-select-2--value"
-                        aria-expanded="false"
-                        aria-haspopup="false"
-                        aria-owns=""
-                        className="Select-input"
-                        injectStyles={true}
-                        minWidth="5"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        required={false}
-                        role="combobox"
-                        value=""
-                      />
-                    </div>
-                    <span
-                      className="Select-arrow-zone"
-                      onMouseDown={[Function]}
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </S>
+                  </div>
+                  <div
+                    className="col-xs-6"
+                  >
+                    <Button
+                      block={true}
+                      disabled={false}
+                      onClick={[Function]}
+                      style="warning"
                     >
-                      <span
-                        className="Select-arrow"
-                        onMouseDown={[Function]}
-                      />
-                    </span>
+                      <a
+                        className="btn btn-warning btn-block"
+                        disabled={false}
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
+                      >
+                        <Icon
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "pencil-alt",
+                              "prefix": "fas",
+                            }
+                          }
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={true}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [],
+                                "iconName": "pencil-alt",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
+                              data-icon="pencil-alt"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                        </Icon>
+                         Set custom geographic bounds
+                      </a>
+                    </Button>
                   </div>
                 </div>
-              </Select>
-            </div>
+              </div>
+            </Group>
             <div
-              className="col-xs-6"
+              className="row"
             >
-              <Button
-                block={true}
-                disabled={false}
-                onClick={[Function]}
-                style="warning"
+              <div
+                className="col-xs-12"
               >
-                <a
-                  className="btn btn-warning btn-block"
-                  disabled={false}
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
+                <Group
+                  label="Customize Profile Request"
                 >
-                  <Icon
-                    type="pencil"
+                  <div
+                    className="form-group"
                   >
-                    <i
-                      className="fa fa-pencil fa-fw "
-                    />
-                  </Icon>
-                   Set custom geographic bounds
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Group>
-      <div
-        className="row"
-      >
-        <div
-          className="col-xs-12"
-        >
-          <Group
-            label="Customize Profile Request"
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="customize-profile-request-input-8"
-              >
-                Customize Profile Request
-              </label>
-              <p>
-                Edit JSON directly that will be sent to the worker. For advanced users only. Notice: "percentiles" and "workerVersion" cannot be changed here.
-              </p>
-              <textarea
-                className="form-control monospace"
-                defaultValue="{
+                    <label
+                      className="control-label"
+                      htmlFor="customize-profile-request-input-8"
+                    >
+                      Customize Profile Request
+                    </label>
+                    <p>
+                      Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
+                    </p>
+                    <textarea
+                      className="form-control monospace"
+                      defaultValue="{
 	\\"accessModes\\": \\"WALK\\",
 	\\"bikeSafe\\": 1,
 	\\"bikeSlope\\": 1,
@@ -950,38 +1356,87 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
 	\\"walkSpeed\\": 1.3888888888888888,
 	\\"workerVersion\\": \\"v4.0.0\\"
 }"
-                disabled={false}
-                key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
-                rows={10}
-              />
-              <br />
-              <Button
-                block={true}
-                onClick={[Function]}
-                style="warning"
-              >
-                <a
-                  className="btn btn-warning btn-block"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                >
-                  <Icon
-                    type="pencil"
-                  >
-                    <i
-                      className="fa fa-pencil fa-fw "
+                      disabled={false}
+                      key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
+                      rows={10}
                     />
-                  </Icon>
-                   
-                  Update Profile Request
-                </a>
-              </Button>
+                    <br />
+                    <Button
+                      block={true}
+                      disabled={false}
+                      onClick={[Function]}
+                      style="warning"
+                    >
+                      <a
+                        className="btn btn-warning btn-block"
+                        disabled={false}
+                        href="#"
+                        onClick={[Function]}
+                        tabIndex={0}
+                      >
+                        <Icon
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "pencil-alt",
+                              "prefix": "fas",
+                            }
+                          }
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={true}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [],
+                                "iconName": "pencil-alt",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
+                              data-icon="pencil-alt"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 undefined undefined"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                        </Icon>
+                         
+                        Update Profile Request
+                      </a>
+                    </Button>
+                  </div>
+                </Group>
+              </div>
             </div>
-          </Group>
-        </div>
+          </div>
+        </Body>
       </div>
-    </div>
-  </section>
+    </Panel>
+  </Collapsible>
 </AdvancedSettings>
 `;

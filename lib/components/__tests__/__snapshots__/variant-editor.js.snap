@@ -1,59 +1,111 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > VariantEditor renders correctly 1`] = `
-<div
-  className="Variants"
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <Collapsible
-    title="Scenarios"
+  <Variants
+    createVariant={[MockFunction]}
+    deleteVariant={[MockFunction]}
+    editVariantName={[MockFunction]}
+    showVariant={[MockFunction]}
+    variants={Array []}
   >
-    <p>
-      A Scenario is a collection of modifications within a project.
-    </p>
-    <Group>
-      <Button
-        block={true}
-        onClick={[Function]}
-        style="success"
-      >
-        <Icon
-          type="plus"
-        />
-        Create a scenario
-      </Button>
-    </Group>
-    <ol
-      start="0"
+    <Collapsible
+      defaultExpanded={false}
+      heading={[Function]}
     >
-      <div
-        className="Variant"
-        key="Baseline"
-      >
-        <li>
-          <i>
-            Baseline
-          </i>
-          <a
-            className="pull-right"
+      <Panel>
+        <div
+          className="panel panel-default"
+        >
+          <Heading
             onClick={[Function]}
-            tabIndex={0}
-            title="Hide all"
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
           >
-            <Icon
-              type="eye"
-            />
-          </a>
-          <a
-            className="pull-right"
-            title="Baseline (empty scenario) cannot be modified"
-          >
-            <Icon
-              type="lock"
-            />
-          </a>
-        </li>
-      </div>
-    </ol>
-  </Collapsible>
-</div>
+            <div
+              className="panel-heading clearfix "
+              onClick={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+            >
+              Scenarios
+              <span
+                className="pull-right"
+              >
+                <Icon
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "caret-right",
+                      "prefix": "fas",
+                    }
+                  }
+                >
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "caret-right",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-caret-right fa-w-NaN fa-fw "
+                      data-icon="caret-right"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+              </span>
+            </div>
+          </Heading>
+        </div>
+      </Panel>
+    </Collapsible>
+  </Variants>
+</Provider>
 `;

@@ -10,6 +10,7 @@ exports[`Component > Input Checkbox renders correctly 1`] = `
     <input
       defaultChecked={true}
       id="do-the-thing-input-0"
+      label="Do the thing?"
       type="checkbox"
     />
      
@@ -46,7 +47,6 @@ exports[`Component > Input Input renders correctly 1`] = `
   className="form-control"
   id="some-input-input-2"
   name="someInput"
-  onChange={[Function]}
   placeholder="Enter Text"
   value=""
 />
@@ -73,7 +73,7 @@ exports[`Component > Input Number renders correctly 1`] = `
 `;
 
 exports[`Component > Input Number renders correctly with invalid max value 1`] = `
-<Number
+<NumberInput
   max={2}
   name="someNumber3"
   placeholder="Enter Number"
@@ -117,11 +117,11 @@ exports[`Component > Input Number renders correctly with invalid max value 1`] =
       </span>
     </div>
   </Group>
-</Number>
+</NumberInput>
 `;
 
 exports[`Component > Input Number renders correctly with invalid min value 1`] = `
-<Number
+<NumberInput
   min={5}
   name="someNumber2"
   placeholder="Enter Number"
@@ -163,7 +163,7 @@ exports[`Component > Input Number renders correctly with invalid min value 1`] =
       </span>
     </div>
   </Group>
-</Number>
+</NumberInput>
 `;
 
 exports[`Component > Input Select renders correctly 1`] = `
@@ -176,38 +176,7 @@ exports[`Component > Input Select renders correctly 1`] = `
     className="form-control"
     id="select-an-option-input-8"
     label="Select an option"
-    onBlur={[Function]}
     value=""
-  >
-    <option
-      key="1"
-      value="1"
-    >
-      1
-    </option>
-    <option
-      key="2"
-      value="2"
-    >
-      2
-    </option>
-  </select>
-</Group>
-`;
-
-exports[`Component > Input SelectMultiple renders correctly 1`] = `
-<Group
-  id="select-multiple-options-input-9"
-  label="Select multiple options"
-  value={Array []}
->
-  <select
-    className="form-control"
-    id="select-multiple-options-input-9"
-    label="Select multiple options"
-    multiple={true}
-    onBlur={[Function]}
-    value={Array []}
   >
     <option
       key="1"
@@ -227,13 +196,13 @@ exports[`Component > Input SelectMultiple renders correctly 1`] = `
 
 exports[`Component > Input Text renders correctly 1`] = `
 <Group
-  id="some-text-input-10"
+  id="some-text-input-9"
   label="Enter text"
   name="someText"
   value="blah"
 >
   <Input
-    id="some-text-input-10"
+    id="some-text-input-9"
     label="Enter text"
     name="someText"
     type="text"

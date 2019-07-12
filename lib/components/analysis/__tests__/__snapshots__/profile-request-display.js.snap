@@ -3,10 +3,10 @@
 exports[`Components > Analysis > Profile Request Display should render correctly 1`] = `
 <Collapsible
   defaultExpanded={true}
-  title="Profile Request Test settings"
+  heading={[Function]}
 >
   <table
-    className="table table-striped table-condensed"
+    className="table table-condensed table-striped"
   >
     <tbody>
       <tr>
@@ -14,19 +14,25 @@ exports[`Components > Analysis > Profile Request Display should render correctly
           Resources
         </th>
         <td>
-          <a
-            href="/regions/1/bundles/1"
-            target="_blank"
+          <Link
+            bundleId="1"
+            regionId="1"
+            to="bundleEdit"
           >
-            GTFS Bundle
-          </a>
+            <a>
+              GTFS Bundle
+            </a>
+          </Link>
            / 
-          <a
-            href="/regions/1/projects/1"
-            target="_blank"
+          <Link
+            projectId="1"
+            regionId="1"
+            to="modifications"
           >
-            Project
-          </a>
+            <a>
+              Project
+            </a>
+          </Link>
         </td>
       </tr>
       <tr>

@@ -129,7 +129,6 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
       ],
       "segmentSpeeds": Array [],
       "segments": Array [],
-      "showOnMap": false,
       "timetables": Array [
         Object {
           "_id": "timetable-id",
@@ -281,8 +280,221 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
   update={[MockFunction]}
   updateAndRetrieveFeedData={[MockFunction]}
 >
-  <div>
-    <SelectFeedRouteAndPatterns
+  <SelectFeedRouteAndPatterns
+    feeds={
+      Array [
+        Object {
+          "checksum": "MOCK",
+          "id": "1",
+          "routes": Array [
+            Object {
+              "label": "mock-route-label",
+              "patterns": Array [
+                Object {
+                  "geometry": Object {
+                    "coordinates": Array [
+                      Array [
+                        -122.0246,
+                        36.9707,
+                      ],
+                      Array [
+                        -122.0279,
+                        37.049,
+                      ],
+                      Array [
+                        -121.9799,
+                        37.2299,
+                      ],
+                      Array [
+                        -121.9445,
+                        37.324,
+                      ],
+                      Array [
+                        -121.936,
+                        37.353,
+                      ],
+                      Array [
+                        -121.924,
+                        37.365,
+                      ],
+                    ],
+                    "type": "LineString",
+                  },
+                  "name": "Mock Pattern",
+                  "pattern_id": "mock-pattern-id",
+                  "stops": Array [
+                    Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  ],
+                  "trips": Array [
+                    Object {
+                      "duration": 1234,
+                      "end_time": 13579,
+                      "start_time": 12345,
+                      "trip_headsign": "To Downtown",
+                      "trip_id": "abcd",
+                      "trip_short_name": "The Express",
+                    },
+                  ],
+                },
+              ],
+              "route_id": "route1",
+            },
+          ],
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          ],
+          "stopsById": Object {
+            "1": Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            "2": Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          },
+        },
+      ]
+    }
+    onChange={[MockFunction]}
+    routePatterns={Array []}
+    routes={
+      Array [
+        "route1",
+      ]
+    }
+    selectedFeed={
+      Object {
+        "checksum": "MOCK",
+        "id": "1",
+        "routes": Array [
+          Object {
+            "label": "mock-route-label",
+            "patterns": Array [
+              Object {
+                "geometry": Object {
+                  "coordinates": Array [
+                    Array [
+                      -122.0246,
+                      36.9707,
+                    ],
+                    Array [
+                      -122.0279,
+                      37.049,
+                    ],
+                    Array [
+                      -121.9799,
+                      37.2299,
+                    ],
+                    Array [
+                      -121.9445,
+                      37.324,
+                    ],
+                    Array [
+                      -121.936,
+                      37.353,
+                    ],
+                    Array [
+                      -121.924,
+                      37.365,
+                    ],
+                  ],
+                  "type": "LineString",
+                },
+                "name": "Mock Pattern",
+                "pattern_id": "mock-pattern-id",
+                "stops": Array [
+                  Object {
+                    "stop_id": "1",
+                    "stop_lat": 36.9707,
+                    "stop_lon": -122.0246,
+                    "stop_name": "Santa Cruz",
+                  },
+                  Object {
+                    "stop_id": "2",
+                    "stop_lat": 37.049,
+                    "stop_lon": -122.0279,
+                    "stop_name": "Scotts Valley",
+                  },
+                ],
+                "trips": Array [
+                  Object {
+                    "duration": 1234,
+                    "end_time": 13579,
+                    "start_time": 12345,
+                    "trip_headsign": "To Downtown",
+                    "trip_id": "abcd",
+                    "trip_short_name": "The Express",
+                  },
+                ],
+              },
+            ],
+            "route_id": "route1",
+          },
+        ],
+        "stops": Array [
+          Object {
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
+          Object {
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        ],
+        "stopsById": Object {
+          "1": Object {
+            "stop_id": "1",
+            "stop_lat": 36.9707,
+            "stop_lon": -122.0246,
+            "stop_name": "Santa Cruz",
+          },
+          "2": Object {
+            "stop_id": "2",
+            "stop_lat": 37.049,
+            "stop_lon": -122.0279,
+            "stop_name": "Scotts Valley",
+          },
+        },
+      }
+    }
+    trips={
+      Array [
+        "abcd",
+      ]
+    }
+  >
+    <SelectFeedAndRoutes
       feeds={
         Array [
           Object {
@@ -384,13 +596,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
           },
         ]
       }
-      onChange={[MockFunction]}
-      routePatterns={Array []}
-      routes={
-        Array [
-          "route1",
-        ]
-      }
+      onChange={[Function]}
       selectedFeed={
         Object {
           "checksum": "MOCK",
@@ -490,16 +696,129 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
           },
         }
       }
-      trips={
+      selectedRouteIds={
         Array [
-          "abcd",
+          "route1",
         ]
       }
     >
-      <div>
-        <SelectFeedAndRoutes
-          feeds={
-            Array [
+      <Group>
+        <div
+          className="form-group"
+        >
+          <label
+            htmlFor="Feed"
+          >
+            Select feed and routes
+          </label>
+          <S
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            name="Feed"
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "checksum": "MOCK",
+                  "id": "1",
+                  "routes": Array [
+                    Object {
+                      "label": "mock-route-label",
+                      "patterns": Array [
+                        Object {
+                          "geometry": Object {
+                            "coordinates": Array [
+                              Array [
+                                -122.0246,
+                                36.9707,
+                              ],
+                              Array [
+                                -122.0279,
+                                37.049,
+                              ],
+                              Array [
+                                -121.9799,
+                                37.2299,
+                              ],
+                              Array [
+                                -121.9445,
+                                37.324,
+                              ],
+                              Array [
+                                -121.936,
+                                37.353,
+                              ],
+                              Array [
+                                -121.924,
+                                37.365,
+                              ],
+                            ],
+                            "type": "LineString",
+                          },
+                          "name": "Mock Pattern",
+                          "pattern_id": "mock-pattern-id",
+                          "stops": Array [
+                            Object {
+                              "stop_id": "1",
+                              "stop_lat": 36.9707,
+                              "stop_lon": -122.0246,
+                              "stop_name": "Santa Cruz",
+                            },
+                            Object {
+                              "stop_id": "2",
+                              "stop_lat": 37.049,
+                              "stop_lon": -122.0279,
+                              "stop_name": "Scotts Valley",
+                            },
+                          ],
+                          "trips": Array [
+                            Object {
+                              "duration": 1234,
+                              "end_time": 13579,
+                              "start_time": 12345,
+                              "trip_headsign": "To Downtown",
+                              "trip_id": "abcd",
+                              "trip_short_name": "The Express",
+                            },
+                          ],
+                        },
+                      ],
+                      "route_id": "route1",
+                    },
+                  ],
+                  "stops": Array [
+                    Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  ],
+                  "stopsById": Object {
+                    "1": Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    "2": Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  },
+                },
+              ]
+            }
+            placeholder="Select feed"
+            value={
               Object {
                 "checksum": "MOCK",
                 "id": "1",
@@ -596,15 +915,241 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                     "stop_name": "Scotts Valley",
                   },
                 },
-              },
-            ]
-          }
-          onChange={[Function]}
-          selectedFeed={
-            Object {
-              "checksum": "MOCK",
-              "id": "1",
-              "routes": Array [
+              }
+            }
+          >
+            <ReactSelect
+              getOptionLabel={[Function]}
+              getOptionValue={[Function]}
+              name="Feed"
+              onChange={[Function]}
+              options={
+                Array [
+                  Object {
+                    "checksum": "MOCK",
+                    "id": "1",
+                    "routes": Array [
+                      Object {
+                        "label": "mock-route-label",
+                        "patterns": Array [
+                          Object {
+                            "geometry": Object {
+                              "coordinates": Array [
+                                Array [
+                                  -122.0246,
+                                  36.9707,
+                                ],
+                                Array [
+                                  -122.0279,
+                                  37.049,
+                                ],
+                                Array [
+                                  -121.9799,
+                                  37.2299,
+                                ],
+                                Array [
+                                  -121.9445,
+                                  37.324,
+                                ],
+                                Array [
+                                  -121.936,
+                                  37.353,
+                                ],
+                                Array [
+                                  -121.924,
+                                  37.365,
+                                ],
+                              ],
+                              "type": "LineString",
+                            },
+                            "name": "Mock Pattern",
+                            "pattern_id": "mock-pattern-id",
+                            "stops": Array [
+                              Object {
+                                "stop_id": "1",
+                                "stop_lat": 36.9707,
+                                "stop_lon": -122.0246,
+                                "stop_name": "Santa Cruz",
+                              },
+                              Object {
+                                "stop_id": "2",
+                                "stop_lat": 37.049,
+                                "stop_lon": -122.0279,
+                                "stop_name": "Scotts Valley",
+                              },
+                            ],
+                            "trips": Array [
+                              Object {
+                                "duration": 1234,
+                                "end_time": 13579,
+                                "start_time": 12345,
+                                "trip_headsign": "To Downtown",
+                                "trip_id": "abcd",
+                                "trip_short_name": "The Express",
+                              },
+                            ],
+                          },
+                        ],
+                        "route_id": "route1",
+                      },
+                    ],
+                    "stops": Array [
+                      Object {
+                        "stop_id": "1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
+                      },
+                      Object {
+                        "stop_id": "2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
+                      },
+                    ],
+                    "stopsById": Object {
+                      "1": Object {
+                        "stop_id": "1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
+                      },
+                      "2": Object {
+                        "stop_id": "2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
+                      },
+                    },
+                  },
+                ]
+              }
+              placeholder="Select feed"
+              styles={
+                Object {
+                  "control": [Function],
+                  "option": [Function],
+                }
+              }
+              value={
+                Object {
+                  "checksum": "MOCK",
+                  "id": "1",
+                  "routes": Array [
+                    Object {
+                      "label": "mock-route-label",
+                      "patterns": Array [
+                        Object {
+                          "geometry": Object {
+                            "coordinates": Array [
+                              Array [
+                                -122.0246,
+                                36.9707,
+                              ],
+                              Array [
+                                -122.0279,
+                                37.049,
+                              ],
+                              Array [
+                                -121.9799,
+                                37.2299,
+                              ],
+                              Array [
+                                -121.9445,
+                                37.324,
+                              ],
+                              Array [
+                                -121.936,
+                                37.353,
+                              ],
+                              Array [
+                                -121.924,
+                                37.365,
+                              ],
+                            ],
+                            "type": "LineString",
+                          },
+                          "name": "Mock Pattern",
+                          "pattern_id": "mock-pattern-id",
+                          "stops": Array [
+                            Object {
+                              "stop_id": "1",
+                              "stop_lat": 36.9707,
+                              "stop_lon": -122.0246,
+                              "stop_name": "Santa Cruz",
+                            },
+                            Object {
+                              "stop_id": "2",
+                              "stop_lat": 37.049,
+                              "stop_lon": -122.0279,
+                              "stop_name": "Scotts Valley",
+                            },
+                          ],
+                          "trips": Array [
+                            Object {
+                              "duration": 1234,
+                              "end_time": 13579,
+                              "start_time": 12345,
+                              "trip_headsign": "To Downtown",
+                              "trip_id": "abcd",
+                              "trip_short_name": "The Express",
+                            },
+                          ],
+                        },
+                      ],
+                      "route_id": "route1",
+                    },
+                  ],
+                  "stops": Array [
+                    Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  ],
+                  "stopsById": Object {
+                    "1": Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    "2": Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  },
+                }
+              }
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </S>
+        </div>
+      </Group>
+      <Group>
+        <div
+          className="form-group"
+        >
+          <S
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            isDisabled={true}
+            name="Route"
+            onChange={[Function]}
+            options={
+              Array [
                 Object {
                   "label": "mock-route-label",
                   "patterns": Array [
@@ -668,837 +1213,1042 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                   ],
                   "route_id": "route1",
                 },
-              ],
-              "stops": Array [
-                Object {
-                  "stop_id": "1",
-                  "stop_lat": 36.9707,
-                  "stop_lon": -122.0246,
-                  "stop_name": "Santa Cruz",
-                },
-                Object {
-                  "stop_id": "2",
-                  "stop_lat": 37.049,
-                  "stop_lon": -122.0279,
-                  "stop_name": "Scotts Valley",
-                },
-              ],
-              "stopsById": Object {
-                "1": Object {
-                  "stop_id": "1",
-                  "stop_lat": 36.9707,
-                  "stop_lon": -122.0246,
-                  "stop_name": "Santa Cruz",
-                },
-                "2": Object {
-                  "stop_id": "2",
-                  "stop_lat": 37.049,
-                  "stop_lon": -122.0279,
-                  "stop_name": "Scotts Valley",
-                },
-              },
+              ]
             }
-          }
-          selectedRouteIds={
-            Array [
-              "route1",
-            ]
-          }
-        >
-          <div>
-            <Group>
-              <div
-                className="form-group"
-              >
-                <label
-                  htmlFor="Feed"
-                >
-                  Select feed and routes
-                </label>
-                <Select
-                  arrowRenderer={[Function]}
-                  autosize={true}
-                  backspaceRemoves={true}
-                  backspaceToRemoveMessage="Press backspace to remove {label}"
-                  clearAllText="Clear all"
-                  clearRenderer={[Function]}
-                  clearValueText="Clear value"
-                  clearable={false}
-                  closeOnSelect={true}
-                  deleteRemoves={true}
-                  delimiter=","
-                  disabled={false}
-                  escapeClearsValue={true}
-                  filterOptions={[Function]}
-                  ignoreAccents={true}
-                  ignoreCase={true}
-                  inputProps={Object {}}
-                  isLoading={false}
-                  joinValues={false}
-                  labelKey="label"
-                  matchPos="any"
-                  matchProp="any"
-                  menuBuffer={0}
-                  menuRenderer={[Function]}
-                  multi={false}
-                  name="Feed"
-                  noResultsText="No results found"
-                  onBlurResetsInput={true}
-                  onChange={[Function]}
-                  onCloseResetsInput={true}
-                  onSelectResetsInput={true}
-                  openOnClick={true}
-                  optionComponent={[Function]}
-                  options={
-                    Array [
+            placeholder="All routes selected"
+            value={
+              Object {
+                "label": "mock-route-label",
+                "patterns": Array [
+                  Object {
+                    "geometry": Object {
+                      "coordinates": Array [
+                        Array [
+                          -122.0246,
+                          36.9707,
+                        ],
+                        Array [
+                          -122.0279,
+                          37.049,
+                        ],
+                        Array [
+                          -121.9799,
+                          37.2299,
+                        ],
+                        Array [
+                          -121.9445,
+                          37.324,
+                        ],
+                        Array [
+                          -121.936,
+                          37.353,
+                        ],
+                        Array [
+                          -121.924,
+                          37.365,
+                        ],
+                      ],
+                      "type": "LineString",
+                    },
+                    "name": "Mock Pattern",
+                    "pattern_id": "mock-pattern-id",
+                    "stops": Array [
                       Object {
-                        "label": "1",
-                        "value": "1",
+                        "stop_id": "1",
+                        "stop_lat": 36.9707,
+                        "stop_lon": -122.0246,
+                        "stop_name": "Santa Cruz",
                       },
-                    ]
-                  }
-                  pageSize={5}
-                  placeholder="Select feed"
-                  removeSelected={true}
-                  required={false}
-                  rtl={false}
-                  scrollMenuIntoView={true}
-                  searchable={true}
-                  simpleValue={false}
-                  tabSelectsValue={true}
-                  trimFilter={true}
-                  value="1"
-                  valueComponent={[Function]}
-                  valueKey="value"
-                >
-                  <div
-                    className="Select has-value is-searchable Select--single"
-                  >
-                    <input
-                      disabled={false}
-                      key="hidden.0"
-                      name="Feed"
-                      type="hidden"
-                      value="1"
-                    />
-                    <div
-                      className="Select-control"
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onTouchEnd={[Function]}
-                      onTouchMove={[Function]}
-                      onTouchStart={[Function]}
-                    >
-                      <div
-                        className="Select-multi-value-wrapper"
-                        id="react-select-2--value"
-                      >
-                        <Value
-                          disabled={false}
-                          id="react-select-2--value-item"
-                          instancePrefix="react-select-2-"
-                          onClick={null}
-                          placeholder="Select feed"
-                          value={
-                            Object {
-                              "label": "1",
-                              "value": "1",
-                            }
-                          }
-                        >
-                          <div
-                            className="Select-value"
-                          >
-                            <span
-                              aria-selected="true"
-                              className="Select-value-label"
-                              id="react-select-2--value-item"
-                              role="option"
-                            >
-                              1
-                            </span>
-                          </div>
-                        </Value>
-                        <AutosizeInput
-                          aria-activedescendant="react-select-2--value"
-                          aria-expanded="false"
-                          aria-haspopup="false"
-                          aria-owns=""
-                          className="Select-input"
-                          injectStyles={true}
-                          minWidth="5"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          required={false}
-                          role="combobox"
-                          value=""
-                        />
-                      </div>
-                      <span
-                        className="Select-arrow-zone"
-                        onMouseDown={[Function]}
-                      >
-                        <span
-                          className="Select-arrow"
-                          onMouseDown={[Function]}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </Select>
-              </div>
-            </Group>
-            <Group>
-              <div
-                className="form-group"
-              >
-                <Select
-                  arrowRenderer={[Function]}
-                  autosize={true}
-                  backspaceRemoves={true}
-                  backspaceToRemoveMessage="Press backspace to remove {label}"
-                  clearAllText="Clear all"
-                  clearRenderer={[Function]}
-                  clearValueText="Clear value"
-                  clearable={false}
-                  closeOnSelect={true}
-                  deleteRemoves={true}
-                  delimiter=","
-                  disabled={true}
-                  escapeClearsValue={true}
-                  filterOptions={[Function]}
-                  ignoreAccents={true}
-                  ignoreCase={true}
-                  inputProps={Object {}}
-                  isLoading={false}
-                  joinValues={false}
-                  labelKey="label"
-                  matchPos="any"
-                  matchProp="any"
-                  menuBuffer={0}
-                  menuRenderer={[Function]}
-                  multi={false}
-                  name="Route"
-                  noResultsText="No results found"
-                  onBlurResetsInput={true}
-                  onChange={[Function]}
-                  onCloseResetsInput={true}
-                  onSelectResetsInput={true}
-                  openOnClick={true}
-                  optionComponent={[Function]}
-                  options={
-                    Array [
                       Object {
-                        "label": "mock-route-label",
-                        "value": "route1",
+                        "stop_id": "2",
+                        "stop_lat": 37.049,
+                        "stop_lon": -122.0279,
+                        "stop_name": "Scotts Valley",
                       },
-                    ]
-                  }
-                  pageSize={5}
-                  placeholder="All routes selected"
-                  removeSelected={true}
-                  required={false}
-                  rtl={false}
-                  scrollMenuIntoView={true}
-                  searchable={true}
-                  simpleValue={false}
-                  tabSelectsValue={true}
-                  trimFilter={true}
-                  value={false}
-                  valueComponent={[Function]}
-                  valueKey="value"
-                >
-                  <div
-                    className="Select is-disabled is-searchable Select--single"
-                  >
-                    <div
-                      className="Select-control"
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onTouchEnd={[Function]}
-                      onTouchMove={[Function]}
-                      onTouchStart={[Function]}
-                    >
-                      <div
-                        className="Select-multi-value-wrapper"
-                        id="react-select-3--value"
-                      >
-                        <div
-                          className="Select-placeholder"
-                        >
-                          All routes selected
-                        </div>
-                        <div
-                          aria-activedescendant="react-select-3--value"
-                          aria-disabled="true"
-                          aria-expanded={false}
-                          aria-owns=""
-                          className="Select-input"
-                          onBlur={[Function]}
-                          onFocus={[Function]}
-                          role="combobox"
-                          style={
-                            Object {
-                              "border": 0,
-                              "display": "inline-block",
-                              "width": 1,
-                            }
-                          }
-                          tabIndex={0}
-                        />
-                      </div>
-                      <span
-                        className="Select-arrow-zone"
-                        onMouseDown={[Function]}
-                      >
-                        <span
-                          className="Select-arrow"
-                          onMouseDown={[Function]}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </Select>
-              </div>
-            </Group>
-          </div>
-        </SelectFeedAndRoutes>
-      </div>
-    </SelectFeedRouteAndPatterns>
-    <div>
-      <Group>
-        <div
-          className="form-group"
-        >
-          <label
-            htmlFor="Select from stop"
+                    ],
+                    "trips": Array [
+                      Object {
+                        "duration": 1234,
+                        "end_time": 13579,
+                        "start_time": 12345,
+                        "trip_headsign": "To Downtown",
+                        "trip_id": "abcd",
+                        "trip_short_name": "The Express",
+                      },
+                    ],
+                  },
+                ],
+                "route_id": "route1",
+              }
+            }
           >
-            Start of reroute/extension (existing stop on pattern)
-          </label>
-          Santa Cruz
-          <Group
-            justified={true}
-          >
-            <div
-              className="btn-group btn-group-justified"
+            <ReactSelect
+              getOptionLabel={[Function]}
+              getOptionValue={[Function]}
+              isDisabled={true}
+              name="Route"
+              onChange={[Function]}
+              options={
+                Array [
+                  Object {
+                    "label": "mock-route-label",
+                    "patterns": Array [
+                      Object {
+                        "geometry": Object {
+                          "coordinates": Array [
+                            Array [
+                              -122.0246,
+                              36.9707,
+                            ],
+                            Array [
+                              -122.0279,
+                              37.049,
+                            ],
+                            Array [
+                              -121.9799,
+                              37.2299,
+                            ],
+                            Array [
+                              -121.9445,
+                              37.324,
+                            ],
+                            Array [
+                              -121.936,
+                              37.353,
+                            ],
+                            Array [
+                              -121.924,
+                              37.365,
+                            ],
+                          ],
+                          "type": "LineString",
+                        },
+                        "name": "Mock Pattern",
+                        "pattern_id": "mock-pattern-id",
+                        "stops": Array [
+                          Object {
+                            "stop_id": "1",
+                            "stop_lat": 36.9707,
+                            "stop_lon": -122.0246,
+                            "stop_name": "Santa Cruz",
+                          },
+                          Object {
+                            "stop_id": "2",
+                            "stop_lat": 37.049,
+                            "stop_lon": -122.0279,
+                            "stop_name": "Scotts Valley",
+                          },
+                        ],
+                        "trips": Array [
+                          Object {
+                            "duration": 1234,
+                            "end_time": 13579,
+                            "start_time": 12345,
+                            "trip_headsign": "To Downtown",
+                            "trip_id": "abcd",
+                            "trip_short_name": "The Express",
+                          },
+                        ],
+                      },
+                    ],
+                    "route_id": "route1",
+                  },
+                ]
+              }
+              placeholder="All routes selected"
+              styles={
+                Object {
+                  "control": [Function],
+                  "option": [Function],
+                }
+              }
+              value={
+                Object {
+                  "label": "mock-route-label",
+                  "patterns": Array [
+                    Object {
+                      "geometry": Object {
+                        "coordinates": Array [
+                          Array [
+                            -122.0246,
+                            36.9707,
+                          ],
+                          Array [
+                            -122.0279,
+                            37.049,
+                          ],
+                          Array [
+                            -121.9799,
+                            37.2299,
+                          ],
+                          Array [
+                            -121.9445,
+                            37.324,
+                          ],
+                          Array [
+                            -121.936,
+                            37.353,
+                          ],
+                          Array [
+                            -121.924,
+                            37.365,
+                          ],
+                        ],
+                        "type": "LineString",
+                      },
+                      "name": "Mock Pattern",
+                      "pattern_id": "mock-pattern-id",
+                      "stops": Array [
+                        Object {
+                          "stop_id": "1",
+                          "stop_lat": 36.9707,
+                          "stop_lon": -122.0246,
+                          "stop_name": "Santa Cruz",
+                        },
+                        Object {
+                          "stop_id": "2",
+                          "stop_lat": 37.049,
+                          "stop_lon": -122.0279,
+                          "stop_name": "Scotts Valley",
+                        },
+                      ],
+                      "trips": Array [
+                        Object {
+                          "duration": 1234,
+                          "end_time": 13579,
+                          "start_time": 12345,
+                          "trip_headsign": "To Downtown",
+                          "trip_id": "abcd",
+                          "trip_short_name": "The Express",
+                        },
+                      ],
+                    },
+                  ],
+                  "route_id": "route1",
+                }
+              }
             >
-              <Button
-                block={true}
-                onClick={[Function]}
-                style="info"
-                title="Select from stop"
-              >
-                <a
-                  className="btn btn-info btn-block"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Select from stop"
-                >
-                  <Icon
-                    type="crosshairs"
-                  >
-                    <i
-                      className="fa fa-crosshairs fa-fw "
-                    />
-                  </Icon>
-                   
-                  Select
-                </a>
-              </Button>
-              <Button
-                block={true}
-                disabled={false}
-                onClick={[Function]}
-                style="danger"
-                title="Clear from stop"
-              >
-                <a
-                  className="btn btn-danger btn-block"
-                  disabled={false}
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Clear from stop"
-                >
-                  <Icon
-                    type="times"
-                  >
-                    <i
-                      className="fa fa-times fa-fw "
-                    />
-                  </Icon>
-                   
-                  Clear
-                </a>
-              </Button>
-            </div>
-          </Group>
-          <label
-            htmlFor="Select to stop"
-          >
-            End of reroute/extension (existing stop on pattern)
-          </label>
-          Scotts Valley
-          <Group
-            justified={true}
-          >
-            <div
-              className="btn-group btn-group-justified"
-            >
-              <Button
-                block={true}
-                onClick={[Function]}
-                style="info"
-                title="Select to stop"
-              >
-                <a
-                  className="btn btn-info btn-block"
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Select to stop"
-                >
-                  <Icon
-                    type="crosshairs"
-                  >
-                    <i
-                      className="fa fa-crosshairs fa-fw "
-                    />
-                  </Icon>
-                   
-                  Select
-                </a>
-              </Button>
-              <Button
-                block={true}
-                disabled={false}
-                onClick={[Function]}
-                style="danger"
-                title="Clear to stop"
-              >
-                <a
-                  className="btn btn-danger btn-block"
-                  disabled={false}
-                  href="#"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  title="Clear to stop"
-                >
-                  <Icon
-                    type="times"
-                  >
-                    <i
-                      className="fa fa-times fa-fw "
-                    />
-                  </Icon>
-                   
-                  Clear
-                </a>
-              </Button>
-            </div>
-          </Group>
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </S>
         </div>
       </Group>
-      <EditAlignment
-        allStops={Array []}
-        allowExtend={false}
-        disabled={true}
-        extendFromEnd={false}
-        mapState={
+    </SelectFeedAndRoutes>
+  </SelectFeedRouteAndPatterns>
+  <Group>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="Select from stop"
+      >
+        Start of reroute/extension (existing stop on pattern)
+      </label>
+      Santa Cruz
+      <Group
+        justified={true}
+      >
+        <div
+          className="btn-group btn-group-justified"
+        >
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="info"
+            title="Select from stop"
+          >
+            <a
+              className="btn btn-info btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+              title="Select from stop"
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "crosshairs",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "crosshairs",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-crosshairs fa-w-NaN fa-fw "
+                    data-icon="crosshairs"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+               
+              Select
+            </a>
+          </Button>
+          <Button
+            block={true}
+            disabled={false}
+            onClick={[Function]}
+            style="danger"
+            title="Clear from stop"
+          >
+            <a
+              className="btn btn-danger btn-block"
+              disabled={false}
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+              title="Clear from stop"
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "times",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "times",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-times fa-w-NaN fa-fw "
+                    data-icon="times"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+               
+              Clear
+            </a>
+          </Button>
+        </div>
+      </Group>
+      <br />
+      <label
+        htmlFor="Select to stop"
+      >
+        End of reroute/extension (existing stop on pattern)
+      </label>
+      Scotts Valley
+      <Group
+        justified={true}
+      >
+        <div
+          className="btn-group btn-group-justified"
+        >
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="info"
+            title="Select to stop"
+          >
+            <a
+              className="btn btn-info btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+              title="Select to stop"
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "crosshairs",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "crosshairs",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-crosshairs fa-w-NaN fa-fw "
+                    data-icon="crosshairs"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+               
+              Select
+            </a>
+          </Button>
+          <Button
+            block={true}
+            disabled={false}
+            onClick={[Function]}
+            style="danger"
+            title="Clear to stop"
+          >
+            <a
+              className="btn btn-danger btn-block"
+              disabled={false}
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+              title="Clear to stop"
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "times",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "times",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-times fa-w-NaN fa-fw "
+                    data-icon="times"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+               
+              Clear
+            </a>
+          </Button>
+        </div>
+      </Group>
+    </div>
+  </Group>
+  <Memo(EditAlignment)
+    allStops={Array []}
+    allowExtend={false}
+    disabled={true}
+    extendFromEnd={false}
+    mapState={
+      Object {
+        "state": "reroute",
+      }
+    }
+    modification={
+      Object {
+        "_id": "1234",
+        "accessGroup": "accessGroupName",
+        "bidirectional": false,
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Mock description",
+        "dwellTime": 0,
+        "entries": Array [],
+        "feed": "1",
+        "fromStop": "1",
+        "name": "Test Modification",
+        "nonce": "12345",
+        "projectId": "1",
+        "routes": Array [
+          "route1",
+        ],
+        "segmentSpeeds": Array [],
+        "segments": Array [],
+        "timetables": Array [
           Object {
-            "state": "reroute",
-          }
-        }
-        modification={
-          Object {
-            "_id": "1234",
-            "accessGroup": "accessGroupName",
-            "bidirectional": false,
-            "createdAt": "2017-11-08T12:30:50.133Z",
-            "createdBy": "person@gmail.com",
-            "description": "Mock description",
-            "dwellTime": 0,
-            "entries": Array [],
-            "feed": "1",
-            "fromStop": "1",
-            "name": "Test Modification",
-            "nonce": "12345",
-            "projectId": "1",
-            "routes": Array [
-              "route1",
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
             ],
-            "segmentSpeeds": Array [],
-            "segments": Array [],
-            "showOnMap": false,
-            "timetables": Array [
-              Object {
-                "_id": "timetable-id",
-                "dwellTime": 10,
-                "dwellTimes": Array [
-                  12,
-                ],
-                "endTime": 57600,
-                "exactTimes": false,
-                "friday": true,
-                "headwaySecs": 900,
-                "modificationId": "1234",
-                "modificationName": "Test Modification",
-                "monday": true,
-                "name": "Test timetable",
-                "patternTrips": Array [
-                  "abcd",
-                ],
-                "phaseAtStop": "",
-                "phaseFromStop": "",
-                "phaseFromTimetable": "",
-                "phaseSeconds": 300,
-                "saturday": false,
-                "segmentSpeeds": Array [],
-                "sourceTrip": "abcd",
-                "startTime": 28800,
-                "sunday": false,
-                "thursday": true,
-                "tuesday": true,
-                "wednesday": true,
-              },
-            ],
-            "toStop": "2",
-            "trips": Array [
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
               "abcd",
             ],
-            "type": "reroute",
-            "updatedAt": "2017-11-08T12:31:19.602Z",
-            "updatedBy": "person@gmail.com",
-            "variants": Array [
-              true,
-            ],
-          }
-        }
-        setMapState={[MockFunction]}
-        update={[MockFunction]}
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          },
+        ],
+        "toStop": "2",
+        "trips": Array [
+          "abcd",
+        ],
+        "type": "reroute",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          true,
+        ],
+      }
+    }
+    setMapState={[MockFunction]}
+    update={[MockFunction]}
+  >
+    <h5>
+      Route Geometry
+    </h5>
+    <Button
+      block={true}
+      disabled={true}
+      onClick={[Function]}
+      style="warning"
+    >
+      <a
+        className="btn btn-warning btn-block"
+        disabled={true}
+        href="#"
+        onClick={[Function]}
+        tabIndex={0}
       >
-        <div>
-          <h5>
-            Route Geometry
-          </h5>
-          <p>
-            <Button
-              block={true}
-              disabled={true}
-              onClick={[Function]}
-              style="warning"
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "pencil-alt",
+              "prefix": "fas",
+            }
+          }
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={true}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "pencil-alt",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            symbol={false}
+            title=""
+            transform={null}
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
+              data-icon="pencil-alt"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 undefined undefined"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <a
-                className="btn btn-warning btn-block"
-                disabled={true}
-                href="#"
-                onClick={[Function]}
-                tabIndex={0}
-              >
-                <Icon
-                  type="pencil"
-                >
-                  <i
-                    className="fa fa-pencil fa-fw "
-                  />
-                </Icon>
-                 
-                Edit route geometry
-              </a>
-            </Button>
-          </p>
-          <Checkbox
+              <path
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </FontAwesomeIcon>
+        </Icon>
+         
+        Edit route geometry
+      </a>
+    </Button>
+    <Checkbox
+      defaultChecked={false}
+      label="Auto-create stops at set spacing"
+      onChange={[Function]}
+    >
+      <div
+        className="checkbox"
+      >
+        <label
+          htmlFor="auto-create-stops-at-set-spacing-input-0"
+        >
+          <input
             defaultChecked={false}
+            id="auto-create-stops-at-set-spacing-input-0"
             label="Auto-create stops at set spacing"
             onChange={[Function]}
-          >
-            <div
-              className="checkbox"
-            >
-              <label
-                htmlFor="auto-create-stops-at-set-spacing-input-0"
-              >
-                <input
-                  defaultChecked={false}
-                  id="auto-create-stops-at-set-spacing-input-0"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                 
-                Auto-create stops at set spacing
-              </label>
-            </div>
-          </Checkbox>
-          <div
-            className="alert alert-info"
-            role="alert"
-          >
-            Modification cannot be bidirectional because timetables in this modification have phasing information.
-          </div>
-        </div>
-      </EditAlignment>
-      <SegmentSpeeds
-        dwellTime={0}
-        dwellTimes={Array []}
-        highlightSegment={[Function]}
-        highlightStop={[Function]}
-        numberOfStops={-2}
-        qualifiedStops={Array []}
-        segmentDistances={Array []}
-        segmentSpeeds={Array []}
-        update={[MockFunction]}
+            type="checkbox"
+          />
+           
+          Auto-create stops at set spacing
+        </label>
+      </div>
+    </Checkbox>
+    <div
+      className="alert alert-info"
+      role="alert"
+    >
+      Modification cannot be bidirectional because timetables in this modification have phasing information.
+    </div>
+  </Memo(EditAlignment)>
+  <SegmentSpeeds
+    dwellTime={0}
+    dwellTimes={Array []}
+    highlightSegment={[Function]}
+    highlightStop={[Function]}
+    numberOfStops={-2}
+    qualifiedStops={Array []}
+    segmentDistances={Array []}
+    segmentSpeeds={Array []}
+    update={[MockFunction]}
+  >
+    <Group
+      label="Default dwell time"
+    >
+      <div
+        className="form-group"
       >
-        <div>
-          <MinutesSeconds
-            label="Default dwell time"
+        <label
+          className="control-label"
+          htmlFor="default-dwell-time-input-1"
+        >
+          Default dwell time
+        </label>
+        <MinutesSeconds
+          onChange={[Function]}
+          seconds={0}
+        >
+          <Text
             onChange={[Function]}
-            seconds={0}
+            units="mm:ss"
+            value="00:00"
           >
-            <Text
-              label="Default dwell time"
-              onBlur={[Function]}
+            <Group
+              id="undefined-input-2"
               onChange={[Function]}
-              onKeyDown={[Function]}
               units="mm:ss"
               value="00:00"
             >
-              <Group
-                id="default-dwell-time-input-1"
-                label="Default dwell time"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                units="mm:ss"
-                value="00:00"
-              >
-                <div
-                  className="form-group"
-                >
-                  <label
-                    htmlFor="default-dwell-time-input-1"
-                  >
-                    Default dwell time
-                  </label>
-                  <Input
-                    id="default-dwell-time-input-1"
-                    label="Default dwell time"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    type="text"
-                    units="mm:ss"
-                    value="00:00"
-                  >
-                    <div
-                      className="InputWithUnits"
-                    >
-                      <input
-                        className="form-control"
-                        id="default-dwell-time-input-1"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onKeyDown={[Function]}
-                        placeholder="mm:ss"
-                        type="text"
-                        value="00:00"
-                      />
-                      <span
-                        className="InputUnits"
-                      >
-                        mm:ss
-                      </span>
-                    </div>
-                  </Input>
-                </div>
-              </Group>
-            </Text>
-          </MinutesSeconds>
-          <p>
-            The default time table dwell time will be used for each stop that does not have a custom one set.
-          </p>
-          <Collapsible
-            title="Set individual stop dwell times"
-          >
-            <div>
-              <div
-                aria-level={3}
-                role="heading"
-              >
-                <a
-                  aria-expanded={false}
-                  className="CollapsibleButton"
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <Icon
-                    type="caret-right"
-                  >
-                    <i
-                      className="fa fa-caret-right fa-fw "
-                    />
-                  </Icon>
-                  <strong>
-                    Set individual stop dwell times
-                  </strong>
-                </a>
-              </div>
-            </div>
-          </Collapsible>
-          <Number
-            label="Average speed (along added segments)"
-            min={1}
-            onChange={[Function]}
-            units="km/h"
-            value={15}
-          >
-            <Group
-              id="average-speed-along-added-segments-input-2"
-              label="Average speed (along added segments)"
-              min={1}
-              onChange={[Function]}
-              units="km/h"
-              value={15}
-            >
               <div
                 className="form-group"
               >
-                <label
-                  htmlFor="average-speed-along-added-segments-input-2"
-                >
-                  Average speed (along added segments)
-                </label>
                 <Input
-                  id="average-speed-along-added-segments-input-2"
-                  label="Average speed (along added segments)"
-                  min={1}
+                  id="undefined-input-2"
                   onChange={[Function]}
-                  onWheel={[Function]}
-                  type="number"
-                  units="km/h"
-                  value={15}
+                  type="text"
+                  units="mm:ss"
+                  value="00:00"
                 >
                   <div
                     className="InputWithUnits"
                   >
                     <input
                       className="form-control"
-                      id="average-speed-along-added-segments-input-2"
-                      min={1}
+                      id="undefined-input-2"
                       onChange={[Function]}
-                      onWheel={[Function]}
-                      placeholder="km/h"
-                      type="number"
-                      value={15}
+                      placeholder="mm:ss"
+                      type="text"
+                      units="mm:ss"
+                      value="00:00"
                     />
                     <span
                       className="InputUnits"
                     >
-                      km/h
+                      mm:ss
                     </span>
                   </div>
                 </Input>
               </div>
             </Group>
-          </Number>
-          <MinutesSeconds
-            label="Total travel time (added segments)"
-            onChange={[Function]}
-            seconds={0}
+          </Text>
+        </MinutesSeconds>
+      </div>
+    </Group>
+    <p>
+      The default time table dwell time will be used for each stop that does not have a custom one set.
+    </p>
+    <Collapsible
+      title="Set individual stop dwell times"
+    >
+      <a
+        className="CollapsibleButton"
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "caret-right",
+              "prefix": "fas",
+            }
+          }
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={true}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "caret-right",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            symbol={false}
+            title=""
+            transform={null}
           >
-            <Text
-              label="Total travel time (added segments)"
-              onBlur={[Function]}
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-caret-right fa-w-NaN fa-fw "
+              data-icon="caret-right"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 undefined undefined"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </FontAwesomeIcon>
+        </Icon>
+        Set individual stop dwell times
+      </a>
+    </Collapsible>
+    <NumberInput
+      label="Average speed (along added segments)"
+      min={1}
+      onChange={[Function]}
+      units="km/h"
+      value={15}
+    >
+      <Group
+        id="average-speed-along-added-segments-input-3"
+        label="Average speed (along added segments)"
+        min={1}
+        onChange={[Function]}
+        units="km/h"
+        value={15}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="control-label"
+            htmlFor="average-speed-along-added-segments-input-3"
+          >
+            Average speed (along added segments)
+          </label>
+          <Input
+            id="average-speed-along-added-segments-input-3"
+            label="Average speed (along added segments)"
+            min={1}
+            onChange={[Function]}
+            onWheel={[Function]}
+            type="number"
+            units="km/h"
+            value={15}
+          >
+            <div
+              className="InputWithUnits"
+            >
+              <input
+                className="form-control"
+                id="average-speed-along-added-segments-input-3"
+                label="Average speed (along added segments)"
+                min={1}
+                onChange={[Function]}
+                onWheel={[Function]}
+                placeholder="km/h"
+                type="number"
+                units="km/h"
+                value={15}
+              />
+              <span
+                className="InputUnits"
+              >
+                km/h
+              </span>
+            </div>
+          </Input>
+        </div>
+      </Group>
+    </NumberInput>
+    <Group
+      label="Total travel time (added segments)"
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="control-label"
+          htmlFor="total-travel-time-added-segments-input-4"
+        >
+          Total travel time (added segments)
+        </label>
+        <MinutesSeconds
+          onChange={[Function]}
+          seconds={0}
+        >
+          <Text
+            onChange={[Function]}
+            units="mm:ss"
+            value="00:00"
+          >
+            <Group
+              id="undefined-input-5"
               onChange={[Function]}
-              onKeyDown={[Function]}
               units="mm:ss"
               value="00:00"
             >
-              <Group
-                id="total-travel-time-added-segments-input-3"
-                label="Total travel time (added segments)"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                units="mm:ss"
-                value="00:00"
-              >
-                <div
-                  className="form-group"
-                >
-                  <label
-                    htmlFor="total-travel-time-added-segments-input-3"
-                  >
-                    Total travel time (added segments)
-                  </label>
-                  <Input
-                    id="total-travel-time-added-segments-input-3"
-                    label="Total travel time (added segments)"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    type="text"
-                    units="mm:ss"
-                    value="00:00"
-                  >
-                    <div
-                      className="InputWithUnits"
-                    >
-                      <input
-                        className="form-control"
-                        id="total-travel-time-added-segments-input-3"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onKeyDown={[Function]}
-                        placeholder="mm:ss"
-                        type="text"
-                        value="00:00"
-                      />
-                      <span
-                        className="InputUnits"
-                      >
-                        mm:ss
-                      </span>
-                    </div>
-                  </Input>
-                </div>
-              </Group>
-            </Text>
-          </MinutesSeconds>
-          <Collapsible
-            title="Set individual segment speeds"
-          >
-            <div>
               <div
-                aria-level={3}
-                role="heading"
+                className="form-group"
               >
-                <a
-                  aria-expanded={false}
-                  className="CollapsibleButton"
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={0}
+                <Input
+                  id="undefined-input-5"
+                  onChange={[Function]}
+                  type="text"
+                  units="mm:ss"
+                  value="00:00"
                 >
-                  <Icon
-                    type="caret-right"
+                  <div
+                    className="InputWithUnits"
                   >
-                    <i
-                      className="fa fa-caret-right fa-fw "
+                    <input
+                      className="form-control"
+                      id="undefined-input-5"
+                      onChange={[Function]}
+                      placeholder="mm:ss"
+                      type="text"
+                      units="mm:ss"
+                      value="00:00"
                     />
-                  </Icon>
-                  <strong>
-                    Set individual segment speeds
-                  </strong>
-                </a>
+                    <span
+                      className="InputUnits"
+                    >
+                      mm:ss
+                    </span>
+                  </div>
+                </Input>
               </div>
-            </div>
-          </Collapsible>
-        </div>
-      </SegmentSpeeds>
-    </div>
-  </div>
+            </Group>
+          </Text>
+        </MinutesSeconds>
+      </div>
+    </Group>
+    <Collapsible
+      title="Set individual segment speeds"
+    >
+      <a
+        className="CollapsibleButton"
+        onClick={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "caret-right",
+              "prefix": "fas",
+            }
+          }
+        >
+          <FontAwesomeIcon
+            border={false}
+            className=""
+            fixedWidth={true}
+            flip={null}
+            icon={
+              Object {
+                "icon": Array [],
+                "iconName": "caret-right",
+                "prefix": "fas",
+              }
+            }
+            inverse={false}
+            listItem={false}
+            mask={null}
+            pull={null}
+            pulse={false}
+            rotation={null}
+            size={null}
+            spin={false}
+            symbol={false}
+            title=""
+            transform={null}
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-caret-right fa-w-NaN fa-fw "
+              data-icon="caret-right"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 undefined undefined"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </FontAwesomeIcon>
+        </Icon>
+        Set individual segment speeds
+      </a>
+    </Collapsible>
+  </SegmentSpeeds>
 </RerouteComponent>
 `;
