@@ -1,28 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Profile Request Display should render correctly 1`] = `
-<div>
-  <div
-    aria-level={3}
-    role="heading"
-  >
-    <a
-      aria-expanded={true}
-      className="CollapsibleButton"
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
-    >
-      <i
-        className="fa fa-caret-down fa-fw "
-      />
-      <strong>
-        Profile Request Test settings
-      </strong>
-    </a>
-  </div>
+<Collapsible
+  defaultExpanded={true}
+  heading={[Function]}
+>
   <table
-    className="table table-striped table-condensed"
+    className="table table-condensed table-striped"
   >
     <tbody>
       <tr>
@@ -30,19 +14,25 @@ exports[`Components > Analysis > Profile Request Display should render correctly
           Resources
         </th>
         <td>
-          <a
-            href="/regions/1/bundles/1"
-            target="_blank"
+          <Link
+            bundleId="1"
+            regionId="1"
+            to="bundleEdit"
           >
-            GTFS Bundle
-          </a>
+            <a>
+              GTFS Bundle
+            </a>
+          </Link>
            / 
-          <a
-            href="/regions/1/projects/1"
-            target="_blank"
+          <Link
+            projectId="1"
+            regionId="1"
+            to="modifications"
           >
-            Project
-          </a>
+            <a>
+              Project
+            </a>
+          </Link>
         </td>
       </tr>
       <tr>
@@ -98,12 +88,9 @@ exports[`Components > Analysis > Profile Request Display should render correctly
           Access modes
         </th>
         <td>
-          <span>
-            <i
-              className="fa fa-male fa-fw "
-              title="Walk"
-            />
-          </span>
+          <Modes
+            modes="WALK"
+          />
         </td>
       </tr>
       <tr>
@@ -116,5 +103,5 @@ exports[`Components > Analysis > Profile Request Display should render correctly
       </tr>
     </tbody>
   </table>
-</div>
+</Collapsible>
 `;

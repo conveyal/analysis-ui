@@ -1,72 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`analysis > bookmark renders correctly 1`] = `
-<div
-  className="form-group"
+<Group
+  label="Bookmark"
 >
-  <label
-    htmlFor="bookmark-input-0"
-  >
-    Bookmark
-  </label>
   <div
     className="row"
   >
     <div
       className="col-xs-6"
     >
-      <div
-        className="Select is-searchable Select--single"
-        style={undefined}
-      >
-        <div
-          className="Select-control"
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          style={undefined}
-        >
-          <span
-            className="Select-multi-value-wrapper"
-            id="react-select-2--value"
-          >
-            <div
-              className="Select-placeholder"
-            >
-              Select...
-            </div>
-          </span>
-          <span
-            className="Select-arrow-zone"
-            onMouseDown={[Function]}
-          >
-            <span
-              className="Select-arrow"
-              onMouseDown={[Function]}
-            />
-          </span>
-        </div>
-      </div>
+      <S
+        getOptionLabel={[Function]}
+        getOptionValue={[Function]}
+        onChange={[Function]}
+        options={
+          Array [
+            Object {
+              "_id": "bookmarkid",
+              "accessGroup": "accessGroupName",
+              "createdAt": "2017-11-08T12:30:50.133Z",
+              "createdBy": "person@gmail.com",
+              "isochroneCutoff": 42,
+              "name": "Bookmark",
+              "nonce": "12345",
+              "opportunityDataset": "Workers_total",
+              "profileRequest": Object {
+                "accessModes": "WALK",
+                "bikeSafe": 1,
+                "bikeSlope": 1,
+                "bikeSpeed": 4.166666666666667,
+                "bikeTime": 1,
+                "bounds": Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                },
+                "bundleId": "1",
+                "date": "2016-01-16",
+                "defaultExpanded": true,
+                "directModes": "WALK",
+                "egressModes": "WALK",
+                "fromLat": 12,
+                "fromLon": 34,
+                "fromTime": 25200,
+                "maxBikeTime": 20,
+                "maxRides": 4,
+                "maxTripDurationMinutes": 60,
+                "maxWalkTime": 20,
+                "monteCarloDraws": 200,
+                "name": "Profile Request Test",
+                "projectId": "1",
+                "reachabilityThreshold": 0,
+                "regionId": "1",
+                "toTime": 32400,
+                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                "travelTimePercentile": 50,
+                "variantIndex": 0,
+                "walkSpeed": 1.3888888888888888,
+                "workerVersion": "v4.0.0",
+              },
+              "regionId": "REGION",
+              "updatedAt": "2017-11-08T12:31:19.602Z",
+              "updatedBy": "person@gmail.com",
+            },
+          ]
+        }
+      />
     </div>
     <div
       className="col-xs-6"
     >
-      <a
-        className="btn btn-success btn-block"
-        disabled={undefined}
-        href="#"
+      <Button
+        block={true}
         onClick={[Function]}
-        tabIndex={0}
+        style="success"
       >
-        <i
-          className="fa fa-plus fa-fw "
+        <Icon
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "plus",
+              "prefix": "fas",
+            }
+          }
         />
          
         Create bookmark
-      </a>
+      </Button>
     </div>
   </div>
-</div>
+</Group>
 `;

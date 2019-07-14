@@ -1,124 +1,171 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > EditBundle renders correctly 1`] = `
-<div>
-  <p>
-    Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
-  </p>
-  <div
-    className="form-group"
-  >
-    <a
-      className="btn btn-success btn-block"
-      href="#"
-      onClick={[Function]}
-      tabIndex={0}
-    >
-      <i
-        className="fa fa-plus fa-fw "
-      />
-       Create a bundle
-    </a>
-  </div>
-  <p
-    className="center"
-  >
-    or select an existing one
-  </p>
-  <div
-    className="form-group"
-  >
-    <div
-      className="Select has-value is-searchable Select--single"
-      style={undefined}
-    >
+exports[`Component EditBundle snapshot(mount) 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <EditBundle>
+    <p>
+      Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
+    </p>
+    <Group>
       <div
-        className="Select-control"
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        style={undefined}
+        className="form-group"
       >
-        <span
-          className="Select-multi-value-wrapper"
-          id="react-select-2--value"
+        <Button
+          block={true}
+          onClick={[Function]}
+          style="success"
         >
-          <div
-            className="Select-value"
-            style={undefined}
-            title={undefined}
+          <a
+            className="btn btn-success btn-block"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
           >
-            <span
-              aria-selected="true"
-              className="Select-value-label"
-              id="react-select-2--value-item"
-              role="option"
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "plus",
+                  "prefix": "fas",
+                }
+              }
             >
-              Mock Bundle
-            </span>
-          </div>
-        </span>
-        <span
-          className="Select-arrow-zone"
-          onMouseDown={[Function]}
-        >
-          <span
-            className="Select-arrow"
-            onMouseDown={[Function]}
-          />
-        </span>
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "plus",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                  data-icon="plus"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             Create a bundle
+          </a>
+        </Button>
       </div>
-    </div>
-  </div>
-  <div>
-    <h5>
-      Edit Bundle
-    </h5>
-    <div
-      className="form-group"
+    </Group>
+    <p
+      className="text-center"
     >
-      <label
-        htmlFor="name-input-0"
+      or select an existing one
+    </p>
+    <Group>
+      <div
+        className="form-group"
       >
-        Bundle Name
-      </label>
-      <input
-        className="form-control"
-        id="name-input-0"
-        name="Name"
-        onChange={[Function]}
-        placeholder="Bundle name"
-        type="text"
-        value="Mock Bundle"
-      />
-    </div>
-    <a
-      className="btn btn-success btn-block"
-      href="#"
-      onClick={[Function]}
-      tabIndex={0}
-      title="Save renamed bundle/feed names"
-    >
-      <i
-        className="fa fa-save fa-fw "
-      />
-       
-      Save renamed bundle/feed names
-    </a>
-    <a
-      className="btn btn-danger btn-block"
-      href="#"
-      onClick={[Function]}
-      tabIndex={0}
-    >
-      <i
-        className="fa fa-trash fa-fw "
-      />
-       
-      Delete this bundle
-    </a>
-  </div>
-</div>
+        <S
+          getOptionLabel={[Function]}
+          getOptionValue={[Function]}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "_id": "1",
+                "accessGroup": "accessGroupName",
+                "centerLat": 38.90124,
+                "centerLon": -77.015615,
+                "createdAt": "2017-11-08T12:30:50.133Z",
+                "createdBy": "person@gmail.com",
+                "errorCode": "",
+                "feeds": Array [],
+                "name": "Mock Bundle",
+                "nonce": "12345",
+                "regionId": "1",
+                "serviceEnd": "2018-09-28",
+                "serviceStart": "2018-09-27",
+                "status": "DONE",
+                "totalFeeds": 0,
+                "updatedAt": "2017-11-08T12:31:19.602Z",
+                "updatedBy": "person@gmail.com",
+              },
+            ]
+          }
+        >
+          <ReactSelect
+            getOptionLabel={[Function]}
+            getOptionValue={[Function]}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "_id": "1",
+                  "accessGroup": "accessGroupName",
+                  "centerLat": 38.90124,
+                  "centerLon": -77.015615,
+                  "createdAt": "2017-11-08T12:30:50.133Z",
+                  "createdBy": "person@gmail.com",
+                  "errorCode": "",
+                  "feeds": Array [],
+                  "name": "Mock Bundle",
+                  "nonce": "12345",
+                  "regionId": "1",
+                  "serviceEnd": "2018-09-28",
+                  "serviceStart": "2018-09-27",
+                  "status": "DONE",
+                  "totalFeeds": 0,
+                  "updatedAt": "2017-11-08T12:31:19.602Z",
+                  "updatedBy": "person@gmail.com",
+                },
+              ]
+            }
+            styles={
+              Object {
+                "control": [Function],
+                "option": [Function],
+              }
+            }
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </S>
+      </div>
+    </Group>
+  </EditBundle>
+</Provider>
 `;

@@ -1,17 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Buttons Button renders correctly 1`] = `
-<a
-  className="btn btn-fabulous btn-block btn-sm some-class"
-  href="#"
-  onClick={[Function]}
-  tabIndex={0}
+<Button
+  block={true}
+  className="some-class"
+  size="sm"
+  style="fabulous"
   target="_blank"
-/>
+>
+  <a
+    className="btn btn-fabulous btn-block btn-sm some-class"
+    href="#"
+    onClick={[Function]}
+    tabIndex={0}
+    target="_blank"
+  />
+</Button>
 `;
 
 exports[`Component > Buttons Group renders correctly 1`] = `
-<div
-  className="btn-group btn-group-justified"
-/>
+<Group
+  justified={true}
+>
+  <div
+    className="btn-group btn-group-justified"
+  />
+</Group>
 `;

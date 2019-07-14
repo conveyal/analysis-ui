@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > EditProject renders correctly 1`] = `
+exports[`Component > EditProject 1`] = `
 <Provider
   store={
     Object {
@@ -14,37 +14,7 @@ exports[`Component > EditProject renders correctly 1`] = `
   }
 >
   <EditProject
-    bundleId="1"
     bundleName="Mock Bundle"
-    bundles={
-      Array [
-        Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "centerLat": 38.90124,
-          "centerLon": -77.015615,
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "errorCode": "",
-          "feeds": Array [],
-          "name": "Mock Bundle",
-          "nonce": "12345",
-          "regionId": "1",
-          "serviceEnd": "2018-09-28",
-          "serviceStart": "2018-09-27",
-          "status": "DONE",
-          "totalFeeds": 0,
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-        },
-      ]
-    }
-    close={[Function]}
-    create={[Function]}
-    deleteProject={[Function]}
-    goToCreateBundle={[Function]}
-    isEditing={false}
-    name="Mock Project"
     project={
       Object {
         "_id": "1",
@@ -62,732 +32,219 @@ exports[`Component > EditProject renders correctly 1`] = `
         ],
       }
     }
-    regionId="1"
-    save={[Function]}
-    variants={Array []}
   >
-    <Application>
-      <div>
-        <Connect(ErrorModal)>
-          <ErrorModal
-            clearError={[Function]}
-          >
-            <span />
-          </ErrorModal>
-        </Connect(ErrorModal)>
-        <Connect(Sidebar)>
-          <Sidebar
-            currentPath="blank"
-            dispatch={[Function]}
-            outstandingRequests={false}
-            projectId="1"
-            regionId="1"
+    <InnerDock
+      className="block"
+    >
+      <div
+        className="InnerDock block"
+        style={
+          Object {
+            "height": 768,
+          }
+        }
+      >
+        <legend>
+          Edit project settings
+        </legend>
+        <Text
+          label="Project name"
+          onChange={[Function]}
+          value="Mock Project"
+        >
+          <Group
+            id="project-name-input-0"
+            label="Project name"
+            onChange={[Function]}
+            value="Mock Project"
           >
             <div
-              className="Sidebar"
+              className="form-group"
             >
-              <div
-                className="Sidebar-logo"
-              />
-              <SidebarNavItem
-                href="/"
-                icon="globe"
-                text="Regions"
+              <label
+                className="control-label"
+                htmlFor="project-name-input-0"
               >
-                <Tip
-                  className="Sidebar-navItem"
-                  tip="Regions"
-                >
-                  <span
-                    className="Tip Sidebar-navItem"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
-                  >
-                    <Link
-                      className="Sidebar-navItem-contents"
-                      onlyActiveOnIndex={false}
-                      style={Object {}}
-                      to="/"
-                    >
-                      <a
-                        className="Sidebar-navItem-contents"
-                        onClick={[Function]}
-                        style={Object {}}
-                      >
-                        <ItemContents
-                          icon="globe"
-                          text="Regions"
-                        >
-                          <span>
-                            <Icon
-                              type="globe"
-                            >
-                              <i
-                                className="fa fa-globe fa-fw "
-                              />
-                            </Icon>
-                            <span
-                              className="Sidebar-navItem-text"
-                            >
-                               
-                              Regions
-                            </span>
-                          </span>
-                        </ItemContents>
-                      </a>
-                    </Link>
-                  </span>
-                </Tip>
-              </SidebarNavItem>
-              <div>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/edit"
-                  icon="map-o"
-                  text="Region Settings"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Region Settings"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/edit"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="map-o"
-                            text="Region Settings"
-                          >
-                            <span>
-                              <Icon
-                                type="map-o"
-                              >
-                                <i
-                                  className="fa fa-map-o fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Region Settings
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1"
-                  icon="cubes"
-                  text="Projects"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Projects"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="cubes"
-                            text="Projects"
-                          >
-                            <span>
-                              <Icon
-                                type="cubes"
-                              >
-                                <i
-                                  className="fa fa-cubes fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Projects
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/bundles"
-                  icon="database"
-                  text="GTFS Bundles"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="GTFS Bundles"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/bundles"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="database"
-                            text="GTFS Bundles"
-                          >
-                            <span>
-                              <Icon
-                                type="database"
-                              >
-                                <i
-                                  className="fa fa-database fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                GTFS Bundles
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/opportunities"
-                  icon="th"
-                  text="Opportunity Datasets"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Opportunity Datasets"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/opportunities"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="th"
-                            text="Opportunity Datasets"
-                          >
-                            <span>
-                              <Icon
-                                type="th"
-                              >
-                                <i
-                                  className="fa fa-th fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Opportunity Datasets
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/projects/1"
-                  icon="pencil"
-                  text="Edit Modifications"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Edit Modifications"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/projects/1"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="pencil"
-                            text="Edit Modifications"
-                          >
-                            <span>
-                              <Icon
-                                type="pencil"
-                              >
-                                <i
-                                  className="fa fa-pencil fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Edit Modifications
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/analysis"
-                  icon="area-chart"
-                  text="Analyze"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Analyze"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/analysis"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="area-chart"
-                            text="Analyze"
-                          >
-                            <span>
-                              <Icon
-                                type="area-chart"
-                              >
-                                <i
-                                  className="fa fa-area-chart fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Analyze
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/regional"
-                  icon="server"
-                  text="Regional Analysis"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Regional Analysis"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/regional"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="server"
-                            text="Regional Analysis"
-                          >
-                            <span>
-                              <Icon
-                                type="server"
-                              >
-                                <i
-                                  className="fa fa-server fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Regional Analysis
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-              </div>
-              <div
-                className="Sidebar-bottom"
+                Project name
+              </label>
+              <Input
+                id="project-name-input-0"
+                label="Project name"
+                onChange={[Function]}
+                type="text"
+                value="Mock Project"
               >
-                <SidebarNavItem
-                  href="http://docs.analysis.conveyal.com/"
-                  icon="question-circle"
-                  text="Help and Documentation"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Help and Documentation"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <a
-                        className="Sidebar-navItem-contents"
-                        href="http://docs.analysis.conveyal.com/"
-                        target="_blank"
-                      >
-                        <ItemContents
-                          icon="question-circle"
-                          text="Help and Documentation"
-                        >
-                          <span>
-                            <Icon
-                              type="question-circle"
-                            >
-                              <i
-                                className="fa fa-question-circle fa-fw "
-                              />
-                            </Icon>
-                            <span
-                              className="Sidebar-navItem-text"
-                            >
-                               
-                              Help and Documentation
-                            </span>
-                          </span>
-                        </ItemContents>
-                      </a>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-              </div>
+                <input
+                  className="form-control"
+                  id="project-name-input-0"
+                  label="Project name"
+                  onChange={[Function]}
+                  placeholder="Project name"
+                  type="text"
+                  value="Mock Project"
+                />
+              </Input>
             </div>
-          </Sidebar>
-        </Connect(Sidebar)>
-        <div
-          className="Fullscreen"
+          </Group>
+        </Text>
+        <Group
+          label="Bundle"
         >
-          <Connect(Map)>
-            <Map
-              bounds={
-                Object {
-                  "_northEast": Object {
-                    "lat": 37.365,
-                    "lng": -121.924,
-                  },
-                  "_southWest": Object {
-                    "lat": 36.9707,
-                    "lng": -122.0279,
-                  },
-                }
-              }
-              center={
-                Object {
-                  "lat": 38.8886,
-                  "lon": -77.043,
-                }
-              }
-              disabled={false}
-              dispatch={[Function]}
-              maxBounds={
-                Object {
-                  "_northEast": Object {
-                    "lat": 90,
-                    "lng": 200,
-                  },
-                  "_southWest": Object {
-                    "lat": -90,
-                    "lng": -200,
-                  },
-                }
-              }
-              minZoom={2}
-              tileUrl="mock.url/tile"
-              zIndex={-10}
-              zoom={12}
+          <div
+            className="form-group"
+          >
+            <label
+              className="control-label"
+              htmlFor="bundle-input-1"
             >
-              <Map
-                animate={false}
-                bounds={
-                  Object {
-                    "_northEast": Object {
-                      "lat": 37.365,
-                      "lng": -121.924,
-                    },
-                    "_southWest": Object {
-                      "lat": 36.9707,
-                      "lng": -122.0279,
-                    },
-                  }
+              Bundle
+            </label>
+            <p>
+              Mock Bundle
+            </p>
+            <p>
+              <em>
+                Bundle cannot be changed once a project is created.
+              </em>
+            </p>
+          </div>
+        </Group>
+        <Button
+          block={true}
+          disabled={true}
+          onClick={[Function]}
+          style="success"
+        >
+          <a
+            className="btn btn-success btn-block"
+            disabled={true}
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "save",
+                  "prefix": "fas",
                 }
-                center={
-                  Object {
-                    "lat": 38.8886,
-                    "lon": -77.043,
-                  }
-                }
+              }
+            >
+              <FontAwesomeIcon
+                border={false}
                 className=""
-                maxBounds={
+                fixedWidth={true}
+                flip={null}
+                icon={
                   Object {
-                    "_northEast": Object {
-                      "lat": 90,
-                      "lng": 200,
-                    },
-                    "_southWest": Object {
-                      "lat": -90,
-                      "lng": -200,
-                    },
+                    "icon": Array [],
+                    "iconName": "save",
+                    "prefix": "fas",
                   }
                 }
-                minZoom={2}
-                useFlyTo={false}
-                zoom={12}
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
               >
-                <div
-                  className=""
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-save fa-w-NaN fa-fw "
+                  data-icon="save"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <TileLayer
-                    attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
-                    url="mock.url/tile"
-                    zIndex={-10}
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
                   />
-                  <LabelLayer>
-                    <TileLayer
-                      url="https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=your-access-token"
-                      zIndex={40}
-                    />
-                  </LabelLayer>
-                </div>
-              </Map>
-            </Map>
-          </Connect(Map)>
-        </div>
-        <div
-          className="ApplicationDock"
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             
+            Save project
+          </a>
+        </Button>
+        <Button
+          block={true}
+          onClick={[Function]}
+          style="danger"
         >
-          <Title>
-            <div
-              className="ApplicationDockTitle"
+          <a
+            className="btn btn-danger btn-block"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+          >
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "trash",
+                  "prefix": "fas",
+                }
+              }
             >
-              Edit project settings
-            </div>
-          </Title>
-          <Dock>
-            <InnerDock>
-              <div
-                className="InnerDock "
-                style={
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
                   Object {
-                    "height": 768,
+                    "icon": Array [],
+                    "iconName": "trash",
+                    "prefix": "fas",
                   }
                 }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
               >
-                <div
-                  className="block"
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
+                  data-icon="trash"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <Text
-                    name="Project name"
-                    onChange={[Function]}
-                    value="Mock Project"
-                  >
-                    <Group
-                      id="project-name-input-0"
-                      name="Project name"
-                      onChange={[Function]}
-                      value="Mock Project"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <Input
-                          id="project-name-input-0"
-                          name="Project name"
-                          onChange={[Function]}
-                          type="text"
-                          value="Mock Project"
-                        >
-                          <input
-                            className="form-control"
-                            id="project-name-input-0"
-                            name="Project name"
-                            onChange={[Function]}
-                            placeholder="Project name"
-                            type="text"
-                            value="Mock Project"
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Group>
-                    <div
-                      className="form-group"
-                    >
-                      <strong>
-                        Bundle:
-                      </strong>
-                       
-                      Mock Bundle
-                       
-                      <br />
-                      <small>
-                        Bundle cannot be changed once a project is created
-                      </small>
-                    </div>
-                  </Group>
-                  <Button
-                    block={true}
-                    onClick={[Function]}
-                    style="success"
-                  >
-                    <a
-                      className="btn btn-success btn-block"
-                      href="#"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      <Icon
-                        type="save"
-                      >
-                        <i
-                          className="fa fa-save fa-fw "
-                        />
-                      </Icon>
-                       
-                      Save project
-                    </a>
-                  </Button>
-                  <Button
-                    block={true}
-                    onClick={[Function]}
-                    style="danger"
-                  >
-                    <a
-                      className="btn btn-danger btn-block"
-                      href="#"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      <Icon
-                        type="trash"
-                      >
-                        <i
-                          className="fa fa-trash fa-fw "
-                        />
-                      </Icon>
-                       
-                      Delete project
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </InnerDock>
-          </Dock>
-        </div>
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             
+            Delete project
+          </a>
+        </Button>
       </div>
-    </Application>
+    </InnerDock>
   </EditProject>
 </Provider>
 `;

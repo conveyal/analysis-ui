@@ -1,3 +1,1 @@
-/* global jest */
-
-module.exports = jest.genMockFromModule('react-leaflet-draw')
+module.exports.EditControl = () => null

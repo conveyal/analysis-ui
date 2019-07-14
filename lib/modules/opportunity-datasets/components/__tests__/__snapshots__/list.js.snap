@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Opportunity Datasets > Components > List should render 1`] = `
+exports[`Opportunity Datasets > Components > List should render without errors 1`] = `
 <Provider
   store={
     Object {
@@ -13,117 +13,229 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
     }
   }
 >
-  <Connect(ListOpportunityDatasets)>
-    <ListOpportunityDatasets
-      addOpportunityDataset={[Function]}
-      checkUploadStatus={[Function]}
-      clearStatus={[Function]}
-      deleteOpportunityDataset={[Function]}
-      deleteSourceSet={[Function]}
-      downloadLODES={[Function]}
-      downloadOpportunityDataset={[Function]}
-      editOpportunityDataset={[Function]}
-      goTo={[Function]}
-      goToUpload={[Function]}
-      loadOpportunityDataset={[Function]}
-      loadOpportunityDatasets={[Function]}
-      opportunitiesUrl="/regions/1/opportunities"
-      opportunityDatasets={
-        Array [
-          Object {
-            "_id": "Workers_total",
-            "name": "Workers total",
-            "sourceName": "lodes-data-2014",
-          },
-        ]
-      }
-      removeOpportunityDataset={[Function]}
-      setActiveOpportunityDataset={[Function]}
-      setOpportunityDatasets={[Function]}
-      updateOpportunityDataset={[Function]}
-      updateUploadStatuses={[Function]}
-      uploadOpportunityDataset={[Function]}
-      uploadStatuses={Array []}
-    >
-      <div>
-        <Group>
-          <div
-            className="form-group"
+  <ListOpportunityDatasets>
+    <Group>
+      <div
+        className="form-group"
+      >
+        <ButtonLink
+          block={true}
+          style="success"
+          title="Upload a new dataset"
+          to="opportunitiesUpload"
+        >
+          <Link
+            title="Upload a new dataset"
+            to="opportunitiesUpload"
           >
-            <Button
-              block={true}
-              onClick={[Function]}
-              style="success"
-              title="Upload a new dataset"
+            <Link
+              as="/regions/undefined/opportunities/upload?title=Upload a new dataset"
+              href={
+                Object {
+                  "pathname": "/regions/[regionId]/opportunities/upload",
+                  "query": Object {
+                    "title": "Upload a new dataset",
+                  },
+                }
+              }
+              passHref={true}
+              prefetch={true}
             >
               <a
                 className="btn btn-success btn-block"
-                href="#"
+                href="/regions/undefined/opportunities/upload?title=Upload a new dataset"
                 onClick={[Function]}
+                onMouseEnter={[Function]}
                 tabIndex={0}
-                title="Upload a new dataset"
               >
                 <Icon
-                  type="plus"
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "plus",
+                      "prefix": "fas",
+                    }
+                  }
                 >
-                  <i
-                    className="fa fa-plus fa-fw "
-                  />
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "plus",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                      data-icon="plus"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
                 </Icon>
                  
                 Upload a new dataset
               </a>
-            </Button>
-            <Button
-              block={true}
-              onClick={[Function]}
-              style="primary"
-              title="Fetch LODES (2015)"
-            >
-              <a
-                className="btn btn-primary btn-block"
-                href="#"
-                onClick={[Function]}
-                tabIndex={0}
-                title="Fetch LODES (2015)"
-              >
-                <Icon
-                  type="users"
-                >
-                  <i
-                    className="fa fa-users fa-fw "
-                  />
-                </Icon>
-                 
-                Fetch LODES (2015)
-              </a>
-            </Button>
-          </div>
-        </Group>
-        <p
-          className="center"
+            </Link>
+          </Link>
+        </ButtonLink>
+        <Button
+          block={true}
+          onClick={[Function]}
+          style="primary"
+          title="Fetch LODES (2015)"
         >
-          or select an existing one
-        </p>
-        <Group>
-          <div
-            className="form-group"
+          <a
+            className="btn btn-primary btn-block"
+            href="#"
+            onClick={[Function]}
+            tabIndex={0}
+            title="Fetch LODES (2015)"
           >
-            <Connect(OpportunityDatasetSelector)>
-              <OpportunityDatasetSelector
-                addOpportunityDataset={[Function]}
-                checkUploadStatus={[Function]}
-                clearStatus={[Function]}
-                deleteOpportunityDataset={[Function]}
-                deleteSourceSet={[Function]}
-                downloadLODES={[Function]}
-                downloadOpportunityDataset={[Function]}
-                editOpportunityDataset={[Function]}
-                goTo={[Function]}
-                loadOpportunityDataset={[Function]}
-                loadOpportunityDatasets={[Function]}
-                opportunitiesUrl="/regions/1/opportunities"
-                opportunityDatasets={
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "users",
+                  "prefix": "fas",
+                }
+              }
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "users",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-users fa-w-NaN fa-fw "
+                  data-icon="users"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+             
+            Fetch LODES (2015)
+          </a>
+        </Button>
+      </div>
+    </Group>
+    <p
+      className="text-center"
+    >
+      or select an existing one
+    </p>
+    <Group>
+      <div
+        className="form-group"
+      >
+        <Connect(OpportunityDatasetSelector)>
+          <OpportunityDatasetSelector
+            addOpportunityDataset={[Function]}
+            checkUploadStatus={[Function]}
+            clearStatus={[Function]}
+            deleteOpportunityDataset={[Function]}
+            deleteSourceSet={[Function]}
+            downloadLODES={[Function]}
+            downloadOpportunityDataset={[Function]}
+            editOpportunityDataset={[Function]}
+            loadOpportunityDataset={[Function]}
+            loadOpportunityDatasets={[Function]}
+            opportunityDatasets={
+              Array [
+                Object {
+                  "_id": "Workers_total",
+                  "name": "Workers total",
+                  "sourceName": "lodes-data-2014",
+                },
+              ]
+            }
+            removeOpportunityDataset={[Function]}
+            setActiveOpportunityDataset={[Function]}
+            setOpportunityDatasets={[Function]}
+            updateOpportunityDataset={[Function]}
+            updateUploadStatuses={[Function]}
+            uploadOpportunityDataset={[Function]}
+            uploadStatuses={Array []}
+          >
+            <S
+              getOptionLabel={[Function]}
+              getOptionValue={[Function]}
+              isClearable={true}
+              isDisabled={false}
+              onChange={[Function]}
+              options={
+                Array [
+                  Object {
+                    "_id": "Workers_total",
+                    "name": "Workers total",
+                    "sourceName": "lodes-data-2014",
+                  },
+                ]
+              }
+            >
+              <ReactSelect
+                getOptionLabel={[Function]}
+                getOptionValue={[Function]}
+                isClearable={true}
+                isDisabled={false}
+                onChange={[Function]}
+                options={
                   Array [
                     Object {
                       "_id": "Workers_total",
@@ -132,122 +244,22 @@ exports[`Opportunity Datasets > Components > List should render 1`] = `
                     },
                   ]
                 }
-                removeOpportunityDataset={[Function]}
-                setActiveOpportunityDataset={[Function]}
-                setOpportunityDatasets={[Function]}
-                updateOpportunityDataset={[Function]}
-                updateUploadStatuses={[Function]}
-                uploadOpportunityDataset={[Function]}
-                uploadStatuses={Array []}
-              >
-                <Select
-                  arrowRenderer={[Function]}
-                  autosize={true}
-                  backspaceRemoves={true}
-                  backspaceToRemoveMessage="Press backspace to remove {label}"
-                  clearAllText="Clear all"
-                  clearRenderer={[Function]}
-                  clearValueText="Clear value"
-                  clearable={true}
-                  closeOnSelect={true}
-                  deleteRemoves={true}
-                  delimiter=","
-                  disabled={false}
-                  escapeClearsValue={true}
-                  filterOptions={[Function]}
-                  ignoreAccents={true}
-                  ignoreCase={true}
-                  inputProps={Object {}}
-                  isLoading={false}
-                  joinValues={false}
-                  labelKey="label"
-                  matchPos="any"
-                  matchProp="any"
-                  menuBuffer={0}
-                  menuRenderer={[Function]}
-                  multi={false}
-                  noResultsText="No results found"
-                  onBlurResetsInput={true}
-                  onChange={[Function]}
-                  onCloseResetsInput={true}
-                  onSelectResetsInput={true}
-                  openOnClick={true}
-                  optionComponent={[Function]}
-                  options={
-                    Array [
-                      Object {
-                        "label": "lodes-data-2014: Workers total",
-                        "value": "Workers_total",
-                      },
-                    ]
+                styles={
+                  Object {
+                    "control": [Function],
+                    "option": [Function],
                   }
-                  pageSize={5}
-                  placeholder="Select..."
-                  removeSelected={true}
-                  required={false}
-                  rtl={false}
-                  scrollMenuIntoView={true}
-                  searchable={true}
-                  simpleValue={false}
-                  tabSelectsValue={true}
-                  trimFilter={true}
-                  valueComponent={[Function]}
-                  valueKey="value"
-                >
-                  <div
-                    className="Select is-clearable is-searchable Select--single"
-                  >
-                    <div
-                      className="Select-control"
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      onTouchEnd={[Function]}
-                      onTouchMove={[Function]}
-                      onTouchStart={[Function]}
-                    >
-                      <span
-                        className="Select-multi-value-wrapper"
-                        id="react-select-2--value"
-                      >
-                        <div
-                          className="Select-placeholder"
-                        >
-                          Select...
-                        </div>
-                        <AutosizeInput
-                          aria-activedescendant="react-select-2--value"
-                          aria-expanded="false"
-                          aria-haspopup="false"
-                          aria-owns=""
-                          className="Select-input"
-                          injectStyles={true}
-                          minWidth="5"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onFocus={[Function]}
-                          required={false}
-                          role="combobox"
-                          value=""
-                        />
-                      </span>
-                      <span
-                        className="Select-arrow-zone"
-                        onMouseDown={[Function]}
-                      >
-                        <span
-                          className="Select-arrow"
-                          onMouseDown={[Function]}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </Select>
-              </OpportunityDatasetSelector>
-            </Connect(OpportunityDatasetSelector)>
-          </div>
-        </Group>
+                }
+              >
+                <div
+                  className="ReactSelectMock"
+                />
+              </ReactSelect>
+            </S>
+          </OpportunityDatasetSelector>
+        </Connect(OpportunityDatasetSelector)>
       </div>
-    </ListOpportunityDatasets>
-  </Connect(ListOpportunityDatasets)>
+    </Group>
+  </ListOpportunityDatasets>
 </Provider>
 `;

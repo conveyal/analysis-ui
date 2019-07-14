@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > EditRegion renders correctly 1`] = `
+exports[`Component > EditRegion 1`] = `
 <Provider
   store={
     Object {
@@ -13,10 +13,7 @@ exports[`Component > EditRegion renders correctly 1`] = `
     }
   }
 >
-  <EditRegion
-    create={[Function]}
-    deleteRegion={[Function]}
-    load={[Function]}
+  <Memo(ConnectedEditRegion)
     region={
       Object {
         "_id": "1",
@@ -44,1074 +41,484 @@ exports[`Component > EditRegion renders correctly 1`] = `
         "updatedBy": "person@gmail.com",
       }
     }
-    save={[Function]}
-    setCenter={[Function]}
-    setLocally={[Function]}
+    setMapChildren={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
   >
-    <Application
-      map={[Function]}
+    <EditRegion
+      dispatch={[Function]}
+      region={
+        Object {
+          "_id": "1",
+          "accessGroup": "accessGroupName",
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "createdAt": "2017-11-08T12:30:50.133Z",
+          "createdBy": "person@gmail.com",
+          "description": "Region description",
+          "name": "Mock Region",
+          "nonce": "12345",
+          "opportunityDatasets": Array [
+            Object {
+              "_id": "Workers_total",
+              "name": "Workers total",
+              "sourceName": "lodes-data-2014",
+            },
+          ],
+          "statusCode": "DONE",
+          "updatedAt": "2017-11-08T12:31:19.602Z",
+          "updatedBy": "person@gmail.com",
+        }
+      }
+      router={
+        Router {
+          "asPath": "as-path",
+          "clc": null,
+          "components": Object {
+            "/_app": Object {
+              "Component": undefined,
+            },
+            "page": Object {
+              "Component": undefined,
+              "err": undefined,
+              "props": undefined,
+            },
+          },
+          "events": Object {
+            "emit": [Function],
+            "off": [Function],
+            "on": [Function],
+          },
+          "onPopState": [Function],
+          "pageLoader": undefined,
+          "pathname": "page",
+          "query": Object {},
+          "route": "page",
+          "sub": undefined,
+        }
+      }
+      setMapChildren={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              [Function],
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        }
+      }
     >
-      <div>
-        <Connect(ErrorModal)>
-          <ErrorModal
-            clearError={[Function]}
-          >
-            <span />
-          </ErrorModal>
-        </Connect(ErrorModal)>
-        <Connect(Sidebar)>
-          <Sidebar
-            currentPath="blank"
-            dispatch={[Function]}
-            outstandingRequests={false}
-            projectId="1"
-            regionId="1"
-          >
-            <div
-              className="Sidebar"
-            >
-              <div
-                className="Sidebar-logo"
-              />
-              <SidebarNavItem
-                href="/"
-                icon="globe"
-                text="Regions"
-              >
-                <Tip
-                  className="Sidebar-navItem"
-                  tip="Regions"
-                >
-                  <span
-                    className="Tip Sidebar-navItem"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
-                  >
-                    <Link
-                      className="Sidebar-navItem-contents"
-                      onlyActiveOnIndex={false}
-                      style={Object {}}
-                      to="/"
-                    >
-                      <a
-                        className="Sidebar-navItem-contents"
-                        onClick={[Function]}
-                        style={Object {}}
-                      >
-                        <ItemContents
-                          icon="globe"
-                          text="Regions"
-                        >
-                          <span>
-                            <Icon
-                              type="globe"
-                            >
-                              <i
-                                className="fa fa-globe fa-fw "
-                              />
-                            </Icon>
-                            <span
-                              className="Sidebar-navItem-text"
-                            >
-                               
-                              Regions
-                            </span>
-                          </span>
-                        </ItemContents>
-                      </a>
-                    </Link>
-                  </span>
-                </Tip>
-              </SidebarNavItem>
-              <div>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/edit"
-                  icon="map-o"
-                  text="Region Settings"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Region Settings"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/edit"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="map-o"
-                            text="Region Settings"
-                          >
-                            <span>
-                              <Icon
-                                type="map-o"
-                              >
-                                <i
-                                  className="fa fa-map-o fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Region Settings
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1"
-                  icon="cubes"
-                  text="Projects"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Projects"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="cubes"
-                            text="Projects"
-                          >
-                            <span>
-                              <Icon
-                                type="cubes"
-                              >
-                                <i
-                                  className="fa fa-cubes fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Projects
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/bundles"
-                  icon="database"
-                  text="GTFS Bundles"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="GTFS Bundles"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/bundles"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="database"
-                            text="GTFS Bundles"
-                          >
-                            <span>
-                              <Icon
-                                type="database"
-                              >
-                                <i
-                                  className="fa fa-database fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                GTFS Bundles
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/opportunities"
-                  icon="th"
-                  text="Opportunity Datasets"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Opportunity Datasets"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/opportunities"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="th"
-                            text="Opportunity Datasets"
-                          >
-                            <span>
-                              <Icon
-                                type="th"
-                              >
-                                <i
-                                  className="fa fa-th fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Opportunity Datasets
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/projects/1"
-                  icon="pencil"
-                  text="Edit Modifications"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Edit Modifications"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/projects/1"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="pencil"
-                            text="Edit Modifications"
-                          >
-                            <span>
-                              <Icon
-                                type="pencil"
-                              >
-                                <i
-                                  className="fa fa-pencil fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Edit Modifications
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/analysis"
-                  icon="area-chart"
-                  text="Analyze"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Analyze"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/analysis"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="area-chart"
-                            text="Analyze"
-                          >
-                            <span>
-                              <Icon
-                                type="area-chart"
-                              >
-                                <i
-                                  className="fa fa-area-chart fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Analyze
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-                <SidebarNavItem
-                  active={null}
-                  href="/regions/1/regional"
-                  icon="server"
-                  text="Regional Analysis"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Regional Analysis"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <Link
-                        className="Sidebar-navItem-contents"
-                        onlyActiveOnIndex={false}
-                        style={Object {}}
-                        to="/regions/1/regional"
-                      >
-                        <a
-                          className="Sidebar-navItem-contents"
-                          onClick={[Function]}
-                          style={Object {}}
-                        >
-                          <ItemContents
-                            icon="server"
-                            text="Regional Analysis"
-                          >
-                            <span>
-                              <Icon
-                                type="server"
-                              >
-                                <i
-                                  className="fa fa-server fa-fw "
-                                />
-                              </Icon>
-                              <span
-                                className="Sidebar-navItem-text"
-                              >
-                                 
-                                Regional Analysis
-                              </span>
-                            </span>
-                          </ItemContents>
-                        </a>
-                      </Link>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-              </div>
-              <div
-                className="Sidebar-bottom"
-              >
-                <SidebarNavItem
-                  href="http://docs.analysis.conveyal.com/"
-                  icon="question-circle"
-                  text="Help and Documentation"
-                >
-                  <Tip
-                    className="Sidebar-navItem"
-                    tip="Help and Documentation"
-                  >
-                    <span
-                      className="Tip Sidebar-navItem"
-                      onBlur={[Function]}
-                      onFocus={[Function]}
-                      onMouseOut={[Function]}
-                      onMouseOver={[Function]}
-                    >
-                      <a
-                        className="Sidebar-navItem-contents"
-                        href="http://docs.analysis.conveyal.com/"
-                        target="_blank"
-                      >
-                        <ItemContents
-                          icon="question-circle"
-                          text="Help and Documentation"
-                        >
-                          <span>
-                            <Icon
-                              type="question-circle"
-                            >
-                              <i
-                                className="fa fa-question-circle fa-fw "
-                              />
-                            </Icon>
-                            <span
-                              className="Sidebar-navItem-text"
-                            >
-                               
-                              Help and Documentation
-                            </span>
-                          </span>
-                        </ItemContents>
-                      </a>
-                    </span>
-                  </Tip>
-                </SidebarNavItem>
-              </div>
-            </div>
-          </Sidebar>
-        </Connect(Sidebar)>
+      <InnerDock
+        className="block"
+      >
         <div
-          className="Fullscreen"
+          className="InnerDock block"
+          style={
+            Object {
+              "height": 768,
+            }
+          }
         >
-          <Connect(Map)>
-            <Map
-              bounds={
-                Object {
-                  "_northEast": Object {
-                    "lat": 37.365,
-                    "lng": -121.924,
-                  },
-                  "_southWest": Object {
-                    "lat": 36.9707,
-                    "lng": -122.0279,
-                  },
-                }
-              }
-              center={
-                Object {
-                  "lat": 38.8886,
-                  "lon": -77.043,
-                }
-              }
-              disabled={false}
-              dispatch={[Function]}
-              maxBounds={
-                Object {
-                  "_northEast": Object {
-                    "lat": 90,
-                    "lng": 200,
-                  },
-                  "_southWest": Object {
-                    "lat": -90,
-                    "lng": -200,
-                  },
-                }
-              }
-              minZoom={2}
-              tileUrl="mock.url/tile"
-              zIndex={-10}
-              zoom={12}
+          <legend>
+            Edit region
+          </legend>
+          <Text
+            label="Region Name*"
+            name="Region Name"
+            onChange={[Function]}
+            value="Mock Region"
+          >
+            <Group
+              id="region-name-input-0"
+              label="Region Name*"
+              name="Region Name"
+              onChange={[Function]}
+              value="Mock Region"
             >
-              <Map
-                animate={false}
-                bounds={
-                  Object {
-                    "_northEast": Object {
-                      "lat": 37.365,
-                      "lng": -121.924,
-                    },
-                    "_southWest": Object {
-                      "lat": 36.9707,
-                      "lng": -122.0279,
-                    },
-                  }
-                }
-                center={
-                  Object {
-                    "lat": 38.8886,
-                    "lon": -77.043,
-                  }
-                }
-                className=""
-                maxBounds={
-                  Object {
-                    "_northEast": Object {
-                      "lat": 90,
-                      "lng": 200,
-                    },
-                    "_southWest": Object {
-                      "lat": -90,
-                      "lng": -200,
-                    },
-                  }
-                }
-                minZoom={2}
-                useFlyTo={false}
-                zoom={12}
-              >
-                <div
-                  className=""
-                >
-                  <TileLayer
-                    attribution="<a href=\\"http://www.openstreetmap.org/copyright\\">OpenStreetMap</a> contributors, &copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>"
-                    url="mock.url/tile"
-                    zIndex={-10}
-                  />
-                  <EditBounds
-                    bounds={
-                      Object {
-                        "_northEast": Object {
-                          "lat": 39,
-                          "lng": -76,
-                        },
-                        "_southWest": Object {
-                          "lat": 38,
-                          "lng": -77,
-                        },
-                      }
-                    }
-                    save={[Function]}
-                  >
-                    <g>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 38,
-                            "lng": -77,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 38,
-                                "lng": -77,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 39,
-                            "lng": -77,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 39,
-                                "lng": -77,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 39,
-                            "lng": -76,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 39,
-                                "lng": -76,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Marker
-                        draggable={true}
-                        onDragEnd={[Function]}
-                        position={
-                          Object {
-                            "lat": 38,
-                            "lng": -76,
-                          }
-                        }
-                      >
-                        <g
-                          data-props={
-                            Object {
-                              "draggable": true,
-                              "onDragEnd": [Function],
-                              "position": Object {
-                                "lat": 38,
-                                "lng": -76,
-                              },
-                            }
-                          }
-                          type="Marker"
-                        />
-                      </Marker>
-                      <Rectangle
-                        bounds={
-                          Object {
-                            "_northEast": Object {
-                              "lat": 39,
-                              "lng": -76,
-                            },
-                            "_southWest": Object {
-                              "lat": 38,
-                              "lng": -77,
-                            },
-                          }
-                        }
-                        weight={2}
-                      />
-                    </g>
-                  </EditBounds>
-                </div>
-              </Map>
-            </Map>
-          </Connect(Map)>
-        </div>
-        <div
-          className="ApplicationDock"
-        >
-          <Title>
-            <div
-              className="ApplicationDockTitle"
-            >
-              Edit region
-            </div>
-          </Title>
-          <Dock>
-            <InnerDock>
               <div
-                className="InnerDock "
-                style={
-                  Object {
-                    "height": 768,
-                  }
-                }
+                className="form-group"
               >
-                <div
-                  className="block"
+                <label
+                  className="control-label"
+                  htmlFor="region-name-input-0"
                 >
-                  <Text
+                  Region Name*
+                </label>
+                <Input
+                  id="region-name-input-0"
+                  label="Region Name*"
+                  name="Region Name"
+                  onChange={[Function]}
+                  type="text"
+                  value="Mock Region"
+                >
+                  <input
+                    className="form-control"
+                    id="region-name-input-0"
                     label="Region Name*"
                     name="Region Name"
                     onChange={[Function]}
+                    placeholder="Region Name*"
+                    type="text"
                     value="Mock Region"
-                  >
-                    <Group
-                      id="region-name-input-0"
-                      label="Region Name*"
-                      name="Region Name"
-                      onChange={[Function]}
-                      value="Mock Region"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="region-name-input-0"
-                        >
-                          Region Name*
-                        </label>
-                        <Input
-                          id="region-name-input-0"
-                          label="Region Name*"
-                          name="Region Name"
-                          onChange={[Function]}
-                          type="text"
-                          value="Mock Region"
-                        >
-                          <input
-                            className="form-control"
-                            id="region-name-input-0"
-                            name="Region Name"
-                            onChange={[Function]}
-                            placeholder="Region Name*"
-                            type="text"
-                            value="Mock Region"
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Text>
+          <Text
+            label="Description"
+            name="Description"
+            onChange={[Function]}
+            value="Region description"
+          >
+            <Group
+              id="description-input-1"
+              label="Description"
+              name="Description"
+              onChange={[Function]}
+              value="Region description"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  className="control-label"
+                  htmlFor="description-input-1"
+                >
+                  Description
+                </label>
+                <Input
+                  id="description-input-1"
+                  label="Description"
+                  name="Description"
+                  onChange={[Function]}
+                  type="text"
+                  value="Region description"
+                >
+                  <input
+                    className="form-control"
+                    id="description-input-1"
                     label="Description"
                     name="Description"
                     onChange={[Function]}
+                    placeholder="Description"
+                    type="text"
                     value="Region description"
-                  >
-                    <Group
-                      id="description-input-1"
-                      label="Description"
-                      name="Description"
-                      onChange={[Function]}
-                      value="Region description"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="description-input-1"
-                        >
-                          Description
-                        </label>
-                        <Input
-                          id="description-input-1"
-                          label="Description"
-                          name="Description"
-                          onChange={[Function]}
-                          type="text"
-                          value="Region description"
-                        >
-                          <input
-                            className="form-control"
-                            id="description-input-1"
-                            name="Description"
-                            onChange={[Function]}
-                            placeholder="Description"
-                            type="text"
-                            value="Region description"
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <h5>
-                    Analysis bounds
-                  </h5>
-                  <div
-                    className="alert alert-warning"
-                  >
-                    Bounds are snapped to points on our regular grid.
-                    <a
-                      href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
-                      target="_blank"
-                    >
-                       Learn more about spatial resolution here.
-                    </a>
-                  </div>
-                  <Text
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Text>
+          <h5>
+            Analysis bounds
+          </h5>
+          <div
+            className="alert alert-warning"
+          >
+            Bounds are snapped to points on our regular grid.
+            <a
+              href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+               
+              Learn more about spatial resolution here.
+            </a>
+          </div>
+          <Text
+            key="bound-North"
+            label="North bound"
+            name="North bound"
+            onChange={[Function]}
+            value={39}
+          >
+            <Group
+              id="north-bound-input-2"
+              label="North bound"
+              name="North bound"
+              onChange={[Function]}
+              value={39}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  className="control-label"
+                  htmlFor="north-bound-input-2"
+                >
+                  North bound
+                </label>
+                <Input
+                  id="north-bound-input-2"
+                  label="North bound"
+                  name="North bound"
+                  onChange={[Function]}
+                  type="text"
+                  value={39}
+                >
+                  <input
+                    className="form-control"
+                    id="north-bound-input-2"
                     label="North bound"
                     name="North bound"
                     onChange={[Function]}
+                    placeholder="North bound"
+                    type="text"
                     value={39}
-                  >
-                    <Group
-                      id="north-bound-input-2"
-                      label="North bound"
-                      name="North bound"
-                      onChange={[Function]}
-                      value={39}
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="north-bound-input-2"
-                        >
-                          North bound
-                        </label>
-                        <Input
-                          id="north-bound-input-2"
-                          label="North bound"
-                          name="North bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={39}
-                        >
-                          <input
-                            className="form-control"
-                            id="north-bound-input-2"
-                            name="North bound"
-                            onChange={[Function]}
-                            placeholder="North bound"
-                            type="text"
-                            value={39}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Text>
+          <Text
+            key="bound-South"
+            label="South bound"
+            name="South bound"
+            onChange={[Function]}
+            value={38}
+          >
+            <Group
+              id="south-bound-input-3"
+              label="South bound"
+              name="South bound"
+              onChange={[Function]}
+              value={38}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  className="control-label"
+                  htmlFor="south-bound-input-3"
+                >
+                  South bound
+                </label>
+                <Input
+                  id="south-bound-input-3"
+                  label="South bound"
+                  name="South bound"
+                  onChange={[Function]}
+                  type="text"
+                  value={38}
+                >
+                  <input
+                    className="form-control"
+                    id="south-bound-input-3"
                     label="South bound"
                     name="South bound"
                     onChange={[Function]}
+                    placeholder="South bound"
+                    type="text"
                     value={38}
-                  >
-                    <Group
-                      id="south-bound-input-3"
-                      label="South bound"
-                      name="South bound"
-                      onChange={[Function]}
-                      value={38}
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="south-bound-input-3"
-                        >
-                          South bound
-                        </label>
-                        <Input
-                          id="south-bound-input-3"
-                          label="South bound"
-                          name="South bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={38}
-                        >
-                          <input
-                            className="form-control"
-                            id="south-bound-input-3"
-                            name="South bound"
-                            onChange={[Function]}
-                            placeholder="South bound"
-                            type="text"
-                            value={38}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Text>
+          <Text
+            key="bound-East"
+            label="East bound"
+            name="East bound"
+            onChange={[Function]}
+            value={-76}
+          >
+            <Group
+              id="east-bound-input-4"
+              label="East bound"
+              name="East bound"
+              onChange={[Function]}
+              value={-76}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  className="control-label"
+                  htmlFor="east-bound-input-4"
+                >
+                  East bound
+                </label>
+                <Input
+                  id="east-bound-input-4"
+                  label="East bound"
+                  name="East bound"
+                  onChange={[Function]}
+                  type="text"
+                  value={-76}
+                >
+                  <input
+                    className="form-control"
+                    id="east-bound-input-4"
                     label="East bound"
                     name="East bound"
                     onChange={[Function]}
+                    placeholder="East bound"
+                    type="text"
                     value={-76}
-                  >
-                    <Group
-                      id="east-bound-input-4"
-                      label="East bound"
-                      name="East bound"
-                      onChange={[Function]}
-                      value={-76}
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="east-bound-input-4"
-                        >
-                          East bound
-                        </label>
-                        <Input
-                          id="east-bound-input-4"
-                          label="East bound"
-                          name="East bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={-76}
-                        >
-                          <input
-                            className="form-control"
-                            id="east-bound-input-4"
-                            name="East bound"
-                            onChange={[Function]}
-                            placeholder="East bound"
-                            type="text"
-                            value={-76}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Text
+                  />
+                </Input>
+              </div>
+            </Group>
+          </Text>
+          <Text
+            key="bound-West"
+            label="West bound"
+            name="West bound"
+            onChange={[Function]}
+            value={-77}
+          >
+            <Group
+              id="west-bound-input-5"
+              label="West bound"
+              name="West bound"
+              onChange={[Function]}
+              value={-77}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  className="control-label"
+                  htmlFor="west-bound-input-5"
+                >
+                  West bound
+                </label>
+                <Input
+                  id="west-bound-input-5"
+                  label="West bound"
+                  name="West bound"
+                  onChange={[Function]}
+                  type="text"
+                  value={-77}
+                >
+                  <input
+                    className="form-control"
+                    id="west-bound-input-5"
                     label="West bound"
                     name="West bound"
                     onChange={[Function]}
+                    placeholder="West bound"
+                    type="text"
                     value={-77}
-                  >
-                    <Group
-                      id="west-bound-input-5"
-                      label="West bound"
-                      name="West bound"
-                      onChange={[Function]}
-                      value={-77}
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          htmlFor="west-bound-input-5"
-                        >
-                          West bound
-                        </label>
-                        <Input
-                          id="west-bound-input-5"
-                          label="West bound"
-                          name="West bound"
-                          onChange={[Function]}
-                          type="text"
-                          value={-77}
-                        >
-                          <input
-                            className="form-control"
-                            id="west-bound-input-5"
-                            name="West bound"
-                            onChange={[Function]}
-                            placeholder="West bound"
-                            type="text"
-                            value={-77}
-                          />
-                        </Input>
-                      </div>
-                    </Group>
-                  </Text>
-                  <p>
-                    <em>
-                      OSM updates have been temporarily disabled and will be moved to the bundle management page.
-                    </em>
-                  </p>
-                  <Button
-                    block={true}
-                    disabled={false}
-                    name="Save changes"
-                    onClick={[Function]}
-                    style="success"
-                  >
-                    <a
-                      className="btn btn-success btn-block"
-                      disabled={false}
-                      href="#"
-                      name="Save changes"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      Save changes
-                    </a>
-                  </Button>
-                  <Button
-                    block={true}
-                    onClick={[Function]}
-                    style="danger"
-                  >
-                    <a
-                      className="btn btn-danger btn-block"
-                      href="#"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      <Icon
-                        type="trash"
-                      >
-                        <i
-                          className="fa fa-trash fa-fw "
-                        />
-                      </Icon>
-                       
-                      DANGER: Delete this region
-                    </a>
-                  </Button>
-                </div>
+                  />
+                </Input>
               </div>
-            </InnerDock>
-          </Dock>
+            </Group>
+          </Text>
+          <p>
+            <em>
+              OSM updates have been temporarily disabled and will be moved to the bundle management page.
+            </em>
+          </p>
+          <Button
+            block={true}
+            disabled={true}
+            name="Save changes"
+            onClick={[Function]}
+            style="success"
+          >
+            <a
+              className="btn btn-success btn-block"
+              disabled={true}
+              href="#"
+              name="Save changes"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              Save changes
+            </a>
+          </Button>
+          <Button
+            block={true}
+            onClick={[Function]}
+            style="danger"
+          >
+            <a
+              className="btn btn-danger btn-block"
+              href="#"
+              onClick={[Function]}
+              tabIndex={0}
+            >
+              <Icon
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "trash",
+                    "prefix": "fas",
+                  }
+                }
+              >
+                <FontAwesomeIcon
+                  border={false}
+                  className=""
+                  fixedWidth={true}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "trash",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
+                    data-icon="trash"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 undefined undefined"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </FontAwesomeIcon>
+              </Icon>
+               
+              DANGER! Delete this region
+            </a>
+          </Button>
         </div>
-      </div>
-    </Application>
-  </EditRegion>
+      </InnerDock>
+    </EditRegion>
+  </Memo(ConnectedEditRegion)>
 </Provider>
 `;

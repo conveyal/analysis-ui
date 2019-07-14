@@ -9,10 +9,29 @@ exports[`Report > MiniMap renders correctly 1`] = `
     }
   }
 >
-  <div
-    className={undefined}
-    id={undefined}
-    style={undefined}
-  />
+  <Map
+    attributionControl={false}
+    bounds={
+      Object {
+        "_northEast": Object {
+          "lat": 40.774,
+          "lng": -74.125,
+        },
+        "_southWest": Object {
+          "lat": 40.712,
+          "lng": -74.227,
+        },
+      }
+    }
+    boxZoom={false}
+    doubleClickZoom={false}
+    dragging={false}
+    keyboard={false}
+    scrollWheelZoom={false}
+    touchZoom={false}
+    zoomControl={false}
+  >
+    <ForwardRef(Leaflet(MapBoxGLLayer)) />
+  </Map>
 </div>
 `;

@@ -1,229 +1,251 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > ProjectTitle renders correctly 1`] = `
-<div
-  className="ApplicationDockTitle"
->
-  <i
-    className="fa fa-cube fa-fw "
-  />
-   
-  Mock Project
-  <span>
-    <span
-      className="Tip pull-right"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
-    >
-      <a
-        name="Edit project settings"
-        onClick={[Function]}
-        style={Object {}}
-        type="button"
-      >
-        <i
-          className="fa fa-gear fa-fw "
-        />
-      </a>
-    </span>
-    <span
-      className="Tip pull-right"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
-    >
-      <a
-        name="Download or share this project"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <i
-          className="fa fa-share-alt-square fa-fw "
-        />
-      </a>
-    </span>
-  </span>
-</div>
-`;
-
-exports[`Component > ProjectTitle should show export select dialogue 1`] = `
-<ProjectTitle
-  _id="1"
-  downloadLines={[Function]}
-  downloadScenario={[Function]}
-  downloadStops={[Function]}
-  project={
+exports[`Component > ProjectTitle 1`] = `
+<Provider
+  store={
     Object {
-      "_id": "1",
-      "accessGroup": "accessGroupName",
-      "bundleId": "1",
-      "createdAt": "2017-11-08T12:30:50.133Z",
-      "createdBy": "person@gmail.com",
-      "name": "Mock Project",
-      "nonce": "12345",
-      "regionId": "1",
-      "updatedAt": "2017-11-08T12:31:19.602Z",
-      "updatedBy": "person@gmail.com",
-      "variants": Array [
-        "Default",
-      ],
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
     }
   }
 >
-  <Title>
+  <ProjectTitle
+    project={
+      Object {
+        "_id": "1",
+        "accessGroup": "accessGroupName",
+        "bundleId": "1",
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "name": "Mock Project",
+        "nonce": "12345",
+        "regionId": "1",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+        "variants": Array [
+          "Default",
+        ],
+      }
+    }
+  >
     <div
       className="ApplicationDockTitle"
     >
       <Icon
-        type="cube"
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "cube",
+            "prefix": "fas",
+          }
+        }
       >
-        <i
-          className="fa fa-cube fa-fw "
-        />
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={true}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "cube",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-cube fa-w-NaN fa-fw "
+            data-icon="cube"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 undefined undefined"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </FontAwesomeIcon>
       </Icon>
        
       Mock Project
-      <span>
-        <IconLink
-          className="pull-right"
-          name="Edit project settings"
-          to="/regions/1/projects/1/edit"
-          type="gear"
+      <Tip
+        className="pull-right"
+        tip="Edit project settings"
+      >
+        <span
+          className="Tip pull-right"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <Link
-            className="pull-right"
-            name="Edit project settings"
-            to="/regions/1/projects/1/edit"
-            type="button"
+            projectId="1"
+            regionId="1"
+            to="projectSettings"
           >
-            <Tip
-              className="pull-right"
-              tip="Edit project settings"
+            <Link
+              as="/regions/1/projects/1/edit"
+              href={
+                Object {
+                  "pathname": "/regions/[regionId]/projects/[projectId]/edit",
+                  "query": Object {},
+                }
+              }
+              passHref={true}
+              prefetch={true}
             >
-              <span
-                className="Tip pull-right"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+              <a
+                href="/regions/1/projects/1/edit"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
               >
-                <Link
-                  name="Edit project settings"
-                  onlyActiveOnIndex={false}
-                  style={Object {}}
-                  to="/regions/1/projects/1/edit"
-                  type="button"
+                <Icon
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "cog",
+                      "prefix": "fas",
+                    }
+                  }
                 >
-                  <a
-                    name="Edit project settings"
-                    onClick={[Function]}
-                    style={Object {}}
-                    type="button"
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "cog",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
                   >
-                    <Icon
-                      type="gear"
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-cog fa-w-NaN fa-fw "
+                      data-icon="cog"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <i
-                        className="fa fa-gear fa-fw "
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
                       />
-                    </Icon>
-                  </a>
-                </Link>
-              </span>
-            </Tip>
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+              </a>
+            </Link>
           </Link>
-        </IconLink>
-        <IconLink
-          className="pull-right"
-          name="Download or share this project"
-          onClick={[Function]}
-          type="share-alt-square"
+        </span>
+      </Tip>
+      <Tip
+        className="pull-right"
+        tip="Download or share this project"
+      >
+        <span
+          className="Tip pull-right"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
-          <Link
-            className="pull-right"
+          <a
             name="Download or share this project"
             onClick={[Function]}
-            type="button"
           >
-            <Tip
-              className="pull-right"
-              tip="Download or share this project"
+            <Icon
+              icon={
+                Object {
+                  "icon": Array [],
+                  "iconName": "share-alt-square",
+                  "prefix": "fas",
+                }
+              }
             >
-              <span
-                className="Tip pull-right"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                onMouseOut={[Function]}
-                onMouseOver={[Function]}
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={true}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [],
+                    "iconName": "share-alt-square",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
               >
-                <a
-                  name="Download or share this project"
-                  onClick={[Function]}
-                  tabIndex={0}
-                  type="button"
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-share-alt-square fa-w-NaN fa-fw "
+                  data-icon="share-alt-square"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 undefined undefined"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <Icon
-                    type="share-alt-square"
-                  >
-                    <i
-                      className="fa fa-share-alt-square fa-fw "
-                    />
-                  </Icon>
-                </a>
-              </span>
-            </Tip>
-          </Link>
-        </IconLink>
-        <SelectScenario
-          exportAction={[Function]}
-          label="export"
-          onHide={[Function]}
-          projectId="1"
-          regionId="1"
-          scenarios={
-            Array [
-              "Default",
-            ]
-          }
-        >
-          <Component
-            onRequestClose={[Function]}
-          >
-            <Modal
-              ariaHideApp={true}
-              bodyOpenClassName="ReactModal__Body--open"
-              className={
-                Object {
-                  "base": "CustomModal",
-                }
-              }
-              closeTimeoutMS={0}
-              contentLabel="Modal"
-              isOpen={true}
-              onRequestClose={[Function]}
-              parentSelector={[Function]}
-              portalClassName="ReactModalPortal"
-              shouldCloseOnOverlayClick={true}
-              style={
-                Object {
-                  "overlay": Object {
-                    "zIndex": 2500,
-                  },
-                }
-              }
-            >
-              <noscript />
-            </Modal>
-          </Component>
-        </SelectScenario>
-      </span>
+                  <path
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+            </Icon>
+          </a>
+        </span>
+      </Tip>
     </div>
-  </Title>
-</ProjectTitle>
+  </ProjectTitle>
+</Provider>
 `;
-
-exports[`Component > ProjectTitle should show export select dialogue 2`] = `"<div class=\\"CustomModal undefined\\" tabindex=\\"-1\\" aria-label=\\"Modal\\"><div class=\\"CustomModal-title\\">Select a scenario to download or share</div><div class=\\"CustomModal-block\\"><p>Generate a JSON representation of a scenario, GeoJSON to map new features in GIS, or a printable summary of the scenario.</p><div><h6><!-- react-text: 8 -->1<!-- /react-text --><!-- react-text: 9 -->. <!-- /react-text --><!-- react-text: 10 -->Default<!-- /react-text --></h6><div class=\\"btn-group btn-group-justified\\"><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i><!-- react-text: 14 --> <!-- /react-text --><!-- react-text: 15 -->Raw scenario (.json)<!-- /react-text --></a><a target=\\"_blank\\" class=\\"btn btn-info\\" href=\\"/reports/1/projects/1/variants/0\\" tabindex=\\"0\\"><i class=\\"fa fa-print fa-fw \\"></i><!-- react-text: 18 --> <!-- /react-text --><!-- react-text: 19 -->Summary report<!-- /react-text --></a></div><div class=\\"btn-group btn-group-justified\\"><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i><!-- react-text: 23 --> <!-- /react-text --><!-- react-text: 24 -->New alignments (.geojson)<!-- /react-text --></a><a class=\\"btn btn-info\\" href=\\"#\\" tabindex=\\"0\\"><i class=\\"fa fa-download fa-fw \\"></i><!-- react-text: 27 --> <!-- /react-text --><!-- react-text: 28 -->New stops (.geojson)<!-- /react-text --></a></div></div></div></div>"`;
