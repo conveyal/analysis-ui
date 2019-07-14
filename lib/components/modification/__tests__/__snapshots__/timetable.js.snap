@@ -662,192 +662,144 @@ exports[`Component > Timetable renders correctly 2`] = `
                   </div>
                 </div>
               </Days>
-              <Group
+              <MinutesSeconds
                 label="Frequency"
+                onChange={[Function]}
+                seconds={900}
               >
-                <div
-                  className="form-group"
+                <Group
+                  className=""
+                  label="Frequency"
                 >
-                  <label
-                    className="control-label"
-                    htmlFor="frequency-input-8"
+                  <div
+                    className="form-group"
                   >
-                    Frequency
-                  </label>
-                  <MinutesSeconds
-                    onChange={[Function]}
-                    seconds={900}
-                  >
-                    <Text
-                      onChange={[Function]}
-                      units="mm:ss"
-                      value="15:00"
+                    <label
+                      className="control-label"
+                      htmlFor="frequency-input-8"
                     >
-                      <Group
-                        id="undefined-input-9"
-                        onChange={[Function]}
-                        units="mm:ss"
-                        value="15:00"
-                      >
-                        <div
-                          className="form-group"
-                        >
-                          <Input
-                            id="undefined-input-9"
-                            onChange={[Function]}
-                            type="text"
-                            units="mm:ss"
-                            value="15:00"
-                          >
-                            <div
-                              className="InputWithUnits"
-                            >
-                              <input
-                                className="form-control"
-                                id="undefined-input-9"
-                                onChange={[Function]}
-                                placeholder="mm:ss"
-                                type="text"
-                                units="mm:ss"
-                                value="15:00"
-                              />
-                              <span
-                                className="InputUnits"
-                              >
-                                mm:ss
-                              </span>
-                            </div>
-                          </Input>
-                        </div>
-                      </Group>
-                    </Text>
-                  </MinutesSeconds>
-                </div>
-              </Group>
-              <Group
-                label="Start time"
-              >
-                <div
-                  className="form-group"
-                >
-                  <label
-                    className="control-label"
-                    htmlFor="start-time-input-10"
-                  >
-                    Start time
-                  </label>
-                  <TimePicker
-                    onChange={[Function]}
-                    value={28800}
-                  >
-                    <Text
+                      Frequency
+                    </label>
+                    <Input
                       onChange={[Function]}
+                      type="text"
+                      units="hh:mm:ss"
+                      value="00:15:00"
+                    >
+                      <div
+                        className="InputWithUnits"
+                      >
+                        <input
+                          className="form-control"
+                          id="undefined-input-9"
+                          onChange={[Function]}
+                          placeholder="hh:mm:ss"
+                          type="text"
+                          units="hh:mm:ss"
+                          value="00:15:00"
+                        />
+                        <span
+                          className="InputUnits"
+                        >
+                          hh:mm:ss
+                        </span>
+                      </div>
+                    </Input>
+                  </div>
+                </Group>
+              </MinutesSeconds>
+              <TimePicker
+                label="Start time"
+                onChange={[Function]}
+                value={28800}
+              >
+                <Group
+                  className=""
+                  label="Start time"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      className="control-label"
+                      htmlFor="start-time-input-10"
+                    >
+                      Start time
+                    </label>
+                    <Input
+                      onChange={[Function]}
+                      type="text"
                       units="hh:mm"
                       value="08:00"
                     >
-                      <Group
-                        id="undefined-input-11"
-                        onChange={[Function]}
-                        units="hh:mm"
-                        value="08:00"
+                      <div
+                        className="InputWithUnits"
                       >
-                        <div
-                          className="form-group"
+                        <input
+                          className="form-control"
+                          id="undefined-input-11"
+                          onChange={[Function]}
+                          placeholder="hh:mm"
+                          type="text"
+                          units="hh:mm"
+                          value="08:00"
+                        />
+                        <span
+                          className="InputUnits"
                         >
-                          <Input
-                            id="undefined-input-11"
-                            onChange={[Function]}
-                            type="text"
-                            units="hh:mm"
-                            value="08:00"
-                          >
-                            <div
-                              className="InputWithUnits"
-                            >
-                              <input
-                                className="form-control"
-                                id="undefined-input-11"
-                                onChange={[Function]}
-                                placeholder="hh:mm"
-                                type="text"
-                                units="hh:mm"
-                                value="08:00"
-                              />
-                              <span
-                                className="InputUnits"
-                              >
-                                hh:mm
-                              </span>
-                            </div>
-                          </Input>
-                        </div>
-                      </Group>
-                    </Text>
-                  </TimePicker>
-                </div>
-              </Group>
-              <Group
+                          hh:mm
+                        </span>
+                      </div>
+                    </Input>
+                  </div>
+                </Group>
+              </TimePicker>
+              <TimePicker
                 label="End time"
+                onChange={[Function]}
+                value={57600}
               >
-                <div
-                  className="form-group"
+                <Group
+                  className=""
+                  label="End time"
                 >
-                  <label
-                    className="control-label"
-                    htmlFor="end-time-input-12"
+                  <div
+                    className="form-group"
                   >
-                    End time
-                  </label>
-                  <TimePicker
-                    onChange={[Function]}
-                    value={57600}
-                  >
-                    <Text
+                    <label
+                      className="control-label"
+                      htmlFor="end-time-input-12"
+                    >
+                      End time
+                    </label>
+                    <Input
                       onChange={[Function]}
+                      type="text"
                       units="hh:mm"
                       value="16:00"
                     >
-                      <Group
-                        id="undefined-input-13"
-                        onChange={[Function]}
-                        units="hh:mm"
-                        value="16:00"
+                      <div
+                        className="InputWithUnits"
                       >
-                        <div
-                          className="form-group"
+                        <input
+                          className="form-control"
+                          id="undefined-input-13"
+                          onChange={[Function]}
+                          placeholder="hh:mm"
+                          type="text"
+                          units="hh:mm"
+                          value="16:00"
+                        />
+                        <span
+                          className="InputUnits"
                         >
-                          <Input
-                            id="undefined-input-13"
-                            onChange={[Function]}
-                            type="text"
-                            units="hh:mm"
-                            value="16:00"
-                          >
-                            <div
-                              className="InputWithUnits"
-                            >
-                              <input
-                                className="form-control"
-                                id="undefined-input-13"
-                                onChange={[Function]}
-                                placeholder="hh:mm"
-                                type="text"
-                                units="hh:mm"
-                                value="16:00"
-                              />
-                              <span
-                                className="InputUnits"
-                              >
-                                hh:mm
-                              </span>
-                            </div>
-                          </Input>
-                        </div>
-                      </Group>
-                    </Text>
-                  </TimePicker>
-                </div>
-              </Group>
+                          hh:mm
+                        </span>
+                      </div>
+                    </Input>
+                  </div>
+                </Group>
+              </TimePicker>
               <Checkbox
                 checked={false}
                 disabled={false}
@@ -944,68 +896,52 @@ exports[`Component > Timetable renders correctly 2`] = `
               segmentSpeeds={Array []}
               update={[MockFunction]}
             >
-              <Group
+              <MinutesSeconds
                 label="Default dwell time"
+                onChange={[Function]}
+                seconds={10}
               >
-                <div
-                  className="form-group"
+                <Group
+                  className=""
+                  label="Default dwell time"
                 >
-                  <label
-                    className="control-label"
-                    htmlFor="default-dwell-time-input-16"
+                  <div
+                    className="form-group"
                   >
-                    Default dwell time
-                  </label>
-                  <MinutesSeconds
-                    onChange={[Function]}
-                    seconds={10}
-                  >
-                    <Text
-                      onChange={[Function]}
-                      units="mm:ss"
-                      value="00:10"
+                    <label
+                      className="control-label"
+                      htmlFor="default-dwell-time-input-16"
                     >
-                      <Group
-                        id="undefined-input-17"
-                        onChange={[Function]}
-                        units="mm:ss"
-                        value="00:10"
+                      Default dwell time
+                    </label>
+                    <Input
+                      onChange={[Function]}
+                      type="text"
+                      units="hh:mm:ss"
+                      value="00:00:10"
+                    >
+                      <div
+                        className="InputWithUnits"
                       >
-                        <div
-                          className="form-group"
+                        <input
+                          className="form-control"
+                          id="undefined-input-17"
+                          onChange={[Function]}
+                          placeholder="hh:mm:ss"
+                          type="text"
+                          units="hh:mm:ss"
+                          value="00:00:10"
+                        />
+                        <span
+                          className="InputUnits"
                         >
-                          <Input
-                            id="undefined-input-17"
-                            onChange={[Function]}
-                            type="text"
-                            units="mm:ss"
-                            value="00:10"
-                          >
-                            <div
-                              className="InputWithUnits"
-                            >
-                              <input
-                                className="form-control"
-                                id="undefined-input-17"
-                                onChange={[Function]}
-                                placeholder="mm:ss"
-                                type="text"
-                                units="mm:ss"
-                                value="00:10"
-                              />
-                              <span
-                                className="InputUnits"
-                              >
-                                mm:ss
-                              </span>
-                            </div>
-                          </Input>
-                        </div>
-                      </Group>
-                    </Text>
-                  </MinutesSeconds>
-                </div>
-              </Group>
+                          hh:mm:ss
+                        </span>
+                      </div>
+                    </Input>
+                  </div>
+                </Group>
+              </MinutesSeconds>
               <p>
                 The default time table dwell time will be used for each stop that does not have a custom one set.
               </p>
@@ -1131,68 +1067,52 @@ exports[`Component > Timetable renders correctly 2`] = `
                   </div>
                 </Group>
               </NumberInput>
-              <Group
+              <MinutesSeconds
                 label="Total travel time (added segments)"
+                onChange={[Function]}
+                seconds={0}
               >
-                <div
-                  className="form-group"
+                <Group
+                  className=""
+                  label="Total travel time (added segments)"
                 >
-                  <label
-                    className="control-label"
-                    htmlFor="total-travel-time-added-segments-input-19"
+                  <div
+                    className="form-group"
                   >
-                    Total travel time (added segments)
-                  </label>
-                  <MinutesSeconds
-                    onChange={[Function]}
-                    seconds={0}
-                  >
-                    <Text
-                      onChange={[Function]}
-                      units="mm:ss"
-                      value="00:00"
+                    <label
+                      className="control-label"
+                      htmlFor="total-travel-time-added-segments-input-19"
                     >
-                      <Group
-                        id="undefined-input-20"
-                        onChange={[Function]}
-                        units="mm:ss"
-                        value="00:00"
+                      Total travel time (added segments)
+                    </label>
+                    <Input
+                      onChange={[Function]}
+                      type="text"
+                      units="hh:mm:ss"
+                      value="00:00:00"
+                    >
+                      <div
+                        className="InputWithUnits"
                       >
-                        <div
-                          className="form-group"
+                        <input
+                          className="form-control"
+                          id="undefined-input-20"
+                          onChange={[Function]}
+                          placeholder="hh:mm:ss"
+                          type="text"
+                          units="hh:mm:ss"
+                          value="00:00:00"
+                        />
+                        <span
+                          className="InputUnits"
                         >
-                          <Input
-                            id="undefined-input-20"
-                            onChange={[Function]}
-                            type="text"
-                            units="mm:ss"
-                            value="00:00"
-                          >
-                            <div
-                              className="InputWithUnits"
-                            >
-                              <input
-                                className="form-control"
-                                id="undefined-input-20"
-                                onChange={[Function]}
-                                placeholder="mm:ss"
-                                type="text"
-                                units="mm:ss"
-                                value="00:00"
-                              />
-                              <span
-                                className="InputUnits"
-                              >
-                                mm:ss
-                              </span>
-                            </div>
-                          </Input>
-                        </div>
-                      </Group>
-                    </Text>
-                  </MinutesSeconds>
-                </div>
-              </Group>
+                          hh:mm:ss
+                        </span>
+                      </div>
+                    </Input>
+                  </div>
+                </Group>
+              </MinutesSeconds>
               <Collapsible
                 title="Set individual segment speeds"
               >

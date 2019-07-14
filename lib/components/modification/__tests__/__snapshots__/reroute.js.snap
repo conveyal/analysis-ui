@@ -1937,68 +1937,52 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
     segmentSpeeds={Array []}
     update={[MockFunction]}
   >
-    <Group
+    <MinutesSeconds
       label="Default dwell time"
+      onChange={[Function]}
+      seconds={0}
     >
-      <div
-        className="form-group"
+      <Group
+        className=""
+        label="Default dwell time"
       >
-        <label
-          className="control-label"
-          htmlFor="default-dwell-time-input-1"
+        <div
+          className="form-group"
         >
-          Default dwell time
-        </label>
-        <MinutesSeconds
-          onChange={[Function]}
-          seconds={0}
-        >
-          <Text
-            onChange={[Function]}
-            units="mm:ss"
-            value="00:00"
+          <label
+            className="control-label"
+            htmlFor="default-dwell-time-input-1"
           >
-            <Group
-              id="undefined-input-2"
-              onChange={[Function]}
-              units="mm:ss"
-              value="00:00"
+            Default dwell time
+          </label>
+          <Input
+            onChange={[Function]}
+            type="text"
+            units="hh:mm:ss"
+            value="00:00:00"
+          >
+            <div
+              className="InputWithUnits"
             >
-              <div
-                className="form-group"
+              <input
+                className="form-control"
+                id="undefined-input-2"
+                onChange={[Function]}
+                placeholder="hh:mm:ss"
+                type="text"
+                units="hh:mm:ss"
+                value="00:00:00"
+              />
+              <span
+                className="InputUnits"
               >
-                <Input
-                  id="undefined-input-2"
-                  onChange={[Function]}
-                  type="text"
-                  units="mm:ss"
-                  value="00:00"
-                >
-                  <div
-                    className="InputWithUnits"
-                  >
-                    <input
-                      className="form-control"
-                      id="undefined-input-2"
-                      onChange={[Function]}
-                      placeholder="mm:ss"
-                      type="text"
-                      units="mm:ss"
-                      value="00:00"
-                    />
-                    <span
-                      className="InputUnits"
-                    >
-                      mm:ss
-                    </span>
-                  </div>
-                </Input>
-              </div>
-            </Group>
-          </Text>
-        </MinutesSeconds>
-      </div>
-    </Group>
+                hh:mm:ss
+              </span>
+            </div>
+          </Input>
+        </div>
+      </Group>
+    </MinutesSeconds>
     <p>
       The default time table dwell time will be used for each stop that does not have a custom one set.
     </p>
@@ -2124,68 +2108,52 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
         </div>
       </Group>
     </NumberInput>
-    <Group
+    <MinutesSeconds
       label="Total travel time (added segments)"
+      onChange={[Function]}
+      seconds={0}
     >
-      <div
-        className="form-group"
+      <Group
+        className=""
+        label="Total travel time (added segments)"
       >
-        <label
-          className="control-label"
-          htmlFor="total-travel-time-added-segments-input-4"
+        <div
+          className="form-group"
         >
-          Total travel time (added segments)
-        </label>
-        <MinutesSeconds
-          onChange={[Function]}
-          seconds={0}
-        >
-          <Text
-            onChange={[Function]}
-            units="mm:ss"
-            value="00:00"
+          <label
+            className="control-label"
+            htmlFor="total-travel-time-added-segments-input-4"
           >
-            <Group
-              id="undefined-input-5"
-              onChange={[Function]}
-              units="mm:ss"
-              value="00:00"
+            Total travel time (added segments)
+          </label>
+          <Input
+            onChange={[Function]}
+            type="text"
+            units="hh:mm:ss"
+            value="00:00:00"
+          >
+            <div
+              className="InputWithUnits"
             >
-              <div
-                className="form-group"
+              <input
+                className="form-control"
+                id="undefined-input-5"
+                onChange={[Function]}
+                placeholder="hh:mm:ss"
+                type="text"
+                units="hh:mm:ss"
+                value="00:00:00"
+              />
+              <span
+                className="InputUnits"
               >
-                <Input
-                  id="undefined-input-5"
-                  onChange={[Function]}
-                  type="text"
-                  units="mm:ss"
-                  value="00:00"
-                >
-                  <div
-                    className="InputWithUnits"
-                  >
-                    <input
-                      className="form-control"
-                      id="undefined-input-5"
-                      onChange={[Function]}
-                      placeholder="mm:ss"
-                      type="text"
-                      units="mm:ss"
-                      value="00:00"
-                    />
-                    <span
-                      className="InputUnits"
-                    >
-                      mm:ss
-                    </span>
-                  </div>
-                </Input>
-              </div>
-            </Group>
-          </Text>
-        </MinutesSeconds>
-      </div>
-    </Group>
+                hh:mm:ss
+              </span>
+            </div>
+          </Input>
+        </div>
+      </Group>
+    </MinutesSeconds>
     <Collapsible
       title="Set individual segment speeds"
     >
