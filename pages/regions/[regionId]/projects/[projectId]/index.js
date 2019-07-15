@@ -37,4 +37,4 @@ async function initialFetch(store, query) {
   }
 }
 
-export default withInitialFetch(Modifications, initialFetch)
+export default withInitialFetch(Modifications, initialFetch, {clientOnly: true})

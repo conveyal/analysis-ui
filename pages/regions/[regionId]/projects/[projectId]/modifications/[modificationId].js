@@ -34,4 +34,6 @@ async function initialFetch(store, query) {
   }
 }
 
-export default withInitialFetch(ModificationEditor, initialFetch)
+export default withInitialFetch(ModificationEditor, initialFetch, {
+  clientOnly: true
+})
