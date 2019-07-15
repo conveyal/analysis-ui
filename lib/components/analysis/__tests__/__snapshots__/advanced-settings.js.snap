@@ -23,12 +23,13 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       >
         <NumberInput
           disabled={false}
-          label="Walk Speed (km/h)"
+          label="Walk Speed"
           max={15}
           min={3}
           name="walkSpeed"
           onChange={[Function]}
           step={0.1}
+          units="km/h"
           value={5}
         />
       </div>
@@ -37,12 +38,13 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       >
         <NumberInput
           disabled={false}
-          label="Bike Speed (km/h)"
+          label="Bike Speed"
           max={20}
           min={5}
           name="bikeSpeed"
           onChange={[Function]}
           step={0.1}
+          units="km/h"
           value={15}
         />
       </div>
@@ -52,17 +54,30 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
     >
       <div
         className="col-xs-4"
-      />
+      >
+        <NumberInput
+          disabled={false}
+          label="Simulated schedules"
+          max={10000}
+          min={1}
+          name="monteCarloDraws"
+          onChange={[Function]}
+          step={1}
+          value={200}
+        />
+      </div>
       <div
         className="col-xs-4"
       >
         <NumberInput
           disabled={false}
-          label="Max Walk Time (min)"
+          label="Max Walk Time"
+          max={60}
           min={1}
           name="maxWalkTime"
           onChange={[Function]}
           step={1}
+          units="min"
           value={20}
         />
       </div>
@@ -71,11 +86,13 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       >
         <NumberInput
           disabled={false}
-          label="Max Bike Time (min)"
+          label="Max Bike Time"
+          max={60}
           min={1}
           name="maxBikeTime"
           onChange={[Function]}
           step={1}
+          units="min"
           value={20}
         />
       </div>
@@ -84,7 +101,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       className="row"
     >
       <div
-        className="col-xs-6"
+        className="col-xs-4"
       >
         <NumberInput
           disabled={false}
@@ -98,18 +115,11 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
         />
       </div>
       <div
-        className="col-xs-6"
+        className="col-xs-8"
       >
-        <NumberInput
-          disabled={false}
-          label="Simulated schedules"
-          max={10000}
-          min={1}
-          name="monteCarloDraws"
-          onChange={[Function]}
-          step={1}
-          value={200}
-        />
+        <p>
+          Lower limits may apply to transfer and egress legs. See the user manual for more information.
+        </p>
       </div>
     </div>
     <Group
@@ -746,23 +756,25 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               >
                 <NumberInput
                   disabled={false}
-                  label="Walk Speed (km/h)"
+                  label="Walk Speed"
                   max={15}
                   min={3}
                   name="walkSpeed"
                   onChange={[Function]}
                   step={0.1}
+                  units="km/h"
                   value={5}
                 >
                   <Group
                     disabled={false}
                     id="walk-speed-input-1"
-                    label="Walk Speed (km/h)"
+                    label="Walk Speed"
                     max={15}
                     min={3}
                     name="walkSpeed"
                     onChange={[Function]}
                     step={0.1}
+                    units="km/h"
                     value={5}
                   >
                     <div
@@ -772,12 +784,12 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         className="control-label"
                         htmlFor="walk-speed-input-1"
                       >
-                        Walk Speed (km/h)
+                        Walk Speed
                       </label>
                       <Input
                         disabled={false}
                         id="walk-speed-input-1"
-                        label="Walk Speed (km/h)"
+                        label="Walk Speed"
                         max={15}
                         min={3}
                         name="walkSpeed"
@@ -785,23 +797,34 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         onWheel={[Function]}
                         step={0.1}
                         type="number"
+                        units="km/h"
                         value={5}
                       >
-                        <input
-                          className="form-control"
-                          disabled={false}
-                          id="walk-speed-input-1"
-                          label="Walk Speed (km/h)"
-                          max={15}
-                          min={3}
-                          name="walkSpeed"
-                          onChange={[Function]}
-                          onWheel={[Function]}
-                          placeholder="Walk Speed (km/h)"
-                          step={0.1}
-                          type="number"
-                          value={5}
-                        />
+                        <div
+                          className="InputWithUnits"
+                        >
+                          <input
+                            className="form-control"
+                            disabled={false}
+                            id="walk-speed-input-1"
+                            label="Walk Speed"
+                            max={15}
+                            min={3}
+                            name="walkSpeed"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            placeholder="km/h"
+                            step={0.1}
+                            type="number"
+                            units="km/h"
+                            value={5}
+                          />
+                          <span
+                            className="InputUnits"
+                          >
+                            km/h
+                          </span>
+                        </div>
                       </Input>
                     </div>
                   </Group>
@@ -812,23 +835,25 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               >
                 <NumberInput
                   disabled={false}
-                  label="Bike Speed (km/h)"
+                  label="Bike Speed"
                   max={20}
                   min={5}
                   name="bikeSpeed"
                   onChange={[Function]}
                   step={0.1}
+                  units="km/h"
                   value={15}
                 >
                   <Group
                     disabled={false}
                     id="bike-speed-input-2"
-                    label="Bike Speed (km/h)"
+                    label="Bike Speed"
                     max={20}
                     min={5}
                     name="bikeSpeed"
                     onChange={[Function]}
                     step={0.1}
+                    units="km/h"
                     value={15}
                   >
                     <div
@@ -838,12 +863,12 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         className="control-label"
                         htmlFor="bike-speed-input-2"
                       >
-                        Bike Speed (km/h)
+                        Bike Speed
                       </label>
                       <Input
                         disabled={false}
                         id="bike-speed-input-2"
-                        label="Bike Speed (km/h)"
+                        label="Bike Speed"
                         max={20}
                         min={5}
                         name="bikeSpeed"
@@ -851,23 +876,34 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         onWheel={[Function]}
                         step={0.1}
                         type="number"
+                        units="km/h"
                         value={15}
                       >
-                        <input
-                          className="form-control"
-                          disabled={false}
-                          id="bike-speed-input-2"
-                          label="Bike Speed (km/h)"
-                          max={20}
-                          min={5}
-                          name="bikeSpeed"
-                          onChange={[Function]}
-                          onWheel={[Function]}
-                          placeholder="Bike Speed (km/h)"
-                          step={0.1}
-                          type="number"
-                          value={15}
-                        />
+                        <div
+                          className="InputWithUnits"
+                        >
+                          <input
+                            className="form-control"
+                            disabled={false}
+                            id="bike-speed-input-2"
+                            label="Bike Speed"
+                            max={20}
+                            min={5}
+                            name="bikeSpeed"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            placeholder="km/h"
+                            step={0.1}
+                            type="number"
+                            units="km/h"
+                            value={15}
+                          />
+                          <span
+                            className="InputUnits"
+                          >
+                            km/h
+                          </span>
+                        </div>
                       </Input>
                     </div>
                   </Group>
@@ -879,27 +915,94 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
             >
               <div
                 className="col-xs-4"
-              />
+              >
+                <NumberInput
+                  disabled={false}
+                  label="Simulated schedules"
+                  max={10000}
+                  min={1}
+                  name="monteCarloDraws"
+                  onChange={[Function]}
+                  step={1}
+                  value={200}
+                >
+                  <Group
+                    disabled={false}
+                    id="monte-carlo-draws-input-3"
+                    label="Simulated schedules"
+                    max={10000}
+                    min={1}
+                    name="monteCarloDraws"
+                    onChange={[Function]}
+                    step={1}
+                    value={200}
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <label
+                        className="control-label"
+                        htmlFor="monte-carlo-draws-input-3"
+                      >
+                        Simulated schedules
+                      </label>
+                      <Input
+                        disabled={false}
+                        id="monte-carlo-draws-input-3"
+                        label="Simulated schedules"
+                        max={10000}
+                        min={1}
+                        name="monteCarloDraws"
+                        onChange={[Function]}
+                        onWheel={[Function]}
+                        step={1}
+                        type="number"
+                        value={200}
+                      >
+                        <input
+                          className="form-control"
+                          disabled={false}
+                          id="monte-carlo-draws-input-3"
+                          label="Simulated schedules"
+                          max={10000}
+                          min={1}
+                          name="monteCarloDraws"
+                          onChange={[Function]}
+                          onWheel={[Function]}
+                          placeholder="Simulated schedules"
+                          step={1}
+                          type="number"
+                          value={200}
+                        />
+                      </Input>
+                    </div>
+                  </Group>
+                </NumberInput>
+              </div>
               <div
                 className="col-xs-4"
               >
                 <NumberInput
                   disabled={false}
-                  label="Max Walk Time (min)"
+                  label="Max Walk Time"
+                  max={60}
                   min={1}
                   name="maxWalkTime"
                   onChange={[Function]}
                   step={1}
+                  units="min"
                   value={20}
                 >
                   <Group
                     disabled={false}
-                    id="max-walk-time-input-3"
-                    label="Max Walk Time (min)"
+                    id="max-walk-time-input-4"
+                    label="Max Walk Time"
+                    max={60}
                     min={1}
                     name="maxWalkTime"
                     onChange={[Function]}
                     step={1}
+                    units="min"
                     value={20}
                   >
                     <div
@@ -907,36 +1010,49 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                     >
                       <label
                         className="control-label"
-                        htmlFor="max-walk-time-input-3"
+                        htmlFor="max-walk-time-input-4"
                       >
-                        Max Walk Time (min)
+                        Max Walk Time
                       </label>
                       <Input
                         disabled={false}
-                        id="max-walk-time-input-3"
-                        label="Max Walk Time (min)"
+                        id="max-walk-time-input-4"
+                        label="Max Walk Time"
+                        max={60}
                         min={1}
                         name="maxWalkTime"
                         onChange={[Function]}
                         onWheel={[Function]}
                         step={1}
                         type="number"
+                        units="min"
                         value={20}
                       >
-                        <input
-                          className="form-control"
-                          disabled={false}
-                          id="max-walk-time-input-3"
-                          label="Max Walk Time (min)"
-                          min={1}
-                          name="maxWalkTime"
-                          onChange={[Function]}
-                          onWheel={[Function]}
-                          placeholder="Max Walk Time (min)"
-                          step={1}
-                          type="number"
-                          value={20}
-                        />
+                        <div
+                          className="InputWithUnits"
+                        >
+                          <input
+                            className="form-control"
+                            disabled={false}
+                            id="max-walk-time-input-4"
+                            label="Max Walk Time"
+                            max={60}
+                            min={1}
+                            name="maxWalkTime"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            placeholder="min"
+                            step={1}
+                            type="number"
+                            units="min"
+                            value={20}
+                          />
+                          <span
+                            className="InputUnits"
+                          >
+                            min
+                          </span>
+                        </div>
                       </Input>
                     </div>
                   </Group>
@@ -947,21 +1063,25 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               >
                 <NumberInput
                   disabled={false}
-                  label="Max Bike Time (min)"
+                  label="Max Bike Time"
+                  max={60}
                   min={1}
                   name="maxBikeTime"
                   onChange={[Function]}
                   step={1}
+                  units="min"
                   value={20}
                 >
                   <Group
                     disabled={false}
-                    id="max-bike-time-input-4"
-                    label="Max Bike Time (min)"
+                    id="max-bike-time-input-5"
+                    label="Max Bike Time"
+                    max={60}
                     min={1}
                     name="maxBikeTime"
                     onChange={[Function]}
                     step={1}
+                    units="min"
                     value={20}
                   >
                     <div
@@ -969,36 +1089,49 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                     >
                       <label
                         className="control-label"
-                        htmlFor="max-bike-time-input-4"
+                        htmlFor="max-bike-time-input-5"
                       >
-                        Max Bike Time (min)
+                        Max Bike Time
                       </label>
                       <Input
                         disabled={false}
-                        id="max-bike-time-input-4"
-                        label="Max Bike Time (min)"
+                        id="max-bike-time-input-5"
+                        label="Max Bike Time"
+                        max={60}
                         min={1}
                         name="maxBikeTime"
                         onChange={[Function]}
                         onWheel={[Function]}
                         step={1}
                         type="number"
+                        units="min"
                         value={20}
                       >
-                        <input
-                          className="form-control"
-                          disabled={false}
-                          id="max-bike-time-input-4"
-                          label="Max Bike Time (min)"
-                          min={1}
-                          name="maxBikeTime"
-                          onChange={[Function]}
-                          onWheel={[Function]}
-                          placeholder="Max Bike Time (min)"
-                          step={1}
-                          type="number"
-                          value={20}
-                        />
+                        <div
+                          className="InputWithUnits"
+                        >
+                          <input
+                            className="form-control"
+                            disabled={false}
+                            id="max-bike-time-input-5"
+                            label="Max Bike Time"
+                            max={60}
+                            min={1}
+                            name="maxBikeTime"
+                            onChange={[Function]}
+                            onWheel={[Function]}
+                            placeholder="min"
+                            step={1}
+                            type="number"
+                            units="min"
+                            value={20}
+                          />
+                          <span
+                            className="InputUnits"
+                          >
+                            min
+                          </span>
+                        </div>
                       </Input>
                     </div>
                   </Group>
@@ -1009,7 +1142,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               className="row"
             >
               <div
-                className="col-xs-6"
+                className="col-xs-4"
               >
                 <NumberInput
                   disabled={false}
@@ -1023,7 +1156,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                 >
                   <Group
                     disabled={false}
-                    id="max-transfers-input-5"
+                    id="max-transfers-input-6"
                     label="Maximum transfers"
                     max={7}
                     min={0}
@@ -1037,13 +1170,13 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                     >
                       <label
                         className="control-label"
-                        htmlFor="max-transfers-input-5"
+                        htmlFor="max-transfers-input-6"
                       >
                         Maximum transfers
                       </label>
                       <Input
                         disabled={false}
-                        id="max-transfers-input-5"
+                        id="max-transfers-input-6"
                         label="Maximum transfers"
                         max={7}
                         min={0}
@@ -1057,7 +1190,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         <input
                           className="form-control"
                           disabled={false}
-                          id="max-transfers-input-5"
+                          id="max-transfers-input-6"
                           label="Maximum transfers"
                           max={7}
                           min={0}
@@ -1075,70 +1208,11 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                 </NumberInput>
               </div>
               <div
-                className="col-xs-6"
+                className="col-xs-8"
               >
-                <NumberInput
-                  disabled={false}
-                  label="Simulated schedules"
-                  max={10000}
-                  min={1}
-                  name="monteCarloDraws"
-                  onChange={[Function]}
-                  step={1}
-                  value={200}
-                >
-                  <Group
-                    disabled={false}
-                    id="monte-carlo-draws-input-6"
-                    label="Simulated schedules"
-                    max={10000}
-                    min={1}
-                    name="monteCarloDraws"
-                    onChange={[Function]}
-                    step={1}
-                    value={200}
-                  >
-                    <div
-                      className="form-group"
-                    >
-                      <label
-                        className="control-label"
-                        htmlFor="monte-carlo-draws-input-6"
-                      >
-                        Simulated schedules
-                      </label>
-                      <Input
-                        disabled={false}
-                        id="monte-carlo-draws-input-6"
-                        label="Simulated schedules"
-                        max={10000}
-                        min={1}
-                        name="monteCarloDraws"
-                        onChange={[Function]}
-                        onWheel={[Function]}
-                        step={1}
-                        type="number"
-                        value={200}
-                      >
-                        <input
-                          className="form-control"
-                          disabled={false}
-                          id="monte-carlo-draws-input-6"
-                          label="Simulated schedules"
-                          max={10000}
-                          min={1}
-                          name="monteCarloDraws"
-                          onChange={[Function]}
-                          onWheel={[Function]}
-                          placeholder="Simulated schedules"
-                          step={1}
-                          type="number"
-                          value={200}
-                        />
-                      </Input>
-                    </div>
-                  </Group>
-                </NumberInput>
+                <p>
+                  Lower limits may apply to transfer and egress legs. See the user manual for more information.
+                </p>
               </div>
             </div>
             <Group
