@@ -28,8 +28,8 @@ async function initialFetch(store, query) {
   if (noProjectId(projectId)) {
     const [region, bundles, projects] = await Promise.all([
       store.dispatch(loadRegion(regionId)),
-      store.dispatch(loadBundles(regionId)),
-      store.dispatch(loadProjects(regionId))
+      store.dispatch(loadBundles({regionId})),
+      store.dispatch(loadProjects({regionId}))
     ])
     return {bundles, projects, region}
   } else {
@@ -37,4 +37,4 @@ async function initialFetch(store, query) {
   }
 }
 
-export default withInitialFetch(Modifications, initialFetch)
+export default withInitialFetch(Modifications, initialFetch, {clientOnly: true})

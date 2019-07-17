@@ -13,12 +13,31 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
     className="row"
   >
     <Group
-      className="col-xs-4 undefined"
+      className="col-xs-4  "
       label="Date"
     >
-      <DatePicker
-        disabled={false}
+      <DateTime
+        className=""
+        closeOnSelect={true}
+        closeOnTab={true}
+        dateFormat="YYYY-MM-DD"
+        defaultValue=""
+        input={true}
+        inputProps={
+          Object {
+            "disabled": false,
+          }
+        }
+        onBlur={[Function]}
         onChange={[Function]}
+        onFocus={[Function]}
+        onNavigateBack={[Function]}
+        onNavigateForward={[Function]}
+        onViewModeChange={[Function]}
+        strictParsing={true}
+        timeConstraints={Object {}}
+        timeFormat={false}
+        utc={true}
         value="2016-01-16"
       />
     </Group>
