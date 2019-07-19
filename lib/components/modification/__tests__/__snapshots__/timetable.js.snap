@@ -892,6 +892,17 @@ exports[`Component > Timetable renders correctly 2`] = `
               segmentSpeeds={Array []}
               update={[MockFunction]}
             >
+              <h4>
+                Total travel time 
+                <strong>
+                  00:00:00
+                </strong>
+              </h4>
+              <p>
+                <em>
+                  Dwell time at each stop + moving time along each segment
+                </em>
+              </p>
               <MinutesSeconds
                 label="Default dwell time"
                 onChange={[Function]}
@@ -1063,22 +1074,22 @@ exports[`Component > Timetable renders correctly 2`] = `
                 </Group>
               </NumberInput>
               <MinutesSeconds
-                label="Total travel time (added segments)"
+                label="Total moving time"
                 onChange={[Function]}
                 seconds={0}
               >
                 <Group
                   className=""
-                  label="Total travel time (added segments)"
+                  label="Total moving time"
                 >
                   <div
                     className="form-group"
                   >
                     <label
                       className="control-label"
-                      htmlFor="total-travel-time-added-segments-input-19"
+                      htmlFor="total-moving-time-input-19"
                     >
-                      Total travel time (added segments)
+                      Total moving time
                     </label>
                     <Input
                       onChange={[Function]}
