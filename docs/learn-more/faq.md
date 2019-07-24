@@ -24,14 +24,14 @@ If it is faster to reach a destination directly, without using transit, the rout
 
 ### Why are travel times longer than expected?
 
-Because Conveyal Analysis includes waiting time, which can vary greatly depending on when one departs, total travel times may be longer than expected. Varying the travel time percentile can help you determine what role service frequency plays in waiting times (and therefore total travel times) for your network. The fifth percentile usually reflects trips with close-to-minimal waiting times (e.g. when passengers consult schedules and adjust the start of their trips to minimize overall travel times).
+Because Conveyal Analysis includes waiting time, which can vary greatly depending on when one departs, total travel times may be longer than you might initially expect. Varying the travel time percentile can help you determine what role service frequency plays in waiting times (and therefore total travel times) for your network. The fifth percentile usually reflects trips with close-to-minimal waiting times (e.g. when passengers consult schedules and adjust the start of their trips to minimize overall travel times).
 
-Another potential explanation for unexpectedly long travel times is that origins, destinations, and stops are all linked to the nearest edge in a network's street layer. This linking behavior can lead to unexpected results, especially for stops, origins, or destinations that are far from streets. Consider these examples:
+Another potential explanation for unexpectedly long travel times is that origins, destinations, and stops are all linked to the nearest edge in a network's street layer. This linking behavior can lead to unexpected results, especially for stops, origins, or destinations in areas with sparse street or pedestrian networks. Consider these examples:
 
-- You place the origin directly on a transit stop with fast, frequent service, but travel times using the service show an unexpected delay. Because total travel time includes walking from the origin to the nearest street, then from the street layer (back) to the transit stop, there may be an unexpectedly long access time if the stop is far from a nearby street.
+- You place the origin directly on a transit stop with fast, frequent service, but travel times using the service show an unexpected delay. Because total travel time includes walking from the origin to the nearest street or pedestrian path in the baseline street layer, then from the street layer (back) to the transit stop, there may be an unexpectedly long access time if the stop is far from a nearby street.
 - You notice a very long transfer time between two nearby stops. If these stops are linked to different street edges, and the street edges are only connected via a long, circuitous path, the walking time for the transfer will be unexpectedly long.
 
-To avoid such issues, we suggest placing stops close to streets, and snapping to stops that exist in the baseline transit layer when feasible.
+To avoid such issues, we suggest placing stops close to streets or pedestrian paths, and snapping to stops that exist in the baseline transit layer when feasible.
 
 Uploaded OpenStreetMap data with poorly connected subnetworks may also lead to issues. If you notice strangely non-contiguous isochrones, they may reflect destinations being linked to such a subnetwork (e.g. a network of walking paths in a park that only connects to the rest of the street network at a few locations).
 
