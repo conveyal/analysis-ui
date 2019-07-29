@@ -1,8 +1,8 @@
 import React from 'react'
 
-import change1 from './2019-07-29.mdx'
+import C2019 from './2019.mdx'
 
-const changes = [change1]
+const changes = [C2019]
 
 export default function Changelog() {
   return (
@@ -20,7 +20,7 @@ export default function Changelog() {
       {changes.map((Changes, i) => (
         <div className='row' key={i}>
           <div className='col-xs-12'>
-            <Changes />
+            <C2019 />
           </div>
         </div>
       ))}
