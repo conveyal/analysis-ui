@@ -1,3 +1,7 @@
+const withMDX = require('@zeit/next-mdx')({
+  extension: /\.mdx?$/
+})
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
@@ -14,20 +18,23 @@ const env = {
 // Log env for sanity
 console.log('next.config.js -- process.env', env)
 
-module.exports = withBundleAnalyzer({
-  target: 'serverless',
-  env,
-  webpack: config => {
-    // Allow `import 'lib/message'`
-    config.resolve.alias['lib'] = path.join(__dirname, 'lib')
+module.exports = withMDX(
+  withBundleAnalyzer({
+    target: 'serverless',
+    pageExtensions: ['js', 'jsx', 'mdx'],
+    env,
+    webpack: config => {
+      // Allow `import 'lib/message'`
+      config.resolve.alias['lib'] = path.join(__dirname, 'lib')
 
-    // ESLint on build
-    config.module.rules.push({
-      test: /\.js$/,
-      loader: 'eslint-loader',
-      exclude: /node_modules/
-    })
+      // ESLint on build
+      config.module.rules.push({
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      })
 
-    return config
-  }
-})
+      return config
+    }
+  })
+)
