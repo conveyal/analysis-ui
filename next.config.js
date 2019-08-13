@@ -7,6 +7,7 @@ const env = {
   API_URL: process.env.API_URL,
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+  LOGROCKET: process.env.LOGROCKET,
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
 }
 
