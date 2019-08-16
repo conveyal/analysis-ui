@@ -1,13 +1,14 @@
-import App, {Container} from 'next/app'
+import App from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
+import withRedux from 'next-redux-wrapper'
 import React from 'react'
 import {Provider} from 'react-redux'
 
 import {setQueryString} from 'lib/actions'
 import State from 'lib/components/state'
 import {timer} from 'lib/utils/metric'
-import getReduxStore from 'lib/store'
+import createStore from 'lib/store'
 
 const Dock = dynamic(() => import('lib/components/dock'))
 const ErrorModal = dynamic(() => import('lib/components/error-modal'))
@@ -22,64 +23,49 @@ const pathUsesMap = path => path.startsWith('/region')
 /**
  * Provides the redux store and provider for all pages.
  */
-export default class extends App {
-  static async getInitialProps({Component, ctx}) {
-    const timeApp = timer('App.getInitialProps')
-    // Provide the store to `getInitialProps` of pages
-    ctx.reduxStore = getReduxStore()
+export default withRedux(createStore)(
+  class extends App {
+    static async getInitialProps({Component, ctx}) {
+      const timeApp = timer('App.getInitialProps')
 
-    // Set the query string in the store
-    // TODO ideally stop duplicating this data in the store
-    ctx.reduxStore.dispatch(setQueryString(ctx.query))
+      // Set the query string in the store
+      // TODO ideally stop duplicating this data in the store
+      ctx.store.dispatch(setQueryString(ctx.query))
 
-    // Run `getInitialProps`
-    let initialProps = {}
-    if (Component.getInitialProps) {
       try {
-        initialProps = await Component.getInitialProps(ctx)
+        let initialProps = {}
+        if (Component.getInitialProps) {
+          initialProps = await Component.getInitialProps(ctx)
+        }
+
+        // Always pass the path information
+        const pageProps = {
+          ...initialProps,
+          ...(ctx.query || {}),
+          query: ctx.query
+        }
+
+        return {pageProps}
       } catch (e) {
-        timeApp.end()
+        console.error('Error getting initial props', e)
         return {error: e}
+      } finally {
+        timeApp.end()
       }
     }
 
-    // Always pass the path information
-    const pageProps = {
-      ...initialProps,
-      ...(ctx.query || {}),
-      query: ctx.query
+    componentDidCatch(err) {
+      console.error(err)
     }
 
-    // Get the state
-    const initialReduxState = ctx.reduxStore.getState()
-
-    timeApp.end()
-    return {pageProps, initialReduxState}
-  }
-
-  constructor(props) {
-    super(props)
-    this.timer = timer('App.componentDidMount')
-    this.reduxStore = getReduxStore(props.initialReduxState)
-  }
-
-  componentDidCatch(err) {
-    console.error(err)
-  }
-
-  componentDidMount() {
-    this.timer.end()
-  }
-
-  render() {
-    const p = this.props
-    return (
-      <>
-        <Head>
-          <title key='title'>Conveyal Analysis</title>
-        </Head>
-        <Container>
-          <Provider store={this.reduxStore}>
+    render() {
+      const p = this.props
+      return (
+        <>
+          <Provider store={p.store}>
+            <Head>
+              <title key='title'>Conveyal Analysis</title>
+            </Head>
             <ErrorModal />
 
             {pathUsesMap(p.router.pathname) ? (
@@ -91,11 +77,11 @@ export default class extends App {
               <p.Component {...p.pageProps} />
             )}
           </Provider>
-        </Container>
-      </>
-    )
+        </>
+      )
+    }
   }
-}
+)
 
 const noopFragment = () => <React.Fragment />
 
