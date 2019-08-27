@@ -243,20 +243,23 @@ input[type='range'].form-control {
   padding-bottom: 200px;
 }
 
-.ApplicationDockTitle,
-.ModificationDockTitle {
+.ApplicationDockTitle {
   font-size: 14px;
-  padding: 12px 9px 12px 12px;
-  width: 100%;
+  padding: 12px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   z-index: 100;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
-.ApplicationDockTitle > .btn {
-  padding: 4px 8px;
-  margin-top: -3px;
+.ApplicationDockTitle .btn {
   margin-left: 8px;
+}
+
+.ApplicationDockTitle .Tip {
+  margin-left: 0.5rem;
 }
 
 .InnerDock > .block > legend,
