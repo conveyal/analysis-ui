@@ -2,6 +2,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 const path = require('path')
+const webpack = require('webpack')
 
 const env = {
   API_URL: process.env.API_URL,
@@ -27,6 +28,9 @@ module.exports = withBundleAnalyzer({
       loader: 'eslint-loader',
       exclude: /node_modules/
     })
+
+    // Ignore moment locales
+    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
 
     return config
   }
