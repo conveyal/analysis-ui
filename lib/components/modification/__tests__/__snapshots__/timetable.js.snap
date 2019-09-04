@@ -832,6 +832,76 @@ exports[`Component > Timetable renders correctly 2`] = `
                 timetableHeadway={900}
                 update={[MockFunction]}
               >
+                <h4
+                  style={
+                    Object {
+                      "display": "flex",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <span>
+                    Phasing 
+                  </span>
+                  <a
+                    href="http://docs.analysis.conveyal.com/en/latest/edit-scenario/phasing.html"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title="Learn more about phasing"
+                  >
+                    <Icon
+                      icon={
+                        Object {
+                          "icon": Array [],
+                          "iconName": "info-circle",
+                          "prefix": "fas",
+                        }
+                      }
+                    >
+                      <FontAwesomeIcon
+                        border={false}
+                        className=""
+                        fixedWidth={true}
+                        flip={null}
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "info-circle",
+                            "prefix": "fas",
+                          }
+                        }
+                        inverse={false}
+                        listItem={false}
+                        mask={null}
+                        pull={null}
+                        pulse={false}
+                        rotation={null}
+                        size={null}
+                        spin={false}
+                        symbol={false}
+                        title=""
+                        transform={null}
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-info-circle fa-w-NaN fa-fw "
+                          data-icon="info-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 undefined undefined"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </FontAwesomeIcon>
+                    </Icon>
+                  </a>
+                </h4>
                 <Group
                   label="Phase at stop"
                 >
@@ -846,7 +916,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                     </label>
                     <S
                       getOptionLabel={[Function]}
-                      getOptionValue={[Function]}
+                      isClearable={true}
                       isDisabled={false}
                       name="Phase at stop"
                       onChange={[Function]}
@@ -855,7 +925,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                     >
                       <ReactSelect
                         getOptionLabel={[Function]}
-                        getOptionValue={[Function]}
+                        isClearable={true}
                         isDisabled={false}
                         name="Phase at stop"
                         onChange={[Function]}
