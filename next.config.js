@@ -6,6 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 const path = require('path')
+const webpack = require('webpack')
 
 const env = {
   API_URL: process.env.API_URL,
@@ -14,9 +15,6 @@ const env = {
   LOGROCKET: process.env.LOGROCKET,
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
 }
-
-// Log env for sanity
-console.log('next.config.js -- process.env', env)
 
 module.exports = withMDX(
   withBundleAnalyzer({
@@ -33,6 +31,9 @@ module.exports = withMDX(
         loader: 'eslint-loader',
         exclude: /node_modules/
       })
+
+      // Ignore moment locales
+      config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
 
       return config
     }
