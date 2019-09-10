@@ -1,26 +1,34 @@
 import React from 'react'
 
-import C2019 from './2019.mdx'
+import C201909 from './201909.mdx'
 
-const changes = [C2019]
+const changes = [['September 13th, 2019', C201909]]
 
 export default function Changelog() {
   return (
     <div className='container'>
       <div className='row'>
-        <div className='col-xs-12'>
+        <div className='col-sm-8 col-xs-12'>
           <h1>
-            Changelog{' '}
+            Changelog{'    '}
             <small>
-              <a href='/'>Back to app</a>
+              <a href='/'>Back to Analysis</a>
             </small>
           </h1>
+          <hr />
         </div>
       </div>
-      {changes.map((Changes, i) => (
+      {changes.map(([title, C], i) => (
         <div className='row' key={i}>
-          <div className='col-xs-12'>
-            <C2019 />
+          <div className='col-sm-8 col-xs-12'>
+            <div className='panel panel-info'>
+              <div className='panel-heading'>
+                <h5 className='panel-title'>{title}</h5>
+              </div>
+              <div className='panel-body'>
+                <C />
+              </div>
+            </div>
           </div>
         </div>
       ))}
