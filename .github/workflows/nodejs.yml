@@ -3,7 +3,18 @@ name: Node CI
 on: [push, pull_request]
 
 jobs:
-  test:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - run: |
+        yarn install
+        yarn run build
+        
+  lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -11,15 +22,20 @@ jobs:
       with:
         node-version: 10.x
         
-    - name: ESLint and annotate pull requests
-      uses: gimenete/eslint-action@1.0
-      if: github.event == 'pull_request'
+    - run: |
+        yarn install
+        yarn run lint
+        
+  jest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
 
-    - name: yarn install, build, and test
+    - env:
+        CI: true
       run: |
         yarn install
-        yarn run lint --quiet
-        yarn run build
         yarn run jest
-      env:
-        CI: true
