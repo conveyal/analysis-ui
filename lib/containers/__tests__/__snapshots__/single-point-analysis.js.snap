@@ -2470,66 +2470,54 @@ exports[`constainers/single-point-analysis 1`] = `
             <div
               className="col-xs-12"
             >
-              <Connect(SelectR5Version)
+              <SelectR5Version
                 disabled={false}
               >
-                <SelectR5Version
-                  currentVersion="v4.6.1"
-                  disabled={false}
-                  setCurrentR5Version={[Function]}
-                  usedVersions={Array []}
+                <Group
+                  label="Routing engine"
                 >
-                  <Group
-                    label="Routing engine"
+                  <div
+                    className="form-group"
                   >
-                    <div
-                      className="form-group"
+                    <label
+                      className="control-label"
+                      htmlFor="routing-engine-input-16"
                     >
-                      <label
-                        className="control-label"
-                        htmlFor="routing-engine-input-14"
-                      >
-                        Routing engine
-                      </label>
+                      Routing engine
+                    </label>
+                    <Creatable
+                      formatCreateLabel={[Function]}
+                      isDisabled={false}
+                      isValidNewOption={[Function]}
+                      onChange={[Function]}
+                      options={
+                        Array [
+                          Object {
+                            "label": "v4.7.0 (recommended)",
+                            "value": "v4.7.0",
+                          },
+                        ]
+                      }
+                      styles={
+                        Object {
+                          "control": [Function],
+                          "option": [Function],
+                        }
+                      }
+                      value={
+                        Object {
+                          "label": "v4.7.0 (recommended)",
+                          "value": "v4.7.0",
+                        }
+                      }
+                    >
                       <div
-                        className="alert alert-warning"
-                      >
-                        WARNING! You have completed regional analyses with a different routing engine. Using different routing engines may change results.
-                      </div>
-                      <Creatable
-                        formatCreateLabel={[Function]}
-                        isDisabled={false}
-                        isValidNewOption={[Function]}
-                        onChange={[Function]}
-                        options={
-                          Array [
-                            Object {
-                              "label": "v4.6.1 (recommended)",
-                              "value": "v4.6.1",
-                            },
-                          ]
-                        }
-                        styles={
-                          Object {
-                            "control": [Function],
-                            "option": [Function],
-                          }
-                        }
-                        value={
-                          Object {
-                            "label": "v4.6.1 (recommended)",
-                            "value": "v4.6.1",
-                          }
-                        }
-                      >
-                        <div
-                          className="ReactSelect/Creatable"
-                        />
-                      </Creatable>
-                    </div>
-                  </Group>
-                </SelectR5Version>
-              </Connect(SelectR5Version)>
+                        className="ReactSelect/Creatable"
+                      />
+                    </Creatable>
+                  </div>
+                </Group>
+              </SelectR5Version>
             </div>
           </div>
         </ProfileRequestEditor>
