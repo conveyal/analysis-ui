@@ -4,17 +4,20 @@ on: [push, pull_request]
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
         node-version: 10.x
-    - run: |
+    - name: Next.js Build
+      run: |
         yarn install
         yarn run build
         
-  lint:
+  linter:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -22,11 +25,13 @@ jobs:
       with:
         node-version: 10.x
         
-    - run: |
+    - name: ESLint
+      run: |
         yarn install
         yarn run lint
         
-  jest:
+  unit-tests:
+    name: Unit Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -34,7 +39,8 @@ jobs:
       with:
         node-version: 10.x
 
-    - env:
+    - name: Jest
+      env:
         CI: true
       run: |
         yarn install
