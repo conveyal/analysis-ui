@@ -1,7 +1,12 @@
+const withMDX = require('@zeit/next-mdx')({
+  extension: /\.mdx?$/
+})
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 const path = require('path')
+const webpack = require('webpack')
 
 const env = {
   API_URL: process.env.API_URL,
@@ -11,23 +16,26 @@ const env = {
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN
 }
 
-// Log env for sanity
-console.log('next.config.js -- process.env', env)
+module.exports = withMDX(
+  withBundleAnalyzer({
+    target: 'serverless',
+    pageExtensions: ['js', 'jsx', 'mdx'],
+    env,
+    webpack: config => {
+      // Allow `import 'lib/message'`
+      config.resolve.alias['lib'] = path.join(__dirname, 'lib')
 
-module.exports = withBundleAnalyzer({
-  target: 'serverless',
-  env,
-  webpack: config => {
-    // Allow `import 'lib/message'`
-    config.resolve.alias['lib'] = path.join(__dirname, 'lib')
+      // ESLint on build
+      config.module.rules.push({
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      })
 
-    // ESLint on build
-    config.module.rules.push({
-      test: /\.js$/,
-      loader: 'eslint-loader',
-      exclude: /node_modules/
-    })
+      // Ignore moment locales
+      config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
 
-    return config
-  }
-})
+      return config
+    }
+  })
+)
