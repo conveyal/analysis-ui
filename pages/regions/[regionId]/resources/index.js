@@ -21,7 +21,6 @@ function Resources(p) {
         to='resourceUpload'
         regionId={p.regionId}
         style='success'
-        title='Upload new resource'
       >
         Upload New Resource
       </ButtonLink>
