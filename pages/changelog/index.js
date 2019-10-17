@@ -1,8 +1,12 @@
 import React from 'react'
 
 import C201909 from './201909.mdx'
+import C201910 from './201910.mdx'
 
-const changes = [['September 13th, 2019', C201909]]
+const changes = [
+  ['September 13th, 2019', C201909],
+  ['October 12th, 2019', C201910]
+]
 
 export default function Changelog() {
   return (

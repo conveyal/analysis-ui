@@ -23,7 +23,10 @@ on the timetable "Weekday" in the
 three minutes after vehicles on the "Weekday" timetable of the Moreland route depart the stop
 "Memorial Drive SE at Moreland Ave SE."
 
-<img src="../img/phase.png" alt="Phasing a route in Atlanta, Georgia, USA"/>
+<figure>
+  <img src="../img/phase.png" alt="Phasing a route in Atlanta, Georgia, USA"/>
+  <figcaption>Phasing fields</figcaption>
+</figure>
 
 First, you select one of the stops
 on this line to phase at (the "phase at stop"). You then can select a modification (either an Add Trips modification or an
