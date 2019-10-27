@@ -1,35 +1,26 @@
+import {useRouter} from 'next/router'
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
-import {
-  deleteResource,
-  downloadResource,
-  loadAllResources
-} from 'lib/actions/resources'
-import {Button, ButtonLink} from 'lib/components/buttons'
+import {loadAllResources} from 'lib/actions/resources'
+import {ButtonLink} from 'lib/components/buttons'
 import InnerDock from 'lib/components/inner-dock'
 import Select from 'lib/components/select'
-import downloadData from 'lib/utils/download-data'
+import {routeTo} from 'lib/router'
 import withInitialFetch from 'lib/with-initial-fetch'
 
+const selectResources = s => s.resources
+
 function Resources(p) {
-  const [activeResource, setActiveResource] = React.useState()
-  const dispatch = useDispatch()
+  const resources = useSelector(selectResources)
+  const router = useRouter()
 
-  function _download() {
-    dispatch(downloadResource(activeResource)).then(value => {
-      if (activeResource.offline) {
-        downloadData(value, activeResource.filename, activeResource.type)
-      } else {
-        window.open(value)
-      }
+  function _goToResource(resource) {
+    const {as, href} = routeTo('resourceEdit', {
+      regionId: p.regionId,
+      resourceId: resource._id
     })
-  }
-
-  function _delete() {
-    if (window.confirm('Are you sure you want to delete this resource?')) {
-      dispatch(deleteResource(activeResource))
-    }
+    router.push(href, as)
   }
 
   return (
@@ -45,23 +36,11 @@ function Resources(p) {
       </ButtonLink>
       <br />
       <Select
-        getOptionLabel={r => `${r.name}: ${r.contentType}`}
+        getOptionLabel={r => `${r.name} [${r.type}]`}
         getOptionValue={r => r._id}
-        onChange={resource => setActiveResource(resource)}
-        options={p.resources}
+        onChange={_goToResource}
+        options={resources}
       />
-      <br />
-      {activeResource && (
-        <>
-          <h6>Name: {activeResource.name}</h6>
-          <Button block style='success' onClick={_download}>
-            Download
-          </Button>
-          <Button block style='danger' onClick={_delete}>
-            Delete
-          </Button>
-        </>
-      )}
     </InnerDock>
   )
 }
