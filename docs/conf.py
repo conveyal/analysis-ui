@@ -20,13 +20,13 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Conveyal Analysis'
-copyright = '2018, Conveyal'
+copyright = '2019, Conveyal'
 author = 'Conveyal'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = 'v4.5.0'
+release = 'v4.13.0'
 
 
 # -- General configuration ---------------------------------------------------
