@@ -5,7 +5,6 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
-  Badge,
   Button,
   Heading,
   Stack,
