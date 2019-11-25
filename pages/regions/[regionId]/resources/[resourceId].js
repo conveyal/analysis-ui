@@ -1,4 +1,24 @@
-import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Badge,
+  Button,
+  Heading,
+  Stack,
+  Stat,
+  StatGroup,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  Tag,
+  Tooltip,
+  Text
+} from '@chakra-ui/core'
+import format from 'date-fns/format'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import React from 'react'
@@ -6,13 +26,11 @@ import {useDispatch} from 'react-redux'
 
 import {
   deleteResource,
+  loadAllResources,
   loadResource,
   loadResourceData
 } from 'lib/actions/resources'
-import {Button} from 'lib/components/buttons'
-import Icon from 'lib/components/icon'
-import InnerDock from 'lib/components/inner-dock'
-import Link from 'lib/components/link'
+import SelectResource from 'lib/components/select-resource'
 import downloadData from 'lib/utils/download-data'
 import {routeTo} from 'lib/router'
 import withInitialFetch from 'lib/with-initial-fetch'
@@ -22,7 +40,50 @@ const GeoJSON = dynamic(() => import('lib/components/map/geojson'), {
 })
 
 function dateFromObjectId(objectId) {
-  return new Date(parseInt(objectId.substring(0, 8), 16) * 1000)
+  return format(
+    new Date(parseInt(objectId.substring(0, 8), 16) * 1000),
+    'YYYY-MM-DD HH:mm:ss'
+  )
+}
+
+function ConfirmDelete(p) {
+  const [isOpen, setIsOpen] = React.useState()
+  const cancelRef = React.useRef()
+  const onClose = () => setIsOpen(false)
+  const onDelete = () => {
+    p.onDelete()
+    onClose()
+  }
+
+  return (
+    <>
+      <Button block variantColor='red' onClick={() => setIsOpen(true)}>
+        Delete Resource
+      </Button>
+
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay />
+        <AlertDialogContent>
+          <AlertDialogHeader>Delete Resource</AlertDialogHeader>
+          <AlertDialogBody>
+            Are you sure? You cannot undue this action afterwards
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button variantColor='red' onClick={onDelete} ml={3}>
+              Delete
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  )
 }
 
 function EditResource(p) {
@@ -50,50 +111,55 @@ function EditResource(p) {
   }
 
   function _delete() {
-    if (window.confirm('Are you sure you want to delete this resource?')) {
-      dispatch(deleteResource(resource)).then(() => {
-        const {as, href} = routeTo('resources', {regionId: resource.regionId})
-        router.push(href, as)
-      })
-    }
+    dispatch(deleteResource(resource)).then(() => {
+      const {as, href} = routeTo('resources', {regionId: resource.regionId})
+      router.push(href, as)
+    })
   }
 
   return (
-    <InnerDock className='block'>
-      <legend>
-        <Link to='resources' {...p.query}>
-          <a>
-            <Icon icon={faChevronLeft} />
-          </a>
-        </Link>
-        <span>{resource.name}</span>
-      </legend>
-      <p>
-        <strong>Type:</strong> {resource.type} <br />
-      </p>
-      <p>
-        <strong>Created At:</strong>{' '}
-        {dateFromObjectId(resource._id).toLocaleString()} <br />
-        <strong>Created By:</strong> {resource.createdBy}
-      </p>
-      <Button
-        block
-        disabled={!resourceData}
-        style='success'
-        onClick={_download}
-      >
-        Download
-      </Button>
-      <Button block style='danger' onClick={_delete}>
-        Delete
-      </Button>
-    </InnerDock>
+    <SelectResource {...p}>
+      <Stack mt={6}>
+        <Heading>{resource.name}</Heading>
+        <Text fontSize='xl'>{resource.filename}</Text>
+        <Stack isInline spacing={1} shouldWrapChildren>
+          <Tooltip label='Type' hasArrow>
+            <Tag>{resource.type}</Tag>
+          </Tooltip>
+          <Tooltip label='Content Type' hasArrow>
+            <Tag>{resource.contentType}</Tag>
+          </Tooltip>
+        </Stack>
+        <StatGroup>
+          <Stat>
+            <StatLabel>Created</StatLabel>
+            <StatNumber>{dateFromObjectId(resource._id)}</StatNumber>
+            <StatHelpText>{resource.createdBy}</StatHelpText>
+          </Stat>
+          <Stat>
+            <StatLabel>Updated</StatLabel>
+            <StatNumber>{dateFromObjectId(resource.nonce)}</StatNumber>
+            <StatHelpText>{resource.updatedBy}</StatHelpText>
+          </Stat>
+        </StatGroup>
+        <Button
+          block
+          disabled={!resourceData}
+          onClick={_download}
+          variantColor='green'
+        >
+          Download
+        </Button>
+        <ConfirmDelete onDelete={_delete} />
+      </Stack>
+    </SelectResource>
   )
 }
 
 async function initialFetch(store, query) {
   return {
-    resource: await store.dispatch(loadResource(query.resourceId))
+    resource: await store.dispatch(loadResource(query.resourceId)),
+    resources: await store.dispatch(loadAllResources(query))
   }
 }
 
