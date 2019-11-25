@@ -12,6 +12,7 @@ export default function Results(p) {
     const newGroup = inputRef.current.value
     setAccessGroup(newGroup)
     Cookie.set(key, newGroup)
+    window.location = '/'
   }
 
   return (
@@ -21,7 +22,9 @@ export default function Results(p) {
         Current access group is: <strong>{accessGroup}</strong>
       </p>
       <input ref={inputRef} placeholder='Set access group' />
-      <button onClick={setGroup}>Set group</button>
+      <button onClick={setGroup}>
+        Set group and redirect to the home page
+      </button>
     </div>
   )
 }
