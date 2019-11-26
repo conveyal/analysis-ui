@@ -14,7 +14,6 @@ import {
   StatNumber,
   StatHelpText,
   Tag,
-  Tooltip,
   Text
 } from '@chakra-ui/core'
 import format from 'date-fns/format'
@@ -119,15 +118,11 @@ function EditResource(p) {
   return (
     <SelectResource {...p}>
       <Stack mt={6}>
-        <Heading>{resource.name}</Heading>
+        <Heading size='lg'>{resource.name}</Heading>
         <Text fontSize='xl'>{resource.filename}</Text>
-        <Stack isInline spacing={1} shouldWrapChildren>
-          <Tooltip label='Type' hasArrow>
-            <Tag>{resource.type}</Tag>
-          </Tooltip>
-          <Tooltip label='Content Type' hasArrow>
-            <Tag>{resource.contentType}</Tag>
-          </Tooltip>
+        <Stack isInline spacing={1}>
+          <Tag>{resource.type}</Tag>
+          <Tag>{resource.contentType}</Tag>
         </Stack>
         <StatGroup>
           <Stat>
