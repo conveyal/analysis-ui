@@ -1,4 +1,4 @@
-import App, {Container} from 'next/app'
+import App from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import React from 'react'
@@ -91,20 +91,18 @@ export default class extends App {
         <Head>
           <title key='title'>Conveyal Analysis</title>
         </Head>
-        <Container>
-          <Provider store={this.reduxStore}>
-            <ErrorModal />
+        <Provider store={this.reduxStore}>
+          <ErrorModal />
 
-            {pathUsesMap(p.router.pathname) ? (
-              <>
-                <Sidebar />
-                <ComponentWithMap {...p} />
-              </>
-            ) : (
-              <p.Component {...p.pageProps} />
-            )}
-          </Provider>
-        </Container>
+          {pathUsesMap(p.router.pathname) ? (
+            <>
+              <Sidebar />
+              <ComponentWithMap {...p} />
+            </>
+          ) : (
+            <p.Component {...p.pageProps} />
+          )}
+        </Provider>
       </>
     )
   }
