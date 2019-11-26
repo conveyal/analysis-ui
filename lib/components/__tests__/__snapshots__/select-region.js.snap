@@ -57,8 +57,8 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
           className="css-dvxtzn"
         >
           <Styled(div)
-            mb="6"
-            mt="8"
+            mb={6}
+            mt={8}
           >
             <div
               className="css-1mqn3ua"
@@ -96,7 +96,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
             </div>
           </Styled(div)>
           <Stack
-            spacing="4"
+            spacing={4}
             textAlign="center"
             width="320px"
           >
@@ -116,7 +116,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                 >
                   <Styled(div)
                     key=".0"
-                    mb="4"
+                    mb={4}
                   >
                     <div
                       className="css-1yjvs5a"
@@ -208,7 +208,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                   </Styled(div)>
                   <Styled(div)
                     key=".1"
-                    mb="4"
+                    mb={4}
                   >
                     <div
                       className="css-1yjvs5a"
@@ -219,92 +219,111 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                   <Styled(div)
                     className="list-group"
                     key=".2"
-                    mb="4"
+                    mb={4}
                   >
                     <div
                       className="list-group css-1yjvs5a"
                     >
-                      <Link
+                      <ALink
+                        className="list-group-item"
                         key="1"
                         regionId="1"
                         to="projects"
                       >
                         <Link
-                          as="/regions/1"
-                          href={
-                            Object {
-                              "pathname": "/regions/[regionId]",
-                              "query": Object {},
-                            }
-                          }
-                          passHref={true}
-                          prefetch={true}
+                          regionId="1"
+                          to="projects"
                         >
-                          <a
-                            className="list-group-item"
-                            href="/regions/1"
-                            onClick={[Function]}
-                            onMouseEnter={[Function]}
-                            title="Go to region"
+                          <Link
+                            as="/regions/1"
+                            href={
+                              Object {
+                                "pathname": "/regions/[regionId]",
+                                "query": Object {},
+                              }
+                            }
+                            passHref={true}
+                            prefetch={true}
                           >
-                            <span>
-                              <Icon
-                                icon={
-                                  Object {
-                                    "icon": Array [],
-                                    "iconName": "map",
-                                    "prefix": "fas",
-                                  }
+                            <Styled(div)
+                              _hover={
+                                Object {
+                                  "color": "#185c86",
                                 }
+                              }
+                              as="a"
+                              className="list-group-item"
+                              color="#2389c9"
+                              href="/regions/1"
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                            >
+                              <a
+                                className="list-group-item css-khmg1f"
+                                href="/regions/1"
+                                onClick={[Function]}
+                                onMouseEnter={[Function]}
                               >
-                                <FontAwesomeIcon
-                                  border={false}
-                                  className=""
-                                  fixedWidth={true}
-                                  flip={null}
-                                  icon={
-                                    Object {
-                                      "icon": Array [],
-                                      "iconName": "map",
-                                      "prefix": "fas",
+                                <span>
+                                  <Icon
+                                    icon={
+                                      Object {
+                                        "icon": Array [],
+                                        "iconName": "map",
+                                        "prefix": "fas",
+                                      }
                                     }
-                                  }
-                                  inverse={false}
-                                  listItem={false}
-                                  mask={null}
-                                  pull={null}
-                                  pulse={false}
-                                  rotation={null}
-                                  size={null}
-                                  spin={false}
-                                  symbol={false}
-                                  title=""
-                                  transform={null}
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    className="svg-inline--fa fa-map fa-w-NaN fa-fw "
-                                    data-icon="map"
-                                    data-prefix="fas"
-                                    focusable="false"
-                                    role="img"
-                                    style={Object {}}
-                                    viewBox="0 0 undefined undefined"
-                                    xmlns="http://www.w3.org/2000/svg"
                                   >
-                                    <path
-                                      fill="currentColor"
-                                      style={Object {}}
-                                    />
-                                  </svg>
-                                </FontAwesomeIcon>
-                              </Icon>
-                               
-                              Mock Region
-                            </span>
-                          </a>
+                                    <FontAwesomeIcon
+                                      border={false}
+                                      className=""
+                                      fixedWidth={true}
+                                      flip={null}
+                                      icon={
+                                        Object {
+                                          "icon": Array [],
+                                          "iconName": "map",
+                                          "prefix": "fas",
+                                        }
+                                      }
+                                      inverse={false}
+                                      listItem={false}
+                                      mask={null}
+                                      pull={null}
+                                      pulse={false}
+                                      rotation={null}
+                                      size={null}
+                                      spin={false}
+                                      symbol={false}
+                                      title=""
+                                      transform={null}
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        className="svg-inline--fa fa-map fa-w-NaN fa-fw "
+                                        data-icon="map"
+                                        data-prefix="fas"
+                                        focusable="false"
+                                        role="img"
+                                        style={Object {}}
+                                        viewBox="0 0 undefined undefined"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          fill="currentColor"
+                                          style={Object {}}
+                                        />
+                                      </svg>
+                                    </FontAwesomeIcon>
+                                  </Icon>
+                                   
+                                  Mock Region
+                                </span>
+                              </a>
+                            </Styled(div)>
+                          </Link>
                         </Link>
-                      </Link>
+                      </ALink>
                     </div>
                   </Styled(div)>
                   <Styled(div)
@@ -314,24 +333,22 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                     <div
                       className="css-0"
                     >
-                      <Link
+                      <ALink
                         to="logout"
                       >
                         <Link
-                          as="/logout"
-                          href={
-                            Object {
-                              "pathname": "/logout",
-                              "query": Object {},
-                            }
-                          }
-                          passHref={true}
-                          prefetch={true}
+                          to="logout"
                         >
-                          <A
-                            href="/logout"
-                            onClick={[Function]}
-                            onMouseEnter={[Function]}
+                          <Link
+                            as="/logout"
+                            href={
+                              Object {
+                                "pathname": "/logout",
+                                "query": Object {},
+                              }
+                            }
+                            passHref={true}
+                            prefetch={true}
                           >
                             <Styled(div)
                               _hover={
@@ -406,9 +423,9 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                                 Log out
                               </a>
                             </Styled(div)>
-                          </A>
+                          </Link>
                         </Link>
-                      </Link>
+                      </ALink>
                     </div>
                   </Styled(div)>
                 </div>

@@ -9,6 +9,7 @@ import Icon from 'lib/components/icon'
 import {File, Select, Text} from 'lib/components/input'
 import InnerDock from 'lib/components/inner-dock'
 import Link from 'lib/components/link'
+import P from 'lib/components/p'
 import getInitialAuth from 'lib/get-initial-auth'
 import {routeTo} from 'lib/router'
 
@@ -64,9 +65,9 @@ export default function UploadResource(p) {
         </Link>
         <span>Upload Resource</span>
       </legend>
-      <p>
+      <P>
         Accepts <code>{EXTS.join(',')}</code> files.
-      </p>
+      </P>
       <Alert style='danger' text={error} />
       <Alert text={status} onClear={() => setStatus()} />
       <Text

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {API_URL} from 'lib/constants'
+import P from 'lib/components/p'
 import fetch from 'lib/utils/fetch'
 
 export default function Status() {
@@ -44,15 +45,15 @@ export default function Status() {
           <br />
           <div className='jumbotron'>
             <h1>Conveyal Status</h1>
-            <p>
+            <P>
               <strong>Client:</strong> <span className='text-success'>OK</span>
-            </p>
-            <p>
+            </P>
+            <P>
               <strong>Server: </strong>
               <span className={serverOk ? 'text-success' : 'text-danger'}>
                 {serverStatus}
               </span>
-            </p>
+            </P>
           </div>
         </div>
       </div>
