@@ -1,16 +1,22 @@
-import {Box, Button, Stack} from '@chakra-ui/core'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Box,
+  Button,
+  CloseButton,
+  Stack
+} from '@chakra-ui/core'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import {useDispatch} from 'react-redux'
 
 import {createResource} from 'lib/actions/resources'
 import A from 'lib/components/a'
-import Alert from 'lib/components/alert'
 import Icon from 'lib/components/icon'
 import {File, Select, Text} from 'lib/components/input'
 import InnerDock from 'lib/components/inner-dock'
 import Link from 'lib/components/link'
-import P from 'lib/components/p'
 import getInitialAuth from 'lib/get-initial-auth'
 import {routeTo} from 'lib/router'
 
@@ -39,12 +45,17 @@ export default function UploadResource(p) {
     )
       .then(resource => {
         setError()
+        setFile()
         setName('')
         const {as} = routeTo('resourceEdit', {
           regionId: resource.regionId,
           resourceId: resource._id
         })
-        setStatus(`Finished uploading! <a href='${as}'>View resource.</a>`)
+        setStatus(
+          <span>
+            Finished uploading! <A href={as}>View resource.</A>
+          </span>
+        )
       })
       .catch(e => {
         console.error(e)
@@ -66,12 +77,22 @@ export default function UploadResource(p) {
         </Link>
         <span>Upload Resource</span>
       </legend>
-      <Stack>
+      <Stack spacing={4}>
         <Box>
           Accepts <code>{EXTS.join(',')}</code> files.
         </Box>
-        <Alert style='danger' text={error} />
-        <Alert text={status} onClear={() => setStatus()} />
+        {error && (
+          <Alert status='error'>
+            <AlertIcon />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        {status && (
+          <Alert status='info'>
+            <AlertIcon />
+            <AlertDescription>{status}</AlertDescription>
+          </Alert>
+        )}
         <Box>
           <Text
             label='Name'
@@ -97,7 +118,7 @@ export default function UploadResource(p) {
         </Box>
         <Button
           block
-          disabled={uploading}
+          disabled={uploading || !file || !name}
           onClick={upload}
           variantColor='green'
         >
