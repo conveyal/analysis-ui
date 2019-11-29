@@ -92,6 +92,8 @@ export default class extends App {
           <title key='title'>Conveyal Analysis</title>
         </Head>
         <Provider store={this.reduxStore}>
+          <div className='DEV' />
+
           <ErrorModal />
 
           {pathUsesMap(p.router.pathname) ? (
