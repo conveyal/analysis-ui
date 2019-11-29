@@ -30,6 +30,6 @@ export default function Results(p) {
 }
 
 Results.getInitialProps = ctx => {
-  const userAccessGroup = ctx.reduxStore.getState().user.accessGroup
+  const userAccessGroup = ctx.store.getState().user.accessGroup
   return {accessGroup: nextCookies(ctx)[key] || userAccessGroup}
 }
