@@ -9,6 +9,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 const env = {
+  ADMIN_ACCESS_GROUP: process.env.ADMIN_ACCESS_GROUP,
   API_URL: process.env.API_URL,
   AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
