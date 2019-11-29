@@ -1,3 +1,4 @@
+import {Box, Flex} from '@chakra-ui/core'
 import App from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -6,11 +7,12 @@ import React from 'react'
 import {Provider} from 'react-redux'
 
 import {setQueryString} from 'lib/actions'
+import ChakraTheme from 'lib/chakra'
 import State from 'lib/components/state'
+import useRouteChanging from 'lib/hooks/use-route-changing'
 import {timer} from 'lib/utils/metric'
 import createStore from 'lib/store'
 
-const Dock = dynamic(() => import('lib/components/dock'))
 const ErrorModal = dynamic(() => import('lib/components/error-modal'))
 const Map = dynamic(() => import('lib/components/map'), {ssr: false})
 const Sidebar = dynamic(() => import('lib/components/sidebar'))
@@ -69,7 +71,7 @@ export default withRedux(createStore)(
     render() {
       const p = this.props
       return (
-        <>
+        <ChakraTheme>
           <Provider store={p.store}>
             <Head>
               <title key='title'>Conveyal Analysis</title>
@@ -78,15 +80,12 @@ export default withRedux(createStore)(
             <ErrorModal />
 
             {pathUsesMap(p.router.pathname) ? (
-              <>
-                <Sidebar />
-                <ComponentWithMap {...p} />
-              </>
+              <ComponentWithMap {...p} />
             ) : (
               <p.Component {...p.pageProps} />
             )}
           </Provider>
-        </>
+        </ChakraTheme>
       )
     }
   }
@@ -100,17 +99,28 @@ const noopFragment = () => <React.Fragment />
  * but I have not figured out a better solution yet.
  */
 function ComponentWithMap(p) {
+  const [routeChanging] = useRouteChanging()
+
   return (
     <State initialState={noopFragment}>
       {(mapChildren, setMapChildren) => (
-        <>
-          <div className='Fullscreen'>
-            <Map>{mapChildren}</Map>
-          </div>
-          <Dock>
+        <Flex pointerEvents={routeChanging ? 'none' : 'inherit'}>
+          <Sidebar />
+          <Box
+            borderRight='1px solid #ddd'
+            bg='#fff'
+            opacity={routeChanging ? 0.4 : 1}
+          >
             <p.Component {...p.pageProps} setMapChildren={setMapChildren} />
-          </Dock>
-        </>
+          </Box>
+          <Box
+            flexGrow='1'
+            opacity={routeChanging ? 0.4 : 1}
+            position='relative'
+          >
+            <Map>{mapChildren}</Map>
+          </Box>
+        </Flex>
       )}
     </State>
   )

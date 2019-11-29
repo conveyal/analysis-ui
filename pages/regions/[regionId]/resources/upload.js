@@ -1,10 +1,17 @@
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Box,
+  Button,
+  Stack
+} from '@chakra-ui/core'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import {useDispatch} from 'react-redux'
 
 import {createResource} from 'lib/actions/resources'
-import Alert from 'lib/components/alert'
-import {Button} from 'lib/components/buttons'
+import A from 'lib/components/a'
 import Icon from 'lib/components/icon'
 import {File, Select, Text} from 'lib/components/input'
 import InnerDock from 'lib/components/inner-dock'
@@ -37,12 +44,17 @@ export default function UploadResource(p) {
     )
       .then(resource => {
         setError()
+        setFile()
         setName('')
         const {as} = routeTo('resourceEdit', {
           regionId: resource.regionId,
           resourceId: resource._id
         })
-        setStatus(`Finished uploading! <a href='${as}'>View resource.</a>`)
+        setStatus(
+          <span>
+            Finished uploading! <A href={as}>View resource.</A>
+          </span>
+        )
       })
       .catch(e => {
         console.error(e)
@@ -58,41 +70,60 @@ export default function UploadResource(p) {
     <InnerDock className='block'>
       <legend>
         <Link to='resources' {...p.query}>
-          <a>
+          <A>
             <Icon icon={faChevronLeft} />
-          </a>
+          </A>
         </Link>
         <span>Upload Resource</span>
       </legend>
-      <p>
-        Accepts <code>{EXTS.join(',')}</code> files.
-      </p>
-      <Alert style='danger' text={error} />
-      <Alert text={status} onClear={() => setStatus()} />
-      <Text
-        label='Name'
-        onChange={e => setName(e.currentTarget.value)}
-        value={name}
-      />
-      <File
-        accept={EXTS.join(',')}
-        label='Select file'
-        onChange={e => setFile(e.target.files[0])}
-      />
-      <Select
-        label='Type'
-        onChange={e => setType(e.currentTarget.value)}
-        value={type}
-      >
-        {TYPES.map(t => (
-          <option key={t} value={t}>
-            {t}
-          </option>
-        ))}
-      </Select>
-      <Button block disabled={uploading} onClick={upload} style='success'>
-        Upload Resource
-      </Button>
+      <Stack spacing={4}>
+        <Box>
+          Accepts <code>{EXTS.join(',')}</code> files.
+        </Box>
+        {error && (
+          <Alert status='error'>
+            <AlertIcon />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        {status && (
+          <Alert status='info'>
+            <AlertIcon />
+            <AlertDescription>{status}</AlertDescription>
+          </Alert>
+        )}
+        <Box>
+          <Text
+            label='Name'
+            onChange={e => setName(e.currentTarget.value)}
+            value={name}
+          />
+          <File
+            accept={EXTS.join(',')}
+            label='Select file'
+            onChange={e => setFile(e.target.files[0])}
+          />
+          <Select
+            label='Type'
+            onChange={e => setType(e.currentTarget.value)}
+            value={type}
+          >
+            {TYPES.map(t => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </Select>
+        </Box>
+        <Button
+          block
+          disabled={uploading || !file || !name}
+          onClick={upload}
+          variantColor='green'
+        >
+          Upload Resource
+        </Button>
+      </Stack>
     </InnerDock>
   )
 }

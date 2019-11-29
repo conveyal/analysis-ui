@@ -233,21 +233,42 @@ exports[`Component > EditRegion 1`] = `
               </div>
             </Group>
           </Text>
-          <h5>
-            Analysis bounds
-          </h5>
           <div
             className="alert alert-warning"
           >
+            <strong>
+              Analysis bounds
+              : 
+            </strong>
             Bounds are snapped to points on our regular grid.
-            <a
+            <ForwardRef
               href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
               rel="noopener noreferrer"
               target="_blank"
             >
-               
-              Learn more about spatial resolution here.
-            </a>
+              <Styled(div)
+                _hover={
+                  Object {
+                    "color": "#185c86",
+                  }
+                }
+                as="a"
+                color="#2389c9"
+                href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <a
+                  className="css-khmg1f"
+                  href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                   
+                  Learn more about spatial resolution here.
+                </a>
+              </Styled(div)>
+            </ForwardRef>
           </div>
           <Text
             key="bound-North"
@@ -429,11 +450,12 @@ exports[`Component > EditRegion 1`] = `
               </div>
             </Group>
           </Text>
-          <p>
+          <div>
             <em>
               OSM updates have been temporarily disabled and will be moved to the bundle management page.
             </em>
-          </p>
+          </div>
+          <br />
           <Button
             block={true}
             disabled={true}

@@ -203,15 +203,43 @@ exports[`create-region.render 1`] = `
               </div>
             </Group>
           </Text>
-          <h5>
-            Analysis bounds
-          </h5>
+          <H5>
+            <ForwardRef
+              as="h5"
+              fontSize="14px"
+              fontWeight="500"
+              my="10px"
+            >
+              <Styled(div)
+                as="h5"
+                fontSize="14px"
+                fontWeight="500"
+                lineHeight="shorter"
+                my="10px"
+              >
+                <h5
+                  className="css-18r09h"
+                >
+                  Analysis bounds
+                </h5>
+              </Styled(div)>
+            </ForwardRef>
+          </H5>
           <div
             className="alert alert-warning"
           >
-            <p>
-              Bounds are snapped to points on our regular grid.
-            </p>
+            <P>
+              <Styled(div)
+                as="p"
+                mb="10px"
+              >
+                <p
+                  className="css-1r2f04i"
+                >
+                  Bounds are snapped to points on our regular grid.
+                </p>
+              </Styled(div)>
+            </P>
             <a
               href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
               rel="noopener noreferrer"

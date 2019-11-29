@@ -117,9 +117,9 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       <div
         className="col-xs-8"
       >
-        <p>
+        <P>
           Lower limits may apply to transfer and egress legs. See the user manual for more information.
-        </p>
+        </P>
       </div>
     </div>
     <Group
@@ -190,9 +190,9 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
         <Group
           label="Customize Profile Request"
         >
-          <p>
+          <P>
             Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
-          </p>
+          </P>
           <textarea
             className="form-control monospace"
             defaultValue="{
@@ -1213,9 +1213,18 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               <div
                 className="col-xs-8"
               >
-                <p>
-                  Lower limits may apply to transfer and egress legs. See the user manual for more information.
-                </p>
+                <P>
+                  <Styled(div)
+                    as="p"
+                    mb="10px"
+                  >
+                    <p
+                      className="css-1r2f04i"
+                    >
+                      Lower limits may apply to transfer and egress legs. See the user manual for more information.
+                    </p>
+                  </Styled(div)>
+                </P>
               </div>
             </div>
             <Group
@@ -1393,9 +1402,18 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                     >
                       Customize Profile Request
                     </label>
-                    <p>
-                      Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
-                    </p>
+                    <P>
+                      <Styled(div)
+                        as="p"
+                        mb="10px"
+                      >
+                        <p
+                          className="css-1r2f04i"
+                        >
+                          Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
+                        </p>
+                      </Styled(div)>
+                    </P>
                     <textarea
                       className="form-control monospace"
                       defaultValue="{
