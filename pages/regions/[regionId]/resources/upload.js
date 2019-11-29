@@ -4,7 +4,6 @@ import {
   AlertIcon,
   Box,
   Button,
-  CloseButton,
   Stack
 } from '@chakra-ui/core'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
