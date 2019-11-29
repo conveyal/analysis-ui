@@ -3,6 +3,8 @@ import Cookie from 'js-cookie'
 import nextCookies from 'next-cookies'
 import React from 'react'
 
+import getInitialAuth from 'lib/get-initial-auth'
+
 const key = 'adminTempAccessGroup'
 
 export default function Results(p) {
@@ -32,6 +34,7 @@ export default function Results(p) {
 }
 
 Results.getInitialProps = ctx => {
+  getInitialAuth(ctx)
   const userAccessGroup = ctx.store.getState().user.accessGroup
   return {accessGroup: nextCookies(ctx)[key] || userAccessGroup}
 }
