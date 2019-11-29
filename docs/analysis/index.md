@@ -1,21 +1,26 @@
 # Overview of analysis mode
 
-The main analysis page is for generating isochrones (travel time contours) from selected origins.  To enter analysis mode, click this icon on the sidebar: <br><span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span>
+The main analysis page is for generating isochrones (travel time contours) from selected origins. To enter analysis mode, click this icon on the sidebar: <br><span class="ui-icon"><i class="fa fa-area-chart"></i>Analyze</span>
 
-To start an analysis, ensure a project and scenario are selected.  On the rest of the page, isochrone and accessibility results corresponding to this scenario will be shown in blue.  You may also select a comparison project and scenario, which will be shown in red.  To retrieve results for the origin marker shown on the map, move the marker or click:
+To start an analysis, ensure a project and scenario are selected. On the rest of the page, isochrone and accessibility results corresponding to this scenario will be shown in blue. You may also select a comparison project and scenario, which will be shown in red. To retrieve results for the origin marker shown on the map, move the marker or click:
 <br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
-Once a compute cluster has initialized (which may take several minutes the first time you use a GTFS bundle), several components will be visible in the analysis mode.
+Once a compute cluster has initialized (which may take [several minutes](../learn-more/faq.html#when-starting-an-analysis-why-does-the-initializing-cluster-message-persist-for-so-long) the first time you use a GTFS bundle), several components will be visible in the analysis mode.
 
 ## Isochrone map
 
-After the server computes and returns results, the map will show a blue isochrone, which represents the area reachable within a given travel time (the default is 60 minutes, and it is controlled by the slider in the left panel) from the origin marker. To change the origin of the analysis, simply drag the marker to a new location.
+After the server computes and returns results, the map will show a blue isochrone, which represents the area reachable from the origin marker within a given travel time cutoff (the default is 60 minutes, and it is controlled by the slider in the left panel). To change the origin of the analysis, drag the marker to a new location.
+
+If multiple scenarios are being compared, the isochrone for the first scenario remains blue, while the isochrone for the second is red. Thus, areas reachable under both scenarios are purple, areas reachable only under the first scenario are blue, and areas reachable only under the second scenario are red.
+
+<figure>
+  <img src="../img/seattle-isos.gif" />
+  <figcaption>Testing different scenarios, travel time cutoffs, and origins</figcaption>
+</figure>
 
 The modifications displayed on the map can be controlled in [editing mode](../edit-scenario/index.html#toggling-display-of-modifications-on-the-map).
 
 If an [opportunity dataset](../prepare-inputs/upload-opportunity-data.html) is selected in the drop-down menu in the settings panel, the map will show gray dots representing the density of opportunities. For instance, if your selected opportunity data are jobs, there will be tightly packed dots in areas of dense employment, and less tightly packed dots elsewhere. One dot represents one or multiple opportunities, and the scale may differ between zoom levels and opportunity datasets. For example, if at a given zoom level, one dot represents 4 jobs, at that same zoom level one dot might represent only two residents.
-
-If multiple scenarios are being compared, the isochrone for the first scenario remains blue, while the isochrone for the second is red. Thus, areas reachable under both scenarios are purple, areas reachable only under the first scenario are blue, and areas reachable only under the second scenario are red.
 
 Clicking on the map will display the distribution of travel times from the origin to that location. For example, in the image below, the travel time varies between about 30 and 50 minutes depending on when one leaves.
 
@@ -25,6 +30,7 @@ Clicking on the map will display the distribution of travel times from the origi
 </figure>
 
 ## Analysis panel
+
 The left panel has controls for the analysis and displays the accessibility afforded by the scenario.
 
 At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, or access to schools, or some other variable of interest represented in an Opportunity Dataset you uploaded.
@@ -32,6 +38,7 @@ At the top of the panel, available scenarios and opportunity data layers are lis
 Additional scenarios can be selected for comparison. A "Baseline" scenario with no modifications (i.e. the unmodified GTFS bundle you uploaded) is automatically available for every project.
 
 ### Charts of accessibility results
+
 Directly below the comparison controls are readouts of the accessibility (number of opportunities reachable) from the chosen origin under the scenario and (if applicable) any comparison scenario.
 
 <figure>
@@ -39,18 +46,13 @@ Directly below the comparison controls are readouts of the accessibility (number
   <figcaption>A stacked percentile plot</figcaption>
 </figure>
 
-The main display of accessibility results is the stacked percentile plot. The right portion of the plot shows the distribution of cumulative accessibility, i.e. the number of opportunities reachable given varying travel time cutoffs. The graph is not a single line, because there is variation in transit travel time depending on when a user of the transport system leaves their origin. Rather, the graph shows the number of opportunities given 95th, 75th, 50th, 25th, and 5th percentile travel time. The bottom of the shaded area is the number of opportunities which are almost always reachable, while the top is the number of opportunities that are reachable only in the best cases (e.g. when someone leaves their house at the perfect time and has no waiting time). The darkened line is the number of opportunities that are reachable at least half the time (i.e. have a median travel   time of less than the travel time cutoff). For a more detailed explanation, see the [methodology](methodology.html) page.
+The main display of accessibility results is the stacked percentile plot. The right portion of the plot shows the distribution of cumulative accessibility, i.e. the number of opportunities reachable given varying travel time cutoffs. The graph is not a single line, because there is variation in transit travel time depending on when a user of the transport system leaves their origin. Rather, the graph shows the number of opportunities given 95th, 75th, 50th, 25th, and 5th percentile travel time. The bottom of the shaded area is the number of opportunities which are almost always reachable, while the top is the number of opportunities that are reachable only in the best cases (e.g. when someone leaves their house at the perfect time and has no waiting time). The darkened line is the number of opportunities that are reachable at least half the time (i.e. have a median travel time of less than the travel time cutoff). For a more detailed explanation, see the [methodology](methodology.html) page.
 
 The currently-selected travel time cutoff is indicated by the vertical line on the plot, and can be controlled using the slider below the plot. This also controls the isochrone on the map.
 
 To the left of the Y axis labels is a box-and-whisker plot. This shows the same information as the cumulative plot, but only for the currently selected travel time cutoff. The lowest whisker shows the number of opportunities accessible given 95th percentile travel time, the box shows the number of opportunities accessible given 75th, 50th and 25th percentile travel time, and the top whisker shows the number of opportunities reachable given 5th percentile travel time.
 
 When multiple scenarios are selected, the charts will be slightly different, because they will include information for both scenarios.
-
-<figure>
-  <img src="../img/analysis-comparison.png" />
-  <figcaption>Comparison analysis in Atlanta, Georgia, USA</figcaption>
-</figure>
 
 Two box plots will be displayed, in red and blue, to the left of the axis. The blue box plot is for the first scenario, while the red one is for the second scenario. Above the chart, there is a selector that allows you to select whether to view the cumulative curves for the first scenario, the second scenario, or both (in which case the plots will be simplified and only the bands between the 75th and 25th percentile travel times will be shown, for simplicity).
 
@@ -61,10 +63,11 @@ Two box plots will be displayed, in red and blue, to the left of the axis. The b
 
 There are multiple options for downloading single-point analyses for use in GIS software:
 
-* <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> saves the isochrone currently shown on the map.  The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org).
-* <span class="btn btn-info"><i class="fa fa-globe"></i> Generate & Download GeoTIFFs</span> saves the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region.  This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95.
+- <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> saves the isochrone currently shown on the map. The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org).
+- <span class="btn btn-info"><i class="fa fa-globe"></i> Generate & Download GeoTIFFs</span> saves the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region. This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95.
 
 ### Analysis options
+
 Below the accessibility charts, different parameters for the analysis can be set:
 
 <figure>
@@ -80,15 +83,15 @@ Next are the **date**, **from time**, and **to time**, which define the time per
 
 You will also need to select a **Routing engine** version, which should default to the highest available version of [Conveyal R5](https://github.com/conveyal/r5).
 
-The final option is the **Percentile of travel time**.  In single-point analyses, this is rounded to one of five pre-defined values (5, 25, 50, 75, and 95).  For more information, see [methodology](methodology.html#time-percentile).
+The final option is the **Percentile of travel time**. In single-point analyses, this is rounded to one of five pre-defined values (5, 25, 50, 75, and 95). For more information, see [methodology](methodology.html#time-percentile).
 
 ### Detailed settings
 
-**Maximum transfers** is an upper limit on the number of transfers that will be considered when finding optimal trips.  
+**Maximum transfers** is an upper limit on the number of transfers that will be considered when finding optimal trips.
 
-If your scenario includes frequency-based routes (either in the baseline GTFS or in modifications with [exact times](../edit-scenario/timetable.html#exact-times) not selected), **simulated schedules**  controls the number of schedules simulated for sampling. The sampling process introduces random uncertainty, so you may see results change slightly when you repeatedly request accessibility results.  When comparing regional analyses that include frequency-based routes, you may see small unexpected increases or decreases attributable to this random noise.  Final results will be more accurate when **simulated schedules** is set to higher values, but computation will take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000.  For more information, see [methodology](methodology.html).
+If your scenario includes frequency-based routes (either in the baseline GTFS or in modifications with [exact times](../edit-scenario/timetable.html#exact-times) not selected), **simulated schedules** controls the number of schedules simulated for sampling. The sampling process introduces random uncertainty, so you may see results change slightly when you repeatedly request accessibility results. When comparing regional analyses that include frequency-based routes, you may see small unexpected increases or decreases attributable to this random noise. Final results will be more accurate when **simulated schedules** is set to higher values, but computation will take longer. For quick, interactive analysis, we recommend setting it to 200, whereas, for final analysis, we recommend setting it to 1000. For more information, see [methodology](methodology.html).
 
-If your scenario does not include frequency-based routes, there is no need to simulate schedules, so the requested number of simulated schedules is ignored.  In other words, when departure times are explicitly specified for all trips in a scenario, only that single fully specified set of exact departure/arrival times needs to be tested, which speeds computation and eliminates random noise from sampling.
+If your scenario does not include frequency-based routes, there is no need to simulate schedules, so the requested number of simulated schedules is ignored. In other words, when departure times are explicitly specified for all trips in a scenario, only that single fully specified set of exact departure/arrival times needs to be tested, which speeds computation and eliminates random noise from sampling.
 
 ### Errors and warnings
 
@@ -102,14 +105,16 @@ In other cases, the scenario may generate a warning, for instance if you remove 
 </figure>
 
 ### Starting a regional analysis
+
 The analysis interface also allows starting Regional Analyses, which involves repeating an accessibility calculation for every location in a regular grid. To start a regional analysis, first set the appropriate parameters using the controls in this view, and confirm that the isochrones and accessibility plots are as expected.
 
 You can also choose geographic bounds for your regional analysis in the Advanced settings. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, make sure they have the same bounds.
 
-When you have configured all of these options, click <span class="btn btn-success"><i class="fa fa-plus"></i> New regional analysis</span> at the top of the panel and enter a name.
+When you have configured all of these options, click <span class="btn btn-success"><i class="fa fa-plus"></i> New regional analysis</span> at the top of the panel and enter a name. Note that this button is disabled unless isochrones are displayed; checking single-origin isochrone results is a verification step that helps avoid heavy computation for analyses with invalid settings.
 
-After a few seconds, you will see your regional analysis appear in the list with a progress bar. Since we are computing the accessibility for every origin in the city, it can take a significant amount of time for all of the number-crunching to occur. Once a regional analysis is complete, it can be viewed by selecting it from the drop-down menu, which will take you to the [regional analysis view](regional.html).
+After a few seconds, you will see the name of your regional analysis appear in a list with a progress bar. In most cases, the progress bar will start moving more quickly once the system brings additional servers online, which usually takes a couple of minutes. When a regional analysis is complete, you can select from the drop-down menu, which will take you to the [regional analysis view](regional.html).
 
 <figure>
   <img src="../img/regional-progress.png" />
+    <figcaption>Selecting a completed regional analysis from the drop-down menu</figcaption>
 </figure>

@@ -14,11 +14,15 @@ export default function Status() {
 
     function pingApi() {
       const startTime = new Date()
-      fetch(API_URL, {method: 'options'})
-        .then(res => {
+      fetch(`${API_URL}/version`)
+        .then(async res => {
           if (res.ok) {
+            const body = await res.json()
             setServerOk(true)
-            setServerStatus((new Date() - startTime) / 1000 + 's')
+            setServerStatus({
+              ...body,
+              responseTime: (new Date() - startTime) / 1000 + 's'
+            })
           } else {
             setServerOk(false)
             setServerStatus(res.status)
@@ -50,9 +54,9 @@ export default function Status() {
             </P>
             <P>
               <strong>Server: </strong>
-              <span className={serverOk ? 'text-success' : 'text-danger'}>
-                {serverStatus}
-              </span>
+              <pre className={serverOk ? 'text-success' : 'text-danger'}>
+                {JSON.stringify(serverStatus, null, '\t')}
+              </pre>
             </P>
           </div>
         </div>

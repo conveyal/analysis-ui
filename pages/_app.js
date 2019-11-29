@@ -17,6 +17,14 @@ const ErrorModal = dynamic(() => import('lib/components/error-modal'))
 const Map = dynamic(() => import('lib/components/map'), {ssr: false})
 const Sidebar = dynamic(() => import('lib/components/sidebar'))
 
+// DEV Bar Style
+const DBStyle = {
+  outlineOffset: 0,
+  position: 'absolute',
+  zIndex: 1000,
+  width: '100%'
+}
+
 /**
  * Function to check if the path needs the map.
  */
@@ -68,6 +76,7 @@ export default withRedux(createStore)(
             <Head>
               <title key='title'>Conveyal Analysis</title>
             </Head>
+            <div className='DEV' style={DBStyle} />
             <ErrorModal />
 
             {pathUsesMap(p.router.pathname) ? (
