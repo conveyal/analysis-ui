@@ -19,6 +19,14 @@ const Map = dynamic(() => import('lib/components/map'), {
   ssr: false
 })
 
+// DEV Bar Style
+const DBStyle = {
+  outlineOffset: 0,
+  position: 'absolute',
+  zIndex: 1000,
+  width: '100%'
+}
+
 /**
  * Function to check if the path needs the map.
  */
@@ -92,7 +100,7 @@ export default class extends App {
           <title key='title'>Conveyal Analysis</title>
         </Head>
         <Provider store={this.reduxStore}>
-          <div className='DEV' />
+          <div className='DEV' style={DBStyle} />
 
           <ErrorModal />
 
