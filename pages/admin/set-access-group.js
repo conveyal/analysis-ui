@@ -1,6 +1,9 @@
+import {Button, Flex, Input, Stack, Text} from '@chakra-ui/core'
 import Cookie from 'js-cookie'
 import nextCookies from 'next-cookies'
 import React from 'react'
+
+import getInitialAuth from 'lib/get-initial-auth'
 
 const key = 'adminTempAccessGroup'
 
@@ -16,20 +19,22 @@ export default function Results(p) {
   }
 
   return (
-    <div className='container'>
-      <br />
-      <p>
-        Current access group is: <strong>{accessGroup}</strong>
-      </p>
-      <input ref={inputRef} placeholder='Set access group' />
-      <button onClick={setGroup}>
-        Set group and redirect to the home page
-      </button>
-    </div>
+    <Flex alignItems='center' direction='column'>
+      <Stack width='300px' mt='10'>
+        <Text>
+          Current access group is: <strong>{accessGroup}</strong>
+        </Text>
+        <Input ref={inputRef} placeholder='Set access group' />
+        <Button onClick={setGroup}>
+          Set group and redirect to the home page
+        </Button>
+      </Stack>
+    </Flex>
   )
 }
 
 Results.getInitialProps = ctx => {
-  const userAccessGroup = ctx.reduxStore.getState().user.accessGroup
+  getInitialAuth(ctx)
+  const userAccessGroup = ctx.store.getState().user.accessGroup
   return {accessGroup: nextCookies(ctx)[key] || userAccessGroup}
 }

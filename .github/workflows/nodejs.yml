@@ -6,19 +6,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 10.x
-    - name: Install
-      run: yarn install
-    - name: Next.js Build
-      run: yarn build
-    - name: ESLint
-      run: yarn lint
-    - name: Jest
-      env:
-        CI: true
-      run: yarn jest
-    - name: Check Format
-      run: yarn check-format
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install
+        run: yarn install
+      - name: Next.js Build
+        run: yarn build
+      - name: ESLint
+        run: yarn lint
+      - name: Jest
+        env:
+          CI: true
+        run: yarn jest
+      - name: Check Format
+        run: yarn check-format

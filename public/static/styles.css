@@ -43,11 +43,6 @@ body,
   margin-left: 0;
 }
 
-.disableAndDim {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
 body.Editor,
 #editor {
   overflow: hidden;
@@ -62,6 +57,7 @@ body.Editor,
 
 a,
 a.list-group-item,
+.Tip > a,
 .link {
   cursor: pointer;
   color: var(--cb);
@@ -185,31 +181,6 @@ input[type='range'].form-control {
 
 .progress-bar {
   text-shadow: 0 0 2px #333;
-}
-
-.Fullscreen {
-  height: 100%;
-  position: absolute;
-  padding: 0px;
-  right: 0;
-  left: calc(var(--sidebar-width) + var(--dock-width));
-}
-
-.Fullscreen > div {
-  height: 100%;
-}
-
-.ApplicationDock,
-.ModificationDock {
-  position: relative;
-  width: var(--dock-width);
-  left: var(--sidebar-width);
-  border-right: 1px solid #ddd;
-  background-color: #fff;
-}
-
-.ModificationDock {
-  left: 360px;
 }
 
 .InnerDock {
@@ -488,73 +459,6 @@ input[type='range'].form-control {
   -moz-user-select: all; /* Firefox all */
   -ms-user-select: all; /* IE 10+ */
   user-select: all; /* Likely future */
-}
-
-/**
- * SIDEBAR
- */
-
-.Sidebar {
-  padding-top: 3px;
-  position: absolute;
-  width: var(--sidebar-width);
-  top: 0;
-  height: 100%;
-  background-color: #ddd;
-  color: #fff;
-}
-
-.Sidebar-logo {
-  background-image: url(https://d2f1n6ed3ipuic.cloudfront.net/conveyal-128x128.png);
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 65px;
-  margin-top: 2px;
-  display: block;
-}
-
-.Sidebar-spinner {
-  font-size: 18px;
-  padding: 22px 10px 20px;
-  color: var(--cb);
-  display: block;
-}
-
-.Sidebar-bottom {
-  position: absolute;
-  bottom: 0;
-}
-
-.Sidebar-navItem {
-  display: block;
-}
-
-.Sidebar-navItem-contents {
-  padding: 10px;
-  display: inline-block;
-  line-height: 20px;
-  text-align: center;
-  width: var(--sidebar-width);
-  font-size: 14px;
-}
-
-.Sidebar-navItem.active {
-  background-color: #fff;
-  border-bottom: 2px solid var(--cb);
-  box-shadow: 0 6px 6px 0 rgba(51, 122, 183, 0.1);
-}
-
-.Sidebar-navItem.active > .Sidebar-navItem-contents {
-  padding-bottom: 8px;
-}
-
-.Sidebar-navItem-text {
-  display: none;
-}
-
-.expanded .Sidebar-navItem-text {
-  display: inline;
 }
 
 /*

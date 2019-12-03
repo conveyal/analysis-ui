@@ -1827,9 +1827,28 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
     setMapState={[MockFunction]}
     update={[MockFunction]}
   >
-    <h5>
-      Route Geometry
-    </h5>
+    <H5>
+      <ForwardRef
+        as="h5"
+        fontSize="14px"
+        fontWeight="500"
+        my="10px"
+      >
+        <Styled(div)
+          as="h5"
+          fontSize="14px"
+          fontWeight="500"
+          lineHeight="shorter"
+          my="10px"
+        >
+          <h5
+            className="css-18r09h"
+          >
+            Route Geometry
+          </h5>
+        </Styled(div)>
+      </ForwardRef>
+    </H5>
     <Button
       block={true}
       disabled={true}
@@ -1955,11 +1974,20 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
         00:00:00
       </strong>
     </h4>
-    <p>
-      <em>
-        Dwell time at added stops + moving time along added segments
-      </em>
-    </p>
+    <P>
+      <Styled(div)
+        as="p"
+        mb="10px"
+      >
+        <p
+          className="css-1r2f04i"
+        >
+          <em>
+            Dwell time at added stops + moving time along added segments
+          </em>
+        </p>
+      </Styled(div)>
+    </P>
     <MinutesSeconds
       label="Default dwell time"
       onChange={[Function]}
@@ -2005,9 +2033,18 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
         </div>
       </Group>
     </MinutesSeconds>
-    <p>
-      The default time table dwell time will be used for each stop that does not have a custom one set.
-    </p>
+    <P>
+      <Styled(div)
+        as="p"
+        mb="10px"
+      >
+        <p
+          className="css-1r2f04i"
+        >
+          The default time table dwell time will be used for each stop that does not have a custom one set.
+        </p>
+      </Styled(div)>
+    </P>
     <Collapsible
       title="Set individual stop dwell times"
     >
