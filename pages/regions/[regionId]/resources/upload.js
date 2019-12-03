@@ -17,6 +17,7 @@ import {File, Select, Text} from 'lib/components/input'
 import InnerDock from 'lib/components/inner-dock'
 import Link from 'lib/components/link'
 import getInitialAuth from 'lib/get-initial-auth'
+import msg from 'lib/message'
 import {routeTo} from 'lib/router'
 
 const EXTS = ['.json'] // later: csv, pbf, zip
@@ -32,7 +33,7 @@ export default function UploadResource(p) {
   const [type, setType] = React.useState(TYPES[0])
 
   function upload() {
-    setStatus('Uploading resource...')
+    setStatus(msg('resources.uploading'))
     setUploading(true)
     dispatch(
       createResource({
@@ -74,12 +75,10 @@ export default function UploadResource(p) {
             <Icon icon={faChevronLeft} />
           </A>
         </Link>
-        <span>Upload Resource</span>
+        <span>{msg('resources.uploadAction')}</span>
       </legend>
       <Stack spacing={4}>
-        <Box>
-          Accepts <code>{EXTS.join(',')}</code> files.
-        </Box>
+        <Box>{msg('resources.allowedFileTypes')}</Box>
         {error && (
           <Alert status='error'>
             <AlertIcon />
@@ -121,7 +120,7 @@ export default function UploadResource(p) {
           onClick={upload}
           variantColor='green'
         >
-          Upload Resource
+          {msg('resources.uploadAction')}
         </Button>
       </Stack>
     </InnerDock>

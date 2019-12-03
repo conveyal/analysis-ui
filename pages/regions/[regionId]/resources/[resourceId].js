@@ -29,6 +29,7 @@ import {
   loadResourceData
 } from 'lib/actions/resources'
 import SelectResource from 'lib/components/select-resource'
+import msg from 'lib/message'
 import downloadData from 'lib/utils/download-data'
 import {routeTo} from 'lib/router'
 import withInitialFetch from 'lib/with-initial-fetch'
@@ -56,7 +57,7 @@ function ConfirmDelete(p) {
   return (
     <>
       <Button block variantColor='red' onClick={() => setIsOpen(true)}>
-        Delete Resource
+        {msg('resources.deleteAction')}
       </Button>
 
       <AlertDialog
@@ -66,16 +67,16 @@ function ConfirmDelete(p) {
       >
         <AlertDialogOverlay />
         <AlertDialogContent>
-          <AlertDialogHeader>Delete Resource</AlertDialogHeader>
+          <AlertDialogHeader>{msg('resources.deleteAction')}</AlertDialogHeader>
           <AlertDialogBody>
-            Are you sure? You cannot undue this action afterwards
+            {msg('resources.deleteConfirmation')}
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose}>
-              Cancel
+              {msg('common.cancel')}
             </Button>
             <Button variantColor='red' onClick={onDelete} ml={3}>
-              Delete
+              {msg('common.delete')}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -126,12 +127,12 @@ function EditResource(p) {
         </Stack>
         <StatGroup>
           <Stat>
-            <StatLabel>Created</StatLabel>
+            <StatLabel>{msg('common.created')}</StatLabel>
             <StatNumber>{dateFromObjectId(resource._id)}</StatNumber>
             <StatHelpText>{resource.createdBy}</StatHelpText>
           </Stat>
           <Stat>
-            <StatLabel>Updated</StatLabel>
+            <StatLabel>{msg('common.updated')}</StatLabel>
             <StatNumber>{dateFromObjectId(resource.nonce)}</StatNumber>
             <StatHelpText>{resource.updatedBy}</StatHelpText>
           </Stat>
@@ -142,7 +143,7 @@ function EditResource(p) {
           onClick={_download}
           variantColor='green'
         >
-          Download
+          {msg('common.download')}
         </Button>
         <ConfirmDelete onDelete={_delete} />
       </Stack>
