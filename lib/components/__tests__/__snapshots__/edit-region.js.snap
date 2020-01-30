@@ -402,14 +402,18 @@ exports[`Component > EditRegion 1`] = `
                   </Box>
                 </FormControl>
                 <EditBoundsForm
-                  east={-76}
+                  bounds={
+                    Object {
+                      "east": -76,
+                      "north": 39,
+                      "south": 38,
+                      "west": -77,
+                    }
+                  }
                   isDisabled={false}
                   key=".3"
                   mb={4}
-                  north={39}
                   onChange={[Function]}
-                  south={38}
-                  west={-77}
                 >
                   <Stack
                     mb={4}
@@ -547,10 +551,11 @@ exports[`Component > EditRegion 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={90}
-                                  min={-90}
+                                  keepWithinRange={false}
+                                  max="90"
+                                  min="-90"
                                   onChange={[Function]}
-                                  value={39}
+                                  value="39"
                                 >
                                   <Flex
                                     align="stretch"
@@ -568,13 +573,12 @@ exports[`Component > EditRegion 1`] = `
                                       >
                                         <NumberInputField
                                           id="north-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={90}
-                                            aria-valuemin={-90}
-                                            aria-valuenow={39}
+                                            aria-valuemax="90"
+                                            aria-valuemin="-90"
+                                            aria-valuenow="39"
                                             as="input"
                                             autoComplete="off"
                                             errorBorderColor="red.500"
@@ -587,8 +591,8 @@ exports[`Component > EditRegion 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
-                                            value={39}
+                                            type="text"
+                                            value="39"
                                             variant="outline"
                                           >
                                             <PseudoBox
@@ -625,9 +629,9 @@ exports[`Component > EditRegion 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={90}
-                                              aria-valuemin={-90}
-                                              aria-valuenow={39}
+                                              aria-valuemax="90"
+                                              aria-valuemin="-90"
+                                              aria-valuenow="39"
                                               as="input"
                                               autoComplete="off"
                                               bg="white"
@@ -650,16 +654,16 @@ exports[`Component > EditRegion 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
-                                              value={39}
+                                              type="text"
+                                              value="39"
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={90}
-                                                aria-valuemin={-90}
-                                                aria-valuenow={39}
+                                                aria-valuemax="90"
+                                                aria-valuemin="-90"
+                                                aria-valuenow="39"
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
                                                 disabled={false}
@@ -670,8 +674,8 @@ exports[`Component > EditRegion 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
-                                                value={39}
+                                                type="text"
+                                                value="39"
                                               />
                                             </PseudoBox>
                                           </Input>
@@ -769,10 +773,11 @@ exports[`Component > EditRegion 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={90}
-                                  min={-90}
+                                  keepWithinRange={false}
+                                  max="90"
+                                  min="-90"
                                   onChange={[Function]}
-                                  value={38}
+                                  value="38"
                                 >
                                   <Flex
                                     align="stretch"
@@ -790,13 +795,12 @@ exports[`Component > EditRegion 1`] = `
                                       >
                                         <NumberInputField
                                           id="south-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={90}
-                                            aria-valuemin={-90}
-                                            aria-valuenow={38}
+                                            aria-valuemax="90"
+                                            aria-valuemin="-90"
+                                            aria-valuenow="38"
                                             as="input"
                                             autoComplete="off"
                                             errorBorderColor="red.500"
@@ -809,8 +813,8 @@ exports[`Component > EditRegion 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
-                                            value={38}
+                                            type="text"
+                                            value="38"
                                             variant="outline"
                                           >
                                             <PseudoBox
@@ -847,9 +851,9 @@ exports[`Component > EditRegion 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={90}
-                                              aria-valuemin={-90}
-                                              aria-valuenow={38}
+                                              aria-valuemax="90"
+                                              aria-valuemin="-90"
+                                              aria-valuenow="38"
                                               as="input"
                                               autoComplete="off"
                                               bg="white"
@@ -872,16 +876,16 @@ exports[`Component > EditRegion 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
-                                              value={38}
+                                              type="text"
+                                              value="38"
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={90}
-                                                aria-valuemin={-90}
-                                                aria-valuenow={38}
+                                                aria-valuemax="90"
+                                                aria-valuemin="-90"
+                                                aria-valuenow="38"
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
                                                 disabled={false}
@@ -892,8 +896,8 @@ exports[`Component > EditRegion 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
-                                                value={38}
+                                                type="text"
+                                                value="38"
                                               />
                                             </PseudoBox>
                                           </Input>
@@ -991,8 +995,9 @@ exports[`Component > EditRegion 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={180}
-                                  min={-180}
+                                  keepWithinRange={false}
+                                  max="180"
+                                  min="-180"
                                   onChange={[Function]}
                                   value={-76}
                                 >
@@ -1012,12 +1017,11 @@ exports[`Component > EditRegion 1`] = `
                                       >
                                         <NumberInputField
                                           id="east-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={180}
-                                            aria-valuemin={-180}
+                                            aria-valuemax="180"
+                                            aria-valuemin="-180"
                                             aria-valuenow={-76}
                                             as="input"
                                             autoComplete="off"
@@ -1031,7 +1035,7 @@ exports[`Component > EditRegion 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
+                                            type="text"
                                             value={-76}
                                             variant="outline"
                                           >
@@ -1069,8 +1073,8 @@ exports[`Component > EditRegion 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={180}
-                                              aria-valuemin={-180}
+                                              aria-valuemax="180"
+                                              aria-valuemin="-180"
                                               aria-valuenow={-76}
                                               as="input"
                                               autoComplete="off"
@@ -1094,15 +1098,15 @@ exports[`Component > EditRegion 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
+                                              type="text"
                                               value={-76}
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={180}
-                                                aria-valuemin={-180}
+                                                aria-valuemax="180"
+                                                aria-valuemin="-180"
                                                 aria-valuenow={-76}
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
@@ -1114,7 +1118,7 @@ exports[`Component > EditRegion 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
+                                                type="text"
                                                 value={-76}
                                               />
                                             </PseudoBox>
@@ -1213,8 +1217,9 @@ exports[`Component > EditRegion 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={180}
-                                  min={-180}
+                                  keepWithinRange={false}
+                                  max="180"
+                                  min="-180"
                                   onChange={[Function]}
                                   value={-77}
                                 >
@@ -1234,12 +1239,11 @@ exports[`Component > EditRegion 1`] = `
                                       >
                                         <NumberInputField
                                           id="west-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={180}
-                                            aria-valuemin={-180}
+                                            aria-valuemax="180"
+                                            aria-valuemin="-180"
                                             aria-valuenow={-77}
                                             as="input"
                                             autoComplete="off"
@@ -1253,7 +1257,7 @@ exports[`Component > EditRegion 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
+                                            type="text"
                                             value={-77}
                                             variant="outline"
                                           >
@@ -1291,8 +1295,8 @@ exports[`Component > EditRegion 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={180}
-                                              aria-valuemin={-180}
+                                              aria-valuemax="180"
+                                              aria-valuemin="-180"
                                               aria-valuenow={-77}
                                               as="input"
                                               autoComplete="off"
@@ -1316,15 +1320,15 @@ exports[`Component > EditRegion 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
+                                              type="text"
                                               value={-77}
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={180}
-                                                aria-valuemin={-180}
+                                                aria-valuemax="180"
+                                                aria-valuemin="-180"
                                                 aria-valuenow={-77}
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
@@ -1336,7 +1340,7 @@ exports[`Component > EditRegion 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
+                                                type="text"
                                                 value={-77}
                                               />
                                             </PseudoBox>

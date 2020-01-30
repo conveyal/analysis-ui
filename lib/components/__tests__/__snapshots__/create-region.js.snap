@@ -193,6 +193,7 @@ exports[`create-region.render 1`] = `
                         errorBorderColor="red.500"
                         focusBorderColor="blue.500"
                         isFullWidth={true}
+                        name="Region Name"
                         onChange={[Function]}
                         placeholder="Region Name"
                         size="md"
@@ -244,6 +245,7 @@ exports[`create-region.render 1`] = `
                           fontSize="md"
                           height={10}
                           lineHeight="2.5rem"
+                          name="Region Name"
                           onChange={[Function]}
                           outline="none"
                           placeholder="Region Name"
@@ -262,6 +264,7 @@ exports[`create-region.render 1`] = `
                             aria-required={true}
                             className="css-1bqs6u7"
                             disabled={false}
+                            name="Region Name"
                             onChange={[Function]}
                             placeholder="Region Name"
                             required={true}
@@ -385,14 +388,18 @@ exports[`create-region.render 1`] = `
                   </Box>
                 </FormControl>
                 <EditBoundsForm
-                  east={-76.81365966796875}
+                  bounds={
+                    Object {
+                      "east": -76.81365966796875,
+                      "north": 39.02345139405933,
+                      "south": 38.77764022307335,
+                      "west": -77.255859375,
+                    }
+                  }
                   isDisabled={false}
                   key=".4"
                   mb={4}
-                  north={39.02345139405933}
                   onChange={[Function]}
-                  south={38.77764022307335}
-                  west={-77.255859375}
                 >
                   <Stack
                     mb={4}
@@ -530,10 +537,11 @@ exports[`create-region.render 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={90}
-                                  min={-90}
+                                  keepWithinRange={false}
+                                  max="90"
+                                  min="-90"
                                   onChange={[Function]}
-                                  value={39.02345139405933}
+                                  value="39.02345139405933"
                                 >
                                   <Flex
                                     align="stretch"
@@ -551,13 +559,12 @@ exports[`create-region.render 1`] = `
                                       >
                                         <NumberInputField
                                           id="north-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={90}
-                                            aria-valuemin={-90}
-                                            aria-valuenow={39.02345139405933}
+                                            aria-valuemax="90"
+                                            aria-valuemin="-90"
+                                            aria-valuenow="39.02345139405933"
                                             as="input"
                                             autoComplete="off"
                                             errorBorderColor="red.500"
@@ -570,8 +577,8 @@ exports[`create-region.render 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
-                                            value={39.02345139405933}
+                                            type="text"
+                                            value="39.02345139405933"
                                             variant="outline"
                                           >
                                             <PseudoBox
@@ -608,9 +615,9 @@ exports[`create-region.render 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={90}
-                                              aria-valuemin={-90}
-                                              aria-valuenow={39.02345139405933}
+                                              aria-valuemax="90"
+                                              aria-valuemin="-90"
+                                              aria-valuenow="39.02345139405933"
                                               as="input"
                                               autoComplete="off"
                                               bg="white"
@@ -633,16 +640,16 @@ exports[`create-region.render 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
-                                              value={39.02345139405933}
+                                              type="text"
+                                              value="39.02345139405933"
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={90}
-                                                aria-valuemin={-90}
-                                                aria-valuenow={39.02345139405933}
+                                                aria-valuemax="90"
+                                                aria-valuemin="-90"
+                                                aria-valuenow="39.02345139405933"
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
                                                 disabled={false}
@@ -653,8 +660,8 @@ exports[`create-region.render 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
-                                                value={39.02345139405933}
+                                                type="text"
+                                                value="39.02345139405933"
                                               />
                                             </PseudoBox>
                                           </Input>
@@ -752,10 +759,11 @@ exports[`create-region.render 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={90}
-                                  min={-90}
+                                  keepWithinRange={false}
+                                  max="90"
+                                  min="-90"
                                   onChange={[Function]}
-                                  value={38.77764022307335}
+                                  value="38.77764022307335"
                                 >
                                   <Flex
                                     align="stretch"
@@ -773,13 +781,12 @@ exports[`create-region.render 1`] = `
                                       >
                                         <NumberInputField
                                           id="south-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={90}
-                                            aria-valuemin={-90}
-                                            aria-valuenow={38.77764022307335}
+                                            aria-valuemax="90"
+                                            aria-valuemin="-90"
+                                            aria-valuenow="38.77764022307335"
                                             as="input"
                                             autoComplete="off"
                                             errorBorderColor="red.500"
@@ -792,8 +799,8 @@ exports[`create-region.render 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
-                                            value={38.77764022307335}
+                                            type="text"
+                                            value="38.77764022307335"
                                             variant="outline"
                                           >
                                             <PseudoBox
@@ -830,9 +837,9 @@ exports[`create-region.render 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={90}
-                                              aria-valuemin={-90}
-                                              aria-valuenow={38.77764022307335}
+                                              aria-valuemax="90"
+                                              aria-valuemin="-90"
+                                              aria-valuenow="38.77764022307335"
                                               as="input"
                                               autoComplete="off"
                                               bg="white"
@@ -855,16 +862,16 @@ exports[`create-region.render 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
-                                              value={38.77764022307335}
+                                              type="text"
+                                              value="38.77764022307335"
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={90}
-                                                aria-valuemin={-90}
-                                                aria-valuenow={38.77764022307335}
+                                                aria-valuemax="90"
+                                                aria-valuemin="-90"
+                                                aria-valuenow="38.77764022307335"
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
                                                 disabled={false}
@@ -875,8 +882,8 @@ exports[`create-region.render 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
-                                                value={38.77764022307335}
+                                                type="text"
+                                                value="38.77764022307335"
                                               />
                                             </PseudoBox>
                                           </Input>
@@ -974,8 +981,9 @@ exports[`create-region.render 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={180}
-                                  min={-180}
+                                  keepWithinRange={false}
+                                  max="180"
+                                  min="-180"
                                   onChange={[Function]}
                                   value={-76.81365966796875}
                                 >
@@ -995,12 +1003,11 @@ exports[`create-region.render 1`] = `
                                       >
                                         <NumberInputField
                                           id="east-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={180}
-                                            aria-valuemin={-180}
+                                            aria-valuemax="180"
+                                            aria-valuemin="-180"
                                             aria-valuenow={-76.81365966796875}
                                             as="input"
                                             autoComplete="off"
@@ -1014,7 +1021,7 @@ exports[`create-region.render 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
+                                            type="text"
                                             value={-76.81365966796875}
                                             variant="outline"
                                           >
@@ -1052,8 +1059,8 @@ exports[`create-region.render 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={180}
-                                              aria-valuemin={-180}
+                                              aria-valuemax="180"
+                                              aria-valuemin="-180"
                                               aria-valuenow={-76.81365966796875}
                                               as="input"
                                               autoComplete="off"
@@ -1077,15 +1084,15 @@ exports[`create-region.render 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
+                                              type="text"
                                               value={-76.81365966796875}
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={180}
-                                                aria-valuemin={-180}
+                                                aria-valuemax="180"
+                                                aria-valuemin="-180"
                                                 aria-valuenow={-76.81365966796875}
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
@@ -1097,7 +1104,7 @@ exports[`create-region.render 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
+                                                type="text"
                                                 value={-76.81365966796875}
                                               />
                                             </PseudoBox>
@@ -1196,8 +1203,9 @@ exports[`create-region.render 1`] = `
                                   </Box>
                                 </FormLabel>
                                 <NumberInput
-                                  max={180}
-                                  min={-180}
+                                  keepWithinRange={false}
+                                  max="180"
+                                  min="-180"
                                   onChange={[Function]}
                                   value={-77.255859375}
                                 >
@@ -1217,12 +1225,11 @@ exports[`create-region.render 1`] = `
                                       >
                                         <NumberInputField
                                           id="west-input"
-                                          type="number"
                                         >
                                           <Input
                                             aria-invalid={false}
-                                            aria-valuemax={180}
-                                            aria-valuemin={-180}
+                                            aria-valuemax="180"
+                                            aria-valuemin="-180"
                                             aria-valuenow={-77.255859375}
                                             as="input"
                                             autoComplete="off"
@@ -1236,7 +1243,7 @@ exports[`create-region.render 1`] = `
                                             onKeyDown={[Function]}
                                             role="spinbutton"
                                             size="md"
-                                            type="number"
+                                            type="text"
                                             value={-77.255859375}
                                             variant="outline"
                                           >
@@ -1274,8 +1281,8 @@ exports[`create-region.render 1`] = `
                                               alignItems="center"
                                               aria-invalid={false}
                                               aria-required={true}
-                                              aria-valuemax={180}
-                                              aria-valuemin={-180}
+                                              aria-valuemax="180"
+                                              aria-valuemin="-180"
                                               aria-valuenow={-77.255859375}
                                               as="input"
                                               autoComplete="off"
@@ -1299,15 +1306,15 @@ exports[`create-region.render 1`] = `
                                               role="spinbutton"
                                               rounded="md"
                                               transition="all 0.2s"
-                                              type="number"
+                                              type="text"
                                               value={-77.255859375}
                                               width="100%"
                                             >
                                               <input
                                                 aria-invalid={false}
                                                 aria-required={true}
-                                                aria-valuemax={180}
-                                                aria-valuemin={-180}
+                                                aria-valuemax="180"
+                                                aria-valuemin="-180"
                                                 aria-valuenow={-77.255859375}
                                                 autoComplete="off"
                                                 className="css-1bqs6u7"
@@ -1319,7 +1326,7 @@ exports[`create-region.render 1`] = `
                                                 onKeyDown={[Function]}
                                                 required={true}
                                                 role="spinbutton"
-                                                type="number"
+                                                type="text"
                                                 value={-77.255859375}
                                               />
                                             </PseudoBox>
