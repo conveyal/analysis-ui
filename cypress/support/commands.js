@@ -59,7 +59,7 @@ Cypress.Commands.add('login', function() {
         scope: 'openid email analyst',
         connection: 'Username-Password-Authentication'
       },
-      timeout: 5000
+      timeout: 30000
     }).then(resp => {
       cy.setCookie(
         'user',
