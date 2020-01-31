@@ -43,12 +43,6 @@ body,
   margin-left: 0;
 }
 
-body.Editor,
-#editor {
-  overflow: hidden;
-  height: 100%;
-}
-
 .list-group-item {
   display: flex;
   justify-content: space-between;
@@ -184,6 +178,7 @@ input[type='range'].form-control {
 }
 
 .InnerDock {
+  position: relative; /* prevents overflow from react-select */
   overflow-x: hidden;
   overflow-y: auto;
   width: var(--dock-width);
@@ -217,7 +212,7 @@ input[type='range'].form-control {
 }
 
 .InnerDock.block {
-  padding-bottom: 400px;
+  padding-bottom: 12px;
 }
 
 .ApplicationDockTitle {
