@@ -499,6 +499,7 @@ exports[`Component > EditRegion 1`] = `
                           </Text>
                           <FormControl
                             isDisabled={false}
+                            isInvalid={false}
                             isRequired={true}
                             key=".2:$north"
                             mb={4}
@@ -550,140 +551,85 @@ exports[`Component > EditRegion 1`] = `
                                     </label>
                                   </Box>
                                 </FormLabel>
-                                <NumberInput
-                                  keepWithinRange={false}
-                                  max="90"
-                                  min="-90"
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="north-bound"
+                                  isFullWidth={true}
                                   onChange={[Function]}
-                                  value="39"
+                                  size="md"
+                                  value={39}
+                                  variant="outline"
                                 >
-                                  <Flex
-                                    align="stretch"
-                                    pos="relative"
-                                    w={null}
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="north-bound"
+                                    lineHeight="2.5rem"
+                                    onChange={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={39}
+                                    width="100%"
                                   >
-                                    <Box
-                                      alignItems="stretch"
-                                      display="flex"
-                                      pos="relative"
-                                      w={null}
-                                    >
-                                      <div
-                                        className="css-1dm3qsp"
-                                      >
-                                        <NumberInputField
-                                          id="north-bound"
-                                        >
-                                          <Input
-                                            aria-invalid={false}
-                                            aria-valuemax="90"
-                                            aria-valuemin="-90"
-                                            aria-valuenow="39"
-                                            as="input"
-                                            autoComplete="off"
-                                            errorBorderColor="red.500"
-                                            focusBorderColor="blue.500"
-                                            id="north-bound"
-                                            isFullWidth={true}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            role="spinbutton"
-                                            size="md"
-                                            type="text"
-                                            value="39"
-                                            variant="outline"
-                                          >
-                                            <PseudoBox
-                                              _disabled={
-                                                Object {
-                                                  "cursor": "not-allowed",
-                                                  "opacity": "0.4",
-                                                }
-                                              }
-                                              _focus={
-                                                Object {
-                                                  "borderColor": "#3182ce",
-                                                  "boxShadow": "0 0 0 1px #3182ce",
-                                                }
-                                              }
-                                              _hover={
-                                                Object {
-                                                  "borderColor": "gray.300",
-                                                }
-                                              }
-                                              _invalid={
-                                                Object {
-                                                  "borderColor": "#e53e3e",
-                                                  "boxShadow": "0 0 0 1px #e53e3e",
-                                                }
-                                              }
-                                              _readOnly={
-                                                Object {
-                                                  "bg": "transparent",
-                                                  "boxShadow": "none !important",
-                                                  "userSelect": "all",
-                                                }
-                                              }
-                                              alignItems="center"
-                                              aria-invalid={false}
-                                              aria-required={true}
-                                              aria-valuemax="90"
-                                              aria-valuemin="-90"
-                                              aria-valuenow="39"
-                                              as="input"
-                                              autoComplete="off"
-                                              bg="white"
-                                              border="1px"
-                                              borderColor="inherit"
-                                              disabled={false}
-                                              display="flex"
-                                              fontSize="md"
-                                              height={10}
-                                              id="north-bound"
-                                              lineHeight="2.5rem"
-                                              onBlur={[Function]}
-                                              onChange={[Function]}
-                                              onFocus={[Function]}
-                                              onKeyDown={[Function]}
-                                              outline="none"
-                                              position="relative"
-                                              px={4}
-                                              required={true}
-                                              role="spinbutton"
-                                              rounded="md"
-                                              transition="all 0.2s"
-                                              type="text"
-                                              value="39"
-                                              width="100%"
-                                            >
-                                              <input
-                                                aria-invalid={false}
-                                                aria-required={true}
-                                                aria-valuemax="90"
-                                                aria-valuemin="-90"
-                                                aria-valuenow="39"
-                                                autoComplete="off"
-                                                className="css-1bqs6u7"
-                                                disabled={false}
-                                                id="north-bound"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onFocus={[Function]}
-                                                onKeyDown={[Function]}
-                                                required={true}
-                                                role="spinbutton"
-                                                type="text"
-                                                value="39"
-                                              />
-                                            </PseudoBox>
-                                          </Input>
-                                        </NumberInputField>
-                                      </div>
-                                    </Box>
-                                  </Flex>
-                                </NumberInput>
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="north-bound"
+                                      onChange={[Function]}
+                                      required={true}
+                                      value={39}
+                                    />
+                                  </PseudoBox>
+                                </Input>
                                 <FormHelperText
                                   htmlFor="north-bound"
                                 >
@@ -711,7 +657,11 @@ exports[`Component > EditRegion 1`] = `
                                         id={null}
                                       >
                                         North
-                                         must be between 90 and -90 degrees.
+                                         must be between 
+                                        -90
+                                         and 
+                                        90
+                                         degrees.
                                       </p>
                                     </Box>
                                   </Text>
@@ -721,6 +671,7 @@ exports[`Component > EditRegion 1`] = `
                           </FormControl>
                           <FormControl
                             isDisabled={false}
+                            isInvalid={false}
                             isRequired={true}
                             key=".2:$south"
                             mb={4}
@@ -772,140 +723,85 @@ exports[`Component > EditRegion 1`] = `
                                     </label>
                                   </Box>
                                 </FormLabel>
-                                <NumberInput
-                                  keepWithinRange={false}
-                                  max="90"
-                                  min="-90"
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="south-bound"
+                                  isFullWidth={true}
                                   onChange={[Function]}
-                                  value="38"
+                                  size="md"
+                                  value={38}
+                                  variant="outline"
                                 >
-                                  <Flex
-                                    align="stretch"
-                                    pos="relative"
-                                    w={null}
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="south-bound"
+                                    lineHeight="2.5rem"
+                                    onChange={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={38}
+                                    width="100%"
                                   >
-                                    <Box
-                                      alignItems="stretch"
-                                      display="flex"
-                                      pos="relative"
-                                      w={null}
-                                    >
-                                      <div
-                                        className="css-1dm3qsp"
-                                      >
-                                        <NumberInputField
-                                          id="south-bound"
-                                        >
-                                          <Input
-                                            aria-invalid={false}
-                                            aria-valuemax="90"
-                                            aria-valuemin="-90"
-                                            aria-valuenow="38"
-                                            as="input"
-                                            autoComplete="off"
-                                            errorBorderColor="red.500"
-                                            focusBorderColor="blue.500"
-                                            id="south-bound"
-                                            isFullWidth={true}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            role="spinbutton"
-                                            size="md"
-                                            type="text"
-                                            value="38"
-                                            variant="outline"
-                                          >
-                                            <PseudoBox
-                                              _disabled={
-                                                Object {
-                                                  "cursor": "not-allowed",
-                                                  "opacity": "0.4",
-                                                }
-                                              }
-                                              _focus={
-                                                Object {
-                                                  "borderColor": "#3182ce",
-                                                  "boxShadow": "0 0 0 1px #3182ce",
-                                                }
-                                              }
-                                              _hover={
-                                                Object {
-                                                  "borderColor": "gray.300",
-                                                }
-                                              }
-                                              _invalid={
-                                                Object {
-                                                  "borderColor": "#e53e3e",
-                                                  "boxShadow": "0 0 0 1px #e53e3e",
-                                                }
-                                              }
-                                              _readOnly={
-                                                Object {
-                                                  "bg": "transparent",
-                                                  "boxShadow": "none !important",
-                                                  "userSelect": "all",
-                                                }
-                                              }
-                                              alignItems="center"
-                                              aria-invalid={false}
-                                              aria-required={true}
-                                              aria-valuemax="90"
-                                              aria-valuemin="-90"
-                                              aria-valuenow="38"
-                                              as="input"
-                                              autoComplete="off"
-                                              bg="white"
-                                              border="1px"
-                                              borderColor="inherit"
-                                              disabled={false}
-                                              display="flex"
-                                              fontSize="md"
-                                              height={10}
-                                              id="south-bound"
-                                              lineHeight="2.5rem"
-                                              onBlur={[Function]}
-                                              onChange={[Function]}
-                                              onFocus={[Function]}
-                                              onKeyDown={[Function]}
-                                              outline="none"
-                                              position="relative"
-                                              px={4}
-                                              required={true}
-                                              role="spinbutton"
-                                              rounded="md"
-                                              transition="all 0.2s"
-                                              type="text"
-                                              value="38"
-                                              width="100%"
-                                            >
-                                              <input
-                                                aria-invalid={false}
-                                                aria-required={true}
-                                                aria-valuemax="90"
-                                                aria-valuemin="-90"
-                                                aria-valuenow="38"
-                                                autoComplete="off"
-                                                className="css-1bqs6u7"
-                                                disabled={false}
-                                                id="south-bound"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onFocus={[Function]}
-                                                onKeyDown={[Function]}
-                                                required={true}
-                                                role="spinbutton"
-                                                type="text"
-                                                value="38"
-                                              />
-                                            </PseudoBox>
-                                          </Input>
-                                        </NumberInputField>
-                                      </div>
-                                    </Box>
-                                  </Flex>
-                                </NumberInput>
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="south-bound"
+                                      onChange={[Function]}
+                                      required={true}
+                                      value={38}
+                                    />
+                                  </PseudoBox>
+                                </Input>
                                 <FormHelperText
                                   htmlFor="south-bound"
                                 >
@@ -933,7 +829,11 @@ exports[`Component > EditRegion 1`] = `
                                         id={null}
                                       >
                                         South
-                                         must be between 90 and -90 degrees.
+                                         must be between 
+                                        -90
+                                         and 
+                                        90
+                                         degrees.
                                       </p>
                                     </Box>
                                   </Text>
@@ -943,8 +843,9 @@ exports[`Component > EditRegion 1`] = `
                           </FormControl>
                           <FormControl
                             isDisabled={false}
+                            isInvalid={false}
                             isRequired={true}
-                            key=".3:$east"
+                            key=".2:$east"
                             mb={4}
                           >
                             <Box
@@ -994,140 +895,85 @@ exports[`Component > EditRegion 1`] = `
                                     </label>
                                   </Box>
                                 </FormLabel>
-                                <NumberInput
-                                  keepWithinRange={false}
-                                  max="180"
-                                  min="-180"
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="east-bound"
+                                  isFullWidth={true}
                                   onChange={[Function]}
+                                  size="md"
                                   value={-76}
+                                  variant="outline"
                                 >
-                                  <Flex
-                                    align="stretch"
-                                    pos="relative"
-                                    w={null}
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="east-bound"
+                                    lineHeight="2.5rem"
+                                    onChange={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={-76}
+                                    width="100%"
                                   >
-                                    <Box
-                                      alignItems="stretch"
-                                      display="flex"
-                                      pos="relative"
-                                      w={null}
-                                    >
-                                      <div
-                                        className="css-1dm3qsp"
-                                      >
-                                        <NumberInputField
-                                          id="east-bound"
-                                        >
-                                          <Input
-                                            aria-invalid={false}
-                                            aria-valuemax="180"
-                                            aria-valuemin="-180"
-                                            aria-valuenow={-76}
-                                            as="input"
-                                            autoComplete="off"
-                                            errorBorderColor="red.500"
-                                            focusBorderColor="blue.500"
-                                            id="east-bound"
-                                            isFullWidth={true}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            role="spinbutton"
-                                            size="md"
-                                            type="text"
-                                            value={-76}
-                                            variant="outline"
-                                          >
-                                            <PseudoBox
-                                              _disabled={
-                                                Object {
-                                                  "cursor": "not-allowed",
-                                                  "opacity": "0.4",
-                                                }
-                                              }
-                                              _focus={
-                                                Object {
-                                                  "borderColor": "#3182ce",
-                                                  "boxShadow": "0 0 0 1px #3182ce",
-                                                }
-                                              }
-                                              _hover={
-                                                Object {
-                                                  "borderColor": "gray.300",
-                                                }
-                                              }
-                                              _invalid={
-                                                Object {
-                                                  "borderColor": "#e53e3e",
-                                                  "boxShadow": "0 0 0 1px #e53e3e",
-                                                }
-                                              }
-                                              _readOnly={
-                                                Object {
-                                                  "bg": "transparent",
-                                                  "boxShadow": "none !important",
-                                                  "userSelect": "all",
-                                                }
-                                              }
-                                              alignItems="center"
-                                              aria-invalid={false}
-                                              aria-required={true}
-                                              aria-valuemax="180"
-                                              aria-valuemin="-180"
-                                              aria-valuenow={-76}
-                                              as="input"
-                                              autoComplete="off"
-                                              bg="white"
-                                              border="1px"
-                                              borderColor="inherit"
-                                              disabled={false}
-                                              display="flex"
-                                              fontSize="md"
-                                              height={10}
-                                              id="east-bound"
-                                              lineHeight="2.5rem"
-                                              onBlur={[Function]}
-                                              onChange={[Function]}
-                                              onFocus={[Function]}
-                                              onKeyDown={[Function]}
-                                              outline="none"
-                                              position="relative"
-                                              px={4}
-                                              required={true}
-                                              role="spinbutton"
-                                              rounded="md"
-                                              transition="all 0.2s"
-                                              type="text"
-                                              value={-76}
-                                              width="100%"
-                                            >
-                                              <input
-                                                aria-invalid={false}
-                                                aria-required={true}
-                                                aria-valuemax="180"
-                                                aria-valuemin="-180"
-                                                aria-valuenow={-76}
-                                                autoComplete="off"
-                                                className="css-1bqs6u7"
-                                                disabled={false}
-                                                id="east-bound"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onFocus={[Function]}
-                                                onKeyDown={[Function]}
-                                                required={true}
-                                                role="spinbutton"
-                                                type="text"
-                                                value={-76}
-                                              />
-                                            </PseudoBox>
-                                          </Input>
-                                        </NumberInputField>
-                                      </div>
-                                    </Box>
-                                  </Flex>
-                                </NumberInput>
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="east-bound"
+                                      onChange={[Function]}
+                                      required={true}
+                                      value={-76}
+                                    />
+                                  </PseudoBox>
+                                </Input>
                                 <FormHelperText
                                   htmlFor="east-bound"
                                 >
@@ -1155,7 +1001,11 @@ exports[`Component > EditRegion 1`] = `
                                         id={null}
                                       >
                                         East
-                                         must be between 180 and -180 degrees.
+                                         must be between 
+                                        -180
+                                         and 
+                                        180
+                                         degrees.
                                       </p>
                                     </Box>
                                   </Text>
@@ -1165,8 +1015,9 @@ exports[`Component > EditRegion 1`] = `
                           </FormControl>
                           <FormControl
                             isDisabled={false}
+                            isInvalid={false}
                             isRequired={true}
-                            key=".3:$west"
+                            key=".2:$west"
                             mb={null}
                           >
                             <Box
@@ -1216,140 +1067,85 @@ exports[`Component > EditRegion 1`] = `
                                     </label>
                                   </Box>
                                 </FormLabel>
-                                <NumberInput
-                                  keepWithinRange={false}
-                                  max="180"
-                                  min="-180"
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="west-bound"
+                                  isFullWidth={true}
                                   onChange={[Function]}
+                                  size="md"
                                   value={-77}
+                                  variant="outline"
                                 >
-                                  <Flex
-                                    align="stretch"
-                                    pos="relative"
-                                    w={null}
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="west-bound"
+                                    lineHeight="2.5rem"
+                                    onChange={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={-77}
+                                    width="100%"
                                   >
-                                    <Box
-                                      alignItems="stretch"
-                                      display="flex"
-                                      pos="relative"
-                                      w={null}
-                                    >
-                                      <div
-                                        className="css-1dm3qsp"
-                                      >
-                                        <NumberInputField
-                                          id="west-bound"
-                                        >
-                                          <Input
-                                            aria-invalid={false}
-                                            aria-valuemax="180"
-                                            aria-valuemin="-180"
-                                            aria-valuenow={-77}
-                                            as="input"
-                                            autoComplete="off"
-                                            errorBorderColor="red.500"
-                                            focusBorderColor="blue.500"
-                                            id="west-bound"
-                                            isFullWidth={true}
-                                            onBlur={[Function]}
-                                            onChange={[Function]}
-                                            onFocus={[Function]}
-                                            onKeyDown={[Function]}
-                                            role="spinbutton"
-                                            size="md"
-                                            type="text"
-                                            value={-77}
-                                            variant="outline"
-                                          >
-                                            <PseudoBox
-                                              _disabled={
-                                                Object {
-                                                  "cursor": "not-allowed",
-                                                  "opacity": "0.4",
-                                                }
-                                              }
-                                              _focus={
-                                                Object {
-                                                  "borderColor": "#3182ce",
-                                                  "boxShadow": "0 0 0 1px #3182ce",
-                                                }
-                                              }
-                                              _hover={
-                                                Object {
-                                                  "borderColor": "gray.300",
-                                                }
-                                              }
-                                              _invalid={
-                                                Object {
-                                                  "borderColor": "#e53e3e",
-                                                  "boxShadow": "0 0 0 1px #e53e3e",
-                                                }
-                                              }
-                                              _readOnly={
-                                                Object {
-                                                  "bg": "transparent",
-                                                  "boxShadow": "none !important",
-                                                  "userSelect": "all",
-                                                }
-                                              }
-                                              alignItems="center"
-                                              aria-invalid={false}
-                                              aria-required={true}
-                                              aria-valuemax="180"
-                                              aria-valuemin="-180"
-                                              aria-valuenow={-77}
-                                              as="input"
-                                              autoComplete="off"
-                                              bg="white"
-                                              border="1px"
-                                              borderColor="inherit"
-                                              disabled={false}
-                                              display="flex"
-                                              fontSize="md"
-                                              height={10}
-                                              id="west-bound"
-                                              lineHeight="2.5rem"
-                                              onBlur={[Function]}
-                                              onChange={[Function]}
-                                              onFocus={[Function]}
-                                              onKeyDown={[Function]}
-                                              outline="none"
-                                              position="relative"
-                                              px={4}
-                                              required={true}
-                                              role="spinbutton"
-                                              rounded="md"
-                                              transition="all 0.2s"
-                                              type="text"
-                                              value={-77}
-                                              width="100%"
-                                            >
-                                              <input
-                                                aria-invalid={false}
-                                                aria-required={true}
-                                                aria-valuemax="180"
-                                                aria-valuemin="-180"
-                                                aria-valuenow={-77}
-                                                autoComplete="off"
-                                                className="css-1bqs6u7"
-                                                disabled={false}
-                                                id="west-bound"
-                                                onBlur={[Function]}
-                                                onChange={[Function]}
-                                                onFocus={[Function]}
-                                                onKeyDown={[Function]}
-                                                required={true}
-                                                role="spinbutton"
-                                                type="text"
-                                                value={-77}
-                                              />
-                                            </PseudoBox>
-                                          </Input>
-                                        </NumberInputField>
-                                      </div>
-                                    </Box>
-                                  </Flex>
-                                </NumberInput>
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="west-bound"
+                                      onChange={[Function]}
+                                      required={true}
+                                      value={-77}
+                                    />
+                                  </PseudoBox>
+                                </Input>
                                 <FormHelperText
                                   htmlFor="west-bound"
                                 >
@@ -1377,7 +1173,11 @@ exports[`Component > EditRegion 1`] = `
                                         id={null}
                                       >
                                         West
-                                         must be between 180 and -180 degrees.
+                                         must be between 
+                                        -180
+                                         and 
+                                        180
+                                         degrees.
                                       </p>
                                     </Box>
                                   </Text>
