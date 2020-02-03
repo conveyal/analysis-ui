@@ -7,7 +7,7 @@ describe('Set up a new region', function() {
     cy.visit('/')
     cy.contains('Set up a new region').click()
     // has form
-    cy.get('input[name="Region Name"]')
+    cy.get('input[name="Region Name"]').type('Cypress - Region Name')
   })
 
   it('search for map location by name', function() {
@@ -30,10 +30,10 @@ describe('Set up a new region', function() {
     cy.visit('/regions/create')
     // coordinate inputs must be valid
     // TODO not finished
-    cy.get('input[name="North bound"]')
+    cy.get('#north-bound')
       .clear()
       .type(45.769)
-    cy.get('a[name="Set up a new region"]').should('have.attr', 'disabled')
+    cy.get('button[name="Set up a new region"]').should('have.attr', 'disabled')
   })
 
   it('select pbf', () => {
