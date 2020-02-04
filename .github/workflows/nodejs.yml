@@ -1,26 +1,34 @@
-name: Build, Test, Deploy
+name: Install, Lint, Unit test, Build, Cypress Test
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   install:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: yarn install --frozen-lockfile --check-files
-
+      - id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v1
-        id: cache-build
+        id: cache
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        
+      # Should be fast with the yarn cache restored
+      - run: yarn install --frozen-lockfile --check-files
+      
+      # Cache the entire working directory for subsequent steps
+      - uses: actions/cache@v1
         with:
           path: '.'
           key: ${{ github.sha }}
-
+        
   codeLinter:
     runs-on: ubuntu-latest
     needs: install
     steps:
       - uses: actions/cache@v1
-        id: restore-build
         with:
           path: '.'
           key: ${{ github.sha }}
@@ -33,7 +41,6 @@ jobs:
     needs: install
     steps:
       - uses: actions/cache@v1
-        id: restore-build
         with:
           path: '.'
           key: ${{ github.sha }}
@@ -41,24 +48,27 @@ jobs:
       - run: yarn jest
         env:
           CI: true
-
+          
   cypress:
     runs-on: ubuntu-latest
     needs: install
     steps:
       - uses: actions/cache@v1
-        id: restore-build
         with:
           path: '.'
           key: ${{ github.sha }}
-
-      # Install the binary
-      - run: yarn run cypress install
-
-      # Build then run the next.js server in the background
-      - run: |
-          yarn build
-          yarn start &
+          
+      - uses: actions/cache@v1
+        id: cypress-cache
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ hashFiles('**/yarn.lock') }} 
+          
+      - if: steps.cypress-cache.outputs.cache-hit != 'true'
+        run: yarn run cypress install
+      
+      # Build the next.js app
+      - run: yarn build
         env:
           API_URL: ${{ secrets.API_URL }}
           AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
@@ -67,10 +77,11 @@ jobs:
 
       - uses: cypress-io/github-action@v1
         with:
-          install: false
+          env: ${{ secrets.CYPRESS_GITHUB_ENV }}
+          install: false          
+          start: yarn start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
-          env: ${{ secrets.CYPRESS_GITHUB_ENV }}
 
       - uses: actions/upload-artifact@v1
         with:
