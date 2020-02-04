@@ -107,11 +107,11 @@ This modification does not take into account the possibility of increased freque
 .. _convert_to_frequency:
 ## Convert to frequency
 
-Often a scenario will include changes to the level of service on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing :term:`trip patterns<trip pattern>` with frequency based :ref:`timetables`. You can opt either to 
+Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing :term:`trip patterns<trip pattern>` with frequency based :ref:`timetables`. You can opt either to 
 * delete all existing trips and replace them with your own timetables or 
 * replace trips only when the new timetables would be in effect. 
 
-The travel and dwell times on the replacement trips are based on those of an existing trip which you can select from the affected trip pattern. The new timetables can make use of :ref:`phasing` to reproduced timed services on branching lines, etc. 
+The travel and dwell times on the replacement trips are based on those of an existing trip which you can select from the affected trip pattern. The new timetables can make use of :ref:`phasing` to reproduce timed services on branching lines, etc. 
 
 First, create a new modification and select _Convert to frequency_. Give the modification a name; you will likely want to name it after the route you plan to modify.
 
@@ -126,7 +126,7 @@ You can choose to remove all existing trips on the route (the default) and start
 
 
 You then create any number of frequency entries using simple [timetables](timetable.html).
-Within each timetable, you will need to select a trip pattern from your route and then a particular trip from that trip pattern to be used as a template. Travel times for the new timetable will be based on this trip so it is important to choose one that is representative. For example, you may want to select one of the longer trips when specifying frequencies during congested peak-hour service. 
+Within each timetable, you will need to select a trip pattern from your route, then a particular trip from that trip pattern to be used as a template. Travel times for the new timetable will be based on this template trip so it is important to choose one that is representative. For example, you may want to select one of the slower trips when specifying frequencies during congested peak-hour service. 
 
 <figure>
   <img src="../img/select-trip.png" alt="Selecting a template trip based on total travel time" />
