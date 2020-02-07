@@ -65,12 +65,14 @@ If you choose a project associated with a different GTFS, bundle, only add-trip 
 
 ### From shapefiles
 
-In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However on occasion it may be desirable to import modifications from a [shapefile](https://en.wikipedia.org/wiki/Shapefile). If you have a shapefile containing route geometries, you can upload it to Conveyal Analysis and have it turned into a set of :ref:`add_trip_pattern` modifications. Your shapefile will need attributes for each line's
+In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However on occasion it may be desirable to import modifications from a [shapefile](https://en.wikipedia.org/wiki/Shapefile). If you have a shapefile containing route geometries, you can upload it to Conveyal Analysis and have it turned into a set of :ref:`add_trip_pattern` modifications. Your shapefile will need attributes for each line's:
 * name
 * approximate headway in minutes
 * approximate speed in kmph
 
-To upload a shapefile from the upload/import panel, click
+The shapefile should contain only linear features. Points on the lines will be converted into control points in the modification and by default stops will be spaced uniformly along the line. If think you may want to edit the alignment later in Conveyal Analysis, it might be helpful to simplify complex geometries before uploading them. 
+
+To upload a shapefile from the upload/import panel (<i class="fa fa-upload"></i>), click
 
 <span class="btn btn-success"><i class="fa fa-upload"></i> Import</span>
 
@@ -81,4 +83,4 @@ After selecting and uploading a zipped shapefile, you should see the following o
   <figcaption>Options for importing route alignments from a shapefile</figcaption>
 </figure>
 
-Finally, as shapefiles only contain the route geometry and not the stop locations, stops can be created automatically at a specified spacing. The generated stop positions may be individually edited after import, for example to place a stop at a major transfer point.
+Finally, as shapefiles only contain the route geometry and not the stop locations, stops can be created automatically at a specified spacing. Stops may be explicitly added or moved after import.
