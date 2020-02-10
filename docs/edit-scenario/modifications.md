@@ -136,7 +136,7 @@ Within each timetable, you will need to select a trip pattern from your route, t
 Typically, you will need to create _at least_ two new timetables, one for each direction of travel. 
 
 .. note:: 
-    If the default "retain trips" option is used and a trip pattern is not specifically replaced by a new timetable, that trip pattern is effectively removed entirely. 
+    Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
 
 ## Remove stops
 
