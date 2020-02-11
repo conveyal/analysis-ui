@@ -19,6 +19,7 @@ jobs:
       # Should be fast with the yarn cache restored
       # - run: yarn install --frozen-lockfile --check-files
 
-      - run: echo $GEVENT
+      - run: echo "$GEVENT"
+        name: Dump event context
         env:
-          GEVENT: ${{ github.event }}
+          GEVENT: ${{ toJson(github.event) }}
