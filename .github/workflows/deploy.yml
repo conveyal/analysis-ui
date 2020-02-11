@@ -1,0 +1,24 @@
+# Test deploying from Slack
+name: Deploy
+
+on: [deployment]
+
+jobs:
+  deployStaging:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v2
+      #- id: yarn-cache
+      #  run: echo "::set-output name=dir::$(yarn cache dir)"
+      #- uses: actions/cache@v1
+      #  id: cache
+      #  with:
+      #    path: ${{ steps.yarn-cache.outputs.dir }}
+      #    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      # Should be fast with the yarn cache restored
+      # - run: yarn install --frozen-lockfile --check-files
+
+      - run: echo $GEVENT
+        env:
+          GEVENT: ${{ github.event }}
