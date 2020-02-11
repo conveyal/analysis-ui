@@ -3,10 +3,20 @@ name: Cypress Integration Tests
 on: [pull_request]
 
 jobs:
-  cypress:
+  cypressIntegration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      # Should be fast with the yarn cache restored
+      - run: yarn install --frozen-lockfile --check-files
+
       - uses: cypress-io/github-action@v1
         with:
           build: yarn build
