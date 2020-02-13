@@ -1,5 +1,5 @@
-# Test deploying from Slack
 name: Manually triggered Deployment from Slack
+# NB: When the default installed `now` version is 17 this will no longer work
 
 on: [deployment]
 
@@ -9,7 +9,8 @@ jobs:
     if: github.event.sender.type == 'User' && github.event.deployment.environment == 'staging'
     steps:
       - uses: actions/checkout@v2
-      - run: npx now@16 --prod --token $ZEIT_TOKEN
+    
+      - run: now --prod --local-config=now.json --token $ZEIT_TOKEN
         env:
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
           
@@ -28,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo "deploying to production..."
-      # - run: npx now@16 --prod --local-config=now.production.json --token $ZEIT_TOKEN
+      # - run: now --prod --local-config=now.production.json --token $ZEIT_TOKEN
       #  env:
       #    ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
       
