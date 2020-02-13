@@ -6,7 +6,7 @@ on: [deployment]
 jobs:
   deployStaging:
     runs-on: ubuntu-latest
-    if: github.event.sender.type === 'User' && github.event.deployment.environment === 'staging'
+    if: github.event.sender.type == 'User' && github.event.deployment.environment == 'staging'
     steps:
       - uses: actions/checkout@v2
       - run: npx now@16 --prod --token $ZEIT_TOKEN
@@ -24,7 +24,7 @@ jobs:
         
   deployProduction:
     runs-on: ubuntu-latest
-    if: github.event.sender.type === 'User' && github.event.deployment.environment === 'production'
+    if: github.event.sender.type == 'User' && github.event.deployment.environment == 'production'
     steps:
       - uses: actions/checkout@v2
       - run: echo "deploying to production..."
