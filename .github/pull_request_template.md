@@ -5,5 +5,6 @@ Please include a summary of the change and which issue is fixed. Please also inc
 Fixes # (issue)
 
 ## How to test
-1. 
-2. 
+
+1.
+2.

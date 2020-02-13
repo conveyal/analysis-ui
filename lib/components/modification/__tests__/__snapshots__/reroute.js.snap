@@ -918,7 +918,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
               }
             }
           >
-            <ReactSelect
+            <ForwardRef(LoadableComponent)
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               name="Feed"
@@ -1131,10 +1131,14 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                 }
               }
             >
-              <div
-                className="ReactSelectMock"
+              <loading
+                error={null}
+                isLoading={true}
+                pastDelay={false}
+                retry={[Function]}
+                timedOut={false}
               />
-            </ReactSelect>
+            </ForwardRef(LoadableComponent)>
           </S>
         </div>
       </Group>
@@ -1281,7 +1285,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
               }
             }
           >
-            <ReactSelect
+            <ForwardRef(LoadableComponent)
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               name="Route"
@@ -1426,10 +1430,14 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                 }
               }
             >
-              <div
-                className="ReactSelectMock"
+              <loading
+                error={null}
+                isLoading={true}
+                pastDelay={false}
+                retry={[Function]}
+                timedOut={false}
               />
-            </ReactSelect>
+            </ForwardRef(LoadableComponent)>
           </S>
         </div>
       </Group>
@@ -1493,6 +1501,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                   rotation={null}
                   size={null}
                   spin={false}
+                  swapOpacity={false}
                   symbol={false}
                   title=""
                   transform={null}
@@ -1563,6 +1572,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                   rotation={null}
                   size={null}
                   spin={false}
+                  swapOpacity={false}
                   symbol={false}
                   title=""
                   transform={null}
@@ -1646,6 +1656,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                   rotation={null}
                   size={null}
                   spin={false}
+                  swapOpacity={false}
                   symbol={false}
                   title=""
                   transform={null}
@@ -1716,6 +1727,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
                   rotation={null}
                   size={null}
                   spin={false}
+                  swapOpacity={false}
                   symbol={false}
                   title=""
                   transform={null}
@@ -1823,9 +1835,29 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
     setMapState={[MockFunction]}
     update={[MockFunction]}
   >
-    <h5>
-      Route Geometry
-    </h5>
+    <H5>
+      <Heading
+        as="h5"
+        fontSize="14px"
+        fontWeight="500"
+        my="10px"
+      >
+        <Box
+          as="h5"
+          fontFamily="heading"
+          fontSize="14px"
+          fontWeight="500"
+          lineHeight="shorter"
+          my="10px"
+        >
+          <h5
+            className="css-t22lpo"
+          >
+            Route Geometry
+          </h5>
+        </Box>
+      </Heading>
+    </H5>
     <Button
       block={true}
       disabled={true}
@@ -1868,6 +1900,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
             rotation={null}
             size={null}
             spin={false}
+            swapOpacity={false}
             symbol={false}
             title=""
             transform={null}
@@ -1950,11 +1983,20 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
         00:00:00
       </strong>
     </h4>
-    <p>
-      <em>
-        Dwell time at added stops + moving time along added segments
-      </em>
-    </p>
+    <P>
+      <Box
+        as="p"
+        mb="10px"
+      >
+        <p
+          className="css-1r2f04i"
+        >
+          <em>
+            Dwell time at added stops + moving time along added segments
+          </em>
+        </p>
+      </Box>
+    </P>
     <MinutesSeconds
       label="Default dwell time"
       onChange={[Function]}
@@ -2000,9 +2042,18 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
         </div>
       </Group>
     </MinutesSeconds>
-    <p>
-      The default time table dwell time will be used for each stop that does not have a custom one set.
-    </p>
+    <P>
+      <Box
+        as="p"
+        mb="10px"
+      >
+        <p
+          className="css-1r2f04i"
+        >
+          The default time table dwell time will be used for each stop that does not have a custom one set.
+        </p>
+      </Box>
+    </P>
     <Collapsible
       title="Set individual stop dwell times"
     >
@@ -2041,6 +2092,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
             rotation={null}
             size={null}
             spin={false}
+            swapOpacity={false}
             symbol={false}
             title=""
             transform={null}
@@ -2208,6 +2260,7 @@ exports[`Component > Modification > Reroute renders correctly 1`] = `
             rotation={null}
             size={null}
             spin={false}
+            swapOpacity={false}
             symbol={false}
             title=""
             transform={null}

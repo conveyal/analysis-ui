@@ -1,494 +1,1499 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`create-region.render 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
+<withRouter(CreateRegion)
+  setMapChildren={[Function]}
 >
-  <withRouter(CreateRegion)
+  <CreateRegion
+    router={
+      Router {
+        "_getStaticData": [Function],
+        "_wrapApp": undefined,
+        "asPath": "as-path",
+        "clc": null,
+        "components": Object {
+          "/_app": Object {
+            "Component": undefined,
+          },
+          "page": Object {
+            "Component": undefined,
+            "err": undefined,
+            "props": undefined,
+          },
+        },
+        "events": Object {
+          "emit": [Function],
+          "off": [Function],
+          "on": [Function],
+        },
+        "isSsr": true,
+        "onPopState": [Function],
+        "pageLoader": undefined,
+        "pathname": "page",
+        "query": Object {},
+        "route": "page",
+        "sdc": Object {},
+        "sub": undefined,
+      }
+    }
     setMapChildren={[Function]}
   >
-    <CreateRegion
-      setMapChildren={[Function]}
-    >
-      <InnerDock
-        className="block"
-      >
-        <div
-          className="InnerDock block"
-          style={
-            Object {
-              "height": 768,
-            }
+    <InnerDock>
+      <div
+        className="InnerDock "
+        style={
+          Object {
+            "height": "100vh",
           }
+        }
+      >
+        <Stack
+          p={4}
+          spacing={4}
         >
-          <legend>
-            <Icon
-              icon={
-                Object {
-                  "icon": Array [],
-                  "iconName": "map",
-                  "prefix": "fas",
-                }
-              }
-            >
-              <FontAwesomeIcon
-                border={false}
-                className=""
-                fixedWidth={true}
-                flip={null}
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "map",
-                    "prefix": "fas",
-                  }
-                }
-                inverse={false}
-                listItem={false}
-                mask={null}
-                pull={null}
-                pulse={false}
-                rotation={null}
-                size={null}
-                spin={false}
-                symbol={false}
-                title=""
-                transform={null}
-              >
-                <svg
-                  aria-hidden="true"
-                  className="svg-inline--fa fa-map fa-w-NaN fa-fw "
-                  data-icon="map"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
-                  style={Object {}}
-                  viewBox="0 0 undefined undefined"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="currentColor"
-                    style={Object {}}
-                  />
-                </svg>
-              </FontAwesomeIcon>
-            </Icon>
-             
-            Set up a new region
-          </legend>
-          <Text
-            label="Region Name*"
-            name="Region Name"
-            onChange={[Function]}
-            value=""
+          <Flex
+            direction="column"
+            p={4}
           >
-            <Group
-              id="region-name-input-0"
-              label="Region Name*"
-              name="Region Name"
-              onChange={[Function]}
-              value=""
+            <Box
+              display="flex"
+              flexDirection="column"
+              p={4}
             >
               <div
-                className="form-group"
+                className="css-1n0jko5"
               >
-                <label
-                  className="control-label"
-                  htmlFor="region-name-input-0"
+                <Heading
+                  key=".0"
+                  mb={4}
+                  size="md"
                 >
-                  Region Name*
-                </label>
-                <Input
-                  id="region-name-input-0"
-                  label="Region Name*"
-                  name="Region Name"
-                  onChange={[Function]}
-                  type="text"
-                  value=""
+                  <Box
+                    as="h2"
+                    fontFamily="heading"
+                    fontSize="xl"
+                    fontWeight="bold"
+                    lineHeight="shorter"
+                    mb={4}
+                  >
+                    <h2
+                      className="css-k9oqgk"
+                    >
+                      <Icon
+                        icon={
+                          Object {
+                            "icon": Array [],
+                            "iconName": "map",
+                            "prefix": "fas",
+                          }
+                        }
+                      >
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={true}
+                          flip={null}
+                          icon={
+                            Object {
+                              "icon": Array [],
+                              "iconName": "map",
+                              "prefix": "fas",
+                            }
+                          }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          swapOpacity={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-map fa-w-NaN fa-fw "
+                            data-icon="map"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            style={Object {}}
+                            viewBox="0 0 undefined undefined"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill="currentColor"
+                              style={Object {}}
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </Icon>
+                       
+                      <span>
+                         
+                        Set up a new region
+                      </span>
+                    </h2>
+                  </Box>
+                </Heading>
+                <FormControl
+                  isDisabled={false}
+                  isInvalid={true}
+                  isRequired={true}
+                  key=".2"
+                  mb={4}
                 >
-                  <input
-                    className="form-control"
-                    id="region-name-input-0"
-                    label="Region Name*"
-                    name="Region Name"
-                    onChange={[Function]}
-                    placeholder="Region Name*"
-                    type="text"
-                    value=""
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            label="Description"
-            name="Description"
-            onChange={[Function]}
-            value=""
-          >
-            <Group
-              id="description-input-1"
-              label="Description"
-              name="Description"
-              onChange={[Function]}
-              value=""
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  className="control-label"
-                  htmlFor="description-input-1"
+                  <Box
+                    mb={4}
+                    role="group"
+                  >
+                    <div
+                      className="css-acwcvw"
+                      role="group"
+                    >
+                      <FormLabel>
+                        <Box
+                          as="label"
+                          display="inline-block"
+                          fontSize="md"
+                          fontWeight="medium"
+                          opacity="1"
+                          pb="4px"
+                          pr="12px"
+                          textAlign="left"
+                          verticalAlign="middle"
+                        >
+                          <label
+                            className="css-176s5fq"
+                          >
+                            Region Name
+                            <RequiredIndicator>
+                              <Box
+                                aria-hidden="true"
+                                as="span"
+                                color="red.500"
+                                ml={1}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="css-i02c70"
+                                >
+                                  *
+                                </span>
+                              </Box>
+                            </RequiredIndicator>
+                          </label>
+                        </Box>
+                      </FormLabel>
+                      <Input
+                        as="input"
+                        errorBorderColor="red.500"
+                        focusBorderColor="blue.500"
+                        isFullWidth={true}
+                        name="Region Name"
+                        onChange={[Function]}
+                        placeholder="Region Name"
+                        size="md"
+                        type="text"
+                        value=""
+                        variant="outline"
+                      >
+                        <PseudoBox
+                          _disabled={
+                            Object {
+                              "cursor": "not-allowed",
+                              "opacity": "0.4",
+                            }
+                          }
+                          _focus={
+                            Object {
+                              "borderColor": "#3182ce",
+                              "boxShadow": "0 0 0 1px #3182ce",
+                            }
+                          }
+                          _hover={
+                            Object {
+                              "borderColor": "gray.300",
+                            }
+                          }
+                          _invalid={
+                            Object {
+                              "borderColor": "#e53e3e",
+                              "boxShadow": "0 0 0 1px #e53e3e",
+                            }
+                          }
+                          _readOnly={
+                            Object {
+                              "bg": "transparent",
+                              "boxShadow": "none !important",
+                              "userSelect": "all",
+                            }
+                          }
+                          alignItems="center"
+                          aria-disabled={false}
+                          aria-invalid={true}
+                          aria-required={true}
+                          as="input"
+                          bg="white"
+                          border="1px"
+                          borderColor="inherit"
+                          disabled={false}
+                          display="flex"
+                          fontSize="md"
+                          height={10}
+                          lineHeight="2.5rem"
+                          name="Region Name"
+                          onChange={[Function]}
+                          outline="none"
+                          placeholder="Region Name"
+                          position="relative"
+                          px={4}
+                          required={true}
+                          rounded="md"
+                          transition="all 0.2s"
+                          type="text"
+                          value=""
+                          width="100%"
+                        >
+                          <input
+                            aria-disabled={false}
+                            aria-invalid={true}
+                            aria-required={true}
+                            className="css-1bqs6u7"
+                            disabled={false}
+                            name="Region Name"
+                            onChange={[Function]}
+                            placeholder="Region Name"
+                            required={true}
+                            type="text"
+                            value=""
+                          />
+                        </PseudoBox>
+                      </Input>
+                    </div>
+                  </Box>
+                </FormControl>
+                <FormControl
+                  isDisabled={false}
+                  key=".3"
+                  mb={4}
                 >
-                  Description
-                </label>
-                <Input
-                  id="description-input-1"
-                  label="Description"
-                  name="Description"
-                  onChange={[Function]}
-                  type="text"
-                  value=""
-                >
-                  <input
-                    className="form-control"
-                    id="description-input-1"
-                    label="Description"
-                    name="Description"
-                    onChange={[Function]}
-                    placeholder="Description"
-                    type="text"
-                    value=""
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <h5>
-            Analysis bounds
-          </h5>
-          <div
-            className="alert alert-warning"
-          >
-            <p>
-              Bounds are snapped to points on our regular grid.
-            </p>
-            <a
-              href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Learn more about spatial resolution here.
-            </a>
-          </div>
-          <Text
-            key="bound-North"
-            label="North bound"
-            name="North bound"
-            onChange={[Function]}
-            value={39.02345139405933}
-          >
-            <Group
-              id="north-bound-input-2"
-              label="North bound"
-              name="North bound"
-              onChange={[Function]}
-              value={39.02345139405933}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  className="control-label"
-                  htmlFor="north-bound-input-2"
-                >
-                  North bound
-                </label>
-                <Input
-                  id="north-bound-input-2"
-                  label="North bound"
-                  name="North bound"
-                  onChange={[Function]}
-                  type="text"
-                  value={39.02345139405933}
-                >
-                  <input
-                    className="form-control"
-                    id="north-bound-input-2"
-                    label="North bound"
-                    name="North bound"
-                    onChange={[Function]}
-                    placeholder="North bound"
-                    type="text"
-                    value={39.02345139405933}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            key="bound-South"
-            label="South bound"
-            name="South bound"
-            onChange={[Function]}
-            value={38.77764022307335}
-          >
-            <Group
-              id="south-bound-input-3"
-              label="South bound"
-              name="South bound"
-              onChange={[Function]}
-              value={38.77764022307335}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  className="control-label"
-                  htmlFor="south-bound-input-3"
-                >
-                  South bound
-                </label>
-                <Input
-                  id="south-bound-input-3"
-                  label="South bound"
-                  name="South bound"
-                  onChange={[Function]}
-                  type="text"
-                  value={38.77764022307335}
-                >
-                  <input
-                    className="form-control"
-                    id="south-bound-input-3"
-                    label="South bound"
-                    name="South bound"
-                    onChange={[Function]}
-                    placeholder="South bound"
-                    type="text"
-                    value={38.77764022307335}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            key="bound-East"
-            label="East bound"
-            name="East bound"
-            onChange={[Function]}
-            value={-76.81365966796875}
-          >
-            <Group
-              id="east-bound-input-4"
-              label="East bound"
-              name="East bound"
-              onChange={[Function]}
-              value={-76.81365966796875}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  className="control-label"
-                  htmlFor="east-bound-input-4"
-                >
-                  East bound
-                </label>
-                <Input
-                  id="east-bound-input-4"
-                  label="East bound"
-                  name="East bound"
-                  onChange={[Function]}
-                  type="text"
-                  value={-76.81365966796875}
-                >
-                  <input
-                    className="form-control"
-                    id="east-bound-input-4"
-                    label="East bound"
-                    name="East bound"
-                    onChange={[Function]}
-                    placeholder="East bound"
-                    type="text"
-                    value={-76.81365966796875}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          <Text
-            key="bound-West"
-            label="West bound"
-            name="West bound"
-            onChange={[Function]}
-            value={-77.255859375}
-          >
-            <Group
-              id="west-bound-input-5"
-              label="West bound"
-              name="West bound"
-              onChange={[Function]}
-              value={-77.255859375}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  className="control-label"
-                  htmlFor="west-bound-input-5"
-                >
-                  West bound
-                </label>
-                <Input
-                  id="west-bound-input-5"
-                  label="West bound"
-                  name="West bound"
-                  onChange={[Function]}
-                  type="text"
-                  value={-77.255859375}
-                >
-                  <input
-                    className="form-control"
-                    id="west-bound-input-5"
-                    label="West bound"
-                    name="West bound"
-                    onChange={[Function]}
-                    placeholder="West bound"
-                    type="text"
-                    value={-77.255859375}
-                  />
-                </Input>
-              </div>
-            </Group>
-          </Text>
-          osmconvert crop command
-          <div
-            className="alert alert-info all-copy"
-          >
-            osmconvert [file].pbf -b="-77.255859375, 38.77764022307335, -76.81365966796875, 39.02345139405933" --complete-ways -o=[file]-cropped.pbf
-          </div>
-          <File
-            label="OpenStreetMap data in PBF format"
-            name="customOpenStreetMapData"
-            onChange={[Function]}
-          >
-            <Group
-              id="custom-open-street-map-data-input-6"
-              label="OpenStreetMap data in PBF format"
-              name="customOpenStreetMapData"
-              onChange={[Function]}
-            >
-              <div
-                className="form-group"
-              >
-                <label
-                  className="control-label"
-                  htmlFor="custom-open-street-map-data-input-6"
-                >
-                  OpenStreetMap data in PBF format
-                </label>
-                <Input
-                  id="custom-open-street-map-data-input-6"
-                  label="OpenStreetMap data in PBF format"
-                  name="customOpenStreetMapData"
-                  onChange={[Function]}
-                  type="file"
-                >
-                  <input
-                    className="form-control"
-                    id="custom-open-street-map-data-input-6"
-                    label="OpenStreetMap data in PBF format"
-                    name="customOpenStreetMapData"
-                    onChange={[Function]}
-                    placeholder="OpenStreetMap data in PBF format"
-                    type="file"
-                  />
-                </Input>
-              </div>
-            </Group>
-          </File>
-          <Button
-            block={true}
-            disabled={true}
-            name="Set up a new region"
-            onClick={[Function]}
-            style="success"
-          >
-            <a
-              className="btn btn-success btn-block"
-              disabled={true}
-              href="#"
-              name="Set up a new region"
-              onClick={[Function]}
-              tabIndex={0}
-            >
-              <Icon
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "check",
-                    "prefix": "fas",
-                  }
-                }
-              >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
-                  icon={
+                  <Box
+                    mb={4}
+                    role="group"
+                  >
+                    <div
+                      className="css-acwcvw"
+                      role="group"
+                    >
+                      <FormLabel>
+                        <Box
+                          as="label"
+                          display="inline-block"
+                          fontSize="md"
+                          fontWeight="medium"
+                          opacity="1"
+                          pb="4px"
+                          pr="12px"
+                          textAlign="left"
+                          verticalAlign="middle"
+                        >
+                          <label
+                            className="css-176s5fq"
+                          >
+                            Description
+                          </label>
+                        </Box>
+                      </FormLabel>
+                      <Input
+                        as="input"
+                        errorBorderColor="red.500"
+                        focusBorderColor="blue.500"
+                        isFullWidth={true}
+                        onChange={[Function]}
+                        placeholder="Description"
+                        size="md"
+                        type="text"
+                        value=""
+                        variant="outline"
+                      >
+                        <PseudoBox
+                          _disabled={
+                            Object {
+                              "cursor": "not-allowed",
+                              "opacity": "0.4",
+                            }
+                          }
+                          _focus={
+                            Object {
+                              "borderColor": "#3182ce",
+                              "boxShadow": "0 0 0 1px #3182ce",
+                            }
+                          }
+                          _hover={
+                            Object {
+                              "borderColor": "gray.300",
+                            }
+                          }
+                          _invalid={
+                            Object {
+                              "borderColor": "#e53e3e",
+                              "boxShadow": "0 0 0 1px #e53e3e",
+                            }
+                          }
+                          _readOnly={
+                            Object {
+                              "bg": "transparent",
+                              "boxShadow": "none !important",
+                              "userSelect": "all",
+                            }
+                          }
+                          alignItems="center"
+                          aria-disabled={false}
+                          as="input"
+                          bg="white"
+                          border="1px"
+                          borderColor="inherit"
+                          disabled={false}
+                          display="flex"
+                          fontSize="md"
+                          height={10}
+                          lineHeight="2.5rem"
+                          onChange={[Function]}
+                          outline="none"
+                          placeholder="Description"
+                          position="relative"
+                          px={4}
+                          rounded="md"
+                          transition="all 0.2s"
+                          type="text"
+                          value=""
+                          width="100%"
+                        >
+                          <input
+                            aria-disabled={false}
+                            className="css-1bqs6u7"
+                            disabled={false}
+                            onChange={[Function]}
+                            placeholder="Description"
+                            type="text"
+                            value=""
+                          />
+                        </PseudoBox>
+                      </Input>
+                    </div>
+                  </Box>
+                </FormControl>
+                <EditBoundsForm
+                  bounds={
                     Object {
-                      "icon": Array [],
-                      "iconName": "check",
-                      "prefix": "fas",
+                      "east": -76.81365966796875,
+                      "north": 39.02345139405933,
+                      "south": 38.77764022307335,
+                      "west": -77.255859375,
                     }
                   }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
+                  isDisabled={false}
+                  key=".4"
+                  mb={4}
+                  onChange={[Function]}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-check fa-w-NaN fa-fw "
-                    data-icon="check"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <Stack
+                    mb={4}
+                    spacing={4}
                   >
-                    <path
-                      fill="currentColor"
-                      style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-               
-              Set up a new region
-            </a>
-          </Button>
-        </div>
-      </InnerDock>
-    </CreateRegion>
-  </withRouter(CreateRegion)>
-</Provider>
+                    <Flex
+                      direction="column"
+                      mb={4}
+                    >
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        mb={4}
+                      >
+                        <div
+                          className="css-opcg3f"
+                        >
+                          <Heading
+                            key=".0"
+                            mb={4}
+                            size="sm"
+                          >
+                            <Box
+                              as="h2"
+                              fontFamily="heading"
+                              fontSize="md"
+                              fontWeight="bold"
+                              lineHeight="shorter"
+                              mb={4}
+                            >
+                              <h2
+                                className="css-35hltn"
+                              >
+                                Analysis bounds
+                              </h2>
+                            </Box>
+                          </Heading>
+                          <Text
+                            key=".1"
+                            mb={4}
+                          >
+                            <Box
+                              as="p"
+                              fontFamily="body"
+                              mb={4}
+                            >
+                              <p
+                                className="css-zwncle"
+                              >
+                                <span>
+                                  Bounds are snapped to points on our regular grid.
+                                   
+                                </span>
+                                <ForwardRef
+                                  href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+                                  rel="noopener noreferrer"
+                                  target="_blank"
+                                >
+                                  <PseudoBox
+                                    _hover={
+                                      Object {
+                                        "color": "#185c86",
+                                      }
+                                    }
+                                    as="a"
+                                    color="#2389c9"
+                                    href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <a
+                                      className="css-khmg1f"
+                                      href="http://docs.analysis.conveyal.com/en/latest/analysis/methodology.html#spatial-resolution"
+                                      rel="noopener noreferrer"
+                                      target="_blank"
+                                    >
+                                      Learn more about spatial resolution here.
+                                    </a>
+                                  </PseudoBox>
+                                </ForwardRef>
+                              </p>
+                            </Box>
+                          </Text>
+                          <FormControl
+                            isDisabled={false}
+                            isInvalid={false}
+                            isRequired={true}
+                            key=".2:$north"
+                            mb={4}
+                          >
+                            <Box
+                              mb={4}
+                              role="group"
+                            >
+                              <div
+                                className="css-acwcvw"
+                                role="group"
+                              >
+                                <FormLabel
+                                  htmlFor="north-bound"
+                                >
+                                  <Box
+                                    as="label"
+                                    display="inline-block"
+                                    fontSize="md"
+                                    fontWeight="medium"
+                                    htmlFor="north-bound"
+                                    opacity="1"
+                                    pb="4px"
+                                    pr="12px"
+                                    textAlign="left"
+                                    verticalAlign="middle"
+                                  >
+                                    <label
+                                      className="css-176s5fq"
+                                      htmlFor="north-bound"
+                                    >
+                                      North
+                                       bound
+                                      <RequiredIndicator>
+                                        <Box
+                                          aria-hidden="true"
+                                          as="span"
+                                          color="red.500"
+                                          ml={1}
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="css-i02c70"
+                                          >
+                                            *
+                                          </span>
+                                        </Box>
+                                      </RequiredIndicator>
+                                    </label>
+                                  </Box>
+                                </FormLabel>
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="north-bound"
+                                  isFullWidth={true}
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  size="md"
+                                  value={39.02345139405933}
+                                  variant="outline"
+                                >
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="north-bound"
+                                    lineHeight="2.5rem"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={39.02345139405933}
+                                    width="100%"
+                                  >
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="north-bound"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      required={true}
+                                      value={39.02345139405933}
+                                    />
+                                  </PseudoBox>
+                                </Input>
+                                <FormHelperText
+                                  htmlFor="north-bound"
+                                >
+                                  <Text
+                                    color="gray.500"
+                                    fontSize="sm"
+                                    htmlFor="north-bound"
+                                    id={null}
+                                    lineHeight="normal"
+                                    mt={2}
+                                  >
+                                    <Box
+                                      as="p"
+                                      color="gray.500"
+                                      fontFamily="body"
+                                      fontSize="sm"
+                                      htmlFor="north-bound"
+                                      id={null}
+                                      lineHeight="normal"
+                                      mt={2}
+                                    >
+                                      <p
+                                        className="css-1t1cls9"
+                                        htmlFor="north-bound"
+                                        id={null}
+                                      >
+                                        North
+                                         must be between 
+                                        -90
+                                         and 
+                                        90
+                                         degrees.
+                                      </p>
+                                    </Box>
+                                  </Text>
+                                </FormHelperText>
+                              </div>
+                            </Box>
+                          </FormControl>
+                          <FormControl
+                            isDisabled={false}
+                            isInvalid={false}
+                            isRequired={true}
+                            key=".2:$south"
+                            mb={4}
+                          >
+                            <Box
+                              mb={4}
+                              role="group"
+                            >
+                              <div
+                                className="css-acwcvw"
+                                role="group"
+                              >
+                                <FormLabel
+                                  htmlFor="south-bound"
+                                >
+                                  <Box
+                                    as="label"
+                                    display="inline-block"
+                                    fontSize="md"
+                                    fontWeight="medium"
+                                    htmlFor="south-bound"
+                                    opacity="1"
+                                    pb="4px"
+                                    pr="12px"
+                                    textAlign="left"
+                                    verticalAlign="middle"
+                                  >
+                                    <label
+                                      className="css-176s5fq"
+                                      htmlFor="south-bound"
+                                    >
+                                      South
+                                       bound
+                                      <RequiredIndicator>
+                                        <Box
+                                          aria-hidden="true"
+                                          as="span"
+                                          color="red.500"
+                                          ml={1}
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="css-i02c70"
+                                          >
+                                            *
+                                          </span>
+                                        </Box>
+                                      </RequiredIndicator>
+                                    </label>
+                                  </Box>
+                                </FormLabel>
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="south-bound"
+                                  isFullWidth={true}
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  size="md"
+                                  value={38.77764022307335}
+                                  variant="outline"
+                                >
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="south-bound"
+                                    lineHeight="2.5rem"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={38.77764022307335}
+                                    width="100%"
+                                  >
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="south-bound"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      required={true}
+                                      value={38.77764022307335}
+                                    />
+                                  </PseudoBox>
+                                </Input>
+                                <FormHelperText
+                                  htmlFor="south-bound"
+                                >
+                                  <Text
+                                    color="gray.500"
+                                    fontSize="sm"
+                                    htmlFor="south-bound"
+                                    id={null}
+                                    lineHeight="normal"
+                                    mt={2}
+                                  >
+                                    <Box
+                                      as="p"
+                                      color="gray.500"
+                                      fontFamily="body"
+                                      fontSize="sm"
+                                      htmlFor="south-bound"
+                                      id={null}
+                                      lineHeight="normal"
+                                      mt={2}
+                                    >
+                                      <p
+                                        className="css-1t1cls9"
+                                        htmlFor="south-bound"
+                                        id={null}
+                                      >
+                                        South
+                                         must be between 
+                                        -90
+                                         and 
+                                        90
+                                         degrees.
+                                      </p>
+                                    </Box>
+                                  </Text>
+                                </FormHelperText>
+                              </div>
+                            </Box>
+                          </FormControl>
+                          <FormControl
+                            isDisabled={false}
+                            isInvalid={false}
+                            isRequired={true}
+                            key=".2:$east"
+                            mb={4}
+                          >
+                            <Box
+                              mb={4}
+                              role="group"
+                            >
+                              <div
+                                className="css-acwcvw"
+                                role="group"
+                              >
+                                <FormLabel
+                                  htmlFor="east-bound"
+                                >
+                                  <Box
+                                    as="label"
+                                    display="inline-block"
+                                    fontSize="md"
+                                    fontWeight="medium"
+                                    htmlFor="east-bound"
+                                    opacity="1"
+                                    pb="4px"
+                                    pr="12px"
+                                    textAlign="left"
+                                    verticalAlign="middle"
+                                  >
+                                    <label
+                                      className="css-176s5fq"
+                                      htmlFor="east-bound"
+                                    >
+                                      East
+                                       bound
+                                      <RequiredIndicator>
+                                        <Box
+                                          aria-hidden="true"
+                                          as="span"
+                                          color="red.500"
+                                          ml={1}
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="css-i02c70"
+                                          >
+                                            *
+                                          </span>
+                                        </Box>
+                                      </RequiredIndicator>
+                                    </label>
+                                  </Box>
+                                </FormLabel>
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="east-bound"
+                                  isFullWidth={true}
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  size="md"
+                                  value={-76.81365966796875}
+                                  variant="outline"
+                                >
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="east-bound"
+                                    lineHeight="2.5rem"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={-76.81365966796875}
+                                    width="100%"
+                                  >
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="east-bound"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      required={true}
+                                      value={-76.81365966796875}
+                                    />
+                                  </PseudoBox>
+                                </Input>
+                                <FormHelperText
+                                  htmlFor="east-bound"
+                                >
+                                  <Text
+                                    color="gray.500"
+                                    fontSize="sm"
+                                    htmlFor="east-bound"
+                                    id={null}
+                                    lineHeight="normal"
+                                    mt={2}
+                                  >
+                                    <Box
+                                      as="p"
+                                      color="gray.500"
+                                      fontFamily="body"
+                                      fontSize="sm"
+                                      htmlFor="east-bound"
+                                      id={null}
+                                      lineHeight="normal"
+                                      mt={2}
+                                    >
+                                      <p
+                                        className="css-1t1cls9"
+                                        htmlFor="east-bound"
+                                        id={null}
+                                      >
+                                        East
+                                         must be between 
+                                        -180
+                                         and 
+                                        180
+                                         degrees.
+                                      </p>
+                                    </Box>
+                                  </Text>
+                                </FormHelperText>
+                              </div>
+                            </Box>
+                          </FormControl>
+                          <FormControl
+                            isDisabled={false}
+                            isInvalid={false}
+                            isRequired={true}
+                            key=".2:$west"
+                            mb={null}
+                          >
+                            <Box
+                              mb={null}
+                              role="group"
+                            >
+                              <div
+                                className="css-0"
+                                role="group"
+                              >
+                                <FormLabel
+                                  htmlFor="west-bound"
+                                >
+                                  <Box
+                                    as="label"
+                                    display="inline-block"
+                                    fontSize="md"
+                                    fontWeight="medium"
+                                    htmlFor="west-bound"
+                                    opacity="1"
+                                    pb="4px"
+                                    pr="12px"
+                                    textAlign="left"
+                                    verticalAlign="middle"
+                                  >
+                                    <label
+                                      className="css-176s5fq"
+                                      htmlFor="west-bound"
+                                    >
+                                      West
+                                       bound
+                                      <RequiredIndicator>
+                                        <Box
+                                          aria-hidden="true"
+                                          as="span"
+                                          color="red.500"
+                                          ml={1}
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="css-i02c70"
+                                          >
+                                            *
+                                          </span>
+                                        </Box>
+                                      </RequiredIndicator>
+                                    </label>
+                                  </Box>
+                                </FormLabel>
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="west-bound"
+                                  isFullWidth={true}
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  size="md"
+                                  value={-77.255859375}
+                                  variant="outline"
+                                >
+                                  <PseudoBox
+                                    _disabled={
+                                      Object {
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
+                                      }
+                                    }
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    aria-disabled={false}
+                                    aria-invalid={false}
+                                    aria-required={true}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    disabled={false}
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="west-bound"
+                                    lineHeight="2.5rem"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    required={true}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value={-77.255859375}
+                                    width="100%"
+                                  >
+                                    <input
+                                      aria-disabled={false}
+                                      aria-invalid={false}
+                                      aria-required={true}
+                                      className="css-1bqs6u7"
+                                      disabled={false}
+                                      id="west-bound"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      required={true}
+                                      value={-77.255859375}
+                                    />
+                                  </PseudoBox>
+                                </Input>
+                                <FormHelperText
+                                  htmlFor="west-bound"
+                                >
+                                  <Text
+                                    color="gray.500"
+                                    fontSize="sm"
+                                    htmlFor="west-bound"
+                                    id={null}
+                                    lineHeight="normal"
+                                    mt={2}
+                                  >
+                                    <Box
+                                      as="p"
+                                      color="gray.500"
+                                      fontFamily="body"
+                                      fontSize="sm"
+                                      htmlFor="west-bound"
+                                      id={null}
+                                      lineHeight="normal"
+                                      mt={2}
+                                    >
+                                      <p
+                                        className="css-1t1cls9"
+                                        htmlFor="west-bound"
+                                        id={null}
+                                      >
+                                        West
+                                         must be between 
+                                        -180
+                                         and 
+                                        180
+                                         degrees.
+                                      </p>
+                                    </Box>
+                                  </Text>
+                                </FormHelperText>
+                              </div>
+                            </Box>
+                          </FormControl>
+                        </div>
+                      </Box>
+                    </Flex>
+                  </Stack>
+                </EditBoundsForm>
+                <Heading
+                  key=".5"
+                  mb={4}
+                  size="sm"
+                >
+                  <Box
+                    as="h2"
+                    fontFamily="heading"
+                    fontSize="md"
+                    fontWeight="bold"
+                    lineHeight="shorter"
+                    mb={4}
+                  >
+                    <h2
+                      className="css-35hltn"
+                    >
+                      osmconvert crop command
+                    </h2>
+                  </Box>
+                </Heading>
+                <Alert
+                  key=".6"
+                  mb={4}
+                  status="info"
+                >
+                  <Box
+                    alignItems="center"
+                    bg="blue.100"
+                    display="flex"
+                    mb={4}
+                    overflow="hidden"
+                    pb={3}
+                    pl={4}
+                    position="relative"
+                    pr={4}
+                    pt={3}
+                    role="alert"
+                  >
+                    <div
+                      className="css-pjk3qj"
+                      role="alert"
+                    >
+                      osmconvert [file].pbf -b="-77.255859375, 38.77764022307335, -76.81365966796875, 39.02345139405933" --complete-ways -o=[file]-cropped.pbf
+                    </div>
+                  </Box>
+                </Alert>
+                <FormControl
+                  isDisabled={false}
+                  isRequired={true}
+                  key=".7"
+                  mb={4}
+                >
+                  <Box
+                    mb={4}
+                    role="group"
+                  >
+                    <div
+                      className="css-acwcvw"
+                      role="group"
+                    >
+                      <FormLabel>
+                        <Box
+                          as="label"
+                          display="inline-block"
+                          fontSize="md"
+                          fontWeight="medium"
+                          opacity="1"
+                          pb="4px"
+                          pr="12px"
+                          textAlign="left"
+                          verticalAlign="middle"
+                        >
+                          <label
+                            className="css-176s5fq"
+                          >
+                            OpenStreetMap data in PBF format
+                            <RequiredIndicator>
+                              <Box
+                                aria-hidden="true"
+                                as="span"
+                                color="red.500"
+                                ml={1}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="css-i02c70"
+                                >
+                                  *
+                                </span>
+                              </Box>
+                            </RequiredIndicator>
+                          </label>
+                        </Box>
+                      </FormLabel>
+                      <Input
+                        as="input"
+                        errorBorderColor="red.500"
+                        focusBorderColor="blue.500"
+                        isFullWidth={true}
+                        onChange={[Function]}
+                        size="md"
+                        type="file"
+                        variant="outline"
+                      >
+                        <PseudoBox
+                          _disabled={
+                            Object {
+                              "cursor": "not-allowed",
+                              "opacity": "0.4",
+                            }
+                          }
+                          _focus={
+                            Object {
+                              "borderColor": "#3182ce",
+                              "boxShadow": "0 0 0 1px #3182ce",
+                            }
+                          }
+                          _hover={
+                            Object {
+                              "borderColor": "gray.300",
+                            }
+                          }
+                          _invalid={
+                            Object {
+                              "borderColor": "#e53e3e",
+                              "boxShadow": "0 0 0 1px #e53e3e",
+                            }
+                          }
+                          _readOnly={
+                            Object {
+                              "bg": "transparent",
+                              "boxShadow": "none !important",
+                              "userSelect": "all",
+                            }
+                          }
+                          alignItems="center"
+                          aria-disabled={false}
+                          aria-required={true}
+                          as="input"
+                          bg="white"
+                          border="1px"
+                          borderColor="inherit"
+                          disabled={false}
+                          display="flex"
+                          fontSize="md"
+                          height={10}
+                          lineHeight="2.5rem"
+                          onChange={[Function]}
+                          outline="none"
+                          position="relative"
+                          px={4}
+                          required={true}
+                          rounded="md"
+                          transition="all 0.2s"
+                          type="file"
+                          width="100%"
+                        >
+                          <input
+                            aria-disabled={false}
+                            aria-required={true}
+                            className="css-1bqs6u7"
+                            disabled={false}
+                            onChange={[Function]}
+                            required={true}
+                            type="file"
+                          />
+                        </PseudoBox>
+                      </Input>
+                    </div>
+                  </Box>
+                </FormControl>
+                <Button
+                  block={true}
+                  isDisabled={true}
+                  isLoading={false}
+                  key=".8"
+                  leftIcon="check"
+                  loadingText="Uploading OpenStreetMap data…"
+                  mb={null}
+                  name="Set up a new region"
+                  onClick={[Function]}
+                  size="lg"
+                  variantColor="green"
+                >
+                  <PseudoBox
+                    _active={
+                      Object {
+                        "bg": "green.700",
+                      }
+                    }
+                    _disabled={
+                      Object {
+                        "boxShadow": "none",
+                        "cursor": "not-allowed",
+                        "opacity": "40%",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "boxShadow": "outline",
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "bg": "green.600",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    aria-disabled={true}
+                    as="button"
+                    bg="green.500"
+                    block={true}
+                    borderRadius="md"
+                    color="white"
+                    disabled={true}
+                    display="inline-flex"
+                    fontSize="lg"
+                    fontWeight="semibold"
+                    height={12}
+                    justifyContent="center"
+                    lineHeight="1.2"
+                    mb={null}
+                    minWidth={12}
+                    name="Set up a new region"
+                    onClick={[Function]}
+                    outline="none"
+                    position="relative"
+                    px={6}
+                    transition="all 250ms"
+                    type="button"
+                    userSelect="none"
+                    verticalAlign="middle"
+                    whiteSpace="nowrap"
+                  >
+                    <button
+                      aria-disabled={true}
+                      className="css-150yjo0"
+                      disabled={true}
+                      name="Set up a new region"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      <ButtonIcon
+                        icon="check"
+                        ml={-1}
+                        mr={2}
+                      >
+                        <Icon
+                          color="currentColor"
+                          focusable="false"
+                          ml={-1}
+                          mr={2}
+                          name="check"
+                        >
+                          <Styled(div)
+                            as="svg"
+                            color="currentColor"
+                            display="inline-block"
+                            focusable="false"
+                            ml={-1}
+                            mr={2}
+                            role="presentation"
+                            size="1em"
+                            verticalAlign="middle"
+                            viewBox="0 0 14 14"
+                          >
+                            <svg
+                              className="css-yxiis9"
+                              focusable="false"
+                              role="presentation"
+                              viewBox="0 0 14 14"
+                            >
+                              <g
+                                fill="currentColor"
+                              >
+                                <polygon
+                                  points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                />
+                              </g>
+                            </svg>
+                          </Styled(div)>
+                        </Icon>
+                      </ButtonIcon>
+                      Set up a new region
+                    </button>
+                  </PseudoBox>
+                </Button>
+              </div>
+            </Box>
+          </Flex>
+        </Stack>
+      </div>
+    </InnerDock>
+  </CreateRegion>
+</withRouter(CreateRegion)>
 `;

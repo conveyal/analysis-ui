@@ -1,58 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component SelectRegion snapshot(mount) 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
+<SelectRegion
+  regions={
+    Array [
+      Object {
+        "_id": "1",
+        "accessGroup": "accessGroupName",
+        "bounds": Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        },
+        "createdAt": "2017-11-08T12:30:50.133Z",
+        "createdBy": "person@gmail.com",
+        "description": "Region description",
+        "name": "Mock Region",
+        "nonce": "12345",
+        "opportunityDatasets": Array [
+          Object {
+            "_id": "Workers_total",
+            "name": "Workers total",
+            "sourceName": "lodes-data-2014",
+          },
+        ],
+        "statusCode": "DONE",
+        "updatedAt": "2017-11-08T12:31:19.602Z",
+        "updatedBy": "person@gmail.com",
+      },
+    ]
   }
 >
-  <SelectRegion
-    regions={
-      Array [
-        Object {
-          "_id": "1",
-          "accessGroup": "accessGroupName",
-          "bounds": Object {
-            "east": -76,
-            "north": 39,
-            "south": 38,
-            "west": -77,
-          },
-          "createdAt": "2017-11-08T12:30:50.133Z",
-          "createdBy": "person@gmail.com",
-          "description": "Region description",
-          "name": "Mock Region",
-          "nonce": "12345",
-          "opportunityDatasets": Array [
-            Object {
-              "_id": "Workers_total",
-              "name": "Workers total",
-              "sourceName": "lodes-data-2014",
-            },
-          ],
-          "statusCode": "DONE",
-          "updatedAt": "2017-11-08T12:31:19.602Z",
-          "updatedBy": "person@gmail.com",
-        },
-      ]
-    }
+  <Flex
+    alignItems="center"
+    direction="column"
+    mb={6}
   >
-    <Container>
+    <Box
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+      mb={6}
+    >
       <div
-        className="container"
+        className="css-1hqa7il"
       >
-        <div
-          className="row"
+        <Box
+          mb={6}
+          mt={8}
         >
           <div
-            className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3"
+            className="css-1aztghf"
           >
             <Logo>
               <div
@@ -71,6 +70,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                       "backgroundSize": "4rem",
                       "display": "inline-block",
                       "fontFamily": "'Gill Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+                      "fontSize": "36px",
                       "fontWeight": 100,
                       "letterSpacing": 0,
                       "lineHeight": "4rem",
@@ -83,269 +83,416 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                 </h1>
               </div>
             </Logo>
-            <p>
-              <ButtonLink
-                block={true}
-                style="success"
-                to="regionCreate"
-              >
-                <Link
-                  to="regionCreate"
-                >
-                  <Link
-                    as="/regions/create"
-                    href={
-                      Object {
-                        "pathname": "/regions/create",
-                        "query": Object {},
-                      }
-                    }
-                    passHref={true}
-                    prefetch={true}
-                  >
-                    <a
-                      className="btn btn-success btn-block"
-                      href="/regions/create"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      tabIndex={0}
-                    >
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "plus",
-                            "prefix": "fas",
-                          }
-                        }
-                      >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "plus",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                            data-icon="plus"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       
-                      Set up a new region
-                    </a>
-                  </Link>
-                </Link>
-              </ButtonLink>
-            </p>
-            <p
-              className="text-center"
-            >
-              or go to an existing region
-            </p>
-            <div
-              className="list-group"
-            >
-              <Link
-                key="1"
-                regionId="1"
-                to="projects"
-              >
-                <Link
-                  as="/regions/1"
-                  href={
-                    Object {
-                      "pathname": "/regions/[regionId]",
-                      "query": Object {},
-                    }
-                  }
-                  passHref={true}
-                  prefetch={true}
-                >
-                  <a
-                    className="list-group-item"
-                    href="/regions/1"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    title="Go to region"
-                  >
-                    <span>
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "map",
-                            "prefix": "fas",
-                          }
-                        }
-                      >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "map",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-map fa-w-NaN fa-fw "
-                            data-icon="map"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       
-                      Mock Region
-                    </span>
-                  </a>
-                </Link>
-              </Link>
-            </div>
-            <p
-              className="text-center"
-              style={
-                Object {
-                  "marginBottom": "40px",
-                }
-              }
-            >
-              <Link
-                to="logout"
-              >
-                <Link
-                  as="/logout"
-                  href={
-                    Object {
-                      "pathname": "/logout",
-                      "query": Object {},
-                    }
-                  }
-                  passHref={true}
-                  prefetch={true}
-                >
-                  <a
-                    href="/logout"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                  >
-                    <Icon
-                      icon={
-                        Object {
-                          "icon": Array [],
-                          "iconName": "sign-out-alt",
-                          "prefix": "fas",
-                        }
-                      }
-                    >
-                      <FontAwesomeIcon
-                        border={false}
-                        className=""
-                        fixedWidth={true}
-                        flip={null}
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "sign-out-alt",
-                            "prefix": "fas",
-                          }
-                        }
-                        inverse={false}
-                        listItem={false}
-                        mask={null}
-                        pull={null}
-                        pulse={false}
-                        rotation={null}
-                        size={null}
-                        spin={false}
-                        symbol={false}
-                        title=""
-                        transform={null}
-                      >
-                        <svg
-                          aria-hidden="true"
-                          className="svg-inline--fa fa-sign-out-alt fa-w-NaN fa-fw "
-                          data-icon="sign-out-alt"
-                          data-prefix="fas"
-                          focusable="false"
-                          role="img"
-                          style={Object {}}
-                          viewBox="0 0 undefined undefined"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill="currentColor"
-                            style={Object {}}
-                          />
-                        </svg>
-                      </FontAwesomeIcon>
-                    </Icon>
-                     
-                    Log out
-                  </a>
-                </Link>
-              </Link>
-            </p>
           </div>
-        </div>
+        </Box>
+        <Stack
+          spacing={4}
+          textAlign="center"
+          width="320px"
+        >
+          <Flex
+            direction="column"
+            textAlign="center"
+            width="320px"
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              textAlign="center"
+              width="320px"
+            >
+              <div
+                className="css-1xcka77"
+              >
+                <Box
+                  key=".0"
+                  mb={4}
+                >
+                  <div
+                    className="css-acwcvw"
+                  >
+                    signed in as
+                    <strong>
+                       
+                       (
+                      )
+                    </strong>
+                  </div>
+                </Box>
+                <Alert
+                  borderRadius="4px"
+                  key=".1"
+                  mb={4}
+                  status="info"
+                >
+                  <Box
+                    alignItems="center"
+                    bg="blue.100"
+                    borderRadius="4px"
+                    display="flex"
+                    mb={4}
+                    overflow="hidden"
+                    pb={3}
+                    pl={4}
+                    position="relative"
+                    pr={4}
+                    pt={3}
+                    role="alert"
+                  >
+                    <div
+                      className="css-h34547"
+                      role="alert"
+                    >
+                      <span>
+                        <strong>
+                          February 10, 2020
+                        </strong>
+                         — We made some changes to the application. 
+                        <ForwardRef
+                          href="/changelog"
+                        >
+                          <PseudoBox
+                            _hover={
+                              Object {
+                                "color": "#185c86",
+                              }
+                            }
+                            as="a"
+                            color="#2389c9"
+                            href="/changelog"
+                          >
+                            <a
+                              className="css-khmg1f"
+                              href="/changelog"
+                            >
+                              Click here to learn more.
+                            </a>
+                          </PseudoBox>
+                        </ForwardRef>
+                      </span>
+                    </div>
+                  </Box>
+                </Alert>
+                <Box
+                  key=".2"
+                  mb={4}
+                >
+                  <div
+                    className="css-acwcvw"
+                  >
+                    <ButtonLink
+                      block={true}
+                      style="success"
+                      to="regionCreate"
+                    >
+                      <Link
+                        to="regionCreate"
+                      >
+                        <Link
+                          as="/regions/create"
+                          href={
+                            Object {
+                              "pathname": "/regions/create",
+                              "query": Object {},
+                            }
+                          }
+                          passHref={true}
+                        >
+                          <a
+                            className="btn btn-success btn-block"
+                            href="/regions/create"
+                            onClick={[Function]}
+                            onMouseEnter={[Function]}
+                            tabIndex={0}
+                          >
+                            <Icon
+                              icon={
+                                Object {
+                                  "icon": Array [],
+                                  "iconName": "plus",
+                                  "prefix": "fas",
+                                }
+                              }
+                            >
+                              <FontAwesomeIcon
+                                border={false}
+                                className=""
+                                fixedWidth={true}
+                                flip={null}
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "plus",
+                                    "prefix": "fas",
+                                  }
+                                }
+                                inverse={false}
+                                listItem={false}
+                                mask={null}
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                swapOpacity={false}
+                                symbol={false}
+                                title=""
+                                transform={null}
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                                  data-icon="plus"
+                                  data-prefix="fas"
+                                  focusable="false"
+                                  role="img"
+                                  style={Object {}}
+                                  viewBox="0 0 undefined undefined"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    style={Object {}}
+                                  />
+                                </svg>
+                              </FontAwesomeIcon>
+                            </Icon>
+                             
+                            Set up a new region
+                          </a>
+                        </Link>
+                      </Link>
+                    </ButtonLink>
+                  </div>
+                </Box>
+                <Box
+                  key=".3"
+                  mb={4}
+                >
+                  <div
+                    className="css-acwcvw"
+                  >
+                    or go to an existing region
+                  </div>
+                </Box>
+                <Box
+                  className="list-group"
+                  key=".4"
+                  mb={4}
+                >
+                  <div
+                    className="list-group css-acwcvw"
+                  >
+                    <ALink
+                      className="list-group-item"
+                      key="1"
+                      regionId="1"
+                      to="projects"
+                    >
+                      <Link
+                        regionId="1"
+                        to="projects"
+                      >
+                        <Link
+                          as="/regions/1"
+                          href={
+                            Object {
+                              "pathname": "/regions/[regionId]",
+                              "query": Object {},
+                            }
+                          }
+                          passHref={true}
+                        >
+                          <PseudoBox
+                            _hover={
+                              Object {
+                                "color": "#185c86",
+                              }
+                            }
+                            as="a"
+                            className="list-group-item"
+                            color="#2389c9"
+                            href="/regions/1"
+                            onClick={[Function]}
+                            onMouseEnter={[Function]}
+                          >
+                            <a
+                              className="list-group-item css-khmg1f"
+                              href="/regions/1"
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                            >
+                              <span>
+                                <Icon
+                                  icon={
+                                    Object {
+                                      "icon": Array [],
+                                      "iconName": "map",
+                                      "prefix": "fas",
+                                    }
+                                  }
+                                >
+                                  <FontAwesomeIcon
+                                    border={false}
+                                    className=""
+                                    fixedWidth={true}
+                                    flip={null}
+                                    icon={
+                                      Object {
+                                        "icon": Array [],
+                                        "iconName": "map",
+                                        "prefix": "fas",
+                                      }
+                                    }
+                                    inverse={false}
+                                    listItem={false}
+                                    mask={null}
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    swapOpacity={false}
+                                    symbol={false}
+                                    title=""
+                                    transform={null}
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className="svg-inline--fa fa-map fa-w-NaN fa-fw "
+                                      data-icon="map"
+                                      data-prefix="fas"
+                                      focusable="false"
+                                      role="img"
+                                      style={Object {}}
+                                      viewBox="0 0 undefined undefined"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill="currentColor"
+                                        style={Object {}}
+                                      />
+                                    </svg>
+                                  </FontAwesomeIcon>
+                                </Icon>
+                                 
+                                Mock Region
+                              </span>
+                            </a>
+                          </PseudoBox>
+                        </Link>
+                      </Link>
+                    </ALink>
+                  </div>
+                </Box>
+                <Box
+                  key=".5"
+                  mb={null}
+                >
+                  <div
+                    className="css-0"
+                  >
+                    <ALink
+                      to="logout"
+                    >
+                      <Link
+                        to="logout"
+                      >
+                        <Link
+                          as="/logout"
+                          href={
+                            Object {
+                              "pathname": "/logout",
+                              "query": Object {},
+                            }
+                          }
+                          passHref={true}
+                        >
+                          <PseudoBox
+                            _hover={
+                              Object {
+                                "color": "#185c86",
+                              }
+                            }
+                            as="a"
+                            color="#2389c9"
+                            href="/logout"
+                            onClick={[Function]}
+                            onMouseEnter={[Function]}
+                          >
+                            <a
+                              className="css-khmg1f"
+                              href="/logout"
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                            >
+                              <Icon
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "sign-out-alt",
+                                    "prefix": "fas",
+                                  }
+                                }
+                              >
+                                <FontAwesomeIcon
+                                  border={false}
+                                  className=""
+                                  fixedWidth={true}
+                                  flip={null}
+                                  icon={
+                                    Object {
+                                      "icon": Array [],
+                                      "iconName": "sign-out-alt",
+                                      "prefix": "fas",
+                                    }
+                                  }
+                                  inverse={false}
+                                  listItem={false}
+                                  mask={null}
+                                  pull={null}
+                                  pulse={false}
+                                  rotation={null}
+                                  size={null}
+                                  spin={false}
+                                  swapOpacity={false}
+                                  symbol={false}
+                                  title=""
+                                  transform={null}
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className="svg-inline--fa fa-sign-out-alt fa-w-NaN fa-fw "
+                                    data-icon="sign-out-alt"
+                                    data-prefix="fas"
+                                    focusable="false"
+                                    role="img"
+                                    style={Object {}}
+                                    viewBox="0 0 undefined undefined"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      fill="currentColor"
+                                      style={Object {}}
+                                    />
+                                  </svg>
+                                </FontAwesomeIcon>
+                              </Icon>
+                               
+                              Log out
+                            </a>
+                          </PseudoBox>
+                        </Link>
+                      </Link>
+                    </ALink>
+                  </div>
+                </Box>
+              </div>
+            </Box>
+          </Flex>
+        </Stack>
       </div>
-    </Container>
-  </SelectRegion>
-</Provider>
+    </Box>
+  </Flex>
+</SelectRegion>
 `;

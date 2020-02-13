@@ -22,6 +22,13 @@ For analyses with transit enabled, the total travel time from an origin to a des
 
 If it is faster to reach a destination directly, without using transit, the routing engine will replace the second step above with direct travel along the street network to the point on the street network nearest the to the destination, then skip to the final step. Public transport routing uses actual schedules from the imported GTFS feeds. For every origin, Conveyal Analysis finds a large number of travel times to every destination grid cell. Different travel times may be found for each departure time (each minute in the specified time window). If new transit routes have been added with frequencies but without specific departure times, many different possible schedules are also tested producing hundreds or thousands of possible travel times (according to the "simulated schedules" advanced parameter). All these different travel times imply a statistical distribution, from which a certain percentile of travel time, set in the user interface, can be read.
 
+.. _why_the_wait:
+### When starting an analysis, why does the "initializing cluster" message persist for so long?
+
+First, the main Analysis server must request and initialize a computation cluster from Amazon Web Services. For scalability, we start a "worker" server for each :term:`transport network` being analyzed. This means that even if you are already successfully fetching analysis results for a project, a new server will be needed if you switch to a project associated with a different GTFS bundle or region, or if you change the routing engine. 
+
+To complete regional analyses quickly, we can clone hundreds of servers within a cluster for a transport network. We haven't yet built the user interface to launch additional servers from within Conveyal Analysis, so for the moment, get in touch with your support team if you need to speed up analyses.
+
 ### Why are travel times longer than expected?
 
 Because Conveyal Analysis includes waiting time, which can vary greatly depending on when one departs, total travel times may be longer than you might initially expect. Varying the travel time percentile can help you determine what role service frequency plays in waiting times (and therefore total travel times) for your network. The fifth percentile usually reflects trips with close-to-minimal waiting times (e.g. when passengers consult schedules and adjust the start of their trips to minimize overall travel times).
@@ -34,6 +41,7 @@ Another potential explanation for unexpectedly long travel times is that origins
 To avoid such issues, we suggest placing stops close to streets or pedestrian paths, and snapping to stops that exist in the baseline transit layer when feasible.
 
 Uploaded OpenStreetMap data with poorly connected subnetworks may also lead to issues. If you notice strangely non-contiguous isochrones, they may reflect destinations being linked to such a subnetwork (e.g. a network of walking paths in a park that only connects to the rest of the street network at a few locations).
+
 
 ### Who can see and edit my projects?
 

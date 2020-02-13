@@ -1,41 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Opportunity Datasets > Components > Selector should render 1`] = `
-<OpportunityDatasetSelector
-  loadOpportunityDataset={[MockFunction]}
-  loadOpportunityDatasets={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          undefined,
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    }
-  }
-  opportunityDatasets={Array []}
-  setActiveOpportunityDataset={[MockFunction]}
->
+exports[`Component OpportunityDatasetSelector snapshot(mount) 1`] = `
+<OpportunityDatasetSelector>
   <S
     getOptionLabel={[Function]}
     getOptionValue={[Function]}
     isClearable={true}
     isDisabled={false}
     onChange={[Function]}
-    options={Array []}
+    options={
+      Array [
+        Object {
+          "_id": "Workers_total",
+          "name": "Workers total",
+          "sourceName": "lodes-data-2014",
+        },
+      ]
+    }
   >
-    <ReactSelect
+    <ForwardRef(LoadableComponent)
       getOptionLabel={[Function]}
       getOptionValue={[Function]}
       isClearable={true}
       isDisabled={false}
       onChange={[Function]}
-      options={Array []}
+      options={
+        Array [
+          Object {
+            "_id": "Workers_total",
+            "name": "Workers total",
+            "sourceName": "lodes-data-2014",
+          },
+        ]
+      }
       styles={
         Object {
           "control": [Function],
@@ -43,10 +40,14 @@ exports[`Opportunity Datasets > Components > Selector should render 1`] = `
         }
       }
     >
-      <div
-        className="ReactSelectMock"
+      <loading
+        error={null}
+        isLoading={true}
+        pastDelay={false}
+        retry={[Function]}
+        timedOut={false}
       />
-    </ReactSelect>
+    </ForwardRef(LoadableComponent)>
   </S>
 </OpportunityDatasetSelector>
 `;

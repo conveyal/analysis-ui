@@ -10,6 +10,7 @@ async function initialFetch(store, query) {
     store.dispatch(loadOpportunityDatasets(query.regionId)),
     store.dispatch(loadRegion(query.regionId))
   ])
+
   return {
     analysis: regionalAnalyses.find(a => a._id === query.analysisId),
     opportunityDatasets,

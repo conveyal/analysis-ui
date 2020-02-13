@@ -1,0 +1,499 @@
+:root {
+  --sidebar-width: 40px;
+  --dock-width: 320px;
+  --wide-dock-width: 640px;
+
+  --cb: #2389c9;
+  --cb-light: #97cced; /** increased (HS)L by 30% */
+  --cb-dark1: #185c86; /** decreased (HS)L by 15% */
+  --cb-dark2: #0c2f45; /** decreased (HS)L by 30% */
+}
+
+/** Font reset for specific things */
+html,
+body,
+#root,
+.tooltip {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+}
+
+.DEV {
+  display: none;
+  outline: 0.5px solid rgba(255, 0, 0, 0.5);
+  outline-offset: 4px;
+}
+
+.disableAndDim {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.monospace {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.Tip.pull-right,
+.list-group-item > .pull-right {
+  margin-left: 0.5rem;
+}
+
+.list-group-item a {
+  margin-left: 0.5rem;
+}
+
+.list-group-item a:first-of-type {
+  margin-left: 0;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  word-break: break-all;
+}
+
+a,
+a.list-group-item,
+.Tip > a,
+.link {
+  cursor: pointer;
+  color: var(--cb);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:hover.list-group-item,
+a:focus.list-group-item,
+.link:hover,
+.link:focus {
+  color: var(--cb-dark1);
+  outline: none !important;
+}
+
+ul,
+ol {
+  padding-left: 20px;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: var(--cb);
+  border-color: var(--cb-dark1);
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:hover {
+  background-color: var(--cb-dark1);
+  border-color: var(--cb-dark2);
+}
+
+.btn-danger {
+  color: #fff !important;
+}
+
+.btn-default:focus {
+  background-color: inherit;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: none;
+}
+
+/**
+ * Required for React-Select boxes thay may expand over the buttons.
+ */
+.btn-group > .btn.active {
+  z-index: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.danger {
+  color: red;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input[type='range'].form-control {
+  box-shadow: none;
+}
+
+.form-inline > .checkbox > label {
+  padding-right: 8px;
+}
+
+.form-inline .form-control {
+  margin: 0 6px;
+}
+
+.CollapsibleButton {
+  cursor: pointer;
+  padding-bottom: 12px;
+  display: block;
+}
+
+.alert .CollapsibleButton {
+  padding-top: 12px;
+  padding-bottom: 0;
+}
+
+.alert ul {
+  margin-bottom: 0;
+}
+
+.InputWithUnits {
+  position: relative;
+}
+
+.InputUnits {
+  position: absolute;
+  line-height: 34px;
+  right: 10px;
+  top: 0;
+  opacity: 0.5;
+}
+
+/**
+ * Progress bars
+ */
+.list-group-item > .progress {
+  margin-bottom: 0;
+}
+
+.progress-bar {
+  text-shadow: 0 0 2px #333;
+}
+
+.InnerDock {
+  position: relative; /* prevents overflow from react-select */
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: var(--dock-width);
+  padding-bottom: 12px;
+}
+
+.Analysis,
+.ProjectContent {
+  min-height: 500px;
+}
+
+.InnerDock::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.InnerDock::-webkit-scrollbar:vertical {
+  width: 6px;
+}
+
+.InnerDock::-webkit-scrollbar:horizontal {
+  height: 6px;
+}
+
+.InnerDock::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #ddd;
+}
+
+.block {
+  padding: 12px 12px 0;
+}
+
+.InnerDock.block {
+  padding-bottom: 12px;
+}
+
+.ApplicationDockTitle {
+  font-size: 14px;
+  padding: 12px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 100;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: var(--dock-width);
+}
+
+.ApplicationDockTitle .btn {
+  margin-left: 8px;
+}
+
+.ApplicationDockTitle .Tip {
+  margin-left: 0.5rem;
+}
+
+.InnerDock > .block > legend,
+.InnerDock.block > legend {
+  font-size: 14px;
+  padding: 0 0 12px 0;
+}
+
+.DirectionIcon {
+  pointer-events: none;
+}
+
+.LoggedInAs {
+  padding-top: 6px;
+}
+
+.DaysOfService-active {
+  color: black;
+}
+
+.DaysOfService-inactive {
+  color: #ccc !important;
+  text-decoration: line-through;
+}
+
+.MiniMap-northArrow {
+  font-size: 18px;
+  position: absolute;
+  z-index: 10000;
+}
+
+.Legend-Item {
+  display: inline-block;
+  width: 100%;
+  padding-left: 0.5em;
+  height: 2em;
+  line-height: 2em;
+}
+
+.Legend {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.CustomModal {
+  margin: 0 auto;
+  background-color: #fff;
+  top: 40px;
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  overflow: scroll;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px 0 rgba(51, 122, 183, 0.1);
+  border: 1px solid var(--cb-dark1);
+}
+
+.CustomModal-title {
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  padding: 24px;
+}
+
+.CustomModal-block {
+  padding: 0 24px;
+  word-wrap: break-word;
+}
+
+.CustomModal:focus {
+  outline: none;
+}
+
+.CustomModal::-webkit-scrollbar {
+  display: none;
+}
+
+.pad-right {
+  padding-right: 12px;
+}
+
+.tooltip {
+  opacity: 1;
+  max-width: 1000px;
+  white-space: nowrap;
+}
+
+.tooltip-inner {
+  background-color: #333;
+}
+
+.tooltip.right .tooltip-arrow {
+  border-right-color: #333;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #333;
+}
+
+.help-tooltip {
+  max-width: 400px;
+  z-index: 1000 !important;
+  opacity: 100 !important;
+  background-color: #333 !important;
+  box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.1);
+}
+
+.Tip {
+  position: relative;
+  display: inline-block;
+}
+
+/** Leaflet Tooltips */
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+  display: none;
+}
+
+/** Admin Dashboard **/
+.AdminDashboard {
+  padding: 2rem;
+}
+
+/** Workers **/
+.WorkerDashboard {
+}
+
+.WorkerDashboard > .Workers {
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.Workers > .Worker {
+  width: 400px;
+  max-width: 500px;
+  padding: 1rem;
+  background-color: #c0c2ce;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-family: monospace;
+  border: 0.1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.Workers > .Worker a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.Workers > .Worker.active {
+  background-color: #17c37b;
+}
+
+.Workers > .Worker.stale {
+  background-color: #eeb200;
+}
+
+.Workers > .Worker.dead {
+  background-color: #e75152;
+}
+
+.WorkerBundles {
+  margin-top: 1rem;
+}
+
+.Worker > .Bottom {
+  margin-top: 1rem;
+}
+
+.WorkerSparkline > span {
+  display: inline-block;
+}
+
+.Sparkline {
+  display: inline-block;
+  margin: 0 1rem 0 1rem;
+}
+
+.SparklineTitle {
+  width: 15.42px;
+}
+
+.SparklineValue {
+  text-align: right;
+}
+
+/** Jobs **/
+
+.JobTable {
+  width: 100%;
+}
+
+.JobTable > thead > tr > th {
+  white-space: nowrap;
+}
+
+.JobProgress {
+  color: #fff;
+  white-space: nowrap;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.JobProgress-complete {
+  background-color: #36c923;
+}
+
+.JobProgress-delivered {
+  background-color: #2389c9;
+}
+
+.all-copy {
+  -webkit-user-select: all; /* Chrome all / Safari all */
+  -moz-user-select: all; /* Firefox all */
+  -ms-user-select: all; /* IE 10+ */
+  user-select: all; /* Likely future */
+}
+
+/*
+ * react-leaflet is silly, you have to manually style the divs it creates
+ * https://github.com/PaulLeCam/react-leaflet/blob/master/example/index.html
+ * https://github.com/PaulLeCam/react-leaflet/issues/108
+ */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.CircleIconMarker {
+  border-radius: 50%;
+  background-color: #2389c9;
+}
+
+.CircleIconMarker.newSnappedStop {
+  background-color: #364046;
+}
+
+.CircleIconMarker.newStop > div,
+.CircleIconMarker.newSnappedStop > div {
+  background-color: #fff;
+  border-radius: 50%;
+  width: 70%;
+  height: 70%;
+  left: 15%;
+  top: 15%;
+  position: absolute;
+}
+
+.NoPointerEvents {
+  pointer-events: none;
+}

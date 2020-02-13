@@ -2,7 +2,11 @@ import dynamic from 'next/dynamic'
 import React from 'react'
 
 import {load} from 'lib/actions/region'
-import {loadOpportunityDatasets} from 'lib/modules/opportunity-datasets/actions'
+import {
+  checkUploadStatus,
+  loadOpportunityDatasets,
+  setActiveOpportunityDataset
+} from 'lib/modules/opportunity-datasets/actions'
 import Heading from 'lib/modules/opportunity-datasets/components/heading'
 import List from 'lib/modules/opportunity-datasets/components/list'
 import withInitialFetch from 'lib/with-initial-fetch'
@@ -22,14 +26,19 @@ const Opportunities = React.memo(function Opportunities(p) {
 
   return (
     <Heading>
-      <List {...p} />
+      <List {...p} regionId={p.query.regionId} />
     </Heading>
   )
 })
 
 function initialFetch(store, query) {
+  // Set the active id
+  store.dispatch(setActiveOpportunityDataset(query.opportunityDatasetId))
+
+  // Load all the data
   return Promise.all([
     store.dispatch(loadOpportunityDatasets(query.regionId)),
+    store.dispatch(checkUploadStatus(query.regionId)),
     store.dispatch(load(query.regionId))
   ])
 }

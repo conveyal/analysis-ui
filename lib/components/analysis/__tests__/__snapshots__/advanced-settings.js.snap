@@ -117,9 +117,9 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       <div
         className="col-xs-8"
       >
-        <p>
+        <P>
           Lower limits may apply to transfer and egress legs. See the user manual for more information.
-        </p>
+        </P>
       </div>
     </div>
     <Group
@@ -190,9 +190,9 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
         <Group
           label="Customize Profile Request"
         >
-          <p>
+          <P>
             Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
-          </p>
+          </P>
           <textarea
             className="form-control monospace"
             defaultValue="{
@@ -234,6 +234,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
             disabled={false}
             key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
             rows={10}
+            spellCheck={false}
           />
           <br />
           <Button
@@ -322,6 +323,9 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
         "createdAt": "2017-11-08T12:30:50.133Z",
         "createdBy": "person@gmail.com",
         "cutoffMinutes": 60,
+        "cutoffsMinutes": Array [
+          60,
+        ],
         "deleted": false,
         "grid": "Jobs_total",
         "height": 300,
@@ -367,6 +371,9 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
         },
         "status": "DONE",
         "travelTimePercentile": -1,
+        "travelTimePercentiles": Array [
+          50,
+        ],
         "updatedAt": "2017-11-08T12:31:19.602Z",
         "updatedBy": "person@gmail.com",
         "variant": 0,
@@ -384,6 +391,9 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
         "createdAt": "2017-11-08T12:30:50.133Z",
         "createdBy": "person@gmail.com",
         "cutoffMinutes": 60,
+        "cutoffsMinutes": Array [
+          60,
+        ],
         "deleted": false,
         "grid": "Jobs_total",
         "height": 300,
@@ -428,7 +438,10 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
           "workerVersion": "v4.0.0",
         },
         "status": "DONE",
-        "travelTimePercentile": 42,
+        "travelTimePercentile": 50,
+        "travelTimePercentiles": Array [
+          50,
+        ],
         "updatedAt": "2017-11-08T12:31:19.602Z",
         "updatedBy": "person@gmail.com",
         "variant": 1,
@@ -496,6 +509,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                 rotation={null}
                 size={null}
                 spin={false}
+                swapOpacity={false}
                 symbol={false}
                 title=""
                 transform={null}
@@ -553,6 +567,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                   rotation={null}
                   size={null}
                   spin={false}
+                  swapOpacity={false}
                   symbol={false}
                   title=""
                   transform={null}
@@ -653,6 +668,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                                   rotation={null}
                                   size={null}
                                   spin={false}
+                                  swapOpacity={false}
                                   symbol={false}
                                   title=""
                                   transform={null}
@@ -720,6 +736,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                                   rotation={null}
                                   size={null}
                                   spin={false}
+                                  swapOpacity={false}
                                   symbol={false}
                                   title=""
                                   transform={null}
@@ -1209,9 +1226,18 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
               <div
                 className="col-xs-8"
               >
-                <p>
-                  Lower limits may apply to transfer and egress legs. See the user manual for more information.
-                </p>
+                <P>
+                  <Box
+                    as="p"
+                    mb="10px"
+                  >
+                    <p
+                      className="css-1r2f04i"
+                    >
+                      Lower limits may apply to transfer and egress legs. See the user manual for more information.
+                    </p>
+                  </Box>
+                </P>
               </div>
             </div>
             <Group
@@ -1258,7 +1284,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                         }
                       }
                     >
-                      <ReactSelect
+                      <ForwardRef(LoadableComponent)
                         isDisabled={false}
                         onChange={[Function]}
                         options={
@@ -1290,10 +1316,14 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                           }
                         }
                       >
-                        <div
-                          className="ReactSelectMock"
+                        <loading
+                          error={null}
+                          isLoading={true}
+                          pastDelay={false}
+                          retry={[Function]}
+                          timedOut={false}
                         />
-                      </ReactSelect>
+                      </ForwardRef(LoadableComponent)>
                     </S>
                   </div>
                   <div
@@ -1341,6 +1371,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                             rotation={null}
                             size={null}
                             spin={false}
+                            swapOpacity={false}
                             symbol={false}
                             title=""
                             transform={null}
@@ -1388,9 +1419,18 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                     >
                       Customize Profile Request
                     </label>
-                    <p>
-                      Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
-                    </p>
+                    <P>
+                      <Box
+                        as="p"
+                        mb="10px"
+                      >
+                        <p
+                          className="css-1r2f04i"
+                        >
+                          Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" and "workerVersion" cannot be changed here.
+                        </p>
+                      </Box>
+                    </P>
                     <textarea
                       className="form-control monospace"
                       defaultValue="{
@@ -1432,6 +1472,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                       disabled={false}
                       key="{\\"accessModes\\":\\"WALK\\",\\"bikeSafe\\":1,\\"bikeSlope\\":1,\\"bikeSpeed\\":4.166666666666667,\\"bikeTime\\":1,\\"bounds\\":{\\"north\\":39,\\"east\\":-76,\\"south\\":38,\\"west\\":-77},\\"bundleId\\":\\"1\\",\\"date\\":\\"2016-01-16\\",\\"defaultExpanded\\":true,\\"directModes\\":\\"WALK\\",\\"egressModes\\":\\"WALK\\",\\"fromLat\\":12,\\"fromLon\\":34,\\"fromTime\\":25200,\\"maxBikeTime\\":20,\\"maxRides\\":4,\\"maxTripDurationMinutes\\":60,\\"maxWalkTime\\":20,\\"monteCarloDraws\\":200,\\"name\\":\\"Profile Request Test\\",\\"projectId\\":\\"1\\",\\"reachabilityThreshold\\":0,\\"regionId\\":\\"1\\",\\"toTime\\":32400,\\"transitModes\\":\\"BUS,TRAM,RAIL,SUBWAY\\",\\"travelTimePercentile\\":50,\\"variantIndex\\":0,\\"walkSpeed\\":1.3888888888888888,\\"workerVersion\\":\\"v4.0.0\\"}"
                       rows={10}
+                      spellCheck={false}
                     />
                     <br />
                     <Button
@@ -1476,6 +1517,7 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                             rotation={null}
                             size={null}
                             spin={false}
+                            swapOpacity={false}
                             symbol={false}
                             title=""
                             transform={null}

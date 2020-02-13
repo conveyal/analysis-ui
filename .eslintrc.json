@@ -6,6 +6,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:cypress/recommended",
     "plugin:jest/recommended",
     "plugin:react/recommended"
   ],
@@ -21,14 +22,17 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["jest", "react", "react-hooks"],
+  "plugins": ["cypress", "jest", "react", "react-hooks"],
   "rules": {
     "no-console": 0,
+    "no-debugger": "warn",
     "no-unused-vars": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/display-name": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "jest/expect-expect": 0,
+    "jest/no-export": 0
   },
   "settings": {
     "react": {
