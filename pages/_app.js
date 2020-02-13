@@ -7,7 +7,6 @@ import React from 'react'
 import {Provider} from 'react-redux'
 
 import {setQueryString} from 'lib/actions'
-import {AuthContext} from 'lib/auth'
 import ChakraTheme from 'lib/chakra'
 import State from 'lib/components/state'
 import useRouteChanging from 'lib/hooks/use-route-changing'
@@ -49,8 +48,7 @@ export default withRedux(createStore)(
     static async getInitialProps({Component, ctx}) {
       const timeApp = timer('App.getInitialProps')
 
-      // Set the query string in the store
-      // TODO ideally stop duplicating this data in the store
+      // Set the query string in the store. This action mutates the store
       ctx.store.dispatch(setQueryString(ctx.query))
 
       try {
@@ -69,7 +67,7 @@ export default withRedux(createStore)(
         return {pageProps}
       } catch (e) {
         console.error('Error getting initial props', e)
-        return {error: e}
+        return {error: e, pageProps: {}}
       } finally {
         timeApp.end()
       }
@@ -83,24 +81,22 @@ export default withRedux(createStore)(
       const p = this.props
       return (
         <ChakraTheme>
-          <AuthContext.Provider value={p.pageProps.user}>
-            <Provider store={p.store}>
-              <Head>
-                <title key='title'>Conveyal Analysis</title>
-                {isAdmin(p.pageProps.user) && (
-                  <style id='DEVSTYLE'>{`.DEV{display: inherit;}`}</style>
-                )}
-              </Head>
-              <DevBar />
-              <ErrorModal />
-
-              {pathUsesMap(p.router.pathname) ? (
-                <ComponentWithMap {...p} />
-              ) : (
-                <p.Component {...p.pageProps} />
+          <Provider store={p.store}>
+            <Head>
+              <title key='title'>Conveyal Analysis</title>
+              {isAdmin(p.pageProps.user) && (
+                <style id='DEVSTYLE'>{`.DEV{display: inherit !important;}`}</style>
               )}
-            </Provider>
-          </AuthContext.Provider>
+            </Head>
+            <DevBar />
+            <ErrorModal />
+
+            {pathUsesMap(p.router.pathname) ? (
+              <ComponentWithMap {...p} />
+            ) : (
+              <p.Component {...p.pageProps} />
+            )}
+          </Provider>
         </ChakraTheme>
       )
     }

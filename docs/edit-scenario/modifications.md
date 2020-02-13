@@ -80,10 +80,13 @@ If this option is unchecked (the default value), stops and control points will b
 
 - **Extend from end**: When *Extend* is enabled, this option allows you to specify whether new stops will be added moving forward from the last stop of the route (the default) or backward from the first stop of the route. When this option is *un*ticked, new stops will be added as extensions backwards from the beginning.
 
+- **Snap to existing stops (beta)**: Experimental feature that adds stops from the baseline GTFS bundle to the new route. This feature adds stops within 20 meters of the alignment, but not more than one stop approximately every 80 meters.
+
 Once you have created an alignment, you'll need to specify when the route runs using a [simplified timetable](timetable.html). You can do this by [copying a previously created timetable](timetable.html#copying-timetables), or by clicking:
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
+.. _adjust_dwell_time:
 ## Adjust dwell time
 
 You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular stop. As with the remove-stops modification, you can select a feed, route and optionally patterns. You can then use the map to select the affected stops (if you skip this step, all stops will have their dwell times adjusted). You can then choose to either enter a new dwell time (in seconds), or scale the existing dwell times (for instance, entering 2 would double existing dwell times).
@@ -94,15 +97,30 @@ Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_tim
   <img src="../img/adjust-dwell-time.png" alt="Adjusting the dwell time at particular stops on a route" />
 </figure>
 
+.. _adjust_speed:
 ## Adjust speed
 
-Sometimes you will want to adjust the speed on a route, or a portion of it (for instance due to the addition of dedicated bus lanes, or an application of transit signal priority). As before, you will create the modification and select a feed, routes and patterns. If you want to modify only part of the route, you can use similar selection tools to those used in the remove stops (with new selection, add and remove buttons). The difference is that you are now selecting :term:`hops<hop>`. The selected segment will be shown on the map in purple. Finally, enter a scale, which is the factor to multiply the speed by. For instance, if you enter 2, vehicles will travel twice as fast between stops (this modification does not affect dwell times; to model changes in dwell time, see the adjust dwell time modification below).
+This modification can be applied to multiple routes, but only one route will be shown on the map.
 
-This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
+This modification does not automatically increase frequency in response to the more efficient routes. However, it can be paired with an adjust frequency modification to model such a response.
+
+Sometimes you will want to adjust the speed on an entire route or just a :term:`segment` of one. For instance you might want to model the addition of bus lanes or an application of transit signal priority. This modification allows you to scale the speed of existing scheduled :term:`trips<trip>`, or segments of them, by a constant factor. It can be applied to whole routes (in which case more than one route may be selected) or to selected segments of a particular route or to just a subset of :term:`trip patterns<trip pattern>`. 
+
+You will need to select a GTFS feed, routes and optionally :term:`trip patterns<trip pattern>` if only one route is selected. All trip patterns will be selected by default. Segments can be selected by clicking _Select_ from the toolbox shown in the figure below. This will allow you to begin drawing a polygon selection area on the map. Any segments within this area will be selected when the polygon is closed and selected segments will then render on the map in purple. 
+
+<figure>
+  <img src="../img/segment-selector.png"/>
+  <figcaption>Options for selecting segments of trip patterns</figcaption>
+</figure>
+
+The _Select_ option will begin a new selection and the _Add to_ option will add to the current selection if any. _Remove from_ allows you to select segments to remove from the current selection and _Clear_ un-selects all segments. 
 
 <figure>
   <img src="../img/adjust-speed.png" alt="Adjusting the speed of a portion of a transit line" />
+  <figcaption>Segments are selected from two overlapping trip patterns</figcaption>
 </figure>
+
+Finally, enter a numeric value in the _Scale speed by_ field --- this is the factor to multiply the speed by. For instance, if you enter 1.3, the speed of vehicles will increase by 30% when traveling between stops. Note however that this modification does not affect dwell times; to model changes in dwell time, see the :ref:`adjust_dwell_time` modification. It also does not take into account the possibility of increased frequency due to faster, more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
 
 .. _convert_to_frequency:
 ## Convert to frequency
@@ -138,6 +156,7 @@ Typically, you will need to create _at least_ two new timetables, one for each d
 .. note:: 
     Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
 
+.. _remove_stops:
 ## Remove stops
 
 It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new _remove stops_ modification, and select a feed, route, and patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.
@@ -146,7 +165,7 @@ You can also specify that you wish to remove a certain amount of time at each re
 
 When removing the beginning of a route, the dwell times at each stop are removed, as is any time specified to be removed at each removed stop. Any remaining travel time is preserved as an offset from the start of the trip in the original GTFS to the start of trips at the new first stop. This is effectively as if the vehicles were leaving the original terminal at the same time but deadheading past all of the removed stops.
 
-This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a change frequency modification to model that scenario.
+This modification does not take into account the possibility of increased frequency due to more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
 
 <figure>
   <img src="../img/remove-stops.png"  alt="Remove stops" />
@@ -154,8 +173,7 @@ This modification does not take into account the possibility of increased freque
 
 ## Remove trips
 
-Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific patterns on a particular route.
-In order to remove trips, create a new _remove trips modification_, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this route/pattern combination will be removed and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active. In this case it implies that the trips will be removed from the selected variants.
+Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific :term:`trip patterns<trip pattern>` on a particular route. In order to remove trips, create a new _remove trips_ modification, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this route/pattern combination will be removed and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active. In this case it implies that the trips will be removed from the selected variants.
 
 <figure>
   <img src="../img/remove-trips.png" alt="Remove trips" />
@@ -164,7 +182,7 @@ In order to remove trips, create a new _remove trips modification_, and select a
 .. _reroute:
 ## Reroute
 
-This modification type can be used to represent detours and extensions. When creating a _reroute_ modification, you first select a :term:`GTFS feed`, route, and :term:`trip patterns<trip pattern>`. Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
+This modification type can be used to represent detours, extensions,and curtailments. When creating a _reroute_ modification, you first select a :term:`GTFS feed`, route, and :term:`trip patterns<trip pattern>`. Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
 <br> then clicking an existing stop on the baseline pattern.
 
@@ -175,10 +193,15 @@ This modification type can be used to represent detours and extensions. When cre
 
 Once a start or end stop is specified, you can add and modify segments by clicking the *Edit route geometry* button, then clicking on the map. Editing behavior is similar to editing mode for [adding trip patterns](#add-trip-pattern) though with some options fixed depending on whether the route is being extended in either direction, or if the reroute is happening in the middle of the alignment. 
 
+- If only the "start of reroute/extension" is set, new stops and segments will be added extending _forward_ from the selected stop on the baseline pattern ("Extend from end" turned on).
+- If only the "end of reroute/extension" is set, new stops and segments will be added extending _backward_ from the selected stop on the baseline pattern ("Extend from end" turned off).
+- If both are set, the new segment between the stops cannot be extended, but it can be modified by clicking on it to add stops and control points ("Extend" turned off).
+
 A reroute modification can apply to multiple trip patterns in a single direction as long as the patterns all contain the start and end stop in order; you will generally need to create one reroute modification for each direction of the route.
 
-A few examples should help to illustate how this modification works. Consider a baseline pattern passing through stops A -> B -> C -> D:
+A few examples should help to illustrate how this modification works. Consider a baseline pattern passing through stops A -> B -> C -> D:
 
+- To curtail this pattern at stop C, eliminating service to stop D, select C as the "start of reroute/extension."
 - To reroute this pattern from C to another stop X instead of D, select C as the "start of reroute/extension," activate route editing, and click on stop X to add a segment from C -> X. Speeds and dwell times can be set on this added segment. Baseline speeds and dwell times between A and C are not affected.
 - To extend this pattern backward, to originate at a stop Y, select A as the "end of reroute/extension," activate route editing, and click on stop Y to add a segment from Y -> A. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and D are not affected.
 - To detour this pattern so that it serves a stop Z between B and C, select B as the "start of reroute/extension", select C as the "end of reroute/extension", activate route editing, click on the new segment to add a stop, and drag the added stop to Z. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and B, and between C and D, are not affected.
