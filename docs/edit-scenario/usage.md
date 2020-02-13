@@ -15,17 +15,17 @@ In the list of modifications on the initial view in editing mode, clicking the t
 <span class="ui-icon"><i class="fa fa-eye"></i>Toggle map display</span>
 
 Stops and segments representing modifications are displayed on the map, using different colors to indicate their state relative to the baseline GTFS:
-* Blue: Added trip pattern
-* Red: Removed trip pattern
-* Pink: Changed timetable (e.g. modified frequency, speed, or dwell time)
-* Gray: Unchanged (alignment is unchanged but the :term:`trip pattern` is effected somehow, e.g. :ref:`reroute`)
+* <span style="color:blue">Blue</span>: Added trip pattern
+* <span style="color:red">Red</span>: Removed trip pattern
+* <span style="color:magenta">Purple</span>: Changed timetable (e.g. modified frequency, speed, or dwell time)
+* <span style="color:gray">Gray</span>: Unchanged (alignment is unchanged but the :term:`trip pattern` is effected somehow, e.g. :ref:`reroute`)
 
 Projects start with only a "Default" scenario (plus a locked :term:`Baseline<baseline network>` in which no modifications can be active). You can create additional scenarios expanding the list of scenarios, clicking the create button, and entering a name.
 
-Next to each added scenario are options to:
-<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span> the scenario
-<br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span> the scenario
+When the Scenario list is expanded, options next to each scenario allow you to:
 <br><span class="ui-icon"><i class="fa fa-eye"></i>Show on the map</span> the modifications active in the scenario
+<br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span> the scenario
+<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span> the scenario (not available for baseline or default scenario)
 
 .. _export_mods:
 ## Exporting modifications
@@ -65,8 +65,8 @@ If you choose a project associated with a different GTFS, bundle, only add-trip 
 
 ### From shapefiles
 
-In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However on occasion it may be desirable to import modifications from a [shapefile](https://en.wikipedia.org/wiki/Shapefile). If you have a shapefile containing route geometries, you can upload it to Conveyal Analysis and have it turned into a set of :ref:`add_trip_pattern` modifications. Your shapefile will need attributes for each line's:
-* name
+In general, it is best to create all modifications directly in Conveyal Analysis as it allows full control over all aspects of transit network design. However on occasion it may be desirable to import modifications from a [shapefile](https://en.wikipedia.org/wiki/Shapefile). If you have a shapefile containing route geometries, you can upload it to Conveyal Analysis and have it turned into a set of :ref:`add_trip_pattern` modifications. Your shapefile will need attributes (columns) for each line's:
+* name (e.g. route id)
 * approximate headway in minutes
 * approximate speed in kmph
 
@@ -84,3 +84,7 @@ After selecting and uploading a zipped shapefile, you should see the following o
 </figure>
 
 Finally, as shapefiles only contain the route geometry and not the stop locations, stops can be created automatically at a specified spacing. Stops may be explicitly added or moved after import.
+
+## Manually edit raw modifications (beta)
+
+By clicking on "Customize modification" in the details pane for any modification, advanced users can copy, paste, and edit its raw JSON data.
