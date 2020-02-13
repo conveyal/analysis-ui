@@ -19,7 +19,7 @@ jobs:
           step: finish
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
-          deployment_id: ${{ gitub.event.deployment.id }}
+          deployment_id: ${{ github.event.deployment.id }}
           env_url: 'https://analysis-staging.conveyal.com'
         
   deployProduction:
@@ -38,5 +38,5 @@ jobs:
           step: finish
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
-          deployment_id: ${{ gitub.event.deployment.id }}
+          deployment_id: ${{ github.event.deployment.id }}
           env_url: 'https://analysis.conveyal.com'
