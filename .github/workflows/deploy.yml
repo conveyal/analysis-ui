@@ -1,25 +1,42 @@
 # Test deploying from Slack
-name: Deploy
+name: Manually triggered Deployment from Slack
 
 on: [deployment]
 
 jobs:
   deployStaging:
     runs-on: ubuntu-latest
+    if: github.event.sender.type === 'User' && github.event.deployment.environment === 'staging'
     steps:
-      # - uses: actions/checkout@v2
-      #- id: yarn-cache
-      #  run: echo "::set-output name=dir::$(yarn cache dir)"
-      #- uses: actions/cache@v1
-      #  id: cache
-      #  with:
-      #    path: ${{ steps.yarn-cache.outputs.dir }}
-      #    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-      # Should be fast with the yarn cache restored
-      # - run: yarn install --frozen-lockfile --check-files
-
-      - run: echo "$GEVENT"
-        name: Dump event context
+      - uses: actions/checkout@v2
+      - run: npx now@16 --prod --token $ZEIT_TOKEN
         env:
-          GEVENT: ${{ toJson(github.event) }}
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+          
+      - uses: bobheadxi/deployments@master
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          deployment_id: ${{ gitub.event.deployment.id }}
+          env_url: 'https://analysis-staging.conveyal.com'
+        
+  deployProduction:
+    runs-on: ubuntu-latest
+    if: github.event.sender.type === 'User' && github.event.deployment.environment === 'production'
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "deploying to production..."
+      # - run: npx now@16 --prod --local-config=now.production.json --token $ZEIT_TOKEN
+      #  env:
+      #    ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
+      
+      - uses: bobheadxi/deployments@master
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          deployment_id: ${{ gitub.event.deployment.id }}
+          env_url: 'https://analysis.conveyal.com'
