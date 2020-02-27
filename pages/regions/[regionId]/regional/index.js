@@ -25,13 +25,13 @@ function RegionalPage(p) {
   const allAnalyses = useSelector(selectRegionalAnalyses)
   const activeAnalysis = useSelector(selectActiveAnalysis)
 
-  function _deleteAnalysis() {
+  function _deleteAnalysis(id) {
     if (
       window.confirm('Are you sure you wish to remove this regional analysis?')
     ) {
       // clear active analysis
-      dispatch(setSearchParameter('activeId'))
-      dispatch(deleteRegionalAnalysis(activeAnalysis._id))
+      dispatch(setSearchParameter('analysisId'))
+      dispatch(deleteRegionalAnalysis(id))
     }
   }
 
