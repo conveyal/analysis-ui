@@ -4,11 +4,13 @@ import React from 'react'
 
 import Icon from 'lib/components/icon'
 
+import C20200228 from './20200228.mdx'
 import C201909 from './201909.mdx'
 import C201910 from './201910.mdx'
 import C20200210 from './20200210.mdx'
 
 const changes = [
+  ['February 28th, 2020', C20200228],
   ['February 10th, 2020', C20200210],
   ['October 12th, 2019', C201910],
   ['September 13th, 2019', C201909]
@@ -21,7 +23,7 @@ export default function Changelog() {
     <Stack spacing={spacing} p={40}>
       <Flex justify='space-between'>
         <Heading size='2xl'>What&lsquo;s new</Heading>
-        <Image display='inline-block' size='5rem' src='/logo.svg' />
+        <Image display='inline-block' size='45px' src='/logo.svg' />
       </Flex>
       <Link
         color='blue.500'

@@ -125,17 +125,36 @@ Finally, enter a numeric value in the _Scale speed by_ field --- this is the fac
 .. _convert_to_frequency:
 ## Convert to frequency
 
-Often a scenario will include frequency changes to existing lines. We support this using the adjust frequency/convert to frequency modification. First, create a "convert to frequency" modification, and choose the feed and route you want to adjust:
+Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing :term:`trip patterns<trip pattern>` with frequency based :ref:`timetables`. You can opt either to 
+* delete all existing trips and replace them with your own timetables or 
+* replace trips only when the new timetables would be in effect. 
+
+The travel and dwell times on the replacement trips are based on those of an existing trip which you can select from the affected trip pattern. The new timetables can make use of :ref:`phasing` to reproduce timed services on branching lines, etc. 
+
+First, create a new modification and select _Convert to frequency_. Give the modification a name; you will likely want to name it after the route you plan to modify.
 
 <figure>
   <img src="../img/new-change-frequency.png" alt="Selecting the route on which to change frequencies" />
+  <figcaption>A convert to frequency modification with a replacement timetable open</figcaption>
 </figure>
 
-You then create any number of frequency entries using [simple timetables](timetable.html). Typically, there will be at least two entries (one for each direction). Each frequency entry will follow one template trip, which determines the stop-to-stop travel times of the trips that are created with the given frequency.
+Start by selecting a :term:`GTFS feed` and then the route from that feed that you want to adjust. You should see all trip patterns for the selected route displayed on the map. 
 
-You then [add details to each frequency entry](timetable.html). Repeat this process until you have created frequency entries for all the service you want to retain, in both directions.
+You can choose to remove all existing trips on the route (the default) and start from scratch with new timetables. Or you may choose to retain trips outside the time windows in which you specify frequencies which is useful when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the checkbox labeled "_Retain existing scheduled trips at times without new frequencies specified_". 
 
-You can choose to remove all existing trips on the route (the default) or choose to retain trips outside the time windows in which you specify frequencies, which is useful when you are changing the frequency for only part of the day (e.g. increased weekend frequency) and want to retain the existing scheduled service at other times. This is controlled using the "Retain existing scheduled trips at times without new frequencies specified" checkbox.
+
+You then create any number of frequency entries using simple [timetables](timetable.html).
+Within each timetable, you will need to select a trip pattern from your route, then a particular trip from that trip pattern to be used as a template. Travel times for the new timetable will be based on this template trip so it is important to choose one that is representative. For example, you may want to select one of the slower trips when specifying frequencies during congested peak-hour service. 
+
+<figure>
+  <img src="../img/select-trip.png" alt="Selecting a template trip based on total travel time" />
+  <figcaption>A convert to frequency modification with a replacement timetable open</figcaption>
+</figure>
+
+Typically, you will need to create _at least_ two new timetables, one for each direction of travel. 
+
+.. note:: 
+    Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
 
 .. _remove_stops:
 ## Remove stops
