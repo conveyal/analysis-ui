@@ -1,4 +1,4 @@
-.. \_analysis_configuration:
+.. _analysis_configuration:
 
 # Options and configuration
 
