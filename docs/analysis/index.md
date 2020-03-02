@@ -1,28 +1,27 @@
-.. \_single_point_analysis:
-
+.. _single_point_analysis:
 # Single point analysis
 
-The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. To start an analysis, ensure a :term:`project` and :term:`scenario` are selected.
+The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. To start an analysis, ensure a :term:`project` and :term:`scenario` are selected. 
 
-To retrieve results for the origin marker shown on the map, you can either move the marker to a new location or click the _fetch results_ button at the top.
+To retrieve results for the origin marker shown on the map, you can either move the marker to a new location or click the *fetch results* button at the top. 
 
 <br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
-This will initialize a compute cluster which may take a minute to start up.
-If this is your first time performing an analysis with a given :term:`bundle<gtfs bundle>`, it may take some time to build the network. This only needs to be done once for each bundle.
+This will initialize a compute cluster which may take a minute to start up. 
+If this is your first time performing an analysis with a given :term:`bundle<gtfs bundle>`, it may take some time to build the network. This only needs to be done once for each bundle. 
 For more information, see :ref:`why_the_wait`
 
-Once the compute cluster is initialized, you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a chart showing cumulative accessibility results at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red.
+Once the compute cluster is initialized, you should see an isochrone displayed in blue around your point on the map. If you have selected an opportunity dataset, you will also see a chart showing cumulative accessibility results at selected time and percentile thresholds. You may also select a comparison project and scenario, which will be shown in red. 
 Many other configuration parameters are described in :ref:`analysis_configuration`.
 
 ## Isochrone map
 
-After the server returns results, the map will show a blue :term:`isochrone`.
-This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty.
+After the server returns results, the map will show a blue :term:`isochrone`. 
+This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty. 
 
-The _time cutoff_ slider controls the travel time threshold between a range of one minute and two hours. The slider for _travel time percentile_ controls the portion of departures within the time window that have to meet the travel time threshold.
-Reducing the travel time should smoothly decrease the size of the isochrone, as would increasing the travel time percentile.
-The default values are 60 minutes and 50th percentile. This would mean that the default isochrone boundary is drawn where exactly half of trips in the selected departure window would take exactly one hour.
+The *time cutoff* slider controls the travel time threshold between a range of one minute and two hours. The slider for *travel time percentile* controls the portion of departures within the time window that have to meet the travel time threshold. 
+Reducing the travel time should smoothly decrease the size of the isochrone, as would increasing the travel time percentile. 
+The default values are 60 minutes and 50th percentile. This would mean that the default isochrone boundary is drawn where exactly half of trips in the selected departure window would take exactly one hour. 
 
 The modifications displayed on the map are controlled in editing mode (See: :ref:`toggle_mod_display`).
 
@@ -57,8 +56,6 @@ Directly below the comparison controls are readouts of the accessibility (number
 </figure>
 
 The main display of accessibility results is the stacked percentile plot. The right portion of the plot shows the distribution of cumulative accessibility, i.e. the number of opportunities reachable given varying travel time cutoffs. The graph is not a single line, because there is variation in transit travel time depending on when a user of the transport system leaves their origin. Rather, the graph shows the number of opportunities given 95th, 75th, 50th, 25th, and 5th percentile travel time. The bottom of the shaded area is the number of opportunities which are almost always reachable, while the top is the number of opportunities that are reachable only in the best cases (e.g. when someone leaves their house at the perfect time and has no waiting time). The darkened line is the number of opportunities that are reachable at least half the time (i.e. have a median travel time of less than the travel time cutoff). For a more detailed explanation, see the [methodology](methodology.html) page.
-
-When the cumulative plot is steep, areas with especially high opportunity densities (e.g. typical downtown areas for jobs) are reachable. Note that the Y axis is a square-root scale, so that the cumulative plot would be a straight line if both the opportunities and travel speeds radiating in all directions from an origin were uniform.
 
 The currently-selected travel time cutoff is indicated by the vertical line on the plot.
 
