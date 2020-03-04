@@ -100,6 +100,8 @@ Ensure any GTFS you upload follows requirements of the specification. Various [v
 * Calendar dates that do not cover an intended date of analysis.
 * Using values other than 0-7 in the route_type column of routes.txt
 
+Conveyal's routing engine currently treats all GTFS trips represented in frequencies.txt as unscheduled frequencies (exact-times = 0). If any of your feeds has a frequencies.txt file with values of 1 in the exact-times column and you'd like to learn more, please contact your support team.
+
 ## Creating a Project
 
 Uploading and processing a GTFS bundle may take several minutes. Once processing is complete, you should be able to create a new :term:`project` based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then,
