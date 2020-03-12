@@ -1,4 +1,5 @@
 import {Box, Flex} from '@chakra-ui/core'
+import get from 'lodash/get'
 import App from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -10,6 +11,7 @@ import {setQueryString} from 'lib/actions'
 import ChakraTheme from 'lib/chakra'
 import State from 'lib/components/state'
 import useRouteChanging from 'lib/hooks/use-route-changing'
+import LogRocket from 'lib/logrocket'
 import {timer} from 'lib/utils/metric'
 import createStore from 'lib/store'
 
@@ -45,6 +47,8 @@ const pathUsesMap = path => path.startsWith('/region')
  */
 export default withRedux(createStore)(
   class extends App {
+    state = {}
+
     static async getInitialProps({Component, ctx}) {
       const timeApp = timer('App.getInitialProps')
 
@@ -67,18 +71,46 @@ export default withRedux(createStore)(
         return {pageProps}
       } catch (e) {
         console.error('Error getting initial props', e)
-        return {error: e, pageProps: {}}
+        return {
+          error: {
+            environment: process.browser ? 'browser' : 'server',
+            message: e.message,
+            stack: JSON.stringify(e.stack, null, '\n')
+          },
+          pageProps: {}
+        }
       } finally {
         timeApp.end()
       }
     }
 
-    componentDidCatch(err) {
-      console.error(err)
+    componentDidCatch(err, info) {
+      LogRocket.captureException(err, {
+        tags: {
+          accessGroup: get(this.props, 'pageProps.user.accessGroup'),
+          page: get(this.props, 'Component.displayName'),
+          pathname: get(this.props, 'router.pathname')
+        },
+        extras: info
+      })
+    }
+
+    static getDerivedStateFromError(error) {
+      return {
+        clearedError: false,
+        error
+      }
+    }
+
+    clearError = () => {
+      this.setState({clearedError: true, error: null})
     }
 
     render() {
       const p = this.props
+      const s = this.state
+      // Allow clearing a prop error
+      const error = s.clearedError ? null : s.error || p.error
       return (
         <ChakraTheme>
           <Provider store={p.store}>
@@ -89,13 +121,14 @@ export default withRedux(createStore)(
               )}
             </Head>
             <DevBar />
-            <ErrorModal />
+            <ErrorModal error={error} clear={this.clearError} />
 
-            {pathUsesMap(p.router.pathname) ? (
-              <ComponentWithMap {...p} />
-            ) : (
-              <p.Component {...p.pageProps} />
-            )}
+            {!error &&
+              (pathUsesMap(p.router.pathname) ? (
+                <ComponentWithMap {...p} />
+              ) : (
+                <p.Component {...p.pageProps} />
+              ))}
           </Provider>
         </ChakraTheme>
       )
