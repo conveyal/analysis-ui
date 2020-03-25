@@ -3,6 +3,7 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
+import {loadAggregationAreas} from 'lib/actions/aggregation-areas'
 import {
   deleteRegionalAnalysis,
   load as loadAllAnalyses
@@ -71,6 +72,7 @@ function RegionalPage(p) {
 
 async function initialFetch(store, query) {
   const [regionalAnalyses, opportunityDatasets, region] = await Promise.all([
+    store.dispatch(loadAggregationAreas(query.regionId)),
     store.dispatch(loadAllAnalyses(query.regionId)),
     store.dispatch(loadOpportunityDatasets(query.regionId)),
     store.dispatch(loadRegion(query.regionId))

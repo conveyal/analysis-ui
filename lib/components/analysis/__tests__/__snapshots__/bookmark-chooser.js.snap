@@ -1,95 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`analysis > bookmark renders correctly 1`] = `
-<Group
-  label="Bookmark"
+exports[`Components > Analysis > Bookmark Chooser should render correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <div
-    className="row"
-  >
-    <div
-      className="col-xs-6"
+  <BookmarkChooser>
+    <Group
+      label="Bookmark"
     >
-      <S
-        getOptionLabel={[Function]}
-        getOptionValue={[Function]}
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "_id": "bookmarkid",
-              "accessGroup": "accessGroupName",
-              "createdAt": "2017-11-08T12:30:50.133Z",
-              "createdBy": "person@gmail.com",
-              "isochroneCutoff": 42,
-              "name": "Bookmark",
-              "nonce": "12345",
-              "opportunityDataset": "Workers_total",
-              "profileRequest": Object {
-                "accessModes": "WALK",
-                "bikeSafe": 1,
-                "bikeSlope": 1,
-                "bikeSpeed": 4.166666666666667,
-                "bikeTime": 1,
-                "bounds": Object {
-                  "east": -76,
-                  "north": 39,
-                  "south": 38,
-                  "west": -77,
-                },
-                "bundleId": "1",
-                "date": "2016-01-16",
-                "defaultExpanded": true,
-                "directModes": "WALK",
-                "egressModes": "WALK",
-                "fromLat": 12,
-                "fromLon": 34,
-                "fromTime": 25200,
-                "maxBikeTime": 20,
-                "maxRides": 4,
-                "maxTripDurationMinutes": 60,
-                "maxWalkTime": 20,
-                "monteCarloDraws": 200,
-                "name": "Profile Request Test",
-                "projectId": "1",
-                "reachabilityThreshold": 0,
-                "regionId": "1",
-                "toTime": 32400,
-                "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                "travelTimePercentile": 50,
-                "variantIndex": 0,
-                "walkSpeed": 1.3888888888888888,
-                "workerVersion": "v4.0.0",
-              },
-              "regionId": "REGION",
-              "updatedAt": "2017-11-08T12:31:19.602Z",
-              "updatedBy": "person@gmail.com",
-            },
-          ]
-        }
-      />
-    </div>
-    <div
-      className="col-xs-6"
-    >
-      <Button
-        block={true}
-        onClick={[Function]}
-        style="success"
+      <div
+        className="form-group"
       >
-        <Icon
-          icon={
-            Object {
-              "icon": Array [],
-              "iconName": "plus",
-              "prefix": "fas",
-            }
-          }
-        />
-         
-        Create bookmark
-      </Button>
-    </div>
-  </div>
-</Group>
+        <label
+          className="control-label"
+          htmlFor="bookmark-input-1"
+        >
+          Bookmark
+        </label>
+        <div
+          className="row"
+        >
+          <div
+            className="col-xs-6"
+          >
+            <S
+              getOptionLabel={[Function]}
+              getOptionValue={[Function]}
+              onChange={[Function]}
+              options={Array []}
+            >
+              <ForwardRef(LoadableComponent)
+                getOptionLabel={[Function]}
+                getOptionValue={[Function]}
+                onChange={[Function]}
+                options={Array []}
+                styles={
+                  Object {
+                    "control": [Function],
+                    "option": [Function],
+                  }
+                }
+              >
+                <loading
+                  error={null}
+                  isLoading={true}
+                  pastDelay={false}
+                  retry={[Function]}
+                  timedOut={false}
+                />
+              </ForwardRef(LoadableComponent)>
+            </S>
+          </div>
+          <div
+            className="col-xs-6"
+          >
+            <Button
+              block={true}
+              onClick={[Function]}
+              style="success"
+            >
+              <a
+                className="btn btn-success btn-block"
+                href="#"
+                onClick={[Function]}
+                tabIndex={0}
+              >
+                <Icon
+                  icon={
+                    Object {
+                      "icon": Array [],
+                      "iconName": "plus",
+                      "prefix": "fas",
+                    }
+                  }
+                >
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={true}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [],
+                        "iconName": "plus",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    swapOpacity={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                      data-icon="plus"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 undefined undefined"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                </Icon>
+                 
+                Create bookmark
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Group>
+  </BookmarkChooser>
+</Provider>
 `;
