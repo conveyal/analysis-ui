@@ -11,8 +11,10 @@ module.exports.up = handler(async function(db) {
       },
       {
         $set: {
-          osmId: bundle.regionId // all old osms are keyed by region id
-        }
+          osmId: bundle.regionId, // all old osms are keyed by region id
+          statusText: bundle.errorCode
+        },
+        $unset: {errorCode: ''}
       }
     )
   }
