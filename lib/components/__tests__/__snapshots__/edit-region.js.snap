@@ -76,6 +76,7 @@ exports[`Component > EditRegion 1`] = `
     }
     router={
       Router {
+        "_getServerData": [Function],
         "_getStaticData": [Function],
         "_wrapApp": undefined,
         "asPath": "as-path",
@@ -86,6 +87,8 @@ exports[`Component > EditRegion 1`] = `
           },
           "page": Object {
             "Component": undefined,
+            "__N_SSG": undefined,
+            "__N_SSP": undefined,
             "err": undefined,
             "props": undefined,
           },
@@ -95,6 +98,7 @@ exports[`Component > EditRegion 1`] = `
           "off": [Function],
           "on": [Function],
         },
+        "isFallback": undefined,
         "isSsr": true,
         "onPopState": [Function],
         "pageLoader": undefined,
@@ -1214,30 +1218,12 @@ exports[`Component > EditRegion 1`] = `
                     </Flex>
                   </Stack>
                 </EditBoundsForm>
-                <Text
-                  key=".4"
-                  mb={4}
-                >
-                  <Box
-                    as="p"
-                    fontFamily="body"
-                    mb={4}
-                  >
-                    <p
-                      className="css-zwncle"
-                    >
-                      <em>
-                        OSM updates have been temporarily disabled and will be moved to the bundle management page.
-                      </em>
-                    </p>
-                  </Box>
-                </Text>
                 <Button
                   block={true}
                   isDisabled={true}
                   isLoading={false}
-                  key=".5"
-                  loadingText="Done"
+                  key=".4"
+                  loadingText="Saving region"
                   mb={4}
                   onClick={[Function]}
                   size="lg"
@@ -1306,7 +1292,7 @@ exports[`Component > EditRegion 1`] = `
                 </Button>
                 <Button
                   block={true}
-                  key=".6"
+                  key=".5"
                   leftIcon="delete"
                   mb={null}
                   onClick={[Function]}
