@@ -125,6 +125,8 @@
     "boundsNotice": "Bounds are snapped to points on our regular grid.",
     "updatesDisabled": "OSM updates have been temporarily disabled and will be moved to the bundle management page.",
     "r5Version": "Analysis backend version",
+    "osmConvertCommand": "osmconvert file.pbf -b=\"%(west), %(south), %(east), %(north)\" --complete-ways -o=file-cropped.pbf",
+    "osmosisCommand": "osmosis --read-pbf file.pbf --bounding-box left=%(west) bottom=%(south) right=%(east) top=%(north) --tf accept-ways highway=* public_transport=platform railway=platform par_ride=* --tf accept-relations type=restriction --used-node --write-pbf file-cropped.pbf",
     "statusCode": {
       "STARTED": "Setting up region…",
       "UPLOADING_OSM": "Uploading OpenStreetMap data…",
