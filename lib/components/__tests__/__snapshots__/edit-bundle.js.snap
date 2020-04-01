@@ -5,7 +5,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
   bundleProjects={Array []}
 >
   <Stack
-    spacing={4}
+    spacing={8}
   >
     <Flex
       direction="column"
@@ -17,104 +17,117 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
         <div
           className="css-j7qwjs"
         >
-          <Text
+          <FormControl
             key=".0"
-            mb={4}
-            textAlign="center"
-          >
-            <Box
-              as="p"
-              fontFamily="body"
-              mb={4}
-              textAlign="center"
-            >
-              <p
-                className="css-fqvfiw"
-              >
-                or select an existing one
-              </p>
-            </Box>
-          </Text>
-          <Box
-            key=".1"
             mb={null}
           >
-            <div
-              className="css-0"
+            <Box
+              mb={null}
+              role="group"
             >
-              <S
-                getOptionLabel={[Function]}
-                getOptionValue={[Function]}
-                onChange={[Function]}
-                options={
-                  Array [
-                    Object {
-                      "_id": "1",
-                      "accessGroup": "accessGroupName",
-                      "centerLat": 38.90124,
-                      "centerLon": -77.015615,
-                      "createdAt": "2017-11-08T12:30:50.133Z",
-                      "createdBy": "person@gmail.com",
-                      "errorCode": "",
-                      "feeds": Array [],
-                      "name": "Mock Bundle",
-                      "nonce": "12345",
-                      "regionId": "1",
-                      "serviceEnd": "2018-09-28",
-                      "serviceStart": "2018-09-27",
-                      "status": "DONE",
-                      "totalFeeds": 0,
-                      "updatedAt": "2017-11-08T12:31:19.602Z",
-                      "updatedBy": "person@gmail.com",
-                    },
-                  ]
-                }
+              <div
+                className="css-0"
+                role="group"
               >
-                <ForwardRef(LoadableComponent)
-                  getOptionLabel={[Function]}
-                  getOptionValue={[Function]}
-                  onChange={[Function]}
-                  options={
-                    Array [
-                      Object {
-                        "_id": "1",
-                        "accessGroup": "accessGroupName",
-                        "centerLat": 38.90124,
-                        "centerLon": -77.015615,
-                        "createdAt": "2017-11-08T12:30:50.133Z",
-                        "createdBy": "person@gmail.com",
-                        "errorCode": "",
-                        "feeds": Array [],
-                        "name": "Mock Bundle",
-                        "nonce": "12345",
-                        "regionId": "1",
-                        "serviceEnd": "2018-09-28",
-                        "serviceStart": "2018-09-27",
-                        "status": "DONE",
-                        "totalFeeds": 0,
-                        "updatedAt": "2017-11-08T12:31:19.602Z",
-                        "updatedBy": "person@gmail.com",
-                      },
-                    ]
-                  }
-                  styles={
-                    Object {
-                      "control": [Function],
-                      "option": [Function],
-                    }
-                  }
-                >
-                  <loading
-                    error={null}
-                    isLoading={true}
-                    pastDelay={false}
-                    retry={[Function]}
-                    timedOut={false}
-                  />
-                </ForwardRef(LoadableComponent)>
-              </S>
-            </div>
-          </Box>
+                <FormLabel>
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    opacity="1"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-176s5fq"
+                    >
+                      or select an existing one
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Box>
+                  <div
+                    className="css-0"
+                  >
+                    <S
+                      getOptionLabel={[Function]}
+                      getOptionValue={[Function]}
+                      onChange={[Function]}
+                      options={
+                        Array [
+                          Object {
+                            "_id": "1",
+                            "accessGroup": "accessGroupName",
+                            "centerLat": 38.90124,
+                            "centerLon": -77.015615,
+                            "createdAt": "2017-11-08T12:30:50.133Z",
+                            "createdBy": "person@gmail.com",
+                            "errorCode": "",
+                            "feeds": Array [],
+                            "name": "Mock Bundle",
+                            "nonce": "12345",
+                            "regionId": "1",
+                            "serviceEnd": "2018-09-28",
+                            "serviceStart": "2018-09-27",
+                            "status": "DONE",
+                            "totalFeeds": 0,
+                            "updatedAt": "2017-11-08T12:31:19.602Z",
+                            "updatedBy": "person@gmail.com",
+                          },
+                        ]
+                      }
+                    >
+                      <ForwardRef(LoadableComponent)
+                        getOptionLabel={[Function]}
+                        getOptionValue={[Function]}
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "_id": "1",
+                              "accessGroup": "accessGroupName",
+                              "centerLat": 38.90124,
+                              "centerLon": -77.015615,
+                              "createdAt": "2017-11-08T12:30:50.133Z",
+                              "createdBy": "person@gmail.com",
+                              "errorCode": "",
+                              "feeds": Array [],
+                              "name": "Mock Bundle",
+                              "nonce": "12345",
+                              "regionId": "1",
+                              "serviceEnd": "2018-09-28",
+                              "serviceStart": "2018-09-27",
+                              "status": "DONE",
+                              "totalFeeds": 0,
+                              "updatedAt": "2017-11-08T12:31:19.602Z",
+                              "updatedBy": "person@gmail.com",
+                            },
+                          ]
+                        }
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
+                      >
+                        <loading
+                          error={null}
+                          isLoading={true}
+                          pastDelay={false}
+                          retry={[Function]}
+                          timedOut={false}
+                        />
+                      </ForwardRef(LoadableComponent)>
+                    </S>
+                  </div>
+                </Box>
+              </div>
+            </Box>
+          </FormControl>
         </div>
       </Box>
     </Flex>
