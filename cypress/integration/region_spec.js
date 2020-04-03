@@ -35,11 +35,4 @@ describe('Set up a new region', function() {
       .type(45.769)
     cy.get('button[name="Set up a new region"]').should('have.attr', 'disabled')
   })
-
-  it('select pbf', () => {
-    cy.visit('/regions/create')
-    cy.get('input[type=file]')
-    // TODO file uploads seem difficult with Cypress..
-    // see: https://www.npmjs.com/package/cypress-file-upload
-  })
 })
