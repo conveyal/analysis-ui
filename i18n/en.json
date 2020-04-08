@@ -53,7 +53,25 @@
     "processing": "Wait until processing is complete before leaving this page. This may take a few minutes.",
     "save": "Save renamed bundle/feed names",
     "select": "or select an existing one",
-    "notice": "You will need to wait a few minutes for new OSM and GTFS feeds to be processed."
+    "notice": "You will need to wait a few minutes for new OSM and GTFS feeds to be processed.",
+    "osm": {
+      "title": "OpenStreetMap",
+      "description": "Reuse existing OSM data from other bundles or upload new data.",
+      "existingLabel": "Use existing OpenStreetMap data from",
+      "uploadNewLabel": "Upload new OpenStreetMap data",
+      "uploadNewHelp": "Must be in PBF format."
+    },
+    "osmconvertDescription": "Crop with osmconvert",
+    "osmConvertCommand": "osmconvert file.pbf -b=\"%(west), %(south), %(east), %(north)\" --complete-ways -o=file-cropped.pbf",
+    "osmosisDescription": "Crop and filter with osmosis",
+    "osmosisCommand": "osmosis --read-pbf file.pbf --bounding-box left=%(west) bottom=%(south) right=%(east) top=%(north) --tf accept-ways highway=* public_transport=platform railway=platform par_ride=* --tf accept-relations type=restriction --used-node --write-pbf file-cropped.pbf",
+    "gtfs": {
+      "title": "GTFS",
+      "description": "Reuse existing GTFS from other bundles or upload new GTFS.",
+      "existingLabel": "Use existing GTFS data",
+      "uploadNewLabel": "Upload new GTFS .zip files",
+      "uploadNewHelp": "One or more .zip files"
+    }
   },
   "map": {
     "northAbbr": "N"
@@ -125,8 +143,6 @@
     "boundsNotice": "Bounds are snapped to points on our regular grid.",
     "updatesDisabled": "OSM updates have been temporarily disabled and will be moved to the bundle management page.",
     "r5Version": "Analysis backend version",
-    "osmConvertCommand": "osmconvert file.pbf -b=\"%(west), %(south), %(east), %(north)\" --complete-ways -o=file-cropped.pbf",
-    "osmosisCommand": "osmosis --read-pbf file.pbf --bounding-box left=%(west) bottom=%(south) right=%(east) top=%(north) --tf accept-ways highway=* public_transport=platform railway=platform par_ride=* --tf accept-relations type=restriction --used-node --write-pbf file-cropped.pbf",
     "statusCode": {
       "STARTED": "Setting up region…",
       "UPLOADING_OSM": "Uploading OpenStreetMap data…",
