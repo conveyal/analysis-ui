@@ -54,12 +54,16 @@
     "save": "Save renamed bundle/feed names",
     "select": "or select an existing one",
     "notice": "You will need to wait a few minutes for new OSM and GTFS feeds to be processed.",
+    "createDescription": "When creating a new Network Bundle you have the option of reusing data from previously created Network Bundles. Note: Network Bundles created before April 15th, 2020 use OSM data uploaded to the region.",
     "osm": {
       "title": "OpenStreetMap",
       "description": "Reuse existing OSM data from other bundles or upload new data.",
-      "existingLabel": "Use existing OpenStreetMap data from",
-      "uploadNewLabel": "Upload new OpenStreetMap data",
-      "uploadNewHelp": "Must be in PBF format."
+      "existingTitle": "Reuse existing OpenStreetMap",
+      "existingLabel": "Select existing Network Bundle to reuse OSM from.",
+      "existingPlaceholder": "Select a Network Bundle",
+      "existingHelpText": "Older bundles using OSM uploaded to the region have been assigned that data directly.",
+      "uploadNewTitle": "Upload new OpenStreetMap",
+      "uploadNewLabel": "Select PBF file"
     },
     "osmconvertDescription": "Crop with osmconvert",
     "osmConvertCommand": "osmconvert file.pbf -b=\"%(west), %(south), %(east), %(north)\" --complete-ways -o=file-cropped.pbf",
@@ -68,9 +72,11 @@
     "gtfs": {
       "title": "GTFS",
       "description": "Reuse existing GTFS from other bundles or upload new GTFS.",
-      "existingLabel": "Use existing GTFS data",
-      "uploadNewLabel": "Upload new GTFS .zip files",
-      "uploadNewHelp": "One or more .zip files"
+      "existingTitle": "Reuse existing GTFS",
+      "existingLabel": "Select existing Network Bundle to reuse OSM from.",
+      "existingPlaceholder": "Select a Network Bundle",
+      "uploadNewTitle": "Upload new GTFS",
+      "uploadNewLabel": "Select one or more .zip files containing valid GTFS"
     }
   },
   "map": {
