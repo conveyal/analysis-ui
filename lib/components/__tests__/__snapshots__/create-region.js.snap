@@ -7,6 +7,7 @@ exports[`create-region.render 1`] = `
   <CreateRegion
     router={
       Router {
+        "_getServerData": [Function],
         "_getStaticData": [Function],
         "_wrapApp": undefined,
         "asPath": "as-path",
@@ -17,6 +18,8 @@ exports[`create-region.render 1`] = `
           },
           "page": Object {
             "Component": undefined,
+            "__N_SSG": undefined,
+            "__N_SSP": undefined,
             "err": undefined,
             "props": undefined,
           },
@@ -26,6 +29,7 @@ exports[`create-region.render 1`] = `
           "off": [Function],
           "on": [Function],
         },
+        "isFallback": undefined,
         "isSsr": true,
         "onPopState": [Function],
         "pageLoader": undefined,
@@ -1266,12 +1270,15 @@ exports[`create-region.render 1`] = `
                       className="css-acwcvw"
                       role="group"
                     >
-                      <FormLabel>
+                      <FormLabel
+                        htmlFor="osm"
+                      >
                         <Box
                           as="label"
                           display="inline-block"
                           fontSize="md"
                           fontWeight="medium"
+                          htmlFor="osm"
                           opacity="1"
                           pb="4px"
                           pr="12px"
@@ -1280,6 +1287,7 @@ exports[`create-region.render 1`] = `
                         >
                           <label
                             className="css-176s5fq"
+                            htmlFor="osm"
                           >
                             OpenStreetMap data in PBF format
                             <RequiredIndicator>
@@ -1304,6 +1312,7 @@ exports[`create-region.render 1`] = `
                         as="input"
                         errorBorderColor="red.500"
                         focusBorderColor="blue.500"
+                        id="osm"
                         isFullWidth={true}
                         onChange={[Function]}
                         size="md"
@@ -1354,6 +1363,7 @@ exports[`create-region.render 1`] = `
                           display="flex"
                           fontSize="md"
                           height={10}
+                          id="osm"
                           onChange={[Function]}
                           outline="none"
                           position="relative"
@@ -1369,6 +1379,7 @@ exports[`create-region.render 1`] = `
                             aria-required={true}
                             className="css-1ga4kqw"
                             disabled={false}
+                            id="osm"
                             onChange={[Function]}
                             required={true}
                             type="file"
@@ -1456,6 +1467,7 @@ exports[`create-region.render 1`] = `
                         mr={2}
                       >
                         <Icon
+                          aria-hidden="true"
                           color="currentColor"
                           focusable="false"
                           ml={-1}
@@ -1463,6 +1475,7 @@ exports[`create-region.render 1`] = `
                           name="check"
                         >
                           <Styled(div)
+                            aria-hidden="true"
                             as="svg"
                             color="currentColor"
                             display="inline-block"
@@ -1475,6 +1488,7 @@ exports[`create-region.render 1`] = `
                             viewBox="0 0 14 14"
                           >
                             <svg
+                              aria-hidden="true"
                               className="css-yxiis9"
                               focusable="false"
                               role="presentation"
