@@ -4,181 +4,133 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
 <EditBundle
   bundleProjects={Array []}
 >
-  <P>
-    <Box
-      as="p"
-      mb="10px"
-    >
-      <p
-        className="css-1r2f04i"
-      >
-        Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.
-      </p>
-    </Box>
-  </P>
-  <Group>
-    <div
-      className="form-group"
-    >
-      <Button
-        block={true}
-        onClick={[Function]}
-        style="success"
-      >
-        <a
-          className="btn btn-success btn-block"
-          href="#"
-          onClick={[Function]}
-          tabIndex={0}
-        >
-          <Icon
-            icon={
-              Object {
-                "icon": Array [],
-                "iconName": "plus",
-                "prefix": "fas",
-              }
-            }
-          >
-            <FontAwesomeIcon
-              border={false}
-              className=""
-              fixedWidth={true}
-              flip={null}
-              icon={
-                Object {
-                  "icon": Array [],
-                  "iconName": "plus",
-                  "prefix": "fas",
-                }
-              }
-              inverse={false}
-              listItem={false}
-              mask={null}
-              pull={null}
-              pulse={false}
-              rotation={null}
-              size={null}
-              spin={false}
-              swapOpacity={false}
-              symbol={false}
-              title=""
-              transform={null}
-            >
-              <svg
-                aria-hidden="true"
-                className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                data-icon="plus"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                style={Object {}}
-                viewBox="0 0 undefined undefined"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill="currentColor"
-                  style={Object {}}
-                />
-              </svg>
-            </FontAwesomeIcon>
-          </Icon>
-           Create a bundle
-        </a>
-      </Button>
-    </div>
-  </Group>
-  <P
-    className="text-center"
+  <Stack
+    spacing={8}
   >
-    <Box
-      as="p"
-      className="text-center"
-      mb="10px"
+    <Flex
+      direction="column"
     >
-      <p
-        className="text-center css-1r2f04i"
+      <Box
+        display="flex"
+        flexDirection="column"
       >
-        or select an existing one
-      </p>
-    </Box>
-  </P>
-  <Group>
-    <div
-      className="form-group"
-    >
-      <S
-        getOptionLabel={[Function]}
-        getOptionValue={[Function]}
-        onChange={[Function]}
-        options={
-          Array [
-            Object {
-              "_id": "1",
-              "accessGroup": "accessGroupName",
-              "centerLat": 38.90124,
-              "centerLon": -77.015615,
-              "createdAt": "2017-11-08T12:30:50.133Z",
-              "createdBy": "person@gmail.com",
-              "errorCode": "",
-              "feeds": Array [],
-              "name": "Mock Bundle",
-              "nonce": "12345",
-              "regionId": "1",
-              "serviceEnd": "2018-09-28",
-              "serviceStart": "2018-09-27",
-              "status": "DONE",
-              "totalFeeds": 0,
-              "updatedAt": "2017-11-08T12:31:19.602Z",
-              "updatedBy": "person@gmail.com",
-            },
-          ]
-        }
-      >
-        <ForwardRef(LoadableComponent)
-          getOptionLabel={[Function]}
-          getOptionValue={[Function]}
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "_id": "1",
-                "accessGroup": "accessGroupName",
-                "centerLat": 38.90124,
-                "centerLon": -77.015615,
-                "createdAt": "2017-11-08T12:30:50.133Z",
-                "createdBy": "person@gmail.com",
-                "errorCode": "",
-                "feeds": Array [],
-                "name": "Mock Bundle",
-                "nonce": "12345",
-                "regionId": "1",
-                "serviceEnd": "2018-09-28",
-                "serviceStart": "2018-09-27",
-                "status": "DONE",
-                "totalFeeds": 0,
-                "updatedAt": "2017-11-08T12:31:19.602Z",
-                "updatedBy": "person@gmail.com",
-              },
-            ]
-          }
-          styles={
-            Object {
-              "control": [Function],
-              "option": [Function],
-            }
-          }
+        <div
+          className="css-j7qwjs"
         >
-          <loading
-            error={null}
-            isLoading={true}
-            pastDelay={false}
-            retry={[Function]}
-            timedOut={false}
-          />
-        </ForwardRef(LoadableComponent)>
-      </S>
-    </div>
-  </Group>
+          <FormControl
+            key=".0"
+            mb={null}
+          >
+            <Box
+              mb={null}
+              role="group"
+            >
+              <div
+                className="css-0"
+                role="group"
+              >
+                <FormLabel>
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    opacity="1"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-176s5fq"
+                    >
+                      or select an existing one
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Box>
+                  <div
+                    className="css-0"
+                  >
+                    <S
+                      getOptionLabel={[Function]}
+                      getOptionValue={[Function]}
+                      onChange={[Function]}
+                      options={
+                        Array [
+                          Object {
+                            "_id": "1",
+                            "accessGroup": "accessGroupName",
+                            "centerLat": 38.90124,
+                            "centerLon": -77.015615,
+                            "createdAt": "2017-11-08T12:30:50.133Z",
+                            "createdBy": "person@gmail.com",
+                            "errorCode": "",
+                            "feeds": Array [],
+                            "name": "Mock Bundle",
+                            "nonce": "12345",
+                            "regionId": "1",
+                            "serviceEnd": "2018-09-28",
+                            "serviceStart": "2018-09-27",
+                            "status": "DONE",
+                            "totalFeeds": 0,
+                            "updatedAt": "2017-11-08T12:31:19.602Z",
+                            "updatedBy": "person@gmail.com",
+                          },
+                        ]
+                      }
+                    >
+                      <ForwardRef(LoadableComponent)
+                        getOptionLabel={[Function]}
+                        getOptionValue={[Function]}
+                        onChange={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "_id": "1",
+                              "accessGroup": "accessGroupName",
+                              "centerLat": 38.90124,
+                              "centerLon": -77.015615,
+                              "createdAt": "2017-11-08T12:30:50.133Z",
+                              "createdBy": "person@gmail.com",
+                              "errorCode": "",
+                              "feeds": Array [],
+                              "name": "Mock Bundle",
+                              "nonce": "12345",
+                              "regionId": "1",
+                              "serviceEnd": "2018-09-28",
+                              "serviceStart": "2018-09-27",
+                              "status": "DONE",
+                              "totalFeeds": 0,
+                              "updatedAt": "2017-11-08T12:31:19.602Z",
+                              "updatedBy": "person@gmail.com",
+                            },
+                          ]
+                        }
+                        styles={
+                          Object {
+                            "control": [Function],
+                            "option": [Function],
+                          }
+                        }
+                      >
+                        <loading
+                          error={null}
+                          isLoading={true}
+                          pastDelay={false}
+                          retry={[Function]}
+                          timedOut={false}
+                        />
+                      </ForwardRef(LoadableComponent)>
+                    </S>
+                  </div>
+                </Box>
+              </div>
+            </Box>
+          </FormControl>
+        </div>
+      </Box>
+    </Flex>
+  </Stack>
 </EditBundle>
 `;

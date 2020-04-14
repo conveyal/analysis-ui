@@ -39,20 +39,45 @@
     "username": "Logged in as %(username)"
   },
   "bundle": {
-    "name": "Bundle Name",
-    "explanation": "Bundles are a collection of one or more GTFS feeds that make up the transit layer of a baseline network.",
+    "name": "Network bundle name",
+    "explanation": "Network bundles are a collection of OpenStreetMap data and one or more GTFS feeds that make up the transit layer of a baseline network.",
     "edit": "Edit bundle",
-    "create": "Create GTFS bundle",
-    "failure": "Error processing GTFS. Please upload valid GTFS .zip files.",
+    "create": "Create a new network bundle",
+    "failure": "Error processing. Please upload valid OSM .pbf and GTFS .zip files.",
     "feed": "Feed",
     "files": "GTFS .zip files",
-    "delete": "Delete this bundle",
-    "deleteConfirmation": "Are you sure you would like to delete this bundle? Projects using this bundle will no longer work.",
-    "deleteDisabled": "This bundle cannot be deleted while projects are using it. Currently used by %(projects) project(s).",
+    "feedGroupLabel": "or upload new GTFS collection",
+    "delete": "Delete this network bundle",
+    "deleteConfirmation": "Are you sure you would like to delete this network bundle? Projects using this network bundle will no longer work.",
+    "deleteDisabled": "This network bundle cannot be deleted while projects are using it. Currently used by %(projects) project(s).",
     "processing": "Wait until processing is complete before leaving this page. This may take a few minutes.",
     "save": "Save renamed bundle/feed names",
     "select": "or select an existing one",
-    "notice": "After clicking \"Create,\" you will need to wait a few minutes for GTFS feeds to be processed."
+    "notice": "You will need to wait a few minutes for new OSM and GTFS feeds to be processed.",
+    "createDescription": "When creating a new Network Bundle you have the option of reusing data from previously created Network Bundles. Note: Network Bundles created before April 15th, 2020 use OSM data uploaded to the region.",
+    "osm": {
+      "title": "OpenStreetMap",
+      "description": "Reuse existing OSM data from other bundles or upload new data.",
+      "existingTitle": "Reuse existing OpenStreetMap",
+      "existingLabel": "Select existing Network Bundle to reuse OSM from.",
+      "existingPlaceholder": "Select a Network Bundle",
+      "existingHelpText": "Older bundles using OSM uploaded to the region have been assigned that data directly.",
+      "uploadNewTitle": "Upload new OpenStreetMap",
+      "uploadNewLabel": "Select PBF file"
+    },
+    "osmconvertDescription": "Crop with osmconvert",
+    "osmConvertCommand": "osmconvert file.pbf -b=\"%(west), %(south), %(east), %(north)\" --complete-ways -o=file-cropped.pbf",
+    "osmosisDescription": "Crop and filter with osmosis",
+    "osmosisCommand": "osmosis --read-pbf file.pbf --bounding-box left=%(west) bottom=%(south) right=%(east) top=%(north) --tf accept-ways highway=* public_transport=platform railway=platform par_ride=* --tf accept-relations type=restriction --used-node --write-pbf file-cropped.pbf",
+    "gtfs": {
+      "title": "GTFS",
+      "description": "Reuse existing GTFS from other bundles or upload new GTFS.",
+      "existingTitle": "Reuse existing GTFS",
+      "existingLabel": "Select existing Network Bundle to reuse OSM from.",
+      "existingPlaceholder": "Select a Network Bundle",
+      "uploadNewTitle": "Upload new GTFS",
+      "uploadNewLabel": "Select one or more .zip files containing valid GTFS"
+    }
   },
   "map": {
     "northAbbr": "N"
@@ -76,7 +101,7 @@
     "regions": "Regions",
     "regionSettings": "Region Settings",
     "projects": "Projects",
-    "gtfsBundles": "GTFS Bundles",
+    "networkBundles": "Network Bundles",
     "opportunityDatasets": "Opportunity Datasets",
     "editModifications": "Edit Modifications",
     "analyze": "Analyze",

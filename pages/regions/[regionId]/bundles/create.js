@@ -1,12 +1,17 @@
 import React from 'react'
 
-import Bundles from 'lib/components/bundles'
+import {loadBundles} from 'lib/actions'
+import {loadRegion} from 'lib/actions/region'
 import CreateBundle from 'lib/components/create-bundle'
+import withInitialFetch from 'lib/with-initial-fetch'
 
-const BundleCreate = () => (
-  <Bundles>
-    <CreateBundle />
-  </Bundles>
-)
+const CreateBundlePage = p => <CreateBundle regionId={p.query.regionId} />
 
-export default BundleCreate
+function initialFetch(store, query) {
+  return Promise.all([
+    store.dispatch(loadBundles({regionId: query.regionId})),
+    store.dispatch(loadRegion(query.regionId))
+  ])
+}
+
+export default withInitialFetch(CreateBundlePage, initialFetch)

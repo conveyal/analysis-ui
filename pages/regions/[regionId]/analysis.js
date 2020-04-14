@@ -1,4 +1,5 @@
 import {load} from 'lib/actions/region'
+import {loadBookmarks} from 'lib/actions/bookmark'
 import {
   setScenarioApplicationErrors,
   setScenarioApplicationWarnings
@@ -10,7 +11,10 @@ function initialFetch(store, query) {
   store.dispatch(setScenarioApplicationWarnings(null))
   store.dispatch(setScenarioApplicationErrors(null))
 
-  return store.dispatch(load(query.regionId))
+  return Promise.all([
+    store.dispatch(load(query.regionId)),
+    store.dispatch(loadBookmarks(query.regionId))
+  ])
 }
 
 export default withInitialFetch(SinglePointAnalysis, initialFetch)

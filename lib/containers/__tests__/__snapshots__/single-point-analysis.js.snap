@@ -1029,122 +1029,87 @@ exports[`constainers/single-point-analysis 1`] = `
             stale={true}
           />
         </Connect(StackedPercentileSelector)>
-        <Connect(BookmarkChooser)
+        <BookmarkChooser
           disabled={false}
         >
-          <BookmarkChooser
-            bookmarkData={
-              Object {
-                "opportunityDataset": undefined,
-                "profileRequest": Object {
-                  "accessModes": "WALK",
-                  "bikeSafe": 1,
-                  "bikeSlope": 1,
-                  "bikeSpeed": 4.166666666666667,
-                  "bikeTime": 1,
-                  "bounds": Object {
-                    "east": -76,
-                    "north": 39,
-                    "south": 38,
-                    "west": -77,
-                  },
-                  "bundleId": "1",
-                  "date": "2016-01-16",
-                  "defaultExpanded": true,
-                  "directModes": "WALK",
-                  "egressModes": "WALK",
-                  "fromLat": 12,
-                  "fromLon": 34,
-                  "fromTime": 25200,
-                  "maxBikeTime": 20,
-                  "maxRides": 4,
-                  "maxTripDurationMinutes": 60,
-                  "maxWalkTime": 20,
-                  "monteCarloDraws": 200,
-                  "name": "Profile Request Test",
-                  "projectId": "1",
-                  "reachabilityThreshold": 0,
-                  "regionId": "1",
-                  "toTime": 32400,
-                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                  "travelTimePercentile": 50,
-                  "variantIndex": 0,
-                  "walkSpeed": 1.3888888888888888,
-                  "workerVersion": "v4.0.0",
-                },
-                "regionId": "1",
-              }
-            }
-            bookmarks={Array []}
-            createBookmark={[Function]}
-            disabled={false}
-            selectBookmark={[Function]}
+          <Group
+            label="Bookmark"
           >
-            <Group
-              label="Bookmark"
+            <div
+              className="form-group"
             >
-              <div
-                className="form-group"
+              <label
+                className="control-label"
+                htmlFor="bookmark-input-16"
               >
-                <label
-                  className="control-label"
-                  htmlFor="bookmark-input-6"
-                >
-                  Bookmark
-                </label>
+                Bookmark
+              </label>
+              <div
+                className="row"
+              >
                 <div
-                  className="row"
+                  className="col-xs-6"
                 >
-                  <div
-                    className="col-xs-6"
+                  <S
+                    getOptionLabel={[Function]}
+                    getOptionValue={[Function]}
+                    isDisabled={false}
+                    onChange={[Function]}
+                    options={Array []}
                   >
-                    <S
+                    <ForwardRef(LoadableComponent)
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
                       isDisabled={false}
                       onChange={[Function]}
                       options={Array []}
+                      styles={
+                        Object {
+                          "control": [Function],
+                          "option": [Function],
+                        }
+                      }
                     >
-                      <ForwardRef(LoadableComponent)
-                        getOptionLabel={[Function]}
-                        getOptionValue={[Function]}
-                        isDisabled={false}
-                        onChange={[Function]}
-                        options={Array []}
-                        styles={
+                      <loading
+                        error={null}
+                        isLoading={true}
+                        pastDelay={false}
+                        retry={[Function]}
+                        timedOut={false}
+                      />
+                    </ForwardRef(LoadableComponent)>
+                  </S>
+                </div>
+                <div
+                  className="col-xs-6"
+                >
+                  <Button
+                    block={true}
+                    disabled={false}
+                    onClick={[Function]}
+                    style="success"
+                  >
+                    <a
+                      className="btn btn-success btn-block"
+                      disabled={false}
+                      href="#"
+                      onClick={[Function]}
+                      tabIndex={0}
+                    >
+                      <Icon
+                        icon={
                           Object {
-                            "control": [Function],
-                            "option": [Function],
+                            "icon": Array [],
+                            "iconName": "plus",
+                            "prefix": "fas",
                           }
                         }
                       >
-                        <loading
-                          error={null}
-                          isLoading={true}
-                          pastDelay={false}
-                          retry={[Function]}
-                          timedOut={false}
-                        />
-                      </ForwardRef(LoadableComponent)>
-                    </S>
-                  </div>
-                  <div
-                    className="col-xs-6"
-                  >
-                    <Button
-                      block={true}
-                      disabled={false}
-                      onClick={[Function]}
-                      style="success"
-                    >
-                      <a
-                        className="btn btn-success btn-block"
-                        disabled={false}
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
-                      >
-                        <Icon
+                        <FontAwesomeIcon
+                          border={false}
+                          className=""
+                          fixedWidth={true}
+                          flip={null}
                           icon={
                             Object {
                               "icon": Array [],
@@ -1152,60 +1117,46 @@ exports[`constainers/single-point-analysis 1`] = `
                               "prefix": "fas",
                             }
                           }
+                          inverse={false}
+                          listItem={false}
+                          mask={null}
+                          pull={null}
+                          pulse={false}
+                          rotation={null}
+                          size={null}
+                          spin={false}
+                          swapOpacity={false}
+                          symbol={false}
+                          title=""
+                          transform={null}
                         >
-                          <FontAwesomeIcon
-                            border={false}
-                            className=""
-                            fixedWidth={true}
-                            flip={null}
-                            icon={
-                              Object {
-                                "icon": Array [],
-                                "iconName": "plus",
-                                "prefix": "fas",
-                              }
-                            }
-                            inverse={false}
-                            listItem={false}
-                            mask={null}
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            swapOpacity={false}
-                            symbol={false}
-                            title=""
-                            transform={null}
+                          <svg
+                            aria-hidden="true"
+                            className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
+                            data-icon="plus"
+                            data-prefix="fas"
+                            focusable="false"
+                            role="img"
+                            style={Object {}}
+                            viewBox="0 0 undefined undefined"
+                            xmlns="http://www.w3.org/2000/svg"
                           >
-                            <svg
-                              aria-hidden="true"
-                              className="svg-inline--fa fa-plus fa-w-NaN fa-fw "
-                              data-icon="plus"
-                              data-prefix="fas"
-                              focusable="false"
-                              role="img"
+                            <path
+                              fill="currentColor"
                               style={Object {}}
-                              viewBox="0 0 undefined undefined"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fill="currentColor"
-                                style={Object {}}
-                              />
-                            </svg>
-                          </FontAwesomeIcon>
-                        </Icon>
-                         
-                        Create bookmark
-                      </a>
-                    </Button>
-                  </div>
+                            />
+                          </svg>
+                        </FontAwesomeIcon>
+                      </Icon>
+                       
+                      Create bookmark
+                    </a>
+                  </Button>
                 </div>
               </div>
-            </Group>
-          </BookmarkChooser>
-        </Connect(BookmarkChooser)>
+            </div>
+          </Group>
+        </BookmarkChooser>
         <ProfileRequestEditor
           bundleOutOfDate="Selected date <strong>2016-01-16</strong> is out of service for project <strong>Mock Project</strong>. Its bundle <strong>Mock Bundle</strong> only has service between <strong>2018-09-27</strong> and <strong>2018-09-28</strong>. There may also be days in between without service. Please be certain of your GTFS service dates and select an appropriate one below."
           disabled={false}
@@ -2631,7 +2582,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="routing-engine-input-16"
+                      htmlFor="routing-engine-input-17"
                     >
                       Routing engine
                     </label>
