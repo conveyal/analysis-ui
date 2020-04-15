@@ -68,7 +68,7 @@
     "osmconvertDescription": "Crop with osmconvert",
     "osmConvertCommand": "osmconvert file.pbf -b=\"%(west), %(south), %(east), %(north)\" --complete-ways -o=file-cropped.pbf",
     "osmosisDescription": "Crop and filter with osmosis",
-    "osmosisCommand": "osmosis --read-pbf file.pbf --bounding-box left=%(west) bottom=%(south) right=%(east) top=%(north) --tf accept-ways highway=* public_transport=platform railway=platform par_ride=* --tf accept-relations type=restriction --used-node --write-pbf file-cropped.pbf",
+    "osmosisCommand": "osmosis --read-pbf file.pbf --bounding-box left=%(west) bottom=%(south) right=%(east) top=%(north) --tf accept-ways highway=* public_transport=platform railway=platform park_ride=* --tf accept-relations type=restriction --used-node --write-pbf file-cropped.pbf",
     "gtfs": {
       "title": "GTFS",
       "description": "Reuse existing GTFS from other bundles or upload new GTFS.",
