@@ -29,15 +29,6 @@ Cypress.Commands.add('setupRegion', regionName => {
         cy.findByLabelText(/East bound/)
           .clear()
           .type(region.east, {delay: 1})
-        // Select PBF file
-        cy.fixture(region.PBFfile, {encoding: 'base64'}).then(fileContent => {
-          cy.get('input[type="file"]').upload({
-            encoding: 'base64',
-            fileContent,
-            fileName: region.PBFfile,
-            mimeType: 'application/octet-stream'
-          })
-        })
       })
       cy.findByRole('button', {name: /Set up a new region/}).click()
     }
@@ -48,7 +39,7 @@ Cypress.Commands.add('setupRegion', regionName => {
 Cypress.Commands.add('setupBundle', regionName => {
   cy.setupRegion(regionName)
   let bundleName = 'autogen ' + regionName + ' bundle'
-  cy.findByTitle('GTFS Bundles').click({force: true})
+  cy.findByTitle('Network Bundles').click({force: true})
   cy.location('pathname').should('match', /\/regions\/.{24}\/bundles/)
   cy.contains('or select an existing one')
   cy.findByText(/Select.../).click()
@@ -56,12 +47,22 @@ Cypress.Commands.add('setupBundle', regionName => {
     if (body.text().includes(bundleName)) {
       // bundle already exists. do nothing
     } else {
-      cy.findByText(/Create a bundle/).click()
+      cy.findByText(/Create .* bundle/).click()
       cy.location('pathname').should('match', /.*\/bundles\/create$/)
-      cy.findByLabelText(/Bundle Name/i).type(bundleName, {delay: 1})
+      cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
+      cy.findByText(/Upload new OpenStreetMap/i).click()
       cy.fixture('regions/' + regionName + '.json').then(region => {
+        cy.fixture(region.PBFfile, {encoding: 'base64'}).then(fileContent => {
+          cy.findByLabelText(/Select PBF file/i).upload({
+            encoding: 'base64',
+            fileContent,
+            fileName: region.PBFfile,
+            mimeType: 'application/octet-stream'
+          })
+        })
+        cy.findByText(/Upload new GTFS/i).click()
         cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(fileContent => {
-          cy.get('input[type="file"]').upload({
+          cy.findByLabelText(/Select .*GTFS/i).upload({
             encoding: 'base64',
             fileContent,
             fileName: region.GTFSfile,
@@ -71,7 +72,7 @@ Cypress.Commands.add('setupBundle', regionName => {
       })
       cy.findByRole('button', {name: /Create/i}).click()
       cy.findByText(/Processing/)
-      cy.location('pathname', {timeout: 30000}).should('match', /\/bundles$/)
+      cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
     }
   })
 })

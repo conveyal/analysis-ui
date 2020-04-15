@@ -13,7 +13,6 @@ describe('Region setup', () => {
     cy.findByLabelText(/West bound/).as('West')
     cy.findByRole('button', {name: /Set up a new region/}).as('create')
     cy.get('input#react-select-2-input').as('search')
-    cy.get('input[type="file"]').as('PBFupload')
   })
 
   it('can be found from homepage', function() {
@@ -120,15 +119,6 @@ describe('Region setup', () => {
     cy.get('@West')
       .clear()
       .type(this.region.west)
-    // Select PBF file
-    cy.fixture(this.region.PBFfile, {encoding: 'base64'}).then(fileContent => {
-      cy.get('@PBFupload').upload({
-        encoding: 'base64',
-        fileContent,
-        fileName: this.region.PBFfile,
-        mimeType: 'application/octet-stream'
-      })
-    })
     // Create the region
     cy.get('@create').click()
     // should redirect to bundle upload
