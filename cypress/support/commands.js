@@ -105,24 +105,25 @@ Cypress.Commands.add('setupProject', regionName => {
 })
 
 Cypress.Commands.add('mapIsReady', () => {
-  cy.window().should('have.property', 'LeafletMap')
   // map should have a tileLayer which is done loading
-  cy.window().then(win => {
-    win.LeafletMap.eachLayer(layer => {
-      if (layer instanceof win.L.MapboxGL) {
-        // TODO how to check if tiles are loaded??
-        cy.log(layer)
-      }
+  cy.window()
+    .its('LeafletMap')
+    .then(map => {
+      map.eachLayer(layer => {
+        if (layer.getAttribution()) {
+          cy.log(layer)
+        }
+      })
     })
-  })
 })
 
-Cypress.Commands.add('mapDistanceFrom', latLonArray => {
-  cy.window().should('have.property', 'LeafletMap')
-  return cy.window().then(win => {
-    let map = win.LeafletMap
-    return map.distance(map.getCenter(), latLonArray)
-  })
+Cypress.Commands.add('distanceFromMapCenter', latLonArray => {
+  return cy
+    .window()
+    .its('LeafletMap')
+    .then(map => {
+      return map.distance(map.getCenter(), latLonArray)
+    })
 })
 
 Cypress.Commands.add('login', function() {
