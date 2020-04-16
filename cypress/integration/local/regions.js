@@ -13,7 +13,6 @@ describe('Region setup', () => {
     cy.findByLabelText(/West bound/).as('West')
     cy.findByRole('button', {name: /Set up a new region/}).as('create')
     cy.get('input#react-select-2-input').as('search')
-    cy.get('input[type="file"]').as('PBFupload')
   })
 
   it('can be found from homepage', function() {
@@ -79,14 +78,15 @@ describe('Region setup', () => {
         lon: 0
       }
     ]
+    let maxOffset = 10000 // meters
     regions.forEach(r => {
       cy.get('@search')
         .focus()
         .clear()
         .type(r.searchTerm)
       cy.findByText(r.findText).click()
-      cy.mapDistanceFrom([r.lat, r.lon]).then(distance => {
-        expect(distance).to.be.lessThan(20000)
+      cy.distanceFromMapCenter([r.lat, r.lon]).then(offset => {
+        expect(offset).to.be.lessThan(maxOffset)
       })
     })
   })
@@ -103,9 +103,8 @@ describe('Region setup', () => {
       .clear()
       .type(this.region.searchTerm)
     cy.findByText(this.region.foundName).click()
-
-    cy.mapDistanceFrom([39.1, -84.5]).then(distance => {
-      expect(distance).to.be.lessThan(10000)
+    cy.distanceFromMapCenter([39.1, -84.5]).then(offset => {
+      expect(offset).to.be.lessThan(10000)
     })
     // Enter exact coordinates
     cy.get('@North')
@@ -120,15 +119,6 @@ describe('Region setup', () => {
     cy.get('@West')
       .clear()
       .type(this.region.west)
-    // Select PBF file
-    cy.fixture(this.region.PBFfile, {encoding: 'base64'}).then(fileContent => {
-      cy.get('@PBFupload').upload({
-        encoding: 'base64',
-        fileContent,
-        fileName: this.region.PBFfile,
-        mimeType: 'application/octet-stream'
-      })
-    })
     // Create the region
     cy.get('@create').click()
     // should redirect to bundle upload
