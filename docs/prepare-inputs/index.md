@@ -1,27 +1,42 @@
 # Preparing a baseline transport network
 
-<<<<<<< HEAD
-Accessibility calculations will be based on the :term:`transport network` that is set up for your :term:`region`. This includes scheduled transit services as well as the region's network of streets, sidewalks, bikeways, etc. Initially you will set up a :term:`baseline network` representing the transit services described in the :term:`GTFS bundle` for your region. Later on you will likely want to compare alternative :term:`scenarios<scenario>` by creating :term:`modifications<modification>` to the baseline network.
+Accessibility calculations will be based on :term:`transport networks<transport network>` that is set up in your :term:`region`. Transport networks includes scheduled transit service as well as the region's streets, sidewalks, bikeways, etc. Initially you will set up a :term:`baseline network`. Later on you will likely want to compare alternative :term:`scenarios<scenario>` by creating :term:`modifications<modification>` to the baseline network.
 
 ## Setting up a new region
 
 The :term:`region` is a [bounding box](https://wiki.openstreetmap.org/wiki/Bounding_Box) defining the area to be used for accessibility calculations. It should generally cover the entire service area of the agency or agencies you will be working with. Opportunities and network components outside this area will generally not be considered.
 
-The regions page, shown after you log in, provides a list of existing regions if any, and the option to create a new region. It is also accessible at any later point by clicking the globe icon (<i class="fa fa-globe"></i>). From the regions page, set up a new region by clicking:
+The regions page, shown after you log in, provides a list of existing regions (if any), and the option to create a new region. It is also accessible at any later point by clicking the globe icon (<i class="fa fa-globe"></i>). From the regions page, set up a new region by clicking:
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Set up a new region</span>
 
-Start by using the search bar in the map to automatically locate your city or country by name. You can also move the bounding box by dragging its corners on the map or by manually entering coordinates in the sidebar. Enter a name for the region and an optional description.
+Start by using the search bar in the map to automatically locate your city or country by name. You can also move the bounding box by dragging its corners on the map or by manually entering coordinates in the sidebar.
 
-You must also upload an appropriate [OpenStreetMap](https://www.openstreetmap.org) (OSM) extract at this point, which will serve as the street layer of the transport network. This will be used for any walking or biking segments of a trip as well as for some transfers between stops and stations. Note that while several formats exist for OSM data, we require the [PBF format](https://wiki.openstreetmap.org/wiki/PBF_Format) because it is more compact and faster to process. Your extract should cover your entire service area or region, but not extend unnecessarily far beyond it as that may impact processing time.
+Enter a name for the region and an optional description. To finalize region creation, click the button at the bottom of the panel. You should then be prompted to create a network bundle.
 
-The process of downloading and processing OSM data into an appropriate format is covered in the next section. For now, if all looks good with your region, you should be able to click the _Set up a new region_ button. After a bit of time for uploading and processing the OSM data, you should be prompted to upload a GTFS bundle.
+## Creating a network bundle
+
+Conveyal Analysis requires a :term:`network bundle`, which consists of street and transit data.
+
+To create a network bundle, click on the Network Bundles icon (<i class="fa fa-database"></i>), then click:
+
+<span class="btn btn-success"><i class="fa fa-plus"></i> Create a new network bundle</span>
+
+In the panel to create a new network bundle, first enter a name. We recommend staying organized by basing the name on the time period and/or services included, such as "April 2020 - Transit and Commuter Rail Feeds."
+
+You can then specify whether your new bundle's street data (OSM) and transit data (GTFS) should be re-used from existing data, or based on new data that you upload.
 
 ### Preparing the OSM data
 
+[OpenStreetMap](https://www.openstreetmap.org) (OSM) extracts define the street layer of the baseline transport network. This layer will be used for any walking or biking segments of a trip as well as for some transfers between stops and stations.
+
+If you or your team has previously created network bundles in this region, you can select any one of them to re-use its OSM for your new bundle.
+
+If there are no previously created network bundles, or if you want to use updated OSM data, you will need to upload a new OSM file. Note that while several formats exist for OSM data, Conveyal requires uploads in the [PBF format](https://wiki.openstreetmap.org/wiki/PBF_Format) because it is more compact and faster to process. The following sub-sections include detailed suggestions on preparing OSM PBF data for upload.
+
 #### Downloading
 
-Extracts from the global OSM database can be downloaded in [many different ways](https://wiki.openstreetmap.org/wiki/Downloading_data). Some popular services like those provided by [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/) provide easy downloads for selected cities and regions. Be sure to download data covering your entire region - the predefined areas used by these sites may or may not align well with your region. You'll often need to download an extract for a country or region larger than your true analysis area, then crop it to the size you need.
+Extracts from the global OSM database can be downloaded in [many different ways](https://wiki.openstreetmap.org/wiki/Downloading_data). Some popular services like those provided by [Geofabrik](http://download.geofabrik.de) or [Nextzen](https://metro-extracts.nextzen.org/) provide easy downloads for selected cities and regions. Be sure to download data covering your entire region - the predefined areas used by these sites may or may not align well with your region. Your extract should cover your entire service area or region, but not extend unnecessarily far beyond it as that may impact processing time. You'll often need to download an extract for a country or region larger than your true analysis area, then crop it to the size you need.
 
 #### Cropping
 
@@ -33,7 +48,7 @@ Performing accessibility analysis with excessively large OSM data can lead to si
 
 Below are some example crop commands for these different tools. You'll need to replace `input.osm.pbf` with the name of your downloaded PBF file and change the coordinates of the area to clip to.
 
-When creating a region, the panel will show an osmconvert command pre-filled with the current regional bouding box. If you have osmconvert installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
+When uploading new OSM, the network bundle creation panel will show osmconvert and osmosis commands pre-filled with the current regional bouding box. If you have either of these tools installed locally, you can paste this command into to your local command line and modify the filenames to crop your OSM data to regional boundaries before upload.
 
 **Osmosis:**
 
@@ -85,17 +100,11 @@ osmium tags-filter input.osm.pbf \
   -o filtered.osm.pbf
 ```
 
-## Uploading a GTFS bundle
+## Uploading GTFS feeds
 
-Start by gathering :term:`GTFS feeds<GTFS feed>` for the transit agencies whose service will be included in your region. A GTFS feed is a set of CSV files inside a `.zip` archive, and a :term:`GTFS bundle` is a set of one or more GTFS feeds.
+If your new network bundle will not be re-using previously uploaded GTFS, start by gathering :term:`GTFS feeds<GTFS feed>` for the transit agencies whose service you want to include. A GTFS feed is a set of CSV files inside a `.zip` archive.
 
-If you just created a new region, you will be prompted to upload a GTFS bundle:
-
-<span class="btn btn-success"><i class="fa fa-plus"></i> Create a bundle</span>
-
-Otherwise, you can click the database icon (<i class="fa fa-database"></i>) on the sidebar to access your GTFS Bundles at any time.
-
-First you need to assign your new bundle a name. We recommend staying organized by basing the name on the time period and/or services included such as "TTC&GO - June 2019". Next choose one or more .zip files to upload. You can select multiple GTFS feeds in the file dialogue by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system). Finally, click the create button to confirm.
+Once these files are gathered on your computer, select the .zip files to upload in the "Upload new GTFS" tab of the network bundle creation panel. You can select multiple GTFS feeds in the file dialogue by shift-clicking, control-clicking or command-clicking (depending on your browser/operating system).
 
 Again, note that files larger than 500MB may be rejected on upload. The largest GTFS feeds in regular use are below 400MB and most are much smaller than this. A larger file may indicate a problem. Please contact your support team if you genuinely need to upload a larger file.
 
@@ -109,9 +118,13 @@ Ensure any GTFS you upload follows requirements of the specification. Various [v
 
 Conveyal's routing engine currently treats all GTFS trips represented in frequencies.txt as unscheduled frequencies (exact-times = 0). If any of your feeds has a frequencies.txt file with values of 1 in the exact-times column and you'd like to learn more, please contact your support team.
 
+## Finalizing network bundle creation
+
+After you have specified a name for the network bundle, OSM data to re-use or upload, and GTFS feeds to re-use or, click the create button to confirm. You will need to wait a few minutes for Conveyal to process these data.
+
 ## Creating a Project
 
-Uploading and processing a GTFS bundle may take several minutes. Once processing is complete, you should be able to create a new :term:`project` based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then,
+Uploading and processing a network bundle may take several minutes. Once processing is complete, you should be able to create a new :term:`project` based on the bundle you uploaded. If you aren't on the projects page already, click the project icon (<i class="fa fa-cubes"></i>) and then,
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Create new Project</span>
 

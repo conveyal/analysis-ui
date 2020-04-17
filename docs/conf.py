@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Conveyal Analysis'
-copyright = '2019, Conveyal'
+copyright = '2020, Conveyal LLC'
 author = 'Conveyal'
 
 # The short X.Y version
