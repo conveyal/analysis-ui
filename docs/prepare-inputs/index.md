@@ -120,7 +120,7 @@ Conveyal's routing engine currently treats all GTFS trips represented in frequen
 
 ## Finalizing network bundle creation
 
-After you have specified a name for the network bundle,OSM data to re-use or upload, and GTFS feeds to re-use or, click the create button to confirm. You will need to wait a few minutes for Conveyal to process these data.
+After you have specified a name for the network bundle, OSM data to re-use or upload, and GTFS feeds to re-use or, click the create button to confirm. You will need to wait a few minutes for Conveyal to process these data.
 
 ## Creating a Project
 
