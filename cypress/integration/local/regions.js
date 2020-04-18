@@ -15,7 +15,7 @@ describe('Region setup', () => {
     cy.get('input#react-select-2-input').as('search')
   })
 
-  it('can be found from homepage', function() {
+  it('can be found from homepage', function () {
     cy.visit('/')
     cy.findByText('Set up a new region').click()
     cy.location('pathname').should('eq', '/regions/create')
@@ -25,34 +25,28 @@ describe('Region setup', () => {
     // try to set south == north
     cy.get('@North')
       .invoke('val')
-      .then(northVal => {
-        cy.get('@South')
-          .clear()
-          .type(northVal)
-          .blur()
-        cy.get('@South').should(south => {
+      .then((northVal) => {
+        cy.get('@South').clear().type(northVal).blur()
+        cy.get('@South').should((south) => {
           expect(Number(south[0].value)).to.be.lessThan(Number(northVal))
         })
       })
     // try to set east < west
     cy.get('@East')
       .invoke('val')
-      .then(eastVal => {
+      .then((eastVal) => {
         cy.get('@West')
           .clear()
           .type(Number(eastVal) + 1)
           .blur()
-        cy.get('@West').should(west => {
+        cy.get('@West').should((west) => {
           expect(Number(west[0].value)).to.be.lessThan(Number(eastVal))
         })
       })
     // try to enter a non-numeric value
     // form should revert to previous numeric value
-    cy.get('@West')
-      .clear()
-      .type('letters')
-      .blur()
-    cy.get('@West').should(west => {
+    cy.get('@West').clear().type('letters').blur()
+    cy.get('@West').should((west) => {
       assert.isNotNaN(Number(west[0].value))
     })
   })
@@ -63,67 +57,53 @@ describe('Region setup', () => {
         searchTerm: 'cincinnati',
         findText: /^Cincinnati, Ohio/,
         lat: 39.1,
-        lon: -84.5
+        lon: -84.5,
       },
       {
         searchTerm: 'tulsa',
         findText: /^Tulsa, Oklahoma/,
         lat: 36.1,
-        lon: -95.9
+        lon: -95.9,
       },
       {
         searchTerm: 'greenwich',
         findText: /^Greenwich,.* England/,
         lat: 51.5,
-        lon: 0
-      }
+        lon: 0,
+      },
     ]
     let maxOffset = 10000 // meters
-    regions.forEach(r => {
-      cy.get('@search')
-        .focus()
-        .clear()
-        .type(r.searchTerm)
+    regions.forEach((r) => {
+      cy.get('@search').focus().clear().type(r.searchTerm)
       cy.findByText(r.findText).click()
-      cy.distanceFromMapCenter([r.lat, r.lon]).then(offset => {
+      cy.distanceFromMapCenter([r.lat, r.lon]).then((offset) => {
         expect(offset).to.be.lessThan(maxOffset)
       })
     })
   })
 
-  it('creates new region from valid input', function() {
+  it('creates new region from valid input', function () {
     // create a temporary region name
     const regionName = 'Scratch Region ' + Date.now()
     // Enter region name and description
     cy.get('@name').type(regionName)
     cy.get('@description').type(this.region.description)
     // search for region by name
-    cy.get('@search')
-      .focus()
-      .clear()
-      .type(this.region.searchTerm)
+    cy.get('@search').focus().clear().type(this.region.searchTerm)
     cy.findByText(this.region.foundName).click()
-    cy.distanceFromMapCenter([39.1, -84.5]).then(offset => {
+    cy.distanceFromMapCenter([39.1, -84.5]).then((offset) => {
       expect(offset).to.be.lessThan(10000)
     })
     // Enter exact coordinates
-    cy.get('@North')
-      .clear()
-      .type(this.region.north)
-    cy.get('@South')
-      .clear()
-      .type(this.region.south)
-    cy.get('@East')
-      .clear()
-      .type(this.region.east)
-    cy.get('@West')
-      .clear()
-      .type(this.region.west)
+    cy.get('@North').clear().type(this.region.north)
+    cy.get('@South').clear().type(this.region.south)
+    cy.get('@East').clear().type(this.region.east)
+    cy.get('@West').clear().type(this.region.west)
     // Create the region
     cy.get('@create').click()
     // should redirect to bundle upload
     cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
-    cy.contains('Upload a new GTFS Bundle')
+    cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
     cy.findByTitle('Regions').click({force: true})
     cy.location('pathname').should('eq', '/')
@@ -149,25 +129,25 @@ describe('Region setup', () => {
     let maxError = 0.02
     cy.get('@North')
       .invoke('val')
-      .then(val => {
+      .then((val) => {
         let roundingError = Math.abs(Number(val) - this.region.north)
         expect(roundingError).to.be.lessThan(maxError)
       })
     cy.get('@South')
       .invoke('val')
-      .then(val => {
+      .then((val) => {
         let roundingError = Math.abs(Number(val) - this.region.south)
         expect(roundingError).to.be.lessThan(maxError)
       })
     cy.get('@East')
       .invoke('val')
-      .then(val => {
+      .then((val) => {
         let roundingError = Math.abs(Number(val) - this.region.east)
         expect(roundingError).to.be.lessThan(maxError)
       })
     cy.get('@West')
       .invoke('val')
-      .then(val => {
+      .then((val) => {
         let roundingError = Math.abs(Number(val) - this.region.west)
         expect(roundingError).to.be.lessThan(maxError)
       })
