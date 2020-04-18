@@ -12,7 +12,7 @@ export default function Callback() {
 
   React.useEffect(() => {
     handleAuth0Callback()
-      .then(userData => {
+      .then((userData) => {
         dispatch(setUser(userData))
         Router.push(Router.query.redirectTo || '/')
       })

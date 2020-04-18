@@ -3,7 +3,7 @@ import 'cypress-file-upload'
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  whitelist: ['user'],
+  whitelist: ['user']
 })
 
 Cypress.Commands.add('setupRegion', (regionName) => {
@@ -57,7 +57,7 @@ Cypress.Commands.add('setupBundle', (regionName) => {
             encoding: 'base64',
             fileContent,
             fileName: region.PBFfile,
-            mimeType: 'application/octet-stream',
+            mimeType: 'application/octet-stream'
           })
         })
         cy.findByText(/Upload new GTFS/i).click()
@@ -67,7 +67,7 @@ Cypress.Commands.add('setupBundle', (regionName) => {
               encoding: 'base64',
               fileContent,
               fileName: region.GTFSfile,
-              mimeType: 'application/octet-stream',
+              mimeType: 'application/octet-stream'
             })
           }
         )
@@ -152,9 +152,9 @@ Cypress.Commands.add('login', function () {
         username: Cypress.env('username'),
         password: Cypress.env('password'),
         scope: 'openid email analyst',
-        connection: 'Username-Password-Authentication',
+        connection: 'Username-Password-Authentication'
       },
-      timeout: 30000,
+      timeout: 30000
     }).then((resp) => {
       cy.setCookie(
         'user',
@@ -163,11 +163,11 @@ Cypress.Commands.add('login', function () {
             accessGroup: Cypress.env('accessGroup'),
             expiresAt: inOneHour,
             email: Cypress.env('username'),
-            idToken: resp.body.id_token,
+            idToken: resp.body.id_token
           })
         ),
         {
-          expiry: inOneHour,
+          expiry: inOneHour
         }
       )
     })

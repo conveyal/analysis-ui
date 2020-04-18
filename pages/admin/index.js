@@ -25,7 +25,7 @@ function AdminDashboard() {
   const jobRequest = useProxyRequest('/api/jobs', {refreshInterval})
   const workerRequest = useProxyRequest('/api/workers', {refreshInterval})
 
-  const jobs = (jobRequest.data || []).filter(j => j.graphId !== 'SUM')
+  const jobs = (jobRequest.data || []).filter((j) => j.graphId !== 'SUM')
   const workers = workerRequest.data || []
 
   return (

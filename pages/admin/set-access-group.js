@@ -33,7 +33,7 @@ export default function Results(p) {
   )
 }
 
-Results.getInitialProps = ctx => {
+Results.getInitialProps = (ctx) => {
   getInitialAuth(ctx)
   const userAccessGroup = ctx.store.getState().user.accessGroup
   return {accessGroup: nextCookies(ctx)[key] || userAccessGroup}

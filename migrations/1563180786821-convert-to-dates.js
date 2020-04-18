@@ -11,7 +11,7 @@ const collections = [
   'regions'
 ]
 
-module.exports.up = handler(async function(db) {
+module.exports.up = handler(async function (db) {
   let updates = 0
   for (const collectionName of collections) {
     console.time(collectionName)
@@ -52,4 +52,4 @@ module.exports.up = handler(async function(db) {
   }
 })
 
-module.exports.down = handler(async function() {})
+module.exports.down = handler(async function () {})

@@ -4,30 +4,34 @@ context('Network bundles', () => {
     cy.setupRegion('scratch')
   })
 
-  it('with single feed can be uploaded and deleted', function() {
+  it('with single feed can be uploaded and deleted', function () {
     let bundleName = 'temp bundle ' + Date.now()
     cy.findByTitle('Network Bundles').click({force: true})
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type(bundleName)
     cy.findByText(/Upload new OpenStreetMap/i).click()
-    cy.fixture(this.region.PBFfile, {encoding: 'base64'}).then(fileContent => {
-      cy.findByLabelText(/Select PBF file/i).upload({
-        encoding: 'base64',
-        fileContent,
-        fileName: this.region.PBFfile,
-        mimeType: 'application/octet-stream'
-      })
-    })
+    cy.fixture(this.region.PBFfile, {encoding: 'base64'}).then(
+      (fileContent) => {
+        cy.findByLabelText(/Select PBF file/i).upload({
+          encoding: 'base64',
+          fileContent,
+          fileName: this.region.PBFfile,
+          mimeType: 'application/octet-stream'
+        })
+      }
+    )
     cy.findByText(/Upload new GTFS/i).click()
-    cy.fixture(this.region.GTFSfile, {encoding: 'base64'}).then(fileContent => {
-      cy.findByLabelText(/Select .*GTFS/i).upload({
-        encoding: 'base64',
-        fileContent,
-        fileName: this.region.GTFSfile,
-        mimeType: 'application/octet-stream'
-      })
-    })
+    cy.fixture(this.region.GTFSfile, {encoding: 'base64'}).then(
+      (fileContent) => {
+        cy.findByLabelText(/Select .*GTFS/i).upload({
+          encoding: 'base64',
+          fileContent,
+          fileName: this.region.GTFSfile,
+          mimeType: 'application/octet-stream'
+        })
+      }
+    )
     cy.findByRole('button', {name: /Create/i}).click()
     cy.findByText(/Processing/)
     cy.location('pathname', {timeout: 60000}).should(
@@ -39,12 +43,12 @@ context('Network bundles', () => {
     cy.location('pathname').should('match', /.*bundles\/.{24}$/)
     cy.findByPlaceholderText(/Bundle name/i)
       .invoke('val')
-      .then(name => {
+      .then((name) => {
         expect(name).to.equal(bundleName)
       })
     cy.findByLabelText(/Feed #1/)
       .invoke('val')
-      .then(name => {
+      .then((name) => {
         expect(name).to.equal(this.region.feedAgencyName)
       })
     cy.findByLabelText(/Feed #2/).should('not.exist')

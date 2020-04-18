@@ -57,20 +57,20 @@ describe('Region setup', () => {
         searchTerm: 'cincinnati',
         findText: /^Cincinnati, Ohio/,
         lat: 39.1,
-        lon: -84.5,
+        lon: -84.5
       },
       {
         searchTerm: 'tulsa',
         findText: /^Tulsa, Oklahoma/,
         lat: 36.1,
-        lon: -95.9,
+        lon: -95.9
       },
       {
         searchTerm: 'greenwich',
         findText: /^Greenwich,.* England/,
         lat: 51.5,
-        lon: 0,
-      },
+        lon: 0
+      }
     ]
     let maxOffset = 10000 // meters
     regions.forEach((r) => {
@@ -153,6 +153,7 @@ describe('Region setup', () => {
       })
     // Delete region
     cy.findByText(/Delete this region/).click()
+    cy.findByText(/Confirm: Delete this region/).click()
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')

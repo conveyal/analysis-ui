@@ -12,7 +12,7 @@ export default function CreateRegionPage(p) {
   const router = useRouter()
 
   function _create(r) {
-    return dispatch(create(r)).then(region => {
+    return dispatch(create(r)).then((region) => {
       const {as, href} = routeTo('projects', {regionId: region._id})
       router.push(href, as)
     })
