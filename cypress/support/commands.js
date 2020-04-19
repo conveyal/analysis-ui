@@ -73,8 +73,10 @@ Cypress.Commands.add('setupBundle', regionName => {
       cy.findByRole('button', {name: /Create/i}).click()
       cy.findByText(/Processing/)
       cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
+      cy.findByTitle('Network Bundles').click({force: true})
     }
   })
+  cy.location('pathname').should('match', /.*\/bundles$/)
 })
 
 Cypress.Commands.add('setupProject', regionName => {
