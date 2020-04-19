@@ -123,7 +123,7 @@ describe('Region setup', () => {
     cy.get('@create').click()
     // should redirect to bundle upload
     cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
-    cy.contains('Upload a new GTFS Bundle')
+    cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
     cy.findByTitle('Regions').click({force: true})
     cy.location('pathname').should('eq', '/')
@@ -173,6 +173,9 @@ describe('Region setup', () => {
       })
     // Delete region
     cy.findByText(/Delete this region/).click()
+    cy.findByRole('alertdialog', 'Confirm')
+      .findByRole('button', {name: /Delete/})
+      .click()
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
