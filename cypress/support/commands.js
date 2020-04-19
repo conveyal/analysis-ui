@@ -92,7 +92,7 @@ Cypress.Commands.add('setupProject', regionName => {
       cy.location('pathname').should('match', /create-project/)
       cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
       // hack to select first GTFS from dropdown
-      cy.findByLabelText(/Associated GTFS bundle/i)
+      cy.findByLabelText(/Associated network bundle/i)
         .click()
         .type('{downarrow}{enter}')
       cy.get('a.btn')
