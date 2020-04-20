@@ -14,7 +14,7 @@ export default function Debug() {
   const [rejection, setRejection] = React.useState()
 
   React.useEffect(() => {
-    const onError = e => {
+    const onError = (e) => {
       console.error('error', e)
       setError(e)
     }
@@ -23,7 +23,7 @@ export default function Debug() {
   }, [])
 
   React.useEffect(() => {
-    const listener = e => {
+    const listener = (e) => {
       console.error('rejection', e)
       setRejection(e)
     }
@@ -33,7 +33,7 @@ export default function Debug() {
 
   return (
     <Stack align='center' spacing={4} mt={10} justify='center'>
-      <Button onClick={() => setShow(s => !s)} variantColor='red'>
+      <Button onClick={() => setShow((s) => !s)} variantColor='red'>
         Cause a React rendering error
       </Button>
       <Button

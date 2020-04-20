@@ -25,8 +25,8 @@ async function initialFetch(store, query) {
   const {regionId, projectId} = query
   const {projects} = await store.dispatch(loadRegion(regionId))
   return {
-    project: projects.find(p => p._id === projectId),
-    projects: projects.filter(p => p._id !== projectId)
+    project: projects.find((p) => p._id === projectId),
+    projects: projects.filter((p) => p._id !== projectId)
   }
 }
 

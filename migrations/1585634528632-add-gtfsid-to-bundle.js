@@ -1,6 +1,6 @@
 const handler = require('../db/migration-handler')
 
-module.exports.up = handler(async function(db) {
+module.exports.up = handler(async function (db) {
   const bundles = db.collection('bundles')
   const cursor = bundles.find()
   while (await cursor.hasNext()) {
@@ -18,7 +18,7 @@ module.exports.up = handler(async function(db) {
   }
 })
 
-module.exports.down = function(next) {
+module.exports.down = function (next) {
   console.log('Nothing to do')
   next()
 }

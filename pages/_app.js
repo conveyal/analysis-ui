@@ -23,7 +23,7 @@ const Map = dynamic(() => import('lib/components/map'), {ssr: false})
 const Sidebar = dynamic(() => import('lib/components/sidebar'))
 
 // Check if the passed in group matches the environment variable
-const isAdmin = user =>
+const isAdmin = (user) =>
   user && user.accessGroup === process.env.ADMIN_ACCESS_GROUP
 
 // DEV Bar Style
@@ -40,7 +40,7 @@ const DevBar = () => (
 /**
  * Function to check if the path needs the map.
  */
-const pathUsesMap = path => path.startsWith('/region')
+const pathUsesMap = (path) => path.startsWith('/region')
 
 /**
  * Provides the redux store and provider for all pages.

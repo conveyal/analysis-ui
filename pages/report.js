@@ -11,7 +11,7 @@ async function initialFetch(store, query) {
   return {
     bundle,
     feeds,
-    modifications: modifications.filter(m => m.variants[index]),
+    modifications: modifications.filter((m) => m.variants[index]),
     project,
     variant: project.variants[index]
   }

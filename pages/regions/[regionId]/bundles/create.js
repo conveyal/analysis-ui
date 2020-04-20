@@ -5,7 +5,7 @@ import {loadRegion} from 'lib/actions/region'
 import CreateBundle from 'lib/components/create-bundle'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-const CreateBundlePage = p => <CreateBundle regionId={p.query.regionId} />
+const CreateBundlePage = (p) => <CreateBundle regionId={p.query.regionId} />
 
 function initialFetch(store, query) {
   return Promise.all([

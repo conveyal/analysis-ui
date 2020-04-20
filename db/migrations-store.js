@@ -3,7 +3,7 @@ const connect = require('./connect')
 class DBStore {
   connect(fn) {
     connect()
-      .then(client => {
+      .then((client) => {
         const db = client.db(process.env.MONGODB_DB || 'analysis')
         db.collection('migrations', fn)
       })

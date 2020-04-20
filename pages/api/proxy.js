@@ -8,7 +8,7 @@ const proxy = httpProxy.createProxyServer({
 })
 
 // Set the Authorization header
-proxy.on('proxyReq', function(proxyReq, req, res, options) {
+proxy.on('proxyReq', function (proxyReq, req, res, options) {
   if (options.accessGroup && options.accessGroup !== 'undefined') {
     proxyReq.setHeader('X-Conveyal-Access-Group', options.accessGroup)
   }
@@ -25,7 +25,7 @@ const API_URL = process.env.API_URL
 /**
  * Proxy the incoming request to the Java API server.
  */
-export default function(req, res) {
+export default function (req, res) {
   try {
     const accessGroup = req.cookies.adminTempAccessGroup
     const idToken = JSON.parse(req.cookies.user).idToken
