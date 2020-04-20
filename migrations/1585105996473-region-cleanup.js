@@ -1,6 +1,6 @@
 const handler = require('../db/migration-handler')
 
-module.exports.up = handler(function(db) {
+module.exports.up = handler(function (db) {
   return db.collection('regions').updateMany(
     {},
     {
@@ -18,4 +18,4 @@ module.exports.up = handler(function(db) {
   )
 })
 
-module.exports.down = handler(function() {})
+module.exports.down = handler(function () {})

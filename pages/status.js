@@ -64,7 +64,7 @@ export default function Status() {
             {API_URL} <Icon icon={faExternalLinkAlt} />
           </Link>
           <List styleType='disc'>
-            {Object.keys(data).map(k => (
+            {Object.keys(data).map((k) => (
               <ListItem key={k}>
                 {k}:&nbsp;<strong>{data[k]}</strong>
               </ListItem>

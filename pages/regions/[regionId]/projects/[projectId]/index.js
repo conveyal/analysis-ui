@@ -10,13 +10,13 @@ import ProjectTitle from 'lib/components/project-title'
 import SelectProject from 'lib/components/select-project'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-const noProjectId = pid => !pid || pid === 'undefined'
+const noProjectId = (pid) => !pid || pid === 'undefined'
 
 /**
  * Show Select Project if a project has not been selected
  */
 function Modifications(p) {
-  const project = useSelector(s =>
+  const project = useSelector((s) =>
     find(s.project.projects, ['_id', p.query.projectId])
   )
   if (!project) {

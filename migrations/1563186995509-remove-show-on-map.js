@@ -1,6 +1,6 @@
 const handler = require('../db/migration-handler')
 
-module.exports.up = handler(function(db) {
+module.exports.up = handler(function (db) {
   const modifications = db.collection('modifications')
   return modifications.updateMany(
     {showOnMap: {$exists: true}},
@@ -8,4 +8,4 @@ module.exports.up = handler(function(db) {
   )
 })
 
-module.exports.down = handler(async function() {})
+module.exports.down = handler(async function () {})

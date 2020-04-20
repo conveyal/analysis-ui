@@ -4,7 +4,7 @@ context('Projects', () => {
     cy.setupBundle('scratch')
   })
 
-  it('can be created', function() {
+  it('can be created', function () {
     cy.findByTitle('Projects').click({force: true})
     cy.findByText(/Create new Project/i).click()
     cy.location('pathname').should('match', /create-project/)

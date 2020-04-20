@@ -22,10 +22,10 @@ context('Scenarios', () => {
       .should('not.exist')
   })
 
-  it('can be created and deleted', function() {
+  it('can be created and deleted', function () {
     let scenarioName = 'scenario ' + Date.now()
     // stub the prompt
-    cy.window().then(win => {
+    cy.window().then((win) => {
       cy.stub(win, 'prompt').returns(scenarioName)
     })
     // create

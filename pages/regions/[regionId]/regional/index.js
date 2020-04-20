@@ -26,7 +26,7 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 const REFETCH_INTERVAL = ms('15s')
 
-const selectJobs = s => get(s, 'regionalAnalyses.activeJobs', [])
+const selectJobs = (s) => get(s, 'regionalAnalyses.activeJobs', [])
 
 function RegionalPage(p) {
   const dispatch = useDispatch()
@@ -35,13 +35,13 @@ function RegionalPage(p) {
   const jobs = useSelector(selectJobs)
   const [activeId, onChange] = useControlledInput(
     get(activeAnalysis, '_id'),
-    v => dispatch(setSearchParameter('analysisId', v))
+    (v) => dispatch(setSearchParameter('analysisId', v))
   )
-  const activeJob = jobs.find(j => j.jobId === activeId)
+  const activeJob = jobs.find((j) => j.jobId === activeId)
 
   // Analyses are deleted before the jobs get cleared
   const jobsWithAnalysis = jobs.filter(
-    j => allAnalyses.findIndex(a => j.jobId === a._id) !== -1
+    (j) => allAnalyses.findIndex((a) => j.jobId === a._id) !== -1
   )
 
   useInterval(
@@ -67,12 +67,12 @@ function RegionalPage(p) {
           <Select
             isClearable
             key={`analysis-${activeId}`} // Dont show deleted analyses as selected
-            onChange={v => onChange(get(v, '_id'))}
-            getOptionLabel={a => a.name}
-            getOptionValue={a => a._id}
+            onChange={(v) => onChange(get(v, '_id'))}
+            getOptionLabel={(a) => a.name}
+            getOptionValue={(a) => a._id}
             options={allAnalyses}
             placeholder='View a regional analysis...'
-            value={allAnalyses.find(a => a._id === activeId)}
+            value={allAnalyses.find((a) => a._id === activeId)}
           />
         </Box>
 
@@ -91,7 +91,9 @@ function RegionalPage(p) {
             </Box>
           </Stack>
         ) : (
-          jobsWithAnalysis.map(job => <RunningJob job={job} key={job.jobId} />)
+          jobsWithAnalysis.map((job) => (
+            <RunningJob job={job} key={job.jobId} />
+          ))
         )}
       </Stack>
     </InnerDock>
@@ -114,7 +116,7 @@ async function initialFetch(store, query) {
 
   return {
     aggregationAreas,
-    analysis: regionalAnalyses.find(a => a._id === query.analysisId),
+    analysis: regionalAnalyses.find((a) => a._id === query.analysisId),
     opportunityDatasets,
     region,
     regionalAnalyses

@@ -43,7 +43,7 @@ export default function UploadResource(p) {
         type
       })
     )
-      .then(resource => {
+      .then((resource) => {
         setError()
         setFile()
         setName('')
@@ -57,7 +57,7 @@ export default function UploadResource(p) {
           </span>
         )
       })
-      .catch(e => {
+      .catch((e) => {
         console.error(e)
         setStatus()
         setError(e.message)
@@ -94,20 +94,20 @@ export default function UploadResource(p) {
         <Box>
           <Text
             label='Name'
-            onChange={e => setName(e.currentTarget.value)}
+            onChange={(e) => setName(e.currentTarget.value)}
             value={name}
           />
           <File
             accept={EXTS.join(',')}
             label='Select file'
-            onChange={e => setFile(e.target.files[0])}
+            onChange={(e) => setFile(e.target.files[0])}
           />
           <Select
             label='Type'
-            onChange={e => setType(e.currentTarget.value)}
+            onChange={(e) => setType(e.currentTarget.value)}
             value={type}
           >
-            {TYPES.map(t => (
+            {TYPES.map((t) => (
               <option key={t} value={t}>
                 {t}
               </option>

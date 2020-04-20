@@ -6,7 +6,7 @@ import Bundles from 'lib/components/bundles'
 import EditBundle from 'lib/components/edit-bundle'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-const BundlesView = p => (
+const BundlesView = (p) => (
   <Bundles regionId={p.query.regionId}>
     <EditBundle bundleProjects={p.bundleProjects} key={p.query.bundleId} />
   </Bundles>
