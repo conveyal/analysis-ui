@@ -35,10 +35,7 @@ describe('Modifications', () => {
     // go back and see if it saved
     cy.findByTitle(/Edit Modifications/).click({force: true})
     cy.location('pathname').should('match', /\/projects\/.{24}$/)
-    cy.contains(modType)
-      .parent()
-      .contains(modName)
-      .click()
+    cy.contains(modType).parent().contains(modName).click()
     cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
     cy.contains(modName)
     cy.findByLabelText('Description').contains('descriptive text')
@@ -66,5 +63,11 @@ describe('Modifications', () => {
     cy.contains(/Add Trip Pattern/)
       .parent()
       .contains(modName)
+  })
+
+  it('can be imported from shapefile', () => {
+    cy.get('svg[data-icon="upload"]').click()
+    cy.contains(/Route alignments from shapefile/)
+    // TODO need better selectors
   })
 })
