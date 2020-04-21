@@ -576,21 +576,22 @@ exports[`constainers/single-point-analysis 1`] = `
         >
           <Group
             className="col-xs-6"
-            label="Project"
           >
             <div
               className="form-group col-xs-6"
             >
               <label
                 className="control-label"
-                htmlFor="project-input-0"
+                htmlFor="select-project"
               >
                 Project
               </label>
               <S
                 getOptionLabel={[Function]}
                 getOptionValue={[Function]}
+                inputId="select-project"
                 isDisabled={false}
+                name="select-project"
                 onChange={[Function]}
                 options={
                   Array [
@@ -632,7 +633,9 @@ exports[`constainers/single-point-analysis 1`] = `
                 <ForwardRef(LoadableComponent)
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
+                  inputId="select-project"
                   isDisabled={false}
+                  name="select-project"
                   onChange={[Function]}
                   options={
                     Array [
@@ -690,19 +693,20 @@ exports[`constainers/single-point-analysis 1`] = `
           </Group>
           <Group
             className="col-xs-6"
-            label="Scenario"
           >
             <div
               className="form-group col-xs-6"
             >
               <label
                 className="control-label"
-                htmlFor="scenario-input-1"
+                htmlFor="select-scenario"
               >
                 Scenario
               </label>
               <S
+                inputId="select-scenario"
                 isDisabled={false}
+                name="select-scenario"
                 onChange={[Function]}
                 options={
                   Array [
@@ -724,7 +728,9 @@ exports[`constainers/single-point-analysis 1`] = `
                 }
               >
                 <ForwardRef(LoadableComponent)
+                  inputId="select-scenario"
                   isDisabled={false}
+                  name="select-scenario"
                   onChange={[Function]}
                   options={
                     Array [
@@ -768,23 +774,23 @@ exports[`constainers/single-point-analysis 1`] = `
         >
           <Group
             className="col-xs-6"
-            label="Comparison Project"
           >
             <div
               className="form-group col-xs-6"
             >
               <label
                 className="control-label"
-                htmlFor="comparison-project-input-2"
+                htmlFor="select-comparison-project"
               >
                 Comparison Project
               </label>
               <S
                 getOptionLabel={[Function]}
                 getOptionValue={[Function]}
+                inputId="select-comparison-project"
                 isClearable={true}
                 isDisabled={false}
-                name="Project"
+                name="select-comparison-project"
                 onChange={[Function]}
                 options={
                   Array [
@@ -810,9 +816,10 @@ exports[`constainers/single-point-analysis 1`] = `
                 <ForwardRef(LoadableComponent)
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
+                  inputId="select-comparison-project"
                   isClearable={true}
                   isDisabled={false}
-                  name="Project"
+                  name="select-comparison-project"
                   onChange={[Function]}
                   options={
                     Array [
@@ -854,20 +861,20 @@ exports[`constainers/single-point-analysis 1`] = `
           </Group>
           <Group
             className="col-xs-6"
-            label="Comparison Scenario"
           >
             <div
               className="form-group col-xs-6"
             >
               <label
                 className="control-label"
-                htmlFor="comparison-scenario-input-3"
+                htmlFor="select-comparison-scenario"
               >
                 Comparison Scenario
               </label>
               <S
+                inputId="select-comparison-scenario"
                 isDisabled={true}
-                name="Scenario"
+                name="select-comparison-scenario"
                 onChange={[Function]}
                 options={
                   Array [
@@ -880,8 +887,9 @@ exports[`constainers/single-point-analysis 1`] = `
                 placeholder="Select comparison scenario…"
               >
                 <ForwardRef(LoadableComponent)
+                  inputId="select-comparison-scenario"
                   isDisabled={true}
-                  name="Scenario"
+                  name="select-comparison-scenario"
                   onChange={[Function]}
                   options={
                     Array [
@@ -916,14 +924,13 @@ exports[`constainers/single-point-analysis 1`] = `
         >
           <Group
             className="col-xs-12"
-            label="Opportunity Dataset"
           >
             <div
               className="form-group col-xs-12"
             >
               <label
                 className="control-label"
-                htmlFor="opportunity-dataset-input-4"
+                htmlFor="select-opportunity-dataset"
               >
                 Opportunity Dataset
               </label>
@@ -934,8 +941,10 @@ exports[`constainers/single-point-analysis 1`] = `
                 <S
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
+                  inputId="select-opportunity-dataset"
                   isClearable={true}
                   isDisabled={false}
+                  name="select-opportunity-dataset"
                   onChange={[Function]}
                   options={
                     Array [
@@ -950,8 +959,10 @@ exports[`constainers/single-point-analysis 1`] = `
                   <ForwardRef(LoadableComponent)
                     getOptionLabel={[Function]}
                     getOptionValue={[Function]}
+                    inputId="select-opportunity-dataset"
                     isClearable={true}
                     isDisabled={false}
+                    name="select-opportunity-dataset"
                     onChange={[Function]}
                     options={
                       Array [
@@ -994,7 +1005,7 @@ exports[`constainers/single-point-analysis 1`] = `
             >
               <label
                 className="control-label"
-                htmlFor="time-cutoff-60-minutes-input-5"
+                htmlFor="time-cutoff-60-minutes-input-0"
               >
                 Time cutoff: 60 minutes
               </label>
@@ -1032,15 +1043,13 @@ exports[`constainers/single-point-analysis 1`] = `
         <BookmarkChooser
           disabled={false}
         >
-          <Group
-            label="Bookmark"
-          >
+          <Group>
             <div
               className="form-group"
             >
               <label
                 className="control-label"
-                htmlFor="bookmark-input-16"
+                htmlFor="select-bookmark"
               >
                 Bookmark
               </label>
@@ -1053,14 +1062,18 @@ exports[`constainers/single-point-analysis 1`] = `
                   <S
                     getOptionLabel={[Function]}
                     getOptionValue={[Function]}
+                    inputId="select-bookmark"
                     isDisabled={false}
+                    name="select-bookmark"
                     onChange={[Function]}
                     options={Array []}
                   >
                     <ForwardRef(LoadableComponent)
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
+                      inputId="select-bookmark"
                       isDisabled={false}
+                      name="select-bookmark"
                       onChange={[Function]}
                       options={Array []}
                       styles={
@@ -1219,7 +1232,7 @@ exports[`constainers/single-point-analysis 1`] = `
                 >
                   <label
                     className="control-label"
-                    htmlFor="access-mode-input-7"
+                    htmlFor="access-mode-input-1"
                   >
                     Access mode
                   </label>
@@ -1465,7 +1478,7 @@ exports[`constainers/single-point-analysis 1`] = `
                 >
                   <label
                     className="control-label"
-                    htmlFor="transit-modes-input-8"
+                    htmlFor="transit-modes-input-2"
                   >
                     Transit modes
                   </label>
@@ -1876,7 +1889,7 @@ exports[`constainers/single-point-analysis 1`] = `
               >
                 <label
                   className="control-label"
-                  htmlFor="date-input-9"
+                  htmlFor="date-input-3"
                 >
                   Date
                 </label>
@@ -2473,7 +2486,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="from-time-input-10"
+                      htmlFor="from-time-input-4"
                     >
                       From time
                     </label>
@@ -2491,7 +2504,7 @@ exports[`constainers/single-point-analysis 1`] = `
                         <input
                           className="form-control"
                           disabled={false}
-                          id="from-time-input-11"
+                          id="from-time-input-5"
                           name="fromTime"
                           onChange={[Function]}
                           type="text"
@@ -2528,7 +2541,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="to-time-input-12"
+                      htmlFor="to-time-input-6"
                     >
                       To time
                     </label>
@@ -2546,7 +2559,7 @@ exports[`constainers/single-point-analysis 1`] = `
                         <input
                           className="form-control"
                           disabled={false}
-                          id="to-time-input-13"
+                          id="to-time-input-7"
                           name="toTime"
                           onChange={[Function]}
                           type="text"
@@ -2574,22 +2587,22 @@ exports[`constainers/single-point-analysis 1`] = `
               <SelectR5Version
                 disabled={false}
               >
-                <Group
-                  label="Routing engine"
-                >
+                <Group>
                   <div
                     className="form-group"
                   >
                     <label
                       className="control-label"
-                      htmlFor="routing-engine-input-17"
+                      htmlFor="select-r5-version"
                     >
                       Routing engine
                     </label>
                     <Creatable
                       formatCreateLabel={[Function]}
+                      inputId="select-r5-version"
                       isDisabled={false}
                       isValidNewOption={[Function]}
+                      name="select-r5-version"
                       onChange={[Function]}
                       options={
                         Array [
@@ -2633,7 +2646,7 @@ exports[`constainers/single-point-analysis 1`] = `
         >
           <Group
             disabled={true}
-            id="travel-time-percentile-50-single-point-50-regional-input-15"
+            id="travel-time-percentile-50-single-point-50-regional-input-8"
             label="Travel time percentile: 50 (single-point), 50 (regional)"
             max={99}
             min={1}
@@ -2646,14 +2659,14 @@ exports[`constainers/single-point-analysis 1`] = `
             >
               <label
                 className="control-label"
-                htmlFor="travel-time-percentile-50-single-point-50-regional-input-15"
+                htmlFor="travel-time-percentile-50-single-point-50-regional-input-8"
               >
                 Travel time percentile: 50 (single-point), 50 (regional)
               </label>
               <input
                 className="form-control"
                 disabled={true}
-                id="travel-time-percentile-50-single-point-50-regional-input-15"
+                id="travel-time-percentile-50-single-point-50-regional-input-8"
                 label="Travel time percentile: 50 (single-point), 50 (regional)"
                 max={99}
                 min={1}
