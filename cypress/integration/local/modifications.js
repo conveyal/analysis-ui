@@ -101,7 +101,7 @@ describe('Modifications', () => {
   })
 
   // TODO remove test, only created to show Feed and Route selection
-  it.only('Can select a feed, route and pattern', () => {
+  it('Can select a feed, route and pattern', () => {
     const modType = 'Adjust Speed'
     const modName = 'Mod Name'
     cy.findByRole('link', {name: 'Create a modification'}).click()
