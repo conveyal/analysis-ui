@@ -39,7 +39,7 @@ describe('Modifications', () => {
     cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
     cy.contains(modName)
     cy.findByLabelText('Description').contains('descriptive text')
-    // for now though just delete it immediately
+    // delete it
     cy.get('a[name="Delete modification"]').click()
     cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
     cy.contains('Create a modification')
@@ -69,5 +69,10 @@ describe('Modifications', () => {
     cy.get('svg[data-icon="upload"]').click()
     cy.contains(/Route alignments from shapefile/)
     // TODO need better selectors
+  })
+
+  it.only('add trip pattern works', () => {
+    let modName = Date.now() + ''
+    cy.setupModification('scratch', 'Add Trip Pattern', modName)
   })
 })
