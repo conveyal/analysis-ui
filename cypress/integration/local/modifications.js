@@ -70,4 +70,24 @@ describe('Modifications', () => {
     cy.contains(/Route alignments from shapefile/)
     // TODO need better selectors
   })
+
+  // TODO remove test, only created to show Feed and Route selection
+  it('Can select a feed, route and pattern', () => {
+    const modType = 'Adjust Speed'
+    const modName = 'Mod Name'
+    cy.findByRole('link', {name: 'Create a modification'}).click()
+    cy.findByLabelText(/Modification type/i).select(modType)
+    cy.findByLabelText(/Modification name/i).type(modName)
+    cy.findByRole('link', {name: 'Create'}).click()
+
+    cy.findByLabelText('Select feed')
+      .click({force: true})
+      .type('Northern Kentucky')
+      .type('{enter}')
+
+    cy.findByLabelText('Select route')
+      .click({force: true})
+      .type('Taylor Mill')
+      .type('{enter}')
+  })
 })
