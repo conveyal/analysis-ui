@@ -89,13 +89,9 @@ describe('Modifications', () => {
         map.fitBounds(routePoints)
         cy.wait(1000)
         // click at the coordinates
-        routePoints.forEach((latLon) => {
-          map.fireEvent('click', {
-            latlng: latLon,
-            layerPoint: map.latLngToLayerPoint(latLon),
-            containerPoint: map.latLngToContainerPoint(latLon)
-          })
-          cy.wait(1000)
+        routePoints.forEach((point) => {
+          let px = map.latLngToContainerPoint(point)
+          cy.get('div.leaflet-container').click(px.x, px.y)
         })
       })
   })
