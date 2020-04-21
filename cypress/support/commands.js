@@ -40,7 +40,7 @@ Cypress.Commands.add('setupBundle', (regionName) => {
   cy.setupRegion(regionName)
   let bundleName = 'autogen ' + regionName + ' bundle'
   cy.findByTitle('Network Bundles').click({force: true})
-  cy.location('pathname').should('match', /\/regions\/.{24}\/bundles/)
+  cy.location('pathname').should('match', /\/bundles$/)
   cy.contains('or select an existing one')
   cy.findByText(/Select.../).click()
   cy.get('body').then((body) => {
@@ -48,7 +48,7 @@ Cypress.Commands.add('setupBundle', (regionName) => {
       // bundle already exists. do nothing
     } else {
       cy.findByText(/Create .* bundle/).click()
-      cy.location('pathname').should('match', /.*\/bundles\/create$/)
+      cy.location('pathname').should('match', /\/bundles\/create$/)
       cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
       cy.findByText(/Upload new OpenStreetMap/i).click()
       cy.fixture('regions/' + regionName + '.json').then((region) => {
@@ -92,20 +92,28 @@ Cypress.Commands.add('setupProject', (regionName) => {
       cy.findByText(projectName).click()
     } else {
       // project needs to be created
+      let bundleName = 'autogen ' + regionName + ' bundle'
       cy.findByText(/Create new Project/i).click()
-      cy.location('pathname').should('match', /create-project/)
+      cy.location('pathname').should('match', /\/create-project/)
       cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
-      // hack to select first GTFS from dropdown
-      cy.findByLabelText(/Associated network bundle/i)
-        .click()
-        .type('{downarrow}{enter}')
+      cy.findByLabelText(/Associated network bundle/i).click()
+      cy.findByText(bundleName).click()
       cy.get('a.btn')
         .contains(/Create/)
         .click()
     }
   })
-  cy.location('pathname').should('match', /regions\/.{24}\/projects\/.{24}/)
+  cy.location('pathname').should('match', /\/projects\/.{24}$/)
   cy.contains(/Modifications/)
+})
+
+Cypress.Commands.add('setupModification', (regionName, modType, modName) => {
+  cy.findByTitle(/Edit Modifications/).click({force: true})
+  cy.findByRole('link', {name: 'Create a modification'}).click()
+  cy.findByLabelText(/Modification type/i).select(modType)
+  cy.findByLabelText(/Modification name/i).type(modName)
+  cy.findByRole('link', {name: 'Create'}).click()
+  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 })
 
 Cypress.Commands.add('mapIsReady', () => {
