@@ -71,7 +71,7 @@ describe('Modifications', () => {
     // TODO need better selectors
   })
 
-  it.only('draw trip pattern on map', () => {
+  it('draw trip pattern on map', () => {
     let modName = Date.now() + ''
     cy.setupModification('scratch', 'Add Trip Pattern', modName)
     cy.findByText(/Edit route geometry/i)
@@ -82,21 +82,41 @@ describe('Modifications', () => {
       [39.0432, -84.5422],
       [39.0724, -84.5236]
     ]
-    cy.window().then((win) => {
-      let map = win.LeafletMap
-      let doc = win.document
-      // zoom to route to be drawn
-      map.fitBounds(routePoints)
-      cy.wait(1000)
-      // click at the coordinates
-      routePoints.forEach((latLon) => {
-        map.fireEvent('click', {
-          latlng: latLon,
-          layerPoint: map.latLngToLayerPoint(latLon),
-          containerPoint: map.latLngToContainerPoint(latLon)
-        })
+    cy.window()
+      .its('LeafletMap')
+      .then((map) => {
+        // zoom to route to be drawn
+        map.fitBounds(routePoints)
         cy.wait(1000)
+        // click at the coordinates
+        routePoints.forEach((latLon) => {
+          map.fireEvent('click', {
+            latlng: latLon,
+            layerPoint: map.latLngToLayerPoint(latLon),
+            containerPoint: map.latLngToContainerPoint(latLon)
+          })
+          cy.wait(1000)
+        })
       })
-    })
+  })
+
+  // TODO remove test, only created to show Feed and Route selection
+  it.only('Can select a feed, route and pattern', () => {
+    const modType = 'Adjust Speed'
+    const modName = 'Mod Name'
+    cy.findByRole('link', {name: 'Create a modification'}).click()
+    cy.findByLabelText(/Modification type/i).select(modType)
+    cy.findByLabelText(/Modification name/i).type(modName)
+    cy.findByRole('link', {name: 'Create'}).click()
+
+    cy.findByLabelText(/Select feed/)
+      .click({force: true})
+      .type('Northern Kentucky')
+      .type('{enter}')
+
+    cy.findByLabelText(/Select route/)
+      .click({force: true})
+      .type('Taylor Mill')
+      .type('{enter}')
   })
 })
