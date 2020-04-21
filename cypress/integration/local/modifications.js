@@ -65,14 +65,38 @@ describe('Modifications', () => {
       .contains(modName)
   })
 
-  it('can be imported from shapefile', () => {
+  it('can be imported from shapefile, in theory', () => {
     cy.get('svg[data-icon="upload"]').click()
     cy.contains(/Route alignments from shapefile/)
     // TODO need better selectors
   })
 
-  it.only('add trip pattern works', () => {
+  it.only('draw trip pattern on map', () => {
     let modName = Date.now() + ''
     cy.setupModification('scratch', 'Add Trip Pattern', modName)
+    cy.findByText(/Edit route geometry/i)
+      .click()
+      .contains(/Stop editing/i)
+    let routePoints = [
+      [39.0664, -84.5721],
+      [39.0432, -84.5422],
+      [39.0724, -84.5236]
+    ]
+    cy.window().then((win) => {
+      let map = win.LeafletMap
+      let doc = win.document
+      // zoom to route to be drawn
+      map.fitBounds(routePoints)
+      cy.wait(1000)
+      // click at the coordinates
+      routePoints.forEach((latLon) => {
+        map.fireEvent('click', {
+          latlng: latLon,
+          layerPoint: map.latLngToLayerPoint(latLon),
+          containerPoint: map.latLngToContainerPoint(latLon)
+        })
+        cy.wait(1000)
+      })
+    })
   })
 })

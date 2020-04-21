@@ -108,7 +108,7 @@ Cypress.Commands.add('setupProject', (regionName) => {
 })
 
 Cypress.Commands.add('setupModification', (regionName, modType, modName) => {
-  cy.setupProject(regionName)
+  cy.findByTitle(/Edit Modifications/).click({force: true})
   cy.findByRole('link', {name: 'Create a modification'}).click()
   cy.findByLabelText(/Modification type/i).select(modType)
   cy.findByLabelText(/Modification name/i).type(modName)
