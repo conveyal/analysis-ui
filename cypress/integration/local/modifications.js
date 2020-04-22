@@ -4,6 +4,7 @@ describe('Modifications', () => {
   })
 
   beforeEach(() => {
+    cy.fixture('regions/scratch.json').as('region')
     cy.findByTitle(/Edit Modifications/).click({force: true})
     cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
   })
@@ -53,29 +54,31 @@ describe('Modifications', () => {
     // TODO need better selectors
   })
 
-  it('draw trip pattern on map', () => {
+  it('draw trip pattern on map', function () {
     let modName = Date.now() + ''
     cy.setupModification('scratch', 'Add Trip Pattern', modName)
     cy.findByText(/Edit route geometry/i)
       .click()
       .contains(/Stop editing/i)
-    let routePoints = [
-      [39.0664, -84.5721],
-      [39.0432, -84.5422],
-      [39.0724, -84.5236]
-    ]
+    cy.get('div.leaflet-container').as('map')
     cy.window()
       .its('LeafletMap')
       .then((map) => {
         // zoom to route to be drawn
-        map.fitBounds(routePoints)
-        cy.wait(1000)
+        map.fitBounds(this.region.newRoute)
+        cy.wait(500) // TODO need to properly wait for map to stop moving
         // click at the coordinates
-        routePoints.forEach((point) => {
-          let px = map.latLngToContainerPoint(point)
-          cy.get('div.leaflet-container').click(px.x, px.y)
+        this.region.newRoute.forEach((point) => {
+          // TODO this does not project to pixels properly
+          // but only when running within cypress
+          let pix = map.latLngToContainerPoint(point)
+          cy.get('@map').click(pix.x, pix.y)
         })
       })
+    cy.findByText(/Stop editing/i)
+      .click()
+      .contains(/Edit route geometry/i)
+    cy.get('a[name="Delete modification"]').click()
   })
 
   // TODO remove test, only created to show Feed and Route selection
