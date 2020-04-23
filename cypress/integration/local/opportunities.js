@@ -22,8 +22,8 @@ describe('Opportunities', () => {
         encoding: 'utf-8'
       })
     })
-    cy.findByLabelText(/Latitude/).type('lon')
-    cy.findByLabelText(/Longitude/).type('lat')
+    cy.findByLabelText(/Latitude/).type('lat')
+    cy.findByLabelText(/Longitude/).type('lon')
     cy.get('a.btn')
       .contains(/Upload/)
       .should('not.be.disabled')
