@@ -48,40 +48,63 @@ describe('Modifications', () => {
     cy.findByText(modName).should('not.exist')
   })
 
-  it('can be imported from shapefile, in theory', () => {
-    cy.get('svg[data-icon="upload"]').click()
-    cy.contains(/Route alignments from shapefile/)
-    // TODO need better selectors
-  })
+  context('new trip patterns', () => {
+    it('can be imported from shapefile, in theory', () => {
+      cy.get('svg[data-icon="upload"]').click()
+      cy.contains(/Route alignments from shapefile/)
+      // TODO need better selectors
+    })
 
-  it('draw trip pattern on map', function () {
-    let modName = Date.now() + ''
-    cy.setupModification('scratch', 'Add Trip Pattern', modName)
-    cy.findByText(/Edit route geometry/i)
-      .click()
-      .contains(/Stop editing/i)
-    cy.get('div.leaflet-container').as('map')
-    cy.window()
-      .its('LeafletMap')
-      .then((map) => {
-        // zoom to route to be drawn
-        map.fitBounds(this.region.newRoute)
-        cy.wait(500) // TODO need to properly wait for map to stop moving
-        // click at the coordinates
-        this.region.newRoute.forEach((point) => {
-          // TODO this does not project to pixels properly
-          // but only when running within cypress
-          let pix = map.latLngToContainerPoint(point)
-          cy.get('@map').click(pix.x, pix.y)
+    it('can be drawn on map', function () {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Add Trip Pattern', modName)
+      cy.findByText(/Edit route geometry/i)
+        .click()
+        .contains(/Stop editing/i)
+      cy.get('div.leaflet-container').as('map')
+      cy.window()
+        .its('LeafletMap')
+        .then((map) => {
+          // zoom to route to be drawn
+          map.fitBounds(this.region.newRoute)
+          cy.wait(500) // TODO need to properly wait for map to stop moving
+          // click at the coordinates
+          this.region.newRoute.forEach((point) => {
+            // TODO this does not project to pixels properly
+            // but only when running within cypress
+            let pix = map.latLngToContainerPoint(point)
+            cy.get('@map').click(pix.x, pix.y)
+          })
         })
-      })
-    cy.findByText(/Stop editing/i)
-      .click()
-      .contains(/Edit route geometry/i)
-    cy.get('a[name="Delete modification"]').click()
+      cy.findByText(/Stop editing/i)
+        .click()
+        .contains(/Edit route geometry/i)
+      cy.get('a[name="Delete modification"]').click()
+    })
+
+    it('can create and reuse timetables', function () {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Add Trip Pattern', modName)
+      cy.findByText(/Add new timetable/).click()
+      cy.findByText(/Timetable 1/).click()
+      cy.get('input[name="Name"]').clear().type('Weekday')
+      cy.findByLabelText(/Mon/).check()
+      cy.findByLabelText(/Tue/).check()
+      cy.findByLabelText(/Wed/).check()
+      cy.findByLabelText(/Thu/).check()
+      cy.findByLabelText(/Fri/).check()
+      cy.findByLabelText(/Sat/).uncheck()
+      cy.findByLabelText(/Sun/).uncheck()
+      //cy.findByLabelText(/Frequency/).clear().type('00:20:00')
+      //cy.findByLabelText(/Start time/).clear().type('06:00')
+      //cy.findByLabelText(/End time/).clear().type('23:00')
+      //cy.findByLabelText(/dwell time/).clear().type('00:30:00')
+      // these can't be modified without a geometry
+      cy.findByLabelText(/Average speed/)
+      //cy.findByLabelText(/moving time/i)
+    })
   })
 
-  // TODO remove test, only created to show Feed and Route selection
   it('Can select a feed, route and pattern', () => {
     const modType = 'Adjust Speed'
     const modName = 'Mod Name'
