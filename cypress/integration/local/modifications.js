@@ -36,7 +36,7 @@ describe('Modifications', () => {
     // go back and see if it saved
     cy.findByTitle(/Edit Modifications/).click({force: true})
     cy.location('pathname').should('match', /\/projects\/.{24}$/)
-    // TODO this needs to be conditional if the list of mods is very full
+    // TODO needs to be conditional in case the list is collapsed
     cy.contains(modType).parent().contains(modName).click()
     cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
     cy.contains(modName)
@@ -82,8 +82,8 @@ describe('Modifications', () => {
       cy.get('a[name="Delete modification"]').click()
     })
 
-    it('can create and reuse timetables', function () {
-      let modName = Date.now() + ''
+    it.only('can create and reuse timetables', function () {
+      let modName = 'timetable templates'
       cy.setupModification('scratch', 'Add Trip Pattern', modName)
       cy.findByText(/Add new timetable/).click()
       cy.findByText(/Timetable 1/).click()
@@ -95,13 +95,42 @@ describe('Modifications', () => {
       cy.findByLabelText(/Fri/).check()
       cy.findByLabelText(/Sat/).uncheck()
       cy.findByLabelText(/Sun/).uncheck()
+      // TODO these selectors not working
       //cy.findByLabelText(/Frequency/).clear().type('00:20:00')
       //cy.findByLabelText(/Start time/).clear().type('06:00')
       //cy.findByLabelText(/End time/).clear().type('23:00')
       //cy.findByLabelText(/dwell time/).clear().type('00:30:00')
-      // these can't be modified without a geometry
-      cy.findByLabelText(/Average speed/)
-      //cy.findByLabelText(/moving time/i)
+      // exit and create new mod to copy into
+      cy.setupModification('scratch', 'Add Trip Pattern', 'temp')
+      cy.findByText(/Copy existing timetable/).click()
+      cy.findByRole('dialog').as('dialog')
+      cy.get('@dialog')
+        .findByLabelText(/Region/)
+        .select('autogen scratch')
+      cy.get('@dialog')
+        .findByLabelText(/Project/)
+        .select('autogen scratch project')
+      cy.get('@dialog')
+        .findByLabelText(/Modification/)
+        .select(modName)
+      cy.get('@dialog')
+        .findByLabelText(/Timetable/)
+        .select('Weekday')
+      cy.findByText(/Copy into new timetable/i).click()
+      cy.contains(/copy of Weekday/i).click()
+      // verify the settings from above
+      cy.findByLabelText(/Mon/).should('be.checked')
+      cy.findByLabelText(/Tue/).should('be.checked')
+      cy.findByLabelText(/Wed/).should('be.checked')
+      cy.findByLabelText(/Thu/).should('be.checked')
+      cy.findByLabelText(/Fri/).should('be.checked')
+      cy.findByLabelText(/Sat/).should('not.be.checked')
+      cy.findByLabelText(/Sun/).should('not.be.checked')
+      // delete the temp modification
+      cy.get('a[name="Delete modification"]').click()
+      // delete the template modification
+      cy.findByText(modName).click()
+      cy.get('a[name="Delete modification"]').click()
     })
   })
 
