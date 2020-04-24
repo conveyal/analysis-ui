@@ -29,8 +29,8 @@ describe('Opportunities', () => {
       .should('not.be.disabled')
       .click()
     cy.location('pathname').should('match', /opportunities$/)
+    cy.contains(oppName + ' (UPLOADING)')
     // TODO check that the upload:
-    // shows status if processing
     // finishes processing
     // has only the one numeric field
     // can be seen on map
