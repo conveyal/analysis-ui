@@ -6,7 +6,7 @@ import withAuth from 'lib/with-auth'
 
 const key = 'adminTempAccessGroup'
 
-export default withAuth(function SetAccessGroup(p) {
+export default withAuth(function SetAccessGroup() {
   const inputRef = React.useRef()
   const [accessGroup, setAccessGroup] = React.useState(() => Cookie.get(key))
 
