@@ -82,7 +82,7 @@ describe('Modifications', () => {
       cy.get('a[name="Delete modification"]').click()
     })
 
-    it.only('can create and reuse timetables', function () {
+    it('can create and reuse timetables', function () {
       let modName = 'timetable templates'
       cy.setupModification('scratch', 'Add Trip Pattern', modName)
       cy.findByText(/Add new timetable/).click()
@@ -151,5 +151,6 @@ describe('Modifications', () => {
       .click({force: true})
       .type('Taylor Mill')
       .type('{enter}')
+    cy.get('a[name="Delete modification"]').click()
   })
 })
