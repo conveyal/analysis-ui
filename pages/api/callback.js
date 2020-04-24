@@ -1,8 +1,8 @@
-import auth0 from '../../lib/auth0'
+import initAuth0 from '../../lib/auth0'
 
 export default async function callback(req, res) {
   try {
-    console.log('CALLBACK > REDIRECT TO', req.query.redirectTo)
+    const auth0 = initAuth0(req)
     await auth0.handleCallback(req, res, {
       redirectTo: req.query.redirectTo
     })

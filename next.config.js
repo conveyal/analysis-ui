@@ -19,7 +19,7 @@ const AUTH_DISABLED = process.env.AUTH_DISABLED === 'true'
 
 const env = {
   ADMIN_ACCESS_GROUP: process.env.ADMIN_ACCESS_GROUP || 'conveyal',
-  API_URL: process.env.API_URL || 'http://localhost:3000',
+  API_URL: process.env.API_URL || 'http://localhost:7070',
   LOGROCKET: AUTH_DISABLED ? false : process.env.LOGROCKET,
   MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
 
@@ -28,10 +28,6 @@ const env = {
   AUTH0_CLIENT_ID: AUTH_DISABLED ? 'n/a' : process.env.AUTH0_CLIENT_ID,
   AUTH0_CLIENT_SECRET: AUTH_DISABLED ? 'n/a' : process.env.AUTH0_CLIENT_SECRET,
   AUTH0_DOMAIN: AUTH_DISABLED ? 'n/a' : process.env.AUTH0_DOMAIN,
-  REDIRECT_URI: AUTH_DISABLED ? 'n/a' : process.env.REDIRECT_URI,
-  POST_LOGOUT_REDIRECT_URI: AUTH_DISABLED
-    ? 'n/a'
-    : process.env.POST_LOGOUT_REDIRECT_URI,
   SESSION_COOKIE_SECRET: AUTH_DISABLED
     ? 'n/a'
     : process.env.SESSION_COOKIE_SECRET
