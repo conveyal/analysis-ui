@@ -30,10 +30,11 @@ describe('Opportunities', () => {
       .click()
     cy.location('pathname').should('match', /opportunities$/)
     cy.contains(oppName + ' (UPLOADING)')
-    // TODO check that the upload:
+    // TODO at this point i get an AWS-related error
+    // need to finish by checking that the upload:
     // finishes processing
     // has only the one numeric field
-    // can be seen on map
+    // can be seen on the map
     // can be deleted
   })
   /*
