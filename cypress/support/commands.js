@@ -8,14 +8,13 @@ Cypress.Cookies.defaults({
 
 Cypress.Commands.add('setupRegion', (regionName) => {
   // set up the named region if it doesn't already exist
-  let name = 'autogen ' + regionName
   cy.visit('/')
   cy.get('body').then((body) => {
-    if (body.text().includes(name)) {
-      cy.findByText(name).click()
+    if (body.text().includes(regionName)) {
+      cy.findByText(regionName).click()
     } else {
       cy.visit('/regions/create')
-      cy.findByPlaceholderText('Region Name').type(name, {delay: 1})
+      cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
       cy.fixture('regions/' + regionName + '.json').then((region) => {
         cy.findByLabelText(/North bound/)
           .clear()
@@ -38,7 +37,7 @@ Cypress.Commands.add('setupRegion', (regionName) => {
 
 Cypress.Commands.add('setupBundle', (regionName) => {
   cy.setupRegion(regionName)
-  let bundleName = 'autogen ' + regionName + ' bundle'
+  let bundleName = regionName + ' bundle'
   cy.findByTitle('Network Bundles').click({force: true})
   cy.location('pathname').should('match', /\/bundles$/)
   cy.contains('or select an existing one')
@@ -83,7 +82,7 @@ Cypress.Commands.add('setupBundle', (regionName) => {
 
 Cypress.Commands.add('setupProject', (regionName) => {
   cy.setupBundle(regionName)
-  let projectName = 'autogen ' + regionName + ' project'
+  let projectName = regionName + ' project'
   cy.findByTitle('Projects').click({force: true})
   cy.contains('Create new Project')
   cy.get('body').then((body) => {
@@ -92,7 +91,7 @@ Cypress.Commands.add('setupProject', (regionName) => {
       cy.findByText(projectName).click()
     } else {
       // project needs to be created
-      let bundleName = 'autogen ' + regionName + ' bundle'
+      let bundleName = regionName + ' bundle'
       cy.findByText(/Create new Project/i).click()
       cy.location('pathname').should('match', /\/create-project/)
       cy.findByLabelText(/Project name/).type(projectName, {delay: 1})

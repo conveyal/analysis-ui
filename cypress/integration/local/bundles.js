@@ -9,7 +9,7 @@ context('Network bundles', () => {
     cy.location('pathname').should('match', /.*\/bundles$/)
   })
 
-  it('with single feed can be uploaded and deleted', function() {
+  it('with single feed can be uploaded and deleted', function () {
     let bundleName = 'temp bundle ' + Date.now()
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
@@ -65,7 +65,7 @@ context('Network bundles', () => {
     cy.contains(bundleName).should('not.exist')
   })
 
-  it('can reuse OSM and GTFS components', function() {
+  it('can reuse OSM and GTFS components', function () {
     cy.setupBundle('scratch')
     let bundleName = 'temp bundle ' + Date.now()
     cy.findByText(/Create a new network bundle/).click()
@@ -74,11 +74,11 @@ context('Network bundles', () => {
     cy.findByText(/Reuse existing OpenStreetMap/i).click()
     cy.findByText(/network bundle to reuse OSM from/i)
       .parent()
-      .select('autogen scratch bundle')
+      .select('scratch bundle')
     cy.findByText(/Reuse existing GTFS/i).click()
     cy.findByText(/network bundle to reuse GTFS from/i)
       .parent()
-      .select('autogen scratch bundle')
+      .select('scratch bundle')
     cy.findByRole('button', {name: /Create/})
       .should('not.be.disabled')
       .click()
@@ -92,7 +92,7 @@ context('Network bundles', () => {
     //})
     cy.findByLabelText(/Feed #1/)
       .invoke('val')
-      .then(val => {
+      .then((val) => {
         expect(val).to.eq(this.region.feedAgencyName)
       })
     cy.findByText(/Delete this network bundle/i).click()
