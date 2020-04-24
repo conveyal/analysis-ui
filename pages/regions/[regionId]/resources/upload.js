@@ -16,7 +16,7 @@ import Icon from 'lib/components/icon'
 import {File, Select, Text} from 'lib/components/input'
 import InnerDock from 'lib/components/inner-dock'
 import Link from 'lib/components/link'
-import getInitialAuth from 'lib/get-initial-auth'
+import MapLayout from 'lib/layouts/map'
 import msg from 'lib/message'
 import {routeTo} from 'lib/router'
 
@@ -127,4 +127,4 @@ export default function UploadResource(p) {
   )
 }
 
-UploadResource.getInitialProps = getInitialAuth
+UploadResource.Layout = MapLayout

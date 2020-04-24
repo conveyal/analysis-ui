@@ -1,15 +1,14 @@
 import {Button, Flex, Input, Stack, Text} from '@chakra-ui/core'
 import Cookie from 'js-cookie'
-import nextCookies from 'next-cookies'
 import React from 'react'
 
-import getInitialAuth from 'lib/get-initial-auth'
+import withAuth from 'lib/with-auth'
 
 const key = 'adminTempAccessGroup'
 
-export default function Results(p) {
+export default withAuth(function SetAccessGroup(p) {
   const inputRef = React.useRef()
-  const [accessGroup, setAccessGroup] = React.useState(p.accessGroup)
+  const [accessGroup, setAccessGroup] = React.useState(() => Cookie.get(key))
 
   function setGroup() {
     const newGroup = inputRef.current.value
@@ -31,10 +30,4 @@ export default function Results(p) {
       </Stack>
     </Flex>
   )
-}
-
-Results.getInitialProps = (ctx) => {
-  getInitialAuth(ctx)
-  const userAccessGroup = ctx.store.getState().user.accessGroup
-  return {accessGroup: nextCookies(ctx)[key] || userAccessGroup}
-}
+})
