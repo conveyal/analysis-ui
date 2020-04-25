@@ -11,7 +11,9 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
       authParams: {
         login_hint: get(session, 'user.name')
       },
-      redirectTo: req.query.redirectTo
+      redirectTo: Array.isArray(req.query.redirectTo)
+        ? req.query.redirectTo[0]
+        : req.query.redirectTo
     })
   } catch (error) {
     console.error(error)
