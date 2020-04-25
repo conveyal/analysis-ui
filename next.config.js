@@ -50,7 +50,7 @@ ${Object.keys(env).join(', ')}
   return withMDX(
     withBundleAnalyzer({
       target: 'serverless',
-      pageExtensions: ['js', 'jsx', 'mdx'],
+      pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
       env,
       webpack: (config) => {
         // Allow `import 'lib/message'`

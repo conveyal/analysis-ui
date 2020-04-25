@@ -1,6 +1,8 @@
+import {NextApiRequest, NextApiResponse} from 'next'
+
 import initAuth0 from '../../lib/auth0'
 
-export default (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const auth0 = initAuth0(req)
   auth0.requireAuthentication(async (req, res) => {
     try {

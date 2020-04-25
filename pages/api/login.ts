@@ -1,8 +1,9 @@
 import get from 'lodash/get'
+import {NextApiRequest, NextApiResponse} from 'next'
 
 import initAuth0 from '../../lib/auth0'
 
-export default async function login(req, res) {
+export default async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
     const auth0 = initAuth0(req)
     const session = await auth0.getSession(req)
