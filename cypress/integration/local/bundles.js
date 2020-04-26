@@ -6,7 +6,6 @@ context('Network bundles', () => {
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.navTo('Network Bundles')
-    cy.location('pathname').should('match', /.*\/bundles$/)
   })
 
   it('with single feed can be uploaded and deleted', function () {

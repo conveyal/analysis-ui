@@ -18,7 +18,7 @@ context('Projects', () => {
       .contains(/Create/)
       .should('not.be.disabled')
       .click()
-    cy.location('pathname').should('match', /regions\/.{24}\/projects\/.{24}/)
+    cy.location('pathname').should('match', /\/projects\/.{24}$/)
     cy.contains(/Modifications/)
     // make sure it's listed among the projects
     cy.navTo('Projects')

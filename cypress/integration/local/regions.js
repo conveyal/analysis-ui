@@ -106,12 +106,10 @@ describe('Region setup', () => {
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
     cy.navTo('Regions')
-    cy.location('pathname').should('eq', '/')
     cy.findByText(regionName).click()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
     cy.navTo('Region Settings')
-    cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
     cy.contains('Edit region')
     // settings are saved correctly
     // redeclaration is necessary to prevent the page from reloading... :-(

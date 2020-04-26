@@ -120,6 +120,29 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
   // parent selects the SVG itself rather than the <title> element within
   cy.findByTitle(caseInsensitiveTitle).parent().click()
+  switch (caseInsensitiveTitle.toString()) {
+    case /Regions/i.toString():
+      cy.location('pathname').should('eq', '/')
+      break
+    case /Region Settings/i.toString():
+      cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
+      break
+    case /Projects/i.toString():
+      cy.location('pathname').should('match', /\/regions\/.{24}$/)
+      break
+    case /Network Bundles/i.toString():
+      cy.location('pathname').should('match', /.*\/bundles$/)
+      break
+    case /Opportunity datasets/i.toString():
+      cy.location('pathname').should('match', /\/opportunities$/)
+      break
+    case /Edit Modifications/i.toString():
+      cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+      break
+    case /Analyze/i.toString():
+      cy.location('pathname').should('match', /\/analysis/)
+      break
+  }
 })
 
 Cypress.Commands.add('mapIsReady', () => {

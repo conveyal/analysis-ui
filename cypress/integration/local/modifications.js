@@ -6,7 +6,6 @@ describe('Modifications', () => {
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.navTo(/Edit Modifications/)
-    cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
   })
 
   it('can be created, saved, and deleted', () => {
@@ -35,7 +34,6 @@ describe('Modifications', () => {
     cy.findByLabelText('Description').type('descriptive text')
     // go back and see if it saved
     cy.navTo(/Edit Modifications/)
-    cy.location('pathname').should('match', /\/projects\/.{24}$/)
     // TODO needs to be conditional in case the list is collapsed
     cy.contains(modType).parent().contains(modName).click()
     cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)

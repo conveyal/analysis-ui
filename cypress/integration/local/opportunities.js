@@ -6,7 +6,6 @@ describe('Opportunities', () => {
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.navTo(/Opportunity datasets/i)
-    cy.location('pathname').should('match', /\/opportunities$/)
   })
 
   it('can be uploaded as CSV', function () {
