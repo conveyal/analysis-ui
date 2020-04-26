@@ -5,7 +5,7 @@ describe('Modifications', () => {
 
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.findByTitle(/Edit Modifications/).click({force: true})
+    cy.navTo(/Edit Modifications/)
     cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
   })
 
@@ -34,7 +34,7 @@ describe('Modifications', () => {
     cy.findByRole('link', {name: /Add description/}).click()
     cy.findByLabelText('Description').type('descriptive text')
     // go back and see if it saved
-    cy.findByTitle(/Edit Modifications/).click({force: true})
+    cy.navTo(/Edit Modifications/)
     cy.location('pathname').should('match', /\/projects\/.{24}$/)
     // TODO needs to be conditional in case the list is collapsed
     cy.contains(modType).parent().contains(modName).click()
@@ -135,7 +135,7 @@ describe('Modifications', () => {
   })
 
   context('Adjust speed', () => {
-    it.only('can select a feed & route', () => {
+    it('can select a feed & route', () => {
       let modName = Date.now() + ''
       cy.setupModification('scratch', 'Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)

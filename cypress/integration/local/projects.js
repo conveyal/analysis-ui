@@ -6,7 +6,7 @@ context('Projects', () => {
 
   it('can be created and deleted', function () {
     let projectName = 'project ' + Date.now()
-    cy.findByTitle('Projects').click({force: true})
+    cy.navTo('Projects')
     cy.findByText(/Create new Project/i).click()
     cy.location('pathname').should('match', /create-project/)
     cy.findByLabelText(/Project name/).type(projectName)
@@ -21,7 +21,7 @@ context('Projects', () => {
     cy.location('pathname').should('match', /regions\/.{24}\/projects\/.{24}/)
     cy.contains(/Modifications/)
     // make sure it's listed among the projects
-    cy.findByTitle('Projects').click({force: true})
+    cy.navTo('Projects')
     cy.contains(projectName).click()
     cy.get('svg[data-icon="cog"]').click()
     cy.findByLabelText(/Project name/)
@@ -35,7 +35,7 @@ context('Projects', () => {
     //)
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     // delete the project
-    cy.findByTitle('Projects').click({force: true})
+    cy.navTo('Projects')
     cy.contains(projectName).click()
     cy.get('svg[data-icon="cog"]').click()
     cy.findByText(/Delete project/i).click()

@@ -105,12 +105,12 @@ describe('Region setup', () => {
     cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
-    cy.findByTitle('Regions').click({force: true})
+    cy.navTo('Regions')
     cy.location('pathname').should('eq', '/')
     cy.findByText(regionName).click()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
-    cy.findByTitle('Region Settings').click({force: true})
+    cy.navTo('Region Settings')
     cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
     cy.contains('Edit region')
     // settings are saved correctly

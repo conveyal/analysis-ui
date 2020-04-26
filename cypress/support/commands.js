@@ -38,7 +38,7 @@ Cypress.Commands.add('setupRegion', (regionName) => {
 Cypress.Commands.add('setupBundle', (regionName) => {
   cy.setupRegion(regionName)
   let bundleName = regionName + ' bundle'
-  cy.findByTitle('Network Bundles').click({force: true})
+  cy.navTo('Network Bundles')
   cy.location('pathname').should('match', /\/bundles$/)
   cy.contains('or select an existing one')
   cy.findByText(/Select.../).click()
@@ -74,7 +74,7 @@ Cypress.Commands.add('setupBundle', (regionName) => {
       cy.findByRole('button', {name: /Create/i}).click()
       cy.findByText(/Processing/)
       cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
-      cy.findByTitle('Network Bundles').click({force: true})
+      cy.navTo('Network Bundles')
     }
   })
   cy.location('pathname').should('match', /.*\/bundles$/)
@@ -83,7 +83,7 @@ Cypress.Commands.add('setupBundle', (regionName) => {
 Cypress.Commands.add('setupProject', (regionName) => {
   cy.setupBundle(regionName)
   let projectName = regionName + ' project'
-  cy.findByTitle('Projects').click({force: true})
+  cy.navTo('Projects')
   cy.contains('Create new Project')
   cy.get('body').then((body) => {
     if (body.text().includes(projectName)) {
@@ -107,12 +107,19 @@ Cypress.Commands.add('setupProject', (regionName) => {
 })
 
 Cypress.Commands.add('setupModification', (regionName, modType, modName) => {
-  cy.findByTitle(/Edit Modifications/).click({force: true})
+  cy.navTo(/Edit Modifications/)
   cy.findByRole('link', {name: 'Create a modification'}).click()
   cy.findByLabelText(/Modification type/i).select(modType)
   cy.findByLabelText(/Modification name/i).type(modName)
   cy.findByRole('link', {name: 'Create'}).click()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+})
+
+Cypress.Commands.add('navTo', (menuItemTitle) => {
+  // Navigate to a page using one of the main (leftmost) menu items
+  let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
+  // parent selects the SVG itself rather than the <title> element within
+  cy.findByTitle(caseInsensitiveTitle).parent().click()
 })
 
 Cypress.Commands.add('mapIsReady', () => {

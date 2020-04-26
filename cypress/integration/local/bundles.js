@@ -5,7 +5,7 @@ context('Network bundles', () => {
 
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.findByTitle('Network Bundles').click({force: true})
+    cy.navTo('Network Bundles')
     cy.location('pathname').should('match', /.*\/bundles$/)
   })
 

@@ -5,7 +5,7 @@ describe('Opportunities', () => {
 
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.findByTitle(/Opportunity datasets/i).click({force: true})
+    cy.navTo(/Opportunity datasets/i)
     cy.location('pathname').should('match', /\/opportunities$/)
   })
 
