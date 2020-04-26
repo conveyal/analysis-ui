@@ -134,23 +134,20 @@ describe('Modifications', () => {
     })
   })
 
-  it('Can select a feed, route and pattern', () => {
-    const modType = 'Adjust Speed'
-    const modName = 'Mod Name'
-    cy.findByRole('link', {name: 'Create a modification'}).click()
-    cy.findByLabelText(/Modification type/i).select(modType)
-    cy.findByLabelText(/Modification name/i).type(modName)
-    cy.findByRole('link', {name: 'Create'}).click()
+  context('Adjust speed', () => {
+    it.only('can select a feed & route', () => {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Adjust Speed', modName)
+      cy.findByLabelText(/Select feed/)
+        .click({force: true})
+        .type('Northern Kentucky{enter}')
+      cy.findByLabelText(/Select route/)
+        .click({force: true})
+        .type('Taylor Mill{enter}')
+      cy.findByLabelText(/Select patterns/i)
+      // TODO select a pattern
 
-    cy.findByLabelText(/Select feed/)
-      .click({force: true})
-      .type('Northern Kentucky')
-      .type('{enter}')
-
-    cy.findByLabelText(/Select route/)
-      .click({force: true})
-      .type('Taylor Mill')
-      .type('{enter}')
-    cy.get('a[name="Delete modification"]').click()
+      cy.get('a[name="Delete modification"]').click()
+    })
   })
 })
