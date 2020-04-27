@@ -2,24 +2,29 @@ context('Scenarios', () => {
   before(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.setupProject('scratch')
-    // open the panel
-    cy.findByText(/Scenarios/)
-      .parent()
-      .as('scenarioPanel')
-    cy.get('@scenarioPanel').click()
   })
 
   beforeEach(() => {
+    // open the scenarios panel, if closed
     cy.findByText(/Scenarios/)
       .parent()
       .as('scenarioPanel')
+    cy.get('@scenarioPanel').then((pan) => {
+      if (!pan.text().includes('Create a scenario')) {
+        cy.get('@scenarioPanel').click()
+      }
+    })
   })
 
-  it('include baseline', () => {
+  it('start with baseline and default', () => {
     cy.get('@scenarioPanel')
       .contains(/Baseline/)
       .findByTitle(/Delete this scenario/)
       .should('not.exist')
+    cy.get('@scenarioPanel')
+      .contains(/Default/)
+      .findByTitle(/Rename this scenario/)
+      .should('exist')
   })
 
   it('can be created and deleted', function () {
