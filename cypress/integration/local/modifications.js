@@ -55,10 +55,42 @@ describe('Modifications', () => {
   })
 
   context('new trip patterns', () => {
-    it('can be imported from shapefile, in theory', () => {
+    it('can be imported from shapefile', function () {
       cy.get('svg[data-icon="upload"]').click()
-      cy.contains(/Route alignments from shapefile/)
-      // TODO need better selectors
+      cy.location('pathname').should('match', /import-modifications$/)
+      // TODO need better selector for button
+      cy.get('a.btn').get('svg[data-icon="upload"]').click()
+      cy.location('pathname').should('match', /\/import-shapefile/)
+      cy.fixture(this.region.importRoutes.shapefile).then((fileContent) => {
+        cy.findByLabelText(/Select Shapefile/i).upload({
+          fileContent,
+          fileName: this.region.importRoutes.shapefile,
+          mimeType: 'application/octet-stream',
+          encoding: 'base64'
+        })
+      })
+      cy.findByLabelText(/Name/).select(this.region.importRoutes.nameField)
+      cy.findByLabelText(/Frequency/).select(
+        this.region.importRoutes.frequencyField
+      )
+      cy.findByLabelText(/Speed/).select(this.region.importRoutes.speedField)
+      cy.findByText(/Import/)
+        .should('not.be.disabled')
+        .click()
+      cy.location('pathname').should('match', /projects\/.{24}$/)
+      let newRouteName = this.region.importRoutes.routeNames[0]
+      cy.contains('Add Trip Pattern')
+        .parent()
+        .as('modList')
+        .then((modList) => {
+          if (!modList.text().includes(newRouteName)) {
+            cy.get(modList).click()
+          }
+        })
+      this.region.importRoutes.routeNames.forEach((name) => {
+        cy.get('@modList').contains(name)
+      })
+      // TODO cleanup needed
     })
 
     it('can be drawn on map', function () {
