@@ -60,17 +60,19 @@ describe('Modifications', () => {
         .click()
         .contains(/Stop editing/i)
       cy.get('div.leaflet-container').as('map')
-      cy.window()
-        .its('LeafletMap')
-        .then((map) => {
-          // TODO fitbounds seems to mess up the lat/lon -> pix projections
-          // map.fitBounds(this.region.newRoute)
-          // click at the coordinates
-          this.region.newRoute.forEach((point) => {
-            let pix = map.latLngToContainerPoint(point)
-            cy.get('@map').click(pix.x, pix.y)
-          })
+      cy.window().then((win) => {
+        let map = win.LeafletMap
+        let L = win.L
+        let route = L.polyline(this.region.newRoute)
+        // TODO fitbounds seems to mess up the lat/lon -> pix projections
+        //route.addTo(map)
+        //map.fitBounds( route.getBounds() )
+        // click at the coordinates
+        route.getLatLngs().forEach((point) => {
+          let pix = map.latLngToContainerPoint(point)
+          cy.get('@map').click(pix.x, pix.y)
         })
+      })
       cy.findByText(/Stop editing/i)
         .click()
         .contains(/Edit route geometry/i)
