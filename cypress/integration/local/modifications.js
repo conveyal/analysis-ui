@@ -34,8 +34,16 @@ describe('Modifications', () => {
     cy.findByLabelText('Description').type('descriptive text')
     // go back and see if it saved
     cy.navTo(/Edit Modifications/)
-    // TODO needs to be conditional in case the list is collapsed
-    cy.contains(modType).parent().contains(modName).click()
+    // find the container for this modification type and open it if need be
+    cy.contains(modType)
+      .parent()
+      .as('modList')
+      .then((modList) => {
+        if (!modList.text().includes(modName)) {
+          cy.get(modList).click()
+        }
+      })
+    cy.get('@modList').contains(modName).click()
     cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
     cy.contains(modName)
     cy.findByLabelText('Description').contains('descriptive text')
@@ -64,7 +72,7 @@ describe('Modifications', () => {
         let map = win.LeafletMap
         let L = win.L
         let route = L.polyline(this.region.newRoute)
-        // TODO fitbounds seems to mess up the lat/lon -> pix projections
+        // TODO fitBounds seems to mess up the lat/lon -> pix projections
         //route.addTo(map)
         //map.fitBounds( route.getBounds() )
         // click at the coordinates
@@ -81,7 +89,8 @@ describe('Modifications', () => {
 
     it('can create and reuse timetables', function () {
       let modName = 'timetable templates'
-      cy.setupModification('scratch', 'Add Trip Pattern', modName)
+      let modType = 'Add Trip Pattern'
+      cy.setupModification('scratch', modType, modName)
       cy.findByText(/Add new timetable/).click()
       cy.findByText(/Timetable 1/).click()
       cy.get('input[name="Name"]').clear().type('Weekday')
@@ -98,7 +107,7 @@ describe('Modifications', () => {
       //cy.findByLabelText(/End time/).clear().type('23:00')
       //cy.findByLabelText(/dwell time/).clear().type('00:30:00')
       // exit and create new mod to copy into
-      cy.setupModification('scratch', 'Add Trip Pattern', 'temp')
+      cy.setupModification('scratch', modType, 'temp')
       cy.findByText(/Copy existing timetable/).click()
       cy.findByRole('dialog').as('dialog')
       cy.get('@dialog')
@@ -126,6 +135,14 @@ describe('Modifications', () => {
       // delete the temp modification
       cy.get('a[name="Delete modification"]').click()
       // delete the template modification
+      cy.contains(modType)
+        .parent()
+        .as('modList')
+        .then((modList) => {
+          if (!modList.text().includes(modName)) {
+            cy.get(modList).click()
+          }
+        })
       cy.findByText(modName).click()
       cy.get('a[name="Delete modification"]').click()
     })
