@@ -5,7 +5,7 @@ context('Scenarios', () => {
   })
 
   beforeEach(() => {
-    // open the scenarios panel, if closed
+    // identify and open the scenarios panel, if closed
     cy.findByText(/Scenarios/)
       .parent()
       .as('scenarioPanel')
@@ -16,7 +16,7 @@ context('Scenarios', () => {
     })
   })
 
-  it('start with baseline and default', () => {
+  it('start with "baseline" and "default"', () => {
     cy.get('@scenarioPanel')
       .contains(/Baseline/)
       .findByTitle(/Delete this scenario/)
@@ -29,21 +29,24 @@ context('Scenarios', () => {
 
   it('can be created and deleted', function () {
     let scenarioName = 'scenario ' + Date.now()
-    // stub the prompt
     cy.window().then((win) => {
-      cy.stub(win, 'prompt').returns(scenarioName)
+      let stub = cy
+        .stub(win, 'prompt')
+        .onFirstCall()
+        .returns(scenarioName)
+        .onSecondCall()
+        .returns(scenarioName + ' altered')
     })
-    // create
     cy.findByRole('link', {name: 'Create a scenario'}).click()
-    // confirm creation and delete
+    // TODO stub not returning altered value on second call
+    //cy.get('@scenarioPanel')
+    //  .contains(scenarioName)
+    //  .findByTitle(/Rename/)
+    //  .click()
     cy.get('@scenarioPanel')
       .contains(scenarioName)
       .findByTitle(/Delete this scenario/)
       .click()
-    cy.findByText(scenarioName).should('not.exist')
-  })
-
-  it('can be created and renamed', () => {
-    // TODO
+    cy.get('@scenarioPanel').findByText(scenarioName).should('not.exist')
   })
 })
