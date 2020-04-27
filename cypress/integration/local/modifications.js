@@ -63,13 +63,10 @@ describe('Modifications', () => {
       cy.window()
         .its('LeafletMap')
         .then((map) => {
-          // zoom to route to be drawn
-          map.fitBounds(this.region.newRoute)
-          cy.wait(500) // TODO need to properly wait for map to stop moving
+          // TODO fitbounds seems to mess up the lat/lon -> pix projections
+          // map.fitBounds(this.region.newRoute)
           // click at the coordinates
           this.region.newRoute.forEach((point) => {
-            // TODO this does not project to pixels properly
-            // but only when running within cypress
             let pix = map.latLngToContainerPoint(point)
             cy.get('@map').click(pix.x, pix.y)
           })

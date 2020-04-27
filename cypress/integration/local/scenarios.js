@@ -30,8 +30,7 @@ context('Scenarios', () => {
   it('can be created and deleted', function () {
     let scenarioName = 'scenario ' + Date.now()
     cy.window().then((win) => {
-      let stub = cy
-        .stub(win, 'prompt')
+      cy.stub(win, 'prompt')
         .onFirstCall()
         .returns(scenarioName)
         .onSecondCall()

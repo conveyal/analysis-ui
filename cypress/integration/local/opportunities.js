@@ -36,28 +36,29 @@ describe('Opportunities', () => {
     // can be seen on the map
     // can be deleted
   })
-  /*
-  it('can be imported from LODES',function(){
+
+  it('can be imported from LODES', function () {
+    // TODO
     //cy.findByText(/Fetch LODES/i).click()
     // Error on the server - Cannot download LODES in offline mode.
   })
 
-  it('can be uploaded as shapefile',function(){
-    
+  it('can be uploaded as shapefile', function () {
+    // TODO
   })
 
-  it('can be uploaded as grid',function(){
-    
+  it('can be uploaded as grid', function () {
+    // TODO
   })
 
-  it('can be downloaded as grid',function(){
-    
+  it('can be downloaded as grid', function () {
+    // TODO
   })
 
-  it('can be downloaded as tiff',function(){
-    
+  it('can be downloaded as tiff', function () {
+    // TODO
   })
-*/
+
   after(() => {
     cy.log('after!')
     // TODO probably will want to clean up here and delete anything imported
