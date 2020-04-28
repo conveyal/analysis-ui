@@ -64,8 +64,15 @@ describe('Modifications', () => {
         .should('not.be.disabled')
         .click()
       cy.location('pathname').should('match', /projects\/.{24}$/)
-      this.region.importRoutes.routeNames.forEach((name) => {
-        cy.openMod('Add Trip Pattern', name)
+
+      this.region.importRoutes.routes.forEach((route) => {
+        cy.openMod('Add Trip Pattern', route.name)
+        cy.findByText(/Timetable NaN/).click()
+        // TODO need selector to check frequency
+        //cy.findByLabelText(/Frequency/)
+        cy.findByLabelText(/Average speed/i)
+          .invoke('val')
+          .then((val) => expect(val).to.eq('' + route.speed))
         cy.deleteThisMod()
       })
     })

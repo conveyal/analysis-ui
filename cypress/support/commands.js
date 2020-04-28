@@ -117,6 +117,7 @@ Cypress.Commands.add('setupMod', (modType, modName) => {
 })
 
 Cypress.Commands.add('openMod', (modType, modName) => {
+  // opens the first listed modification of this type with this name
   cy.navTo(/Edit Modifications/)
   // find the container for this modification type and open it if need be
   cy.contains(modType)
