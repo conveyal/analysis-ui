@@ -180,8 +180,25 @@ describe('Modifications', () => {
     })
   })
 
+  context('Adjust dwell time', () => {
+    it('has working form elements', () => {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Adjust Dwell Time', modName)
+      cy.findByLabelText(/Select feed/)
+        .click({force: true})
+        .type('Northern Kentucky{enter}')
+      cy.findByLabelText(/Select route/)
+        .click({force: true})
+        .type('Taylor Mill{enter}')
+      cy.findByLabelText(/Select patterns/i)
+      cy.findByLabelText(/Scale existing dwell times/i).check()
+      cy.findByLabelText(/Set new dwell time to/i).check()
+      cy.get('a[name="Delete modification"]').click()
+    })
+  })
+
   context('Adjust speed', () => {
-    it('can select a feed & route', () => {
+    it('has working form elements', () => {
       let modName = Date.now() + ''
       cy.setupModification('scratch', 'Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
@@ -191,8 +208,80 @@ describe('Modifications', () => {
         .click({force: true})
         .type('Taylor Mill{enter}')
       cy.findByLabelText(/Select patterns/i)
-      // TODO select a pattern
+      cy.get('a[name="Delete modification"]').click()
+    })
+  })
 
+  context('Convert to frequency', () => {
+    it('has working form elements', () => {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Convert To Frequency', modName)
+      cy.findByLabelText(/Select feed/)
+        .click({force: true})
+        .type('Northern Kentucky{enter}')
+      cy.findByLabelText(/Select route/)
+        .click({force: true})
+        .type('Taylor Mill{enter}')
+      cy.findByLabelText(/retain existing scheduled trips/i).check()
+      cy.findByText(/Add frequency entry/i).click()
+      cy.findByLabelText(/Select patterns/i)
+      //cy.findByLabelText(/Frequency/i)
+      //cy.findByLabelText(/Start time/i)
+      //cy.findByLabelText(/End time/i)
+      //cy.findByLabelText(/Phase at stop/i)
+      cy.findByText(/Delete frequency entry/i).click()
+      cy.get('a[name="Delete modification"]').click()
+    })
+  })
+
+  context('Remove stops', () => {
+    it('has working form elements', () => {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Remove Stops', modName)
+      cy.findByLabelText(/Select feed/)
+        .click({force: true})
+        .type('Northern Kentucky{enter}')
+      cy.findByLabelText(/Select route/)
+        .click({force: true})
+        .type('Taylor Mill{enter}')
+      cy.findByLabelText(/Select patterns/i)
+      cy.findByLabelText(/Time savings per removed stop/i)
+      cy.get('a[name="Delete modification"]').click()
+    })
+  })
+
+  context('Remove trips', () => {
+    it('has working form elements', () => {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Remove Trips', modName)
+      cy.findByLabelText(/Select feed/)
+        .click({force: true})
+        .type('Northern Kentucky{enter}')
+      cy.findByLabelText(/Select route/)
+        .click({force: true})
+        .type('Taylor Mill{enter}')
+      cy.findByLabelText(/Select patterns/i)
+      cy.get('a[name="Delete modification"]').click()
+    })
+  })
+
+  context('Reroute', () => {
+    it('has working form elements', () => {
+      let modName = Date.now() + ''
+      cy.setupModification('scratch', 'Reroute', modName)
+      cy.findByLabelText(/Select feed/)
+        .click({force: true})
+        .type('Northern Kentucky{enter}')
+      cy.findByLabelText(/Select route/)
+        .click({force: true})
+        .type('Taylor Mill{enter}')
+      // verify existence only
+      cy.findByLabelText(/Select patterns/i)
+      cy.findByText(/Start of reroute/i)
+      cy.findByText(/End of reroute/i)
+      //cy.findByLabelText(/Default dwell time/i)
+      cy.findByLabelText(/Average speed/i)
+      //cy.findByLabelText(/Total moving time/i)
       cy.get('a[name="Delete modification"]').click()
     })
   })
