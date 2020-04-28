@@ -24,6 +24,7 @@ describe('Modifications', () => {
     ]
     let modType = mods[Math.floor(Math.random() * mods.length)]
     let modName = 'tempMod ' + Date.now()
+    let description = 'descriptive text'
     cy.findByRole('link', {name: 'Create a modification'}).click()
     cy.findByLabelText(/Modification type/i).select(modType)
     cy.findByLabelText(/Modification name/i).type(modName)
@@ -31,27 +32,12 @@ describe('Modifications', () => {
     cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
     cy.contains(modName)
     cy.findByRole('link', {name: /Add description/}).click()
-    cy.findByLabelText('Description').type('descriptive text')
+    cy.findByLabelText('Description').type(description)
     // go back and see if it saved
     cy.navTo(/Edit Modifications/)
-    // find the container for this modification type and open it if need be
-    cy.contains(modType)
-      .parent()
-      .as('modList')
-      .then((modList) => {
-        if (!modList.text().includes(modName)) {
-          cy.get(modList).click()
-        }
-      })
-    cy.get('@modList').contains(modName).click()
-    cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
-    cy.contains(modName)
-    cy.findByLabelText('Description').contains('descriptive text')
-    // delete it
-    cy.get('a[name="Delete modification"]').click()
-    cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
-    cy.contains('Create a modification')
-    cy.findByText(modName).should('not.exist')
+    cy.openMod(modType, modName)
+    cy.findByLabelText('Description').contains(description)
+    cy.deleteThisMod()
   })
 
   context('new trip patterns', () => {
@@ -78,24 +64,15 @@ describe('Modifications', () => {
         .should('not.be.disabled')
         .click()
       cy.location('pathname').should('match', /projects\/.{24}$/)
-      let newRouteName = this.region.importRoutes.routeNames[0]
-      cy.contains('Add Trip Pattern')
-        .parent()
-        .as('modList')
-        .then((modList) => {
-          if (!modList.text().includes(newRouteName)) {
-            cy.get(modList).click()
-          }
-        })
       this.region.importRoutes.routeNames.forEach((name) => {
-        cy.get('@modList').contains(name)
+        cy.openMod('Add Trip Pattern', name)
+        cy.deleteThisMod()
       })
-      // TODO cleanup needed
     })
 
     it('can be drawn on map', function () {
       let modName = Date.now() + ''
-      cy.setupModification('scratch', 'Add Trip Pattern', modName)
+      cy.setupMod('Add Trip Pattern', modName)
       cy.findByText(/Edit route geometry/i)
         .click()
         .contains(/Stop editing/i)
@@ -116,13 +93,13 @@ describe('Modifications', () => {
       cy.findByText(/Stop editing/i)
         .click()
         .contains(/Edit route geometry/i)
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
     })
 
     it('can create and reuse timetables', function () {
       let modName = 'timetable templates'
       let modType = 'Add Trip Pattern'
-      cy.setupModification('scratch', modType, modName)
+      cy.setupMod(modType, modName)
       cy.findByText(/Add new timetable/).click()
       cy.findByText(/Timetable 1/).click()
       cy.get('input[name="Name"]').clear().type('Weekday')
@@ -139,7 +116,7 @@ describe('Modifications', () => {
       //cy.findByLabelText(/End time/).clear().type('23:00')
       //cy.findByLabelText(/dwell time/).clear().type('00:30:00')
       // exit and create new mod to copy into
-      cy.setupModification('scratch', modType, 'temp')
+      cy.setupMod(modType, 'temp')
       cy.findByText(/Copy existing timetable/).click()
       cy.findByRole('dialog').as('dialog')
       cy.get('@dialog')
@@ -165,25 +142,16 @@ describe('Modifications', () => {
       cy.findByLabelText(/Sat/).should('not.be.checked')
       cy.findByLabelText(/Sun/).should('not.be.checked')
       // delete the temp modification
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
       // delete the template modification
-      cy.contains(modType)
-        .parent()
-        .as('modList')
-        .then((modList) => {
-          if (!modList.text().includes(modName)) {
-            cy.get(modList).click()
-          }
-        })
-      cy.findByText(modName).click()
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteMod(modType, modName)
     })
   })
 
   context('Adjust dwell time', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
-      cy.setupModification('scratch', 'Adjust Dwell Time', modName)
+      cy.setupMod('Adjust Dwell Time', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type('Northern Kentucky{enter}')
@@ -193,14 +161,14 @@ describe('Modifications', () => {
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Scale existing dwell times/i).check()
       cy.findByLabelText(/Set new dwell time to/i).check()
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
     })
   })
 
   context('Adjust speed', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
-      cy.setupModification('scratch', 'Adjust Speed', modName)
+      cy.setupMod('Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type('Northern Kentucky{enter}')
@@ -208,14 +176,14 @@ describe('Modifications', () => {
         .click({force: true})
         .type('Taylor Mill{enter}')
       cy.findByLabelText(/Select patterns/i)
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
     })
   })
 
   context('Convert to frequency', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
-      cy.setupModification('scratch', 'Convert To Frequency', modName)
+      cy.setupMod('Convert To Frequency', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type('Northern Kentucky{enter}')
@@ -230,14 +198,14 @@ describe('Modifications', () => {
       //cy.findByLabelText(/End time/i)
       //cy.findByLabelText(/Phase at stop/i)
       cy.findByText(/Delete frequency entry/i).click()
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
     })
   })
 
   context('Remove stops', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
-      cy.setupModification('scratch', 'Remove Stops', modName)
+      cy.setupMod('Remove Stops', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type('Northern Kentucky{enter}')
@@ -246,14 +214,14 @@ describe('Modifications', () => {
         .type('Taylor Mill{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Time savings per removed stop/i)
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
     })
   })
 
   context('Remove trips', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
-      cy.setupModification('scratch', 'Remove Trips', modName)
+      cy.setupMod('Remove Trips', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type('Northern Kentucky{enter}')
@@ -261,14 +229,14 @@ describe('Modifications', () => {
         .click({force: true})
         .type('Taylor Mill{enter}')
       cy.findByLabelText(/Select patterns/i)
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
     })
   })
 
   context('Reroute', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
-      cy.setupModification('scratch', 'Reroute', modName)
+      cy.setupMod('Reroute', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type('Northern Kentucky{enter}')
@@ -282,7 +250,7 @@ describe('Modifications', () => {
       //cy.findByLabelText(/Default dwell time/i)
       cy.findByLabelText(/Average speed/i)
       //cy.findByLabelText(/Total moving time/i)
-      cy.get('a[name="Delete modification"]').click()
+      cy.deleteThisMod()
     })
   })
 })

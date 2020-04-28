@@ -106,13 +106,43 @@ Cypress.Commands.add('setupProject', (regionName) => {
   cy.contains(/Modifications/)
 })
 
-Cypress.Commands.add('setupModification', (regionName, modType, modName) => {
+Cypress.Commands.add('setupMod', (modType, modName) => {
   cy.navTo(/Edit Modifications/)
+  // assumes we are already on this page or editing another mod
   cy.findByRole('link', {name: 'Create a modification'}).click()
   cy.findByLabelText(/Modification type/i).select(modType)
   cy.findByLabelText(/Modification name/i).type(modName)
   cy.findByRole('link', {name: 'Create'}).click()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+})
+
+Cypress.Commands.add('openMod', (modType, modName) => {
+  cy.navTo(/Edit Modifications/)
+  // find the container for this modification type and open it if need be
+  cy.contains(modType)
+    .parent()
+    .as('modList')
+    .then((modList) => {
+      if (!modList.text().includes(modName)) {
+        cy.get(modList).click()
+      }
+    })
+  cy.get('@modList').contains(modName).click()
+  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+  cy.contains(modName)
+})
+
+Cypress.Commands.add('deleteMod', (modType, modName) => {
+  cy.openMod(modType, modName)
+  cy.get('a[name="Delete modification"]').click()
+  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+  cy.contains('Create a modification')
+  cy.findByText(modName).should('not.exist')
+})
+
+Cypress.Commands.add('deleteThisMod', () => {
+  cy.get('a[name="Delete modification"]').click()
+  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
 })
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
