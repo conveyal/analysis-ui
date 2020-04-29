@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 
-import initAuth0 from '../../lib/auth0'
+import initAuth0 from 'lib/auth0'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const auth0 = initAuth0(req)
