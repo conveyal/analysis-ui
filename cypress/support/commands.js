@@ -169,6 +169,24 @@ Cypress.Commands.add('setupScenario', (scenarioName) => {
   })
 })
 
+Cypress.Commands.add('deleteScenario', (scenarioName) => {
+  // can be called when editing modifications
+  cy.navTo('Edit Modifications')
+  // open the scenario panel if it isn't already
+  cy.contains('Scenarios')
+    .parent()
+    .as('panel')
+    .then((panel) => {
+      if (!panel.text().includes('Create a scenario')) {
+        cy.get(panel).click()
+      }
+    })
+  cy.get('@panel')
+    .contains(scenarioName)
+    .findByTitle(/Delete this scenario/)
+    .click()
+})
+
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
   let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
