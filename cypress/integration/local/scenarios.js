@@ -1,6 +1,5 @@
 context('Scenarios', () => {
   before(() => {
-    cy.fixture('regions/scratch.json').as('region')
     cy.setupProject('scratch')
   })
 

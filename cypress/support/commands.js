@@ -146,6 +146,29 @@ Cypress.Commands.add('deleteThisMod', () => {
   cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
 })
 
+Cypress.Commands.add('setupScenario', (scenarioName) => {
+  // can be called when editing modifications
+  cy.navTo('Edit Modifications')
+  // open the scenario panel if it isn't already
+  cy.contains('Scenarios')
+    .parent()
+    .as('panel')
+    .then((panel) => {
+      if (!panel.text().includes('Create a scenario')) {
+        cy.get(panel).click()
+      }
+    })
+  cy.window().then((win) => {
+    // stub the prompt
+    cy.stub(win, 'prompt').returns(scenarioName)
+  })
+  cy.findByRole('link', {name: 'Create a scenario'}).click()
+  cy.window().then((win) => {
+    // un-stub the prompt
+    win.prompt.restore()
+  })
+})
+
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
   let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
