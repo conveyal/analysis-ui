@@ -46,5 +46,8 @@ context('Scenarios', () => {
       .findByTitle(/Delete this scenario/)
       .click()
     cy.get('@scenarioPanel').findByText(scenarioName).should('not.exist')
+    cy.get('@scenarioPanel')
+      .findByText(scenarioName + ' altered')
+      .should('not.exist')
   })
 })
