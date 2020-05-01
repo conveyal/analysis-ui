@@ -50,7 +50,7 @@ describe('Modifications', () => {
   })
 
   context('new trip patterns', () => {
-    it.only('can be imported from shapefile', function () {
+    it('can be imported from shapefile', function () {
       cy.get('svg[data-icon="upload"]').click()
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
@@ -119,6 +119,7 @@ describe('Modifications', () => {
       cy.setupMod(modType, modName)
       cy.findByText(/Add new timetable/).click()
       cy.findByText(/Timetable 1/).click()
+      // enter arbitrary settings to see if they get saved
       cy.get('input[name="Name"]').clear().type('Weekday')
       cy.findByLabelText(/Mon/).check()
       cy.findByLabelText(/Tue/).check()
@@ -127,11 +128,18 @@ describe('Modifications', () => {
       cy.findByLabelText(/Fri/).check()
       cy.findByLabelText(/Sat/).uncheck()
       cy.findByLabelText(/Sun/).uncheck()
-      // TODO these selectors not working
-      //cy.findByLabelText(/Frequency/).clear().type('00:20:00')
-      //cy.findByLabelText(/Start time/).clear().type('06:00')
-      //cy.findByLabelText(/End time/).clear().type('23:00')
-      //cy.findByLabelText(/dwell time/).clear().type('00:30:00')
+      cy.findByLabelText(/Frequency/)
+        .clear()
+        .type('00:20:00')
+      cy.findByLabelText(/Start time/)
+        .clear()
+        .type('06:00')
+      cy.findByLabelText(/End time/)
+        .clear()
+        .type('23:00')
+      cy.findByLabelText(/dwell time/)
+        .clear()
+        .type('00:00:30')
       // exit and create new mod to copy into
       cy.setupMod(modType, 'temp')
       cy.findByText(/Copy existing timetable/).click()
@@ -158,6 +166,18 @@ describe('Modifications', () => {
       cy.findByLabelText(/Fri/).should('be.checked')
       cy.findByLabelText(/Sat/).should('not.be.checked')
       cy.findByLabelText(/Sun/).should('not.be.checked')
+      cy.findByLabelText(/Frequency/)
+        .invoke('val')
+        .then((val) => expect(val).to.eq('00:20:00'))
+      cy.findByLabelText(/Start time/)
+        .invoke('val')
+        .then((val) => expect(val).to.eq('06:00'))
+      cy.findByLabelText(/End time/)
+        .invoke('val')
+        .then((val) => expect(val).to.eq('23:00'))
+      cy.findByLabelText(/dwell time/)
+        .invoke('val')
+        .then((val) => expect(val).to.eq('00:00:30'))
       // delete the temp modification
       cy.deleteThisMod()
       // delete the template modification
