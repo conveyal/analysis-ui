@@ -14,6 +14,7 @@ export default withAuth(function SetAccessGroup() {
     const newGroup = inputRef.current.value
     setAccessGroup(newGroup)
     Cookie.set(key, newGroup)
+    // This reloads the page causing a new user session to be retrieved and the `adminTempAccessGroup` to be properly used.
     window.location = '/'
   }
 
