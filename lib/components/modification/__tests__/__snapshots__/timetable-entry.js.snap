@@ -255,12 +255,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
     </div>
   </Days>
   <MinutesSeconds
+    id="timetableFrequency"
     label="Frequency"
     onChange={[Function]}
     seconds={900}
   >
     <Group
       className=""
+      id="timetableFrequency"
       label="Frequency"
     >
       <div
@@ -268,11 +270,12 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
       >
         <label
           className="control-label"
-          htmlFor="frequency-input-7"
+          htmlFor="timetableFrequency"
         >
           Frequency
         </label>
         <Input
+          id="timetableFrequency"
           onChange={[Function]}
           type="text"
           units="hh:mm:ss"
@@ -283,7 +286,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
           >
             <input
               className="form-control"
-              id="undefined-input-8"
+              id="timetableFrequency"
               onChange={[Function]}
               type="text"
               units="hh:mm:ss"
@@ -300,12 +303,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
     </Group>
   </MinutesSeconds>
   <TimePicker
+    id="timetableStartTime"
     label="Start time"
     onChange={[Function]}
     value={28800}
   >
     <Group
       className=""
+      id="timetableStartTime"
       label="Start time"
     >
       <div
@@ -313,11 +318,12 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
       >
         <label
           className="control-label"
-          htmlFor="start-time-input-9"
+          htmlFor="timetableStartTime"
         >
           Start time
         </label>
         <Input
+          id="timetableStartTime"
           onChange={[Function]}
           type="text"
           units="hh:mm"
@@ -328,7 +334,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
           >
             <input
               className="form-control"
-              id="undefined-input-10"
+              id="timetableStartTime"
               onChange={[Function]}
               type="text"
               units="hh:mm"
@@ -345,12 +351,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
     </Group>
   </TimePicker>
   <TimePicker
+    id="timetableEndTime"
     label="End time"
     onChange={[Function]}
     value={57600}
   >
     <Group
       className=""
+      id="timetableEndTime"
       label="End time"
     >
       <div
@@ -358,11 +366,12 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
       >
         <label
           className="control-label"
-          htmlFor="end-time-input-11"
+          htmlFor="timetableEndTime"
         >
           End time
         </label>
         <Input
+          id="timetableEndTime"
           onChange={[Function]}
           type="text"
           units="hh:mm"
@@ -373,7 +382,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
           >
             <input
               className="form-control"
-              id="undefined-input-12"
+              id="timetableEndTime"
               onChange={[Function]}
               type="text"
               units="hh:mm"
@@ -399,12 +408,12 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
       className="checkbox"
     >
       <label
-        htmlFor="times-are-exact-input-13"
+        htmlFor="times-are-exact-input-7"
       >
         <input
           checked={false}
           disabled={false}
-          id="times-are-exact-input-13"
+          id="times-are-exact-input-7"
           label="Times are exact"
           onChange={[Function]}
           type="checkbox"
@@ -510,6 +519,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
       </Heading>
     </H5>
     <Group
+      id="phaseAtStop"
       label="Phase at stop"
     >
       <div
@@ -517,13 +527,14 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
       >
         <label
           className="control-label"
-          htmlFor="phase-at-stop-input-14"
+          htmlFor="phaseAtStop"
         >
           Phase at stop
         </label>
         <S
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
+          inputId="phaseAtStop"
           isClearable={true}
           isDisabled={false}
           name="Phase at stop"
@@ -534,6 +545,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
           <ForwardRef(LoadableComponent)
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
+            inputId="phaseAtStop"
             isClearable={true}
             isDisabled={false}
             name="Phase at stop"
