@@ -5,8 +5,8 @@ describe('Region setup', () => {
     // be on the region setup page
     cy.visit('/regions/create')
     // alias all inputs
-    cy.findByPlaceholderText('Region Name').as('name')
-    cy.findByPlaceholderText('Description').as('description')
+    cy.findByLabelText(/Region Name/).as('name')
+    cy.findByLabelText('Description').as('description')
     cy.findByLabelText(/North bound/).as('North')
     cy.findByLabelText(/South bound/).as('South')
     cy.findByLabelText(/East bound/).as('East')
@@ -113,8 +113,8 @@ describe('Region setup', () => {
     cy.contains('Edit region')
     // settings are saved correctly
     // redeclaration is necessary to prevent the page from reloading... :-(
-    cy.findByPlaceholderText('Region Name').as('name')
-    cy.findByPlaceholderText('Description').as('description')
+    cy.findByLabelText(/Region Name/).as('name')
+    cy.findByLabelText(/Description/).as('description')
     cy.findByLabelText(/North bound/).as('North')
     cy.findByLabelText(/South bound/).as('South')
     cy.findByLabelText(/East bound/).as('East')
