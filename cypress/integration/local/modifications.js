@@ -50,7 +50,7 @@ describe('Modifications', () => {
   })
 
   context('new trip patterns', () => {
-    it('can be imported from shapefile', function () {
+    it.only('can be imported from shapefile', function () {
       cy.get('svg[data-icon="upload"]').click()
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
@@ -77,8 +77,9 @@ describe('Modifications', () => {
       this.region.importRoutes.routes.forEach((route) => {
         cy.openMod('Add Trip Pattern', route.name)
         cy.findByText(/Timetable NaN/).click()
-        // TODO need selector to check frequency
-        //cy.findByLabelText(/Frequency/)
+        cy.findByLabelText(/Frequency/)
+          .invoke('val')
+          .then((val) => expect(val).to.eq('' + route.frequency))
         cy.findByLabelText(/Average speed/i)
           .invoke('val')
           .then((val) => expect(val).to.eq('' + route.speed))
