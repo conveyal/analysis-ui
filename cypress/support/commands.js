@@ -153,23 +153,27 @@ Cypress.Commands.add('deleteThisMod', () => {
 Cypress.Commands.add('setupScenario', (scenarioName) => {
   // can be called when editing modifications
   cy.navTo('Edit Modifications')
-  // open the scenario panel if it isn't already
   cy.contains('Scenarios')
     .parent()
     .as('panel')
     .then((panel) => {
+      // open the scenario panel if it isn't open already
       if (!panel.text().includes('Create a scenario')) {
         cy.get(panel).click()
+        cy.get(panel).contains('Create a scenario')
       }
     })
-  cy.window().then((win) => {
-    // stub the prompt
-    cy.stub(win, 'prompt').returns(scenarioName)
-  })
-  cy.findByRole('link', {name: 'Create a scenario'}).click()
-  cy.window().then((win) => {
-    // un-stub the prompt
-    win.prompt.restore()
+  cy.get('@panel').then((panel) => {
+    // create scenario if it doesn't already exist
+    if (!panel.text().includes(scenarioName)) {
+      cy.window().then((win) => {
+        cy.stub(win, 'prompt').returns(scenarioName)
+      })
+      cy.findByRole('link', {name: 'Create a scenario'}).click()
+      cy.window().then((win) => {
+        win.prompt.restore()
+      })
+    }
   })
 })
 
