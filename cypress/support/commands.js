@@ -41,7 +41,11 @@ Cypress.Commands.add('setupBundle', (regionName) => {
   cy.navTo('Network Bundles')
   cy.location('pathname').should('match', /\/bundles$/)
   cy.contains('or select an existing one')
-  cy.findByText(/Select.../).click()
+  cy.findByText(/Select.../)
+    .parent()
+    .click()
+  // wait for options to load before getting body text
+  cy.contains(RegExp(bundleName + '|No options', 'i'))
   cy.get('body').then((body) => {
     if (body.text().includes(bundleName)) {
       // bundle already exists. do nothing
