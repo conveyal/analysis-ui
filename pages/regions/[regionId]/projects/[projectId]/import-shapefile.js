@@ -5,29 +5,28 @@ import {load as loadRegion} from 'lib/actions/region'
 import Dock from 'lib/components/inner-dock'
 import ProjectTitle from 'lib/components/project-title'
 import ImportShapefile from 'lib/components/import-shapefile'
+import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-function ImportShapefilePage(p) {
-  return (
+const ImportShapeFilePage = withInitialFetch(
+  (p) => (
     <>
       <ProjectTitle project={p.project} />
       <Dock className='block'>
         <ImportShapefile
-          projectId={p.projectId}
-          regionId={p.regionId}
+          projectId={p.query.projectId}
+          regionId={p.query.regionId}
           variants={p.project.variants}
         />
       </Dock>
     </>
-  )
-}
+  ),
+  async (store, query) => ({
+    region: await store.dispatch(loadRegion(query.regionId)),
+    project: await store.dispatch(loadProject(query.projectId))
+  })
+)
 
-function initialFetch(store, query) {
-  const {regionId, projectId} = query
-  return Promise.all([
-    store.dispatch(loadRegion(regionId)),
-    store.dispatch(loadProject(projectId))
-  ]).then(([region, project]) => ({project, region}))
-}
+ImportShapeFilePage.Layout = MapLayout
 
-export default withInitialFetch(ImportShapefilePage, initialFetch)
+export default ImportShapeFilePage

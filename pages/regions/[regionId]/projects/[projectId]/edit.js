@@ -1,9 +1,12 @@
 import {loadProject} from 'lib/actions/project'
 import EditProject from 'lib/components/edit-project'
+import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-async function initialFetch(store, query) {
+const EditProjectPage = withInitialFetch(EditProject, async (store, query) => {
   return {project: await store.dispatch(loadProject(query.projectId))}
-}
+})
 
-export default withInitialFetch(EditProject, initialFetch)
+EditProjectPage.Layout = MapLayout
+
+export default EditProjectPage

@@ -1,8 +1,10 @@
 import {loadProjectAndModifications} from 'lib/actions/project'
 import Report from 'lib/components/report'
+import withAuth from 'lib/with-auth'
 import withInitialFetch from 'lib/with-initial-fetch'
+import withRedux from 'lib/with-redux'
 
-async function initialFetch(store, query) {
+const ReportPage = withInitialFetch(Report, async (store, query) => {
   const {projectId, index} = query
   const {bundle, feeds, modifications, project} = await store.dispatch(
     loadProjectAndModifications(projectId)
@@ -15,6 +17,6 @@ async function initialFetch(store, query) {
     project,
     variant: project.variants[index]
   }
-}
+})
 
-export default withInitialFetch(Report, initialFetch)
+export default withAuth(withRedux(ReportPage))
