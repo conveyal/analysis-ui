@@ -20,7 +20,7 @@ context('Projects', () => {
       .click()
     cy.location('pathname').should('match', /\/projects\/.{24}$/)
     cy.contains(/Modifications/)
-    // make sure it's listed among the projects
+    // make sure it's listed on the projects page
     cy.navTo('Projects')
     cy.contains(projectName).click()
     cy.get('svg[data-icon="cog"]').click()
@@ -35,6 +35,16 @@ context('Projects', () => {
       .then((val) => expect(val).to.eq('scratch bundle'))
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     cy.contains(/Currently used by \d+ project/i)
+    // should be selectable in analysis
+    cy.navTo('Analyze')
+    cy.findByLabelText(/^Project$/)
+      .click({force: true})
+      .type(projectName + '{enter}')
+    cy.contains(projectName)
+    cy.findByLabelText(/^Scenario$/)
+      .click({force: true})
+      .type('Baseline{enter}')
+    cy.contains(/Baseline/)
     // delete the project
     cy.navTo('Projects')
     cy.contains(projectName).click()
