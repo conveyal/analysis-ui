@@ -5,7 +5,7 @@ context('Projects', () => {
   })
 
   it('can be created and deleted', function () {
-    let projectName = 'project ' + Date.now()
+    let projectName = Date.now() + ''
     cy.navTo('Projects')
     cy.findByText(/Create new Project/i).click()
     cy.location('pathname').should('match', /create-project/)
@@ -30,10 +30,11 @@ context('Projects', () => {
     // check that the bundle is associated and can't now be deleted
     cy.findByRole('link', {name: /view bundle info/i}).click()
     cy.contains(/Create a new network bundle/)
-    //cy.findByLabelText(/Network bundle name/i).invoke('val').then(
-    //  val => expect(val).to.eq('scratch bundle')
-    //)
+    cy.findByLabelText(/Network bundle name/i)
+      .invoke('val')
+      .then((val) => expect(val).to.eq('scratch bundle'))
     cy.findByText(/Delete this network bundle/i).should('not.exist')
+    cy.contains(/Currently used by \d+ project/i)
     // delete the project
     cy.navTo('Projects')
     cy.contains(projectName).click()
