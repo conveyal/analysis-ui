@@ -5,9 +5,10 @@ import {
   setScenarioApplicationWarnings
 } from 'lib/actions/analysis'
 import SinglePointAnalysis from 'lib/containers/single-point-analysis'
+import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-function initialFetch(store, query) {
+const AnalysisPage = withInitialFetch(SinglePointAnalysis, (store, query) => {
   store.dispatch(setScenarioApplicationWarnings(null))
   store.dispatch(setScenarioApplicationErrors(null))
 
@@ -15,6 +16,8 @@ function initialFetch(store, query) {
     store.dispatch(load(query.regionId)),
     store.dispatch(loadBookmarks(query.regionId))
   ])
-}
+})
 
-export default withInitialFetch(SinglePointAnalysis, initialFetch)
+AnalysisPage.Layout = MapLayout
+
+export default AnalysisPage

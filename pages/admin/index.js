@@ -15,13 +15,13 @@ import React from 'react'
 import JobDashboard from 'lib/components/admin-job-dashboard'
 import TextLink from 'lib/components/text-link'
 import WorkerList from 'lib/components/admin-worker-list'
-import getInitialAuth from 'lib/get-initial-auth'
 import {useProxyRequest} from 'lib/hooks/use-request'
+import withAuth from 'lib/with-auth'
 
 // Refresh every five seconds
 const refreshInterval = 5000
 
-function AdminDashboard() {
+export default withAuth(function AdminDashboard() {
   const jobRequest = useProxyRequest('/api/jobs', {refreshInterval})
   const workerRequest = useProxyRequest('/api/workers', {refreshInterval})
 
@@ -63,8 +63,4 @@ function AdminDashboard() {
       </Box>
     </Flex>
   )
-}
-
-AdminDashboard.getInitialProps = getInitialAuth
-
-export default AdminDashboard
+})
