@@ -50,7 +50,7 @@ describe('Modifications', () => {
     cy.deleteThisMod()
   })
 
-  context('new trip patterns', () => {
+  describe('new trip patterns', () => {
     it('can be imported from shapefile', function () {
       cy.get('svg[data-icon="upload"]').click()
       cy.location('pathname').should('match', /import-modifications$/)
@@ -186,7 +186,7 @@ describe('Modifications', () => {
     })
   })
 
-  context('Adjust dwell time', () => {
+  describe('Adjust dwell time', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
       cy.setupMod('Adjust Dwell Time', modName)
@@ -203,7 +203,7 @@ describe('Modifications', () => {
     })
   })
 
-  context('Adjust speed', () => {
+  describe('Adjust speed', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
       cy.setupMod('Adjust Speed', modName)
@@ -218,7 +218,7 @@ describe('Modifications', () => {
     })
   })
 
-  context('Convert to frequency', () => {
+  describe('Convert to frequency', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
       cy.setupMod('Convert To Frequency', modName)
@@ -250,7 +250,7 @@ describe('Modifications', () => {
     })
   })
 
-  context('Remove stops', () => {
+  describe('Remove stops', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
       cy.setupMod('Remove Stops', modName)
@@ -266,7 +266,7 @@ describe('Modifications', () => {
     })
   })
 
-  context('Remove trips', () => {
+  describe('Remove trips', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
       cy.setupMod('Remove Trips', modName)
@@ -281,7 +281,7 @@ describe('Modifications', () => {
     })
   })
 
-  context('Reroute', () => {
+  describe('Reroute', () => {
     it('has working form elements', () => {
       let modName = Date.now() + ''
       cy.setupMod('Reroute', modName)
