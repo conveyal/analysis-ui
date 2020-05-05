@@ -26,7 +26,7 @@ exports[`Component > Input File renders correctly 1`] = `
   multiple={true}
   name="files"
 >
-  <Input
+  <ForwardRef
     id="files-input-1"
     label="s"
     multiple={true}
@@ -59,7 +59,7 @@ exports[`Component > Input Number renders correctly 1`] = `
   placeholder="Enter Number"
   value={12345}
 >
-  <Input
+  <ForwardRef
     id="some-number-input-3"
     min={0}
     name="someNumber"
@@ -88,7 +88,7 @@ exports[`Component > Input Number renders correctly with invalid max value 1`] =
     <div
       className="form-group has-error"
     >
-      <Input
+      <ForwardRef
         id="some-number-3-input-7"
         max={2}
         min={0}
@@ -111,7 +111,7 @@ exports[`Component > Input Number renders correctly with invalid max value 1`] =
           type="text"
           value=""
         />
-      </Input>
+      </ForwardRef>
       <span
         className="help-block"
       >
@@ -138,7 +138,7 @@ exports[`Component > Input Number renders correctly with invalid min value 1`] =
     <div
       className="form-group has-error"
     >
-      <Input
+      <ForwardRef
         id="some-number-2-input-5"
         min={5}
         name="someNumber2"
@@ -159,7 +159,7 @@ exports[`Component > Input Number renders correctly with invalid min value 1`] =
           type="text"
           value=""
         />
-      </Input>
+      </ForwardRef>
       <span
         className="help-block"
       >
@@ -205,7 +205,7 @@ exports[`Component > Input Text renders correctly 1`] = `
   name="someText"
   value="blah"
 >
-  <Input
+  <ForwardRef
     id="some-text-input-9"
     label="Enter text"
     name="someText"
