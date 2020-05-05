@@ -38,14 +38,15 @@ describe('Modifications', () => {
     cy.contains(modName)
     cy.findByRole('link', {name: /Add description/}).click()
     cy.findByLabelText('Description').type(description)
-    // scenarios // TODO check that these can be toggled properly
-    cy.findByLabelText(/Default/)
-    cy.findByLabelText(/scratch scenario/)
-    // go back and see if it saved
+    // scenarios
+    cy.findByLabelText(/Default/).uncheck({force: true})
+    cy.findByLabelText(/scratch scenario/).check({force: true})
+    // go back and check that everything saved
     cy.navTo(/Edit Modifications/)
     cy.openMod(modType, modName)
     cy.findByLabelText('Description').contains(description)
-    // TODO check scenarios are in same state
+    cy.findByLabelText(/Default/).should('not.be.checked')
+    cy.findByLabelText(/scratch scenario/).should('be.checked')
     cy.deleteThisMod()
   })
 
