@@ -1,12 +1,15 @@
 context('Network bundles', () => {
   before('prepare the region', () => {
-    cy.fixture('regions/scratch.json').as('region')
     cy.setupRegion('scratch')
+  })
+
+  beforeEach(() => {
+    cy.fixture('regions/scratch.json').as('region')
+    cy.navTo('Network Bundles')
   })
 
   it('with single feed can be uploaded and deleted', function () {
     let bundleName = 'temp bundle ' + Date.now()
-    cy.findByTitle('Network Bundles').click({force: true})
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type(bundleName)
@@ -59,5 +62,42 @@ context('Network bundles', () => {
     cy.location('pathname').should('match', /.*\/bundles$/)
     cy.findByText(/Select.../).click()
     cy.contains(bundleName).should('not.exist')
+  })
+
+  it('can reuse OSM and GTFS components', function () {
+    cy.setupBundle('scratch')
+    let bundleName = 'temp bundle ' + Date.now()
+    cy.findByText(/Create a new network bundle/).click()
+    cy.location('pathname').should('match', /.*\/bundles\/create$/)
+    cy.findByLabelText(/Bundle Name/i).type(bundleName)
+    cy.findByText(/Reuse existing OpenStreetMap/i).click()
+    cy.findByText(/network bundle to reuse OSM from/i)
+      .parent()
+      .select('scratch bundle')
+    cy.findByText(/Reuse existing GTFS/i).click()
+    cy.findByText(/network bundle to reuse GTFS from/i)
+      .parent()
+      .select('scratch bundle')
+    cy.findByRole('button', {name: /Create/})
+      .should('not.be.disabled')
+      .click()
+      .contains('Processing')
+      .should('exist')
+      .contains('Processing', {timeout: 30000})
+      .should('not.exist')
+    cy.location('pathname').should('match', /\/bundles\/.{24}$/)
+    //cy.findByLabelText(/Network bundle name/).invoke('val').then(val =>{
+    //  expect(val).to.eq(bundleName)
+    //})
+    cy.findByLabelText(/Feed #1/)
+      .invoke('val')
+      .then((val) => {
+        expect(val).to.eq(this.region.feedAgencyName)
+      })
+    cy.findByText(/Delete this network bundle/i).click()
+    cy.findByRole('alertdialog', 'Confirm')
+      .findByRole('button', {name: /Delete/})
+      .click()
+    cy.location('pathname').should('match', /.*\/bundles$/)
   })
 })

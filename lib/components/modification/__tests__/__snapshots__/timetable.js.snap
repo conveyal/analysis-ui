@@ -392,7 +392,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                 <div
                   className="form-group"
                 >
-                  <Input
+                  <ForwardRef
                     id="name-input-0"
                     name="Name"
                     onChange={[Function]}
@@ -407,7 +407,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       type="text"
                       value="Test timetable"
                     />
-                  </Input>
+                  </ForwardRef>
                 </div>
               </Group>
             </Text>
@@ -665,12 +665,14 @@ exports[`Component > Timetable renders correctly 2`] = `
                 </div>
               </Days>
               <MinutesSeconds
+                id="timetableFrequency"
                 label="Frequency"
                 onChange={[Function]}
                 seconds={900}
               >
                 <Group
                   className=""
+                  id="timetableFrequency"
                   label="Frequency"
                 >
                   <div
@@ -678,11 +680,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="frequency-input-8"
+                      htmlFor="timetableFrequency"
                     >
                       Frequency
                     </label>
-                    <Input
+                    <ForwardRef
+                      id="timetableFrequency"
                       onChange={[Function]}
                       type="text"
                       units="hh:mm:ss"
@@ -693,7 +696,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
-                          id="undefined-input-9"
+                          id="timetableFrequency"
                           onChange={[Function]}
                           type="text"
                           units="hh:mm:ss"
@@ -705,17 +708,19 @@ exports[`Component > Timetable renders correctly 2`] = `
                           hh:mm:ss
                         </span>
                       </div>
-                    </Input>
+                    </ForwardRef>
                   </div>
                 </Group>
               </MinutesSeconds>
               <TimePicker
+                id="timetableStartTime"
                 label="Start time"
                 onChange={[Function]}
                 value={28800}
               >
                 <Group
                   className=""
+                  id="timetableStartTime"
                   label="Start time"
                 >
                   <div
@@ -723,11 +728,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="start-time-input-10"
+                      htmlFor="timetableStartTime"
                     >
                       Start time
                     </label>
-                    <Input
+                    <ForwardRef
+                      id="timetableStartTime"
                       onChange={[Function]}
                       type="text"
                       units="hh:mm"
@@ -738,7 +744,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
-                          id="undefined-input-11"
+                          id="timetableStartTime"
                           onChange={[Function]}
                           type="text"
                           units="hh:mm"
@@ -750,17 +756,19 @@ exports[`Component > Timetable renders correctly 2`] = `
                           hh:mm
                         </span>
                       </div>
-                    </Input>
+                    </ForwardRef>
                   </div>
                 </Group>
               </TimePicker>
               <TimePicker
+                id="timetableEndTime"
                 label="End time"
                 onChange={[Function]}
                 value={57600}
               >
                 <Group
                   className=""
+                  id="timetableEndTime"
                   label="End time"
                 >
                   <div
@@ -768,11 +776,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="end-time-input-12"
+                      htmlFor="timetableEndTime"
                     >
                       End time
                     </label>
-                    <Input
+                    <ForwardRef
+                      id="timetableEndTime"
                       onChange={[Function]}
                       type="text"
                       units="hh:mm"
@@ -783,7 +792,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
-                          id="undefined-input-13"
+                          id="timetableEndTime"
                           onChange={[Function]}
                           type="text"
                           units="hh:mm"
@@ -795,7 +804,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                           hh:mm
                         </span>
                       </div>
-                    </Input>
+                    </ForwardRef>
                   </div>
                 </Group>
               </TimePicker>
@@ -809,12 +818,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                   className="checkbox"
                 >
                   <label
-                    htmlFor="times-are-exact-input-14"
+                    htmlFor="times-are-exact-input-8"
                   >
                     <input
                       checked={false}
                       disabled={false}
-                      id="times-are-exact-input-14"
+                      id="times-are-exact-input-8"
                       label="Times are exact"
                       onChange={[Function]}
                       type="checkbox"
@@ -920,6 +929,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                   </Heading>
                 </H5>
                 <Group
+                  id="phaseAtStop"
                   label="Phase at stop"
                 >
                   <div
@@ -927,13 +937,14 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="phase-at-stop-input-15"
+                      htmlFor="phaseAtStop"
                     >
                       Phase at stop
                     </label>
                     <S
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
+                      inputId="phaseAtStop"
                       isClearable={true}
                       isDisabled={false}
                       name="Phase at stop"
@@ -944,6 +955,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       <ForwardRef(LoadableComponent)
                         getOptionLabel={[Function]}
                         getOptionValue={[Function]}
+                        inputId="phaseAtStop"
                         isClearable={true}
                         isDisabled={false}
                         name="Phase at stop"
@@ -1015,12 +1027,14 @@ exports[`Component > Timetable renders correctly 2`] = `
                 </Box>
               </P>
               <MinutesSeconds
+                id="dwellTime"
                 label="Default dwell time"
                 onChange={[Function]}
                 seconds={10}
               >
                 <Group
                   className=""
+                  id="dwellTime"
                   label="Default dwell time"
                 >
                   <div
@@ -1028,11 +1042,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="default-dwell-time-input-16"
+                      htmlFor="dwellTime"
                     >
                       Default dwell time
                     </label>
-                    <Input
+                    <ForwardRef
+                      id="dwellTime"
                       onChange={[Function]}
                       type="text"
                       units="hh:mm:ss"
@@ -1043,7 +1058,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
-                          id="undefined-input-17"
+                          id="dwellTime"
                           onChange={[Function]}
                           type="text"
                           units="hh:mm:ss"
@@ -1055,7 +1070,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                           hh:mm:ss
                         </span>
                       </div>
-                    </Input>
+                    </ForwardRef>
                   </div>
                 </Group>
               </MinutesSeconds>
@@ -1143,7 +1158,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                 value={15}
               >
                 <Group
-                  id="average-speed-along-added-segments-input-18"
+                  id="average-speed-along-added-segments-input-9"
                   label="Average speed (along added segments)"
                   min={1}
                   onChange={[Function]}
@@ -1155,12 +1170,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="average-speed-along-added-segments-input-18"
+                      htmlFor="average-speed-along-added-segments-input-9"
                     >
                       Average speed (along added segments)
                     </label>
-                    <Input
-                      id="average-speed-along-added-segments-input-18"
+                    <ForwardRef
+                      id="average-speed-along-added-segments-input-9"
                       label="Average speed (along added segments)"
                       min={1}
                       onChange={[Function]}
@@ -1174,7 +1189,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
-                          id="average-speed-along-added-segments-input-18"
+                          id="average-speed-along-added-segments-input-9"
                           label="Average speed (along added segments)"
                           min={1}
                           onChange={[Function]}
@@ -1190,17 +1205,19 @@ exports[`Component > Timetable renders correctly 2`] = `
                           km/h
                         </span>
                       </div>
-                    </Input>
+                    </ForwardRef>
                   </div>
                 </Group>
               </NumberInput>
               <MinutesSeconds
+                id="totalMovingTime"
                 label="Total moving time (along added segments)"
                 onChange={[Function]}
                 seconds={0}
               >
                 <Group
                   className=""
+                  id="totalMovingTime"
                   label="Total moving time (along added segments)"
                 >
                   <div
@@ -1208,11 +1225,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                   >
                     <label
                       className="control-label"
-                      htmlFor="total-moving-time-along-added-segments-input-19"
+                      htmlFor="totalMovingTime"
                     >
                       Total moving time (along added segments)
                     </label>
-                    <Input
+                    <ForwardRef
+                      id="totalMovingTime"
                       onChange={[Function]}
                       type="text"
                       units="hh:mm:ss"
@@ -1223,7 +1241,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
-                          id="undefined-input-20"
+                          id="totalMovingTime"
                           onChange={[Function]}
                           type="text"
                           units="hh:mm:ss"
@@ -1235,7 +1253,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                           hh:mm:ss
                         </span>
                       </div>
-                    </Input>
+                    </ForwardRef>
                   </div>
                 </Group>
               </MinutesSeconds>

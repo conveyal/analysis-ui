@@ -5,8 +5,8 @@ describe('Region setup', () => {
     // be on the region setup page
     cy.visit('/regions/create')
     // alias all inputs
-    cy.findByPlaceholderText('Region Name').as('name')
-    cy.findByPlaceholderText('Description').as('description')
+    cy.findByLabelText(/Region Name/).as('name')
+    cy.findByLabelText('Description').as('description')
     cy.findByLabelText(/North bound/).as('North')
     cy.findByLabelText(/South bound/).as('South')
     cy.findByLabelText(/East bound/).as('East')
@@ -105,18 +105,16 @@ describe('Region setup', () => {
     cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
-    cy.findByTitle('Regions').click({force: true})
-    cy.location('pathname').should('eq', '/')
+    cy.navTo('Regions')
     cy.findByText(regionName).click()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
-    cy.findByTitle('Region Settings').click({force: true})
-    cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
+    cy.navTo('Region Settings')
     cy.contains('Edit region')
     // settings are saved correctly
     // redeclaration is necessary to prevent the page from reloading... :-(
-    cy.findByPlaceholderText('Region Name').as('name')
-    cy.findByPlaceholderText('Description').as('description')
+    cy.findByLabelText(/Region Name/).as('name')
+    cy.findByLabelText(/Description/).as('description')
     cy.findByLabelText(/North bound/).as('North')
     cy.findByLabelText(/South bound/).as('South')
     cy.findByLabelText(/East bound/).as('East')
