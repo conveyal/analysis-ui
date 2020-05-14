@@ -7,7 +7,6 @@ const withMDX = require('@zeit/next-mdx')({
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
-const path = require('path')
 const webpack = require('webpack')
 
 if (process.env.API_URL === undefined) {
@@ -53,9 +52,6 @@ ${Object.keys(env).join(', ')}
       pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
       env,
       webpack: (config) => {
-        // Allow `import 'lib/message'`
-        config.resolve.alias['lib'] = path.join(__dirname, 'lib')
-
         // ESLint on build
         config.module.rules.push({
           test: /\.js$/,
