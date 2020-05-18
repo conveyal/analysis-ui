@@ -13,7 +13,7 @@
     "docs": "cd docs && mkdocs serve",
     "cypress:run": "cypress run",
     "format": "prettier --write \"cypress/**/*.js\" \"db/**/*.js\" \"lib/**/*.js\" \"migrations/**/*.js\" \"pages/**/*.js\"",
-    "jest": "jest --runInBand --detectOpenHandles --forceExit",
+    "jest": "jest",
     "lint": "eslint cypress/ db/ lib/ migrations/ pages/",
     "migrate": "migrate --store=./db/migrations-store.js --env=.env",
     "now-build": "next build",
@@ -124,6 +124,7 @@
     "swr": "^0.2.0",
     "tiny-lru": "^7.0.2",
     "uuid": "^7.0.3",
+    "whatwg-fetch": "^3.0.0",
     "xorshift": "^1.1.1"
   },
   "devDependencies": {
