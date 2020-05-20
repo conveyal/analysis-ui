@@ -17,11 +17,17 @@ import {EditControl} from 'react-leaflet-draw'
 import type {FeatureCollection, Polygon} from 'geojson'
 
 import {BICYCLE, CAR, WALK} from 'lib/constants'
+import colors from 'lib/constants/colors'
 import useControlledInput from 'lib/hooks/use-controlled-input'
+import useModification from 'lib/hooks/use-modification'
 
 const drawSettings = {
   polyline: false,
-  polygon: true,
+  polygon: {
+    shapeOptions: {
+      color: colors.MODIFIED
+    }
+  },
   rectangle: false,
   circle: false,
   marker: false,
@@ -41,37 +47,41 @@ const isValidFloat = (v: any) => {
 /**
  * Must be rendered in a MapLayout
  */
-export default function ModifyStreets(p) {
+export default function ModifyStreets() {
   const featureGroupRef: MutableRefObject<FeatureGroup> = useRef()
-  const m = p.modification
+  const [m, update] = useModification()
 
   // Add the existing layers to the map on initial load
   useEffect(() => {
     if (featureGroupRef.current) {
-      const geojson = new L.GeoJSON(
-        L.GeoJSON.asFeature({
-          type: 'GeometryCollection',
-          geometries: m.polygons.map((p: number[]) => ({
+      m.polygons.forEach((coordinates) => {
+        const layer = new L.GeoJSON(
+          L.GeoJSON.asFeature({
             type: 'Polygon',
-            coordinates: [p]
-          }))
-        })
-      )
-      geojson.eachLayer((l) =>
-        featureGroupRef.current.leafletElement.addLayer(l)
-      )
+            coordinates: [coordinates] // polygons allow holes
+          }),
+          {
+            style: {
+              color: colors.MODIFIED
+            }
+          }
+        )
+        layer.eachLayer((l) =>
+          featureGroupRef.current.leafletElement.addLayer(l)
+        )
+      })
     }
   }, [featureGroupRef])
 
   const updateFloat = (name: string) => (value: any) => {
-    p.update({[name]: parseFloat(value)})
+    update({[name]: parseFloat(value)})
   }
 
   const updateMode = (mode: string) => (on: boolean) => {
     const modes = new Set(m.allowedModes)
     if (on) modes.add(mode)
     else modes.delete(mode)
-    p.update({allowedModes: Array.from(modes)})
+    update({allowedModes: Array.from(modes)})
   }
 
   const bikeSwitch: any = useControlledInput(
@@ -84,7 +94,7 @@ export default function ModifyStreets(p) {
     isValidFloat
   )
   const bikeLts: any = useControlledInput(m.bikeLts, (v: any) =>
-    p.update({bikeLts: parseInt(v)})
+    update({bikeLts: parseInt(v)})
   )
 
   const carSwitch: any = useControlledInput(
@@ -113,12 +123,13 @@ export default function ModifyStreets(p) {
     if (isFeatureCollection(featureCollection)) {
       const polygons = featureCollection.features
         .filter((feature) => {
-          const polygon = feature.geometry as Polygon
-          const coordinates = polygon.coordinates || []
-          return coordinates.length > 0 && coordinates[0].length > 1
+          if (feature.geometry.type === 'Polygon') {
+            const coordinates = feature.geometry.coordinates || []
+            return coordinates.length > 0 && coordinates[0].length > 1
+          }
         })
         .map((feature) => (feature.geometry as Polygon).coordinates[0]) // holes are not allowed?
-      p.update({polygons})
+      update({polygons})
     }
   }
 

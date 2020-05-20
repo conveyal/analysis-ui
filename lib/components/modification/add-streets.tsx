@@ -18,6 +18,7 @@ import type {FeatureCollection, LineString} from 'geojson'
 
 import {BICYCLE, CAR, WALK} from 'lib/constants'
 import useControlledInput from 'lib/hooks/use-controlled-input'
+import useModification from 'lib/hooks/use-modification'
 
 const drawSettings = {
   polyline: true,
@@ -41,34 +42,36 @@ const isValidFloat = (v: any) => {
 /**
  * Must be rendered in a MapLayout
  */
-export default function AddStreets(p) {
+export default function AddStreets() {
   const featureGroupRef: MutableRefObject<FeatureGroup> = useRef()
-  const m = p.modification
+  const [m, update] = useModification()
 
   // Add the existing layers to the map on initial load
   useEffect(() => {
     if (featureGroupRef.current) {
-      const geojson = new L.GeoJSON(
-        L.GeoJSON.asFeature({
-          type: 'MultiLineString',
-          coordinates: m.lineStrings
-        })
-      )
-      geojson.eachLayer((l) =>
-        featureGroupRef.current.leafletElement.addLayer(l)
-      )
+      m.lineStrings.forEach((coordinates) => {
+        const layer = new L.GeoJSON(
+          L.GeoJSON.asFeature({
+            type: 'LineString',
+            coordinates
+          })
+        )
+        layer.eachLayer((l) =>
+          featureGroupRef.current.leafletElement.addLayer(l)
+        )
+      })
     }
   }, [featureGroupRef])
 
   const updateFloat = (name: string) => (value: any) => {
-    p.update({[name]: parseFloat(value)})
+    update({[name]: parseFloat(value)})
   }
 
   const updateMode = (mode: string) => (on: boolean) => {
     const modes = new Set(m.allowedModes)
     if (on) modes.add(mode)
     else modes.delete(mode)
-    p.update({allowedModes: Array.from(modes)})
+    update({allowedModes: Array.from(modes)})
   }
 
   const bikeSwitch: any = useControlledInput(
@@ -81,7 +84,7 @@ export default function AddStreets(p) {
     isValidFloat
   )
   const bikeLts: any = useControlledInput(m.bikeLts, (v: any) =>
-    p.update({bikeLts: parseInt(v)})
+    update({bikeLts: parseInt(v)})
   )
 
   const carSwitch: any = useControlledInput(
@@ -107,15 +110,16 @@ export default function AddStreets(p) {
   // Handle create, delete, and edit
   const onGeometryChange = (name: string) => () => {
     const featureCollection = featureGroupRef.current.leafletElement.toGeoJSON()
-    console.log(name, featureCollection)
     if (isFeatureCollection(featureCollection)) {
       const lineStrings = featureCollection.features
         .filter((feature) => {
-          const lineString = feature.geometry as LineString
-          return (lineString.coordinates || []).length > 1
+          if (feature.geometry.type === 'LineString') {
+            return (feature.geometry.coordinates || []).length > 1
+          }
+          return false
         })
         .map((feature) => (feature.geometry as LineString).coordinates)
-      p.update({lineStrings})
+      update({lineStrings})
     }
   }
 
