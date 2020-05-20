@@ -1,5 +1,5 @@
 import ms from 'ms'
-import {useCallback} from 'react'
+import {useCallback, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {updateModification as updateModificationAction} from '../actions/modifications'
@@ -14,13 +14,21 @@ const tenSeconds = ms('10s')
  */
 export default function useModification() {
   const dispatch = useDispatch()
-  const modification = useSelector(selectModification)
+  const storedModification = useSelector(selectModification)
+  const [modification, setModification] = useState(storedModification)
+
   const updateModification = useCallback(
-    (newParameters) => {
-      dispatch(updateModificationAction({...modification, ...newParameters}))
-    },
-    [dispatch, modification]
+    (modification) => dispatch(updateModificationAction(modification)),
+    [dispatch] // should never change
   )
-  const update = useDebounced(updateModification, tenSeconds)
-  return [modification, update]
+  const debouncedUpdate = useDebounced(updateModification, tenSeconds)
+
+  return [
+    modification,
+    (newParameters: any) => {
+      const newModification = {...modification, ...newParameters}
+      setModification(newModification) // immediate
+      debouncedUpdate(newModification) // debounced
+    }
+  ]
 }
