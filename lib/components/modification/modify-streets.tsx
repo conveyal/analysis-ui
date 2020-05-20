@@ -50,8 +50,11 @@ export default function ModifyStreets(p) {
     if (featureGroupRef.current) {
       const geojson = new L.GeoJSON(
         L.GeoJSON.asFeature({
-          type: 'MultiPolygon',
-          coordinates: m.polygons
+          type: 'GeometryCollection',
+          geometries: m.polygons.map((p: number[]) => ({
+            type: 'Polygon',
+            coordinates: [p]
+          }))
         })
       )
       geojson.eachLayer((l) =>
@@ -111,9 +114,10 @@ export default function ModifyStreets(p) {
       const polygons = featureCollection.features
         .filter((feature) => {
           const polygon = feature.geometry as Polygon
-          return (polygon.coordinates || []).length > 1
+          const coordinates = polygon.coordinates || []
+          return coordinates.length > 0 && coordinates[0].length > 1
         })
-        .map((feature) => (feature.geometry as Polygon).coordinates)
+        .map((feature) => (feature.geometry as Polygon).coordinates[0]) // holes are not allowed?
       p.update({polygons})
     }
   }
