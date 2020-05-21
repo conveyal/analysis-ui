@@ -10,7 +10,7 @@ import {
   Switch
 } from '@chakra-ui/core'
 import L from 'leaflet'
-import {useRef, MutableRefObject, useEffect} from 'react'
+import {useRef, MutableRefObject, useEffect, useCallback} from 'react'
 import {FeatureGroup} from 'react-leaflet'
 import {EditControl} from 'react-leaflet-draw'
 
@@ -118,20 +118,22 @@ export default function ModifyStreets() {
   )
 
   // Handle create, delete, and edit
-  const onGeometryChange = (name: string) => () => {
-    const featureCollection = featureGroupRef.current.leafletElement.toGeoJSON()
-    if (isFeatureCollection(featureCollection)) {
-      const polygons = featureCollection.features
-        .filter((feature) => {
-          if (feature.geometry.type === 'Polygon') {
-            const coordinates = feature.geometry.coordinates || []
-            return coordinates.length > 0 && coordinates[0].length > 1
-          }
-        })
-        .map((feature) => (feature.geometry as Polygon).coordinates[0]) // holes are not allowed?
-      update({polygons})
+  const onGeometryChange = useCallback(() => {
+    if (featureGroupRef.current) {
+      const featureCollection = featureGroupRef.current.leafletElement.toGeoJSON()
+      if (isFeatureCollection(featureCollection)) {
+        const polygons = featureCollection.features
+          .filter((feature) => {
+            if (feature.geometry.type === 'Polygon') {
+              const coordinates = feature.geometry.coordinates || []
+              return coordinates.length > 0 && coordinates[0].length > 1
+            }
+          })
+          .map((feature) => (feature.geometry as Polygon).coordinates[0]) // holes are not allowed?
+        update({polygons})
+      }
     }
-  }
+  }, [featureGroupRef, update])
 
   return (
     <>
@@ -139,9 +141,9 @@ export default function ModifyStreets() {
         <EditControl
           draw={drawSettings}
           position='topright'
-          onCreated={onGeometryChange('onCreated')}
-          onDeleted={onGeometryChange('onDeleted')}
-          onEdited={onGeometryChange('onEdited')}
+          onCreated={onGeometryChange}
+          onDeleted={onGeometryChange}
+          onEdited={onGeometryChange}
         />
       </FeatureGroup>
 

@@ -10,7 +10,7 @@ import {
   Switch
 } from '@chakra-ui/core'
 import L from 'leaflet'
-import {useRef, MutableRefObject, useEffect} from 'react'
+import {useCallback, useEffect, useRef, MutableRefObject} from 'react'
 import {FeatureGroup} from 'react-leaflet'
 import {EditControl} from 'react-leaflet-draw'
 
@@ -108,30 +108,32 @@ export default function AddStreets() {
   )
 
   // Handle create, delete, and edit
-  const onGeometryChange = (name: string) => () => {
-    const featureCollection = featureGroupRef.current.leafletElement.toGeoJSON()
-    if (isFeatureCollection(featureCollection)) {
-      const lineStrings = featureCollection.features
-        .filter((feature) => {
-          if (feature.geometry.type === 'LineString') {
-            return (feature.geometry.coordinates || []).length > 1
-          }
-          return false
-        })
-        .map((feature) => (feature.geometry as LineString).coordinates)
-      update({lineStrings})
+  const onGeometryChange = useCallback(() => {
+    if (featureGroupRef.current) {
+      const featureCollection = featureGroupRef.current.leafletElement.toGeoJSON()
+      if (isFeatureCollection(featureCollection)) {
+        const lineStrings = featureCollection.features
+          .filter((feature) => {
+            if (feature.geometry.type === 'LineString') {
+              return (feature.geometry.coordinates || []).length > 1
+            }
+            return false
+          })
+          .map((feature) => (feature.geometry as LineString).coordinates)
+        update({lineStrings})
+      }
     }
-  }
+  }, [featureGroupRef, update])
 
   return (
     <>
-      <FeatureGroup ref={featureGroupRef}>
+      <FeatureGroup key='add-streets-feature' ref={featureGroupRef}>
         <EditControl
           draw={drawSettings}
           position='topright'
-          onCreated={onGeometryChange('onCreated')}
-          onDeleted={onGeometryChange('onDeleted')}
-          onEdited={onGeometryChange('onEdited')}
+          onCreated={onGeometryChange}
+          onDeleted={onGeometryChange}
+          onEdited={onGeometryChange}
         />
       </FeatureGroup>
 
