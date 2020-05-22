@@ -6,30 +6,31 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
-function pseudoFixture(regionName) {
+function pseudoFixture(fixtureName) {
   // this is a file used to store randomly generated UUIDs associated with
   // objects in order to look them up efficiently across tests without resorting
   // to unecessary UI interaction in the 'before' hook
-  return `cypress/fixtures/regions/.${regionName}.json`
+  return `cypress/fixtures/regions/.${fixtureName}.json`
 }
 
-Cypress.Commands.add('setupRegion', (regionName) => {
+Cypress.Commands.add('setupRegion', (fixtureName) => {
   // set up the named region from fixtures if necessary
-  cy.task('touch', pseudoFixture(regionName))
-  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
+  cy.task('touch', pseudoFixture(fixtureName))
+  cy.readFile(pseudoFixture(fixtureName), {log: false}).then((IDs) => {
     if ('regionId' in IDs) {
       cy.visit(`/regions/${IDs.regionId}`)
       cy.contains(/Create new Project|Upload a .* Bundle/i)
     } else {
-      createNewRegion(regionName)
+      createNewRegion(fixtureName)
     }
   })
 })
 
-function createNewRegion(regionName) {
+function createNewRegion(fixtureName) {
+  let regionName = Cypress.env('dataPrefix') + fixtureName
   cy.visit('/regions/create')
   cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
-  cy.fixture('regions/' + regionName + '.json').then((region) => {
+  cy.fixture('regions/' + fixtureName + '.json').then((region) => {
     cy.findByLabelText(/North bound/)
       .clear()
       .type(region.north, {delay: 1})
@@ -50,34 +51,34 @@ function createNewRegion(regionName) {
     .should('match', /regions\/\w{24}$/)
     .then((path) => {
       let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
-      cy.writeFile(pseudoFixture(regionName), {regionId: matches.groups.uuid})
+      cy.writeFile(pseudoFixture(fixtureName), {regionId: matches.groups.uuid})
     })
 }
 
-Cypress.Commands.add('setupBundle', (regionName) => {
-  cy.task('touch', pseudoFixture(regionName))
-  cy.readFile(pseudoFixture(regionName)).then((IDs) => {
+Cypress.Commands.add('setupBundle', (fixtureName) => {
+  cy.task('touch', pseudoFixture(fixtureName))
+  cy.readFile(pseudoFixture(fixtureName)).then((IDs) => {
     if ('bundleId' in IDs) {
       cy.visit(`/regions/${IDs.regionId}/bundles/${IDs.bundleId}`)
       cy.contains(/create a new network bundle/i)
     } else if ('regionId' in IDs) {
       // no bundle, but region exists
       cy.visit(`/regions/${IDs.regionId}/bundles`)
-      createNewBundle(regionName)
+      createNewBundle(fixtureName)
     } else {
-      cy.setupRegion(regionName)
-      cy.setupBundle(regionName)
+      cy.setupRegion(fixtureName)
+      cy.setupBundle(fixtureName)
     }
   })
 })
 
-function createNewBundle(regionName) {
-  let bundleName = regionName + ' bundle'
+function createNewBundle(fixtureName) {
+  let bundleName = Cypress.env('dataPrefix') + fixtureName + ' bundle'
   cy.findByText(/Create .* bundle/).click()
   cy.location('pathname').should('match', /\/bundles\/create$/)
   cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
   cy.findByText(/Upload new OpenStreetMap/i).click()
-  cy.fixture('regions/' + regionName + '.json').then((region) => {
+  cy.fixture('regions/' + fixtureName + '.json').then((region) => {
     cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
       cy.findByLabelText(/Select PBF file/i).upload({
         fileContent,
@@ -109,32 +110,32 @@ function createNewBundle(regionName) {
     .should('match', /bundles\/\w{24}$/)
     .then((path) => {
       let matches = path.match(/\w{24}$/)
-      cy.readFile(pseudoFixture(regionName)).then((contents) => {
+      cy.readFile(pseudoFixture(fixtureName)).then((contents) => {
         contents = {...contents, bundleId: matches[0]}
-        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
+        cy.writeFile(pseudoFixture(fixtureName), contents, {log: false})
       })
     })
 }
 
-Cypress.Commands.add('setupProject', (regionName) => {
-  cy.task('touch', pseudoFixture(regionName))
-  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
+Cypress.Commands.add('setupProject', (fixtureName) => {
+  cy.task('touch', pseudoFixture(fixtureName))
+  cy.readFile(pseudoFixture(fixtureName), {log: false}).then((IDs) => {
     if ('projectId' in IDs) {
       cy.visit(`/regions/${IDs.regionId}/projects/${IDs.projectId}`)
       cy.contains(/Create a modification/i)
     } else if ('bundleId' in IDs) {
       cy.visit(`/regions/${IDs.regionId}/projects`)
-      createNewProject(regionName)
+      createNewProject(fixtureName)
     } else {
-      cy.setupBundle(regionName)
-      cy.setupProject(regionName)
+      cy.setupBundle(fixtureName)
+      cy.setupProject(fixtureName)
     }
   })
 })
 
-function createNewProject(regionName) {
-  let projectName = regionName + ' project'
-  let bundleName = regionName + ' bundle'
+function createNewProject(fixtureName) {
+  let projectName = Cypress.env('dataPrefix') + fixtureName + ' project'
+  let bundleName = Cypress.env('dataPrefix') + fixtureName + ' bundle'
   cy.contains('Create new Project')
   cy.findByText(/Create new Project/i).click()
   cy.location('pathname').should('match', /\/create-project/)
@@ -150,9 +151,9 @@ function createNewProject(regionName) {
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
       let projectId = path.match(/\w{24}$/)[0]
-      cy.readFile(pseudoFixture(regionName), {log: false}).then((contents) => {
+      cy.readFile(pseudoFixture(fixtureName), {log: false}).then((contents) => {
         contents = {...contents, projectId: projectId}
-        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
+        cy.writeFile(pseudoFixture(fixtureName), contents, {log: false})
       })
     })
 }
@@ -325,8 +326,8 @@ Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
     })
 })
 
-Cypress.Commands.add('mapContainsRegion', (regionName) => {
-  cy.fixture('regions/' + regionName + '.json').then((region) => {
+Cypress.Commands.add('mapContainsRegion', (fixtureName) => {
+  cy.fixture('regions/' + fixtureName + '.json').then((region) => {
     cy.window()
       .its('LeafletMap')
       .then((map) => {
