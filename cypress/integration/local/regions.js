@@ -76,9 +76,7 @@ describe('Region setup', () => {
     regions.forEach((r) => {
       cy.get('@search').focus().clear().type(r.searchTerm)
       cy.findByText(r.findText).click()
-      cy.distanceFromMapCenter([r.lat, r.lon]).then((offset) => {
-        expect(offset).to.be.lessThan(maxOffset)
-      })
+      cy.mapCenteredOn([r.lat, r.lon], maxOffset)
     })
   })
 
@@ -91,9 +89,7 @@ describe('Region setup', () => {
     // search for region by name
     cy.get('@search').focus().clear().type(this.region.searchTerm)
     cy.findByText(this.region.foundName).click()
-    cy.distanceFromMapCenter([39.1, -84.5]).then((offset) => {
-      expect(offset).to.be.lessThan(10000)
-    })
+    cy.mapCenteredOn([39.1, -84.5], 10000)
     // Enter exact coordinates
     cy.get('@North').clear().type(this.region.north)
     cy.get('@South').clear().type(this.region.south)
@@ -110,8 +106,6 @@ describe('Region setup', () => {
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
     cy.navTo('Region Settings')
-    cy.contains('Edit region')
-    // settings are saved correctly
     // redeclaration is necessary to prevent the page from reloading... :-(
     cy.findByLabelText(/Region Name/).as('name')
     cy.findByLabelText(/Description/).as('description')
@@ -119,10 +113,9 @@ describe('Region setup', () => {
     cy.findByLabelText(/South bound/).as('South')
     cy.findByLabelText(/East bound/).as('East')
     cy.findByLabelText(/West bound/).as('West')
-
+    // check setting values
     cy.get('@name').should('have.value', regionName)
     cy.get('@description').should('have.value', this.region.description)
-
     // coordinate values are rounded to match analysis grid
     let maxError = 0.02
     cy.get('@North')
@@ -149,6 +142,7 @@ describe('Region setup', () => {
         let roundingError = Math.abs(Number(val) - this.region.west)
         expect(roundingError).to.be.lessThan(maxError)
       })
+    cy.mapContainsRegion('scratch')
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()

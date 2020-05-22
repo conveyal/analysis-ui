@@ -6,108 +6,168 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
+function pseudoFixture(regionName) {
+  // this is a file used to store randomly generated UUIDs associated with
+  // objects in order to look them up efficiently across tests without resorting
+  // to unecessary UI interaction in the 'before' hook
+  return `cypress/fixtures/regions/.${regionName}.json`
+}
+
 Cypress.Commands.add('setupRegion', (regionName) => {
-  // set up the named region if it doesn't already exist
-  cy.visit('/')
-  cy.get('body').then((body) => {
-    if (body.text().includes(regionName)) {
-      cy.findByText(regionName).click()
+  // set up the named region from fixtures if necessary
+  cy.task('touch', pseudoFixture(regionName))
+  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
+    if ('regionId' in IDs) {
+      cy.visit(`/regions/${IDs.regionId}`)
+      cy.contains(/Create new Project|Upload a .* Bundle/i)
     } else {
-      cy.visit('/regions/create')
-      cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
-      cy.fixture('regions/' + regionName + '.json').then((region) => {
-        cy.findByLabelText(/North bound/)
-          .clear()
-          .type(region.north, {delay: 1})
-        cy.findByLabelText(/South bound/)
-          .clear()
-          .type(region.south, {delay: 1})
-        cy.findByLabelText(/West bound/)
-          .clear()
-          .type(region.west, {delay: 1})
-        cy.findByLabelText(/East bound/)
-          .clear()
-          .type(region.east, {delay: 1})
-      })
-      cy.findByRole('button', {name: /Set up a new region/}).click()
+      createNewRegion(regionName)
     }
   })
-  cy.location('pathname').should('match', /\/regions\/.{24}/)
 })
 
+function createNewRegion(regionName) {
+  cy.visit('/regions/create')
+  cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
+  cy.fixture('regions/' + regionName + '.json').then((region) => {
+    cy.findByLabelText(/North bound/)
+      .clear()
+      .type(region.north, {delay: 1})
+    cy.findByLabelText(/South bound/)
+      .clear()
+      .type(region.south, {delay: 1})
+    cy.findByLabelText(/West bound/)
+      .clear()
+      .type(region.west, {delay: 1})
+    cy.findByLabelText(/East bound/)
+      .clear()
+      .type(region.east, {delay: 1})
+  })
+  cy.findByRole('button', {name: /Set up a new region/}).click()
+  cy.contains(/Upload a new network bundle|create new project/i)
+  // store the region UUID for later
+  cy.location('pathname')
+    .should('match', /regions\/\w{24}$/)
+    .then((path) => {
+      let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
+      cy.writeFile(pseudoFixture(regionName), {regionId: matches.groups.uuid})
+    })
+}
+
 Cypress.Commands.add('setupBundle', (regionName) => {
-  cy.setupRegion(regionName)
+  cy.task('touch', pseudoFixture(regionName))
+  cy.readFile(pseudoFixture(regionName)).then((IDs) => {
+    if ('bundleId' in IDs) {
+      cy.visit(`/regions/${IDs.regionId}/bundles/${IDs.bundleId}`)
+      cy.contains(/create a new network bundle/i)
+    } else if ('regionId' in IDs) {
+      // no bundle, but region exists
+      cy.visit(`/regions/${IDs.regionId}/bundles`)
+      createNewBundle(regionName)
+    } else {
+      cy.setupRegion(regionName)
+      cy.setupBundle(regionName)
+    }
+  })
+})
+
+function createNewBundle(regionName) {
   let bundleName = regionName + ' bundle'
+  cy.findByText(/Create .* bundle/).click()
+  cy.location('pathname').should('match', /\/bundles\/create$/)
+  cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
+  cy.findByText(/Upload new OpenStreetMap/i).click()
+  cy.fixture('regions/' + regionName + '.json').then((region) => {
+    cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
+      cy.findByLabelText(/Select PBF file/i).upload({
+        fileContent,
+        fileName: region.PBFfile,
+        encoding: 'base64',
+        mimeType: 'application/octet-stream'
+      })
+    })
+    cy.findByText(/Upload new GTFS/i).click()
+    cy.fixture(region.GTFSfile, {encoding: 'base64'}).then((fileContent) => {
+      cy.findByLabelText(/Select .*GTFS/i).upload({
+        fileContent,
+        fileName: region.GTFSfile,
+        encoding: 'base64',
+        mimeType: 'application/octet-stream'
+      })
+    })
+  })
+  cy.findByRole('button', {name: /Create/i}).click()
+  cy.findByText(/Processing/)
+  cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
+  // go back and grab the UUID
   cy.navTo('Network Bundles')
-  cy.location('pathname').should('match', /\/bundles$/)
-  cy.contains('or select an existing one')
   cy.findByText(/Select.../)
     .parent()
     .click()
-  // wait for options to load before getting body text
-  cy.contains(RegExp(bundleName + '|No options', 'i'))
-  cy.get('body').then((body) => {
-    if (body.text().includes(bundleName)) {
-      // bundle already exists. do nothing
-    } else {
-      cy.findByText(/Create .* bundle/).click()
-      cy.location('pathname').should('match', /\/bundles\/create$/)
-      cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
-      cy.findByText(/Upload new OpenStreetMap/i).click()
-      cy.fixture('regions/' + regionName + '.json').then((region) => {
-        cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
-          cy.findByLabelText(/Select PBF file/i).upload({
-            encoding: 'base64',
-            fileContent,
-            fileName: region.PBFfile,
-            mimeType: 'application/octet-stream'
-          })
-        })
-        cy.findByText(/Upload new GTFS/i).click()
-        cy.fixture(region.GTFSfile, {encoding: 'base64'}).then(
-          (fileContent) => {
-            cy.findByLabelText(/Select .*GTFS/i).upload({
-              encoding: 'base64',
-              fileContent,
-              fileName: region.GTFSfile,
-              mimeType: 'application/octet-stream'
-            })
-          }
-        )
+    .type(bundleName + '{enter}')
+  cy.location('pathname')
+    .should('match', /bundles\/\w{24}$/)
+    .then((path) => {
+      let matches = path.match(/\w{24}$/)
+      cy.readFile(pseudoFixture(regionName)).then((contents) => {
+        contents = {...contents, bundleId: matches[0]}
+        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
       })
-      cy.findByRole('button', {name: /Create/i}).click()
-      cy.findByText(/Processing/)
-      cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
-      cy.navTo('Network Bundles')
-    }
-  })
-  cy.location('pathname').should('match', /.*\/bundles$/)
-})
+    })
+}
 
 Cypress.Commands.add('setupProject', (regionName) => {
-  cy.setupBundle(regionName)
-  let projectName = regionName + ' project'
-  cy.navTo('Projects')
-  cy.contains('Create new Project')
-  cy.get('body').then((body) => {
-    if (body.text().includes(projectName)) {
-      // project already exists; just select it
-      cy.findByText(projectName).click()
+  cy.task('touch', pseudoFixture(regionName))
+  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
+    if ('projectId' in IDs) {
+      cy.visit(`/regions/${IDs.regionId}/projects/${IDs.projectId}`)
+      cy.contains(/Create a modification/i)
+    } else if ('bundleId' in IDs) {
+      cy.visit(`/regions/${IDs.regionId}/projects`)
+      createNewProject(regionName)
     } else {
-      // project needs to be created
-      let bundleName = regionName + ' bundle'
-      cy.findByText(/Create new Project/i).click()
-      cy.location('pathname').should('match', /\/create-project/)
-      cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
-      cy.findByLabelText(/Associated network bundle/i).click()
-      cy.findByText(bundleName).click()
-      cy.get('a.btn')
-        .contains(/Create/)
-        .click()
+      cy.setupBundle(regionName)
+      cy.setupProject(regionName)
     }
   })
-  cy.location('pathname').should('match', /\/projects\/.{24}$/)
-  cy.contains(/Modifications/)
+})
+
+function createNewProject(regionName) {
+  let projectName = regionName + ' project'
+  let bundleName = regionName + ' bundle'
+  cy.contains('Create new Project')
+  cy.findByText(/Create new Project/i).click()
+  cy.location('pathname').should('match', /\/create-project/)
+  cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
+  cy.findByLabelText(/Associated network bundle/i).click()
+  cy.findByText(bundleName).click()
+  cy.get('a.btn')
+    .contains(/Create/)
+    .click()
+  cy.contains(/Modifications/, {log: false})
+  // store the projectId
+  cy.location('pathname', {log: false})
+    .should('match', /\/projects\/\w{24}$/)
+    .then((path) => {
+      let projectId = path.match(/\w{24}$/)[0]
+      cy.readFile(pseudoFixture(regionName), {log: false}).then((contents) => {
+        contents = {...contents, projectId: projectId}
+        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
+      })
+    })
+}
+
+Cypress.Commands.add('deleteProject', (projectName) => {
+  cy.navTo('Projects')
+  cy.get('body').then((body) => {
+    if (body.text().includes(projectName)) {
+      cy.findByText(projectName).click()
+      cy.get('svg[data-icon="cog"]').click()
+      cy.findByText(/Delete project/i).click()
+    } else {
+      // no such project - nothing to delete
+    }
+  })
 })
 
 Cypress.Commands.add('setupMod', (modType, modName) => {
@@ -148,6 +208,7 @@ Cypress.Commands.add('deleteMod', (modType, modName) => {
 Cypress.Commands.add('deleteThisMod', () => {
   cy.get('a[name="Delete modification"]').click()
   cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+  cy.contains(/Create a modification/)
 })
 
 Cypress.Commands.add('setupScenario', (scenarioName) => {
@@ -197,53 +258,119 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
+  // attempt to wait until at least part of the desired page is loaded
+  Cypress.log({name: 'Navigate to'})
   let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
-  // parent selects the SVG itself rather than the <title> element within
-  cy.findByTitle(caseInsensitiveTitle).parent().click()
+  cy.findByTitle(caseInsensitiveTitle, {log: false})
+    .parent({log: false}) // select actual SVG element rather than <title> el
+    .click({log: false})
   switch (caseInsensitiveTitle.toString()) {
     case /Regions/i.toString():
-      cy.location('pathname').should('eq', '/')
+      cy.contains(/conveyal analysis/i, {log: false})
+      cy.contains(/Set up a new region/i, {log: false})
       break
     case /Region Settings/i.toString():
-      cy.location('pathname').should('match', /regions\/.{24}\/edit$/)
+      cy.contains(/Delete this region/i, {log: false})
       break
     case /Projects/i.toString():
-      cy.location('pathname').should('match', /\/regions\/.{24}$/)
+      cy.contains(/Create new Project|Upload a .* Bundle/i, {log: false})
       break
     case /Network Bundles/i.toString():
-      cy.location('pathname').should('match', /.*\/bundles$/)
+      cy.contains(/Create a new network bundle/i, {log: false})
       break
     case /Opportunity datasets/i.toString():
-      cy.location('pathname').should('match', /\/opportunities$/)
+      cy.contains(/Upload a new dataset/i, {log: false})
       break
     case /Edit Modifications/i.toString():
-      cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+      cy.contains(/create new project|create a modification/i, {log: false})
       break
     case /Analyze/i.toString():
-      cy.location('pathname').should('match', /\/analysis/)
+      cy.location('pathname', {log: false}).should('match', /\/analysis/, {
+        log: false
+      })
+      cy.contains(/Comparison Project/i, {log: false})
       break
   }
 })
 
-Cypress.Commands.add('mapIsReady', () => {
-  // map should have a tileLayer which is done loading
+Cypress.Commands.add('clickMap', (coord) => {
+  console.assert('lat' in coord && 'lon' in coord)
   cy.window()
     .its('LeafletMap')
     .then((map) => {
-      map.eachLayer((layer) => {
-        if (layer.getAttribution()) {
-          cy.log(layer)
-        }
-      })
+      let pix = map.latLngToContainerPoint([coord.lat, coord.lon])
+      cy.get('div.leaflet-container').click(pix.x, pix.y)
     })
 })
 
-Cypress.Commands.add('distanceFromMapCenter', (latLonArray) => {
-  return cy
-    .window()
+Cypress.Commands.add('waitForMapToLoad', () => {
+  cy.window()
     .its('LeafletMap')
     .then((map) => {
-      return map.distance(map.getCenter(), latLonArray)
+      // this just does not seem to work as expected. The wait remains necessary
+      cy.wrap(map).its('_loaded').should('be.true')
+      //cy.wrap(map).its('_renderer').its('_drawing').should('be.false')
+      cy.wait(500) // eslint-disable-line cypress/no-unnecessary-waiting
+    })
+})
+
+Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
+  cy.window()
+    .its('LeafletMap')
+    .then((map) => {
+      cy.wrap(map.distance(map.getCenter(), latLonArray)).should(
+        'be.lessThan',
+        tolerance
+      )
+    })
+})
+
+Cypress.Commands.add('mapContainsRegion', (regionName) => {
+  cy.fixture('regions/' + regionName + '.json').then((region) => {
+    cy.window()
+      .its('LeafletMap')
+      .then((map) => {
+        cy.wrap(
+          map.getBounds().contains([
+            [region.north, region.east],
+            [region.south, region.west]
+          ])
+        ).should('be.true')
+      })
+  })
+})
+
+Cypress.Commands.add('mapMoveMarkerTo', (latLonArray) => {
+  cy.window()
+    .its('LeafletMap')
+    .then((map) => {
+      // find the marker
+      var marker
+      for (let key in map._layers) {
+        let layer = map._layers[key]
+        // only the marker layer has this set, though...
+        // TODO there is probably a surer way to get the marker
+        if (typeof layer.getLatLng === 'function') {
+          marker = map.latLngToContainerPoint(layer.getLatLng())
+          cy.log('move from ' + marker)
+        }
+      }
+      // project to screen coordinates
+      let dest = map.latLngToContainerPoint(latLonArray)
+      cy.log('move to ' + dest)
+      // TODO marker drag not working yet
+      cy.get('.leaflet-container')
+        .trigger('mousedown', {
+          which: 1,
+          clientX: marker.x + 680,
+          clientY: marker.y
+        })
+        .trigger('mousemove', {
+          which: 1,
+          clientX: dest.x + 680,
+          clientY: dest.y
+        })
+        .trigger('mouseup')
     })
 })
 
@@ -292,3 +419,7 @@ Cypress.Commands.add('login', function () {
     })
   })
 })
+
+import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
+
+addMatchImageSnapshotCommand()

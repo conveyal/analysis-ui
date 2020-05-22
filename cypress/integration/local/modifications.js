@@ -1,3 +1,6 @@
+// use lodash .random
+const {random} = Cypress._
+
 describe('Modifications', () => {
   before(() => {
     cy.setupProject('scratch')
@@ -6,6 +9,7 @@ describe('Modifications', () => {
 
   after(() => {
     cy.deleteScenario('scratch scenario')
+    //cy.deleteProject('scratch project')
   })
 
   beforeEach(() => {
@@ -13,7 +17,7 @@ describe('Modifications', () => {
     cy.navTo(/Edit Modifications/)
   })
 
-  it('can be created, saved, and deleted', () => {
+  it('can be created, saved, and deleted', function () {
     // create an arbitrary modification type
     // these actions should be the same across all types
     // TODO the types that are commented out are producing errors locally
@@ -22,12 +26,12 @@ describe('Modifications', () => {
       //'Adjust Dwell Time',
       'Adjust Speed',
       //'Convert To Frequency',
-      //'Remove Stops',
+      'Remove Stops',
       'Remove Trips',
       'Reroute',
       'Custom'
     ]
-    let modType = mods[Math.floor(Math.random() * mods.length)]
+    let modType = mods[random(0, mods.length - 1)]
     let modName = 'tempMod ' + Date.now()
     let description = 'descriptive text'
     cy.findByRole('link', {name: 'Create a modification'}).click()
@@ -91,26 +95,56 @@ describe('Modifications', () => {
     it('can be drawn on map', function () {
       let modName = Date.now() + ''
       cy.setupMod('Add Trip Pattern', modName)
+      cy.findAllByRole('alert').contains(/must have at least 2 stops/)
+      cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
+      // add a route geometry
       cy.findByText(/Edit route geometry/i)
         .click()
         .contains(/Stop editing/i)
       cy.get('div.leaflet-container').as('map')
       cy.window().then((win) => {
         let map = win.LeafletMap
-        let L = win.L
-        let route = L.polyline(this.region.newRoute)
-        // TODO fitBounds seems to mess up the lat/lon -> pix projections
-        //route.addTo(map)
-        //map.fitBounds( route.getBounds() )
+        let route = win.L.polyline(this.region.newRoute)
+        map.fitBounds(route.getBounds(), {animate: false})
+        cy.waitForMapToLoad()
         // click at the coordinates
-        route.getLatLngs().forEach((point) => {
+        let coords = route.getLatLngs()
+        coords.forEach((point, i) => {
           let pix = map.latLngToContainerPoint(point)
           cy.get('@map').click(pix.x, pix.y)
+          if (i > 0) {
+            cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
+          }
         })
+        // convert an arbitrary stop to a control point
+        let stop = coords[random(0, coords.length - 1)]
+        let pix = map.latLngToContainerPoint(stop)
+        cy.get('@map').click(pix.x, pix.y)
+        cy.get('@map')
+          .findByText(/make control point/)
+          .click()
+        // control point not counted as stop
+        cy.contains(new RegExp(coords.length - 1 + ' stops over \\d\\.\\d+ km'))
+        // convert control point back to stop
+        cy.get('@map').click(pix.x, pix.y)
+        cy.get('@map')
+          .findByText(/make stop/)
+          .click()
+        cy.contains(new RegExp(coords.length + ' stops over \\d\\.\\d+ km'))
       })
-      cy.findByText(/Stop editing/i)
-        .click()
-        .contains(/Edit route geometry/i)
+      cy.findByText(/Stop editing/i).click()
+      cy.findAllByRole('alert')
+        .contains(/must have at least 2 stops/)
+        .should('not.exist')
+      // add a timetable
+      cy.findByText(/Add new timetable/i).click()
+      cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
+        'not.exist'
+      )
+      // add to scenario
+      cy.findByLabelText(/Default/).uncheck({force: true})
+      cy.findByLabelText(/scratch scenario/).should('be.checked')
+      //
       cy.deleteThisMod()
     })
 
@@ -187,15 +221,15 @@ describe('Modifications', () => {
   })
 
   describe('Adjust dwell time', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Adjust Dwell Time', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Scale existing dwell times/i).check()
       cy.findByLabelText(/Set new dwell time to/i).check()
@@ -204,35 +238,35 @@ describe('Modifications', () => {
   })
 
   describe('Adjust speed', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.deleteThisMod()
     })
   })
 
   describe('Convert to frequency', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Convert To Frequency', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/retain existing scheduled trips/i).check()
       cy.findByText(/Add frequency entry/i).click()
       cy.findByLabelText(/Select patterns/i)
         .click({force: true})
-        .type('walnut{enter}')
+        .type('Bakewell{enter}')
       cy.findByLabelText(/Frequency/i)
         .clear()
         .type('00:20:00')
@@ -244,53 +278,62 @@ describe('Modifications', () => {
         .type('23:00')
       cy.findByLabelText(/Phase at stop/i)
         .click({force: true})
-        .type('4th at Walnut{enter}')
+        .type('Fountain Square{enter}')
       cy.findByText(/Delete frequency entry/i).click()
       cy.deleteThisMod()
     })
   })
 
   describe('Remove stops', () => {
-    it('has working form elements', () => {
+    /*
+      can test this with the 25X by removing few stops in downtown
+      need to determine when this line runs (probably standard peak service)
+    */
+    it('has working form elements', function () {
       let modName = Date.now() + ''
+      let testCase = this.region.testCases.removeStops
       cy.setupMod('Remove Stops', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(testCase.routeName + '{enter}')
+      // can't interact with these yet - leave all at defaults
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Time savings per removed stop/i)
+      // select stops
+      //cy.get('a.btn').contains('New').click()
+      //cy.get('div.leaflet-container').as('map')
       cy.deleteThisMod()
     })
   })
 
   describe('Remove trips', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Remove Trips', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.deleteThisMod()
     })
   })
 
   describe('Reroute', () => {
-    it('has working form elements', () => {
+    it('has working form elements', function () {
       let modName = Date.now() + ''
       cy.setupMod('Reroute', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type('Northern Kentucky{enter}')
+        .type(this.region.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type('Taylor Mill{enter}')
+        .type(this.region.sampleRouteName + '{enter}')
       // verify existence only
       cy.findByLabelText(/Select patterns/i)
       cy.findByText(/Start of reroute/i)
