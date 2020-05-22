@@ -32,7 +32,7 @@ describe('Modifications', () => {
       'Custom'
     ]
     let modType = mods[random(0, mods.length - 1)]
-    let modName = 'tempMod ' + Date.now()
+    let modName = Cypress.env('dataPrefix') + Date.now()
     let description = 'descriptive text'
     cy.findByRole('link', {name: 'Create a modification'}).click()
     cy.findByLabelText(/Modification type/i).select(modType)
@@ -93,7 +93,7 @@ describe('Modifications', () => {
     })
 
     it('can be drawn on map', function () {
-      let modName = Date.now() + ''
+      let modName = Cypress.env('dataPrefix') + Date.now()
       cy.setupMod('Add Trip Pattern', modName)
       cy.findAllByRole('alert').contains(/must have at least 2 stops/)
       cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
@@ -149,7 +149,7 @@ describe('Modifications', () => {
     })
 
     it('can create and reuse timetables', function () {
-      let modName = 'timetable templates'
+      let modName = Cypress.env('dataPrefix') + 'timetable templates'
       let modType = 'Add Trip Pattern'
       cy.setupMod(modType, modName)
       cy.findByText(/Add new timetable/).click()
@@ -181,10 +181,10 @@ describe('Modifications', () => {
       cy.findByRole('dialog').as('dialog')
       cy.get('@dialog')
         .findByLabelText(/Region/)
-        .select('scratch')
+        .select(Cypress.env('dataPrefix') + 'scratch')
       cy.get('@dialog')
         .findByLabelText(/Project/)
-        .select('scratch project')
+        .select(Cypress.env('dataPrefix') + 'scratch project')
       cy.get('@dialog')
         .findByLabelText(/Modification/)
         .select(modName)
@@ -222,7 +222,7 @@ describe('Modifications', () => {
 
   describe('Adjust dwell time', () => {
     it('has working form elements', function () {
-      let modName = Date.now() + ''
+      let modName = Cypress.env('dataPrefix') + Date.now()
       cy.setupMod('Adjust Dwell Time', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
@@ -239,7 +239,7 @@ describe('Modifications', () => {
 
   describe('Adjust speed', () => {
     it('has working form elements', function () {
-      let modName = Date.now() + ''
+      let modName = Cypress.env('dataPrefix') + Date.now()
       cy.setupMod('Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
@@ -254,7 +254,7 @@ describe('Modifications', () => {
 
   describe('Convert to frequency', () => {
     it('has working form elements', function () {
-      let modName = Date.now() + ''
+      let modName = Cypress.env('dataPrefix') + Date.now()
       cy.setupMod('Convert To Frequency', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
@@ -290,7 +290,7 @@ describe('Modifications', () => {
       need to determine when this line runs (probably standard peak service)
     */
     it('has working form elements', function () {
-      let modName = Date.now() + ''
+      let modName = Cypress.env('dataPrefix') + Date.now()
       let testCase = this.region.testCases.removeStops
       cy.setupMod('Remove Stops', modName)
       cy.findByLabelText(/Select feed/)
@@ -311,7 +311,7 @@ describe('Modifications', () => {
 
   describe('Remove trips', () => {
     it('has working form elements', function () {
-      let modName = Date.now() + ''
+      let modName = Cypress.env('dataPrefix') + Date.now()
       cy.setupMod('Remove Trips', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
@@ -326,7 +326,7 @@ describe('Modifications', () => {
 
   describe('Reroute', () => {
     it('has working form elements', function () {
-      let modName = Date.now() + ''
+      let modName = Cypress.env('dataPrefix') + Date.now()
       cy.setupMod('Reroute', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
