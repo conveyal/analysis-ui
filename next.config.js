@@ -48,6 +48,9 @@ ${Object.keys(env).join(', ')}
 
   return withMDX(
     withBundleAnalyzer({
+      experimental: {
+        productionBrowserSourceMaps: true
+      },
       target: 'serverless',
       pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
       env,
