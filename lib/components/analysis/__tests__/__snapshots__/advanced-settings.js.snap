@@ -115,72 +115,242 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
         />
       </div>
       <div
-        className="col-xs-8"
+        className="col-xs-4"
+      >
+        <FormControl
+          isDisabled={false}
+        >
+          <FormLabel
+            htmlFor="bikeLts"
+          >
+            Max Bike Traffic Stress
+          </FormLabel>
+          <Select
+            id="bikeLts"
+            onChange={[Function]}
+            value={4}
+          >
+            <option
+              value={1}
+            >
+              1 - Low stress
+            </option>
+            <option
+              value={2}
+            >
+              2
+            </option>
+            <option
+              value={3}
+            >
+              3
+            </option>
+            <option
+              value={4}
+            >
+              4 - High stress
+            </option>
+          </Select>
+        </FormControl>
+      </div>
+      <div
+        className="col-xs-4"
       >
         <P>
-          Lower limits may apply to transfer and egress legs. See the user manual for more information.
+          Lower time limits may apply to transfer and egress legs. See the user manual for more information.
         </P>
       </div>
     </div>
-    <Group
-      label="Bounds of analysis"
-    >
-      <div
-        className="row"
-      >
-        <div
-          className="col-xs-6"
-        >
-          <S
-            isDisabled={false}
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "Entire region",
-                  "value": "__REGION",
-                },
-                Object {
-                  "label": "Same as ANALYSIS 1",
-                  "value": "abcd",
-                },
-                Object {
-                  "label": "Same as ANALYSIS 2",
-                  "value": "efgh",
-                },
-              ]
-            }
-            value={
-              Object {
-                "label": "Entire region",
-                "value": "__REGION",
-              }
-            }
-          />
-        </div>
-        <div
-          className="col-xs-6"
-        >
-          <Button
-            block={true}
-            disabled={false}
-            onClick={[Function]}
-            style="warning"
-          >
-            <Icon
-              icon={
-                Object {
-                  "icon": Array [],
-                  "iconName": "pencil-alt",
-                  "prefix": "fas",
-                }
-              }
-            />
-             Set custom geographic bounds
-          </Button>
-        </div>
-      </div>
-    </Group>
+    <CustomBoundsSelector
+      disabled={false}
+      profileRequest={
+        Object {
+          "accessModes": "WALK",
+          "bikeSafe": 1,
+          "bikeSlope": 1,
+          "bikeSpeed": 4.166666666666667,
+          "bikeTime": 1,
+          "bounds": Object {
+            "east": -76,
+            "north": 39,
+            "south": 38,
+            "west": -77,
+          },
+          "bundleId": "1",
+          "date": "2016-01-16",
+          "defaultExpanded": true,
+          "directModes": "WALK",
+          "egressModes": "WALK",
+          "fromLat": 12,
+          "fromLon": 34,
+          "fromTime": 25200,
+          "maxBikeTime": 20,
+          "maxRides": 4,
+          "maxTripDurationMinutes": 60,
+          "maxWalkTime": 20,
+          "monteCarloDraws": 200,
+          "name": "Profile Request Test",
+          "projectId": "1",
+          "reachabilityThreshold": 0,
+          "regionId": "1",
+          "toTime": 32400,
+          "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+          "travelTimePercentile": 50,
+          "variantIndex": 0,
+          "walkSpeed": 1.3888888888888888,
+          "workerVersion": "v4.0.0",
+        }
+      }
+      regionBounds={
+        Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        }
+      }
+      regionalAnalyses={
+        Array [
+          Object {
+            "_id": "abcd",
+            "accessGroup": "accessGroupName",
+            "bounds": Object {},
+            "bundleId": "5678",
+            "complete": true,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "cutoffMinutes": 60,
+            "cutoffsMinutes": Array [
+              60,
+            ],
+            "deleted": false,
+            "grid": "Jobs_total",
+            "height": 300,
+            "name": "ANALYSIS 1",
+            "nonce": "12345",
+            "north": 20024,
+            "projectId": "1234",
+            "request": Object {
+              "accessModes": "WALK",
+              "bikeSafe": 1,
+              "bikeSlope": 1,
+              "bikeSpeed": 4.166666666666667,
+              "bikeTime": 1,
+              "bounds": Object {
+                "east": -76,
+                "north": 39,
+                "south": 38,
+                "west": -77,
+              },
+              "bundleId": "1",
+              "date": "2016-01-16",
+              "defaultExpanded": true,
+              "directModes": "WALK",
+              "egressModes": "WALK",
+              "fromLat": 12,
+              "fromLon": 34,
+              "fromTime": 25200,
+              "maxBikeTime": 20,
+              "maxRides": 4,
+              "maxTripDurationMinutes": 60,
+              "maxWalkTime": 20,
+              "monteCarloDraws": 200,
+              "name": "Profile Request Test",
+              "projectId": "1",
+              "reachabilityThreshold": 0,
+              "regionId": "1",
+              "toTime": 32400,
+              "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+              "travelTimePercentile": 50,
+              "variantIndex": 0,
+              "walkSpeed": 1.3888888888888888,
+              "workerVersion": "v4.0.0",
+            },
+            "status": "DONE",
+            "travelTimePercentile": -1,
+            "travelTimePercentiles": Array [
+              50,
+            ],
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variant": 0,
+            "west": 20015,
+            "width": 300,
+            "workerVersion": "v3.2.0",
+            "zoom": 9,
+          },
+          Object {
+            "_id": "efgh",
+            "accessGroup": "accessGroupName",
+            "bounds": Object {},
+            "bundleId": "5678",
+            "complete": true,
+            "createdAt": "2017-11-08T12:30:50.133Z",
+            "createdBy": "person@gmail.com",
+            "cutoffMinutes": 60,
+            "cutoffsMinutes": Array [
+              60,
+            ],
+            "deleted": false,
+            "grid": "Jobs_total",
+            "height": 300,
+            "name": "ANALYSIS 2",
+            "nonce": "12345",
+            "north": 20024,
+            "projectId": "4321",
+            "request": Object {
+              "accessModes": "WALK",
+              "bikeSafe": 1,
+              "bikeSlope": 1,
+              "bikeSpeed": 4.166666666666667,
+              "bikeTime": 1,
+              "bounds": Object {
+                "east": -76,
+                "north": 39,
+                "south": 38,
+                "west": -77,
+              },
+              "bundleId": "1",
+              "date": "2016-01-16",
+              "defaultExpanded": true,
+              "directModes": "WALK",
+              "egressModes": "WALK",
+              "fromLat": 12,
+              "fromLon": 34,
+              "fromTime": 25200,
+              "maxBikeTime": 20,
+              "maxRides": 4,
+              "maxTripDurationMinutes": 60,
+              "maxWalkTime": 20,
+              "monteCarloDraws": 200,
+              "name": "Profile Request Test",
+              "projectId": "1",
+              "reachabilityThreshold": 0,
+              "regionId": "1",
+              "toTime": 32400,
+              "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+              "travelTimePercentile": 50,
+              "variantIndex": 0,
+              "walkSpeed": 1.3888888888888888,
+              "workerVersion": "v4.0.0",
+            },
+            "status": "DONE",
+            "travelTimePercentile": 50,
+            "travelTimePercentiles": Array [
+              50,
+            ],
+            "updatedAt": "2017-11-08T12:31:19.602Z",
+            "updatedBy": "person@gmail.com",
+            "variant": 1,
+            "west": 20015,
+            "width": 300,
+            "workerVersion": "v3.2.0",
+            "zoom": 9,
+          },
+        ]
+      }
+      setProfileRequest={[MockFunction]}
+    />
     <div
       className="row"
     >
@@ -1224,7 +1394,237 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                 </NumberInput>
               </div>
               <div
-                className="col-xs-8"
+                className="col-xs-4"
+              >
+                <FormControl
+                  isDisabled={false}
+                >
+                  <Box
+                    role="group"
+                  >
+                    <div
+                      className="css-0"
+                      role="group"
+                    >
+                      <FormLabel
+                        htmlFor="bikeLts"
+                      >
+                        <Box
+                          as="label"
+                          display="inline-block"
+                          fontSize="md"
+                          fontWeight="medium"
+                          htmlFor="bikeLts"
+                          opacity="1"
+                          pb="4px"
+                          pr="12px"
+                          textAlign="left"
+                          verticalAlign="middle"
+                        >
+                          <label
+                            className="css-176s5fq"
+                            htmlFor="bikeLts"
+                          >
+                            Max Bike Traffic Stress
+                          </label>
+                        </Box>
+                      </FormLabel>
+                      <Select
+                        id="bikeLts"
+                        onChange={[Function]}
+                        value={4}
+                      >
+                        <Box
+                          position="relative"
+                          width="100%"
+                        >
+                          <div
+                            className="css-1jke4yk"
+                          >
+                            <ForwardRef(SelectInput)
+                              color="inherit"
+                              id="bikeLts"
+                              onChange={[Function]}
+                              value={4}
+                            >
+                              <Input
+                                appearance="none"
+                                as="select"
+                                color="inherit"
+                                errorBorderColor="red.500"
+                                focusBorderColor="blue.500"
+                                id="bikeLts"
+                                isFullWidth={true}
+                                lineHeight="normal"
+                                onChange={[Function]}
+                                pb="px"
+                                pr="2rem"
+                                size="md"
+                                value={4}
+                                variant="outline"
+                              >
+                                <PseudoBox
+                                  _disabled={
+                                    Object {
+                                      "cursor": "not-allowed",
+                                      "opacity": "0.4",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "borderColor": "#3182ce",
+                                      "boxShadow": "0 0 0 1px #3182ce",
+                                      "zIndex": 1,
+                                    }
+                                  }
+                                  _hover={
+                                    Object {
+                                      "borderColor": "gray.300",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "#e53e3e",
+                                      "boxShadow": "0 0 0 1px #e53e3e",
+                                    }
+                                  }
+                                  _readOnly={
+                                    Object {
+                                      "bg": "transparent",
+                                      "boxShadow": "none !important",
+                                      "userSelect": "all",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  appearance="none"
+                                  aria-disabled={false}
+                                  as="select"
+                                  bg="white"
+                                  border="1px"
+                                  borderColor="inherit"
+                                  color="inherit"
+                                  disabled={false}
+                                  display="flex"
+                                  fontSize="md"
+                                  height={10}
+                                  id="bikeLts"
+                                  lineHeight="normal"
+                                  onChange={[Function]}
+                                  outline="none"
+                                  pb="px"
+                                  position="relative"
+                                  pr="2rem"
+                                  px={4}
+                                  rounded="md"
+                                  transition="all 0.2s"
+                                  value={4}
+                                  width="100%"
+                                >
+                                  <select
+                                    aria-disabled={false}
+                                    className="css-16ut77p"
+                                    disabled={false}
+                                    id="bikeLts"
+                                    onChange={[Function]}
+                                    value={4}
+                                  >
+                                    <option
+                                      value={1}
+                                    >
+                                      1 - Low stress
+                                    </option>
+                                    <option
+                                      value={2}
+                                    >
+                                      2
+                                    </option>
+                                    <option
+                                      value={3}
+                                    >
+                                      3
+                                    </option>
+                                    <option
+                                      value={4}
+                                    >
+                                      4 - High stress
+                                    </option>
+                                  </select>
+                                </PseudoBox>
+                              </Input>
+                            </ForwardRef(SelectInput)>
+                            <ForwardRef(SelectIconWrapper)
+                              color="inherit"
+                              opacity={null}
+                            >
+                              <Box
+                                alignItems="center"
+                                color="inherit"
+                                display="inline-flex"
+                                height="100%"
+                                justifyContent="center"
+                                opacity={null}
+                                pointerEvents="none"
+                                position="absolute"
+                                right="0.5rem"
+                                top="50%"
+                                transform="translateY(-50%)"
+                                width="1.5rem"
+                                zIndex={2}
+                              >
+                                <div
+                                  className="css-1lepn2w"
+                                >
+                                  <EnhancedIcon
+                                    aria-hidden="true"
+                                    focusable="false"
+                                    icon="chevron-down"
+                                    size={5}
+                                  >
+                                    <Icon
+                                      aria-hidden="true"
+                                      color="currentColor"
+                                      focusable="false"
+                                      name="chevron-down"
+                                      size={5}
+                                    >
+                                      <Styled(div)
+                                        aria-hidden="true"
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable="false"
+                                        role="presentation"
+                                        size={5}
+                                        verticalAlign="middle"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          className="css-12c4avn"
+                                          focusable="false"
+                                          role="presentation"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                                            fill="currentColor"
+                                          />
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </EnhancedIcon>
+                                </div>
+                              </Box>
+                            </ForwardRef(SelectIconWrapper)>
+                          </div>
+                        </Box>
+                      </Select>
+                    </div>
+                  </Box>
+                </FormControl>
+              </div>
+              <div
+                className="col-xs-4"
               >
                 <P>
                   <Box
@@ -1234,57 +1634,221 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                     <p
                       className="css-1r2f04i"
                     >
-                      Lower limits may apply to transfer and egress legs. See the user manual for more information.
+                      Lower time limits may apply to transfer and egress legs. See the user manual for more information.
                     </p>
                   </Box>
                 </P>
               </div>
             </div>
-            <Group
-              label="Bounds of analysis"
+            <CustomBoundsSelector
+              disabled={false}
+              profileRequest={
+                Object {
+                  "accessModes": "WALK",
+                  "bikeSafe": 1,
+                  "bikeSlope": 1,
+                  "bikeSpeed": 4.166666666666667,
+                  "bikeTime": 1,
+                  "bounds": Object {
+                    "east": -76,
+                    "north": 39,
+                    "south": 38,
+                    "west": -77,
+                  },
+                  "bundleId": "1",
+                  "date": "2016-01-16",
+                  "defaultExpanded": true,
+                  "directModes": "WALK",
+                  "egressModes": "WALK",
+                  "fromLat": 12,
+                  "fromLon": 34,
+                  "fromTime": 25200,
+                  "maxBikeTime": 20,
+                  "maxRides": 4,
+                  "maxTripDurationMinutes": 60,
+                  "maxWalkTime": 20,
+                  "monteCarloDraws": 200,
+                  "name": "Profile Request Test",
+                  "projectId": "1",
+                  "reachabilityThreshold": 0,
+                  "regionId": "1",
+                  "toTime": 32400,
+                  "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                  "travelTimePercentile": 50,
+                  "variantIndex": 0,
+                  "walkSpeed": 1.3888888888888888,
+                  "workerVersion": "v4.0.0",
+                }
+              }
+              regionBounds={
+                Object {
+                  "east": -76,
+                  "north": 39,
+                  "south": 38,
+                  "west": -77,
+                }
+              }
+              regionalAnalyses={
+                Array [
+                  Object {
+                    "_id": "abcd",
+                    "accessGroup": "accessGroupName",
+                    "bounds": Object {},
+                    "bundleId": "5678",
+                    "complete": true,
+                    "createdAt": "2017-11-08T12:30:50.133Z",
+                    "createdBy": "person@gmail.com",
+                    "cutoffMinutes": 60,
+                    "cutoffsMinutes": Array [
+                      60,
+                    ],
+                    "deleted": false,
+                    "grid": "Jobs_total",
+                    "height": 300,
+                    "name": "ANALYSIS 1",
+                    "nonce": "12345",
+                    "north": 20024,
+                    "projectId": "1234",
+                    "request": Object {
+                      "accessModes": "WALK",
+                      "bikeSafe": 1,
+                      "bikeSlope": 1,
+                      "bikeSpeed": 4.166666666666667,
+                      "bikeTime": 1,
+                      "bounds": Object {
+                        "east": -76,
+                        "north": 39,
+                        "south": 38,
+                        "west": -77,
+                      },
+                      "bundleId": "1",
+                      "date": "2016-01-16",
+                      "defaultExpanded": true,
+                      "directModes": "WALK",
+                      "egressModes": "WALK",
+                      "fromLat": 12,
+                      "fromLon": 34,
+                      "fromTime": 25200,
+                      "maxBikeTime": 20,
+                      "maxRides": 4,
+                      "maxTripDurationMinutes": 60,
+                      "maxWalkTime": 20,
+                      "monteCarloDraws": 200,
+                      "name": "Profile Request Test",
+                      "projectId": "1",
+                      "reachabilityThreshold": 0,
+                      "regionId": "1",
+                      "toTime": 32400,
+                      "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                      "travelTimePercentile": 50,
+                      "variantIndex": 0,
+                      "walkSpeed": 1.3888888888888888,
+                      "workerVersion": "v4.0.0",
+                    },
+                    "status": "DONE",
+                    "travelTimePercentile": -1,
+                    "travelTimePercentiles": Array [
+                      50,
+                    ],
+                    "updatedAt": "2017-11-08T12:31:19.602Z",
+                    "updatedBy": "person@gmail.com",
+                    "variant": 0,
+                    "west": 20015,
+                    "width": 300,
+                    "workerVersion": "v3.2.0",
+                    "zoom": 9,
+                  },
+                  Object {
+                    "_id": "efgh",
+                    "accessGroup": "accessGroupName",
+                    "bounds": Object {},
+                    "bundleId": "5678",
+                    "complete": true,
+                    "createdAt": "2017-11-08T12:30:50.133Z",
+                    "createdBy": "person@gmail.com",
+                    "cutoffMinutes": 60,
+                    "cutoffsMinutes": Array [
+                      60,
+                    ],
+                    "deleted": false,
+                    "grid": "Jobs_total",
+                    "height": 300,
+                    "name": "ANALYSIS 2",
+                    "nonce": "12345",
+                    "north": 20024,
+                    "projectId": "4321",
+                    "request": Object {
+                      "accessModes": "WALK",
+                      "bikeSafe": 1,
+                      "bikeSlope": 1,
+                      "bikeSpeed": 4.166666666666667,
+                      "bikeTime": 1,
+                      "bounds": Object {
+                        "east": -76,
+                        "north": 39,
+                        "south": 38,
+                        "west": -77,
+                      },
+                      "bundleId": "1",
+                      "date": "2016-01-16",
+                      "defaultExpanded": true,
+                      "directModes": "WALK",
+                      "egressModes": "WALK",
+                      "fromLat": 12,
+                      "fromLon": 34,
+                      "fromTime": 25200,
+                      "maxBikeTime": 20,
+                      "maxRides": 4,
+                      "maxTripDurationMinutes": 60,
+                      "maxWalkTime": 20,
+                      "monteCarloDraws": 200,
+                      "name": "Profile Request Test",
+                      "projectId": "1",
+                      "reachabilityThreshold": 0,
+                      "regionId": "1",
+                      "toTime": 32400,
+                      "transitModes": "BUS,TRAM,RAIL,SUBWAY",
+                      "travelTimePercentile": 50,
+                      "variantIndex": 0,
+                      "walkSpeed": 1.3888888888888888,
+                      "workerVersion": "v4.0.0",
+                    },
+                    "status": "DONE",
+                    "travelTimePercentile": 50,
+                    "travelTimePercentiles": Array [
+                      50,
+                    ],
+                    "updatedAt": "2017-11-08T12:31:19.602Z",
+                    "updatedBy": "person@gmail.com",
+                    "variant": 1,
+                    "west": 20015,
+                    "width": 300,
+                    "workerVersion": "v3.2.0",
+                    "zoom": 9,
+                  },
+                ]
+              }
+              setProfileRequest={[MockFunction]}
             >
-              <div
-                className="form-group"
+              <Group
+                label="Bounds of analysis"
               >
-                <label
-                  className="control-label"
-                  htmlFor="bounds-of-analysis-input-7"
-                >
-                  Bounds of analysis
-                </label>
                 <div
-                  className="row"
+                  className="form-group"
                 >
-                  <div
-                    className="col-xs-6"
+                  <label
+                    className="control-label"
+                    htmlFor="bounds-of-analysis-input-7"
                   >
-                    <S
-                      isDisabled={false}
-                      onChange={[Function]}
-                      options={
-                        Array [
-                          Object {
-                            "label": "Entire region",
-                            "value": "__REGION",
-                          },
-                          Object {
-                            "label": "Same as ANALYSIS 1",
-                            "value": "abcd",
-                          },
-                          Object {
-                            "label": "Same as ANALYSIS 2",
-                            "value": "efgh",
-                          },
-                        ]
-                      }
-                      value={
-                        Object {
-                          "label": "Entire region",
-                          "value": "__REGION",
-                        }
-                      }
+                    Bounds of analysis
+                  </label>
+                  <div
+                    className="row"
+                  >
+                    <div
+                      className="col-xs-6"
                     >
-                      <DynamicMockedComponent
+                      <S
                         isDisabled={false}
                         onChange={[Function]}
                         options={
@@ -1303,51 +1867,64 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                             },
                           ]
                         }
-                        styles={
-                          Object {
-                            "control": [Function],
-                            "option": [Function],
-                          }
-                        }
                         value={
                           Object {
                             "label": "Entire region",
                             "value": "__REGION",
                           }
                         }
-                      />
-                    </S>
-                  </div>
-                  <div
-                    className="col-xs-6"
-                  >
-                    <Button
-                      block={true}
-                      disabled={false}
-                      onClick={[Function]}
-                      style="warning"
-                    >
-                      <a
-                        className="btn btn-warning btn-block"
-                        disabled={false}
-                        href="#"
-                        onClick={[Function]}
-                        tabIndex={0}
                       >
-                        <Icon
-                          icon={
+                        <DynamicMockedComponent
+                          isDisabled={false}
+                          onChange={[Function]}
+                          options={
+                            Array [
+                              Object {
+                                "label": "Entire region",
+                                "value": "__REGION",
+                              },
+                              Object {
+                                "label": "Same as ANALYSIS 1",
+                                "value": "abcd",
+                              },
+                              Object {
+                                "label": "Same as ANALYSIS 2",
+                                "value": "efgh",
+                              },
+                            ]
+                          }
+                          styles={
                             Object {
-                              "icon": Array [],
-                              "iconName": "pencil-alt",
-                              "prefix": "fas",
+                              "control": [Function],
+                              "option": [Function],
                             }
                           }
+                          value={
+                            Object {
+                              "label": "Entire region",
+                              "value": "__REGION",
+                            }
+                          }
+                        />
+                      </S>
+                    </div>
+                    <div
+                      className="col-xs-6"
+                    >
+                      <Button
+                        block={true}
+                        disabled={false}
+                        onClick={[Function]}
+                        style="warning"
+                      >
+                        <a
+                          className="btn btn-warning btn-block"
+                          disabled={false}
+                          href="#"
+                          onClick={[Function]}
+                          tabIndex={0}
                         >
-                          <FontAwesomeIcon
-                            border={false}
-                            className=""
-                            fixedWidth={true}
-                            flip={null}
+                          <Icon
                             icon={
                               Object {
                                 "icon": Array [],
@@ -1355,44 +1932,58 @@ exports[`Components > Analysis > Advanced Settings should render correctly with 
                                 "prefix": "fas",
                               }
                             }
-                            inverse={false}
-                            listItem={false}
-                            mask={null}
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            swapOpacity={false}
-                            symbol={false}
-                            title=""
-                            transform={null}
                           >
-                            <svg
-                              aria-hidden="true"
-                              className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
-                              data-icon="pencil-alt"
-                              data-prefix="fas"
-                              focusable="false"
-                              role="img"
-                              style={Object {}}
-                              viewBox="0 0 undefined undefined"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <FontAwesomeIcon
+                              border={false}
+                              className=""
+                              fixedWidth={true}
+                              flip={null}
+                              icon={
+                                Object {
+                                  "icon": Array [],
+                                  "iconName": "pencil-alt",
+                                  "prefix": "fas",
+                                }
+                              }
+                              inverse={false}
+                              listItem={false}
+                              mask={null}
+                              pull={null}
+                              pulse={false}
+                              rotation={null}
+                              size={null}
+                              spin={false}
+                              swapOpacity={false}
+                              symbol={false}
+                              title=""
+                              transform={null}
                             >
-                              <path
-                                fill="currentColor"
+                              <svg
+                                aria-hidden="true"
+                                className="svg-inline--fa fa-pencil-alt fa-w-NaN fa-fw "
+                                data-icon="pencil-alt"
+                                data-prefix="fas"
+                                focusable="false"
+                                role="img"
                                 style={Object {}}
-                              />
-                            </svg>
-                          </FontAwesomeIcon>
-                        </Icon>
-                         Set custom geographic bounds
-                      </a>
-                    </Button>
+                                viewBox="0 0 undefined undefined"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fill="currentColor"
+                                  style={Object {}}
+                                />
+                              </svg>
+                            </FontAwesomeIcon>
+                          </Icon>
+                           Set custom geographic bounds
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Group>
+              </Group>
+            </CustomBoundsSelector>
             <div
               className="row"
             >

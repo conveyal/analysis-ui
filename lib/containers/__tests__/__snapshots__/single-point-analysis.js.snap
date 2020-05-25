@@ -307,6 +307,41 @@ exports[`constainers/single-point-analysis 1`] = `
     setMapChildren={[MockFunction]}
     setProfileRequest={[Function]}
   >
+    <DynamicMockedComponent />
+    <DynamicMockedComponent
+      bounds={
+        Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        }
+      }
+      dashArray="3 8"
+      fillOpacity={0}
+      pointerEvents="none"
+      weight={1}
+    />
+    <DynamicMockedComponent
+      isEditing={true}
+    />
+    <DynamicMockedComponent
+      comparison={null}
+      isCurrent={false}
+      isochrone={null}
+    />
+    <DynamicMockedComponent
+      disableMarker={false}
+      displayedDataIsCurrent={false}
+      markerPosition={
+        Object {
+          "lat": 38.5,
+          "lon": -76.5,
+        }
+      }
+      setDestination={[Function]}
+      setOrigin={[Function]}
+    />
     <AnalysisTitle
       abortFetchTravelTimeSurface={[Function]}
       createRegionalAnalysis={[Function]}
@@ -2601,8 +2636,15 @@ exports[`constainers/single-point-analysis 1`] = `
           </Group>
         </Slider>
         <AdvancedSettings
+          analysisBounds={
+            Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            }
+          }
           disabled={false}
-          hideBoundsEditor={[Function]}
           profileRequest={
             Object {
               "accessModes": "WALK",
@@ -2790,7 +2832,6 @@ exports[`constainers/single-point-analysis 1`] = `
             ]
           }
           setProfileRequest={[Function]}
-          showBoundsEditor={[Function]}
         >
           <Collapsible
             defaultExpanded={false}
