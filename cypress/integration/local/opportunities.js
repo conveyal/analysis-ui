@@ -51,12 +51,36 @@ describe('Opportunities', () => {
   it('can be uploaded as shapefile', function () {
     let opportunity = this.region.opportunities.shapefile
     let oppName = opportunity.name + ' ' + Date.now()
-    //let expectedFieldCount = opportunity.numericFields.length
+    let expectedFieldCount = opportunity.numericFields.length
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
     cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
     cy.findByLabelText(/Select opportunity dataset/)
-    // TODO finish this
+      .attachFile({filePath: opportunity.files[0], encoding: 'base64'})
+      .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
+      .attachFile({filePath: opportunity.files[2], encoding: 'base64'})
+      .attachFile({filePath: opportunity.files[3], encoding: 'base64'})
+    cy.get('a.btn')
+      .contains(/Upload/)
+      .should('not.be.disabled')
+      .click()
+    cy.location('pathname').should('match', /opportunities$/)
+    // find the message showing this upload is complete
+    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 30000})
+      .parent()
+      .parent()
+      .as('notice')
+    // check number of fields uploaded
+    cy.get('@notice').contains(
+      `Finished uploading ${expectedFieldCount} features`
+    )
+    // close the message
+    cy.get('@notice').findByRole('button', /x/).click()
+    // select in the dropdown
+    cy.findByText(/Select\.\.\./)
+      .click()
+      .type(`${oppName}: ${opportunity.numericFields[0]} {enter}`)
+    cy.contains(/Delete entire dataset/i).click()
   })
 
   it('can be uploaded as grid', function () {
