@@ -61,13 +61,10 @@ describe('Modifications', () => {
       // TODO need better selector for button
       cy.get('a.btn').get('svg[data-icon="upload"]').click()
       cy.location('pathname').should('match', /\/import-shapefile/)
-      cy.fixture(this.region.importRoutes.shapefile).then((fileContent) => {
-        cy.findByLabelText(/Select Shapefile/i).upload({
-          fileContent,
-          fileName: this.region.importRoutes.shapefile,
-          mimeType: 'application/octet-stream',
-          encoding: 'base64'
-        })
+      cy.findByLabelText(/Select Shapefile/i).attachFile({
+        filePath: this.region.importRoutes.shapefile,
+        mimeType: 'application/octet-stream',
+        encoding: 'base64'
       })
       cy.findByLabelText(/Name/).select(this.region.importRoutes.nameField)
       cy.findByLabelText(/Frequency/).select(

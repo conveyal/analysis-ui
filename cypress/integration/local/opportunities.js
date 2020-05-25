@@ -16,13 +16,9 @@ describe('Opportunities', () => {
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
     cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
-    cy.fixture(opportunity.file).then((fileContent) => {
-      cy.findByLabelText(/^Select opportunity dataset/i).upload({
-        fileContent,
-        fileName: opportunity.file,
-        mimeType: 'text/csv'
-      })
-    })
+    cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
+      opportunity.file
+    )
     cy.findByLabelText(/Latitude/).type(opportunity.latitudeField)
     cy.findByLabelText(/Longitude/).type(opportunity.longitudeField)
     cy.get('a.btn')
@@ -35,7 +31,7 @@ describe('Opportunities', () => {
       .parent()
       .parent()
       .as('notice')
-    // cheech number of fields uploaded
+    // check number of fields uploaded
     cy.get('@notice').contains(
       `Finished uploading ${expectedFieldCount} features`
     )
@@ -70,7 +66,29 @@ describe('Opportunities', () => {
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
     cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
-    // TODO finish this
+    cy.findByLabelText(/Select opportunity dataset/).attachFile({
+      filePath: opportunity.file,
+      encoding: 'base64'
+    })
+    cy.get('a.btn')
+      .contains(/Upload/)
+      .should('not.be.disabled')
+      .click()
+    cy.location('pathname').should('match', /opportunities$/)
+    // find the message showing this upload is complete
+    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+      .parent()
+      .parent()
+      .as('notice')
+    // check number of fields uploaded
+    cy.get('@notice').contains(/Finished uploading 1 feature/i)
+    // close the message
+    cy.get('@notice').findByRole('button', /x/).click()
+    // select in the dropdown
+    cy.findByText(/Select\.\.\./)
+      .click()
+      .type(`${oppName} {enter}`)
+    cy.contains(/Delete entire dataset/i).click()
   })
 
   it('can be downloaded as grid', function () {

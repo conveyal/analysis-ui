@@ -79,22 +79,16 @@ function createNewBundle(fixtureName) {
   cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
   cy.findByText(/Upload new OpenStreetMap/i).click()
   cy.fixture('regions/' + fixtureName + '.json').then((region) => {
-    cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
-      cy.findByLabelText(/Select PBF file/i).upload({
-        fileContent,
-        fileName: region.PBFfile,
-        encoding: 'base64',
-        mimeType: 'application/octet-stream'
-      })
+    cy.findByLabelText(/Select PBF file/i).attachFile({
+      filePath: region.PBFfile,
+      encoding: 'base64',
+      mimeType: 'application/octet-stream'
     })
     cy.findByText(/Upload new GTFS/i).click()
-    cy.fixture(region.GTFSfile, {encoding: 'base64'}).then((fileContent) => {
-      cy.findByLabelText(/Select .*GTFS/i).upload({
-        fileContent,
-        fileName: region.GTFSfile,
-        encoding: 'base64',
-        mimeType: 'application/octet-stream'
-      })
+    cy.findByLabelText(/Select .*GTFS/i).attachFile({
+      filePath: region.GTFSfile,
+      encoding: 'base64',
+      mimeType: 'application/octet-stream'
     })
   })
   cy.findByRole('button', {name: /Create/i}).click()

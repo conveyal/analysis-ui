@@ -14,27 +14,17 @@ context('Network bundles', () => {
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type(bundleName)
     cy.findByText(/Upload new OpenStreetMap/i).click()
-    cy.fixture(this.region.PBFfile, {encoding: 'base64'}).then(
-      (fileContent) => {
-        cy.findByLabelText(/Select PBF file/i).upload({
-          fileContent,
-          fileName: this.region.PBFfile,
-          encoding: 'base64',
-          mimeType: 'application/octet-stream'
-        })
-      }
-    )
+    cy.findByLabelText(/Select PBF file/i).attachFile({
+      filePath: this.region.PBFfile,
+      encoding: 'base64',
+      mimeType: 'application/octet-stream'
+    })
     cy.findByText(/Upload new GTFS/i).click()
-    cy.fixture(this.region.GTFSfile, {encoding: 'base64'}).then(
-      (fileContent) => {
-        cy.findByLabelText(/Select .*GTFS/i).upload({
-          fileContent,
-          fileName: this.region.GTFSfile,
-          encoding: 'base64',
-          mimeType: 'application/octet-stream'
-        })
-      }
-    )
+    cy.findByLabelText(/Select .*GTFS/i).attachFile({
+      filePath: this.region.GTFSfile,
+      encoding: 'base64',
+      mimeType: 'application/octet-stream'
+    })
     cy.findByRole('button', {name: /Create/i}).click()
     cy.findByText(/Processing/)
     cy.location('pathname', {timeout: 60000}).should(
@@ -73,11 +63,11 @@ context('Network bundles', () => {
     cy.findByText(/Reuse existing OpenStreetMap/i).click()
     cy.findByText(/network bundle to reuse OSM from/i)
       .parent()
-      .select('scratch bundle')
+      .select(Cypress.env('dataPrefix') + 'scratch bundle')
     cy.findByText(/Reuse existing GTFS/i).click()
     cy.findByText(/network bundle to reuse GTFS from/i)
       .parent()
-      .select('scratch bundle')
+      .select(Cypress.env('dataPrefix') + 'scratch bundle')
     cy.findByRole('button', {name: /Create/})
       .should('not.be.disabled')
       .click()
