@@ -9,9 +9,14 @@ describe('Opportunities', () => {
     cy.get('div.leaflet-container').as('map')
   })
 
+  after(() => {
+    // TODO check that everything imported by these tests has been deleted
+    // can look for the '_temp' suffix
+  })
+
   it('can be uploaded as CSV', function () {
     let opportunity = this.region.opportunities.csv
-    let oppName = opportunity.name + ' ' + Date.now()
+    let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
     let expectedFieldCount = 1 + opportunity.numericFields.length
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
@@ -50,7 +55,7 @@ describe('Opportunities', () => {
 
   it('can be uploaded as shapefile', function () {
     let opportunity = this.region.opportunities.shapefile
-    let oppName = opportunity.name + ' ' + Date.now()
+    let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
     let expectedFieldCount = opportunity.numericFields.length
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
@@ -85,8 +90,7 @@ describe('Opportunities', () => {
 
   it('can be uploaded as grid', function () {
     let opportunity = this.region.opportunities.grid
-    let oppName =
-      Cypress.env('dataPrefix') + opportunity.name + ' ' + Date.now()
+    let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
     cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
@@ -121,10 +125,5 @@ describe('Opportunities', () => {
 
   it('can be downloaded as tiff', function () {
     // TODO
-  })
-
-  after(() => {
-    cy.log('after!')
-    // TODO probably will want to clean up here and delete anything imported
   })
 })
