@@ -60,10 +60,17 @@ describe('Opportunities', () => {
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
     cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
     cy.findByLabelText(/Select opportunity dataset/)
+    // TODO finish this
   })
 
   it('can be uploaded as grid', function () {
-    // TODO
+    let opportunity = this.region.opportunities.grid
+    let oppName =
+      Cypress.env('dataPrefix') + opportunity.name + ' ' + Date.now()
+    cy.findByText(/Upload a new dataset/i).click()
+    cy.location('pathname').should('match', /\/opportunities\/upload$/)
+    cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+    // TODO finish this
   })
 
   it('can be downloaded as grid', function () {
