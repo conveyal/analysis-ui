@@ -16,7 +16,6 @@ import {
 } from 'lib/actions/analysis'
 import {setProfileRequest} from 'lib/actions/analysis/profile-request'
 import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
-import StackedPercentileSelector from 'lib/containers/stacked-percentile-selector'
 import message from 'lib/message'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
 import {routeTo} from 'lib/router'
@@ -42,6 +41,7 @@ import BookmarkChooser from './bookmark-chooser'
 import ScenarioApplicationError from './scenario-application-error'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
+import StackedPercentileSelector from './stacked-percentile-selector'
 
 /**
  * Hide the loading text from map components because it is awkward.

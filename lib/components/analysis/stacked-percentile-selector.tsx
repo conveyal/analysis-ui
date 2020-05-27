@@ -1,10 +1,23 @@
 import {color} from 'd3-color'
 import {format} from 'd3-format'
-import React, {useState} from 'react'
+import {useState} from 'react'
+import {useSelector} from 'react-redux'
 
 import message from 'lib/message'
 import colors from 'lib/constants/colors'
 import {UNDEFINED_PROJECT_NAME} from 'lib/constants'
+import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
+
+import selectDisplayedComparisonScenarioName from 'lib/selectors/displayed-comparison-scenario-name'
+import selectDisplayedScenarioName from 'lib/selectors/displayed-scenario-name'
+import selectAccessibility from 'lib/selectors/accessibility'
+import selectComparisonAccessibility from 'lib/selectors/comparison-accessibility'
+import selectComparisonInProgress from 'lib/selectors/comparison-in-progress'
+import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
+import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
+import selectPercentileCurves from 'lib/selectors/percentile-curves'
+import selectMaxAccessibility from 'lib/selectors/max-accessibility'
+import selectNearestPercentile from 'lib/selectors/nearest-percentile'
 
 import {Button, Group as ButtonGroup} from '../buttons'
 import P from '../p'
@@ -25,12 +38,28 @@ const commaFormat = format(',d')
  * comparisons of said
  */
 export default function StackedPercentileSelector(p) {
+  const projectName = useSelector(selectDisplayedScenarioName)
+  const comparisonProjectName = useSelector(
+    selectDisplayedComparisonScenarioName
+  )
+  const opportunityDataset = useSelector(activeOpportunityDataset)
+  const accessibility = useSelector(selectAccessibility)
+  const comparisonAccessibility = useSelector(selectComparisonAccessibility)
+  const comparisonInProgress = useSelector(selectComparisonInProgress)
+  const comparisonPercentileCurves = useSelector(
+    selectComparisonPercentileCurves
+  )
+  const isochroneCutoff = useSelector(selectMaxTripDurationMinutes)
+  const percentileCurves = useSelector(selectPercentileCurves)
+  const maxAccessibility = useSelector(selectMaxAccessibility)
+  const nearestPercentile = useSelector(selectNearestPercentile)
+  const opportunityDatasetName = opportunityDataset && opportunityDataset.name
+
   const [scenarioPlotted, setScenarioPlotted] = useState(PROJECT)
-  if (p.accessibility == null) return null
+  if (accessibility == null) return null
 
   const noComparison =
-    !p.comparisonProjectName &&
-    p.comparisonProjectName !== UNDEFINED_PROJECT_NAME
+    !comparisonProjectName && comparisonProjectName !== UNDEFINED_PROJECT_NAME
 
   const projectColor =
     p.disabled || p.stale
@@ -54,11 +83,11 @@ export default function StackedPercentileSelector(p) {
         <P>
           {message('analysis.accessibilityTo')}{' '}
           <strong>
-            {p.opportunityDatasetName ||
+            {opportunityDatasetName ||
               `[${message('analysis.selectOpportunityDataset')}]`}
           </strong>{' '}
-          in <strong>{p.isochroneCutoff}</strong> minutes (travel time
-          percentile: <strong>{p.nearestPercentile}</strong>th)
+          in <strong>{isochroneCutoff}</strong> minutes (travel time percentile:{' '}
+          <strong>{nearestPercentile}</strong>th)
         </P>
       )}
 
@@ -69,16 +98,16 @@ export default function StackedPercentileSelector(p) {
           style={{
             backgroundColor: colorBar.toString(),
             minWidth: '3em',
-            width: `${((p.accessibility || 1) / p.maxAccessibility) * 100}%`
+            width: `${((accessibility || 1) / maxAccessibility) * 100}%`
           }}
         >
-          {commaFormat(p.accessibility)}
+          {commaFormat(accessibility)}
         </div>
       </div>
 
-      {p.comparisonInProgress &&
-        p.comparisonProjectName &&
-        p.comparisonAccessibility != null && (
+      {comparisonInProgress &&
+        comparisonProjectName &&
+        comparisonAccessibility != null && (
           <div className='progress' style={{marginBottom: '4px'}}>
             <div
               className='progress-bar'
@@ -86,17 +115,15 @@ export default function StackedPercentileSelector(p) {
               style={{
                 backgroundColor: comparisonColorBar.toString(),
                 minWidth: '3em',
-                width: `${
-                  (p.comparisonAccessibility / p.maxAccessibility) * 100
-                }%`
+                width: `${(comparisonAccessibility / maxAccessibility) * 100}%`
               }}
             >
-              {commaFormat(p.comparisonAccessibility)}
+              {commaFormat(comparisonAccessibility)}
             </div>
           </div>
         )}
 
-      {p.comparisonAccessibility !== null && (
+      {comparisonAccessibility !== null && (
         <ButtonGroup justified>
           <Button
             active={noComparison || scenarioPlotted === PROJECT}
@@ -105,7 +132,7 @@ export default function StackedPercentileSelector(p) {
             size='sm'
             value={PROJECT}
           >
-            {p.projectName}
+            {projectName}
           </Button>
           <Button
             active={!noComparison && scenarioPlotted === BASE}
@@ -113,7 +140,7 @@ export default function StackedPercentileSelector(p) {
             onClick={() => setScenarioPlotted(BASE)}
             size='sm'
           >
-            {p.comparisonProjectName || 'No comparison selected'}
+            {comparisonProjectName || 'No comparison selected'}
           </Button>
           <Button
             active={!noComparison && scenarioPlotted === COMPARISON}
@@ -126,21 +153,21 @@ export default function StackedPercentileSelector(p) {
         </ButtonGroup>
       )}
 
-      {p.percentileCurves && (
+      {percentileCurves && (
         <StackedPercentile
-          percentileCurves={p.percentileCurves}
-          comparisonPercentileCurves={p.comparisonPercentileCurves}
+          percentileCurves={percentileCurves}
+          comparisonPercentileCurves={comparisonPercentileCurves}
           width={GRAPH_WIDTH}
           height={GRAPH_HEIGHT}
-          isochroneCutoff={p.isochroneCutoff}
-          opportunityDatasetName={p.opportunityDatasetName}
+          isochroneCutoff={isochroneCutoff}
+          opportunityDatasetName={opportunityDatasetName}
           textColor={'#333333'}
           color={projectColor}
           comparisonColor={comparisonColor}
-          maxAccessibility={p.maxAccessibility}
-          selected={p.comparisonPercentileCurves ? scenarioPlotted : PROJECT}
-          label={p.projectName}
-          comparisonLabel={p.comparisonProjectName}
+          maxAccessibility={maxAccessibility}
+          selected={comparisonPercentileCurves ? scenarioPlotted : PROJECT}
+          label={projectName}
+          comparisonLabel={comparisonProjectName}
         />
       )}
     </>
