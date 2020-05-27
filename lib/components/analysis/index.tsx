@@ -3,7 +3,7 @@ import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
 import Router from 'next/router'
-import React from 'react'
+import {useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {
@@ -21,13 +21,11 @@ import message from 'lib/message'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
 import {routeTo} from 'lib/router'
 import selectAnalysisBounds from 'lib/selectors/analysis-bounds'
-import selectComparisonIsochrone from 'lib/selectors/comparison-isochrone'
 import selectCurrentBundle from 'lib/selectors/current-bundle'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectDTTD from 'lib/selectors/destination-travel-time-distribution'
 import selectDTTDComparison from 'lib/selectors/comparison-destination-travel-time-distribution'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
-import selectIsochrone from 'lib/selectors/isochrone'
 import selectProfileRequest from 'lib/selectors/profile-request'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
@@ -81,7 +79,6 @@ export default function SinglePointAnalysis({
   const analysisBounds = useSelector(selectAnalysisBounds)
   const currentBundle = useSelector(selectCurrentBundle)
   const currentProject = useSelector(selectCurrentProject)
-  const comparisonIsochrone = useSelector(selectComparisonIsochrone)
   const comparisonProjectId = useSelector((s) =>
     get(s, 'analysis.comparisonProjectId')
   )
@@ -92,7 +89,6 @@ export default function SinglePointAnalysis({
   const dttdComparison = useSelector(selectDTTDComparison)
   const dttd = useSelector(selectDTTD)
   const isochroneCutoff = useSelector(selectMaxTripDurationMinutes)
-  const isochrone = useSelector(selectIsochrone)
   const isochroneFetchStatus = useSelector((s) =>
     get(s, 'analysis.isochroneFetchStatus')
   )
@@ -130,7 +126,7 @@ export default function SinglePointAnalysis({
     !profileRequestHasChanged && !isFetchingIsochrone
 
   // Simplify commonly used set function
-  const setPR = React.useCallback(
+  const setPR = useCallback(
     (props) => {
       dispatch(setProfileRequest(props))
     },
@@ -138,7 +134,7 @@ export default function SinglePointAnalysis({
   )
 
   // Update marker if not in sync
-  React.useEffect(() => {
+  useEffect(() => {
     if (fromLat == null || fromLon == null) {
       setPR({
         fromLat: profileRequestLonLat.lat,
@@ -148,7 +144,7 @@ export default function SinglePointAnalysis({
   }, [profileRequestLonLat, fromLat, fromLon, setPR])
 
   // On unmount
-  React.useEffect(
+  useEffect(
     () => () => {
       dispatch(cancelFetch())
       dispatch(clearTravelTimeSurfaces())
@@ -267,11 +263,7 @@ export default function SinglePointAnalysis({
 
       <ModificationsMap isEditing />
 
-      <Isochrones
-        comparison={comparisonIsochrone}
-        isCurrent={displayedDataIsCurrent}
-        isochrone={isochrone}
-      />
+      <Isochrones isCurrent={displayedDataIsCurrent} />
 
       <AnalysisMap
         destination={destination}
