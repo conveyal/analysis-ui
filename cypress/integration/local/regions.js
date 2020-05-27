@@ -142,7 +142,7 @@ describe('Region setup', () => {
         let roundingError = Math.abs(Number(val) - this.region.west)
         expect(roundingError).to.be.lessThan(maxError)
       })
-    cy.mapContainsRegion('scratch')
+    cy.mapContainsRegion()
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()
