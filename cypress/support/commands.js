@@ -26,9 +26,8 @@ Cypress.Commands.add('setupRegion', () => {
 })
 
 function createNewRegion() {
-  let theRegionName = prefix + regionName
   cy.visit('/regions/create')
-  cy.findByPlaceholderText('Region Name').type(theRegionName, {delay: 1})
+  cy.findByPlaceholderText('Region Name').type(prefix + regionName, {delay: 0})
   cy.fixture(regionFixture).then((region) => {
     cy.findByLabelText(/North bound/)
       .clear()
@@ -49,8 +48,7 @@ function createNewRegion() {
   cy.location('pathname')
     .should('match', /regions\/\w{24}$/)
     .then((path) => {
-      let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
-      cy.writeFile(pseudoFixture, {regionId: matches.groups.uuid})
+      cy.writeFile(pseudoFixture, {regionId: path.match(/\w{24}$/)[0]})
     })
 }
 
@@ -102,9 +100,8 @@ function createNewBundle() {
   cy.location('pathname')
     .should('match', /bundles\/\w{24}$/)
     .then((path) => {
-      let matches = path.match(/\w{24}$/)
       cy.readFile(pseudoFixture).then((contents) => {
-        contents = {...contents, bundleId: matches[0]}
+        contents = {...contents, bundleId: path.match(/\w{24}$/)[0]}
         cy.writeFile(pseudoFixture, contents, {log: false})
       })
     })
@@ -143,9 +140,8 @@ function createNewProject() {
   cy.location('pathname', {log: false})
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
-      let projectId = path.match(/\w{24}$/)[0]
       cy.readFile(pseudoFixture, {log: false}).then((contents) => {
-        contents = {...contents, projectId: projectId}
+        contents = {...contents, projectId: path.match(/\w{24}$/)[0]}
         cy.writeFile(pseudoFixture, contents, {log: false})
       })
     })
