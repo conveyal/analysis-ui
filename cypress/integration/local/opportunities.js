@@ -88,7 +88,7 @@ describe('Opportunities', () => {
     cy.contains(/Delete entire dataset/i).click()
   })
 
-  it('can be uploaded as grid', function () {
+  it('can be uploaded and downloaded as grid', function () {
     let opportunity = this.region.opportunities.grid
     let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
     cy.findByText(/Upload a new dataset/i).click()
@@ -116,14 +116,25 @@ describe('Opportunities', () => {
     cy.findByText(/Select\.\.\./)
       .click()
       .type(`${oppName} {enter}`)
+    // TODO this is surely not the ideal way to test a download
+    // this should get the data via click, not hardcoded API url
+    cy.contains(/Download as \.grid/)
+    cy.location('href')
+      .should('match', /opportunityDatasetId=\w{24}$/)
+      .then((href) => {
+        let gridId = href.match(/\w{24}$/)[0]
+        cy.request(
+          `http://localhost:7070/api/opportunities/${gridId}/grid`
+        ).then((response) => {
+          cy.request(response.body.url).then((response) => {
+            cy.readFile('cypress/fixtures/' + opportunity.file, 'utf8').then(
+              (file) => {
+                expect(response.body).to.equal(file)
+              }
+            )
+          })
+        })
+      })
     cy.contains(/Delete entire dataset/i).click()
-  })
-
-  it('can be downloaded as grid', function () {
-    // TODO
-  })
-
-  it('can be downloaded as tiff', function () {
-    // TODO
   })
 })
