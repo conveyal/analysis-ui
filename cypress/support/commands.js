@@ -26,23 +26,23 @@ function setup(entity) {
   }
   let entityId = entity + 'Id'
   cy.task('touch', pseudoFixture, {log: false})
-  cy.readFile(pseudoFixture, {log: false}).then((entityIds) => {
-    if (entityId in entityIds) {
+  cy.readFile(pseudoFixture, {log: false}).then((storedVals) => {
+    if (entityId in storedVals) {
       // thing exists; navigate to it
       switch (entity) {
         case 'region':
-          cy.visit(`/regions/${entityIds.regionId}`)
+          cy.visit(`/regions/${storedVals.regionId}`)
           cy.contains(/Create new Project|Upload a .* Bundle/i, {log: false})
           break
         case 'bundle':
           cy.visit(
-            `/regions/${entityIds.regionId}/bundles/${entityIds.bundleId}`
+            `/regions/${storedVals.regionId}/bundles/${storedVals.bundleId}`
           )
           cy.contains(/create a new network bundle/i, {log: false})
           break
         case 'project':
           cy.visit(
-            `/regions/${entityIds.regionId}/projects/${entityIds.projectId}`
+            `/regions/${storedVals.regionId}/projects/${storedVals.projectId}`
           )
           cy.contains(/Create a modification/i, {log: false})
           break
@@ -52,6 +52,13 @@ function setup(entity) {
       setup(entities[entity].dependsOn)
       entities[entity].setup()
     }
+  })
+}
+
+function stash(key, val) {
+  cy.readFile(pseudoFixture, {log: false}).then((contents) => {
+    contents = {...contents, [key]: val}
+    cy.writeFile(pseudoFixture, contents, {log: false})
   })
 }
 
@@ -78,7 +85,7 @@ function createNewRegion() {
   cy.location('pathname')
     .should('match', /regions\/\w{24}$/)
     .then((path) => {
-      cy.writeFile(pseudoFixture, {regionId: path.match(/\w{24}$/)[0]})
+      stash('regionId', path.match(/\w{24}$/)[0])
     })
 }
 
@@ -114,10 +121,7 @@ function createNewBundle() {
   cy.location('pathname')
     .should('match', /bundles\/\w{24}$/)
     .then((path) => {
-      cy.readFile(pseudoFixture).then((contents) => {
-        contents = {...contents, bundleId: path.match(/\w{24}$/)[0]}
-        cy.writeFile(pseudoFixture, contents, {log: false})
-      })
+      stash('bundleId', path.match(/\w{24}$/)[0])
     })
 }
 
@@ -139,10 +143,7 @@ function createNewProject() {
   cy.location('pathname', {log: false})
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
-      cy.readFile(pseudoFixture, {log: false}).then((contents) => {
-        contents = {...contents, projectId: path.match(/\w{24}$/)[0]}
-        cy.writeFile(pseudoFixture, contents, {log: false})
-      })
+      stash('projectId', path.match(/\w{24}$/)[0])
     })
 }
 
