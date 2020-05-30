@@ -11,6 +11,7 @@ const regionName = Cypress.env('region')
 const regionFixture = `regions/${regionName}.json`
 // used to store object UUIDs between tests to avoid needless ui interaction
 const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
+const unlog = {log: false}
 
 Cypress.Commands.add('setup', (entity) => {
   setup(entity)
@@ -25,26 +26,26 @@ function setup(entity) {
     return
   }
   let entityId = entity + 'Id'
-  cy.task('touch', pseudoFixture, {log: false})
-  cy.readFile(pseudoFixture, {log: false}).then((storedVals) => {
+  cy.task('touch', pseudoFixture, unlog)
+  cy.readFile(pseudoFixture, unlog).then((storedVals) => {
     if (entityId in storedVals) {
       // thing exists; navigate to it
       switch (entity) {
         case 'region':
           cy.visit(`/regions/${storedVals.regionId}`)
-          cy.contains(/Create new Project|Upload a .* Bundle/i, {log: false})
+          cy.contains(/Create new Project|Upload a .* Bundle/i, unlog)
           break
         case 'bundle':
           cy.visit(
             `/regions/${storedVals.regionId}/bundles/${storedVals.bundleId}`
           )
-          cy.contains(/create a new network bundle/i, {log: false})
+          cy.contains(/create a new network bundle/i, unlog)
           break
         case 'project':
           cy.visit(
             `/regions/${storedVals.regionId}/projects/${storedVals.projectId}`
           )
-          cy.contains(/Create a modification/i, {log: false})
+          cy.contains(/Create a modification/i, unlog)
           break
       }
     } else {
@@ -56,9 +57,9 @@ function setup(entity) {
 }
 
 function stash(key, val) {
-  cy.readFile(pseudoFixture, {log: false}).then((contents) => {
+  cy.readFile(pseudoFixture, unlog).then((contents) => {
     contents = {...contents, [key]: val}
-    cy.writeFile(pseudoFixture, contents, {log: false})
+    cy.writeFile(pseudoFixture, contents, unlog)
   })
 }
 
@@ -138,9 +139,9 @@ function createNewProject() {
   cy.get('a.btn')
     .contains(/Create/)
     .click()
-  cy.contains(/Modifications/, {log: false})
+  cy.contains(/Modifications/, unlog)
   // store the projectId
-  cy.location('pathname', {log: false})
+  cy.location('pathname', unlog)
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
       stash('projectId', path.match(/\w{24}$/)[0])
@@ -250,7 +251,6 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
   // and wait until at least part of the page is loaded
   Cypress.log({name: 'Navigate to'})
-  let unlog = {log: false}
   cy.findByTitle(RegExp(menuItemTitle, 'i'), unlog)
     .parent(unlog) // select actual SVG element rather than <title> el
     .click(unlog)
