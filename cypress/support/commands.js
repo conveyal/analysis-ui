@@ -161,7 +161,7 @@ Cypress.Commands.add('deleteProject', (projectName) => {
 })
 
 Cypress.Commands.add('setupMod', (modType, modName) => {
-  cy.navTo(/Edit Modifications/)
+  cy.navTo('Edit Modifications')
   // assumes we are already on this page or editing another mod
   cy.findByRole('link', {name: 'Create a modification'}).click()
   cy.findByLabelText(/Modification type/i).select(modType)
@@ -172,7 +172,7 @@ Cypress.Commands.add('setupMod', (modType, modName) => {
 
 Cypress.Commands.add('openMod', (modType, modName) => {
   // opens the first listed modification of this type with this name
-  cy.navTo(/Edit Modifications/)
+  cy.navTo('Edit Modifications')
   // find the container for this modification type and open it if need be
   cy.contains(modType)
     .parent()
@@ -248,38 +248,33 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
-  // attempt to wait until at least part of the desired page is loaded
+  // and wait until at least part of the page is loaded
   Cypress.log({name: 'Navigate to'})
-  let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
-  cy.findByTitle(caseInsensitiveTitle, {log: false})
-    .parent({log: false}) // select actual SVG element rather than <title> el
-    .click({log: false})
-  switch (caseInsensitiveTitle.toString()) {
-    case /Regions/i.toString():
-      cy.contains(/conveyal analysis/i, {log: false})
-      cy.contains(/Set up a new region/i, {log: false})
+  let unlog = {log: false}
+  cy.findByTitle(RegExp(menuItemTitle, 'i'), unlog)
+    .parent(unlog) // select actual SVG element rather than <title> el
+    .click(unlog)
+  switch (menuItemTitle.toLowerCase()) {
+    case 'regions':
+      cy.contains(/Set up a new region/i, unlog)
       break
-    case /Region Settings/i.toString():
-      cy.contains(/Delete this region/i, {log: false})
+    case 'region settings':
+      cy.contains(/Delete this region/i, unlog)
       break
-    case /Projects/i.toString():
-      cy.contains(/Create new Project|Upload a .* Bundle/i, {log: false})
+    case 'projects':
+      cy.contains(/Create new Project|Upload a .* Bundle/i, unlog)
       break
-    case /Network Bundles/i.toString():
-      cy.contains(/Create a new network bundle/i, {log: false})
+    case 'network bundles':
+      cy.contains(/Create a new network bundle/i, unlog)
       break
-    case /Opportunity datasets/i.toString():
-      cy.contains(/Upload a new dataset/i, {log: false})
+    case 'opportunity datasets':
+      cy.contains(/Upload a new dataset/i, unlog)
       break
-    case /Edit Modifications/i.toString():
-      cy.contains(/create new project|create a modification/i, {log: false})
+    case 'edit modifications':
+      cy.contains(/create new project|create a modification/i, unlog)
       break
-    case /Analyze/i.toString():
-      cy.location('pathname', {log: false}).should('match', /\/analysis/, {
-        log: false
-      })
-      cy.contains(/Comparison Project/i, {log: false})
-      break
+    case 'analyze':
+      cy.contains(/Comparison Project/i, unlog)
   }
 })
 

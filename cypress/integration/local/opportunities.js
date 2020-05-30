@@ -5,7 +5,7 @@ describe('Opportunities', () => {
 
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.navTo(/Opportunity datasets/i)
+    cy.navTo('Opportunity datasets')
     cy.get('div.leaflet-container').as('map')
   })
 
