@@ -3,7 +3,7 @@ const {random} = Cypress._
 
 describe('Modifications', () => {
   before(() => {
-    cy.setupProject('scratch')
+    cy.setup('project')
     cy.setupScenario('scratch scenario')
   })
 

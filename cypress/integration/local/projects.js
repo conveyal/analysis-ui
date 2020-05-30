@@ -1,7 +1,7 @@
 context('Projects', () => {
   before('prepare the region and bundle', () => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.setupBundle('scratch')
+    cy.setup('bundle')
   })
 
   it('can be created and deleted', function () {

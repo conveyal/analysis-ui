@@ -1,6 +1,6 @@
 context('Scenarios', () => {
   before(() => {
-    cy.setupProject('scratch')
+    cy.setup('project')
   })
 
   beforeEach(() => {

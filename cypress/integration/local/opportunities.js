@@ -1,6 +1,6 @@
 describe('Opportunities', () => {
   before(() => {
-    cy.setupRegion('scratch')
+    cy.setup('region')
   })
 
   beforeEach(() => {

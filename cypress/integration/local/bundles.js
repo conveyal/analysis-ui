@@ -1,6 +1,6 @@
 context('Network bundles', () => {
   before('prepare the region', () => {
-    cy.setupRegion('scratch')
+    cy.setup('region')
   })
 
   beforeEach(() => {

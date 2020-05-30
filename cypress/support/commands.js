@@ -12,18 +12,48 @@ const regionFixture = `regions/${regionName}.json`
 // used to store object UUIDs between tests to avoid needless ui interaction
 const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 
-Cypress.Commands.add('setupRegion', () => {
-  // set up the named region from fixtures if necessary
-  cy.task('touch', pseudoFixture)
-  cy.readFile(pseudoFixture, {log: false}).then((IDs) => {
-    if ('regionId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}`)
-      cy.contains(/Create new Project|Upload a .* Bundle/i)
+Cypress.Commands.add('setup', (entity) => {
+  setup(entity)
+})
+function setup(entity) {
+  const entities = {
+    region: {dependsOn: null, setup: createNewRegion},
+    bundle: {dependsOn: 'region', setup: createNewBundle},
+    project: {dependsOn: 'bundle', setup: createNewProject}
+  }
+  if (!(entity in entities)) {
+    return
+  }
+  let entityId = entity + 'Id'
+  cy.task('touch', pseudoFixture, {log: false})
+  cy.readFile(pseudoFixture, {log: false}).then((entityIds) => {
+    if (entityId in entityIds) {
+      // thing exists; navigate to it
+      switch (entity) {
+        case 'region':
+          cy.visit(`/regions/${entityIds.regionId}`)
+          cy.contains(/Create new Project|Upload a .* Bundle/i, {log: false})
+          break
+        case 'bundle':
+          cy.visit(
+            `/regions/${entityIds.regionId}/bundles/${entityIds.bundleId}`
+          )
+          cy.contains(/create a new network bundle/i, {log: false})
+          break
+        case 'project':
+          cy.visit(
+            `/regions/${entityIds.regionId}/projects/${entityIds.projectId}`
+          )
+          cy.contains(/Create a modification/i, {log: false})
+          break
+      }
     } else {
-      createNewRegion()
+      // recursive call for dependency
+      setup(entities[entity].dependsOn)
+      entities[entity].setup()
     }
   })
-})
+}
 
 function createNewRegion() {
   cy.visit('/regions/create')
@@ -52,25 +82,9 @@ function createNewRegion() {
     })
 }
 
-Cypress.Commands.add('setupBundle', () => {
-  cy.task('touch', pseudoFixture)
-  cy.readFile(pseudoFixture).then((IDs) => {
-    if ('bundleId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}/bundles/${IDs.bundleId}`)
-      cy.contains(/create a new network bundle/i)
-    } else if ('regionId' in IDs) {
-      // no bundle, but region exists
-      cy.visit(`/regions/${IDs.regionId}/bundles`)
-      createNewBundle()
-    } else {
-      cy.setupRegion()
-      cy.setupBundle()
-    }
-  })
-})
-
 function createNewBundle() {
   let bundleName = prefix + regionName + ' bundle'
+  cy.navTo('Network Bundles')
   cy.findByText(/Create .* bundle/).click()
   cy.location('pathname').should('match', /\/bundles\/create$/)
   cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
@@ -107,25 +121,10 @@ function createNewBundle() {
     })
 }
 
-Cypress.Commands.add('setupProject', () => {
-  cy.task('touch', pseudoFixture)
-  cy.readFile(pseudoFixture, {log: false}).then((IDs) => {
-    if ('projectId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}/projects/${IDs.projectId}`)
-      cy.contains(/Create a modification/i)
-    } else if ('bundleId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}/projects`)
-      createNewProject()
-    } else {
-      cy.setupBundle()
-      cy.setupProject()
-    }
-  })
-})
-
 function createNewProject() {
   let projectName = prefix + regionName + ' project'
   let bundleName = prefix + regionName + ' bundle'
+  cy.navTo('Projects')
   cy.contains('Create new Project')
   cy.findByText(/Create new Project/i).click()
   cy.location('pathname').should('match', /\/create-project/)

@@ -1,6 +1,6 @@
 context('Single point analysis', () => {
   before(() => {
-    cy.setupProject('scratch')
+    cy.setup('project')
     cy.navTo('Analyze')
     cy.get('div.leaflet-container').as('map')
   })
