@@ -74,34 +74,34 @@ export default function AddStreets() {
     update({allowedModes: Array.from(modes)})
   }
 
-  const bikeSwitch: any = useControlledInput(
+  const bikeSwitch = useControlledInput(
     m.allowedModes.includes(BICYCLE),
     updateMode(BICYCLE)
   )
-  const bikeGCF: any = useControlledInput(
+  const bikeGCF = useControlledInput(
     m.bikeGenCostFactor,
     updateFloat('bikeGenCostFactor'),
     isValidFloat
   )
-  const bikeLts: any = useControlledInput(m.bikeLts, (v: any) =>
+  const bikeLts = useControlledInput(m.bikeLts, (v: any) =>
     update({bikeLts: parseInt(v)})
   )
 
-  const carSwitch: any = useControlledInput(
+  const carSwitch = useControlledInput(
     m.allowedModes.includes(CAR),
     updateMode(CAR)
   )
-  const carSpeed: any = useControlledInput(
+  const carSpeed = useControlledInput(
     m.carSpeedKph,
     updateFloat('carSpeedKph'),
     isValidFloat
   )
 
-  const walkSwitch: any = useControlledInput(
+  const walkSwitch = useControlledInput(
     m.allowedModes.includes(WALK),
     updateMode(WALK)
   )
-  const walkGCF: any = useControlledInput(
+  const walkGCF = useControlledInput(
     m.walkGenCostFactor,
     updateFloat('walkGenCostFactor'),
     isValidFloat

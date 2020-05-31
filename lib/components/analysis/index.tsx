@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Divider,
@@ -46,7 +47,6 @@ import {
 } from 'lib/actions/analysis'
 import {setProfileRequest} from 'lib/actions/analysis/profile-request'
 import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
-import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
@@ -439,7 +439,7 @@ function RequestSettings({
         align='center'
         borderTop='1px solid #E2E8F0'
         px={6}
-        pt={8}
+        pt={10}
         pb={2}
         justify='space-between'
         textAlign='left'
@@ -510,7 +510,8 @@ function RequestSettings({
           outline: 'none'
         }}
         onClick={() => setIsOpen((isOpen) => !isOpen)}
-        size='xs'
+        size='sm'
+        title={isOpen ? 'collapse' : 'expand'}
         variant='ghost'
         variantColor={color}
         width='100%'
@@ -520,7 +521,7 @@ function RequestSettings({
       {isOpen && (
         <Stack spacing={6} p={6}>
           {scenarioWarnings != null && scenarioWarnings.length > 0 && (
-            <div className='alert alert-warning'>
+            <Alert status='warning'>
               <Collapsible
                 title={
                   <span className='text-warning'>
@@ -532,18 +533,18 @@ function RequestSettings({
               >
                 <ScenarioApplicationErrors errors={scenarioWarnings} />
               </Collapsible>
-            </div>
+            </Alert>
           )}
 
           {scenarioErrors != null && scenarioErrors.length > 0 && (
-            <div className='alert alert-danger'>
+            <Alert status='error'>
               <strong>
                 <Icon icon={faExclamationCircle} />{' '}
                 {message('analysis.errorsInProject')}
               </strong>
               <br />
               <ScenarioApplicationErrors errors={scenarioErrors} />
-            </div>
+            </Alert>
           )}
 
           <Stack isInline spacing={6}>

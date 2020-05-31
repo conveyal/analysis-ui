@@ -46,14 +46,27 @@ export default function useControlledInput(
 
   // Test current value validity
   const isValid = testValid(inputValue)
-  // Allow for hook style array naming
-  const ret = [inputValue, onChange, ref, isValid]
-  // And also single named object with properties (arrays are just objects)
-  // TODO: standardize on a single style for future TS usage
-  ret.value = inputValue
-  ret.onChange = onChange
-  ret.ref = ref
-  ret.isValid = isValid
-  ret.isInvalid = !isValid // Chakra UI uses isInvalid on FormControls
-  return ret
+
+  // Store the return values
+  const [returnValue, setReturnValue] = useState({
+    // Name properties for {...spreading} on an input
+    onChange,
+    isInvalid: !isValid, // Chakra UI uses isInvalid on FormControls
+    isValid,
+    ref,
+    value: inputValue
+  })
+
+  // Memoize the object based on it's values for reference checking
+  useEffect(() => {
+    setReturnValue({
+      onChange,
+      isInvalid: !isValid,
+      isValid,
+      ref,
+      value: inputValue
+    })
+  }, [onChange, inputValue, isValid, ref])
+
+  return returnValue
 }
