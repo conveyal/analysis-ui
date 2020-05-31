@@ -457,7 +457,6 @@ function RequestSettings({
               >
                 {project.name}
               </Heading>
-              }
               <Heading
                 size='sm'
                 color='gray.500'
