@@ -20,6 +20,7 @@ function setup(entity) {
   const entities = {
     region: {dependsOn: null, setup: createNewRegion},
     bundle: {dependsOn: 'region', setup: createNewBundle},
+    opportunities: {dependsOn: 'region', setup: createNewOpportunities},
     project: {dependsOn: 'bundle', setup: createNewProject}
   }
   if (!(entity in entities)) {
@@ -60,6 +61,41 @@ function stash(key, val) {
   cy.readFile(pseudoFixture, unlog).then((contents) => {
     contents = {...contents, [key]: val}
     cy.writeFile(pseudoFixture, contents, unlog)
+  })
+}
+
+function createNewOpportunities() {
+  cy.fixture(regionFixture).then((region) => {
+    let opportunity = region.opportunities.grid
+    let oppName = `${prefix}default_opportunities`
+    cy.navTo('Opportunity Datasets')
+    cy.findByText(/Upload a new dataset/i).click()
+    cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+    cy.findByLabelText(/Select opportunity dataset/).attachFile({
+      filePath: opportunity.file,
+      encoding: 'base64'
+    })
+    cy.get('a.btn')
+      .contains(/Upload/)
+      .click()
+    // find the message showing this upload is complete
+    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
+      .parent()
+      .parent()
+      .as('notice')
+    // check number of fields uploaded
+    cy.get('@notice').contains(/Finished uploading 1 feature/i)
+    // close the message
+    cy.get('@notice').findByRole('button', /x/).click()
+    // now grab the ID
+    cy.findByText(/Select\.\.\./)
+      .click()
+      .type(`${oppName} {enter}`)
+    cy.location('href')
+      .should('match', /.*DatasetId=\w{24}$/)
+      .then((href) => {
+        stash('opportunitiesId', href.match(/\w{24}$/)[0])
+      })
   })
 }
 
