@@ -55,7 +55,7 @@ context('Network bundles', () => {
   })
 
   it('can reuse OSM and GTFS components', function () {
-    cy.setupBundle('scratch')
+    cy.setup('bundle')
     let bundleName = 'temp bundle ' + Date.now()
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
