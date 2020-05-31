@@ -42,6 +42,10 @@ function setup(entity) {
           )
           cy.contains(/create a new network bundle/i, unlog)
           break
+        case 'opportunities':
+          cy.visit(`/regions/${storedVals.regionId}/opportunities`)
+          cy.contains(/Upload a new dataset/i, unlog)
+          break
         case 'project':
           cy.visit(
             `/regions/${storedVals.regionId}/projects/${storedVals.projectId}`

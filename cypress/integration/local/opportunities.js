@@ -4,18 +4,13 @@ describe('Opportunities', () => {
   })
 
   beforeEach(() => {
-    cy.fixture('regions/scratch.json').as('region')
+    cy.fixture('regions/scratch.json').its('opportunities').as('opportunities')
     cy.navTo('Opportunity datasets')
     cy.get('div.leaflet-container').as('map')
   })
 
-  after(() => {
-    // TODO check that everything imported by these tests has been deleted
-    // can look for the '_temp' suffix
-  })
-
   it('can be uploaded as CSV', function () {
-    let opportunity = this.region.opportunities.csv
+    let opportunity = this.opportunities.csv
     let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
     let expectedFieldCount = 1 + opportunity.numericFields.length
     cy.findByText(/Upload a new dataset/i).click()
@@ -54,7 +49,7 @@ describe('Opportunities', () => {
   })
 
   it('can be uploaded as shapefile', function () {
-    let opportunity = this.region.opportunities.shapefile
+    let opportunity = this.opportunities.shapefile
     let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
     let expectedFieldCount = opportunity.numericFields.length
     cy.findByText(/Upload a new dataset/i).click()
@@ -88,8 +83,8 @@ describe('Opportunities', () => {
     cy.contains(/Delete entire dataset/i).click()
   })
 
-  it('can be uploaded and downloaded as grid', function () {
-    let opportunity = this.region.opportunities.grid
+  it('can be uploaded as grid', function () {
+    let opportunity = this.opportunities.grid
     let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
     cy.findByText(/Upload a new dataset/i).click()
     cy.location('pathname').should('match', /\/opportunities\/upload$/)
@@ -116,25 +111,41 @@ describe('Opportunities', () => {
     cy.findByText(/Select\.\.\./)
       .click()
       .type(`${oppName} {enter}`)
-    // TODO this is surely not the ideal way to test a download
-    // this should get the data via click, not hardcoded API url
-    cy.contains(/Download as \.grid/)
-    cy.location('href')
-      .should('match', /opportunityDatasetId=\w{24}$/)
-      .then((href) => {
-        let gridId = href.match(/\w{24}$/)[0]
-        cy.request(
-          `http://localhost:7070/api/opportunities/${gridId}/grid`
-        ).then((response) => {
-          cy.request(response.body.url).then((response) => {
-            cy.readFile('cypress/fixtures/' + opportunity.file, 'utf8').then(
-              (file) => {
-                expect(response.body).to.equal(file)
-              }
-            )
+    cy.contains(/Delete entire dataset/i).click()
+  })
+
+  context('downloads', () => {
+    before(() => {
+      cy.setup('opportunities')
+    })
+    it('can be downloaded as .grid', function () {
+      let opportunity = this.opportunities.grid
+      // TODO should get the data via click, not hardcoded API url
+      cy.findByText(/Select\.\.\./)
+        .click()
+        .type(`default{enter}`)
+      cy.contains(/Download as \.grid/)
+      cy.location('href')
+        .should('match', /opportunityDatasetId=\w{24}$/)
+        .then((href) => {
+          let gridId = href.match(/\w{24}$/)[0]
+          cy.request(
+            `http://localhost:7070/api/opportunities/${gridId}/grid`
+          ).then((response) => {
+            cy.request(response.body.url).then((response) => {
+              cy.readFile('cypress/fixtures/' + opportunity.file, 'utf8').then(
+                (file) => {
+                  expect(response.body).to.equal(file)
+                }
+              )
+            })
           })
         })
-      })
-    cy.contains(/Delete entire dataset/i).click()
+    })
+  })
+
+  after(() => {
+    // TODO check that everything imported by these tests has been deleted
+    // can look for the '_temp' suffix
   })
 })
