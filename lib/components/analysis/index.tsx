@@ -1,9 +1,39 @@
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Stack,
+  Switch,
+  FormHelperText,
+  Skeleton,
+  Text
+} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
-import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons'
+import {
+  faChevronDown,
+  faChevronRight,
+  faDownload,
+  faExclamationCircle,
+  faChevronUp
+} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
+import snakeCase from 'lodash/snakeCase'
+import startCase from 'lodash/startCase'
 import dynamic from 'next/dynamic'
 import Router from 'next/router'
-import {useCallback, useEffect} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {
@@ -15,32 +45,44 @@ import {
   setDestination
 } from 'lib/actions/analysis'
 import {setProfileRequest} from 'lib/actions/analysis/profile-request'
-import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
+import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
+import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
+import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
 import {routeTo} from 'lib/router'
+import selectAccessibility from 'lib/selectors/accessibility'
 import selectAnalysisBounds from 'lib/selectors/analysis-bounds'
 import selectCurrentBundle from 'lib/selectors/current-bundle'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectDTTD from 'lib/selectors/destination-travel-time-distribution'
 import selectDTTDComparison from 'lib/selectors/comparison-destination-travel-time-distribution'
+import selectIsochrone from 'lib/selectors/isochrone'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
+import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectProfileRequest from 'lib/selectors/profile-request'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
-import nearestPercentileIndex from 'lib/selectors/nearest-percentile-index'
+import selectNearestPercentile from 'lib/selectors/nearest-percentile'
+import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
+import cleanProjectScenarioName from 'lib/utils/clean-project-scenario-name'
+import downloadCSV from 'lib/utils/download-csv'
+import downloadGeoTIFF from 'lib/utils/download-geotiff'
+import downloadJson from 'lib/utils/download-json'
+import {secondsToMoment} from 'lib/utils/time'
 
-import InnerDock from '../inner-dock'
 import Select from '../select'
 import Collapsible from '../collapsible'
 import Icon from '../icon'
-import {Group as FormGroup, Slider} from '../input'
+import InnerDock from '../inner-dock'
+import ModeIcon from '../mode-icon'
 
 import AnalysisTitle from './title'
 import BookmarkChooser from './bookmark-chooser'
 import ScenarioApplicationError from './scenario-application-error'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
+import ModeSelector from './mode-selector'
 import StackedPercentileSelector from './stacked-percentile-selector'
 
 /**
@@ -67,8 +109,6 @@ const ModificationsMap = dynamic(
 )
 const AnalysisMap = dynamic(() => import('./map'), noSSR)
 
-const bold = (b) => `<strong>${b}</strong>`
-
 export default function SinglePointAnalysis({
   bundles,
   projects,
@@ -79,6 +119,7 @@ export default function SinglePointAnalysis({
   const analysisBounds = useSelector(selectAnalysisBounds)
   const currentBundle = useSelector(selectCurrentBundle)
   const currentProject = useSelector(selectCurrentProject)
+  const cutoff = useSelector(selectMaxTripDurationMinutes)
   const comparisonProjectId = useSelector((s) =>
     get(s, 'analysis.comparisonProjectId')
   )
@@ -88,10 +129,12 @@ export default function SinglePointAnalysis({
   const destination = useSelector((s) => get(s, 'analysis.destination'))
   const dttdComparison = useSelector(selectDTTDComparison)
   const dttd = useSelector(selectDTTD)
-  const isochroneCutoff = useSelector(selectMaxTripDurationMinutes)
+  const isochrone = useSelector(selectIsochrone)
   const isochroneFetchStatus = useSelector((s) =>
     get(s, 'analysis.isochroneFetchStatus')
   )
+  const opportunityDataset = useSelector(activeOpportunityDataset)
+  const percentileCurves = useSelector(selectPercentileCurves)
   const profileRequest = useSelector(selectProfileRequest)
   const profileRequestHasChanged = useSelector(selectProfileRequestHasChanged)
   const profileRequestLonLat = useSelector(selectProfileRequestLonLat)
@@ -107,14 +150,14 @@ export default function SinglePointAnalysis({
   const readyToFetch = !!currentProject
   const isFetchingIsochrone = !!isochroneFetchStatus
   const disableInputs = isFetchingIsochrone || !currentProject
-  const projectVariants = [
+  const scenarioOptions = [
     {label: message('analysis.baseline'), value: -1},
     ...get(currentProject, 'variants', []).map((v, index) => ({
       label: v,
       value: index
     }))
   ]
-  const comparisonVariantOptions = [
+  const comparisonScenarioOptions = [
     // special value -1 indicates no modifications
     {label: message('analysis.baseline'), value: -1},
     ...get(comparisonProject, 'variants', []).map((label, value) => ({
@@ -152,56 +195,11 @@ export default function SinglePointAnalysis({
     [dispatch]
   )
 
-  /**
-   * Check if the selected project's bundles are out of date.
-   * TODO: Move into a selector?
-   * @returns {void | String} returns a message if they are out of date.
-   */
-  function _bundleIsOutOfDate() {
-    const date = new Date(profileRequest.date)
-    if (currentProject === null || currentProject === undefined) return
-
-    if (
-      currentBundle != null &&
-      (new Date(currentBundle.serviceStart) > date ||
-        new Date(currentBundle.serviceEnd) < date)
-    ) {
-      return message('analysis.bundleOutOfDate', {
-        bundle: bold(currentBundle.name),
-        project: bold(currentProject.name),
-        serviceStart: bold(currentBundle.serviceStart),
-        serviceEnd: bold(currentBundle.serviceEnd),
-        selectedDate: bold(profileRequest.date)
-      })
-    }
-
-    // Do the same check for the comparison project and bundle
-    if (comparisonProject === null || comparisonProject === undefined) {
-      return
-    }
-
-    const bundle = bundles.find((b) => b._id === comparisonProject.bundleId)
-    if (
-      bundle != null &&
-      (new Date(bundle.serviceStart) > date ||
-        new Date(bundle.serviceEnd) < date)
-    ) {
-      return message('analysis.bundleOutOfDate', {
-        bundle: bold(bundle.name),
-        project: bold(comparisonProject.name),
-        serviceStart: bold(bundle.serviceStart),
-        serviceEnd: bold(bundle.serviceEnd),
-        selectedDate: bold(profileRequest.date)
-      })
-    }
-  }
-  const bundleOutOfDate = _bundleIsOutOfDate()
-
   // Current project is stored in the query string
   function _setCurrentProject(option) {
     const {as, query, href} = routeTo('analysis', {
       ...Router.query,
-      projectId: option._id
+      projectId: get(option, '_id')
     })
     const qs = Object.keys(query)
       .map((k) => `${k}=${query[k]}`)
@@ -235,11 +233,6 @@ export default function SinglePointAnalysis({
       )
     }
   }
-
-  const _setIsochroneCutoff = (e) =>
-    setPR({maxTripDurationMinutes: parseInt(e.target.value)})
-  const _setTravelTimePercentile = (e) =>
-    setPR({travelTimePercentile: Number(e.target.value)})
 
   /**
    * Set the origin and fetch if ready.
@@ -288,193 +281,509 @@ export default function SinglePointAnalysis({
         />
       )}
 
-      <AnalysisTitle />
+      <AnalysisTitle isDisabled={isochrone && !profileRequestHasChanged} />
 
-      <InnerDock className='block' style={{width: '640px'}}>
-        {scenarioWarnings != null && scenarioWarnings.length > 0 && (
-          <div className='alert alert-warning'>
-            <Collapsible
-              title={
-                <span className='text-warning'>
-                  <Icon icon={faExclamationCircle} />
-                  &nbsp;
-                  {message('analysis.warningsInProject')}
-                </span>
-              }
-            >
-              <ScenarioApplicationErrors errors={scenarioWarnings} />
-            </Collapsible>
-          </div>
-        )}
-
-        {scenarioErrors != null && scenarioErrors.length > 0 && (
-          <div className='alert alert-danger'>
-            <strong>
-              <Icon icon={faExclamationCircle} />{' '}
-              {message('analysis.errorsInProject')}
-            </strong>
-            <br />
-            <ScenarioApplicationErrors errors={scenarioErrors} />
-          </div>
-        )}
-
-        <div className='row'>
-          <FormGroup className='col-xs-6'>
-            <label className='control-label' htmlFor='select-project'>
-              {message('common.project')}
-            </label>
-            <Select
-              name='select-project'
-              inputId='select-project'
-              isDisabled={projects.length === 0 || isFetchingIsochrone}
-              getOptionLabel={(p) => p.name}
-              getOptionValue={(p) => p._id}
-              options={projects}
-              value={currentProject}
-              onChange={_setCurrentProject}
-            />
-          </FormGroup>
-          <FormGroup className='col-xs-6'>
-            <label className='control-label' htmlFor='select-scenario'>
-              {message('common.scenario')}
-            </label>
-            <Select
-              name='select-scenario'
-              inputId='select-scenario'
-              isDisabled={disableInputs}
-              options={projectVariants}
-              value={projectVariants.find(
-                (v) => v.value === profileRequest.variantIndex
-              )}
-              onChange={_setCurrentVariant}
-            />
-          </FormGroup>
-        </div>
-
-        <div className='row'>
-          <FormGroup className='col-xs-6'>
-            <label
-              className='control-label'
-              htmlFor='select-comparison-project'
-            >
-              {message('analysis.comparison') + ' ' + message('common.project')}
-            </label>
-            <Select
-              name='select-comparison-project'
-              inputId='select-comparison-project'
-              isClearable
-              isDisabled={isFetchingIsochrone || !currentProject}
-              getOptionLabel={(p) => p.name}
-              getOptionValue={(p) => p._id}
-              onChange={_setComparisonProject}
-              options={projects}
-              placeholder={message('analysis.selectComparisonProject')}
-              value={projects.find((p) => p._id === comparisonProjectId)}
-            />
-          </FormGroup>
-
-          <FormGroup className='col-xs-6'>
-            <label
-              className='control-label'
-              htmlFor='select-comparison-scenario'
-            >
-              {message('analysis.comparison') +
-                ' ' +
-                message('common.scenario')}
-            </label>
-            <Select
-              name='select-comparison-scenario'
-              inputId='select-comparison-scenario'
-              isDisabled={isFetchingIsochrone || !comparisonProjectId}
-              onChange={_setComparisonVariant}
-              options={comparisonVariantOptions}
-              placeholder={message('analysis.selectComparisonProjectVariant')}
-              value={comparisonVariantOptions.find(
-                (v) => v.value === comparisonVariant
-              )}
-            />
-          </FormGroup>
-        </div>
-
-        <div className='row'>
-          <FormGroup className='col-xs-12'>
-            <label
-              className='control-label'
-              htmlFor='select-opportunity-dataset'
-            >
-              {message('analysis.grid')}
-            </label>
-            <OpportunityDatasetSelector
-              isDisabled={disableInputs}
-              regionId={region._id}
-            />
-          </FormGroup>
-        </div>
-
-        <div className='row'>
-          <FormGroup
-            label={`Time cutoff: ${isochroneCutoff} minutes`}
-            className='col-xs-12'
-          >
-            <input
-              disabled={disableInputs || profileRequestHasChanged}
-              type='range'
-              value={isochroneCutoff}
-              min={1}
-              max={120}
-              title={message('analysis.cutoff')}
-              onChange={_setIsochroneCutoff}
-            />
-          </FormGroup>
-        </div>
-
-        <StackedPercentileSelector
-          disabled={disableInputs}
-          stale={profileRequestHasChanged}
+      <InnerDock style={{width: '640px'}}>
+        <Results
+          isDisabled={disableInputs}
+          isStale={profileRequestHasChanged}
+          region={region}
         />
 
-        <br />
-
-        <BookmarkChooser disabled={disableInputs} />
-        <ProfileRequestEditor
-          bundleOutOfDate={bundleOutOfDate}
-          disabled={disableInputs}
-          profileRequest={profileRequest}
-          setProfileRequest={setPR}
-        />
-
-        {/*
-         * A slider for selecting the percentile to use in a regional
-         * analysis. This will eventually be moved into analysis
-         * settings once we can calculate multiple percentiles in single
-         * point mode.
-         */}
-        <Slider
-          disabled={disableInputs || profileRequestHasChanged}
-          value={profileRequest.travelTimePercentile || 50}
-          min={1}
-          max={99}
-          step={1}
-          label={message('analysis.travelTimePercentile', {
-            regional: profileRequest.travelTimePercentile,
-            singlePoint:
-              TRAVEL_TIME_PERCENTILES[
-                nearestPercentileIndex(profileRequest.travelTimePercentile)
-              ]
-          })}
-          onChange={_setTravelTimePercentile}
-        />
-
-        <AdvancedSettings
+        <RequestSettings
           analysisBounds={analysisBounds}
-          disabled={disableInputs}
+          bundle={currentBundle}
+          cutoff={cutoff}
+          isDisabled={disableInputs}
+          isFetchingIsochrone={isFetchingIsochrone}
+          isochrone={isochrone}
+          opportunityDataset={opportunityDataset}
+          percentileCurves={percentileCurves}
           profileRequest={profileRequest}
-          regionalAnalyses={regionalAnalyses}
+          project={currentProject}
+          projects={projects}
           regionBounds={region.bounds}
+          regionalAnalyses={regionalAnalyses}
+          scenario={profileRequest.variantIndex}
+          scenarioOptions={scenarioOptions}
+          scenarioErrors={scenarioErrors}
+          scenarioWarnings={scenarioWarnings}
           setProfileRequest={setPR}
+          setProject={_setCurrentProject}
+          setScenario={_setCurrentVariant}
+        />
+
+        <RequestSettings
+          analysisBounds={analysisBounds}
+          borderBottom='1px solid #E2E8F0'
+          bundle={currentBundle}
+          color='red'
+          cutoff={cutoff}
+          isComparison
+          isDisabled={disableInputs}
+          isFetchingIsochrone={isFetchingIsochrone}
+          isochrone={isochrone}
+          opportunityDataset={opportunityDataset}
+          percentileCurves={percentileCurves}
+          profileRequest={profileRequest}
+          project={comparisonProject}
+          projects={projects}
+          regionBounds={region.bounds}
+          regionalAnalyses={regionalAnalyses}
+          scenario={comparisonVariant}
+          scenarioOptions={comparisonScenarioOptions}
+          scenarioErrors={scenarioErrors}
+          scenarioWarnings={scenarioWarnings}
+          setProfileRequest={setPR}
+          setProject={_setComparisonProject}
+          setScenario={_setComparisonVariant}
         />
       </InnerDock>
     </>
+  )
+}
+
+function RequestSummary({profileRequest, ...p}) {
+  // Transit modes is stored as a string
+  const transitModes = profileRequest.transitModes.split(',')
+
+  return (
+    <Flex flex='2' justify='space-evenly' {...p}>
+      <Stack align='center' isInline spacing='1'>
+        <ModeIcon mode={profileRequest.accessModes} />
+        {profileRequest.transitModes.length > 0 && (
+          <Stack align='center' isInline spacing='1'>
+            <Box fontSize='xs'>
+              <Icon icon={faChevronRight} />
+            </Box>
+            {transitModes.slice(0, 2).map((m) => (
+              <ModeIcon mode={m} key={m} />
+            ))}
+            {transitModes.length > 2 && (
+              <Box title={transitModes.map(startCase).join(', ')}>...</Box>
+            )}
+            {profileRequest.egressModes !== 'WALK' && (
+              <Stack align='center' isInline spacing='1'>
+                <Box fontSize='xs'>
+                  <Icon icon={faChevronRight} />
+                </Box>
+                <ModeIcon mode={profileRequest.egressModes} />
+              </Stack>
+            )}
+          </Stack>
+        )}
+      </Stack>
+
+      <Stack fontWeight='500' isInline spacing='2'>
+        <Text>{profileRequest.date}</Text>
+        <Text>
+          {secondsToMoment(profileRequest.fromTime).format('H:mm')}-
+          {secondsToMoment(profileRequest.toTime).format('H:mm')}
+        </Text>
+      </Stack>
+    </Flex>
+  )
+}
+
+function RequestSettings({
+  analysisBounds,
+  bundle,
+  color = 'blue',
+  cutoff,
+  isComparison = false,
+  isDisabled,
+  isFetchingIsochrone,
+  isochrone,
+  opportunityDataset,
+  percentileCurves,
+  profileRequest,
+  project,
+  projects,
+  regionalAnalyses,
+  regionBounds,
+  scenario,
+  scenarioOptions,
+  scenarioErrors,
+  scenarioWarnings,
+  setProfileRequest,
+  setProject,
+  setScenario,
+  ...p
+}) {
+  const [isOpen, setIsOpen] = useState(!project)
+  const dispatch = useDispatch()
+  const [copySettings, setCopySettings] = useState(true)
+
+  function onCreateRegionalAnalysis(e) {
+    e.stopPropagation()
+
+    if (project) {
+      const name = window.prompt(
+        'Enter a name and click ok to begin a regional analysis job for this project and settings:',
+        `Analysis ${regionalAnalyses.length + 1}: ${project.name} ` +
+          `${project.variants[profileRequest.variantIndex] || ''}`
+      )
+      if (name && name.length > 0) {
+        dispatch(createRegionalAnalysis({name, profileRequest}))
+      }
+    }
+  }
+
+  const scenarioName =
+    get(project, 'variants', [])[scenario] || message('variant.baseline')
+  const projectDownloadName = cleanProjectScenarioName(project, scenario)
+
+  return (
+    <Stack spacing={0} {...p}>
+      <Flex
+        align='center'
+        borderTop='1px solid #E2E8F0'
+        px={6}
+        pt={8}
+        pb={2}
+        justify='space-between'
+        textAlign='left'
+      >
+        {project ? (
+          <>
+            <Stack flex='1' overflow='hidden'>
+              <Heading
+                size='md'
+                color={`${color}.500`}
+                overflow='hidden'
+                textOverflow='ellipsis'
+                title={project.name}
+                whiteSpace='nowrap'
+              >
+                {project.name}
+              </Heading>
+              }
+              <Heading
+                size='sm'
+                color='gray.500'
+                overflow='hidden'
+                textOverflow='ellipsis'
+                title={scenarioName}
+                whiteSpace='nowrap'
+              >
+                {scenarioName}
+              </Heading>
+            </Stack>
+
+            {isComparison ? (
+              copySettings ? null : (
+                <RequestSummary profileRequest={profileRequest} flex='2' />
+              )
+            ) : (
+              <RequestSummary profileRequest={profileRequest} flex='2' />
+            )}
+          </>
+        ) : (
+          <Heading size='md' color={`${color}.500`}>
+            Select a project
+          </Heading>
+        )}
+
+        <Stack spacing={1} isInline>
+          <DownloadMenu
+            cutoff={cutoff}
+            isDisabled={!isochrone}
+            isochrone={isochrone}
+            key={color}
+            opportunityDataset={opportunityDataset}
+            percentileCurves={percentileCurves}
+            projectName={projectDownloadName}
+          />
+          <Button
+            isDisabled={!isochrone}
+            onClick={onCreateRegionalAnalysis}
+            rightIcon='small-add'
+            variantColor='green'
+          >
+            Multi-point
+          </Button>
+        </Stack>
+      </Flex>
+
+      <Button
+        borderRadius='0'
+        _focus={{
+          outline: 'none'
+        }}
+        onClick={() => setIsOpen((isOpen) => !isOpen)}
+        size='xs'
+        variant='ghost'
+        variantColor={color}
+        width='100%'
+      >
+        <Icon icon={isOpen ? faChevronUp : faChevronDown} />
+      </Button>
+      {isOpen && (
+        <Stack spacing={6} p={6}>
+          {scenarioWarnings != null && scenarioWarnings.length > 0 && (
+            <div className='alert alert-warning'>
+              <Collapsible
+                title={
+                  <span className='text-warning'>
+                    <Icon icon={faExclamationCircle} />
+                    &nbsp;
+                    {message('analysis.warningsInProject')}
+                  </span>
+                }
+              >
+                <ScenarioApplicationErrors errors={scenarioWarnings} />
+              </Collapsible>
+            </div>
+          )}
+
+          {scenarioErrors != null && scenarioErrors.length > 0 && (
+            <div className='alert alert-danger'>
+              <strong>
+                <Icon icon={faExclamationCircle} />{' '}
+                {message('analysis.errorsInProject')}
+              </strong>
+              <br />
+              <ScenarioApplicationErrors errors={scenarioErrors} />
+            </div>
+          )}
+
+          <Stack isInline spacing={6}>
+            <FormControl
+              flex='1'
+              isDisabled={projects.length === 0 || isFetchingIsochrone}
+            >
+              <FormLabel htmlFor='select-project'>
+                {message('common.project')}
+              </FormLabel>
+              <Select
+                name='select-project'
+                inputId='select-project'
+                isClearable
+                isDisabled={projects.length === 0 || isFetchingIsochrone}
+                getOptionLabel={(p) => p.name}
+                getOptionValue={(p) => p._id}
+                options={projects}
+                value={project}
+                onChange={setProject}
+              />
+            </FormControl>
+
+            <FormControl flex='1' isDisabled={isDisabled}>
+              <FormLabel htmlFor='select-scenario'>
+                {message('common.scenario')}
+              </FormLabel>
+              <Select
+                name='select-scenario'
+                inputId='select-scenario'
+                isDisabled={isDisabled}
+                options={scenarioOptions}
+                value={scenarioOptions.find((v) => v.value === scenario)}
+                onChange={setScenario}
+              />
+            </FormControl>
+
+            <BookmarkChooser disabled={isDisabled} flex='1' />
+          </Stack>
+
+          {isComparison && (
+            <Flex align='center' justify='center'>
+              <FormLabel htmlFor='copySettings'>
+                Copy request settings
+              </FormLabel>
+              <Switch
+                id='copySettings'
+                isChecked={copySettings}
+                onChange={() => setCopySettings((c) => !c)}
+              />
+            </Flex>
+          )}
+
+          {project && (!isComparison || !copySettings) && (
+            <Stack spacing={6}>
+              <ModeSelector
+                accessModes={profileRequest.accessModes}
+                directModes={profileRequest.directModes}
+                disabled={isDisabled}
+                egressModes={profileRequest.egressModes}
+                transitModes={profileRequest.transitModes}
+                update={setProfileRequest}
+              />
+
+              <ProfileRequestEditor
+                bundle={bundle}
+                disabled={isDisabled}
+                profileRequest={profileRequest}
+                project={project}
+                setProfileRequest={setProfileRequest}
+              />
+
+              <Divider />
+
+              <AdvancedSettings
+                analysisBounds={analysisBounds}
+                disabled={isDisabled}
+                profileRequest={profileRequest}
+                regionalAnalyses={regionalAnalyses}
+                regionBounds={regionBounds}
+                setProfileRequest={setProfileRequest}
+              />
+            </Stack>
+          )}
+        </Stack>
+      )}
+    </Stack>
+  )
+}
+
+function DownloadMenu({
+  cutoff,
+  isDisabled,
+  isochrone,
+  opportunityDataset,
+  percentileCurves,
+  projectName,
+  ...p
+}) {
+  const dispatch = useDispatch()
+
+  function downloadIsochrone() {
+    downloadJson({
+      data: {
+        ...isochrone,
+        properties: {} // TODO set this in jsolines
+      },
+      filename:
+        snakeCase(`conveyal isochrone ${projectName} at ${cutoff} minutes`) +
+        '.json'
+    })
+  }
+
+  function downloadOpportunitiesCSV() {
+    const header =
+      Array(120)
+        .fill(0)
+        .map((_, i) => i + 1)
+        .join(',') + '\n'
+    const csvContent = percentileCurves.map((row) => row.join(',')).join('\n')
+    const name = snakeCase(
+      `Conveyal ${projectName} percentile access to ${get(
+        opportunityDataset,
+        'name'
+      )}`
+    )
+    downloadCSV(header + csvContent, name)
+  }
+
+  // TODO don't dispatch an action, just fetch and show the button in a loading state
+  function fetchGeoTIFF() {
+    return dispatch(fetchTravelTimeSurface(true))
+      .then((r) => r.arrayBuffer())
+      .then((data) => {
+        downloadGeoTIFF({
+          data,
+          filename: snakeCase(`conveyal geotiff ${projectName}`) + '.geotiff'
+        })
+      })
+  }
+
+  return (
+    <Menu>
+      <MenuButton as={Button} isDisabled={isDisabled} {...p}>
+        <Icon icon={faDownload} />
+      </MenuButton>
+      <MenuList>
+        <MenuItem onClick={downloadIsochrone}>Isochrone as GeoJSON</MenuItem>
+        <MenuItem onClick={fetchGeoTIFF}>Isochrone as GeoTIFF</MenuItem>
+        <MenuItem
+          isDisabled={!percentileCurves}
+          onClick={downloadOpportunitiesCSV}
+          title={percentileCurves ? '' : 'Opportunity dataset must be selected'}
+        >
+          Access to opportunities as CSV
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  )
+}
+
+function Results({
+  isDisabled,
+  isStale, // are the results out of sync with the form?
+  region
+}) {
+  const dispatch = useDispatch()
+  const accessibility = useSelector(selectAccessibility)
+  const travelTimePercentile = useSelector(selectTravelTimePercentile)
+  const nearestPercentile = useSelector(selectNearestPercentile)
+  const isochroneCutoff = useSelector(selectMaxTripDurationMinutes)
+  const isDisabledOrStale = isDisabled || isStale
+  return (
+    <Stack spacing={6} p={6}>
+      <Skeleton minHeight='20px' isLoaded={accessibility != null} speed={1000}>
+        <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
+      </Skeleton>
+
+      <Stack align='center' isInline spacing={6}>
+        <Box fontWeight='500' whiteSpace='nowrap'>
+          Time cutoff
+        </Box>
+        <Slider
+          isDisabled={isDisabledOrStale}
+          value={isochroneCutoff}
+          min={1}
+          max={120}
+          onChange={(v) =>
+            dispatch(setProfileRequest({maxTripDurationMinutes: v}))
+          }
+        >
+          <SliderTrack />
+          <SliderFilledTrack />
+          <SliderThumb size='8'>
+            <Box fontSize='sm' fontWeight='bold'>
+              {isochroneCutoff}
+            </Box>
+          </SliderThumb>
+        </Slider>
+        <Box fontWeight='500'>minute(s)</Box>
+      </Stack>
+
+      <Stack isInline spacing={6}>
+        <FormControl flex='1' isDisabled={isDisabled}>
+          <FormLabel htmlFor='select-opportunity-dataset'>
+            {message('analysis.grid')}
+          </FormLabel>
+          <OpportunityDatasetSelector
+            isDisabled={isDisabled}
+            regionId={region._id}
+          />
+        </FormControl>
+
+        <FormControl flex='1' isDisabled={isDisabled}>
+          <FormLabel>Travel time percentile</FormLabel>
+          <Slider
+            isDisabled={isDisabledOrStale}
+            value={travelTimePercentile || 50}
+            min={1}
+            max={99}
+            step={1}
+            onChange={(v) =>
+              dispatch(setProfileRequest({travelTimePercentile: v}))
+            }
+          >
+            <SliderTrack />
+            <SliderFilledTrack />
+            <SliderThumb size='6'>
+              <Box fontSize='sm' fontWeight='bold'>
+                {travelTimePercentile || 50}
+              </Box>
+            </SliderThumb>
+          </Slider>
+          <FormHelperText>
+            {nearestPercentile} single-point, {travelTimePercentile} multi-point
+          </FormHelperText>
+        </FormControl>
+      </Stack>
+    </Stack>
   )
 }
 

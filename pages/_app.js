@@ -7,6 +7,7 @@ import {ErrorModal} from '../lib/components/error-modal'
 import LogRocket from '../lib/logrocket'
 
 import 'react-datetime/css/react-datetime.css'
+import 'simplebar/dist/simplebar.css'
 import '../styles.css'
 
 export default class ConveyalApp extends App {

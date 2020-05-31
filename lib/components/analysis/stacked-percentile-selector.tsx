@@ -1,3 +1,12 @@
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Flex,
+  Heading,
+  Stack,
+  Progress
+} from '@chakra-ui/core'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
 import {useState} from 'react'
@@ -19,16 +28,13 @@ import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxAccessibility from 'lib/selectors/max-accessibility'
 import selectNearestPercentile from 'lib/selectors/nearest-percentile'
 
-import {Button, Group as ButtonGroup} from '../buttons'
-import P from '../p'
-
 import StackedPercentile, {
   PROJECT,
   BASE,
   COMPARISON
 } from './stacked-percentile'
 
-const GRAPH_HEIGHT = 300
+const GRAPH_HEIGHT = 225
 const GRAPH_WIDTH = 600
 
 const commaFormat = format(',d')
@@ -37,7 +43,7 @@ const commaFormat = format(',d')
  * A component allowing toggling between up to two stacked percentile plots and
  * comparisons of said
  */
-export default function StackedPercentileSelector(p) {
+export default function StackedPercentileSelector({disabled, stale, ...p}) {
   const projectName = useSelector(selectDisplayedScenarioName)
   const comparisonProjectName = useSelector(
     selectDisplayedComparisonScenarioName
@@ -52,101 +58,87 @@ export default function StackedPercentileSelector(p) {
   const isochroneCutoff = useSelector(selectMaxTripDurationMinutes)
   const percentileCurves = useSelector(selectPercentileCurves)
   const maxAccessibility = useSelector(selectMaxAccessibility)
-  const nearestPercentile = useSelector(selectNearestPercentile)
   const opportunityDatasetName = opportunityDataset && opportunityDataset.name
 
   const [scenarioPlotted, setScenarioPlotted] = useState(PROJECT)
-  if (accessibility == null) return null
+  // if (accessibility == null) return null
 
   const noComparison =
     !comparisonProjectName && comparisonProjectName !== UNDEFINED_PROJECT_NAME
 
   const projectColor =
-    p.disabled || p.stale
+    disabled || stale
       ? colors.STALE_PERCENTILE_COLOR
       : colors.PROJECT_PERCENTILE_COLOR
   const comparisonColor =
-    p.disabled || p.stale
+    disabled || stale
       ? colors.STALE_PERCENTILE_COLOR
       : colors.COMPARISON_PERCENTILE_COLOR
 
   const colorBar = color(projectColor)
-  colorBar.opacity = 0.3
+  colorBar.opacity = 0.5
   const comparisonColorBar = color(comparisonColor)
-  comparisonColorBar.opacity = 0.3
+  comparisonColorBar.opacity = 0.5
 
   return (
-    <>
-      {p.stale ? (
-        <P>{message('analysis.willUpdate')}</P>
-      ) : (
-        <P>
-          {message('analysis.accessibilityTo')}{' '}
-          <strong>
-            {opportunityDatasetName ||
-              `[${message('analysis.selectOpportunityDataset')}]`}
-          </strong>{' '}
-          in <strong>{isochroneCutoff}</strong> minutes (travel time percentile:{' '}
-          <strong>{nearestPercentile}</strong>th)
-        </P>
-      )}
+    <Stack {...p}>
+      <Stack spacing={0}>
+        <Stack isInline spacing={5} alignItems='center'>
+          <Progress
+            flex='10'
+            color='blue'
+            size='lg'
+            value={((accessibility || 1) / maxAccessibility) * 100}
+          />
+          <Box fontWeight='500' flex='1' textAlign='left'>
+            {commaFormat(accessibility)}
+          </Box>
+        </Stack>
 
-      <div className='progress' style={{marginBottom: '4px'}}>
-        <div
-          className='progress-bar'
-          role='progressbar'
-          style={{
-            backgroundColor: colorBar.toString(),
-            minWidth: '3em',
-            width: `${((accessibility || 1) / maxAccessibility) * 100}%`
-          }}
-        >
-          {commaFormat(accessibility)}
-        </div>
-      </div>
-
-      {comparisonInProgress &&
-        comparisonProjectName &&
-        comparisonAccessibility != null && (
-          <div className='progress' style={{marginBottom: '4px'}}>
-            <div
-              className='progress-bar'
-              role='progressbar'
-              style={{
-                backgroundColor: comparisonColorBar.toString(),
-                minWidth: '3em',
-                width: `${(comparisonAccessibility / maxAccessibility) * 100}%`
-              }}
-            >
-              {commaFormat(comparisonAccessibility)}
-            </div>
-          </div>
-        )}
+        {comparisonInProgress &&
+          comparisonProjectName &&
+          comparisonAccessibility != null && (
+            <Stack isInline spacing={5} alignItems='center'>
+              <Progress
+                flex='1'
+                color='red'
+                size='lg'
+                value={
+                  ((comparisonAccessibility || 1) / maxAccessibility) * 100
+                }
+              />
+              <Box fontWeight='500'>{commaFormat(comparisonAccessibility)}</Box>
+            </Stack>
+          )}
+      </Stack>
 
       {comparisonAccessibility !== null && (
-        <ButtonGroup justified>
+        <ButtonGroup display='flex' isAttached width='100%'>
           <Button
-            active={noComparison || scenarioPlotted === PROJECT}
-            disabled={noComparison}
+            flex='1'
+            isActive={noComparison || scenarioPlotted === PROJECT}
+            isDisabled={noComparison}
             onClick={() => setScenarioPlotted(PROJECT)}
-            size='sm'
-            value={PROJECT}
+            overflow='hidden'
+            title={projectName}
           >
             {projectName}
           </Button>
           <Button
-            active={!noComparison && scenarioPlotted === BASE}
-            disabled={noComparison}
+            flex='1'
+            isActive={!noComparison && scenarioPlotted === BASE}
+            isDisabled={noComparison}
             onClick={() => setScenarioPlotted(BASE)}
-            size='sm'
+            overflow='hidden'
+            title={comparisonProjectName}
           >
             {comparisonProjectName || 'No comparison selected'}
           </Button>
           <Button
-            active={!noComparison && scenarioPlotted === COMPARISON}
-            disabled={noComparison}
+            flex='1'
+            isActive={!noComparison && scenarioPlotted === COMPARISON}
+            isDisabled={noComparison}
             onClick={() => setScenarioPlotted(COMPARISON)}
-            size='sm'
           >
             {message('analysis.comparison')}
           </Button>
@@ -155,13 +147,12 @@ export default function StackedPercentileSelector(p) {
 
       {percentileCurves && (
         <StackedPercentile
+          cutoff={isochroneCutoff}
           percentileCurves={percentileCurves}
           comparisonPercentileCurves={comparisonPercentileCurves}
           width={GRAPH_WIDTH}
           height={GRAPH_HEIGHT}
-          isochroneCutoff={isochroneCutoff}
           opportunityDatasetName={opportunityDatasetName}
-          textColor={'#333333'}
           color={projectColor}
           comparisonColor={comparisonColor}
           maxAccessibility={maxAccessibility}
@@ -170,6 +161,6 @@ export default function StackedPercentileSelector(p) {
           comparisonLabel={comparisonProjectName}
         />
       )}
-    </>
+    </Stack>
   )
 }

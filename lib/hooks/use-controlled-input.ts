@@ -20,7 +20,7 @@ export default function useControlledInput(
   propValue,
   propOnChange,
   testValid = alwaysValid
-) {
+): any {
   const [inputValue, setInputValue] = useState(propValue)
   const ref = useRef()
 
