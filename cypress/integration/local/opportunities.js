@@ -142,6 +142,8 @@ describe('Opportunities', () => {
           })
         })
     })
+
+    it('can be downloaded as .tiff')
   })
 
   after(() => {
