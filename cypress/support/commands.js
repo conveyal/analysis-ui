@@ -16,6 +16,7 @@ const unlog = {log: false}
 before('Optionally wipe configured state', () => {
   cy.wrap(Cypress.env('freshSetupEachRun')).then((freshSetup) => {
     if (freshSetup === true) {
+      cy.task('touch', pseudoFixture, unlog)
       cy.readFile(pseudoFixture).then((storedVals) => {
         if ('regionId' in storedVals) {
           cy.visit(`/regions/${storedVals.regionId}`)
