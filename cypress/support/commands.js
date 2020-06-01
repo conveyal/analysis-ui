@@ -13,6 +13,22 @@ const regionFixture = `regions/${regionName}.json`
 const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
+before('Optionally wipe configured state', () => {
+  cy.wrap(Cypress.env('freshSetupEachRun')).then((freshSetup) => {
+    if (freshSetup === true) {
+      cy.readFile(pseudoFixture).then((storedVals) => {
+        if ('regionId' in storedVals) {
+          cy.visit(`/regions/${storedVals.regionId}`)
+          cy.navTo('Region Settings')
+          cy.findByText(/Delete this region/i).click()
+          cy.findByText(/Confirm: Delete this region/).click()
+        }
+      })
+      cy.writeFile(pseudoFixture, '{}')
+    }
+  })
+})
+
 Cypress.Commands.add('setup', (entity) => {
   setup(entity)
 })
