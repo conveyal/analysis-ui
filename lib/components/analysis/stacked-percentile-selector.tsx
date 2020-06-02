@@ -2,14 +2,13 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Flex,
-  Heading,
   Stack,
-  Progress
+  Progress,
+  StackProps
 } from '@chakra-ui/core'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
-import {useState} from 'react'
+import {memo, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import message from 'lib/message'
@@ -21,14 +20,13 @@ import selectDisplayedComparisonScenarioName from 'lib/selectors/displayed-compa
 import selectDisplayedScenarioName from 'lib/selectors/displayed-scenario-name'
 import selectAccessibility from 'lib/selectors/accessibility'
 import selectComparisonAccessibility from 'lib/selectors/comparison-accessibility'
-import selectComparisonInProgress from 'lib/selectors/comparison-in-progress'
 import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxAccessibility from 'lib/selectors/max-accessibility'
-import selectNearestPercentile from 'lib/selectors/nearest-percentile'
 
 import StackedPercentile, {
+  StackedPercentileComparison,
   PROJECT,
   BASE,
   COMPARISON
@@ -39,11 +37,19 @@ const GRAPH_WIDTH = 600
 
 const commaFormat = format(',d')
 
+type Props = {
+  disabled: boolean
+  stale: boolean
+}
+
+// Use a memoized version by default
+export default memo<Props & StackProps>(StackedPercentileSelector)
+
 /**
  * A component allowing toggling between up to two stacked percentile plots and
  * comparisons of said
  */
-export default function StackedPercentileSelector({disabled, stale, ...p}) {
+function StackedPercentileSelector({disabled, stale, ...p}) {
   const projectName = useSelector(selectDisplayedScenarioName)
   const comparisonProjectName = useSelector(
     selectDisplayedComparisonScenarioName
@@ -51,7 +57,6 @@ export default function StackedPercentileSelector({disabled, stale, ...p}) {
   const opportunityDataset = useSelector(activeOpportunityDataset)
   const accessibility = useSelector(selectAccessibility)
   const comparisonAccessibility = useSelector(selectComparisonAccessibility)
-  const comparisonInProgress = useSelector(selectComparisonInProgress)
   const comparisonPercentileCurves = useSelector(
     selectComparisonPercentileCurves
   )
@@ -60,8 +65,9 @@ export default function StackedPercentileSelector({disabled, stale, ...p}) {
   const maxAccessibility = useSelector(selectMaxAccessibility)
   const opportunityDatasetName = opportunityDataset && opportunityDataset.name
 
-  const [scenarioPlotted, setScenarioPlotted] = useState(PROJECT)
-  // if (accessibility == null) return null
+  const [scenarioPlotted, setScenarioPlotted] = useState<
+    'project' | 'base' | 'comparison'
+  >(PROJECT)
 
   const noComparison =
     !comparisonProjectName && comparisonProjectName !== UNDEFINED_PROJECT_NAME
@@ -87,7 +93,7 @@ export default function StackedPercentileSelector({disabled, stale, ...p}) {
           <Progress
             flex='10'
             color='blue'
-            size='lg'
+            size='md'
             value={((accessibility || 1) / maxAccessibility) * 100}
           />
           <Box fontWeight='500' flex='1' textAlign='left'>
@@ -95,21 +101,19 @@ export default function StackedPercentileSelector({disabled, stale, ...p}) {
           </Box>
         </Stack>
 
-        {comparisonInProgress &&
-          comparisonProjectName &&
-          comparisonAccessibility != null && (
-            <Stack isInline spacing={5} alignItems='center'>
-              <Progress
-                flex='1'
-                color='red'
-                size='lg'
-                value={
-                  ((comparisonAccessibility || 1) / maxAccessibility) * 100
-                }
-              />
-              <Box fontWeight='500'>{commaFormat(comparisonAccessibility)}</Box>
-            </Stack>
-          )}
+        {comparisonProjectName && comparisonAccessibility && (
+          <Stack isInline spacing={5} alignItems='center'>
+            <Progress
+              flex='10'
+              color='red'
+              size='md'
+              value={((comparisonAccessibility || 1) / maxAccessibility) * 100}
+            />
+            <Box fontWeight='500' flex='1' textAlign='left'>
+              {commaFormat(comparisonAccessibility)}
+            </Box>
+          </Stack>
+        )}
       </Stack>
 
       {comparisonAccessibility !== null && (
@@ -145,22 +149,43 @@ export default function StackedPercentileSelector({disabled, stale, ...p}) {
         </ButtonGroup>
       )}
 
-      {percentileCurves && (
-        <StackedPercentile
-          cutoff={isochroneCutoff}
-          percentileCurves={percentileCurves}
-          comparisonPercentileCurves={comparisonPercentileCurves}
-          width={GRAPH_WIDTH}
-          height={GRAPH_HEIGHT}
-          opportunityDatasetName={opportunityDatasetName}
-          color={projectColor}
-          comparisonColor={comparisonColor}
-          maxAccessibility={maxAccessibility}
-          selected={comparisonPercentileCurves ? scenarioPlotted : PROJECT}
-          label={projectName}
-          comparisonLabel={comparisonProjectName}
-        />
-      )}
+      {percentileCurves &&
+        (scenarioPlotted === PROJECT ? (
+          <StackedPercentile
+            cutoff={isochroneCutoff}
+            percentileCurves={percentileCurves}
+            width={GRAPH_WIDTH}
+            height={GRAPH_HEIGHT}
+            opportunityDatasetName={opportunityDatasetName}
+            color={projectColor}
+            maxAccessibility={maxAccessibility}
+          />
+        ) : scenarioPlotted === BASE ? (
+          <StackedPercentile
+            cutoff={isochroneCutoff}
+            percentileCurves={comparisonPercentileCurves}
+            width={GRAPH_WIDTH}
+            height={GRAPH_HEIGHT}
+            opportunityDatasetName={opportunityDatasetName}
+            color={comparisonColor}
+            maxAccessibility={maxAccessibility}
+          />
+        ) : (
+          // scenarioPlotted === COMPARISON
+          <StackedPercentileComparison
+            cutoff={isochroneCutoff}
+            percentileCurves={percentileCurves}
+            comparisonPercentileCurves={comparisonPercentileCurves}
+            width={GRAPH_WIDTH}
+            height={GRAPH_HEIGHT}
+            opportunityDatasetName={opportunityDatasetName}
+            color={projectColor}
+            comparisonColor={comparisonColor}
+            maxAccessibility={maxAccessibility}
+            label={projectName}
+            comparisonLabel={comparisonProjectName}
+          />
+        ))}
     </Stack>
   )
 }

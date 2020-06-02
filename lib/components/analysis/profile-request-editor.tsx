@@ -11,7 +11,7 @@ import {
   SimpleGrid
 } from '@chakra-ui/core'
 import get from 'lodash/get'
-import {forwardRef, useState} from 'react'
+import {forwardRef, useState, useCallback} from 'react'
 import DateTime from 'react-datetime'
 
 import useInput from 'lib/hooks/use-controlled-input'
@@ -57,15 +57,21 @@ const InputWithUnits: React.ComponentType<{units: string} & any> = forwardRef(
 
 // Helper function for testing inputs
 const valueWithin = (min: number, max: number) => (v) => {
-  const parsed = parseFloat(v)
-  return parsed >= min && parsed <= max
+  return v >= min && v <= max
 }
 
 // Helper for max mode times which can be null
 const modeLessThanMax = (max: number) => (v) => {
-  const parsed = parseInt(v)
-  return isNaN(parsed) ? true : parsed <= max
+  return isNaN(v) ? true : v <= max
 }
+
+// Create the functions here so they are not generated on each render
+const testWalkSpeed = valueWithin(3, 15)
+const testWalkTime = modeLessThanMax(60)
+const testBikeSpeed = valueWithin(5, 20)
+const testBikeTime = modeLessThanMax(60)
+const testMonteCarlo = valueWithin(1, 10000)
+const testMaxTransfers = valueWithin(0, 7)
 
 /**
  * Edit the parameters of a profile request.
@@ -94,40 +100,71 @@ export default function ProfileRequestEditor({
   const {date, fromTime, toTime} = profileRequest
   const bundleOutOfDate = bundleIsOutOfDate(bundle, date, project)
 
-  function set(newFields) {
-    setProfileRequest(newFields)
-  }
+  const setWalkSpeed = useCallback(
+    (walkSpeed) => setProfileRequest({walkSpeed: walkSpeed / 3.6}), // km/h to m/s
+    [setProfileRequest]
+  )
+  const walkSpeedInput = useInput({
+    onChange: setWalkSpeed,
+    parse: parseFloat,
+    test: testWalkSpeed,
+    value: Math.round(profileRequest.walkSpeed * 36) / 10 // m/s to km/h
+  })
 
-  const walkSpeedInput = useInput(
-    Math.round(profileRequest.walkSpeed * 36) / 10, // m/s to km/h
-    (v) => set({walkSpeed: parseFloat(v) / 3.6}), // km/h to m/s
-    valueWithin(3, 15)
+  const setWalkTime = useCallback(
+    (maxWalkTime) => setProfileRequest({maxWalkTime}),
+    [setProfileRequest]
   )
-  const maxWalkTimeInput = useInput(
-    profileRequest.maxWalkTime,
-    (v) => set({maxWalkTime: parseInt(v)}),
-    modeLessThanMax(60)
+  const maxWalkTimeInput = useInput({
+    onChange: setWalkTime,
+    parse: parseInt,
+    test: testWalkTime,
+    value: profileRequest.maxWalkTime
+  })
+
+  const setBikeSpeed = useCallback(
+    (bikeSpeed) => setProfileRequest({bikeSpeed: bikeSpeed / 3.6}), // km/h to m/s
+    [setProfileRequest]
   )
-  const bikeSpeedInput = useInput(
-    Math.round(profileRequest.bikeSpeed * 36) / 10,
-    (v) => set({bikeSpeed: parseFloat(v) / 3.6}), // km/h to m/s
-    valueWithin(5, 20)
+  const bikeSpeedInput = useInput({
+    onChange: setBikeSpeed,
+    parse: parseFloat,
+    test: testBikeSpeed,
+    value: Math.round(profileRequest.bikeSpeed * 36) / 10
+  })
+
+  const setMaxBikeTime = useCallback(
+    (maxBikeTime) => setProfileRequest({maxBikeTime}),
+    [setProfileRequest]
   )
-  const maxBikeTimeInput = useInput(
-    profileRequest.maxBikeTime,
-    (v) => set({maxBikeTime: parseInt(v)}),
-    modeLessThanMax(60)
+  const maxBikeTimeInput = useInput({
+    onChange: setMaxBikeTime,
+    parse: parseInt,
+    test: testBikeTime,
+    value: profileRequest.maxBikeTime
+  })
+
+  const setMonteCarlo = useCallback(
+    (monteCarloDraws) => setProfileRequest({monteCarloDraws}),
+    [setProfileRequest]
   )
-  const monteCarloInput = useInput(
-    profileRequest.monteCarloDraws,
-    (v) => set({monteCarloDraws: parseInt(v)}),
-    valueWithin(1, 10000)
+  const monteCarloInput = useInput({
+    onChange: setMonteCarlo,
+    parse: parseInt,
+    test: testMonteCarlo,
+    value: profileRequest.monteCarloDraws
+  })
+
+  const setMaxRides = useCallback(
+    (maxTransfers) => setProfileRequest({maxRides: maxTransfers + 1}),
+    [setProfileRequest]
   )
-  const maxTransfersInput = useInput(
-    profileRequest.maxRides - 1, // Max rides is max transfers + 1, but transfers is common usage terminology
-    (v) => set({maxRides: parseInt(v) + 1}),
-    valueWithin(0, 7)
-  )
+  const maxTransfersInput = useInput({
+    onChange: setMaxRides,
+    parse: parseInt,
+    test: testMaxTransfers,
+    value: profileRequest.maxRides - 1 // Max rides is max transfers + 1, but transfers is common usage terminology
+  })
 
   return (
     <SimpleGrid columns={3} spacing={5} {...p}>
@@ -200,7 +237,9 @@ export default function ProfileRequestEditor({
         <FormLabel htmlFor='bikeLts'>Max bike LTS</FormLabel>
         <Select
           id='bikeLts'
-          onChange={(v) => set({bikeTrafficStress: parseInt(v.target.value)})}
+          onChange={(v) =>
+            setProfileRequest({bikeTrafficStress: parseInt(v.target.value)})
+          }
           value={get(profileRequest, 'bikeTrafficStress', 4)}
         >
           <option value={1}>1 - Low stress</option>

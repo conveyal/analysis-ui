@@ -23,7 +23,6 @@ const EditBounds = dynamic(() => import('../map/edit-bounds'), {ssr: false})
  * Edit the advanced parameters of an analysis.
  */
 export default function AdvancedSettings({
-  analysisBounds,
   disabled,
   profileRequest,
   regionalAnalyses,
@@ -31,26 +30,23 @@ export default function AdvancedSettings({
   setProfileRequest,
   ...p
 }) {
-  const jsonEditor = useInput(
-    JSON.stringify(profileRequest, null, '  '),
-    (v) => setProfileRequest(JSON.parse(v)),
-    (v) => {
-      try {
-        JSON.parse(v)
-      } catch (e) {
-        return false
-      }
-      return true
-    }
-  )
+  const jsonEditor = useInput({
+    value: JSON.stringify(profileRequest, null, '  '),
+    onChange: setProfileRequest,
+    parse: JSON.parse // no need to test if parsing passes
+  })
 
   return (
     <Stack spacing={5} {...p}>
       <Stack isInline spacing={5}>
-        <R5Selector flex='1' isDisabled={disabled} />
+        <R5Selector
+          flex='1'
+          isDisabled={disabled}
+          onChange={(workerVersion) => setProfileRequest({workerVersion})}
+          value={profileRequest.workerVersion}
+        />
 
         <CustomBoundsSelector
-          analysisBounds={analysisBounds}
           isDisabled={disabled}
           profileRequest={profileRequest}
           regionalAnalyses={regionalAnalyses}
@@ -79,7 +75,6 @@ export default function AdvancedSettings({
  * 3. Creating a "Custom Boundary"
  */
 function CustomBoundsSelector({
-  analysisBounds,
   isDisabled,
   profileRequest,
   regionBounds,
@@ -144,7 +139,7 @@ function CustomBoundsSelector({
         {editingBounds ? (
           <>
             <EditBounds
-              bounds={analysisBounds}
+              bounds={profileRequest.bounds}
               save={(bounds) => setProfileRequest({bounds})}
             />
             <Button

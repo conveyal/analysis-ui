@@ -25,6 +25,9 @@ export default function AnalysisTitle({isDisabled}) {
     get(s, 'analysis.isochroneFetchStatus')
   )
   const currentProject = useSelector(selectCurrentProject)
+  const requestsSettings = useSelector((s) =>
+    get(s, 'analysis.requestsSettings')
+  )
 
   const isFetchingIsochrone = !!isochroneFetchStatus
 
@@ -59,9 +62,9 @@ export default function AnalysisTitle({isDisabled}) {
         </Button>
       ) : (
         <Button
-          isDisabled={!currentProject || isDisabled}
+          isDisabled={!currentProject}
           rightIcon='repeat'
-          onClick={() => dispatch(fetchTravelTimeSurface())}
+          onClick={() => dispatch(fetchTravelTimeSurface(requestsSettings))}
           variantColor='blue'
           title={!currentProject ? message('analysis.disableFetch') : ''}
         >

@@ -1,7 +1,21 @@
+import {memo} from 'react'
+
+type BoxplotProps = {
+  color: string
+  positions: number[]
+  scale: (number) => number
+  width: number
+}
+
 /**
  * An svg boxplot
  */
-export default function Boxplot({color, positions, scale, width}) {
+export default memo<BoxplotProps>(function Boxplot({
+  color,
+  positions,
+  scale,
+  width
+}) {
   const [low, iqrLow, med, iqrHigh, high] = positions
   const stroke = color
   const strokeWidth = 0.5
@@ -60,4 +74,4 @@ export default function Boxplot({color, positions, scale, width}) {
       />
     </g>
   )
-}
+})
