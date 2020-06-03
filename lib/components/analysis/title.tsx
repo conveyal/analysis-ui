@@ -10,17 +10,29 @@ import {
 import {abortFetch} from 'lib/actions/fetch'
 import {FETCH_TRAVEL_TIME_SURFACE} from 'lib/constants'
 import message from 'lib/message'
-
-import selectAccessibility from 'lib/selectors/accessibility'
+import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import selectCurrentProject from 'lib/selectors/current-project'
+import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectIsochrone from 'lib/selectors/isochrone'
 
 import Icon from '../icon'
 
-export default function AnalysisTitle({isDisabled}) {
-  const dispatch = useDispatch()
-  const accessibility = useSelector(selectAccessibility)
+function TitleMessage({fetchStatus, project}) {
+  const opportunityDataset = useSelector(activeOpportunityDataset)
   const isochrone = useSelector(selectIsochrone)
+  const profileRequestHasChanged = useSelector(selectProfileRequestHasChanged)
+
+  let title = 'Analyze results'
+  if (fetchStatus) title = fetchStatus
+  else if (!project) title = 'Select a project'
+  else if (!isochrone) title = 'Compute travel time'
+  else if (profileRequestHasChanged) title = 'Results are out of date'
+  else if (!opportunityDataset) title = 'Select opportunity dataset'
+  return <> {title}</>
+}
+
+export default function AnalysisTitle() {
+  const dispatch = useDispatch()
   const isochroneFetchStatus = useSelector((s) =>
     get(s, 'analysis.isochroneFetchStatus')
   )
@@ -36,14 +48,6 @@ export default function AnalysisTitle({isDisabled}) {
     dispatch(setIsochroneFetchStatus(false))
   }
 
-  const title = isFetchingIsochrone
-    ? isochroneFetchStatus
-    : !isochrone
-    ? 'Compute travel time'
-    : accessibility == null
-    ? 'Select opportunity dataset'
-    : 'Analyze results'
-
   return (
     <Flex
       align='center'
@@ -54,7 +58,11 @@ export default function AnalysisTitle({isDisabled}) {
       width='640px'
     >
       <Heading fontWeight='500' size='md'>
-        <Icon icon={faChartArea} /> {title}
+        <Icon icon={faChartArea} />
+        <TitleMessage
+          fetchStatus={isochroneFetchStatus}
+          project={currentProject}
+        />
       </Heading>
       {isFetchingIsochrone ? (
         <Button rightIcon='small-close' onClick={abort} variantColor='red'>

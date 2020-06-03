@@ -17,7 +17,6 @@ import {
   faChevronUp
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
-import startCase from 'lodash/startCase'
 import {useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -165,6 +164,23 @@ export default function Settings({
 
   return (
     <>
+      <RequestHeading
+        bundle={currentBundle}
+        isDisabled={disableInputs}
+        isFetchingIsochrone={isFetchingIsochrone}
+        hasResults={resultsSettings.length > 0}
+        opportunityDataset={opportunityDataset}
+        profileRequest={requestsSettings[0]}
+        project={currentProject}
+        projects={projects}
+        regionBounds={region.bounds}
+        regionalAnalyses={regionalAnalyses}
+        scenario={variantIndex}
+        scenarioOptions={scenarioOptions}
+        setProfileRequest={setPrimaryPR}
+        setProject={_setCurrentProject}
+        setScenario={_setCurrentVariant}
+      />
       <RequestSettings
         bundle={currentBundle}
         isDisabled={disableInputs}
@@ -183,6 +199,26 @@ export default function Settings({
         setScenario={_setCurrentVariant}
       />
 
+      <RequestHeading
+        borderBottom='1px solid #E2E8F0'
+        bundle={comparisonBundle}
+        color='red'
+        isComparison
+        isDisabled={disableInputs}
+        isFetchingIsochrone={isFetchingIsochrone}
+        hasResults={resultsSettings.length > 1}
+        opportunityDataset={opportunityDataset}
+        profileRequest={requestsSettings[1]}
+        project={comparisonProject}
+        projects={projects}
+        regionBounds={region.bounds}
+        regionalAnalyses={regionalAnalyses}
+        scenario={comparisonVariant}
+        scenarioOptions={comparisonScenarioOptions}
+        setProfileRequest={setComparisonPR}
+        setProject={_setComparisonProject}
+        setScenario={_setComparisonVariant}
+      />
       <RequestSettings
         borderBottom='1px solid #E2E8F0'
         bundle={comparisonBundle}
@@ -253,27 +289,17 @@ function RequestSummary({profileRequest, ...p}) {
   )
 }
 
-function RequestSettings({
-  bundle,
+function RequestHeading({
   color = 'blue',
-  isComparison = false,
-  isDisabled,
-  isFetchingIsochrone,
   hasResults,
+  isComparison = false,
   opportunityDataset,
   profileRequest,
   project,
-  projects,
   regionalAnalyses,
-  regionBounds,
   scenario,
-  scenarioOptions,
-  setProfileRequest,
-  setProject,
-  setScenario,
   ...p
 }) {
-  const [isOpen, setIsOpen] = useState(!project)
   const dispatch = useDispatch()
   const settingsHaveChanged = useSelector(selectProfileRequestHasChanged)
   const scenarioName =
@@ -306,83 +332,90 @@ function RequestSettings({
   const projectDownloadName = cleanProjectScenarioName(project, scenario)
 
   return (
-    <Stack spacing={0} {...p}>
-      <Flex
-        align='center'
-        borderTop='1px solid #E2E8F0'
-        px={6}
-        pt={10}
-        pb={2}
-        justify='space-between'
-        textAlign='left'
-      >
-        {project ? (
-          <>
-            <Stack flex='1' overflow='hidden'>
-              <Heading
-                size='md'
-                color={`${color}.500`}
-                overflow='hidden'
-                style={{
-                  textOverflow: 'ellipsis'
-                }}
-                title={project.name}
-                whiteSpace='nowrap'
-              >
-                {project.name}
-              </Heading>
-              <Heading
-                size='sm'
-                color='gray.500'
-                overflow='hidden'
-                style={{
-                  textOverflow: 'ellipsis'
-                }}
-                title={scenarioName}
-                whiteSpace='nowrap'
-              >
-                {scenarioName}
-              </Heading>
-            </Stack>
+    <Flex
+      align='center'
+      borderTop='1px solid #E2E8F0'
+      px={6}
+      pt={10}
+      pb={2}
+      justify='space-between'
+      textAlign='left'
+      {...p}
+    >
+      {project ? (
+        <>
+          <Stack flex='1' overflow='hidden'>
+            <Heading size='md' color={`${color}.500`} overflow='hidden'>
+              {project.name}
+            </Heading>
+            <Heading size='sm' color='gray.500' overflow='hidden'>
+              {scenarioName}
+            </Heading>
+          </Stack>
 
-            {isComparison ? (
-              profileRequest && (
-                <RequestSummary profileRequest={profileRequest} flex='2' />
-              )
-            ) : (
+          {isComparison ? (
+            profileRequest && (
               <RequestSummary profileRequest={profileRequest} flex='2' />
-            )}
-          </>
-        ) : (
-          <Heading size='md' color={`${color}.500`}>
-            Select a comparison project
-          </Heading>
-        )}
+            )
+          ) : (
+            <RequestSummary profileRequest={profileRequest} flex='2' />
+          )}
+        </>
+      ) : (
+        <Heading size='md' color={`${color}.500`}>
+          Select a {isComparison ? 'comparison ' : ''}project
+        </Heading>
+      )}
 
-        <Stack spacing={1} isInline>
-          <DownloadMenu
-            isComparison={isComparison}
-            isDisabled={!hasResults || settingsHaveChanged}
-            key={color}
-            opportunityDataset={opportunityDataset}
-            projectId={get(project, '_id')}
-            projectName={projectDownloadName}
-            requestsSettings={profileRequest}
-            variantIndex={scenario}
-          />
-          <Button
-            isDisabled={
-              !hasResults || settingsHaveChanged || !opportunityDataset
-            }
-            onClick={onCreateRegionalAnalysis}
-            rightIcon='small-add'
-            variantColor='green'
-          >
-            Multi-point
-          </Button>
-        </Stack>
-      </Flex>
+      <Stack spacing={1} isInline>
+        <DownloadMenu
+          isComparison={isComparison}
+          isDisabled={!hasResults || settingsHaveChanged}
+          key={color}
+          opportunityDataset={opportunityDataset}
+          projectId={get(project, '_id')}
+          projectName={projectDownloadName}
+          requestsSettings={profileRequest}
+          variantIndex={scenario}
+        />
+        <Button
+          isDisabled={!hasResults || settingsHaveChanged || !opportunityDataset}
+          onClick={onCreateRegionalAnalysis}
+          rightIcon='small-add'
+          variantColor='green'
+        >
+          Multi-point
+        </Button>
+      </Stack>
+    </Flex>
+  )
+}
 
+function RequestSettings({
+  bundle,
+  color = 'blue',
+  isComparison = false,
+  isDisabled,
+  isFetchingIsochrone,
+  hasResults,
+  opportunityDataset,
+  profileRequest,
+  project,
+  projects,
+  regionalAnalyses,
+  regionBounds,
+  scenario,
+  scenarioOptions,
+  setProfileRequest,
+  setProject,
+  setScenario,
+  ...p
+}) {
+  const [isOpen, setIsOpen] = useState(!project)
+  const dispatch = useDispatch()
+
+  return (
+    <Stack spacing={0} {...p}>
       <Button
         borderRadius='0'
         _focus={{

@@ -41,6 +41,7 @@ import AnalysisTitle from './title'
 import {CutoffSlider, PercentileSlider} from './results-sliders'
 import SinglePointSettings from './single-point-settings'
 import StackedPercentileSelector from './stacked-percentile-selector'
+import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 
 /**
  * Hide the loading text from map components because it is awkward.
@@ -225,12 +226,13 @@ function Results({
   const resultsSettings = useSelector((s) =>
     get(s, 'analysis.resultsSettings', [])
   )
+  const opportunityDataset = useSelector(activeOpportunityDataset)
   const isDisabledOrStale = isDisabled || isStale
   return (
     <Stack spacing={6} p={6}>
       <Skeleton
         minHeight='20px'
-        isLoaded={resultsSettings.length > 0}
+        isLoaded={resultsSettings.length > 0 && opportunityDataset}
         speed={1000}
       >
         <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
