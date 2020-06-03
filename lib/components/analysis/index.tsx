@@ -10,19 +10,13 @@ import {
   Heading,
   List,
   ListItem,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
   Stack,
-  FormHelperText,
-  Skeleton,
-  Text
+  Skeleton
 } from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
-import {useCallback, useEffect} from 'react'
+import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
@@ -30,30 +24,23 @@ import {
   cancelFetch,
   clearResults,
   fetchTravelTimeSurface,
-  setDestination,
-  setMaxTripDurationMinutes,
-  setTravelTimePercentile
+  setDestination
 } from 'lib/actions/analysis'
-import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
-import selectAccessibility from 'lib/selectors/accessibility'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectDTTD from 'lib/selectors/destination-travel-time-distribution'
 import selectDTTDComparison from 'lib/selectors/comparison-destination-travel-time-distribution'
-import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
-import getNearestPercentileIndex from 'lib/selectors/nearest-percentile-index'
-import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 import selectRegionBounds from 'lib/selectors/region-bounds'
 
 import InnerDock from '../inner-dock'
 
 import AnalysisTitle from './title'
+import {CutoffSlider, PercentileSlider} from './results-sliders'
 import SinglePointSettings from './single-point-settings'
 import StackedPercentileSelector from './stacked-percentile-selector'
-import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
 
 /**
  * Hide the loading text from map components because it is awkward.
@@ -230,87 +217,22 @@ export default function SinglePointAnalysis({
   )
 }
 
-function CutoffSlider({isDisabled, ...p}) {
-  const dispatch = useDispatch()
-  const onChangeCutoff = useCallback(
-    (cutoff) => dispatch(setMaxTripDurationMinutes(cutoff)),
-    [dispatch]
-  )
-  const cutoffSlider = useInput({
-    onChange: onChangeCutoff,
-    value: useSelector(selectMaxTripDurationMinutes)
-  })
-
-  return (
-    <Slider
-      {...p}
-      isDisabled={isDisabled}
-      min={1}
-      max={120}
-      onChange={cutoffSlider.onChange}
-      value={cutoffSlider.value}
-    >
-      <SliderTrack />
-      <SliderFilledTrack />
-      <SliderThumb ref={cutoffSlider.ref} size='8'>
-        <Box fontSize='sm' fontWeight='bold'>
-          {cutoffSlider.value}
-        </Box>
-      </SliderThumb>
-    </Slider>
-  )
-}
-
-function PercentileSlider({isDisabled, ...p}) {
-  const dispatch = useDispatch()
-  const onChangePercentile = useCallback(
-    (percentile) => dispatch(setTravelTimePercentile(percentile)),
-    [dispatch]
-  )
-  const percentileSlider = useInput({
-    onChange: onChangePercentile,
-    value: useSelector(selectTravelTimePercentile)
-  })
-
-  // We only allow for a set of percentiles when viewing single point results
-  const singlePointPercentile =
-    TRAVEL_TIME_PERCENTILES[getNearestPercentileIndex(percentileSlider.value)]
-  return (
-    <FormControl isDisabled={isDisabled} {...p}>
-      <FormLabel>Travel time percentile</FormLabel>
-      <Slider
-        isDisabled={isDisabled}
-        min={1}
-        max={99}
-        onChange={percentileSlider.onChange}
-        value={percentileSlider.value}
-      >
-        <SliderTrack />
-        <SliderFilledTrack />
-        <SliderThumb ref={percentileSlider.ref} size='8'>
-          <Box fontSize='sm' fontWeight='bold'>
-            {percentileSlider.value}
-          </Box>
-        </SliderThumb>
-      </Slider>
-      <FormHelperText>
-        {singlePointPercentile} single-point, {percentileSlider.value}{' '}
-        multi-point
-      </FormHelperText>
-    </FormControl>
-  )
-}
-
 function Results({
   isDisabled,
   isStale, // are the results out of sync with the form?
   region
 }) {
-  const accessibility = useSelector(selectAccessibility)
+  const resultsSettings = useSelector((s) =>
+    get(s, 'analysis.resultsSettings', [])
+  )
   const isDisabledOrStale = isDisabled || isStale
   return (
     <Stack spacing={6} p={6}>
-      <Skeleton minHeight='20px' isLoaded={accessibility != null} speed={1000}>
+      <Skeleton
+        minHeight='20px'
+        isLoaded={resultsSettings.length > 0}
+        speed={1000}
+      >
         <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
       </Skeleton>
 

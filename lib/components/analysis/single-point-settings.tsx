@@ -276,6 +276,8 @@ function RequestSettings({
   const [isOpen, setIsOpen] = useState(!project)
   const dispatch = useDispatch()
   const settingsHaveChanged = useSelector(selectProfileRequestHasChanged)
+  const scenarioName =
+    get(project, 'variants', [])[scenario] || message('variant.baseline')
 
   function onCreateRegionalAnalysis(e) {
     e.stopPropagation()
@@ -283,17 +285,24 @@ function RequestSettings({
     if (project) {
       const name = window.prompt(
         'Enter a name and click ok to begin a regional analysis job for this project and settings:',
-        `Analysis ${regionalAnalyses.length + 1}: ${project.name} ` +
-          `${project.variants[profileRequest.variantIndex] || ''}`
+        `Analysis ${regionalAnalyses.length + 1}: ${
+          project.name
+        } ${scenarioName}`
       )
       if (name && name.length > 0) {
-        dispatch(createRegionalAnalysis({name, profileRequest}))
+        dispatch(
+          createRegionalAnalysis({
+            ...profileRequest,
+            name,
+            opportunityDatasetId: opportunityDataset._id,
+            projectId: project._id,
+            variantIndex: scenario
+          })
+        )
       }
     }
   }
 
-  const scenarioName =
-    get(project, 'variants', [])[scenario] || message('variant.baseline')
   const projectDownloadName = cleanProjectScenarioName(project, scenario)
 
   return (
@@ -362,7 +371,9 @@ function RequestSettings({
             variantIndex={scenario}
           />
           <Button
-            isDisabled={!hasResults || settingsHaveChanged}
+            isDisabled={
+              !hasResults || settingsHaveChanged || !opportunityDataset
+            }
             onClick={onCreateRegionalAnalysis}
             rightIcon='small-add'
             variantColor='green'

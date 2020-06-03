@@ -116,7 +116,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
         )}
       </Stack>
 
-      {comparisonAccessibility !== null && (
+      {comparisonAccessibility != null && (
         <ButtonGroup display='flex' isAttached width='100%'>
           <Button
             flex='1'

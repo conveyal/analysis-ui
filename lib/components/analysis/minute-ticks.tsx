@@ -1,15 +1,24 @@
+import {memo} from 'react'
+
 import message from 'lib/message'
-import React from 'react'
 
 // The x axis labels for the plot
 const TIME_LABELS = [15, 30, 45, 60, 75, 90, 105, 120]
+
+type MinuteTicksProps = {
+  scale: (number) => number
+  textHeight: number
+}
 
 /**
  * Render the minute axis ticks - shared by stacked percentile curves plot and
  * travel time distribution plot. We don't explicitly center the '15 minutes'
  * text; fudge the left side a bit so that the 15 appears centered.
  */
-export default function MinuteTicks({scale, textHeight}) {
+export default memo<MinuteTicksProps>(function MinuteTicks({
+  scale,
+  textHeight
+}) {
   return (
     <>
       {TIME_LABELS.map((v, i, arr) => (
@@ -32,4 +41,4 @@ export default function MinuteTicks({scale, textHeight}) {
       ))}
     </>
   )
-}
+})
