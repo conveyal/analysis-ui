@@ -60,7 +60,6 @@ type ModeIconProps = {
 } & BoxProps
 
 export default function ModeIcon({mode, ...p}: ModeIconProps) {
-  //}: {mode: Mode, p: any}) {
   return (
     <Box {...p} title={toStartCase(mode)}>
       {getIcon(mode)}

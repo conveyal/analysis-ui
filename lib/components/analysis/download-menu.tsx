@@ -2,21 +2,33 @@ import {Button, Menu, MenuButton, MenuList, MenuItem} from '@chakra-ui/core'
 import {faDownload} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import snakeCase from 'lodash/snakeCase'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector, useStore} from 'react-redux'
 
 import {fetchGeoTIFF} from 'lib/actions/analysis'
+import selectComparisonIsochrone from 'lib/selectors/comparison-isochrone'
+import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
+import selectIsochrone from 'lib/selectors/isochrone'
+import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
+import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import downloadCSV from 'lib/utils/download-csv'
 import downloadGeoTIFF from 'lib/utils/download-geotiff'
 import downloadJson from 'lib/utils/download-json'
 
 import Icon from '../icon'
 
+const getIsochrone = (state, isComparison) =>
+  isComparison ? selectComparisonIsochrone(state) : selectIsochrone(state)
+
+const getPercentileCurves = (state, isComparison) =>
+  isComparison
+    ? selectComparisonPercentileCurves(state)
+    : selectPercentileCurves(state)
+
 export default function DownloadMenu({
-  isDisabled,
-  isochrone,
+  isComparison = false,
+  isDisabled = false,
   opportunityDataset,
-  percentileCurves,
   projectId,
   projectName,
   requestsSettings,
@@ -25,11 +37,13 @@ export default function DownloadMenu({
 }) {
   const dispatch = useDispatch()
   const cutoff = useSelector(selectMaxTripDurationMinutes)
+  const store = useStore()
+  const profileRequestHasChanged = useSelector(selectProfileRequestHasChanged)
 
   function downloadIsochrone() {
     downloadJson({
       data: {
-        ...isochrone,
+        ...getIsochrone(store.getState(), isComparison),
         properties: {} // TODO set this in jsolines
       },
       filename:
@@ -44,7 +58,9 @@ export default function DownloadMenu({
         .fill(0)
         .map((_, i) => i + 1)
         .join(',') + '\n'
-    const csvContent = percentileCurves.map((row) => row.join(',')).join('\n')
+    const csvContent = getPercentileCurves(store.getState(), isComparison)
+      .map((row) => row.join(','))
+      .join('\n')
     const name = snakeCase(
       `Conveyal ${projectName} percentile access to ${get(
         opportunityDataset,
@@ -74,7 +90,11 @@ export default function DownloadMenu({
 
   return (
     <Menu>
-      <MenuButton as={Button} isDisabled={isDisabled} {...p}>
+      <MenuButton
+        as={Button}
+        isDisabled={isDisabled || profileRequestHasChanged}
+        {...p}
+      >
         <Icon icon={faDownload} />
       </MenuButton>
       <MenuList>
@@ -83,9 +103,11 @@ export default function DownloadMenu({
           Isochrone as GeoTIFF
         </MenuItem>
         <MenuItem
-          isDisabled={!percentileCurves}
+          isDisabled={!opportunityDataset}
           onClick={downloadOpportunitiesCSV}
-          title={percentileCurves ? '' : 'Opportunity dataset must be selected'}
+          title={
+            opportunityDataset ? '' : 'Opportunity dataset must be selected'
+          }
         >
           Access to opportunities as CSV
         </MenuItem>

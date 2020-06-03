@@ -40,7 +40,7 @@ export default function AnalysisTitle({isDisabled}) {
     ? isochroneFetchStatus
     : !isochrone
     ? 'Compute travel time'
-    : !accessibility
+    : accessibility == null
     ? 'Select opportunity dataset'
     : 'Analyze results'
 

@@ -101,7 +101,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
           </Box>
         </Stack>
 
-        {comparisonProjectName && comparisonAccessibility && (
+        {comparisonProjectName && comparisonAccessibility != null && (
           <Stack isInline spacing={5} alignItems='center'>
             <Progress
               flex='10'

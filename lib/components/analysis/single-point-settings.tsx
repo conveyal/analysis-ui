@@ -1,8 +1,4 @@
 import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
   Box,
   Button,
   Divider,
@@ -10,19 +6,11 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  List,
-  ListItem,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
   Stack,
   Switch,
-  FormHelperText,
-  Skeleton,
-  Text
+  Text,
+  Tooltip
 } from '@chakra-ui/core'
-import lonlat from '@conveyal/lonlat'
 import {
   faChevronDown,
   faChevronRight,
@@ -30,45 +18,22 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import startCase from 'lodash/startCase'
-import dynamic from 'next/dynamic'
 import {useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
-import {
-  cancelFetch,
-  clearTravelTimeSurfaces,
-  fetchGeoTIFF,
-  fetchTravelTimeSurface,
-  setDestination,
-  setMaxTripDurationMinutes,
-  setTravelTimePercentile
-} from 'lib/actions/analysis'
 import {
   clearComparisonSettings,
   copyPrimarySettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
 import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
-import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
-import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
-import selectAccessibility from 'lib/selectors/accessibility'
 import selectCurrentBundle from 'lib/selectors/current-bundle'
 import selectCurrentProject from 'lib/selectors/current-project'
-import selectComparisonIsochrone from 'lib/selectors/comparison-isochrone'
-import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentile-curves'
-import selectDTTD from 'lib/selectors/destination-travel-time-distribution'
-import selectDTTDComparison from 'lib/selectors/comparison-destination-travel-time-distribution'
-import selectIsochrone from 'lib/selectors/isochrone'
-import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
-import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectProfileRequest from 'lib/selectors/profile-request'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
-import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
-import getNearestPercentileIndex from 'lib/selectors/nearest-percentile-index'
-import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 import selectRegionBounds from 'lib/selectors/region-bounds'
 import {fromLatLngBounds} from 'lib/utils/bounds'
 import cleanProjectScenarioName from 'lib/utils/clean-project-scenario-name'
@@ -76,18 +41,13 @@ import {secondsToMoment} from 'lib/utils/time'
 
 import ControlledSelect from '../controlled-select'
 import Icon from '../icon'
-import InnerDock from '../inner-dock'
 import ModeIcon from '../mode-icon'
 
-import AnalysisTitle from './title'
 import BookmarkChooser from './bookmark-chooser'
 import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
 import ModeSelector from './mode-selector'
-import SinglePointSettings from './single-point-settings'
-import StackedPercentileSelector from './stacked-percentile-selector'
-import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
 
 export default function Settings({
   bundles,
@@ -97,15 +57,16 @@ export default function Settings({
 }) {
   const dispatch = useDispatch()
   const opportunityDataset = useSelector(activeOpportunityDataset)
-  const percentileCurves = useSelector(selectPercentileCurves)
   const profileRequest = useSelector(selectProfileRequest)
   const currentBundle = useSelector(selectCurrentBundle)
   const currentProject = useSelector(selectCurrentProject)
   const variantIndex = useSelector((s) =>
     parseInt(get(s, 'queryString.variantIndex', -1))
   )
+  const resultsSettings = useSelector((s) =>
+    get(s, 'analysis.resultsSettings', [])
+  )
 
-  const isochrone = useSelector(selectIsochrone)
   const isochroneFetchStatus = useSelector((s) =>
     get(s, 'analysis.isochroneFetchStatus')
   )
@@ -124,10 +85,6 @@ export default function Settings({
   const comparisonProject = projects.find((p) => p._id === comparisonProjectId)
   const comparisonBundle = bundles.find(
     (b) => b._id === get(comparisonProject, 'bundleId')
-  )
-  const comparisonIsochrone = useSelector(selectComparisonIsochrone)
-  const comparisonPercentileCurves = useSelector(
-    selectComparisonPercentileCurves
   )
 
   const isFetchingIsochrone = !!isochroneFetchStatus
@@ -212,9 +169,8 @@ export default function Settings({
         bundle={currentBundle}
         isDisabled={disableInputs}
         isFetchingIsochrone={isFetchingIsochrone}
-        isochrone={isochrone}
+        hasResults={resultsSettings.length > 0}
         opportunityDataset={opportunityDataset}
-        percentileCurves={percentileCurves}
         profileRequest={requestsSettings[0]}
         project={currentProject}
         projects={projects}
@@ -234,9 +190,8 @@ export default function Settings({
         isComparison
         isDisabled={disableInputs}
         isFetchingIsochrone={isFetchingIsochrone}
-        isochrone={comparisonIsochrone}
+        hasResults={resultsSettings.length > 1}
         opportunityDataset={opportunityDataset}
-        percentileCurves={comparisonPercentileCurves}
         profileRequest={requestsSettings[1]}
         project={comparisonProject}
         projects={projects}
@@ -261,25 +216,29 @@ function RequestSummary({profileRequest, ...p}) {
       <Stack align='center' isInline spacing='1'>
         <ModeIcon mode={profileRequest.accessModes} />
         {profileRequest.transitModes.length > 0 && (
-          <Stack align='center' isInline spacing='1'>
-            <Box fontSize='xs'>
-              <Icon icon={faChevronRight} />
-            </Box>
-            {transitModes.slice(0, 2).map((m) => (
-              <ModeIcon mode={m} key={m} />
-            ))}
-            {transitModes.length > 2 && (
-              <Box title={transitModes.map(startCase).join(', ')}>...</Box>
-            )}
-            {profileRequest.egressModes !== 'WALK' && (
-              <Stack align='center' isInline spacing='1'>
-                <Box fontSize='xs'>
-                  <Icon icon={faChevronRight} />
-                </Box>
-                <ModeIcon mode={profileRequest.egressModes} />
-              </Stack>
-            )}
-          </Stack>
+          <Tooltip
+            hasArrow
+            aria-label={transitModes.join(', ')}
+            label={transitModes.join(', ')}
+          >
+            <Stack align='center' isInline spacing='1'>
+              <Box fontSize='xs'>
+                <Icon icon={faChevronRight} />
+              </Box>
+              {transitModes.slice(0, 2).map((m) => (
+                <ModeIcon mode={m} key={m} />
+              ))}
+              {transitModes.length > 2 && <Box>...</Box>}
+              {profileRequest.egressModes !== 'WALK' && (
+                <Stack align='center' isInline spacing='1'>
+                  <Box fontSize='xs'>
+                    <Icon icon={faChevronRight} />
+                  </Box>
+                  <ModeIcon mode={profileRequest.egressModes} />
+                </Stack>
+              )}
+            </Stack>
+          </Tooltip>
         )}
       </Stack>
 
@@ -300,9 +259,8 @@ function RequestSettings({
   isComparison = false,
   isDisabled,
   isFetchingIsochrone,
-  isochrone,
+  hasResults,
   opportunityDataset,
-  percentileCurves,
   profileRequest,
   project,
   projects,
@@ -317,6 +275,7 @@ function RequestSettings({
 }) {
   const [isOpen, setIsOpen] = useState(!project)
   const dispatch = useDispatch()
+  const settingsHaveChanged = useSelector(selectProfileRequestHasChanged)
 
   function onCreateRegionalAnalysis(e) {
     e.stopPropagation()
@@ -393,18 +352,17 @@ function RequestSettings({
 
         <Stack spacing={1} isInline>
           <DownloadMenu
-            isDisabled={!isochrone}
-            isochrone={isochrone}
+            isComparison={isComparison}
+            isDisabled={!hasResults || settingsHaveChanged}
             key={color}
             opportunityDataset={opportunityDataset}
-            percentileCurves={percentileCurves}
             projectId={get(project, '_id')}
             projectName={projectDownloadName}
             requestsSettings={profileRequest}
             variantIndex={scenario}
           />
           <Button
-            isDisabled={!isochrone}
+            isDisabled={!hasResults || settingsHaveChanged}
             onClick={onCreateRegionalAnalysis}
             rightIcon='small-add'
             variantColor='green'

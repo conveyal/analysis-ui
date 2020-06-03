@@ -23,21 +23,27 @@ const BOXPLOT_HEIGHT = HEIGHT * (1 - LEGEND_HEIGHT)
  * Show a popup with the travel time distribution from the origin to a location
  * @author mattwigway
  */
-export default function DestinationTravelTimeDistribution(p) {
+export default function DestinationTravelTimeDistribution({
+  comparisonDistribution,
+  destination,
+  distribution,
+  remove,
+  setDestination
+}) {
   const [dragging, setDragging] = useState(false)
-  const fullHeight = p.comparisonDistribution ? HEIGHT * 2 : HEIGHT
+  const fullHeight = comparisonDistribution ? HEIGHT * 2 : HEIGHT
   return (
     <OpenMarker
       draggable
-      position={lonlat.toLeaflet(p.destination)}
-      onDragEnd={(e) => p.setDestination(lonlat(e.target.getLatLng()))}
+      position={lonlat.toLeaflet(destination)}
+      onDragEnd={(e) => setDestination(lonlat(e.target.getLatLng()))}
       onMouseDown={() => setDragging(true)}
       onMouseUp={() => setDragging(false)}
     >
       <Popup
         maxWidth={WIDTH + 10}
         onClose={() => {
-          if (!dragging) p.remove()
+          if (!dragging) remove()
         }}
       >
         <figure>
@@ -50,17 +56,17 @@ export default function DestinationTravelTimeDistribution(p) {
             <g transform={`translate(0 ${BOXPLOT_HEIGHT}) rotate(-90)`}>
               <Boxplot
                 color={colors.PROJECT_PERCENTILE_COLOR}
-                positions={p.distribution}
+                positions={distribution}
                 scale={SCALE}
                 width={BOXPLOT_HEIGHT}
               />
             </g>
 
-            {p.comparisonDistribution && (
-              <g transform={`translate(0 ${BOXPLOT_HEIGHT}) rotate(-90)`}>
+            {comparisonDistribution && (
+              <g transform={`translate(0 ${BOXPLOT_HEIGHT * 2}) rotate(-90)`}>
                 <Boxplot
                   color={colors.COMPARISON_PERCENTILE_COLOR}
-                  positions={p.comparisonDistribution}
+                  positions={comparisonDistribution}
                   scale={SCALE}
                   width={BOXPLOT_HEIGHT}
                 />

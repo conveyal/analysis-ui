@@ -28,7 +28,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setSearchParameter} from 'lib/actions'
 import {
   cancelFetch,
-  clearTravelTimeSurfaces,
+  clearResults,
   fetchTravelTimeSurface,
   setDestination,
   setMaxTripDurationMinutes,
@@ -114,14 +114,14 @@ export default function SinglePointAnalysis({
   const displayedDataIsCurrent =
     !profileRequestHasChanged && !isFetchingIsochrone
 
-  // On unmount
-  useEffect(
-    () => () => {
+  // On moount / unmount
+  useEffect(() => {
+    dispatch(clearResults())
+    return () => {
       dispatch(cancelFetch())
-      dispatch(clearTravelTimeSurfaces())
-    },
-    [dispatch]
-  )
+      dispatch(clearResults())
+    }
+  }, [dispatch])
 
   /**
    * Set the origin and fetch if ready.
