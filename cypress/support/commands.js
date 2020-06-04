@@ -14,8 +14,8 @@ const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
 before('Optionally wipe configured state', () => {
-  cy.wrap(Cypress.env('freshSetupEachRun')).then((freshSetup) => {
-    if (freshSetup === true) {
+  cy.wrap(Cypress.env('clearTestData')).then((clearTestData) => {
+    if (clearTestData === true) {
       cy.task('touch', pseudoFixture, unlog)
       cy.readFile(pseudoFixture).then((storedVals) => {
         if ('regionId' in storedVals) {
