@@ -12,8 +12,8 @@ import 'cypress-wait-until'
 import {pseudoFixture} from './commands'
 
 before('Optionally wipe configured state', () => {
-  cy.wrap(Cypress.env('clearTestData')).then((clearTestData) => {
-    if (clearTestData === true) {
+  cy.wrap(Cypress.env('resetDataBeforeEachRun')).then((resetData) => {
+    if (resetData === true) {
       cy.task('touch', pseudoFixture)
       cy.readFile(pseudoFixture).then((storedVals) => {
         if ('regionId' in storedVals) {
