@@ -143,7 +143,7 @@ describe('Opportunities', () => {
         })
     })
 
-    it('can be downloaded as .tiff')
+    it('can be downloaded as .tiff') // eslint-disable-line jest/no-disabled-tests
   })
 
   after(() => {
