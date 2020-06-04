@@ -13,14 +13,12 @@ import {useCallback, useMemo} from 'react'
 
 import {BICYCLE, CAR, WALK} from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
-import useModification from 'lib/hooks/use-modification'
 
 // Is input value a valid float?
 const isValidFloat = (float) => !isNaN(float) && float > 0
 
-export default function StreetForm(p) {
-  const [m, update] = useModification()
-  const {allowedModes} = m
+export default function StreetForm({modification, update, ...p}) {
+  const {allowedModes} = modification
 
   const updateMode = useCallback(
     (mode: string) => (on: boolean) => {
@@ -34,7 +32,7 @@ export default function StreetForm(p) {
 
   const bikeSwitch = useInput({
     onChange: useMemo(() => updateMode(BICYCLE), [updateMode]),
-    value: m.allowedModes.includes(BICYCLE)
+    value: modification.allowedModes.includes(BICYCLE)
   })
   const bikeGCF = useInput({
     onChange: useCallback((bikeGenCostFactor) => update({bikeGenCostFactor}), [
@@ -42,28 +40,28 @@ export default function StreetForm(p) {
     ]),
     parse: parseFloat,
     test: isValidFloat,
-    value: m.bikeGenCostFactor
+    value: modification.bikeGenCostFactor
   })
   const bikeLts = useInput({
     onChange: useCallback((bikeLts) => update({bikeLts}), [update]),
     parse: parseInt,
-    value: m.bikeLts
+    value: modification.bikeLts
   })
 
   const carSwitch = useInput({
     onChange: useMemo(() => updateMode(CAR), [updateMode]),
-    value: m.allowedModes.includes(CAR)
+    value: modification.allowedModes.includes(CAR)
   })
   const carSpeed = useInput({
     onChange: useCallback((carSpeedKph) => update({carSpeedKph}), [update]),
     parse: parseFloat,
     test: isValidFloat,
-    value: m.carSpeedKph
+    value: modification.carSpeedKph
   })
 
   const walkSwitch = useInput({
     onChange: useMemo(() => updateMode(WALK), [updateMode]),
-    value: m.allowedModes.includes(WALK)
+    value: modification.allowedModes.includes(WALK)
   })
   const walkGCF = useInput({
     onChange: useCallback((walkGenCostFactor) => update({walkGenCostFactor}), [
@@ -71,18 +69,18 @@ export default function StreetForm(p) {
     ]),
     parse: parseFloat,
     test: isValidFloat,
-    value: m.walkGenCostFactor
+    value: modification.walkGenCostFactor
   })
 
   return (
     <Stack {...p}>
       <Box>
         <Flex justify='space-between'>
-          <FormLabel htmlFor='bikeSwitch' fontSize='lg'>
+          <FormLabel htmlFor={bikeSwitch.htmlFor} fontSize='lg'>
             Enable biking
           </FormLabel>
           <Switch
-            id='bikeSwitch'
+            id={bikeSwitch.id}
             isChecked={bikeSwitch.value}
             onChange={bikeSwitch.onChange}
           />
@@ -90,18 +88,18 @@ export default function StreetForm(p) {
         {bikeSwitch.value && (
           <Stack spacing={4} mb={6}>
             <FormControl isInvalid={!bikeGCF.isValid}>
-              <FormLabel htmlFor='bikeGCF'>
+              <FormLabel htmlFor={bikeGCF.htmlFor}>
                 Bike Generalized Cost Factor
               </FormLabel>
-              <Input id='bikeGCF' {...bikeGCF} />
+              <Input {...bikeGCF} />
               <FormHelperText>Must be greater than 0</FormHelperText>
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor='bikeLts'>
+              <FormLabel htmlFor={bikeLts.htmlFor}>
                 Bike Level of Traffic Stress
               </FormLabel>
               <Select
-                id='bikeLts'
+                id={bikeLts.id}
                 onChange={bikeLts.onChange}
                 value={bikeLts.value}
               >
@@ -117,40 +115,40 @@ export default function StreetForm(p) {
 
       <Box>
         <Flex justify='space-between'>
-          <FormLabel htmlFor='carSwitch' fontSize='lg'>
+          <FormLabel htmlFor={carSwitch.htmlFor} fontSize='lg'>
             Enable driving
           </FormLabel>
           <Switch
-            id='carSwitch'
+            id={carSwitch.id}
             isChecked={carSwitch.value}
             onChange={carSwitch.onChange}
           />
         </Flex>
         {carSwitch.value && (
           <FormControl isInvalid={carSpeed.isInvalid} mb={6}>
-            <FormLabel htmlFor='carSpeed'>Car Speed</FormLabel>
-            <Input id='carSpeed' {...carSpeed} />
+            <FormLabel htmlFor={carSpeed.htmlFor}>Car Speed</FormLabel>
+            <Input {...carSpeed} />
           </FormControl>
         )}
       </Box>
 
       <Box>
         <Flex justify='space-between'>
-          <FormLabel htmlFor='walkSwitch' fontSize='lg'>
+          <FormLabel htmlFor={walkSwitch.htmlFor} fontSize='lg'>
             Enable walking
           </FormLabel>
           <Switch
-            id='walkSwitch'
+            id={walkSwitch.id}
             isChecked={walkSwitch.value}
             onChange={walkSwitch.onChange}
           />
         </Flex>
         {walkSwitch.value && (
           <FormControl isInvalid={walkGCF.isInvalid}>
-            <FormLabel htmlFor='walkGCF'>
+            <FormLabel htmlFor={walkGCF.htmlFor}>
               Walk Generalized Cost Factor
             </FormLabel>
-            <Input id='walkGCF' {...walkGCF} />
+            <Input {...walkGCF} />
             <FormHelperText>Must be greater than 0</FormHelperText>
           </FormControl>
         )}

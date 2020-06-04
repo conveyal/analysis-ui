@@ -6,7 +6,6 @@ import {EditControl} from 'react-leaflet-draw'
 import type {FeatureCollection, Polygon} from 'geojson'
 
 import colors from 'lib/constants/colors'
-import useModification from 'lib/hooks/use-modification'
 
 import StreetForm from './street-form'
 
@@ -30,14 +29,13 @@ const isFeatureCollection = (fc: any): fc is FeatureCollection =>
 /**
  * Must be rendered in a MapLayout
  */
-export default function ModifyStreets() {
+export default function ModifyStreets({modification, update}) {
   const featureGroupRef: MutableRefObject<FeatureGroup> = useRef()
-  const [m, update] = useModification()
 
   // Add the existing layers to the map on initial load
   useEffect(() => {
     if (featureGroupRef.current) {
-      m.polygons.forEach((coordinates) => {
+      modification.polygons.forEach((coordinates) => {
         const layer = new L.GeoJSON(
           L.GeoJSON.asFeature({
             type: 'Polygon',
@@ -86,7 +84,7 @@ export default function ModifyStreets() {
         />
       </FeatureGroup>
 
-      <StreetForm />
+      <StreetForm modification={modification} update={update} />
     </>
   )
 }

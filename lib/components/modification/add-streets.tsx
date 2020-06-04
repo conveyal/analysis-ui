@@ -25,14 +25,13 @@ const isFeatureCollection = (fc: any): fc is FeatureCollection =>
 /**
  * Must be rendered in a MapLayout
  */
-export default function AddStreets() {
+export default function AddStreets({modification, update}) {
   const featureGroupRef: MutableRefObject<FeatureGroup> = useRef()
-  const [m, update] = useModification()
 
   // Add the existing layers to the map on initial load
   useEffect(() => {
     if (featureGroupRef.current) {
-      m.lineStrings.forEach((coordinates) => {
+      modification.lineStrings.forEach((coordinates) => {
         const layer = new L.GeoJSON(
           L.GeoJSON.asFeature({
             type: 'LineString',
@@ -76,7 +75,7 @@ export default function AddStreets() {
         />
       </FeatureGroup>
 
-      <StreetForm />
+      <StreetForm modification={modification} update={update} />
     </>
   )
 }
