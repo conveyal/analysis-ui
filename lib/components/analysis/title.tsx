@@ -72,7 +72,7 @@ export default function AnalysisTitle() {
         <Button
           isDisabled={!currentProject}
           rightIcon='repeat'
-          onClick={() => dispatch(fetchTravelTimeSurface(requestsSettings))}
+          onClick={() => dispatch(fetchTravelTimeSurface())}
           variantColor='blue'
           title={!currentProject ? message('analysis.disableFetch') : ''}
         >

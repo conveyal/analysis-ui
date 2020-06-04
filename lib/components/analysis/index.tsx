@@ -16,7 +16,7 @@ import {
 import lonlat from '@conveyal/lonlat'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
-import {useEffect} from 'react'
+import {useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
@@ -28,12 +28,12 @@ import {
 } from 'lib/actions/analysis'
 import message from 'lib/message'
 import OpportunityDatasetSelector from 'lib/modules/opportunity-datasets/components/selector'
+import selectAnalysisBounds from 'lib/selectors/analysis-bounds'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectDTTD from 'lib/selectors/destination-travel-time-distribution'
 import selectDTTDComparison from 'lib/selectors/comparison-destination-travel-time-distribution'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
-import selectRegionBounds from 'lib/selectors/region-bounds'
 
 import InnerDock from '../inner-dock'
 
@@ -84,17 +84,13 @@ export default function SinglePointAnalysis({
 
   const profileRequestHasChanged = useSelector(selectProfileRequestHasChanged)
   const profileRequestLonLat = useSelector(selectProfileRequestLonLat)
-  const regionBounds = useSelector(selectRegionBounds)
-  const requestsSettings = useSelector((s) =>
-    get(s, 'analysis.requestsSettings')
-  )
   const scenarioErrors = useSelector((s) =>
     get(s, 'analysis.scenarioApplicationErrors')
   )
   const scenarioWarnings = useSelector((s) =>
     get(s, 'analysis.scenarioApplicationWarnings')
   )
-  const analysisBounds = get(requestsSettings, '[0].bounds', regionBounds)
+  const analysisBounds = useSelector(selectAnalysisBounds)
   const readyToFetch = !!currentProject
   const isFetchingIsochrone = !!isochroneFetchStatus
   const disableInputs = isFetchingIsochrone || !currentProject
@@ -114,10 +110,13 @@ export default function SinglePointAnalysis({
   /**
    * Set the origin and fetch if ready.
    */
-  function _setOrigin(ll) {
-    dispatch(setSearchParameter({lonlat: lonlat.toString(ll)}))
-    if (readyToFetch) dispatch(fetchTravelTimeSurface(requestsSettings))
-  }
+  const _setOrigin = useCallback(
+    (ll) => {
+      dispatch(setSearchParameter({lonlat: lonlat.toString(ll)}))
+      if (readyToFetch) dispatch(fetchTravelTimeSurface())
+    },
+    [dispatch, readyToFetch]
+  )
 
   return (
     <>

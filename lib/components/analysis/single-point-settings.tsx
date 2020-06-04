@@ -23,7 +23,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {setSearchParameter} from 'lib/actions'
 import {
   clearComparisonSettings,
-  copyPrimarySettings,
+  setCopyRequestSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
 import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
@@ -73,6 +73,9 @@ export default function Settings({
   const regionBounds = useSelector(selectRegionBounds)
   const requestsSettings = useSelector((s) =>
     get(s, 'analysis.requestsSettings')
+  )
+  const copyRequestSettings = useSelector((s) =>
+    get(s, 'analysis.copyRequestSettings')
   )
 
   const comparisonProjectId = useSelector((s) =>
@@ -126,41 +129,53 @@ export default function Settings({
   }, [profileRequest, regionBounds, setPrimaryPR])
 
   // Current project is stored in the query string
-  function _setCurrentProject(option) {
-    dispatch(
-      setSearchParameter({
-        projectId: get(option, '_id'),
-        variantIndex: -1
-      })
-    )
-  }
-  const _setCurrentVariant = (option) =>
-    dispatch(setSearchParameter({variantIndex: parseInt(option.value)}))
+  const _setCurrentProject = useCallback(
+    (option) => {
+      dispatch(
+        setSearchParameter({
+          projectId: get(option, '_id'),
+          variantIndex: -1
+        })
+      )
+    },
+    [dispatch]
+  )
+  const _setCurrentVariant = useCallback(
+    (option) =>
+      dispatch(setSearchParameter({variantIndex: parseInt(option.value)})),
+    [dispatch]
+  )
 
-  function _setComparisonProject(project) {
-    if (project) {
-      if (!currentProject) {
-        setComparisonPR(profileRequest)
+  const _setComparisonProject = useCallback(
+    (project) => {
+      if (project) {
+        if (!currentProject) {
+          setComparisonPR(profileRequest)
+        }
+        // since the comparison is clearable
+        dispatch(
+          setSearchParameter({
+            comparisonProjectId: project._id,
+            comparisonVariantIndex: -1
+          })
+        )
+      } else {
+        dispatch(
+          setSearchParameter({
+            comparisonProjectId: null,
+            comparisonVariantIndex: null
+          })
+        )
       }
-      // since the comparison is clearable
-      dispatch(
-        setSearchParameter({
-          comparisonProjectId: project._id,
-          comparisonVariantIndex: -1
-        })
-      )
-    } else {
-      dispatch(
-        setSearchParameter({
-          comparisonProjectId: null,
-          comparisonVariantIndex: null
-        })
-      )
-    }
-  }
+    },
+    [dispatch, profileRequest, setComparisonPR]
+  )
 
-  const _setComparisonVariant = (e) =>
-    dispatch(setSearchParameter({comparisonVariantIndex: parseInt(e.value)}))
+  const _setComparisonVariant = useCallback(
+    (e) =>
+      dispatch(setSearchParameter({comparisonVariantIndex: parseInt(e.value)})),
+    [dispatch]
+  )
 
   return (
     <>
@@ -202,6 +217,7 @@ export default function Settings({
         borderBottom='1px solid #E2E8F0'
         bundle={comparisonBundle}
         color='red'
+        copyRequestSettings
         isComparison
         isDisabled={disableInputs}
         isFetchingIsochrone={isFetchingIsochrone}
@@ -371,6 +387,7 @@ function RequestHeading({
 function RequestSettings({
   bundle,
   color = 'blue',
+  copyRequestSettings = false,
   isComparison = false,
   isDisabled,
   isFetchingIsochrone,
@@ -446,18 +463,16 @@ function RequestSettings({
               </FormLabel>
               <Switch
                 id='copySettings'
-                isChecked={!profileRequest}
+                isChecked={copyRequestSettings}
                 isDisabled={!project}
-                onChange={(e) => {
-                  get(e, 'target.checked')
-                    ? dispatch(clearComparisonSettings())
-                    : dispatch(copyPrimarySettings())
-                }}
+                onChange={(e) =>
+                  dispatch(setCopyRequestSettings(get(e, 'target.checked')))
+                }
               />
             </FormControl>
           )}
 
-          {project && profileRequest && (
+          {project && !copyRequestSettings && (
             <Stack spacing={6}>
               <ModeSelector
                 accessModes={profileRequest.accessModes}
