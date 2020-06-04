@@ -165,28 +165,17 @@ export default function Settings({
   return (
     <>
       <RequestHeading
-        bundle={currentBundle}
-        isDisabled={disableInputs}
-        isFetchingIsochrone={isFetchingIsochrone}
         hasResults={resultsSettings.length > 0}
         opportunityDataset={opportunityDataset}
         profileRequest={requestsSettings[0]}
         project={currentProject}
-        projects={projects}
-        regionBounds={region.bounds}
         regionalAnalyses={regionalAnalyses}
         scenario={variantIndex}
-        scenarioOptions={scenarioOptions}
-        setProfileRequest={setPrimaryPR}
-        setProject={_setCurrentProject}
-        setScenario={_setCurrentVariant}
       />
       <RequestSettings
         bundle={currentBundle}
         isDisabled={disableInputs}
         isFetchingIsochrone={isFetchingIsochrone}
-        hasResults={resultsSettings.length > 0}
-        opportunityDataset={opportunityDataset}
         profileRequest={requestsSettings[0]}
         project={currentProject}
         projects={projects}
@@ -200,24 +189,14 @@ export default function Settings({
       />
 
       <RequestHeading
-        borderBottom='1px solid #E2E8F0'
-        bundle={comparisonBundle}
         color='red'
         isComparison
-        isDisabled={disableInputs}
-        isFetchingIsochrone={isFetchingIsochrone}
         hasResults={resultsSettings.length > 1}
         opportunityDataset={opportunityDataset}
         profileRequest={requestsSettings[1]}
         project={comparisonProject}
-        projects={projects}
-        regionBounds={region.bounds}
         regionalAnalyses={regionalAnalyses}
         scenario={comparisonVariant}
-        scenarioOptions={comparisonScenarioOptions}
-        setProfileRequest={setComparisonPR}
-        setProject={_setComparisonProject}
-        setScenario={_setComparisonVariant}
       />
       <RequestSettings
         borderBottom='1px solid #E2E8F0'
@@ -226,8 +205,6 @@ export default function Settings({
         isComparison
         isDisabled={disableInputs}
         isFetchingIsochrone={isFetchingIsochrone}
-        hasResults={resultsSettings.length > 1}
-        opportunityDataset={opportunityDataset}
         profileRequest={requestsSettings[1]}
         project={comparisonProject}
         projects={projects}
@@ -397,8 +374,6 @@ function RequestSettings({
   isComparison = false,
   isDisabled,
   isFetchingIsochrone,
-  hasResults,
-  opportunityDataset,
   profileRequest,
   project,
   projects,

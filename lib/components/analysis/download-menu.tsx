@@ -12,7 +12,6 @@ import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import downloadCSV from 'lib/utils/download-csv'
-import downloadGeoTIFF from 'lib/utils/download-geotiff'
 import downloadJson from 'lib/utils/download-json'
 
 import Icon from '../icon'
@@ -73,37 +72,36 @@ export default function DownloadMenu({
   // TODO don't dispatch an action, just fetch and show the button in a loading state
   function onClickDownloadGeoTIFF() {
     return dispatch(
-      fetchGeoTIFF({
+      fetchGeoTIFF(projectName, {
         projectId,
         variantIndex,
         ...requestsSettings
       })
     )
-      .then((r) => r.arrayBuffer())
-      .then((data) => {
-        downloadGeoTIFF({
-          data,
-          filename: snakeCase(`conveyal geotiff ${projectName}`) + '.geotiff'
-        })
-      })
   }
 
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        isDisabled={isDisabled || profileRequestHasChanged}
-        {...p}
-      >
+      <MenuButton as={Button} {...p}>
         <Icon icon={faDownload} />
       </MenuButton>
       <MenuList>
-        <MenuItem onClick={downloadIsochrone}>Isochrone as GeoJSON</MenuItem>
-        <MenuItem onClick={onClickDownloadGeoTIFF}>
+        <MenuItem
+          isDisabled={isDisabled || profileRequestHasChanged}
+          onClick={downloadIsochrone}
+        >
+          Isochrone as GeoJSON
+        </MenuItem>
+        <MenuItem
+          isDisabled={isDisabled || profileRequestHasChanged}
+          onClick={onClickDownloadGeoTIFF}
+        >
           Isochrone as GeoTIFF
         </MenuItem>
         <MenuItem
-          isDisabled={!opportunityDataset}
+          isDisabled={
+            !opportunityDataset || isDisabled || profileRequestHasChanged
+          }
           onClick={downloadOpportunitiesCSV}
           title={
             opportunityDataset ? '' : 'Opportunity dataset must be selected'

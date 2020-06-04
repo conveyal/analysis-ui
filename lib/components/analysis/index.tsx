@@ -160,9 +160,7 @@ export default function SinglePointAnalysis({
         />
       )}
 
-      <AnalysisTitle
-        isDisabled={!profileRequestHasChanged || isFetchingIsochrone}
-      />
+      <AnalysisTitle />
 
       <InnerDock style={{width: '640px'}}>
         {scenarioWarnings != null && scenarioWarnings.length > 0 && (
