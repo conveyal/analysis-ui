@@ -10,25 +10,8 @@ const prefix = Cypress.env('dataPrefix')
 const regionName = Cypress.env('region')
 const regionFixture = `regions/${regionName}.json`
 // used to store object UUIDs between tests to avoid needless ui interaction
-const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
+export const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
-
-before('Optionally wipe configured state', () => {
-  cy.wrap(Cypress.env('clearTestData')).then((clearTestData) => {
-    if (clearTestData === true) {
-      cy.task('touch', pseudoFixture, unlog)
-      cy.readFile(pseudoFixture).then((storedVals) => {
-        if ('regionId' in storedVals) {
-          cy.visit(`/regions/${storedVals.regionId}`)
-          cy.navTo('Region Settings')
-          cy.findByText(/Delete this region/i).click()
-          cy.findByText(/Confirm: Delete this region/).click()
-        }
-      })
-      cy.writeFile(pseudoFixture, '{}')
-    }
-  })
-})
 
 Cypress.Commands.add('setup', (entity) => {
   setup(entity)

@@ -9,4 +9,21 @@
 
 import 'cypress-wait-until'
 
-import './commands'
+import {pseudoFixture} from './commands'
+
+before('Optionally wipe configured state', () => {
+  cy.wrap(Cypress.env('clearTestData')).then((clearTestData) => {
+    if (clearTestData === true) {
+      cy.task('touch', pseudoFixture)
+      cy.readFile(pseudoFixture).then((storedVals) => {
+        if ('regionId' in storedVals) {
+          cy.visit(`/regions/${storedVals.regionId}`)
+          cy.navTo('Region Settings')
+          cy.findByText(/Delete this region/i).click()
+          cy.findByText(/Confirm: Delete this region/).click()
+        }
+      })
+      cy.writeFile(pseudoFixture, '{}')
+    }
+  })
+})
