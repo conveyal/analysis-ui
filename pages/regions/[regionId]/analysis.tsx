@@ -16,7 +16,7 @@ const SinglePointAnalysis = dynamic(() => import('lib/components/analysis'), {
   ssr: false
 })
 
-const AnalysisPage = withInitialFetch(
+const AnalysisPage: any = withInitialFetch(
   SinglePointAnalysis,
   async (dispatch, query) => {
     // Set the active id

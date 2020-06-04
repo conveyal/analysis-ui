@@ -22,8 +22,9 @@
     "pretest": "yarn",
     "semantic-release": "semantic-release",
     "start": "next start",
-    "test": "yarn run lint && yarn run jest",
-    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+    "test": "yarn run tsc && yarn run lint && yarn run jest",
+    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
