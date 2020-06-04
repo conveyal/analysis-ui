@@ -19,6 +19,9 @@ import message from 'lib/message'
 
 import TimePicker from '../time-picker'
 
+// DateTime does not have a `renderInput`
+const DateTimeWithRender = DateTime as any
+
 const DATE_FORMAT = 'YYYY-MM-DD'
 
 const bold = (b) => `<strong>${b}</strong>`
@@ -173,7 +176,7 @@ export default function ProfileRequestEditor({
         isInvalid={bundleOutOfDate || !dateIsValid}
       >
         <FormLabel>{message('analysis.date')}</FormLabel>
-        <DateTime
+        <DateTimeWithRender
           closeOnSelect
           dateFormat={DATE_FORMAT}
           inputProps={{disabled}}
