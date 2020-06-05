@@ -1,19 +1,10 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Stack,
-  Progress,
-  StackProps
-} from '@chakra-ui/core'
+import {Box, Stack, Progress, StackProps} from '@chakra-ui/core'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
-import {memo, useState} from 'react'
+import {memo} from 'react'
 import {useSelector} from 'react-redux'
 
-import message from 'lib/message'
 import colors from 'lib/constants/colors'
-import {UNDEFINED_PROJECT_NAME} from 'lib/constants'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 
 import selectDisplayedComparisonScenarioName from 'lib/selectors/displayed-comparison-scenario-name'
@@ -26,10 +17,7 @@ import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxAccessibility from 'lib/selectors/max-accessibility'
 
 import StackedPercentile, {
-  StackedPercentileComparison,
-  PROJECT,
-  BASE,
-  COMPARISON
+  StackedPercentileComparison
 } from './stacked-percentile'
 
 const GRAPH_HEIGHT = 225
@@ -64,13 +52,6 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
   const percentileCurves = useSelector(selectPercentileCurves)
   const maxAccessibility = useSelector(selectMaxAccessibility)
   const opportunityDatasetName = opportunityDataset && opportunityDataset.name
-
-  const [scenarioPlotted, setScenarioPlotted] = useState<
-    'project' | 'base' | 'comparison'
-  >(PROJECT)
-
-  const noComparison =
-    !comparisonProjectName && comparisonProjectName !== UNDEFINED_PROJECT_NAME
 
   const projectColor =
     disabled || stale
@@ -116,41 +97,8 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
         )}
       </Stack>
 
-      {comparisonAccessibility != null && (
-        <ButtonGroup display='flex' isAttached width='100%'>
-          <Button
-            flex='1'
-            isActive={noComparison || scenarioPlotted === PROJECT}
-            isDisabled={noComparison}
-            onClick={() => setScenarioPlotted(PROJECT)}
-            overflow='hidden'
-            title={projectName}
-          >
-            {projectName}
-          </Button>
-          <Button
-            flex='1'
-            isActive={!noComparison && scenarioPlotted === BASE}
-            isDisabled={noComparison}
-            onClick={() => setScenarioPlotted(BASE)}
-            overflow='hidden'
-            title={comparisonProjectName}
-          >
-            {comparisonProjectName || 'No comparison selected'}
-          </Button>
-          <Button
-            flex='1'
-            isActive={!noComparison && scenarioPlotted === COMPARISON}
-            isDisabled={noComparison}
-            onClick={() => setScenarioPlotted(COMPARISON)}
-          >
-            {message('analysis.comparison')}
-          </Button>
-        </ButtonGroup>
-      )}
-
       {percentileCurves &&
-        (scenarioPlotted === PROJECT ? (
+        (comparisonPercentileCurves == null ? (
           <StackedPercentile
             cutoff={isochroneCutoff}
             percentileCurves={percentileCurves}
@@ -160,18 +108,7 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             color={projectColor}
             maxAccessibility={maxAccessibility}
           />
-        ) : scenarioPlotted === BASE ? (
-          <StackedPercentile
-            cutoff={isochroneCutoff}
-            percentileCurves={comparisonPercentileCurves}
-            width={GRAPH_WIDTH}
-            height={GRAPH_HEIGHT}
-            opportunityDatasetName={opportunityDatasetName}
-            color={comparisonColor}
-            maxAccessibility={maxAccessibility}
-          />
         ) : (
-          // scenarioPlotted === COMPARISON
           <StackedPercentileComparison
             cutoff={isochroneCutoff}
             percentileCurves={percentileCurves}
