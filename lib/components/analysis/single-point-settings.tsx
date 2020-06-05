@@ -217,7 +217,7 @@ export default function Settings({
         borderBottom='1px solid #E2E8F0'
         bundle={comparisonBundle}
         color='red'
-        copyRequestSettings
+        copyRequestSettings={copyRequestSettings}
         isComparison
         isDisabled={disableInputs}
         isFetchingIsochrone={isFetchingIsochrone}
