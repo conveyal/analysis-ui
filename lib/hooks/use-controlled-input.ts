@@ -49,16 +49,12 @@ export default function useControlledInput({
       const rawValue = getRawValueFromInput(input)
       // Ensure the displayed value syncs fast, even if it's not valid
       setInputValue(rawValue)
-      try {
-        const parsedValue = parse(rawValue)
-        const isValid = test(parsedValue, rawValue)
-        // Don't pass invalid changes through to the onChange function
-        if (!isValid) return
-        // Allow the sync to occur before propogating the change
-        await onChange(rawValue)
-      } catch (e) {
-        // parsing or testing failed
-      }
+      const parsedValue = parse(rawValue)
+      const isValid = test(parsedValue, rawValue)
+      // Don't pass invalid changes through to the onChange function
+      if (!isValid) return
+      // Allow the sync to occur before propogating the change
+      await onChange(parsedValue)
     },
     [onChange, setInputValue, test]
   )

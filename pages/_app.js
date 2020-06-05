@@ -11,7 +11,9 @@ import 'simplebar/dist/simplebar.css'
 import '../styles.css'
 
 export default class ConveyalApp extends App {
-  state = {}
+  state = {
+    error: null
+  }
 
   componentDidCatch(err, info) {
     LogRocket.captureException(err, {extras: info})

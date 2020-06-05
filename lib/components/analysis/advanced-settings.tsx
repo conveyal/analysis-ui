@@ -9,15 +9,23 @@ import {
 } from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
 import dynamic from 'next/dynamic'
-import {useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 
-import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import R5Selector from 'lib/modules/r5-version/components/selector'
 
 import Select from '../select'
 
 const EditBounds = dynamic(() => import('../map/edit-bounds'), {ssr: false})
+
+const isInvalid = (jsonString) => {
+  try {
+    JSON.parse(jsonString)
+  } catch (e) {
+    return true
+  }
+  return false
+}
 
 /**
  * Edit the advanced parameters of an analysis.
@@ -30,11 +38,27 @@ export default function AdvancedSettings({
   setProfileRequest,
   ...p
 }) {
-  const jsonEditor = useInput({
-    value: JSON.stringify(profileRequest, null, '  '),
-    onChange: setProfileRequest,
-    parse: JSON.parse // no need to test if parsing passes
-  })
+  const [stringified, setStringified] = useState(
+    JSON.stringify(profileRequest, null, '  ')
+  )
+  const [currentValue, setCurrentValue] = useState(stringified)
+  const ref = useRef()
+  const onChange = useCallback(
+    (e) => {
+      const jsonString = e.target.value
+      setCurrentValue(jsonString) // for validation
+      if (!isInvalid(jsonString)) {
+        setProfileRequest(JSON.parse(jsonString))
+      }
+    },
+    [ref, setCurrentValue, setProfileRequest]
+  )
+
+  useEffect(() => {
+    if (document.activeElement !== ref.current) {
+      setStringified(JSON.stringify(profileRequest, null, '  '))
+    }
+  }, [profileRequest, ref, setStringified])
 
   return (
     <Stack spacing={5} {...p}>
@@ -55,11 +79,19 @@ export default function AdvancedSettings({
         />
       </Stack>
 
-      <FormControl isDisabled={disabled} isInvalid={jsonEditor.isInvalid}>
-        <FormLabel>
+      <FormControl isDisabled={disabled} isInvalid={isInvalid(currentValue)}>
+        <FormLabel htmlFor='customProfileRequest'>
           {message('analysis.customizeProfileRequest.label')}
         </FormLabel>
-        <Textarea {...jsonEditor} fontFamily='monospace' spellCheck={false} />
+        <Textarea
+          defaultValue={stringified}
+          fontFamily='monospace'
+          id='customProfileRequest'
+          key={stringified}
+          onChange={onChange}
+          ref={ref}
+          spellCheck={false}
+        />
         <FormHelperText>
           {message('analysis.customizeProfileRequest.description')}
         </FormHelperText>
