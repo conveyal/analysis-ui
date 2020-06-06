@@ -307,6 +307,41 @@ exports[`constainers/single-point-analysis 1`] = `
     setMapChildren={[MockFunction]}
     setProfileRequest={[Function]}
   >
+    <DynamicMockedComponent />
+    <DynamicMockedComponent
+      bounds={
+        Object {
+          "east": -76,
+          "north": 39,
+          "south": 38,
+          "west": -77,
+        }
+      }
+      dashArray="3 8"
+      fillOpacity={0}
+      pointerEvents="none"
+      weight={1}
+    />
+    <DynamicMockedComponent
+      isEditing={true}
+    />
+    <DynamicMockedComponent
+      comparison={null}
+      isCurrent={false}
+      isochrone={null}
+    />
+    <DynamicMockedComponent
+      disableMarker={false}
+      displayedDataIsCurrent={false}
+      markerPosition={
+        Object {
+          "lat": 38.5,
+          "lon": -76.5,
+        }
+      }
+      setDestination={[Function]}
+      setOrigin={[Function]}
+    />
     <AnalysisTitle
       abortFetchTravelTimeSurface={[Function]}
       createRegionalAnalysis={[Function]}
@@ -602,7 +637,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   }
                 }
               >
-                <ForwardRef(LoadableComponent)
+                <DynamicMockedComponent
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   inputId="select-project"
@@ -651,15 +686,7 @@ exports[`constainers/single-point-analysis 1`] = `
                       ],
                     }
                   }
-                >
-                  <loading
-                    error={null}
-                    isLoading={true}
-                    pastDelay={false}
-                    retry={[Function]}
-                    timedOut={false}
-                  />
-                </ForwardRef(LoadableComponent)>
+                />
               </S>
             </div>
           </Group>
@@ -699,7 +726,7 @@ exports[`constainers/single-point-analysis 1`] = `
                   }
                 }
               >
-                <ForwardRef(LoadableComponent)
+                <DynamicMockedComponent
                   inputId="select-scenario"
                   isDisabled={false}
                   name="select-scenario"
@@ -728,15 +755,7 @@ exports[`constainers/single-point-analysis 1`] = `
                       "value": 0,
                     }
                   }
-                >
-                  <loading
-                    error={null}
-                    isLoading={true}
-                    pastDelay={false}
-                    retry={[Function]}
-                    timedOut={false}
-                  />
-                </ForwardRef(LoadableComponent)>
+                />
               </S>
             </div>
           </Group>
@@ -785,7 +804,7 @@ exports[`constainers/single-point-analysis 1`] = `
                 }
                 placeholder="Select comparison project…"
               >
-                <ForwardRef(LoadableComponent)
+                <DynamicMockedComponent
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   inputId="select-comparison-project"
@@ -819,15 +838,7 @@ exports[`constainers/single-point-analysis 1`] = `
                       "option": [Function],
                     }
                   }
-                >
-                  <loading
-                    error={null}
-                    isLoading={true}
-                    pastDelay={false}
-                    retry={[Function]}
-                    timedOut={false}
-                  />
-                </ForwardRef(LoadableComponent)>
+                />
               </S>
             </div>
           </Group>
@@ -858,7 +869,7 @@ exports[`constainers/single-point-analysis 1`] = `
                 }
                 placeholder="Select comparison scenario…"
               >
-                <ForwardRef(LoadableComponent)
+                <DynamicMockedComponent
                   inputId="select-comparison-scenario"
                   isDisabled={true}
                   name="select-comparison-scenario"
@@ -878,15 +889,7 @@ exports[`constainers/single-point-analysis 1`] = `
                       "option": [Function],
                     }
                   }
-                >
-                  <loading
-                    error={null}
-                    isLoading={true}
-                    pastDelay={false}
-                    retry={[Function]}
-                    timedOut={false}
-                  />
-                </ForwardRef(LoadableComponent)>
+                />
               </S>
             </div>
           </Group>
@@ -928,7 +931,7 @@ exports[`constainers/single-point-analysis 1`] = `
                     ]
                   }
                 >
-                  <ForwardRef(LoadableComponent)
+                  <DynamicMockedComponent
                     getOptionLabel={[Function]}
                     getOptionValue={[Function]}
                     inputId="select-opportunity-dataset"
@@ -951,15 +954,7 @@ exports[`constainers/single-point-analysis 1`] = `
                         "option": [Function],
                       }
                     }
-                  >
-                    <loading
-                      error={null}
-                      isLoading={true}
-                      pastDelay={false}
-                      retry={[Function]}
-                      timedOut={false}
-                    />
-                  </ForwardRef(LoadableComponent)>
+                  />
                 </S>
               </OpportunityDatasetSelector>
             </div>
@@ -1040,7 +1035,7 @@ exports[`constainers/single-point-analysis 1`] = `
                     onChange={[Function]}
                     options={Array []}
                   >
-                    <ForwardRef(LoadableComponent)
+                    <DynamicMockedComponent
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
                       inputId="select-bookmark"
@@ -1054,15 +1049,7 @@ exports[`constainers/single-point-analysis 1`] = `
                           "option": [Function],
                         }
                       }
-                    >
-                      <loading
-                        error={null}
-                        isLoading={true}
-                        pastDelay={false}
-                        retry={[Function]}
-                        timedOut={false}
-                      />
-                    </ForwardRef(LoadableComponent)>
+                    />
                   </S>
                 </div>
                 <div
@@ -2649,8 +2636,15 @@ exports[`constainers/single-point-analysis 1`] = `
           </Group>
         </Slider>
         <AdvancedSettings
+          analysisBounds={
+            Object {
+              "east": -76,
+              "north": 39,
+              "south": 38,
+              "west": -77,
+            }
+          }
           disabled={false}
-          hideBoundsEditor={[Function]}
           profileRequest={
             Object {
               "accessModes": "WALK",
@@ -2838,7 +2832,6 @@ exports[`constainers/single-point-analysis 1`] = `
             ]
           }
           setProfileRequest={[Function]}
-          showBoundsEditor={[Function]}
         >
           <Collapsible
             defaultExpanded={false}

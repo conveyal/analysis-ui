@@ -1,4 +1,4 @@
-const I = require.requireActual('@fortawesome/free-solid-svg-icons')
+const I = jest.requireActual('@fortawesome/free-solid-svg-icons')
 
 /**
  * Return just the name and not the entire SVG object. Throw an error if the
