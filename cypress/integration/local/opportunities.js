@@ -1,4 +1,4 @@
-describe('Opportunities', () => {
+describe('Opportunity Datasets', () => {
   before(() => {
     cy.setup('region')
   })
@@ -9,8 +9,8 @@ describe('Opportunities', () => {
     cy.get('div.leaflet-container').as('map')
   })
 
-  context('can be uploaded', () => {
-    it('as CSV', function () {
+  context('can be imported', () => {
+    it('from CSV', function () {
       let opportunity = this.opportunities.csv
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       let expectedFieldCount = 1 + opportunity.numericFields.length
@@ -49,7 +49,7 @@ describe('Opportunities', () => {
       cy.contains(/Delete entire dataset/i).click()
     })
 
-    it('as shapefile', function () {
+    it('from shapefile', function () {
       let opportunity = this.opportunities.shapefile
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       let expectedFieldCount = opportunity.numericFields.length
@@ -84,7 +84,7 @@ describe('Opportunities', () => {
       cy.contains(/Delete entire dataset/i).click()
     })
 
-    it('as .grid', function () {
+    it('from .grid', function () {
       let opportunity = this.opportunities.grid
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       cy.findByText(/Upload a new dataset/i).click()
