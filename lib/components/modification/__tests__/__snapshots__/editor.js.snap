@@ -2,6 +2,9 @@
 
 exports[`Components > Modification > Editor should render and execute functions properly 1`] = `
 <Fragment>
+  <ConnectedDisplayAll
+    isEditing={true}
+  />
   <div
     className="ApplicationDockTitle"
   >
@@ -30,19 +33,7 @@ exports[`Components > Modification > Editor should render and execute functions 
     <div
       className=""
     >
-      <IconTip
-        className="pull-right"
-        icon={
-          Object {
-            "icon": Array [],
-            "iconName": "expand",
-            "prefix": "fas",
-          }
-        }
-        id="zoom-to-modification"
-        onClick={[Function]}
-        tip="Fit map to modification extents"
-      />
+      <FitBounds />
       <IconTip
         className="pull-right"
         icon={

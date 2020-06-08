@@ -1,10 +1,16 @@
+import dynamic from 'next/dynamic'
 import {loadBundle} from 'lib/actions'
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 import {loadModification} from 'lib/actions/modifications'
 import {loadProject} from 'lib/actions/project'
-import ModificationEditor from 'lib/containers/modification-editor'
 import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
+
+// Lots of the ModificationEditor code depends on Leaflet. Load it all client side
+const ModificationEditor = dynamic(
+  () => import('lib/containers/modification-editor'),
+  {ssr: false}
+)
 
 const EditorPage = withInitialFetch(
   ModificationEditor,
