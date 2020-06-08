@@ -5,8 +5,6 @@ import {EditControl} from 'react-leaflet-draw'
 
 import type {FeatureCollection, LineString} from 'geojson'
 
-import useModification from 'lib/hooks/use-modification'
-
 import StreetForm from './street-form'
 
 const drawSettings = {
