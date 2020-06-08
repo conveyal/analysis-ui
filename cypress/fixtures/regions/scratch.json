@@ -34,7 +34,12 @@
     },
     "shapefile": {
       "name": "block groups",
-      "files": "regions/nky/block-groups/",
+      "files": [
+        "regions/nky/block-groups/block-groups.dbf",
+        "regions/nky/block-groups/block-groups.prj",
+        "regions/nky/block-groups/block-groups.shp",
+        "regions/nky/block-groups/block-groups.shx"
+      ],
       "numericFields": [
         "people",
         "males",
@@ -46,7 +51,9 @@
       ]
     },
     "grid": {
-      "name": ""
+      "name": "residents",
+      "file": "regions/nky/people.grid",
+      "description": "home population density from census BG shapefile"
     }
   },
   "importRoutes": {

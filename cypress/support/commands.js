@@ -6,30 +6,107 @@ Cypress.Cookies.defaults({
   whitelist: ['user']
 })
 
-function pseudoFixture(regionName) {
-  // this is a file used to store randomly generated UUIDs associated with
-  // objects in order to look them up efficiently across tests without resorting
-  // to unecessary UI interaction in the 'before' hook
-  return `cypress/fixtures/regions/.${regionName}.json`
-}
+const prefix = Cypress.env('dataPrefix')
+const regionName = Cypress.env('region')
+const regionFixture = `regions/${regionName}.json`
+// used to store object UUIDs between tests to avoid needless ui interaction
+export const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
+const unlog = {log: false}
 
-Cypress.Commands.add('setupRegion', (regionName) => {
-  // set up the named region from fixtures if necessary
-  cy.task('touch', pseudoFixture(regionName))
-  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
-    if ('regionId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}`)
-      cy.contains(/Create new Project|Upload a .* Bundle/i)
+Cypress.Commands.add('setup', (entity) => {
+  setup(entity)
+})
+function setup(entity) {
+  const entities = {
+    region: {dependsOn: null, setup: createNewRegion},
+    bundle: {dependsOn: 'region', setup: createNewBundle},
+    opportunities: {dependsOn: 'region', setup: createNewOpportunities},
+    project: {dependsOn: 'bundle', setup: createNewProject}
+  }
+  if (!(entity in entities)) {
+    return
+  }
+  let entityId = entity + 'Id'
+  cy.task('touch', pseudoFixture, unlog)
+  cy.readFile(pseudoFixture, unlog).then((storedVals) => {
+    if (entityId in storedVals) {
+      // thing exists; navigate to it
+      switch (entity) {
+        case 'region':
+          cy.visit(`/regions/${storedVals.regionId}`)
+          cy.contains(/Create new Project|Upload a .* Bundle/i, unlog)
+          break
+        case 'bundle':
+          cy.visit(
+            `/regions/${storedVals.regionId}/bundles/${storedVals.bundleId}`
+          )
+          cy.contains(/create a new network bundle/i, unlog)
+          break
+        case 'opportunities':
+          cy.visit(`/regions/${storedVals.regionId}/opportunities`)
+          cy.contains(/Upload a new dataset/i, unlog)
+          break
+        case 'project':
+          cy.visit(
+            `/regions/${storedVals.regionId}/projects/${storedVals.projectId}`
+          )
+          cy.contains(/Create a modification/i, unlog)
+          break
+      }
     } else {
-      createNewRegion(regionName)
+      // recursive call for dependency
+      setup(entities[entity].dependsOn)
+      entities[entity].setup()
     }
   })
-})
+}
 
-function createNewRegion(regionName) {
+function stash(key, val) {
+  cy.readFile(pseudoFixture, unlog).then((contents) => {
+    contents = {...contents, [key]: val}
+    cy.writeFile(pseudoFixture, contents, unlog)
+  })
+}
+
+function createNewOpportunities() {
+  cy.fixture(regionFixture).then((region) => {
+    let opportunity = region.opportunities.grid
+    let oppName = `${prefix}default_opportunities`
+    cy.navTo('Opportunity Datasets')
+    cy.findByText(/Upload a new dataset/i).click()
+    cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+    cy.findByLabelText(/Select opportunity dataset/).attachFile({
+      filePath: opportunity.file,
+      encoding: 'base64'
+    })
+    cy.get('a.btn')
+      .contains(/Upload/)
+      .click()
+    // find the message showing this upload is complete
+    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
+      .parent()
+      .parent()
+      .as('notice')
+    // check number of fields uploaded
+    cy.get('@notice').contains(/Finished uploading 1 feature/i)
+    // close the message
+    cy.get('@notice').findByRole('button', /x/).click()
+    // now grab the ID
+    cy.findByText(/Select\.\.\./)
+      .click()
+      .type(`${oppName} {enter}`)
+    cy.location('href')
+      .should('match', /.*DatasetId=\w{24}$/)
+      .then((href) => {
+        stash('opportunitiesId', href.match(/\w{24}$/)[0])
+      })
+  })
+}
+
+function createNewRegion() {
   cy.visit('/regions/create')
-  cy.findByPlaceholderText('Region Name').type(regionName, {delay: 1})
-  cy.fixture('regions/' + regionName + '.json').then((region) => {
+  cy.findByPlaceholderText('Region Name').type(prefix + regionName, {delay: 0})
+  cy.fixture(regionFixture).then((region) => {
     cy.findByLabelText(/North bound/)
       .clear()
       .type(region.north, {delay: 1})
@@ -49,51 +126,28 @@ function createNewRegion(regionName) {
   cy.location('pathname')
     .should('match', /regions\/\w{24}$/)
     .then((path) => {
-      let matches = path.match(/(?:\/regions\/)(?<uuid>\w{24})/)
-      cy.writeFile(pseudoFixture(regionName), {regionId: matches.groups.uuid})
+      stash('regionId', path.match(/\w{24}$/)[0])
     })
 }
 
-Cypress.Commands.add('setupBundle', (regionName) => {
-  cy.task('touch', pseudoFixture(regionName))
-  cy.readFile(pseudoFixture(regionName)).then((IDs) => {
-    if ('bundleId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}/bundles/${IDs.bundleId}`)
-      cy.contains(/create a new network bundle/i)
-    } else if ('regionId' in IDs) {
-      // no bundle, but region exists
-      cy.visit(`/regions/${IDs.regionId}/bundles`)
-      createNewBundle(regionName)
-    } else {
-      cy.setupRegion(regionName)
-      cy.setupBundle(regionName)
-    }
-  })
-})
-
-function createNewBundle(regionName) {
-  let bundleName = regionName + ' bundle'
+function createNewBundle() {
+  let bundleName = prefix + regionName + ' bundle'
+  cy.navTo('Network Bundles')
   cy.findByText(/Create .* bundle/).click()
   cy.location('pathname').should('match', /\/bundles\/create$/)
   cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
   cy.findByText(/Upload new OpenStreetMap/i).click()
-  cy.fixture('regions/' + regionName + '.json').then((region) => {
-    cy.fixture(region.PBFfile, {encoding: 'base64'}).then((fileContent) => {
-      cy.findByLabelText(/Select PBF file/i).upload({
-        fileContent,
-        fileName: region.PBFfile,
-        encoding: 'base64',
-        mimeType: 'application/octet-stream'
-      })
+  cy.fixture(regionFixture).then((region) => {
+    cy.findByLabelText(/Select PBF file/i).attachFile({
+      filePath: region.PBFfile,
+      encoding: 'base64',
+      mimeType: 'application/octet-stream'
     })
     cy.findByText(/Upload new GTFS/i).click()
-    cy.fixture(region.GTFSfile, {encoding: 'base64'}).then((fileContent) => {
-      cy.findByLabelText(/Select .*GTFS/i).upload({
-        fileContent,
-        fileName: region.GTFSfile,
-        encoding: 'base64',
-        mimeType: 'application/octet-stream'
-      })
+    cy.findByLabelText(/Select .*GTFS/i).attachFile({
+      filePath: region.GTFSfile,
+      encoding: 'base64',
+      mimeType: 'application/octet-stream'
     })
   })
   cy.findByRole('button', {name: /Create/i}).click()
@@ -108,33 +162,14 @@ function createNewBundle(regionName) {
   cy.location('pathname')
     .should('match', /bundles\/\w{24}$/)
     .then((path) => {
-      let matches = path.match(/\w{24}$/)
-      cy.readFile(pseudoFixture(regionName)).then((contents) => {
-        contents = {...contents, bundleId: matches[0]}
-        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
-      })
+      stash('bundleId', path.match(/\w{24}$/)[0])
     })
 }
 
-Cypress.Commands.add('setupProject', (regionName) => {
-  cy.task('touch', pseudoFixture(regionName))
-  cy.readFile(pseudoFixture(regionName), {log: false}).then((IDs) => {
-    if ('projectId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}/projects/${IDs.projectId}`)
-      cy.contains(/Create a modification/i)
-    } else if ('bundleId' in IDs) {
-      cy.visit(`/regions/${IDs.regionId}/projects`)
-      createNewProject(regionName)
-    } else {
-      cy.setupBundle(regionName)
-      cy.setupProject(regionName)
-    }
-  })
-})
-
-function createNewProject(regionName) {
-  let projectName = regionName + ' project'
-  let bundleName = regionName + ' bundle'
+function createNewProject() {
+  let projectName = prefix + regionName + ' project'
+  let bundleName = prefix + regionName + ' bundle'
+  cy.navTo('Projects')
   cy.contains('Create new Project')
   cy.findByText(/Create new Project/i).click()
   cy.location('pathname').should('match', /\/create-project/)
@@ -144,16 +179,12 @@ function createNewProject(regionName) {
   cy.get('a.btn')
     .contains(/Create/)
     .click()
-  cy.contains(/Modifications/, {log: false})
+  cy.contains(/Modifications/, unlog)
   // store the projectId
-  cy.location('pathname', {log: false})
+  cy.location('pathname', unlog)
     .should('match', /\/projects\/\w{24}$/)
     .then((path) => {
-      let projectId = path.match(/\w{24}$/)[0]
-      cy.readFile(pseudoFixture(regionName), {log: false}).then((contents) => {
-        contents = {...contents, projectId: projectId}
-        cy.writeFile(pseudoFixture(regionName), contents, {log: false})
-      })
+      stash('projectId', path.match(/\w{24}$/)[0])
     })
 }
 
@@ -171,7 +202,7 @@ Cypress.Commands.add('deleteProject', (projectName) => {
 })
 
 Cypress.Commands.add('setupMod', (modType, modName) => {
-  cy.navTo(/Edit Modifications/)
+  cy.navTo('Edit Modifications')
   // assumes we are already on this page or editing another mod
   cy.findByRole('link', {name: 'Create a modification'}).click()
   cy.findByLabelText(/Modification type/i).select(modType)
@@ -182,7 +213,7 @@ Cypress.Commands.add('setupMod', (modType, modName) => {
 
 Cypress.Commands.add('openMod', (modType, modName) => {
   // opens the first listed modification of this type with this name
-  cy.navTo(/Edit Modifications/)
+  cy.navTo('Edit Modifications')
   // find the container for this modification type and open it if need be
   cy.contains(modType)
     .parent()
@@ -258,38 +289,32 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
-  // attempt to wait until at least part of the desired page is loaded
+  // and wait until at least part of the page is loaded
   Cypress.log({name: 'Navigate to'})
-  let caseInsensitiveTitle = RegExp(menuItemTitle, 'i')
-  cy.findByTitle(caseInsensitiveTitle, {log: false})
-    .parent({log: false}) // select actual SVG element rather than <title> el
-    .click({log: false})
-  switch (caseInsensitiveTitle.toString()) {
-    case /Regions/i.toString():
-      cy.contains(/conveyal analysis/i, {log: false})
-      cy.contains(/Set up a new region/i, {log: false})
+  cy.findByTitle(RegExp(menuItemTitle, 'i'), unlog)
+    .parent(unlog) // select actual SVG element rather than <title> el
+    .click(unlog)
+  switch (menuItemTitle.toLowerCase()) {
+    case 'regions':
+      cy.contains(/Set up a new region/i, unlog)
       break
-    case /Region Settings/i.toString():
-      cy.contains(/Delete this region/i, {log: false})
+    case 'region settings':
+      cy.contains(/Delete this region/i, unlog)
       break
-    case /Projects/i.toString():
-      cy.contains(/Create new Project|Upload a .* Bundle/i, {log: false})
+    case 'projects':
+      cy.contains(/Create new Project|Upload a .* Bundle/i, unlog)
       break
-    case /Network Bundles/i.toString():
-      cy.contains(/Create a new network bundle/i, {log: false})
+    case 'network bundles':
+      cy.contains(/Create a new network bundle/i, unlog)
       break
-    case /Opportunity datasets/i.toString():
-      cy.contains(/Upload a new dataset/i, {log: false})
+    case 'opportunity datasets':
+      cy.contains(/Upload a new dataset/i, unlog)
       break
-    case /Edit Modifications/i.toString():
-      cy.contains(/create new project|create a modification/i, {log: false})
+    case 'edit modifications':
+      cy.contains(/create new project|create a modification/i, unlog)
       break
-    case /Analyze/i.toString():
-      cy.location('pathname', {log: false}).should('match', /\/analysis/, {
-        log: false
-      })
-      cy.contains(/Comparison Project/i, {log: false})
-      break
+    case 'analyze':
+      cy.contains(/Comparison Project/i, unlog)
   }
 })
 
@@ -325,8 +350,8 @@ Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
     })
 })
 
-Cypress.Commands.add('mapContainsRegion', (regionName) => {
-  cy.fixture('regions/' + regionName + '.json').then((region) => {
+Cypress.Commands.add('mapContainsRegion', () => {
+  cy.fixture(regionFixture).then((region) => {
     cy.window()
       .its('LeafletMap')
       .then((map) => {
