@@ -266,7 +266,6 @@ function ScenarioApplicationErrors({errors, ...p}) {
     <Stack spacing={5} {...p}>
       {errors.map((err, idx) => (
         <Stack key={idx}>
-          <Heading size='sm'>{err.title}</Heading>
           <Heading size='sm'>
             {message('analysis.errorsInModification', {id: err.modificationId})}
           </Heading>

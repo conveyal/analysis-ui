@@ -180,6 +180,7 @@ export default function Settings({
   return (
     <>
       <RequestHeading
+        borderTop='1px solid #E2E8F0'
         hasResults={resultsSettings.length > 0}
         opportunityDataset={opportunityDataset}
         profileRequest={requestsSettings[0]}
@@ -188,6 +189,8 @@ export default function Settings({
         scenario={variantIndex}
       />
       <RequestSettings
+        borderBottom='1px solid'
+        borderBottomColor='blue.100'
         bundle={currentBundle}
         isDisabled={disableInputs}
         isFetchingIsochrone={isFetchingIsochrone}
@@ -214,7 +217,8 @@ export default function Settings({
         scenario={comparisonVariant}
       />
       <RequestSettings
-        borderBottom='1px solid #E2E8F0'
+        borderBottom='1px solid'
+        borderBottomColor='red.100'
         bundle={comparisonBundle}
         color='red'
         copyRequestSettings={copyRequestSettings}
@@ -236,7 +240,7 @@ export default function Settings({
   )
 }
 
-function RequestSummary({profileRequest, ...p}) {
+function RequestSummary({color, profileRequest, ...p}) {
   // Transit modes is stored as a string
   const transitModes = profileRequest.transitModes.split(',')
 
@@ -251,7 +255,7 @@ function RequestSummary({profileRequest, ...p}) {
             label={transitModes.join(', ')}
           >
             <Stack align='center' isInline spacing='1'>
-              <Box fontSize='xs'>
+              <Box color={`${color}.500`} fontSize='xs'>
                 <Icon icon={faChevronRight} />
               </Box>
               {transitModes.slice(0, 2).map((m) => (
@@ -260,7 +264,7 @@ function RequestSummary({profileRequest, ...p}) {
               {transitModes.length > 2 && <Box>...</Box>}
               {profileRequest.egressModes !== 'WALK' && (
                 <Stack align='center' isInline spacing='1'>
-                  <Box fontSize='xs'>
+                  <Box color={`${color}.500`} fontSize='xs'>
                     <Icon icon={faChevronRight} />
                   </Box>
                   <ModeIcon mode={profileRequest.egressModes} />
@@ -327,7 +331,6 @@ function RequestHeading({
   return (
     <Flex
       align='center'
-      borderTop='1px solid #E2E8F0'
       px={6}
       pt={10}
       pb={2}
@@ -348,10 +351,18 @@ function RequestHeading({
 
           {isComparison ? (
             profileRequest && (
-              <RequestSummary profileRequest={profileRequest} flex='2' />
+              <RequestSummary
+                color={color}
+                profileRequest={profileRequest}
+                flex='2'
+              />
             )
           ) : (
-            <RequestSummary profileRequest={profileRequest} flex='2' />
+            <RequestSummary
+              color={color}
+              profileRequest={profileRequest}
+              flex='2'
+            />
           )}
         </>
       ) : (
@@ -408,20 +419,6 @@ function RequestSettings({
 
   return (
     <Stack spacing={0} {...p}>
-      <Button
-        borderRadius='0'
-        _focus={{
-          outline: 'none'
-        }}
-        onClick={() => setIsOpen((isOpen) => !isOpen)}
-        size='sm'
-        title={isOpen ? 'collapse' : 'expand'}
-        variant='ghost'
-        variantColor={color}
-        width='100%'
-      >
-        <Icon icon={isOpen ? faChevronUp : faChevronDown} />
-      </Button>
       {isOpen && (
         <Stack spacing={6} p={6}>
           <Stack isInline spacing={6}>
@@ -485,13 +482,14 @@ function RequestSettings({
 
               <ProfileRequestEditor
                 bundle={bundle}
+                color={color}
                 disabled={isDisabled}
                 profileRequest={profileRequest}
                 project={project}
                 setProfileRequest={setProfileRequest}
               />
 
-              <Divider />
+              <Divider borderColor={`${color}.100`} />
 
               <AdvancedSettings
                 disabled={isDisabled}
@@ -504,6 +502,20 @@ function RequestSettings({
           )}
         </Stack>
       )}
+      <Button
+        borderRadius='0'
+        _focus={{
+          outline: 'none'
+        }}
+        onClick={() => setIsOpen((isOpen) => !isOpen)}
+        size='sm'
+        title={isOpen ? 'collapse' : 'expand'}
+        variant='ghost'
+        variantColor={color}
+        width='100%'
+      >
+        <Icon icon={isOpen ? faChevronUp : faChevronDown} />
+      </Button>
     </Stack>
   )
 }

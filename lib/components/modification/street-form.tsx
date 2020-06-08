@@ -34,13 +34,13 @@ export default function StreetForm({modification, update, ...p}) {
     onChange: useMemo(() => updateMode(BICYCLE), [updateMode]),
     value: modification.allowedModes.includes(BICYCLE)
   })
-  const bikeGCF = useInput({
-    onChange: useCallback((bikeGenCostFactor) => update({bikeGenCostFactor}), [
+  const bikeTimeFactor = useInput({
+    onChange: useCallback((bikeTimeFactor) => update({bikeTimeFactor}), [
       update
     ]),
     parse: parseFloat,
     test: isValidFloat,
-    value: modification.bikeGenCostFactor
+    value: modification.bikeTimeFactor
   })
   const bikeLts = useInput({
     onChange: useCallback((bikeLts) => update({bikeLts}), [update]),
@@ -63,13 +63,13 @@ export default function StreetForm({modification, update, ...p}) {
     onChange: useMemo(() => updateMode(WALK), [updateMode]),
     value: modification.allowedModes.includes(WALK)
   })
-  const walkGCF = useInput({
-    onChange: useCallback((walkGenCostFactor) => update({walkGenCostFactor}), [
+  const walkTimeFactor = useInput({
+    onChange: useCallback((walkTimeFactor) => update({walkTimeFactor}), [
       update
     ]),
     parse: parseFloat,
     test: isValidFloat,
-    value: modification.walkGenCostFactor
+    value: modification.walkTimeFactor
   })
 
   return (
@@ -87,11 +87,11 @@ export default function StreetForm({modification, update, ...p}) {
         </Flex>
         {bikeSwitch.value && (
           <Stack spacing={4} mb={6}>
-            <FormControl isInvalid={!bikeGCF.isValid}>
-              <FormLabel htmlFor={bikeGCF.htmlFor}>
-                Bike Generalized Cost Factor
+            <FormControl isInvalid={!bikeTimeFactor.isValid}>
+              <FormLabel htmlFor={bikeTimeFactor.htmlFor}>
+                Bike Time Factor
               </FormLabel>
-              <Input {...bikeGCF} />
+              <Input {...bikeTimeFactor} />
               <FormHelperText>Must be greater than 0</FormHelperText>
             </FormControl>
             <FormControl>
@@ -144,11 +144,11 @@ export default function StreetForm({modification, update, ...p}) {
           />
         </Flex>
         {walkSwitch.value && (
-          <FormControl isInvalid={walkGCF.isInvalid}>
-            <FormLabel htmlFor={walkGCF.htmlFor}>
-              Walk Generalized Cost Factor
+          <FormControl isInvalid={walkTimeFactor.isInvalid}>
+            <FormLabel htmlFor={walkTimeFactor.htmlFor}>
+              Walk Time Factor
             </FormLabel>
-            <Input {...walkGCF} />
+            <Input {...walkTimeFactor} />
             <FormHelperText>Must be greater than 0</FormHelperText>
           </FormControl>
         )}

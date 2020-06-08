@@ -16,10 +16,10 @@ import downloadJson from 'lib/utils/download-json'
 
 import Icon from '../icon'
 
-const getIsochrone = (state, isComparison) =>
+const getIsochrone = (state, isComparison: boolean) =>
   isComparison ? selectComparisonIsochrone(state) : selectIsochrone(state)
 
-const getPercentileCurves = (state, isComparison) =>
+const getPercentileCurves = (state, isComparison: boolean) =>
   isComparison
     ? selectComparisonPercentileCurves(state)
     : selectPercentileCurves(state)

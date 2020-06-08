@@ -81,6 +81,7 @@ const testMaxTransfers = valueWithin(0, 7)
  */
 export default function ProfileRequestEditor({
   bundle,
+  color = 'blue',
   disabled,
   profileRequest,
   project,
@@ -210,7 +211,7 @@ export default function ProfileRequestEditor({
         onChange={setToTime}
       />
 
-      <Divider gridColumn='1 / span 3' />
+      <Divider borderColor={`${color}.100`} gridColumn='1 / span 3' />
 
       <FormControl isDisabled={disabled} isInvalid={walkSpeedInput.isInvalid}>
         <FormLabel>Walk speed</FormLabel>
