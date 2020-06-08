@@ -9,7 +9,7 @@ context('Network bundles', () => {
   })
 
   it('with single feed can be uploaded and deleted', function () {
-    let bundleName = 'temp bundle ' + Date.now()
+    let bundleName = Cypress.env('dataPrefix') + ' temp bundle ' + Date.now()
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type(bundleName)
@@ -56,7 +56,7 @@ context('Network bundles', () => {
 
   it('can reuse OSM and GTFS components', function () {
     cy.setup('bundle')
-    let bundleName = 'temp bundle ' + Date.now()
+    let bundleName = Cypress.env('dataPrefix') + 'temp bundle ' + Date.now()
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type(bundleName)
