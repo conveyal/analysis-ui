@@ -82,7 +82,8 @@ describe('Region setup', () => {
 
   it('creates new region from valid input', function () {
     // create a temporary region name
-    const regionName = 'Scratch Region ' + Date.now()
+    const regionName =
+      Cypress.env('dataPrefix') + ' Scratch Region ' + Date.now()
     // Enter region name and description
     cy.get('@name').type(regionName)
     cy.get('@description').type(this.region.description)
@@ -142,7 +143,7 @@ describe('Region setup', () => {
         let roundingError = Math.abs(Number(val) - this.region.west)
         expect(roundingError).to.be.lessThan(maxError)
       })
-    cy.mapContainsRegion('scratch')
+    cy.mapContainsRegion()
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()

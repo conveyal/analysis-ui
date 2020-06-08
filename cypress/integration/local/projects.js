@@ -1,18 +1,19 @@
 context('Projects', () => {
   before('prepare the region and bundle', () => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.setupBundle('scratch')
+    cy.setup('bundle')
   })
 
   it('can be created and deleted', function () {
     let projectName = Date.now() + ''
+    let bundleName = Cypress.env('dataPrefix') + 'scratch bundle'
     cy.navTo('Projects')
     cy.findByText(/Create new Project/i).click()
     cy.location('pathname').should('match', /create-project/)
     cy.findByLabelText(/Project name/).type(projectName)
     // select the scratch bundle
     cy.findByLabelText(/Associated network bundle/i).type(
-      '{enter}scratch bundle{enter}'
+      `{enter}${bundleName}{enter}`
     )
     cy.get('a.btn')
       .contains(/Create/)
@@ -32,7 +33,7 @@ context('Projects', () => {
     cy.contains(/Create a new network bundle/)
     cy.findByLabelText(/Network bundle name/i)
       .invoke('val')
-      .then((val) => expect(val).to.eq('scratch bundle'))
+      .then((val) => expect(val).to.eq(bundleName))
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     cy.contains(/Currently used by \d+ project/i)
     // should be selectable in analysis

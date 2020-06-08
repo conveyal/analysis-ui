@@ -1,6 +1,7 @@
 context('Single point analysis', () => {
   before(() => {
-    cy.setupProject('scratch')
+    cy.setup('project')
+    cy.setup('opportunities')
     cy.navTo('Analyze')
     cy.get('div.leaflet-container').as('map')
   })
@@ -15,6 +16,9 @@ context('Single point analysis', () => {
       .click({force: true})
       .type('baseline{enter}')
     cy.contains('Baseline')
+    cy.findByLabelText(/^Opportunity Dataset$/)
+      .click({force: true})
+      .type('default{enter}')
     // start analysis from default marker position
     cy.findByText(/Fetch Results/i).click()
     cy.findByText(/Isochrone as GeoJSON/i, {timeout: 20000}).should('exist')
