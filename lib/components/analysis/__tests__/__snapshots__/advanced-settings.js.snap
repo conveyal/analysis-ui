@@ -206,18 +206,18 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
       }
       setProfileRequest={[MockFunction]}
     />
-  </ForwardRef>
-  <FormControl
-    isDisabled={false}
-    isInvalid={false}
-  >
-    <FormLabel
-      htmlFor="customProfileRequest"
+    <FormControl
+      flex="1"
+      isDisabled={false}
+      isInvalid={false}
     >
-      Customize Profile Request
-    </FormLabel>
-    <Textarea
-      defaultValue="{
+      <FormLabel
+        htmlFor="customProfileRequest"
+      >
+        Customize Profile Request
+      </FormLabel>
+      <Textarea
+        defaultValue="{
   \\"accessModes\\": \\"WALK\\",
   \\"bikeSafe\\": 1,
   \\"bikeSlope\\": 1,
@@ -253,9 +253,10 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
   \\"walkSpeed\\": 1.3888888888888888,
   \\"workerVersion\\": \\"v4.0.0\\"
 }"
-      fontFamily="monospace"
-      id="customProfileRequest"
-      key="{
+        fontFamily="monospace"
+        fontSize="sm"
+        id="customProfileRequest"
+        key="{
   \\"accessModes\\": \\"WALK\\",
   \\"bikeSafe\\": 1,
   \\"bikeSlope\\": 1,
@@ -291,12 +292,16 @@ exports[`Components > Analysis > Advanced Settings should render correctly 1`] =
   \\"walkSpeed\\": 1.3888888888888888,
   \\"workerVersion\\": \\"v4.0.0\\"
 }"
-      onChange={[Function]}
-      spellCheck={false}
-    />
-    <FormHelperText>
-      Edit JSON directly that will be sent to the worker. For advanced users only. Notice that "percentiles" cannot be changed here.
-    </FormHelperText>
-  </FormControl>
+        minHeight="unset"
+        onChange={[Function]}
+        p={1}
+        resize="both"
+        spellCheck={false}
+      />
+      <FormHelperText>
+        For advanced users only. Notice that "percentiles" cannot be changed here.
+      </FormHelperText>
+    </FormControl>
+  </ForwardRef>
 </ForwardRef>
 `;
