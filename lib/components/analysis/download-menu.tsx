@@ -10,7 +10,6 @@ import selectComparisonPercentileCurves from 'lib/selectors/comparison-percentil
 import selectIsochrone from 'lib/selectors/isochrone'
 import selectPercentileCurves from 'lib/selectors/percentile-curves'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
-import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import downloadCSV from 'lib/utils/download-csv'
 import downloadJson from 'lib/utils/download-json'
 
@@ -26,7 +25,6 @@ const getPercentileCurves = (state, isComparison: boolean) =>
 
 export default function DownloadMenu({
   isComparison = false,
-  isDisabled = false,
   opportunityDataset,
   projectId,
   projectName,
@@ -37,7 +35,6 @@ export default function DownloadMenu({
   const dispatch = useDispatch()
   const cutoff = useSelector(selectMaxTripDurationMinutes)
   const store = useStore()
-  const profileRequestHasChanged = useSelector(selectProfileRequestHasChanged)
 
   function downloadIsochrone() {
     downloadJson({
@@ -86,22 +83,12 @@ export default function DownloadMenu({
         <Icon icon={faDownload} />
       </MenuButton>
       <MenuList>
-        <MenuItem
-          isDisabled={isDisabled || profileRequestHasChanged}
-          onClick={downloadIsochrone}
-        >
-          Isochrone as GeoJSON
-        </MenuItem>
-        <MenuItem
-          isDisabled={isDisabled || profileRequestHasChanged}
-          onClick={onClickDownloadGeoTIFF}
-        >
+        <MenuItem onClick={downloadIsochrone}>Isochrone as GeoJSON</MenuItem>
+        <MenuItem onClick={onClickDownloadGeoTIFF}>
           Isochrone as GeoTIFF
         </MenuItem>
         <MenuItem
-          isDisabled={
-            !opportunityDataset || isDisabled || profileRequestHasChanged
-          }
+          isDisabled={!opportunityDataset}
           onClick={downloadOpportunitiesCSV}
           title={
             opportunityDataset ? '' : 'Opportunity dataset must be selected'
