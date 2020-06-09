@@ -685,7 +685,10 @@ exports[`Component > Timetable renders correctly 2`] = `
                       Frequency
                     </label>
                     <ForwardRef
+                      htmlFor="00000000-0000-0000-0000-000000000000"
                       id="timetableFrequency"
+                      isInvalid={false}
+                      isValid={true}
                       onChange={[Function]}
                       type="text"
                       units="hh:mm:ss"
@@ -696,7 +699,10 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
                           id="timetableFrequency"
+                          isInvalid={false}
+                          isValid={true}
                           onChange={[Function]}
                           type="text"
                           units="hh:mm:ss"
@@ -713,100 +719,359 @@ exports[`Component > Timetable renders correctly 2`] = `
                 </Group>
               </MinutesSeconds>
               <TimePicker
-                id="timetableStartTime"
                 label="Start time"
                 onChange={[Function]}
+                pb={3}
                 value={28800}
               >
-                <Group
-                  className=""
-                  id="timetableStartTime"
-                  label="Start time"
+                <FormControl
+                  isInvalid={false}
+                  pb={3}
                 >
-                  <div
-                    className="form-group"
+                  <Box
+                    pb={3}
+                    role="group"
                   >
-                    <label
-                      className="control-label"
-                      htmlFor="timetableStartTime"
+                    <div
+                      className="css-1v4j5c2"
+                      role="group"
                     >
-                      Start time
-                    </label>
-                    <ForwardRef
-                      id="timetableStartTime"
-                      onChange={[Function]}
-                      type="text"
-                      units="hh:mm"
-                      value="08:00"
-                    >
-                      <div
-                        className="InputWithUnits"
+                      <FormLabel
+                        htmlFor="00000000-0000-0000-0000-000000000000"
                       >
-                        <input
-                          className="form-control"
-                          id="timetableStartTime"
-                          onChange={[Function]}
-                          type="text"
-                          units="hh:mm"
-                          value="08:00"
-                        />
-                        <span
-                          className="InputUnits"
+                        <Box
+                          as="label"
+                          display="inline-block"
+                          fontSize="md"
+                          fontWeight="medium"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
+                          opacity="1"
+                          pb="4px"
+                          pr="12px"
+                          textAlign="left"
+                          verticalAlign="middle"
                         >
-                          hh:mm
-                        </span>
-                      </div>
-                    </ForwardRef>
-                  </div>
-                </Group>
+                          <label
+                            className="css-176s5fq"
+                            htmlFor="00000000-0000-0000-0000-000000000000"
+                          >
+                            Start time
+                          </label>
+                        </Box>
+                      </FormLabel>
+                      <InputGroup>
+                        <Box
+                          display="flex"
+                          position="relative"
+                        >
+                          <div
+                            className="css-kjafn5"
+                          >
+                            <Input
+                              as="input"
+                              errorBorderColor="red.500"
+                              focusBorderColor="blue.500"
+                              htmlFor="00000000-0000-0000-0000-000000000000"
+                              id="00000000-0000-0000-0000-000000000000"
+                              isFullWidth={true}
+                              isInvalid={false}
+                              isValid={true}
+                              key=".0"
+                              onChange={[Function]}
+                              pl={null}
+                              pr={null}
+                              size="md"
+                              type="text"
+                              value="08:00"
+                              variant="outline"
+                            >
+                              <PseudoBox
+                                _disabled={
+                                  Object {
+                                    "cursor": "not-allowed",
+                                    "opacity": "0.4",
+                                  }
+                                }
+                                _focus={
+                                  Object {
+                                    "borderColor": "#3182ce",
+                                    "boxShadow": "0 0 0 1px #3182ce",
+                                    "zIndex": 1,
+                                  }
+                                }
+                                _hover={
+                                  Object {
+                                    "borderColor": "gray.300",
+                                  }
+                                }
+                                _invalid={
+                                  Object {
+                                    "borderColor": "#e53e3e",
+                                    "boxShadow": "0 0 0 1px #e53e3e",
+                                  }
+                                }
+                                _readOnly={
+                                  Object {
+                                    "bg": "transparent",
+                                    "boxShadow": "none !important",
+                                    "userSelect": "all",
+                                  }
+                                }
+                                alignItems="center"
+                                appearance="none"
+                                aria-invalid={false}
+                                as="input"
+                                bg="white"
+                                border="1px"
+                                borderColor="inherit"
+                                display="flex"
+                                fontSize="md"
+                                height={10}
+                                htmlFor="00000000-0000-0000-0000-000000000000"
+                                id="00000000-0000-0000-0000-000000000000"
+                                isValid={true}
+                                onChange={[Function]}
+                                outline="none"
+                                pl={null}
+                                position="relative"
+                                pr={null}
+                                px={4}
+                                rounded="md"
+                                transition="all 0.2s"
+                                type="text"
+                                value="08:00"
+                                width="100%"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  className="css-1ga4kqw"
+                                  htmlFor="00000000-0000-0000-0000-000000000000"
+                                  id="00000000-0000-0000-0000-000000000000"
+                                  onChange={[Function]}
+                                  type="text"
+                                  value="08:00"
+                                />
+                              </PseudoBox>
+                            </Input>
+                            <InputRightElement
+                              color="gray.400"
+                              key=".1"
+                              mr={5}
+                              size="md"
+                              userSelect="none"
+                            >
+                              <InputElement
+                                color="gray.400"
+                                mr={5}
+                                placement="right"
+                                size="md"
+                                userSelect="none"
+                              >
+                                <Box
+                                  alignItems="center"
+                                  color="gray.400"
+                                  display="flex"
+                                  fontSize="md"
+                                  height={10}
+                                  justifyContent="center"
+                                  mr={5}
+                                  position="absolute"
+                                  right="0"
+                                  top="0"
+                                  userSelect="none"
+                                  width={10}
+                                  zIndex={2}
+                                >
+                                  <div
+                                    className="css-18bw7fv"
+                                  >
+                                    HH:mm
+                                  </div>
+                                </Box>
+                              </InputElement>
+                            </InputRightElement>
+                          </div>
+                        </Box>
+                      </InputGroup>
+                    </div>
+                  </Box>
+                </FormControl>
               </TimePicker>
               <TimePicker
-                id="timetableEndTime"
                 label="End time"
                 onChange={[Function]}
                 value={57600}
               >
-                <Group
-                  className=""
-                  id="timetableEndTime"
-                  label="End time"
+                <FormControl
+                  isInvalid={false}
                 >
-                  <div
-                    className="form-group"
+                  <Box
+                    role="group"
                   >
-                    <label
-                      className="control-label"
-                      htmlFor="timetableEndTime"
+                    <div
+                      className="css-0"
+                      role="group"
                     >
-                      End time
-                    </label>
-                    <ForwardRef
-                      id="timetableEndTime"
-                      onChange={[Function]}
-                      type="text"
-                      units="hh:mm"
-                      value="16:00"
-                    >
-                      <div
-                        className="InputWithUnits"
+                      <FormLabel
+                        htmlFor="00000000-0000-0000-0000-000000000000"
                       >
-                        <input
-                          className="form-control"
-                          id="timetableEndTime"
-                          onChange={[Function]}
-                          type="text"
-                          units="hh:mm"
-                          value="16:00"
-                        />
-                        <span
-                          className="InputUnits"
+                        <Box
+                          as="label"
+                          display="inline-block"
+                          fontSize="md"
+                          fontWeight="medium"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
+                          opacity="1"
+                          pb="4px"
+                          pr="12px"
+                          textAlign="left"
+                          verticalAlign="middle"
                         >
-                          hh:mm
-                        </span>
-                      </div>
-                    </ForwardRef>
-                  </div>
-                </Group>
+                          <label
+                            className="css-176s5fq"
+                            htmlFor="00000000-0000-0000-0000-000000000000"
+                          >
+                            End time
+                          </label>
+                        </Box>
+                      </FormLabel>
+                      <InputGroup>
+                        <Box
+                          display="flex"
+                          position="relative"
+                        >
+                          <div
+                            className="css-kjafn5"
+                          >
+                            <Input
+                              as="input"
+                              errorBorderColor="red.500"
+                              focusBorderColor="blue.500"
+                              htmlFor="00000000-0000-0000-0000-000000000000"
+                              id="00000000-0000-0000-0000-000000000000"
+                              isFullWidth={true}
+                              isInvalid={false}
+                              isValid={true}
+                              key=".0"
+                              onChange={[Function]}
+                              pl={null}
+                              pr={null}
+                              size="md"
+                              type="text"
+                              value="16:00"
+                              variant="outline"
+                            >
+                              <PseudoBox
+                                _disabled={
+                                  Object {
+                                    "cursor": "not-allowed",
+                                    "opacity": "0.4",
+                                  }
+                                }
+                                _focus={
+                                  Object {
+                                    "borderColor": "#3182ce",
+                                    "boxShadow": "0 0 0 1px #3182ce",
+                                    "zIndex": 1,
+                                  }
+                                }
+                                _hover={
+                                  Object {
+                                    "borderColor": "gray.300",
+                                  }
+                                }
+                                _invalid={
+                                  Object {
+                                    "borderColor": "#e53e3e",
+                                    "boxShadow": "0 0 0 1px #e53e3e",
+                                  }
+                                }
+                                _readOnly={
+                                  Object {
+                                    "bg": "transparent",
+                                    "boxShadow": "none !important",
+                                    "userSelect": "all",
+                                  }
+                                }
+                                alignItems="center"
+                                appearance="none"
+                                aria-invalid={false}
+                                as="input"
+                                bg="white"
+                                border="1px"
+                                borderColor="inherit"
+                                display="flex"
+                                fontSize="md"
+                                height={10}
+                                htmlFor="00000000-0000-0000-0000-000000000000"
+                                id="00000000-0000-0000-0000-000000000000"
+                                isValid={true}
+                                onChange={[Function]}
+                                outline="none"
+                                pl={null}
+                                position="relative"
+                                pr={null}
+                                px={4}
+                                rounded="md"
+                                transition="all 0.2s"
+                                type="text"
+                                value="16:00"
+                                width="100%"
+                              >
+                                <input
+                                  aria-invalid={false}
+                                  className="css-1ga4kqw"
+                                  htmlFor="00000000-0000-0000-0000-000000000000"
+                                  id="00000000-0000-0000-0000-000000000000"
+                                  onChange={[Function]}
+                                  type="text"
+                                  value="16:00"
+                                />
+                              </PseudoBox>
+                            </Input>
+                            <InputRightElement
+                              color="gray.400"
+                              key=".1"
+                              mr={5}
+                              size="md"
+                              userSelect="none"
+                            >
+                              <InputElement
+                                color="gray.400"
+                                mr={5}
+                                placement="right"
+                                size="md"
+                                userSelect="none"
+                              >
+                                <Box
+                                  alignItems="center"
+                                  color="gray.400"
+                                  display="flex"
+                                  fontSize="md"
+                                  height={10}
+                                  justifyContent="center"
+                                  mr={5}
+                                  position="absolute"
+                                  right="0"
+                                  top="0"
+                                  userSelect="none"
+                                  width={10}
+                                  zIndex={2}
+                                >
+                                  <div
+                                    className="css-18bw7fv"
+                                  >
+                                    HH:mm
+                                  </div>
+                                </Box>
+                              </InputElement>
+                            </InputRightElement>
+                          </div>
+                        </Box>
+                      </InputGroup>
+                    </div>
+                  </Box>
+                </FormControl>
               </TimePicker>
               <Checkbox
                 checked={false}
@@ -941,7 +1206,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                     >
                       Phase at stop
                     </label>
-                    <S
+                    <ForwardRef
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
                       inputId="phaseAtStop"
@@ -952,7 +1217,7 @@ exports[`Component > Timetable renders correctly 2`] = `
                       options={Array []}
                       placeholder="Phase at stop"
                     >
-                      <DynamicMockedComponent
+                      <ReactSelect
                         getOptionLabel={[Function]}
                         getOptionValue={[Function]}
                         inputId="phaseAtStop"
@@ -968,8 +1233,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                             "option": [Function],
                           }
                         }
-                      />
-                    </S>
+                      >
+                        <div
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </ForwardRef>
                   </div>
                 </Group>
               </Phase>
@@ -1039,7 +1308,10 @@ exports[`Component > Timetable renders correctly 2`] = `
                       Default dwell time
                     </label>
                     <ForwardRef
+                      htmlFor="00000000-0000-0000-0000-000000000000"
                       id="dwellTime"
+                      isInvalid={false}
+                      isValid={true}
                       onChange={[Function]}
                       type="text"
                       units="hh:mm:ss"
@@ -1050,7 +1322,10 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
                           id="dwellTime"
+                          isInvalid={false}
+                          isValid={true}
                           onChange={[Function]}
                           type="text"
                           units="hh:mm:ss"
@@ -1208,12 +1483,12 @@ exports[`Component > Timetable renders correctly 2`] = `
                 seconds={0}
               >
                 <Group
-                  className=""
+                  className="has-error"
                   id="totalMovingTime"
                   label="Total moving time (along added segments)"
                 >
                   <div
-                    className="form-group"
+                    className="form-group has-error"
                   >
                     <label
                       className="control-label"
@@ -1222,7 +1497,10 @@ exports[`Component > Timetable renders correctly 2`] = `
                       Total moving time (along added segments)
                     </label>
                     <ForwardRef
+                      htmlFor="00000000-0000-0000-0000-000000000000"
                       id="totalMovingTime"
+                      isInvalid={true}
+                      isValid={false}
                       onChange={[Function]}
                       type="text"
                       units="hh:mm:ss"
@@ -1233,7 +1511,10 @@ exports[`Component > Timetable renders correctly 2`] = `
                       >
                         <input
                           className="form-control"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
                           id="totalMovingTime"
+                          isInvalid={true}
+                          isValid={false}
                           onChange={[Function]}
                           type="text"
                           units="hh:mm:ss"

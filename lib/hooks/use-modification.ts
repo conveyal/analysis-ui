@@ -24,12 +24,15 @@ export default function useModification() {
     tenSeconds
   )
 
-  return [
-    modification,
+  // Ensure the function stays the same if the parameters have not changed
+  const update = useCallback(
     (newParameters: any) => {
       const newModification = {...modification, ...newParameters}
       dispatch(setLocally(newModification)) // immediate
       debouncedSaveToServer(newModification) // debounced
-    }
-  ]
+    },
+    [dispatch, modification, debouncedSaveToServer]
+  )
+
+  return [modification, update]
 }

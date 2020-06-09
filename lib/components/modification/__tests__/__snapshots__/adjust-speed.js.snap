@@ -640,7 +640,7 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
           >
             Select feed
           </label>
-          <S
+          <ForwardRef
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Feed"
@@ -850,7 +850,7 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
               }
             }
           >
-            <DynamicMockedComponent
+            <ReactSelect
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               inputId="Feed"
@@ -1065,8 +1065,12 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
                   },
                 }
               }
-            />
-          </S>
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </ForwardRef>
         </div>
       </Group>
       <Group>
@@ -1078,7 +1082,7 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
           >
             Select route
           </label>
-          <S
+          <ForwardRef
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Route"
@@ -1221,7 +1225,7 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
               ]
             }
           >
-            <DynamicMockedComponent
+            <ReactSelect
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               inputId="Route"
@@ -1369,8 +1373,12 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
                   },
                 ]
               }
-            />
-          </S>
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </ForwardRef>
         </div>
       </Group>
     </SelectFeedAndRoutes>
@@ -1452,7 +1460,7 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
           >
             Select patterns
           </label>
-          <S
+          <ForwardRef
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Patterns"
@@ -1583,7 +1591,7 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
               ]
             }
           >
-            <DynamicMockedComponent
+            <ReactSelect
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               inputId="Patterns"
@@ -1719,8 +1727,12 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
                   },
                 ]
               }
-            />
-          </S>
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </ForwardRef>
         </div>
       </Group>
     </SelectPatterns>

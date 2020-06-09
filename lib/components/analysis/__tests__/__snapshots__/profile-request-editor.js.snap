@@ -1,79 +1,156 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Components > Analysis > Profile Request Editor should render correctly 1`] = `
-<Fragment>
-  <ModeSelector
-    accessModes="WALK"
-    directModes="WALK"
-    disabled={false}
-    transitModes="BUS,TRAM,RAIL,SUBWAY"
-    update={[MockFunction]}
-  />
-  <div
-    className="row"
+<SimpleGrid
+  columns={3}
+  spacing={5}
+>
+  <FormControl
+    isDisabled={false}
+    isInvalid={false}
   >
-    <Group
-      className="col-xs-4  "
-      label="Date"
-    >
-      <DateTime
-        className=""
-        closeOnSelect={true}
-        closeOnTab={true}
-        dateFormat="YYYY-MM-DD"
-        defaultValue=""
-        input={true}
-        inputProps={
-          Object {
-            "disabled": false,
-          }
+    <FormLabel>
+      Date
+    </FormLabel>
+    <DateTime
+      className=""
+      closeOnSelect={true}
+      closeOnTab={true}
+      dateFormat="YYYY-MM-DD"
+      defaultValue=""
+      input={true}
+      inputProps={
+        Object {
+          "disabled": false,
         }
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onNavigateBack={[Function]}
-        onNavigateForward={[Function]}
-        onViewModeChange={[Function]}
-        strictParsing={true}
-        timeConstraints={Object {}}
-        timeFormat={false}
-        utc={true}
-        value="2016-01-16"
-      />
-    </Group>
-    <div
-      className="col-xs-4"
-    >
-      <TimePicker
-        disabled={false}
-        label="From time"
-        name="fromTime"
-        onChange={[Function]}
-        value={25200}
-      />
-    </div>
-    <div
-      className="col-xs-4"
-    >
-      <TimePicker
-        disabled={false}
-        label="To time"
-        name="toTime"
-        onChange={[Function]}
-        value={32400}
-      />
-    </div>
-  </div>
-  <div
-    className="row"
+      }
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onNavigateBack={[Function]}
+      onNavigateForward={[Function]}
+      onViewModeChange={[Function]}
+      renderInput={[Function]}
+      strictParsing={true}
+      timeConstraints={Object {}}
+      timeFormat={false}
+      utc={true}
+      value="2016-01-16"
+    />
+  </FormControl>
+  <TimePicker
+    disabled={false}
+    id="fromTime"
+    label="From time"
+    onChange={[Function]}
+    value={25200}
+  />
+  <TimePicker
+    disabled={false}
+    id="toTime"
+    label="To time"
+    onChange={[Function]}
+    value={32400}
+  />
+  <FormControl
+    isDisabled={false}
+    isInvalid={false}
   >
-    <div
-      className="col-xs-12"
+    <FormLabel>
+      Simulated schedules
+    </FormLabel>
+    <Input
+      as="input"
+      errorBorderColor="red.500"
+      focusBorderColor="blue.500"
+      htmlFor="00000000-0000-0000-0000-000000000000"
+      id="00000000-0000-0000-0000-000000000000"
+      isFullWidth={true}
+      isInvalid={false}
+      isValid={true}
+      onChange={[Function]}
+      size="md"
+      type="number"
+      value={200}
+      variant="outline"
+    />
+  </FormControl>
+  <FormControl
+    isDisabled={false}
+    isInvalid={false}
+  >
+    <FormLabel>
+      Maximum transfers
+    </FormLabel>
+    <Input
+      as="input"
+      errorBorderColor="red.500"
+      focusBorderColor="blue.500"
+      htmlFor="00000000-0000-0000-0000-000000000000"
+      id="00000000-0000-0000-0000-000000000000"
+      isFullWidth={true}
+      isInvalid={false}
+      isValid={true}
+      onChange={[Function]}
+      size="md"
+      type="number"
+      value={3}
+      variant="outline"
+    />
+  </FormControl>
+  <ForwardRef
+    borderColor="blue.100"
+    gridColumn="1 / span 3"
+  />
+  <FormControl
+    isDisabled={false}
+    isInvalid={false}
+  >
+    <FormLabel
+      htmlFor="00000000-0000-0000-0000-000000000000"
     >
-      <SelectR5Version
-        disabled={false}
-      />
-    </div>
-  </div>
-</Fragment>
+      Walk speed
+    </FormLabel>
+    <ForwardRef
+      htmlFor="00000000-0000-0000-0000-000000000000"
+      id="00000000-0000-0000-0000-000000000000"
+      isInvalid={false}
+      isValid={true}
+      onChange={[Function]}
+      type="number"
+      units="km/h"
+      value={5}
+    />
+    <FormHelperText>
+      Range 3-15
+    </FormHelperText>
+  </FormControl>
+  <FormControl
+    isDisabled={false}
+    isInvalid={false}
+  >
+    <FormLabel
+      htmlFor="00000000-0000-0000-0000-000000000000"
+    >
+      Max walk time
+    </FormLabel>
+    <ForwardRef
+      htmlFor="00000000-0000-0000-0000-000000000000"
+      id="00000000-0000-0000-0000-000000000000"
+      isInvalid={false}
+      isValid={true}
+      onChange={[Function]}
+      units="minutes"
+      value={20}
+    />
+    <FormHelperText>
+      Maximum of 60. Lower time limits apply to transfers and egress legs.
+    </FormHelperText>
+  </FormControl>
+  <div />
+  <ForwardRef
+    borderColor="blue.100"
+    gridColumn="1 / span 3"
+  />
+</SimpleGrid>
 `;

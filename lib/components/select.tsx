@@ -1,9 +1,7 @@
-import dynamic from 'next/dynamic'
-import React from 'react'
+import {memo, forwardRef} from 'react'
+import Select, {Props} from 'react-select'
 
 import {CB_HEX, CB_RGB} from 'lib/constants'
-
-const Select = dynamic(() => import('react-select'), {ssr: false})
 
 export const selectStyles = {
   option: (styles, state) => ({
@@ -27,6 +25,12 @@ export const selectStyles = {
   })
 }
 
-export default function S(p) {
-  return <Select styles={selectStyles} {...p} />
-}
+// NB: React enforces `memo(forwardRef(...))`
+
+// Must forwardRefs to the default Select component
+const ForwardedSelect = forwardRef((p: Props, ref) => (
+  <Select ref={ref as any} styles={selectStyles} {...p} />
+))
+
+// Select is a heavy component therefore we memoize it
+export default memo<Props>(ForwardedSelect)

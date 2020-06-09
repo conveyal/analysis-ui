@@ -1,6 +1,6 @@
 import {Flex} from '@chakra-ui/core'
 import {useRouter} from 'next/router'
-import React from 'react'
+import {useCallback} from 'react'
 import {useDispatch} from 'react-redux'
 
 import P from './components/p'
@@ -41,7 +41,7 @@ export default function withInitialFetch(PageComponent, initialFetch) {
     // Page components are always passed a query object
     const {query} = router
     const queryIsReady = routerQueryIsReady(router)
-    const getInitialFetch = React.useCallback(
+    const getInitialFetch = useCallback(
       () =>
         queryIsReady ? initialFetch(dispatch, query) : Promise.resolve(null),
       [dispatch, query, queryIsReady]

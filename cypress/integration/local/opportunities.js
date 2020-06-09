@@ -1,3 +1,5 @@
+import {generateName} from '../../support'
+
 describe('Opportunity Datasets', () => {
   before(() => {
     cy.setup('region')
@@ -12,7 +14,7 @@ describe('Opportunity Datasets', () => {
   context('can be imported', () => {
     it('from CSV', function () {
       let opportunity = this.opportunities.csv
-      let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
+      let oppName = generateName(opportunity.name)
       let expectedFieldCount = 1 + opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)

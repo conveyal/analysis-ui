@@ -10,6 +10,7 @@ import {ErrorModal} from '../lib/components/error-modal'
 import LogRocket from '../lib/logrocket'
 
 import 'react-datetime/css/react-datetime.css'
+import 'simplebar/dist/simplebar.css'
 import '../styles.css'
 
 if (process.env.GA_TRACKING_ID) {
@@ -19,6 +20,9 @@ if (process.env.GA_TRACKING_ID) {
     ReactGA.pageview(Router.pathname)
   })
 }
+
+// Re-use for Component's without a Layout
+const EmptyLayout = ({children}) => <>{children}</>
 
 // Components that have a layout
 type ComponentWithLayout = NextComponentType & {
@@ -46,10 +50,10 @@ export default class ConveyalAnalysis extends App {
   }
 
   render() {
-    const {Component} = this.props
+    const {Component, pageProps} = this.props
     const Layout = Component.hasOwnProperty('Layout')
       ? (Component as ComponentWithLayout).Layout
-      : null
+      : EmptyLayout
     return (
       <ChakraTheme>
         <Head>
@@ -60,12 +64,10 @@ export default class ConveyalAnalysis extends App {
             error={this.state.error}
             clear={() => this.setState({error: null})}
           />
-        ) : Layout ? (
-          <Layout>
-            <Component />
-          </Layout>
         ) : (
-          <Component />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         )}
       </ChakraTheme>
     )
