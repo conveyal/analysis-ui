@@ -2,12 +2,13 @@
 
 exports[`Component OpportunityDatasetSelector snapshot(mount) 1`] = `
 <OpportunityDatasetSelector>
-  <S
+  <ForwardRef
     getOptionLabel={[Function]}
     getOptionValue={[Function]}
     inputId="select-opportunity-dataset"
     isClearable={true}
     isDisabled={false}
+    isLoading={false}
     name="select-opportunity-dataset"
     onChange={[Function]}
     options={
@@ -20,12 +21,13 @@ exports[`Component OpportunityDatasetSelector snapshot(mount) 1`] = `
       ]
     }
   >
-    <DynamicMockedComponent
+    <ReactSelect
       getOptionLabel={[Function]}
       getOptionValue={[Function]}
       inputId="select-opportunity-dataset"
       isClearable={true}
       isDisabled={false}
+      isLoading={false}
       name="select-opportunity-dataset"
       onChange={[Function]}
       options={
@@ -43,7 +45,11 @@ exports[`Component OpportunityDatasetSelector snapshot(mount) 1`] = `
           "option": [Function],
         }
       }
-    />
-  </S>
+    >
+      <div
+        className="ReactSelectMock"
+      />
+    </ReactSelect>
+  </ForwardRef>
 </OpportunityDatasetSelector>
 `;

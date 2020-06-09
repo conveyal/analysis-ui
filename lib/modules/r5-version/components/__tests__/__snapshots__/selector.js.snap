@@ -1,29 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`R5 Version > Components > Selector should render 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <SelectR5Version>
-    <Group>
+exports[`Component SelectR5Version snapshot(mount) 1`] = `
+<SelectR5Version>
+  <FormControl>
+    <Box
+      role="group"
+    >
       <div
-        className="form-group"
+        className="css-0"
+        role="group"
       >
-        <label
-          className="control-label"
+        <FormLabel
           htmlFor="select-r5-version"
         >
-          Routing engine
-        </label>
+          <Box
+            as="label"
+            display="inline-block"
+            fontSize="md"
+            fontWeight="medium"
+            htmlFor="select-r5-version"
+            opacity="1"
+            pb="4px"
+            pr="12px"
+            textAlign="left"
+            verticalAlign="middle"
+          >
+            <label
+              className="css-176s5fq"
+              htmlFor="select-r5-version"
+            >
+              Routing engine
+            </label>
+          </Box>
+        </FormLabel>
+        <Alert
+          status="warning"
+        >
+          <Box
+            alignItems="center"
+            bg="orange.100"
+            display="flex"
+            overflow="hidden"
+            pb={3}
+            pl={4}
+            position="relative"
+            pr={4}
+            pt={3}
+            role="alert"
+          >
+            <div
+              className="css-elg79j"
+              role="alert"
+            >
+              An updated version of the Routing engine is available. Changing versions should improve performance but may change analysis results.
+            </div>
+          </Box>
+        </Alert>
         <Creatable
           formatCreateLabel={[Function]}
           inputId="select-r5-version"
@@ -36,6 +68,16 @@ exports[`R5 Version > Components > Selector should render 1`] = `
                 "label": "v4.8.0 (recommended)",
                 "value": "v4.8.0",
               },
+              Object {
+                "label": <span
+                  style={
+                    Object {
+                      "textDecoration": "line-through",
+                    }
+                  }
+                />,
+                "value": undefined,
+              },
             ]
           }
           styles={
@@ -46,8 +88,14 @@ exports[`R5 Version > Components > Selector should render 1`] = `
           }
           value={
             Object {
-              "label": "v4.8.0 (recommended)",
-              "value": "v4.8.0",
+              "label": <span
+                style={
+                  Object {
+                    "textDecoration": "line-through",
+                  }
+                }
+              />,
+              "value": undefined,
             }
           }
         >
@@ -56,7 +104,7 @@ exports[`R5 Version > Components > Selector should render 1`] = `
           />
         </Creatable>
       </div>
-    </Group>
-  </SelectR5Version>
-</Provider>
+    </Box>
+  </FormControl>
+</SelectR5Version>
 `;

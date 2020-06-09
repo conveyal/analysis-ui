@@ -178,12 +178,13 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
       className="form-group"
     >
       <OpportunityDatasetSelector>
-        <S
+        <ForwardRef
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           inputId="select-opportunity-dataset"
           isClearable={true}
           isDisabled={false}
+          isLoading={false}
           name="select-opportunity-dataset"
           onChange={[Function]}
           options={
@@ -196,12 +197,13 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
             ]
           }
         >
-          <DynamicMockedComponent
+          <ReactSelect
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="select-opportunity-dataset"
             isClearable={true}
             isDisabled={false}
+            isLoading={false}
             name="select-opportunity-dataset"
             onChange={[Function]}
             options={
@@ -219,8 +221,12 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
                 "option": [Function],
               }
             }
-          />
-        </S>
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </ForwardRef>
       </OpportunityDatasetSelector>
     </div>
   </Group>

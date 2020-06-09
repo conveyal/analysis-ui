@@ -1,54 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Container > Modification Editor render just the title if not loaded 1`] = `
-<div
+<SimpleBar
   className="InnerDock block "
   style={
     Object {
-      "height": "100vh",
+      "height": 768,
     }
   }
 >
-  <P>
-    <Box
-      as="p"
-      mb="10px"
-    >
-      <p
-        className="css-1r2f04i"
-      >
-        Loading modification feed...
-      </p>
-    </Box>
-  </P>
-  <P>
-    <Box
-      as="p"
-      mb="10px"
-    >
-      <p
-        className="css-1r2f04i"
-      >
-        If you deleted the network bundle underlying this modification, you will need to clear the bundle or delete this modification.
-      </p>
-    </Box>
-  </P>
-  <Button
-    block={true}
-    className="DEV"
-    onClick={[Function]}
-    style="warning"
+  <div
+    className="InnerDock block "
+    data-simplebar={true}
+    style={
+      Object {
+        "height": 768,
+      }
+    }
   >
-    <a
-      className="btn btn-warning btn-block DEV"
-      href="#"
-      onClick={[Function]}
-      tabIndex={0}
+    <div
+      className="simplebar-wrapper"
     >
-      Clear selected bundle
-    </a>
-  </Button>
-</div>
+      <div
+        className="simplebar-height-auto-observer-wrapper"
+      >
+        <div
+          className="simplebar-height-auto-observer"
+        />
+      </div>
+      <div
+        className="simplebar-mask"
+      >
+        <div
+          className="simplebar-offset"
+        >
+          <div
+            className="simplebar-content-wrapper"
+          >
+            <div
+              className="simplebar-content"
+            >
+              <P>
+                <Box
+                  as="p"
+                  mb="10px"
+                >
+                  <p
+                    className="css-1r2f04i"
+                  >
+                    Loading modification feed...
+                  </p>
+                </Box>
+              </P>
+              <P>
+                <Box
+                  as="p"
+                  mb="10px"
+                >
+                  <p
+                    className="css-1r2f04i"
+                  >
+                    If you deleted the network bundle underlying this modification, you will need to clear the bundle or delete this modification.
+                  </p>
+                </Box>
+              </P>
+              <Button
+                block={true}
+                className="DEV"
+                onClick={[Function]}
+                style="warning"
+              >
+                <a
+                  className="btn btn-warning btn-block DEV"
+                  href="#"
+                  onClick={[Function]}
+                  tabIndex={0}
+                >
+                  Clear selected bundle
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="simplebar-placeholder"
+      />
+    </div>
+    <div
+      className="simplebar-track simplebar-horizontal"
+    >
+      <div
+        className="simplebar-scrollbar"
+      />
+    </div>
+    <div
+      className="simplebar-track simplebar-vertical"
+    >
+      <div
+        className="simplebar-scrollbar"
+      />
+    </div>
+  </div>
+</SimpleBar>
 `;
 
 exports[`Container > Modification Editor renders and can change the name 1`] = `

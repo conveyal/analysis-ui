@@ -516,7 +516,7 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
         >
           Select feed
         </label>
-        <S
+        <ForwardRef
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           inputId="Feed"
@@ -726,7 +726,7 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
             }
           }
         >
-          <DynamicMockedComponent
+          <ReactSelect
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Feed"
@@ -941,8 +941,12 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
                 },
               }
             }
-          />
-        </S>
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </ForwardRef>
       </div>
     </Group>
     <Group>
@@ -954,7 +958,7 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
         >
           Select route
         </label>
-        <S
+        <ForwardRef
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           inputId="Route"
@@ -1029,7 +1033,7 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
           }
           placeholder="Select route"
         >
-          <DynamicMockedComponent
+          <ReactSelect
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Route"
@@ -1109,8 +1113,12 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
                 "option": [Function],
               }
             }
-          />
-        </S>
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </ForwardRef>
       </div>
     </Group>
   </SelectFeedAndRoutes>
@@ -1188,7 +1196,7 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
         >
           Select patterns
         </label>
-        <S
+        <ForwardRef
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
           inputId="Patterns"
@@ -1259,7 +1267,7 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
           placeholder="Select patterns"
           value={Array []}
         >
-          <DynamicMockedComponent
+          <ReactSelect
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Patterns"
@@ -1335,8 +1343,12 @@ exports[`Component SelectFeedRouteAndPatterns snapshot(mount) 1`] = `
               }
             }
             value={Array []}
-          />
-        </S>
+          >
+            <div
+              className="ReactSelectMock"
+            />
+          </ReactSelect>
+        </ForwardRef>
       </div>
     </Group>
   </SelectPatterns>

@@ -52,7 +52,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                   <div
                     className="css-0"
                   >
-                    <S
+                    <ForwardRef
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
                       onChange={[Function]}
@@ -80,7 +80,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                         ]
                       }
                     >
-                      <DynamicMockedComponent
+                      <ReactSelect
                         getOptionLabel={[Function]}
                         getOptionValue={[Function]}
                         onChange={[Function]}
@@ -113,8 +113,12 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                             "option": [Function],
                           }
                         }
-                      />
-                    </S>
+                      >
+                        <div
+                          className="ReactSelectMock"
+                        />
+                      </ReactSelect>
+                    </ForwardRef>
                   </div>
                 </Box>
               </div>

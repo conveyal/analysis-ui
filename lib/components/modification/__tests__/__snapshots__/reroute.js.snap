@@ -806,7 +806,7 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
           >
             Select feed
           </label>
-          <S
+          <ForwardRef
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Feed"
@@ -1016,7 +1016,7 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
               }
             }
           >
-            <DynamicMockedComponent
+            <ReactSelect
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               inputId="Feed"
@@ -1231,8 +1231,12 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
                   },
                 }
               }
-            />
-          </S>
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </ForwardRef>
         </div>
       </Group>
       <Group>
@@ -1244,7 +1248,7 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
           >
             Select route
           </label>
-          <S
+          <ForwardRef
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Route"
@@ -1384,7 +1388,7 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
               }
             }
           >
-            <DynamicMockedComponent
+            <ReactSelect
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               inputId="Route"
@@ -1529,8 +1533,12 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
                   "route_id": "route1",
                 }
               }
-            />
-          </S>
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </ForwardRef>
         </div>
       </Group>
     </SelectFeedAndRoutes>
@@ -1612,7 +1620,7 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
           >
             Select patterns
           </label>
-          <S
+          <ForwardRef
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
             inputId="Patterns"
@@ -1743,7 +1751,7 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
               ]
             }
           >
-            <DynamicMockedComponent
+            <ReactSelect
               getOptionLabel={[Function]}
               getOptionValue={[Function]}
               inputId="Patterns"
@@ -1879,8 +1887,12 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
                   },
                 ]
               }
-            />
-          </S>
+            >
+              <div
+                className="ReactSelectMock"
+              />
+            </ReactSelect>
+          </ForwardRef>
         </div>
       </Group>
     </SelectPatterns>
@@ -2446,12 +2458,12 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
       seconds={0}
     >
       <Group
-        className=""
+        className="has-error"
         id="dwellTime"
         label="Default dwell time"
       >
         <div
-          className="form-group"
+          className="form-group has-error"
         >
           <label
             className="control-label"
@@ -2460,7 +2472,10 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
             Default dwell time
           </label>
           <ForwardRef
+            htmlFor="00000000-0000-0000-0000-000000000000"
             id="dwellTime"
+            isInvalid={true}
+            isValid={false}
             onChange={[Function]}
             type="text"
             units="hh:mm:ss"
@@ -2471,7 +2486,10 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
             >
               <input
                 className="form-control"
+                htmlFor="00000000-0000-0000-0000-000000000000"
                 id="dwellTime"
+                isInvalid={true}
+                isValid={false}
                 onChange={[Function]}
                 type="text"
                 units="hh:mm:ss"
@@ -2629,12 +2647,12 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
       seconds={0}
     >
       <Group
-        className=""
+        className="has-error"
         id="totalMovingTime"
         label="Total moving time (along added segments)"
       >
         <div
-          className="form-group"
+          className="form-group has-error"
         >
           <label
             className="control-label"
@@ -2643,7 +2661,10 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
             Total moving time (along added segments)
           </label>
           <ForwardRef
+            htmlFor="00000000-0000-0000-0000-000000000000"
             id="totalMovingTime"
+            isInvalid={true}
+            isValid={false}
             onChange={[Function]}
             type="text"
             units="hh:mm:ss"
@@ -2654,7 +2675,10 @@ exports[`Component RerouteComponent snapshot(mount) 1`] = `
             >
               <input
                 className="form-control"
+                htmlFor="00000000-0000-0000-0000-000000000000"
                 id="totalMovingTime"
+                isInvalid={true}
+                isValid={false}
                 onChange={[Function]}
                 type="text"
                 units="hh:mm:ss"
