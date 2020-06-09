@@ -52,120 +52,6 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
     onChange={[Function]}
     value={32400}
   />
-  <ForwardRef
-    borderColor="blue.100"
-    gridColumn="1 / span 3"
-  />
-  <FormControl
-    isDisabled={false}
-    isInvalid={false}
-  >
-    <FormLabel>
-      Walk speed
-    </FormLabel>
-    <ForwardRef
-      htmlFor="00000000-0000-0000-0000-000000000000"
-      id="00000000-0000-0000-0000-000000000000"
-      isInvalid={false}
-      isValid={true}
-      onChange={[Function]}
-      type="number"
-      units="km/h"
-      value={5}
-    />
-  </FormControl>
-  <FormControl
-    isDisabled={false}
-    isInvalid={false}
-  >
-    <FormLabel>
-      Max walk time
-    </FormLabel>
-    <ForwardRef
-      htmlFor="00000000-0000-0000-0000-000000000000"
-      id="00000000-0000-0000-0000-000000000000"
-      isInvalid={false}
-      isValid={true}
-      onChange={[Function]}
-      units="minutes"
-      value={20}
-    />
-  </FormControl>
-  <Alert
-    status="info"
-  >
-    Lower time limits may apply to transfer and egress legs.
-  </Alert>
-  <FormControl
-    isDisabled={false}
-    isInvalid={false}
-  >
-    <FormLabel>
-      Bike speed
-    </FormLabel>
-    <ForwardRef
-      htmlFor="00000000-0000-0000-0000-000000000000"
-      id="00000000-0000-0000-0000-000000000000"
-      isInvalid={false}
-      isValid={true}
-      onChange={[Function]}
-      type="number"
-      units="km/h"
-      value={15}
-    />
-  </FormControl>
-  <FormControl
-    isDisabled={false}
-    isInvalid={false}
-  >
-    <FormLabel>
-      Max bike time
-    </FormLabel>
-    <ForwardRef
-      htmlFor="00000000-0000-0000-0000-000000000000"
-      id="00000000-0000-0000-0000-000000000000"
-      isInvalid={false}
-      isValid={true}
-      onChange={[Function]}
-      units="minutes"
-      value={20}
-    />
-  </FormControl>
-  <FormControl
-    isDisabled={false}
-  >
-    <FormLabel
-      htmlFor="bikeLts"
-    >
-      Max bike LTS
-    </FormLabel>
-    <Select
-      id="bikeLts"
-      onChange={[Function]}
-      value={4}
-    >
-      <option
-        value={1}
-      >
-        1 - Low stress
-      </option>
-      <option
-        value={2}
-      >
-        2
-      </option>
-      <option
-        value={3}
-      >
-        3
-      </option>
-      <option
-        value={4}
-      >
-        4 - High stress
-      </option>
-    </Select>
-  </FormControl>
   <FormControl
     isDisabled={false}
     isInvalid={false}
@@ -212,5 +98,59 @@ exports[`Components > Analysis > Profile Request Editor should render correctly 
       variant="outline"
     />
   </FormControl>
+  <ForwardRef
+    borderColor="blue.100"
+    gridColumn="1 / span 3"
+  />
+  <FormControl
+    isDisabled={false}
+    isInvalid={false}
+  >
+    <FormLabel
+      htmlFor="00000000-0000-0000-0000-000000000000"
+    >
+      Walk speed
+    </FormLabel>
+    <ForwardRef
+      htmlFor="00000000-0000-0000-0000-000000000000"
+      id="00000000-0000-0000-0000-000000000000"
+      isInvalid={false}
+      isValid={true}
+      onChange={[Function]}
+      type="number"
+      units="km/h"
+      value={5}
+    />
+    <FormHelperText>
+      Range 3-15
+    </FormHelperText>
+  </FormControl>
+  <FormControl
+    isDisabled={false}
+    isInvalid={false}
+  >
+    <FormLabel
+      htmlFor="00000000-0000-0000-0000-000000000000"
+    >
+      Max walk time
+    </FormLabel>
+    <ForwardRef
+      htmlFor="00000000-0000-0000-0000-000000000000"
+      id="00000000-0000-0000-0000-000000000000"
+      isInvalid={false}
+      isValid={true}
+      onChange={[Function]}
+      units="minutes"
+      value={20}
+    />
+    <FormHelperText>
+      Maximum of 60. Lower time limits apply to transfers and egress legs.
+    </FormHelperText>
+  </FormControl>
+  <div />
+  <ForwardRef
+    borderColor="blue.100"
+    gridColumn="1 / span 3"
+  />
 </SimpleGrid>
 `;
