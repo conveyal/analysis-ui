@@ -21,6 +21,9 @@ if (process.env.GA_TRACKING_ID) {
   })
 }
 
+// Re-use for Component's without a Layout
+const EmptyLayout = ({children}) => <>{children}</>
+
 // Components that have a layout
 type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
@@ -47,10 +50,10 @@ export default class ConveyalAnalysis extends App {
   }
 
   render() {
-    const {Component} = this.props
+    const {Component, pageProps} = this.props
     const Layout = Component.hasOwnProperty('Layout')
       ? (Component as ComponentWithLayout).Layout
-      : null
+      : EmptyLayout
     return (
       <ChakraTheme>
         <Head>
@@ -61,12 +64,10 @@ export default class ConveyalAnalysis extends App {
             error={this.state.error}
             clear={() => this.setState({error: null})}
           />
-        ) : Layout ? (
-          <Layout>
-            <Component />
-          </Layout>
         ) : (
-          <Component />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         )}
       </ChakraTheme>
     )
