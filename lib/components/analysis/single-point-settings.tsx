@@ -490,8 +490,6 @@ function RequestSettings({
                 setProfileRequest={setProfileRequest}
               />
 
-              <Divider borderColor={`${color}.100`} />
-
               <AdvancedSettings
                 disabled={isDisabled}
                 profileRequest={profileRequest}
