@@ -77,25 +77,33 @@ export default function AdvancedSettings({
           regionBounds={regionBounds}
           setProfileRequest={setProfileRequest}
         />
-      </Stack>
 
-      <FormControl isDisabled={disabled} isInvalid={isInvalid(currentValue)}>
-        <FormLabel htmlFor='customProfileRequest'>
-          {message('analysis.customizeProfileRequest.label')}
-        </FormLabel>
-        <Textarea
-          defaultValue={stringified}
-          fontFamily='monospace'
-          id='customProfileRequest'
-          key={stringified}
-          onChange={onChange}
-          ref={ref}
-          spellCheck={false}
-        />
-        <FormHelperText>
-          {message('analysis.customizeProfileRequest.description')}
-        </FormHelperText>
-      </FormControl>
+        <FormControl
+          flex='1'
+          isDisabled={disabled}
+          isInvalid={isInvalid(currentValue)}
+        >
+          <FormLabel htmlFor='customProfileRequest'>
+            {message('analysis.customizeProfileRequest.label')}
+          </FormLabel>
+          <Textarea
+            defaultValue={stringified}
+            fontFamily='monospace'
+            fontSize='sm'
+            id='customProfileRequest'
+            key={stringified}
+            minHeight='unset'
+            onChange={onChange}
+            p={1}
+            ref={ref}
+            resize='both'
+            spellCheck={false}
+          />
+          <FormHelperText>
+            {message('analysis.customizeProfileRequest.description')}
+          </FormHelperText>
+        </FormControl>
+      </Stack>
     </Stack>
   )
 }
@@ -183,7 +191,7 @@ function CustomBoundsSelector({
               size='xs'
               variantColor='yellow'
             >
-              Stop editing bounds
+              Stop editing
             </Button>
           </>
         ) : (
@@ -197,7 +205,7 @@ function CustomBoundsSelector({
             size='xs'
             variantColor='yellow'
           >
-            Set custom geographic bounds
+            Set custom
           </Button>
         )}
       </FormLabel>
