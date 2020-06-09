@@ -33,6 +33,4 @@ const ForwardedSelect = forwardRef((p: Props, ref) => (
 ))
 
 // Select is a heavy component therefore we memoize it
-export default memo<Props>((p) => (
-  <ForwardedSelect styles={selectStyles} {...p} />
-))
+export default memo<Props>(ForwardedSelect)
