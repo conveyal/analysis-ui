@@ -22,7 +22,6 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
 import {
-  clearComparisonSettings,
   setCopyRequestSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
@@ -447,9 +446,11 @@ function RequestSettings({
             <BookmarkChooser
               disabled={isDisabled}
               flex='1'
+              isComparison={isComparison}
               onChange={(bookmarkSettings) =>
                 setProfileRequest({...bookmarkSettings})
               }
+              requestSettings={profileRequest}
             />
           </Stack>
 

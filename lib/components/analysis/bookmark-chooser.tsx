@@ -1,28 +1,38 @@
 import {Box, Button, FormControl, FormLabel} from '@chakra-ui/core'
 import get from 'lodash/get'
-import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import {createBookmark, selectBookmark} from 'lib/actions/bookmark'
+import {
+  setMaxTripDurationMinutes,
+  setTravelTimePercentile
+} from 'lib/actions/analysis'
+import {createBookmark} from 'lib/actions/bookmark'
 import message from 'lib/message'
 import selectBookmarks from 'lib/selectors/bookmarks'
-import selectBookmarkData from 'lib/selectors/bookmark-data'
 
 import Select from '../select'
 
-export default function BookmarkChooser({disabled, onChange, ...p}) {
+export default function BookmarkChooser({
+  disabled,
+  isComparison = false,
+  onChange,
+  requestSettings,
+  ...p
+}) {
   const dispatch = useDispatch()
   const bookmarks = useSelector(selectBookmarks)
-  const bookmarkData = useSelector(selectBookmarkData)
-  const selectedBookmark = useSelector((s) =>
-    get(s, 'analysis.selectedBookmark')
-  )
+  const id = 'select-bookmark-' + isComparison
 
   function _selectBookmark(e) {
     const bookmark = bookmarks.find((b) => b._id === e._id)
     if (bookmark) {
-      dispatch(selectBookmark(bookmark))
-      onChange(bookmark.profileRequest)
+      const settings = bookmark.profileRequest
+      onChange(settings)
+      dispatch(setMaxTripDurationMinutes(settings.maxTripDurationMinutes))
+
+      if (settings.travelTimePercentile) {
+        dispatch(setTravelTimePercentile(settings.travelTimePercentile))
+      }
     }
   }
 
@@ -35,7 +45,7 @@ export default function BookmarkChooser({disabled, onChange, ...p}) {
     if (bookmarkName && bookmarkName.length > 0) {
       dispatch(
         createBookmark({
-          ...bookmarkData,
+          ...requestSettings,
           name: bookmarkName
         })
       )
@@ -47,7 +57,7 @@ export default function BookmarkChooser({disabled, onChange, ...p}) {
       <FormLabel
         display='flex'
         justifyContent='space-between'
-        htmlFor='select-bookmark'
+        htmlFor={id}
         pr={0}
         pb='3px'
       >
@@ -64,13 +74,12 @@ export default function BookmarkChooser({disabled, onChange, ...p}) {
       </FormLabel>
       <Box>
         <Select
-          name='select-bookmark'
-          inputId='select-bookmark'
+          name={id}
+          inputId={id}
           isDisabled={disabled}
-          getOptionLabel={(b) => b.name}
-          getOptionValue={(b) => b._id}
+          getOptionLabel={(b) => get(b, 'name')}
+          getOptionValue={(b) => get(b, '_id')}
           options={bookmarks}
-          value={bookmarks.find((b) => b._id === selectedBookmark)}
           onChange={_selectBookmark}
         />
       </Box>
