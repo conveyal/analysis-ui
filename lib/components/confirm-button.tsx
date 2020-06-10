@@ -7,13 +7,13 @@ import {
   AlertDialogOverlay,
   Button
 } from '@chakra-ui/core'
-import React from 'react'
+import {useRef, useState} from 'react'
 
 export default function ConfirmButton({action, description, onConfirm, ...p}) {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [confirming, setConfirming] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [confirming, setConfirming] = useState(false)
   const onClose = () => setIsOpen(false)
-  const cancelRef = React.useRef()
+  const cancelRef = useRef()
 
   async function doAction() {
     setConfirming(true)
@@ -41,7 +41,7 @@ export default function ConfirmButton({action, description, onConfirm, ...p}) {
           <AlertDialogBody fontSize='lg'>{description}</AlertDialogBody>
           <AlertDialogFooter>
             <Button
-              disabled={confirming}
+              isDisabled={confirming}
               onClick={onClose}
               ref={cancelRef}
               size='lg'

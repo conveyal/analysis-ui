@@ -8,11 +8,13 @@ import {
   Input,
   Stack
 } from '@chakra-ui/core'
+import get from 'lodash/fp/get'
 import {useRouter} from 'next/router'
-import React from 'react'
+import {useCallback, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {deleteBundle, saveBundle} from 'lib/actions'
+import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import {routeTo} from 'lib/router'
 
@@ -22,6 +24,30 @@ import Select from './select'
 const getOptionLabel = (b) =>
   `${b.name}${b.status === 'DONE' ? '' : `: ${b.status}`}`
 
+const hasContent = (s) => s.length > 0
+
+function FeedNameInput({feed, index, onChange, ...p}) {
+  const input = useInput({onChange, test: hasContent, value: feed.name})
+  return (
+    <FormControl {...p} isInvalid={input.isInvalid}>
+      <FormLabel htmlFor={input.id}>
+        {`${message('bundle.feed')} #${index + 1}`}
+      </FormLabel>
+      <Input {...input} placeholder='Feed name' />
+    </FormControl>
+  )
+}
+
+function BundleNameInput({name, onChange, ...p}) {
+  const input = useInput({onChange, test: hasContent, value: name})
+  return (
+    <FormControl {...p} isInvalid={input.isInvalid}>
+      <FormLabel htmlFor={input.id}>{message('bundle.name')}</FormLabel>
+      <Input {...input} placeholder='Network bundle name' />
+    </FormControl>
+  )
+}
+
 /**
  * Edit bundle is keyed by the bundle ID and will be completely unmounted and
  * recreated when that changes.
@@ -29,25 +55,30 @@ const getOptionLabel = (b) =>
 export default function EditBundle(p) {
   const dispatch = useDispatch()
   const router = useRouter()
-  const bundles = useSelector((s) => s.region.bundles)
+  const bundles = useSelector(get('region.bundles'))
 
   const {regionId} = router.query
-  const [bundleId, setBundleId] = React.useState(router.query.bundleId)
+  const [bundleId, setBundleId] = useState(router.query.bundleId)
   const originalBundle = bundles.find((b) => b._id === bundleId)
-  const [bundle, setBundle] = React.useState(originalBundle)
+  const [bundle, setBundle] = useState(originalBundle)
+
+  const setName = useCallback(
+    (name) => setBundle((bundle) => ({...bundle, name})),
+    [setBundle]
+  )
 
   // If this bundle has project's associated with it. Disable deletion.
   const disableDelete = p.bundleProjects.length > 0
 
-  function _deleteBundle() {
-    return dispatch(deleteBundle(bundleId)).then(() => {
-      const {as, href} = routeTo('bundles', {regionId})
-      router.push(href, as)
-    })
+  async function _deleteBundle() {
+    const {as, href} = routeTo('bundles', {regionId})
+    router.push(href, as)
+    dispatch(deleteBundle(bundleId))
   }
 
-  function _saveBundle() {
-    dispatch(saveBundle(bundle)).then((b) => setBundle(b))
+  async function _saveBundle() {
+    const b = await dispatch(saveBundle(bundle))
+    setBundle(b) // nonce update
   }
 
   function selectBundle(result) {
@@ -56,22 +87,13 @@ export default function EditBundle(p) {
     router.push(href, as)
   }
 
-  function setName(e) {
-    if (e.target.value && e.target.value.length > 0) {
-      setBundle({...bundle, name: `${e.target.value}`})
-    }
-  }
-
-  function setFeedName(feedId, e) {
-    if (bundle && e.target.value && e.target.value.length > 0) {
+  function setFeedName(feedId, name) {
+    if (bundle) {
       setBundle({
         ...bundle,
         feeds: bundle.feeds.map((f) => {
           if (f.feedId === feedId) {
-            return {
-              ...f,
-              name: e.target.value
-            }
+            return {...f, name}
           }
           return f
         })
@@ -88,7 +110,7 @@ export default function EditBundle(p) {
           <Select
             options={bundles}
             getOptionLabel={getOptionLabel}
-            getOptionValue={(b) => b._id}
+            getOptionValue={get('_id')}
             onChange={selectBundle}
             value={bundles.find((b) => b._id === bundleId)}
           />
@@ -111,35 +133,20 @@ export default function EditBundle(p) {
             </Alert>
           )}
 
-          <FormControl>
-            <FormLabel htmlFor='bundleName'>{message('bundle.name')}</FormLabel>
-            <Input
-              id='bundleName'
-              name='Name'
-              onChange={setName}
-              placeholder='Bundle name'
-              value={bundle.name}
-            />
-          </FormControl>
+          <BundleNameInput name={bundle.name} onChange={setName} />
 
           {bundle.feeds &&
             bundle.feeds.map((feed, index) => (
-              <FormControl key={feed.feedId}>
-                <FormLabel htmlFor={feed.feedId}>
-                  {`${message('bundle.feed')} #${index + 1}`}
-                </FormLabel>
-                <Input
-                  id={feed.feedId}
-                  onChange={(e) => setFeedName(feed.feedId, e)}
-                  placeholder='Feed name'
-                  value={feed.name}
-                />
-              </FormControl>
+              <FeedNameInput
+                feed={feed}
+                index={index}
+                key={feed.feedId}
+                onChange={(name) => setFeedName(feed.feedId, name)}
+              />
             ))}
 
           <Button
-            block
-            disabled={bundle === originalBundle}
+            isDisabled={bundle === originalBundle}
             onClick={_saveBundle}
             size='lg'
             title={message('bundle.save')}
