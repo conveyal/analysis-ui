@@ -177,7 +177,7 @@ export default function ProfileRequestEditor({
     value: profileRequest.maxRides - 1 // Max rides is max transfers + 1, but transfers is common usage terminology
   })
 
-  const hasBike = containsType(profileRequest, 'BICYCLE')
+  const hasBike = containsType(profileRequest, 'BICYCLE') || containsType(profileRequest, 'BICYCLE_RENT')
   const hasTransit = profileRequest.transitModes.length > 0
   const hasWalk = containsType(profileRequest, 'WALK')
 
