@@ -62,18 +62,23 @@ export default function EditBundle(p) {
   const originalBundle = bundles.find((b) => b._id === bundleId)
   const [bundle, setBundle] = useState(originalBundle)
 
+  const setName = useCallback(
+    (name) => setBundle((bundle) => ({...bundle, name})),
+    [setBundle]
+  )
+
   // If this bundle has project's associated with it. Disable deletion.
   const disableDelete = p.bundleProjects.length > 0
 
   async function _deleteBundle() {
-    await dispatch(deleteBundle(bundleId))
     const {as, href} = routeTo('bundles', {regionId})
     router.push(href, as)
+    dispatch(deleteBundle(bundleId))
   }
 
   async function _saveBundle() {
     const b = await dispatch(saveBundle(bundle))
-    setBundle(b)
+    setBundle(b) // nonce update
   }
 
   function selectBundle(result) {
@@ -81,11 +86,6 @@ export default function EditBundle(p) {
     const {as, href} = routeTo('bundleEdit', {regionId, bundleId: result._id})
     router.push(href, as)
   }
-
-  const setName = useCallback(
-    (name) => setBundle((bundle) => ({...bundle, name})),
-    [setBundle]
-  )
 
   function setFeedName(feedId, name) {
     if (bundle) {
@@ -133,7 +133,7 @@ export default function EditBundle(p) {
             </Alert>
           )}
 
-          <BundleNameInput name={originalBundle.name} onChange={setName} />
+          <BundleNameInput name={bundle.name} onChange={setName} />
 
           {bundle.feeds &&
             bundle.feeds.map((feed, index) => (
