@@ -228,16 +228,16 @@ export default function ModeSelector({
         <Box>
           <ButtonGroup isAttached>
             <Button
-              isActive={egressModes === WALK}
-              isDisabled={disabled}
+              isActive={transit && egressModes === WALK}
+              isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(WALK)}
               title={message('analysis.modes.walk')}
             >
               <Icon icon={faWalking} />
             </Button>
             <Button
-              isActive={egressModes === BICYCLE}
-              isDisabled={disabled}
+              isActive={transit && egressModes === BICYCLE}
+              isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(BICYCLE)}
               title={message('analysis.modes.bicycle')}
             >
