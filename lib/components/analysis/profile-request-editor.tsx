@@ -81,7 +81,7 @@ const testMaxTransfers = valueWithin(0, 7)
 const containsType = (pr, type) =>
   pr.accessModes.indexOf(type) > -1 ||
   pr.directModes.indexOf(type) > -1 ||
-  pr.egressModes.indexOf(type) > -1
+  (pr.egressModes.indexOf(type) > -1 && pr.transitModes.length > 0)
 
 /**
  * Edit the parameters of a profile request.
@@ -177,7 +177,7 @@ export default function ProfileRequestEditor({
     value: profileRequest.maxRides - 1 // Max rides is max transfers + 1, but transfers is common usage terminology
   })
 
-  const hasBike = containsType(profileRequest, 'BICYCLE')
+  const hasBike = containsType(profileRequest, 'BICYCLE') || containsType(profileRequest, 'BICYCLE_RENT')
   const hasTransit = profileRequest.transitModes.length > 0
   const hasWalk = containsType(profileRequest, 'WALK')
 
@@ -255,20 +255,21 @@ export default function ProfileRequestEditor({
             <FormHelperText>Range 3-15</FormHelperText>
           </FormControl>
 
-          <FormControl
-            isDisabled={disabled}
-            isInvalid={maxWalkTimeInput.isInvalid}
-          >
-            <FormLabel htmlFor={maxWalkTimeInput.htmlFor}>
-              Max walk time
-            </FormLabel>
-            <InputWithUnits {...maxWalkTimeInput} units='minutes' />
-            <FormHelperText>
-              Maximum of 60. Lower time limits apply to transfers and egress
-              legs.
-            </FormHelperText>
-          </FormControl>
-
+          {hasTransit && (
+            <FormControl
+              isDisabled={disabled}
+              isInvalid={maxWalkTimeInput.isInvalid}
+            >
+              <FormLabel htmlFor={maxWalkTimeInput.htmlFor}>
+                Max walk time
+              </FormLabel>
+              <InputWithUnits {...maxWalkTimeInput} units='minutes' />
+              <FormHelperText>
+                Maximum of 60. Lower time limits apply to transfers and egress
+                legs.
+              </FormHelperText>
+            </FormControl>
+          )}
           <div />
 
           <Divider borderColor={`${color}.100`} gridColumn='1 / span 3' />
@@ -286,17 +287,19 @@ export default function ProfileRequestEditor({
             <FormHelperText>Range 5-20</FormHelperText>
           </FormControl>
 
-          <FormControl
-            isDisabled={disabled}
-            isInvalid={maxBikeTimeInput.isInvalid}
-          >
-            <FormLabel>Max bike time</FormLabel>
-            <InputWithUnits {...maxBikeTimeInput} units='minutes' />
-            <FormHelperText>
-              Maximum of 60. Lower time limits apply to transfer and egress
-              legs.
-            </FormHelperText>
-          </FormControl>
+          {hasTransit && (
+            <FormControl
+              isDisabled={disabled}
+              isInvalid={maxBikeTimeInput.isInvalid}
+            >
+              <FormLabel>Max bike time</FormLabel>
+              <InputWithUnits {...maxBikeTimeInput} units='minutes' />
+              <FormHelperText>
+                Maximum of 60. Lower time limits apply to transfer and egress
+                legs.
+              </FormHelperText>
+            </FormControl>
+          )}
 
           <FormControl isDisabled={disabled}>
             <FormLabel htmlFor='bikeLts'>Max Level of Traffic Stress</FormLabel>
