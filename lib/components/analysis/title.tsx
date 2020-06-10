@@ -57,7 +57,7 @@ export default function AnalysisTitle() {
       py={4}
       width='640px'
     >
-      <Heading fontWeight='500' size='md'>
+      <Heading size='md'>
         <Icon icon={faChartArea} />
         <TitleMessage
           fetchStatus={isochroneFetchStatus}

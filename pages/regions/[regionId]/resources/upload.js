@@ -4,6 +4,7 @@ import {
   AlertIcon,
   Box,
   Button,
+  Heading,
   Stack
 } from '@chakra-ui/core'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
@@ -69,15 +70,15 @@ export default function UploadResource(p) {
 
   return (
     <InnerDock className='block'>
-      <legend>
-        <Link to='resources' {...p.query}>
-          <A>
-            <Icon icon={faChevronLeft} />
-          </A>
-        </Link>
-        <span>{msg('resources.uploadAction')}</span>
-      </legend>
       <Stack spacing={4}>
+        <Heading size='md'>
+          <Link to='resources' {...p.query}>
+            <A>
+              <Icon icon={faChevronLeft} />
+            </A>
+          </Link>
+          <span>{msg('resources.uploadAction')}</span>
+        </Heading>
         <Box>{msg('resources.allowedFileTypes')}</Box>
         {error && (
           <Alert status='error'>
