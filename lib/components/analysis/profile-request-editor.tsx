@@ -81,7 +81,7 @@ const testMaxTransfers = valueWithin(0, 7)
 const containsType = (pr, type) =>
   pr.accessModes.indexOf(type) > -1 ||
   pr.directModes.indexOf(type) > -1 ||
-  pr.egressModes.indexOf(type) > -1
+  (pr.egressModes.indexOf(type) > -1 && pr.transitModes.length > 0)
 
 /**
  * Edit the parameters of a profile request.
