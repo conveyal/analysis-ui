@@ -45,8 +45,8 @@ export default function BookmarkChooser({
     if (bookmarkName && bookmarkName.length > 0) {
       dispatch(
         createBookmark({
-          ...requestSettings,
-          name: bookmarkName
+          name: bookmarkName,
+          profileRequest: requestSettings
         })
       )
     }
