@@ -1,4 +1,6 @@
 import {
+  Alert,
+  AlertIcon,
   Box,
   Flex,
   FormControl,
@@ -73,7 +75,11 @@ export default function StreetForm({modification, update, ...p}) {
   })
 
   return (
-    <Stack {...p}>
+    <Stack {...p} spacing={6}>
+      <Alert status='error'>
+        <AlertIcon />
+        Requires worker version v4.9.0 or higher
+      </Alert>
       <Box>
         <Flex justify='space-between'>
           <FormLabel htmlFor={bikeSwitch.htmlFor} fontSize='lg'>
@@ -86,7 +92,7 @@ export default function StreetForm({modification, update, ...p}) {
           />
         </Flex>
         {bikeSwitch.value && (
-          <Stack spacing={4} mb={6}>
+          <Stack spacing={4}>
             <FormControl isInvalid={!bikeTimeFactor.isValid}>
               <FormLabel htmlFor={bikeTimeFactor.htmlFor}>
                 Bike Time Factor
@@ -125,7 +131,7 @@ export default function StreetForm({modification, update, ...p}) {
           />
         </Flex>
         {carSwitch.value && (
-          <FormControl isInvalid={carSpeed.isInvalid} mb={6}>
+          <FormControl isInvalid={carSpeed.isInvalid}>
             <FormLabel htmlFor={carSpeed.htmlFor}>Car Speed</FormLabel>
             <Input {...carSpeed} />
           </FormControl>
