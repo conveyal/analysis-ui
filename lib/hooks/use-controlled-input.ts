@@ -22,7 +22,7 @@ function getRawValueFromInput(input) {
  * Helper hook for allowing controlled inputs that can frequently update but not slow down the interface.
  */
 export default function useControlledInput({
-  onChange,
+  onChange = identityFn,
   id = null,
   parse = identityFn,
   test = alwaysValid,
