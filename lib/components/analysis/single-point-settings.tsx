@@ -119,6 +119,15 @@ export default function Settings({
     [dispatch]
   )
 
+  // On initial load, the query string may be out of sync with the requestsSettings.projectId
+  useEffect(() => {
+    const projectId = get(currentProject, '_id')
+    const settingsId = get(requestsSettings, '[0].projectId')
+    if (projectId !== settingsId) {
+      setPrimaryPR({projectId})
+    }
+  }, []) // eslint-disable-line
+
   // Set the analysis bounds to be the region bounds if bounds do not exist
   useEffect(() => {
     if (!profileRequest.bounds) {
