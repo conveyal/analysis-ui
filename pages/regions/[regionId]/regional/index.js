@@ -35,11 +35,16 @@ const RegionalPage = withInitialFetch(
     const allAnalyses = useSelector(selectRegionalAnalyses)
     const activeAnalysis = useSelector(selectActiveAnalysis)
     const jobs = useSelector(selectJobs)
-    const [activeId, onChange] = useControlledInput(
-      get(activeAnalysis, '_id'),
-      (v) => dispatch(setSearchParameter('analysisId', v))
+
+    const onChange = React.useCallback(
+      (v) => dispatch(setSearchParameter('analysisId', v)),
+      [dispatch]
     )
-    const activeJob = jobs.find((j) => j.jobId === activeId)
+    const input = useControlledInput({
+      onChange,
+      value: get(activeAnalysis, '_id')
+    })
+    const activeJob = jobs.find((j) => j.jobId === input.value)
 
     // Analyses are deleted before the jobs get cleared
     const jobsWithAnalysis = jobs.filter(
@@ -68,17 +73,17 @@ const RegionalPage = withInitialFetch(
           <Box>
             <Select
               isClearable
-              key={`analysis-${activeId}`} // Dont show deleted analyses as selected
-              onChange={(v) => onChange(get(v, '_id'))}
+              key={`analysis-${input.value}`} // Dont show deleted analyses as selected
+              onChange={(v) => input.onChange(get(v, '_id'))}
               getOptionLabel={(a) => a.name}
               getOptionValue={(a) => a._id}
               options={allAnalyses}
               placeholder='View a regional analysis...'
-              value={allAnalyses.find((a) => a._id === activeId)}
+              value={allAnalyses.find((a) => a._id === input.value)}
             />
           </Box>
 
-          {activeId && activeAnalysis ? (
+          {input.value && activeAnalysis ? (
             <Stack spacing={4}>
               {activeJob && <RunningJob job={activeJob} />}
               <Box>

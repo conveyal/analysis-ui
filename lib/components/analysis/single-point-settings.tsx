@@ -58,7 +58,7 @@ export default function Settings({
   const currentBundle = useSelector(selectCurrentBundle)
   const currentProject = useSelector(selectCurrentProject)
   const variantIndex = useSelector((s) =>
-    parseInt(get(s, 'queryString.variantIndex', -1))
+    parseInt(get(s, 'analysis.requestsSettings[0].variantIndex', -1))
   )
   const resultsSettings = useSelector((s) =>
     get(s, 'analysis.resultsSettings', [])
@@ -77,10 +77,10 @@ export default function Settings({
   )
 
   const comparisonProjectId = useSelector((s) =>
-    get(s, 'queryString.comparisonProjectId')
+    get(s, 'analysis.requestsSettings[1].projectId')
   )
   const comparisonVariant = useSelector((s) =>
-    parseInt(get(s, 'queryString.comparisonVariantIndex', -1))
+    parseInt(get(s, 'analysis.requestsSettings[1].variantIndex', -1))
   )
   const comparisonProject = projects.find((p) => p._id === comparisonProjectId)
   const comparisonBundle = bundles.find(
@@ -119,6 +119,15 @@ export default function Settings({
     [dispatch]
   )
 
+  // On initial load, the query string may be out of sync with the requestsSettings.projectId
+  useEffect(() => {
+    const projectId = get(currentProject, '_id')
+    const settingsId = get(requestsSettings, '[0].projectId')
+    if (projectId !== settingsId) {
+      setPrimaryPR({projectId})
+    }
+  }, []) // eslint-disable-line
+
   // Set the analysis bounds to be the region bounds if bounds do not exist
   useEffect(() => {
     if (!profileRequest.bounds) {
@@ -129,49 +138,44 @@ export default function Settings({
   // Current project is stored in the query string
   const _setCurrentProject = useCallback(
     (option) => {
-      dispatch(
-        setSearchParameter({
-          projectId: get(option, '_id'),
-          variantIndex: -1
-        })
-      )
+      const projectId = get(option, '_id')
+      dispatch(setSearchParameter({projectId}))
+      setPrimaryPR({projectId, variantIndex: -1})
     },
-    [dispatch]
+    [dispatch, setPrimaryPR]
   )
   const _setCurrentVariant = useCallback(
-    (option) =>
-      dispatch(setSearchParameter({variantIndex: parseInt(option.value)})),
-    [dispatch]
+    (option) => setPrimaryPR({variantIndex: parseInt(option.value)}),
+    [setPrimaryPR]
   )
 
   const _setComparisonProject = useCallback(
     (project) => {
       if (project) {
         if (!currentProject) {
-          setComparisonPR(profileRequest)
+          setComparisonPR({
+            ...profileRequest,
+            projectId: project._id,
+            variantIndex: -1
+          })
+        } else {
+          setComparisonPR({
+            projectId: project._id,
+            variantIndex: -1
+          })
         }
-        // since the comparison is clearable
-        dispatch(
-          setSearchParameter({
-            comparisonProjectId: project._id,
-            comparisonVariantIndex: -1
-          })
-        )
       } else {
-        dispatch(
-          setSearchParameter({
-            comparisonProjectId: null,
-            comparisonVariantIndex: null
-          })
-        )
+        setComparisonPR({
+          projectId: null,
+          variantIndex: null
+        })
       }
     },
     [dispatch, profileRequest, setComparisonPR]
   )
 
   const _setComparisonVariant = useCallback(
-    (e) =>
-      dispatch(setSearchParameter({comparisonVariantIndex: parseInt(e.value)})),
+    (e) => setComparisonPR({variantIndex: parseInt(e.value)}),
     [dispatch]
   )
 
