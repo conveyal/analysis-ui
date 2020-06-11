@@ -1,15 +1,72 @@
-// use lodash .random
-const {random} = Cypress._
+const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
+const createModName = (type, description) =>
+  `${modificationPrefix}_${type}_${description}_${Date.now()}`
+
+const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
+const scenarioNameRegEx = new RegExp(scenarioName, 'g')
+
+// All modification types
+const types = [
+  'Add Streets',
+  'Add Trip Pattern',
+  'Adjust Dwell Time',
+  'Adjust Speed',
+  'Convert To Frequency',
+  'Modify Streets',
+  'Remove Stops',
+  'Remove Trips',
+  'Reroute',
+  'Custom'
+]
+
+function deleteThisMod() {
+  cy.get('a[name="Delete modification"]').click()
+  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+  cy.contains(/Create a modification/)
+}
+
+function openMod(modType, modName) {
+  // opens the first listed modification of this type with this name
+  cy.navTo('Edit Modifications')
+  // find the container for this modification type and open it if need be
+  cy.contains(modType)
+    .parent()
+    .as('modList')
+    .then((modList) => {
+      if (!modList.text().includes(modName)) {
+        cy.get(modList).click()
+      }
+    })
+  cy.get('@modList').contains(modName).click()
+  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+  cy.contains(modName)
+}
+
+function deleteMod(modType, modName) {
+  openMod(modType, modName)
+
+  cy.get('a[name="Delete modification"]').click()
+  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+  cy.contains('Create a modification')
+  cy.findByText(modName).should('not.exist')
+}
+
+function setupMod(modType, modName) {
+  cy.navTo('Edit Modifications')
+  // assumes we are already on this page or editing another mod
+  cy.findByRole('link', {name: 'Create a modification'}).click()
+  cy.findByLabelText(/Modification type/i).select(modType)
+  cy.findByLabelText(/Modification name/i).type(modName)
+  cy.findByRole('link', {name: 'Create'}).click()
+  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+}
 
 describe('Modifications', () => {
   before(() => {
     cy.setup('project')
-    cy.setupScenario('scratch scenario')
-  })
+    cy.setupScenario(scenarioName)
 
-  after(() => {
-    cy.deleteScenario('scratch scenario')
-    //cy.deleteProject('scratch project')
+    // TODO clear out all old modifications
   })
 
   beforeEach(() => {
@@ -17,44 +74,34 @@ describe('Modifications', () => {
     cy.navTo('Edit Modifications')
   })
 
-  it('can be created, saved, and deleted', function () {
-    // create an arbitrary modification type
-    // these actions should be the same across all types
-    // TODO the types that are commented out are producing errors locally
-    let mods = [
-      'Add Trip Pattern',
-      //'Adjust Dwell Time',
-      'Adjust Speed',
-      //'Convert To Frequency',
-      'Remove Stops',
-      'Remove Trips',
-      'Reroute',
-      'Custom'
-    ]
-    let modType = mods[random(0, mods.length - 1)]
-    let modName = Cypress.env('dataPrefix') + Date.now()
-    let description = 'descriptive text'
-    cy.findByRole('link', {name: 'Create a modification'}).click()
-    cy.findByLabelText(/Modification type/i).select(modType)
-    cy.findByLabelText(/Modification name/i).type(modName)
-    cy.findByRole('link', {name: 'Create'}).click()
-    cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
-    cy.contains(modName)
-    cy.findByRole('link', {name: /Add description/}).click()
-    cy.findByLabelText('Description').type(description)
-    // scenarios
-    cy.findByLabelText(/Default/).uncheck({force: true})
-    cy.findByLabelText(/scratch scenario/).check({force: true})
-    // go back and check that everything saved
-    cy.navTo('Edit Modifications')
-    cy.openMod(modType, modName)
-    cy.findByLabelText('Description').contains(description)
-    cy.findByLabelText(/Default/).should('not.be.checked')
-    cy.findByLabelText(/scratch scenario/).should('be.checked')
-    cy.deleteThisMod()
+  describe('CRUD each type', function () {
+    types.forEach((type) => {
+      it(`CRUD ${type}`, function () {
+        const name = createModName(type, 'simple')
+        const description = 'descriptive text'
+        cy.findByRole('link', {name: 'Create a modification'}).click()
+        cy.findByLabelText(/Modification type/i).select(type)
+        cy.findByLabelText(/Modification name/i).type(name)
+        cy.findByRole('link', {name: 'Create'}).click()
+        cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+        cy.contains(name)
+        cy.findByRole('link', {name: /Add description/}).click()
+        cy.findByLabelText('Description').type(description)
+        // scenarios
+        cy.findByLabelText(/Default/).uncheck({force: true})
+        cy.findByLabelText(scenarioNameRegEx).check({force: true})
+        // go back and check that everything saved
+        cy.navTo('Edit Modifications')
+        openMod(type, name)
+        cy.findByLabelText('Description').contains(description)
+        cy.findByLabelText(/Default/).should('not.be.checked')
+        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
+        deleteThisMod()
+      })
+    })
   })
 
-  describe('new trip patterns', () => {
+  describe('Add Trip Pattern', () => {
     it('can be imported from shapefile', function () {
       cy.get('svg[data-icon="upload"]').click()
       cy.location('pathname').should('match', /import-modifications$/)
@@ -77,7 +124,7 @@ describe('Modifications', () => {
       cy.location('pathname').should('match', /projects\/.{24}$/)
 
       this.region.importRoutes.routes.forEach((route) => {
-        cy.openMod('Add Trip Pattern', route.name)
+        openMod('Add Trip Pattern', route.name)
         cy.findByText(/Timetable NaN/).click()
         cy.findByLabelText(/Frequency/)
           .invoke('val')
@@ -85,13 +132,13 @@ describe('Modifications', () => {
         cy.findByLabelText(/Average speed/i)
           .invoke('val')
           .then((val) => expect(val).to.eq('' + route.speed))
-        cy.deleteThisMod()
+        deleteThisMod()
       })
     })
 
     it('can be drawn on map', function () {
-      let modName = Cypress.env('dataPrefix') + Date.now()
-      cy.setupMod('Add Trip Pattern', modName)
+      const modName = createModName('ATP', 'draw on map')
+      setupMod('Add Trip Pattern', modName)
       cy.findAllByRole('alert').contains(/must have at least 2 stops/)
       cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
       // add a route geometry
@@ -114,7 +161,7 @@ describe('Modifications', () => {
           }
         })
         // convert an arbitrary stop to a control point
-        let stop = coords[random(0, coords.length - 1)]
+        let stop = coords[coords.length - 2]
         let pix = map.latLngToContainerPoint(stop)
         cy.get('@map').click(pix.x, pix.y)
         cy.get('@map')
@@ -138,17 +185,12 @@ describe('Modifications', () => {
       cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
         'not.exist'
       )
-      // add to scenario
-      cy.findByLabelText(/Default/).uncheck({force: true})
-      cy.findByLabelText(/scratch scenario/).should('be.checked')
-      //
-      cy.deleteThisMod()
+      deleteThisMod()
     })
 
     it('can create and reuse timetables', function () {
-      let modName = Cypress.env('dataPrefix') + 'timetable templates'
-      let modType = 'Add Trip Pattern'
-      cy.setupMod(modType, modName)
+      const modName = createModName('ATP', 'timetable templates')
+      setupMod('Add Trip Pattern', modName)
       cy.findByText(/Add new timetable/).click()
       cy.findByText(/Timetable 1/).click()
       // enter arbitrary settings to see if they get saved
@@ -173,7 +215,8 @@ describe('Modifications', () => {
         .clear()
         .type('00:00:30')
       // exit and create new mod to copy into
-      cy.setupMod(modType, 'temp')
+      const copyIntoName = createModName('ATP', 'copy')
+      setupMod('Add Trip Pattern', copyIntoName)
       cy.findByText(/Copy existing timetable/).click()
       cy.findByRole('dialog').as('dialog')
       cy.get('@dialog')
@@ -211,16 +254,16 @@ describe('Modifications', () => {
         .invoke('val')
         .then((val) => expect(val).to.eq('00:00:30'))
       // delete the temp modification
-      cy.deleteThisMod()
+      deleteThisMod()
       // delete the template modification
-      cy.deleteMod(modType, modName)
+      deleteMod('Add Trip Pattern', modName)
     })
   })
 
   describe('Adjust dwell time', () => {
     it('has working form elements', function () {
-      let modName = Cypress.env('dataPrefix') + Date.now()
-      cy.setupMod('Adjust Dwell Time', modName)
+      const modName = createModName('ADT', 'form')
+      setupMod('Adjust Dwell Time', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type(this.region.feedAgencyName + '{enter}')
@@ -230,14 +273,14 @@ describe('Modifications', () => {
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Scale existing dwell times/i).check()
       cy.findByLabelText(/Set new dwell time to/i).check()
-      cy.deleteThisMod()
+      deleteThisMod()
     })
   })
 
   describe('Adjust speed', () => {
     it('has working form elements', function () {
-      let modName = Cypress.env('dataPrefix') + Date.now()
-      cy.setupMod('Adjust Speed', modName)
+      const modName = createModName('AS', 'form')
+      setupMod('Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type(this.region.feedAgencyName + '{enter}')
@@ -245,14 +288,14 @@ describe('Modifications', () => {
         .click({force: true})
         .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
-      cy.deleteThisMod()
+      deleteThisMod()
     })
   })
 
   describe('Convert to frequency', () => {
     it('has working form elements', function () {
-      let modName = Cypress.env('dataPrefix') + Date.now()
-      cy.setupMod('Convert To Frequency', modName)
+      const modName = createModName('CTF', 'form')
+      setupMod('Convert To Frequency', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type(this.region.feedAgencyName + '{enter}')
@@ -277,7 +320,7 @@ describe('Modifications', () => {
         .click({force: true})
         .type('Fountain Square{enter}')
       cy.findByText(/Delete frequency entry/i).click()
-      cy.deleteThisMod()
+      deleteThisMod()
     })
   })
 
@@ -287,9 +330,9 @@ describe('Modifications', () => {
       need to determine when this line runs (probably standard peak service)
     */
     it('has working form elements', function () {
-      let modName = Cypress.env('dataPrefix') + Date.now()
+      const modName = createModName('RS', 'form')
       let testCase = this.region.testCases.removeStops
-      cy.setupMod('Remove Stops', modName)
+      setupMod('Remove Stops', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type(this.region.feedAgencyName + '{enter}')
@@ -302,14 +345,14 @@ describe('Modifications', () => {
       // select stops
       //cy.get('a.btn').contains('New').click()
       //cy.get('div.leaflet-container').as('map')
-      cy.deleteThisMod()
+      deleteThisMod()
     })
   })
 
   describe('Remove trips', () => {
     it('has working form elements', function () {
-      let modName = Cypress.env('dataPrefix') + Date.now()
-      cy.setupMod('Remove Trips', modName)
+      const modName = createModName('RT', 'form')
+      setupMod('Remove Trips', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type(this.region.feedAgencyName + '{enter}')
@@ -317,14 +360,14 @@ describe('Modifications', () => {
         .click({force: true})
         .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
-      cy.deleteThisMod()
+      deleteThisMod()
     })
   })
 
   describe('Reroute', () => {
     it('has working form elements', function () {
-      let modName = Cypress.env('dataPrefix') + Date.now()
-      cy.setupMod('Reroute', modName)
+      const modName = createModName('RR', 'form')
+      setupMod('Reroute', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
         .type(this.region.feedAgencyName + '{enter}')
@@ -338,7 +381,7 @@ describe('Modifications', () => {
       cy.findByLabelText(/Default dwell time/i)
       cy.findByLabelText(/Average speed/i)
       cy.findByLabelText(/Total moving time/i)
-      cy.deleteThisMod()
+      deleteThisMod()
     })
   })
 })

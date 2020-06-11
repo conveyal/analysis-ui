@@ -14,7 +14,7 @@ describe('Opportunity Datasets', () => {
   context('can be imported', () => {
     it('from CSV', function () {
       let opportunity = this.opportunities.csv
-      let oppName = generateName(opportunity.name)
+      let oppName = generateName('opportunities', opportunity.name)
       let expectedFieldCount = 1 + opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
