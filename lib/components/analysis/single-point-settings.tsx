@@ -123,7 +123,11 @@ export default function Settings({
   useEffect(() => {
     const projectId = get(currentProject, '_id')
     const settingsId = get(requestsSettings, '[0].projectId')
-    if (projectId !== settingsId) {
+    if (
+      projectId !== settingsId &&
+      projectId != null &&
+      projectId !== 'undefined'
+    ) {
       setPrimaryPR({projectId})
     }
   }, []) // eslint-disable-line

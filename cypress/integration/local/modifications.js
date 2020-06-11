@@ -54,10 +54,10 @@ function deleteMod(modType, modName) {
 function setupMod(modType, modName) {
   cy.navTo('Edit Modifications')
   // assumes we are already on this page or editing another mod
-  cy.findByRole('link', {name: 'Create a modification'}).click()
+  cy.findByText('Create a modification').click()
   cy.findByLabelText(/Modification type/i).select(modType)
   cy.findByLabelText(/Modification name/i).type(modName)
-  cy.findByRole('link', {name: 'Create'}).click()
+  cy.findByText('Create').click()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 }
 
@@ -79,11 +79,7 @@ describe('Modifications', () => {
       it(`CRUD ${type}`, function () {
         const name = createModName(type, 'simple')
         const description = 'descriptive text'
-        cy.findByRole('link', {name: 'Create a modification'}).click()
-        cy.findByLabelText(/Modification type/i).select(type)
-        cy.findByLabelText(/Modification name/i).type(name)
-        cy.findByRole('link', {name: 'Create'}).click()
-        cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+        setupMod(type, name)
         cy.contains(name)
         cy.findByRole('link', {name: /Add description/}).click()
         cy.findByLabelText('Description').type(description)
