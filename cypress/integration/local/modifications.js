@@ -54,10 +54,15 @@ function deleteMod(modType, modName) {
 function setupMod(modType, modName) {
   cy.navTo('Edit Modifications')
   // assumes we are already on this page or editing another mod
-  cy.findByRole('link', {name: 'Create a modification'}).click()
-  cy.findByLabelText(/Modification type/i).select(modType)
+  cy.findByText('Create a modification').click()
   cy.findByLabelText(/Modification name/i).type(modName)
-  cy.findByRole('link', {name: 'Create'}).click()
+  if (modType.indexOf('Street') > -1) {
+    cy.findByText('Street').click()
+    cy.findByLabelText('Street modification type').select(modType)
+  } else {
+    cy.findByLabelText(/Transit modification type/i).select(modType)
+  }
+  cy.findByText('Create').click()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 }
 
@@ -79,11 +84,7 @@ describe('Modifications', () => {
       it(`CRUD ${type}`, function () {
         const name = createModName(type, 'simple')
         const description = 'descriptive text'
-        cy.findByRole('link', {name: 'Create a modification'}).click()
-        cy.findByLabelText(/Modification type/i).select(type)
-        cy.findByLabelText(/Modification name/i).type(name)
-        cy.findByRole('link', {name: 'Create'}).click()
-        cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+        setupMod(type, name)
         cy.contains(name)
         cy.findByRole('link', {name: /Add description/}).click()
         cy.findByLabelText('Description').type(description)
@@ -192,16 +193,16 @@ describe('Modifications', () => {
       const modName = createModName('ATP', 'timetable templates')
       setupMod('Add Trip Pattern', modName)
       cy.findByText(/Add new timetable/).click()
-      cy.findByText(/Timetable 1/).click()
+      cy.findByText('Timetable 1').click()
       // enter arbitrary settings to see if they get saved
-      cy.get('input[name="Name"]').clear().type('Weekday')
+      cy.findByLabelText('Name').clear().type('Weekday')
       cy.findByLabelText(/Mon/).check()
       cy.findByLabelText(/Tue/).check()
       cy.findByLabelText(/Wed/).check()
       cy.findByLabelText(/Thu/).check()
       cy.findByLabelText(/Fri/).check()
-      cy.findByLabelText(/Sat/).uncheck()
-      cy.findByLabelText(/Sun/).uncheck()
+      cy.findByLabelText(/Sat/).uncheck({force: true})
+      cy.findByLabelText(/Sun/).uncheck({force: true})
       cy.findByLabelText(/Frequency/)
         .clear()
         .type('00:20:00')

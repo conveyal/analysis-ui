@@ -39,798 +39,1952 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
   }
   update={[MockFunction]}
 >
-  <Days
-    setDay={[Function]}
-    timetable={
-      Object {
-        "_id": "timetable-id",
-        "dwellTime": 10,
-        "dwellTimes": Array [
-          12,
-        ],
-        "endTime": 57600,
-        "exactTimes": false,
-        "friday": true,
-        "headwaySecs": 900,
-        "modificationId": "1234",
-        "modificationName": "Test Modification",
-        "monday": true,
-        "name": "Test timetable",
-        "patternTrips": Array [
-          "abcd",
-        ],
-        "phaseAtStop": "",
-        "phaseFromStop": "",
-        "phaseFromTimetable": "",
-        "phaseSeconds": 300,
-        "saturday": false,
-        "segmentSpeeds": Array [],
-        "sourceTrip": "abcd",
-        "startTime": 28800,
-        "sunday": false,
-        "thursday": true,
-        "tuesday": true,
-        "wednesday": true,
-      }
-    }
+  <ForwardRef
+    spacing={4}
   >
-    <div
-      className="form-group"
-    >
-      <label>
-        Days active
-      </label>
-      <div
-        className="form-inline"
-      >
-        <Checkbox
-          checked={true}
-          key="monday-checkbox"
-          label="Mon"
-          onChange={[Function]}
-        >
-          <div
-            className="checkbox"
-          >
-            <label
-              htmlFor="mon-input-0"
-            >
-              <input
-                checked={true}
-                id="mon-input-0"
-                label="Mon"
-                onChange={[Function]}
-                type="checkbox"
-              />
-               
-              Mon
-            </label>
-          </div>
-        </Checkbox>
-        <Checkbox
-          checked={true}
-          key="tuesday-checkbox"
-          label="Tue"
-          onChange={[Function]}
-        >
-          <div
-            className="checkbox"
-          >
-            <label
-              htmlFor="tue-input-1"
-            >
-              <input
-                checked={true}
-                id="tue-input-1"
-                label="Tue"
-                onChange={[Function]}
-                type="checkbox"
-              />
-               
-              Tue
-            </label>
-          </div>
-        </Checkbox>
-        <Checkbox
-          checked={true}
-          key="wednesday-checkbox"
-          label="Wed"
-          onChange={[Function]}
-        >
-          <div
-            className="checkbox"
-          >
-            <label
-              htmlFor="wed-input-2"
-            >
-              <input
-                checked={true}
-                id="wed-input-2"
-                label="Wed"
-                onChange={[Function]}
-                type="checkbox"
-              />
-               
-              Wed
-            </label>
-          </div>
-        </Checkbox>
-        <Checkbox
-          checked={true}
-          key="thursday-checkbox"
-          label="Thu"
-          onChange={[Function]}
-        >
-          <div
-            className="checkbox"
-          >
-            <label
-              htmlFor="thu-input-3"
-            >
-              <input
-                checked={true}
-                id="thu-input-3"
-                label="Thu"
-                onChange={[Function]}
-                type="checkbox"
-              />
-               
-              Thu
-            </label>
-          </div>
-        </Checkbox>
-        <Checkbox
-          checked={true}
-          key="friday-checkbox"
-          label="Fri"
-          onChange={[Function]}
-        >
-          <div
-            className="checkbox"
-          >
-            <label
-              htmlFor="fri-input-4"
-            >
-              <input
-                checked={true}
-                id="fri-input-4"
-                label="Fri"
-                onChange={[Function]}
-                type="checkbox"
-              />
-               
-              Fri
-            </label>
-          </div>
-        </Checkbox>
-        <Checkbox
-          checked={false}
-          key="saturday-checkbox"
-          label="Sat"
-          onChange={[Function]}
-        >
-          <div
-            className="checkbox"
-          >
-            <label
-              htmlFor="sat-input-5"
-            >
-              <input
-                checked={false}
-                id="sat-input-5"
-                label="Sat"
-                onChange={[Function]}
-                type="checkbox"
-              />
-               
-              Sat
-            </label>
-          </div>
-        </Checkbox>
-        <Checkbox
-          checked={false}
-          key="sunday-checkbox"
-          label="Sun"
-          onChange={[Function]}
-        >
-          <div
-            className="checkbox"
-          >
-            <label
-              htmlFor="sun-input-6"
-            >
-              <input
-                checked={false}
-                id="sun-input-6"
-                label="Sun"
-                onChange={[Function]}
-                type="checkbox"
-              />
-               
-              Sun
-            </label>
-          </div>
-        </Checkbox>
-      </div>
-    </div>
-  </Days>
-  <MinutesSeconds
-    id="timetableFrequency"
-    label="Frequency"
-    onChange={[Function]}
-    seconds={900}
-  >
-    <Group
-      className=""
-      id="timetableFrequency"
-      label="Frequency"
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          className="control-label"
-          htmlFor="timetableFrequency"
-        >
-          Frequency
-        </label>
-        <ForwardRef
-          htmlFor="00000000-0000-0000-0000-000000000000"
-          id="timetableFrequency"
-          isInvalid={false}
-          isValid={true}
-          onChange={[Function]}
-          type="text"
-          units="hh:mm:ss"
-          value="00:15:00"
-        >
-          <div
-            className="InputWithUnits"
-          >
-            <input
-              className="form-control"
-              htmlFor="00000000-0000-0000-0000-000000000000"
-              id="timetableFrequency"
-              isInvalid={false}
-              isValid={true}
-              onChange={[Function]}
-              type="text"
-              units="hh:mm:ss"
-              value="00:15:00"
-            />
-            <span
-              className="InputUnits"
-            >
-              hh:mm:ss
-            </span>
-          </div>
-        </ForwardRef>
-      </div>
-    </Group>
-  </MinutesSeconds>
-  <TimePicker
-    label="Start time"
-    onChange={[Function]}
-    pb={3}
-    value={28800}
-  >
-    <FormControl
-      isInvalid={false}
-      pb={3}
+    <Flex
+      direction="column"
     >
       <Box
-        pb={3}
-        role="group"
+        display="flex"
+        flexDirection="column"
       >
         <div
-          className="css-1v4j5c2"
-          role="group"
+          className="css-j7qwjs"
         >
-          <FormLabel
-            htmlFor="00000000-0000-0000-0000-000000000000"
+          <FormControl
+            key=".0"
+            mb={4}
           >
             <Box
-              as="label"
-              display="inline-block"
-              fontSize="md"
-              fontWeight="medium"
-              htmlFor="00000000-0000-0000-0000-000000000000"
-              opacity="1"
-              pb="4px"
-              pr="12px"
-              textAlign="left"
-              verticalAlign="middle"
-            >
-              <label
-                className="css-176s5fq"
-                htmlFor="00000000-0000-0000-0000-000000000000"
-              >
-                Start time
-              </label>
-            </Box>
-          </FormLabel>
-          <InputGroup>
-            <Box
-              display="flex"
-              position="relative"
+              mb={4}
+              role="group"
             >
               <div
-                className="css-kjafn5"
+                className="css-acwcvw"
+                role="group"
               >
-                <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
-                  htmlFor="00000000-0000-0000-0000-000000000000"
-                  id="00000000-0000-0000-0000-000000000000"
-                  isFullWidth={true}
-                  isInvalid={false}
-                  isValid={true}
-                  key=".0"
-                  onChange={[Function]}
-                  pl={null}
-                  pr={null}
-                  size="md"
-                  type="text"
-                  value="08:00"
-                  variant="outline"
-                >
-                  <PseudoBox
-                    _disabled={
-                      Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
-                      }
-                    }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    aria-invalid={false}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
-                    display="flex"
+                <FormLabel>
+                  <Box
+                    as="label"
+                    display="inline-block"
                     fontSize="md"
-                    height={10}
-                    htmlFor="00000000-0000-0000-0000-000000000000"
-                    id="00000000-0000-0000-0000-000000000000"
-                    isValid={true}
-                    onChange={[Function]}
-                    outline="none"
-                    pl={null}
-                    position="relative"
-                    pr={null}
-                    px={4}
-                    rounded="md"
-                    transition="all 0.2s"
-                    type="text"
-                    value="08:00"
-                    width="100%"
+                    fontWeight="medium"
+                    opacity="1"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
                   >
-                    <input
-                      aria-invalid={false}
-                      className="css-1ga4kqw"
-                      htmlFor="00000000-0000-0000-0000-000000000000"
-                      id="00000000-0000-0000-0000-000000000000"
-                      onChange={[Function]}
-                      type="text"
-                      value="08:00"
-                    />
-                  </PseudoBox>
-                </Input>
-                <InputRightElement
-                  color="gray.400"
-                  key=".1"
-                  mr={5}
-                  size="md"
-                  userSelect="none"
-                >
-                  <InputElement
-                    color="gray.400"
-                    mr={5}
-                    placement="right"
-                    size="md"
-                    userSelect="none"
-                  >
-                    <Box
-                      alignItems="center"
-                      color="gray.400"
-                      display="flex"
-                      fontSize="md"
-                      height={10}
-                      justifyContent="center"
-                      mr={5}
-                      position="absolute"
-                      right="0"
-                      top="0"
-                      userSelect="none"
-                      width={10}
-                      zIndex={2}
+                    <label
+                      className="css-176s5fq"
                     >
-                      <div
-                        className="css-18bw7fv"
-                      >
-                        HH:mm
-                      </div>
-                    </Box>
-                  </InputElement>
-                </InputRightElement>
-              </div>
-            </Box>
-          </InputGroup>
-        </div>
-      </Box>
-    </FormControl>
-  </TimePicker>
-  <TimePicker
-    label="End time"
-    onChange={[Function]}
-    value={57600}
-  >
-    <FormControl
-      isInvalid={false}
-    >
-      <Box
-        role="group"
-      >
-        <div
-          className="css-0"
-          role="group"
-        >
-          <FormLabel
-            htmlFor="00000000-0000-0000-0000-000000000000"
-          >
-            <Box
-              as="label"
-              display="inline-block"
-              fontSize="md"
-              fontWeight="medium"
-              htmlFor="00000000-0000-0000-0000-000000000000"
-              opacity="1"
-              pb="4px"
-              pr="12px"
-              textAlign="left"
-              verticalAlign="middle"
-            >
-              <label
-                className="css-176s5fq"
-                htmlFor="00000000-0000-0000-0000-000000000000"
-              >
-                End time
-              </label>
-            </Box>
-          </FormLabel>
-          <InputGroup>
-            <Box
-              display="flex"
-              position="relative"
-            >
-              <div
-                className="css-kjafn5"
-              >
-                <Input
-                  as="input"
-                  errorBorderColor="red.500"
-                  focusBorderColor="blue.500"
-                  htmlFor="00000000-0000-0000-0000-000000000000"
-                  id="00000000-0000-0000-0000-000000000000"
-                  isFullWidth={true}
-                  isInvalid={false}
-                  isValid={true}
-                  key=".0"
-                  onChange={[Function]}
-                  pl={null}
-                  pr={null}
-                  size="md"
-                  type="text"
-                  value="16:00"
-                  variant="outline"
-                >
-                  <PseudoBox
-                    _disabled={
-                      Object {
-                        "cursor": "not-allowed",
-                        "opacity": "0.4",
-                      }
-                    }
-                    _focus={
-                      Object {
-                        "borderColor": "#3182ce",
-                        "boxShadow": "0 0 0 1px #3182ce",
-                        "zIndex": 1,
-                      }
-                    }
-                    _hover={
-                      Object {
-                        "borderColor": "gray.300",
-                      }
-                    }
-                    _invalid={
-                      Object {
-                        "borderColor": "#e53e3e",
-                        "boxShadow": "0 0 0 1px #e53e3e",
-                      }
-                    }
-                    _readOnly={
-                      Object {
-                        "bg": "transparent",
-                        "boxShadow": "none !important",
-                        "userSelect": "all",
-                      }
-                    }
-                    alignItems="center"
-                    appearance="none"
-                    aria-invalid={false}
-                    as="input"
-                    bg="white"
-                    border="1px"
-                    borderColor="inherit"
-                    display="flex"
-                    fontSize="md"
-                    height={10}
-                    htmlFor="00000000-0000-0000-0000-000000000000"
-                    id="00000000-0000-0000-0000-000000000000"
-                    isValid={true}
-                    onChange={[Function]}
-                    outline="none"
-                    pl={null}
-                    position="relative"
-                    pr={null}
-                    px={4}
-                    rounded="md"
-                    transition="all 0.2s"
-                    type="text"
-                    value="16:00"
-                    width="100%"
-                  >
-                    <input
-                      aria-invalid={false}
-                      className="css-1ga4kqw"
-                      htmlFor="00000000-0000-0000-0000-000000000000"
-                      id="00000000-0000-0000-0000-000000000000"
-                      onChange={[Function]}
-                      type="text"
-                      value="16:00"
-                    />
-                  </PseudoBox>
-                </Input>
-                <InputRightElement
-                  color="gray.400"
-                  key=".1"
-                  mr={5}
-                  size="md"
-                  userSelect="none"
-                >
-                  <InputElement
-                    color="gray.400"
-                    mr={5}
-                    placement="right"
-                    size="md"
-                    userSelect="none"
-                  >
-                    <Box
-                      alignItems="center"
-                      color="gray.400"
-                      display="flex"
-                      fontSize="md"
-                      height={10}
-                      justifyContent="center"
-                      mr={5}
-                      position="absolute"
-                      right="0"
-                      top="0"
-                      userSelect="none"
-                      width={10}
-                      zIndex={2}
-                    >
-                      <div
-                        className="css-18bw7fv"
-                      >
-                        HH:mm
-                      </div>
-                    </Box>
-                  </InputElement>
-                </InputRightElement>
-              </div>
-            </Box>
-          </InputGroup>
-        </div>
-      </Box>
-    </FormControl>
-  </TimePicker>
-  <Checkbox
-    checked={false}
-    disabled={false}
-    label="Times are exact"
-    onChange={[Function]}
-  >
-    <div
-      className="checkbox"
-    >
-      <label
-        htmlFor="times-are-exact-input-7"
-      >
-        <input
-          checked={false}
-          disabled={false}
-          id="times-are-exact-input-7"
-          label="Times are exact"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         
-        Times are exact
-      </label>
-    </div>
-  </Checkbox>
-  <Phase
-    availableTimetables={Array []}
-    disabled={false}
-    modificationStops={Array []}
-    phaseAtStop=""
-    phaseFromStop=""
-    phaseFromTimetable=""
-    phaseSeconds={300}
-    timetableHeadway={900}
-    update={[MockFunction]}
-  >
-    <H5>
-      <Heading
-        as="h5"
-        fontSize="14px"
-        fontWeight="500"
-        my="10px"
-      >
-        <Box
-          as="h5"
-          fontFamily="heading"
-          fontSize="14px"
-          fontWeight="500"
-          lineHeight="shorter"
-          my="10px"
-        >
-          <h5
-            className="css-1rbv6ep"
-          >
-            <span>
-              Phasing 
-            </span>
-            <a
-              href="http://docs.analysis.conveyal.com/en/latest/edit-scenario/phasing.html"
-              rel="noopener noreferrer"
-              target="_blank"
-              title="Learn more about phasing"
-            >
-              <Icon
-                icon={
-                  Object {
-                    "icon": Array [],
-                    "iconName": "info-circle",
-                    "prefix": "fas",
-                  }
-                }
-              >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={true}
-                  flip={null}
-                  icon={
+                      Days active
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Days
+                  setDay={[Function]}
+                  timetable={
                     Object {
-                      "icon": Array [],
-                      "iconName": "info-circle",
-                      "prefix": "fas",
+                      "_id": "timetable-id",
+                      "dwellTime": 10,
+                      "dwellTimes": Array [
+                        12,
+                      ],
+                      "endTime": 57600,
+                      "exactTimes": false,
+                      "friday": true,
+                      "headwaySecs": 900,
+                      "modificationId": "1234",
+                      "modificationName": "Test Modification",
+                      "monday": true,
+                      "name": "Test timetable",
+                      "patternTrips": Array [
+                        "abcd",
+                      ],
+                      "phaseAtStop": "",
+                      "phaseFromStop": "",
+                      "phaseFromTimetable": "",
+                      "phaseSeconds": 300,
+                      "saturday": false,
+                      "segmentSpeeds": Array [],
+                      "sourceTrip": "abcd",
+                      "startTime": 28800,
+                      "sunday": false,
+                      "thursday": true,
+                      "tuesday": true,
+                      "wednesday": true,
                     }
                   }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="svg-inline--fa fa-info-circle fa-w-NaN fa-fw "
-                    data-icon="info-circle"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    style={Object {}}
-                    viewBox="0 0 undefined undefined"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <ForwardRef
+                    isInline={true}
+                    spacing={3}
+                    wrap="wrap"
                   >
-                    <path
-                      fill="currentColor"
-                      style={Object {}}
-                    />
-                  </svg>
-                </FontAwesomeIcon>
-              </Icon>
-            </a>
-          </h5>
-        </Box>
-      </Heading>
-    </H5>
-    <Group
-      id="phaseAtStop"
-      label="Phase at stop"
-    >
-      <div
-        className="form-group"
-      >
-        <label
-          className="control-label"
-          htmlFor="phaseAtStop"
-        >
-          Phase at stop
-        </label>
-        <ForwardRef
-          getOptionLabel={[Function]}
-          getOptionValue={[Function]}
-          inputId="phaseAtStop"
-          isClearable={true}
-          isDisabled={false}
-          name="Phase at stop"
-          onChange={[Function]}
-          options={Array []}
-          placeholder="Phase at stop"
-        >
-          <ReactSelect
-            getOptionLabel={[Function]}
-            getOptionValue={[Function]}
-            inputId="phaseAtStop"
-            isClearable={true}
-            isDisabled={false}
-            name="Phase at stop"
+                    <Flex
+                      direction="row"
+                      wrap="wrap"
+                    >
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        flexWrap="wrap"
+                      >
+                        <div
+                          className="css-p58oka"
+                        >
+                          <Checkbox
+                            fontWeight="normal"
+                            isChecked={true}
+                            key=".$monday-checkbox"
+                            label="Mon"
+                            mr={3}
+                            onChange={[Function]}
+                          >
+                            <Box
+                              alignItems="center"
+                              as="label"
+                              cursor="pointer"
+                              display="inline-flex"
+                              fontWeight="normal"
+                              label="Mon"
+                              mr={3}
+                              verticalAlign="top"
+                            >
+                              <label
+                                className="css-16ndzxx"
+                                label="Mon"
+                              >
+                                <VisuallyHidden
+                                  aria-checked={true}
+                                  as="input"
+                                  checked={true}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    aria-checked={true}
+                                    checked={true}
+                                    className="css-1gy22ay"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </VisuallyHidden>
+                                <ControlBox
+                                  _checked={
+                                    Object {
+                                      "bg": "blue.500",
+                                      "borderColor": "blue.500",
+                                      "color": undefined,
+                                    }
+                                  }
+                                  _checkedAndDisabled={
+                                    Object {
+                                      "bg": "gray.200",
+                                      "borderColor": "gray.200",
+                                      "color": "gray.500",
+                                    }
+                                  }
+                                  _disabled={
+                                    Object {
+                                      "bg": "gray.100",
+                                      "borderColor": "gray.100",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "boxShadow": "outline",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "red.500",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  aria-hidden="true"
+                                  border="2px"
+                                  borderColor="inherit"
+                                  color="white"
+                                  display="inline-flex"
+                                  flexShrink="0"
+                                  justifyContent="center"
+                                  opacity={1}
+                                  rounded="sm"
+                                  size={4}
+                                  transition="background-color 120ms, box-shadow 250ms"
+                                  userSelect="none"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="css-nlndso"
+                                  >
+                                    <Icon
+                                      name="check"
+                                      size="10px"
+                                      transition="transform 240ms, opacity 240ms"
+                                    >
+                                      <Styled(div)
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable={false}
+                                        role="presentation"
+                                        size="10px"
+                                        transition="transform 240ms, opacity 240ms"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 14 14"
+                                      >
+                                        <svg
+                                          className="css-1vhqk79"
+                                          focusable={false}
+                                          role="presentation"
+                                          viewBox="0 0 14 14"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <polygon
+                                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </div>
+                                </ControlBox>
+                                <Box
+                                  fontSize="md"
+                                  ml={2}
+                                  opacity={1}
+                                  userSelect="none"
+                                >
+                                  <div
+                                    className="css-6qsuox"
+                                  >
+                                    Mon
+                                  </div>
+                                </Box>
+                              </label>
+                            </Box>
+                          </Checkbox>
+                          <Checkbox
+                            fontWeight="normal"
+                            isChecked={true}
+                            key=".$tuesday-checkbox"
+                            label="Tue"
+                            mr={3}
+                            onChange={[Function]}
+                          >
+                            <Box
+                              alignItems="center"
+                              as="label"
+                              cursor="pointer"
+                              display="inline-flex"
+                              fontWeight="normal"
+                              label="Tue"
+                              mr={3}
+                              verticalAlign="top"
+                            >
+                              <label
+                                className="css-16ndzxx"
+                                label="Tue"
+                              >
+                                <VisuallyHidden
+                                  aria-checked={true}
+                                  as="input"
+                                  checked={true}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    aria-checked={true}
+                                    checked={true}
+                                    className="css-1gy22ay"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </VisuallyHidden>
+                                <ControlBox
+                                  _checked={
+                                    Object {
+                                      "bg": "blue.500",
+                                      "borderColor": "blue.500",
+                                      "color": undefined,
+                                    }
+                                  }
+                                  _checkedAndDisabled={
+                                    Object {
+                                      "bg": "gray.200",
+                                      "borderColor": "gray.200",
+                                      "color": "gray.500",
+                                    }
+                                  }
+                                  _disabled={
+                                    Object {
+                                      "bg": "gray.100",
+                                      "borderColor": "gray.100",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "boxShadow": "outline",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "red.500",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  aria-hidden="true"
+                                  border="2px"
+                                  borderColor="inherit"
+                                  color="white"
+                                  display="inline-flex"
+                                  flexShrink="0"
+                                  justifyContent="center"
+                                  opacity={1}
+                                  rounded="sm"
+                                  size={4}
+                                  transition="background-color 120ms, box-shadow 250ms"
+                                  userSelect="none"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="css-nlndso"
+                                  >
+                                    <Icon
+                                      name="check"
+                                      size="10px"
+                                      transition="transform 240ms, opacity 240ms"
+                                    >
+                                      <Styled(div)
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable={false}
+                                        role="presentation"
+                                        size="10px"
+                                        transition="transform 240ms, opacity 240ms"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 14 14"
+                                      >
+                                        <svg
+                                          className="css-1vhqk79"
+                                          focusable={false}
+                                          role="presentation"
+                                          viewBox="0 0 14 14"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <polygon
+                                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </div>
+                                </ControlBox>
+                                <Box
+                                  fontSize="md"
+                                  ml={2}
+                                  opacity={1}
+                                  userSelect="none"
+                                >
+                                  <div
+                                    className="css-6qsuox"
+                                  >
+                                    Tue
+                                  </div>
+                                </Box>
+                              </label>
+                            </Box>
+                          </Checkbox>
+                          <Checkbox
+                            fontWeight="normal"
+                            isChecked={true}
+                            key=".$wednesday-checkbox"
+                            label="Wed"
+                            mr={3}
+                            onChange={[Function]}
+                          >
+                            <Box
+                              alignItems="center"
+                              as="label"
+                              cursor="pointer"
+                              display="inline-flex"
+                              fontWeight="normal"
+                              label="Wed"
+                              mr={3}
+                              verticalAlign="top"
+                            >
+                              <label
+                                className="css-16ndzxx"
+                                label="Wed"
+                              >
+                                <VisuallyHidden
+                                  aria-checked={true}
+                                  as="input"
+                                  checked={true}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    aria-checked={true}
+                                    checked={true}
+                                    className="css-1gy22ay"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </VisuallyHidden>
+                                <ControlBox
+                                  _checked={
+                                    Object {
+                                      "bg": "blue.500",
+                                      "borderColor": "blue.500",
+                                      "color": undefined,
+                                    }
+                                  }
+                                  _checkedAndDisabled={
+                                    Object {
+                                      "bg": "gray.200",
+                                      "borderColor": "gray.200",
+                                      "color": "gray.500",
+                                    }
+                                  }
+                                  _disabled={
+                                    Object {
+                                      "bg": "gray.100",
+                                      "borderColor": "gray.100",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "boxShadow": "outline",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "red.500",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  aria-hidden="true"
+                                  border="2px"
+                                  borderColor="inherit"
+                                  color="white"
+                                  display="inline-flex"
+                                  flexShrink="0"
+                                  justifyContent="center"
+                                  opacity={1}
+                                  rounded="sm"
+                                  size={4}
+                                  transition="background-color 120ms, box-shadow 250ms"
+                                  userSelect="none"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="css-nlndso"
+                                  >
+                                    <Icon
+                                      name="check"
+                                      size="10px"
+                                      transition="transform 240ms, opacity 240ms"
+                                    >
+                                      <Styled(div)
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable={false}
+                                        role="presentation"
+                                        size="10px"
+                                        transition="transform 240ms, opacity 240ms"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 14 14"
+                                      >
+                                        <svg
+                                          className="css-1vhqk79"
+                                          focusable={false}
+                                          role="presentation"
+                                          viewBox="0 0 14 14"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <polygon
+                                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </div>
+                                </ControlBox>
+                                <Box
+                                  fontSize="md"
+                                  ml={2}
+                                  opacity={1}
+                                  userSelect="none"
+                                >
+                                  <div
+                                    className="css-6qsuox"
+                                  >
+                                    Wed
+                                  </div>
+                                </Box>
+                              </label>
+                            </Box>
+                          </Checkbox>
+                          <Checkbox
+                            fontWeight="normal"
+                            isChecked={true}
+                            key=".$thursday-checkbox"
+                            label="Thu"
+                            mr={3}
+                            onChange={[Function]}
+                          >
+                            <Box
+                              alignItems="center"
+                              as="label"
+                              cursor="pointer"
+                              display="inline-flex"
+                              fontWeight="normal"
+                              label="Thu"
+                              mr={3}
+                              verticalAlign="top"
+                            >
+                              <label
+                                className="css-16ndzxx"
+                                label="Thu"
+                              >
+                                <VisuallyHidden
+                                  aria-checked={true}
+                                  as="input"
+                                  checked={true}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    aria-checked={true}
+                                    checked={true}
+                                    className="css-1gy22ay"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </VisuallyHidden>
+                                <ControlBox
+                                  _checked={
+                                    Object {
+                                      "bg": "blue.500",
+                                      "borderColor": "blue.500",
+                                      "color": undefined,
+                                    }
+                                  }
+                                  _checkedAndDisabled={
+                                    Object {
+                                      "bg": "gray.200",
+                                      "borderColor": "gray.200",
+                                      "color": "gray.500",
+                                    }
+                                  }
+                                  _disabled={
+                                    Object {
+                                      "bg": "gray.100",
+                                      "borderColor": "gray.100",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "boxShadow": "outline",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "red.500",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  aria-hidden="true"
+                                  border="2px"
+                                  borderColor="inherit"
+                                  color="white"
+                                  display="inline-flex"
+                                  flexShrink="0"
+                                  justifyContent="center"
+                                  opacity={1}
+                                  rounded="sm"
+                                  size={4}
+                                  transition="background-color 120ms, box-shadow 250ms"
+                                  userSelect="none"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="css-nlndso"
+                                  >
+                                    <Icon
+                                      name="check"
+                                      size="10px"
+                                      transition="transform 240ms, opacity 240ms"
+                                    >
+                                      <Styled(div)
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable={false}
+                                        role="presentation"
+                                        size="10px"
+                                        transition="transform 240ms, opacity 240ms"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 14 14"
+                                      >
+                                        <svg
+                                          className="css-1vhqk79"
+                                          focusable={false}
+                                          role="presentation"
+                                          viewBox="0 0 14 14"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <polygon
+                                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </div>
+                                </ControlBox>
+                                <Box
+                                  fontSize="md"
+                                  ml={2}
+                                  opacity={1}
+                                  userSelect="none"
+                                >
+                                  <div
+                                    className="css-6qsuox"
+                                  >
+                                    Thu
+                                  </div>
+                                </Box>
+                              </label>
+                            </Box>
+                          </Checkbox>
+                          <Checkbox
+                            fontWeight="normal"
+                            isChecked={true}
+                            key=".$friday-checkbox"
+                            label="Fri"
+                            mr={3}
+                            onChange={[Function]}
+                          >
+                            <Box
+                              alignItems="center"
+                              as="label"
+                              cursor="pointer"
+                              display="inline-flex"
+                              fontWeight="normal"
+                              label="Fri"
+                              mr={3}
+                              verticalAlign="top"
+                            >
+                              <label
+                                className="css-16ndzxx"
+                                label="Fri"
+                              >
+                                <VisuallyHidden
+                                  aria-checked={true}
+                                  as="input"
+                                  checked={true}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    aria-checked={true}
+                                    checked={true}
+                                    className="css-1gy22ay"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </VisuallyHidden>
+                                <ControlBox
+                                  _checked={
+                                    Object {
+                                      "bg": "blue.500",
+                                      "borderColor": "blue.500",
+                                      "color": undefined,
+                                    }
+                                  }
+                                  _checkedAndDisabled={
+                                    Object {
+                                      "bg": "gray.200",
+                                      "borderColor": "gray.200",
+                                      "color": "gray.500",
+                                    }
+                                  }
+                                  _disabled={
+                                    Object {
+                                      "bg": "gray.100",
+                                      "borderColor": "gray.100",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "boxShadow": "outline",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "red.500",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  aria-hidden="true"
+                                  border="2px"
+                                  borderColor="inherit"
+                                  color="white"
+                                  display="inline-flex"
+                                  flexShrink="0"
+                                  justifyContent="center"
+                                  opacity={1}
+                                  rounded="sm"
+                                  size={4}
+                                  transition="background-color 120ms, box-shadow 250ms"
+                                  userSelect="none"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="css-nlndso"
+                                  >
+                                    <Icon
+                                      name="check"
+                                      size="10px"
+                                      transition="transform 240ms, opacity 240ms"
+                                    >
+                                      <Styled(div)
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable={false}
+                                        role="presentation"
+                                        size="10px"
+                                        transition="transform 240ms, opacity 240ms"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 14 14"
+                                      >
+                                        <svg
+                                          className="css-1vhqk79"
+                                          focusable={false}
+                                          role="presentation"
+                                          viewBox="0 0 14 14"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <polygon
+                                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </div>
+                                </ControlBox>
+                                <Box
+                                  fontSize="md"
+                                  ml={2}
+                                  opacity={1}
+                                  userSelect="none"
+                                >
+                                  <div
+                                    className="css-6qsuox"
+                                  >
+                                    Fri
+                                  </div>
+                                </Box>
+                              </label>
+                            </Box>
+                          </Checkbox>
+                          <Checkbox
+                            fontWeight="normal"
+                            isChecked={false}
+                            key=".$saturday-checkbox"
+                            label="Sat"
+                            mr={3}
+                            onChange={[Function]}
+                          >
+                            <Box
+                              alignItems="center"
+                              as="label"
+                              cursor="pointer"
+                              display="inline-flex"
+                              fontWeight="normal"
+                              label="Sat"
+                              mr={3}
+                              verticalAlign="top"
+                            >
+                              <label
+                                className="css-16ndzxx"
+                                label="Sat"
+                              >
+                                <VisuallyHidden
+                                  aria-checked={false}
+                                  as="input"
+                                  checked={false}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    aria-checked={false}
+                                    checked={false}
+                                    className="css-1gy22ay"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </VisuallyHidden>
+                                <ControlBox
+                                  _checked={
+                                    Object {
+                                      "bg": "blue.500",
+                                      "borderColor": "blue.500",
+                                      "color": undefined,
+                                    }
+                                  }
+                                  _checkedAndDisabled={
+                                    Object {
+                                      "bg": "gray.200",
+                                      "borderColor": "gray.200",
+                                      "color": "gray.500",
+                                    }
+                                  }
+                                  _disabled={
+                                    Object {
+                                      "bg": "gray.100",
+                                      "borderColor": "gray.100",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "boxShadow": "outline",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "red.500",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  aria-hidden="true"
+                                  border="2px"
+                                  borderColor="inherit"
+                                  color="white"
+                                  display="inline-flex"
+                                  flexShrink="0"
+                                  justifyContent="center"
+                                  opacity={1}
+                                  rounded="sm"
+                                  size={4}
+                                  transition="background-color 120ms, box-shadow 250ms"
+                                  userSelect="none"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="css-nlndso"
+                                  >
+                                    <Icon
+                                      name="check"
+                                      size="10px"
+                                      transition="transform 240ms, opacity 240ms"
+                                    >
+                                      <Styled(div)
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable={false}
+                                        role="presentation"
+                                        size="10px"
+                                        transition="transform 240ms, opacity 240ms"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 14 14"
+                                      >
+                                        <svg
+                                          className="css-1vhqk79"
+                                          focusable={false}
+                                          role="presentation"
+                                          viewBox="0 0 14 14"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <polygon
+                                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </div>
+                                </ControlBox>
+                                <Box
+                                  fontSize="md"
+                                  ml={2}
+                                  opacity={1}
+                                  userSelect="none"
+                                >
+                                  <div
+                                    className="css-6qsuox"
+                                  >
+                                    Sat
+                                  </div>
+                                </Box>
+                              </label>
+                            </Box>
+                          </Checkbox>
+                          <Checkbox
+                            fontWeight="normal"
+                            isChecked={false}
+                            key=".$sunday-checkbox"
+                            label="Sun"
+                            mr={null}
+                            onChange={[Function]}
+                          >
+                            <Box
+                              alignItems="center"
+                              as="label"
+                              cursor="pointer"
+                              display="inline-flex"
+                              fontWeight="normal"
+                              label="Sun"
+                              mr={null}
+                              verticalAlign="top"
+                            >
+                              <label
+                                className="css-19d1o6"
+                                label="Sun"
+                              >
+                                <VisuallyHidden
+                                  aria-checked={false}
+                                  as="input"
+                                  checked={false}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    aria-checked={false}
+                                    checked={false}
+                                    className="css-1gy22ay"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </VisuallyHidden>
+                                <ControlBox
+                                  _checked={
+                                    Object {
+                                      "bg": "blue.500",
+                                      "borderColor": "blue.500",
+                                      "color": undefined,
+                                    }
+                                  }
+                                  _checkedAndDisabled={
+                                    Object {
+                                      "bg": "gray.200",
+                                      "borderColor": "gray.200",
+                                      "color": "gray.500",
+                                    }
+                                  }
+                                  _disabled={
+                                    Object {
+                                      "bg": "gray.100",
+                                      "borderColor": "gray.100",
+                                    }
+                                  }
+                                  _focus={
+                                    Object {
+                                      "boxShadow": "outline",
+                                    }
+                                  }
+                                  _invalid={
+                                    Object {
+                                      "borderColor": "red.500",
+                                    }
+                                  }
+                                  alignItems="center"
+                                  aria-hidden="true"
+                                  border="2px"
+                                  borderColor="inherit"
+                                  color="white"
+                                  display="inline-flex"
+                                  flexShrink="0"
+                                  justifyContent="center"
+                                  opacity={1}
+                                  rounded="sm"
+                                  size={4}
+                                  transition="background-color 120ms, box-shadow 250ms"
+                                  userSelect="none"
+                                >
+                                  <div
+                                    aria-hidden="true"
+                                    className="css-nlndso"
+                                  >
+                                    <Icon
+                                      name="check"
+                                      size="10px"
+                                      transition="transform 240ms, opacity 240ms"
+                                    >
+                                      <Styled(div)
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable={false}
+                                        role="presentation"
+                                        size="10px"
+                                        transition="transform 240ms, opacity 240ms"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 14 14"
+                                      >
+                                        <svg
+                                          className="css-1vhqk79"
+                                          focusable={false}
+                                          role="presentation"
+                                          viewBox="0 0 14 14"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <polygon
+                                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </div>
+                                </ControlBox>
+                                <Box
+                                  fontSize="md"
+                                  ml={2}
+                                  opacity={1}
+                                  userSelect="none"
+                                >
+                                  <div
+                                    className="css-6qsuox"
+                                  >
+                                    Sun
+                                  </div>
+                                </Box>
+                              </label>
+                            </Box>
+                          </Checkbox>
+                        </div>
+                      </Box>
+                    </Flex>
+                  </ForwardRef>
+                </Days>
+              </div>
+            </Box>
+          </FormControl>
+          <MinutesSeconds
+            key=".1"
+            label="Frequency"
+            mb={4}
             onChange={[Function]}
-            options={Array []}
-            placeholder="Phase at stop"
-            styles={
-              Object {
-                "control": [Function],
-                "option": [Function],
-              }
-            }
+            seconds={900}
           >
-            <div
-              className="ReactSelectMock"
-            />
-          </ReactSelect>
-        </ForwardRef>
-      </div>
-    </Group>
-  </Phase>
+            <FormControl
+              isDisabled={false}
+              isInvalid={false}
+              mb={4}
+            >
+              <Box
+                mb={4}
+                role="group"
+              >
+                <div
+                  className="css-acwcvw"
+                  role="group"
+                >
+                  <FormLabel
+                    htmlFor="00000000-0000-0000-0000-000000000000"
+                  >
+                    <Box
+                      as="label"
+                      display="inline-block"
+                      fontSize="md"
+                      fontWeight="medium"
+                      htmlFor="00000000-0000-0000-0000-000000000000"
+                      opacity="1"
+                      pb="4px"
+                      pr="12px"
+                      textAlign="left"
+                      verticalAlign="middle"
+                    >
+                      <label
+                        className="css-176s5fq"
+                        htmlFor="00000000-0000-0000-0000-000000000000"
+                      >
+                        Frequency
+                      </label>
+                    </Box>
+                  </FormLabel>
+                  <InputGroup>
+                    <Box
+                      display="flex"
+                      position="relative"
+                    >
+                      <div
+                        className="css-kjafn5"
+                      >
+                        <Input
+                          as="input"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
+                          id="00000000-0000-0000-0000-000000000000"
+                          isFullWidth={true}
+                          isInvalid={false}
+                          isValid={true}
+                          key=".0"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          pl={null}
+                          placeholder=""
+                          pr={null}
+                          size="md"
+                          type="text"
+                          value="00:15:00"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-disabled={false}
+                            aria-invalid={false}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            disabled={false}
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            htmlFor="00000000-0000-0000-0000-000000000000"
+                            id="00000000-0000-0000-0000-000000000000"
+                            isValid={true}
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onFocus={[Function]}
+                            outline="none"
+                            pl={null}
+                            placeholder=""
+                            position="relative"
+                            pr={null}
+                            px={4}
+                            rounded="md"
+                            transition="all 0.2s"
+                            type="text"
+                            value="00:15:00"
+                            width="100%"
+                          >
+                            <input
+                              aria-disabled={false}
+                              aria-invalid={false}
+                              className="css-1ga4kqw"
+                              disabled={false}
+                              htmlFor="00000000-0000-0000-0000-000000000000"
+                              id="00000000-0000-0000-0000-000000000000"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              placeholder=""
+                              type="text"
+                              value="00:15:00"
+                            />
+                          </PseudoBox>
+                        </Input>
+                        <InputRightElement
+                          color="gray.400"
+                          key=".1"
+                          mr={4}
+                          size="md"
+                          userSelect="none"
+                          width="unset"
+                        >
+                          <InputElement
+                            color="gray.400"
+                            mr={4}
+                            placement="right"
+                            size="md"
+                            userSelect="none"
+                            width="unset"
+                          >
+                            <Box
+                              alignItems="center"
+                              color="gray.400"
+                              display="flex"
+                              fontSize="md"
+                              height={10}
+                              justifyContent="center"
+                              mr={4}
+                              position="absolute"
+                              right="0"
+                              top="0"
+                              userSelect="none"
+                              width="unset"
+                              zIndex={2}
+                            >
+                              <div
+                                className="css-1he2y93"
+                              >
+                                HH:mm:ss
+                              </div>
+                            </Box>
+                          </InputElement>
+                        </InputRightElement>
+                      </div>
+                    </Box>
+                  </InputGroup>
+                </div>
+              </Box>
+            </FormControl>
+          </MinutesSeconds>
+          <TimePicker
+            key=".2"
+            label="Start time"
+            mb={4}
+            onChange={[Function]}
+            value={28800}
+          >
+            <FormControl
+              isInvalid={false}
+              mb={4}
+            >
+              <Box
+                mb={4}
+                role="group"
+              >
+                <div
+                  className="css-acwcvw"
+                  role="group"
+                >
+                  <FormLabel
+                    htmlFor="00000000-0000-0000-0000-000000000000"
+                  >
+                    <Box
+                      as="label"
+                      display="inline-block"
+                      fontSize="md"
+                      fontWeight="medium"
+                      htmlFor="00000000-0000-0000-0000-000000000000"
+                      opacity="1"
+                      pb="4px"
+                      pr="12px"
+                      textAlign="left"
+                      verticalAlign="middle"
+                    >
+                      <label
+                        className="css-176s5fq"
+                        htmlFor="00000000-0000-0000-0000-000000000000"
+                      >
+                        Start time
+                      </label>
+                    </Box>
+                  </FormLabel>
+                  <InputGroup>
+                    <Box
+                      display="flex"
+                      position="relative"
+                    >
+                      <div
+                        className="css-kjafn5"
+                      >
+                        <Input
+                          as="input"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
+                          id="00000000-0000-0000-0000-000000000000"
+                          isFullWidth={true}
+                          isInvalid={false}
+                          isValid={true}
+                          key=".0"
+                          onChange={[Function]}
+                          pl={null}
+                          pr={null}
+                          size="md"
+                          type="text"
+                          value="08:00"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-invalid={false}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            htmlFor="00000000-0000-0000-0000-000000000000"
+                            id="00000000-0000-0000-0000-000000000000"
+                            isValid={true}
+                            onChange={[Function]}
+                            outline="none"
+                            pl={null}
+                            position="relative"
+                            pr={null}
+                            px={4}
+                            rounded="md"
+                            transition="all 0.2s"
+                            type="text"
+                            value="08:00"
+                            width="100%"
+                          >
+                            <input
+                              aria-invalid={false}
+                              className="css-1ga4kqw"
+                              htmlFor="00000000-0000-0000-0000-000000000000"
+                              id="00000000-0000-0000-0000-000000000000"
+                              onChange={[Function]}
+                              type="text"
+                              value="08:00"
+                            />
+                          </PseudoBox>
+                        </Input>
+                        <InputRightElement
+                          color="gray.400"
+                          key=".1"
+                          mr={5}
+                          size="md"
+                          userSelect="none"
+                        >
+                          <InputElement
+                            color="gray.400"
+                            mr={5}
+                            placement="right"
+                            size="md"
+                            userSelect="none"
+                          >
+                            <Box
+                              alignItems="center"
+                              color="gray.400"
+                              display="flex"
+                              fontSize="md"
+                              height={10}
+                              justifyContent="center"
+                              mr={5}
+                              position="absolute"
+                              right="0"
+                              top="0"
+                              userSelect="none"
+                              width={10}
+                              zIndex={2}
+                            >
+                              <div
+                                className="css-18bw7fv"
+                              >
+                                HH:mm
+                              </div>
+                            </Box>
+                          </InputElement>
+                        </InputRightElement>
+                      </div>
+                    </Box>
+                  </InputGroup>
+                </div>
+              </Box>
+            </FormControl>
+          </TimePicker>
+          <TimePicker
+            key=".3"
+            label="End time"
+            mb={4}
+            onChange={[Function]}
+            value={57600}
+          >
+            <FormControl
+              isInvalid={false}
+              mb={4}
+            >
+              <Box
+                mb={4}
+                role="group"
+              >
+                <div
+                  className="css-acwcvw"
+                  role="group"
+                >
+                  <FormLabel
+                    htmlFor="00000000-0000-0000-0000-000000000000"
+                  >
+                    <Box
+                      as="label"
+                      display="inline-block"
+                      fontSize="md"
+                      fontWeight="medium"
+                      htmlFor="00000000-0000-0000-0000-000000000000"
+                      opacity="1"
+                      pb="4px"
+                      pr="12px"
+                      textAlign="left"
+                      verticalAlign="middle"
+                    >
+                      <label
+                        className="css-176s5fq"
+                        htmlFor="00000000-0000-0000-0000-000000000000"
+                      >
+                        End time
+                      </label>
+                    </Box>
+                  </FormLabel>
+                  <InputGroup>
+                    <Box
+                      display="flex"
+                      position="relative"
+                    >
+                      <div
+                        className="css-kjafn5"
+                      >
+                        <Input
+                          as="input"
+                          errorBorderColor="red.500"
+                          focusBorderColor="blue.500"
+                          htmlFor="00000000-0000-0000-0000-000000000000"
+                          id="00000000-0000-0000-0000-000000000000"
+                          isFullWidth={true}
+                          isInvalid={false}
+                          isValid={true}
+                          key=".0"
+                          onChange={[Function]}
+                          pl={null}
+                          pr={null}
+                          size="md"
+                          type="text"
+                          value="16:00"
+                          variant="outline"
+                        >
+                          <PseudoBox
+                            _disabled={
+                              Object {
+                                "cursor": "not-allowed",
+                                "opacity": "0.4",
+                              }
+                            }
+                            _focus={
+                              Object {
+                                "borderColor": "#3182ce",
+                                "boxShadow": "0 0 0 1px #3182ce",
+                                "zIndex": 1,
+                              }
+                            }
+                            _hover={
+                              Object {
+                                "borderColor": "gray.300",
+                              }
+                            }
+                            _invalid={
+                              Object {
+                                "borderColor": "#e53e3e",
+                                "boxShadow": "0 0 0 1px #e53e3e",
+                              }
+                            }
+                            _readOnly={
+                              Object {
+                                "bg": "transparent",
+                                "boxShadow": "none !important",
+                                "userSelect": "all",
+                              }
+                            }
+                            alignItems="center"
+                            appearance="none"
+                            aria-invalid={false}
+                            as="input"
+                            bg="white"
+                            border="1px"
+                            borderColor="inherit"
+                            display="flex"
+                            fontSize="md"
+                            height={10}
+                            htmlFor="00000000-0000-0000-0000-000000000000"
+                            id="00000000-0000-0000-0000-000000000000"
+                            isValid={true}
+                            onChange={[Function]}
+                            outline="none"
+                            pl={null}
+                            position="relative"
+                            pr={null}
+                            px={4}
+                            rounded="md"
+                            transition="all 0.2s"
+                            type="text"
+                            value="16:00"
+                            width="100%"
+                          >
+                            <input
+                              aria-invalid={false}
+                              className="css-1ga4kqw"
+                              htmlFor="00000000-0000-0000-0000-000000000000"
+                              id="00000000-0000-0000-0000-000000000000"
+                              onChange={[Function]}
+                              type="text"
+                              value="16:00"
+                            />
+                          </PseudoBox>
+                        </Input>
+                        <InputRightElement
+                          color="gray.400"
+                          key=".1"
+                          mr={5}
+                          size="md"
+                          userSelect="none"
+                        >
+                          <InputElement
+                            color="gray.400"
+                            mr={5}
+                            placement="right"
+                            size="md"
+                            userSelect="none"
+                          >
+                            <Box
+                              alignItems="center"
+                              color="gray.400"
+                              display="flex"
+                              fontSize="md"
+                              height={10}
+                              justifyContent="center"
+                              mr={5}
+                              position="absolute"
+                              right="0"
+                              top="0"
+                              userSelect="none"
+                              width={10}
+                              zIndex={2}
+                            >
+                              <div
+                                className="css-18bw7fv"
+                              >
+                                HH:mm
+                              </div>
+                            </Box>
+                          </InputElement>
+                        </InputRightElement>
+                      </div>
+                    </Box>
+                  </InputGroup>
+                </div>
+              </Box>
+            </FormControl>
+          </TimePicker>
+          <Checkbox
+            fontWeight="normal"
+            isChecked={false}
+            isDisabled={false}
+            key=".4"
+            mb={4}
+            onChange={[Function]}
+          >
+            <Box
+              alignItems="center"
+              as="label"
+              cursor="pointer"
+              display="inline-flex"
+              fontWeight="normal"
+              mb={4}
+              verticalAlign="top"
+            >
+              <label
+                className="css-got82x"
+              >
+                <VisuallyHidden
+                  aria-checked={false}
+                  as="input"
+                  checked={false}
+                  disabled={false}
+                  onChange={[Function]}
+                  type="checkbox"
+                >
+                  <input
+                    aria-checked={false}
+                    checked={false}
+                    className="css-1gy22ay"
+                    disabled={false}
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                </VisuallyHidden>
+                <ControlBox
+                  _checked={
+                    Object {
+                      "bg": "blue.500",
+                      "borderColor": "blue.500",
+                      "color": undefined,
+                    }
+                  }
+                  _checkedAndDisabled={
+                    Object {
+                      "bg": "gray.200",
+                      "borderColor": "gray.200",
+                      "color": "gray.500",
+                    }
+                  }
+                  _disabled={
+                    Object {
+                      "bg": "gray.100",
+                      "borderColor": "gray.100",
+                    }
+                  }
+                  _focus={
+                    Object {
+                      "boxShadow": "outline",
+                    }
+                  }
+                  _invalid={
+                    Object {
+                      "borderColor": "red.500",
+                    }
+                  }
+                  alignItems="center"
+                  aria-hidden="true"
+                  border="2px"
+                  borderColor="inherit"
+                  color="white"
+                  display="inline-flex"
+                  flexShrink="0"
+                  justifyContent="center"
+                  opacity={1}
+                  rounded="sm"
+                  size={4}
+                  transition="background-color 120ms, box-shadow 250ms"
+                  userSelect="none"
+                >
+                  <div
+                    aria-hidden="true"
+                    className="css-nlndso"
+                  >
+                    <Icon
+                      name="check"
+                      size="10px"
+                      transition="transform 240ms, opacity 240ms"
+                    >
+                      <Styled(div)
+                        as="svg"
+                        color="currentColor"
+                        display="inline-block"
+                        focusable={false}
+                        role="presentation"
+                        size="10px"
+                        transition="transform 240ms, opacity 240ms"
+                        verticalAlign="middle"
+                        viewBox="0 0 14 14"
+                      >
+                        <svg
+                          className="css-1vhqk79"
+                          focusable={false}
+                          role="presentation"
+                          viewBox="0 0 14 14"
+                        >
+                          <g
+                            fill="currentColor"
+                          >
+                            <polygon
+                              points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
+                            />
+                          </g>
+                        </svg>
+                      </Styled(div)>
+                    </Icon>
+                  </div>
+                </ControlBox>
+                <Box
+                  fontSize="md"
+                  ml={2}
+                  opacity={1}
+                  userSelect="none"
+                >
+                  <div
+                    className="css-6qsuox"
+                  >
+                    Times are exact
+                  </div>
+                </Box>
+              </label>
+            </Box>
+          </Checkbox>
+          <ForwardRef
+            key=".5"
+            mb={4}
+          >
+            <Box
+              as="hr"
+              border="0"
+              borderBottom="0.0625rem solid"
+              borderColor="inherit"
+              mb={4}
+              my={2}
+              opacity="0.6"
+              width="auto"
+            >
+              <hr
+                className="css-1r5h8ig"
+              />
+            </Box>
+          </ForwardRef>
+          <Phase
+            availableTimetables={Array []}
+            disabled={false}
+            key=".6"
+            mb={null}
+            modificationStops={Array []}
+            phaseAtStop=""
+            phaseFromStop=""
+            phaseFromTimetable=""
+            phaseSeconds={300}
+            timetableHeadway={900}
+            update={[MockFunction]}
+          >
+            <ForwardRef
+              mb={4}
+              spacing={4}
+            >
+              <Flex
+                direction="column"
+                mb={4}
+              >
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  mb={4}
+                >
+                  <div
+                    className="css-opcg3f"
+                  >
+                    <Heading
+                      key=".0"
+                      mb={4}
+                      size="sm"
+                    >
+                      <Box
+                        as="h2"
+                        fontFamily="heading"
+                        fontSize="md"
+                        fontWeight="bold"
+                        lineHeight="shorter"
+                        mb={4}
+                      >
+                        <h2
+                          className="css-35hltn"
+                        >
+                          <span>
+                            Phasing 
+                          </span>
+                          <a
+                            href="http://docs.analysis.conveyal.com/en/latest/edit-scenario/phasing.html"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            title="Learn more about phasing"
+                          >
+                            <Icon
+                              icon={
+                                Object {
+                                  "icon": Array [],
+                                  "iconName": "info-circle",
+                                  "prefix": "fas",
+                                }
+                              }
+                            >
+                              <FontAwesomeIcon
+                                border={false}
+                                className=""
+                                fixedWidth={true}
+                                flip={null}
+                                icon={
+                                  Object {
+                                    "icon": Array [],
+                                    "iconName": "info-circle",
+                                    "prefix": "fas",
+                                  }
+                                }
+                                inverse={false}
+                                listItem={false}
+                                mask={null}
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                swapOpacity={false}
+                                symbol={false}
+                                title=""
+                                transform={null}
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className="svg-inline--fa fa-info-circle fa-w-NaN fa-fw "
+                                  data-icon="info-circle"
+                                  data-prefix="fas"
+                                  focusable="false"
+                                  role="img"
+                                  style={Object {}}
+                                  viewBox="0 0 undefined undefined"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    style={Object {}}
+                                  />
+                                </svg>
+                              </FontAwesomeIcon>
+                            </Icon>
+                          </a>
+                        </h2>
+                      </Box>
+                    </Heading>
+                    <FormControl
+                      isDisabled={false}
+                      key=".1"
+                      mb={null}
+                    >
+                      <Box
+                        mb={null}
+                        role="group"
+                      >
+                        <div
+                          className="css-0"
+                          role="group"
+                        >
+                          <FormLabel>
+                            <Box
+                              as="label"
+                              display="inline-block"
+                              fontSize="md"
+                              fontWeight="medium"
+                              opacity="1"
+                              pb="4px"
+                              pr="12px"
+                              textAlign="left"
+                              verticalAlign="middle"
+                            >
+                              <label
+                                className="css-176s5fq"
+                              >
+                                Phase at stop
+                              </label>
+                            </Box>
+                          </FormLabel>
+                          <ForwardRef
+                            getOptionLabel={[Function]}
+                            getOptionValue={[Function]}
+                            inputId="phaseAtStop"
+                            isClearable={true}
+                            isDisabled={false}
+                            name="Phase at stop"
+                            onChange={[Function]}
+                            options={Array []}
+                            placeholder="Phase at stop"
+                          >
+                            <ReactSelect
+                              getOptionLabel={[Function]}
+                              getOptionValue={[Function]}
+                              innerRef={null}
+                              inputId="phaseAtStop"
+                              isClearable={true}
+                              isDisabled={false}
+                              name="Phase at stop"
+                              onChange={[Function]}
+                              options={Array []}
+                              placeholder="Phase at stop"
+                              styles={
+                                Object {
+                                  "control": [Function],
+                                  "option": [Function],
+                                }
+                              }
+                            >
+                              <div
+                                className="ReactSelectMock"
+                              />
+                            </ReactSelect>
+                          </ForwardRef>
+                        </div>
+                      </Box>
+                    </FormControl>
+                  </div>
+                </Box>
+              </Flex>
+            </ForwardRef>
+          </Phase>
+        </div>
+      </Box>
+    </Flex>
+  </ForwardRef>
 </TimetableEntry>
 `;

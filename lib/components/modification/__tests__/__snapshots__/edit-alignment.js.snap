@@ -1,54 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > Modification > Edit Alignment renders correctly 1`] = `
-<Fragment>
-  <H5>
-    Route Geometry
-  </H5>
-  <P>
-    16 stops over 45.22 km
-  </P>
-  <Button
-    block={true}
-    disabled={false}
-    onClick={[Function]}
-    style="warning"
+<ForwardRef
+  extendFromEnd={false}
+  spacing={4}
+>
+  <Heading
+    size="sm"
   >
-    <Icon
-      icon={
-        Object {
-          "icon": Array [],
-          "iconName": "pencil-alt",
-          "prefix": "fas",
-        }
-      }
-    />
-     
+    Route Geometry
+  </Heading>
+  <Text>
+    16 stops over 45.22 km
+  </Text>
+  <Button
+    isDisabled={false}
+    isFullWidth={true}
+    leftIcon="edit"
+    onClick={[Function]}
+    variantColor="yellow"
+  >
     Edit route geometry
   </Button>
   <Checkbox
-    defaultChecked={true}
-    label="Auto-create stops at set spacing"
+    fontWeight="normal"
+    isChecked={true}
     onChange={[Function]}
-  />
+  >
+    Auto-create stops at set spacing
+  </Checkbox>
   <NumberInput
     label="Stop spacing"
-    min={50}
     onChange={[Function]}
+    test={[Function]}
     units="meters"
     value={3000}
   />
   <Checkbox
-    checked={false}
-    disabled={true}
-    label="Bidirectional"
+    fontWeight="normal"
+    isChecked={false}
+    isDisabled={true}
     onChange={[Function]}
-  />
-  <div
-    className="alert alert-info"
-    role="alert"
+  >
+    Bidirectional
+  </Checkbox>
+  <Alert
+    status="info"
   >
     Modification cannot be bidirectional because timetables in this modification have phasing information.
-  </div>
-</Fragment>
+  </Alert>
+</ForwardRef>
 `;

@@ -26,11 +26,8 @@ export const selectStyles = {
 }
 
 // NB: React enforces `memo(forwardRef(...))`
-
-// Must forwardRefs to the default Select component
-const ForwardedSelect = forwardRef((p: Props, ref) => (
-  <Select ref={ref as any} styles={selectStyles} {...p} />
-))
-
-// Select is a heavy component therefore we memoize it
-export default memo<Props>(ForwardedSelect)
+export default memo<Props>(
+  forwardRef((p: Props, ref) => (
+    <Select innerRef={ref as any} styles={selectStyles} {...p} />
+  ))
+)

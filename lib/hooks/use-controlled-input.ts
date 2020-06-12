@@ -8,7 +8,9 @@ const identityFn = (v) => v
 // Is this the value itself or an event?
 function getRawValueFromInput(input) {
   const isEvent =
-    input instanceof Event || get(input, 'nativeEvent') instanceof Event
+    input instanceof Event ||
+    get(input, 'nativeEvent') instanceof Event ||
+    get(input, 'target.value') != null
   if (isEvent) {
     const target = input.target
     if (target.type === 'checkbox') return target.checked
@@ -22,7 +24,7 @@ function getRawValueFromInput(input) {
  * Helper hook for allowing controlled inputs that can frequently update but not slow down the interface.
  */
 export default function useControlledInput({
-  onChange,
+  onChange = identityFn,
   id = null,
   parse = identityFn,
   test = alwaysValid,

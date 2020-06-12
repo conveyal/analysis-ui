@@ -46,6 +46,10 @@ import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
 import ModeSelector from './mode-selector'
 
+const SPACING_XS = 2
+const SPACING = 5
+const SPACING_LG = 8
+
 export default function Settings({
   bundles,
   projects,
@@ -123,7 +127,11 @@ export default function Settings({
   useEffect(() => {
     const projectId = get(currentProject, '_id')
     const settingsId = get(requestsSettings, '[0].projectId')
-    if (projectId !== settingsId) {
+    if (
+      projectId !== settingsId &&
+      projectId != null &&
+      projectId !== 'undefined'
+    ) {
       setPrimaryPR({projectId})
     }
   }, []) // eslint-disable-line
@@ -248,7 +256,7 @@ function RequestSummary({color, profileRequest, ...p}) {
 
   return (
     <Flex flex='2' justify='space-evenly' {...p}>
-      <Stack align='center' isInline spacing='1'>
+      <Stack align='center' isInline spacing={1}>
         <ModeIcon mode={profileRequest.accessModes} />
         {profileRequest.transitModes.length > 0 && (
           <Tooltip
@@ -256,7 +264,7 @@ function RequestSummary({color, profileRequest, ...p}) {
             aria-label={transitModes.join(', ')}
             label={transitModes.join(', ')}
           >
-            <Stack align='center' isInline spacing='1'>
+            <Stack align='center' isInline spacing={1}>
               <Box color={`${color}.500`} fontSize='xs'>
                 <Icon icon={faChevronRight} />
               </Box>
@@ -265,7 +273,7 @@ function RequestSummary({color, profileRequest, ...p}) {
               ))}
               {transitModes.length > 2 && <Box>...</Box>}
               {profileRequest.egressModes !== 'WALK' && (
-                <Stack align='center' isInline spacing='1'>
+                <Stack align='center' isInline spacing={1}>
                   <Box color={`${color}.500`} fontSize='xs'>
                     <Icon icon={faChevronRight} />
                   </Box>
@@ -277,7 +285,7 @@ function RequestSummary({color, profileRequest, ...p}) {
         )}
       </Stack>
 
-      <Stack fontWeight='500' isInline spacing='2'>
+      <Stack fontWeight='500' isInline spacing={SPACING_XS}>
         <Text>{profileRequest.date}</Text>
         <Text>
           {secondsToMoment(profileRequest.fromTime).format('H:mm')}-
@@ -333,9 +341,9 @@ function RequestHeading({
   return (
     <Flex
       align='center'
-      px={6}
-      pt={10}
-      pb={2}
+      px={SPACING}
+      pt={SPACING_LG}
+      pb={SPACING_XS}
       justify='space-between'
       textAlign='left'
       {...p}
@@ -373,7 +381,7 @@ function RequestHeading({
         </Heading>
       )}
 
-      <Stack spacing={1} isInline>
+      <Stack spacing={SPACING_XS} isInline>
         <DownloadMenu
           isComparison={isComparison}
           isDisabled={!hasResults || settingsHaveChanged}
@@ -422,8 +430,8 @@ function RequestSettings({
   return (
     <Stack spacing={0} {...p}>
       {isOpen && (
-        <Stack spacing={6} p={6}>
-          <Stack isInline spacing={6}>
+        <Stack spacing={SPACING} p={SPACING}>
+          <Stack isInline spacing={SPACING}>
             <ControlledSelect
               flex='1'
               getOptionLabel={(o) => o.name}
@@ -474,7 +482,7 @@ function RequestSettings({
           )}
 
           {project && !copyRequestSettings && (
-            <Stack spacing={6}>
+            <Stack spacing={SPACING}>
               <ModeSelector
                 accessModes={profileRequest.accessModes}
                 directModes={profileRequest.directModes}
