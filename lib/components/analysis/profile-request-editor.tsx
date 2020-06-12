@@ -1,7 +1,7 @@
 import {
   Alert,
+  AlertIcon,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   FormHelperText,
   Input,
@@ -177,7 +177,9 @@ export default function ProfileRequestEditor({
     value: profileRequest.maxRides - 1 // Max rides is max transfers + 1, but transfers is common usage terminology
   })
 
-  const hasBike = containsType(profileRequest, 'BICYCLE') || containsType(profileRequest, 'BICYCLE_RENT')
+  const hasBike =
+    containsType(profileRequest, 'BICYCLE') ||
+    containsType(profileRequest, 'BICYCLE_RENT')
   const hasTransit = profileRequest.transitModes.length > 0
   const hasWalk = containsType(profileRequest, 'WALK')
 
@@ -200,12 +202,6 @@ export default function ProfileRequestEditor({
               utc // because new Date('2016-12-12') yields a date at midnight UTC
               value={date}
             />
-            {bundleOutOfDate && (
-              <FormErrorMessage>
-                <strong>Warning! </strong>
-                <span dangerouslySetInnerHTML={{__html: bundleOutOfDate}} />
-              </FormErrorMessage>
-            )}
           </FormControl>
 
           <TimePicker
@@ -223,6 +219,13 @@ export default function ProfileRequestEditor({
             value={toTime}
             onChange={setToTime}
           />
+
+          {bundleOutOfDate && (
+            <Alert status='error' gridColumn='1 / span 3'>
+              <AlertIcon />
+              <span dangerouslySetInnerHTML={{__html: bundleOutOfDate}} />
+            </Alert>
+          )}
 
           <FormControl
             isDisabled={disabled}

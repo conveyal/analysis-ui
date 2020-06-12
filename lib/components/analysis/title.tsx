@@ -37,10 +37,6 @@ export default function AnalysisTitle() {
     get(s, 'analysis.isochroneFetchStatus')
   )
   const currentProject = useSelector(selectCurrentProject)
-  const requestsSettings = useSelector((s) =>
-    get(s, 'analysis.requestsSettings')
-  )
-
   const isFetchingIsochrone = !!isochroneFetchStatus
 
   function abort() {
@@ -53,7 +49,7 @@ export default function AnalysisTitle() {
       align='center'
       borderBottom='1px solid #E2E8F0'
       justify='space-between'
-      px={6}
+      px={5}
       py={4}
       width='640px'
     >
