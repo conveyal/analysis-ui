@@ -2,10 +2,12 @@
 
 When creating a new modification, you have several different options, each explained in detail below.
 
+- `Add Streets`_
 - `Add trip pattern`_
 - `Adjust Dwell Time`_
 - `Adjust Speed`_
 - `Convert to Frequency`_
+- `Modify Streets`_
 - `Remove Stops`_
 - `Remove Trips`_
 - `Reroute`_
@@ -23,6 +25,10 @@ The copy feature is useful for creating modifications that share common elements
 Clicking the small blue back arrow saves your changes and takes you back to the list of all modifications:
 <br><span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>
 <br>Changes are also automatically saved every 10 seconds.
+
+.. _add_streets
+## Add Streets
+The **add streets** modification allows you to add new links to the street network, making new walking, cycling or driving connections to or around your transit network. Specifically it allows you to draw one or more polylines which will each be automatically connected to any intersecting streets in the chosen baseline street network. The new streets can then be characterised by travel times for walking, cycling, and driving as well as a parameter for cycling traffic stress. 
 
 .. _add_trip_pattern:
 ## Add trip pattern
@@ -155,6 +161,12 @@ Typically, you will need to create _at least_ two new timetables, one for each d
 
 .. note::
    Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
+   
+.. _modify_streets
+## Modify Streets
+This modification allows you to modify streets in your baseline street network by altering their access, travel time, or traffic stress characteristics. For example, you might use it to identify a neighborhood where traffic calming measures will be implemented and model this by simultaneously reducing bicycle traffic stress and decreasing driving speeds. You might even increase average walking speeds on the assumption that less time is spent waiting to cross streets. 
+
+A polygon select tool is used to select streets on the map and all streets within the polygon will be affected by the changes in a modification. 
 
 .. _remove_stops:
 ## Remove stops
