@@ -1,9 +1,13 @@
 import {
-  faCircle,
-  faExclamationCircle,
-  faPencilAlt,
-  faStopCircle
-} from '@fortawesome/free-solid-svg-icons'
+  Alert,
+  AlertIcon,
+  Button,
+  Checkbox,
+  Heading,
+  Stack,
+  Text
+} from '@chakra-ui/core'
+import {faCircle, faStopCircle} from '@fortawesome/free-solid-svg-icons'
 import {faCircle as faCircleO} from '@fortawesome/free-regular-svg-icons'
 import get from 'lodash/get'
 import React from 'react'
@@ -19,16 +23,23 @@ import colors from 'lib/constants/colors'
 import message from 'lib/message'
 import getExistingStopsAlongPattern from 'lib/utils/get-existing-stops-along-pattern'
 
-import {Button} from '../buttons'
-import H5 from '../h5'
 import Icon from '../icon'
-import {Checkbox, NumberInput} from '../input'
-import P from '../p'
+import NumberInput from '../number-input'
 import * as Panel from '../panel'
 
-export default React.memo(function EditAlignment(p) {
-  const {modification, mapState} = p
+const isValidStopSpacing = (s) => s >= MINIMUM_STOP_SPACING
 
+export default function EditAlignment({
+  allStops,
+  disabled,
+  mapState,
+  modification,
+  numberOfStops,
+  segmentDistances,
+  setMapState,
+  update,
+  ...p
+}) {
   const spacing = get(modification, 'segments[0].spacing', 0)
   const allowExtend =
     modification.type === REROUTE
@@ -43,7 +54,7 @@ export default React.memo(function EditAlignment(p) {
    * Edit this modification on the map
    */
   function editOnMap() {
-    p.setMapState({
+    setMapState({
       allowExtend: modification.type === REROUTE ? allowExtend : true,
       extendFromEnd,
       followRoad,
@@ -58,12 +69,12 @@ export default React.memo(function EditAlignment(p) {
 
   // TODO move into an action
   function autoGen() {
-    const newSegments = getExistingStopsAlongPattern(getSegments(), p.allStops)
-    p.update({segments: newSegments})
+    const newSegments = getExistingStopsAlongPattern(getSegments(), allStops)
+    update({segments: newSegments})
   }
 
   function updateMapState(props) {
-    p.setMapState({
+    setMapState({
       ...(mapState || {}),
       ...props
     })
@@ -76,7 +87,7 @@ export default React.memo(function EditAlignment(p) {
    * Toggle whether a pattern is bidirectional.
    */
   function onBidirectionalChange(e) {
-    p.update({bidirectional: e.target.checked})
+    update({bidirectional: e.target.checked})
   }
 
   /**
@@ -89,7 +100,7 @@ export default React.memo(function EditAlignment(p) {
     updateMapState({spacing})
 
     if (get(modification, 'segments.length') > 0) {
-      p.update({
+      update({
         segments: modification.segments.map((segment) => ({
           ...segment,
           spacing
@@ -101,15 +112,14 @@ export default React.memo(function EditAlignment(p) {
   /**
    * Set stop spacing
    */
-  function onStopSpacingChange(e) {
+  function onStopSpacingChange(spacing) {
     const {segments} = modification
-    const spacing = parseInt(e.target.value, 10)
 
     updateMapState({spacing})
 
     // only set stop spacing if current spacing is not zero
     if (get(segments, '[0].spacing') > 0) {
-      p.update({segments: segments.map((segment) => ({...segment, spacing}))})
+      update({segments: segments.map((segment) => ({...segment, spacing}))})
     }
   }
 
@@ -117,7 +127,7 @@ export default React.memo(function EditAlignment(p) {
     (t) => t.phaseAtStop != null
   )
 
-  const distance = (p.segmentDistances || []).reduce(
+  const distance = (segmentDistances || []).reduce(
     (accumulatedDistance, currentDistance) => {
       return accumulatedDistance + currentDistance
     },
@@ -125,96 +135,107 @@ export default React.memo(function EditAlignment(p) {
   )
 
   return (
-    <>
-      <H5>Route Geometry</H5>
+    <Stack spacing={4} {...p}>
+      <Heading size='sm'>Route Geometry</Heading>
       {distance === 0 && modification.type === ADD_TRIP_PATTERN && (
-        <div className='alert alert-danger' role='alert'>
-          <Icon icon={faExclamationCircle} /> A route geometry must have at
-          least 2 stops
-        </div>
+        <Alert status='error'>
+          <AlertIcon /> A route geometry must have at least 2 stops
+        </Alert>
       )}
 
       {distance > 0 &&
         modification.type === ADD_TRIP_PATTERN &&
-        p.numberOfStops > 0 && (
-          <P>{`${p.numberOfStops} stops over ${
+        numberOfStops > 0 && (
+          <Text>{`${numberOfStops} stops over ${
             Math.round(distance * 100) / 100
-          } km`}</P>
+          } km`}</Text>
         )}
 
       {!isEditing ? (
         <Button
-          block
+          isDisabled={!!disabled}
+          isFullWidth
+          leftIcon='edit'
           onClick={editOnMap}
-          style='warning'
-          disabled={!!p.disabled}
+          variantColor='yellow'
         >
-          <Icon icon={faPencilAlt} /> {message('transitEditor.startEdit')}
+          {message('transitEditor.startEdit')}
         </Button>
       ) : (
-        <Button block onClick={() => p.setMapState()} style='warning'>
+        <Button isFullWidth onClick={() => setMapState()} variantColor='yellow'>
           <Icon icon={faStopCircle} /> {message('transitEditor.stopEdit')}
         </Button>
       )}
 
       {isEditing && distance > 0 && (
-        <Button block onClick={autoGen} style='warning'>
+        <Button isFullWidth onClick={autoGen} variantColor='yellow'>
           <Icon icon={faCircle} /> {message('transitEditor.snap')}
         </Button>
       )}
 
       <Checkbox
-        defaultChecked={createStopsAutomatically}
-        label={message('transitEditor.autoCreateStops')}
+        fontWeight='normal'
+        isChecked={createStopsAutomatically}
         onChange={onAutoCreateStopsChange}
-      />
+      >
+        {message('transitEditor.autoCreateStops')}
+      </Checkbox>
 
       {createStopsAutomatically && (
         <NumberInput
-          value={spacing}
           label={message('transitEditor.stopSpacingMeters')}
-          min={MINIMUM_STOP_SPACING}
           onChange={onStopSpacingChange}
+          test={isValidStopSpacing}
           units='meters'
-        />
-      )}
-      {modification.type !== REROUTE && (
-        <Checkbox
-          checked={modification.bidirectional}
-          label={message('transitEditor.bidirectional')}
-          onChange={onBidirectionalChange}
-          disabled={hasAnyPhasing}
+          value={spacing}
         />
       )}
 
+      {modification.type !== REROUTE && (
+        <Checkbox
+          fontWeight='normal'
+          isChecked={modification.bidirectional}
+          isDisabled={hasAnyPhasing}
+          onChange={onBidirectionalChange}
+        >
+          {message('transitEditor.bidirectional')}
+        </Checkbox>
+      )}
+
       {hasAnyPhasing && (
-        <div className='alert alert-info' role='alert'>
+        <Alert status='info'>
           {message('transitEditor.bidirectionalWarning')}
-        </div>
+        </Alert>
       )}
 
       {isEditing && (
         <Checkbox
-          defaultChecked={followRoad}
-          label={message('transitEditor.followRoad')}
+          fontWeight='normal'
+          isChecked={followRoad}
           onChange={updateCheckboxFor('followRoad')}
-        />
+        >
+          {message('transitEditor.followRoad')}
+        </Checkbox>
       )}
 
       {modification.type !== REROUTE && isEditing && (
         <Checkbox
-          defaultChecked={allowExtend}
-          label={message('transitEditor.extend')}
+          fontWeight='normal'
+          isChecked={allowExtend}
           onChange={updateCheckboxFor('allowExtend')}
-        />
+        >
+          {message('transitEditor.extend')}
+        </Checkbox>
       )}
 
       {modification.type !== REROUTE && isEditing && allowExtend && (
         <Checkbox
-          defaultChecked={extendFromEnd}
-          label={message('transitEditor.extendFromEnd')}
+          fontWeight='normal'
+          isChecked={extendFromEnd}
           onChange={updateCheckboxFor('extendFromEnd')}
-        />
+        >
+          {message('transitEditor.extendFromEnd')}
+        </Checkbox>
       )}
 
       {isEditing && (
@@ -228,39 +249,41 @@ export default React.memo(function EditAlignment(p) {
             </strong>
           </Panel.Heading>
           <Panel.Body>
-            <P>{message('transitEditor.instructions')}</P>
-            <P>
-              <strong>Symbology</strong>
-            </P>
-            <P>
-              <Icon
-                icon={faCircleO}
-                style={{color: colors.NEUTRAL, opacity: 0.5}}
-              />{' '}
-              {message('transitEditor.existingStops')}
-            </P>
-            <P>
-              <Icon icon={faCircleO} style={{color: colors.ADDED}} />{' '}
-              {message('transitEditor.newStopDescription')}
-            </P>
-            <P>
-              <Icon
-                icon={faCircleO}
-                style={{color: colors.ADDED, opacity: 0.5}}
-              />{' '}
-              {message('transitEditor.autocreatedStopDescription')}
-            </P>
-            <P>
-              <Icon icon={faCircleO} />{' '}
-              {message('transitEditor.snappedStopDescription')}
-            </P>
-            <span>
-              <Icon icon={faCircle} style={{color: colors.ADDED}} />{' '}
-              {message('transitEditor.controlPointDescription')}
-            </span>
+            <Stack>
+              <Text>{message('transitEditor.instructions')}</Text>
+              <Text>
+                <strong>Symbology</strong>
+              </Text>
+              <Text>
+                <Icon
+                  icon={faCircleO}
+                  style={{color: colors.NEUTRAL, opacity: 0.5}}
+                />{' '}
+                {message('transitEditor.existingStops')}
+              </Text>
+              <Text>
+                <Icon icon={faCircleO} style={{color: colors.ADDED}} />{' '}
+                {message('transitEditor.newStopDescription')}
+              </Text>
+              <Text>
+                <Icon
+                  icon={faCircleO}
+                  style={{color: colors.ADDED, opacity: 0.5}}
+                />{' '}
+                {message('transitEditor.autocreatedStopDescription')}
+              </Text>
+              <Text>
+                <Icon icon={faCircleO} />{' '}
+                {message('transitEditor.snappedStopDescription')}
+              </Text>
+              <Text>
+                <Icon icon={faCircle} style={{color: colors.ADDED}} />{' '}
+                {message('transitEditor.controlPointDescription')}
+              </Text>
+            </Stack>
           </Panel.Body>
         </Panel.Panel>
       )}
-    </>
+    </Stack>
   )
-})
+}

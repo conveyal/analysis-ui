@@ -55,8 +55,13 @@ function setupMod(modType, modName) {
   cy.navTo('Edit Modifications')
   // assumes we are already on this page or editing another mod
   cy.findByText('Create a modification').click()
-  cy.findByLabelText(/Modification type/i).select(modType)
   cy.findByLabelText(/Modification name/i).type(modName)
+  if (modType.indexOf('Street') > -1) {
+    cy.findByText('Street').click()
+    cy.findByLabelText('Street modification type').select(modType)
+  } else {
+    cy.findByLabelText(/Transit modification type/i).select(modType)
+  }
   cy.findByText('Create').click()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 }
@@ -188,16 +193,16 @@ describe('Modifications', () => {
       const modName = createModName('ATP', 'timetable templates')
       setupMod('Add Trip Pattern', modName)
       cy.findByText(/Add new timetable/).click()
-      cy.findByText(/Timetable 1/).click()
+      cy.findByText('Timetable 1').click()
       // enter arbitrary settings to see if they get saved
-      cy.get('input[name="Name"]').clear().type('Weekday')
+      cy.findByLabelText('Name').clear().type('Weekday')
       cy.findByLabelText(/Mon/).check()
       cy.findByLabelText(/Tue/).check()
       cy.findByLabelText(/Wed/).check()
       cy.findByLabelText(/Thu/).check()
       cy.findByLabelText(/Fri/).check()
-      cy.findByLabelText(/Sat/).uncheck()
-      cy.findByLabelText(/Sun/).uncheck()
+      cy.findByLabelText(/Sat/).uncheck({force: true})
+      cy.findByLabelText(/Sun/).uncheck({force: true})
       cy.findByLabelText(/Frequency/)
         .clear()
         .type('00:20:00')
