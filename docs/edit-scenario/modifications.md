@@ -1,37 +1,9 @@
 # Modification types
 
-When creating a new modification, you have several different options, each explained in detail below.
-
-- `Add Streets`_
-- `Add trip pattern`_
-- `Adjust Dwell Time`_
-- `Adjust Speed`_
-- `Convert to Frequency`_
-- `Modify Streets`_
-- `Remove Stops`_
-- `Remove Trips`_
-- `Reroute`_
-- `Custom`_ (not for general use)
-
-Across all modification types the basic actions are consistent.
-<br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>
-<br><span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>
-<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>
-<br><span class="ui-icon"><i class="fa fa-square"></i>Fit map to modification extents</span>
-
-The _copy_ command automatically creates a copy of the current modification with `(copy)` appended to the name. This copy can be found in the modification menu.
-The copy feature is useful for creating modifications that share common elements like adding a route with branches off a main trunk.
-
-Clicking the small blue back arrow saves your changes and takes you back to the list of all modifications:
-<br><span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>
-<br>Changes are also automatically saved every 10 seconds.
-
-.. _add_streets
-## Add Streets
-The **add streets** modification allows you to add new links to the street network, making new walking, cycling or driving connections to or around your transit network. Specifically it allows you to draw one or more polylines which will each be automatically connected to any intersecting streets in the chosen baseline street network. The new streets can then be characterised by travel times for walking, cycling, and driving as well as a parameter for cycling traffic stress. 
+## Transit Network Modifications
 
 .. _add_trip_pattern:
-## Add trip pattern
+### Add trip pattern
 
 The **add trip pattern** modification allows you to add new :term:`trip patterns<trip pattern>` to your transport scenario. A trip pattern is a set of stops visited in order by a transit vehicle. Often a route will consist of multiple trip patterns, e.g. one for each direction of travel. This modification also offers a bidirectional option to allow a single trip pattern to represent travel in both directions. This may be easier for modes with generally bidirection stations like subways, ferries, or cable cars.
 
@@ -93,7 +65,7 @@ Once you have created an alignment, you'll need to specify when the route runs u
 <span class="btn btn-success"><i class="fa fa-plus"></i> Add timetable</span>
 
 .. _adjust_dwell_time:
-## Adjust dwell time
+### Adjust dwell time
 
 You may also want to adjust the dwell time along a route or at a particular stop, for example to model the effects of off-board fare collection, or the effects of increasing ridership at a particular stop. As with the remove-stops modification, you can select a feed, route and optionally patterns. You can then use the map to select the affected stops (if you skip this step, all stops will have their dwell times adjusted). You can then choose to either enter a new dwell time (in seconds), or scale the existing dwell times (for instance, entering 2 would double existing dwell times).
 
@@ -104,7 +76,7 @@ Unfortunately, the stop_times.txt files of many GTFS feeds use equal arrival_tim
 </figure>
 
 .. _adjust_speed:
-## Adjust speed
+### Adjust speed
 
 This modification can be applied to multiple routes, but only one route will be shown on the map.
 
@@ -129,7 +101,7 @@ The _Select_ option will begin a new selection and the _Add to_ option will add 
 Finally, enter a numeric value in the _Scale speed by_ field --- this is the factor to multiply the speed by. For instance, if you enter 1.3, the speed of vehicles will increase by 30% when traveling between stops. Note however that this modification does not affect dwell times; to model changes in dwell time, see the :ref:`adjust_dwell_time` modification. It also does not take into account the possibility of increased frequency due to faster, more efficient routes. However, it can be paired with a :ref:`convert_to_frequency` modification to model that scenario.
 
 .. _convert_to_frequency:
-## Convert to frequency
+### Convert to frequency
 
 Often a scenario will include changes to the number of trips per hour on an existing route. We support this using the _convert to frequency_ modification. It works by replacing the scheduled trips for one or more existing :term:`trip patterns<trip pattern>` with frequency based :ref:`timetables`. You can opt either to
 
@@ -162,14 +134,8 @@ Typically, you will need to create _at least_ two new timetables, one for each d
 .. note::
    Once converted to a frequency-based route with this modification, any of a route's patterns not represented by a timetable are effectively removed. With "retain trips" set to the default value of false (unchecked), these patterns will be removed at all times of day. With "retain trips" set to true (checked), they will be removed when any frequency entry is active.
    
-.. _modify_streets
-## Modify Streets
-This modification allows you to modify streets in your baseline street network by altering their access, travel time, or traffic stress characteristics. For example, you might use it to identify a neighborhood where traffic calming measures will be implemented and model this by simultaneously reducing bicycle traffic stress and decreasing driving speeds. You might even increase average walking speeds on the assumption that less time is spent waiting to cross streets. 
-
-A polygon select tool is used to select streets on the map and all streets within the polygon will be affected by the changes in a modification. 
-
 .. _remove_stops:
-## Remove stops
+### Remove stops
 
 It is also possible to remove some of the stops from a route, while leaving the rest of the route untouched. To do this, create a new _remove stops_ modification, and select a feed, route, and patterns as you did when removing trips. You can then use the map to select which stops to remove. Under "Selection," click "new", "add to," or "remove from" to select new stops to remove, add to the existing selection, or remove from the existing selection. Stops that are selected for removal are listed at the bottom of the modification, as well as being highlighted in red on the map.
 
@@ -183,7 +149,7 @@ This modification does not take into account the possibility of increased freque
   <img src="../img/remove-stops.png"  alt="Remove stops" />
 </figure>
 
-## Remove trips
+### Remove trips
 
 Another common modification is to remove trips. The most common use is to remove entire routes, but it is also possible to remove only specific :term:`trip patterns<trip pattern>` on a particular route. In order to remove trips, create a new _remove trips_ modification, and select a GTFS feed, route, and optionally the trip pattern of the trips to be removed. All trips on this route/pattern combination will be removed and the route will be shown in red on the map. Note that the "active in variants" selector always specifies whether the modification is active. In this case it implies that the trips will be removed from the selected variants.
 
@@ -193,7 +159,7 @@ Another common modification is to remove trips. The most common use is to remove
 
 .. _reroute:
 
-## Reroute
+### Reroute
 
 This modification type can be used to represent detours, extensions,and curtailments. When creating a _reroute_ modification, you first select a :term:`GTFS feed`, route, and :term:`trip patterns<trip pattern>`. Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
@@ -221,6 +187,18 @@ A few examples should help to illustrate how this modification works. Consider a
 
 .. _custom:
 
-## Custom modifications
+### Custom
 
 The custom modification type allows us to try out new development features that are not yet generally supported. _You should not use this modification type without consulting with your support team; an improper configuration may produce errors during analysis._
+
+## Street Network Modifications
+
+.. _add_streets
+### Add Streets
+The **add streets** modification allows you to add new links to the street network, making new walking, cycling or driving connections to or around your transit network. Specifically it allows you to draw one or more polylines which will each be automatically connected to any intersecting streets in the chosen baseline street network. The new streets can then be characterised by travel times for walking, cycling, and driving as well as a parameter for cycling traffic stress. 
+
+.. _modify_streets
+### Modify Streets
+This modification allows you to modify streets in your baseline street network by altering their access, travel time, or traffic stress characteristics. For example, you might use it to identify a neighborhood where traffic calming measures will be implemented and model this by simultaneously reducing bicycle traffic stress and decreasing driving speeds. You might even increase average walking speeds on the assumption that less time is spent waiting to cross streets. 
+
+A polygon select tool is used to select streets on the map and all streets within the polygon will be affected by the changes in a modification. 

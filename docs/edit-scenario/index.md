@@ -11,11 +11,23 @@ To prevent data conflicts, the system does not support multiple users or browser
 
 ## Create a new modification
 
-To add a modification, first navigate to the modification page (the <i class="fa fa-pencil"></i> icon) where you will need to select a project if you haven't already. If your project is already selected you should see the following button below the project name.
+To add a modification, first navigate to the modification page (the <i class="fa fa-pencil"></i> icon). If your project is already selected you should see the following button below the project name. Otherwise you will be prompted to first create or select a project. 
 
 <span class="btn btn-success"><i class="fa fa-plus"></i> Create a modification</span>
 
-This will open a window prompting you to select the [modification type](modifications.html) and enter a name for the modification. Choose a descriptive name - you will generally want to include at least the name of the route created or affected by the modification. After confirming these details, you will be taken to a page displaying options that vary by modification type.
+Clicking on this will open a window prompting you to enter a name for the modification and to select a [modification type](modifications.html). Try to choose a descriptive name - you will generally want to include at least the name of the route created or affected by the modification. After confirming these details you will be taken to a page displaying options that vary by modification type.
+
+Across all modifications though the basic actions are consistent.
+<br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span>
+<br><span class="ui-icon"><i class="fa fa-copy"></i>Copy</span>
+<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span>
+<br><span class="ui-icon"><i class="fa fa-square"></i>Fit map to modification extents</span>
+
+The _copy_ command automatically creates a copy of the current modification with `(copy)` appended to the name. This copy can be found in the modification menu. The copy feature is useful for creating modifications that share common elements like adding a route with branches off a main trunk.
+
+Clicking the small blue back arrow saves your changes and takes you back to the list of all modifications:
+<br><span class="ui-icon"><i class="fa fa-chevron-left"></i>Modifications</span>
+<br>Changes are also automatically saved every 10 seconds.
 
 ## Create a new scenario
 
