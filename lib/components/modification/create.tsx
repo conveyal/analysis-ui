@@ -134,7 +134,7 @@ export default function CreateModification({
                 <TabPanel pt={3}>
                   <FormControl>
                     <FormLabel htmlFor={transitTypeInput.id}>
-                      {message('modification.type')}
+                      Transit modification type
                     </FormLabel>
                     <Select {...transitTypeInput}>
                       {transitModificationTypes.map((type) => (
@@ -148,7 +148,7 @@ export default function CreateModification({
                 <TabPanel pt={3}>
                   <FormControl>
                     <FormLabel htmlFor={streetTypeInput.id}>
-                      {message('modification.type')}
+                      Street modification type
                     </FormLabel>
                     <Select {...streetTypeInput}>
                       {streetModificationTypes.map((type) => (
