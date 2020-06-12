@@ -158,7 +158,6 @@ Another common modification is to remove trips. The most common use is to remove
 </figure>
 
 .. _reroute:
-
 ### Reroute
 
 This modification type can be used to represent detours, extensions,and curtailments. When creating a _reroute_ modification, you first select a :term:`GTFS feed`, route, and :term:`trip patterns<trip pattern>`. Once trip patterns are selected, you then select a stop at which the reroute alignment will start, or a stop at which the reroute alignment will end, or both, by clicking
@@ -186,16 +185,19 @@ A few examples should help to illustrate how this modification works. Consider a
 - To detour this pattern so that it serves a stop Z between B and C, select B as the "start of reroute/extension", select C as the "end of reroute/extension", activate route editing, click on the new segment to add a stop, and drag the added stop to Z. Speeds and dwell times can be set on this new segment. Baseline speeds and dwell times between A and B, and between C and D, are not affected.
 
 .. _custom:
-
 ### Custom
-
 The custom modification type allows us to try out new development features that are not yet generally supported. _You should not use this modification type without consulting with your support team; an improper configuration may produce errors during analysis._
 
 ## Street Network Modifications
+Modifications effecting the street network were introduced in June of 2020 and are being considered as an experimental release. Later releases may change some aspects of these modifications. 
 
 .. _add_streets
 ### Add Streets
-The **add streets** modification allows you to add new links to the street network, making new walking, cycling or driving connections to or around your transit network. Specifically it allows you to draw one or more polylines which will each be automatically connected to any intersecting streets in the chosen baseline street network. The new streets can then be characterised by travel times for walking, cycling, and driving as well as a parameter for cycling traffic stress. 
+The **add streets** modification allows you to add new links to the street network, making new walking, cycling, and/or driving connections to or around your transit network. Each new street or set of streets can be characterised by mode-specific access restrictions and travel speeds. You can also specify a level of traffic stress for cyclists. Each modification allows one or more new streets to be drawn on the map, and attributes of these streets are set at the level of the modification. So for example you might use one modification to add two pedestrian bridges to your network and another for a network of shared-use bike paths. 
+
+Once you've created the modification, you can add streets to the map by clicking the line icon on the right side of the map. This allows you to draw a polyline which will be linked to the street network only at the first and last points. To finish a polyline, click again on the final point or select "finish" from the editing menu. To create a line connecting to the existing network at several points, you will need to create multiple lines. Click the line icon again to start drawing a second polyline starting from the same point. 
+
+You can also edit existing lines by clicking on the edit layers icon. This will allow you to add, move, or delete nodes. To delete a whole line, click on the trash can icon and then click somewhere on the line.
 
 .. _modify_streets
 ### Modify Streets
