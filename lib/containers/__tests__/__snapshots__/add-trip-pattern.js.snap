@@ -572,66 +572,161 @@ exports[`Component Connect(AddTripPattern) snapshot(mount) 1`] = `
                 </Box>
               </FormControl>
             </TransitModeSelector>
-            <Text
+            <FormControl
               className="DEV"
-              help="For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number."
               key=".2"
-              label="Route Color"
               mb={4}
-              onChange={[Function]}
-              value=""
             >
-              <Group
+              <Box
                 className="DEV"
-                help="For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number."
-                id="route-color-input-0"
-                label="Route Color"
                 mb={4}
-                onChange={[Function]}
-                value=""
+                role="group"
               >
                 <div
-                  className="form-group DEV"
+                  className="DEV css-acwcvw"
+                  role="group"
                 >
-                  <label
-                    className="control-label"
-                    htmlFor="route-color-input-0"
+                  <FormLabel
+                    htmlFor="routeColor"
                   >
-                    Route Color
-                  </label>
-                  <ForwardRef
-                    className="DEV"
-                    help="For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number."
-                    id="route-color-input-0"
-                    label="Route Color"
-                    mb={4}
+                    <Box
+                      as="label"
+                      display="inline-block"
+                      fontSize="md"
+                      fontWeight="medium"
+                      htmlFor="routeColor"
+                      opacity="1"
+                      pb="4px"
+                      pr="12px"
+                      textAlign="left"
+                      verticalAlign="middle"
+                    >
+                      <label
+                        className="css-176s5fq"
+                        htmlFor="routeColor"
+                      >
+                        Route Color
+                      </label>
+                    </Box>
+                  </FormLabel>
+                  <Input
+                    as="input"
+                    errorBorderColor="red.500"
+                    focusBorderColor="blue.500"
+                    id="routeColor"
+                    isFullWidth={true}
                     onChange={[Function]}
-                    type="text"
+                    size="md"
                     value=""
+                    variant="outline"
                   >
-                    <input
-                      className="DEV"
-                      help="For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number."
-                      id="route-color-input-0"
-                      label="Route Color"
-                      mb={4}
+                    <PseudoBox
+                      _disabled={
+                        Object {
+                          "cursor": "not-allowed",
+                          "opacity": "0.4",
+                        }
+                      }
+                      _focus={
+                        Object {
+                          "borderColor": "#3182ce",
+                          "boxShadow": "0 0 0 1px #3182ce",
+                          "zIndex": 1,
+                        }
+                      }
+                      _hover={
+                        Object {
+                          "borderColor": "gray.300",
+                        }
+                      }
+                      _invalid={
+                        Object {
+                          "borderColor": "#e53e3e",
+                          "boxShadow": "0 0 0 1px #e53e3e",
+                        }
+                      }
+                      _readOnly={
+                        Object {
+                          "bg": "transparent",
+                          "boxShadow": "none !important",
+                          "userSelect": "all",
+                        }
+                      }
+                      alignItems="center"
+                      appearance="none"
+                      as="input"
+                      bg="white"
+                      border="1px"
+                      borderColor="inherit"
+                      display="flex"
+                      fontSize="md"
+                      height={10}
+                      id="routeColor"
                       onChange={[Function]}
-                      placeholder="Route Color"
-                      type="text"
+                      outline="none"
+                      position="relative"
+                      px={4}
+                      rounded="md"
+                      transition="all 0.2s"
                       value=""
-                    />
-                  </ForwardRef>
-                  <span
-                    className="help-block"
+                      width="100%"
+                    >
+                      <input
+                        className="css-1ga4kqw"
+                        id="routeColor"
+                        onChange={[Function]}
+                        value=""
+                      />
+                    </PseudoBox>
+                  </Input>
+                  <FormHelperText
                     dangerouslySetInnerHTML={
                       Object {
                         "__html": "For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number.",
                       }
                     }
-                  />
+                  >
+                    <Text
+                      color="gray.500"
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number.",
+                        }
+                      }
+                      fontSize="sm"
+                      id={null}
+                      lineHeight="normal"
+                      mt={2}
+                    >
+                      <Box
+                        as="p"
+                        color="gray.500"
+                        dangerouslySetInnerHTML={
+                          Object {
+                            "__html": "For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number.",
+                          }
+                        }
+                        fontFamily="body"
+                        fontSize="sm"
+                        id={null}
+                        lineHeight="normal"
+                        mt={2}
+                      >
+                        <p
+                          className="css-1t1cls9"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number.",
+                            }
+                          }
+                          id={null}
+                        />
+                      </Box>
+                    </Text>
+                  </FormHelperText>
                 </div>
-              </Group>
-            </Text>
+              </Box>
+            </FormControl>
             <EditAlignment
               allStops={
                 Array [
@@ -1115,7 +1210,6 @@ exports[`Component Connect(AddTripPattern) snapshot(mount) 1`] = `
                                       as="input"
                                       errorBorderColor="red.500"
                                       focusBorderColor="blue.500"
-                                      htmlFor="00000000-0000-0000-0000-000000000000"
                                       id="00000000-0000-0000-0000-000000000000"
                                       isFullWidth={true}
                                       isInvalid={false}
@@ -1176,7 +1270,6 @@ exports[`Component Connect(AddTripPattern) snapshot(mount) 1`] = `
                                         display="flex"
                                         fontSize="md"
                                         height={10}
-                                        htmlFor="00000000-0000-0000-0000-000000000000"
                                         id="00000000-0000-0000-0000-000000000000"
                                         isValid={true}
                                         onBlur={[Function]}
@@ -1199,7 +1292,6 @@ exports[`Component Connect(AddTripPattern) snapshot(mount) 1`] = `
                                           aria-invalid={false}
                                           className="css-1ga4kqw"
                                           disabled={false}
-                                          htmlFor="00000000-0000-0000-0000-000000000000"
                                           id="00000000-0000-0000-0000-000000000000"
                                           onBlur={[Function]}
                                           onChange={[Function]}

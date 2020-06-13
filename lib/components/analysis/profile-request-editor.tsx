@@ -51,7 +51,12 @@ const InputWithUnits: React.ComponentType<{units: string} & any> = forwardRef(
     return (
       <InputGroup>
         <Input {...p} ref={ref} />
-        <InputRightElement color='gray.400' mr={5} userSelect='none'>
+        <InputRightElement
+          color='gray.400'
+          userSelect='none'
+          width='unset'
+          mr={4}
+        >
           {units}
         </InputRightElement>
       </InputGroup>
@@ -206,7 +211,6 @@ export default function ProfileRequestEditor({
 
           <TimePicker
             disabled={disabled}
-            id='fromTime'
             label={message('analysis.fromTime')}
             value={fromTime}
             onChange={setFromTime}
@@ -214,7 +218,6 @@ export default function ProfileRequestEditor({
 
           <TimePicker
             disabled={disabled}
-            id='toTime'
             label={message('analysis.toTime')}
             value={toTime}
             onChange={setToTime}
@@ -253,7 +256,7 @@ export default function ProfileRequestEditor({
             isDisabled={disabled}
             isInvalid={walkSpeedInput.isInvalid}
           >
-            <FormLabel htmlFor={walkSpeedInput.htmlFor}>Walk speed</FormLabel>
+            <FormLabel htmlFor={walkSpeedInput.id}>Walk speed</FormLabel>
             <InputWithUnits {...walkSpeedInput} type='number' units='km/h' />
             <FormHelperText>Range 3-15</FormHelperText>
           </FormControl>
@@ -263,9 +266,7 @@ export default function ProfileRequestEditor({
               isDisabled={disabled}
               isInvalid={maxWalkTimeInput.isInvalid}
             >
-              <FormLabel htmlFor={maxWalkTimeInput.htmlFor}>
-                Max walk time
-              </FormLabel>
+              <FormLabel htmlFor={maxWalkTimeInput.id}>Max walk time</FormLabel>
               <InputWithUnits {...maxWalkTimeInput} units='minutes' />
               <FormHelperText>
                 Maximum of 60. Lower time limits apply to transfers and egress
@@ -285,7 +286,7 @@ export default function ProfileRequestEditor({
             isDisabled={disabled}
             isInvalid={bikeSpeedInput.isInvalid}
           >
-            <FormLabel>Bike speed</FormLabel>
+            <FormLabel htmlFor={bikeSpeedInput.id}>Bike speed</FormLabel>
             <InputWithUnits {...bikeSpeedInput} type='number' units='km/h' />
             <FormHelperText>Range 5-20</FormHelperText>
           </FormControl>
@@ -295,7 +296,7 @@ export default function ProfileRequestEditor({
               isDisabled={disabled}
               isInvalid={maxBikeTimeInput.isInvalid}
             >
-              <FormLabel>Max bike time</FormLabel>
+              <FormLabel htmlFor={maxBikeTimeInput.id}>Max bike time</FormLabel>
               <InputWithUnits {...maxBikeTimeInput} units='minutes' />
               <FormHelperText>
                 Maximum of 60. Lower time limits apply to transfer and egress

@@ -35,7 +35,7 @@ export default memo<ControlledSelectProps & FormControlProps>(
     const input = useControlledInput({id, onChange, value})
     return (
       <FormControl isDisabled={isDisabled} isInvalid={input.isInvalid} {...p}>
-        <FormLabel htmlFor={input.htmlFor}>{label}</FormLabel>
+        <FormLabel htmlFor={input.id}>{label}</FormLabel>
         <Select
           inputId={input.id}
           isClearable={isClearable}
