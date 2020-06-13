@@ -66,6 +66,44 @@ function setupMod(modType, modName) {
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 }
 
+function drawRouteGeometry(newRoute) {
+  cy.findByText(/Edit route geometry/i)
+    .click()
+    .contains(/Stop editing/i)
+  cy.get('div.leaflet-container').as('map')
+  cy.window().then((win) => {
+    let map = win.LeafletMap
+    let route = win.L.polyline(newRoute)
+    map.fitBounds(route.getBounds(), {animate: false})
+    cy.waitForMapToLoad()
+    // click at the coordinates
+    let coords = route.getLatLngs()
+    coords.forEach((point, i) => {
+      let pix = map.latLngToContainerPoint(point)
+      cy.get('@map').click(pix.x, pix.y)
+      if (i > 0) {
+        cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
+      }
+    })
+    // convert an arbitrary stop to a control point
+    let stop = coords[coords.length - 2]
+    let pix = map.latLngToContainerPoint(stop)
+    cy.get('@map').click(pix.x, pix.y)
+    cy.get('@map')
+      .findByText(/make control point/)
+      .click()
+    // control point not counted as stop
+    cy.contains(new RegExp(coords.length - 1 + ' stops over \\d\\.\\d+ km'))
+    // convert control point back to stop
+    cy.get('@map').click(pix.x, pix.y)
+    cy.get('@map')
+      .findByText(/make stop/)
+      .click()
+    cy.contains(new RegExp(coords.length + ' stops over \\d\\.\\d+ km'))
+  })
+  cy.findByText(/Stop editing/i).click()
+}
+
 describe('Modifications', () => {
   before(() => {
     cy.setup('project')
@@ -77,29 +115,6 @@ describe('Modifications', () => {
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.navTo('Edit Modifications')
-  })
-
-  describe('CRUD each type', function () {
-    types.forEach((type) => {
-      it(`CRUD ${type}`, function () {
-        const name = createModName(type, 'simple')
-        const description = 'descriptive text'
-        setupMod(type, name)
-        cy.contains(name)
-        cy.findByRole('link', {name: /Add description/}).click()
-        cy.findByLabelText('Description').type(description)
-        // scenarios
-        cy.findByLabelText(/Default/).uncheck({force: true})
-        cy.findByLabelText(scenarioNameRegEx).check({force: true})
-        // go back and check that everything saved
-        cy.navTo('Edit Modifications')
-        openMod(type, name)
-        cy.findByLabelText('Description').contains(description)
-        cy.findByLabelText(/Default/).should('not.be.checked')
-        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
-        deleteThisMod()
-      })
-    })
   })
 
   describe('Add Trip Pattern', () => {
@@ -126,7 +141,7 @@ describe('Modifications', () => {
 
       this.region.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
-        cy.findByText(/Timetable NaN/).click()
+        cy.findByRole('button', {name: 'Timetable NaN'}).click()
         cy.findByLabelText(/Frequency/)
           .invoke('val')
           .then((val) => expect(val).to.eq('' + route.frequency))
@@ -143,41 +158,8 @@ describe('Modifications', () => {
       cy.findAllByRole('alert').contains(/must have at least 2 stops/)
       cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
       // add a route geometry
-      cy.findByText(/Edit route geometry/i)
-        .click()
-        .contains(/Stop editing/i)
-      cy.get('div.leaflet-container').as('map')
-      cy.window().then((win) => {
-        let map = win.LeafletMap
-        let route = win.L.polyline(this.region.newRoute)
-        map.fitBounds(route.getBounds(), {animate: false})
-        cy.waitForMapToLoad()
-        // click at the coordinates
-        let coords = route.getLatLngs()
-        coords.forEach((point, i) => {
-          let pix = map.latLngToContainerPoint(point)
-          cy.get('@map').click(pix.x, pix.y)
-          if (i > 0) {
-            cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
-          }
-        })
-        // convert an arbitrary stop to a control point
-        let stop = coords[coords.length - 2]
-        let pix = map.latLngToContainerPoint(stop)
-        cy.get('@map').click(pix.x, pix.y)
-        cy.get('@map')
-          .findByText(/make control point/)
-          .click()
-        // control point not counted as stop
-        cy.contains(new RegExp(coords.length - 1 + ' stops over \\d\\.\\d+ km'))
-        // convert control point back to stop
-        cy.get('@map').click(pix.x, pix.y)
-        cy.get('@map')
-          .findByText(/make stop/)
-          .click()
-        cy.contains(new RegExp(coords.length + ' stops over \\d\\.\\d+ km'))
-      })
-      cy.findByText(/Stop editing/i).click()
+      drawRouteGeometry(this.region.newRoute)
+
       cy.findAllByRole('alert')
         .contains(/must have at least 2 stops/)
         .should('not.exist')
@@ -189,9 +171,12 @@ describe('Modifications', () => {
       deleteThisMod()
     })
 
-    it('can create and reuse timetables', function () {
+    it.only('can create and reuse timetables', function () {
       const modName = createModName('ATP', 'timetable templates')
       setupMod('Add Trip Pattern', modName)
+      // add a route geometry
+      drawRouteGeometry(this.region.newRoute)
+
       cy.findByText(/Add new timetable/).click()
       cy.findByText('Timetable 1').click()
       // enter arbitrary settings to see if they get saved
@@ -251,9 +236,6 @@ describe('Modifications', () => {
       cy.findByLabelText(/End time/)
         .invoke('val')
         .then((val) => expect(val).to.eq('23:00'))
-      cy.findByLabelText(/dwell time/)
-        .invoke('val')
-        .then((val) => expect(val).to.eq('00:00:30'))
       // delete the temp modification
       deleteThisMod()
       // delete the template modification
@@ -383,6 +365,29 @@ describe('Modifications', () => {
       cy.findByLabelText(/Average speed/i)
       cy.findByLabelText(/Total moving time/i)
       deleteThisMod()
+    })
+  })
+
+  describe('CRUD each type', function () {
+    types.forEach((type) => {
+      it(`CRUD ${type}`, function () {
+        const name = createModName(type, 'simple')
+        const description = 'descriptive text'
+        setupMod(type, name)
+        cy.contains(name)
+        cy.findByRole('link', {name: /Add description/}).click()
+        cy.findByLabelText('Description').type(description)
+        // scenarios
+        cy.findByLabelText(/Default/).uncheck({force: true})
+        cy.findByLabelText(scenarioNameRegEx).check({force: true})
+        // go back and check that everything saved
+        cy.navTo('Edit Modifications')
+        openMod(type, name)
+        cy.findByLabelText('Description').contains(description)
+        cy.findByLabelText(/Default/).should('not.be.checked')
+        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
+        deleteThisMod()
+      })
     })
   })
 })
