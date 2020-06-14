@@ -171,7 +171,7 @@ describe('Modifications', () => {
       deleteThisMod()
     })
 
-    it.only('can create and reuse timetables', function () {
+    it('can create and reuse timetables', function () {
       const modName = createModName('ATP', 'timetable templates')
       setupMod('Add Trip Pattern', modName)
       // add a route geometry
