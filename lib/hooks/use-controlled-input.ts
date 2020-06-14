@@ -8,9 +8,10 @@ const identityFn = (v) => v
 // Is this the value itself or an event?
 function getRawValueFromInput(input) {
   const isEvent =
+    get(input, 'target.value') != null ||
     input instanceof Event ||
-    get(input, 'nativeEvent') instanceof Event ||
-    get(input, 'target.value') != null
+    get(input, 'nativeEvent') instanceof Event
+
   if (isEvent) {
     const target = input.target
     if (target.type === 'checkbox') return target.checked
@@ -31,6 +32,9 @@ export default function useControlledInput({
   value
 }) {
   const [inputValue, setInputValue] = useState(value)
+  const [isValid, setIsValid] = useState(() =>
+    test(parse(inputValue), inputValue)
+  )
   const ref = useRef()
 
   // Generate ids when they do not exist
@@ -53,41 +57,21 @@ export default function useControlledInput({
       setInputValue(rawValue)
       const parsedValue = parse(rawValue)
       const isValid = test(parsedValue, rawValue)
+      setIsValid(isValid)
       // Don't pass invalid changes through to the onChange function
       if (!isValid) return
       // Allow the sync to occur before propogating the change
       await onChange(parsedValue)
     },
-    [onChange, setInputValue, test]
+    [onChange, setInputValue, setIsValid, test]
   )
 
-  // Test current value validity
-  const isValid = test(parse(inputValue), inputValue)
-
-  // Store the return values
-  const [returnValue, setReturnValue] = useState({
-    // Name properties for {...spreading} on an input
+  return {
     onChange: inputOnChange,
-    htmlFor: autoId,
     id: autoId,
-    isInvalid: !isValid, // Chakra UI uses isInvalid on FormControls
+    isInvalid: !isValid,
     isValid,
     ref,
     value: inputValue
-  })
-
-  // Memoize the object based on it's values for reference checking
-  useEffect(() => {
-    setReturnValue({
-      onChange: inputOnChange,
-      htmlFor: autoId,
-      id: autoId,
-      isInvalid: !isValid,
-      isValid,
-      ref,
-      value: inputValue
-    })
-  }, [autoId, inputOnChange, inputValue, isValid, ref, setReturnValue])
-
-  return returnValue
+  }
 }

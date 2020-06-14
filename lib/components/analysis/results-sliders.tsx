@@ -35,14 +35,7 @@ export function CutoffSlider({isDisabled, ...p}) {
   })
 
   return (
-    <Slider
-      {...p}
-      isDisabled={isDisabled}
-      min={1}
-      max={120}
-      onChange={cutoffSlider.onChange}
-      value={cutoffSlider.value}
-    >
+    <Slider {...p} {...cutoffSlider} isDisabled={isDisabled} min={1} max={120}>
       <SliderTrack />
       <SliderFilledTrack />
       <SliderThumb ref={cutoffSlider.ref} size='8'>
@@ -75,14 +68,10 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
       TRAVEL_TIME_PERCENTILES[getNearestPercentileIndex(percentileSlider.value)]
     return (
       <FormControl isDisabled={isDisabled} {...p}>
-        <FormLabel>Travel time percentile</FormLabel>
-        <Slider
-          isDisabled={isDisabled}
-          min={1}
-          max={99}
-          onChange={percentileSlider.onChange}
-          value={percentileSlider.value}
-        >
+        <FormLabel htmlFor={percentileSlider.id}>
+          Travel time percentile
+        </FormLabel>
+        <Slider {...percentileSlider} isDisabled={isDisabled} min={1} max={99}>
           <SliderTrack />
           <SliderFilledTrack />
           <SliderThumb ref={percentileSlider.ref} size='8'>

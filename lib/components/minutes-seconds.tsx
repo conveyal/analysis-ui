@@ -3,9 +3,11 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputRightElement
+  InputRightElement,
+  FormControlProps
 } from '@chakra-ui/core'
 import moment from 'moment'
+import {memo, SyntheticEvent} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
 import {secondsToHhMmSsString} from 'lib/utils/time'
@@ -17,7 +19,17 @@ const parse = (targetValue) => moment.duration(targetValue).as('seconds')
 
 const noop = () => {}
 
-export default function MinutesSeconds({
+type Props = {
+  disabled?: boolean
+  label: string
+  onBlur?: (SyntheticEvent) => void
+  onChange: (number) => void
+  onFocus?: (SyntheticEvent) => void
+  placeholder?: string
+  seconds: number
+}
+
+export default memo<Props & FormControlProps>(function MinutesSeconds({
   disabled = false,
   label,
   onBlur = noop,
@@ -34,7 +46,6 @@ export default function MinutesSeconds({
     value:
       seconds != null ? secondsToHhMmSsString(Math.round(seconds)) : undefined
   })
-
   return (
     <FormControl isDisabled={disabled} isInvalid={input.isInvalid} {...p}>
       <FormLabel htmlFor={input.id}>{label}</FormLabel>
@@ -57,4 +68,4 @@ export default function MinutesSeconds({
       </InputGroup>
     </FormControl>
   )
-}
+})

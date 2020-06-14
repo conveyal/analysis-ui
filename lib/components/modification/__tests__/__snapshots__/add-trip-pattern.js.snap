@@ -51,13 +51,33 @@ exports[`Component WithContext(AddTripPattern) snapshot(shallow) 1`] = `
   <TransitModeSelector
     onChange={[Function]}
   />
-  <Text
+  <FormControl
     className="DEV"
-    help="For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number."
-    label="Route Color"
-    onChange={[Function]}
-    value=""
-  />
+  >
+    <FormLabel
+      htmlFor="routeColor"
+    >
+      Route Color
+    </FormLabel>
+    <Input
+      as="input"
+      errorBorderColor="red.500"
+      focusBorderColor="blue.500"
+      id="routeColor"
+      isFullWidth={true}
+      onChange={[Function]}
+      size="md"
+      value=""
+      variant="outline"
+    />
+    <FormHelperText
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "For display purposes (ex: with <a href=\\"https://blog.conveyal.com/upgraded-outreach-serverless-transit-accessibility-with-taui-f90d6d51e177\\" target=\\"_blank\\">Taui</a>). Must be a 6-digit hexadecimal number.",
+        }
+      }
+    />
+  </FormControl>
   <EditAlignment
     allStops={Array []}
     disabled={false}
