@@ -189,7 +189,25 @@ A few examples should help to illustrate how this modification works. Consider a
 The custom modification type allows us to try out new development features that are not yet generally supported. _You should not use this modification type without consulting with your support team; an improper configuration may produce errors during analysis._
 
 ## Street Network Modifications
-Modifications effecting the street network were introduced in June of 2020 and are being considered as an experimental release. Later releases may change some aspects of these modifications. For more information on how routing is done on the street network, see :ref:`methodology`.
+.. note::
+   Modifications effecting the street network were introduced in June of 2020 and are being considered an experimental release. Later releases will likely change some aspects of these modifications. 
+
+Both street modification types require specifying mode-specific access restrictions for the three supported transit access and egress modes: **walking**, **cycling**, and **driving**. 
+
+<figure>
+  <img src="../img/street-mod-settings.png" alt="street properties"/>
+  <figcaption></figcaption>
+</figure>
+
+If access for a given mode is enabled, you will need to enter an impedance property for that mode. *Impedance* is a term used in accessibility analysis refering generally to the relative cost or difficulty of taking one route or another. Here we use slightly different definitions specific to each mode. Each interacts in specific ways with the settings configured for an analysis. 
+
+Average **walking speed** is configured during analysis, but can be scaled here by a constant factor specific to the street or streets being added. This could be useful for example when ???.
+
+The same scalar factor is also available for **cycling**, with the additional variable *level of traffic stress*. You can configure the maximum acceptable level of traffic stress for your analysis with the effect that streets beyond this threshold will be traversed at walking speed. See [here](https://blog.conveyal.com/better-measures-of-bike-accessibility-d875ae5ed831) for more details. 
+
+Finally, if **driving** is enabled, you must enter a constant speed in kilometers per hour. 
+
+For more information on how routing on the street network is handled, see :ref:`methodology`.
 
 .. _add_streets
 ### Add Streets
@@ -212,7 +230,7 @@ This modification allows you to assign new access and impedance properties to ex
 As an example, you might use this to identify a neighborhood or corridor where traffic calming measures will be implemented and model this by reducing bicycle traffic stress and decreasing driving speeds or eliminating automotive access altogether.
 Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas. 
 
-To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon, and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. 
+To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. 
 
 <figure>
   <img src="../img/draw-a-polygon.png" alt="modifying streets"/>
