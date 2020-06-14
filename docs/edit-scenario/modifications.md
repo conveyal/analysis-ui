@@ -189,18 +189,34 @@ A few examples should help to illustrate how this modification works. Consider a
 The custom modification type allows us to try out new development features that are not yet generally supported. _You should not use this modification type without consulting with your support team; an improper configuration may produce errors during analysis._
 
 ## Street Network Modifications
-Modifications effecting the street network were introduced in June of 2020 and are being considered as an experimental release. Later releases may change some aspects of these modifications. 
+Modifications effecting the street network were introduced in June of 2020 and are being considered as an experimental release. Later releases may change some aspects of these modifications. For more information on how routing is done on the street network, see :ref:`methodology`.
 
 .. _add_streets
 ### Add Streets
-The **add streets** modification allows you to add new links to the street network, making new walking, cycling, and/or driving connections to or around your transit network. Each new street or set of streets can be characterised by mode-specific access restrictions and travel speeds. You can also specify a level of traffic stress for cyclists. Each modification allows one or more new streets to be drawn on the map, and attributes of these streets are set at the level of the modification. So for example you might use one modification to add two pedestrian bridges to your network and another for a network of shared-use bike paths. 
+The **add streets** modification allows you to add new links to the street network, making new walking, cycling, and/or driving connections to or around your transit network. Each new street or set of streets is characterised by mode-specific access restrictions and travel impedences. Each modification allows one or more new streets to be drawn on the map and attributes of these streets are set at the level of the modification. This means a modification can include several new streets each with the same properties. For example you might use one modification to add several footbridges to your network and another for a new network of shared-use bike paths.
 
-Once you've created the modification, you can add streets to the map by clicking the line icon on the right side of the map. This allows you to draw a polyline which will be linked to the street network only at the first and last points. To finish a polyline, click again on the final point or select "finish" from the editing menu. To create a line connecting to the existing network at several points, you will need to create multiple lines. Click the line icon again to start drawing a second polyline starting from the same point. 
+Once you've created the modification, you can add streets to the map by clicking the line icon on the right side of the map. This allows you to draw a line which will be linked to the street network only at the first and last points. To finish a polyline, click again on the final point or select "finish" from the editing menu. 
 
-You can also edit existing lines by clicking on the edit layers icon. This will allow you to add, move, or delete nodes. To delete a whole line, click on the trash can icon and then click somewhere on the line.
+<figure>
+  <img src="../img/add-street.png" alt="editing streets"/>
+  <figcaption>Adding a simple pedestrian connection over a railway</figcaption>
+</figure>
+
+To create a line connecting to the existing network at several points, you will need to create multiple lines. Click the line icon again to start drawing a second polyline starting from the same point. 
+
+You can also edit existing lines by clicking on the edit layers icon. This will allow you to add, move, or delete nodes. To delete a whole line, click on the trash can icon and then click somewhere on the line. Be sure to hit save when your satisfied with your edits. 
 
 .. _modify_streets
 ### Modify Streets
-This modification allows you to modify streets in your baseline street network by altering their access, travel time, or traffic stress characteristics. For example, you might use it to identify a neighborhood where traffic calming measures will be implemented and model this by simultaneously reducing bicycle traffic stress and decreasing driving speeds. You might even increase average walking speeds on the assumption that less time is spent waiting to cross streets. 
+This modification allows you to assign new access and impedance properties to existing streets in your :term:`baseline network`. Rather than selecting individual streets, it uses a polygon selection to apply the modification to all streets within the selected area. This is useful for applying changes to areas or corridors. 
+As an example, you might use this to identify a neighborhood or corridor where traffic calming measures will be implemented and model this by reducing bicycle traffic stress and decreasing driving speeds or eliminating automotive access altogether.
+Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas. 
 
-A polygon select tool is used to select streets on the map and all streets within the polygon will be affected by the changes in a modification. 
+To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon, and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. 
+
+<figure>
+  <img src="../img/draw-a-polygon.png" alt="modifying streets"/>
+  <figcaption>Drawing a new area on the map</figcaption>
+</figure>
+
+
