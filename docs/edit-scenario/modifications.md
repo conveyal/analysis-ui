@@ -201,11 +201,11 @@ Both street modification types require specifying whether access is allowed for 
   <figcaption></figcaption>
 </figure>
 
-If access for a given mode is enabled, you will need to enter an impedance property for that mode. *Impedance* is a term used in accessibility analysis refering generally to the relative cost or difficulty of taking one route or another. Here we use slightly different definitions specific to each mode. Each interacts in specific ways with the settings configured for an analysis. 
+If access for a given mode is enabled, you will have options to set corresponding properties. 
 
-Average **walking speed** is configured during analysis, but can be scaled here by a constant factor specific to the street or streets being added. This could be useful for example when ???.
+The default **walk time factor** and **bike time factor** values of 1 will have no effect on results. For baseline street networks built with custom generalized cost or impedance values, values other than 1 can be set, which will scale the amount of time it takes to traverse these links. For example, if you are routing by "perceived" time, a pleasant street might have a walk time factor less than 1, while a high-traffic unpleasant street might have a walk time factor greater than 1. Contact your support team for more details.
 
-The same scalar factor is also available for **cycling**, with the additional variable *level of traffic stress*. You can configure the maximum acceptable level of traffic stress for your analysis with the effect that streets beyond this threshold will be traversed at walking speed. See [here](https://blog.conveyal.com/better-measures-of-bike-accessibility-d875ae5ed831) for more details. 
+*Bike level of traffic stress* can be used to set the level of traffic stress for street links added or modified by the modification. Streets beyond the Maximum level of traffic stress set in an analysis will be traversed at walking speed. See [here](https://blog.conveyal.com/better-measures-of-bike-accessibility-d875ae5ed831) for more details. 
 
 Finally, if **driving** is enabled, you must enter a constant speed in kilometers per hour. 
 
