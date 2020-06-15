@@ -190,7 +190,9 @@ The custom modification type allows us to try out new development features that 
 
 ## Street Network Modifications
 .. note::
-   Modifications effecting the street network were introduced in June of 2020 and are being considered an experimental release. Later releases will likely change some aspects of these modifications. 
+   Simple modifications affecting the street network were introduced in June 2020 and are currently experimental. Later releases will likely change some aspects of these modifications. 
+   
+   For detailed editing of streets and intersections, it is often preferable to use an OSM editing tool (e.g. JOSM) to prepare inputs for Conveyal, rather than relying on these simple modifications.
 
 Both street modification types require specifying mode-specific access restrictions for the three supported transit access and egress modes: **walking**, **cycling**, and **driving**. 
 
@@ -234,5 +236,4 @@ To draw a polygon on the map, click the polygon icon and begin clicking on the m
   <img src="../img/draw-a-polygon.png" alt="modifying streets"/>
   <figcaption>Drawing a new area on the map</figcaption>
 </figure>
-
 
