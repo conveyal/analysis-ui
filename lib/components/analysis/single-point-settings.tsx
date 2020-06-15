@@ -160,7 +160,7 @@ export default function Settings({
   const _setComparisonProject = useCallback(
     (project) => {
       if (project) {
-        if (!currentProject) {
+        if (!comparisonProject) {
           setComparisonPR({
             ...profileRequest,
             projectId: project._id,
@@ -179,7 +179,7 @@ export default function Settings({
         })
       }
     },
-    [dispatch, profileRequest, setComparisonPR]
+    [comparisonProject, dispatch, profileRequest, setComparisonPR]
   )
 
   const _setComparisonVariant = useCallback(
@@ -252,13 +252,14 @@ export default function Settings({
 
 function RequestSummary({color, profileRequest, ...p}) {
   // Transit modes is stored as a string
-  const transitModes = get(profileRequest, 'transitModes', '').split(',')
+  const transitModesStr = get(profileRequest, 'transitModes', '')
+  const transitModes = transitModesStr.split(',')
 
   return (
     <Flex flex='2' justify='space-evenly' {...p}>
       <Stack align='center' isInline spacing={1}>
         <ModeIcon mode={profileRequest.accessModes} />
-        {profileRequest.transitModes.length > 0 && (
+        {transitModesStr.length > 0 && (
           <Tooltip
             hasArrow
             aria-label={transitModes.join(', ')}
