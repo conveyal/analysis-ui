@@ -6,16 +6,22 @@ import {
   InputRightElement,
   FormControlProps
 } from '@chakra-ui/core'
-import moment from 'moment'
 import {memo} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
-import {secondsToMoment} from 'lib/utils/time'
+import {secondsToHhMmString} from 'lib/utils/time'
 
 const FORMAT = 'HH:mm'
 
-const test = (seconds) => !isNaN(seconds) && seconds >= 0
-const parse = (timeString) => moment.duration(timeString).as('seconds')
+const arrayToSeconds = ([h, m]) => m * 60 + h * 60 * 60
+const isValidFormat = (s) => /^\d\d:\d\d$/.test(s)
+const stringToSeconds = (s) =>
+  isValidFormat(s)
+    ? arrayToSeconds(s.match(/\d+/g).map((s) => parseInt(s)))
+    : NaN
+
+const test = (seconds, rawString) =>
+  !isNaN(seconds) && seconds >= 0 && isValidFormat(rawString)
 
 type Props = {
   disabled?: boolean
@@ -36,16 +42,16 @@ export default memo<Props & FormControlProps>(function TimePicker({
 }) {
   const input = useInput({
     onChange,
-    parse,
+    parse: stringToSeconds,
     test,
-    value: secondsToMoment(value).format(FORMAT)
+    value: secondsToHhMmString(value)
   })
 
   return (
     <FormControl isDisabled={disabled} isInvalid={input.isInvalid} {...p}>
       <FormLabel htmlFor={input.id}>{label}</FormLabel>
       <InputGroup>
-        <Input id={input.id} type='text' {...input} />
+        <Input type='text' {...input} />
         <InputRightElement color='gray.400' userSelect='none' mr={5}>
           {FORMAT}
         </InputRightElement>

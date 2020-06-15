@@ -6,7 +6,6 @@ import {
   InputRightElement,
   FormControlProps
 } from '@chakra-ui/core'
-import moment from 'moment'
 import {memo, SyntheticEvent} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
@@ -14,8 +13,14 @@ import {secondsToHhMmSsString} from 'lib/utils/time'
 
 const FORMAT = 'HH:mm:ss'
 
-const test = (parsed) => parsed >= 0
-const parse = (targetValue) => moment.duration(targetValue).as('seconds')
+const arrayToSeconds = ([h, m, s]) => s + m * 60 + h * 60 * 60
+const isValidFormat = (s) => /^\d\d:\d\d:\d\d$/.test(s)
+const stringToSeconds = (s) =>
+  isValidFormat(s)
+    ? arrayToSeconds(s.match(/\d+/g).map((s) => parseInt(s)))
+    : NaN
+
+const test = (parsed, rawValue) => parsed >= 0 && isValidFormat(rawValue)
 
 const noop = () => {}
 
@@ -41,7 +46,7 @@ export default memo<Props & FormControlProps>(function MinutesSeconds({
 }) {
   const input = useControlledInput({
     onChange,
-    parse,
+    parse: stringToSeconds,
     test,
     value:
       seconds != null ? secondsToHhMmSsString(Math.round(seconds)) : undefined
