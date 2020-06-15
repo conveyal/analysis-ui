@@ -222,7 +222,7 @@ Once you've created the modification, you can add streets to the map by clicking
 
 To create a line connecting to the existing network at several points, you will need to create multiple lines. Click the line icon again to start drawing a second polyline starting from the same point. 
 
-You can also edit existing lines by clicking on the edit layers icon. This will allow you to add, move, or delete nodes. To delete a whole line, click on the trash can icon and then click somewhere on the line. Be sure to hit save when your satisfied with your edits. 
+You can also edit previously drawn lines by clicking on the edit layers icon. This will allow you to add, move, or delete nodes. To delete a whole line, click on the trash can icon and then click somewhere on the line. Be sure to hit save when you are satisfied with your edits. 
 
 .. _modify_streets
 ### Modify Streets
