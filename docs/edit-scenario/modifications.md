@@ -211,7 +211,7 @@ Finally, if **driving** is enabled, you must enter a constant speed in kilometer
 
 .. _add_streets
 ### Add Streets
-The **add streets** modification allows you to add new links to the street network, making new walking, cycling, and/or driving connections to or around your transit network. Each new street or set of streets is characterised by mode-specific access restrictions and travel impedences. Each modification allows one or more new streets to be drawn on the map and attributes of these streets are set at the level of the modification. This means a modification can include several new streets each with the same properties. For example you might use one modification to add several footbridges to your network and another for a new network of shared-use bike paths.
+The **add streets** modification allows you to add new links to the street network, making new walking, cycling, and/or driving connections. Each new street or set of streets is characterised by mode-specific access restrictions and travel impedences. Each modification allows one or more new streets to be drawn on the map and attributes of these streets are set at the level of the modification. This means a modification can include several new streets each with the same properties. For example you might use one modification to add several footbridges to your network and another for a new network of shared-use bike paths.
 
 Once you've created the modification, you can add streets to the map by clicking the line icon on the right side of the map. This allows you to draw a line which will be linked to the street network only at the first and last points. To finish a polyline, click again on the final point or select "finish" from the editing menu. 
 
