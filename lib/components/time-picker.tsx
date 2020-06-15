@@ -3,10 +3,11 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  InputRightElement
+  InputRightElement,
+  FormControlProps
 } from '@chakra-ui/core'
 import moment from 'moment'
-import React from 'react'
+import {memo} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 import {secondsToMoment} from 'lib/utils/time'
@@ -16,10 +17,23 @@ const FORMAT = 'HH:mm'
 const test = (seconds) => !isNaN(seconds) && seconds >= 0
 const parse = (timeString) => moment.duration(timeString).as('seconds')
 
+type Props = {
+  disabled?: boolean
+  label: string
+  onChange: (number) => void
+  value: number
+}
+
 /**
  * Choose hours of day, using seconds since midnight
  */
-export default function TimePicker({disabled, label, onChange, value, ...p}) {
+export default memo<Props & FormControlProps>(function TimePicker({
+  disabled = false,
+  label,
+  onChange,
+  value,
+  ...p
+}) {
   const input = useInput({
     onChange,
     parse,
@@ -38,4 +52,4 @@ export default function TimePicker({disabled, label, onChange, value, ...p}) {
       </InputGroup>
     </FormControl>
   )
-}
+})

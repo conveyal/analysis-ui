@@ -83,64 +83,28 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                     </label>
                   </Box>
                 </FormLabel>
-                <Days
-                  setDay={[Function]}
-                  timetable={
-                    Object {
-                      "_id": "timetable-id",
-                      "dwellTime": 10,
-                      "dwellTimes": Array [
-                        12,
-                      ],
-                      "endTime": 57600,
-                      "exactTimes": false,
-                      "friday": true,
-                      "headwaySecs": 900,
-                      "modificationId": "1234",
-                      "modificationName": "Test Modification",
-                      "monday": true,
-                      "name": "Test timetable",
-                      "patternTrips": Array [
-                        "abcd",
-                      ],
-                      "phaseAtStop": "",
-                      "phaseFromStop": "",
-                      "phaseFromTimetable": "",
-                      "phaseSeconds": 300,
-                      "saturday": false,
-                      "segmentSpeeds": Array [],
-                      "sourceTrip": "abcd",
-                      "startTime": 28800,
-                      "sunday": false,
-                      "thursday": true,
-                      "tuesday": true,
-                      "wednesday": true,
-                    }
-                  }
+                <SimpleGrid
+                  columns={5}
                 >
-                  <ForwardRef
-                    isInline={true}
-                    spacing={3}
-                    wrap="wrap"
+                  <Grid
+                    templateColumns="repeat(5, 1fr)"
                   >
-                    <Flex
-                      direction="row"
-                      wrap="wrap"
+                    <Box
+                      display="grid"
+                      gridTemplateColumns="repeat(5, 1fr)"
                     >
-                      <Box
-                        display="flex"
-                        flexDirection="row"
-                        flexWrap="wrap"
+                      <div
+                        className="css-1l2zrv3"
                       >
-                        <div
-                          className="css-p58oka"
+                        <Day
+                          day="Monday"
+                          isChecked={true}
+                          key="Monday"
+                          update={[MockFunction]}
                         >
                           <Checkbox
                             fontWeight="normal"
                             isChecked={true}
-                            key=".$monday-checkbox"
-                            label="Mon"
-                            mr={3}
                             onChange={[Function]}
                           >
                             <Box
@@ -149,13 +113,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               cursor="pointer"
                               display="inline-flex"
                               fontWeight="normal"
-                              label="Mon"
-                              mr={3}
                               verticalAlign="top"
                             >
                               <label
-                                className="css-16ndzxx"
-                                label="Mon"
+                                className="css-19d1o6"
                               >
                                 <VisuallyHidden
                                   aria-checked={true}
@@ -270,12 +231,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               </label>
                             </Box>
                           </Checkbox>
+                        </Day>
+                        <Day
+                          day="Tuesday"
+                          isChecked={true}
+                          key="Tuesday"
+                          update={[MockFunction]}
+                        >
                           <Checkbox
                             fontWeight="normal"
                             isChecked={true}
-                            key=".$tuesday-checkbox"
-                            label="Tue"
-                            mr={3}
                             onChange={[Function]}
                           >
                             <Box
@@ -284,13 +249,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               cursor="pointer"
                               display="inline-flex"
                               fontWeight="normal"
-                              label="Tue"
-                              mr={3}
                               verticalAlign="top"
                             >
                               <label
-                                className="css-16ndzxx"
-                                label="Tue"
+                                className="css-19d1o6"
                               >
                                 <VisuallyHidden
                                   aria-checked={true}
@@ -405,12 +367,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               </label>
                             </Box>
                           </Checkbox>
+                        </Day>
+                        <Day
+                          day="Wednesday"
+                          isChecked={true}
+                          key="Wednesday"
+                          update={[MockFunction]}
+                        >
                           <Checkbox
                             fontWeight="normal"
                             isChecked={true}
-                            key=".$wednesday-checkbox"
-                            label="Wed"
-                            mr={3}
                             onChange={[Function]}
                           >
                             <Box
@@ -419,13 +385,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               cursor="pointer"
                               display="inline-flex"
                               fontWeight="normal"
-                              label="Wed"
-                              mr={3}
                               verticalAlign="top"
                             >
                               <label
-                                className="css-16ndzxx"
-                                label="Wed"
+                                className="css-19d1o6"
                               >
                                 <VisuallyHidden
                                   aria-checked={true}
@@ -540,12 +503,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               </label>
                             </Box>
                           </Checkbox>
+                        </Day>
+                        <Day
+                          day="Thursday"
+                          isChecked={true}
+                          key="Thursday"
+                          update={[MockFunction]}
+                        >
                           <Checkbox
                             fontWeight="normal"
                             isChecked={true}
-                            key=".$thursday-checkbox"
-                            label="Thu"
-                            mr={3}
                             onChange={[Function]}
                           >
                             <Box
@@ -554,13 +521,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               cursor="pointer"
                               display="inline-flex"
                               fontWeight="normal"
-                              label="Thu"
-                              mr={3}
                               verticalAlign="top"
                             >
                               <label
-                                className="css-16ndzxx"
-                                label="Thu"
+                                className="css-19d1o6"
                               >
                                 <VisuallyHidden
                                   aria-checked={true}
@@ -675,12 +639,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               </label>
                             </Box>
                           </Checkbox>
+                        </Day>
+                        <Day
+                          day="Friday"
+                          isChecked={true}
+                          key="Friday"
+                          update={[MockFunction]}
+                        >
                           <Checkbox
                             fontWeight="normal"
                             isChecked={true}
-                            key=".$friday-checkbox"
-                            label="Fri"
-                            mr={3}
                             onChange={[Function]}
                           >
                             <Box
@@ -689,13 +657,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               cursor="pointer"
                               display="inline-flex"
                               fontWeight="normal"
-                              label="Fri"
-                              mr={3}
                               verticalAlign="top"
                             >
                               <label
-                                className="css-16ndzxx"
-                                label="Fri"
+                                className="css-19d1o6"
                               >
                                 <VisuallyHidden
                                   aria-checked={true}
@@ -810,12 +775,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               </label>
                             </Box>
                           </Checkbox>
+                        </Day>
+                        <Day
+                          day="Saturday"
+                          isChecked={false}
+                          key="Saturday"
+                          update={[MockFunction]}
+                        >
                           <Checkbox
                             fontWeight="normal"
                             isChecked={false}
-                            key=".$saturday-checkbox"
-                            label="Sat"
-                            mr={3}
                             onChange={[Function]}
                           >
                             <Box
@@ -824,13 +793,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               cursor="pointer"
                               display="inline-flex"
                               fontWeight="normal"
-                              label="Sat"
-                              mr={3}
                               verticalAlign="top"
                             >
                               <label
-                                className="css-16ndzxx"
-                                label="Sat"
+                                className="css-19d1o6"
                               >
                                 <VisuallyHidden
                                   aria-checked={false}
@@ -945,12 +911,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               </label>
                             </Box>
                           </Checkbox>
+                        </Day>
+                        <Day
+                          day="Sunday"
+                          isChecked={false}
+                          key="Sunday"
+                          update={[MockFunction]}
+                        >
                           <Checkbox
                             fontWeight="normal"
                             isChecked={false}
-                            key=".$sunday-checkbox"
-                            label="Sun"
-                            mr={null}
                             onChange={[Function]}
                           >
                             <Box
@@ -959,13 +929,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               cursor="pointer"
                               display="inline-flex"
                               fontWeight="normal"
-                              label="Sun"
-                              mr={null}
                               verticalAlign="top"
                             >
                               <label
                                 className="css-19d1o6"
-                                label="Sun"
                               >
                                 <VisuallyHidden
                                   aria-checked={false}
@@ -1080,15 +1047,15 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               </label>
                             </Box>
                           </Checkbox>
-                        </div>
-                      </Box>
-                    </Flex>
-                  </ForwardRef>
-                </Days>
+                        </Day>
+                      </div>
+                    </Box>
+                  </Grid>
+                </SimpleGrid>
               </div>
             </Box>
           </FormControl>
-          <MinutesSeconds
+          <Memo(MinutesSeconds)
             key=".1"
             label="Frequency"
             mb={4}
@@ -1143,7 +1110,6 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                           as="input"
                           errorBorderColor="red.500"
                           focusBorderColor="blue.500"
-                          htmlFor="00000000-0000-0000-0000-000000000000"
                           id="00000000-0000-0000-0000-000000000000"
                           isFullWidth={true}
                           isInvalid={false}
@@ -1204,7 +1170,6 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                             display="flex"
                             fontSize="md"
                             height={10}
-                            htmlFor="00000000-0000-0000-0000-000000000000"
                             id="00000000-0000-0000-0000-000000000000"
                             isValid={true}
                             onBlur={[Function]}
@@ -1227,7 +1192,6 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                               aria-invalid={false}
                               className="css-1ga4kqw"
                               disabled={false}
-                              htmlFor="00000000-0000-0000-0000-000000000000"
                               id="00000000-0000-0000-0000-000000000000"
                               onBlur={[Function]}
                               onChange={[Function]}
@@ -1283,8 +1247,8 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                 </div>
               </Box>
             </FormControl>
-          </MinutesSeconds>
-          <TimePicker
+          </Memo(MinutesSeconds)>
+          <Memo(TimePicker)
             key=".2"
             label="Start time"
             mb={4}
@@ -1292,6 +1256,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
             value={28800}
           >
             <FormControl
+              isDisabled={false}
               isInvalid={false}
               mb={4}
             >
@@ -1338,7 +1303,6 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                           as="input"
                           errorBorderColor="red.500"
                           focusBorderColor="blue.500"
-                          htmlFor="00000000-0000-0000-0000-000000000000"
                           id="00000000-0000-0000-0000-000000000000"
                           isFullWidth={true}
                           isInvalid={false}
@@ -1386,15 +1350,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                             }
                             alignItems="center"
                             appearance="none"
+                            aria-disabled={false}
                             aria-invalid={false}
                             as="input"
                             bg="white"
                             border="1px"
                             borderColor="inherit"
+                            disabled={false}
                             display="flex"
                             fontSize="md"
                             height={10}
-                            htmlFor="00000000-0000-0000-0000-000000000000"
                             id="00000000-0000-0000-0000-000000000000"
                             isValid={true}
                             onChange={[Function]}
@@ -1410,9 +1375,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                             width="100%"
                           >
                             <input
+                              aria-disabled={false}
                               aria-invalid={false}
                               className="css-1ga4kqw"
-                              htmlFor="00000000-0000-0000-0000-000000000000"
+                              disabled={false}
                               id="00000000-0000-0000-0000-000000000000"
                               onChange={[Function]}
                               type="text"
@@ -1463,8 +1429,8 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                 </div>
               </Box>
             </FormControl>
-          </TimePicker>
-          <TimePicker
+          </Memo(TimePicker)>
+          <Memo(TimePicker)
             key=".3"
             label="End time"
             mb={4}
@@ -1472,6 +1438,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
             value={57600}
           >
             <FormControl
+              isDisabled={false}
               isInvalid={false}
               mb={4}
             >
@@ -1518,7 +1485,6 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                           as="input"
                           errorBorderColor="red.500"
                           focusBorderColor="blue.500"
-                          htmlFor="00000000-0000-0000-0000-000000000000"
                           id="00000000-0000-0000-0000-000000000000"
                           isFullWidth={true}
                           isInvalid={false}
@@ -1566,15 +1532,16 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                             }
                             alignItems="center"
                             appearance="none"
+                            aria-disabled={false}
                             aria-invalid={false}
                             as="input"
                             bg="white"
                             border="1px"
                             borderColor="inherit"
+                            disabled={false}
                             display="flex"
                             fontSize="md"
                             height={10}
-                            htmlFor="00000000-0000-0000-0000-000000000000"
                             id="00000000-0000-0000-0000-000000000000"
                             isValid={true}
                             onChange={[Function]}
@@ -1590,9 +1557,10 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                             width="100%"
                           >
                             <input
+                              aria-disabled={false}
                               aria-invalid={false}
                               className="css-1ga4kqw"
-                              htmlFor="00000000-0000-0000-0000-000000000000"
+                              disabled={false}
                               id="00000000-0000-0000-0000-000000000000"
                               onChange={[Function]}
                               type="text"
@@ -1643,7 +1611,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                 </div>
               </Box>
             </FormControl>
-          </TimePicker>
+          </Memo(TimePicker)>
           <Checkbox
             fontWeight="normal"
             isChecked={false}
@@ -1921,12 +1889,15 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                           className="css-0"
                           role="group"
                         >
-                          <FormLabel>
+                          <FormLabel
+                            htmlFor="phaseAtStop"
+                          >
                             <Box
                               as="label"
                               display="inline-block"
                               fontSize="md"
                               fontWeight="medium"
+                              htmlFor="phaseAtStop"
                               opacity="1"
                               pb="4px"
                               pr="12px"
@@ -1935,6 +1906,7 @@ exports[`Component TimetableEntry snapshot(mount) 1`] = `
                             >
                               <label
                                 className="css-176s5fq"
+                                htmlFor="phaseAtStop"
                               >
                                 Phase at stop
                               </label>

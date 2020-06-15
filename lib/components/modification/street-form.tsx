@@ -78,11 +78,12 @@ export default function StreetForm({modification, update, ...p}) {
     <Stack {...p} spacing={6}>
       <Alert status='error'>
         <AlertIcon />
-        EXPERIMENTAL: ongoing compatibility not guaranteed, routing engine v4.9.0 required.
+        EXPERIMENTAL: ongoing compatibility not guaranteed, routing engine
+        v4.9.0 required.
       </Alert>
       <Box>
         <Flex justify='space-between'>
-          <FormLabel htmlFor={bikeSwitch.htmlFor} fontSize='lg'>
+          <FormLabel htmlFor={bikeSwitch.id} fontSize='lg'>
             Enable biking
           </FormLabel>
           <Switch
@@ -94,14 +95,14 @@ export default function StreetForm({modification, update, ...p}) {
         {bikeSwitch.value && (
           <Stack spacing={4}>
             <FormControl isInvalid={!bikeTimeFactor.isValid}>
-              <FormLabel htmlFor={bikeTimeFactor.htmlFor}>
+              <FormLabel htmlFor={bikeTimeFactor.id}>
                 Bike Time Factor
               </FormLabel>
               <Input {...bikeTimeFactor} />
               <FormHelperText>Must be greater than 0</FormHelperText>
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor={bikeLts.htmlFor}>
+              <FormLabel htmlFor={bikeLts.id}>
                 Bike Level of Traffic Stress
               </FormLabel>
               <Select
@@ -121,7 +122,7 @@ export default function StreetForm({modification, update, ...p}) {
 
       <Box>
         <Flex justify='space-between'>
-          <FormLabel htmlFor={carSwitch.htmlFor} fontSize='lg'>
+          <FormLabel htmlFor={carSwitch.id} fontSize='lg'>
             Enable driving
           </FormLabel>
           <Switch
@@ -132,7 +133,7 @@ export default function StreetForm({modification, update, ...p}) {
         </Flex>
         {carSwitch.value && (
           <FormControl isInvalid={carSpeed.isInvalid}>
-            <FormLabel htmlFor={carSpeed.htmlFor}>Car Speed</FormLabel>
+            <FormLabel htmlFor={carSpeed.id}>Car Speed</FormLabel>
             <Input {...carSpeed} />
           </FormControl>
         )}
@@ -140,7 +141,7 @@ export default function StreetForm({modification, update, ...p}) {
 
       <Box>
         <Flex justify='space-between'>
-          <FormLabel htmlFor={walkSwitch.htmlFor} fontSize='lg'>
+          <FormLabel htmlFor={walkSwitch.id} fontSize='lg'>
             Enable walking
           </FormLabel>
           <Switch
@@ -151,9 +152,7 @@ export default function StreetForm({modification, update, ...p}) {
         </Flex>
         {walkSwitch.value && (
           <FormControl isInvalid={walkTimeFactor.isInvalid}>
-            <FormLabel htmlFor={walkTimeFactor.htmlFor}>
-              Walk Time Factor
-            </FormLabel>
+            <FormLabel htmlFor={walkTimeFactor.id}>Walk Time Factor</FormLabel>
             <Input {...walkTimeFactor} />
             <FormHelperText>Must be greater than 0</FormHelperText>
           </FormControl>
