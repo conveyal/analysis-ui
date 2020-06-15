@@ -34,7 +34,7 @@ import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-ch
 import selectRegionBounds from 'lib/selectors/region-bounds'
 import {fromLatLngBounds} from 'lib/utils/bounds'
 import cleanProjectScenarioName from 'lib/utils/clean-project-scenario-name'
-import {secondsToMoment} from 'lib/utils/time'
+import {secondsToHhMmString} from 'lib/utils/time'
 
 import ControlledSelect from '../controlled-select'
 import Icon from '../icon'
@@ -160,7 +160,7 @@ export default function Settings({
   const _setComparisonProject = useCallback(
     (project) => {
       if (project) {
-        if (!currentProject) {
+        if (!comparisonProject) {
           setComparisonPR({
             ...profileRequest,
             projectId: project._id,
@@ -179,7 +179,7 @@ export default function Settings({
         })
       }
     },
-    [dispatch, profileRequest, setComparisonPR]
+    [comparisonProject, dispatch, profileRequest, setComparisonPR]
   )
 
   const _setComparisonVariant = useCallback(
@@ -252,13 +252,14 @@ export default function Settings({
 
 function RequestSummary({color, profileRequest, ...p}) {
   // Transit modes is stored as a string
-  const transitModes = profileRequest.transitModes.split(',')
+  const transitModesStr = get(profileRequest, 'transitModes', '')
+  const transitModes = transitModesStr.split(',')
 
   return (
     <Flex flex='2' justify='space-evenly' {...p}>
       <Stack align='center' isInline spacing={1}>
         <ModeIcon mode={profileRequest.accessModes} />
-        {profileRequest.transitModes.length > 0 && (
+        {transitModesStr.length > 0 && (
           <Tooltip
             hasArrow
             aria-label={transitModes.join(', ')}
@@ -288,8 +289,8 @@ function RequestSummary({color, profileRequest, ...p}) {
       <Stack fontWeight='500' isInline spacing={SPACING_XS}>
         <Text>{profileRequest.date}</Text>
         <Text>
-          {secondsToMoment(profileRequest.fromTime).format('H:mm')}-
-          {secondsToMoment(profileRequest.toTime).format('H:mm')}
+          {secondsToHhMmString(profileRequest.fromTime, false)}-
+          {secondsToHhMmString(profileRequest.toTime, false)}
         </Text>
       </Stack>
     </Flex>
