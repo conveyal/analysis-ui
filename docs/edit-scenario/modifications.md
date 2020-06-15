@@ -194,7 +194,7 @@ The custom modification type allows us to try out new development features that 
    
    For detailed editing of streets and intersections, it is often preferable to use an OSM editing tool (e.g. JOSM) to prepare inputs for Conveyal, rather than relying on these simple modifications.
 
-Both street modification types require specifying mode-specific access restrictions for the three supported transit access and egress modes: **walking**, **cycling**, and **driving**. 
+Both street modification types require specifying whether access is allowed for **walking**, **cycling**, and **driving**. 
 
 <figure>
   <img src="../img/street-mod-settings.png" alt="street properties"/>
@@ -236,4 +236,3 @@ To draw a polygon on the map, click the polygon icon and begin clicking on the m
   <img src="../img/draw-a-polygon.png" alt="modifying streets"/>
   <figcaption>Drawing a new area on the map</figcaption>
 </figure>
-
