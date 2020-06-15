@@ -207,8 +207,6 @@ The same scalar factor is also available for **cycling**, with the additional va
 
 Finally, if **driving** is enabled, you must enter a constant speed in kilometers per hour. 
 
-For more information on how routing on the street network is handled, see :ref:`methodology`.
-
 .. _add_streets
 ### Add Streets
 The **add streets** modification allows you to add new links to the street network, making new walking, cycling, and/or driving connections to or around your transit network. Each new street or set of streets is characterised by mode-specific access restrictions and travel impedences. Each modification allows one or more new streets to be drawn on the map and attributes of these streets are set at the level of the modification. This means a modification can include several new streets each with the same properties. For example you might use one modification to add several footbridges to your network and another for a new network of shared-use bike paths.
