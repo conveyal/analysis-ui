@@ -7,7 +7,6 @@ const withMDX = require('@zeit/next-mdx')({
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
-const webpack = require('webpack')
 
 if (process.env.API_URL === undefined) {
   require('dotenv').config({path: '.env.build'})
@@ -63,9 +62,6 @@ ${Object.keys(env).join(', ')}
           loader: 'eslint-loader',
           exclude: /node_modules/
         })
-
-        // Ignore moment locales
-        config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
 
         return config
       }
