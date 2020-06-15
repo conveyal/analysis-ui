@@ -198,7 +198,7 @@ Both street modification types require specifying whether access is allowed for 
 
 <figure>
   <img src="../img/street-mod-settings.png" alt="street properties"/>
-  <figcaption></figcaption>
+  <figcaption>Default settings for access and impedance on affected streets</figcaption>
 </figure>
 
 If access for a given mode is enabled, you will have options to set corresponding properties. 

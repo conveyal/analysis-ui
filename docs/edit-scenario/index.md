@@ -19,7 +19,7 @@ Clicking on this will open a window prompting you to enter a name for the modifi
 
 <figure>
   <img src="../img/create-mod-dialog.png" />
-  <figcaption></figcaption>
+  <figcaption>Window with options for creating a new modification</figcaption>
 </figure>
 
 Try to choose a descriptive name that will be unique to the chosen modification type. After clicking *create* you will be taken to a page with options specific to your chosen modification type.
