@@ -79,7 +79,7 @@ export default function StreetForm({modification, update, ...p}) {
       <Alert status='error'>
         <AlertIcon />
         EXPERIMENTAL: ongoing compatibility not guaranteed, routing engine
-        v4.9.0 required.
+        v5.9.0 required.
       </Alert>
       <Box>
         <Flex justify='space-between'>
