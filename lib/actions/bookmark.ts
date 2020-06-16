@@ -8,7 +8,13 @@ import fetch from './fetch'
 const createBookmarkLocally = createAction('create bookmark')
 const setBookmarks = createAction('set bookmarks')
 
-export const createBookmark = (bookmark) =>
+type Bookmark = {
+  name: string
+  profileRequest: any
+  regionId: string
+}
+
+export const createBookmark = (bookmark: Bookmark) =>
   fetch({
     url: `${API.Region}/${bookmark.regionId}/bookmarks`,
     options: {
