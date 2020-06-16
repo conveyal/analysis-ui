@@ -36,8 +36,8 @@ const FUNICULAR = 'FUNICULAR'
 const ALL = 'ALL'
 const ALL_TRANSIT_ARRAY = [
   BUS,
-  RAIL,
   TRAM,
+  RAIL,
   SUBWAY,
   FERRY,
   CABLE_CAR,
