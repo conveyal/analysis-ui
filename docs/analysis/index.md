@@ -10,7 +10,7 @@ The main analysis page is for generating :term:`isochrones<isochrone>` (travel t
 
 To start an analysis, you'll need to select a :term:`project` and :term:`scenario`. The scenarios created on the modifications page will all be available for your selected project along with a scenario representing the :term:`baseline network`. 
 
-To retrieve results for the origin marker shown on the map, you can either move the marker to a new location or click the *fetch results* button at the top. 
+To retrieve results for the origin marker shown on the map, you can either move the marker to a new location or click the *fetch results* button at the top of the page. 
 
 <br><span class="btn btn-info"><i class="fa fa-refresh"></i> Fetch results</span>
 
@@ -28,7 +28,7 @@ This represents the area reachable from the origin marker within a given travel 
 
 The *time cutoff* slider controls the travel time threshold between a range of one minute and two hours. The slider for *travel time percentile* controls the portion of departures within the time window that have to meet the travel time threshold. 
 Reducing the travel time should smoothly decrease the size of the isochrone, as would increasing the travel time percentile. 
-The default values are 60 minutes and 50th percentile. This would mean that the default isochrone boundary is drawn where exactly half of trips in the selected departure window would take exactly one hour. 
+The default values are 60 minutes and 50th percentile. This would mean that the default isochrone boundary is drawn where the median trip in the selected departure window would take exactly one hour. 
 
 The modifications displayed on the map are controlled in editing mode (See: :ref:`toggle_mod_display`).
 
