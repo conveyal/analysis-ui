@@ -1,7 +1,14 @@
 .. _single_point_analysis:
 # Single point analysis
 
-The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. To start an analysis, ensure a :term:`project` and :term:`scenario` are selected. 
+The main analysis page is for generating :term:`isochrones<isochrone>` (travel time contours) from selected origins. To enter analysis mode, click the <i class="fa fa-area-chart"></i> icon on the sidebar. 
+
+<figure>
+  <img src="../img/analysis-default-settings.png" />
+  <figcaption>The analysis page with no projects selected</figcaption>
+</figure>
+
+To start an analysis, you'll need to select a :term:`project` and :term:`scenario`. The scenarios created on the modifications page will all be available for your selected project along with a scenario representing the :term:`baseline network`. 
 
 To retrieve results for the origin marker shown on the map, you can either move the marker to a new location or click the *fetch results* button at the top. 
 
