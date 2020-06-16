@@ -1,4 +1,10 @@
-import {Box, Button, FormControl, FormLabel} from '@chakra-ui/core'
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  FormControlProps
+} from '@chakra-ui/core'
 import get from 'lodash/fp/get'
 import isEqual from 'lodash/isEqual'
 import {memo, useEffect, useState} from 'react'
@@ -45,7 +51,7 @@ type Props = {
   requestSettings: any
 }
 
-export default memo<Props>(function BookmarkChooser({
+export default memo<Props & FormControlProps>(function BookmarkChooser({
   disabled,
   isComparison = false,
   onChange,
