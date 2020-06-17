@@ -1,3 +1,4 @@
+.. _regional_analysis:
 # Regional analysis
 
 The :ref:`single_point_analysis` interface also allows creating a *regional analysis*, which involves repeating an accessibility calculation for every location in a regular grid (See :ref:`spatial_grid`).
