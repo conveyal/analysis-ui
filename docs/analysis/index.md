@@ -5,7 +5,7 @@ The main analysis page is for generating :term:`isochrones<isochrone>` (travel t
 
 <figure>
   <img src="../img/analysis-default-settings.png" />
-  <figcaption>The analysis page with no projects selected</figcaption>
+  <figcaption>The single-point analysis page with no projects or scenarios selected</figcaption>
 </figure>
 
 To start an analysis, you'll need to select a :term:`project` and :term:`scenario`. Once these are selected you can retrieve results for the origin marker shown on the map either by moving the marker to a new location or clicking the *fetch results* button at the top of the page. 
@@ -43,7 +43,7 @@ To change the origin of the analysis, drag the marker to a new location. Clickin
 
 <figure>
   <img src="../img/destination-travel-time-distribution.png" />
-  <figcaption>The travel time distribution from an origin to a destination, with ticks at the following percentiles: 5, 25, 50, 75, 95</figcaption>
+  <figcaption>The travel time distribution from an origin to a destination</figcaption>
 </figure>
 
 ## Analysis panel
@@ -70,16 +70,17 @@ The currently-selected travel time cutoff is indicated by the vertical line on t
 
 To the left of the Y axis labels is a box-and-whisker plot. This shows the same information as the cumulative plot, but only for the currently selected travel time cutoff. The lowest whisker shows the number of opportunities accessible given 95<sup>th</sup> percentile travel time, the box shows the number of opportunities accessible given 75<sup>th</sup>, 50<sup>th</sup> and 25<sup>th</sup> percentile travel time, and the top whisker shows the number of opportunities reachable given 5<sup>th</sup> percentile travel time.
 
-When a comparison scenario is selected two box plots will be displayed to the left of the axis with the comparison in red. Above the chart there is a selector that allows you to select whether to view the cumulative curves for the first scenario, the comparison scenario, or both -- in which case the plots will be simplified and only the bands between the 75<sup>th</sup> and 25<sup>th</sup> percentile travel times will be shown.
+When a comparison scenario is selected two box plots will be displayed to the left of the axis with the comparison in red. The plots will also be simplified and only the bands between the 75<sup>th</sup> and 25<sup>th</sup> percentile travel times will be shown.
 
 <figure>
   <img src="../img/stacked-percentile-comparison.png" />
-  <figcaption>A stacked percentile plot comparing two scenarios</figcaption>
+  <figcaption>A stacked percentile plot comparing two scenarios. Note that the main scenario in blue has travel time variability while the comparison scenario in red (bicycle access only) has none.</figcaption>
 </figure>
 
 ### Downloading
 
-There are multiple options for downloading single-point analyses:
+Click the download icon (<i class="fa fa-download"></i>) next to your main or comparison scenarios to download the results as a GeoJSON, GeoTIFF, or CSV. 
 
-- <span class="btn btn-info"><i class="fa fa-download"></i> Isochrone as GeoJSON</span> saves the isochrone currently shown on the map. The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org). Note that these vector isochrones are interpolations of the [underlying analysis grid](methodology.html#spatial-resolution). They can be useful for visualizing results in GIS, but additional steps may be needed to prepare them for geoprocessing.
-- <span class="btn btn-info"><i class="fa fa-globe"></i> Generate & Download GeoTIFFs</span> saves the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region. This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95. For geoprocessing, we often suggest using band 3 (the 50th percentile travel times) of this raw output.
+- **GeoJSON** saves the a multipolygon geometry of the isochrone currently shown on the map. The downloaded file can be converted to other formats using a tool like [mapshaper](http://mapshaper.org). Note that these vector isochrones are interpolations of the [underlying analysis grid](methodology.html#spatial-resolution). They can be useful for visualizing results in GIS, but additional steps may be needed to prepare them for geoprocessing.
+- **GeoTIFF** saves the underlying travel time surface, a raster of travel times (in minutes) from the selected origin to the rest of the region. This raster has five bands corresponding to [time percentiles](methodology.html#time-percentile) of 5, 25, 50, 75, and 95. For geoprocessing, we often suggest using band 3 (the median travel time) of this raw output. Cells beyond the 120 minute cutoff are assigned a value of zero. 
+- **CSV** saves a comma-separated table listing the total number of opportunities accessible at all combinations of time and percentile. It has one column for each minute between 1 to 120 and a row for each percentile (5,25,50,75,95).
