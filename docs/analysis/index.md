@@ -43,7 +43,7 @@ To change the origin of the analysis, drag the marker to a new location. Clickin
 
 <figure>
   <img src="../img/destination-travel-time-distribution.png" />
-  <figcaption>The travel time distribution from an origin to a destination, with ticks at the following percentiles: 5,25,50,75,95</figcaption>
+  <figcaption>The travel time distribution from an origin to a destination, with ticks at the following percentiles: 5, 25, 50, 75, 95</figcaption>
 </figure>
 
 ## Analysis panel
@@ -51,7 +51,7 @@ To change the origin of the analysis, drag the marker to a new location. Clickin
 The left panel has controls for the analysis and displays the access to opportunities afforded by the :term:`scenario`. At the top of the panel, available scenarios and opportunity data layers are listed in drop-down menus. For example, you might be interested in how a given scenario provides access to jobs, access to schools, or some other variable of interest represented in an :term:`opportunity dataset` you uploaded.
 Additional scenarios can be selected for comparison. A :term:`baseline<baseline network>` scenario with no modifications (i.e. the unmodified :term:`network bundle` you uploaded) is automatically available for every project.
 
-The available options are described more fully in :ref:`analysis_configuration`.
+The options available in this panel are described more fully in :ref:`analysis_configuration`.
 
 .. _accessibility_chart:
 ### Chart of accessibility results
