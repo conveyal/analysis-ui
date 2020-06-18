@@ -4,7 +4,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
 <EditBundle
   bundleProjects={Array []}
 >
-  <Stack
+  <ForwardRef
     spacing={8}
   >
     <Flex
@@ -52,7 +52,7 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                   <div
                     className="css-0"
                   >
-                    <S
+                    <ForwardRef
                       getOptionLabel={[Function]}
                       getOptionValue={[Function]}
                       onChange={[Function]}
@@ -80,9 +80,10 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                         ]
                       }
                     >
-                      <ForwardRef(LoadableComponent)
+                      <ReactSelect
                         getOptionLabel={[Function]}
                         getOptionValue={[Function]}
+                        innerRef={null}
                         onChange={[Function]}
                         options={
                           Array [
@@ -114,15 +115,11 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
                           }
                         }
                       >
-                        <loading
-                          error={null}
-                          isLoading={true}
-                          pastDelay={false}
-                          retry={[Function]}
-                          timedOut={false}
+                        <div
+                          className="ReactSelectMock"
                         />
-                      </ForwardRef(LoadableComponent)>
-                    </S>
+                      </ReactSelect>
+                    </ForwardRef>
                   </div>
                 </Box>
               </div>
@@ -131,6 +128,6 @@ exports[`Component EditBundle snapshot(mount) 1`] = `
         </div>
       </Box>
     </Flex>
-  </Stack>
+  </ForwardRef>
 </EditBundle>
 `;

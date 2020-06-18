@@ -10,16 +10,17 @@ import {
   Stack
 } from '@chakra-ui/core'
 import React from 'react'
+import useSWR from 'swr'
 
 import Icon from 'lib/components/icon'
-import useRequest from 'lib/hooks/use-request'
 
 const API_URL = process.env.API_URL + '/version'
 
+const fetcher = (url) => fetch(url).then((res) => res.json())
+const swrOptions = {refreshInterval: 5000}
+
 export default function Status() {
-  const req = useRequest(API_URL, {
-    refreshInterval: 5000
-  })
+  const req = useSWR(API_URL, fetcher, swrOptions)
 
   const color = !req.data ? 'red.500' : 'green.500'
   const text = req.error ? 'ERROR' : req.data ? 'OK' : 'NOT FOUND'
@@ -64,7 +65,7 @@ export default function Status() {
             {API_URL} <Icon icon={faExternalLinkAlt} />
           </Link>
           <List styleType='disc'>
-            {Object.keys(data).map(k => (
+            {Object.keys(data).map((k) => (
               <ListItem key={k}>
                 {k}:&nbsp;<strong>{data[k]}</strong>
               </ListItem>

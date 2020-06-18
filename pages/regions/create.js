@@ -4,21 +4,21 @@ import {useDispatch} from 'react-redux'
 
 import {create} from 'lib/actions/region'
 import CreateRegion from 'lib/components/create-region'
-import getInitialAuth from 'lib/get-initial-auth'
+import MapLayout from 'lib/layouts/map'
 import {routeTo} from 'lib/router'
 
-export default function CreateRegionPage(p) {
+export default function CreateRegionPage() {
   const dispatch = useDispatch()
   const router = useRouter()
 
   function _create(r) {
-    return dispatch(create(r)).then(region => {
+    return dispatch(create(r)).then((region) => {
       const {as, href} = routeTo('projects', {regionId: region._id})
       router.push(href, as)
     })
   }
 
-  return <CreateRegion create={_create} setMapChildren={p.setMapChildren} />
+  return <CreateRegion create={_create} />
 }
 
-CreateRegionPage.getInitialProps = getInitialAuth
+CreateRegionPage.Layout = MapLayout

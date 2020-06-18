@@ -16,3 +16,20 @@ module.exports = () => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
+
+const {addMatchImageSnapshotPlugin} = require('cypress-image-snapshot/plugin')
+
+const fs = require('fs')
+module.exports = (on, config) => {
+  addMatchImageSnapshotPlugin(on, config)
+
+  // used to create the pseudoFixture file
+  on('task', {
+    touch(filename, contents = '{}') {
+      if (!fs.existsSync(filename)) {
+        fs.writeFileSync(filename, contents)
+      }
+      return null
+    }
+  })
+}

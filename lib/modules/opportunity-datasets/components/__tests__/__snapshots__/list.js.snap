@@ -178,11 +178,14 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
       className="form-group"
     >
       <OpportunityDatasetSelector>
-        <S
+        <ForwardRef
           getOptionLabel={[Function]}
           getOptionValue={[Function]}
+          inputId="select-opportunity-dataset"
           isClearable={true}
           isDisabled={false}
+          isLoading={false}
+          name="select-opportunity-dataset"
           onChange={[Function]}
           options={
             Array [
@@ -194,11 +197,19 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
             ]
           }
         >
-          <ForwardRef(LoadableComponent)
+          <ReactSelect
             getOptionLabel={[Function]}
             getOptionValue={[Function]}
+            innerRef={
+              Object {
+                "current": undefined,
+              }
+            }
+            inputId="select-opportunity-dataset"
             isClearable={true}
             isDisabled={false}
+            isLoading={false}
+            name="select-opportunity-dataset"
             onChange={[Function]}
             options={
               Array [
@@ -216,15 +227,11 @@ exports[`Opportunity Datasets > Components > List should render without errors 1
               }
             }
           >
-            <loading
-              error={null}
-              isLoading={true}
-              pastDelay={false}
-              retry={[Function]}
-              timedOut={false}
+            <div
+              className="ReactSelectMock"
             />
-          </ForwardRef(LoadableComponent)>
-        </S>
+          </ReactSelect>
+        </ForwardRef>
       </OpportunityDatasetSelector>
     </div>
   </Group>

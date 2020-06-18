@@ -4,21 +4,21 @@ import {loadBundles} from 'lib/actions'
 import {loadProjects} from 'lib/actions/project'
 import Bundles from 'lib/components/bundles'
 import EditBundle from 'lib/components/edit-bundle'
+import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-const BundlesView = p => (
-  <Bundles regionId={p.query.regionId}>
-    <EditBundle bundleProjects={p.bundleProjects} key={p.query.bundleId} />
-  </Bundles>
+const BundleViewPage = withInitialFetch(
+  (p) => (
+    <Bundles regionId={p.query.regionId}>
+      <EditBundle bundleProjects={p.bundleProjects} key={p.query.bundleId} />
+    </Bundles>
+  ),
+  async (dispatch, query) => ({
+    bundles: await dispatch(loadBundles({regionId: query.regionId})),
+    bundleProjects: await dispatch(loadProjects({bundleId: query.bundleId}))
+  })
 )
 
-async function initialFetch(store, query) {
-  return {
-    bundles: await store.dispatch(loadBundles({regionId: query.regionId})),
-    bundleProjects: await store.dispatch(
-      loadProjects({bundleId: query.bundleId})
-    )
-  }
-}
+BundleViewPage.Layout = MapLayout
 
-export default withInitialFetch(BundlesView, initialFetch)
+export default BundleViewPage

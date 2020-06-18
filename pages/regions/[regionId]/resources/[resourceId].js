@@ -32,6 +32,7 @@ import SelectResource from 'lib/components/select-resource'
 import msg from 'lib/message'
 import downloadData from 'lib/utils/download-data'
 import {routeTo} from 'lib/router'
+import MapLayout, {MapChildrenContext} from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
 const GeoJSON = dynamic(() => import('lib/components/map/geojson'), {
@@ -85,77 +86,81 @@ function ConfirmDelete(p) {
   )
 }
 
-function EditResource(p) {
-  const dispatch = useDispatch()
-  const router = useRouter()
-  const [resourceData, setResourceData] = React.useState()
-  const {resource, setMapChildren} = p
+const EditResourcePage = withInitialFetch(
+  function EditResource(p) {
+    const dispatch = useDispatch()
+    const router = useRouter()
+    const [resourceData, setResourceData] = React.useState()
+    const {resource} = p
 
-  // Load the resource data on client side mount
-  React.useEffect(() => {
-    dispatch(loadResourceData(resource)).then(setResourceData)
-  }, [dispatch, resource])
+    // Load the resource data on client side mount
+    React.useEffect(() => {
+      dispatch(loadResourceData(resource)).then(setResourceData)
+    }, [dispatch, resource])
 
-  // Show the resource on the map
-  React.useEffect(() => {
-    if (resourceData) {
-      setMapChildren(<GeoJSON data={resourceData} />)
+    // Show the resource on the map
+    const setMapChildren = React.useContext(MapChildrenContext)
+    React.useEffect(() => {
+      if (resourceData) {
+        setMapChildren(<GeoJSON data={resourceData} />)
+      }
+
+      return () => setMapChildren(<React.Fragment />)
+    }, [resourceData, setMapChildren])
+
+    function _download() {
+      downloadData(resourceData, resource.filename, resource.type)
     }
 
-    return () => setMapChildren(<React.Fragment />)
-  }, [resourceData, setMapChildren])
+    function _delete() {
+      dispatch(deleteResource(resource)).then(() => {
+        const {as, href} = routeTo('resources', {regionId: resource.regionId})
+        router.push(href, as)
+      })
+    }
 
-  function _download() {
-    downloadData(resourceData, resource.filename, resource.type)
-  }
-
-  function _delete() {
-    dispatch(deleteResource(resource)).then(() => {
-      const {as, href} = routeTo('resources', {regionId: resource.regionId})
-      router.push(href, as)
-    })
-  }
-
-  return (
-    <SelectResource {...p}>
-      <Stack mt={6}>
-        <Heading size='lg'>{resource.name}</Heading>
-        <Text fontSize='xl'>{resource.filename}</Text>
-        <Stack isInline spacing={1}>
-          <Tag>{resource.type}</Tag>
-          <Tag>{resource.contentType}</Tag>
+    return (
+      <SelectResource {...p}>
+        <Stack mt={6}>
+          <Heading size='lg'>{resource.name}</Heading>
+          <Text fontSize='xl'>{resource.filename}</Text>
+          <Stack isInline spacing={1}>
+            <Tag>{resource.type}</Tag>
+            <Tag>{resource.contentType}</Tag>
+          </Stack>
+          <StatGroup>
+            <Stat>
+              <StatLabel>{msg('common.created')}</StatLabel>
+              <StatNumber>{dateFromObjectId(resource._id)}</StatNumber>
+              <StatHelpText>{resource.createdBy}</StatHelpText>
+            </Stat>
+            <Stat>
+              <StatLabel>{msg('common.updated')}</StatLabel>
+              <StatNumber>{dateFromObjectId(resource.nonce)}</StatNumber>
+              <StatHelpText>{resource.updatedBy}</StatHelpText>
+            </Stat>
+          </StatGroup>
+          <Button
+            block
+            disabled={!resourceData}
+            onClick={_download}
+            variantColor='green'
+          >
+            {msg('common.download')}
+          </Button>
+          <ConfirmDelete onDelete={_delete} />
         </Stack>
-        <StatGroup>
-          <Stat>
-            <StatLabel>{msg('common.created')}</StatLabel>
-            <StatNumber>{dateFromObjectId(resource._id)}</StatNumber>
-            <StatHelpText>{resource.createdBy}</StatHelpText>
-          </Stat>
-          <Stat>
-            <StatLabel>{msg('common.updated')}</StatLabel>
-            <StatNumber>{dateFromObjectId(resource.nonce)}</StatNumber>
-            <StatHelpText>{resource.updatedBy}</StatHelpText>
-          </Stat>
-        </StatGroup>
-        <Button
-          block
-          disabled={!resourceData}
-          onClick={_download}
-          variantColor='green'
-        >
-          {msg('common.download')}
-        </Button>
-        <ConfirmDelete onDelete={_delete} />
-      </Stack>
-    </SelectResource>
-  )
-}
-
-async function initialFetch(store, query) {
-  return {
-    resource: await store.dispatch(loadResource(query.resourceId)),
-    resources: await store.dispatch(loadAllResources(query))
+      </SelectResource>
+    )
+  },
+  async (dispatch, query) => {
+    return {
+      resource: await dispatch(loadResource(query.resourceId)),
+      resources: await dispatch(loadAllResources(query))
+    }
   }
-}
+)
 
-export default withInitialFetch(EditResource, initialFetch)
+EditResourcePage.Layout = MapLayout
+
+export default EditResourcePage

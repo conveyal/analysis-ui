@@ -1,4 +1,4 @@
-const uuid = require.requireActual('uuid')
+const uuid = jest.requireActual('uuid')
 
 module.exports = {
   ...uuid,

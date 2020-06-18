@@ -8,10 +8,10 @@ module.exports = {
   },
   // Add the current working directory to the path to allow absolute imports from /lib
   modulePaths: ['.'],
-  notify: true,
-  setupFiles: ['./lib/utils/enzyme'],
+  notify: false,
+  setupFiles: ['./jest/enzyme', './jest/fetch'],
   snapshotSerializers: [
-    './lib/utils/geojson-snapshot-serializer',
+    './jest/geojson-snapshot-serializer',
     'enzyme-to-json/serializer'
   ],
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/']

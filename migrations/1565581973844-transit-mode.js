@@ -1,6 +1,6 @@
 const handler = require('../db/migration-handler')
 
-module.exports.up = handler(async function(db) {
+module.exports.up = handler(async function (db) {
   const modifications = db.collection('modifications')
   const results = await modifications.updateMany(
     {
@@ -14,4 +14,4 @@ module.exports.up = handler(async function(db) {
   console.log(`Modified ${results.modifiedCount} modifications`)
 })
 
-module.exports.down = handler(function() {})
+module.exports.down = handler(function () {})

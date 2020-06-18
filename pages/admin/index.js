@@ -10,22 +10,35 @@ import {
   TabPanels,
   Tabs
 } from '@chakra-ui/core'
-import React from 'react'
+import React, {useContext} from 'react'
+import useSWR from 'swr'
+
+import {API} from 'lib/constants'
 
 import JobDashboard from 'lib/components/admin-job-dashboard'
 import TextLink from 'lib/components/text-link'
 import WorkerList from 'lib/components/admin-worker-list'
-import getInitialAuth from 'lib/get-initial-auth'
-import {useProxyRequest} from 'lib/hooks/use-request'
+import {UserContext} from 'lib/user'
+import withAuth from 'lib/with-auth'
 
 // Refresh every five seconds
 const refreshInterval = 5000
 
-function AdminDashboard() {
-  const jobRequest = useProxyRequest('/api/jobs', {refreshInterval})
-  const workerRequest = useProxyRequest('/api/workers', {refreshInterval})
+// Fetcher
+const fetcher = (url, user) =>
+  fetch(url, {
+    headers: {
+      Authorization: `bearer ${user.idToken}`,
+      'X-Conveyal-Access-Group': user.adminTempAccessGroup
+    }
+  }).then((res) => res.json())
 
-  const jobs = (jobRequest.data || []).filter(j => j.graphId !== 'SUM')
+export default withAuth(function AdminDashboard() {
+  const user = useContext(UserContext)
+  const jobRequest = useSWR([API.Jobs, user], fetcher, {refreshInterval})
+  const workerRequest = useSWR([API.Workers, user], fetcher, {refreshInterval})
+
+  const jobs = (jobRequest.data || []).filter((j) => j.graphId !== 'SUM')
   const workers = workerRequest.data || []
 
   return (
@@ -63,8 +76,4 @@ function AdminDashboard() {
       </Box>
     </Flex>
   )
-}
-
-AdminDashboard.getInitialProps = getInitialAuth
-
-export default AdminDashboard
+})

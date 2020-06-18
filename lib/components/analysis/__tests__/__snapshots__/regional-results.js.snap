@@ -82,7 +82,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
   }
   regionId="MOCK_REGION_ID"
 >
-  <Stack
+  <ForwardRef
     spacing={4}
   >
     <Flex
@@ -189,7 +189,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
               >
                 Compare to
               </label>
-              <S
+              <ForwardRef
                 getOptionLabel={[Function]}
                 getOptionValue={[Function]}
                 isClearable={true}
@@ -335,9 +335,10 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                   ]
                 }
               >
-                <ForwardRef(LoadableComponent)
+                <ReactSelect
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
+                  innerRef={null}
                   isClearable={true}
                   onChange={[Function]}
                   options={
@@ -487,15 +488,11 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                     }
                   }
                 >
-                  <loading
-                    error={null}
-                    isLoading={true}
-                    pastDelay={false}
-                    retry={[Function]}
-                    timedOut={false}
+                  <div
+                    className="ReactSelectMock"
                   />
-                </ForwardRef(LoadableComponent)>
-              </S>
+                </ReactSelect>
+              </ForwardRef>
             </div>
           </Box>
           <Group
@@ -673,7 +670,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                 >
                   Aggregate results to
                 </label>
-                <S
+                <ForwardRef
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   isClearable={true}
@@ -682,9 +679,10 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                   onChange={[Function]}
                   options={Array []}
                 >
-                  <ForwardRef(LoadableComponent)
+                  <ReactSelect
                     getOptionLabel={[Function]}
                     getOptionValue={[Function]}
+                    innerRef={null}
                     isClearable={true}
                     isDisabled={false}
                     name="aggregateTo"
@@ -697,15 +695,11 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                       }
                     }
                   >
-                    <loading
-                      error={null}
-                      isLoading={true}
-                      pastDelay={false}
-                      retry={[Function]}
-                      timedOut={false}
+                    <div
+                      className="ReactSelectMock"
                     />
-                  </ForwardRef(LoadableComponent)>
-                </S>
+                  </ReactSelect>
+                </ForwardRef>
               </div>
             </Group>
             <Group>
@@ -786,7 +780,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
         </div>
       </Box>
     </Flex>
-  </Stack>
+  </ForwardRef>
 </RegionalResults>
 `;
 
@@ -872,7 +866,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
   }
   regionId="MOCK_REGION_ID"
 >
-  <Stack
+  <ForwardRef
     spacing={4}
   >
     <Flex
@@ -979,7 +973,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
               >
                 Compare to
               </label>
-              <S
+              <ForwardRef
                 getOptionLabel={[Function]}
                 getOptionValue={[Function]}
                 isClearable={true}
@@ -1195,9 +1189,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                   }
                 }
               >
-                <ForwardRef(LoadableComponent)
+                <ReactSelect
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
+                  innerRef={null}
                   isClearable={true}
                   onChange={[Function]}
                   options={
@@ -1417,237 +1412,14 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                     }
                   }
                 >
-                  <ReactSelect
-                    getOptionLabel={[Function]}
-                    getOptionValue={[Function]}
-                    isClearable={true}
-                    onChange={[Function]}
-                    options={
-                      Array [
-                        Object {
-                          "_id": "abcd",
-                          "accessGroup": "accessGroupName",
-                          "bounds": Object {},
-                          "bundleId": "5678",
-                          "complete": true,
-                          "createdAt": "2017-11-08T12:30:50.133Z",
-                          "createdBy": "person@gmail.com",
-                          "cutoffMinutes": 60,
-                          "cutoffsMinutes": Array [
-                            60,
-                          ],
-                          "deleted": false,
-                          "grid": "Jobs_total",
-                          "height": 300,
-                          "name": "ANALYSIS 1",
-                          "nonce": "12345",
-                          "north": 20024,
-                          "projectId": "1234",
-                          "request": Object {
-                            "accessModes": "WALK",
-                            "bikeSafe": 1,
-                            "bikeSlope": 1,
-                            "bikeSpeed": 4.166666666666667,
-                            "bikeTime": 1,
-                            "bounds": Object {
-                              "east": -76,
-                              "north": 39,
-                              "south": 38,
-                              "west": -77,
-                            },
-                            "bundleId": "1",
-                            "date": "2016-01-16",
-                            "defaultExpanded": true,
-                            "directModes": "WALK",
-                            "egressModes": "WALK",
-                            "fromLat": 12,
-                            "fromLon": 34,
-                            "fromTime": 25200,
-                            "maxBikeTime": 20,
-                            "maxRides": 4,
-                            "maxTripDurationMinutes": 60,
-                            "maxWalkTime": 20,
-                            "monteCarloDraws": 200,
-                            "name": "Profile Request Test",
-                            "projectId": "1",
-                            "reachabilityThreshold": 0,
-                            "regionId": "1",
-                            "toTime": 32400,
-                            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                            "travelTimePercentile": 50,
-                            "variantIndex": 0,
-                            "walkSpeed": 1.3888888888888888,
-                            "workerVersion": "v4.0.0",
-                          },
-                          "status": "DONE",
-                          "travelTimePercentile": -1,
-                          "travelTimePercentiles": Array [
-                            50,
-                          ],
-                          "updatedAt": "2017-11-08T12:31:19.602Z",
-                          "updatedBy": "person@gmail.com",
-                          "variant": 0,
-                          "west": 20015,
-                          "width": 300,
-                          "workerVersion": "v3.2.0",
-                          "zoom": 9,
-                        },
-                        Object {
-                          "_id": "efgh",
-                          "accessGroup": "accessGroupName",
-                          "bounds": Object {},
-                          "bundleId": "5678",
-                          "complete": true,
-                          "createdAt": "2017-11-08T12:30:50.133Z",
-                          "createdBy": "person@gmail.com",
-                          "cutoffMinutes": 60,
-                          "cutoffsMinutes": Array [
-                            60,
-                          ],
-                          "deleted": false,
-                          "grid": "Jobs_total",
-                          "height": 300,
-                          "name": "ANALYSIS 2",
-                          "nonce": "12345",
-                          "north": 20024,
-                          "projectId": "4321",
-                          "request": Object {
-                            "accessModes": "WALK",
-                            "bikeSafe": 1,
-                            "bikeSlope": 1,
-                            "bikeSpeed": 4.166666666666667,
-                            "bikeTime": 1,
-                            "bounds": Object {
-                              "east": -76,
-                              "north": 39,
-                              "south": 38,
-                              "west": -77,
-                            },
-                            "bundleId": "1",
-                            "date": "2016-01-16",
-                            "defaultExpanded": true,
-                            "directModes": "WALK",
-                            "egressModes": "WALK",
-                            "fromLat": 12,
-                            "fromLon": 34,
-                            "fromTime": 25200,
-                            "maxBikeTime": 20,
-                            "maxRides": 4,
-                            "maxTripDurationMinutes": 60,
-                            "maxWalkTime": 20,
-                            "monteCarloDraws": 200,
-                            "name": "Profile Request Test",
-                            "projectId": "1",
-                            "reachabilityThreshold": 0,
-                            "regionId": "1",
-                            "toTime": 32400,
-                            "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                            "travelTimePercentile": 50,
-                            "variantIndex": 0,
-                            "walkSpeed": 1.3888888888888888,
-                            "workerVersion": "v4.0.0",
-                          },
-                          "status": "DONE",
-                          "travelTimePercentile": 50,
-                          "travelTimePercentiles": Array [
-                            50,
-                          ],
-                          "updatedAt": "2017-11-08T12:31:19.602Z",
-                          "updatedBy": "person@gmail.com",
-                          "variant": 1,
-                          "west": 20015,
-                          "width": 300,
-                          "workerVersion": "v3.2.0",
-                          "zoom": 9,
-                        },
-                      ]
-                    }
-                    styles={
-                      Object {
-                        "control": [Function],
-                        "option": [Function],
-                      }
-                    }
-                    value={
-                      Object {
-                        "_id": "efgh",
-                        "accessGroup": "accessGroupName",
-                        "bounds": Object {},
-                        "bundleId": "5678",
-                        "complete": true,
-                        "createdAt": "2017-11-08T12:30:50.133Z",
-                        "createdBy": "person@gmail.com",
-                        "cutoffMinutes": 60,
-                        "cutoffsMinutes": Array [
-                          60,
-                        ],
-                        "deleted": false,
-                        "grid": "Jobs_total",
-                        "height": 300,
-                        "name": "ANALYSIS 2",
-                        "nonce": "12345",
-                        "north": 20024,
-                        "projectId": "4321",
-                        "request": Object {
-                          "accessModes": "WALK",
-                          "bikeSafe": 1,
-                          "bikeSlope": 1,
-                          "bikeSpeed": 4.166666666666667,
-                          "bikeTime": 1,
-                          "bounds": Object {
-                            "east": -76,
-                            "north": 39,
-                            "south": 38,
-                            "west": -77,
-                          },
-                          "bundleId": "1",
-                          "date": "2016-01-16",
-                          "defaultExpanded": true,
-                          "directModes": "WALK",
-                          "egressModes": "WALK",
-                          "fromLat": 12,
-                          "fromLon": 34,
-                          "fromTime": 25200,
-                          "maxBikeTime": 20,
-                          "maxRides": 4,
-                          "maxTripDurationMinutes": 60,
-                          "maxWalkTime": 20,
-                          "monteCarloDraws": 200,
-                          "name": "Profile Request Test",
-                          "projectId": "1",
-                          "reachabilityThreshold": 0,
-                          "regionId": "1",
-                          "toTime": 32400,
-                          "transitModes": "BUS,TRAM,RAIL,SUBWAY",
-                          "travelTimePercentile": 50,
-                          "variantIndex": 0,
-                          "walkSpeed": 1.3888888888888888,
-                          "workerVersion": "v4.0.0",
-                        },
-                        "status": "DONE",
-                        "travelTimePercentile": 50,
-                        "travelTimePercentiles": Array [
-                          50,
-                        ],
-                        "updatedAt": "2017-11-08T12:31:19.602Z",
-                        "updatedBy": "person@gmail.com",
-                        "variant": 1,
-                        "west": 20015,
-                        "width": 300,
-                        "workerVersion": "v3.2.0",
-                        "zoom": 9,
-                      }
-                    }
-                  >
-                    <div
-                      className="ReactSelectMock"
-                    />
-                  </ReactSelect>
-                </ForwardRef(LoadableComponent)>
-              </S>
+                  <div
+                    className="ReactSelectMock"
+                  />
+                </ReactSelect>
+              </ForwardRef>
             </div>
           </Box>
-          <Stack
+          <ForwardRef
             key=".2"
             mb={4}
             spacing={4}
@@ -1800,6 +1572,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                   <div
                                     className="panel-heading clearfix "
                                     onClick={[Function]}
+                                    role="button"
                                     style={
                                       Object {
                                         "cursor": "pointer",
@@ -2116,7 +1889,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                       </ProfileRequestDisplay>
                     </div>
                   </Box>
-                  <Stack
+                  <ForwardRef
                     key=".2"
                     mb={null}
                     spacing={4}
@@ -2134,6 +1907,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                           className="css-j7qwjs"
                         >
                           <Select
+                            id="00000000-0000-0000-0000-000000000000"
+                            isInvalid={false}
+                            isValid={true}
                             key=".0"
                             mb={4}
                             onChange={[Function]}
@@ -2149,6 +1925,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                               >
                                 <ForwardRef(SelectInput)
                                   color="inherit"
+                                  id="00000000-0000-0000-0000-000000000000"
+                                  isInvalid={false}
+                                  isValid={true}
                                   onChange={[Function]}
                                   value={60}
                                 >
@@ -2158,7 +1937,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                     color="inherit"
                                     errorBorderColor="red.500"
                                     focusBorderColor="blue.500"
+                                    id="00000000-0000-0000-0000-000000000000"
                                     isFullWidth={true}
+                                    isInvalid={false}
+                                    isValid={true}
                                     lineHeight="normal"
                                     onChange={[Function]}
                                     pb="px"
@@ -2201,6 +1983,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       }
                                       alignItems="center"
                                       appearance="none"
+                                      aria-invalid={false}
                                       as="select"
                                       bg="white"
                                       border="1px"
@@ -2209,6 +1992,8 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       display="flex"
                                       fontSize="md"
                                       height={10}
+                                      id="00000000-0000-0000-0000-000000000000"
+                                      isValid={true}
                                       lineHeight="normal"
                                       onChange={[Function]}
                                       outline="none"
@@ -2222,7 +2007,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       width="100%"
                                     >
                                       <select
+                                        aria-invalid={false}
                                         className="css-16ut77p"
+                                        id="00000000-0000-0000-0000-000000000000"
                                         onChange={[Function]}
                                         value={60}
                                       >
@@ -2305,6 +2092,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                             </Box>
                           </Select>
                           <Select
+                            id="00000000-0000-0000-0000-000000000000"
+                            isInvalid={false}
+                            isValid={true}
                             key=".1"
                             mb={null}
                             onChange={[Function]}
@@ -2320,6 +2110,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                               >
                                 <ForwardRef(SelectInput)
                                   color="inherit"
+                                  id="00000000-0000-0000-0000-000000000000"
+                                  isInvalid={false}
+                                  isValid={true}
                                   onChange={[Function]}
                                   value={50}
                                 >
@@ -2329,7 +2122,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                     color="inherit"
                                     errorBorderColor="red.500"
                                     focusBorderColor="blue.500"
+                                    id="00000000-0000-0000-0000-000000000000"
                                     isFullWidth={true}
+                                    isInvalid={false}
+                                    isValid={true}
                                     lineHeight="normal"
                                     onChange={[Function]}
                                     pb="px"
@@ -2372,6 +2168,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       }
                                       alignItems="center"
                                       appearance="none"
+                                      aria-invalid={false}
                                       as="select"
                                       bg="white"
                                       border="1px"
@@ -2380,6 +2177,8 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       display="flex"
                                       fontSize="md"
                                       height={10}
+                                      id="00000000-0000-0000-0000-000000000000"
+                                      isValid={true}
                                       lineHeight="normal"
                                       onChange={[Function]}
                                       outline="none"
@@ -2393,7 +2192,9 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       width="100%"
                                     >
                                       <select
+                                        aria-invalid={false}
                                         className="css-16ut77p"
+                                        id="00000000-0000-0000-0000-000000000000"
                                         onChange={[Function]}
                                         value={50}
                                       >
@@ -2478,11 +2279,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                         </div>
                       </Box>
                     </Flex>
-                  </Stack>
+                  </ForwardRef>
                 </div>
               </Box>
             </Flex>
-          </Stack>
+          </ForwardRef>
           <Group
             key=".3"
             label="Access to"
@@ -2766,7 +2567,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                 >
                   Aggregate results to
                 </label>
-                <S
+                <ForwardRef
                   getOptionLabel={[Function]}
                   getOptionValue={[Function]}
                   isClearable={true}
@@ -2775,9 +2576,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                   onChange={[Function]}
                   options={Array []}
                 >
-                  <ForwardRef(LoadableComponent)
+                  <ReactSelect
                     getOptionLabel={[Function]}
                     getOptionValue={[Function]}
+                    innerRef={null}
                     isClearable={true}
                     isDisabled={false}
                     name="aggregateTo"
@@ -2790,27 +2592,11 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                       }
                     }
                   >
-                    <ReactSelect
-                      getOptionLabel={[Function]}
-                      getOptionValue={[Function]}
-                      isClearable={true}
-                      isDisabled={false}
-                      name="aggregateTo"
-                      onChange={[Function]}
-                      options={Array []}
-                      styles={
-                        Object {
-                          "control": [Function],
-                          "option": [Function],
-                        }
-                      }
-                    >
-                      <div
-                        className="ReactSelectMock"
-                      />
-                    </ReactSelect>
-                  </ForwardRef(LoadableComponent)>
-                </S>
+                    <div
+                      className="ReactSelectMock"
+                    />
+                  </ReactSelect>
+                </ForwardRef>
               </div>
             </Group>
             <Group>
@@ -2891,6 +2677,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
         </div>
       </Box>
     </Flex>
-  </Stack>
+  </ForwardRef>
 </RegionalResults>
 `;

@@ -19,6 +19,7 @@ import RunningJob from 'lib/components/running-analysis'
 import Select from 'lib/components/select'
 import useControlledInput from 'lib/hooks/use-controlled-input'
 import useInterval from 'lib/hooks/use-interval'
+import MapLayout from 'lib/layouts/map'
 import {loadOpportunityDatasets} from 'lib/modules/opportunity-datasets/actions'
 import selectActiveAnalysis from 'lib/selectors/active-regional-analysis'
 import selectRegionalAnalyses from 'lib/selectors/regional-analyses'
@@ -26,99 +27,109 @@ import withInitialFetch from 'lib/with-initial-fetch'
 
 const REFETCH_INTERVAL = ms('15s')
 
-const selectJobs = s => get(s, 'regionalAnalyses.activeJobs', [])
+const selectJobs = (s) => get(s, 'regionalAnalyses.activeJobs', [])
 
-function RegionalPage(p) {
-  const dispatch = useDispatch()
-  const allAnalyses = useSelector(selectRegionalAnalyses)
-  const activeAnalysis = useSelector(selectActiveAnalysis)
-  const jobs = useSelector(selectJobs)
-  const [activeId, onChange] = useControlledInput(
-    get(activeAnalysis, '_id'),
-    v => dispatch(setSearchParameter('analysisId', v))
-  )
-  const activeJob = jobs.find(j => j.jobId === activeId)
+const RegionalPage = withInitialFetch(
+  (p) => {
+    const dispatch = useDispatch()
+    const allAnalyses = useSelector(selectRegionalAnalyses)
+    const activeAnalysis = useSelector(selectActiveAnalysis)
+    const jobs = useSelector(selectJobs)
 
-  // Analyses are deleted before the jobs get cleared
-  const jobsWithAnalysis = jobs.filter(
-    j => allAnalyses.findIndex(a => j.jobId === a._id) !== -1
-  )
+    const onChange = React.useCallback(
+      (v) => dispatch(setSearchParameter('analysisId', v)),
+      [dispatch]
+    )
+    const input = useControlledInput({
+      onChange,
+      value: get(activeAnalysis, '_id')
+    })
+    const activeJob = jobs.find((j) => j.jobId === input.value)
 
-  useInterval(
-    () => dispatch(loadActiveRegionalJobs(p.query.regionId)),
-    REFETCH_INTERVAL
-  )
+    // Analyses are deleted before the jobs get cleared
+    const jobsWithAnalysis = jobs.filter(
+      (j) => allAnalyses.findIndex((a) => j.jobId === a._id) !== -1
+    )
 
-  return (
-    <InnerDock>
-      <Stack p={4} spacing={4}>
-        <Heading size='md'>
-          <Icon icon={faServer} /> Regional Analyses
-        </Heading>
+    useInterval(
+      () => dispatch(loadActiveRegionalJobs(p.query.regionId)),
+      REFETCH_INTERVAL
+    )
 
-        {allAnalyses.length === 0 && (
-          <Alert status='warning'>
-            <AlertIcon /> You have no running or completed regional analysis
-            jobs! To create one, go to the single point analysis page.
-          </Alert>
-        )}
+    return (
+      <InnerDock>
+        <Stack p={4} spacing={4}>
+          <Heading size='md'>
+            <Icon icon={faServer} /> Regional Analyses
+          </Heading>
 
-        <Box>
-          <Select
-            isClearable
-            key={`analysis-${activeId}`} // Dont show deleted analyses as selected
-            onChange={v => onChange(get(v, '_id'))}
-            getOptionLabel={a => a.name}
-            getOptionValue={a => a._id}
-            options={allAnalyses}
-            placeholder='View a regional analysis...'
-            value={allAnalyses.find(a => a._id === activeId)}
-          />
-        </Box>
+          {allAnalyses.length === 0 && (
+            <Alert status='warning'>
+              <AlertIcon /> You have no running or completed regional analysis
+              jobs! To create one, go to the single point analysis page.
+            </Alert>
+          )}
 
-        {activeId && activeAnalysis ? (
-          <Stack spacing={4}>
-            {activeJob && <RunningJob job={activeJob} />}
-            <Box>
-              <Regional
-                analysis={activeAnalysis}
-                isComplete={!activeJob}
-                key={activeAnalysis._id}
-                opportunityDatasets={p.opportunityDatasets}
-                regionalAnalyses={allAnalyses}
-                setMapChildren={p.setMapChildren}
-              />
-            </Box>
-          </Stack>
-        ) : (
-          jobsWithAnalysis.map(job => <RunningJob job={job} key={job.jobId} />)
-        )}
-      </Stack>
-    </InnerDock>
-  )
-}
+          <Box>
+            <Select
+              isClearable
+              key={`analysis-${input.value}`} // Dont show deleted analyses as selected
+              onChange={(v) => input.onChange(get(v, '_id'))}
+              getOptionLabel={(a) => a.name}
+              getOptionValue={(a) => a._id}
+              options={allAnalyses}
+              placeholder='View a regional analysis...'
+              value={allAnalyses.find((a) => a._id === input.value)}
+            />
+          </Box>
 
-async function initialFetch(store, query) {
-  const [
-    aggregationAreas,
-    regionalAnalyses,
-    opportunityDatasets,
-    region
-  ] = await Promise.all([
-    store.dispatch(loadAggregationAreas(query.regionId)),
-    store.dispatch(loadAllAnalyses(query.regionId)),
-    store.dispatch(loadOpportunityDatasets(query.regionId)),
-    store.dispatch(loadRegion(query.regionId)),
-    store.dispatch(loadActiveRegionalJobs(query.regionId))
-  ])
+          {input.value && activeAnalysis ? (
+            <Stack spacing={4}>
+              {activeJob && <RunningJob job={activeJob} />}
+              <Box>
+                <Regional
+                  analysis={activeAnalysis}
+                  isComplete={!activeJob}
+                  key={activeAnalysis._id}
+                  opportunityDatasets={p.opportunityDatasets}
+                  regionalAnalyses={allAnalyses}
+                  setMapChildren={p.setMapChildren}
+                />
+              </Box>
+            </Stack>
+          ) : (
+            jobsWithAnalysis.map((job) => (
+              <RunningJob job={job} key={job.jobId} />
+            ))
+          )}
+        </Stack>
+      </InnerDock>
+    )
+  },
+  async (dispatch, query) => {
+    const [
+      aggregationAreas,
+      regionalAnalyses,
+      opportunityDatasets,
+      region
+    ] = await Promise.all([
+      dispatch(loadAggregationAreas(query.regionId)),
+      dispatch(loadAllAnalyses(query.regionId)),
+      dispatch(loadOpportunityDatasets(query.regionId)),
+      dispatch(loadRegion(query.regionId)),
+      dispatch(loadActiveRegionalJobs(query.regionId))
+    ])
 
-  return {
-    aggregationAreas,
-    analysis: regionalAnalyses.find(a => a._id === query.analysisId),
-    opportunityDatasets,
-    region,
-    regionalAnalyses
+    return {
+      aggregationAreas,
+      analysis: regionalAnalyses.find((a) => a._id === query.analysisId),
+      opportunityDatasets,
+      region,
+      regionalAnalyses
+    }
   }
-}
+)
 
-export default withInitialFetch(RegionalPage, initialFetch)
+RegionalPage.Layout = MapLayout
+
+export default RegionalPage

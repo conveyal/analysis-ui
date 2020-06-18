@@ -1,39 +1,49 @@
+import dynamic from 'next/dynamic'
 import {loadBundle} from 'lib/actions'
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 import {loadModification} from 'lib/actions/modifications'
 import {loadProject} from 'lib/actions/project'
-import ModificationEditor from 'lib/containers/modification-editor'
+import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
-async function initialFetch(store, query) {
-  const {modificationId, projectId} = query
+// Lots of the ModificationEditor code depends on Leaflet. Load it all client side
+const ModificationEditor = dynamic(
+  () => import('lib/containers/modification-editor'),
+  {ssr: false}
+)
 
-  // TODO check if project and feed are already loaded
-  const [project, modification] = await Promise.all([
-    store.dispatch(loadProject(projectId)),
-    // Always reload the modification to get recent changes
-    store.dispatch(loadModification(modificationId))
-  ])
+const EditorPage = withInitialFetch(
+  ModificationEditor,
+  async (dispatch, query) => {
+    const {modificationId, projectId} = query
 
-  // Only gets unloaded feeds for modifications that have them
-  const [bundle, feeds] = await Promise.all([
-    store.dispatch(loadBundle(project.bundleId)),
-    store.dispatch(
-      getFeedsRoutesAndStops({
-        bundleId: project.bundleId,
-        modifications: [modification]
-      })
-    )
-  ])
+    // TODO check if project and feed are already loaded
+    const [project, modification] = await Promise.all([
+      dispatch(loadProject(projectId)),
+      // Always reload the modification to get recent changes
+      dispatch(loadModification(modificationId))
+    ])
 
-  return {
-    bundle,
-    feeds,
-    modification,
-    project
+    // Only gets unloaded feeds for modifications that have them
+    const [bundle, feeds] = await Promise.all([
+      dispatch(loadBundle(project.bundleId)),
+      dispatch(
+        getFeedsRoutesAndStops({
+          bundleId: project.bundleId,
+          modifications: [modification]
+        })
+      )
+    ])
+
+    return {
+      bundle,
+      feeds,
+      modification,
+      project
+    }
   }
-}
+)
 
-export default withInitialFetch(ModificationEditor, initialFetch, {
-  clientOnly: true
-})
+EditorPage.Layout = MapLayout
+
+export default EditorPage

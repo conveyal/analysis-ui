@@ -1,80 +1,188 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component > SelectStops renders correctly with no feed data 1`] = `
-<div
-  className="form-group"
->
-  <label
-    htmlFor="Selection"
-  >
-    Selection
-  </label>
-  <div
-    className="alert alert-info"
-    role="alert"
-  >
-    <Icon
-      icon={
-        Object {
-          "icon": Array [],
-          "iconName": "exclamation-circle",
-          "prefix": "fas",
-        }
-      }
-    />
-     
-    Click 'New', then draw a polygon around the stops you wish to select.
-  </div>
-  <Button
-    block={true}
-    onClick={[Function]}
-    style="primary"
-  >
-    New
-  </Button>
-</div>
-`;
-
-exports[`Component > SelectStops renders correctly with some selected stops 1`] = `
-<div
-  className="form-group"
->
-  <label
-    htmlFor="Selection"
-  >
-    Selection
-  </label>
-  <Group
-    justified={true}
-  >
-    <Button
-      onClick={[Function]}
-    >
-      Add to
-    </Button>
-    <Button
-      onClick={[Function]}
-    >
-      Remove from
-    </Button>
-    <Button
-      onClick={[Function]}
-    >
-      Clear
-    </Button>
-  </Group>
-  <br />
-  <SelectedStops
-    selectedStops={
-      Array [
-        Object {
-          "stop_id": "1",
-          "stop_lat": 36.9707,
-          "stop_lon": -122.0246,
-          "stop_name": "Santa Cruz",
-        },
+exports[`Component SelectStops snapshot(mount) 1`] = `
+<SelectStops
+  modification={
+    Object {
+      "_id": "1234",
+      "accessGroup": "accessGroupName",
+      "bidirectional": false,
+      "createdAt": "2017-11-08T12:30:50.133Z",
+      "createdBy": "person@gmail.com",
+      "description": "Mock description",
+      "entries": Array [],
+      "feed": "1",
+      "name": "Test Modification",
+      "nonce": "12345",
+      "projectId": "1",
+      "routes": Array [
+        "route1",
+      ],
+      "segments": Array [
+        {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
       ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+      ],
+      "timetables": Array [
+        Object {
+          "_id": "timetable-id",
+          "dwellTime": 10,
+          "dwellTimes": Array [
+            12,
+          ],
+          "endTime": 57600,
+          "exactTimes": false,
+          "friday": true,
+          "headwaySecs": 900,
+          "modificationId": "1234",
+          "modificationName": "Test Modification",
+          "monday": true,
+          "name": "Test timetable",
+          "patternTrips": Array [
+            "abcd",
+          ],
+          "phaseAtStop": "",
+          "phaseFromStop": "",
+          "phaseFromTimetable": "",
+          "phaseSeconds": 300,
+          "saturday": false,
+          "segmentSpeeds": Array [],
+          "sourceTrip": "abcd",
+          "startTime": 28800,
+          "sunday": false,
+          "thursday": true,
+          "tuesday": true,
+          "wednesday": true,
+        },
+      ],
+      "trips": Array [
+        "abcd",
+      ],
+      "type": "add-trip-pattern",
+      "updatedAt": "2017-11-08T12:31:19.602Z",
+      "updatedBy": "person@gmail.com",
+      "variants": Array [
+        true,
+      ],
     }
-  />
-</div>
+  }
+  setMapState={[MockFunction]}
+>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="Selection"
+    >
+      Selection
+    </label>
+    <div
+      className="alert alert-info"
+      role="alert"
+    >
+      <Icon
+        icon={
+          Object {
+            "icon": Array [],
+            "iconName": "exclamation-circle",
+            "prefix": "fas",
+          }
+        }
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={true}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [],
+              "iconName": "exclamation-circle",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-exclamation-circle fa-w-NaN fa-fw "
+            data-icon="exclamation-circle"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 undefined undefined"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+        </FontAwesomeIcon>
+      </Icon>
+       
+      Click 'New', then draw a polygon around the stops you wish to select.
+    </div>
+    <Button
+      block={true}
+      onClick={[Function]}
+      style="primary"
+    >
+      <a
+        className="btn btn-primary btn-block"
+        href="#"
+        onClick={[Function]}
+        tabIndex={0}
+      >
+        New
+      </a>
+    </Button>
+  </div>
+</SelectStops>
 `;

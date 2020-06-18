@@ -4,6 +4,7 @@ import {
   AlertIcon,
   Box,
   Button,
+  Heading,
   Stack
 } from '@chakra-ui/core'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +17,7 @@ import Icon from 'lib/components/icon'
 import {File, Select, Text} from 'lib/components/input'
 import InnerDock from 'lib/components/inner-dock'
 import Link from 'lib/components/link'
-import getInitialAuth from 'lib/get-initial-auth'
+import MapLayout from 'lib/layouts/map'
 import msg from 'lib/message'
 import {routeTo} from 'lib/router'
 
@@ -43,7 +44,7 @@ export default function UploadResource(p) {
         type
       })
     )
-      .then(resource => {
+      .then((resource) => {
         setError()
         setFile()
         setName('')
@@ -57,7 +58,7 @@ export default function UploadResource(p) {
           </span>
         )
       })
-      .catch(e => {
+      .catch((e) => {
         console.error(e)
         setStatus()
         setError(e.message)
@@ -69,15 +70,15 @@ export default function UploadResource(p) {
 
   return (
     <InnerDock className='block'>
-      <legend>
-        <Link to='resources' {...p.query}>
-          <A>
-            <Icon icon={faChevronLeft} />
-          </A>
-        </Link>
-        <span>{msg('resources.uploadAction')}</span>
-      </legend>
       <Stack spacing={4}>
+        <Heading size='md'>
+          <Link to='resources' {...p.query}>
+            <A>
+              <Icon icon={faChevronLeft} />
+            </A>
+          </Link>
+          <span>{msg('resources.uploadAction')}</span>
+        </Heading>
         <Box>{msg('resources.allowedFileTypes')}</Box>
         {error && (
           <Alert status='error'>
@@ -94,20 +95,20 @@ export default function UploadResource(p) {
         <Box>
           <Text
             label='Name'
-            onChange={e => setName(e.currentTarget.value)}
+            onChange={(e) => setName(e.currentTarget.value)}
             value={name}
           />
           <File
             accept={EXTS.join(',')}
             label='Select file'
-            onChange={e => setFile(e.target.files[0])}
+            onChange={(e) => setFile(e.target.files[0])}
           />
           <Select
             label='Type'
-            onChange={e => setType(e.currentTarget.value)}
+            onChange={(e) => setType(e.currentTarget.value)}
             value={type}
           >
-            {TYPES.map(t => (
+            {TYPES.map((t) => (
               <option key={t} value={t}>
                 {t}
               </option>
@@ -127,4 +128,4 @@ export default function UploadResource(p) {
   )
 }
 
-UploadResource.getInitialProps = getInitialAuth
+UploadResource.Layout = MapLayout

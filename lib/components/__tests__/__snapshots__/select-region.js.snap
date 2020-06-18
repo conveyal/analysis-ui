@@ -85,7 +85,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
             </Logo>
           </div>
         </Box>
-        <Stack
+        <ForwardRef
           spacing={4}
           textAlign="center"
           width="320px"
@@ -145,9 +145,9 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                     >
                       <span>
                         <strong>
-                          April 18, 2020
+                          June, 2020
                         </strong>
-                         — We have improved ways to manage your transportation network data.
+                         — We revamped the single-point analysis page to help with comparisons.
                          
                         <ForwardRef
                           href="/changelog"
@@ -400,10 +400,10 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                         to="logout"
                       >
                         <Link
-                          as="/logout"
+                          as="/api/logout"
                           href={
                             Object {
-                              "pathname": "/logout",
+                              "pathname": "/api/logout",
                               "query": Object {},
                             }
                           }
@@ -417,13 +417,13 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
                             }
                             as="a"
                             color="#2389c9"
-                            href="/logout"
+                            href="/api/logout"
                             onClick={[Function]}
                             onMouseEnter={[Function]}
                           >
                             <a
                               className="css-khmg1f"
-                              href="/logout"
+                              href="/api/logout"
                               onClick={[Function]}
                               onMouseEnter={[Function]}
                             >
@@ -491,7 +491,7 @@ exports[`Component SelectRegion snapshot(mount) 1`] = `
               </div>
             </Box>
           </Flex>
-        </Stack>
+        </ForwardRef>
       </div>
     </Box>
   </Flex>

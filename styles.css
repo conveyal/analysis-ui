@@ -19,8 +19,12 @@ body,
   font-size: 12px;
 }
 
+/** Custom cross platform scrollbar colors */
+.simplebar-scrollbar::before {
+  background-color: #ddd;
+}
+
 .DEV {
-  display: none;
   outline: 0.5px solid rgba(255, 0, 0, 0.5);
   outline-offset: 4px;
 }
@@ -198,23 +202,6 @@ input[type='range'].form-control {
 .Analysis,
 .ProjectContent {
   min-height: 500px;
-}
-
-.InnerDock::-webkit-scrollbar {
-  -webkit-appearance: none;
-}
-
-.InnerDock::-webkit-scrollbar:vertical {
-  width: 6px;
-}
-
-.InnerDock::-webkit-scrollbar:horizontal {
-  height: 6px;
-}
-
-.InnerDock::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background-color: #ddd;
 }
 
 .block {

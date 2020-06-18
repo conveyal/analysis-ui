@@ -1,44 +1,53 @@
 context('Scenarios', () => {
   before(() => {
-    cy.fixture('regions/scratch.json').as('region')
-    cy.setupProject('scratch')
-    // open the panel
-    cy.findByText(/Scenarios/)
-      .parent()
-      .as('scenarioPanel')
-    cy.get('@scenarioPanel').click()
+    cy.setup('project')
   })
 
   beforeEach(() => {
+    // identify and open the scenarios panel, if closed
     cy.findByText(/Scenarios/)
       .parent()
       .as('scenarioPanel')
+    cy.get('@scenarioPanel').then((panel) => {
+      if (!panel.text().includes('Create a scenario')) {
+        cy.get('@scenarioPanel').click()
+      }
+    })
   })
 
-  it('include baseline', () => {
+  it("include 'baseline' & 'default'", () => {
     cy.get('@scenarioPanel')
       .contains(/Baseline/)
       .findByTitle(/Delete this scenario/)
       .should('not.exist')
+    cy.get('@scenarioPanel')
+      .contains(/Default/)
+      .findByTitle(/Rename this scenario/)
+      .should('exist')
   })
 
-  it('can be created and deleted', function() {
+  it('can be created, renamed, & deleted', function () {
     let scenarioName = 'scenario ' + Date.now()
-    // stub the prompt
-    cy.window().then(win => {
+    cy.window().then((win) => {
       cy.stub(win, 'prompt').returns(scenarioName)
+      //.returns(scenarioName + ' altered')
     })
-    // create
     cy.findByRole('link', {name: 'Create a scenario'}).click()
-    // confirm creation and delete
+    cy.window().then((win) => {
+      win.prompt.restore()
+      cy.stub(win, 'prompt').returns(scenarioName + ' altered')
+    })
     cy.get('@scenarioPanel')
       .contains(scenarioName)
+      .findByTitle(/Rename/)
+      .click()
+    cy.get('@scenarioPanel')
+      .contains(scenarioName + ' altered')
       .findByTitle(/Delete this scenario/)
       .click()
-    cy.findByText(scenarioName).should('not.exist')
-  })
-
-  it('can be created and renamed', () => {
-    // TODO
+    cy.get('@scenarioPanel').findByText(scenarioName).should('not.exist')
+    cy.get('@scenarioPanel')
+      .findByText(scenarioName + ' altered')
+      .should('not.exist')
   })
 })
