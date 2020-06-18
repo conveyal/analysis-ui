@@ -33,8 +33,8 @@ The default values are 60 minutes, at the 50<sup>th</sup> percentile. This would
 For single point analysis, percentile values are restricted to a preset range (5,25,50,75,95), so moving this slider will result in fairly discrete changes in the isochrone. An arbitrary percentile value can be set for a :ref:`regional_analysis`. 
 
 <figure>
-  <img src="../img/seattle-isos.gif" />
-  <figcaption>Testing different scenarios, travel time cutoffs, and origins</figcaption>
+  <img src="../img/travel-time-slider.gif" />
+  <figcaption>Testing different travel time cutoffs, percentiles, and origins</figcaption>
 </figure>
 
 The display of modifications on the map is controlled in editing mode (See: :ref:`toggle_mod_display`). To change what modifications are shown, you must set the visibility there and then navigate back to the analysis page. 
