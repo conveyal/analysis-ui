@@ -4,6 +4,12 @@ on: [pull_request]
 
 jobs:
   cypressIntegration:
+    services:
+      mongo:
+        image: mongo
+        ports: 
+          - 27017:27017
+          
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
