@@ -28,8 +28,6 @@ jobs:
       - if: steps.jar-cache.outputs.cache-hit != 'true'
         run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ matrix.backend }}.jar
           
-      - run: java -cp ${{ matrix.backend }}.jar com.conveyal.analysis.BackendMain
-          
       - id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v1
@@ -46,7 +44,7 @@ jobs:
           # passed to the cypress command
           env: ${{ secrets.CYPRESS_GITHUB_ENV }}
           spec: cypress/integration/local/all.js
-          start: yarn start
+          start: java -cp ${{ matrix.backend }}.jar com.conveyal.analysis.BackendMain & yarn start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
         env:
