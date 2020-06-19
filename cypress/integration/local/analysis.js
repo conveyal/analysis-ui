@@ -6,7 +6,7 @@ context('Single point analysis', () => {
     cy.get('div.leaflet-container').as('map')
   })
 
-  it('of baseline network looks reasonable', function () {
+  it('has all form elements', function () {
     // select project and scenario
     cy.findAllByLabelText(/^Project$/)
       .first()
@@ -18,9 +18,17 @@ context('Single point analysis', () => {
       .click({force: true})
       .type('baseline{enter}')
     cy.contains('Baseline')
+    //cy.findByLabelText(/Bookmark/)
     cy.findByLabelText(/^Opportunity Dataset$/)
       .click({force: true})
       .type('default{enter}')
+    //cy.findByText(/Access mode/i)
+    //  .findByTitle('Bike')
+    cy.findByLabelText(/Walk speed/i)
+    cy.findByLabelText(/Max walk time/i)
+    cy.findByLabelText(/From time/i)
+    cy.findByLabelText(/To time/i)
+    //cy.findByLabelText(/Date/i)
     // start analysis from default marker position
     cy.findByText(/Fetch Results/i).click()
     cy.findByText(/Analyze results/i, {timeout: 200000}).should('exist')
