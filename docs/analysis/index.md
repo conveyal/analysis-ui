@@ -20,7 +20,7 @@ Many other configuration parameters are described in :ref:`analysis_configuratio
 
 ## Isochrone map
 
-After the server returns results the map will show a blue :term:`isochrone` for your sprimary scenario. This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty. If a comparison scenario is selected, its isochrone will be shown in red. The overlap of the main and comparison isochrones should be visible as a combination of the two colors.
+After the server returns results the map will show a blue :term:`isochrone` for your primary scenario. This represents the area reachable from the origin marker within a given travel time cutoff, to a given degree of certainty. If a comparison scenario is selected, its isochrone will be shown in red. The overlap of the main and comparison isochrones should be visible as a combination of the two colors.
 
 <figure>
   <img src="../img/overlapping-isochrones.png" />
