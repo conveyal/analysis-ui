@@ -43,6 +43,7 @@ jobs:
           build: yarn build
           # passed to the cypress command
           env: ${{ secrets.CYPRESS_GITHUB_ENV }}
+          spec: cypress/integration/local/all.js
           start: yarn start
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
