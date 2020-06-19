@@ -50,7 +50,7 @@ jobs:
           # passed to the cypress command
           env: ${{ secrets.CYPRESS_GITHUB_ENV }}
           spec: cypress/integration/local/all.js
-          start: yarn start & java -cp ${{ matrix.backend }}.jar com.conveyal.analysis.BackendMain
+          start: yarn action
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
         env:
