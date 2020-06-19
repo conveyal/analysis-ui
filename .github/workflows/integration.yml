@@ -28,15 +28,8 @@ jobs:
       - if: steps.jar-cache.outputs.cache-hit != 'true'
         run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ matrix.backend }}.jar
           
-      - id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v1
-        id: cache
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      # Should be fast with the yarn cache restored
-      - run: yarn install --frozen-lockfile --check-files
+      # Install and cache the build
+      - uses: bahmutov/npm-install@v1
       
       # Cache the Next.js build
       - uses: actions/cache@v1
