@@ -43,6 +43,11 @@ Using the download button, you can save regional analysis results in a raster fo
 
 You can also compare two regional analyses from different projects in the same region. The map will show the differences in accessibility between the two analyses, with blue areas showing increased accessibility, and red areas showing decreased accessibility, relative to the comparison analysis. Again, you can download raw results for the two analyses being compared for further styling and analysis in GIS.
 
+<figure>
+  <img src="../img/regional-comparison.png" />
+    <figcaption>Map showing comparison of two regional analyses in Toronto</figcaption>
+</figure>
+
 ## Measuring aggregate accessibility
 
 These regional analyses present a wealth of information, and maps of regional accessibility are frequently the best way to communicate the accessibility impacts of a transit plan. However, in some cases there is a need to summarize accessibility in a single aggregate metric. Conveyal Analysis allows aggregating the results of a regional analysis to _aggregation areas_ (e.g. neighborhood, city council district, transit agency service area, or region). For a selected aggregation area, Conveyal Analysis can report the distribution of accessibility in that area, weighted by a value (e.g. population or households) at each grid cell origin.
