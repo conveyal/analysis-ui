@@ -41,11 +41,12 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByLabelText(
-        /or select an existing one/
-      ).type(`${oppName}: ${opportunity.numericFields[0]} {enter}`, {
-        force: true
-      })
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName}: ${opportunity.numericFields[0]} {enter}`,
+        {
+          force: true
+        }
+      )
       // look at the map
       //cy.waitForMapToLoad()
       //cy.get('@map').matchImageSnapshot('csv-' + opportunity.name)
@@ -82,11 +83,12 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByLabelText(
-        /or select an existing one/
-      ).type(`${oppName}: ${opportunity.numericFields[0]} {enter}`, {
-        force: true
-      })
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName}: ${opportunity.numericFields[0]} {enter}`,
+        {
+          force: true
+        }
+      )
       cy.contains(/Delete entire dataset/i).click()
     })
 
