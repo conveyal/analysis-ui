@@ -45,7 +45,5 @@ jobs:
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
         env:
-          API_URL: ${{ secrets.API_URL }}
-          AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
-          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
-          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+          NEXT_PUBLIC_BASEMAP_DISABLED: true
+          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
