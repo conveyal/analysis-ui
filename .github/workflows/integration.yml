@@ -7,12 +7,12 @@ jobs:
     services:
       mongo:
         image: mongo
-        ports: 
+        ports:
           - 27017:27017
     strategy:
       matrix:
-        backend: [v5.9.0, dev-latest]
-          
+        backend: [dev-latest] # keep as a matrix strategy for times we want to test against an additional specific build
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -24,18 +24,9 @@ jobs:
         with:
           path: ${{ matrix.backend }}.jar
           key: ${{ matrix.backend }}.jar
-          
+
       - if: steps.jar-cache.outputs.cache-hit != 'true'
         run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ matrix.backend }}.jar
-          
-      # Install and cache the build
-      - uses: bahmutov/npm-install@v1
-      
-      # Cache the Next.js build
-      - uses: actions/cache@v1
-        with:
-          path: ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}
 
       - uses: cypress-io/github-action@v2
         with:
