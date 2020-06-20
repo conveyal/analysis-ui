@@ -1,0 +1,51 @@
+name: Nightly Integration Tests
+# For now, run local tests on all browsers. Eventually, run tests on production.
+
+on:
+  pull_request:
+    - dev # pull requests from the dev branch, usually means a merge to master
+  schedule:
+    - cron: '0 0 * * *' # every day at midnight
+
+jobs:
+  cypressIntegration:
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+    strategy:
+      matrix:
+        backend: [v5.9.0, dev-latest] # include the current production version
+        browser: [chrome, edge, firefox]
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - uses: actions/cache@v1
+        id: jar-cache
+        with:
+          path: ${{ matrix.backend }}.jar
+          key: ${{ matrix.backend }}.jar
+
+      - if: steps.jar-cache.outputs.cache-hit != 'true'
+        run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ matrix.backend }}.jar
+
+      - uses: cypress-io/github-action@v2
+        with:
+          build: yarn build
+          browser: ${{ matrix.browser }}
+          # passed to the cypress command
+          env: ${{ secrets.CYPRESS_GITHUB_ENV }}
+          spec: cypress/integration/local/all.js
+          start: yarn action
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
+          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
