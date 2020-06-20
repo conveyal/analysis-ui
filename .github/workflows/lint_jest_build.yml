@@ -1,4 +1,4 @@
-name: 'Install, Lint, Unit test, Build'
+name: 'Install, Lint, Unit test, Build, run Cypress tests'
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       # Install and cache the build
       - uses: bahmutov/npm-install@v1
 
@@ -53,17 +53,46 @@ jobs:
         env:
           CI: true
 
-  nextjsBuild:
+  cypressIntegration:
+    needs: [codeLinter, jestUnitTests, typeCheck] # only run if these all pass
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+    strategy:
+      matrix:
+        backend: [dev-latest] # keep as a matrix strategy for times we want to test against an additional specific build
+
     runs-on: ubuntu-latest
-    needs: install
     steps:
       - uses: actions/cache@v1
         with:
           path: '.'
           key: ${{ github.sha }}
 
-      # Build the next.js app
-      - run: yarn build
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - uses: actions/cache@v1
+        id: jar-cache
+        with:
+          path: ${{ matrix.backend }}.jar
+          key: ${{ matrix.backend }}.jar
+
+      - if: steps.jar-cache.outputs.cache-hit != 'true'
+        run: curl https://r5-builds.s3-eu-west-1.amazonaws.com/${{ matrix.backend }}.jar --output ${{ matrix.backend }}.jar
+
+      - uses: cypress-io/github-action@v2
+        with:
+          build: yarn build
+          # passed to the cypress cli command
+          env: ${{ secrets.CYPRESS_GITHUB_ENV }}
+          install: false
+          spec: cypress/integration/local/all.js
+          start: yarn action
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
         env:
           API_URL: ${{ secrets.API_URL }}
           AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
