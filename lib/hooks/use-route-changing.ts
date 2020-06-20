@@ -1,13 +1,13 @@
 import {useRouter} from 'next/router'
-import React from 'react'
+import {useEffect, useState} from 'react'
 
-export default function useRouteChanging() {
+export default function useRouteChanging(): [boolean, string] {
   const router = useRouter()
-  const [pathname, setPathname] = React.useState(router.pathname)
-  const [routeChanging, setRouteChanging] = React.useState(false)
+  const [pathname, setPathname] = useState(router.pathname)
+  const [routeChanging, setRouteChanging] = useState(false)
 
   // Handle router events
-  React.useEffect(() => {
+  useEffect(() => {
     function onRouteChangeStart(url) {
       setPathname(url)
       setRouteChanging(true)
