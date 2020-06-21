@@ -3,7 +3,8 @@ name: Nightly Integration Tests
 
 on:
   pull_request:
-    - dev # pull requests from the dev branch, usually means a merge to master
+    branches: 
+      - dev # pull requests from the dev branch, usually means a merge to master
   schedule:
     - cron: '0 0 * * *' # every day at midnight
 
