@@ -1,4 +1,4 @@
-name: 'Install, Lint, Unit test, Build, run Cypress tests'
+name: 'Install, lint, unit test, build, run Cypress tests'
 
 on: [push]
 
@@ -54,7 +54,7 @@ jobs:
           CI: true
 
   cypressIntegration:
-    needs: [codeLinter, jestUnitTests, nextJsBuild] # only run if these all pass
+    needs: [codeLinter, jestUnitTests, typeCheck] # only run if these all pass
     services:
       mongo:
         image: mongo
