@@ -1,11 +1,13 @@
 import {
-  faEye,
-  faLock,
-  faPencilAlt,
-  faPlus,
-  faTrash
-} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  Stack,
+  Text,
+  Tooltip
+} from '@chakra-ui/core'
 import {useDispatch} from 'react-redux'
 
 import {
@@ -14,11 +16,6 @@ import {
   editVariantName
 } from 'lib/actions/project'
 import message from 'lib/message'
-
-import * as Panel from './panel'
-import {Button} from './buttons'
-import Icon from './icon'
-import P from './p'
 
 export default function Variants(p) {
   const dispatch = useDispatch()
@@ -49,26 +46,30 @@ export default function Variants(p) {
   }
 
   return (
-    <Panel.Collapsible
-      defaultExpanded={false}
-      heading={() => message('variant.plural')}
-    >
-      <Panel.Body>
-        <P>{message('variant.description')}</P>
-        <Button block onClick={_createVariant} style='success'>
-          <Icon icon={faPlus} /> {message('variant.createAction')}
-        </Button>
-      </Panel.Body>
-      <div className='list-group'>
-        <div className='list-group-item'>
-          <i>{message('variant.baseline')}</i>
-          <a
-            className='pull-right'
-            title='Baseline (empty scenario) cannot be modified'
+    <>
+      <Button
+        borderRadius={0}
+        isFullWidth
+        leftIcon='small-add'
+        onClick={_createVariant}
+        variantColor='green'
+      >
+        {message('variant.createAction')}
+      </Button>
+      <Stack>
+        <Text p={4}>{message('variant.description')}</Text>
+
+        <Divider />
+
+        <Flex py={2} px={4}>
+          <Text flex='1'>{message('variant.baseline')}</Text>
+          <Tooltip
+            aria-label='Baseline (empty scenario) cannot be modified'
+            label='Baseline (empty scenario) cannot be modified'
           >
-            <Icon icon={faLock} />
-          </a>
-        </div>
+            <Icon name='lock' />
+          </Tooltip>
+        </Flex>
         {p.variants.map((name, index) => (
           <div className='list-group-item' key={`variant-${index + 1}`}>
             {`${index + 1}. `}
@@ -79,14 +80,14 @@ export default function Variants(p) {
                 tabIndex={0}
                 title={message('variant.showModifications')}
               >
-                <Icon icon={faEye} />
+                <Icon name='view' />
               </a>
               <a
                 onClick={() => _editVariantName(index)}
                 tabIndex={0}
                 title={message('variant.editName')}
               >
-                <Icon icon={faPencilAlt} />
+                <Icon name='edit' />
               </a>
               {index !== 0 && (
                 <a
@@ -94,13 +95,13 @@ export default function Variants(p) {
                   tabIndex={0}
                   title={message('variant.delete')}
                 >
-                  <Icon icon={faTrash} />
+                  <Icon name='delete' />
                 </a>
               )}
             </span>
           </div>
         ))}
-      </div>
-    </Panel.Collapsible>
+      </Stack>
+    </>
   )
 }

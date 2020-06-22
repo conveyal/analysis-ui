@@ -98,11 +98,11 @@ export default function CreateModification({
   return (
     <>
       <Button
+        borderRadius={0}
+        isFullWidth
         onClick={onOpen}
         leftIcon='small-add'
-        mb={6}
         variantColor='green'
-        width='100%'
         {...p}
       >
         {message('modification.create')}
