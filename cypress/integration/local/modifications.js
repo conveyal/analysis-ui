@@ -373,19 +373,28 @@ describe('Modifications', () => {
       it(`CRUD ${type}`, function () {
         const name = createModName(type, 'simple')
         const description = 'descriptive text'
+        const updatedDescription = 'updated description'
+        // Create the modification
         setupMod(type, name)
         cy.contains(name)
         cy.findByRole('link', {name: /Add description/}).click()
         cy.findByLabelText('Description').type(description)
-        // scenarios
         cy.findByLabelText(/Default/).uncheck({force: true})
         cy.findByLabelText(scenarioNameRegEx).check({force: true})
-        // go back and check that everything saved
+        // Read the saved settings
         cy.navTo('Edit Modifications')
         openMod(type, name)
         cy.findByLabelText('Description').contains(description)
         cy.findByLabelText(/Default/).should('not.be.checked')
         cy.findByLabelText(scenarioNameRegEx).should('be.checked')
+        // Update something trivial
+        cy.findByLabelText('Description').clear()
+        cy.findByRole('link', {name: /Add description/}).click()
+        cy.findByLabelText('Description').type(updatedDescription)
+        cy.navTo('Edit Modifications')
+        openMod(type, name)
+        cy.findByLabelText('Description').contains(updatedDescription)
+        // Delete the modification
         deleteThisMod()
       })
     })
