@@ -6,15 +6,12 @@ import {
   AccordionPanel,
   Badge,
   Box,
-  Button,
   Flex,
-  Heading,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
   PseudoBox,
-  Stack,
   Tab,
   Tabs,
   TabList,
@@ -24,15 +21,16 @@ import {
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
 import dynamic from 'next/dynamic'
-import React from 'react'
+import {memo, useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 import {getForProject as loadModifications} from 'lib/actions/modifications'
-import {CB_HEX, CB_DARK, LS_MOM, MODIFICATION_TYPES} from 'lib/constants'
+import {LS_MOM} from 'lib/constants'
 import message from 'lib/message'
 import * as localStorage from 'lib/utils/local-storage'
 
+import IconButton from '../icon-button'
 import InnerDock from '../inner-dock'
 import Link from '../link'
 import VariantEditor from '../variant-editor'
@@ -46,6 +44,12 @@ const ModificationsMap = dynamic(
     ssr: false
   }
 )
+
+type Modification = {
+  _id: string
+  projectId: string
+  name: string
+}
 
 function filterModifications(filter, modifications, projectId) {
   const filterLcase = filter != null ? filter.toLowerCase() : ''
@@ -73,19 +77,19 @@ export default function ModificationsList(p) {
   const modifications = useSelector((s) => get(s, 'project.modifications'))
 
   // Load modifications
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(loadModifications(projectId))
   }, [dispatch, projectId])
 
   // Array of ids for currently displayed modifications
-  const [modificationsOnMap, setModificationsOnMap] = React.useState(() =>
-    get(localStorage.getParsedItem(LS_MOM), projectId, [])
-  )
+  const [modificationsOnMap, setModificationsOnMap] = useState(() => {
+    return new Set(get(localStorage.getParsedItem(LS_MOM), projectId, []))
+  })
 
   // Load the GTFS information for the modifications
-  React.useEffect(() => {
+  useEffect(() => {
     const visibleModifications = modifications.filter((m) =>
-      modificationsOnMap.includes(m._id)
+      modificationsOnMap.has(m._id)
     )
     if (visibleModifications.length > 0) {
       dispatch(
@@ -99,27 +103,50 @@ export default function ModificationsList(p) {
   }, [bundleId, dispatch, modifications, modificationsOnMap])
 
   // Set and store modifications on map
-  function setAndStoreMoM(newMoM) {
-    setModificationsOnMap(newMoM)
-    const mom = localStorage.getParsedItem(LS_MOM) || {}
-    mom[projectId] = newMoM
-    localStorage.stringifyAndSet(LS_MOM, mom)
-  }
+  const setAndStoreMoM = useCallback(
+    (newMoM) => {
+      setModificationsOnMap(newMoM)
+      const mom = localStorage.getParsedItem(LS_MOM) || {}
+      mom[projectId] = Array.from(newMoM)
+      localStorage.stringifyAndSet(LS_MOM, mom)
+    },
+    [setModificationsOnMap]
+  )
 
-  const [filter, setFilter] = React.useState('')
-  const [filteredModificationsByType, setFiltered] = React.useState({})
+  const [filter, setFilter] = useState('')
+  const [filteredModificationsByType, setFiltered] = useState({})
 
   // Update filtered modifications when the filter changes
-  React.useEffect(() => {
+  useEffect(() => {
     setFiltered(filterModifications(filter, modifications, projectId))
   }, [filter, modifications, projectId])
 
   // Show a variant's modifications on the map
-  function showVariant(index) {
-    setAndStoreMoM(
-      modifications.filter((m) => m.variants[index] === true).map((m) => m._id)
-    )
-  }
+  const showVariant = useCallback(
+    (index) => {
+      setAndStoreMoM(
+        new Set(
+          modifications
+            .filter((m) => m.variants[index] === true)
+            .map((m) => m._id)
+        )
+      )
+    },
+    [modifications, setAndStoreMoM]
+  )
+
+  // Toggle map appearance
+  const toggleMapDisplay = useCallback(
+    (_id) => {
+      if (modificationsOnMap.has(_id)) {
+        modificationsOnMap.delete(_id)
+      } else {
+        modificationsOnMap.add(_id)
+      }
+      setAndStoreMoM(new Set(modificationsOnMap))
+    },
+    [modificationsOnMap, setAndStoreMoM]
+  )
 
   return (
     <>
@@ -162,75 +189,44 @@ export default function ModificationsList(p) {
             </InputGroup>
 
             <InnerDock>
-              <Accordion allowMultiple>
-                {Object.keys(filteredModificationsByType).map((type, index) => {
-                  const ms = filteredModificationsByType[type]
-                  return (
-                    <AccordionItem
-                      border='none'
-                      isOpen={ms.length < 10}
-                      isDisabled={ms.length === 0}
-                      key={type}
-                    >
-                      <AccordionHeader _focus={{outline: 'none'}} py={2}>
-                        <Box flex='1' fontWeight='bold' textAlign='left'>
-                          {toStartCase(type)} <Badge>{ms.length}</Badge>
-                        </Box>
-                        <AccordionIcon />
-                      </AccordionHeader>
-                      <AccordionPanel py={0} px={1}>
-                        <Flex direction='column'>
-                          {ms.map((m) => (
-                            <PseudoBox
-                              borderRadius='4px'
-                              color='blue.500'
-                              _hover={{
-                                backgroundColor: 'rgba(0,0,0,0.04)',
-                                color: 'blue.700'
-                              }}
-                              key={m._id}
-                            >
-                              <Link
-                                to='modificationEdit'
-                                modificationId={m._id}
-                                projectId={projectId}
+              {modifications.length > 0 ? (
+                <Accordion allowMultiple>
+                  {Object.keys(filteredModificationsByType).map((type) => {
+                    const ms = filteredModificationsByType[type]
+                    return (
+                      <AccordionItem
+                        border='none'
+                        isOpen={ms.length < 10}
+                        isDisabled={ms.length === 0}
+                        key={type}
+                      >
+                        <AccordionHeader _focus={{outline: 'none'}} py={2}>
+                          <Box flex='1' fontWeight='bold' textAlign='left'>
+                            {toStartCase(type)} <Badge>{ms.length}</Badge>
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionHeader>
+                        <AccordionPanel py={0} px={1}>
+                          <Flex direction='column'>
+                            {ms.map((m) => (
+                              <ModificationItem
+                                isDisplayed={modificationsOnMap.has(m._id)}
+                                modification={m}
                                 regionId={regionId}
-                              >
-                                <Flex
-                                  align='center'
-                                  py={2}
-                                  px={4}
-                                  cursor='pointer'
-                                >
-                                  <Box
-                                    flex='1'
-                                    overflow='hidden'
-                                    pr={4}
-                                    whiteSpace='nowrap'
-                                    style={{textOverflow: 'ellipsis'}}
-                                  >
-                                    {m.name}
-                                  </Box>
-                                  <Icon
-                                    name={
-                                      modificationsOnMap.find(
-                                        (id) => id === m._id
-                                      )
-                                        ? 'view'
-                                        : 'view-off'
-                                    }
-                                    onClick=''
-                                  />
-                                </Flex>
-                              </Link>
-                            </PseudoBox>
-                          ))}
-                        </Flex>
-                      </AccordionPanel>
-                    </AccordionItem>
-                  )
-                })}
-              </Accordion>
+                                toggleMapDisplay={toggleMapDisplay}
+                              />
+                            ))}
+                          </Flex>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    )
+                  })}
+                </Accordion>
+              ) : (
+                <Box p={4} textAlign='center'>
+                  No modifications have been added to this project yet.
+                </Box>
+              )}
             </InnerDock>
           </TabPanel>
 
@@ -246,25 +242,50 @@ export default function ModificationsList(p) {
   )
 }
 
-/*
-function VP () {
-  return (
-    <Stack fontSize='14px' isInline>
-      <Box>
-        <Tip
-          className='ShowOnMap fa-btn'
-          tip='Hide all modifications from map display'
-        >
-          <a onClick={() => setAndStoreMoM([])}>
-            <Icon icon={faEyeSlash} />
-          </a>
-        </Tip>
-      </Box>
-      <Box>
-        <Tip tip={message('project.importModifications')}>
-          
-        </Tip>
-      </Box>
-    </Stack>
+type ModificationItemProps = {
+  isDisplayed: boolean
+  modification: Modification
+  regionId: string
+  toggleMapDisplay: (_id: string) => void
+}
+
+const ModificationItem = memo<ModificationItemProps>(
+  ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
+    <PseudoBox
+      borderRadius='4px'
+      color='blue.500'
+      _hover={{
+        backgroundColor: 'rgba(0,0,0,0.04)',
+        color: 'blue.700'
+      }}
+      key={modification._id}
+    >
+      <Link
+        to='modificationEdit'
+        modificationId={modification._id}
+        projectId={modification.projectId}
+        regionId={regionId}
+      >
+        <Flex align='center' py={1} pl={4} pr={2} cursor='pointer'>
+          <Box
+            flex='1'
+            overflow='hidden'
+            pr={4}
+            whiteSpace='nowrap'
+            style={{textOverflow: 'ellipsis'}}
+          >
+            {modification.name}
+          </Box>
+          <IconButton
+            icon={isDisplayed ? 'view' : 'view-off'}
+            label='Toggle map display'
+            onClick={(e) => {
+              e.preventDefault()
+              toggleMapDisplay(modification._id)
+            }}
+          />
+        </Flex>
+      </Link>
+    </PseudoBox>
   )
-} */
+)

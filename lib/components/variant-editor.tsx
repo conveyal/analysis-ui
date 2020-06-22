@@ -8,6 +8,7 @@ import {
   Text,
   Tooltip
 } from '@chakra-ui/core'
+import {memo} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {
@@ -17,13 +18,20 @@ import {
 } from 'lib/actions/project'
 import message from 'lib/message'
 
-export default function Variants(p) {
+import IconButton from './icon-button'
+
+type VariantProps = {
+  showVariant: (index: number) => void
+  variants: string[]
+}
+
+export default memo<VariantProps>(function Variants({showVariant, variants}) {
   const dispatch = useDispatch()
 
   function _createVariant() {
     const variantName = window.prompt(
       `${message('variant.enterName')}`,
-      `${message('variant.name')} ${p.variants.length + 1}`
+      `${message('variant.name')} ${variants.length + 1}`
     )
     if (variantName) dispatch(createVariant(variantName))
   }
@@ -35,7 +43,7 @@ export default function Variants(p) {
   }
 
   function _editVariantName(index) {
-    const variantName = p.variants[index]
+    const variantName = variants[index]
     const newVariantName = window.prompt(
       message('variant.enterName'),
       variantName
@@ -57,51 +65,53 @@ export default function Variants(p) {
         {message('variant.createAction')}
       </Button>
       <Stack>
-        <Text p={4}>{message('variant.description')}</Text>
+        <Text px={4} pt={4}>
+          {message('variant.description')}
+        </Text>
 
         <Divider />
 
         <Flex py={2} px={4}>
-          <Text flex='1'>{message('variant.baseline')}</Text>
+          <Text flex='1' fontWeight='bold'>
+            {message('variant.baseline')}
+          </Text>
           <Tooltip
             aria-label='Baseline (empty scenario) cannot be modified'
             label='Baseline (empty scenario) cannot be modified'
           >
-            <Icon name='lock' />
+            <Box>
+              <Icon name='lock' />
+            </Box>
           </Tooltip>
         </Flex>
-        {p.variants.map((name, index) => (
-          <div className='list-group-item' key={`variant-${index + 1}`}>
-            {`${index + 1}. `}
-            {name}
-            <span>
-              <a
-                onClick={() => p.showVariant(index)}
-                tabIndex={0}
-                title={message('variant.showModifications')}
-              >
-                <Icon name='view' />
-              </a>
-              <a
+        {variants.map((name, index) => (
+          <Flex key={index} pl={4} pr={2}>
+            <Text flex='1' fontWeight='bold'>
+              {index + 1}. {name}
+            </Text>
+            <Stack isInline spacing={1}>
+              <IconButton
+                icon='view'
+                label={message('variant.showModifications')}
+                onClick={() => showVariant(index)}
+              />
+              <IconButton
+                icon='edit'
+                label={message('variant.editName')}
                 onClick={() => _editVariantName(index)}
-                tabIndex={0}
-                title={message('variant.editName')}
-              >
-                <Icon name='edit' />
-              </a>
+              />
               {index !== 0 && (
-                <a
+                <IconButton
+                  icon='delete'
+                  label={message('variant.delete')}
                   onClick={() => _deleteVariant(index)}
-                  tabIndex={0}
-                  title={message('variant.delete')}
-                >
-                  <Icon name='delete' />
-                </a>
+                  variantColor='red'
+                />
               )}
-            </span>
-          </div>
+            </Stack>
+          </Flex>
         ))}
       </Stack>
     </>
   )
-}
+})

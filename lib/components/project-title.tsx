@@ -1,10 +1,11 @@
-import {Box, Flex, Heading, IconButton, Stack, Tooltip} from '@chakra-ui/core'
+import {Flex, Heading, Stack} from '@chakra-ui/core'
 import {useState} from 'react'
 
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
 import ExportProject from './export-project'
+import IconButton from './icon-button'
 
 export default function ProjectTitle({project}) {
   const [showExportSelect, setShowExportSelect] = useState(false)
@@ -18,64 +19,27 @@ export default function ProjectTitle({project}) {
   })
   const name = project ? project.name : 'Loading...'
   return (
-    <Flex align='center' borderBottom='1px solid #E2E8F0' px={4} py={2}>
+    <Flex align='center' borderBottom='1px solid #E2E8F0' pl={4} pr={2} py={2}>
       <Heading flex='1' size='md'>
         {name}
       </Heading>
       {project && (
         <Stack isInline spacing={1}>
-          <Box>
-            <Tooltip
-              aria-label={message('project.editSettings')}
-              hasArrow
-              label={message('project.editSettings')}
-              placement='left'
-            >
-              <IconButton
-                aria-label={message('project.editSettings')}
-                onClick={goToProjectSettings}
-                icon='settings'
-                size='sm'
-                variant='ghost'
-                variantColor='blue'
-              />
-            </Tooltip>
-          </Box>
-          <Box>
-            <Tooltip
-              aria-label={message('project.export')}
-              hasArrow
-              label={message('project.export')}
-              placement='left'
-            >
-              <IconButton
-                aria-label={message('project.export')}
-                icon='external-link'
-                onClick={() => setShowExportSelect(true)}
-                size='sm'
-                variant='ghost'
-                variantColor='blue'
-              />
-            </Tooltip>
-          </Box>
-          <Box>
-            <Tooltip
-              aria-label={message('modification.importFromProject')}
-              hasArrow
-              label={message('modification.importFromProject')}
-              placement='left'
-            >
-              <IconButton
-                aria-label={message('modification.importFromProject')}
-                onClick={goToModificationImport}
-                icon='download'
-                size='sm'
-                transform='rotate(180deg)'
-                variant='ghost'
-                variantColor='blue'
-              />
-            </Tooltip>
-          </Box>
+          <IconButton
+            icon='settings'
+            label={message('project.editSettings')}
+            onClick={goToProjectSettings}
+          />
+          <IconButton
+            icon='external-link'
+            label={message('project.export')}
+            onClick={() => setShowExportSelect(true)}
+          />
+          <IconButton
+            icon='download'
+            label={message('modification.importFromProject')}
+            onClick={goToModificationImport}
+          />
           {showExportSelect && (
             <ExportProject
               onHide={() => setShowExportSelect(false)}
