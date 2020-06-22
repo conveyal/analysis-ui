@@ -53,5 +53,6 @@ context('Single point analysis', () => {
     //cy.get('@map').matchImageSnapshot('post')
   })
 
-  it('can set bookmark') // eslint-disable-line jest/no-disabled-tests
+  it('can set bookmark')
+  it('can run a regional analysis')
 })

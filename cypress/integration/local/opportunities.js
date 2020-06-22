@@ -116,6 +116,9 @@ describe('Opportunity Datasets', () => {
         .type(`${oppName} {enter}`)
       cy.contains(/Delete entire dataset/i).click()
     })
+
+    // doesn't work in offline mode
+    it('from LODES importer')
   })
 
   context('can be downloaded', () => {
@@ -147,7 +150,7 @@ describe('Opportunity Datasets', () => {
         })
     })
 
-    it('as TIFF') // eslint-disable-line jest/no-disabled-tests
+    it('as TIFF')
   })
 
   after(() => {
