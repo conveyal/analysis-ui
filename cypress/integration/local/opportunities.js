@@ -150,7 +150,7 @@ describe('Opportunity Datasets', () => {
         })
     })
 
-    it('as TIFF')
+    it('as TIFF') // produces an error
   })
 
   after(() => {

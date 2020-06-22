@@ -152,4 +152,6 @@ describe('Region setup', () => {
     cy.contains('Set up a new region')
     cy.findByText(regionName).should('not.exist')
   })
+
+  it('modifies existing region settings')
 })
