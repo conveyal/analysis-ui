@@ -20,7 +20,7 @@ jobs:
         backend: [v5.9.0, dev-latest] # include the current production version
         browser: [chrome, edge, firefox]
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       # Install / cache dependencies with Cypress to handle caching Cypress binary.
       - uses: actions/checkout@v2
