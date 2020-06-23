@@ -41,9 +41,12 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`${oppName}: ${opportunity.numericFields[0]} {enter}`)
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName}: ${opportunity.numericFields[0]} {enter}`,
+        {
+          force: true
+        }
+      )
       // look at the map
       //cy.waitForMapToLoad()
       //cy.get('@map').matchImageSnapshot('csv-' + opportunity.name)
@@ -80,9 +83,12 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`${oppName}: ${opportunity.numericFields[0]} {enter}`)
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName}: ${opportunity.numericFields[0]} {enter}`,
+        {
+          force: true
+        }
+      )
       cy.contains(/Delete entire dataset/i).click()
     })
 
@@ -111,9 +117,10 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`${oppName} {enter}`)
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName} {enter}`,
+        {force: true}
+      )
       cy.contains(/Delete entire dataset/i).click()
     })
 
@@ -128,9 +135,9 @@ describe('Opportunity Datasets', () => {
     it('as .grid', function () {
       let opportunity = this.opportunities.grid
       // TODO should get the data via click, not hardcoded API url
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`default{enter}`)
+      cy.findByLabelText(/or select an existing one/).type(`default{enter}`, {
+        force: true
+      })
       cy.contains(/Download as \.grid/)
       cy.location('href')
         .should('match', /opportunityDatasetId=\w{24}$/)

@@ -16,6 +16,17 @@ const regionFixture = `regions/${regionName}.json`
 export const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
+// For easy use inside tests
+Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
+
+// Fetch the leaflet map
+Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
+
+// Check if a floating point number is within a certain tolerance
+Cypress.Commands.add('isWithinTolerance', (f1, f2, tolerance = 0.025) => {
+  cy.wrap(Math.abs(Number(f1) - Number(f2)) < tolerance).should('be.true')
+})
+
 Cypress.Commands.add('setup', (entity) => {
   setup(entity)
 })
@@ -310,21 +321,6 @@ Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
         tolerance
       )
     })
-})
-
-Cypress.Commands.add('mapContainsRegion', () => {
-  cy.fixture(regionFixture).then((region) => {
-    cy.window()
-      .its('LeafletMap')
-      .then((map) => {
-        cy.wrap(
-          map.getBounds().contains([
-            [region.north, region.east],
-            [region.south, region.west]
-          ])
-        ).should('be.true')
-      })
-  })
 })
 
 Cypress.Commands.add('mapMoveMarkerTo', (latLonArray) => {

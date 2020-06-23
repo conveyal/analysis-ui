@@ -1,5 +1,5 @@
 // Set the `API_URL`
-process.env.API_URL = 'http://localhost'
+process.env.NEXT_PUBLIC_API_URL = 'http://localhost'
 
 module.exports = {
   moduleNameMapper: {
