@@ -14,7 +14,7 @@ import useSWR from 'swr'
 
 import Icon from 'lib/components/icon'
 
-const API_URL = process.env.API_URL + '/version'
+const API_URL = process.env.NEXT_PUBLIC_API_URL + '/version'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 const swrOptions = {refreshInterval: 5000}

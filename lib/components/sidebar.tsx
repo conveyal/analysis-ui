@@ -1,4 +1,11 @@
-import {Box, Flex, Image, PseudoBox, useDisclosure} from '@chakra-ui/core'
+import {
+  Box,
+  Flex,
+  Image,
+  PseudoBox,
+  PseudoBoxProps,
+  useDisclosure
+} from '@chakra-ui/core'
 import {
   faChartArea,
   faCompass,
@@ -13,11 +20,12 @@ import {
   faServer,
   faSignOutAlt,
   faTh,
-  faWifi
+  faWifi,
+  IconDefinition
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import {useRouter} from 'next/router'
-import React from 'react'
+import {memo, useCallback, useContext, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, LOGO_URL} from 'lib/constants'
@@ -34,7 +42,9 @@ import Icon from './icon'
 
 const sidebarWidth = '40px'
 
-const NavTip = React.memo(({label}) => {
+type NavTipProps = {label: string}
+
+const NavTip = memo<NavTipProps>(({label}) => {
   return (
     <Box pos='relative'>
       <Box pos='absolute' left={sidebarWidth} top='-20px'>
@@ -55,38 +65,45 @@ const NavTip = React.memo(({label}) => {
   )
 })
 
-const NavItemContents = React.memo(({children, label, ...p}) => {
-  const {isOpen, onOpen, onClose} = useDisclosure()
+type NavItemContentsProps = {
+  label: string
+  isActive?: boolean
+} & PseudoBoxProps
 
-  return (
-    <PseudoBox
-      borderBottom='2px solid rgba(0, 0, 0, 0)'
-      cursor='pointer'
-      color={CB_HEX}
-      fontSize='14px'
-      lineHeight='20px'
-      onMouseOver={onOpen}
-      onMouseOut={onClose}
-      py={3}
-      textAlign='center'
-      width={sidebarWidth}
-      _focus={{
-        outline: 'none'
-      }}
-      _hover={{
-        color: CB_DARK
-      }}
-      {...p}
-    >
-      {children}
-      {isOpen && <NavTip label={label} />}
-    </PseudoBox>
-  )
-})
+const NavItemContents = memo<NavItemContentsProps>(
+  ({children, isActive, label, ...p}) => {
+    const {isOpen, onOpen, onClose} = useDisclosure()
 
-function useIsActive({to, ...p}) {
+    return (
+      <PseudoBox
+        borderBottom='2px solid rgba(0, 0, 0, 0)'
+        cursor='pointer'
+        color={CB_HEX}
+        fontSize='14px'
+        lineHeight='20px'
+        onMouseOver={onOpen}
+        onMouseOut={onClose}
+        py={3}
+        textAlign='center'
+        width={sidebarWidth}
+        _focus={{
+          outline: 'none'
+        }}
+        _hover={{
+          color: CB_DARK
+        }}
+        {...p}
+      >
+        {children}
+        {!isActive && isOpen && <NavTip label={label} />}
+      </PseudoBox>
+    )
+  }
+)
+
+function useIsActive({to, params = {}}) {
   const [, pathname] = useRouteChanging()
-  let {href, as} = routeTo(to, p)
+  let {href, as} = routeTo(to, params)
   href = href.split('?')[0]
   as = as.split('?')[0]
   const pathOnly = pathname.split('?')[0]
@@ -94,16 +111,24 @@ function useIsActive({to, ...p}) {
   return pathOnly === href || pathOnly === as
 }
 
+type ItemLinkProps = {
+  icon: IconDefinition
+  label: string
+  link: {
+    to: string
+    params?: any
+  }
+}
+
 /**
  * Render an ItemLink.
  */
-const ItemLink = React.memo(({icon, label, link}) => {
+const ItemLink = memo<ItemLinkProps>(({icon, label, link}) => {
   const router = useRouter()
   const isActive = useIsActive(link)
 
-  const goToLink = React.useCallback(() => {
-    const {to, ...rest} = link
-    const {href, as, query} = routeTo(to, rest)
+  const goToLink = useCallback(() => {
+    const {href, as, query} = routeTo(link.to, link.params)
     router.push({pathname: href, query}, as)
   }, [link, router])
 
@@ -116,7 +141,7 @@ const ItemLink = React.memo(({icon, label, link}) => {
     : {onClick: goToLink}
 
   return (
-    <NavItemContents {...navItemProps} label={label}>
+    <NavItemContents {...navItemProps} isActive={isActive} label={label}>
       <Icon icon={icon} title={label} />
     </NavItemContents>
   )
@@ -124,7 +149,7 @@ const ItemLink = React.memo(({icon, label, link}) => {
 
 export default function Sidebar() {
   const router = useRouter()
-  const user = React.useContext(UserContext)
+  const user = useContext(UserContext)
   const email = get(user, 'email')
   const {projectId, regionId} = router.query
 
@@ -153,7 +178,7 @@ export default function Sidebar() {
               label={message('nav.regionSettings')}
               link={{
                 to: 'regionSettings',
-                regionId
+                params: {regionId}
               }}
             />
             <ItemLink
@@ -161,7 +186,7 @@ export default function Sidebar() {
               label={message('nav.projects')}
               link={{
                 to: 'projects',
-                regionId
+                params: {regionId}
               }}
             />
             <ItemLink
@@ -169,7 +194,7 @@ export default function Sidebar() {
               label={message('nav.networkBundles')}
               link={{
                 to: 'bundles',
-                regionId
+                params: {regionId}
               }}
             />
             <ItemLink
@@ -177,7 +202,7 @@ export default function Sidebar() {
               label={message('nav.opportunityDatasets')}
               link={{
                 to: 'opportunities',
-                regionId
+                params: {regionId}
               }}
             />
             <Box className='DEV'>
@@ -186,7 +211,7 @@ export default function Sidebar() {
                 label={message('nav.resources')}
                 link={{
                   to: 'resources',
-                  regionId
+                  params: {regionId}
                 }}
               />
             </Box>
@@ -195,8 +220,10 @@ export default function Sidebar() {
               label={message('nav.editModifications')}
               link={{
                 to: 'modifications',
-                regionId,
-                projectId: projectId ? projectId : 'undefined'
+                params: {
+                  regionId,
+                  projectId: projectId ? projectId : 'undefined'
+                }
               }}
             />
             <ItemLink
@@ -204,8 +231,10 @@ export default function Sidebar() {
               label={message('nav.analyze')}
               link={{
                 to: 'analysis',
-                projectId,
-                regionId
+                params: {
+                  projectId,
+                  regionId
+                }
               }}
             />
             <ItemLink
@@ -213,7 +242,9 @@ export default function Sidebar() {
               label='Regional Analyses'
               link={{
                 to: 'regionalAnalyses',
-                regionId
+                params: {
+                  regionId
+                }
               }}
             />
           </>
@@ -251,12 +282,12 @@ const addListener = isServer ? fn : window.addEventListener
 const removeListener = isServer ? fn : window.removeEventListener
 
 // TODO remove Sidebar redux dependency
-const LogoSpinner = React.memo(() => {
+const LogoSpinner = memo(() => {
   const [routeChanging] = useRouteChanging()
   const outstandingRequests = useSelector(selectOutstandingRequests)
 
   // Handle outstanding requests
-  React.useEffect(() => {
+  useEffect(() => {
     if (outstandingRequests) {
       const onBeforeUnload = (e) => {
         const returnValue = (e.returnValue = message('nav.unfinishedRequests'))
@@ -277,10 +308,10 @@ const LogoSpinner = React.memo(() => {
 })
 
 const isOnline = () => (isServer ? true : navigator.onLine)
-const OnlineIndicator = React.memo(() => {
-  const [online, setOnline] = React.useState(() => isOnline())
+const OnlineIndicator = memo(() => {
+  const [online, setOnline] = useState(() => isOnline())
 
-  React.useEffect(() => {
+  useEffect(() => {
     const onOnline = () => setOnline(true)
     const onOffline = () => setOnline(false)
     // TODO: Check to see if it can communicate with the backend, not just the
@@ -305,9 +336,9 @@ const OnlineIndicator = React.memo(() => {
 })
 
 function ErrorTip() {
-  const [error, setError] = React.useState()
+  const [error, setError] = useState()
   // Handle error events
-  React.useEffect(() => {
+  useEffect(() => {
     const onError = (e) => {
       LogRocket.captureException(e)
       setError(e.message)
@@ -334,7 +365,13 @@ function ErrorTip() {
   )
 }
 
-const ExternalLink = React.memo(({href, label, icon}) => {
+type ExternalLinkProps = {
+  href: string
+  label: string
+  icon: IconDefinition
+}
+
+const ExternalLink = memo<ExternalLinkProps>(({href, label, icon}) => {
   return (
     <a target='_blank' href={href} rel='noopener noreferrer'>
       <NavItemContents label={label}>
