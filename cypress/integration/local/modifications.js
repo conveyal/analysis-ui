@@ -117,6 +117,46 @@ describe('Modifications', () => {
     cy.navTo('Edit Modifications')
   })
 
+  describe('CRUD each type', function () {
+    types.forEach((type) => {
+      it(`CRUD ${type}`, function () {
+        const name = createModName(type, 'simple')
+        const description = 'descriptive text'
+        const updatedDescription = 'updated description'
+        // Create the modification
+        setupMod(type, name)
+        cy.contains(name)
+        cy.findByRole('link', {name: /Add description/}).click()
+        cy.findByLabelText('Description').type(description)
+        cy.findByLabelText(/Default/).uncheck({force: true})
+        cy.findByLabelText(scenarioNameRegEx).check({force: true})
+        // Read the saved settings
+        cy.navTo('Edit Modifications')
+        openMod(type, name)
+        cy.findByLabelText('Description').contains(description)
+        cy.findByLabelText(/Default/).should('not.be.checked')
+        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
+        // Update something trivial
+        cy.findByLabelText('Description').clear()
+        cy.findByRole('link', {name: /Add description/}).click()
+        cy.findByLabelText('Description').type(updatedDescription)
+        cy.navTo('Edit Modifications')
+        openMod(type, name)
+        cy.findByLabelText('Description').contains(updatedDescription)
+        // Delete the modification
+        deleteThisMod()
+      })
+    })
+  })
+
+  describe('Add Streets', () => {
+    it('has working form elements')
+  })
+
+  describe('Modify Streets', () => {
+    it('has working form elements')
+  })
+
   describe('Add Trip Pattern', () => {
     it('can be imported from shapefile', function () {
       cy.get('svg[data-icon="upload"]').click()
@@ -241,6 +281,8 @@ describe('Modifications', () => {
       // delete the template modification
       deleteMod('Add Trip Pattern', modName)
     })
+    it('allows phasing')
+    it('allows exact timetables')
   })
 
   describe('Adjust dwell time', () => {
@@ -365,38 +407,6 @@ describe('Modifications', () => {
       cy.findByLabelText(/Average speed/i)
       cy.findByLabelText(/Total moving time/i)
       deleteThisMod()
-    })
-  })
-
-  describe('CRUD each type', function () {
-    types.forEach((type) => {
-      it(`CRUD ${type}`, function () {
-        const name = createModName(type, 'simple')
-        const description = 'descriptive text'
-        const updatedDescription = 'updated description'
-        // Create the modification
-        setupMod(type, name)
-        cy.contains(name)
-        cy.findByRole('link', {name: /Add description/}).click()
-        cy.findByLabelText('Description').type(description)
-        cy.findByLabelText(/Default/).uncheck({force: true})
-        cy.findByLabelText(scenarioNameRegEx).check({force: true})
-        // Read the saved settings
-        cy.navTo('Edit Modifications')
-        openMod(type, name)
-        cy.findByLabelText('Description').contains(description)
-        cy.findByLabelText(/Default/).should('not.be.checked')
-        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
-        // Update something trivial
-        cy.findByLabelText('Description').clear()
-        cy.findByRole('link', {name: /Add description/}).click()
-        cy.findByLabelText('Description').type(updatedDescription)
-        cy.navTo('Edit Modifications')
-        openMod(type, name)
-        cy.findByLabelText('Description').contains(updatedDescription)
-        // Delete the modification
-        deleteThisMod()
-      })
     })
   })
 })
