@@ -150,7 +150,30 @@ describe('Modifications', () => {
   })
 
   describe('Add Streets', () => {
-    it('has working form elements')
+    it('has working form elements', () => {
+      const modName = createModName('AS', 'form')
+      const f = {force: true}
+      setupMod('Add Streets', modName)
+      cy.findByLabelText(/Enable walking/i).as('walkAccess')
+      cy.findByLabelText(/Enable biking/i).as('bikeAccess')
+      cy.findByLabelText(/Enable driving/i).as('carAccess')
+      // toggling access changes options
+      // WALK
+      cy.findByLabelText(/Walk time factor/i)
+      cy.get('@walkAccess').uncheck(f)
+      cy.findByLabelText(/Walk time factor/i).should('not.exist')
+      // BIKE
+      cy.findByLabelText(/Bike time factor/i)
+      cy.findByLabelText(/Bike level of Traffic Stress/i)
+      cy.get('@bikeAccess').uncheck(f)
+      cy.findByLabelText(/Bike time factor/i).should('not.exist')
+      cy.findByLabelText(/Bike level of Traffic Stress/i).should('not.exist')
+      // DRIVE
+      cy.findByLabelText(/Car speed/i)
+      cy.get('@carAccess').uncheck(f)
+      cy.findByLabelText(/Car speed/i).should('not.exist')
+      deleteThisMod()
+    })
   })
 
   describe('Modify Streets', () => {
