@@ -57,6 +57,7 @@ export default function withInitialFetch(PageComponent, initialFetch) {
           height={size.height || minHeight}
           m='0 auto'
           justify='center'
+          width={minWidth}
         >
           <ShowSpinner />
         </Flex>

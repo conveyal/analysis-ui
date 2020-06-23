@@ -152,7 +152,7 @@ export default function ModificationsList(p) {
     <>
       <ModificationsMap />
 
-      <Tabs isFitted width='275px'>
+      <Tabs isFitted>
         <TabList>
           <Tab _focus={{outline: 'none'}}>
             {message('modification.plural')}{' '}
