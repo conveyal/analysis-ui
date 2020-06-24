@@ -174,7 +174,13 @@ function CustomBoundsSelector({
 
   return (
     <FormControl flex='1' isDisabled={isDisabled} {...p}>
-      <FormLabel display='flex' justifyContent='space-between' pb='3px' pr='0'>
+      <FormLabel
+        display='flex'
+        justifyContent='space-between'
+        pb='3px'
+        pr='0'
+        htmlFor='customBoundsSelect'
+      >
         {message('analysis.regionalBounds')}
         {editingBounds ? (
           <>
@@ -211,6 +217,7 @@ function CustomBoundsSelector({
       </FormLabel>
       <Box>
         <Select
+          inputId='customBoundsSelect'
           isDisabled={isDisabled}
           value={options.find((o) => o.value === selected)}
           options={options}
