@@ -8,41 +8,40 @@ context('Analysis', () => {
 
   context('of a point', () => {
     it('has all form elements', function () {
-      //cy.findByLabelText(/Time cutoff/i) // TODO needs label
+      cy.get('div#PrimaryAnalysisSettings').as('primary')
+      //cy.findByLabelText(/Time cutoff/i) // TODO dissociated label
       cy.findByLabelText(/Travel time percentile/i) // note: hidden input
-      cy.findAllByRole('button', {name: 'Multi-point'})
-        .first()
+      cy.get('@primary')
+        .findByRole('button', {name: 'Multi-point'})
         .as('multi-point-main')
         .should('be.disabled')
       // select project and scenario
-      // TODO distinguish main and comparison projects
-      cy.findAllByLabelText(/^Project$/)
-        .first()
+      cy.get('@primary')
+        .findByLabelText(/^Project$/)
         .click({force: true})
         .type('scratch{enter}')
-      cy.contains('scratch project')
-      // TODO distinguish main and comparison scenarios
-      cy.findAllByLabelText(/^Scenario$/)
-        .first()
+      cy.get('@primary').contains('scratch project')
+      cy.get('@primary')
+        .findByLabelText(/^Scenario$/)
         .click({force: true})
         .type('baseline{enter}')
-      cy.contains('Baseline')
+      cy.get('@primary').contains('Baseline')
       cy.findByLabelText(/^Opportunity Dataset$/)
         .click({force: true})
         .type('default{enter}')
-      cy.findAllByLabelText(/Bookmark/).first()
-      //cy.findByLabelText(/Access mode/i) // TODO dissociated label
-      //cy.findByLabelText(/Transit modes/i) // TODO dissociated label
-      //cy.findByLabelText(/Egress mode/i) // TODO dissociated label
+      cy.get('@primary').findAllByLabelText(/Bookmark/)
+      cy.get('@primary').findByLabelText(/Access mode/i)
+      cy.get('@primary').findByLabelText(/Transit modes/i)
+      cy.get('@primary').findByLabelText(/Egress mode/i)
       cy.findByLabelText(/Walk speed/i)
       cy.findByLabelText(/Max walk time/i)
-      //cy.findByLabelText(/Date/i) // TODO dissociated label
+      cy.get('@primary').findByLabelText(/Date/i)
       cy.findByLabelText(/From time/i)
       cy.findByLabelText(/To time/i)
-      //cy.findByLabelText(/Simulated Schedules/i) // TODO dissociated label
-      //cy.findByLabelText(/Maximum transfers/i) // TODO dissociated label
+      cy.get('@primary').findByLabelText(/Simulated Schedules/i)
+      cy.get('@primary').findByLabelText(/Maximum transfers/i)
       cy.findByLabelText(/Routing engine/i)
-      cy.findByLabelText(/Bounds of analysis/i)
+      cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
       //.should('match',/Entire region/i) // TODO matches wrong element
       // start analysis from default marker position
       cy.findByText(/Fetch Results/i).click()
