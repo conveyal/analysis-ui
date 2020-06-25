@@ -3,12 +3,15 @@ context('Analysis', () => {
     cy.setup('project')
     cy.setup('opportunities')
     cy.navTo('Analyze')
+  })
+  beforeEach(() => {
     cy.get('div.leaflet-container').as('map')
+    cy.get('div#PrimaryAnalysisSettings').as('primary')
+    cy.get('div#ComparisonAnalysisSettings').as('comparison')
   })
 
   context('of a point', () => {
     it('has all form elements', function () {
-      cy.get('div#PrimaryAnalysisSettings').as('primary')
       //cy.findByLabelText(/Time cutoff/i) // TODO dissociated label
       cy.findByLabelText(/Travel time percentile/i) // note: hidden input
       cy.get('@primary')
