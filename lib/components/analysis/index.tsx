@@ -3,7 +3,6 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  Box,
   Flex,
   FormControl,
   FormLabel,
@@ -249,15 +248,7 @@ function Results({
         <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
       </Skeleton>
 
-      <FormControl isDisabled={isDisabledOrStale}>
-        <Stack align='center' isInline spacing={P.md}>
-          <FormLabel htmlFor='cutoffSlider' whiteSpace='nowrap' pb={0}>
-            Time cutoff
-          </FormLabel>
-          <CutoffSlider id='cutoffSlider' isDisabled={isDisabledOrStale} />
-          <FormLabel pb={0}>minute(s)</FormLabel>
-        </Stack>
-      </FormControl>
+      <CutoffSlider isDisabled={isDisabledOrStale} />
 
       <Stack isInline spacing={P.md}>
         <FormControl flex='1' isDisabled={isDisabled}>
