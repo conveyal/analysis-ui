@@ -262,33 +262,28 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Navigate to a page using one of the main (leftmost) menu items
-  // and wait until at least part of the page is loaded
+  // and wait until at least part of the page is loaded.
+  const pages = {
+    regions: {lookFor: /Set up a new region/i},
+    'region settings': {lookFor: /Delete this region/i},
+    projects: {lookFor: /Create new Project|Upload a .* Bundle/i},
+    'network bundles': {lookFor: /Create a new network bundle/i},
+    'opportunity datasets': {lookFor: /Upload a new dataset/i},
+    'edit modifications': {
+      lookFor: /create new project|create a modification/i
+    },
+    analyze: {lookFor: /Comparison Project/i},
+    'regional analyses': {lookFor: /Regional Analyses/i}
+  }
+  const title = menuItemTitle.toLowerCase()
+  console.assert(title in pages)
   Cypress.log({name: 'Navigate to'})
-  cy.findByTitle(RegExp(menuItemTitle, 'i'), unlog)
+  // click the menu item
+  cy.findByTitle(RegExp(title, 'i'), unlog)
     .parent(unlog) // select actual SVG element rather than <title> el
     .click(unlog)
-  switch (menuItemTitle.toLowerCase()) {
-    case 'regions':
-      cy.contains(/Set up a new region/i, unlog)
-      break
-    case 'region settings':
-      cy.contains(/Delete this region/i, unlog)
-      break
-    case 'projects':
-      cy.contains(/Create new Project|Upload a .* Bundle/i, unlog)
-      break
-    case 'network bundles':
-      cy.contains(/Create a new network bundle/i, unlog)
-      break
-    case 'opportunity datasets':
-      cy.contains(/Upload a new dataset/i, unlog)
-      break
-    case 'edit modifications':
-      cy.contains(/create new project|create a modification/i, unlog)
-      break
-    case 'analyze':
-      cy.contains(/Comparison Project/i, unlog)
-  }
+  // check that page loads at least some content
+  cy.contains(pages[title].lookFor, unlog)
 })
 
 Cypress.Commands.add('clickMap', (coord) => {
