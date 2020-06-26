@@ -1,10 +1,27 @@
+function setCustom(settingKey, newValue, scenario = 'primary') {
+  // sets a value in the "Customize Profile Request" box
+  let newConfig = {}
+  cy.get(`@${scenario}`)
+    .findByLabelText(/Customize Profile Request/i)
+    .as('profile')
+    .invoke('val')
+    .then((currentConfig) => {
+      newConfig = JSON.parse(currentConfig)
+      newConfig[settingKey] = newValue
+      cy.log(newConfig)
+      cy.get('@profile').invoke('val', JSON.stringify(newConfig, null, 2))
+      cy.get('@profile').trigger('change')
+    })
+}
+
 context('Analysis', () => {
   before(() => {
     cy.setup('project')
     cy.setup('opportunities')
-    cy.navTo('Analyze')
   })
   beforeEach(() => {
+    cy.navTo('edit modifications') // refresh analysis page by navigating away
+    cy.navTo('Analyze')
     cy.get('div.leaflet-container').as('map')
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
@@ -12,7 +29,9 @@ context('Analysis', () => {
 
   context('of a point', () => {
     it('has all form elements', function () {
-      cy.findByLabelText(/Time cutoff/i) // note: hidden input
+      cy.findByLabelText(/Time cutoff/i)
+        .invoke('val', 75)
+        .trigger('change', {force: true})
       cy.findByLabelText(/Travel time percentile/i) // note: hidden input
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
@@ -60,10 +79,16 @@ context('Analysis', () => {
       cy.findByLabelText(/^Opportunity Dataset$/)
         .click({force: true})
         .type('default{enter}')
-      // start analysis from default marker position
+      // use the default location
       cy.findByText(/Fetch Results/i).click()
       cy.findByText(/Fetch results/i).should('not.exist')
       cy.findByText(/Fetch results/i).should('exist')
+      // set a new parameters
+      cy.findByLabelText(/Time cutoff/i).invoke('val', 75)
+      cy.findByLabelText(/Time cutoff/i).trigger('change', {force: true})
+      setCustom('fromLat', 39.0775)
+      setCustom('fromLon', -84.5116)
+      cy.findByText(/Fetch Results/i).click()
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
         .should('be.enabled')
