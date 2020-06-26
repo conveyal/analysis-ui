@@ -12,11 +12,10 @@ context('Analysis', () => {
 
   context('of a point', () => {
     it('has all form elements', function () {
-      //cy.findByLabelText(/Time cutoff/i) // TODO dissociated label
+      cy.findByLabelText(/Time cutoff/i) // note: hidden input
       cy.findByLabelText(/Travel time percentile/i) // note: hidden input
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
-        .as('multi-point-main')
         .should('be.disabled')
       // select project and scenario
       cy.get('@primary')
@@ -45,18 +44,34 @@ context('Analysis', () => {
       cy.get('@primary').findByLabelText(/Maximum transfers/i)
       cy.findByLabelText(/Routing engine/i)
       cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
-      //.should('match',/Entire region/i) // TODO matches wrong element
-      // start analysis from default marker position
-      cy.findByText(/Fetch Results/i).click()
-      cy.findByText(/Analyze results/i, {timeout: 200000}).should('exist')
-      // move the marker and re-run
-      cy.mapMoveMarkerTo([39.08877, -84.5106]) // to transit center
-      cy.findByText(/Fetch Results/i).click()
-      cy.get('@multi-point-main').should('not.be.disabled')
-      //cy.get('@map').matchImageSnapshot('post')
+      cy.get('@primary').findByLabelText(/Customize Profile Request/i)
+      cy.findByText(/Fetch Results/i).should('be.enabled')
     })
 
-    it('runs, giving reasonable results')
+    it('runs, giving <del>reasonable</del> results', function () {
+      cy.get('@primary')
+        .findByLabelText(/^Project$/)
+        .click({force: true})
+        .type('scratch{enter}')
+      cy.get('@primary')
+        .findByLabelText(/^Scenario$/)
+        .click({force: true})
+        .type('baseline{enter}')
+      cy.findByLabelText(/^Opportunity Dataset$/)
+        .click({force: true})
+        .type('default{enter}')
+      // start analysis from default marker position
+      cy.findByText(/Fetch Results/i).click()
+      cy.findByText(/Fetch results/i).should('not.exist')
+      cy.findByText(/Fetch results/i).should('exist')
+      cy.get('@primary')
+        .findByRole('button', {name: 'Multi-point'})
+        .should('be.enabled')
+      // move the marker and re-run
+      //cy.mapMoveMarkerTo([39.08877, -84.5106]) // to transit center
+      //cy.findByText(/Fetch Results/i).click()
+      //cy.get('@map').matchImageSnapshot('post')
+    })
 
     it('gives different results at different times')
 
