@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormHelperText,
   FormLabel,
@@ -174,32 +175,28 @@ function CustomBoundsSelector({
 
   return (
     <FormControl flex='1' isDisabled={isDisabled} {...p}>
-      <FormLabel
-        display='flex'
-        justifyContent='space-between'
-        pb='3px'
-        pr='0'
-        htmlFor='customBoundsSelect'
-      >
-        {message('analysis.regionalBounds')}
+      {editingBounds && (
+        <EditBounds
+          bounds={profileRequest.bounds}
+          save={(bounds) => setProfileRequest({bounds})}
+        />
+      )}
+      <Flex justifyContent='space-between'>
+        <FormLabel htmlFor='customBoundsSelect' whiteSpace='nowrap'>
+          {message('analysis.regionalBounds')}
+        </FormLabel>
         {editingBounds ? (
-          <>
-            <EditBounds
-              bounds={profileRequest.bounds}
-              save={(bounds) => setProfileRequest({bounds})}
-            />
-            <Button
-              onClick={(e) => {
-                e.preventDefault()
-                setEditingBounds(false)
-              }}
-              rightIcon='small-close'
-              size='xs'
-              variantColor='yellow'
-            >
-              Stop editing
-            </Button>
-          </>
+          <Button
+            onClick={(e) => {
+              e.preventDefault()
+              setEditingBounds(false)
+            }}
+            rightIcon='small-close'
+            size='xs'
+            variantColor='yellow'
+          >
+            Stop editing
+          </Button>
         ) : (
           <Button
             isDisabled={isDisabled}
@@ -214,7 +211,7 @@ function CustomBoundsSelector({
             Set custom
           </Button>
         )}
-      </FormLabel>
+      </Flex>
       <Box>
         <Select
           inputId='customBoundsSelect'
