@@ -68,7 +68,7 @@ context('Analysis', () => {
       cy.findByText(/Fetch Results/i).should('be.enabled')
     })
 
-    it.only('runs, giving <del>reasonable</del> results', function () {
+    it('runs, giving <del>reasonable</del> results', function () {
       cy.get('@primary')
         .findByLabelText(/^Project$/)
         .click({force: true})
