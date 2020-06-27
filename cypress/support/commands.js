@@ -318,6 +318,15 @@ Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
     })
 })
 
+Cypress.Commands.add('centerMapOn', (latLonArray) => {
+  // centers map on a given lat/lon coordinate: [x,y]
+  cy.window()
+    .its('LeafletMap')
+    .then((map) => {
+      map.panTo(latLonArray, {animate: false})
+    })
+})
+
 Cypress.Commands.add('mapMoveMarkerTo', (latLonArray) => {
   cy.window()
     .its('LeafletMap')

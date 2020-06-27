@@ -9,8 +9,9 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
       newConfig = JSON.parse(currentConfig)
       newConfig[settingKey] = newValue
       cy.log(newConfig)
-      cy.get('@profile').invoke('val', JSON.stringify(newConfig, null, 2))
-      cy.get('@profile').trigger('change')
+      cy.get('@profile')
+        .invoke('val', JSON.stringify(newConfig, null, 2))
+        .trigger('change')
     })
 }
 
@@ -67,7 +68,7 @@ context('Analysis', () => {
       cy.findByText(/Fetch Results/i).should('be.enabled')
     })
 
-    it('runs, giving <del>reasonable</del> results', function () {
+    it.only('runs, giving <del>reasonable</del> results', function () {
       cy.get('@primary')
         .findByLabelText(/^Project$/)
         .click({force: true})
@@ -83,11 +84,12 @@ context('Analysis', () => {
       cy.findByText(/Fetch Results/i).click()
       cy.findByText(/Fetch results/i).should('not.exist')
       cy.findByText(/Fetch results/i).should('exist')
-      // set a new parameters
+      // set new parameters
       cy.findByLabelText(/Time cutoff/i).invoke('val', 75)
       cy.findByLabelText(/Time cutoff/i).trigger('change', {force: true})
-      setCustom('fromLat', 39.0775)
-      setCustom('fromLon', -84.5116)
+      cy.centerMapOn([39.08877, -84.5106])
+      setCustom('fromLat', 39.08877)
+      setCustom('fromLon', -84.5106) // TODO not working yet
       cy.findByText(/Fetch Results/i).click()
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
