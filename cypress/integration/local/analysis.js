@@ -8,11 +8,16 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
     .then((currentConfig) => {
       newConfig = JSON.parse(currentConfig)
       newConfig[settingKey] = newValue
-      cy.log(newConfig)
       cy.get('@profile')
         .invoke('val', JSON.stringify(newConfig, null, 2))
         .trigger('change')
     })
+}
+
+function fetchResults() {
+  cy.findByText(/Fetch Results/i).click()
+  cy.findByText(/Fetch Results/i).should('not.exist')
+  cy.findByText(/Fetch Results/i).should('exist')
 }
 
 context('Analysis', () => {
@@ -23,9 +28,22 @@ context('Analysis', () => {
   beforeEach(() => {
     cy.navTo('edit modifications') // refresh analysis page by navigating away
     cy.navTo('Analyze')
+    // alias lots of things
     cy.get('div.leaflet-container').as('map')
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
+    // set a standard project, scenario, and opportunity dataset
+    cy.get('@primary')
+      .findByLabelText(/^Project$/)
+      .click({force: true})
+      .type('scratch{enter}')
+    cy.get('@primary')
+      .findByLabelText(/^Scenario$/)
+      .click({force: true})
+      .type('baseline{enter}')
+    cy.findByLabelText(/^Opportunity Dataset$/)
+      .click({force: true})
+      .type('default{enter}')
   })
 
   context('of a point', () => {
@@ -37,20 +55,8 @@ context('Analysis', () => {
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
         .should('be.disabled')
-      // select project and scenario
-      cy.get('@primary')
-        .findByLabelText(/^Project$/)
-        .click({force: true})
-        .type('scratch{enter}')
       cy.get('@primary').contains('scratch project')
-      cy.get('@primary')
-        .findByLabelText(/^Scenario$/)
-        .click({force: true})
-        .type('baseline{enter}')
       cy.get('@primary').contains('Baseline')
-      cy.findByLabelText(/^Opportunity Dataset$/)
-        .click({force: true})
-        .type('default{enter}')
       cy.get('@primary').findAllByLabelText(/Bookmark/)
       cy.get('@primary').findByLabelText(/Access mode/i)
       cy.get('@primary').findByLabelText(/Transit modes/i)
@@ -69,38 +75,43 @@ context('Analysis', () => {
     })
 
     it('runs, giving <del>reasonable</del> results', function () {
-      cy.get('@primary')
-        .findByLabelText(/^Project$/)
-        .click({force: true})
-        .type('scratch{enter}')
-      cy.get('@primary')
-        .findByLabelText(/^Scenario$/)
-        .click({force: true})
-        .type('baseline{enter}')
-      cy.findByLabelText(/^Opportunity Dataset$/)
-        .click({force: true})
-        .type('default{enter}')
+      // TODO make sure results are reasonable
       // use the default location
-      cy.findByText(/Fetch Results/i).click()
-      cy.findByText(/Fetch results/i).should('not.exist')
-      cy.findByText(/Fetch results/i).should('exist')
+      fetchResults()
       // set new parameters
       cy.findByLabelText(/Time cutoff/i).invoke('val', 75)
       cy.findByLabelText(/Time cutoff/i).trigger('change', {force: true})
       cy.centerMapOn([39.08877, -84.5106])
       setCustom('fromLat', 39.08877)
       setCustom('fromLon', -84.5106) // TODO not working yet
-      cy.findByText(/Fetch Results/i).click()
+      fetchResults()
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
         .should('be.enabled')
-      // move the marker and re-run
-      //cy.mapMoveMarkerTo([39.08877, -84.5106]) // to transit center
-      //cy.findByText(/Fetch Results/i).click()
       //cy.get('@map').matchImageSnapshot('post')
     })
 
-    it('gives different results at different times')
+    it('gives different results at different times', function () {
+      // TODO move marker, compare results
+
+      // set time window in morning rush
+      cy.findByLabelText(/From time/i)
+        .clear()
+        .type('06:00')
+      cy.findByLabelText(/To time/i)
+        .clear()
+        .type('08:00')
+      fetchResults()
+      // set time window in late evening
+      cy.findByLabelText(/From time/i)
+        .clear()
+        .type('22:00')
+      cy.findByLabelText(/To time/i)
+        .clear()
+        .type('23:59')
+      fetchResults()
+      // compare the two
+    })
 
     it('charts accessibility')
 
