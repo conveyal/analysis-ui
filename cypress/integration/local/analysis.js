@@ -86,7 +86,7 @@ context('Analysis', () => {
       cy.findByText(/Fetch Results/i).should('be.enabled')
     })
 
-    it('runs, giving <del>reasonable</del> results', function () {
+    it('runs, giving reasonable results', function () {
       // tests basic single point analysis at specified locations
       // compares mapped results to snapshots
       fetchResults() // initialize request
@@ -133,18 +133,57 @@ context('Analysis', () => {
       // TODO snapshot chart too
     })
 
-    it('charts accessibility', function () {
-      // TODO move marker and verify other settings
+    it('handles direct access by walk/bike only', function () {
+      const location = this.region.locations.middle
+      setOrigin(location)
+      // turn off all transit
+      cy.get('@primary')
+        .findByLabelText(/Transit modes/i)
+        .findByRole('button', {name: /All/i})
+        .click()
+      cy.get('@primary')
+        .findByLabelText(/Access mode/i)
+        .should('not.exist')
+      // it has changed names, becoming:
+      cy.get('@primary')
+        .findByLabelText(/Direct mode/i)
+        .findByTitle(/Bike/i)
+        .click()
       fetchResults()
-      cy.get('svg#results-chart')
-      // TODO take snapshot
+      // TODO take snapshot of map and chart
     })
 
-    it('sets custom analysis bounds')
+    it('charts accessibility', function () {
+      // TODO verify other settings
+      const location = this.region.locations.center
+      setOrigin(location)
+      fetchResults()
+      cy.get('svg#results-chart')
+      //cy.get('@map').matchImageSnapshot() // TODO take a snapshot
+      // add a comparison case to the chart
+      cy.get('@comparison')
+        .findByLabelText(/^Project$/)
+        .click({force: true})
+        .type('scratch{enter}')
+      cy.get('@comparison')
+        .findByLabelText(/^Scenario$/)
+        .click({force: true})
+        .type('baseline{enter}')
+      // change the mode
+      cy.get('@comparison')
+        .findByLabelText(/Identical request settings/i)
+        .uncheck({force: true})
+      cy.get('@comparison')
+        .findByLabelText(/Access mode/i)
+        .findByTitle(/Bike/i)
+        .click()
+      fetchResults()
+      //cy.get('@map').matchImageSnapshot() // TODO take a snapshot
+    })
+
+    it('uses custom analysis bounds')
 
     it('sets a bookmark')
-
-    it('handles access by walk/bike only')
   })
 
   context('of a region', () => {
