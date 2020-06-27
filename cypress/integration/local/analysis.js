@@ -14,6 +14,12 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
     })
 }
 
+function setOrigin(latLonArray) {
+  // TODO not yet updating map marker
+  setCustom('fromLat', latLonArray[0])
+  setCustom('fromLon', latLonArray[1])
+}
+
 function fetchResults() {
   cy.findByText(/Fetch Results/i).click()
   // wait for results
@@ -26,9 +32,11 @@ context('Analysis', () => {
     cy.setup('project')
     cy.setup('opportunities')
   })
+
   beforeEach(() => {
     cy.navTo('edit modifications') // refresh analysis page by navigating away
     cy.navTo('Analyze')
+    cy.fixture('regions/scratch.json').as('region')
     // alias lots of things
     cy.get('div.leaflet-container').as('map')
     cy.get('div#PrimaryAnalysisSettings').as('primary')
@@ -79,8 +87,9 @@ context('Analysis', () => {
     })
 
     it('runs, giving <del>reasonable</del> results', function () {
-      // enable all fields by initializing request with defaults
-      fetchResults()
+      // tests basic single point analysis at specified locations
+      // compares mapped results to snapshots
+      fetchResults() // initialize request
       // set new parameters
       cy.findByLabelText(/Time cutoff/i)
         .invoke('val', 75) // TODO not working
@@ -89,33 +98,39 @@ context('Analysis', () => {
         .invoke('val', 75) // TODO not working yet
         .trigger('change', {force: true})
       // move marker and align map for snapshot
-      setCustom('fromLat', 39.08877)
-      setCustom('fromLon', -84.5106) // TODO not updating marker
-      cy.centerMapOn([39.08877, -84.5106])
-      fetchResults()
-      //cy.get('@map').matchImageSnapshot()
+      for (let key in this.region.locations) {
+        let location = this.region.locations[key]
+        setOrigin(location)
+        cy.centerMapOn(location)
+        fetchResults()
+        //cy.get('@map').matchImageSnapshot() // TODO
+      }
     })
 
-    it.skip('gives different results at different times', function () {
-      // set time window in morning rush
+    it('gives different results at different times', function () {
+      const location = this.region.locations.center
+      setOrigin(location)
+      cy.centerMapOn(location)
+      // set time window in morning rush -- should have high access
       cy.findByLabelText(/From time/i)
+        .as('from')
         .clear()
         .type('06:00')
       cy.findByLabelText(/To time/i)
+        .as('to')
         .clear()
         .type('08:00')
       fetchResults()
       //cy.get('@map').matchImageSnapshot() // TODO
-      // set time window in late evening
-      cy.findByLabelText(/From time/i)
-        .clear()
-        .type('22:00')
-      cy.findByLabelText(/To time/i)
-        .clear()
-        .type('23:59')
+      // set time window in late evening - lower access
+      cy.get('@from').clear().type('22:00')
+      cy.get('@to').clear().type('23:59')
       fetchResults()
       //cy.get('@map').matchImageSnapshot() // TODO
-      // TODO narrow window to one minute and ensure no variability
+      // narrow window to one minute - no variability
+      cy.get('@from').clear().type('12:00')
+      cy.get('@to').clear().type('12:01')
+      // TODO snapshot chart too
     })
 
     it('charts accessibility', function () {
