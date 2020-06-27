@@ -94,7 +94,7 @@ export default memo<StackedPercentileProps>(
     const boxPlotWidth = BOX_PLOT_WIDTH * width
 
     return (
-      <svg style={{width, height, margin: '10px 0'}}>
+      <svg id='results-chart' style={{width, height, margin: '10px 0'}}>
         <Boxplot
           color={color}
           positions={getBoxPlotPositions(percentileCurves, cutoff)}
@@ -168,7 +168,7 @@ export const StackedPercentileComparison = memo<
       : BOX_PLOT_WIDTH * width
 
     return (
-      <svg style={{width, height, margin: '10px 0'}}>
+      <svg id='results-chart' style={{width, height, margin: '10px 0'}}>
         <g transform={`translate(${boxPlotWidth})`}>
           <Boxplot
             color={color}

@@ -10,12 +10,13 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
       newConfig[settingKey] = newValue
       cy.get('@profile')
         .invoke('val', JSON.stringify(newConfig, null, 2))
-        .trigger('change')
+        .trigger('change') // TODO not updating map
     })
 }
 
 function fetchResults() {
   cy.findByText(/Fetch Results/i).click()
+  // wait for results
   cy.findByText(/Fetch Results/i).should('not.exist')
   cy.findByText(/Fetch Results/i).should('exist')
 }
@@ -33,6 +34,7 @@ context('Analysis', () => {
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
     // set a standard project, scenario, and opportunity dataset
+    // across all tests
     cy.get('@primary')
       .findByLabelText(/^Project$/)
       .click({force: true})
@@ -44,14 +46,16 @@ context('Analysis', () => {
     cy.findByLabelText(/^Opportunity Dataset$/)
       .click({force: true})
       .type('default{enter}')
+      .should('be.disabled') // becomes disabled while loading
+    // enabled again once loaded
+    cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   })
 
   context('of a point', () => {
     it('has all form elements', function () {
+      // note that elements touched in beforeEach are neglected here
       cy.findByLabelText(/Time cutoff/i)
-        .invoke('val', 75)
-        .trigger('change', {force: true})
-      cy.findByLabelText(/Travel time percentile/i) // note: hidden input
+      cy.findByLabelText(/Travel time percentile/i)
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
         .should('be.disabled')
@@ -75,25 +79,24 @@ context('Analysis', () => {
     })
 
     it('runs, giving <del>reasonable</del> results', function () {
-      // TODO make sure results are reasonable
-      // use the default location
+      // enable all fields by initializing request with defaults
       fetchResults()
       // set new parameters
-      cy.findByLabelText(/Time cutoff/i).invoke('val', 75)
-      cy.findByLabelText(/Time cutoff/i).trigger('change', {force: true})
-      cy.centerMapOn([39.08877, -84.5106])
+      cy.findByLabelText(/Time cutoff/i)
+        .invoke('val', 75) // TODO not working
+        .trigger('change', {force: true})
+      cy.findByLabelText(/Travel time percentile/i)
+        .invoke('val', 75) // TODO not working yet
+        .trigger('change', {force: true})
+      // move marker and align map for snapshot
       setCustom('fromLat', 39.08877)
-      setCustom('fromLon', -84.5106) // TODO not working yet
+      setCustom('fromLon', -84.5106) // TODO not updating marker
+      cy.centerMapOn([39.08877, -84.5106])
       fetchResults()
-      cy.get('@primary')
-        .findByRole('button', {name: 'Multi-point'})
-        .should('be.enabled')
-      //cy.get('@map').matchImageSnapshot('post')
+      //cy.get('@map').matchImageSnapshot()
     })
 
-    it('gives different results at different times', function () {
-      // TODO move marker, compare results
-
+    it.skip('gives different results at different times', function () {
       // set time window in morning rush
       cy.findByLabelText(/From time/i)
         .clear()
@@ -102,6 +105,7 @@ context('Analysis', () => {
         .clear()
         .type('08:00')
       fetchResults()
+      //cy.get('@map').matchImageSnapshot() // TODO
       // set time window in late evening
       cy.findByLabelText(/From time/i)
         .clear()
@@ -110,10 +114,16 @@ context('Analysis', () => {
         .clear()
         .type('23:59')
       fetchResults()
-      // compare the two
+      //cy.get('@map').matchImageSnapshot() // TODO
+      // TODO narrow window to one minute and ensure no variability
     })
 
-    it('charts accessibility')
+    it('charts accessibility', function () {
+      // TODO move marker and verify other settings
+      fetchResults()
+      cy.get('svg#results-chart')
+      // TODO take snapshot
+    })
 
     it('sets custom analysis bounds')
 
@@ -123,7 +133,12 @@ context('Analysis', () => {
   })
 
   context('of a region', () => {
-    it('runs a regional analysis')
+    it.skip('runs a regional analysis', function () {
+      fetchResults()
+      cy.get('@primary')
+        .findByRole('button', {name: 'Multi-point'})
+        .should('be.enabled')
+    })
 
     it('compares two regional analyses')
 
