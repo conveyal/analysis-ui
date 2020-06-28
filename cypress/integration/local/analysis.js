@@ -10,7 +10,9 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
       newConfig[settingKey] = newValue
       cy.get('@profile')
         .invoke('val', JSON.stringify(newConfig, null, 2))
-        .trigger('change') // TODO not updating map
+        .type(' {backspace}')
+      // TODO this last type action triggers some kind of event that updates
+      // the map. Figure out how to trigger it directly.
     })
 }
 
@@ -149,6 +151,10 @@ context('Analysis', () => {
         .findByLabelText(/Direct mode/i)
         .findByTitle(/Bike/i)
         .click()
+      cy.get('@primary')
+        .findByLabelText(/Egress mode/i)
+        .findAllByRole('button')
+        .should('be.disabled')
       fetchResults()
       // TODO take snapshot of map and chart
     })
@@ -181,7 +187,9 @@ context('Analysis', () => {
       //cy.get('@map').matchImageSnapshot() // TODO take a snapshot
     })
 
-    it('uses custom analysis bounds')
+    it('uses custom analysis bounds', function () {
+      cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
+    })
 
     it('sets a bookmark')
   })
