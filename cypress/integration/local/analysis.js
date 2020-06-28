@@ -13,11 +13,11 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
         .type(' {backspace}')
       // TODO this last type action triggers some kind of event that updates
       // the map. Figure out how to trigger it directly.
+      // is .trigger('input') not passing a target?
     })
 }
 
 function setOrigin(latLonArray) {
-  // TODO not yet updating map marker
   setCustom('fromLat', latLonArray[0])
   setCustom('fromLon', latLonArray[1])
 }
@@ -160,12 +160,14 @@ context('Analysis', () => {
     })
 
     it('charts accessibility', function () {
-      // TODO verify other settings
+      // TODO verify default settings - they could be changed by previous tests
       const location = this.region.locations.center
       setOrigin(location)
       fetchResults()
       cy.get('svg#results-chart')
-      //cy.get('@map').matchImageSnapshot() // TODO take a snapshot
+        .as('chart')
+        .scrollIntoView()
+        .matchImageSnapshot('single-scenario-chart')
       // add a comparison case to the chart
       cy.get('@comparison')
         .findByLabelText(/^Project$/)
@@ -184,7 +186,9 @@ context('Analysis', () => {
         .findByTitle(/Bike/i)
         .click()
       fetchResults()
-      //cy.get('@map').matchImageSnapshot() // TODO take a snapshot
+      cy.get('@chart')
+        .scrollIntoView()
+        .matchImageSnapshot('chart-with-comparison')
     })
 
     it('uses custom analysis bounds', function () {
