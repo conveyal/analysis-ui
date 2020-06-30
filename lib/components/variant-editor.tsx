@@ -6,18 +6,23 @@ import {
   Icon,
   Stack,
   Text,
-  Tooltip
+  Tooltip,
+  useDisclosure
 } from '@chakra-ui/core'
+import {faCopy, faTrashAlt, faEye} from '@fortawesome/free-solid-svg-icons'
 import {memo} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {
+  copyScenario,
   createVariant,
   deleteVariant,
   editVariantName
 } from 'lib/actions/project'
 import message from 'lib/message'
 
+import {ConfirmDialog} from './confirm-button'
+import Editable from './editable'
 import IconButton from './icon-button'
 
 type VariantProps = {
@@ -25,33 +30,10 @@ type VariantProps = {
   variants: string[]
 }
 
+const isValidName = (s) => s && s.length > 0
+
 export default memo<VariantProps>(function Variants({showVariant, variants}) {
   const dispatch = useDispatch()
-
-  function _createVariant() {
-    const variantName = window.prompt(
-      `${message('variant.enterName')}`,
-      `${message('variant.name')} ${variants.length + 1}`
-    )
-    if (variantName) dispatch(createVariant(variantName))
-  }
-
-  function _deleteVariant(index) {
-    if (window.confirm(message('variant.deleteConfirmation'))) {
-      dispatch(deleteVariant(index))
-    }
-  }
-
-  function _editVariantName(index) {
-    const variantName = variants[index]
-    const newVariantName = window.prompt(
-      message('variant.enterName'),
-      variantName
-    )
-    if (newVariantName) {
-      dispatch(editVariantName({index, name: newVariantName}))
-    }
-  }
 
   return (
     <>
@@ -59,59 +41,95 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
         borderRadius={0}
         isFullWidth
         leftIcon='small-add'
-        onClick={_createVariant}
+        onClick={() =>
+          dispatch(
+            createVariant(`${message('variant.name')} ${variants.length + 1}`)
+          )
+        }
         variantColor='green'
       >
         {message('variant.createAction')}
       </Button>
-      <Stack>
-        <Text px={4} pt={4}>
-          {message('variant.description')}
-        </Text>
+      <Stack p={2}>
+        <Text p={2}>{message('variant.description')}</Text>
 
         <Divider />
 
-        <Flex py={2} px={4}>
-          <Text flex='1' fontWeight='bold'>
-            {message('variant.baseline')}
-          </Text>
-          <Tooltip
-            aria-label='Baseline (empty scenario) cannot be modified'
-            label='Baseline (empty scenario) cannot be modified'
-          >
-            <Box>
-              <Icon name='lock' />
-            </Box>
-          </Tooltip>
-        </Flex>
-        {variants.map((name, index) => (
-          <Flex key={index} pl={4} pr={2}>
+        <Stack spacing={3} pt={2}>
+          <Flex px={4}>
             <Text flex='1' fontWeight='bold'>
-              {index + 1}. {name}
+              {message('variant.baseline')}
             </Text>
-            <Stack isInline spacing={1}>
-              <IconButton
-                icon='view'
-                label={message('variant.showModifications')}
-                onClick={() => showVariant(index)}
-              />
-              <IconButton
-                icon='edit'
-                label={message('variant.editName')}
-                onClick={() => _editVariantName(index)}
-              />
-              {index !== 0 && (
-                <IconButton
-                  icon='delete'
-                  label={message('variant.delete')}
-                  onClick={() => _deleteVariant(index)}
-                  variantColor='red'
-                />
-              )}
-            </Stack>
+            <Tooltip
+              aria-label='Baseline (empty scenario) cannot be modified'
+              label='Baseline (empty scenario) cannot be modified'
+            >
+              <Box>
+                <Icon name='lock' />
+              </Box>
+            </Tooltip>
           </Flex>
-        ))}
+          {variants.map((name, index) => (
+            <Box key={index}>
+              <Variant
+                copyVariant={() => dispatch(copyScenario(index))}
+                deleteVariant={() => dispatch(deleteVariant(index))}
+                index={index}
+                name={name}
+                onChangeName={(name) =>
+                  dispatch(editVariantName({index, name}))
+                }
+                showVariant={() => showVariant(index)}
+              />
+            </Box>
+          ))}
+        </Stack>
       </Stack>
     </>
   )
 })
+
+function Variant({
+  copyVariant,
+  deleteVariant,
+  index,
+  name,
+  onChangeName,
+  showVariant
+}) {
+  const {isOpen, onOpen, onClose} = useDisclosure()
+
+  return (
+    <Flex align='center' pl={4} pr={2}>
+      {isOpen && (
+        <ConfirmDialog
+          action={message('variant.delete')}
+          description={message('variant.deleteConfirmation')}
+          onClose={onClose}
+          onConfirm={deleteVariant}
+        />
+      )}
+
+      <Text mr={2}>{index + 1}.</Text>
+      <Box flex='1' fontWeight='bold'>
+        <Editable isValid={isValidName} onChange={onChangeName} value={name} />
+      </Box>
+      <Stack isInline spacing={0}>
+        <IconButton
+          icon={faEye}
+          label={message('variant.showModifications')}
+          onClick={showVariant}
+        />
+        <IconButton icon={faCopy} label='Copy scenario' onClick={copyVariant} />
+        {index !== 0 && (
+          <IconButton
+            icon={faTrashAlt}
+            label={message('variant.delete')}
+            onClick={onOpen}
+            variantColor='red'
+          />
+        )}
+      </Stack>
+    </Flex>
+  )
+}

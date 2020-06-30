@@ -6,6 +6,7 @@ import {
   AccordionPanel,
   Badge,
   Box,
+  Button,
   Flex,
   Icon,
   Input,
@@ -16,8 +17,16 @@ import {
   Tabs,
   TabList,
   TabPanel,
-  TabPanels
+  TabPanels,
+  useDisclosure,
+  Stack
 } from '@chakra-ui/core'
+import {
+  faEye,
+  faEyeSlash,
+  faUpload,
+  faPlus
+} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
 import dynamic from 'next/dynamic'
@@ -27,7 +36,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
 import {getForProject as loadModifications} from 'lib/actions/modifications'
 import {LS_MOM} from 'lib/constants'
+import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
+import selectVariants from 'lib/selectors/variants'
 import * as localStorage from 'lib/utils/local-storage'
 
 import IconButton from '../icon-button'
@@ -75,6 +86,11 @@ export default function ModificationsList(p) {
   const {_id: projectId, bundleId, regionId} = p.project
   // Retrieve the modifications from the store. Filter out modifications that might be from another project
   const modifications = useSelector((s) => get(s, 'project.modifications'))
+  const variants = useSelector(selectVariants)
+  const goToModificationImport = useRouteTo('modificationImport', {
+    projectId: p.project._id,
+    regionId: p.project.regionId
+  })
 
   // Load modifications
   useEffect(() => {
@@ -152,7 +168,7 @@ export default function ModificationsList(p) {
     <>
       <ModificationsMap />
 
-      <Tabs isFitted>
+      <Tabs isFitted width='320px'>
         <TabList>
           <Tab _focus={{outline: 'none'}}>
             {message('modification.plural')}{' '}
@@ -166,27 +182,42 @@ export default function ModificationsList(p) {
             <CreateModification
               projectId={projectId}
               regionId={regionId}
-              variants={p.project.variants}
+              variants={variants}
             />
-
-            <InputGroup>
-              <InputLeftElement pl={4} pr={2}>
-                <Icon name='search' />
-              </InputLeftElement>
-              <Input
-                borderLeft='none'
-                borderRadius={0}
-                borderRight='none'
-                placeholder={message('modification.filter')}
-                onChange={(e) => setFilter(e.target.value)}
-                size='lg'
-                type='text'
-                value={filter}
-                _focus={{
-                  outline: 'none'
-                }}
-              />
-            </InputGroup>
+            <Flex align='center' justify='space-between' p={2}>
+              <InputGroup flex='1' pl={2}>
+                <InputLeftElement pl={4} pr={2}>
+                  <Icon name='search' />
+                </InputLeftElement>
+                <Input
+                  placeholder={message('modification.filter')}
+                  onChange={(e) => setFilter(e.target.value)}
+                  type='text'
+                  value={filter}
+                  variant='flushed'
+                  _focus={{
+                    outline: 'none'
+                  }}
+                />
+              </InputGroup>
+              <Flex ml={2}>
+                <IconButton
+                  icon={faUpload}
+                  label={message('modification.importFromProject')}
+                  onClick={goToModificationImport}
+                />
+                <IconButton
+                  icon={faEye}
+                  label='Show all modifications'
+                  onClick={() => {}}
+                />
+                <IconButton
+                  icon={faEyeSlash}
+                  label='Hide all modifications'
+                  onClick={() => {}}
+                />
+              </Flex>
+            </Flex>
 
             <InnerDock>
               {modifications.length > 0 ? (
@@ -194,31 +225,21 @@ export default function ModificationsList(p) {
                   {Object.keys(filteredModificationsByType).map((type) => {
                     const ms = filteredModificationsByType[type]
                     return (
-                      <AccordionItem
-                        border='none'
-                        isOpen={ms.length < 10}
-                        isDisabled={ms.length === 0}
+                      <ModificationType
                         key={type}
+                        modificationCount={modifications.length}
+                        type={type}
                       >
-                        <AccordionHeader _focus={{outline: 'none'}} py={2}>
-                          <Box flex='1' fontWeight='bold' textAlign='left'>
-                            {toStartCase(type)} <Badge>{ms.length}</Badge>
-                          </Box>
-                          <AccordionIcon />
-                        </AccordionHeader>
-                        <AccordionPanel py={0} px={1}>
-                          <Flex direction='column'>
-                            {ms.map((m) => (
-                              <ModificationItem
-                                isDisplayed={modificationsOnMap.has(m._id)}
-                                modification={m}
-                                regionId={regionId}
-                                toggleMapDisplay={toggleMapDisplay}
-                              />
-                            ))}
-                          </Flex>
-                        </AccordionPanel>
-                      </AccordionItem>
+                        {ms.map((m) => (
+                          <ModificationItem
+                            isDisplayed={modificationsOnMap.has(m._id)}
+                            key={m._id}
+                            modification={m}
+                            regionId={regionId}
+                            toggleMapDisplay={toggleMapDisplay}
+                          />
+                        ))}
+                      </ModificationType>
                     )
                   })}
                 </Accordion>
@@ -231,14 +252,33 @@ export default function ModificationsList(p) {
           </TabPanel>
 
           <TabPanel>
-            <VariantEditor
-              showVariant={showVariant}
-              variants={p.project.variants}
-            />
+            <VariantEditor showVariant={showVariant} variants={variants} />
           </TabPanel>
         </TabPanels>
       </Tabs>
     </>
+  )
+}
+
+function ModificationType({children, modificationCount, type}) {
+  const {isOpen, onToggle} = useDisclosure(true) // defaultIsOpen does not currently work
+  return (
+    <AccordionItem
+      border='none'
+      isOpen={isOpen}
+      isDisabled={modificationCount === 0}
+      onChange={onToggle}
+    >
+      <AccordionHeader _focus={{outline: 'none'}} py={2}>
+        <Box flex='1' fontWeight='bold' textAlign='left'>
+          {toStartCase(type)} <Badge>{modificationCount}</Badge>
+        </Box>
+        <AccordionIcon />
+      </AccordionHeader>
+      <AccordionPanel py={0} px={1}>
+        <Flex direction='column'>{children}</Flex>
+      </AccordionPanel>
+    </AccordionItem>
   )
 }
 
@@ -258,7 +298,6 @@ const ModificationItem = memo<ModificationItemProps>(
         backgroundColor: 'rgba(0,0,0,0.04)',
         color: 'blue.700'
       }}
-      key={modification._id}
     >
       <Link
         to='modificationEdit'
@@ -266,7 +305,7 @@ const ModificationItem = memo<ModificationItemProps>(
         projectId={modification.projectId}
         regionId={regionId}
       >
-        <Flex align='center' py={1} pl={4} pr={2} cursor='pointer'>
+        <Flex align='center' py={1} pl={5} pr={1} cursor='pointer'>
           <Box
             flex='1'
             overflow='hidden'
@@ -277,8 +316,8 @@ const ModificationItem = memo<ModificationItemProps>(
             {modification.name}
           </Box>
           <IconButton
-            icon={isDisplayed ? 'view' : 'view-off'}
-            label='Toggle map display'
+            icon={isDisplayed ? faEyeSlash : faEye}
+            label={isDisplayed ? 'Hide from map' : 'Show on map'}
             onClick={(e) => {
               e.preventDefault()
               toggleMapDisplay(modification._id)

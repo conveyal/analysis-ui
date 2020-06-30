@@ -219,7 +219,7 @@ export default function Sidebar() {
               icon={faPencilAlt}
               label={message('nav.editModifications')}
               link={{
-                to: 'modifications',
+                to: projectId ? 'modifications' : 'projectSelect',
                 params: {
                   regionId,
                   projectId: projectId ? projectId : 'undefined'

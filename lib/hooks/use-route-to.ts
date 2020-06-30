@@ -1,11 +1,10 @@
 import isEqual from 'lodash/isEqual'
-import {useRouter} from 'next/router'
+import Router from 'next/router'
 import {useCallback, useEffect, useState} from 'react'
 
 import {routeTo} from '../router'
 
 export default function useRouteTo(to: string, props: any) {
-  const router = useRouter()
   const [result, setResult] = useState(() => routeTo(to, props))
 
   useEffect(() => {
@@ -14,13 +13,13 @@ export default function useRouteTo(to: string, props: any) {
       setResult(newRouteTo)
 
       // Prefetch in production
-      router.prefetch(newRouteTo.href, newRouteTo.as)
+      Router.prefetch(newRouteTo.href, newRouteTo.as)
     }
-  }, [props, result, router, setResult, to])
+  }, [props, result, setResult, to])
 
   const onClick = useCallback(() => {
-    router.push({pathname: result.href, query: result.query}, result.as)
-  }, [result, router])
+    Router.push({pathname: result.href, query: result.query}, result.as)
+  }, [result])
 
   return onClick
 }

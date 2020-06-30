@@ -1,5 +1,9 @@
-import {Flex, Heading, Stack} from '@chakra-ui/core'
-import {useState} from 'react'
+import {Flex, Heading, useDisclosure} from '@chakra-ui/core'
+import {
+  faChevronLeft,
+  faCog,
+  faExternalLinkAlt
+} from '@fortawesome/free-solid-svg-icons'
 
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
@@ -8,45 +12,56 @@ import ExportProject from './export-project'
 import IconButton from './icon-button'
 
 export default function ProjectTitle({project}) {
-  const [showExportSelect, setShowExportSelect] = useState(false)
+  const exportSelect = useDisclosure()
+  const goToAllProjects = useRouteTo('projectSelect', {
+    regionId: project.regionId
+  })
   const goToProjectSettings = useRouteTo('projectSettings', {
     regionId: project.regionId,
     projectId: project._id
   })
-  const goToModificationImport = useRouteTo('modificationImport', {
-    projectId: project._id,
-    regionId: project.regionId
-  })
+
   const name = project ? project.name : 'Loading...'
   return (
-    <Flex align='center' borderBottom='1px solid #E2E8F0' pl={4} pr={2} py={2}>
-      <Heading flex='1' size='md'>
+    <Flex
+      align='center'
+      borderBottom='1px solid #E2E8F0'
+      py={4}
+      px={2}
+      width='320px'
+    >
+      <IconButton
+        icon={faChevronLeft}
+        label='All projects'
+        onClick={goToAllProjects}
+      />
+      <Heading
+        ml={2}
+        flex='1'
+        size='md'
+        overflow='hidden'
+        style={{textOverflow: 'ellipsis'}}
+        whiteSpace='nowrap'
+      >
         {name}
       </Heading>
       {project && (
-        <Stack isInline spacing={1}>
+        <Flex>
           <IconButton
-            icon='settings'
+            icon={faExternalLinkAlt}
+            label={message('project.export')}
+            onClick={exportSelect.onOpen}
+          />
+          <IconButton
+            icon={faCog}
             label={message('project.editSettings')}
             onClick={goToProjectSettings}
           />
-          <IconButton
-            icon='external-link'
-            label={message('project.export')}
-            onClick={() => setShowExportSelect(true)}
-          />
-          <IconButton
-            icon='download'
-            label={message('modification.importFromProject')}
-            onClick={goToModificationImport}
-          />
-          {showExportSelect && (
-            <ExportProject
-              onHide={() => setShowExportSelect(false)}
-              project={project}
-            />
+
+          {exportSelect.isOpen && (
+            <ExportProject onHide={exportSelect.onClose} project={project} />
           )}
-        </Stack>
+        </Flex>
       )}
     </Flex>
   )
