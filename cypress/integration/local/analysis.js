@@ -29,6 +29,12 @@ function fetchResults() {
   cy.findByText(/Fetch Results/i).should('exist')
 }
 
+function setTimeCutoff(minutes) {
+  cy.findByLabelText(/Time cutoff/i)
+    .invoke('val', minutes)
+    .trigger('input', {force: true})
+}
+
 context('Analysis', () => {
   before(() => {
     cy.setup('project')
@@ -93,12 +99,7 @@ context('Analysis', () => {
       // compares mapped results to snapshots
       fetchResults() // initialize request
       // set new parameters
-      cy.findByLabelText(/Time cutoff/i)
-        .invoke('val', 75) // TODO not working
-        .trigger('change', {force: true})
-      cy.findByLabelText(/Travel time percentile/i)
-        .invoke('val', 75) // TODO not working yet
-        .trigger('change', {force: true})
+      setTimeCutoff(75)
       // move marker and align map for snapshot
       for (let key in this.region.locations) {
         let location = this.region.locations[key]
@@ -160,7 +161,6 @@ context('Analysis', () => {
     })
 
     it('charts accessibility', function () {
-      // TODO verify default settings - they could be changed by previous tests
       const location = this.region.locations.center
       setOrigin(location)
       fetchResults()
