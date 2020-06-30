@@ -151,6 +151,14 @@ export default function ModificationsList(p) {
     [modifications, setAndStoreMoM]
   )
 
+  // Show/hide all modifications
+  const showAll = useCallback(() => {
+    setAndStoreMoM(new Set(modifications.map((m) => m._id)))
+  }, [modifications, setAndStoreMoM])
+  const hideAll = useCallback(() => {
+    setAndStoreMoM(new Set())
+  }, [setAndStoreMoM])
+
   // Toggle map appearance
   const toggleMapDisplay = useCallback(
     (_id) => {
@@ -209,12 +217,12 @@ export default function ModificationsList(p) {
                 <IconButton
                   icon={faEye}
                   label='Show all modifications'
-                  onClick={() => {}}
+                  onClick={showAll}
                 />
                 <IconButton
                   icon={faEyeSlash}
                   label='Hide all modifications'
-                  onClick={() => {}}
+                  onClick={hideAll}
                 />
               </Flex>
             </Flex>
