@@ -113,32 +113,34 @@ exports[`Component > VariantEditor renders correctly 1`] = `
       </button>
     </PseudoBox>
   </Button>
-  <ForwardRef>
+  <ForwardRef
+    p={2}
+  >
     <Flex
       direction="column"
+      p={2}
     >
       <Box
         display="flex"
         flexDirection="column"
+        p={2}
       >
         <div
-          className="css-j7qwjs"
+          className="css-bib6tw"
         >
           <Text
             key=".0"
             mb={2}
-            pt={4}
-            px={4}
+            p={2}
           >
             <Box
               as="p"
               fontFamily="body"
               mb={2}
-              pt={4}
-              px={4}
+              p={2}
             >
               <p
-                className="css-1lrq0sc"
+                className="css-12ncufp"
               >
                 A Scenario is a collection of modifications within a project.
               </p>
@@ -163,131 +165,153 @@ exports[`Component > VariantEditor renders correctly 1`] = `
               />
             </Box>
           </ForwardRef>
-          <Flex
+          <ForwardRef
             key=".2"
             mb={null}
-            px={4}
-            py={2}
+            pt={2}
+            spacing={3}
           >
-            <Box
-              display="flex"
+            <Flex
+              direction="column"
               mb={null}
-              px={4}
-              py={2}
+              pt={2}
             >
-              <div
-                className="css-2mod6n"
+              <Box
+                display="flex"
+                flexDirection="column"
+                mb={null}
+                pt={2}
               >
-                <Text
-                  flex="1"
-                  fontWeight="bold"
+                <div
+                  className="css-qsix5r"
                 >
-                  <Box
-                    as="p"
-                    flex="1"
-                    fontFamily="body"
-                    fontWeight="bold"
+                  <Flex
+                    key=".0"
+                    mb={null}
+                    px={4}
                   >
-                    <p
-                      className="css-13c2z23"
+                    <Box
+                      display="flex"
+                      mb={null}
+                      px={4}
                     >
-                      Baseline
-                    </p>
-                  </Box>
-                </Text>
-                <Tooltip
-                  aria-label="Baseline (empty scenario) cannot be modified"
-                  label="Baseline (empty scenario) cannot be modified"
-                >
-                  <Box
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onMouseEnter={[Function]}
-                    onMouseLeave={[Function]}
-                  >
-                    <div
-                      className="css-0"
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                    >
-                      <Icon
-                        name="lock"
-                      >
-                        <Styled(div)
-                          as="svg"
-                          color="currentColor"
-                          display="inline-block"
-                          focusable={false}
-                          role="presentation"
-                          size="1em"
-                          verticalAlign="middle"
-                          viewBox="0 0 24 24"
-                        >
-                          <svg
-                            className="css-1im46kq"
-                            focusable={false}
-                            role="presentation"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </Styled(div)>
-                      </Icon>
-                    </div>
-                  </Box>
-                  <ForwardRef
-                    anchorEl={
                       <div
-                        class="css-0"
+                        className="css-qlsmlw"
                       >
-                        <svg
-                          class="css-1im46kq"
-                          focusable="false"
-                          role="presentation"
-                          viewBox="0 0 24 24"
+                        <Text
+                          flex="1"
+                          fontWeight="bold"
                         >
-                          <path
-                            d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
-                            fill="currentColor"
+                          <Box
+                            as="p"
+                            flex="1"
+                            fontFamily="body"
+                            fontWeight="bold"
+                          >
+                            <p
+                              className="css-13c2z23"
+                            >
+                              Baseline
+                            </p>
+                          </Box>
+                        </Text>
+                        <Tooltip
+                          aria-label="Baseline (empty scenario) cannot be modified"
+                          label="Baseline (empty scenario) cannot be modified"
+                        >
+                          <Box
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                          >
+                            <div
+                              className="css-0"
+                              onBlur={[Function]}
+                              onClick={[Function]}
+                              onFocus={[Function]}
+                              onMouseEnter={[Function]}
+                              onMouseLeave={[Function]}
+                            >
+                              <Icon
+                                name="lock"
+                              >
+                                <Styled(div)
+                                  as="svg"
+                                  color="currentColor"
+                                  display="inline-block"
+                                  focusable={false}
+                                  role="presentation"
+                                  size="1em"
+                                  verticalAlign="middle"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <svg
+                                    className="css-1im46kq"
+                                    focusable={false}
+                                    role="presentation"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </Styled(div)>
+                              </Icon>
+                            </div>
+                          </Box>
+                          <ForwardRef
+                            anchorEl={
+                              <div
+                                class="css-0"
+                              >
+                                <svg
+                                  class="css-1im46kq"
+                                  focusable="false"
+                                  role="presentation"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M19.5,9.5h-.75V6.75a6.75,6.75,0,0,0-13.5,0V9.5H4.5a2,2,0,0,0-2,2V22a2,2,0,0,0,2,2h15a2,2,0,0,0,2-2V11.5A2,2,0,0,0,19.5,9.5Zm-9.5,6a2,2,0,1,1,3,1.723V19.5a1,1,0,0,1-2,0V17.223A1.994,1.994,0,0,1,10,15.5ZM7.75,6.75a4.25,4.25,0,0,1,8.5,0V9a.5.5,0,0,1-.5.5H8.25a.5.5,0,0,1-.5-.5Z"
+                                    fill="currentColor"
+                                  />
+                                </svg>
+                              </div>
+                            }
+                            arrowSize="10px"
+                            bg="gray.700"
+                            borderRadius="sm"
+                            color="whiteAlpha.900"
+                            fontSize="sm"
+                            fontWeight="medium"
+                            isOpen={false}
+                            maxW="320px"
+                            modifiers={
+                              Object {
+                                "offset": Object {
+                                  "enabled": true,
+                                  "offset": "0, 8",
+                                },
+                              }
+                            }
+                            placement="auto"
+                            pointerEvents="none"
+                            px="8px"
+                            py="2px"
+                            shadow="md"
+                            timeout={200}
+                            usePortal={true}
                           />
-                        </svg>
+                        </Tooltip>
                       </div>
-                    }
-                    arrowSize="10px"
-                    bg="gray.700"
-                    borderRadius="sm"
-                    color="whiteAlpha.900"
-                    fontSize="sm"
-                    fontWeight="medium"
-                    isOpen={false}
-                    maxW="320px"
-                    modifiers={
-                      Object {
-                        "offset": Object {
-                          "enabled": true,
-                          "offset": "0, 8",
-                        },
-                      }
-                    }
-                    placement="auto"
-                    pointerEvents="none"
-                    px="8px"
-                    py="2px"
-                    shadow="md"
-                    timeout={200}
-                    usePortal={true}
-                  />
-                </Tooltip>
-              </div>
-            </Box>
-          </Flex>
+                    </Box>
+                  </Flex>
+                </div>
+              </Box>
+            </Flex>
+          </ForwardRef>
         </div>
       </Box>
     </Flex>
