@@ -1,6 +1,6 @@
 import {Box, Flex, Input, PseudoBox, useDisclosure} from '@chakra-ui/core'
 import {faCheck, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 
@@ -56,31 +56,31 @@ export default function Editable({
 }
 
 function HiddenInput({isValid, onChange, onClose, value}) {
-  // Save the original value
-  const [originalValue] = useState(value)
-
   const input = useInput({
-    onChange,
     test: isValid,
     value
   })
+  const inputRef = input.ref
+
+  const save = useCallback(() => {
+    onChange(inputRef.current.value)
+    onClose()
+  }, [onChange, onClose, inputRef])
 
   // Handle ESC / Enter
   useEffect(() => {
     const listener = ({key}) => {
       if (key === 'Escape') {
-        onChange(originalValue)
         onClose()
       } else if (key === 'Enter') {
-        onClose()
+        save()
       }
     }
     window.addEventListener('keydown', listener)
     return () => window.removeEventListener('keydown', listener)
-  }, []) // Run once on mount / unmount
+  }, [save]) // Run once on mount / unmount
 
   // Select all the text by default
-  const inputRef = input.ref
   useEffect(() => {
     const inputElement = inputRef.current
     if (inputElement) {
@@ -93,13 +93,13 @@ function HiddenInput({isValid, onChange, onClose, value}) {
       <Input
         {...input}
         height='unset'
-        onBlur={onClose}
+        onBlur={save}
         outline='none'
         p={0}
         variant='flushed'
       />
       {input.isValid && (
-        <IconButton icon={faCheck} label='Save' onClick={onClose} />
+        <IconButton icon={faCheck} label='Save' onClick={save} />
       )}
     </Flex>
   )
