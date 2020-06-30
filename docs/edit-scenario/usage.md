@@ -10,22 +10,20 @@ If multiple users will be involved in editing scenarios, or if you want to asses
 .. _toggle_mod_display:
 ## Toggling display of modifications
 
-In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click
+In the list of modifications on the initial view in editing mode, clicking the title of a modification will open it and allow you to edit it. To control whether each modification is displayed on the map, click the eye icon ( <i class="fa fa-eye"></i> ) next to each modification.
 
-<span class="ui-icon"><i class="fa fa-eye"></i>Toggle map display</span>
+Stops and segments representing modifications are displayed on the map using different colors to indicate their state relative to the :term:`baseline network`:
+* <span style="color:blue">Blue</span>: **Added** trip pattern or streets
+* <span style="color:red">Red</span>: **Removed** trip pattern
+* <span style="color:magenta">Purple</span>: **Changed** timetable (e.g. modified frequency, speed, or dwell time) or street network
+* <span style="color:gray">Gray</span>: **Unchanged** (alignment is unchanged but the :term:`trip pattern` is effected somehow, e.g. :ref:`reroute`)
 
-Stops and segments representing modifications are displayed on the map, using different colors to indicate their state relative to the baseline GTFS:
-* <span style="color:blue">Blue</span>: Added trip pattern
-* <span style="color:red">Red</span>: Removed trip pattern
-* <span style="color:magenta">Purple</span>: Changed timetable (e.g. modified frequency, speed, or dwell time)
-* <span style="color:gray">Gray</span>: Unchanged (alignment is unchanged but the :term:`trip pattern` is effected somehow, e.g. :ref:`reroute`)
+Projects start with only a *Default* scenario, plus a locked :term:`Baseline<baseline network>` scenario which does not accept modifications. You can create additional scenarios by clicking the create button, and entering a name.
 
-Projects start with only a "Default" scenario (plus a locked :term:`Baseline<baseline network>` in which no modifications can be active). You can create additional scenarios expanding the list of scenarios, clicking the create button, and entering a name.
-
-When the Scenario list is expanded, options next to each scenario allow you to:
-<br><span class="ui-icon"><i class="fa fa-eye"></i>Show on the map</span> the modifications active in the scenario
-<br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span> the scenario
-<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span> the scenario (not available for baseline or default scenario)
+When the Scenario list is expanded, options next to each scenario, excluding the baseline, allow you to:
+<br><span class="ui-icon"><i class="fa fa-eye"></i>Show on the map</span> all (and only) the modifications active in the scenario
+<br><span class="ui-icon"><i class="fa fa-pencil"></i>Rename</span> the scenario 
+<br><span class="ui-icon"><i class="fa fa-trash"></i>Delete</span> the scenario (excluding the default)
 
 .. _export_mods:
 ## Exporting modifications
