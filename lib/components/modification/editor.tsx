@@ -218,8 +218,7 @@ function ModificationEditor(p) {
         align='center'
         borderBottom='1px solid #E2E8F0'
         className={p.saveInProgress ? 'disableAndDim' : ''}
-        py={4}
-        px={2}
+        p={2}
         width='320px'
       >
         <IconButton

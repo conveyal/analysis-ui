@@ -55,18 +55,18 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
 
         <Divider />
 
-        <Stack spacing={3} pt={2}>
-          <Flex px={4}>
+        <Stack spacing={3} pt={2} pl={2}>
+          <Flex>
             <Text flex='1' fontWeight='bold'>
               {message('variant.baseline')}
             </Text>
             <Tooltip
               aria-label='Baseline (empty scenario) cannot be modified'
+              hasArrow
               label='Baseline (empty scenario) cannot be modified'
+              zIndex={1000}
             >
-              <Box>
-                <Icon name='lock' />
-              </Box>
+              <Icon name='lock' mr={2} />
             </Tooltip>
           </Flex>
           {variants.map((name, index) => (
@@ -100,7 +100,7 @@ function Variant({
   const {isOpen, onOpen, onClose} = useDisclosure()
 
   return (
-    <Flex align='center' pl={4} pr={2}>
+    <Flex align='center'>
       {isOpen && (
         <ConfirmDialog
           action={message('variant.delete')}

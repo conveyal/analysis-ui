@@ -23,13 +23,7 @@ export default function ProjectTitle({project}) {
 
   const name = project ? project.name : 'Loading...'
   return (
-    <Flex
-      align='center'
-      borderBottom='1px solid #E2E8F0'
-      py={4}
-      px={2}
-      width='320px'
-    >
+    <Flex align='center' borderBottom='1px solid #E2E8F0' p={2} width='320px'>
       <IconButton
         icon={faChevronLeft}
         label='All projects'
