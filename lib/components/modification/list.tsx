@@ -235,7 +235,7 @@ export default function ModificationsList(p) {
                     return (
                       <ModificationType
                         key={type}
-                        modificationCount={modifications.length}
+                        modificationCount={ms.length}
                         type={type}
                       >
                         {ms.map((m) => (
