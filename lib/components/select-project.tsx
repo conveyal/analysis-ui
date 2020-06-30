@@ -66,7 +66,7 @@ export default function SelectProject({bundles, projects, region}) {
         )}
 
         {projects.map((project) => (
-          <Box px={2}>
+          <Box px={2} key={project._id}>
             <Project project={project} />
           </Box>
         ))}
