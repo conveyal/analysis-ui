@@ -30,7 +30,10 @@ function fetchResults() {
 }
 
 function setTimeCutoff(minutes) {
+  // TODO not actually moving the slider yet
   cy.findByLabelText(/Time cutoff/i)
+    .parent()
+    .findByRole('slider')
     .invoke('val', minutes)
     .trigger('input', {force: true})
 }
@@ -192,7 +195,9 @@ context('Analysis', () => {
     })
 
     it('uses custom analysis bounds', function () {
-      cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
+      setCustom('bounds', this.region.customRegionSubset)
+      fetchResults()
+      // TODO take snapshot
     })
 
     it('sets a bookmark')
