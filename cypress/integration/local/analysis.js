@@ -24,8 +24,7 @@ function setOrigin(latLonArray) {
 
 function fetchResults() {
   cy.findByText(/Fetch Results/i).click()
-  // wait for results
-  cy.findByText(/Fetch Results/i).should('not.exist')
+  cy.wait(200) // eslint-disable-line cypress/no-unnecessary-waiting
   cy.findByText(/Fetch Results/i).should('exist')
 }
 
@@ -65,7 +64,7 @@ context('Analysis', () => {
     cy.findByLabelText(/^Opportunity Dataset$/)
       .click({force: true})
       .type('default{enter}')
-      .should('be.disabled') // becomes disabled while loading
+    //.should('be.disabled') // may become disabled while loading
     // enabled again once loaded
     cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   })
@@ -195,9 +194,13 @@ context('Analysis', () => {
     })
 
     it('uses custom analysis bounds', function () {
+      const location = this.region.locations.center
+      setOrigin(location)
+      cy.centerMapOn(location)
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
-      // TODO take snapshot
+      // TODO
+      //cy.get('@map').matchImageSnapshot('map-with-custom-bounds')
     })
 
     it('sets a bookmark')
