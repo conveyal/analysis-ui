@@ -6,7 +6,6 @@ import {
   AccordionPanel,
   Badge,
   Box,
-  Button,
   Flex,
   Icon,
   Input,
@@ -18,15 +17,9 @@ import {
   TabList,
   TabPanel,
   TabPanels,
-  useDisclosure,
-  Stack
+  useDisclosure
 } from '@chakra-ui/core'
-import {
-  faEye,
-  faEyeSlash,
-  faUpload,
-  faPlus
-} from '@fortawesome/free-solid-svg-icons'
+import {faEye, faEyeSlash, faUpload} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
 import dynamic from 'next/dynamic'
@@ -186,12 +179,14 @@ export default function ModificationsList(p) {
         </TabList>
 
         <TabPanels>
-          <TabPanel>
-            <CreateModification
-              projectId={projectId}
-              regionId={regionId}
-              variants={variants}
-            />
+          <TabPanel pt={2}>
+            <Box px={2}>
+              <CreateModification
+                projectId={projectId}
+                regionId={regionId}
+                variants={variants}
+              />
+            </Box>
             <Flex align='center' justify='space-between' p={2}>
               <InputGroup flex='1' pl={2}>
                 <InputLeftElement pl={4} pr={2}>
@@ -203,9 +198,6 @@ export default function ModificationsList(p) {
                   type='text'
                   value={filter}
                   variant='flushed'
-                  _focus={{
-                    outline: 'none'
-                  }}
                 />
               </InputGroup>
               <Flex ml={2}>

@@ -98,7 +98,6 @@ export default function CreateModification({
   return (
     <>
       <Button
-        borderRadius={0}
         isFullWidth
         onClick={onOpen}
         leftIcon='small-add'

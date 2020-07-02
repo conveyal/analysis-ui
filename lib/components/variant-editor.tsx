@@ -37,19 +37,20 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
 
   return (
     <>
-      <Button
-        borderRadius={0}
-        isFullWidth
-        leftIcon='small-add'
-        onClick={() =>
-          dispatch(
-            createVariant(`${message('variant.name')} ${variants.length + 1}`)
-          )
-        }
-        variantColor='green'
-      >
-        {message('variant.createAction')}
-      </Button>
+      <Box p={2}>
+        <Button
+          isFullWidth
+          leftIcon='small-add'
+          onClick={() =>
+            dispatch(
+              createVariant(`${message('variant.name')} ${variants.length + 1}`)
+            )
+          }
+          variantColor='green'
+        >
+          {message('variant.createAction')}
+        </Button>
+      </Box>
       <Stack p={2}>
         <Text p={2}>{message('variant.description')}</Text>
 
