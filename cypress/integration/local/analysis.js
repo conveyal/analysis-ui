@@ -207,7 +207,8 @@ context('Analysis', () => {
   })
 
   context('of a region', () => {
-    it.skip('runs a regional analysis', function () {
+    it('runs a regional analysis', function () {
+      setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
