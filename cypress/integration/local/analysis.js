@@ -1,3 +1,5 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
+
 function setCustom(settingKey, newValue, scenario = 'primary') {
   // sets a value in the "Customize Profile Request" box
   let newConfig = {}
@@ -11,9 +13,8 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
       cy.get('@profile')
         .invoke('val', JSON.stringify(newConfig, null, 2))
         .type(' {backspace}')
-      // TODO this last type action triggers some kind of event that updates
-      // the map. Figure out how to trigger it directly.
-      // is .trigger('input') not passing a target?
+      // TODO this last .type() triggers some kind of event that updates
+      // the map. Ideally we would hit this directly with .trigger()
     })
 }
 
@@ -24,17 +25,27 @@ function setOrigin(latLonArray) {
 
 function fetchResults() {
   cy.findByText(/Fetch Results/i).click()
-  cy.wait(200) // eslint-disable-line cypress/no-unnecessary-waiting
+  // fetch results button usually disappears when clicked, but may not always
+  // when it returns, we know the results have been fetched
+  cy.wait(200)
   cy.findByText(/Fetch Results/i).should('exist')
 }
 
 function setTimeCutoff(minutes) {
-  // TODO not actually moving the slider yet
+  // TODO this does not work yet
   cy.findByLabelText(/Time cutoff/i)
     .parent()
     .findByRole('slider')
     .invoke('val', minutes)
     .trigger('input', {force: true})
+}
+
+function setOpportunities(name = 'default') {
+  cy.findByLabelText(/^Opportunity Dataset$/)
+    .click({force: true})
+    .type(`${name}{enter}`)
+    .wait(100)
+    .should('be.enabled')
 }
 
 context('Analysis', () => {
@@ -44,15 +55,15 @@ context('Analysis', () => {
   })
 
   beforeEach(() => {
-    cy.navTo('edit modifications') // refresh analysis page by navigating away
+    // refresh analysis page each time by navigating away and then back
+    cy.navTo('edit modifications')
     cy.navTo('Analyze')
+    // alias all the things!
     cy.fixture('regions/scratch.json').as('region')
-    // alias lots of things
     cy.get('div.leaflet-container').as('map')
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
-    // set a standard project, scenario, and opportunity dataset
-    // across all tests
+    // set a standard project and scenario for all tests
     cy.get('@primary')
       .findByLabelText(/^Project$/)
       .click({force: true})
@@ -61,16 +72,11 @@ context('Analysis', () => {
       .findByLabelText(/^Scenario$/)
       .click({force: true})
       .type('baseline{enter}')
-    cy.findByLabelText(/^Opportunity Dataset$/)
-      .click({force: true})
-      .type('default{enter}')
-    //.should('be.disabled') // may become disabled while loading
-    // enabled again once loaded
-    cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   })
 
   context('of a point', () => {
     it('has all form elements', function () {
+      setOpportunities()
       // note that elements touched in beforeEach are neglected here
       cy.findByLabelText(/Time cutoff/i)
       cy.findByLabelText(/Travel time percentile/i)
@@ -108,7 +114,8 @@ context('Analysis', () => {
         setOrigin(location)
         cy.centerMapOn(location)
         fetchResults()
-        //cy.get('@map').matchImageSnapshot() // TODO
+        let snapshotName = `location-${key}-basic`
+        cy.get('@map').matchImageSnapshot(snapshotName)
       }
     })
 
@@ -126,16 +133,20 @@ context('Analysis', () => {
         .clear()
         .type('08:00')
       fetchResults()
-      //cy.get('@map').matchImageSnapshot() // TODO
+      cy.get('@map').matchImageSnapshot('center-6-8AM')
       // set time window in late evening - lower access
       cy.get('@from').clear().type('22:00')
-      cy.get('@to').clear().type('23:59')
+      cy.get('@to').clear().type('24:00')
       fetchResults()
-      //cy.get('@map').matchImageSnapshot() // TODO
+      cy.get('@map').matchImageSnapshot('center-10-12pm') // TODO
       // narrow window to one minute - no variability
+      setOpportunities()
       cy.get('@from').clear().type('12:00')
       cy.get('@to').clear().type('12:01')
-      // TODO snapshot chart too
+      fetchResults()
+      cy.get('svg#results-chart')
+        .scrollIntoView()
+        .matchImageSnapshot('chart-no-variation')
     })
 
     it('handles direct access by walk/bike only', function () {
@@ -164,6 +175,7 @@ context('Analysis', () => {
 
     it('charts accessibility', function () {
       const location = this.region.locations.center
+      setOpportunities()
       setOrigin(location)
       fetchResults()
       cy.get('svg#results-chart')
