@@ -225,11 +225,31 @@ context('Analysis', () => {
 
   context('of a region', () => {
     it('runs a regional analysis', function () {
+      const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
+      setOpportunities()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
+      // stub the name
+      cy.window().then((win) => {
+        cy.stub(win, 'prompt').returns(analysisName)
+      })
+      // start the analysis
       cy.get('@primary')
         .findByRole('button', {name: 'Multi-point'})
         .should('be.enabled')
+        .click()
+      // we should now be on the regional analyses page
+      cy.findByRole('heading', {name: /Regional Analyses/i})
+      cy.findByRole('heading', {name: analysisName})
+        .parent()
+        .parent()
+        .as('statusBox')
+      cy.get('@statusBox').findByText('starting cluster', {timeout: 20})
+      // TODO custom timeouts are not being respected
+      cy.get('@statusBox').findByText('calculating time remaining', {
+        timeout: 60
+      })
+      cy.get('@statusBox').should('not.exist', {timeout: 60})
     })
 
     it('compares two regional analyses')
