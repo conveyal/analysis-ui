@@ -217,8 +217,7 @@ context('Analysis', () => {
       cy.centerMapOn(location)
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
-      // TODO
-      //cy.get('@map').matchImageSnapshot('map-with-custom-bounds')
+      cy.get('@map').matchImageSnapshot('map-with-custom-bounds')
     })
 
     it('sets a bookmark')
