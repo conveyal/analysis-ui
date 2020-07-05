@@ -138,7 +138,7 @@ context('Analysis', () => {
       cy.get('@from').clear().type('22:00')
       cy.get('@to').clear().type('24:00')
       fetchResults()
-      cy.get('@map').matchImageSnapshot('center-10-12pm') // TODO
+      cy.get('@map').matchImageSnapshot('center-10-12pm')
       // narrow window to one minute - no variability
       setOpportunities()
       cy.get('@from').clear().type('12:00')
@@ -152,6 +152,7 @@ context('Analysis', () => {
     it('handles direct access by walk/bike only', function () {
       const location = this.region.locations.middle
       setOrigin(location)
+      cy.centerMapOn(location)
       // turn off all transit
       cy.get('@primary')
         .findByLabelText(/Transit modes/i)
@@ -170,7 +171,12 @@ context('Analysis', () => {
         .findAllByRole('button')
         .should('be.disabled')
       fetchResults()
-      // TODO take snapshot of map and chart
+      cy.get('@map').matchImageSnapshot('direct-bike-access-map')
+      setOpportunities()
+      fetchResults()
+      cy.get('svg#results-chart')
+        .scrollIntoView()
+        .matchImageSnapshot('direct-bike-access-chart')
     })
 
     it('charts accessibility', function () {
