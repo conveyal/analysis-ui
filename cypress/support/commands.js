@@ -318,12 +318,12 @@ Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
     })
 })
 
-Cypress.Commands.add('centerMapOn', (latLonArray) => {
+Cypress.Commands.add('centerMapOn', (latLonArray, zoom = 12) => {
   // centers map on a given lat/lon coordinate: [x,y]
   cy.window()
     .its('LeafletMap')
     .then((map) => {
-      map.panTo(latLonArray, {animate: false})
+      map.setView(latLonArray, zoom)
     })
 })
 
