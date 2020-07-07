@@ -62,7 +62,7 @@ function setup(entity) {
           break
         case 'project':
           cy.visit(
-            `/regions/${storedVals.regionId}/projects/${storedVals.projectId}`
+            `/regions/${storedVals.regionId}/projects/${storedVals.projectId}/modifications`
           )
           cy.contains(/Create a modification/i, unlog)
           break
@@ -181,25 +181,18 @@ function createNewBundle() {
 }
 
 function createNewProject() {
-  let projectName = prefix + regionName + ' project'
-  let bundleName = prefix + regionName + ' bundle'
+  const projectName = prefix + regionName + ' project'
+  const bundleName = prefix + regionName + ' bundle'
   cy.navTo('Projects')
-  cy.contains('Create new Project')
   cy.findByText(/Create new Project/i).click()
-  cy.location('pathname').should('match', /\/create-project/)
-  cy.findByLabelText(/Project name/).type(projectName, {delay: 1})
+  cy.findByLabelText(/Project name/).type(projectName)
   cy.findByLabelText(/Associated network bundle/i).click()
   cy.findByText(bundleName).click()
-  cy.get('a.btn')
-    .contains(/Create/)
-    .click()
-  cy.contains(/Modifications/, unlog)
+  cy.findByText(/^Create$/).click()
   // store the projectId
-  cy.location('pathname', unlog)
-    .should('match', /\/projects\/\w{24}$/)
-    .then((path) => {
-      stash('projectId', path.match(/\w{24}$/)[0])
-    })
+  cy.location('pathname', unlog).then((path) => {
+    stash('projectId', path.match(/\w{24}/g)[1])
+  })
 }
 
 Cypress.Commands.add('deleteProject', (projectName) => {
@@ -211,33 +204,6 @@ Cypress.Commands.add('deleteProject', (projectName) => {
       cy.findByText(/Delete project/i).click()
     } else {
       // no such project - nothing to delete
-    }
-  })
-})
-
-Cypress.Commands.add('setupScenario', (scenarioName) => {
-  // can be called when editing modifications
-  cy.navTo('Edit Modifications')
-  cy.contains('Scenarios')
-    .parent()
-    .as('panel')
-    .then((panel) => {
-      // open the scenario panel if it isn't open already
-      if (!panel.text().includes('Create a scenario')) {
-        cy.get(panel).click()
-        cy.get(panel).contains('Create a scenario')
-      }
-    })
-  cy.get('@panel').then((panel) => {
-    // create scenario if it doesn't already exist
-    if (!panel.text().includes(scenarioName)) {
-      cy.window().then((win) => {
-        cy.stub(win, 'prompt').returns(scenarioName)
-      })
-      cy.findByRole('link', {name: 'Create a scenario'}).click()
-      cy.window().then((win) => {
-        win.prompt.restore()
-      })
     }
   })
 })

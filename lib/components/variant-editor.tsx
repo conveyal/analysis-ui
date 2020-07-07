@@ -54,9 +54,9 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
       <Stack p={2}>
         <Text p={2}>{message('variant.description')}</Text>
 
-        <Divider />
+        <Divider mx={2} />
 
-        <Stack spacing={3} pt={2} pl={2}>
+        <Stack spacing={3} pt={2} pl={2} id='scenarios'>
           <Flex>
             <Text flex='1' fontWeight='bold'>
               {message('variant.baseline')}

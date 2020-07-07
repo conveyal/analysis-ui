@@ -1,3 +1,5 @@
+const tempRegionName = Cypress.env('dataPrefix') + 'temp'
+
 describe('Region setup', () => {
   beforeEach(() => {
     // scratch region settings
@@ -82,8 +84,7 @@ describe('Region setup', () => {
 
   it('creates new region from valid input', function () {
     // create a temporary region name
-    const regionName =
-      Cypress.env('dataPrefix') + ' Scratch Region ' + Date.now()
+    const regionName = tempRegionName + Date.now()
     // Enter region name and description
     cy.get('@name').type(regionName)
     cy.get('@description').type(this.region.description)

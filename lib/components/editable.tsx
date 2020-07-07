@@ -13,7 +13,7 @@ const alwaysValid = (s) => true
 export default function Editable({
   isValid = alwaysValid,
   onChange,
-  placeholder = 'Add a value',
+  placeholder = 'Add value',
   value
 }) {
   const {isOpen, onClose, onOpen} = useDisclosure()
@@ -24,6 +24,7 @@ export default function Editable({
         isValid={isValid}
         onChange={onChange}
         onClose={onClose}
+        placeholder={placeholder}
         value={value}
       />
     )
@@ -55,7 +56,7 @@ export default function Editable({
   }
 }
 
-function HiddenInput({isValid, onChange, onClose, value}) {
+function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
   const input = useInput({
     test: isValid,
     value
@@ -96,6 +97,7 @@ function HiddenInput({isValid, onChange, onClose, value}) {
         onBlur={save}
         outline='none'
         p={0}
+        placeholder={placeholder}
         variant='flushed'
       />
       {input.isValid && (

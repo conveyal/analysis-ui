@@ -5,8 +5,8 @@ context('Projects', () => {
   })
 
   it('can be created and deleted', function () {
-    let projectName = Date.now() + ''
-    let bundleName = Cypress.env('dataPrefix') + 'scratch bundle'
+    const projectName = Cypress.env('dataPrefix') + ' ' + Date.now()
+    const bundleName = Cypress.env('dataPrefix') + 'scratch bundle'
     cy.navTo('Projects')
     cy.findByText(/Create new Project/i).click()
     cy.location('pathname').should('match', /create-project/)
@@ -19,7 +19,6 @@ context('Projects', () => {
       .contains(/Create/)
       .should('not.be.disabled')
       .click()
-    cy.location('pathname').should('match', /\/projects\/.{24}$/)
     cy.contains(/Modifications/)
     // make sure it's listed on the projects page
     cy.navTo('Projects')
@@ -50,7 +49,7 @@ context('Projects', () => {
     cy.contains(/Baseline/)
     // delete the project
     cy.navTo('Projects')
-    cy.contains(projectName).click()
+    cy.findByText(projectName).click()
     cy.get('svg[data-icon="cog"]').click()
     cy.findByText(/Delete project/i).click()
     cy.location('pathname').should('match', /regions\/.{24}$/)
