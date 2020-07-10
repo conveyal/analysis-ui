@@ -1,6 +1,6 @@
 import {Box, Flex, Input, PseudoBox, useDisclosure} from '@chakra-ui/core'
 import {faCheck, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
-import {useEffect, useState, useCallback} from 'react'
+import {useEffect, useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 
