@@ -11,7 +11,7 @@ describe('Opportunity Datasets', () => {
     cy.get('div.leaflet-container').as('map')
   })
 
-  context('can be imported', () => {
+  describe('can be imported', () => {
     it('from CSV', function () {
       let opportunity = this.opportunities.csv
       let oppName = generateName('opportunities', opportunity.name)

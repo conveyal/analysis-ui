@@ -1,4 +1,4 @@
-context('Projects', () => {
+describe('Projects', () => {
   before('prepare the region and bundle', () => {
     cy.fixture('regions/scratch.json').as('region')
     cy.setup('bundle')
@@ -15,15 +15,12 @@ context('Projects', () => {
     cy.findByLabelText(/Associated network bundle/i).type(
       `{enter}${bundleName}{enter}`
     )
-    cy.get('a.btn')
-      .contains(/Create/)
-      .should('not.be.disabled')
-      .click()
+    cy.findByText('Create').click()
     cy.contains(/Modifications/)
     // make sure it's listed on the projects page
     cy.navTo('Projects')
-    cy.contains(projectName).click()
-    cy.get('svg[data-icon="cog"]').click()
+    cy.findByText(projectName).click()
+    cy.findByLabelText('Edit project settings').click()
     cy.findByLabelText(/Project name/)
       .invoke('val')
       .then((val) => expect(val).to.eq(projectName))
@@ -50,7 +47,7 @@ context('Projects', () => {
     // delete the project
     cy.navTo('Projects')
     cy.findByText(projectName).click()
-    cy.get('svg[data-icon="cog"]').click()
+    cy.findByLabelText('Edit project settings').click()
     cy.findByText(/Delete project/i).click()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     cy.findByText(projectName).should('not.exist')
