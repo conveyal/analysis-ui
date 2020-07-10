@@ -120,8 +120,8 @@ function CopiedModificationToast({modification, onClose, regionId}) {
       <AlertIcon />
       <AlertDescription>
         <PseudoBox _hover={{textDecoration: 'underline'}}>
-          Modification has been copied. Click to go to the newly created
-          modification.
+          Modification has been copied successfully. Click here to go to the new
+          copy.
         </PseudoBox>
       </AlertDescription>
     </Alert>
