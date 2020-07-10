@@ -9,7 +9,7 @@ import {
   Tooltip,
   useDisclosure
 } from '@chakra-ui/core'
-import {faCopy, faTrashAlt, faEye} from '@fortawesome/free-solid-svg-icons'
+import {faCopy, faTrash, faEye} from '@fortawesome/free-solid-svg-icons'
 import {memo} from 'react'
 import {useDispatch} from 'react-redux'
 
@@ -51,12 +51,14 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
           {message('variant.createAction')}
         </Button>
       </Box>
-      <Stack p={2}>
-        <Text p={2}>{message('variant.description')}</Text>
+      <Stack py={2}>
+        <Text px={4} py={2}>
+          {message('variant.description')}
+        </Text>
 
-        <Divider mx={2} />
+        <Divider mx={4} />
 
-        <Stack spacing={3} pt={2} pl={2} id='scenarios'>
+        <Stack spacing={3} pt={2} pl={4} pr={2} id='scenarios'>
           <Flex>
             <Text flex='1' fontWeight='bold'>
               {message('variant.baseline')}
@@ -116,20 +118,20 @@ function Variant({
         <Editable isValid={isValidName} onChange={onChangeName} value={name} />
       </Box>
       <Stack isInline spacing={0}>
-        <IconButton
-          icon={faEye}
-          label={message('variant.showModifications')}
-          onClick={showVariant}
-        />
-        <IconButton icon={faCopy} label='Copy scenario' onClick={copyVariant} />
         {index !== 0 && (
           <IconButton
-            icon={faTrashAlt}
+            icon={faTrash}
             label={message('variant.delete')}
             onClick={onOpen}
             variantColor='red'
           />
         )}
+        <IconButton icon={faCopy} label='Copy scenario' onClick={copyVariant} />
+        <IconButton
+          icon={faEye}
+          label={message('variant.showModifications')}
+          onClick={showVariant}
+        />
       </Stack>
     </Flex>
   )

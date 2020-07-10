@@ -12,7 +12,7 @@ type SimpleIconButtonProps = {
   placement?: PopperProps['placement']
   size?: 'xs' | 'sm' | 'md' | 'lg'
   variant?: ButtonProps['variant']
-  variantColor?: string
+  variantColor?: ButtonProps['variantColor']
 } & BoxProps
 
 export default function SimpleIconButton({
