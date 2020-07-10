@@ -38,7 +38,7 @@ export default function SelectProject({bundles, projects, region}) {
         </Flex>
 
         <Stack px={2}>
-          {bundles.length > 0 && (
+          {bundles.length > 0 ? (
             <Button
               isFullWidth
               leftIcon='small-add'
@@ -47,16 +47,16 @@ export default function SelectProject({bundles, projects, region}) {
             >
               {message('project.createAction')}
             </Button>
+          ) : (
+            <Button
+              isFullWidth
+              onClick={routeToBundleCreate}
+              variantColor='green'
+            >
+              <Icon icon={faDatabase} />
+              &nbsp;&nbsp;{message('project.uploadBundle')}
+            </Button>
           )}
-
-          <Button
-            isFullWidth
-            onClick={routeToBundleCreate}
-            variantColor='green'
-          >
-            <Icon icon={faDatabase} />
-            &nbsp;&nbsp;{message('project.uploadBundle')}
-          </Button>
         </Stack>
 
         {projects.length > 0 && (
