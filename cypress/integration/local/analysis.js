@@ -40,14 +40,6 @@ function setTimeCutoff(minutes) {
     .trigger('input', {force: true})
 }
 
-function setOpportunities(name = 'default') {
-  cy.findByLabelText(/^Opportunity Dataset$/)
-    .click({force: true})
-    .type(`${name}{enter}`)
-    .wait(100)
-    .should('be.enabled')
-}
-
 context('Analysis', () => {
   before(() => {
     cy.setup('project')
@@ -72,11 +64,15 @@ context('Analysis', () => {
       .findByLabelText(/^Scenario$/)
       .click({force: true})
       .type('baseline{enter}')
+    cy.findByLabelText(/^Opportunity Dataset$/)
+      .click({force: true})
+      .type(`${name}{enter}`)
+      .wait(100)
+      .should('be.enabled')
   })
 
   context('of a point', () => {
     it('has all form elements', function () {
-      setOpportunities()
       // note that elements touched in beforeEach are neglected here
       cy.findByLabelText(/Time cutoff/i)
       cy.findByLabelText(/Travel time percentile/i)
@@ -100,11 +96,16 @@ context('Analysis', () => {
       cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
       cy.get('@primary').findByLabelText(/Customize Profile Request/i)
       cy.findByText(/Fetch Results/i).should('be.enabled')
+      fetchResults()
+      cy.findByLabelText('Opportunities within isochrone')
+        .invoke('text')
+        .then((text) => {
+          expect(text).to.match(/^\d+$/)
+        })
     })
 
     it('runs, giving reasonable results', function () {
       // tests basic single point analysis at specified locations
-      // compares mapped results to snapshots
       fetchResults() // initialize request
       // set new parameters
       setTimeCutoff(75)
@@ -114,8 +115,8 @@ context('Analysis', () => {
         setOrigin(location)
         cy.centerMapOn(location)
         fetchResults()
-        let snapshotName = `location-${key}-basic`
-        cy.get('@map').matchImageSnapshot(snapshotName)
+        //let snapshotName = `location-${key}-basic`
+        //cy.get('@map').matchImageSnapshot(snapshotName)
       }
     })
 
@@ -140,7 +141,6 @@ context('Analysis', () => {
       fetchResults()
       cy.get('@map').matchImageSnapshot('center-10-12pm')
       // narrow window to one minute - no variability
-      setOpportunities()
       cy.get('@from').clear().type('12:00')
       cy.get('@to').clear().type('12:01')
       fetchResults()
@@ -172,7 +172,6 @@ context('Analysis', () => {
         .should('be.disabled')
       fetchResults()
       cy.get('@map').matchImageSnapshot('direct-bike-access-map')
-      setOpportunities()
       fetchResults()
       cy.get('svg#results-chart')
         .scrollIntoView()
@@ -181,7 +180,6 @@ context('Analysis', () => {
 
     it('charts accessibility', function () {
       const location = this.region.locations.center
-      setOpportunities()
       setOrigin(location)
       fetchResults()
       cy.get('svg#results-chart')
@@ -226,7 +224,6 @@ context('Analysis', () => {
   context('of a region', () => {
     it('runs a regional analysis', function () {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
-      setOpportunities()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
       // stub the name
