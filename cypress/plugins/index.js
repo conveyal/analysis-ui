@@ -23,6 +23,9 @@ const fs = require('fs')
 module.exports = (on, config) => {
   addMatchImageSnapshotPlugin(on, config)
 
+  const {initPlugin} = require('cypress-plugin-snapshots/plugin')
+  initPlugin(on, config)
+
   // used to create the pseudoFixture file
   on('task', {
     touch(filename, contents = '{}') {
@@ -32,4 +35,5 @@ module.exports = (on, config) => {
       return null
     }
   })
+  return config
 }

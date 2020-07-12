@@ -115,8 +115,10 @@ context('Analysis', () => {
         setOrigin(location)
         cy.centerMapOn(location)
         fetchResults()
-        //let snapshotName = `location-${key}-basic`
-        //cy.get('@map').matchImageSnapshot(snapshotName)
+        let snapshotName = `location-${key}-basic`
+        cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot(
+          snapshotName
+        )
       }
     })
 
