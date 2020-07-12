@@ -115,10 +115,7 @@ context('Analysis', () => {
         setOrigin(location)
         cy.centerMapOn(location)
         fetchResults()
-        let snapshotName = `location-${key}-basic`
-        cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot(
-          snapshotName
-        )
+        cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot()
       }
     })
 
@@ -136,12 +133,14 @@ context('Analysis', () => {
         .clear()
         .type('08:00')
       fetchResults()
-      cy.get('@map').matchImageSnapshot('center-6-8AM')
+      cy.findByLabelText('Opportunities within isochrone')
+        .as('results')
+        .toMatchSnapshot()
       // set time window in late evening - lower access
       cy.get('@from').clear().type('22:00')
       cy.get('@to').clear().type('24:00')
       fetchResults()
-      cy.get('@map').matchImageSnapshot('center-10-12pm')
+      cy.get('@results').toMatchSnapshot()
       // narrow window to one minute - no variability
       cy.get('@from').clear().type('12:00')
       cy.get('@to').clear().type('12:01')
@@ -173,7 +172,7 @@ context('Analysis', () => {
         .findAllByRole('button')
         .should('be.disabled')
       fetchResults()
-      cy.get('@map').matchImageSnapshot('direct-bike-access-map')
+      cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot()
       fetchResults()
       cy.get('svg#results-chart')
         .scrollIntoView()
@@ -217,7 +216,7 @@ context('Analysis', () => {
       cy.centerMapOn(location)
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
-      cy.get('@map').matchImageSnapshot('map-with-custom-bounds')
+      cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot()
     })
 
     it('sets a bookmark')
