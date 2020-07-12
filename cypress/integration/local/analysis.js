@@ -242,12 +242,23 @@ context('Analysis', () => {
         .parent()
         .parent()
         .as('statusBox')
-      cy.get('@statusBox').findByText('starting cluster', {timeout: 20})
-      // TODO custom timeouts are not being respected
-      cy.get('@statusBox').findByText('calculating time remaining', {
-        timeout: 60
-      })
-      cy.get('@statusBox').should('not.exist', {timeout: 60})
+      // shows progress
+      cy.get('@statusBox').findByText(/\d+ \/ \d+ origins/)
+      cy.findByRole('heading', {name: analysisName, timeout: 120000}).should(
+        'not.exist'
+      )
+      cy.findByText(/View a regional analysis/)
+        .click()
+        .type(`${analysisName}{enter}`)
+      // now in regional results vieiw
+      //cy.findByLabelText(/Export to GIS/i) // TODO dissociated label
+      //  .findByRole('button')
+      //cy.findByLabelText(/Compare to/i) // TODO dissociated label
+      cy.findByText(/Access to/i)
+      //cy.findByLabelText(/Aggregate results to/i) // TODO dissociated label
+      cy.findByText(/upload new aggregation area/i)
+      // clean up
+      cy.findByText(/Delete/i).click()
     })
 
     it('compares two regional analyses')
