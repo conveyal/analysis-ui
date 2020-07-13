@@ -20,6 +20,7 @@ context('Scenarios', () => {
           cy.findByRole('button', {
             name: 'Confirm: Delete this scenario'
           }).click()
+          cy.findByRole('alertdialog').should('not.exist')
         }
       })
   })

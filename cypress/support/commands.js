@@ -18,7 +18,6 @@ const unlog = {log: false}
 
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
-  cy.get('#sidebar-spinner', unlog).should('exist')
   cy.get('#sidebar-spinner', unlog).should('not.exist')
   Cypress.log({name: 'Navigation complete'})
 })
@@ -55,19 +54,23 @@ function setup(entity) {
       switch (entity) {
         case 'region':
           cy.visit(`/regions/${storedVals.regionId}`)
+          cy.navComplete()
           return cy.contains(/Create new Project|Upload a .* Bundle/i)
         case 'bundle':
           cy.visit(
             `/regions/${storedVals.regionId}/bundles/${storedVals.bundleId}`
           )
+          cy.navComplete()
           return cy.contains(/create a new network bundle/i)
         case 'opportunities':
           cy.visit(`/regions/${storedVals.regionId}/opportunities`)
+          cy.navComplete()
           return cy.contains(/Upload a new dataset/i)
         case 'project':
           cy.visit(
             `/regions/${storedVals.regionId}/projects/${storedVals.projectId}/modifications`
           )
+          cy.navComplete()
           return cy.contains(/Create a modification/i)
       }
     } else {
@@ -100,6 +103,7 @@ function createNewOpportunities() {
     cy.get('a.btn')
       .contains(/Upload/)
       .click()
+    cy.navComplete()
     // find the message showing this upload is complete
     cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
       .parent()
@@ -140,6 +144,7 @@ function createNewRegion() {
       .type(region.east, {delay: 1})
   })
   cy.findByRole('button', {name: /Set up a new region/}).click()
+  cy.navComplete()
   cy.contains(/Upload a new network bundle|create new project/i)
   // store the region UUID for later
   return cy

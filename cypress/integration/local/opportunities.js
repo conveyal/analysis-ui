@@ -1,5 +1,8 @@
 import {generateName} from '../../support'
 
+// How long should it take to create an OD
+const timeout = 60000
+
 describe('Opportunity Datasets', () => {
   before(() => {
     cy.setup('region')
@@ -31,7 +34,7 @@ describe('Opportunity Datasets', () => {
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -60,7 +63,6 @@ describe('Opportunity Datasets', () => {
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       let expectedFieldCount = opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
-      cy.navComplete()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
       cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
       cy.findByLabelText(/Select opportunity dataset/)
@@ -75,7 +77,7 @@ describe('Opportunity Datasets', () => {
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 30000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -113,7 +115,7 @@ describe('Opportunity Datasets', () => {
 
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
