@@ -37,15 +37,6 @@ Cypress.Commands.add('isWithinTolerance', (f1, f2, tolerance = 0.025) => {
 Cypress.Commands.add('setup', (entity) => setup(entity))
 
 function setup(entity) {
-  const entities = {
-    region: {dependsOn: null, setup: createNewRegion},
-    bundle: {dependsOn: 'region', setup: createNewBundle},
-    opportunities: {dependsOn: 'region', setup: createNewOpportunities},
-    project: {dependsOn: 'bundle', setup: createNewProject}
-  }
-  if (!(entity in entities)) {
-    return
-  }
   const idKey = entity + 'Id'
   cy.task('touch', pseudoFixture)
   return cy.readFile(pseudoFixture).then((storedVals) => {
@@ -73,11 +64,14 @@ function setup(entity) {
           cy.navComplete()
           return cy.contains(/Create a modification/i)
       }
-    } else {
-      // recursive call for dependency
-      return setup(entities[entity].dependsOn).then(() =>
-        entities[entity].setup()
-      )
+    } else if (entity === 'region') {
+      return createNewRegion()
+    } else if (entity === 'bundle') {
+      return setup('region').then(() => createNewBundle())
+    } else if (entity === 'opportunities') {
+      return setup('region').then(() => createNewOpportunities())
+    } else if (entity === 'project') {
+      return setup('bundle').then(() => createNewProject())
     }
   })
 }
