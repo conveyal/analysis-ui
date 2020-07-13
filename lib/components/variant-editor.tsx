@@ -59,7 +59,7 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
         <Divider mx={4} />
 
         <Stack spacing={3} pt={2} pl={4} pr={2} id='scenarios'>
-          <Flex>
+          <Flex pr={2}>
             <Text flex='1' fontWeight='bold'>
               {message('variant.baseline')}
             </Text>
@@ -69,7 +69,7 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
               label='Baseline (empty scenario) cannot be modified'
               zIndex={1000}
             >
-              <Icon name='lock' mr={2} />
+              <Icon name='lock' mr={1} />
             </Tooltip>
           </Flex>
           {variants.map((name, index) => (
