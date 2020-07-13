@@ -16,6 +16,13 @@ const regionFixture = `regions/${regionName}.json`
 export const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
+// Wait until the page has finished loading
+Cypress.Commands.add('navComplete', () => {
+  cy.get('#sidebar-spinner', unlog).should('exist')
+  cy.get('#sidebar-spinner', unlog).should('not.exist')
+  Cypress.log({name: 'Navigation complete'})
+})
+
 // For easy use inside tests
 Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
 
@@ -237,6 +244,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   cy.findByTitle(RegExp(menuItemTitle, 'i'))
     .parent(unlog) // select actual SVG element rather than <title> el
     .click()
+
   switch (menuItemTitle.toLowerCase()) {
     case 'regions':
       return cy.contains(/Set up a new region/i)

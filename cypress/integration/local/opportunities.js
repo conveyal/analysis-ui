@@ -28,6 +28,7 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
       cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
@@ -59,6 +60,7 @@ describe('Opportunity Datasets', () => {
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       let expectedFieldCount = opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
+      cy.navComplete()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
       cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
       cy.findByLabelText(/Select opportunity dataset/)
@@ -70,6 +72,7 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
       cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 30000})
@@ -106,6 +109,8 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
+
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
       cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
