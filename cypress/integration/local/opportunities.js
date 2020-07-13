@@ -132,7 +132,7 @@ describe('Opportunity Datasets', () => {
     })
   })
 
-  context('can be downloaded', () => {
+  describe('can be downloaded', () => {
     before(() => {
       cy.setup('opportunities')
     })

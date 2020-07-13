@@ -1,9 +1,8 @@
-context('Single point analysis', () => {
+describe('Single point analysis', () => {
   before(() => {
     cy.setup('project')
     cy.setup('opportunities')
     cy.navTo('Analyze')
-    cy.get('div.leaflet-container').as('map')
   })
 
   it('baseline network', function () {
