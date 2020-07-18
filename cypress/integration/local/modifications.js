@@ -19,6 +19,27 @@ const types = [
   'Custom'
 ]
 
+function setupScenario(name) {
+  // open the scenarios tab
+  cy.findByRole('tab', {name: 'Scenarios'}).click()
+  cy.get('#scenarios').then((el) => {
+    // create named scenario if it doesn't already exist
+    if (!el.text().includes(name)) {
+      cy.findByRole('button', {name: 'Create a scenario'}).click()
+      // TODO there has GOT to be a better way...
+      cy.wrap(el)
+        .findByText(/Scenario \d/)
+        .parent()
+        .parent()
+        .parent()
+        .click()
+        .parent()
+        .findByDisplayValue(/Scenario \d/)
+        .type(name + '{enter}')
+    }
+  })
+}
+
 // Delete an open modification
 function deleteThisMod() {
   cy.findByRole('button', {name: 'Delete modification'}).click()
@@ -29,7 +50,6 @@ function openMod(modType, modName) {
   // opens the first listed modification of this type with this name
   cy.navTo('Edit Modifications')
   cy.findByRole('tab', {name: /Modifications/g}).click()
-
   // find the container for this modification type and open it if need be
   cy.findByText(modType)
     .parent()
@@ -56,6 +76,7 @@ function deleteMod(modType, modName) {
 
 function setupMod(modType, modName) {
   cy.navTo('Edit Modifications')
+  cy.findByRole('tab', {name: /Modifications/g}).click()
   // assumes we are already on this page or editing another mod
   cy.findByText('Create a modification').click()
   cy.findByLabelText(/Modification name/i).type(modName)
@@ -110,23 +131,7 @@ function drawRouteGeometry(newRoute) {
 describe('Modifications', () => {
   before(() => {
     cy.setup('project')
-    cy.findByText(/Scenarios/).click()
-    cy.get('#scenarios').then((scenarios) => {
-      // create scenario if it doesn't already exist
-      if (!scenarios.text().includes(scenarioName)) {
-        cy.findByText('Create a scenario').click()
-        cy.get('#scenarios')
-          .findByText(/Scenario \d/)
-          .parent()
-          .parent()
-          .parent()
-          .click()
-          .parent()
-          .findByDisplayValue(/Scenario \d/)
-          .type(scenarioName + '{enter}')
-      }
-    })
-
+    setupScenario(scenarioName)
     // TODO clear out all old modifications
   })
 
@@ -140,28 +145,33 @@ describe('Modifications', () => {
     types.forEach((type) => {
       it(`CRUD ${type}`, function () {
         const name = createModName(type, 'simple')
-        const description = 'descriptive text'
+        const description = 'distinctly descriptive text'
         const updatedDescription = 'updated description'
         // Create the modification
         setupMod(type, name)
         cy.contains(name)
-        cy.findByRole('link', {name: /Add description/}).click()
-        cy.findByLabelText('Description').type(description)
+        cy.findByText(/Add description/)
+          .parent() // necessary because text element becomes detached
+          .parent()
+          .click()
+          .type(description)
         cy.findByLabelText(/Default/).uncheck({force: true})
         cy.findByLabelText(scenarioNameRegEx).check({force: true})
         // Read the saved settings
         cy.navTo('Edit Modifications')
         openMod(type, name)
-        cy.findByLabelText('Description').contains(description)
+        cy.findByText(description)
         cy.findByLabelText(/Default/).should('not.be.checked')
         cy.findByLabelText(scenarioNameRegEx).should('be.checked')
         // Update something trivial
-        cy.findByLabelText('Description').clear()
-        cy.findByRole('link', {name: /Add description/}).click()
-        cy.findByLabelText('Description').type(updatedDescription)
+        cy.findByText(description)
+          .parent() // necessary because text element becomes detached
+          .parent()
+          .click()
+          .type(updatedDescription)
         cy.navTo('Edit Modifications')
         openMod(type, name)
-        cy.findByLabelText('Description').contains(updatedDescription)
+        cy.findByText(updatedDescription)
         // Delete the modification
         deleteThisMod()
       })
