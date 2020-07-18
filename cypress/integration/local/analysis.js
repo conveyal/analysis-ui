@@ -24,11 +24,12 @@ function setOrigin(latLonArray) {
 }
 
 function fetchResults() {
-  cy.findByText(/Fetch Results/i).click()
+  cy.findByText(/Fetch results/i, {timeout: 4000})
+    .click()
+    .wait(200)
   // fetch results button usually disappears when clicked, but may not always
   // when it returns, we know the results have been fetched
-  cy.wait(200)
-  cy.findByText(/Fetch Results/i).should('exist')
+  cy.findByText(/Fetch results/i).should('exist')
 }
 
 function setTimeCutoff(minutes) {
@@ -101,7 +102,7 @@ context('Analysis', () => {
       cy.findByLabelText(/Routing engine/i)
       cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
       cy.get('@primary').findByLabelText(/Customize Profile Request/i)
-      cy.findByText(/Fetch Results/i).should('be.enabled')
+      cy.findByText(/Fetch results/i).should('be.enabled')
       fetchResults()
       cy.findByLabelText('Opportunities within isochrone')
         .invoke('text')
