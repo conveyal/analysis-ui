@@ -53,7 +53,7 @@ context('Analysis', () => {
 
   beforeEach(() => {
     // refresh analysis page each time by navigating away and then back
-    cy.navTo('edit modifications')
+    cy.navTo('network bundles')
     cy.navTo('Analyze')
     // alias all the things!
     cy.fixture('regions/scratch.json').as('region')
@@ -129,6 +129,53 @@ context('Analysis', () => {
       }
     })
 
+    it('handles direct access by walk/bike only', function () {
+      const location = this.region.locations.middle
+      const results = this.results.locations.middle
+      setOrigin(location)
+      cy.centerMapOn(location)
+      // turn off all transit
+      cy.get('@primary')
+        .findByLabelText(/Transit modes/i)
+        .findByRole('button', {name: /All/i})
+        .click()
+      cy.get('@primary')
+        .findByLabelText(/Access mode/i)
+        .should('not.exist')
+      // it has changed names, becoming:
+      cy.get('@primary')
+        .findByLabelText(/Direct mode/i)
+        .findByTitle(/Bike/i)
+        .click()
+      cy.get('@primary')
+        .findByLabelText(/Egress mode/i)
+        .findAllByRole('button')
+        .should('be.disabled')
+      fetchResults()
+      cy.findByLabelText('Opportunities within isochrone')
+        .invoke('text')
+        .then((val) => {
+          expect(asInt(val)).to.equal(results['bike-only'])
+        })
+      cy.get('svg#results-chart')
+        .scrollIntoView()
+        .matchImageSnapshot('direct-bike-access-chart')
+    })
+
+    it('uses custom analysis bounds', function () {
+      const location = this.region.locations.center
+      const results = this.results.locations.center
+      setOrigin(location)
+      cy.centerMapOn(location)
+      setCustom('bounds', this.region.customRegionSubset)
+      fetchResults()
+      cy.findByLabelText('Opportunities within isochrone')
+        .invoke('text')
+        .then((val) => {
+          expect(asInt(val)).to.equal(results['custom-bounds'])
+        })
+    })
+
     it('gives different results at different times', function () {
       const location = this.region.locations.center
       const results = this.results.locations.center
@@ -168,39 +215,6 @@ context('Analysis', () => {
         .matchImageSnapshot('chart-no-variation')
     })
 
-    it('handles direct access by walk/bike only', function () {
-      const location = this.region.locations.middle
-      const results = this.results.locations.middle
-      setOrigin(location)
-      cy.centerMapOn(location)
-      // turn off all transit
-      cy.get('@primary')
-        .findByLabelText(/Transit modes/i)
-        .findByRole('button', {name: /All/i})
-        .click()
-      cy.get('@primary')
-        .findByLabelText(/Access mode/i)
-        .should('not.exist')
-      // it has changed names, becoming:
-      cy.get('@primary')
-        .findByLabelText(/Direct mode/i)
-        .findByTitle(/Bike/i)
-        .click()
-      cy.get('@primary')
-        .findByLabelText(/Egress mode/i)
-        .findAllByRole('button')
-        .should('be.disabled')
-      fetchResults()
-      cy.findByLabelText('Opportunities within isochrone')
-        .invoke('text')
-        .then((val) => {
-          expect(asInt(val)).to.equal(results['bike-only'])
-        })
-      cy.get('svg#results-chart')
-        .scrollIntoView()
-        .matchImageSnapshot('direct-bike-access-chart')
-    })
-
     it('charts accessibility', function () {
       const location = this.region.locations.center
       setOrigin(location)
@@ -230,20 +244,6 @@ context('Analysis', () => {
       cy.get('@chart')
         .scrollIntoView()
         .matchImageSnapshot('chart-with-comparison')
-    })
-
-    it('uses custom analysis bounds', function () {
-      const location = this.region.locations.center
-      const results = this.results.locations.center
-      setOrigin(location)
-      cy.centerMapOn(location)
-      setCustom('bounds', this.region.customRegionSubset)
-      fetchResults()
-      cy.findByLabelText('Opportunities within isochrone')
-        .invoke('text')
-        .then((val) => {
-          expect(asInt(val)).to.equal(results['custom-bounds'])
-        })
     })
 
     it('sets a bookmark')
