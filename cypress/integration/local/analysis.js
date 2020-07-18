@@ -40,6 +40,11 @@ function setTimeCutoff(minutes) {
     .trigger('input', {force: true})
 }
 
+function asInt(numericText) {
+  // parse formatted numbers with thousands separators
+  return parseInt(numericText.replace(',', ''))
+}
+
 context('Analysis', () => {
   before(() => {
     cy.setup('project')
@@ -52,6 +57,7 @@ context('Analysis', () => {
     cy.navTo('Analyze')
     // alias all the things!
     cy.fixture('regions/scratch.json').as('region')
+    cy.fixture('regions/scratch-results.json').as('results')
     cy.get('div.leaflet-container').as('map')
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
@@ -115,12 +121,17 @@ context('Analysis', () => {
         setOrigin(location)
         cy.centerMapOn(location)
         fetchResults()
-        cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot()
+        cy.findByLabelText('Opportunities within isochrone')
+          .invoke('text')
+          .then((val) => {
+            expect(asInt(val)).to.equal(this.results.locations[key].default)
+          })
       }
     })
 
     it('gives different results at different times', function () {
       const location = this.region.locations.center
+      const results = this.results.locations.center
       setOrigin(location)
       cy.centerMapOn(location)
       // set time window in morning rush -- should have high access
@@ -135,12 +146,19 @@ context('Analysis', () => {
       fetchResults()
       cy.findByLabelText('Opportunities within isochrone')
         .as('results')
-        .toMatchSnapshot()
+        .invoke('text')
+        .then((val) => {
+          expect(asInt(val)).to.equal(results['6:00-8:00'])
+        })
       // set time window in late evening - lower access
       cy.get('@from').clear().type('22:00')
       cy.get('@to').clear().type('24:00')
       fetchResults()
-      cy.get('@results').toMatchSnapshot()
+      cy.get('@results')
+        .invoke('text')
+        .then((val) => {
+          expect(asInt(val)).to.equal(results['22:00-24:00'])
+        })
       // narrow window to one minute - no variability
       cy.get('@from').clear().type('12:00')
       cy.get('@to').clear().type('12:01')
@@ -152,6 +170,7 @@ context('Analysis', () => {
 
     it('handles direct access by walk/bike only', function () {
       const location = this.region.locations.middle
+      const results = this.results.locations.middle
       setOrigin(location)
       cy.centerMapOn(location)
       // turn off all transit
@@ -172,8 +191,11 @@ context('Analysis', () => {
         .findAllByRole('button')
         .should('be.disabled')
       fetchResults()
-      cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot()
-      fetchResults()
+      cy.findByLabelText('Opportunities within isochrone')
+        .invoke('text')
+        .then((val) => {
+          expect(asInt(val)).to.equal(results['bike-only'])
+        })
       cy.get('svg#results-chart')
         .scrollIntoView()
         .matchImageSnapshot('direct-bike-access-chart')
@@ -212,11 +234,16 @@ context('Analysis', () => {
 
     it('uses custom analysis bounds', function () {
       const location = this.region.locations.center
+      const results = this.results.locations.center
       setOrigin(location)
       cy.centerMapOn(location)
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
-      cy.findByLabelText('Opportunities within isochrone').toMatchSnapshot()
+      cy.findByLabelText('Opportunities within isochrone')
+        .invoke('text')
+        .then((val) => {
+          expect(asInt(val)).to.equal(results['custom-bounds'])
+        })
     })
 
     it('sets a bookmark')

@@ -11,8 +11,6 @@ import 'cypress-wait-until'
 
 import {pseudoFixture} from './commands'
 
-import 'cypress-plugin-snapshots/commands'
-
 before('Optionally wipe configured state', () => {
   cy.wrap(Cypress.env('resetDataBeforeEachRun')).then((resetData) => {
     if (resetData === true) {
