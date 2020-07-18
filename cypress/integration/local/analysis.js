@@ -74,7 +74,7 @@ context('Analysis', () => {
       .click({force: true})
       .type(`${name}{enter}`)
       .wait(100)
-      .should('be.enabled')
+    cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   })
 
   context('of a point', () => {
