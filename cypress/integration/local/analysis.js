@@ -29,7 +29,7 @@ function fetchResults() {
     .wait(200)
   // fetch results button usually disappears when clicked, but may not always
   // when it returns, we know the results have been fetched
-  cy.findByText(/Fetch results/i, {timeout: 5000}).should('exist')
+  cy.findByText(/Fetch results/i, {timeout: 60000}).should('exist')
 }
 
 function setTimeCutoff(minutes) {
