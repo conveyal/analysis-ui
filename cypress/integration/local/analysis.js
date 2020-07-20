@@ -24,12 +24,12 @@ function setOrigin(latLonArray) {
 }
 
 function fetchResults() {
-  cy.findByText(/Fetch results/i, {timeout: 4000})
+  cy.findByText(/Fetch results/i)
     .click()
     .wait(200)
   // fetch results button usually disappears when clicked, but may not always
   // when it returns, we know the results have been fetched
-  cy.findByText(/Fetch results/i).should('exist')
+  cy.findByText(/Fetch results/i, {timeout: 5000}).should('exist')
 }
 
 function setTimeCutoff(minutes) {
@@ -265,7 +265,7 @@ context('Analysis', () => {
         .should('be.enabled')
         .click()
       // we should now be on the regional analyses page
-      cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 5000})
+      cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 10000})
       cy.findByRole('heading', {name: analysisName})
         .parent()
         .parent()
