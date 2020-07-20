@@ -1,6 +1,6 @@
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
-const createModName = (type, description) =>
-  `${modificationPrefix}_${type}_${description}_${Date.now()}`
+const createModName = (type, description = '') =>
+  `${modificationPrefix}${type}${description}${Date.now()}`
 
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
@@ -308,7 +308,9 @@ describe('Modifications', () => {
       cy.findByLabelText(/Select route/)
         .click({force: true})
         .type(this.region.sampleRouteName + '{enter}')
-      cy.findByLabelText(/retain existing scheduled trips/i).check()
+      cy.findByLabelText(/retain existing scheduled trips/i).click({
+        force: true
+      })
       cy.findByText(/Add frequency entry/i).click()
       cy.findByLabelText(/Select patterns/i)
         .click({force: true})
@@ -325,7 +327,8 @@ describe('Modifications', () => {
       cy.findByLabelText(/Phase at stop/i)
         .click({force: true})
         .type('Fountain Square{enter}')
-      cy.findByText(/Delete frequency entry/i).click()
+      cy.findByRole('button', {name: 'Delete frequency entry'}).click()
+      cy.findByRole('button', {name: 'Confirm: Delete frequency entry'}).click()
       deleteThisMod()
     })
   })
@@ -394,7 +397,7 @@ describe('Modifications', () => {
   describe('CRUD each type', function () {
     types.forEach((type) => {
       it(`CRUD ${type}`, function () {
-        const name = createModName(type, 'simple')
+        const name = createModName(type)
         const description = 'descriptive text'
         setupMod(type, name)
         cy.contains(name)
