@@ -336,7 +336,6 @@ function RequestHeading({
           createRegionalAnalysis({
             ...profileRequest,
             name,
-            opportunityDatasetId: opportunityDataset._id,
             projectId: project._id,
             variantIndex: scenario
           })
