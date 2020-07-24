@@ -27,7 +27,9 @@ The default methodology in Conveyal Analysis for assigning LTS values to network
 
 ***Unsignalized intersection adjustment round***
 
-The baseline network edges constructed from the initial round are then updated to account for intersections. At each vertex without a traffic signal tag, the highest LTS of any edge entering or exiting the vertex is assigned to all edges entering or exiting the vertex. The initial version of the LTS methodology does not cover signalized intersections, so this round does not consider vertices derived from nodes with signal tags are not affected.
+The baseline network edges constructed from the initial round are then updated to account for intersections. At each vertex without a traffic signal tag, the highest LTS of any edge entering or exiting the vertex is assigned to all edges entering or exiting the vertex. Note that this step may lead to counterintuitive results -- for example, segments of a cycle path before and after crossing an LTS 4 street will be assigned LTS 4, even though the path on its own would be expected to have LTS 1.
+
+The initial version of the LTS methodology does not cover signalized intersections, so this round does not consider vertices derived from nodes with signal tags are not affected.
 
 ### Custom LTS
 
