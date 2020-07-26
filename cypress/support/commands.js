@@ -2,7 +2,10 @@ import '@testing-library/cypress/add-commands'
 import 'cypress-file-upload'
 import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
 
-addMatchImageSnapshotCommand()
+addMatchImageSnapshotCommand({
+  failureThresholdType: 'percent',
+  failureThreshold: 0.03 // allow up to a 5% diff
+})
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
