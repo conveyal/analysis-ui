@@ -133,22 +133,14 @@ describe('Region setup', () => {
     cy.get('@West')
       .invoke('val')
       .then((val) => cy.isWithinTolerance(val, this.region.west))
-
-    // Check if the map contains the region properly
-    /* TODO: Re-enable when we can make it work consistently.
-    cy.getLeafletMap().then((map) => {
-      // Depending on the browser window the bounds can be different. Zoom out to ensure broader coverage.
-      map.zoomOut(3) 
-      cy.log(map.getBounds())
-      cy.wrap(
-        map.getBounds().contains([
-          [this.region.north, this.region.east],
-          [this.region.south, this.region.west]
-        ])
-      ).should('be.true')
-    })
-    */
-
+    // the map should be roughly centered on the region
+    cy.mapCenteredOn(
+      [
+        (this.region.north + this.region.south) / 2,
+        (this.region.east + this.region.west) / 2
+      ],
+      10000 // within 10km
+    )
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()
