@@ -26,8 +26,8 @@ Cypress.Commands.add('navComplete', () => {
 Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
 
 // Check if a floating point number is within a certain tolerance
-Cypress.Commands.add('isWithinTolerance', (f1, f2, tolerance = 0.025) => {
-  cy.wrap(Math.abs(Number(f1) - Number(f2)) < tolerance).should('be.true')
+Cypress.Commands.add('isWithin', (f1, f2, tolerance = 0) => {
+  cy.wrap(Math.abs(Number(f1) - Number(f2)) <= tolerance).should('be.true')
 })
 
 // Recursive setup
