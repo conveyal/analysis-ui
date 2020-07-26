@@ -76,6 +76,7 @@ context('Analysis', () => {
       .type(`${name}{enter}`)
       .wait(100)
     cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+    cy.get('@primary').findByLabelText(/Date/i).clear().type('2020-07-20')
   })
 
   context('of a point', () => {
