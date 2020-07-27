@@ -1,3 +1,4 @@
+import {PseudoBox, Stack} from '@chakra-ui/core'
 import React from 'react'
 import {format} from 'd3-format'
 
@@ -16,19 +17,21 @@ export default function Legend({breaks, colors, min}) {
     return text
   }
   return (
-    <div className='Legend'>
-      {breaks.map((br, i) => (
-        <div
-          className='Legend-Item'
-          key={`break-${i}`}
-          style={{
-            backgroundColor: `rgba(${colors[i].r}, ${colors[i].g}, ${colors[i].b}, 1)`,
-            color: isLight(colors[i]) ? '#000' : '#fff'
+    <Stack borderTop='1px solid #E2E8F0' spacing={0}>
+      {breaks.map((_, i) => (
+        <PseudoBox
+          backgroundColor={`rgba(${colors[i].r}, ${colors[i].g}, ${colors[i].b}, 1)`}
+          color={isLight(colors[i]) ? '#000' : '#fff'}
+          _last={{
+            roundedBottom: 'md'
           }}
+          px={3}
+          py={1}
+          key={`break-${i}`}
         >
           {formatText(i)}
-        </div>
+        </PseudoBox>
       ))}
-    </div>
+    </Stack>
   )
 }
