@@ -1,4 +1,4 @@
-context('Network bundles', () => {
+describe('Network bundles', () => {
   before('prepare the region', () => {
     cy.setup('region')
   })
@@ -90,4 +90,8 @@ context('Network bundles', () => {
       .click()
     cy.location('pathname').should('match', /.*\/bundles$/)
   })
+
+  it('with multiple GTFS feeds can be uploaded')
+
+  it('rejects obviously corrupt GTFS')
 })
