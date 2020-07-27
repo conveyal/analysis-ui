@@ -19,17 +19,40 @@ const types = [
   'Custom'
 ]
 
+function setupScenario(name) {
+  // open the scenarios tab
+  cy.findByRole('tab', {name: 'Scenarios'}).click()
+  cy.get('#scenarios').then((el) => {
+    // create named scenario if it doesn't already exist
+    if (!el.text().includes(name)) {
+      cy.findByRole('button', {name: 'Create a scenario'}).click()
+      // TODO there has GOT to be a better way...
+      cy.wrap(el)
+        .findByText(/Scenario \d/)
+        .parent()
+        .parent()
+        .parent()
+        .click()
+        .parent()
+        .findByDisplayValue(/Scenario \d/)
+        .type(name + '{enter}')
+    }
+  })
+}
+
+// Delete an open modification
 function deleteThisMod() {
-  cy.get('a[name="Delete modification"]').click()
-  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
-  cy.contains(/Create a modification/)
+  cy.findByRole('button', {name: 'Delete modification'}).click()
+  cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
 }
 
 function openMod(modType, modName) {
   // opens the first listed modification of this type with this name
   cy.navTo('Edit Modifications')
+  cy.findByRole('tab', {name: /Modifications/g}).click()
   // find the container for this modification type and open it if need be
-  cy.contains(modType)
+  cy.findByText(modType)
+    .parent()
     .parent()
     .as('modList')
     .then((modList) => {
@@ -45,14 +68,15 @@ function openMod(modType, modName) {
 function deleteMod(modType, modName) {
   openMod(modType, modName)
 
-  cy.get('a[name="Delete modification"]').click()
-  cy.location('pathname').should('match', /.*\/projects\/.{24}$/)
+  cy.findByRole('button', {name: 'Delete modification'}).click()
+  cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
   cy.contains('Create a modification')
   cy.findByText(modName).should('not.exist')
 }
 
 function setupMod(modType, modName) {
   cy.navTo('Edit Modifications')
+  cy.findByRole('tab', {name: /Modifications/g}).click()
   // assumes we are already on this page or editing another mod
   cy.findByText('Create a modification').click()
   cy.findByLabelText(/Modification name/i).type(modName)
@@ -72,22 +96,22 @@ function drawRouteGeometry(newRoute) {
     .contains(/Stop editing/i)
   cy.get('div.leaflet-container').as('map')
   cy.window().then((win) => {
-    let map = win.LeafletMap
-    let route = win.L.polyline(newRoute)
+    const map = win.LeafletMap
+    const route = win.L.polyline(newRoute)
     map.fitBounds(route.getBounds(), {animate: false})
     cy.waitForMapToLoad()
     // click at the coordinates
-    let coords = route.getLatLngs()
+    const coords = route.getLatLngs()
     coords.forEach((point, i) => {
-      let pix = map.latLngToContainerPoint(point)
+      const pix = map.latLngToContainerPoint(point)
       cy.get('@map').click(pix.x, pix.y)
       if (i > 0) {
         cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
       }
     })
     // convert an arbitrary stop to a control point
-    let stop = coords[coords.length - 2]
-    let pix = map.latLngToContainerPoint(stop)
+    const stop = coords[coords.length - 2]
+    const pix = map.latLngToContainerPoint(stop)
     cy.get('@map').click(pix.x, pix.y)
     cy.get('@map')
       .findByText(/make control point/)
@@ -107,19 +131,116 @@ function drawRouteGeometry(newRoute) {
 describe('Modifications', () => {
   before(() => {
     cy.setup('project')
-    cy.setupScenario(scenarioName)
-
+    setupScenario(scenarioName)
     // TODO clear out all old modifications
   })
 
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
     cy.navTo('Edit Modifications')
+    cy.get('div.leaflet-container').as('map')
+  })
+
+  describe('CRUD each type', function () {
+    types.forEach((type) => {
+      it(`CRUD ${type}`, function () {
+        const name = createModName(type, 'simple')
+        const description = 'distinctly descriptive text'
+        const updatedDescription = 'updated description'
+        // Create the modification
+        setupMod(type, name)
+        cy.contains(name)
+        cy.findByText(/Add description/)
+          .parent() // necessary because text element becomes detached
+          .parent()
+          .click()
+          .type(description)
+        cy.findByLabelText(/Default/).uncheck({force: true})
+        cy.findByLabelText(scenarioNameRegEx).check({force: true})
+        // Read the saved settings
+        cy.navTo('Edit Modifications')
+        openMod(type, name)
+        cy.findByText(description)
+        cy.findByLabelText(/Default/).should('not.be.checked')
+        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
+        // Update something trivial
+        cy.findByText(description)
+          .parent() // necessary because text element becomes detached
+          .parent()
+          .click()
+          .type(updatedDescription)
+        cy.navTo('Edit Modifications')
+        openMod(type, name)
+        cy.findByText(updatedDescription)
+        // Delete the modification
+        deleteThisMod()
+      })
+    })
+  })
+
+  describe('Add Streets', () => {
+    it('has working form elements', () => {
+      const modName = createModName('AS', 'form')
+      const force = {force: true}
+      setupMod('Add Streets', modName)
+      cy.findByLabelText(/Enable walking/i).as('walkAccess')
+      cy.findByLabelText(/Enable biking/i).as('bikeAccess')
+      cy.findByLabelText(/Enable driving/i).as('carAccess')
+      // toggling access changes options
+      // WALK
+      cy.findByLabelText(/Walk time factor/i)
+      cy.get('@walkAccess').uncheck(force)
+      cy.findByLabelText(/Walk time factor/i).should('not.exist')
+      // BIKE
+      cy.findByLabelText(/Bike time factor/i)
+      cy.findByLabelText(/Bike level of Traffic Stress/i)
+      cy.get('@bikeAccess').uncheck(force)
+      cy.findByLabelText(/Bike time factor/i).should('not.exist')
+      cy.findByLabelText(/Bike level of Traffic Stress/i).should('not.exist')
+      // DRIVE
+      cy.findByLabelText(/Car speed/i)
+      cy.get('@carAccess').uncheck(force)
+      cy.findByLabelText(/Car speed/i).should('not.exist')
+      // map interaction
+      cy.findByTitle(/Draw a polyline/i)
+      deleteThisMod()
+    })
+  })
+
+  describe('Modify Streets', () => {
+    it('has working form elements', () => {
+      const modName = createModName('MS', 'form')
+      const force = {force: true}
+      setupMod('Modify Streets', modName)
+      cy.findByLabelText(/Enable walking/i).as('walkAccess')
+      cy.findByLabelText(/Enable biking/i).as('bikeAccess')
+      cy.findByLabelText(/Enable driving/i).as('carAccess')
+      // toggling access changes options
+      // WALK
+      cy.findByLabelText(/Walk time factor/i)
+      cy.get('@walkAccess').uncheck(force)
+      cy.findByLabelText(/Walk time factor/i).should('not.exist')
+      // BIKE
+      cy.findByLabelText(/Bike time factor/i)
+      cy.findByLabelText(/Bike level of Traffic Stress/i)
+      cy.get('@bikeAccess').uncheck(force)
+      cy.findByLabelText(/Bike time factor/i).should('not.exist')
+      cy.findByLabelText(/Bike level of Traffic Stress/i).should('not.exist')
+      // DRIVE
+      cy.findByLabelText(/Car speed/i)
+      cy.get('@carAccess').uncheck(force)
+      cy.findByLabelText(/Car speed/i).should('not.exist')
+      // map interaction
+      cy.findByTitle(/Draw a polygon/i)
+      deleteThisMod()
+    })
   })
 
   describe('Add Trip Pattern', () => {
     it('can be imported from shapefile', function () {
-      cy.get('svg[data-icon="upload"]').click()
+      cy.findByRole('button', {
+        name: 'Import modifications from another project'
+      }).click()
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
       cy.get('a.btn').get('svg[data-icon="upload"]').click()
@@ -137,7 +258,8 @@ describe('Modifications', () => {
       cy.findByText(/Import/)
         .should('not.be.disabled')
         .click()
-      cy.location('pathname').should('match', /projects\/.{24}$/)
+
+      cy.location('pathname').should('match', /projects\/.{24}\/modifications/)
 
       this.region.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
@@ -241,6 +363,8 @@ describe('Modifications', () => {
       // delete the template modification
       deleteMod('Add Trip Pattern', modName)
     })
+    it('allows phasing')
+    it('allows exact timetables')
   })
 
   describe('Adjust dwell time', () => {
@@ -365,29 +489,6 @@ describe('Modifications', () => {
       cy.findByLabelText(/Average speed/i)
       cy.findByLabelText(/Total moving time/i)
       deleteThisMod()
-    })
-  })
-
-  describe('CRUD each type', function () {
-    types.forEach((type) => {
-      it(`CRUD ${type}`, function () {
-        const name = createModName(type, 'simple')
-        const description = 'descriptive text'
-        setupMod(type, name)
-        cy.contains(name)
-        cy.findByRole('link', {name: /Add description/}).click()
-        cy.findByLabelText('Description').type(description)
-        // scenarios
-        cy.findByLabelText(/Default/).uncheck({force: true})
-        cy.findByLabelText(scenarioNameRegEx).check({force: true})
-        // go back and check that everything saved
-        cy.navTo('Edit Modifications')
-        openMod(type, name)
-        cy.findByLabelText('Description').contains(description)
-        cy.findByLabelText(/Default/).should('not.be.checked')
-        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
-        deleteThisMod()
-      })
     })
   })
 })
