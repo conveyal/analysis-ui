@@ -25,7 +25,7 @@ export default function Legend({breaks, colors, min}) {
           _last={{
             roundedBottom: 'md'
           }}
-          px={3}
+          px={4}
           py={1}
           key={`break-${i}`}
         >

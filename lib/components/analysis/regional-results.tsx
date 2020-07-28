@@ -245,13 +245,13 @@ export default function RegionalResults(p) {
           spacing={3}
           width='296px'
         >
-          <Heading pt={3} px={3} size='sm'>
+          <Heading pt={4} px={4} size='sm'>
             <Icon icon={faTh} /> Access to
           </Heading>
 
-          <Text px={3}>{accessToLabel}</Text>
+          <Text px={4}>{accessToLabel}</Text>
           {comparisonAnalysis && (
-            <Text px={3}>
+            <Text px={4}>
               <em>minus</em> {comparisonAccessToLabel}
             </Text>
           )}

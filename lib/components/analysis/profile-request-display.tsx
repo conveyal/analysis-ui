@@ -1,24 +1,9 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  PseudoBox,
-  Stack,
-  SimpleGrid,
-  Tab,
-  Tabs,
-  TabList,
-  TabPanel,
-  TabPanels,
-  useDisclosure
-} from '@chakra-ui/core'
+import {Box, Button, PseudoBox, Stack, useDisclosure} from '@chakra-ui/core'
 import {faChevronUp, faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
 import {format} from 'date-fns'
 import {useSelector} from 'react-redux'
 
-import message from 'lib/message'
 import {secondsToHhMmString} from 'lib/utils/time'
 
 import Icon from '../icon'
@@ -87,12 +72,7 @@ export default function ProfileRequestDisplay({
         }}
         width='100%'
       >
-        <PseudoBox
-          as='tr'
-          _odd={{
-            bg: `${color}.50`
-          }}
-        >
+        <tr>
           <TDTitle>Project</TDTitle>
           <TDValue>
             <ALink
@@ -103,13 +83,8 @@ export default function ProfileRequestDisplay({
               {project.name}
             </ALink>
           </TDValue>
-        </PseudoBox>
-        <PseudoBox
-          as='tr'
-          _odd={{
-            bg: `${color}.50`
-          }}
-        >
+        </tr>
+        <tr>
           <TDTitle>Bundle</TDTitle>
           <TDValue>
             <ALink
@@ -120,26 +95,16 @@ export default function ProfileRequestDisplay({
               {bundle.name}
             </ALink>
           </TDValue>
-        </PseudoBox>
-        <PseudoBox
-          as='tr'
-          _odd={{
-            bg: `${color}.50`
-          }}
-        >
+        </tr>
+        <tr>
           <TDTitle>Date Time</TDTitle>
           <TDValue>
             {profileRequest.date}&nbsp;&nbsp;
             {secondsToHhMmString(profileRequest.fromTime)}-
             {secondsToHhMmString(profileRequest.toTime)}
           </TDValue>
-        </PseudoBox>
-        <PseudoBox
-          as='tr'
-          _odd={{
-            bg: `${color}.50`
-          }}
-        >
+        </tr>
+        <tr>
           <TDTitle>Modes</TDTitle>
           <TDValue>
             <ModeSummary
@@ -150,7 +115,7 @@ export default function ProfileRequestDisplay({
               transitModes={profileRequest.transitModes}
             />
           </TDValue>
-        </PseudoBox>
+        </tr>
       </Box>
 
       <Box borderBottom='1px solid #E2E8F0'>

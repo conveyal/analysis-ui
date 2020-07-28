@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import find from 'lodash/find'
 import get from 'lodash/get'
+import omit from 'lodash/omit'
 import dynamic from 'next/dynamic'
 import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -214,7 +215,10 @@ export default function Regional(p) {
 
       <ProfileRequestDisplay
         bundleId={analysis.bundleId}
-        profileRequest={analysis.request}
+        profileRequest={{
+          ...omit(analysis, 'request'),
+          ...analysis.request
+        }}
         projectId={analysis.projectId}
       />
 
