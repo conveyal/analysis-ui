@@ -154,7 +154,7 @@ export default function Regional(p) {
         <Flex>
           {isComplete && (
             <IconButton
-              icon={faMap}
+              icon={faDownload}
               label={
                 message('analysis.gisExport') +
                 ': ' +
@@ -165,11 +165,6 @@ export default function Regional(p) {
               onClick={_downloadProjectGIS}
             />
           )}
-          <IconButton
-            icon={faDownload}
-            label='Download Scenario JSON'
-            onClick={() => {}}
-          />
           <IconButton
             icon={faTrash}
             label={message('analysis.deleteRegionalAnalysis')}

@@ -1,9 +1,22 @@
-import {Box, Button, PseudoBox, Stack, useDisclosure} from '@chakra-ui/core'
-import {faChevronUp, faChevronDown} from '@fortawesome/free-solid-svg-icons'
+import {
+  Box,
+  Button,
+  PseudoBox,
+  Stack,
+  Tooltip,
+  useDisclosure
+} from '@chakra-ui/core'
+import {
+  faChevronUp,
+  faChevronDown,
+  faInfoCircle
+} from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
-import {format} from 'date-fns'
 import {useSelector} from 'react-redux'
+import useSWR from 'swr'
 
+import {API_URL} from 'lib/constants'
+import downloadJSON from 'lib/utils/download-json'
 import {secondsToHhMmString} from 'lib/utils/time'
 
 import Icon from '../icon'
@@ -11,8 +24,7 @@ import {ALink} from '../link'
 
 import ModeSummary from './mode-summary'
 
-// Convert to the day of the week
-const getDayOfWeek = (dateStr) => format(new Date(dateStr), 'eeee')
+const fetcher = (url) => fetch(url).then((res) => res.json())
 
 // Minimal selectors for projects and bundles
 const selectProjects = fpGet('project.projects')
@@ -33,17 +45,22 @@ const TDTitle = ({children}) => (
     }}
     textAlign='right'
     title={children}
-    width='30%'
+    width='35%'
   >
     {children}
   </Box>
 )
 
 const TDValue = ({children}) => (
-  <Box as='td' width='70%'>
+  <Box as='td' width='65%'>
     {children}
   </Box>
 )
+
+const PROJECT_CHANGE_NOTE =
+  'Notice: project may have changed since the analysis was run. See request JSON for exact modifications used.'
+const SCENARIO_CHANGE_NOTE =
+  'Notice: scenario may have changed since the analysis was run. See request JSON for exact modifications used.'
 
 /** Display the parameters of a profile request */
 export default function ProfileRequestDisplay({
@@ -52,6 +69,10 @@ export default function ProfileRequestDisplay({
   profileRequest,
   projectId
 }) {
+  const {data: requestJSON} = useSWR(
+    `${API_URL}/regional/${profileRequest._id}`,
+    fetcher
+  )
   const projects = useSelector(selectProjects)
   const bundles = useSelector(selectBundles)
 
@@ -63,8 +84,20 @@ export default function ProfileRequestDisplay({
   const project = projects.find((p) => p._id === projectId)
   const bundle = bundles.find((b) => b._id === bundleId)
 
+  const scenarioName =
+    profileRequest.variant > -1
+      ? project.variants[profileRequest.variant] || 'Unknown'
+      : 'Baseline'
+
+  function downloadRequestJSON() {
+    downloadJSON({
+      data: requestJSON,
+      filename: profileRequest.name + '.json'
+    })
+  }
+
   return (
-    <Stack spacing={0}>
+    <Stack>
       <Box
         as='table'
         style={{
@@ -72,18 +105,6 @@ export default function ProfileRequestDisplay({
         }}
         width='100%'
       >
-        <tr>
-          <TDTitle>Project</TDTitle>
-          <TDValue>
-            <ALink
-              to='project'
-              projectId={project._id}
-              regionId={project.regionId}
-            >
-              {project.name}
-            </ALink>
-          </TDValue>
-        </tr>
         <tr>
           <TDTitle>Bundle</TDTitle>
           <TDValue>
@@ -97,9 +118,52 @@ export default function ProfileRequestDisplay({
           </TDValue>
         </tr>
         <tr>
-          <TDTitle>Date Time</TDTitle>
+          <TDTitle>
+            <Tooltip
+              aria-label={PROJECT_CHANGE_NOTE}
+              hasArrow
+              label={PROJECT_CHANGE_NOTE}
+              placement='top-start'
+              zIndex={1000}
+            >
+              <Box>
+                Project <Icon icon={faInfoCircle} />
+              </Box>
+            </Tooltip>
+          </TDTitle>
           <TDValue>
-            {profileRequest.date}&nbsp;&nbsp;
+            <ALink
+              to='project'
+              projectId={project._id}
+              regionId={project.regionId}
+            >
+              {project.name}
+            </ALink>
+          </TDValue>
+        </tr>
+        <tr>
+          <TDTitle>
+            <Tooltip
+              aria-label={SCENARIO_CHANGE_NOTE}
+              hasArrow
+              label={SCENARIO_CHANGE_NOTE}
+              placement='top-start'
+              zIndex={1000}
+            >
+              <Box>
+                Scenario <Icon icon={faInfoCircle} />
+              </Box>
+            </Tooltip>
+          </TDTitle>
+          <TDValue>{scenarioName}</TDValue>
+        </tr>
+        <tr>
+          <TDTitle>Service Date</TDTitle>
+          <TDValue>{profileRequest.date}</TDValue>
+        </tr>
+        <tr>
+          <TDTitle>Service Time</TDTitle>
+          <TDValue>
             {secondsToHhMmString(profileRequest.fromTime)}-
             {secondsToHhMmString(profileRequest.toTime)}
           </TDValue>
@@ -115,6 +179,20 @@ export default function ProfileRequestDisplay({
               transitModes={profileRequest.transitModes}
             />
           </TDValue>
+        </tr>
+        <tr>
+          <td colSpan={2}>
+            <Box py={2} textAlign='center'>
+              <Button
+                isDisabled={!requestJSON}
+                leftIcon='download'
+                onClick={downloadRequestJSON}
+                size='sm'
+              >
+                Download Request JSON
+              </Button>
+            </Box>
+          </td>
         </tr>
       </Box>
 

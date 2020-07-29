@@ -1,6 +1,6 @@
 import {PseudoBox, Stack} from '@chakra-ui/core'
-import React from 'react'
 import {format} from 'd3-format'
+import reverse from 'lodash/reverse'
 
 import {isLight} from 'lib/utils/rgb-color-contrast'
 
@@ -16,21 +16,24 @@ export default function Legend({breaks, colors, min}) {
     if (colors[i].opacity === 0) return `${text} (transparent)`
     return text
   }
+  const breakProps = breaks.map((_, i) => ({
+    backgroundColor: `rgba(${colors[i].r}, ${colors[i].g}, ${colors[i].b}, 1)`,
+    color: isLight(colors[i]) ? '#000' : '#fff',
+    children: formatText(i)
+  }))
+
   return (
     <Stack borderTop='1px solid #E2E8F0' spacing={0}>
-      {breaks.map((_, i) => (
+      {reverse(breakProps).map((props, i) => (
         <PseudoBox
-          backgroundColor={`rgba(${colors[i].r}, ${colors[i].g}, ${colors[i].b}, 1)`}
-          color={isLight(colors[i]) ? '#000' : '#fff'}
           _last={{
             roundedBottom: 'md'
           }}
           px={4}
           py={1}
           key={`break-${i}`}
-        >
-          {formatText(i)}
-        </PseudoBox>
+          {...props}
+        />
       ))}
     </Stack>
   )

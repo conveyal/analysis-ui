@@ -13,7 +13,8 @@ import {faTh} from '@fortawesome/free-solid-svg-icons'
 import find from 'lodash/find'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
-import React, {useCallback} from 'react'
+import omit from 'lodash/omit'
+import {useCallback, useEffect} from 'react'
 import MapControl from 'react-leaflet-control'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -132,12 +133,12 @@ export default function RegionalResults(p) {
   })
 
   // Load the grids on mount and when they are changed.
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(
       loadRegionalAnalysisGrid(p.analysis, cutoff, percentile, pointSet._id)
     )
   }, [p.analysis, cutoff, percentile, pointSet, dispatch])
-  React.useEffect(() => {
+  useEffect(() => {
     if (comparisonAnalysis) {
       dispatch(
         loadRegionalAnalysisGrid(
@@ -231,7 +232,10 @@ export default function RegionalResults(p) {
           <ProfileRequestDisplay
             bundleId={comparisonAnalysis.bundleId}
             color='red'
-            profileRequest={comparisonAnalysis.request}
+            profileRequest={{
+              ...omit(comparisonAnalysis, 'request'),
+              ...comparisonAnalysis.request
+            }}
             projectId={comparisonAnalysis.projectId}
           />
         </>
@@ -270,7 +274,7 @@ export default function RegionalResults(p) {
               </Alert>
             )
           ) : (
-            <Text p={3}>Loading grids...</Text>
+            <Text p={4}>Loading grids...</Text>
           )}
         </Stack>
       </MapControl>
