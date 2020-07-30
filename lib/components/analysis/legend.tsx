@@ -12,7 +12,7 @@ export default function Legend({breaks, colors, min}) {
     const bottom = i === 0 && min <= breaks[0] ? min : breaks[i - 1]
     const top = breaks[i]
     const text =
-      bottom === top ? bottom : `${textFormat(bottom)} to ${textFormat(top)}`
+      bottom === top ? bottom : `${textFormat(top)} to ${textFormat(bottom)}`
     if (colors[i].opacity === 0) return `${text} (transparent)`
     return text
   }

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   PseudoBox,
   Stack,
   Tooltip,
@@ -9,7 +10,8 @@ import {
 import {
   faChevronUp,
   faChevronDown,
-  faInfoCircle
+  faInfoCircle,
+  faDownload
 } from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
 import {useSelector} from 'react-redux'
@@ -19,6 +21,7 @@ import {API_URL} from 'lib/constants'
 import downloadJSON from 'lib/utils/download-json'
 import {secondsToHhMmString} from 'lib/utils/time'
 
+import IconButton from '../icon-button'
 import Icon from '../icon'
 import {ALink} from '../link'
 
@@ -44,7 +47,7 @@ const TDTitle = ({children}) => (
       textOverflow: 'ellipsis'
     }}
     textAlign='right'
-    title={children}
+    title={typeof children === 'string' ? children : undefined}
     width='35%'
   >
     {children}
@@ -58,9 +61,9 @@ const TDValue = ({children}) => (
 )
 
 const PROJECT_CHANGE_NOTE =
-  'Notice: project may have changed since the analysis was run. See request JSON for exact modifications used.'
-const SCENARIO_CHANGE_NOTE =
-  'Notice: scenario may have changed since the analysis was run. See request JSON for exact modifications used.'
+  'Notice: project may have changed since the analysis was run.'
+const SCENARIO_DOWNLOAD_NOTE =
+  'Download scenario info and modifications used to create this analysis.'
 
 /** Display the parameters of a profile request */
 export default function ProfileRequestDisplay({
@@ -119,44 +122,38 @@ export default function ProfileRequestDisplay({
             </TDValue>
           </tr>
           <tr>
-            <TDTitle>
+            <TDTitle>Project</TDTitle>
+            <TDValue>
               <Tooltip
                 aria-label={PROJECT_CHANGE_NOTE}
                 hasArrow
                 label={PROJECT_CHANGE_NOTE}
-                placement='top-start'
                 zIndex={1000}
               >
                 <Box>
-                  Project <Icon icon={faInfoCircle} />
+                  <ALink
+                    to='project'
+                    projectId={project._id}
+                    regionId={project.regionId}
+                  >
+                    {project.name}
+                  </ALink>
                 </Box>
               </Tooltip>
-            </TDTitle>
-            <TDValue>
-              <ALink
-                to='project'
-                projectId={project._id}
-                regionId={project.regionId}
-              >
-                {project.name}
-              </ALink>
             </TDValue>
           </tr>
           <tr>
-            <TDTitle>
-              <Tooltip
-                aria-label={SCENARIO_CHANGE_NOTE}
-                hasArrow
-                label={SCENARIO_CHANGE_NOTE}
-                placement='top-start'
-                zIndex={1000}
-              >
-                <Box>
-                  Scenario <Icon icon={faInfoCircle} />
-                </Box>
-              </Tooltip>
-            </TDTitle>
-            <TDValue>{scenarioName}</TDValue>
+            <TDTitle>Scenario</TDTitle>
+            <TDValue>
+              <Flex align='center'>
+                <Box>{scenarioName}</Box>
+                <IconButton
+                  icon={faDownload}
+                  label={SCENARIO_DOWNLOAD_NOTE}
+                  onClick={downloadRequestJSON}
+                />
+              </Flex>
+            </TDValue>
           </tr>
           <tr>
             <TDTitle>Service Date</TDTitle>
@@ -182,18 +179,7 @@ export default function ProfileRequestDisplay({
             </TDValue>
           </tr>
           <tr>
-            <td colSpan={2}>
-              <Box py={2} textAlign='center'>
-                <Button
-                  isDisabled={!requestJSON}
-                  leftIcon='download'
-                  onClick={downloadRequestJSON}
-                  size='sm'
-                >
-                  Download Request JSON
-                </Button>
-              </Box>
-            </td>
+            <td colSpan={2}></td>
           </tr>
         </tbody>
       </Box>
