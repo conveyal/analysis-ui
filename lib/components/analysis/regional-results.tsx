@@ -201,13 +201,15 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
               </Alert>
             )}
 
-            <ChakraSelect {...destinationPointSetInput}>
-              {comparisonAnalysis.destinationPointSetIds.map((id) => (
-                <option key={id} value={id}>
-                  {get(find(opportunityDatasets, ['_id', id]), 'name')}
-                </option>
-              ))}
-            </ChakraSelect>
+            {Array.isArray(comparisonAnalysis.destinationPointSetIds) && (
+              <ChakraSelect {...destinationPointSetInput}>
+                {comparisonAnalysis.destinationPointSetIds.map((id) => (
+                  <option key={id} value={id}>
+                    {get(find(opportunityDatasets, ['_id', id]), 'name')}
+                  </option>
+                ))}
+              </ChakraSelect>
+            )}
 
             <Stack isInline>
               {Array.isArray(comparisonAnalysis.cutoffsMinutes) && (
