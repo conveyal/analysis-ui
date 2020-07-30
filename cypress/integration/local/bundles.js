@@ -126,5 +126,49 @@ describe('Network bundles', () => {
       .click()
   })
 
-  it('with multiple GTFS feeds can be uploaded')
+  it('with multiple GTFS feeds can be uploaded', function () {
+    const bundleName =
+      Cypress.env('dataPrefix') + ' double bundle ' + Date.now()
+    cy.findByText(/Create a new network bundle/).click()
+    cy.findByLabelText(/Bundle Name/i).type(bundleName)
+    cy.findByText(/Reuse existing OpenStreetMap/i).click()
+    cy.findByText(/network bundle to reuse OSM from/i)
+      .parent()
+      .select(Cypress.env('dataPrefix') + 'scratch bundle')
+    cy.findByText(/Upload new GTFS/i).click()
+    cy.findByLabelText(/Select .*GTFS/i)
+      .attachFile({
+        filePath: this.region.GTFSfile,
+        encoding: 'base64',
+        mimeType: 'application/octet-stream'
+      })
+      .attachFile({
+        filePath: this.region.GTFSfile,
+        encoding: 'base64',
+        mimeType: 'application/octet-stream'
+      })
+    cy.findByRole('button', {name: /Create/i}).click()
+    cy.location('pathname', {timeout: 60000}).should(
+      'match',
+      /.*\/bundles\/.{24}$/
+    )
+    cy.findByLabelText(/Feed #1/)
+      .invoke('val')
+      .then((name) => {
+        expect(name).to.equal(this.region.feedAgencyName)
+      })
+    cy.findByLabelText(/Feed #2/)
+      .invoke('val')
+      .then((name) => {
+        expect(name).to.equal(this.region.feedAgencyName)
+      })
+    cy.findByLabelText(/Feed #3/).should('not.exist')
+    cy.findByText(/Delete this network bundle/i).click()
+    cy.findByRole('alertdialog', 'Confirm')
+      .findByRole('button', {name: /Delete/})
+      .click()
+    cy.location('pathname').should('match', /.*\/bundles$/)
+    cy.findByText(/Select.../).click()
+    cy.contains(bundleName).should('not.exist')
+  })
 })
