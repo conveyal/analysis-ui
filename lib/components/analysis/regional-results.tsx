@@ -79,7 +79,7 @@ function createAccessibilityLabel(analysis, gridName, cutoff, percentile) {
 /**
  * Render a regional analysis results.
  */
-export default function RegionalResults(p) {
+export default function RegionalResults({analysis, opportunityDatasets}) {
   const dispatch = useDispatch()
 
   const opportunityDataset = useSelector(activeOpportunityDataset)
@@ -92,6 +92,10 @@ export default function RegionalResults(p) {
   const cutoff = useSelector(selectDisplayCutoff)
   const percentile = useSelector(selectDisplayPercentile)
   const pointSet = useSelector(selectPointSet)
+
+  // For easier comparison later
+  const comparisonPointSetId = get(comparisonPointSet, '_id')
+  const pointSetId = get(pointSet, '_id')
 
   const onChangeComparisonAnalysis = useCallback(
     (v) => dispatch(setSearchParameter('comparisonAnalysisId', get(v, '_id'))),
@@ -134,10 +138,8 @@ export default function RegionalResults(p) {
 
   // Load the grids on mount and when they are changed.
   useEffect(() => {
-    dispatch(
-      loadRegionalAnalysisGrid(p.analysis, cutoff, percentile, pointSet._id)
-    )
-  }, [p.analysis, cutoff, percentile, pointSet, dispatch])
+    dispatch(loadRegionalAnalysisGrid(analysis, cutoff, percentile, pointSetId))
+  }, [analysis, cutoff, percentile, pointSetId, dispatch])
   useEffect(() => {
     if (comparisonAnalysis) {
       dispatch(
@@ -145,7 +147,7 @@ export default function RegionalResults(p) {
           comparisonAnalysis,
           comparisonCutoff,
           comparisonPercentile,
-          comparisonPointSet._id
+          comparisonPointSetId
         )
       )
     }
@@ -153,15 +155,15 @@ export default function RegionalResults(p) {
     comparisonAnalysis,
     comparisonCutoff,
     comparisonPercentile,
-    comparisonPointSet,
+    comparisonPointSetId,
     dispatch
   ])
 
   const aggregationWeightName = get(opportunityDataset, 'name')
 
   const accessToLabel = createAccessibilityLabel(
-    p.analysis,
-    pointSet.name,
+    analysis,
+    get(pointSet, 'name'),
     cutoff,
     percentile
   )
@@ -192,7 +194,7 @@ export default function RegionalResults(p) {
       {comparisonAnalysis && (
         <>
           <Stack spacing={4} px={4} pb={4}>
-            {p.analysis.workerVersion !== comparisonAnalysis.workerVersion && (
+            {analysis.workerVersion !== comparisonAnalysis.workerVersion && (
               <Alert status='error'>
                 <AlertIcon />
                 {message('r5Version.comparisonIsDifferent')}
@@ -202,7 +204,7 @@ export default function RegionalResults(p) {
             <ChakraSelect {...destinationPointSetInput}>
               {comparisonAnalysis.destinationPointSetIds.map((id) => (
                 <option key={id} value={id}>
-                  {get(find(p.opportunityDatasets, ['_id', id]), 'name')}
+                  {get(find(opportunityDatasets, ['_id', id]), 'name')}
                 </option>
               ))}
             </ChakraSelect>
@@ -280,17 +282,17 @@ export default function RegionalResults(p) {
       </MapControl>
 
       <Box p={4}>
-        <AggregationArea regionId={p.regionId} />
+        <AggregationArea regionId={analysis.regionId} />
       </Box>
 
-      {p.analysis && aggregateAccessibility && aggregationWeightName && (
+      {analysis && aggregateAccessibility && aggregationWeightName && (
         <Box px={4}>
           <AggregateAccessibility
             aggregateAccessibility={aggregateAccessibility}
             comparisonAggregateAccessibility={comparisonAggregateAccessibility}
             weightByName={aggregationWeightName}
             accessToName={pointSet.name}
-            regionalAnalysisName={p.analysis.name}
+            regionalAnalysisName={analysis.name}
             comparisonAccessToName={
               comparisonAnalysis ? get(comparisonPointSet, 'name') : ''
             }
