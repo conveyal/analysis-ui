@@ -10,7 +10,6 @@ import {
 import {
   faChevronUp,
   faChevronDown,
-  faInfoCircle,
   faDownload
 } from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
@@ -146,7 +145,7 @@ export default function ProfileRequestDisplay({
             <TDTitle>Scenario</TDTitle>
             <TDValue>
               <Flex align='center'>
-                <Box>{scenarioName}</Box>
+                <Box pr={1}>{scenarioName}</Box>
                 <IconButton
                   icon={faDownload}
                   label={SCENARIO_DOWNLOAD_NOTE}
