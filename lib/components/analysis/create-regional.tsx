@@ -150,7 +150,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         <ModalBody>
           <FormControl mb={4} isRequired isInvalid={nameInput.isInvalid}>
             <FormLabel htmlFor={nameInput.id}>Regional analysis name</FormLabel>
-            <Input {...nameInput} placeholder='Name' />
+            <Input {...nameInput} />
           </FormControl>
 
           {workerVersionHandlesMultipleDimensions && (
