@@ -251,7 +251,7 @@ context('Analysis', () => {
   })
 
   context('of a region', () => {
-    it.only('runs a regional analysis', function () {
+    it('runs a regional analysis', function () {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
