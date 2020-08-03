@@ -363,7 +363,9 @@ describe('Modifications', () => {
       // delete the template modification
       deleteMod('Add Trip Pattern', modName)
     })
+
     it('allows phasing')
+
     it('allows exact timetables')
   })
 
@@ -395,6 +397,9 @@ describe('Modifications', () => {
         .click({force: true})
         .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
+      cy.findByLabelText(/Scale speed by/i)
+        .invoke('val')
+        .then((val) => expect(val * 1).to.eq(1))
       deleteThisMod()
     })
   })
