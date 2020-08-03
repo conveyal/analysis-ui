@@ -73,7 +73,7 @@ context('Analysis', () => {
       .type('baseline{enter}')
     cy.findByLabelText(/^Opportunity Dataset$/)
       .click({force: true})
-      .type(`${name}{enter}`)
+      .type(`{enter}`)
       .wait(100)
     cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   })
