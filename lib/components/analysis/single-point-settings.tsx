@@ -24,7 +24,6 @@ import {
   setCopyRequestSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
-import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import selectCurrentBundle from 'lib/selectors/current-bundle'
@@ -317,7 +316,6 @@ function RequestHeading({
   scenario,
   ...p
 }) {
-  const dispatch = useDispatch()
   const settingsHaveChanged = useSelector(selectProfileRequestHasChanged)
   const scenarioName =
     get(project, 'variants', [])[scenario] || message('variant.baseline')
@@ -380,9 +378,7 @@ function RequestHeading({
         />
         <Box>
           <CreateRegional
-            isDisabled={
-              !hasResults || settingsHaveChanged || !opportunityDataset
-            }
+            isDisabled={!hasResults || settingsHaveChanged}
             profileRequest={profileRequest}
             projectId={get(project, '_id')}
             variantIndex={scenario}
