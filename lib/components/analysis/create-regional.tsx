@@ -88,8 +88,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const [destinationPointSets, setDestinationPointSets] = useState(
     selectedOpportunityDataset ? [selectedOpportunityDataset._id] : []
   )
+  const workerVersion = get(profileRequest, 'workerVersion', '')
   const workerVersionHandlesMultipleDimensions =
-    versionToNumber(get(profileRequest, 'workerVersion')) > 50900
+    versionToNumber(workerVersion) > 50900 ||
+    (workerVersion.length == 7 && workerVersion.indexOf('.') == -1)
 
   const nameInput = useInput({test: testContent, value: ''})
 
@@ -148,41 +150,58 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       <ModalContent>
         <ModalHeader>Create new regional analysis</ModalHeader>
         <ModalBody>
-          <FormControl mb={4} isRequired isInvalid={nameInput.isInvalid}>
-            <FormLabel htmlFor={nameInput.id}>Regional analysis name</FormLabel>
-            <Input {...nameInput} />
-          </FormControl>
+          <Stack mb={4} spacing={4}>
+            <FormControl
+              isDisabled={isCreating}
+              mb={4}
+              isRequired
+              isInvalid={nameInput.isInvalid}
+            >
+              <FormLabel htmlFor={nameInput.id}>
+                Regional analysis name
+              </FormLabel>
+              <Input {...nameInput} />
+            </FormControl>
+
+            <FormControl
+              isDisabled={isCreating}
+              isRequired
+              isInvalid={
+                destinationPointSets.length > 6 ||
+                destinationPointSets.length === 0
+              }
+            >
+              <FormLabel htmlFor='destinationPointSets'>
+                Opportunity datasets
+              </FormLabel>
+              <Box>
+                <Select
+                  isClearable={false}
+                  isDisabled={isCreating}
+                  getOptionLabel={getName}
+                  getOptionValue={getId}
+                  inputId='destinationPointSets'
+                  isMulti={workerVersionHandlesMultipleDimensions}
+                  onChange={onChangeDestinationPointSets}
+                  options={opportunityDatasets}
+                  value={opportunityDatasets.filter((o) =>
+                    destinationPointSets.includes(o._id)
+                  )}
+                />
+              </Box>
+              {workerVersionHandlesMultipleDimensions && (
+                <FormHelperText>Select up to 6 datasets.</FormHelperText>
+              )}
+            </FormControl>
+          </Stack>
 
           {workerVersionHandlesMultipleDimensions && (
             <Stack spacing={4}>
               <FormControl
+                isDisabled={isCreating}
                 isRequired
-                isInvalid={
-                  destinationPointSets.length > 6 ||
-                  destinationPointSets.length === 0
-                }
+                isInvalid={cutoffsInput.isInvalid}
               >
-                <FormLabel htmlFor='destinationPointSets'>
-                  Opportunity datasets
-                </FormLabel>
-                <Box>
-                  <Select
-                    isClearable={false}
-                    getOptionLabel={getName}
-                    getOptionValue={getId}
-                    inputId='destinationPointSets'
-                    isMulti
-                    onChange={onChangeDestinationPointSets}
-                    options={opportunityDatasets}
-                    value={opportunityDatasets.filter((o) =>
-                      destinationPointSets.includes(o._id)
-                    )}
-                  />
-                </Box>
-                <FormHelperText>Select up to 6 datasets.</FormHelperText>
-              </FormControl>
-
-              <FormControl isRequired isInvalid={cutoffsInput.isInvalid}>
                 <FormLabel htmlFor={cutoffsInput.id}>Cutoff minutes</FormLabel>
                 <Input
                   {...cutoffsInput}
@@ -190,7 +209,11 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 />
               </FormControl>
 
-              <FormControl isRequired isInvalid={percentilesInput.isInvalid}>
+              <FormControl
+                isDisabled={isCreating}
+                isRequired
+                isInvalid={percentilesInput.isInvalid}
+              >
                 <FormLabel htmlFor={percentilesInput.id}>Percentiles</FormLabel>
                 <Input
                   {...percentilesInput}
