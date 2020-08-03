@@ -26,7 +26,7 @@ const spacing = 10
 
 export default function Changelog() {
   return (
-    <Stack spacing={spacing} p={40}>
+    <Stack spacing={spacing} m={40}>
       <Flex justify='space-between'>
         <Heading size='2xl'>What&lsquo;s new</Heading>
         <Image display='inline-block' size='45px' src='/logo.svg' />
