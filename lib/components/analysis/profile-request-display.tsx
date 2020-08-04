@@ -13,10 +13,12 @@ import {
   faDownload
 } from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
+import {useContext} from 'react'
 import {useSelector} from 'react-redux'
 import useSWR from 'swr'
 
 import {API_URL} from 'lib/constants'
+import {UserContext} from 'lib/user'
 import downloadJSON from 'lib/utils/download-json'
 import {secondsToHhMmString} from 'lib/utils/time'
 
@@ -25,8 +27,6 @@ import Icon from '../icon'
 import {ALink} from '../link'
 
 import ModeSummary from './mode-summary'
-
-const fetcher = (url) => fetch(url).then((res) => res.json())
 
 // Minimal selectors for projects and bundles
 const selectProjects = fpGet('project.projects')
@@ -72,8 +72,7 @@ export default function ProfileRequestDisplay({
   projectId
 }) {
   const {data: requestJSON} = useSWR(
-    `${API_URL}/regional/${profileRequest._id}`,
-    fetcher
+    `${API_URL}/regional/${profileRequest._id}`
   )
   const projects = useSelector(selectProjects)
   const bundles = useSelector(selectBundles)
