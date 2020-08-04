@@ -66,6 +66,7 @@ export default function Regional(p) {
   )
   const cutoffInput = useControlledInput({
     onChange: onChangeCutoff,
+    parse: parseInt,
     value: useSelector(selectCutoff)
   })
 
@@ -75,6 +76,7 @@ export default function Regional(p) {
   )
   const percentileInput = useControlledInput({
     onChange: onChangePercentile,
+    parse: parseInt,
     value: useSelector(selectPercentile)
   })
 
