@@ -205,7 +205,11 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 <FormLabel htmlFor={cutoffsInput.id}>Cutoff minutes</FormLabel>
                 <Input
                   {...cutoffsInput}
-                  value={cutoffsInput.value.join(', ')}
+                  value={
+                    Array.isArray(cutoffsInput.value)
+                      ? cutoffsInput.value.join(', ')
+                      : cutoffsInput.value
+                  }
                 />
               </FormControl>
 
@@ -217,7 +221,11 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 <FormLabel htmlFor={percentilesInput.id}>Percentiles</FormLabel>
                 <Input
                   {...percentilesInput}
-                  value={percentilesInput.value.join(', ')}
+                  value={
+                    Array.isArray(percentilesInput.value)
+                      ? percentilesInput.value.join(', ')
+                      : percentilesInput.value
+                  }
                 />
               </FormControl>
             </Stack>
