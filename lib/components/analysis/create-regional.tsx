@@ -40,7 +40,7 @@ const testContent = (s) => s && s.length > 0
 const defaultCutoffs = [20, 30, 45, 60]
 const defaultPercentiles = [5, 25, 50, 75, 95]
 
-const parseStringAsArray = (s) =>
+const parseStringAsIntArray = (s) =>
   Array.isArray(s) ? s : sort((s || '').split(',').map((s) => parseInt(s)))
 
 const createTestArray = (min, max) => (sorted) =>
@@ -101,13 +101,13 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   }
 
   const cutoffsInput = useInput({
-    parse: parseStringAsArray,
+    parse: parseStringAsIntArray,
     test: testCutoffs,
     value: get(profileRequest, 'cutoffsMinutes', defaultCutoffs)
   })
 
   const percentilesInput = useInput({
-    parse: parseStringAsArray,
+    parse: parseStringAsIntArray,
     test: testPercentiles,
     value: get(profileRequest, 'percentiles', defaultPercentiles)
   })
@@ -118,10 +118,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       dispatch(
         createRegionalAnalysis({
           ...profileRequest,
-          cutoffsMinutes: cutoffsInput.value,
+          cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
           destinationPointSetIds: destinationPointSets,
           name: nameInput.value,
-          percentiles: percentilesInput.value,
+          percentiles: parseStringAsIntArray(percentilesInput.value),
           projectId,
           variantIndex
         })
