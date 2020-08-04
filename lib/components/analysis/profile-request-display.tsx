@@ -13,12 +13,10 @@ import {
   faDownload
 } from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
-import {useContext} from 'react'
 import {useSelector} from 'react-redux'
 import useSWR from 'swr'
 
 import {API_URL} from 'lib/constants'
-import {UserContext} from 'lib/user'
 import downloadJSON from 'lib/utils/download-json'
 import {secondsToHhMmString} from 'lib/utils/time'
 
