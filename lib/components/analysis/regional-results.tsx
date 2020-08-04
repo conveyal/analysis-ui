@@ -48,6 +48,9 @@ import AggregateAccessibility from './aggregate-accessibility'
 const getName = fpGet('name')
 const getId = fpGet('_id')
 
+// Cannot pass `parseInt` directly because
+const parseCutoff = (c) => parseInt(c)
+
 function getNumberWithOrdinal(n) {
   var s = ['th', 'st', 'nd', 'rd'],
     v = n % 100
@@ -113,6 +116,7 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
   )
   const comparisonCutoffInput = useControlledInput({
     onChange: onChangeCutoff,
+    parse: parseInt,
     value: useSelector(selectComparisonCutoff)
   })
   const comparisonCutoff = comparisonCutoffInput.value
@@ -123,6 +127,7 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
   )
   const comparisonPercentileInput = useControlledInput({
     onChange: onChangePercentile,
+    parse: parseInt,
     value: useSelector(selectComparisonPercentile)
   })
   const comparisonPercentile = comparisonPercentileInput.value
@@ -145,8 +150,8 @@ export default function RegionalResults({analysis, opportunityDatasets}) {
       dispatch(
         loadRegionalAnalysisGrid(
           comparisonAnalysis,
-          comparisonCutoff,
-          comparisonPercentile,
+          parseInt(comparisonCutoff),
+          parseInt(comparisonPercentile),
           comparisonPointSetId
         )
       )
