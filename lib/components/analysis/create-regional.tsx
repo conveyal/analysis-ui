@@ -211,6 +211,9 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                       : cutoffsInput.value
                   }
                 />
+                <FormHelperText>
+                  In increasing order, maximum 120.
+                </FormHelperText>
               </FormControl>
 
               <FormControl
@@ -227,6 +230,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                       : percentilesInput.value
                   }
                 />
+                <FormHelperText>In increasing order.</FormHelperText>
               </FormControl>
             </Stack>
           )}
