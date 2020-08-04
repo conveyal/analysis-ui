@@ -316,7 +316,7 @@ const ModificationItem = memo<ModificationItemProps>(
             {modification.name}
           </Box>
           <IconButton
-            icon={isDisplayed ? faEyeSlash : faEye}
+            icon={isDisplayed ? faEye : faEyeSlash}
             label={isDisplayed ? 'Hide from map' : 'Show on map'}
             onClick={(e) => {
               e.preventDefault()
