@@ -17,7 +17,7 @@ import {
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
@@ -95,10 +95,15 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
   const nameInput = useInput({test: testContent, value: ''})
 
-  function onChangeDestinationPointSets(datasets) {
-    if (!datasets || datasets.length > 6) return
-    setDestinationPointSets((datasets || []).map((d) => d._id))
-  }
+  const onChangeDestinationPointSets = useCallback(
+    (datasets) => {
+      if (!datasets || datasets.length > 6) return
+      if (Array.isArray(datasets))
+        setDestinationPointSets(datasets.map((d) => d._id))
+      else setDestinationPointSets([datasets._id]) // single selection mode
+    },
+    [setDestinationPointSets]
+  )
 
   const cutoffsInput = useInput({
     parse: parseStringAsIntArray,
@@ -130,6 +135,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       dispatch(
         createRegionalAnalysis({
           ...profileRequest,
+          destinationPointSetIds: destinationPointSets,
           name: nameInput.value,
           projectId,
           variantIndex
@@ -172,7 +178,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               }
             >
               <FormLabel htmlFor='destinationPointSets'>
-                Opportunity datasets
+                Opportunity dataset(s)
               </FormLabel>
               <Box>
                 <Select
