@@ -155,6 +155,7 @@ export default function Sidebar() {
   const email = get(user, 'email')
   const storeParams = useSelector(selectQueryString)
   const queryParams = {...router.query, ...storeParams}
+  const regionOnly = {regionId: queryParams.regionId}
 
   return (
     <Flex
@@ -176,13 +177,13 @@ export default function Sidebar() {
               icon={faMap}
               label={message('nav.regionSettings')}
               to='regionSettings'
-              params={queryParams}
+              params={regionOnly}
             />
             <ItemLink
               icon={faCubes}
               label={message('nav.projects')}
               to='projects'
-              params={queryParams}
+              params={regionOnly}
             />
             <ItemLink
               icon={faDatabase}
