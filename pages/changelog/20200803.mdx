@@ -17,7 +17,7 @@ Additionally, we added options to view all regional analysis settings and an eas
 The default routing engine version is now v5.10.0. In addition to enabling the features above, this release:
 
 * Considers additional OSM nodes and ways for park-and-ride access. More details are in the [user manual](http://docs.analysis.conveyal.com/en/latest/learn-more/pnr.html)
-* Fixes a bug, present since before routing engine v3, that disallowed boarding certain randomly selected routes after a transfer. On occasion, the randomly selected route could actually be relevant at a given transfer point, so travel times would be artificially inflated. Based on our testing, we expect the impact in most cases to be limited to travel time discrepancies of a few minutes, for a small number of essentially random origin-destination pairs in a region.
+* Fixes a bug, present since before routing engine v3, that did not consider boarding a single essentially arbitrary route when transferring. On rare occasions where that route was relevant to the path being constructed, a suboptimal path would replace an optimal one, potentially altering travel time distributions enough to affect the selected percentile. Based on our testing, the impact appears to be limited in most cases to travel time discrepancies of a few minutes, for origin-destination pairs scattered throughout a region.
 
 #### Modifications view
 
