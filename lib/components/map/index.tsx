@@ -5,7 +5,6 @@ import {useEffect, useRef, useState} from 'react'
 import {AttributionControl, Map as LeafletMap, ZoomControl} from 'react-leaflet'
 import {useSelector} from 'react-redux'
 
-import useOnMount from 'lib/hooks/use-on-mount'
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import selectModificationSaveInProgress from 'lib/selectors/modification-save-in-progress'
 import selectRegionBounds from 'lib/selectors/region-bounds'
@@ -68,18 +67,6 @@ export default function Map({children, setLeafletContext}) {
       }
     }
   }, [leafletMapRef, regionBounds, viewport])
-
-  // Set geolocation to users current position on initial use
-  useOnMount(() => {
-    if (!viewport && 'navigator' in window) {
-      navigator.geolocation.getCurrentPosition(function (p) {
-        setViewport({
-          ...viewport,
-          center: [p.coords.latitude, p.coords.longitude]
-        })
-      })
-    }
-  })
 
   return (
     <>

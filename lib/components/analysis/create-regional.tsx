@@ -17,7 +17,7 @@ import {
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
@@ -40,7 +40,7 @@ const testContent = (s) => s && s.length > 0
 const defaultCutoffs = [20, 30, 45, 60]
 const defaultPercentiles = [5, 25, 50, 75, 95]
 
-const parseStringAsArray = (s) =>
+const parseStringAsIntArray = (s) =>
   Array.isArray(s) ? s : sort((s || '').split(',').map((s) => parseInt(s)))
 
 const createTestArray = (min, max) => (sorted) =>
@@ -95,19 +95,24 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
   const nameInput = useInput({test: testContent, value: ''})
 
-  function onChangeDestinationPointSets(datasets) {
-    if (!datasets || datasets.length > 6) return
-    setDestinationPointSets((datasets || []).map((d) => d._id))
-  }
+  const onChangeDestinationPointSets = useCallback(
+    (datasets) => {
+      if (!datasets || datasets.length > 6) return
+      if (Array.isArray(datasets))
+        setDestinationPointSets(datasets.map((d) => d._id))
+      else setDestinationPointSets([datasets._id]) // single selection mode
+    },
+    [setDestinationPointSets]
+  )
 
   const cutoffsInput = useInput({
-    parse: parseStringAsArray,
+    parse: parseStringAsIntArray,
     test: testCutoffs,
     value: get(profileRequest, 'cutoffsMinutes', defaultCutoffs)
   })
 
   const percentilesInput = useInput({
-    parse: parseStringAsArray,
+    parse: parseStringAsIntArray,
     test: testPercentiles,
     value: get(profileRequest, 'percentiles', defaultPercentiles)
   })
@@ -118,10 +123,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       dispatch(
         createRegionalAnalysis({
           ...profileRequest,
-          cutoffsMinutes: cutoffsInput.value,
+          cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
           destinationPointSetIds: destinationPointSets,
           name: nameInput.value,
-          percentiles: percentilesInput.value,
+          percentiles: parseStringAsIntArray(percentilesInput.value),
           projectId,
           variantIndex
         })
@@ -130,6 +135,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       dispatch(
         createRegionalAnalysis({
           ...profileRequest,
+          destinationPointSetIds: destinationPointSets,
           name: nameInput.value,
           projectId,
           variantIndex
@@ -172,7 +178,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               }
             >
               <FormLabel htmlFor='destinationPointSets'>
-                Opportunity datasets
+                Opportunity dataset(s)
               </FormLabel>
               <Box>
                 <Select
@@ -205,8 +211,15 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 <FormLabel htmlFor={cutoffsInput.id}>Cutoff minutes</FormLabel>
                 <Input
                   {...cutoffsInput}
-                  value={cutoffsInput.value.join(', ')}
+                  value={
+                    Array.isArray(cutoffsInput.value)
+                      ? cutoffsInput.value.join(', ')
+                      : cutoffsInput.value
+                  }
                 />
+                <FormHelperText>
+                  In increasing order, maximum 120.
+                </FormHelperText>
               </FormControl>
 
               <FormControl
@@ -217,8 +230,13 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 <FormLabel htmlFor={percentilesInput.id}>Percentiles</FormLabel>
                 <Input
                   {...percentilesInput}
-                  value={percentilesInput.value.join(', ')}
+                  value={
+                    Array.isArray(percentilesInput.value)
+                      ? percentilesInput.value.join(', ')
+                      : percentilesInput.value
+                  }
                 />
+                <FormHelperText>In increasing order.</FormHelperText>
               </FormControl>
             </Stack>
           )}
