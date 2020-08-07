@@ -174,9 +174,8 @@ function createNewBundle() {
   cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
   // go back and grab the UUID
   cy.navTo('Network Bundles')
-  cy.findByText(/Select.../)
-    .parent()
-    .click()
+  cy.findByLabelText(/or select an existing one/)
+    .click({force: true})
     .type(bundleName + '{enter}')
   return cy
     .location('pathname')
