@@ -54,7 +54,7 @@ context('Analysis', () => {
 
   beforeEach(() => {
     // refresh analysis page each time by navigating away and then back
-    cy.navTo('network bundles')
+    cy.navTo('projects')
     cy.navTo('Analyze')
     // alias all the things!
     cy.fixture('regions/scratch.json').as('region')
