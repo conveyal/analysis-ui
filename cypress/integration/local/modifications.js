@@ -260,22 +260,57 @@ describe('Modifications', () => {
         .type(' {backspace}')
       // drawing a route activates the follwoing elements
       drawRouteGeometry(this.region.newRoute)
-      // set dwell times
-      const dwellTime = '00:00:30'
-      cy.findByLabelText(/Default dwell time/i)
-        .clear()
-        .type(dwellTime)
-      cy.findByRole('button', {
-        name: /Set individual stop dwell times/i
-      }).click()
-      cy.findByLabelText(/Stop 1/)
-        .invoke('attr', 'placeholder')
-        .should('eq', `${dwellTime} (default)`)
+      // set dwell times, verifying that they increase the total travel time
+      cy.findByText(/Travel time/i)
+        .parent()
+        .findByText(/\d\d:\d\d:\d\d/)
+        .as('travelTime')
+        .invoke('text')
+        .then((initialTime) => {
+          // now set a new dwell time
+          const dwellTime = '00:00:30'
+          cy.findByLabelText(/Default dwell time/i)
+            .clear()
+            .type(dwellTime)
+          cy.findByRole('button', {
+            name: /Set individual stop dwell times/i
+          }).click()
+          cy.findByLabelText(/Stop 1/)
+            .invoke('attr', 'placeholder')
+            .should('eq', `${dwellTime} (default)`)
+          cy.get('@travelTime')
+            .invoke('text')
+            .then(
+              // compares interval strings, but because of the format it works
+              (newTime) => expect(newTime > initialTime).to.be.true
+            )
+        })
       // set segment speeds
       cy.findByLabelText(/Average speed/i)
       cy.findByLabelText(/Total moving time/i)
-      cy.findByRole('button', {name: /Set individual segment speeds/i})
-
+      cy.findByRole('button', {name: /Set individual segment speeds/i}).click()
+      // decreasing segment speed should increase travel time
+      cy.findByLabelText(/Segment 1 speed/i)
+        .invoke('val')
+        .should('match', /\d+/i)
+        .then((segSpeed) => {
+          cy.get('@travelTime')
+            .invoke('text')
+            .then((initialTime) => {
+              cy.findByLabelText(/Segment 1 speed/i)
+                .clear()
+                .type(segSpeed * 0.5)
+              cy.get('@travelTime')
+                .invoke('text')
+                .then((newTime) => {
+                  cy.log(newTime, initialTime)
+                  expect(newTime > initialTime).to.be.true
+                })
+            })
+        })
+      cy.findByLabelText(/Segment 1 duration/i)
+        .invoke('val')
+        .should('match', /\d\d:\d\d:\d\d/)
       deleteThisMod()
     })
 
