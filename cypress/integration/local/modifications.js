@@ -258,6 +258,24 @@ describe('Modifications', () => {
       cy.findByLabelText(/Phase at stop/i)
         .focus()
         .type(' {backspace}')
+      // drawing a route activates the follwoing elements
+      drawRouteGeometry(this.region.newRoute)
+      // set dwell times
+      const dwellTime = '00:00:30'
+      cy.findByLabelText(/Default dwell time/i)
+        .clear()
+        .type(dwellTime)
+      cy.findByRole('button', {
+        name: /Set individual stop dwell times/i
+      }).click()
+      cy.findByLabelText(/Stop 1/)
+        .invoke('attr', 'placeholder')
+        .should('eq', `${dwellTime} (default)`)
+      // set segment speeds
+      cy.findByLabelText(/Average speed/i)
+      cy.findByLabelText(/Total moving time/i)
+      cy.findByRole('button', {name: /Set individual segment speeds/i})
+
       deleteThisMod()
     })
 
