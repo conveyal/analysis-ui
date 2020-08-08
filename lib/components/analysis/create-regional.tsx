@@ -178,7 +178,8 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               }
             >
               <FormLabel htmlFor='destinationPointSets'>
-                Opportunity dataset(s)
+                Opportunity dataset
+                {workerVersionHandlesMultipleDimensions ? '(s)' : ''}
               </FormLabel>
               <Box>
                 <Select
