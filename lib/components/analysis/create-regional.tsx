@@ -135,8 +135,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       dispatch(
         createRegionalAnalysis({
           ...profileRequest,
+          cutoffs: [profileRequest.cutoffsMinutes],
           destinationPointSetIds: destinationPointSets,
           name: nameInput.value,
+          percentiles: [profileRequest.travelTimePercentile],
           projectId,
           variantIndex
         })
