@@ -276,7 +276,7 @@ function ScenarioApplicationErrors({errors, ...p}) {
           <Heading size='sm'>
             {message('analysis.errorsInModification', {id: err.modificationId})}
           </Heading>
-          <List styleType='disc'>
+          <List styleType='disc' spacing={2}>
             {err.messages.map((msg, idx) => (
               <ListItem key={`message-${idx}`}>{msg}</ListItem>
             ))}
