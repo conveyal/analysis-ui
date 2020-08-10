@@ -73,7 +73,7 @@ context('Analysis', () => {
       .type('baseline{enter}')
     cy.findByLabelText(/^Opportunity Dataset$/)
       .click({force: true})
-      .type(`{enter}`)
+      .type(`default{enter}`)
       .wait(100)
     cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
     cy.get('@primary').findByLabelText(/Date/i).clear().type('2020-07-20')
