@@ -145,7 +145,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         await dispatch(
           createRegionalAnalysis({
             ...profileRequest,
-            cutoffs: [maxTripDurationMinutes],
+            cutoffsMinutes: [maxTripDurationMinutes],
             destinationPointSetIds: destinationPointSets,
             name: nameInput.value,
             percentiles: [travelTimePercentile],
