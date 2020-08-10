@@ -17,6 +17,7 @@ import {
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
+import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -28,6 +29,10 @@ import {
   opportunityDatasets as selectOpportunityDatasets
 } from 'lib/modules/opportunity-datasets/selectors'
 import {versionToNumber} from 'lib/modules/r5-version/utils'
+import {routeTo} from 'lib/router'
+import selectCurrentRegionId from 'lib/selectors/current-region-id'
+import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
+import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import Select from '../select'
 
@@ -88,6 +93,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const [destinationPointSets, setDestinationPointSets] = useState(
     selectedOpportunityDataset ? [selectedOpportunityDataset._id] : []
   )
+  const regionId = useSelector(selectCurrentRegionId)
+  const router = useRouter()
+  const maxTripDurationMinutes = useSelector(selectMaxTripDurationMinutes)
+  const travelTimePercentile = useSelector(selectTravelTimePercentile)
   const workerVersion = get(profileRequest, 'workerVersion', '')
   const workerVersionHandlesMultipleDimensions =
     versionToNumber(workerVersion) > 50900 ||
@@ -117,32 +126,38 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     value: get(profileRequest, 'percentiles', defaultPercentiles)
   })
 
-  function create() {
+  async function create() {
     setIsCreating(true)
-    if (workerVersionHandlesMultipleDimensions) {
-      dispatch(
-        createRegionalAnalysis({
-          ...profileRequest,
-          cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
-          destinationPointSetIds: destinationPointSets,
-          name: nameInput.value,
-          percentiles: parseStringAsIntArray(percentilesInput.value),
-          projectId,
-          variantIndex
-        })
-      )
-    } else {
-      dispatch(
-        createRegionalAnalysis({
-          ...profileRequest,
-          cutoffs: [profileRequest.cutoffsMinutes],
-          destinationPointSetIds: destinationPointSets,
-          name: nameInput.value,
-          percentiles: [profileRequest.travelTimePercentile],
-          projectId,
-          variantIndex
-        })
-      )
+    try {
+      if (workerVersionHandlesMultipleDimensions) {
+        await dispatch(
+          createRegionalAnalysis({
+            ...profileRequest,
+            cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
+            destinationPointSetIds: destinationPointSets,
+            name: nameInput.value,
+            percentiles: parseStringAsIntArray(percentilesInput.value),
+            projectId,
+            variantIndex
+          })
+        )
+      } else {
+        await dispatch(
+          createRegionalAnalysis({
+            ...profileRequest,
+            cutoffs: [maxTripDurationMinutes],
+            destinationPointSetIds: destinationPointSets,
+            name: nameInput.value,
+            percentiles: [travelTimePercentile],
+            projectId,
+            variantIndex
+          })
+        )
+      }
+      const {as, href} = routeTo('regionalAnalyses', {regionId})
+      router.push(href, as)
+    } catch (e) {
+      setIsCreating(false)
     }
   }
 
