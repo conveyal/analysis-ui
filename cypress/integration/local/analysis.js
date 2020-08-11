@@ -252,7 +252,7 @@ context('Analysis', () => {
   })
 
   context('of a region', () => {
-    it('runs a regional analysis', function () {
+    it('runs a regional analysis, etc.', function () {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
@@ -285,9 +285,45 @@ context('Analysis', () => {
       //cy.findByLabelText(/Compare to/i) // TODO dissociated label
       cy.findByText(/Access to/i)
       //cy.findByLabelText(/Aggregate results to/i) // TODO dissociated label
-      cy.findByText(/upload new aggregation area/i)
+      cy.findByText(/upload new aggregation area/i).click()
+      cy.findByRole('button', {name: 'Upload'})
+        .as('upload')
+        .should('be.disabled')
+      cy.findByLabelText(/Aggregation area name/i).type('cities')
+      cy.findByLabelText(/Select aggregation area files/i)
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[0],
+          encoding: 'base64',
+          mimeType: 'application/octet-stream'
+        })
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[1],
+          encoding: 'base64',
+          mimeType: 'application/octet-stream'
+        })
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[2],
+          encoding: 'base64',
+          mimeType: 'application/octet-stream'
+        })
+        .attachFile({
+          filePath: this.region.aggregationAreas.files[3],
+          encoding: 'base64',
+          mimeType: 'application/octet-stream'
+        })
+      cy.findByLabelText(/Union/).uncheck({force: true})
+      cy.findByLabelText(/Attribute name to lookup on the shapefile/i)
+        .clear()
+        .type(this.region.aggregationAreas.nameField)
+      cy.get('@upload').click()
+      // TODO this returns too early
+      cy.contains(/Upload complete/, {timeout: 10000})
+      // TODO label dissociated from input
+      //cy.findByLabelText(/Aggregate results to/i)
+      //  .type(this.region.aggregationAreas.sampleName+'{enter}')
       // clean up
       cy.findByRole('button', {name: 'Delete'}).click()
+      cy.findByRole('button', {name: /Confirm/}).click()
     })
 
     it('compares two regional analyses')
