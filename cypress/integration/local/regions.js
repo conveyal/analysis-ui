@@ -1,3 +1,5 @@
+const tempRegionName = Cypress.env('dataPrefix') + 'temp'
+
 describe('Region setup', () => {
   beforeEach(() => {
     // scratch region settings
@@ -52,7 +54,7 @@ describe('Region setup', () => {
   })
 
   it('finds locations searched by name', () => {
-    let regions = [
+    const regions = [
       {
         searchTerm: 'cincinnati',
         findText: /^Cincinnati, Ohio/,
@@ -72,7 +74,7 @@ describe('Region setup', () => {
         lon: 0
       }
     ]
-    let maxOffset = 10000 // meters
+    const maxOffset = 10000 // meters
     regions.forEach((r) => {
       cy.get('@search').focus().clear().type(r.searchTerm)
       cy.findByText(r.findText).click()
@@ -80,17 +82,16 @@ describe('Region setup', () => {
     })
   })
 
-  it('creates new region from valid input', function () {
+  it('CRUD a region', function () {
     // create a temporary region name
-    const regionName =
-      Cypress.env('dataPrefix') + ' Scratch Region ' + Date.now()
+    const regionName = tempRegionName + Date.now()
     // Enter region name and description
     cy.get('@name').type(regionName)
     cy.get('@description').type(this.region.description)
     // search for region by name
     cy.get('@search').focus().clear().type(this.region.searchTerm)
     cy.findByText(this.region.foundName).click()
-    cy.mapCenteredOn([39.1, -84.5], 10000)
+    cy.mapCenteredOn(this.region.center, 10000)
     // Enter exact coordinates
     cy.get('@North').clear().type(this.region.north)
     cy.get('@South').clear().type(this.region.south)
@@ -98,12 +99,14 @@ describe('Region setup', () => {
     cy.get('@West').clear().type(this.region.west)
     // Create the region
     cy.get('@create').click()
+    cy.navComplete()
     // should redirect to bundle upload
-    cy.location('pathname').should('match', /regions\/.{24}$/, {timeout: 10000})
+    cy.location('pathname', {timeout: 10000}).should('match', /regions\/.{24}$/)
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
     cy.navTo('Regions')
     cy.findByText(regionName).click()
+    cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
     cy.navTo('Region Settings')
@@ -118,32 +121,31 @@ describe('Region setup', () => {
     cy.get('@name').should('have.value', regionName)
     cy.get('@description').should('have.value', this.region.description)
     // coordinate values are rounded to match analysis grid
-    let maxError = 0.02
     cy.get('@North')
       .invoke('val')
-      .then((val) => {
-        let roundingError = Math.abs(Number(val) - this.region.north)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
+      .then((coord) => cy.isWithin(coord, this.region.north, 0.02))
     cy.get('@South')
       .invoke('val')
-      .then((val) => {
-        let roundingError = Math.abs(Number(val) - this.region.south)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
+      .then((coord) => cy.isWithin(coord, this.region.south, 0.02))
     cy.get('@East')
       .invoke('val')
-      .then((val) => {
-        let roundingError = Math.abs(Number(val) - this.region.east)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
+      .then((coord) => cy.isWithin(coord, this.region.east, 0.02))
     cy.get('@West')
       .invoke('val')
-      .then((val) => {
-        let roundingError = Math.abs(Number(val) - this.region.west)
-        expect(roundingError).to.be.lessThan(maxError)
-      })
-    cy.mapContainsRegion()
+      .then((coord) => cy.isWithin(coord, this.region.west, 0.02))
+    cy.mapCenteredOn(this.region.center, 10000)
+    // update something and verify save
+    cy.findByRole('button', {name: 'Save changes'})
+      .as('save')
+      .should('be.disabled')
+    const newDescription = 'This text has just been updated!'
+    cy.get('@description').clear().type(newDescription)
+    cy.get('@save').should('be.enabled').click()
+    cy.navTo('Regions')
+    cy.findByText(regionName).click()
+    cy.navComplete()
+    cy.navTo('Region Settings') // will go to bundle page otherwise
+    cy.findByLabelText(/Description/).should('have.value', newDescription)
     // Delete region
     cy.findByText(/Delete this region/).click()
     cy.findByText(/Confirm: Delete this region/).click()

@@ -1,4 +1,4 @@
-import {Alert, AlertIcon, Box, Heading, Stack} from '@chakra-ui/core'
+import {Alert, AlertIcon, Box, Heading, PseudoBox, Stack} from '@chakra-ui/core'
 import {faServer} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import ms from 'ms'
@@ -11,7 +11,7 @@ import {
   load as loadAllAnalyses,
   loadActiveRegionalJobs
 } from 'lib/actions/analysis/regional'
-import {loadRegion} from 'lib/actions/region'
+import {load as loadRegion} from 'lib/actions/region'
 import Icon from 'lib/components/icon'
 import InnerDock from 'lib/components/inner-dock'
 import Regional from 'lib/components/analysis/regional'
@@ -58,51 +58,53 @@ const RegionalPage = withInitialFetch(
 
     return (
       <InnerDock>
-        <Stack p={4} spacing={4}>
-          <Heading size='md'>
-            <Icon icon={faServer} /> Regional Analyses
-          </Heading>
+        {input.value && activeAnalysis ? (
+          <Regional
+            job={activeJob}
+            key={activeAnalysis._id}
+            opportunityDatasets={p.opportunityDatasets}
+            regionalAnalyses={allAnalyses}
+            setMapChildren={p.setMapChildren}
+          />
+        ) : (
+          <Stack spacing={4} py={4}>
+            <Heading size='md' px={4}>
+              <Icon icon={faServer} /> Regional Analyses
+            </Heading>
 
-          {allAnalyses.length === 0 && (
-            <Alert status='warning'>
-              <AlertIcon /> You have no running or completed regional analysis
-              jobs! To create one, go to the single point analysis page.
-            </Alert>
-          )}
-
-          <Box>
-            <Select
-              isClearable
-              key={`analysis-${input.value}`} // Dont show deleted analyses as selected
-              onChange={(v) => input.onChange(get(v, '_id'))}
-              getOptionLabel={(a) => a.name}
-              getOptionValue={(a) => a._id}
-              options={allAnalyses}
-              placeholder='View a regional analysis...'
-              value={allAnalyses.find((a) => a._id === input.value)}
-            />
-          </Box>
-
-          {input.value && activeAnalysis ? (
-            <Stack spacing={4}>
-              {activeJob && <RunningJob job={activeJob} />}
-              <Box>
-                <Regional
-                  analysis={activeAnalysis}
-                  isComplete={!activeJob}
-                  key={activeAnalysis._id}
-                  opportunityDatasets={p.opportunityDatasets}
-                  regionalAnalyses={allAnalyses}
-                  setMapChildren={p.setMapChildren}
-                />
-              </Box>
+            {allAnalyses.length === 0 && (
+              <Alert status='warning'>
+                <AlertIcon /> You have no running or completed regional analysis
+                jobs! To create one, go to the single point analysis page.
+              </Alert>
+            )}
+            <Box px={4}>
+              <Select
+                isClearable
+                key={`analysis-${input.value}`} // Dont show deleted analyses as selected
+                onChange={(v) => input.onChange(get(v, '_id'))}
+                getOptionLabel={(a) => a.name}
+                getOptionValue={(a) => a._id}
+                options={allAnalyses}
+                placeholder='View a regional analysis...'
+                value={allAnalyses.find((a) => a._id === input.value)}
+              />
+            </Box>
+            <Stack spacing={0}>
+              {jobsWithAnalysis.map((job) => (
+                <PseudoBox
+                  borderBottom='1px solid #e2e8f0'
+                  _first={{
+                    borderTop: '1px solid #e2e8f0'
+                  }}
+                  key={job.jobId}
+                >
+                  <RunningJob job={job} />
+                </PseudoBox>
+              ))}
             </Stack>
-          ) : (
-            jobsWithAnalysis.map((job) => (
-              <RunningJob job={job} key={job.jobId} />
-            ))
-          )}
-        </Stack>
+          </Stack>
+        )}
       </InnerDock>
     )
   },
@@ -111,7 +113,7 @@ const RegionalPage = withInitialFetch(
       aggregationAreas,
       regionalAnalyses,
       opportunityDatasets,
-      region
+      regionProjectsBundles
     ] = await Promise.all([
       dispatch(loadAggregationAreas(query.regionId)),
       dispatch(loadAllAnalyses(query.regionId)),
@@ -124,7 +126,7 @@ const RegionalPage = withInitialFetch(
       aggregationAreas,
       analysis: regionalAnalyses.find((a) => a._id === query.analysisId),
       opportunityDatasets,
-      region,
+      region: regionProjectsBundles.region,
       regionalAnalyses
     }
   }

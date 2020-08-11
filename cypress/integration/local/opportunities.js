@@ -1,5 +1,8 @@
 import {generateName} from '../../support'
 
+// How long should it take to create an OD
+const timeout = 60000
+
 describe('Opportunity Datasets', () => {
   before(() => {
     cy.setup('region')
@@ -11,7 +14,7 @@ describe('Opportunity Datasets', () => {
     cy.get('div.leaflet-container').as('map')
   })
 
-  context('can be imported', () => {
+  describe('can be imported', () => {
     it('from CSV', function () {
       let opportunity = this.opportunities.csv
       let oppName = generateName('opportunities', opportunity.name)
@@ -28,9 +31,10 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -41,9 +45,12 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`${oppName}: ${opportunity.numericFields[0]} {enter}`)
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName}: ${opportunity.numericFields[0]} {enter}`,
+        {
+          force: true
+        }
+      )
       // look at the map
       //cy.waitForMapToLoad()
       //cy.get('@map').matchImageSnapshot('csv-' + opportunity.name)
@@ -67,9 +74,10 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 30000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -80,9 +88,12 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`${oppName}: ${opportunity.numericFields[0]} {enter}`)
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName}: ${opportunity.numericFields[0]} {enter}`,
+        {
+          force: true
+        }
+      )
       cy.contains(/Delete entire dataset/i).click()
     })
 
@@ -100,9 +111,11 @@ describe('Opportunity Datasets', () => {
         .contains(/Upload/)
         .should('not.be.disabled')
         .click()
+      cy.navComplete()
+
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 10000})
+      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
         .parent()
         .parent()
         .as('notice')
@@ -111,23 +124,27 @@ describe('Opportunity Datasets', () => {
       // close the message
       cy.get('@notice').findByRole('button', /x/).click()
       // select in the dropdown
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`${oppName} {enter}`)
+      cy.findByLabelText(/or select an existing one/).type(
+        `${oppName} {enter}`,
+        {force: true}
+      )
       cy.contains(/Delete entire dataset/i).click()
     })
+
+    // doesn't work in offline mode
+    it('from LODES importer')
   })
 
-  context('can be downloaded', () => {
+  describe('can be downloaded', () => {
     before(() => {
       cy.setup('opportunities')
     })
     it('as .grid', function () {
       let opportunity = this.opportunities.grid
       // TODO should get the data via click, not hardcoded API url
-      cy.findByText(/Select\.\.\./)
-        .click()
-        .type(`default{enter}`)
+      cy.findByLabelText(/or select an existing one/).type(`default{enter}`, {
+        force: true
+      })
       cy.contains(/Download as \.grid/)
       cy.location('href')
         .should('match', /opportunityDatasetId=\w{24}$/)
@@ -147,7 +164,7 @@ describe('Opportunity Datasets', () => {
         })
     })
 
-    it('as TIFF') // eslint-disable-line jest/no-disabled-tests
+    it('as TIFF') // produces an error
   })
 
   after(() => {

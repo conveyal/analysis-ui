@@ -1,14 +1,22 @@
+.. _regional_analysis:
 # Regional analysis
 
-The :ref:`single_point_analysis` interface also allows creating a *regional analysis*, which involves repeating an accessibility calculation for every location in a regular grid (See :ref:`spatial_grid`).
+The :ref:`single_point_analysis` interface also allows creating a *regional analysis*, or *multi-point analysis* which involves repeating an accessibility calculation for every location in a regular grid (See :ref:`spatial_grid`).
 
 ## Starting a regional analysis
 
 To start a regional analysis, first set the appropriate parameters using the controls for a :ref:`single_point_analysis`, and confirm that the :term:`isochrones<isochrone>` and accessibility plots are as expected.
 
-You can also choose geographic bounds for your regional analysis in the Advanced settings. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, make sure they have the same bounds and routing engine version.
+You can also choose custom geographic bounds for your regional analysis. By default, the entire region is analyzed, but for efficiency it is also possible to analyze a smaller area. You can set the bounds of the analysis by dragging the pins on the map, or by selecting an existing regional analysis and using the same bounds. If you plan to compare two regional analyses, make sure they have the same bounds and routing engine version. The exact version and bounds used for previous regional analyses can be selected directly in their respective dropdown menus. 
 
-When you have configured all of these options, click <span class="btn btn-success"><i class="fa fa-plus"></i> New regional analysis</span> at the top of the panel and enter a name. Note that this button is disabled unless isochrones are displayed; checking single-origin isochrone results is a verification step that helps avoid heavy computation for analyses with invalid settings.
+When you have configured all of these options, the green **Regional analysis** <i class="fa fa-plus"></i> button in your settings menu will be enabled. Clicking this will prompt you for a name for the analysis and begin processing. 
+
+<figure>
+  <img src="../img/ready-for-regional-analysis.png" />
+    <figcaption>With all settings properly configured, we are ready to begin a regional analysis.</figcaption>
+</figure>
+
+Note that this button is disabled unless isochrones are displayed; checking single-origin isochrone results is a verification step that helps avoid heavy computation for analyses with invalid settings.
 
 After a few seconds, you will see your regional analysis appear in the list with a progress bar. Since Conveyal Analysis is computing accessibility from every origin in the region, it can take a [few minutes](../learn-more/faq.html#how-long-should-each-regional-analysis-take) for each regional analysis to complete.
 
@@ -41,6 +49,11 @@ Using the download button, you can save regional analysis results in a raster fo
 ## Comparing regional analyses
 
 You can also compare two regional analyses from different projects in the same region. The map will show the differences in accessibility between the two analyses, with blue areas showing increased accessibility, and red areas showing decreased accessibility, relative to the comparison analysis. Again, you can download raw results for the two analyses being compared for further styling and analysis in GIS.
+
+<figure>
+  <img src="../img/regional-comparison.png" />
+    <figcaption>Map showing comparison of two regional analyses in Toronto</figcaption>
+</figure>
 
 ## Measuring aggregate accessibility
 

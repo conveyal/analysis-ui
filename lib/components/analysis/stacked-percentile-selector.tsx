@@ -1,6 +1,7 @@
 import {Box, Stack, Progress, StackProps} from '@chakra-ui/core'
 import {color} from 'd3-color'
 import {format} from 'd3-format'
+import get from 'lodash/get'
 import {memo} from 'react'
 import {useSelector} from 'react-redux'
 
@@ -22,6 +23,9 @@ import StackedPercentile, {
 
 const GRAPH_HEIGHT = 225
 const GRAPH_WIDTH = 600
+
+const PRIMARY_ACCESS_LABEL = 'Opportunities within isochrone'
+const COMPARISON_ACCESS_LABEL = 'Opportunities within comparison isochrone'
 
 const commaFormat = format(',d')
 
@@ -77,7 +81,12 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             size='md'
             value={((accessibility || 1) / maxAccessibility) * 100}
           />
-          <Box fontWeight='500' flex='1' textAlign='left'>
+          <Box
+            aria-label={PRIMARY_ACCESS_LABEL}
+            fontWeight='500'
+            flex='1'
+            textAlign='left'
+          >
             {commaFormat(accessibility)}
           </Box>
         </Stack>
@@ -90,14 +99,19 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
               size='md'
               value={((comparisonAccessibility || 1) / maxAccessibility) * 100}
             />
-            <Box fontWeight='500' flex='1' textAlign='left'>
+            <Box
+              aria-label={COMPARISON_ACCESS_LABEL}
+              fontWeight='500'
+              flex='1'
+              textAlign='left'
+            >
               {commaFormat(comparisonAccessibility)}
             </Box>
           </Stack>
         )}
       </Stack>
 
-      {percentileCurves &&
+      {get(percentileCurves, 'length') > 0 &&
         (comparisonPercentileCurves == null ? (
           <StackedPercentile
             cutoff={isochroneCutoff}

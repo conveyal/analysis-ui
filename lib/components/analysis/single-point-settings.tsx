@@ -24,7 +24,7 @@ import {
   setCopyRequestSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
-import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
+import useOnMount from 'lib/hooks/use-on-mount'
 import message from 'lib/message'
 import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selectors'
 import selectCurrentBundle from 'lib/selectors/current-bundle'
@@ -45,6 +45,7 @@ import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
 import ModeSelector from './mode-selector'
+import CreateRegional from './create-regional'
 
 const SPACING_XS = 2
 const SPACING = 5
@@ -124,17 +125,13 @@ export default function Settings({
   )
 
   // On initial load, the query string may be out of sync with the requestsSettings.projectId
-  useEffect(() => {
+  useOnMount(() => {
     const projectId = get(currentProject, '_id')
-    const settingsId = get(requestsSettings, '[0].projectId')
-    if (
-      projectId !== settingsId &&
-      projectId != null &&
-      projectId !== 'undefined'
-    ) {
+    if (projectId != null && projectId !== 'undefined') {
+      dispatch(setSearchParameter({projectId}))
       setPrimaryPR({projectId})
     }
-  }, []) // eslint-disable-line
+  })
 
   // Set the analysis bounds to be the region bounds if bounds do not exist
   useEffect(() => {
@@ -189,63 +186,71 @@ export default function Settings({
 
   return (
     <>
-      <RequestHeading
-        borderTop='1px solid #E2E8F0'
-        hasResults={resultsSettings.length > 0}
-        opportunityDataset={opportunityDataset}
-        profileRequest={requestsSettings[0]}
-        project={currentProject}
-        regionalAnalyses={regionalAnalyses}
-        scenario={variantIndex}
-      />
-      <RequestSettings
+      <Box
         borderBottom='1px solid'
         borderBottomColor='blue.100'
-        bundle={currentBundle}
-        isDisabled={disableInputs}
-        isFetchingIsochrone={isFetchingIsochrone}
-        profileRequest={requestsSettings[0]}
-        project={currentProject}
-        projects={projects}
-        regionBounds={region.bounds}
-        regionalAnalyses={regionalAnalyses}
-        scenario={variantIndex}
-        scenarioOptions={scenarioOptions}
-        setProfileRequest={setPrimaryPR}
-        setProject={_setCurrentProject}
-        setScenario={_setCurrentVariant}
-      />
+        borderTop='1px solid #E2E8F0'
+        id='PrimaryAnalysisSettings'
+      >
+        <RequestHeading
+          hasResults={resultsSettings.length > 0}
+          opportunityDataset={opportunityDataset}
+          profileRequest={requestsSettings[0]}
+          project={currentProject}
+          regionalAnalyses={regionalAnalyses}
+          scenario={variantIndex}
+        />
+        <RequestSettings
+          bundle={currentBundle}
+          isDisabled={disableInputs}
+          isFetchingIsochrone={isFetchingIsochrone}
+          profileRequest={requestsSettings[0]}
+          project={currentProject}
+          projects={projects}
+          regionBounds={region.bounds}
+          regionalAnalyses={regionalAnalyses}
+          scenario={variantIndex}
+          scenarioOptions={scenarioOptions}
+          setProfileRequest={setPrimaryPR}
+          setProject={_setCurrentProject}
+          setScenario={_setCurrentVariant}
+        />
+      </Box>
 
-      <RequestHeading
-        color='red'
-        isComparison
-        hasResults={resultsSettings.length > 1}
-        opportunityDataset={opportunityDataset}
-        profileRequest={requestsSettings[1]}
-        project={comparisonProject}
-        regionalAnalyses={regionalAnalyses}
-        scenario={comparisonVariant}
-      />
-      <RequestSettings
+      <Box
         borderBottom='1px solid'
         borderBottomColor='red.100'
-        bundle={comparisonBundle}
-        color='red'
-        copyRequestSettings={copyRequestSettings}
-        isComparison
-        isDisabled={disableInputs}
-        isFetchingIsochrone={isFetchingIsochrone}
-        profileRequest={requestsSettings[1]}
-        project={comparisonProject}
-        projects={projects}
-        regionBounds={region.bounds}
-        regionalAnalyses={regionalAnalyses}
-        scenario={comparisonVariant}
-        scenarioOptions={comparisonScenarioOptions}
-        setProfileRequest={setComparisonPR}
-        setProject={_setComparisonProject}
-        setScenario={_setComparisonVariant}
-      />
+        id='ComparisonAnalysisSettings'
+      >
+        <RequestHeading
+          color='red'
+          isComparison
+          hasResults={resultsSettings.length > 1}
+          opportunityDataset={opportunityDataset}
+          profileRequest={requestsSettings[1]}
+          project={comparisonProject}
+          regionalAnalyses={regionalAnalyses}
+          scenario={comparisonVariant}
+        />
+        <RequestSettings
+          bundle={comparisonBundle}
+          color='red'
+          copyRequestSettings={copyRequestSettings}
+          isComparison
+          isDisabled={disableInputs}
+          isFetchingIsochrone={isFetchingIsochrone}
+          profileRequest={requestsSettings[1]}
+          project={comparisonProject}
+          projects={projects}
+          regionBounds={region.bounds}
+          regionalAnalyses={regionalAnalyses}
+          scenario={comparisonVariant}
+          scenarioOptions={comparisonScenarioOptions}
+          setProfileRequest={setComparisonPR}
+          setProject={_setComparisonProject}
+          setScenario={_setComparisonVariant}
+        />
+      </Box>
     </>
   )
 }
@@ -308,34 +313,9 @@ function RequestHeading({
   scenario,
   ...p
 }) {
-  const dispatch = useDispatch()
   const settingsHaveChanged = useSelector(selectProfileRequestHasChanged)
   const scenarioName =
     get(project, 'variants', [])[scenario] || message('variant.baseline')
-
-  function onCreateRegionalAnalysis(e) {
-    e.stopPropagation()
-
-    if (project) {
-      const name = window.prompt(
-        'Enter a name and click ok to begin a regional analysis job for this project and settings:',
-        `Analysis ${regionalAnalyses.length + 1}: ${
-          project.name
-        } ${scenarioName}`
-      )
-      if (name && name.length > 0) {
-        dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            name,
-            opportunityDatasetId: opportunityDataset._id,
-            projectId: project._id,
-            variantIndex: scenario
-          })
-        )
-      }
-    }
-  }
 
   const projectDownloadName = cleanProjectScenarioName(project, scenario)
 
@@ -393,14 +373,14 @@ function RequestHeading({
           requestsSettings={profileRequest}
           variantIndex={scenario}
         />
-        <Button
-          isDisabled={!hasResults || settingsHaveChanged || !opportunityDataset}
-          onClick={onCreateRegionalAnalysis}
-          rightIcon='small-add'
-          variantColor='green'
-        >
-          Multi-point
-        </Button>
+        <Box>
+          <CreateRegional
+            isDisabled={!hasResults || settingsHaveChanged}
+            profileRequest={profileRequest}
+            projectId={get(project, '_id')}
+            variantIndex={scenario}
+          />
+        </Box>
       </Stack>
     </Flex>
   )

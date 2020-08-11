@@ -6,15 +6,17 @@ import React, {ComponentType, ErrorInfo} from 'react'
 import ReactGA from 'react-ga'
 
 import ChakraTheme from '../lib/chakra'
-import {ErrorModal} from '../lib/components/error-modal'
+import ErrorModal from '../lib/components/error-modal'
 import LogRocket from '../lib/logrocket'
 
 import 'react-datetime/css/react-datetime.css'
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
 
-if (process.env.GA_TRACKING_ID) {
-  ReactGA.initialize(process.env.GA_TRACKING_ID)
+const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
+
+if (TRACKING_ID != null) {
+  ReactGA.initialize(TRACKING_ID)
   // Log all page views
   Router.events.on('routeChangeComplete', () => {
     ReactGA.pageview(Router.pathname)
@@ -39,7 +41,7 @@ export default class ConveyalAnalysis extends App {
   }
 
   componentDidMount() {
-    if (process.env.GA_TRACKING_ID) {
+    if (TRACKING_ID != null) {
       // Log initial page view
       ReactGA.pageview(Router.pathname)
     }
@@ -63,6 +65,7 @@ export default class ConveyalAnalysis extends App {
           <ErrorModal
             error={this.state.error}
             clear={() => this.setState({error: null})}
+            title='Application error'
           />
         ) : (
           <Layout>
@@ -78,7 +81,7 @@ export default class ConveyalAnalysis extends App {
  * Track UI performance. Learn more here: https://nextjs.org/docs/advanced-features/measuring-performance
  */
 export function reportWebVitals({id, name, label, value}) {
-  if (process.env.GA_TRACKING_ID) {
+  if (TRACKING_ID != null) {
     ReactGA.ga('send', 'event', {
       eventCategory:
         label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',

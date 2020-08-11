@@ -3,7 +3,6 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
-  Box,
   Flex,
   FormControl,
   FormLabel,
@@ -249,13 +248,7 @@ function Results({
         <StackedPercentileSelector disabled={isDisabled} stale={isStale} />
       </Skeleton>
 
-      <Stack align='center' isInline spacing={P.md}>
-        <Box fontWeight='500' whiteSpace='nowrap'>
-          Time cutoff
-        </Box>
-        <CutoffSlider isDisabled={isDisabledOrStale} />
-        <Box fontWeight='500'>minute(s)</Box>
-      </Stack>
+      <CutoffSlider isDisabled={isDisabledOrStale} />
 
       <Stack isInline spacing={P.md}>
         <FormControl flex='1' isDisabled={isDisabled}>
@@ -277,13 +270,13 @@ function Results({
 function ScenarioApplicationErrors({errors, ...p}) {
   /** Render any errors that may have occurred applying the project */
   return (
-    <Stack spacing={P.md} {...p}>
+    <Stack spacing={P.md} {...p} maxHeight='200px' overflowY='scroll'>
       {errors.map((err, idx) => (
         <Stack key={idx}>
           <Heading size='sm'>
             {message('analysis.errorsInModification', {id: err.modificationId})}
           </Heading>
-          <List styleType='disc'>
+          <List styleType='disc' spacing={2}>
             {err.messages.map((msg, idx) => (
               <ListItem key={`message-${idx}`}>{msg}</ListItem>
             ))}
