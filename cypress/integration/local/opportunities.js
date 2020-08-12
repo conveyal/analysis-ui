@@ -1,7 +1,9 @@
-import {generateName} from '../../support'
-
 // How long should it take to create an OD
 const timeout = 60000
+
+function generateName(type, name) {
+  return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
+}
 
 describe('Opportunity Datasets', () => {
   before(() => {
