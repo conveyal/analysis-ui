@@ -1,12 +1,16 @@
 import lonlat from '@conveyal/lonlat'
+import fpGet from 'lodash/fp/get'
 import {createSelector} from 'reselect'
+
+const getDestination = fpGet('analysis.destination')
+const getTravelTimeSurface = fpGet('analysis.travelTimeSurface')
 
 /**
  * Extract the distribution of travel times to a destination
  */
 export default createSelector(
-  (state) => state.analysis.destination,
-  (state) => state.analysis.travelTimeSurface,
+  getDestination,
+  getTravelTimeSurface,
   createDestinationTravelTimeDistribution
 )
 

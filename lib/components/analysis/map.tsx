@@ -1,25 +1,33 @@
 import lonlat from '@conveyal/lonlat'
-import React from 'react'
+import {useCallback, useEffect, useState} from 'react'
+import {useDispatch} from 'react-redux'
 import {Marker, Tooltip, useLeaflet} from 'react-leaflet'
 
+import {setDestination} from 'lib/actions/analysis'
 import useOnMount from 'lib/hooks/use-on-mount'
 
 /**
  * Handle map clicks and moving the marker.
  */
-export default function AnalysisMap(p) {
+export default function AnalysisMap({
+  isDisabled,
+  markerPosition,
+  markerTooltip,
+  setOrigin
+}) {
   // Leaflet bug that causes a map click when dragging a marker fast:
   // https://github.com/Leaflet/Leaflet/issues/4457#issuecomment-351682174
-  const [avoidClick, setAvoidClick] = React.useState(false)
+  const [avoidClick, setAvoidClick] = useState(false)
+  const dispatch = useDispatch()
   const leaflet = useLeaflet()
-  const {markerPosition, setDestination} = p
-  React.useEffect(() => {
+
+  useEffect(() => {
     function onClick(e) {
-      if (!avoidClick) setDestination(lonlat(e.latlng))
+      if (!avoidClick) dispatch(setDestination(lonlat(e.latlng)))
     }
     leaflet.map.on('click', onClick)
     return () => leaflet.map.off('click', onClick)
-  }, [avoidClick, leaflet, setDestination])
+  }, [avoidClick, dispatch, leaflet])
 
   // Set the center point on initial load
   useOnMount(() => {
@@ -31,27 +39,30 @@ export default function AnalysisMap(p) {
   })
 
   /**
-   * Set hte origin and fetch if ready.
+   * Set the origin and fetch if ready.
    */
-  function dragMarker(e) {
-    setAvoidClick(true)
-    setTimeout(() => {
-      setAvoidClick(false)
-    }, 50)
+  const dragMarker = useCallback(
+    (e) => {
+      setAvoidClick(true)
+      setTimeout(() => {
+        setAvoidClick(false)
+      }, 50)
 
-    p.setOrigin(lonlat(e.target.getLatLng()))
-  }
+      setOrigin(lonlat(e.target.getLatLng()))
+    },
+    [setAvoidClick, setOrigin]
+  )
 
   return (
     <Marker
-      draggable={!p.disableMarker}
-      opacity={p.disableMarker ? 0.5 : 1.0}
+      draggable={!isDisabled}
+      opacity={isDisabled ? 0.5 : 1.0}
       onDragEnd={dragMarker}
       position={markerPosition}
     >
-      {p.markerTooltip && (
+      {markerTooltip && (
         <Tooltip permanent>
-          <span>{p.markerTooltip}</span>
+          <span>{markerTooltip}</span>
         </Tooltip>
       )}
     </Marker>
