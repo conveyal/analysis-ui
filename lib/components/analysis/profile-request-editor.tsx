@@ -100,9 +100,29 @@ export default function ProfileRequestEditor({
   setProfileRequest,
   ...p
 }) {
-  const setFromTime = (fromTime) =>
-    setProfileRequest({fromTime: parseInt(fromTime)})
-  const setToTime = (toTime) => setProfileRequest({toTime: parseInt(toTime)})
+  // Keep times in order when setting.
+  const setFromTime = useCallback(
+    (timeString) => {
+      const fromTime = parseInt(timeString)
+      if (fromTime >= profileRequest.toTime) {
+        setProfileRequest({fromTime, toTime: fromTime + 60 * 60})
+      } else {
+        setProfileRequest({fromTime})
+      }
+    },
+    [profileRequest, setProfileRequest]
+  )
+  const setToTime = useCallback(
+    (timeString) => {
+      const toTime = parseInt(timeString)
+      if (profileRequest.fromTime >= toTime) {
+        setProfileRequest({fromTime: toTime - 60 * 60, toTime})
+      } else {
+        setProfileRequest({toTime})
+      }
+    },
+    [profileRequest, setProfileRequest]
+  )
 
   const [dateIsValid, setDateIsValid] = useState(true)
   function setDate(date) {
