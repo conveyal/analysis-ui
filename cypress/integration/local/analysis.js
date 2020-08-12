@@ -329,17 +329,20 @@ context('Analysis', () => {
       //cy.findByLabelText(/Aggregate results to/i)
       //  .type(this.region.aggregationAreas.sampleName+'{enter}')
 
+      // TODO run a new regional analysis for comparison
+
       // clean up
       cy.findByRole('button', {name: 'Delete'}).click()
       cy.findByRole('button', {name: /Confirm/}).click()
     })
 
+    // TODO this is partly tested above but should be refactored into its own
+    // test here.
     it('compares two regional analyses')
 
-    // TODO this is tested above, but should be separated out into it's own
-    // test here
-    it('uploads an aggregation area')
-
-    it('aggregates results to subregion')
+    // TODO this is partly tested above, but should be separated out into its
+    // own test here. Aggregation is blocked by a dissociated label
+    // (see note above)
+    it('uploads an aggregation area and aggregates results')
   })
 })
