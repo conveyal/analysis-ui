@@ -293,10 +293,7 @@ context('Analysis', () => {
         .parent()
         .as('legend')
       cy.get('@legend').should('not.contain', 'Loading grids')
-      // TODO this snapshot is not capturing the full element
-      //cy.get('@legend').wait(300).matchImageSnapshot('regional-single-legend')
-      // TODO dissociated label
-      //cy.findByLabelText(/Aggregate results to/i)
+      cy.get('@legend').matchImageSnapshot('regional-single-legend')
       cy.findByText(/upload new aggregation area/i).click()
       cy.findByRole('button', {name: 'Upload'})
         .as('upload')
