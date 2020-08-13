@@ -1,11 +1,4 @@
-import {
-  Box,
-  Divider,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack
-} from '@chakra-ui/core'
+import {Divider, FormControl, FormLabel, Input, Stack} from '@chakra-ui/core'
 import {faCalendar} from '@fortawesome/free-solid-svg-icons'
 import {useCallback} from 'react'
 
@@ -34,7 +27,7 @@ export default function TimetableComponent({
   setMapState,
   timetable,
   update
-}) {
+}): JSX.Element {
   const _changeName = useCallback((name) => update({name}), [update])
   const nameInput = useInput({
     onChange: _changeName,

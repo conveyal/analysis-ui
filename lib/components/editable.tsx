@@ -8,14 +8,14 @@ import IconButton from './icon-button'
 
 const defaultEditLabel = 'Click to edit'
 
-const alwaysValid = (s) => true
+const alwaysValid = () => true
 
 export default function Editable({
-  isValid = alwaysValid,
+  isValid,
   onChange,
   placeholder = 'Add value',
   value
-}) {
+}): JSX.Element {
   const {isOpen, onClose, onOpen} = useDisclosure()
 
   if (isOpen) {
@@ -58,7 +58,7 @@ export default function Editable({
 
 function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
   const input = useInput({
-    test: isValid,
+    test: isValid || alwaysValid,
     value
   })
   const inputRef = input.ref
@@ -79,7 +79,7 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
     }
     window.addEventListener('keydown', listener)
     return () => window.removeEventListener('keydown', listener)
-  }, [save]) // Run once on mount / unmount
+  }, [onClose, save]) // Run once on mount / unmount
 
   // Select all the text by default
   useEffect(() => {
