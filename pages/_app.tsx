@@ -1,3 +1,4 @@
+import fpHas from 'lodash/fp/has'
 import {NextComponentType} from 'next'
 import App from 'next/app'
 import Head from 'next/head'
@@ -31,7 +32,8 @@ type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
 }
 
-const hasOwnProperty = Object.prototype.hasOwnProperty
+// Check if a component has a Layout
+const hasLayout = fpHas('Layout')
 
 export default class ConveyalAnalysis extends App {
   state = {
@@ -55,7 +57,7 @@ export default class ConveyalAnalysis extends App {
 
   render(): JSX.Element {
     const {Component, pageProps} = this.props
-    const Layout = hasOwnProperty('Layout')
+    const Layout = hasLayout(Component)
       ? (Component as ComponentWithLayout).Layout
       : EmptyLayout
     return (
