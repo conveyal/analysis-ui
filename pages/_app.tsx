@@ -31,29 +31,31 @@ type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
 }
 
+const hasOwnProperty = Object.prototype.hasOwnProperty
+
 export default class ConveyalAnalysis extends App {
   state = {
     error: null
   }
 
-  componentDidCatch(err: Error, info: ErrorInfo) {
+  componentDidCatch(err: Error, info: ErrorInfo): void {
     LogRocket.captureException(err, {extras: info})
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (TRACKING_ID != null) {
       // Log initial page view
       ReactGA.pageview(Router.pathname)
     }
   }
 
-  static getDerivedStateFromError(error: Error) {
+  static getDerivedStateFromError(error: Error): {error: Error} {
     return {error}
   }
 
-  render() {
+  render(): JSX.Element {
     const {Component, pageProps} = this.props
-    const Layout = Component.hasOwnProperty('Layout')
+    const Layout = hasOwnProperty('Layout')
       ? (Component as ComponentWithLayout).Layout
       : EmptyLayout
     return (
