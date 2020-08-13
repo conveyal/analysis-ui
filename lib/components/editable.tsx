@@ -8,10 +8,10 @@ import IconButton from './icon-button'
 
 const defaultEditLabel = 'Click to edit'
 
-const alwaysValid = () => true
+const alwaysValid = (_?: any) => true
 
 export default function Editable({
-  isValid,
+  isValid = alwaysValid,
   onChange,
   placeholder = 'Add value',
   value
@@ -58,7 +58,7 @@ export default function Editable({
 
 function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
   const input = useInput({
-    test: isValid || alwaysValid,
+    test: isValid,
     value
   })
   const inputRef = input.ref
