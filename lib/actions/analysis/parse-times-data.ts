@@ -73,6 +73,7 @@ export function parseTimesData(ab) {
     data,
     errors: [],
     warnings: metadata.scenarioApplicationWarnings || [],
+    contains,
     get(x, y, z) {
       if (contains(x, y, z)) return data[z * gridSize + y * width + x]
       return Infinity

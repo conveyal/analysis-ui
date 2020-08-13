@@ -1,15 +1,13 @@
-import {Box, Heading, Stack} from '@chakra-ui/core'
+import {Alert, AlertIcon, Box, Heading, Stack} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
-import {scaleLinear} from 'd3-scale'
 import fpGet from 'lodash/fp/get'
-import {useDispatch, useSelector} from 'react-redux'
-import {Marker} from 'react-leaflet'
+import {scaleLinear} from 'd3-scale'
+import {useState, useEffect} from 'react'
+import {useSelector} from 'react-redux'
+import {useLeaflet} from 'react-leaflet'
 import MapControl from 'react-leaflet-control'
 
-import {setDestination} from 'lib/actions/analysis'
 import colors from 'lib/constants/colors'
-import selectDTTD from 'lib/selectors/destination-travel-time-distribution'
-import selectDTTDComparison from 'lib/selectors/comparison-destination-travel-time-distribution'
 
 import Boxplot from '../analysis/boxplot'
 import MinuteTicks from '../analysis/minute-ticks'
@@ -22,34 +20,86 @@ const SCALE = scaleLinear().domain([0, MAX_TRIP_DURATION]).range([0, WIDTH])
 const FONT_SIZE = 10
 const BOXPLOT_HEIGHT = HEIGHT * (1 - LEGEND_HEIGHT)
 
-const selectDestination = fpGet('analysis.destination')
+function createDistribution(destination, travelTimeSurface) {
+  const pixel = lonlat.toPixel(destination, travelTimeSurface.zoom)
+  // floor them to get top left of cell the point is a part of (TODO correct?)
+  const x = Math.floor(pixel.x - travelTimeSurface.west)
+  const y = Math.floor(pixel.y - travelTimeSurface.north)
+
+  if (
+    travelTimeSurface.contains(x, y, 0) &&
+    travelTimeSurface.contains(x, y, 1) &&
+    travelTimeSurface.contains(x, y, 2) &&
+    travelTimeSurface.contains(x, y, 3) &&
+    travelTimeSurface.contains(x, y, 4)
+  ) {
+    return [
+      travelTimeSurface.get(x, y, 0),
+      travelTimeSurface.get(x, y, 1),
+      travelTimeSurface.get(x, y, 2),
+      travelTimeSurface.get(x, y, 3),
+      travelTimeSurface.get(x, y, 4)
+    ]
+  } else {
+    return null
+  }
+}
+
+// Select surfaces
+const selectSurface = fpGet('analysis.travelTimeSurface')
+const selectComparisonSurface = fpGet('analysis.comparisonTravelTimeSurface')
 
 /**
  * Show a popup with the travel time distribution from the origin to a location
  * @author mattwigway
  */
 export default function DestinationTravelTimeDistribution() {
-  const dispatch = useDispatch()
-  const destination = useSelector(selectDestination)
-  const distribution = useSelector(selectDTTD)
-  const comparisonDistribution = useSelector(selectDTTDComparison)
+  const [destination, setDestination] = useState()
+  const [distribution, setDistribution] = useState<void | number[]>()
+  const [comparisonDistribution, setComparisonDistribution] = useState<
+    void | number[]
+  >()
+  const surface = useSelector(selectSurface)
+  const comparisonSurface = useSelector(selectComparisonSurface)
+  const leaflet = useLeaflet()
 
-  if (!destination) return null
+  // Calculate the distributions when the destination or surface changes
+  useEffect(() => {
+    if (destination && surface) {
+      setDistribution(createDistribution(destination, surface))
+    } else {
+      setDistribution(null)
+    }
+  }, [destination, surface])
+  useEffect(() => {
+    if (destination && comparisonSurface) {
+      setComparisonDistribution(
+        createDistribution(destination, comparisonSurface)
+      )
+    } else {
+      setComparisonDistribution(null)
+    }
+  }, [destination, comparisonSurface])
+
+  // Set the destination on mouse move
+  useEffect(() => {
+    function onMove(e) {
+      setDestination(lonlat.fromLeaflet(e.latlng))
+    }
+    leaflet.map.on('mousemove', onMove)
+    return () => leaflet.map.off('mousemove', onMove)
+  }, [leaflet])
 
   const fullHeight = comparisonDistribution ? HEIGHT * 2 : HEIGHT
 
   return (
-    <>
-      <Marker
-        draggable
-        position={lonlat.toLeaflet(destination)}
-        onDrag={(e) => dispatch(setDestination(lonlat(e.target.getLatLng())))}
-        ondblclick={() => dispatch(setDestination())}
-      />
-      <MapControl position='bottomleft'>
-        <Stack backgroundColor='white' boxShadow='lg' rounded='md' p={3}>
-          <Heading size='sm'>Travel time distribution (minutes)</Heading>
-          <Box>
+    <MapControl position='bottomleft'>
+      <Stack backgroundColor='white' boxShadow='lg' rounded='md' pt={3}>
+        <Heading size='sm' px={3}>
+          Travel time distribution (minutes)
+        </Heading>
+        {distribution ? (
+          <Box p={3}>
             <figure>
               <svg
                 width={WIDTH}
@@ -88,8 +138,12 @@ export default function DestinationTravelTimeDistribution() {
               </svg>
             </figure>
           </Box>
-        </Stack>
-      </MapControl>
-    </>
+        ) : (
+          <Alert status='info'>
+            <AlertIcon /> Mouse over the isochrone to calculate.
+          </Alert>
+        )}
+      </Stack>
+    </MapControl>
   )
 }
