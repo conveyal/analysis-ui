@@ -284,17 +284,34 @@ context('Analysis', () => {
       cy.findByText(/View a regional analysis/)
         .click()
         .type(`${analysisName}{enter}`)
-      // now in regional results view
-      // TODO more semantic selector would be preferable
-      cy.get('button[aria-label*="Export to GIS"')
-      //.click() // TODO export gives an error when running locally
       // snapshot the legend
+      // TODO note that now that variable analysis name included, this may break
       cy.findByText(/Access to/i)
         .parent()
         .as('legend')
-      cy.get('@legend').should('not.contain', 'Loading grids')
-      cy.get('@legend').matchImageSnapshot('regional-single-legend')
+      cy.get('@legend')
+        .should('not.contain', 'Loading grids')
+        .matchImageSnapshot('regional-single-legend')
+      // compare to self with different time cutoff and check the legend again
+      cy.findByLabelText(/Compare to/).type(`${analysisName}{enter}`, {
+        force: true
+      })
+      // TODO make these select elements easier to identify
+      cy.findByText(/Compare to/)
+        .parent()
+        .parent()
+        .findByRole('option', {name: '45 minutes'})
+        .parent()
+        .select('60 minutes')
+      cy.get('@legend')
+        .should('not.contain', 'Loading grids')
+        .matchImageSnapshot('regional-comparison-legend')
+      // TODO more semantic selector would be preferable
+      // TODO export to GIS produces error locally
+      cy.get('button[aria-label*="Export to GIS"')
+      // test aggreation area upload
       cy.findByText(/upload new aggregation area/i).click()
+      //.click() // TODO export gives an error when running locally
       cy.findByRole('button', {name: 'Upload'})
         .as('upload')
         .should('be.disabled')
@@ -325,9 +342,6 @@ context('Analysis', () => {
       // TODO label dissociated from input
       //cy.findByLabelText(/Aggregate results to/i)
       //  .type(this.region.aggregationAreas.sampleName+'{enter}')
-
-      // TODO run a new regional analysis for comparison
-
       // clean up
       cy.findByRole('button', {name: 'Delete'}).click()
       cy.findByRole('button', {name: /Confirm/}).click()

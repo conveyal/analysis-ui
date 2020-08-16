@@ -4,7 +4,7 @@ import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
 
 addMatchImageSnapshotCommand({
   failureThresholdType: 'percent',
-  failureThreshold: 0.03 // allow up to a 3% diff
+  failureThreshold: 0.05 // allow up to a 5% image diff
 })
 
 // Persist the user cookie across sessions
