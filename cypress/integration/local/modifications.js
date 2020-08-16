@@ -253,7 +253,7 @@ describe('Modifications', () => {
         .should('not.be.checked')
       cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
       cy.findByRole('button', {name: /Add new timetable/i}).click()
-      cy.findByRole('button', {name: /Timetable 1/}).click()
+      cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
       cy.findByLabelText(/Times are exact/i).uncheck({force: true})
       cy.findByLabelText(/Phase at stop/i)
         .focus()
@@ -340,7 +340,7 @@ describe('Modifications', () => {
 
       this.region.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
-        cy.findByRole('button', {name: 'Timetable NaN'}).click()
+        cy.findByRole('button', {name: 'Timetable NaN'}).click({force: true})
         cy.findByLabelText(/Frequency/)
           .invoke('val')
           .then((val) => expect(val).to.eq('' + route.frequency))
@@ -377,7 +377,7 @@ describe('Modifications', () => {
       drawRouteGeometry(this.region.newRoute)
 
       cy.findByText(/Add new timetable/).click()
-      cy.findByText('Timetable 1').click()
+      cy.findByText('Timetable 1').click({force: true})
       // enter arbitrary settings to see if they get saved
       cy.findByLabelText('Name').clear().type('Weekday')
       cy.findByLabelText(/Mon/).check()
@@ -417,7 +417,7 @@ describe('Modifications', () => {
         .findByLabelText(/Timetable/)
         .select('Weekday')
       cy.findByText(/Copy into new timetable/i).click()
-      cy.contains(/copy of Weekday/i).click()
+      cy.contains(/copy of Weekday/i).click({force: true})
       // verify the settings from above
       cy.findByLabelText(/Mon/).should('be.checked')
       cy.findByLabelText(/Tue/).should('be.checked')
