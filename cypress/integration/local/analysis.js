@@ -291,6 +291,7 @@ context('Analysis', () => {
         .as('legend')
       cy.get('@legend')
         .should('not.contain', 'Loading grids')
+        .wait(400)
         .matchImageSnapshot('regional-single-legend')
       // compare to self with different time cutoff and check the legend again
       cy.findByLabelText(/Compare to/).type(`${analysisName}{enter}`, {
@@ -305,6 +306,7 @@ context('Analysis', () => {
         .select('60 minutes')
       cy.get('@legend')
         .should('not.contain', 'Loading grids')
+        .wait(400)
         .matchImageSnapshot('regional-comparison-legend')
       // TODO more semantic selector would be preferable
       // TODO export to GIS produces error locally
