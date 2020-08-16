@@ -93,7 +93,10 @@ function stash(key, val) {
 }
 
 function createNewAnalysis() {
-  return ''
+  // TODO this function is left here empty for now - only one regional analysis
+  // is ever created, so it seems best not to duplicate that code here without
+  // need. It probably should be done eventually though.
+  return assert(false).is.true
 }
 
 function createNewOpportunities() {

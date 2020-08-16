@@ -258,7 +258,7 @@ describe('Modifications', () => {
       cy.findByLabelText(/Phase at stop/i)
         .focus()
         .type(' {backspace}')
-      // drawing a route activates the follwoing elements
+      // drawing a route activates the following elements
       drawRouteGeometry(this.region.newRoute)
       // set dwell times, verifying that they increase the total travel time
       cy.findByText(/Travel time/i)
