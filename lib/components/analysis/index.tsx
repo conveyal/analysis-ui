@@ -151,7 +151,7 @@ export default function SinglePointAnalysis({
         setOrigin={_setOrigin}
       />
 
-      {displayedDataIsCurrent && <DTTD />}
+      <DTTD />
 
       <AnalysisTitle />
 

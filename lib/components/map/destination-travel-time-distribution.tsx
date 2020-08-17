@@ -10,7 +10,7 @@ import {
 import lonlat from '@conveyal/lonlat'
 import fpGet from 'lodash/fp/get'
 import {scaleLinear} from 'd3-scale'
-import {useState, useEffect, useReducer} from 'react'
+import {useState, useEffect, useReducer, useRef} from 'react'
 import {useSelector} from 'react-redux'
 import {CircleMarker, useLeaflet} from 'react-leaflet'
 import MapControl from 'react-leaflet-control'
@@ -64,7 +64,7 @@ const selectComparisonSurface = fpGet('analysis.comparisonTravelTimeSurface')
 function reducer(state, action) {
   switch (action.type) {
     case 'toggle lock':
-      return {...state, locked: !state.locked}
+      return {locked: !state.locked, latlng: action.payload}
     case 'move':
       if (state.locked) return state
       return {...state, latlng: action.payload}
@@ -84,6 +84,7 @@ const isValidTime = (m) => m >= 0 && m <= 120
  * @author mattwigway
  */
 export default function DestinationTravelTimeDistribution() {
+  const markerRef = useRef<CircleMarker>()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [distribution, setDistribution] = useState<void | number[]>()
   const [comparisonDistribution, setComparisonDistribution] = useState<
@@ -96,6 +97,13 @@ export default function DestinationTravelTimeDistribution() {
     useSelector(selectTravelTimePercentile)
   )
   const {latlng} = state
+
+  // Bring the marker to the front on each render.
+  useEffect(() => {
+    if (markerRef.current) {
+      markerRef.current.leafletElement.bringToFront()
+    }
+  })
 
   // Calculate the distributions when the destination or surface changes
   useEffect(() => {
@@ -135,8 +143,9 @@ export default function DestinationTravelTimeDistribution() {
         <CircleMarker
           center={latlng}
           color={state.locked ? '#333' : '#3182ce'}
-          onclick={() => dispatch({type: 'toggle lock'})}
+          onclick={(e) => dispatch({type: 'toggle lock', payload: e.latlng})}
           radius={5}
+          ref={markerRef}
         />
       )}
       <MapControl position='bottomleft'>
