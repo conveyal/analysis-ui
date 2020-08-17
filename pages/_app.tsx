@@ -4,16 +4,18 @@ import Head from 'next/head'
 import Router from 'next/router'
 import React, {ComponentType, ErrorInfo} from 'react'
 import ReactGA from 'react-ga'
+import {SWRConfig} from 'swr'
 
-import ChakraTheme from '../lib/chakra'
-import ErrorModal from '../lib/components/error-modal'
-import LogRocket from '../lib/logrocket'
+import ChakraTheme from 'lib/chakra'
+import ErrorModal from 'lib/components/error-modal'
+import graphqlFetcher from 'lib/graphql/fetcher'
+import LogRocket from 'lib/logrocket'
 
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
 
+// Initialize analytics if tracking ID is provided
 const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
-
 if (TRACKING_ID != null) {
   ReactGA.initialize(TRACKING_ID)
   // Log all page views
@@ -28,6 +30,11 @@ const EmptyLayout = ({children}) => <>{children}</>
 // Components that have a layout
 type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
+}
+
+// Create the default SWR fetcher
+const swrConfig = {
+  fetcher: graphqlFetcher
 }
 
 export default class ConveyalAnalysis extends App {
@@ -57,20 +64,22 @@ export default class ConveyalAnalysis extends App {
       : EmptyLayout
     return (
       <ChakraTheme>
-        <Head>
-          <title key='title'>Conveyal Analysis</title>
-        </Head>
-        {this.state.error ? (
-          <ErrorModal
-            error={this.state.error}
-            clear={() => this.setState({error: null})}
-            title='Application error'
-          />
-        ) : (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        )}
+        <SWRConfig value={swrConfig}>
+          <Head>
+            <title key='title'>Conveyal Analysis</title>
+          </Head>
+          {this.state.error ? (
+            <ErrorModal
+              error={this.state.error}
+              clear={() => this.setState({error: null})}
+              title='Application error'
+            />
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          )}
+        </SWRConfig>
       </ChakraTheme>
     )
   }

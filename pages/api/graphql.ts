@@ -25,7 +25,6 @@ const typeDefs = gql`
   }
   type Region {
     _id: ID
-    createdBy: String
     name: String
   }
   type Bookmark {
@@ -60,6 +59,7 @@ const apolloServer = new ApolloServer({
   typeDefs
 })
 
+// TODO wrap with auth0.requireAuthentication?
 export default apolloServer.createHandler({
   path: '/api/graphql'
 })
