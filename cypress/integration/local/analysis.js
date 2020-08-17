@@ -62,7 +62,7 @@ function setupAnalysis() {
     .type('baseline{enter}')
   cy.findByLabelText(/^Opportunity Dataset$/)
     .click({force: true})
-    .type(`{enter}`)
+    .type(`default{enter}`)
     .wait(100)
   cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   cy.fixture('regions/scratch.json').then((region) => {
