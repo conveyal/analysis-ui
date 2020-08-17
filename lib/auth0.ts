@@ -4,7 +4,7 @@ import ms from 'ms'
 const cookieLifetime = ms('30 days') / 1000
 const httpTimeout = ms('10s')
 const scope = 'openid profile id_token'
-const redirectUri = process.env.AUTH0_REDIRECT_URI
+const redirectUri = process.env.VERCEL_URL
 
 /**
  * Read the origin from the request to configure the redirect urls
