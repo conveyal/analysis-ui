@@ -1,10 +1,9 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 
-import initAuth0 from 'lib/auth0'
+import auth0 from 'lib/auth0'
 
 export default async function me(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const auth0 = initAuth0(req)
     await auth0.handleProfile(req, res)
   } catch (error) {
     console.error(error)
