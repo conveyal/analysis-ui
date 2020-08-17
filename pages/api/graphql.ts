@@ -4,7 +4,7 @@ import mongodb from 'mongodb'
 import auth0 from 'lib/auth0'
 import Regions from 'lib/data-sources/regions'
 
-const AUTH_DISABLED = process.env.NEXT_PUBLIC_AUTH_DISABLED // used client side also
+const AUTH_DISABLED = process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true' // used client side also
 const DEFAULT_USER = {accessGroup: 'local', email: 'local'}
 
 const defaultDB = process.env.MONGODB_DB || 'analysis'
