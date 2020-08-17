@@ -73,7 +73,7 @@ const testWalkSpeed = valueWithin(3, 15)
 const testWalkTime = modeLessThanMax(60)
 const testBikeSpeed = valueWithin(5, 20)
 const testBikeTime = modeLessThanMax(60)
-const testMonteCarlo = valueWithin(1, 500)
+const testMonteCarlo = valueWithin(1, 1200)
 const testMaxTransfers = valueWithin(0, 7)
 
 // Check modes for the type given
