@@ -9,7 +9,7 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  whitelist: ['user']
+  whitelist: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
 })
 
 const prefix = Cypress.env('dataPrefix')
@@ -319,47 +319,16 @@ Cypress.Commands.add('centerMapOn', (latLonArray, zoom = 12) => {
 })
 
 Cypress.Commands.add('login', function () {
-  cy.getCookie('user').then((user) => {
-    const inTenMinutes = Date.now() + 600 * 1000
-    const inOneHour = Date.now() + 3600 * 1000
+  cy.getCookie('a0:state').then((cookie) => {
+    // If the cookie already exists, skip the login
+    if (cookie) return
 
-    if (user) {
-      const value = JSON.parse(decodeURIComponent(user.value))
-      if (value.expiresAt > inTenMinutes) {
-        cy.log('valid cookie exists, skip getting a new one')
-        return
-      }
-    }
+    cy.visit('/')
+    cy.findByLabelText('Email').type(Cypress.env('username'))
+    cy.findByLabelText('Password').type(Cypress.env('password'))
+    cy.findByRole('button', {label: 'Log In'}).click()
 
-    cy.log('valid cookie does not exist, logging in ')
-    cy.request({
-      url: `https://${Cypress.env('authZeroDomain')}/oauth/ro`,
-      method: 'POST',
-      form: true,
-      body: {
-        client_id: Cypress.env('authZeroClientId'),
-        grant_type: 'password',
-        username: Cypress.env('username'),
-        password: Cypress.env('password'),
-        scope: 'openid email analyst',
-        connection: 'Username-Password-Authentication'
-      },
-      timeout: 30000
-    }).then((resp) => {
-      cy.setCookie(
-        'user',
-        encodeURIComponent(
-          JSON.stringify({
-            accessGroup: Cypress.env('accessGroup'),
-            expiresAt: inOneHour,
-            email: Cypress.env('username'),
-            idToken: resp.body.id_token
-          })
-        ),
-        {
-          expiry: inOneHour
-        }
-      )
-    })
+    // Should show the home page
+    cy.findByText(new RegExp(Cypress.env('username')))
   })
 })
