@@ -12,6 +12,7 @@ import {
   faChevronDown,
   faDownload
 } from '@fortawesome/free-solid-svg-icons'
+import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -94,7 +95,7 @@ export default function ProfileRequestDisplay({
 
   const scenarioName =
     profileRequest.variant > -1
-      ? project.variants[profileRequest.variant] || 'Unknown'
+      ? get(project, `variants[${profileRequest.variant}]`, 'Unknown')
       : 'Baseline'
 
   function downloadRequestJSON() {
@@ -114,39 +115,43 @@ export default function ProfileRequestDisplay({
         width='100%'
       >
         <tbody>
-          <tr>
-            <TDTitle>Bundle</TDTitle>
-            <TDValue>
-              <ALink
-                to='bundleEdit'
-                bundleId={bundle._id}
-                regionId={bundle.regionId}
-              >
-                {bundle.name}
-              </ALink>
-            </TDValue>
-          </tr>
-          <tr>
-            <TDTitle>Project</TDTitle>
-            <TDValue>
-              <Tooltip
-                aria-label={PROJECT_CHANGE_NOTE}
-                hasArrow
-                label={PROJECT_CHANGE_NOTE}
-                zIndex={1000}
-              >
-                <Box>
-                  <ALink
-                    to='project'
-                    projectId={project._id}
-                    regionId={project.regionId}
-                  >
-                    {project.name}
-                  </ALink>
-                </Box>
-              </Tooltip>
-            </TDValue>
-          </tr>
+          {bundle && (
+            <tr>
+              <TDTitle>Bundle</TDTitle>
+              <TDValue>
+                <ALink
+                  to='bundleEdit'
+                  bundleId={bundle._id}
+                  regionId={bundle.regionId}
+                >
+                  {bundle.name}
+                </ALink>
+              </TDValue>
+            </tr>
+          )}
+          {project && (
+            <tr>
+              <TDTitle>Project</TDTitle>
+              <TDValue>
+                <Tooltip
+                  aria-label={PROJECT_CHANGE_NOTE}
+                  hasArrow
+                  label={PROJECT_CHANGE_NOTE}
+                  zIndex={1000}
+                >
+                  <Box>
+                    <ALink
+                      to='project'
+                      projectId={project._id}
+                      regionId={project.regionId}
+                    >
+                      {project.name}
+                    </ALink>
+                  </Box>
+                </Tooltip>
+              </TDValue>
+            </tr>
+          )}
           <tr>
             <TDTitle>Scenario</TDTitle>
             <TDValue>
