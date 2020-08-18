@@ -7,28 +7,22 @@ import {
   Stack
 } from '@chakra-ui/core'
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
-import get from 'lodash/get'
-import {useContext} from 'react'
 
 import useRouteTo from 'lib/hooks/use-route-to'
+import useUser from 'lib/hooks/use-user'
 import message from 'lib/message'
-
-import {UserContext} from '../user'
 
 import Icon from './icon'
 import ListGroupItem from './list-group-item'
 import {ALink} from './link'
 import Logo from './logo'
 
+const alertDate = 'August, 2020'
+const alertText =
+  'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
+
 export default function SelectRegion(p) {
-  const user = useContext(UserContext)
-  // Prioritize showing the adminTempAccessGroup for admins.
-  const accessGroup = get(
-    user,
-    'adminTempAccessGroup',
-    get(user, 'accessGroup')
-  )
-  const email = get(user, 'email')
+  const {accessGroup, email} = useUser()
   const goToRegionCreate = useRouteTo('regionCreate')
 
   return (
@@ -38,16 +32,14 @@ export default function SelectRegion(p) {
       </Box>
       <Stack spacing={4} textAlign='center' width='320px'>
         <Box>
-          signed in as
+          <span>signed in as </span>
           <strong>
-            {' '}
             {email} ({accessGroup})
           </strong>
         </Box>
         <Alert status='warning' borderRadius='4px'>
           <AlertDescription>
-            <strong>August, 2020</strong> — Run regional analyses with multiple
-            cutoffs, percentiles, and opportunity datasets all at once.{' '}
+            <strong>{alertDate}</strong> — <span>{alertText} </span>
             <ALink to='changelog'>Click here to learn more.</ALink>
           </AlertDescription>
         </Alert>
