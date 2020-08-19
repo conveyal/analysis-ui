@@ -164,6 +164,13 @@ This modification type can be used to represent detours, extensions,and curtailm
 <br><span class="btn btn-info"><i class="fa fa-crosshairs"></i> Select</span>
 <br> then clicking an existing stop on the baseline pattern.
 
+Note that every selected pattern must stop at the selected start-of-reroute stop and end-of-reroute stop. For example, consider these three patterns:
+1) A-B-C-D-E
+2) A-B---D-E
+3) A---C-D-E
+
+If B was selected as the start-of-reroute, and D was selected as the end-of-reroute, patterns 1 and 2 could be included in the reroute modification, but not pattern 3.
+
 <figure>
   <img src="../img/reroute.png" alt="Rerouting" />
   <figcaption>A trip pattern being extended from a selected stop at the end of the line.</figcaption>
