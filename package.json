@@ -16,7 +16,7 @@
     "format": "prettier --write \"cypress/**/*.js\" \"db/**/*.js\" \"lib/**/*.js\" \"migrations/**/*.js\" \"pages/**/*.js\"",
     "java": "java -cp *.jar com.conveyal.analysis.BackendMain",
     "jest": "jest",
-    "lint": "eslint cypress/ db/ lib/ migrations/ pages/",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "migrate": "migrate --store=./db/migrations-store.js --env=.env",
     "now-build": "next build",
     "prebuild": "yarn",
@@ -137,6 +137,8 @@
     "@babel/preset-env": "^7.9.6",
     "@testing-library/cypress": "^6.0.0",
     "@testing-library/react": "^10.2.1",
+    "@typescript-eslint/eslint-plugin": "^3.9.0",
+    "@typescript-eslint/parser": "^3.9.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
     "cypress": "^4.10.0",
@@ -146,7 +148,8 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
-    "eslint": "^7.0.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest": "^23.13.1",
@@ -162,6 +165,6 @@
     "regenerator-runtime": "^0.13.5",
     "rimraf": "^3.0.2",
     "semantic-release": "^17.0.7",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.7"
   }
 }

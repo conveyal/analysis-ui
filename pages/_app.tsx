@@ -1,3 +1,4 @@
+import fpHas from 'lodash/fp/has'
 import {NextComponentType} from 'next'
 import App from 'next/app'
 import Head from 'next/head'
@@ -36,30 +37,33 @@ type ComponentWithLayout = NextComponentType & {
 const swrConfig = {
   fetcher: graphqlFetcher
 }
+        
+// Check if a component has a Layout
+const hasLayout = fpHas('Layout')
 
 export default class ConveyalAnalysis extends App {
   state = {
     error: null
   }
 
-  componentDidCatch(err: Error, info: ErrorInfo) {
+  componentDidCatch(err: Error, info: ErrorInfo): void {
     LogRocket.captureException(err, {extras: info})
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (TRACKING_ID != null) {
       // Log initial page view
       ReactGA.pageview(Router.pathname)
     }
   }
 
-  static getDerivedStateFromError(error: Error) {
+  static getDerivedStateFromError(error: Error): {error: Error} {
     return {error}
   }
 
-  render() {
+  render(): JSX.Element {
     const {Component, pageProps} = this.props
-    const Layout = Component.hasOwnProperty('Layout')
+    const Layout = hasLayout(Component)
       ? (Component as ComponentWithLayout).Layout
       : EmptyLayout
     return (
