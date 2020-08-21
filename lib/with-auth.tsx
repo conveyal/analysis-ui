@@ -1,6 +1,5 @@
 import {Box} from '@chakra-ui/core'
 import Head from 'next/head'
-import React from 'react'
 
 import LoadingScreen from './components/loading-screen'
 import {useFetchUser, UserContext} from './user'
@@ -17,7 +16,7 @@ const DevBar = () => (
     mt='-4px'
     position='absolute'
     width='100vw'
-    zIndex='10000'
+    zIndex={10000}
   />
 )
 
@@ -25,7 +24,7 @@ const DevBar = () => (
  * Ensure that a Page component is authenticated before rendering.
  */
 export default function withAuth(PageComponent) {
-  return function AuthenticatedComponent(p) {
+  return function AuthenticatedComponent(p): JSX.Element {
     const {user} = useFetchUser({required: true})
     if (!user) return <LoadingScreen />
     return (
