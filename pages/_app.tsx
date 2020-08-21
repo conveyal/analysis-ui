@@ -9,7 +9,6 @@ import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
 import ErrorModal from 'lib/components/error-modal'
-import graphqlFetcher from 'lib/graphql/fetcher'
 import LogRocket from 'lib/logrocket'
 
 import 'simplebar/dist/simplebar.css'
@@ -35,9 +34,9 @@ type ComponentWithLayout = NextComponentType & {
 
 // Create the default SWR fetcher
 const swrConfig = {
-  fetcher: graphqlFetcher
+  fetcher: (url) => fetch(url).then((res) => res.json())
 }
-        
+
 // Check if a component has a Layout
 const hasLayout = fpHas('Layout')
 

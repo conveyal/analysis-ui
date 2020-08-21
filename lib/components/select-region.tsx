@@ -21,7 +21,7 @@ const alertDate = 'August, 2020'
 const alertText =
   'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
 
-export default function SelectRegion(p) {
+export default function SelectRegion({regions}): JSX.Element {
   const {accessGroup, email} = useUser()
   const goToRegionCreate = useRouteTo('regionCreate')
 
@@ -51,10 +51,12 @@ export default function SelectRegion(p) {
         >
           {message('region.createAction')}
         </Button>
-        {p.regions.length > 0 && <Box>{message('region.goToExisting')}</Box>}
-        {p.regions.length > 0 && (
+        {regions && regions.length > 0 && (
+          <Box>{message('region.goToExisting')}</Box>
+        )}
+        {regions && regions.length > 0 && (
           <Stack spacing={0}>
-            {p.regions.map((region) => (
+            {regions.map((region) => (
               <RegionItem key={region._id} region={region} />
             ))}
           </Stack>
