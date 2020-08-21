@@ -9,6 +9,10 @@ const redirectUri = `https://${process.env.VERCEL_URL}`
 function createAuth0() {
   if (process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true') {
     return {
+      handleCallback: async () => {},
+      handleLogin: async () => {},
+      handleLogout: async () => {},
+      handleProfile: async () => {},
       getSession: () => ({
         user: {
           name: 'local',

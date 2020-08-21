@@ -5,7 +5,7 @@ import auth0 from 'lib/auth0'
 export default async function callback(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<void> {
   try {
     await auth0.handleCallback(req, res, {
       redirectTo: Array.isArray(req.query.redirectTo)

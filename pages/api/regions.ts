@@ -11,7 +11,7 @@ async function getAccessGroup(req) {
 export default auth0.requireAuthentication(async function regions(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<void> {
   const accessGroup = await getAccessGroup(req)
   const {db} = await connectToDatabase()
   const regions = await db
