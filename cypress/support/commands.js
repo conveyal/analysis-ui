@@ -9,7 +9,7 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
+  whitelist: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
 })
 
 const prefix = Cypress.env('dataPrefix')
@@ -21,7 +21,11 @@ const unlog = {log: false}
 
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
-  cy.get('#sidebar-spinner', unlog).should('not.exist')
+  // cy.waitUntil(() => cy.get('#sidebar-spinner', unlog).should('not.exist')
+  cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
+    log: false,
+    timeout: 15000
+  })
   Cypress.log({name: 'Navigation complete'})
 })
 
@@ -274,6 +278,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
     .parent(unlog) // select actual SVG element rather than <title> el
     .click(unlog)
   // check that page loads at least some content
+  cy.navComplete()
   cy.contains(pages[title].lookFor, {log: false, timeout: 4000})
 })
 
