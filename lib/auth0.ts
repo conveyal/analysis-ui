@@ -1,7 +1,6 @@
 import {initAuth0} from '@auth0/nextjs-auth0'
 import {parse} from 'cookie'
 import {IncomingMessage} from 'http'
-import get from 'lodash/get'
 import ms from 'ms'
 
 import {IUser} from './user'
