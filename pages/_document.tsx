@@ -13,8 +13,8 @@ const Stylesheets = () => (
   </>
 )
 
-export default class ConveyalDocument extends Document {
-  render(): JSX.Element {
+export default class extends Document {
+  render() {
     return (
       <Html>
         <Head>

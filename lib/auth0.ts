@@ -67,7 +67,8 @@ export async function getSession(req: IncomingMessage): Promise<IUser> {
   }
 
   if (user.accessGroup === process.env.NEXT_PUBLIC_ADMIN_ACCESS_GROUP) {
-    const adminTempAccessGroup = parse(req.headers.cookie).adminTempAccessGroup
+    const adminTempAccessGroup = parse(req.headers.cookie || '')
+      .adminTempAccessGroup
     if (adminTempAccessGroup) user.adminTempAccessGroup = adminTempAccessGroup
   }
 
