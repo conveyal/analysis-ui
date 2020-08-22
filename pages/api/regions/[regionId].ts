@@ -11,6 +11,15 @@ export default auth0.requireAuthentication(async function regions(
   const {db} = await connectToDatabase()
   const region = await db
     .collection('regions')
-    .findOne({accessGroup, _id: req.query.regionId})
-  res.json(region)
+    .findOne({_id: req.query.regionId})
+
+  if (!region) {
+    res.statusCode = 404
+    res.json({message: 'Region does not exist.'})
+  } else if (region.accessGroup !== accessGroup) {
+    res.statusCode = 403
+    res.json({message: 'User does not have access to this region.'})
+  } else {
+    res.json(region)
+  }
 })
