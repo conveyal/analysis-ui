@@ -1,6 +1,7 @@
 import {initAuth0} from '@auth0/nextjs-auth0'
 import {parse} from 'cookie'
 import {IncomingMessage} from 'http'
+import get from 'lodash/get'
 import ms from 'ms'
 
 import {IUser} from './user'
@@ -55,6 +56,9 @@ export default auth0
  */
 export async function getSession(req: IncomingMessage): Promise<IUser> {
   const session = await auth0.getSession(req)
+  if (!session)
+    throw new Error('User session does not exist. User must log in.')
+
   const user = {
     // This is a namespace for a custom claim. Not a URL: https://auth0.com/docs/tokens/guides/create-namespaced-custom-claims
     accessGroup: session.user['http://conveyal/accessGroup'],
@@ -62,9 +66,12 @@ export async function getSession(req: IncomingMessage): Promise<IUser> {
     email: session.user.name,
     idToken: session.idToken
   }
+
   if (user.accessGroup === process.env.NEXT_PUBLIC_ADMIN_ACCESS_GROUP) {
-    user.adminTempAccessGroup = parse(req.headers.cookie).adminTempAccessGroup
+    const adminTempAccessGroup = parse(req.headers.cookie).adminTempAccessGroup
+    if (adminTempAccessGroup) user.adminTempAccessGroup = adminTempAccessGroup
   }
+
   return user
 }
 

@@ -112,7 +112,7 @@ export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
       Location: '/api/login'
     })
     res.end()
-    return
+    return {props: {}}
   }
 
   return {

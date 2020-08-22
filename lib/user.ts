@@ -25,7 +25,9 @@ declare global {
 // When auth is disabled, use a local user
 const localUser: IUser = {
   accessGroup: 'local',
-  email: 'local'
+  adminTempAccessGroup: null,
+  email: 'local',
+  idToken: 'invalid token'
 }
 
 // Allow components to consume the user without needing to drill it down
