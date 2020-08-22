@@ -26,7 +26,7 @@ const alertDate = 'August, 2020'
 const alertText =
   'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
 
-function SelectRegion(p) {
+export default withAuth(function SelectRegionPage(p) {
   const {data: regions, isValidating} = useSWR('/api/regions', {
     initialData: p.regions
   })
@@ -78,7 +78,7 @@ function SelectRegion(p) {
       </Stack>
     </Flex>
   )
-}
+})
 
 function RegionItem({region, ...p}) {
   const goToRegion = useRouteTo('projects', {regionId: region._id})
@@ -96,9 +96,6 @@ function RegionItem({region, ...p}) {
     </ListGroupItem>
   )
 }
-
-// Require authentication
-export default withAuth(SelectRegion)
 
 /**
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
@@ -134,8 +131,8 @@ export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
 }
 
 function serialize(obj) {
-  if (Array.isArray(obj)) return obj.map(serialize)
   if (obj instanceof Date) return obj.toISOString()
+  if (Array.isArray(obj)) return obj.map(serialize)
   if (typeof obj === 'object') return mapValues(obj, serialize)
   return obj
 }
