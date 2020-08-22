@@ -1,5 +1,9 @@
 import {initAuth0} from '@auth0/nextjs-auth0'
+import {parse} from 'cookie'
+import {IncomingMessage} from 'http'
 import ms from 'ms'
+
+import {IUser} from './user'
 
 const cookieLifetime = ms('30 days') / 1000
 const httpTimeout = ms('10s')
@@ -17,7 +21,8 @@ function createAuth0() {
         user: {
           name: 'local',
           'http://conveyal/accessGroup': 'local'
-        }
+        },
+        idToken: 'fake'
       }),
       requireAuthentication: (fn) => fn
     }
@@ -41,4 +46,35 @@ function createAuth0() {
   }
 }
 
-export default createAuth0()
+const auth0 = createAuth0()
+
+export default auth0
+
+/**
+ * Flatten the session object and assign the accessGroup without the http portion.
+ */
+export async function getSession(req: IncomingMessage): Promise<IUser> {
+  const session = await auth0.getSession(req)
+  const user = {
+    // This is a namespace for a custom claim. Not a URL: https://auth0.com/docs/tokens/guides/create-namespaced-custom-claims
+    accessGroup: session.user['http://conveyal/accessGroup'],
+    adminTempAccessGroup: null,
+    email: session.user.name,
+    idToken: session.idToken
+  }
+  if (user.accessGroup === process.env.NEXT_PUBLIC_ADMIN_ACCESS_GROUP) {
+    user.adminTempAccessGroup = parse(req.headers.cookie).adminTempAccessGroup
+  }
+  return user
+}
+
+/**
+ * Helper function for retrieving the access group.
+ */
+export async function getAccessGroup(req: IncomingMessage): Promise<string> {
+  const user = await getSession(req)
+  if (user.adminTempAccessGroup && user.adminTempAccessGroup.length > 0) {
+    return user.adminTempAccessGroup
+  }
+  return user.accessGroup
+}

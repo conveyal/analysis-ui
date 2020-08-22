@@ -2,7 +2,11 @@ import {Box} from '@chakra-ui/core'
 import Head from 'next/head'
 
 import LoadingScreen from './components/loading-screen'
-import {useFetchUser, UserContext} from './user'
+import {useFetchUser, UserContext, IUser} from './user'
+
+export interface IWithAuthProps {
+  user?: IUser
+}
 
 // Check if the passed in group matches the environment variable
 // TODO set this server side when the user logs in
@@ -24,8 +28,8 @@ const DevBar = () => (
  * Ensure that a Page component is authenticated before rendering.
  */
 export default function withAuth(PageComponent) {
-  return function AuthenticatedComponent(p): JSX.Element {
-    const {user} = useFetchUser({required: true})
+  return function AuthenticatedComponent(p: IWithAuthProps): JSX.Element {
+    const {user} = useFetchUser(p.user)
     if (!user) return <LoadingScreen />
     return (
       <UserContext.Provider value={user}>

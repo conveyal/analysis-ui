@@ -8,15 +8,16 @@ import {
   Stack
 } from '@chakra-ui/core'
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import {GetServerSideProps} from 'next'
 import useSWR from 'swr'
 
+import {getSession} from 'lib/auth0'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
-import message from 'lib/message'
 import withAuth from 'lib/with-auth'
 
 const alertDate = 'August, 2020'
@@ -52,11 +53,11 @@ function SelectRegion() {
           onClick={goToRegionCreate}
           variantColor='green'
         >
-          {message('region.createAction')}
+          Set up a new region
         </Button>
         {!regions && isValidating && <Skeleton height='30px' />}
         {regions && regions.length > 0 && (
-          <Box>{message('region.goToExisting')}</Box>
+          <Box>or go to an existing region</Box>
         )}
         {regions && regions.length > 0 && (
           <Stack spacing={0}>
@@ -67,7 +68,7 @@ function SelectRegion() {
         )}
         <Box>
           <ALink to='logout'>
-            <Icon icon={faSignOutAlt} /> {message('authentication.logOut')}
+            <Icon icon={faSignOutAlt} /> Log out
           </ALink>
         </Box>
       </Stack>
@@ -92,4 +93,31 @@ function RegionItem({region, ...p}) {
   )
 }
 
+// Require authentication
 export default withAuth(SelectRegion)
+
+/**
+ * Take additional steps to attempt a fast page load since this is the first page most people will see.
+ * Comment out to disable. Everything else should still work.
+ */
+export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
+  let session = null
+  try {
+    session = await getSession(req)
+  } catch (e) {
+    console.error('Error while retrieving the session.', e)
+  }
+  if (session == null) {
+    res.writeHead(302, {
+      Location: '/api/login'
+    })
+    res.end()
+    return
+  }
+
+  return {
+    props: {
+      user: session
+    }
+  }
+}

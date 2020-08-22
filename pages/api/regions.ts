@@ -1,12 +1,7 @@
 import {NextApiResponse, NextApiRequest} from 'next'
 
-import auth0 from 'lib/auth0'
+import auth0, {getAccessGroup} from 'lib/auth0'
 import {connectToDatabase} from 'lib/db'
-
-async function getAccessGroup(req) {
-  const session = await auth0.getSession(req)
-  return session.user['http://conveyal/accessGroup']
-}
 
 export default auth0.requireAuthentication(async function regions(
   req: NextApiRequest,
