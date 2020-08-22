@@ -8,6 +8,7 @@ import {
   Stack
 } from '@chakra-ui/core'
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import mapValues from 'lodash/mapValues'
 import {GetServerSideProps} from 'next'
 import useSWR from 'swr'
 
@@ -16,6 +17,7 @@ import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
+import {connectToDatabase} from 'lib/db'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
@@ -24,8 +26,10 @@ const alertDate = 'August, 2020'
 const alertText =
   'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
 
-function SelectRegion() {
-  const {data: regions, isValidating} = useSWR('/api/regions')
+function SelectRegion(p) {
+  const {data: regions, isValidating} = useSWR('/api/regions', {
+    initialData: p.regions
+  })
   const {accessGroup, email} = useUser()
   const goToRegionCreate = useRouteTo('regionCreate')
 
@@ -115,9 +119,23 @@ export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
     return {props: {}}
   }
 
+  const {db} = await connectToDatabase()
+  const regions = await db
+    .collection('regions')
+    .find({accessGroup: session.accessGroup}, {sort: {name: 1}})
+    .toArray()
+
   return {
     props: {
+      regions: serialize(regions),
       user: session
     }
   }
+}
+
+function serialize(obj) {
+  if (Array.isArray(obj)) return obj.map(serialize)
+  if (obj instanceof Date) return obj.toISOString()
+  if (typeof obj === 'object') return mapValues(obj, serialize)
+  return obj
 }
