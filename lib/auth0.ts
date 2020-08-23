@@ -10,7 +10,7 @@ const httpTimeout = ms('10s')
 const scope = 'openid profile id_token'
 const redirectUri = `https://${process.env.VERCEL_URL}`
 
-function createAuth0() {
+const auth0 = (function createAuth0() {
   if (process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true') {
     return {
       handleCallback: async () => {},
@@ -44,9 +44,7 @@ function createAuth0() {
       }
     })
   }
-}
-
-const auth0 = createAuth0()
+})()
 
 export default auth0
 
