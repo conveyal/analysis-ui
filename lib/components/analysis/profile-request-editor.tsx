@@ -19,6 +19,7 @@ import message from 'lib/message'
 
 import TimePicker from '../time-picker'
 
+const TenPM = 22 * 60 * 60
 const bold = (b) => `<strong>${b}</strong>`
 
 function bundleIsOutOfDate(bundle, dateString, project) {
@@ -236,6 +237,12 @@ export default function ProfileRequestEditor({
             value={toTime}
             onChange={setToTime}
           />
+
+          {toTime >= TenPM && (
+            <Alert status='error' gridColumn='1 / span 3'>
+              <AlertIcon /> Trips over midnight may not work correctly.
+            </Alert>
+          )}
 
           {bundleOutOfDate && (
             <Alert status='error' gridColumn='1 / span 3'>
