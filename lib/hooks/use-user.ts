@@ -8,5 +8,10 @@ export default function useUser() {
   const accessGroup =
     get(user, 'adminTempAccessGroup') || get(user, 'accessGroup')
   const email = get(user, 'email')
-  return {accessGroup, email}
+
+  return {
+    ...user,
+    accessGroup,
+    email
+  }
 }

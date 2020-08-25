@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Router from 'next/router'
 import React, {ComponentType, ErrorInfo} from 'react'
 import ReactGA from 'react-ga'
-import {SWRConfig} from 'swr'
+import {SWRConfig, ConfigInterface} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
 import ErrorModal from 'lib/components/error-modal'
@@ -33,8 +33,8 @@ type ComponentWithLayout = NextComponentType & {
 }
 
 // Create the default SWR fetcher
-const swrConfig = {
-  fetcher: (url) => fetch(url).then((res) => res.json())
+const swrConfig: ConfigInterface = {
+  fetcher: (url: string) => fetch(url).then((res) => res.json())
 }
 
 // Check if a component has a Layout
@@ -46,7 +46,7 @@ export default class ConveyalAnalysis extends App {
   }
 
   componentDidCatch(err: Error, info: ErrorInfo): void {
-    LogRocket.captureException(err, {extras: info})
+    LogRocket.captureException(err, {extra: {...info}})
   }
 
   componentDidMount(): void {

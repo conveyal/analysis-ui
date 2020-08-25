@@ -1,25 +1,64 @@
 import {NextApiResponse, NextApiRequest} from 'next'
 
-import auth0, {getAccessGroup} from 'lib/auth0'
-import {connectToDatabase} from 'lib/db'
+import auth0, {getSession} from 'lib/auth0'
+import AuthenticatedCollection from 'lib/db/authenticated-collection'
 
 export default auth0.requireAuthentication(async function regions(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  const accessGroup = await getAccessGroup(req)
-  const {db} = await connectToDatabase()
-  const region = await db
-    .collection('regions')
-    .findOne({_id: req.query.regionId})
+  const session = await getSession(req)
+  const collection = await AuthenticatedCollection.initialize(
+    'regions',
+    session
+  )
+  const regionId: string = Array.isArray(req.query.regionId)
+    ? req.query.regionId[0]
+    : req.query.regionId
 
-  if (!region) {
-    res.statusCode = 404
-    res.json({message: 'Region does not exist.'})
-  } else if (region.accessGroup !== accessGroup) {
-    res.statusCode = 403
-    res.json({message: 'User does not have access to this region.'})
-  } else {
-    res.json(region)
+  switch (req.method) {
+    case 'GET': {
+      try {
+        const region = await collection.findOne(regionId)
+        if (!region) {
+          res.status(404).json({message: 'Region does not exist.'})
+        } else {
+          res.json(region)
+        }
+      } catch (e) {
+        res.status(400).json({message: 'Error getting region.', error: e})
+      }
+      break
+    }
+    case 'PUT': {
+      try {
+        const updateResult = await collection.update(regionId, req.body)
+        if (!updateResult || !updateResult.ok) {
+          res.status(404).json({message: 'Region does not exist.'})
+        } else {
+          res.json(updateResult.value)
+        }
+      } catch (e) {
+        res.status(400).json({message: 'Error updating region.', error: e})
+      }
+      break
+    }
+    case 'DELETE': {
+      try {
+        const result = await collection.remove(regionId)
+        if (result) {
+          res.status(204).json({message: 'Region has been deleted.'})
+        } else {
+          res.status(400).json({message: 'Region deletion has failed'})
+        }
+      } catch (e) {
+        res.status(400).json({message: 'Error deleting region.', error: e})
+      }
+      break
+    }
+    default: {
+      res.setHeader('Allow', ['DELETE', 'GET', 'PUT'])
+      res.status(405).end(`Method ${req.method} Not Allowed`)
+    }
   }
 })

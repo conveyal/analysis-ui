@@ -53,8 +53,9 @@ export default auth0
  */
 export async function getSession(req: IncomingMessage): Promise<IUser> {
   const session = await auth0.getSession(req)
-  if (!session)
-    throw new Error('User session does not exist. User must log in.')
+  if (!session) {
+    throw new Error('User session does not exist. User must be logged in.')
+  }
 
   const user = {
     // This is a namespace for a custom claim. Not a URL: https://auth0.com/docs/tokens/guides/create-namespaced-custom-claims

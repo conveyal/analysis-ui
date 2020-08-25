@@ -10,26 +10,25 @@ import {
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 import mapValues from 'lodash/mapValues'
 import {GetServerSideProps} from 'next'
-import useSWR from 'swr'
 
 import {getSession} from 'lib/auth0'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
-import {connectToDatabase} from 'lib/db'
+import AuthenticatedCollection from 'lib/db/authenticated-collection'
+import useRegions from 'lib/hooks/use-regions'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
+import {ObjectID} from 'mongodb'
 
 const alertDate = 'August, 2020'
 const alertText =
   'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
 
 export default withAuth(function SelectRegionPage(p) {
-  const {data: regions, isValidating} = useSWR('/api/regions', {
-    initialData: p.regions
-  })
+  const {regions, isValidating} = useRegions({initialData: p.regions})
   const {accessGroup, email} = useUser()
   const goToRegionCreate = useRouteTo('regionCreate')
 
@@ -116,11 +115,11 @@ export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
     return {props: {}}
   }
 
-  const {db} = await connectToDatabase()
-  const regions = await db
-    .collection('regions')
-    .find({accessGroup: session.accessGroup}, {sort: {name: 1}})
-    .toArray()
+  const collection = await AuthenticatedCollection.initialize(
+    'regions',
+    session
+  )
+  const regions = await collection.findAll().toArray()
 
   return {
     props: {
@@ -132,6 +131,7 @@ export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
 
 function serialize(obj) {
   if (obj instanceof Date) return obj.toISOString()
+  if (obj instanceof ObjectID) return obj.toString()
   if (Array.isArray(obj)) return obj.map(serialize)
   if (typeof obj === 'object') return mapValues(obj, serialize)
   return obj
