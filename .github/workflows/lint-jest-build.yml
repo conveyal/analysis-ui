@@ -123,7 +123,6 @@ jobs:
         with:
           env: ${{ secrets.CYPRESS_GITHUB_ENV }}
           install: false
-          spec: cypress/integration/local/all.js
           start: yarn action # runs frontend and java server together
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
