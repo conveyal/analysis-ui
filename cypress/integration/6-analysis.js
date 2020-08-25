@@ -29,7 +29,7 @@ function fetchResults() {
     .wait(200)
   // fetch results button usually disappears when clicked, but may not always
   // when it returns, we know the results have been fetched
-  cy.findByText(/Fetch results/i, {timeout: 60000}).should('exist')
+  cy.findByText(/Fetch results/i, {timeout: 240000}).should('exist')
 }
 
 function setTimeCutoff(minutes) {
@@ -62,8 +62,7 @@ function setupAnalysis() {
     .type('baseline{enter}')
   cy.findByLabelText(/^Opportunity Dataset$/)
     .click({force: true})
-    .type(`{enter}`)
-    .wait(100)
+    .type(`default{enter}`)
   cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   cy.fixture('regions/scratch.json').then((region) => {
     cy.get('@primary').findByLabelText(/Date/i).clear().type(region.date)
@@ -271,14 +270,14 @@ context('Analysis', () => {
 
       cy.findByRole('button', {name: 'Create'}).click()
       // we should now be on the regional analyses page
-      cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 10000})
+      cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})
       cy.findByRole('heading', {name: analysisName})
         .parent()
         .parent()
         .as('statusBox')
       // shows progress
       cy.get('@statusBox').findByText(/\d+ \/ \d+ origins/)
-      cy.findByRole('heading', {name: analysisName, timeout: 120000}).should(
+      cy.findByRole('heading', {name: analysisName, timeout: 240000}).should(
         'not.exist'
       )
       cy.findByText(/View a regional analysis/)
@@ -340,7 +339,7 @@ context('Analysis', () => {
         .clear()
         .type(this.region.aggregationAreas.nameField)
       cy.get('@upload').click()
-      cy.contains(/Upload complete/, {timeout: 10000}).should('be.visible')
+      cy.contains(/Upload complete/, {timeout: 30000}).should('be.visible')
       // TODO label dissociated from input
       //cy.findByLabelText(/Aggregate results to/i)
       //  .type(this.region.aggregationAreas.sampleName+'{enter}')
