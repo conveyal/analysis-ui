@@ -51,6 +51,7 @@ describe('Network bundles', () => {
       .findByRole('button', {name: /Delete/})
       .click()
     cy.location('pathname').should('match', /.*\/bundles$/)
+    cy.navComplete()
     cy.findByText(/Select.../).click()
     cy.contains(bundleName).should('not.exist')
   })

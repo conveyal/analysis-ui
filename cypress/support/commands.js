@@ -274,6 +274,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
     .parent(unlog) // select actual SVG element rather than <title> el
     .click(unlog)
   // check that page loads at least some content
+  cy.navComplete()
   cy.contains(pages[title].lookFor, {log: false, timeout: 4000})
 })
 
