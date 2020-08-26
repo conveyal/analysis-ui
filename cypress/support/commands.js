@@ -252,6 +252,8 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 })
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
+  // Ensure that any previous navigation is complete before attempting to navigate again
+  cy.navComplete()
   // Navigate to a page using one of the main (leftmost) menu items
   // and wait until at least part of the page is loaded.
   const pages = {
