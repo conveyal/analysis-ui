@@ -218,6 +218,7 @@ export default function ProfileRequestDisplay({
               {keys.map((k) => (
                 <PseudoBox
                   as='tr'
+                  key={k}
                   _odd={{
                     bg: `${color}.50`
                   }}
