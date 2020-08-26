@@ -14,7 +14,7 @@
     "docs": "cd docs && mkdocs serve",
     "cypress:run": "cypress run",
     "format": "prettier --write \"cypress/**/*.js\" \"db/**/*.js\" \"lib/**/*.js\" \"migrations/**/*.js\" \"pages/**/*.js\"",
-    "java": "java -cp *.jar com.conveyal.analysis.BackendMain",
+    "java": "java -cp *.jar com.conveyal.analysis.BackendMain > /dev/null",
     "jest": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "migrate": "migrate --store=./db/migrations-store.js --env=.env",
