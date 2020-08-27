@@ -212,6 +212,7 @@ export default function DestinationTravelTimeDistribution() {
                         color={colors.COMPARISON_PERCENTILE_COLOR}
                         positions={comparisonDistribution}
                         scale={SCALE}
+                        strokeWidth={STROKE_WIDTH}
                         width={HEIGHT}
                       />
                     </g>
