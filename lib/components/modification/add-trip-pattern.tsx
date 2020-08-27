@@ -7,7 +7,6 @@ import {
 } from '@chakra-ui/core'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
-import React from 'react'
 
 import TransitModeSelector from '../transit-mode-selector'
 

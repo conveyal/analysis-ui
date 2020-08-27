@@ -235,9 +235,9 @@ You can also edit previously drawn lines by clicking on the edit layers icon. Th
 ### Modify Streets
 This modification allows you to assign new access and impedance properties to existing streets in your :term:`baseline network`. Rather than selecting individual streets, it uses a polygon selection to apply the modification to all streets within the selected area. This is useful for applying changes to areas or corridors. 
 As an example, you might use this to identify a neighborhood or corridor where traffic calming measures will be implemented and model this by reducing bicycle traffic stress and decreasing driving speeds or eliminating automotive access altogether.
-Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas. 
+Similar to the Add Streets modification, properties are set at the level of the modification, and multiple areas can be specified. Thus, seperate modifications are needed to specify different types of areas.
 
-To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. 
+To draw a polygon on the map, click the polygon icon and begin clicking on the map. Clicking the first point again will close the polygon and nodes can be added, moved, and deleted once the shape is drawn by clicking on the edit option. Overlapping polygons are not yet supported.
 
 <figure>
   <img src="../img/draw-a-polygon.png" alt="modifying streets"/>
