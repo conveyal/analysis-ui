@@ -179,7 +179,7 @@ export default function DestinationTravelTimeDistribution() {
                     position='absolute'
                     top={HEIGHT + 'px'}
                   >
-                    {distribution[percentileIndex]}
+                    {comparisonDistribution[percentileIndex]}
                   </Text>
                 )}
               <figure>
