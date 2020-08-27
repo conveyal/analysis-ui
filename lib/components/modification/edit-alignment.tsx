@@ -10,7 +10,6 @@ import {
 import {faCircle, faStopCircle} from '@fortawesome/free-solid-svg-icons'
 import {faCircle as faCircleO} from '@fortawesome/free-regular-svg-icons'
 import get from 'lodash/get'
-import React from 'react'
 
 import {
   ADD_TRIP_PATTERN,
@@ -173,13 +172,15 @@ export default function EditAlignment({
         </Button>
       )}
 
-      <Checkbox
-        fontWeight='normal'
-        isChecked={createStopsAutomatically}
-        onChange={onAutoCreateStopsChange}
-      >
-        {message('transitEditor.autoCreateStops')}
-      </Checkbox>
+      {distance > 0 && (
+        <Checkbox
+          fontWeight='normal'
+          isChecked={createStopsAutomatically}
+          onChange={onAutoCreateStopsChange}
+        >
+          {message('transitEditor.autoCreateStops')}
+        </Checkbox>
+      )}
 
       {createStopsAutomatically && (
         <NumberInput
@@ -191,7 +192,7 @@ export default function EditAlignment({
         />
       )}
 
-      {modification.type !== REROUTE && (
+      {modification.type !== REROUTE && distance > 0 && (
         <Checkbox
           fontWeight='normal'
           isChecked={modification.bidirectional}
