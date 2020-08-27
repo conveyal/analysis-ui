@@ -158,7 +158,7 @@ export default function DestinationTravelTimeDistribution() {
               </Text>
             )}
           </Flex>
-          {distribution ? (
+          {distribution && (
             <Box fontFamily='mono' px={3} pb={2} position='relative'>
               {isValidTime(distribution[percentileIndex]) && (
                 <Text
@@ -219,7 +219,9 @@ export default function DestinationTravelTimeDistribution() {
                 </svg>
               </figure>
             </Box>
-          ) : (
+          )}
+
+          {surface && !distribution && (
             <Alert status='info'>
               <AlertIcon /> Mouse over the isochrone to show travel times.
             </Alert>
