@@ -1,9 +1,9 @@
+// How long should it take to create an OD
+const timeout = 60000
+
 function generateName(type, name) {
   return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
 }
-
-// How long should it take to create an OD
-const timeout = 60000
 
 describe('Opportunity Datasets', () => {
   before(() => {
