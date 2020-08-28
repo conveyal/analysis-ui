@@ -69,7 +69,7 @@ function setupAnalysis() {
   })
 }
 
-context('Analysis', () => {
+describe('Analysis', () => {
   before(() => {
     cy.setup('project')
     cy.setup('opportunities')
@@ -83,7 +83,7 @@ context('Analysis', () => {
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
   })
 
-  context('of a point', () => {
+  describe('of a point', () => {
     it('has all form elements', function () {
       // note that elements touched in beforeEach are neglected here
       cy.findByLabelText(/Time cutoff/i)
@@ -255,7 +255,7 @@ context('Analysis', () => {
     it('sets a bookmark')
   })
 
-  context('of a region', () => {
+  describe('of a region', () => {
     it('runs a regional analysis, etc.', function () {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
       setCustom('bounds', this.region.customRegionSubset)
@@ -288,10 +288,7 @@ context('Analysis', () => {
       cy.findByText(/Access to/i)
         .parent()
         .as('legend')
-      cy.get('@legend')
-        .should('not.contain', 'Loading grids')
-        .wait(1000)
-        .matchImageSnapshot('regional-single-legend')
+      cy.get('@legend').should('not.contain', 'Loading grids')
       // compare to self with different time cutoff and check the legend again
       cy.findByLabelText(/Compare to/).type(`${analysisName}{enter}`, {
         force: true
@@ -303,10 +300,7 @@ context('Analysis', () => {
         .findByRole('option', {name: '45 minutes'})
         .parent()
         .select('60 minutes')
-      cy.get('@legend')
-        .should('not.contain', 'Loading grids')
-        .wait(1000)
-        .matchImageSnapshot('regional-comparison-legend')
+      cy.get('@legend').should('not.contain', 'Loading grids')
       // TODO more semantic selector would be preferable
       // TODO export to GIS produces error locally
       cy.get('button[aria-label*="Export to GIS"')
@@ -338,7 +332,7 @@ context('Analysis', () => {
       cy.findByLabelText(/Attribute name to lookup on the shapefile/i)
         .clear()
         .type(this.region.aggregationAreas.nameField)
-      cy.get('@upload').click()
+      cy.get('@upload').scrollIntoView().click()
       cy.contains(/Upload complete/, {timeout: 30000}).should('be.visible')
       // TODO label dissociated from input
       //cy.findByLabelText(/Aggregate results to/i)
