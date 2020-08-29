@@ -9,7 +9,7 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  whitelist: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
+  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
 })
 
 const prefix = Cypress.env('dataPrefix')
