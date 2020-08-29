@@ -207,8 +207,9 @@ function createNewProject() {
   cy.navTo('Projects')
   cy.findByText(/Create new Project/i).click()
   cy.findByLabelText(/Project name/).type(projectName)
-  cy.findByLabelText(/Associated network bundle/i).click()
-  cy.findByText(bundleName).click()
+  cy.findByLabelText(/Associated network bundle/i)
+    .click({force: true})
+    .type(bundleName + '{enter}')
   cy.findByText(/^Create$/).click()
 
   // store the projectId
