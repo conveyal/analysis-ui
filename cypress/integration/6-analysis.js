@@ -34,9 +34,7 @@ function fetchResults() {
 
 function setTimeCutoff(minutes) {
   // TODO this does not work yet
-  cy.findByLabelText(/Time cutoff/i)
-    .parent()
-    .findByRole('slider')
+  cy.findByRole('slider', {name: 'Time cutoff'})
     .invoke('val', minutes)
     .trigger('input', {force: true})
 }
@@ -86,17 +84,19 @@ describe('Analysis', () => {
   describe('of a point', () => {
     it('has all form elements', function () {
       // note that elements touched in beforeEach are neglected here
-      cy.findByLabelText(/Time cutoff/i)
-      cy.findByLabelText(/Travel time percentile/i)
+      cy.findByRole('slider', {name: 'Time cutoff'})
+      cy.findByRole('slider', {name: /Travel time percentile/i})
       cy.get('@primary')
         .findByRole('button', {name: 'Regional analysis'})
         .should('be.disabled')
       cy.get('@primary').contains('scratch project')
       cy.get('@primary').contains('Baseline')
       cy.get('@primary').findAllByLabelText(/Bookmark/)
-      cy.get('@primary').findByLabelText(/Access mode/i)
-      cy.get('@primary').findByLabelText(/Transit modes/i)
-      cy.get('@primary').findByLabelText(/Egress mode/i)
+
+      cy.get('@primary').findByRole('button', {name: /Walk access/i})
+      cy.get('@primary').findByRole('button', {name: /Bus/i})
+      cy.get('@primary').findByRole('button', {name: /Walk egress/i})
+
       cy.findByLabelText(/Walk speed/i)
       cy.findByLabelText(/Max walk time/i)
       cy.get('@primary').findByLabelText(/Date/i)
@@ -142,20 +142,14 @@ describe('Analysis', () => {
       cy.centerMapOn(location)
       // turn off all transit
       cy.get('@primary')
-        .findByLabelText(/Transit modes/i)
-        .findByRole('button', {name: /All/i})
+        .findByRole('button', {name: /All transit/i})
         .click()
-      cy.get('@primary')
-        .findByLabelText(/Access mode/i)
-        .should('not.exist')
       // it has changed names, becoming:
       cy.get('@primary')
-        .findByLabelText(/Direct mode/i)
-        .findByTitle(/Bike/i)
+        .findByRole('button', {name: /bike direct mode/i})
         .click()
       cy.get('@primary')
-        .findByLabelText(/Egress mode/i)
-        .findAllByRole('button')
+        .findAllByRole('button', {name: /bike egress/i})
         .should('be.disabled')
       fetchResults()
       cy.findByLabelText('Opportunities within isochrone')
