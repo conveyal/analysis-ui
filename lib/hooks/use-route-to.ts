@@ -18,9 +18,20 @@ export default function useRouteTo(to: string, props: any = {}) {
     }
   }, [props, result, router, setResult, to])
 
-  const onClick = useCallback(() => {
-    router.push({pathname: result.href, query: result.query}, result.as)
-  }, [result, router])
+  const onClick = useCallback(
+    (newProps?: any) => {
+      if (newProps && !newProps.nativeEvent) {
+        const newRoute = routeTo(to, newProps)
+        router.push(
+          {pathname: newRoute.href, query: newRoute.query},
+          newRoute.as
+        )
+      } else {
+        router.push({pathname: result.href, query: result.query}, result.as)
+      }
+    },
+    [result, router, to]
+  )
 
   return onClick
 }

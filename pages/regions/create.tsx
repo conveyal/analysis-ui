@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/core'
 import {faMap} from '@fortawesome/free-solid-svg-icons'
 import dynamic from 'next/dynamic'
-import {useRouter} from 'next/router'
 import {useState} from 'react'
 
 import EditBoundsForm from 'lib/components/edit-bounds-form'
@@ -19,9 +18,9 @@ import InnerDock from 'lib/components/inner-dock'
 import {SPACING_FORM} from 'lib/constants/chakra'
 import {DEFAULT_BOUNDS} from 'lib/constants/region'
 import useInput from 'lib/hooks/use-controlled-input'
+import useRouteTo from 'lib/hooks/use-route-to'
 import MapLayout from 'lib/layouts/map'
 import message from 'lib/message'
-import {routeTo} from 'lib/router'
 import {postJSON} from 'lib/utils/safe-fetch'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
 
@@ -36,8 +35,8 @@ const testName = (n) => n && n.length > 0
  * Create a region.
  */
 export default function CreateRegionPage() {
-  const router = useRouter()
   const [error, setError] = useState<void | string>()
+  const goToProjects = useRouteTo('projects')
   const [uploading, setUploading] = useState(false)
   const [bounds, setBounds] = useState(DEFAULT_BOUNDS)
   const toast = useToast()
@@ -68,23 +67,15 @@ export default function CreateRegionPage() {
     })
 
     if (res.ok) {
-      const region = res.data
-      const {as, href} = routeTo('projects', {regionId: region._id})
-      router.push(href, as)
+      goToProjects({regionId: res.data._id})
       toast({
         title: 'Region created',
         position: 'top',
         status: 'success'
       })
     } else {
-      toast({
-        isClosable: true,
-        title: 'Error creating region',
-        description: res.data.message,
-        position: 'top',
-        status: 'error',
-        duration: null
-      })
+      setUploading(false)
+      setError(res.data.message)
     }
   }
 

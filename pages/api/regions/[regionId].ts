@@ -21,7 +21,7 @@ export default auth0.requireAuthentication(async function regions(
       try {
         const region = await collection.findOne(regionId)
         if (!region) {
-          res.status(404).json({message: 'Region does not exist.'})
+          res.status(404).end()
         } else {
           res.json(region)
         }
@@ -47,7 +47,7 @@ export default auth0.requireAuthentication(async function regions(
       try {
         const result = await collection.remove(regionId)
         if (result) {
-          res.status(204).json({message: 'Region has been deleted.'})
+          res.status(200).json({message: 'Region has been deleted.'})
         } else {
           res.status(400).json({message: 'Region deletion has failed'})
         }

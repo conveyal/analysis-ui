@@ -32,9 +32,10 @@ const hasLength = (s: void | string) => s && s.length > 0
 
 export default function LoadRegion() {
   const router = useRouter()
-  const {mutate, region} = useRegion(router.query.regionId as string, {
+  const {mutate, error, region} = useRegion(router.query.regionId as string, {
     revalidateOnFocus: false
   })
+  if (error) return <p>{error.problem}</p>
   if (!region) return <FullSpinner />
   return <EditRegion mutate={mutate} region={region} />
 }
@@ -106,13 +107,13 @@ function EditRegion(p) {
 
     if (res.ok) {
       p.mutate(regionURL, res.data)
+      goToProjects()
       toast({
         title: 'Region updated',
         description: 'Your changes have been saved.',
         position: 'top',
         status: 'success'
       })
-      goToProjects()
     } else {
       setSaving(false)
       toast({

@@ -45,6 +45,7 @@ export default class AuthenticatedCollection {
     return this.collection.insertOne({
       ...data,
       // Common fields
+      _id: new ObjectID().toString(),
       accessGroup: this.accessGroup,
       nonce: new ObjectID().toString(),
       createdBy: this.session.email,

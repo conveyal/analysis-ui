@@ -5,11 +5,12 @@ import Head from 'next/head'
 import Router from 'next/router'
 import React, {ComponentType, ErrorInfo} from 'react'
 import ReactGA from 'react-ga'
-import {SWRConfig, ConfigInterface} from 'swr'
+import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
 import ErrorModal from 'lib/components/error-modal'
 import LogRocket from 'lib/logrocket'
+import {swrConfig} from 'lib/utils/safe-fetch'
 
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
@@ -30,11 +31,6 @@ const EmptyLayout = ({children}) => <>{children}</>
 // Components that have a layout
 type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
-}
-
-// Create the default SWR fetcher
-const swrConfig: ConfigInterface = {
-  fetcher: (url: string) => fetch(url).then((res) => res.json())
 }
 
 // Check if a component has a Layout
