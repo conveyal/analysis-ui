@@ -3,7 +3,7 @@ function generateName(type, name) {
 }
 
 // How long should it take to create an OD
-const timeout = 60000
+const timeout = 240000
 
 describe('Opportunity Datasets', () => {
   before(() => {

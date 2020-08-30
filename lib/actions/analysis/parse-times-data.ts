@@ -8,7 +8,7 @@ const TIMES_GRID_TYPE = 'ACCESSGR'
  */
 export function parseTimesData(ab) {
   const headerData = new Int8Array(ab, 0, TIMES_GRID_TYPE.length)
-  const headerType = String.fromCharCode(...headerData)
+  const headerType = String.fromCharCode.apply(null, headerData)
   if (headerType !== TIMES_GRID_TYPE) {
     throw new Error(
       `Retrieved grid header ${headerType} !== ${TIMES_GRID_TYPE}. Please check your data.`
@@ -58,6 +58,10 @@ export function parseTimesData(ab) {
   )
   const metadata = decodeMetadata(rawMetadata)
 
+  function contains(x, y, z) {
+    return x >= 0 && x < width && y >= 0 && y < height && z >= 0 && z < depth
+  }
+
   return {
     version,
     zoom,
@@ -69,8 +73,10 @@ export function parseTimesData(ab) {
     data,
     errors: [],
     warnings: metadata.scenarioApplicationWarnings || [],
+    contains,
     get(x, y, z) {
-      return data[z * gridSize + y * width + x]
+      if (contains(x, y, z)) return data[z * gridSize + y * width + x]
+      return Infinity
     }
   }
 }
@@ -81,7 +87,7 @@ function decodeMetadata(rawMetadata) {
 }
 
 function getDecoder() {
-  if (window === 'undefined' || typeof window.TextDecoder !== 'function') {
+  if (window === undefined || typeof window.TextDecoder !== 'function') {
     const util = require('util')
     return new util.TextDecoder('utf-8')
   } else {
