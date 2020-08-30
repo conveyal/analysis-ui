@@ -21,7 +21,10 @@ const unlog = {log: false}
 
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
-  cy.get('#sidebar-spinner', unlog).should('not.exist')
+  cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
+    log: false,
+    timeout: 15000
+  })
   Cypress.log({name: 'Navigation complete'})
 })
 
