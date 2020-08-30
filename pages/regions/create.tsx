@@ -20,9 +20,9 @@ import {SPACING_FORM} from 'lib/constants/chakra'
 import {DEFAULT_BOUNDS} from 'lib/constants/region'
 import useInput from 'lib/hooks/use-controlled-input'
 import MapLayout from 'lib/layouts/map'
-import LogRocket from 'lib/logrocket'
 import message from 'lib/message'
 import {routeTo} from 'lib/router'
+import {postJSON} from 'lib/utils/safe-fetch'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
 
 const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
@@ -61,47 +61,28 @@ export default function CreateRegionPage() {
 
     setUploading(true)
 
-    try {
-      const res = await fetch('/api/regions', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: nameInput.value,
-          description: descriptionInput.value,
-          bounds
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+    const res = await postJSON('/api/regions', {
+      name: nameInput.value,
+      description: descriptionInput.value,
+      bounds
+    })
 
-      if (res.ok) {
-        const region = await res.json()
-        const {as, href} = routeTo('projects', {regionId: region._id})
-        router.push(href, as)
-        toast({
-          title: 'Region created',
-          position: 'top',
-          status: 'success'
-        })
-      } else {
-        const error = await res.json()
-        toast({
-          isClosable: true,
-          title: 'Error creating region',
-          description: error.message,
-          position: 'top',
-          status: 'error',
-          duration: null
-        })
-      }
-    } catch (e) {
-      LogRocket.captureException(e)
+    if (res.ok) {
+      const region = res.data
+      const {as, href} = routeTo('projects', {regionId: region._id})
+      router.push(href, as)
+      toast({
+        title: 'Region created',
+        position: 'top',
+        status: 'success'
+      })
+    } else {
       toast({
         isClosable: true,
         title: 'Error creating region',
-        description: e.message,
-        status: 'error',
+        description: res.data.message,
         position: 'top',
+        status: 'error',
         duration: null
       })
     }

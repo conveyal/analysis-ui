@@ -18,11 +18,11 @@ import InnerDock from 'lib/components/inner-dock'
 import {SPACING_FORM} from 'lib/constants/chakra'
 import useInput from 'lib/hooks/use-controlled-input'
 import useRegion from 'lib/hooks/use-region'
+import useRouteTo from 'lib/hooks/use-route-to'
 import MapLayout from 'lib/layouts/map'
-import LogRocket from 'lib/logrocket'
 import message from 'lib/message'
-import {routeTo} from 'lib/router'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
+import {safeDelete, putJSON} from 'lib/utils/safe-fetch'
 
 const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
   ssr: false
@@ -30,23 +30,13 @@ const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
 
 const hasLength = (s: void | string) => s && s.length > 0
 
-function putJSON(url: string, body) {
-  return fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  })
-}
-
 export default function LoadRegion() {
   const router = useRouter()
   const {mutate, region} = useRegion(router.query.regionId as string, {
     revalidateOnFocus: false
   })
   if (!region) return <FullSpinner />
-  return <EditRegion mutate={mutate} region={region} router={router} />
+  return <EditRegion mutate={mutate} region={region} />
 }
 
 // Add the MapLayout
@@ -57,6 +47,8 @@ Object.assign(LoadRegion, {Layout: MapLayout})
  */
 function EditRegion(p) {
   const regionURL = `/api/regions/${p.region._id}`
+  const goToHome = useRouteTo('regions')
+  const goToProjects = useRouteTo('projects', {regionId: p.region._id})
   const [region, setRegion] = useState(p.region)
   const [saving, setSaving] = useState(false)
   const toast = useToast()
@@ -69,31 +61,19 @@ function EditRegion(p) {
 
   // Delete region action
   async function _delete() {
-    try {
-      const res = await fetch(regionURL, {method: 'DELETE'})
-      if (res.ok) {
-        p.router.push('/')
-        toast({
-          title: 'Region deleted',
-          description: 'Region has been successfully deleted.',
-          position: 'top',
-          status: 'success'
-        })
-      } else {
-        const error = await res.json()
-        toast({
-          title: 'Error deleting region',
-          description: error.message,
-          position: 'top',
-          status: 'error',
-          isClosable: true,
-          duration: null
-        })
-      }
-    } catch (error) {
+    const res = await safeDelete(regionURL)
+    if (res.ok) {
+      goToHome()
+      toast({
+        title: 'Region deleted',
+        description: 'Region has been successfully deleted.',
+        position: 'top',
+        status: 'success'
+      })
+    } else {
       toast({
         title: 'Error deleting region',
-        description: error.message,
+        description: res.data.message,
         position: 'top',
         status: 'error',
         isClosable: true,
@@ -117,47 +97,32 @@ function EditRegion(p) {
     })
     const newBounds = {north: nw.lat, west: nw.lon, south: se.lat, east: se.lon}
 
-    try {
-      const res = await putJSON(regionURL, {
-        ...region,
-        bounds: newBounds,
-        name: nameInput.value,
-        description: descriptionInput.value
-      })
-      const json = await res.json()
+    const res = await putJSON(regionURL, {
+      ...region,
+      bounds: newBounds,
+      name: nameInput.value,
+      description: descriptionInput.value
+    })
 
-      if (res.ok) {
-        p.mutate(regionURL, json)
-        const {href, as} = routeTo('projects', {regionId: region._id})
-        p.router.push(href, as)
-        toast({
-          title: 'Region updated',
-          description: 'Your changes have been saved.',
-          position: 'top',
-          status: 'success'
-        })
-      } else {
-        toast({
-          title: 'Error updating region',
-          description: json.message,
-          position: 'top',
-          status: 'error',
-          isClosable: true,
-          duration: null
-        })
-      }
-    } catch (e) {
-      LogRocket.captureException(e)
+    if (res.ok) {
+      p.mutate(regionURL, res.data)
+      toast({
+        title: 'Region updated',
+        description: 'Your changes have been saved.',
+        position: 'top',
+        status: 'success'
+      })
+      goToProjects()
+    } else {
+      setSaving(false)
       toast({
         title: 'Error updating region',
-        description: e.message,
+        description: res.data.message,
         position: 'top',
         status: 'error',
         isClosable: true,
         duration: null
       })
-    } finally {
-      setSaving(false)
     }
   }
 

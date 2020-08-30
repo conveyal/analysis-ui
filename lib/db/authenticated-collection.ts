@@ -46,7 +46,7 @@ export default class AuthenticatedCollection {
       ...data,
       // Common fields
       accessGroup: this.accessGroup,
-      nonce: new ObjectID(),
+      nonce: new ObjectID().toString(),
       createdBy: this.session.email,
       updatedBy: this.session.email
     })
@@ -68,28 +68,28 @@ export default class AuthenticatedCollection {
   findOne(_id: string) {
     return this.collection.findOne({
       accessGroup: this.accessGroup,
-      _id: new ObjectID(_id)
+      _id
     })
   }
 
   remove(_id: string) {
     return this.collection.deleteOne({
       accessGroup: this.accessGroup,
-      _id: new ObjectID(_id)
+      _id
     })
   }
 
   update(_id: string, newValues: any) {
     return this.collection.findOneAndUpdate(
       {
-        _id: new ObjectID(_id),
+        _id,
         accessGroup: this.accessGroup,
-        nonce: new ObjectID(newValues.nonce)
+        nonce: newValues.nonce
       },
       {
         $set: {
           ...omitId(newValues),
-          nonce: new ObjectID(),
+          nonce: new ObjectID().toString(),
           updatedBy: this.session.email
         }
       }
