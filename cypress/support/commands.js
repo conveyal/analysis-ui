@@ -9,7 +9,7 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  whitelist: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
+  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
 })
 
 const prefix = Cypress.env('dataPrefix')
@@ -21,7 +21,10 @@ const unlog = {log: false}
 
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
-  cy.get('#sidebar-spinner', unlog).should('not.exist')
+  cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
+    log: false,
+    timeout: 15000
+  })
   Cypress.log({name: 'Navigation complete'})
 })
 
@@ -207,8 +210,9 @@ function createNewProject() {
   cy.navTo('Projects')
   cy.findByText(/Create new Project/i).click()
   cy.findByLabelText(/Project name/).type(projectName)
-  cy.findByLabelText(/Associated network bundle/i).click()
-  cy.findByText(bundleName).click()
+  cy.findByLabelText(/Associated network bundle/i)
+    .click({force: true})
+    .type(bundleName + '{enter}')
   cy.findByText(/^Create$/).click()
 
   // store the projectId
@@ -252,6 +256,8 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
 })
 
 Cypress.Commands.add('navTo', (menuItemTitle) => {
+  // Ensure that any previous navigation is complete before attempting to navigate again
+  cy.navComplete()
   // Navigate to a page using one of the main (leftmost) menu items
   // and wait until at least part of the page is loaded.
   const pages = {
@@ -272,8 +278,9 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   // click the menu item
   cy.findByTitle(RegExp(title, 'i'), unlog)
     .parent(unlog) // select actual SVG element rather than <title> el
-    .click(unlog)
+    .click({force: true})
   // check that page loads at least some content
+  cy.navComplete()
   cy.contains(pages[title].lookFor, {log: false, timeout: 4000})
 })
 

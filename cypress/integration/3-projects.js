@@ -13,9 +13,9 @@ describe('Projects', () => {
 
     cy.findByLabelText(/Project name/).type(projectName)
     // select the scratch bundle
-    cy.findByLabelText(/Associated network bundle/i).type(
-      `{enter}${bundleName}{enter}`
-    )
+    cy.findByLabelText(/Associated network bundle/i)
+      .click({force: true})
+      .type(`{enter}${bundleName}{enter}`)
     cy.findByText('Create').click()
     cy.navComplete()
 
