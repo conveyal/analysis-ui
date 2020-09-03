@@ -1,13 +1,17 @@
+import {Radio, RadioGroup, Stack} from '@chakra-ui/core'
 import React from 'react'
 
 import colors from 'lib/constants/colors'
 
-import {NumberInput} from '../input'
+import NumberInput from '../number-input'
 import PatternLayer from '../modifications-map/pattern-layer'
 import StopLayer from '../modifications-map/stop-layer'
 
 import SelectFeedRouteAndPatterns from './select-feed-route-and-patterns'
 import SelectStops from './select-stops'
+
+// Must be non-negative
+const testDwellTime = (s) => s >= 0
 
 /**
  * Change dwell times
@@ -17,24 +21,15 @@ export default function AdjustDwellTimeComponent(p) {
     p.updateAndRetrieveFeedData({feed, routes, trips, stops: null})
   }
 
-  // We are setting a scale for existing speeds, not an actual speed
-  function _setScale(e) {
-    if (e.currentTarget.checked) p.update({scale: true})
-  }
-
-  // We are setting a brand-new speed, throwing out any existing variation in speed.
-  function _setSpeed(e) {
-    if (e.currentTarget.checked) p.update({scale: false})
-  }
-
   // Set the factor by which we are scaling, or the speed which we are replacing.
-  function _setValue(e) {
-    p.update({value: e.currentTarget.value})
+  function _setValue(value) {
+    p.update({value})
   }
 
   return (
-    <>
+    <Stack spacing={4}>
       <PatternLayer
+        activeTrips={p.modification.trips}
         color={colors.NEUTRAL_LIGHT}
         feed={p.selectedFeed}
         modification={p.modification}
@@ -53,40 +48,31 @@ export default function AdjustDwellTimeComponent(p) {
       />
 
       {p.modification.routes && (
-        <SelectStops setMapState={p.setMapState} update={p.update} />
+        <SelectStops modification={p.modification} update={p.update} />
       )}
 
-      <div className='radio'>
-        <label htmlFor='adjust-dwell-time-scale'>
-          <input
-            id='adjust-dwell-time-scale'
-            type='radio'
-            value='scale'
-            checked={p.modification.scale}
-            onChange={_setScale}
-          />{' '}
+      <RadioGroup
+        onChange={(e) => {
+          p.update({
+            scale: e.target.value === 'scale'
+          })
+        }}
+        value={p.modification.scale === true ? 'scale' : 'speed'}
+      >
+        <Radio id='adjust-dwell-time-scale' fontWeight='normal' value='scale'>
           Scale existing dwell times by
-        </label>
-      </div>
-      <div className='radio'>
-        <label htmlFor='adjust-dwell-time-speed'>
-          <input
-            id='adjust-dwell-time-speed'
-            type='radio'
-            value='speed'
-            checked={!p.modification.scale}
-            onChange={_setSpeed}
-          />{' '}
+        </Radio>
+        <Radio id='adjust-dwell-time-speed' fontWeight='normal' value='speed'>
           Set new dwell time to
-        </label>
-      </div>
+        </Radio>
+      </RadioGroup>
 
       <NumberInput
-        min={0}
+        test={testDwellTime}
         onChange={_setValue}
         units={p.modification.scale ? ' ' : 'seconds'}
         value={p.modification.value}
       />
-    </>
+    </Stack>
   )
 }

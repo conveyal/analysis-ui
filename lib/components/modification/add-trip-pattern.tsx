@@ -5,17 +5,20 @@ import {
   Input,
   Stack
 } from '@chakra-ui/core'
-import get from 'lodash/get'
 import dynamic from 'next/dynamic'
+import {useState} from 'react'
+import {useSelector} from 'react-redux'
+
+import selectAddTripsGTFSStops from 'lib/selectors/add-trips-gtfs-stops'
+import selectNumberOfStops from 'lib/selectors/number-of-stops'
 
 import TransitModeSelector from '../transit-mode-selector'
 
 import EditAlignment from './edit-alignment'
 import Timetables from './timetables'
-import {MAP_STATE_TRANSIT_EDITOR} from '../../constants'
 
-const MapLayer = dynamic(() =>
-  import('../modifications-map/add-trip-pattern-layer')
+const MapLayer = dynamic(
+  () => import('../modifications-map/add-trip-pattern-layer')
 )
 
 const blogLink =
@@ -25,52 +28,48 @@ const colorHelpText = `For display purposes (ex: with <a href="${blogLink}" targ
 /**
  * Display an add trip pattern modification
  */
-export default function AddTripPattern(p) {
+export default function AddTripPattern({modification, update}) {
+  const [isEditing, setIsEditing] = useState(false)
+  const gtfsStops = useSelector(selectAddTripsGTFSStops)
+  const numberOfStops = useSelector(selectNumberOfStops)
+
   return (
     <Stack spacing={4}>
-      {get(p, 'mapState.state') === MAP_STATE_TRANSIT_EDITOR ? null : (
+      {!isEditing && (
         <MapLayer
-          bidirectional={p.modification.bidirectional}
-          segments={p.modification.segments}
+          bidirectional={modification.bidirectional}
+          segments={modification.segments}
         />
       )}
 
       <TransitModeSelector
-        onChange={(transitMode) => p.update({transitMode})}
-        value={p.modification.transitMode}
+        onChange={(transitMode) => update({transitMode})}
+        value={modification.transitMode}
       />
 
       <FormControl className='DEV'>
         <FormLabel htmlFor='routeColor'>Route Color</FormLabel>
         <Input
           id='routeColor'
-          onChange={(e) => p.update({color: e.currentTarget.value})}
-          value={p.modification.color || ''}
+          onChange={(e) => update({color: e.currentTarget.value})}
+          value={modification.color || ''}
         />
         <FormHelperText dangerouslySetInnerHTML={{__html: colorHelpText}} />
       </FormControl>
 
       <EditAlignment
-        allStops={p.allStops}
-        disabled={false}
-        mapState={p.mapState}
-        modification={p.modification}
-        numberOfStops={p.numberOfStops}
-        segmentDistances={p.segmentDistances}
-        setMapState={p.setMapState}
-        update={p.update}
+        isEditing={isEditing}
+        modification={modification}
+        numberOfStops={numberOfStops}
+        setIsEditing={setIsEditing}
+        update={update}
       />
 
       <Timetables
-        bidirectional={p.modification.bidirectional}
-        modificationStops={p.gtfsStops}
-        numberOfStops={p.numberOfStops}
-        qualifiedStops={p.qualifiedStops}
-        projectTimetables={p.projectTimetables}
-        segmentDistances={p.segmentDistances}
-        setMapState={p.setMapState}
-        timetables={p.modification.timetables}
-        update={p.update}
+        modificationStops={gtfsStops}
+        numberOfStops={numberOfStops}
+        timetables={modification.timetables}
+        update={update}
       />
     </Stack>
   )

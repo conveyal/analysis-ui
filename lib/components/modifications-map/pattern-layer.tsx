@@ -12,8 +12,8 @@ import PatternGeometry from '../map/geojson-patterns'
  */
 export default function PatternLayer({
   activeTrips,
-  color,
-  dim,
+  color = colors.NEUTRAL,
+  dim = false,
   feed,
   modification
 }) {
@@ -37,7 +37,7 @@ export default function PatternLayer({
     )
   }, [activeTrips, dim, feed, modification])
 
-  const parsedColor = parseColor(color || colors.NEUTRAL)
+  const parsedColor = parseColor(color)
   if (dim) parsedColor.opacity = 0.2
 
   if (patterns && patterns.length > 0) {

@@ -1,72 +1,61 @@
-import {Alert, AlertIcon, Stack, Flex} from '@chakra-ui/core'
+import {Alert, AlertIcon, Stack, Flex, Button} from '@chakra-ui/core'
 import {
-  faDrawPolygon,
   faPlusSquare,
   faMinusSquare,
   faBan
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
-import {useCallback} from 'react'
+import {useCallback, useState} from 'react'
+import {Pane} from 'react-leaflet'
 import {useSelector} from 'react-redux'
 
+import colors from 'lib/constants/colors'
 import message from 'lib/message'
+import selectHopStops from 'lib/selectors/hop-stops'
 import selectModificationFeed from 'lib/selectors/modification-feed'
+import selectStopsFromAllFeeds from 'lib/selectors/stops-from-all-feeds'
 
-import {MAP_STATE_HOP_SELECTION} from '../../constants'
 import IconButton from '../icon-button'
 import NumberInput from '../number-input'
 
 import SelectPatterns from './select-patterns'
 import SelectFeedAndRoutes from './select-feed-and-routes'
 
-const MapLayer = dynamic(() =>
-  import('../modifications-map/adjust-speed-layer')
+const GTFSStopGridLayer = dynamic(
+  () => import('../modifications-map/gtfs-stop-gridlayer'),
+  {ssr: false}
+)
+const HopLayer = dynamic(() => import('../modifications-map/hop-layer'), {
+  ssr: false
+})
+const HopSelectPolygon = dynamic(
+  () => import('../modifications-map/hop-select-polygon'),
+  {ssr: false}
+)
+const PatternLayer = dynamic(
+  () => import('../modifications-map/pattern-layer'),
+  {ssr: false}
 )
 
 // Test for valid speed value
 const testSpeed = (s) => s >= 0
+
+// Map actions
+type Action = 'none' | 'new' | 'add' | 'remove'
 
 /**
  * Adjust speed on a route
  */
 export default function AdjustSpeedComponent({
   modification,
-  setMapState,
   update,
   updateAndRetrieveFeedData
 }) {
-  const selectedFeed = useSelector(selectModificationFeed)
-
-  function onSelectorChange(value) {
-    const {feed, routes, trips} = value
-    updateAndRetrieveFeedData({feed, routes, trips, hops: null})
-  }
-
-  function newSelection() {
-    setMapState({
-      state: MAP_STATE_HOP_SELECTION,
-      action: 'new'
-    })
-  }
-
-  function addToSelection() {
-    setMapState({
-      state: MAP_STATE_HOP_SELECTION,
-      action: 'add'
-    })
-  }
-
-  function removeFromSelection() {
-    setMapState({
-      state: MAP_STATE_HOP_SELECTION,
-      action: 'remove'
-    })
-  }
-
-  function clearSegment() {
-    update({hops: null})
-  }
+  const allStops = useSelector(selectStopsFromAllFeeds)
+  const feed = useSelector(selectModificationFeed)
+  const hopStops = useSelector(selectHopStops)
+  const [action, setAction] = useState<Action>('none')
 
   /**
    * Set the factor by which we are scaling, or the speed which we are
@@ -75,67 +64,111 @@ export default function AdjustSpeedComponent({
   const setScale = useCallback((scale) => update({scale}), [update])
 
   return (
-    <>
-      <MapLayer feed={selectedFeed} modification={modification} />
+    <Stack spacing={4} mb={4}>
+      <Pane zIndex={210}>
+        <GTFSStopGridLayer stops={allStops} />
+      </Pane>
 
-      <Stack spacing={4} mb={4}>
-        <SelectFeedAndRoutes
-          allowMultipleRoutes
-          onChange={onSelectorChange}
-          selectedRouteIds={modification.routes}
+      <Pane zIndex={220}>
+        <PatternLayer
+          activeTrips={modification.trips}
+          color={colors.NEUTRAL}
+          feed={feed}
+          modification={modification}
         />
+      </Pane>
 
-        {get(modification, 'routes.length') === 1 && (
-          <Stack spacing={4}>
-            <SelectPatterns
-              onChange={(trips) => updateAndRetrieveFeedData({trips})}
-              trips={modification.trips}
-            />
+      {modification.hops && (
+        <Pane zIndex={230}>
+          <HopLayer
+            color={colors.MODIFIED}
+            feed={feed}
+            hopStops={hopStops}
+            modification={modification}
+          />
+        </Pane>
+      )}
 
-            <Alert status='info'>
-              <AlertIcon />
-              {message('report.adjustSpeed.selectInstructions')}
-            </Alert>
+      {action !== 'none' && (
+        <Pane zIndex={510}>
+          <HopSelectPolygon
+            action={action}
+            allStops={allStops}
+            currentHops={modification.hops}
+            hopStops={hopStops}
+            update={(hops) => {
+              update({hops})
+              setAction('none')
+            }}
+          />
+        </Pane>
+      )}
 
+      <SelectFeedAndRoutes
+        allowMultipleRoutes
+        onChange={({feed, routes, trips}) =>
+          updateAndRetrieveFeedData({feed, routes, trips, hops: null})
+        }
+        selectedRouteIds={modification.routes}
+      />
+
+      {get(modification, 'routes.length') === 1 && (
+        <Stack spacing={4}>
+          <SelectPatterns
+            onChange={(trips) => updateAndRetrieveFeedData({trips})}
+            trips={modification.trips}
+          />
+
+          <Alert status='info'>
+            <AlertIcon />
+            {message('report.adjustSpeed.selectInstructions')}
+          </Alert>
+
+          {modification.hops == null ? (
+            <Button
+              leftIcon='edit'
+              isFullWidth
+              onClick={() => setAction('new')}
+              variantColor='blue'
+            >
+              {message('common.select')} segments
+            </Button>
+          ) : (
             <Flex justify='space-between'>
-              <IconButton
-                icon={faDrawPolygon}
-                label={message('common.select')}
-                onClick={newSelection}
-                size='lg'
-                variantColor='green'
-              />
               <IconButton
                 icon={faPlusSquare}
                 label={message('common.addTo')}
-                onClick={addToSelection}
+                onClick={() => setAction('add')}
                 size='lg'
               />
               <IconButton
                 icon={faMinusSquare}
                 label={message('common.removeFrom')}
-                onClick={removeFromSelection}
+                onClick={() => setAction('remove')}
                 size='lg'
                 variantColor='yellow'
               />
               <IconButton
                 icon={faBan}
                 label={message('common.clear')}
-                onClick={clearSegment}
+                onClick={() => {
+                  setAction('none')
+                  update({hops: null})
+                }}
                 size='lg'
                 variantColor='red'
               />
             </Flex>
-          </Stack>
-        )}
+          )}
+        </Stack>
+      )}
 
-        <NumberInput
-          label={message('report.adjustSpeed.scaleLabel')}
-          onChange={setScale}
-          test={testSpeed}
-          value={modification.scale}
-        />
-      </Stack>
-    </>
+      <NumberInput
+        label={message('report.adjustSpeed.scaleLabel')}
+        onChange={setScale}
+        test={testSpeed}
+        value={modification.scale}
+      />
+    </Stack>
   )
 }

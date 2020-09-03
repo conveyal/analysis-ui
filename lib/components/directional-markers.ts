@@ -69,16 +69,23 @@ export class DirectionalMarkers extends GridLayer<
   DirectionalMarkersProps,
   DirectionalMarkersGridLayer
 > {
-  createLeafletElement(props) {
+  createLeafletElement(
+    props: DirectionalMarkersProps
+  ): DirectionalMarkersGridLayer {
     return new DirectionalMarkersGridLayer(super.getOptions(props))
   }
 
-  componentDidUpdate(nextProps) {
-    if (nextProps.patterns !== this.props.patterns) {
-      this.leafletElement.color = nextProps.color
-      this.leafletElement.patterns = nextProps.patterns
-      this.leafletElement.redraw()
-    }
+  shouldComponentUpdate(nextProps: DirectionalMarkersProps): boolean {
+    return (
+      nextProps.color !== this.props.color ||
+      nextProps.patterns !== this.props.patterns
+    )
+  }
+
+  componentDidUpdate(nextProps: DirectionalMarkersProps): void {
+    this.leafletElement.color = nextProps.color
+    this.leafletElement.patterns = nextProps.patterns
+    this.leafletElement.redraw()
   }
 }
 
