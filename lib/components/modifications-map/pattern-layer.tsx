@@ -11,7 +11,7 @@ import PatternGeometry from '../map/geojson-patterns'
  * Display patterns on the map
  */
 export default function PatternLayer({
-  activeTrips,
+  activeTrips = null,
   color = colors.NEUTRAL,
   dim = false,
   feed,

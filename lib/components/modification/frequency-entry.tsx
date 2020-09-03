@@ -20,7 +20,6 @@ export default function FrequencyEntry({
   entry,
   feed,
   modificationStops,
-  projectTimetables,
   routePatterns,
   routes,
   setActiveTrips,
@@ -91,9 +90,7 @@ export default function FrequencyEntry({
           )}
 
           <TimetableEntry
-            bidirectional={false}
             modificationStops={stopsInPatterns}
-            projectTimetables={projectTimetables}
             timetable={entry}
             update={update}
           />

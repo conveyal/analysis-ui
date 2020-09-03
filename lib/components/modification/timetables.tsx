@@ -1,23 +1,20 @@
-import {Alert, AlertIcon, Button, Heading, Stack} from '@chakra-ui/core'
-import {useState} from 'react'
+import {Alert, AlertIcon, Box, Button, Heading, Stack} from '@chakra-ui/core'
 import {useSelector} from 'react-redux'
 
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
-import CopyTimetable from 'lib/containers/copy-timetable'
 import selectSegmentDistances from 'lib/selectors/segment-distances'
 import {create as createTimetable} from 'lib/utils/timetable'
 
-import Modal, {ModalTitle} from '../modal'
-
+import CopyTimetable from './copy-timetable'
 import TimetableComponent from './timetable'
 
 export default function Timetables({
+  modification,
   modificationStops,
   numberOfStops,
   timetables,
   update
 }) {
-  const [showCopyModal, setShowCopyModal] = useState(false)
   const segmentDistances = useSelector(selectSegmentDistances)
 
   /** add a timetable */
@@ -33,7 +30,6 @@ export default function Timetables({
   }
 
   const _createFromOther = (timetable) => {
-    setShowCopyModal(false)
     update({
       timetables: [...timetables, timetable]
     })
@@ -71,14 +67,13 @@ export default function Timetables({
       >
         Add new timetable
       </Button>
-      <Button
-        isFullWidth
-        leftIcon='copy'
-        onClick={() => setShowCopyModal(true)}
-        variantColor='green'
-      >
-        Copy existing timetable
-      </Button>
+      <Box>
+        <CopyTimetable
+          create={_createFromOther}
+          intoModification={modification}
+        />
+      </Box>
+
       {timetables.map((tt, i) => (
         <TimetableComponent
           key={`timetable-${i}`}
@@ -90,12 +85,6 @@ export default function Timetables({
           update={(timetable) => _update(i, timetable)}
         />
       ))}
-      {showCopyModal && (
-        <Modal onRequestClose={() => setShowCopyModal(false)}>
-          <ModalTitle>Copy Existing Timetable</ModalTitle>
-          <CopyTimetable create={_createFromOther} />
-        </Modal>
-      )}
     </Stack>
   )
 }

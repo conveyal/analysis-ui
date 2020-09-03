@@ -8,7 +8,6 @@ import selectFeedsWithBundleNames from 'lib/selectors/feeds-with-bundle-names'
 import selectFeedScopedModificationStops from 'lib/selectors/feed-scoped-modification-stops'
 import selectFrequencyEntryPatterns from 'lib/selectors/frequency-entry-patterns'
 import selectModificationFeed from 'lib/selectors/modification-feed'
-import selectProjectTimetables from 'lib/selectors/project-timetables'
 import selectRoutePatterns from 'lib/selectors/route-patterns'
 import {create as createFrequencyEntry} from 'lib/utils/frequency-entry'
 
@@ -37,7 +36,6 @@ export default function ConvertToFrequency({
   const feedScopedModificationStops = useSelector(
     selectFeedScopedModificationStops
   )
-  const projectTimetables = useSelector(selectProjectTimetables)
   const routePatterns = useSelector(selectRoutePatterns)
   const selectedFeed = useSelector(selectModificationFeed)
   const selectedPatterns = useSelector(selectFrequencyEntryPatterns)
@@ -130,7 +128,6 @@ export default function ConvertToFrequency({
             remove={_removeEntry(eidx)}
             routePatterns={routePatterns}
             routes={modification.routes}
-            projectTimetables={projectTimetables}
             setActiveTrips={_setActiveTrips}
             update={_replaceEntry(eidx)}
           />

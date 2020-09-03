@@ -66,6 +66,7 @@ export default function AddTripPattern({modification, update}) {
       />
 
       <Timetables
+        modification={modification}
         modificationStops={gtfsStops}
         numberOfStops={numberOfStops}
         timetables={modification.timetables}
