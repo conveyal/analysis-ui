@@ -282,15 +282,15 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
     },
     'opportunity datasets': {
       lookFor: /Upload a new dataset/i,
-      path: /\/regions\/[a-z0-9]+\/opportunities\?/
+      path: /\/regions\/[a-z0-9]+\/opportunities*/
     },
     'edit modifications': {
-      lookFor: /create new project|create a modification/i,
+      lookFor: /create a modification/i,
       path: /\/regions\/[a-z0-9]+\/projects*/
     },
     analyze: {
       lookFor: /Comparison Project/i,
-      path: /\/regions\/[a-z0-9]+\/analysis\?*/
+      path: /\/regions\/[a-z0-9]+\/analysis*/
     },
     'regional analyses': {
       lookFor: /Regional Analyses/i,

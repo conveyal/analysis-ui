@@ -1,20 +1,25 @@
 const tempRegionName = Cypress.env('dataPrefix') + 'temp'
 
-describe('Region setup', () => {
+function setup() {
+  // be on the region setup page
+  cy.visit('/regions/create')
+  // alias all inputs
+  cy.findByLabelText(/Region Name/).as('name')
+  cy.findByLabelText('Description').as('description')
+  cy.findByLabelText(/North bound/).as('North')
+  cy.findByLabelText(/South bound/).as('South')
+  cy.findByLabelText(/East bound/).as('East')
+  cy.findByLabelText(/West bound/).as('West')
+  cy.findByRole('button', {name: /Set up a new region/}).as('create')
+  cy.get('input#react-select-2-input').as('search')
+}
+
+describe('Region setup', function () {
   beforeEach(() => {
     // scratch region settings
-    cy.fixture('regions/scratch.json').as('region')
-    // be on the region setup page
-    cy.visit('/regions/create')
-    // alias all inputs
-    cy.findByLabelText(/Region Name/).as('name')
-    cy.findByLabelText('Description').as('description')
-    cy.findByLabelText(/North bound/).as('North')
-    cy.findByLabelText(/South bound/).as('South')
-    cy.findByLabelText(/East bound/).as('East')
-    cy.findByLabelText(/West bound/).as('West')
-    cy.findByRole('button', {name: /Set up a new region/}).as('create')
-    cy.get('input#react-select-2-input').as('search')
+    cy.fixture('regions/scratch.json').then((region) => {
+      this.region = region
+    })
   })
 
   it('can be found from homepage', function () {
@@ -24,6 +29,7 @@ describe('Region setup', () => {
   })
 
   it('does not allow invalid coordinates', () => {
+    setup()
     // try to set south == north
     cy.get('@North')
       .invoke('val')
@@ -54,6 +60,8 @@ describe('Region setup', () => {
   })
 
   it('finds locations searched by name', () => {
+    setup()
+
     const regions = [
       {
         searchTerm: 'cincinnati',
@@ -82,7 +90,8 @@ describe('Region setup', () => {
     })
   })
 
-  it('CRUD a region', function () {
+  it('CRUD a region', () => {
+    setup()
     // create a temporary region name
     const regionName = tempRegionName + Date.now()
     // Enter region name and description

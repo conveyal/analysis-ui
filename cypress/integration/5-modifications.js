@@ -129,15 +129,11 @@ function drawRouteGeometry(newRoute) {
 }
 
 describe('Modifications', () => {
-  before(() => {
-    cy.setup('project')
-    setupScenario(scenarioName)
-    // TODO clear out all old modifications
-  })
-
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.navTo('Edit Modifications')
+    cy.setup('project')
+    setupScenario(scenarioName)
+    cy.findByRole('tab', {name: /Modifications/g}).click()
     cy.get('div.leaflet-container').as('map')
   })
 
