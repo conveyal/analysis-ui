@@ -22,7 +22,6 @@ const unlog = {log: false}
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
   cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
-    log: false,
     timeout: 15000
   })
   Cypress.log({name: 'Navigation complete'})
@@ -277,11 +276,11 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   Cypress.log({name: 'Navigate to'})
   // click the menu item
   cy.findByTitle(RegExp(title, 'i'), unlog)
-    .parent(unlog) // select actual SVG element rather than <title> el
+    .parent() // select actual SVG element rather than <title> el
     .click({force: true})
   // check that page loads at least some content
+  cy.contains(pages[title].lookFor, {timeout: 8000})
   cy.navComplete()
-  cy.contains(pages[title].lookFor, {log: false, timeout: 4000})
 })
 
 Cypress.Commands.add('clickMap', (coord) => {

@@ -133,4 +133,4 @@ export default function CreateRegionPage() {
 }
 
 // Add MapLayout
-Object.assign(CreateRegionPage, {Layout: MapLayout})
+CreateRegionPage.Layout = MapLayout

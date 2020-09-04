@@ -41,16 +41,15 @@ export default function LoadRegion() {
 }
 
 // Add the MapLayout
-Object.assign(LoadRegion, {Layout: MapLayout})
+LoadRegion.Layout = MapLayout
 
 /**
  * Use a separate component for the form due for the input hooks.
  */
-function EditRegion(p) {
-  const regionURL = `/api/regions/${p.region._id}`
+function EditRegion({mutate, region}) {
+  const regionURL = `/api/regions/${region._id}`
   const goToHome = useRouteTo('regions')
-  const goToProjects = useRouteTo('projects', {regionId: p.region._id})
-  const [region, setRegion] = useState(p.region)
+  const [bounds, setBounds] = useState(region.bounds)
   const [saving, setSaving] = useState(false)
   const toast = useToast()
 
@@ -89,12 +88,12 @@ function EditRegion(p) {
 
     // Save will redirect back to main region page when complete
     const nw = reprojectCoordinates({
-      lat: region.bounds.north,
-      lon: region.bounds.west
+      lat: bounds.north,
+      lon: bounds.west
     })
     const se = reprojectCoordinates({
-      lat: region.bounds.south,
-      lon: region.bounds.east
+      lat: bounds.south,
+      lon: bounds.east
     })
     const newBounds = {north: nw.lat, west: nw.lon, south: se.lat, east: se.lon}
 
@@ -106,8 +105,7 @@ function EditRegion(p) {
     })
 
     if (res.ok) {
-      p.mutate(regionURL, res.data)
-      goToProjects()
+      mutate(regionURL, res.data)
       toast({
         title: 'Region updated',
         description: 'Your changes have been saved.',
@@ -130,17 +128,19 @@ function EditRegion(p) {
   // Helper function to set a specific direction of the bounds
   const setBoundsFor = useCallback(
     (direction: string, newValue: number) => {
-      setRegion((r) => ({...r, bounds: {...r.bounds, [direction]: newValue}}))
+      setBounds((bounds) => ({...bounds, [direction]: newValue}))
     },
-    [setRegion]
+    [setBounds]
   )
+
+  const isEqual =
+    region.bounds === bounds &&
+    region.name === nameInput.value &&
+    region.description === descriptionInput.value
 
   return (
     <InnerDock>
-      <EditBounds
-        bounds={region.bounds}
-        save={(b) => setRegion((r) => ({...r, bounds: b}))}
-      />
+      <EditBounds bounds={bounds} save={(b) => setBounds(b)} />
 
       <Stack p={SPACING_FORM} spacing={SPACING_FORM}>
         <Heading size='md'>{message('region.editTitle')}</Heading>
@@ -161,12 +161,13 @@ function EditRegion(p) {
         </FormControl>
 
         <EditBoundsForm
-          bounds={region.bounds}
+          bounds={bounds}
           isDisabled={saving}
           onChange={setBoundsFor}
         />
 
         <Button
+          isDisabled={isEqual}
           isFullWidth
           isLoading={saving}
           onClick={_save}
