@@ -206,206 +206,6 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
   update={[MockFunction]}
   updateAndRetrieveFeedData={[MockFunction]}
 >
-  <DynamicMockedComponent
-    feed={
-      Object {
-        "checksum": "MOCK",
-        "id": "1",
-        "name": "1",
-        "routes": Array [
-          Object {
-            "label": "mock-route-label",
-            "patterns": Array [
-              Object {
-                "geometry": Object {
-                  "coordinates": Array [
-                    Array [
-                      -122.0246,
-                      36.9707,
-                    ],
-                    Array [
-                      -122.0279,
-                      37.049,
-                    ],
-                    Array [
-                      -121.9799,
-                      37.2299,
-                    ],
-                    Array [
-                      -121.9445,
-                      37.324,
-                    ],
-                    Array [
-                      -121.936,
-                      37.353,
-                    ],
-                    Array [
-                      -121.924,
-                      37.365,
-                    ],
-                  ],
-                  "type": "LineString",
-                },
-                "name": "Mock Pattern",
-                "pattern_id": "mock-pattern-id",
-                "stops": Array [
-                  Object {
-                    "stop_id": "1",
-                    "stop_lat": 36.9707,
-                    "stop_lon": -122.0246,
-                    "stop_name": "Santa Cruz",
-                  },
-                  Object {
-                    "stop_id": "2",
-                    "stop_lat": 37.049,
-                    "stop_lon": -122.0279,
-                    "stop_name": "Scotts Valley",
-                  },
-                ],
-                "trips": Array [
-                  Object {
-                    "duration": 1234,
-                    "end_time": 13579,
-                    "start_time": 12345,
-                    "trip_headsign": "To Downtown",
-                    "trip_id": "abcd",
-                    "trip_short_name": "The Express",
-                  },
-                ],
-              },
-            ],
-            "route_id": "route1",
-          },
-        ],
-        "stops": Array [
-          Object {
-            "stop_id": "1",
-            "stop_lat": 36.9707,
-            "stop_lon": -122.0246,
-            "stop_name": "Santa Cruz",
-          },
-          Object {
-            "stop_id": "2",
-            "stop_lat": 37.049,
-            "stop_lon": -122.0279,
-            "stop_name": "Scotts Valley",
-          },
-        ],
-        "stopsById": Object {
-          "1": Object {
-            "stop_id": "1",
-            "stop_lat": 36.9707,
-            "stop_lon": -122.0246,
-            "stop_name": "Santa Cruz",
-          },
-          "2": Object {
-            "stop_id": "2",
-            "stop_lat": 37.049,
-            "stop_lon": -122.0279,
-            "stop_name": "Scotts Valley",
-          },
-        },
-      }
-    }
-    modification={
-      Object {
-        "_id": "1234",
-        "accessGroup": "accessGroupName",
-        "bidirectional": false,
-        "createdAt": "2017-11-08T12:30:50.133Z",
-        "createdBy": "person@gmail.com",
-        "description": "Mock description",
-        "entries": Array [],
-        "feed": "1",
-        "name": "Test Modification",
-        "nonce": "12345",
-        "projectId": "1",
-        "routes": Array [
-          "route1",
-        ],
-        "segments": Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ],
-        "timetables": Array [
-          Object {
-            "_id": "timetable-id",
-            "dwellTime": 10,
-            "dwellTimes": Array [
-              12,
-            ],
-            "endTime": 57600,
-            "exactTimes": false,
-            "friday": true,
-            "headwaySecs": 900,
-            "modificationId": "1234",
-            "modificationName": "Test Modification",
-            "monday": true,
-            "name": "Test timetable",
-            "patternTrips": Array [
-              "abcd",
-            ],
-            "phaseAtStop": "",
-            "phaseFromStop": "",
-            "phaseFromTimetable": "",
-            "phaseSeconds": 300,
-            "saturday": false,
-            "segmentSpeeds": Array [],
-            "sourceTrip": "abcd",
-            "startTime": 28800,
-            "sunday": false,
-            "thursday": true,
-            "tuesday": true,
-            "wednesday": true,
-          },
-        ],
-        "trips": Array [
-          "abcd",
-        ],
-        "type": "add-trip-pattern",
-        "updatedAt": "2017-11-08T12:31:19.602Z",
-        "updatedBy": "person@gmail.com",
-        "variants": Array [
-          true,
-        ],
-      }
-    }
-  />
   <ForwardRef
     mb={4}
     spacing={4}
@@ -422,9 +222,31 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
         <div
           className="css-opcg3f"
         >
+          <ForwardRef(Leaflet(Pane))
+            key=".0"
+            mb={4}
+            zIndex={210}
+          >
+            <Pane
+              leaflet={Object {}}
+              mb={4}
+              zIndex={210}
+            />
+          </ForwardRef(Leaflet(Pane))>
+          <ForwardRef(Leaflet(Pane))
+            key=".1"
+            mb={4}
+            zIndex={220}
+          >
+            <Pane
+              leaflet={Object {}}
+              mb={4}
+              zIndex={220}
+            />
+          </ForwardRef(Leaflet(Pane))>
           <SelectFeedAndRoutes
             allowMultipleRoutes={true}
-            key=".0"
+            key=".4"
             mb={4}
             onChange={[Function]}
             selectedRouteIds={
@@ -1261,7 +1083,7 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
             </ForwardRef>
           </SelectFeedAndRoutes>
           <ForwardRef
-            key=".1"
+            key=".5"
             mb={4}
             spacing={4}
           >
@@ -1657,851 +1479,128 @@ exports[`Component AdjustSpeedComponent snapshot(mount) 1`] = `
                       </div>
                     </Box>
                   </Alert>
-                  <Flex
-                    justify="space-between"
+                  <Button
+                    isFullWidth={true}
                     key=".2"
+                    leftIcon="edit"
                     mb={null}
+                    onClick={[Function]}
+                    variantColor="blue"
                   >
-                    <Box
-                      display="flex"
-                      justifyContent="space-between"
+                    <PseudoBox
+                      _active={
+                        Object {
+                          "bg": "blue.700",
+                        }
+                      }
+                      _disabled={
+                        Object {
+                          "boxShadow": "none",
+                          "cursor": "not-allowed",
+                          "opacity": "40%",
+                        }
+                      }
+                      _focus={
+                        Object {
+                          "boxShadow": "outline",
+                        }
+                      }
+                      _hover={
+                        Object {
+                          "bg": "blue.600",
+                        }
+                      }
+                      alignItems="center"
+                      appearance="none"
+                      as="button"
+                      bg="blue.500"
+                      borderRadius="md"
+                      color="white"
+                      display="inline-flex"
+                      fontSize="md"
+                      fontWeight="semibold"
+                      height={10}
+                      justifyContent="center"
+                      lineHeight="1.2"
                       mb={null}
+                      minWidth={10}
+                      onClick={[Function]}
+                      outline="none"
+                      position="relative"
+                      px={4}
+                      transition="all 250ms"
+                      type="button"
+                      userSelect="none"
+                      verticalAlign="middle"
+                      whiteSpace="nowrap"
+                      width="full"
                     >
-                      <div
-                        className="css-gg4vpm"
+                      <button
+                        className="css-c8cukl"
+                        onClick={[Function]}
+                        type="button"
                       >
-                        <SimpleIconButton
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "draw-polygon",
-                              "prefix": "fas",
-                            }
-                          }
-                          label="Select"
-                          onClick={[Function]}
-                          size="lg"
-                          variantColor="green"
+                        <ButtonIcon
+                          icon="edit"
+                          ml={-1}
+                          mr={2}
                         >
-                          <Box>
-                            <div
-                              className="css-0"
+                          <Icon
+                            aria-hidden="true"
+                            color="currentColor"
+                            focusable="false"
+                            ml={-1}
+                            mr={2}
+                            name="edit"
+                          >
+                            <Styled(div)
+                              aria-hidden="true"
+                              as="svg"
+                              color="currentColor"
+                              display="inline-block"
+                              focusable="false"
+                              ml={-1}
+                              mr={2}
+                              role="presentation"
+                              size="1em"
+                              verticalAlign="middle"
+                              viewBox="0 0 24 24"
                             >
-                              <Tooltip
-                                aria-label="Select"
-                                hasArrow={true}
-                                label="Select"
-                                placement="auto"
-                                zIndex={1000}
+                              <svg
+                                aria-hidden="true"
+                                className="css-yxiis9"
+                                focusable="false"
+                                role="presentation"
+                                viewBox="0 0 24 24"
                               >
-                                <Button
-                                  aria-label="Select"
-                                  isActive={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  size="lg"
-                                  variant="ghost"
-                                  variantColor="green"
+                                <g
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeLinecap="full"
+                                  strokeWidth="2"
                                 >
-                                  <PseudoBox
-                                    _active={
-                                      Object {
-                                        "bg": "green.100",
-                                      }
-                                    }
-                                    _disabled={
-                                      Object {
-                                        "boxShadow": "none",
-                                        "cursor": "not-allowed",
-                                        "opacity": "40%",
-                                      }
-                                    }
-                                    _focus={
-                                      Object {
-                                        "boxShadow": "outline",
-                                      }
-                                    }
-                                    _hover={
-                                      Object {
-                                        "bg": "green.50",
-                                      }
-                                    }
-                                    alignItems="center"
-                                    appearance="none"
-                                    aria-label="Select"
-                                    as="button"
-                                    bg="transparent"
-                                    borderRadius="md"
-                                    color="green.500"
-                                    display="inline-flex"
-                                    fontSize="lg"
-                                    fontWeight="semibold"
-                                    height={12}
-                                    justifyContent="center"
-                                    lineHeight="1.2"
-                                    minWidth={12}
-                                    onBlur={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onMouseEnter={[Function]}
-                                    onMouseLeave={[Function]}
-                                    outline="none"
-                                    position="relative"
-                                    px={6}
-                                    transition="all 250ms"
-                                    type="button"
-                                    userSelect="none"
-                                    verticalAlign="middle"
-                                    whiteSpace="nowrap"
-                                  >
-                                    <button
-                                      aria-label="Select"
-                                      className="css-11hmzj"
-                                      onBlur={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onMouseEnter={[Function]}
-                                      onMouseLeave={[Function]}
-                                      type="button"
-                                    >
-                                      <Icon
-                                        fixedWidth={false}
-                                        icon={
-                                          Object {
-                                            "icon": Array [],
-                                            "iconName": "draw-polygon",
-                                            "prefix": "fas",
-                                          }
-                                        }
-                                      >
-                                        <FontAwesomeIcon
-                                          border={false}
-                                          className=""
-                                          fixedWidth={false}
-                                          flip={null}
-                                          icon={
-                                            Object {
-                                              "icon": Array [],
-                                              "iconName": "draw-polygon",
-                                              "prefix": "fas",
-                                            }
-                                          }
-                                          inverse={false}
-                                          listItem={false}
-                                          mask={null}
-                                          pull={null}
-                                          pulse={false}
-                                          rotation={null}
-                                          size={null}
-                                          spin={false}
-                                          swapOpacity={false}
-                                          symbol={false}
-                                          title=""
-                                          transform={null}
-                                        >
-                                          <svg
-                                            aria-hidden="true"
-                                            className="svg-inline--fa fa-draw-polygon fa-w-NaN "
-                                            data-icon="draw-polygon"
-                                            data-prefix="fas"
-                                            focusable="false"
-                                            role="img"
-                                            style={Object {}}
-                                            viewBox="0 0 undefined undefined"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              fill="currentColor"
-                                              style={Object {}}
-                                            />
-                                          </svg>
-                                        </FontAwesomeIcon>
-                                      </Icon>
-                                    </button>
-                                  </PseudoBox>
-                                </Button>
-                                <ForwardRef
-                                  anchorEl={
-                                    <button
-                                      aria-label="Select"
-                                      class="css-11hmzj"
-                                      type="button"
-                                    >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="svg-inline--fa fa-draw-polygon fa-w-NaN "
-                                        data-icon="draw-polygon"
-                                        data-prefix="fas"
-                                        focusable="false"
-                                        role="img"
-                                        viewBox="0 0 undefined undefined"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          fill="currentColor"
-                                        />
-                                      </svg>
-                                    </button>
-                                  }
-                                  arrowSize="10px"
-                                  bg="gray.700"
-                                  borderRadius="sm"
-                                  color="whiteAlpha.900"
-                                  fontSize="sm"
-                                  fontWeight="medium"
-                                  hasArrow={true}
-                                  isOpen={false}
-                                  maxW="320px"
-                                  modifiers={
-                                    Object {
-                                      "offset": Object {
-                                        "enabled": true,
-                                        "offset": "0, 8",
-                                      },
-                                    }
-                                  }
-                                  placement="auto"
-                                  pointerEvents="none"
-                                  px="8px"
-                                  py="2px"
-                                  shadow="md"
-                                  timeout={200}
-                                  usePortal={true}
-                                  zIndex={1000}
-                                />
-                              </Tooltip>
-                            </div>
-                          </Box>
-                        </SimpleIconButton>
-                        <SimpleIconButton
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "plus-square",
-                              "prefix": "fas",
-                            }
-                          }
-                          label="Add to"
-                          onClick={[Function]}
-                          size="lg"
-                        >
-                          <Box>
-                            <div
-                              className="css-0"
-                            >
-                              <Tooltip
-                                aria-label="Add to"
-                                hasArrow={true}
-                                label="Add to"
-                                placement="auto"
-                                zIndex={1000}
-                              >
-                                <Button
-                                  aria-label="Add to"
-                                  isActive={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  size="lg"
-                                  variant="ghost"
-                                  variantColor="blue"
-                                >
-                                  <PseudoBox
-                                    _active={
-                                      Object {
-                                        "bg": "blue.100",
-                                      }
-                                    }
-                                    _disabled={
-                                      Object {
-                                        "boxShadow": "none",
-                                        "cursor": "not-allowed",
-                                        "opacity": "40%",
-                                      }
-                                    }
-                                    _focus={
-                                      Object {
-                                        "boxShadow": "outline",
-                                      }
-                                    }
-                                    _hover={
-                                      Object {
-                                        "bg": "blue.50",
-                                      }
-                                    }
-                                    alignItems="center"
-                                    appearance="none"
-                                    aria-label="Add to"
-                                    as="button"
-                                    bg="transparent"
-                                    borderRadius="md"
-                                    color="blue.500"
-                                    display="inline-flex"
-                                    fontSize="lg"
-                                    fontWeight="semibold"
-                                    height={12}
-                                    justifyContent="center"
-                                    lineHeight="1.2"
-                                    minWidth={12}
-                                    onBlur={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onMouseEnter={[Function]}
-                                    onMouseLeave={[Function]}
-                                    outline="none"
-                                    position="relative"
-                                    px={6}
-                                    transition="all 250ms"
-                                    type="button"
-                                    userSelect="none"
-                                    verticalAlign="middle"
-                                    whiteSpace="nowrap"
-                                  >
-                                    <button
-                                      aria-label="Add to"
-                                      className="css-13q3z73"
-                                      onBlur={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onMouseEnter={[Function]}
-                                      onMouseLeave={[Function]}
-                                      type="button"
-                                    >
-                                      <Icon
-                                        fixedWidth={false}
-                                        icon={
-                                          Object {
-                                            "icon": Array [],
-                                            "iconName": "plus-square",
-                                            "prefix": "fas",
-                                          }
-                                        }
-                                      >
-                                        <FontAwesomeIcon
-                                          border={false}
-                                          className=""
-                                          fixedWidth={false}
-                                          flip={null}
-                                          icon={
-                                            Object {
-                                              "icon": Array [],
-                                              "iconName": "plus-square",
-                                              "prefix": "fas",
-                                            }
-                                          }
-                                          inverse={false}
-                                          listItem={false}
-                                          mask={null}
-                                          pull={null}
-                                          pulse={false}
-                                          rotation={null}
-                                          size={null}
-                                          spin={false}
-                                          swapOpacity={false}
-                                          symbol={false}
-                                          title=""
-                                          transform={null}
-                                        >
-                                          <svg
-                                            aria-hidden="true"
-                                            className="svg-inline--fa fa-plus-square fa-w-NaN "
-                                            data-icon="plus-square"
-                                            data-prefix="fas"
-                                            focusable="false"
-                                            role="img"
-                                            style={Object {}}
-                                            viewBox="0 0 undefined undefined"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              fill="currentColor"
-                                              style={Object {}}
-                                            />
-                                          </svg>
-                                        </FontAwesomeIcon>
-                                      </Icon>
-                                    </button>
-                                  </PseudoBox>
-                                </Button>
-                                <ForwardRef
-                                  anchorEl={
-                                    <button
-                                      aria-label="Add to"
-                                      class="css-13q3z73"
-                                      type="button"
-                                    >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="svg-inline--fa fa-plus-square fa-w-NaN "
-                                        data-icon="plus-square"
-                                        data-prefix="fas"
-                                        focusable="false"
-                                        role="img"
-                                        viewBox="0 0 undefined undefined"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          fill="currentColor"
-                                        />
-                                      </svg>
-                                    </button>
-                                  }
-                                  arrowSize="10px"
-                                  bg="gray.700"
-                                  borderRadius="sm"
-                                  color="whiteAlpha.900"
-                                  fontSize="sm"
-                                  fontWeight="medium"
-                                  hasArrow={true}
-                                  isOpen={false}
-                                  maxW="320px"
-                                  modifiers={
-                                    Object {
-                                      "offset": Object {
-                                        "enabled": true,
-                                        "offset": "0, 8",
-                                      },
-                                    }
-                                  }
-                                  placement="auto"
-                                  pointerEvents="none"
-                                  px="8px"
-                                  py="2px"
-                                  shadow="md"
-                                  timeout={200}
-                                  usePortal={true}
-                                  zIndex={1000}
-                                />
-                              </Tooltip>
-                            </div>
-                          </Box>
-                        </SimpleIconButton>
-                        <SimpleIconButton
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "minus-square",
-                              "prefix": "fas",
-                            }
-                          }
-                          label="Remove from"
-                          onClick={[Function]}
-                          size="lg"
-                          variantColor="yellow"
-                        >
-                          <Box>
-                            <div
-                              className="css-0"
-                            >
-                              <Tooltip
-                                aria-label="Remove from"
-                                hasArrow={true}
-                                label="Remove from"
-                                placement="auto"
-                                zIndex={1000}
-                              >
-                                <Button
-                                  aria-label="Remove from"
-                                  isActive={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  size="lg"
-                                  variant="ghost"
-                                  variantColor="yellow"
-                                >
-                                  <PseudoBox
-                                    _active={
-                                      Object {
-                                        "bg": "yellow.100",
-                                      }
-                                    }
-                                    _disabled={
-                                      Object {
-                                        "boxShadow": "none",
-                                        "cursor": "not-allowed",
-                                        "opacity": "40%",
-                                      }
-                                    }
-                                    _focus={
-                                      Object {
-                                        "boxShadow": "outline",
-                                      }
-                                    }
-                                    _hover={
-                                      Object {
-                                        "bg": "yellow.50",
-                                      }
-                                    }
-                                    alignItems="center"
-                                    appearance="none"
-                                    aria-label="Remove from"
-                                    as="button"
-                                    bg="transparent"
-                                    borderRadius="md"
-                                    color="yellow.500"
-                                    display="inline-flex"
-                                    fontSize="lg"
-                                    fontWeight="semibold"
-                                    height={12}
-                                    justifyContent="center"
-                                    lineHeight="1.2"
-                                    minWidth={12}
-                                    onBlur={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onMouseEnter={[Function]}
-                                    onMouseLeave={[Function]}
-                                    outline="none"
-                                    position="relative"
-                                    px={6}
-                                    transition="all 250ms"
-                                    type="button"
-                                    userSelect="none"
-                                    verticalAlign="middle"
-                                    whiteSpace="nowrap"
-                                  >
-                                    <button
-                                      aria-label="Remove from"
-                                      className="css-jm7s4q"
-                                      onBlur={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onMouseEnter={[Function]}
-                                      onMouseLeave={[Function]}
-                                      type="button"
-                                    >
-                                      <Icon
-                                        fixedWidth={false}
-                                        icon={
-                                          Object {
-                                            "icon": Array [],
-                                            "iconName": "minus-square",
-                                            "prefix": "fas",
-                                          }
-                                        }
-                                      >
-                                        <FontAwesomeIcon
-                                          border={false}
-                                          className=""
-                                          fixedWidth={false}
-                                          flip={null}
-                                          icon={
-                                            Object {
-                                              "icon": Array [],
-                                              "iconName": "minus-square",
-                                              "prefix": "fas",
-                                            }
-                                          }
-                                          inverse={false}
-                                          listItem={false}
-                                          mask={null}
-                                          pull={null}
-                                          pulse={false}
-                                          rotation={null}
-                                          size={null}
-                                          spin={false}
-                                          swapOpacity={false}
-                                          symbol={false}
-                                          title=""
-                                          transform={null}
-                                        >
-                                          <svg
-                                            aria-hidden="true"
-                                            className="svg-inline--fa fa-minus-square fa-w-NaN "
-                                            data-icon="minus-square"
-                                            data-prefix="fas"
-                                            focusable="false"
-                                            role="img"
-                                            style={Object {}}
-                                            viewBox="0 0 undefined undefined"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              fill="currentColor"
-                                              style={Object {}}
-                                            />
-                                          </svg>
-                                        </FontAwesomeIcon>
-                                      </Icon>
-                                    </button>
-                                  </PseudoBox>
-                                </Button>
-                                <ForwardRef
-                                  anchorEl={
-                                    <button
-                                      aria-label="Remove from"
-                                      class="css-jm7s4q"
-                                      type="button"
-                                    >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="svg-inline--fa fa-minus-square fa-w-NaN "
-                                        data-icon="minus-square"
-                                        data-prefix="fas"
-                                        focusable="false"
-                                        role="img"
-                                        viewBox="0 0 undefined undefined"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          fill="currentColor"
-                                        />
-                                      </svg>
-                                    </button>
-                                  }
-                                  arrowSize="10px"
-                                  bg="gray.700"
-                                  borderRadius="sm"
-                                  color="whiteAlpha.900"
-                                  fontSize="sm"
-                                  fontWeight="medium"
-                                  hasArrow={true}
-                                  isOpen={false}
-                                  maxW="320px"
-                                  modifiers={
-                                    Object {
-                                      "offset": Object {
-                                        "enabled": true,
-                                        "offset": "0, 8",
-                                      },
-                                    }
-                                  }
-                                  placement="auto"
-                                  pointerEvents="none"
-                                  px="8px"
-                                  py="2px"
-                                  shadow="md"
-                                  timeout={200}
-                                  usePortal={true}
-                                  zIndex={1000}
-                                />
-                              </Tooltip>
-                            </div>
-                          </Box>
-                        </SimpleIconButton>
-                        <SimpleIconButton
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "ban",
-                              "prefix": "fas",
-                            }
-                          }
-                          label="Clear"
-                          onClick={[Function]}
-                          size="lg"
-                          variantColor="red"
-                        >
-                          <Box>
-                            <div
-                              className="css-0"
-                            >
-                              <Tooltip
-                                aria-label="Clear"
-                                hasArrow={true}
-                                label="Clear"
-                                placement="auto"
-                                zIndex={1000}
-                              >
-                                <Button
-                                  aria-label="Clear"
-                                  isActive={false}
-                                  onBlur={[Function]}
-                                  onClick={[Function]}
-                                  onFocus={[Function]}
-                                  onMouseEnter={[Function]}
-                                  onMouseLeave={[Function]}
-                                  size="lg"
-                                  variant="ghost"
-                                  variantColor="red"
-                                >
-                                  <PseudoBox
-                                    _active={
-                                      Object {
-                                        "bg": "red.100",
-                                      }
-                                    }
-                                    _disabled={
-                                      Object {
-                                        "boxShadow": "none",
-                                        "cursor": "not-allowed",
-                                        "opacity": "40%",
-                                      }
-                                    }
-                                    _focus={
-                                      Object {
-                                        "boxShadow": "outline",
-                                      }
-                                    }
-                                    _hover={
-                                      Object {
-                                        "bg": "red.50",
-                                      }
-                                    }
-                                    alignItems="center"
-                                    appearance="none"
-                                    aria-label="Clear"
-                                    as="button"
-                                    bg="transparent"
-                                    borderRadius="md"
-                                    color="red.500"
-                                    display="inline-flex"
-                                    fontSize="lg"
-                                    fontWeight="semibold"
-                                    height={12}
-                                    justifyContent="center"
-                                    lineHeight="1.2"
-                                    minWidth={12}
-                                    onBlur={[Function]}
-                                    onClick={[Function]}
-                                    onFocus={[Function]}
-                                    onMouseEnter={[Function]}
-                                    onMouseLeave={[Function]}
-                                    outline="none"
-                                    position="relative"
-                                    px={6}
-                                    transition="all 250ms"
-                                    type="button"
-                                    userSelect="none"
-                                    verticalAlign="middle"
-                                    whiteSpace="nowrap"
-                                  >
-                                    <button
-                                      aria-label="Clear"
-                                      className="css-j2a2xs"
-                                      onBlur={[Function]}
-                                      onClick={[Function]}
-                                      onFocus={[Function]}
-                                      onMouseEnter={[Function]}
-                                      onMouseLeave={[Function]}
-                                      type="button"
-                                    >
-                                      <Icon
-                                        fixedWidth={false}
-                                        icon={
-                                          Object {
-                                            "icon": Array [],
-                                            "iconName": "ban",
-                                            "prefix": "fas",
-                                          }
-                                        }
-                                      >
-                                        <FontAwesomeIcon
-                                          border={false}
-                                          className=""
-                                          fixedWidth={false}
-                                          flip={null}
-                                          icon={
-                                            Object {
-                                              "icon": Array [],
-                                              "iconName": "ban",
-                                              "prefix": "fas",
-                                            }
-                                          }
-                                          inverse={false}
-                                          listItem={false}
-                                          mask={null}
-                                          pull={null}
-                                          pulse={false}
-                                          rotation={null}
-                                          size={null}
-                                          spin={false}
-                                          swapOpacity={false}
-                                          symbol={false}
-                                          title=""
-                                          transform={null}
-                                        >
-                                          <svg
-                                            aria-hidden="true"
-                                            className="svg-inline--fa fa-ban fa-w-NaN "
-                                            data-icon="ban"
-                                            data-prefix="fas"
-                                            focusable="false"
-                                            role="img"
-                                            style={Object {}}
-                                            viewBox="0 0 undefined undefined"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              fill="currentColor"
-                                              style={Object {}}
-                                            />
-                                          </svg>
-                                        </FontAwesomeIcon>
-                                      </Icon>
-                                    </button>
-                                  </PseudoBox>
-                                </Button>
-                                <ForwardRef
-                                  anchorEl={
-                                    <button
-                                      aria-label="Clear"
-                                      class="css-j2a2xs"
-                                      type="button"
-                                    >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="svg-inline--fa fa-ban fa-w-NaN "
-                                        data-icon="ban"
-                                        data-prefix="fas"
-                                        focusable="false"
-                                        role="img"
-                                        viewBox="0 0 undefined undefined"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          fill="currentColor"
-                                        />
-                                      </svg>
-                                    </button>
-                                  }
-                                  arrowSize="10px"
-                                  bg="gray.700"
-                                  borderRadius="sm"
-                                  color="whiteAlpha.900"
-                                  fontSize="sm"
-                                  fontWeight="medium"
-                                  hasArrow={true}
-                                  isOpen={false}
-                                  maxW="320px"
-                                  modifiers={
-                                    Object {
-                                      "offset": Object {
-                                        "enabled": true,
-                                        "offset": "0, 8",
-                                      },
-                                    }
-                                  }
-                                  placement="auto"
-                                  pointerEvents="none"
-                                  px="8px"
-                                  py="2px"
-                                  shadow="md"
-                                  timeout={200}
-                                  usePortal={true}
-                                  zIndex={1000}
-                                />
-                              </Tooltip>
-                            </div>
-                          </Box>
-                        </SimpleIconButton>
-                      </div>
-                    </Box>
-                  </Flex>
+                                  <path
+                                    d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                  />
+                                  <path
+                                    d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                  />
+                                </g>
+                              </svg>
+                            </Styled(div)>
+                          </Icon>
+                        </ButtonIcon>
+                        Select
+                         segments
+                      </button>
+                    </PseudoBox>
+                  </Button>
                 </div>
               </Box>
             </Flex>
           </ForwardRef>
           <NumberInput
-            key=".2"
+            key=".6"
             label="Scale speed by"
             mb={null}
             onChange={[Function]}
