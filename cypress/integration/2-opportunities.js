@@ -11,7 +11,9 @@ describe('Opportunity Datasets', function () {
   })
 
   beforeEach(() => {
-    cy.fixture('regions/scratch.json').its('opportunities').as('opportunities')
+    cy.fixture('regions/scratch.json').then((data) => {
+      this.opportunities = data.opportunities
+    })
     cy.navTo('Opportunity datasets')
     cy.get('div.leaflet-container').as('map')
   })

@@ -67,22 +67,26 @@ function setupAnalysis() {
   })
 }
 
-describe('Analysis', () => {
+describe('Analysis', function () {
   before(() => {
     cy.setup('project')
     cy.setup('opportunities')
   })
 
   beforeEach(() => {
-    cy.fixture('regions/scratch.json').as('region')
-    cy.fixture('regions/scratch-results.json').as('results')
+    cy.fixture('regions/scratch.json').then((data) => {
+      this.region = data
+    })
+    cy.fixture('regions/scratch-results.json').then((data) => {
+      this.results = data
+    })
     setupAnalysis()
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
   })
 
   describe('of a point', () => {
-    it('has all form elements', function () {
+    it('has all form elements', () => {
       // note that elements touched in beforeEach are neglected here
       cy.findByRole('slider', {name: 'Time cutoff'})
       cy.findByRole('slider', {name: /Travel time percentile/i})
@@ -116,7 +120,7 @@ describe('Analysis', () => {
         })
     })
 
-    it('runs, giving reasonable results', function () {
+    it('runs, giving reasonable results', () => {
       // tests basic single point analysis at specified locations
       fetchResults() // initialize request
       // set new parameters
@@ -135,7 +139,7 @@ describe('Analysis', () => {
       }
     })
 
-    it('handles direct access by walk/bike only', function () {
+    it('handles direct access by walk/bike only', () => {
       const location = this.region.locations.middle
       const results = this.results.locations.middle
       setOrigin(location)
@@ -162,7 +166,7 @@ describe('Analysis', () => {
         .matchImageSnapshot('direct-bike-access-chart')
     })
 
-    it('uses custom analysis bounds', function () {
+    it('uses custom analysis bounds', () => {
       const location = this.region.locations.center
       const results = this.results.locations.center
       setOrigin(location)
@@ -176,7 +180,7 @@ describe('Analysis', () => {
         })
     })
 
-    it('gives different results at different times', function () {
+    it('gives different results at different times', () => {
       const location = this.region.locations.center
       const results = this.results.locations.center
       setOrigin(location)
@@ -215,7 +219,7 @@ describe('Analysis', () => {
         .matchImageSnapshot('chart-no-variation')
     })
 
-    it('charts accessibility', function () {
+    it('charts accessibility', () => {
       const location = this.region.locations.center
       setOrigin(location)
       fetchResults()
@@ -249,7 +253,7 @@ describe('Analysis', () => {
   })
 
   describe('of a region', () => {
-    it('runs a regional analysis, etc.', function () {
+    it('runs a regional analysis, etc.', () => {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
