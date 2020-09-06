@@ -104,6 +104,7 @@ function EditRegion({region, remove, update}) {
       description: descriptionInput.value
     })
 
+    setSaving(false)
     if (res.ok) {
       toast({
         title: 'Region updated',
@@ -112,7 +113,6 @@ function EditRegion({region, remove, update}) {
         status: 'success'
       })
     } else {
-      setSaving(false)
       toast({
         title: 'Error updating region',
         description: res.data.message,
