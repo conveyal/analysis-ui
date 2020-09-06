@@ -5,28 +5,29 @@ import {safeDelete, putJSON} from 'lib/utils/safe-fetch'
 
 import {UserContext} from '../user'
 
-export function createUseModel(collectionName) {
+export function createUseModel(collectionName: string) {
   return function useModel(_id: string, config?: ConfigInterface) {
     const user = useContext(UserContext)
     const results = useSWR([`/api/db/${collectionName}/${_id}`, user], config)
 
+    const {data, mutate} = results
     const update = useCallback(
       async (newProperties) => {
         // Optimistically update
-        results.mutate({...results.data, ...newProperties})
+        mutate({...data, ...newProperties})
         // PUT to server
         const res = await putJSON(`/api/db/${collectionName}/${_id}`, {
-          ...results.data,
+          ...data,
           ...newProperties
         })
         // Mutate with final result
         if (res.ok) {
-          results.mutate(res.data)
+          mutate(res.data)
         }
         // Return full response object.
         return res
       },
-      [results.data, results.mutate]
+      [data, _id, mutate]
     )
 
     return {
