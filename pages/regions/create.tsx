@@ -60,7 +60,7 @@ export default function CreateRegionPage() {
 
     setUploading(true)
 
-    const res = await postJSON('/api/regions', {
+    const res = await postJSON('/api/db/regions', {
       name: nameInput.value,
       description: descriptionInput.value,
       bounds

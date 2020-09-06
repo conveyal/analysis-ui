@@ -15,6 +15,9 @@ function getAccessGroup(session: IUser) {
 // Omit _id during updates
 const omitId = fpOmit(['_id'])
 
+// Enabled collections
+const collections = ['analysisPresets', 'modifications', 'projects', 'regions']
+
 /**
  * Ensure that all operations are only performed if the user has access.
  */
@@ -27,6 +30,10 @@ export default class AuthenticatedCollection {
     collectionName: string,
     session: IUser
   ): Promise<AuthenticatedCollection> {
+    if (collections.indexOf(collectionName) === -1) {
+      throw new Error(`Collection '${collectionName}' is not enabled.`)
+    }
+
     const {db} = await connectToDatabase()
     return new AuthenticatedCollection(db.collection(collectionName), session)
   }

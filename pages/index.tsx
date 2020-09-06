@@ -17,7 +17,7 @@ import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
-import useRegions from 'lib/hooks/use-regions'
+import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
@@ -28,7 +28,7 @@ const alertText =
   'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
 
 export default withAuth(function SelectRegionPage(p) {
-  const {regions, isValidating} = useRegions({initialData: p.regions})
+  const {data: regions, isValidating} = useRegions({initialData: p.regions})
   const {accessGroup, email} = useUser()
   const goToRegionCreate = useRouteTo('regionCreate')
 
