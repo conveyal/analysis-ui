@@ -1,4 +1,4 @@
-import useSWR, {ConfigInterface, mutate} from 'swr'
+import useSWR, {ConfigInterface} from 'swr'
 import {useContext, useCallback} from 'react'
 
 import {safeDelete, putJSON} from 'lib/utils/safe-fetch'
