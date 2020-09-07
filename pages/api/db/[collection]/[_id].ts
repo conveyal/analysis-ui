@@ -22,11 +22,11 @@ export default auth0.requireAuthentication(async function collection(
   switch (req.method) {
     case 'GET': {
       try {
-        const region = await collection.findOne(_id)
-        if (!region) {
+        const document = await collection.findOne(_id)
+        if (!document) {
           res.status(404).end()
         } else {
-          res.json(region)
+          res.json(document)
         }
       } catch (e) {
         res.status(400).json({

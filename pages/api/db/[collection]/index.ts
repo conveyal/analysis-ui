@@ -1,6 +1,6 @@
 import {NextApiResponse, NextApiRequest} from 'next'
 
-import auth0, {getSession} from 'lib/auth0'
+import auth0 from 'lib/auth0'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
 
 const getAsString = (p: string | string[]) => (Array.isArray(p) ? p[0] : p)
