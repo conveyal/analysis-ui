@@ -8,27 +8,30 @@ import {
   Stack
 } from '@chakra-ui/core'
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
-import mapValues from 'lodash/mapValues'
 import {GetServerSideProps} from 'next'
 
-import {getSession} from 'lib/auth0'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
+import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
-import {ObjectID} from 'mongodb'
 
 const alertDate = 'August, 2020'
 const alertText =
   'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
 
 export default withAuth(function SelectRegionPage(p) {
-  const {data: regions, isValidating} = useRegions({initialData: p.regions})
+  const {data: regions, isValidating} = useRegions({
+    initialData: p.regions,
+    options: {
+      sort: {name: 1}
+    }
+  })
   const {accessGroup, email} = useUser()
   const goToRegionCreate = useRouteTo('regionCreate')
 
@@ -98,41 +101,20 @@ function RegionItem({region, ...p}) {
 
 /**
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
- * Comment out to disable. Everything else should still work.
+ * Comment out to disable. Page load should still work.
  */
 export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
-  let session = null
-  try {
-    session = await getSession(req)
-  } catch (e) {
-    console.error('Error while retrieving the session.', e)
-  }
-  if (session == null) {
-    res.writeHead(302, {
-      Location: '/api/login'
-    })
-    res.end()
-    return {props: {}}
-  }
-
   const collection = await AuthenticatedCollection.initialize(
-    'regions',
-    session
+    req,
+    res,
+    'regions'
   )
-  const regions = await collection.findAll().toArray()
+  const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
 
   return {
     props: {
-      regions: serialize(regions),
-      user: session
+      regions: serializeCollection(regions),
+      user: collection.session
     }
   }
-}
-
-function serialize(obj) {
-  if (obj instanceof Date) return obj.toISOString()
-  if (obj instanceof ObjectID) return obj.toString()
-  if (Array.isArray(obj)) return obj.map(serialize)
-  if (typeof obj === 'object') return mapValues(obj, serialize)
-  return obj
 }

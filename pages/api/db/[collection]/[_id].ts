@@ -2,7 +2,7 @@ import lowerCase from 'lodash/lowerCase'
 import startCase from 'lodash/startCase'
 import {NextApiResponse, NextApiRequest} from 'next'
 
-import auth0, {getSession} from 'lib/auth0'
+import auth0 from 'lib/auth0'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
 
 const getAsString = (p: string | string[]) => (Array.isArray(p) ? p[0] : p)
@@ -11,11 +11,11 @@ export default auth0.requireAuthentication(async function collection(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  const session = await getSession(req)
   const collectionName = getAsString(req.query.collection)
   const collection = await AuthenticatedCollection.initialize(
-    collectionName,
-    session
+    req,
+    res,
+    collectionName
   )
   const _id = getAsString(req.query._id)
 
@@ -29,12 +29,10 @@ export default auth0.requireAuthentication(async function collection(
           res.json(region)
         }
       } catch (e) {
-        res
-          .status(400)
-          .json({
-            message: `Error getting ${lowerCase(collectionName)}.`,
-            error: e
-          })
+        res.status(400).json({
+          message: `Error getting ${lowerCase(collectionName)}.`,
+          error: e
+        })
       }
       break
     }
@@ -49,12 +47,10 @@ export default auth0.requireAuthentication(async function collection(
           res.json(updateResult.value)
         }
       } catch (e) {
-        res
-          .status(400)
-          .json({
-            message: `Error updating ${lowerCase(collectionName)}.`,
-            error: e
-          })
+        res.status(400).json({
+          message: `Error updating ${lowerCase(collectionName)}.`,
+          error: e
+        })
       }
       break
     }
@@ -66,19 +62,15 @@ export default auth0.requireAuthentication(async function collection(
             .status(200)
             .json({message: `${startCase(collectionName)} has been deleted.`})
         } else {
-          res
-            .status(400)
-            .json({
-              message: `${startCase(collectionName)} deletion has failed.`
-            })
+          res.status(400).json({
+            message: `${startCase(collectionName)} deletion has failed.`
+          })
         }
       } catch (e) {
-        res
-          .status(400)
-          .json({
-            message: `Error deleting ${lowerCase(collectionName)}.`,
-            error: e
-          })
+        res.status(400).json({
+          message: `Error deleting ${lowerCase(collectionName)}.`,
+          error: e
+        })
       }
       break
     }
