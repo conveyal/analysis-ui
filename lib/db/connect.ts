@@ -22,7 +22,6 @@ export async function connectToDatabase(): Promise<{
   client: MongoClient
   db: Db
 }> {
-  console.log('isCached', !!cachedClient, !!cachedDb)
   if (cachedClient && cachedDb) {
     return {client: cachedClient, db: cachedDb}
   }
