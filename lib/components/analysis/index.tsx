@@ -96,7 +96,7 @@ export default function SinglePointAnalysis({
   const displayedDataIsCurrent =
     !profileRequestHasChanged && !isFetchingIsochrone
 
-  // On moount / unmount
+  // On mount / unmount
   useEffect(() => {
     dispatch(clearResults())
     return () => {

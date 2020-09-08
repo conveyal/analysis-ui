@@ -1,3 +1,4 @@
+import {IncomingMessage, ServerResponse} from 'http'
 import {Collection, ObjectID, FindOneOptions, FilterQuery} from 'mongodb'
 import fpOmit from 'lodash/fp/omit'
 
@@ -6,6 +7,9 @@ import {IUser} from 'lib/user'
 
 import {connectToDatabase} from './connect'
 
+/**
+ * When the `adminTempAccessGroup` is set, use that instead.
+ */
 function getAccessGroup(session: IUser) {
   if (session.adminTempAccessGroup && session.adminTempAccessGroup.length > 0) {
     return session.adminTempAccessGroup
@@ -17,7 +21,12 @@ function getAccessGroup(session: IUser) {
 const omitImmutable = fpOmit(['_id', 'accessGroup', 'createdAt', 'createdBy'])
 
 // Enabled collections
-const collections = ['analysisPresets', 'modifications', 'projects', 'regions']
+const collections = [
+  'bookmarks', // previously known as Bookmarks
+  'modifications',
+  'projects',
+  'regions'
+]
 
 /**
  * Ensure that all operations are only performed if the user has access.
@@ -25,9 +34,18 @@ const collections = ['analysisPresets', 'modifications', 'projects', 'regions']
 export default class AuthenticatedCollection {
   accessGroup: string // If admin, this may be the `adminTempAccessGroup`
   collection: Collection
+  name: string
   session: IUser
 
-  static async initialize(req, res, collectionName) {
+  /**
+   * Async factory method for creating an AuthenticatedCollection at an HTTP endpoint. Can be
+   * used in `getServerSideProps` or in `/pages/api/...` endpoints.
+   */
+  static async initialize(
+    req: IncomingMessage,
+    res: ServerResponse,
+    collectionName: string
+  ) {
     if (collections.indexOf(collectionName) === -1) {
       throw new Error(`Collection '${collectionName}' is not enabled.`)
     }
@@ -47,12 +65,17 @@ export default class AuthenticatedCollection {
     }
 
     const {db} = await connectToDatabase()
-    return new AuthenticatedCollection(db.collection(collectionName), session)
+    return new AuthenticatedCollection(
+      collectionName,
+      db.collection(collectionName),
+      session
+    )
   }
 
-  constructor(collection: Collection, session: IUser) {
+  constructor(name: string, collection: Collection, session: IUser) {
     this.accessGroup = getAccessGroup(session)
     this.collection = collection
+    this.name = name
     this.session = session
   }
 

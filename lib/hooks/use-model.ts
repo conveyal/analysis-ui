@@ -8,34 +8,37 @@ import {UserContext} from '../user'
 export function createUseModel(collectionName: string) {
   return function useModel(_id: string, config?: ConfigInterface) {
     const user = useContext(UserContext)
-    const results = useSWR([`/api/db/${collectionName}/${_id}`, user], config)
+    const url = `/api/db/${collectionName}/${_id}`
+    const results = useSWR([url, user], config)
 
-    const {data, mutate} = results
+    const {mutate} = results
     const update = useCallback(
-      async (newProperties) => {
-        // Optimistically update client side
-        mutate({...data, ...newProperties}, false)
-        // PUT to server
-        const res = await putJSON(`/api/db/${collectionName}/${_id}`, {
-          ...data,
-          ...newProperties
-        })
-        // Update client with final result
-        if (res.ok) {
-          mutate(res.data)
-        }
-        // Return full response object.
-        return res
-      },
-      [data, _id, mutate]
+      (newProperties) =>
+        mutate(async (data) => {
+          const res = await putJSON(url, {
+            ...data,
+            ...newProperties
+          })
+          // Update client with final result
+          if (res.ok) {
+            return res.data
+          } else {
+            throw res
+          }
+        }),
+      [url, mutate]
     )
+
+    // Should never change
+    const remove = useCallback((_id) => safeDelete(url), [url])
 
     return {
       ...results,
       update,
-      remove: () => safeDelete(`/api/db/${collectionName}/${_id}`)
+      remove
     }
   }
 }
 
 export const useRegion = createUseModel('regions')
+export const useAnalysisPreset = createUseModel('analysisPreset')

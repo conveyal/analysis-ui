@@ -39,8 +39,8 @@ import {secondsToHhMmString} from 'lib/utils/time'
 import ControlledSelect from '../controlled-select'
 import Icon from '../icon'
 import ModeIcon from '../mode-icon'
+import Presets from '../presets'
 
-import BookmarkChooser from './bookmark-chooser'
 import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
@@ -207,6 +207,7 @@ export default function Settings({
           profileRequest={requestsSettings[0]}
           project={currentProject}
           projects={projects}
+          regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
           scenario={variantIndex}
@@ -242,6 +243,7 @@ export default function Settings({
           profileRequest={requestsSettings[1]}
           project={comparisonProject}
           projects={projects}
+          regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
           scenario={comparisonVariant}
@@ -395,6 +397,7 @@ function RequestSettings({
   profileRequest,
   project,
   projects,
+  regionId,
   regionalAnalyses,
   regionBounds,
   scenario,
@@ -434,15 +437,15 @@ function RequestSettings({
               value={scenarioOptions.find((v) => v.value === scenario)}
             />
 
-            <BookmarkChooser
-              disabled={isDisabled}
-              flex='1'
-              isComparison={isComparison}
-              onChange={(bookmarkSettings) =>
-                setProfileRequest({...bookmarkSettings})
-              }
-              requestSettings={profileRequest}
-            />
+            <Box flex='1'>
+              <Presets
+                currentSettings={profileRequest}
+                isComparison={isComparison}
+                isDisabled={isDisabled}
+                onChange={(presets) => setProfileRequest({...presets})}
+                regionId={regionId}
+              />
+            </Box>
           </Stack>
 
           {isComparison && (

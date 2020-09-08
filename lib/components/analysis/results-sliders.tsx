@@ -2,12 +2,12 @@ import {
   Box,
   FormControl,
   FormLabel,
+  Select,
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
   Stack,
-  FormHelperText,
   FormControlProps
 } from '@chakra-ui/core'
 import {useCallback, memo} from 'react'
@@ -19,7 +19,6 @@ import {
 } from 'lib/actions/analysis'
 import useInput from 'lib/hooks/use-controlled-input'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
-import getNearestPercentileIndex from 'lib/selectors/nearest-percentile-index'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import {TRAVEL_TIME_PERCENTILES} from 'lib/constants'
@@ -77,36 +76,16 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
       onChange: onChangePercentile,
       value: useSelector(selectTravelTimePercentile)
     })
-
-    // We only allow for a set of percentiles when viewing single point results
-    const singlePointPercentile =
-      TRAVEL_TIME_PERCENTILES[getNearestPercentileIndex(percentileSlider.value)]
     return (
       <FormControl isDisabled={isDisabled} {...p}>
         <FormLabel>Travel time percentile</FormLabel>
-        <Slider
-          isDisabled={isDisabled}
-          min={1}
-          max={99}
-          onChange={percentileSlider.onChange}
-          value={percentileSlider.value}
-        >
-          <SliderTrack />
-          <SliderFilledTrack />
-          <SliderThumb
-            aria-label='Travel time percentile'
-            ref={percentileSlider.ref}
-            size='8'
-          >
-            <Box fontSize='sm' fontWeight='bold'>
-              {percentileSlider.value}
-            </Box>
-          </SliderThumb>
-        </Slider>
-        <FormHelperText>
-          {singlePointPercentile} single-point, {percentileSlider.value}{' '}
-          multi-point
-        </FormHelperText>
+        <Select {...percentileSlider}>
+          {TRAVEL_TIME_PERCENTILES.map((p) => (
+            <option key={p} value={p}>
+              {p}
+            </option>
+          ))}
+        </Select>
       </FormControl>
     )
   }

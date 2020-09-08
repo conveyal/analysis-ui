@@ -4,7 +4,7 @@ import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
 
 import Icon from './icon'
 
-type SimpleIconButtonProps = {
+type IconButtonProps = {
   icon: IconDefinition
   isActive?: boolean
   label: string
@@ -15,7 +15,9 @@ type SimpleIconButtonProps = {
   variantColor?: ButtonProps['variantColor']
 } & BoxProps
 
-export default function SimpleIconButton({
+const zIndex = 1500 // Chakra Modals are set at 1400
+
+export default function IconButton({
   icon,
   isActive = false,
   label,
@@ -25,7 +27,7 @@ export default function SimpleIconButton({
   variant = 'ghost',
   variantColor = 'blue',
   ...p
-}: SimpleIconButtonProps) {
+}: IconButtonProps) {
   return (
     <Box {...p}>
       <Tooltip
@@ -33,7 +35,7 @@ export default function SimpleIconButton({
         hasArrow
         label={label}
         placement={placement || 'auto'}
-        zIndex={1000}
+        zIndex={zIndex}
       >
         <Button
           aria-label={label}

@@ -1,9 +1,9 @@
 import LogRocket from 'lib/logrocket'
 
-const FETCH_ERROR = 'FETCH_ERROR'
-const NONE = 'NONE'
-const CLIENT_ERROR = 'CLIENT_ERROR'
-const SERVER_ERROR = 'SERVER_ERROR'
+export const FETCH_ERROR = 'FETCH_ERROR'
+export const NONE = 'NONE'
+export const CLIENT_ERROR = 'CLIENT_ERROR'
+export const SERVER_ERROR = 'SERVER_ERROR'
 // const TIMEOUT_ERROR = 'TIMEOUT_ERROR'
 // const CONNECTION_ERROR = 'CONNECTION_ERROR'
 // const NETWORK_ERROR = 'NETWORK_ERROR'
@@ -72,7 +72,10 @@ type SafeResponse =
 /**
  * Never throw errors. Always return a response.
  */
-export async function safeFetch(url, options = {}): Promise<SafeResponse> {
+export async function safeFetch(
+  url: string,
+  options?: RequestInit
+): Promise<SafeResponse> {
   try {
     const res = await fetch(url, options)
     return await safeParseResponse(res)
