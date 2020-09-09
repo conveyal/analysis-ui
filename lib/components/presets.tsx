@@ -18,7 +18,7 @@ import {
   Stack,
   ModalFooter
 } from '@chakra-ui/core'
-import {faTrash, faEdit, faPlusSquare} from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faEdit} from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import isEqual from 'lodash/isEqual'
