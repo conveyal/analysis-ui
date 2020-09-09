@@ -13,19 +13,25 @@ export function createUseModel(collectionName: string) {
 
     const {mutate} = results
     const update = useCallback(
-      (newProperties) =>
-        mutate(async (data) => {
-          const res = await putJSON(url, {
-            ...data,
-            ...newProperties
+      async (newProperties) => {
+        try {
+          const data = await mutate(async (data) => {
+            const res = await putJSON(url, {
+              ...data,
+              ...newProperties
+            })
+            // Update client with final result
+            if (res.ok) {
+              return res.data
+            } else {
+              throw res
+            }
           })
-          // Update client with final result
-          if (res.ok) {
-            return res.data
-          } else {
-            throw res
-          }
-        }),
+          return {ok: true, data}
+        } catch (res) {
+          return res
+        }
+      },
       [url, mutate]
     )
 

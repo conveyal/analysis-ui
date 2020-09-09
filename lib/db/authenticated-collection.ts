@@ -21,12 +21,20 @@ function getAccessGroup(session: IUser) {
 const omitImmutable = fpOmit(['_id', 'accessGroup', 'createdAt', 'createdBy'])
 
 // Enabled collections
-const collections = [
-  'bookmarks', // previously known as Bookmarks
-  'modifications',
-  'projects',
-  'regions'
-]
+const collections = {
+  bookmarks: {
+    singular: 'bookmark'
+  }, // previously known as Bookmarks
+  modifications: {
+    singular: 'modification'
+  },
+  projects: {
+    singular: 'project'
+  },
+  regions: {
+    singular: 'region'
+  }
+}
 
 /**
  * Ensure that all operations are only performed if the user has access.
@@ -35,6 +43,7 @@ export default class AuthenticatedCollection {
   accessGroup: string // If admin, this may be the `adminTempAccessGroup`
   collection: Collection
   name: string
+  singularName: string
   session: IUser
 
   /**
@@ -46,7 +55,7 @@ export default class AuthenticatedCollection {
     res: ServerResponse,
     collectionName: string
   ) {
-    if (collections.indexOf(collectionName) === -1) {
+    if (collections[collectionName] === undefined) {
       throw new Error(`Collection '${collectionName}' is not enabled.`)
     }
 
@@ -76,6 +85,7 @@ export default class AuthenticatedCollection {
     this.accessGroup = getAccessGroup(session)
     this.collection = collection
     this.name = name
+    this.singularName = collections[name].singular
     this.session = session
   }
 

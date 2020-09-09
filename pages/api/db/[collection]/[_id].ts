@@ -17,7 +17,7 @@ export default withCollection(async (req, res, collection) => {
         }
       } catch (e) {
         res.status(400).json({
-          description: `Error getting ${lowerCase(collection.name)}.`,
+          description: `Error getting ${lowerCase(collection.singularName)}.`,
           error: errorToPOJO(e) // possibly only do when user is admin?
         })
       }
@@ -26,18 +26,16 @@ export default withCollection(async (req, res, collection) => {
     case 'PUT': {
       try {
         const updateResult = await collection.update(_id, req.body)
-        if (!updateResult || !updateResult.ok) {
-          res
-            .status(404)
-            .json({
-              description: `${startCase(collection.name)} does not exist.`
-            })
+        if (!updateResult || !updateResult.ok || !updateResult.value) {
+          res.status(404).json({
+            description: `${startCase(collection.singularName)} does not exist.`
+          })
         } else {
           res.json(updateResult.value)
         }
       } catch (e) {
         res.status(400).json({
-          description: `Error updating ${lowerCase(collection.name)}.`,
+          description: `Error updating ${lowerCase(collection.singularName)}.`,
           error: errorToPOJO(e)
         })
       }
@@ -47,19 +45,21 @@ export default withCollection(async (req, res, collection) => {
       try {
         const result = await collection.remove(_id)
         if (result) {
-          res
-            .status(200)
-            .json({
-              description: `${startCase(collection.name)} has been deleted.`
-            })
+          res.status(200).json({
+            description: `${startCase(
+              collection.singularName
+            )} has been deleted.`
+          })
         } else {
           res.status(400).json({
-            description: `${startCase(collection.name)} deletion has failed.`
+            description: `${startCase(
+              collection.singularName
+            )} deletion has failed.`
           })
         }
       } catch (e) {
         res.status(400).json({
-          description: `Error deleting ${lowerCase(collection.name)}.`,
+          description: `Error deleting ${lowerCase(collection.singularName)}.`,
           error: errorToPOJO(e)
         })
       }

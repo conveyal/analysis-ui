@@ -40,19 +40,24 @@ export function createUseCollection(collectionName) {
     const {mutate, revalidate} = results
     // Helper function for updating values when using a collection
     const update = useCallback(
-      (_id: string, newProperties: Record<string, unknown>) => {
-        return mutate(async (data) => {
-          const obj = data.find((d) => d._id === _id)
-          const res = await putJSON(`/api/db/${collectionName}/${_id}`, {
-            ...obj,
-            ...newProperties
+      async (_id: string, newProperties: Record<string, unknown>) => {
+        try {
+          const data = await mutate(async (data) => {
+            const obj = data.find((d) => d._id === _id)
+            const res = await putJSON(`/api/db/${collectionName}/${_id}`, {
+              ...obj,
+              ...newProperties
+            })
+            if (res.ok) {
+              return data.map((d) => (d._id === _id ? res.data : d))
+            } else {
+              throw res
+            }
           })
-          if (res.ok) {
-            return data.map((d) => (d._id === _id ? res.data : d))
-          } else {
-            throw res
-          }
-        })
+          return {ok: true, data}
+        } catch (res) {
+          return res
+        }
       },
       [mutate]
     )
@@ -63,10 +68,8 @@ export function createUseCollection(collectionName) {
         const res = await safeDelete(`/api/db/${collectionName}/${_id}`)
         if (res.ok) {
           revalidate()
-          return res
-        } else {
-          throw res
         }
+        return res
       },
       [revalidate]
     )

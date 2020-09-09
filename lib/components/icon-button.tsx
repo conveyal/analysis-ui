@@ -7,6 +7,7 @@ import Icon from './icon'
 type IconButtonProps = {
   icon: IconDefinition
   isActive?: boolean
+  isDisabled?: boolean
   label: string
   onClick: (e: MouseEvent) => void
   placement?: PopperProps['placement']
@@ -20,6 +21,7 @@ const zIndex = 1500 // Chakra Modals are set at 1400
 export default function IconButton({
   icon,
   isActive = false,
+  isDisabled = false,
   label,
   onClick,
   placement,
@@ -40,6 +42,7 @@ export default function IconButton({
         <Button
           aria-label={label}
           isActive={isActive}
+          isDisabled={isDisabled}
           onClick={onClick}
           size={size}
           variant={variant}

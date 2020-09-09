@@ -2,14 +2,10 @@ import {
   Alert,
   Box,
   Button,
-  Divider,
   Flex,
   FormControl,
   FormLabel,
-  Icon,
   Input,
-  InputGroup,
-  InputLeftElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -22,7 +18,7 @@ import {
   Stack,
   ModalFooter
 } from '@chakra-ui/core'
-import {faTrash} from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faEdit, faPlusSquare} from '@fortawesome/free-solid-svg-icons'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import isEqual from 'lodash/isEqual'
@@ -33,7 +29,6 @@ import useInput from 'lib/hooks/use-controlled-input'
 
 import {ObjectToTable} from './analysis/profile-request-display'
 import {ConfirmDialog} from './confirm-button'
-import Editable from './editable'
 import Select from './select'
 import IconButton from './icon-button'
 
@@ -83,70 +78,89 @@ export default memo<Props>(function PresetChooser({
 }) {
   const presets = usePresets({query: {regionId}, options: {sort: {name: 1}}})
   const toast = useToast()
-  const createPreset = useDisclosure()
-  const managePresets = useDisclosure()
+  const createPresetAction = useDisclosure()
+  const editPresetAction = useDisclosure()
+  const removeAction = useDisclosure()
 
-  const [preset, setPreset] = useState()
+  const [selectedPreset, setSelectedPreset] = useState()
   const id = 'select-preset-' + isComparison
 
   // Check the presets to see if they match any settings
   useEffect(() => {
-    setPreset(findPreset(currentSettings, presets.data))
-  }, [presets, currentSettings, setPreset])
+    setSelectedPreset(findPreset(currentSettings, presets.data))
+  }, [presets, currentSettings, setSelectedPreset])
 
-  function _selectPreset(e) {
-    const preset = presets.data.find((b) => b._id === e._id)
-    if (preset) {
-      onChange(preset.profileRequest)
-    }
-  }
+  // Select a new preset and load it's contents
+  const _selectPreset = useCallback(
+    (e) => {
+      const preset = presets.data.find((b) => b._id === e._id)
+      if (preset) {
+        onChange(preset.profileRequest)
+      }
+    },
+    [onChange, presets]
+  )
 
-  // Create a new preset based on current settings and show a toast on success.
-  const _createPreset = useCallback(
-    async (presetName) => {
-      const res = await presets.create({
-        name: presetName,
-        profileRequest: currentSettings,
-        regionId
-      })
+  // Remove a preset and show a toast on success
+  const _removePreset = useCallback(
+    async (_id) => {
+      const res = await presets.remove(_id)
       if (res.ok) {
-        presets.revalidate()
         toast({
-          title: 'Created new preset',
+          title: 'Deleted selected preset',
           position: 'top',
           status: 'success'
         })
+      } else {
+        toast({
+          title: 'Error deleting preset',
+          description: get(res, 'data.description'),
+          position: 'top',
+          status: 'error',
+          duration: null,
+          isClosable: true
+        })
       }
     },
-    [currentSettings, presets, regionId, toast]
+    [presets, toast]
   )
 
   return (
     <FormControl isDisabled={isDisabled} isInvalid={presets.error}>
       <Flex justify='space-between'>
-        <FormLabel htmlFor={id}>Presets</FormLabel>
-        <Box>
-          {get(presets, 'data.length') > 0 && (
+        <FormLabel htmlFor={id}>Active preset</FormLabel>
+        <Stack isInline spacing={1}>
+          {!selectedPreset && (
             <Button
               isDisabled={isDisabled}
-              onClick={managePresets.onOpen}
-              mr={2}
-              rightIcon='edit'
+              onClick={createPresetAction.onOpen}
+              rightIcon='small-add'
               size='xs'
+              variantColor='green'
             >
-              Manage
+              Save
             </Button>
           )}
-          <Button
-            isDisabled={isDisabled}
-            onClick={createPreset.onOpen}
-            rightIcon='small-add'
-            size='xs'
-            variantColor='green'
-          >
-            New
-          </Button>
-        </Box>
+          {selectedPreset && (
+            <IconButton
+              icon={faEdit}
+              isDisabled={isDisabled}
+              label='Edit preset name'
+              onClick={editPresetAction.onOpen}
+              size='xs'
+              variantColor='yellow'
+            />
+          )}
+          {selectedPreset && (
+            <IconButton
+              icon={faTrash}
+              label='Delete selected preset'
+              onClick={removeAction.onOpen}
+              size='xs'
+              variantColor='red'
+            />
+          )}
+        </Stack>
       </Flex>
       <Box>
         {get(presets, 'data.length') > 0 ? (
@@ -154,25 +168,46 @@ export default memo<Props>(function PresetChooser({
             name={id}
             inputId={id}
             isDisabled={isDisabled}
-            key={getId(preset)}
+            key={getId(selectedPreset)}
             getOptionLabel={getOptionLabel}
             getOptionValue={getId}
             options={presets.data}
             onChange={_selectPreset}
-            value={preset}
+            placeholder='Select a preset'
+            value={selectedPreset}
           />
         ) : (
-          <Alert status='info'>Save presets to be used later.</Alert>
+          <Alert status='info'>Save a preset to be used later.</Alert>
         )}
       </Box>
       {presets.error && (
         <FormErrorMessage>Error loading presets.</FormErrorMessage>
       )}
-      {managePresets.isOpen && (
-        <ManagePresets presets={presets} onClose={managePresets.onClose} />
+
+      {createPresetAction.isOpen && (
+        <CreatePreset
+          create={presets.create}
+          currentSettings={currentSettings}
+          onClose={createPresetAction.onClose}
+          regionId={regionId}
+        />
       )}
-      {createPreset.isOpen && (
-        <CreatePreset create={_createPreset} onClose={createPreset.onClose} />
+
+      {selectedPreset && editPresetAction.isOpen && (
+        <EditPreset
+          onClose={editPresetAction.onClose}
+          preset={selectedPreset}
+          update={presets.update}
+        />
+      )}
+
+      {removeAction.isOpen && (
+        <ConfirmDialog
+          action='Delete preset'
+          description='Are you sure you want to delete this preset?'
+          onClose={removeAction.onClose}
+          onConfirm={() => _removePreset(get(selectedPreset, '_id'))}
+        />
       )}
     </FormControl>
   )
@@ -181,14 +216,38 @@ export default memo<Props>(function PresetChooser({
 /**
  * Modal for creating new presets.
  */
-function CreatePreset({create, onClose}) {
+function CreatePreset({create, currentSettings, onClose, regionId}) {
+  const toast = useToast()
   const nameInput = useInput({test: hasName, value: ''})
   const [isCreating, setIsCreating] = useState(false)
 
+  // Create a new preset based on current settings and show a toast on success.
   async function _create() {
     setIsCreating(true)
-    await create(nameInput.value)
-    onClose()
+    const res = await create({
+      name: nameInput.value,
+      profileRequest: currentSettings,
+      regionId
+    })
+    setIsCreating(false)
+
+    if (res.ok) {
+      toast({
+        title: 'Created new preset',
+        position: 'top',
+        status: 'success'
+      })
+      onClose()
+    } else {
+      toast({
+        title: 'Error creating preset',
+        description: get(res, 'data.description'),
+        position: 'top',
+        status: 'error',
+        duration: null,
+        isClosable: true
+      })
+    }
   }
 
   return (
@@ -220,109 +279,67 @@ function CreatePreset({create, onClose}) {
 }
 
 /**
- * Modal for managing presets.
+ * Modal for editing presets.
  */
-function ManagePresets({presets, onClose}) {
-  const [filter, setFilter] = useState('')
+function EditPreset({preset, onClose, update}) {
+  const nameInput = useInput({test: hasName, value: preset.name})
+  const [isSaving, setIsSaving] = useState(false)
   const toast = useToast()
-  const {data, remove} = presets
 
-  // Remove a preset and show a toast on success
-  const _removePreset = useCallback(
-    async (_id) => {
-      const res = await remove(_id)
-      if (res.ok) {
-        toast({
-          title: 'Deleted preset',
-          position: 'top',
-          status: 'success'
-        })
-      }
-    },
-    [remove, toast]
-  )
+  async function _update() {
+    setIsSaving(true)
+    const res = await update(preset._id, {name: nameInput.value})
+    setIsSaving(false)
 
-  // Handle changes to the filter
-  const [filteredPresets, setFilteredPresets] = useState([])
-  useEffect(() => {
-    const filterLcase = filter != null ? filter.toLowerCase() : ''
-    setFilteredPresets(
-      data.filter(
-        (p) => filter === null || p.name.toLowerCase().indexOf(filterLcase) > -1
-      )
-    )
-  }, [data, filter, setFilteredPresets])
+    // Return value from collection.update is the new array of results
+    if (res.ok) {
+      toast({
+        title: 'Saved changes to preset',
+        position: 'top',
+        status: 'success'
+      })
+      onClose()
+    } else {
+      toast({
+        title: 'Error saving preset',
+        description: get(res, 'data.description'),
+        position: 'top',
+        status: 'error',
+        duration: null,
+        isClosable: true
+      })
+    }
+  }
 
   return (
     <Modal isOpen={true} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Presets</ModalHeader>
+        <ModalHeader>Edit preset</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Stack spacing={4}>
-            <InputGroup flex='1'>
-              <InputLeftElement pr={2}>
-                <Icon name='search' />
-              </InputLeftElement>
-              <Input
-                placeholder='Filter presets'
-                onChange={(e) => setFilter(e.target.value)}
-                type='text'
-                value={filter}
-                variant='flushed'
-              />
-            </InputGroup>
-            {filteredPresets.map((p) => (
-              <Box key={p._id}>
-                <Preset
-                  preset={p}
-                  remove={_removePreset}
-                  update={presets.update}
-                />
-              </Box>
-            ))}
-          </Stack>
+          <FormControl isInvalid={nameInput.isInvalid} isRequired>
+            <FormLabel htmlFor={nameInput.id}>Name</FormLabel>
+            <Input {...nameInput} />
+          </FormControl>
+          <Box mt={4}>
+            <details>
+              <summary>Preset values</summary>
+              <ObjectToTable object={preset.profileRequest} />
+            </details>
+          </Box>
         </ModalBody>
+        <ModalFooter>
+          <Button
+            isDisabled={nameInput.isInvalid}
+            isLoading={isSaving}
+            onClick={_update}
+            variantColor='green'
+          >
+            Save
+          </Button>
+        </ModalFooter>
       </ModalContent>
     </Modal>
-  )
-}
-
-function Preset({preset, remove, update}) {
-  const removeAction = useDisclosure()
-  return (
-    <Stack spacing={3}>
-      <Flex align='center' justify='space-between'>
-        <Box flex='1' fontSize='lg' mr={2} overflow='hidden'>
-          <Editable
-            isValid={hasName}
-            onChange={(name) => update(preset._id, {name})}
-            value={preset.name}
-          />
-        </Box>
-        <IconButton
-          icon={faTrash}
-          label='Delete preset'
-          onClick={removeAction.onOpen}
-          variantColor='red'
-        />
-      </Flex>
-      <Box>
-        <details>
-          <summary>Values</summary>
-          <ObjectToTable object={preset.profileRequest} />
-        </details>
-      </Box>
-      <Divider />
-      {removeAction.isOpen && (
-        <ConfirmDialog
-          action='Delete preset'
-          description='Are you sure you want to delete this preset?'
-          onClose={removeAction.onClose}
-          onConfirm={() => remove(preset._id)}
-        />
-      )}
-    </Stack>
   )
 }
