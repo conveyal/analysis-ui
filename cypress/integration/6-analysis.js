@@ -95,7 +95,7 @@ describe('Analysis', function () {
         .should('be.disabled')
       cy.get('@primary').contains('scratch project')
       cy.get('@primary').contains('Baseline')
-      cy.get('@primary').findAllByLabelText(/Bookmark/)
+      cy.get('@primary').findAllByLabelText(/Active preset/)
 
       cy.get('@primary').findByRole('button', {name: /Walk access/i})
       cy.get('@primary').findByRole('button', {name: /Bus/i})
@@ -249,7 +249,7 @@ describe('Analysis', function () {
         .matchImageSnapshot('chart-with-comparison')
     })
 
-    it('sets a bookmark')
+    it('sets a preset')
   })
 
   describe('of a region', () => {
