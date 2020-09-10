@@ -25,10 +25,6 @@ interface UseCollection extends ConfigInterface {
  * Factory function for creating a hook to use a collection.
  */
 export function createUseCollection(collectionName) {
-  // Helper function for creating new entries
-  const create = (properties: Record<string, unknown>) =>
-    postJSON(`/api/db/${collectionName}`, properties)
-
   return function useCollection(config?: UseCollection) {
     const user = useContext(UserContext)
     const baseURL = `/api/db/${collectionName}`
@@ -62,6 +58,18 @@ export function createUseCollection(collectionName) {
       [mutate]
     )
 
+    // Helper function for creating new values and revalidating
+    const create = useCallback(
+      async (properties: Record<string, unknown>) => {
+        const res = await postJSON(`/api/db/${collectionName}`, properties)
+        if (res.ok) {
+          revalidate()
+        }
+        return res
+      },
+      [revalidate]
+    )
+
     // Helper function when removing values
     const remove = useCallback(
       async (_id) => {
@@ -84,5 +92,5 @@ export function createUseCollection(collectionName) {
 }
 
 // Create an instance of each collection type
+export const usePresets = createUseCollection('presets')
 export const useRegions = createUseCollection('regions')
-export const usePresets = createUseCollection('bookmarks')

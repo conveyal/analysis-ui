@@ -76,24 +76,29 @@ export default memo<Props>(function PresetChooser({
   onChange,
   regionId
 }) {
-  const presets = usePresets({query: {regionId}, options: {sort: {name: 1}}})
+  const presetsCollection = usePresets({
+    query: {regionId},
+    options: {sort: {name: 1}}
+  })
   const toast = useToast()
   const createPresetAction = useDisclosure()
   const editPresetAction = useDisclosure()
   const removeAction = useDisclosure()
-
   const [selectedPreset, setSelectedPreset] = useState()
+
+  // ID to differentiate between primary and comparison
   const id = 'select-preset-' + isComparison
 
   // Check the presets to see if they match any settings
+  const presets = presetsCollection.data
   useEffect(() => {
-    setSelectedPreset(findPreset(currentSettings, presets.data))
+    setSelectedPreset(findPreset(currentSettings, presets))
   }, [presets, currentSettings, setSelectedPreset])
 
   // Select a new preset and load it's contents
   const _selectPreset = useCallback(
     (e) => {
-      const preset = presets.data.find((b) => b._id === e._id)
+      const preset = presets.find((b) => b._id === e._id)
       if (preset) {
         onChange(preset.profileRequest)
       }
@@ -104,7 +109,7 @@ export default memo<Props>(function PresetChooser({
   // Remove a preset and show a toast on success
   const _removePreset = useCallback(
     async (_id) => {
-      const res = await presets.remove(_id)
+      const res = await presetsCollection.remove(_id)
       if (res.ok) {
         toast({
           title: 'Deleted selected preset',
@@ -122,11 +127,11 @@ export default memo<Props>(function PresetChooser({
         })
       }
     },
-    [presets, toast]
+    [presetsCollection, toast]
   )
 
   return (
-    <FormControl isDisabled={isDisabled} isInvalid={presets.error}>
+    <FormControl isDisabled={isDisabled} isInvalid={presetsCollection.error}>
       <Flex justify='space-between'>
         <FormLabel htmlFor={id}>Active preset</FormLabel>
         <Stack isInline spacing={1}>
@@ -163,7 +168,7 @@ export default memo<Props>(function PresetChooser({
         </Stack>
       </Flex>
       <Box>
-        {get(presets, 'data.length') > 0 ? (
+        {get(presets, 'length') > 0 ? (
           <Select
             name={id}
             inputId={id}
@@ -171,7 +176,7 @@ export default memo<Props>(function PresetChooser({
             key={getId(selectedPreset)}
             getOptionLabel={getOptionLabel}
             getOptionValue={getId}
-            options={presets.data}
+            options={presets}
             onChange={_selectPreset}
             placeholder='Select a preset'
             value={selectedPreset}
@@ -180,13 +185,13 @@ export default memo<Props>(function PresetChooser({
           <Alert status='info'>Save a preset to be used later.</Alert>
         )}
       </Box>
-      {presets.error && (
+      {presetsCollection.error && (
         <FormErrorMessage>Error loading presets.</FormErrorMessage>
       )}
 
       {createPresetAction.isOpen && (
         <CreatePreset
-          create={presets.create}
+          create={presetsCollection.create}
           currentSettings={currentSettings}
           onClose={createPresetAction.onClose}
           regionId={regionId}
@@ -197,7 +202,7 @@ export default memo<Props>(function PresetChooser({
         <EditPreset
           onClose={editPresetAction.onClose}
           preset={selectedPreset}
-          update={presets.update}
+          update={presetsCollection.update}
         />
       )}
 
