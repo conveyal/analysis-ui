@@ -63,6 +63,7 @@ export function parseTimesData(ab) {
   }
 
   return {
+    ...metadata, // may contain accessibility
     version,
     zoom,
     west,
