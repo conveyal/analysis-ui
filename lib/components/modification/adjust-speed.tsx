@@ -121,7 +121,13 @@ export default function AdjustSpeedComponent({
 
           <Alert status='info'>
             <AlertIcon />
-            {message('report.adjustSpeed.selectInstructions')}
+            {message(
+              `report.adjustSpeed.${
+                modification.hops == null
+                  ? 'noHopsInstructions'
+                  : 'selectInstructions'
+              }`
+            )}
           </Alert>
 
           {modification.hops == null ? (
