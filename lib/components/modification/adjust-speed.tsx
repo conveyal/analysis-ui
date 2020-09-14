@@ -72,13 +72,13 @@ export default function AdjustSpeedComponent({
       <Pane zIndex={220}>
         <PatternLayer
           activeTrips={modification.trips}
-          color={colors.NEUTRAL}
+          color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
           feed={feed}
           modification={modification}
         />
       </Pane>
 
-      {modification.hops && (
+      {modification.hops != null && (
         <Pane zIndex={230}>
           <HopLayer
             color={colors.MODIFIED}
