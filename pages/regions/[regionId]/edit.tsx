@@ -17,12 +17,11 @@ import FullSpinner from 'lib/components/full-spinner'
 import InnerDock from 'lib/components/inner-dock'
 import {SPACING_FORM} from 'lib/constants/chakra'
 import useInput from 'lib/hooks/use-controlled-input'
-import useRegion from 'lib/hooks/use-region'
+import {useRegion} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import MapLayout from 'lib/layouts/map'
 import message from 'lib/message'
 import reprojectCoordinates from 'lib/utils/reproject-coordinates'
-import {safeDelete, putJSON} from 'lib/utils/safe-fetch'
 
 const EditBounds = dynamic(() => import('lib/components/map/edit-bounds'), {
   ssr: false
@@ -32,12 +31,15 @@ const hasLength = (s: void | string) => s && s.length > 0
 
 export default function LoadRegion() {
   const router = useRouter()
-  const {mutate, error, region} = useRegion(router.query.regionId as string, {
-    revalidateOnFocus: false
-  })
+  const {update, error, data: region, remove} = useRegion(
+    router.query.regionId as string,
+    {
+      revalidateOnFocus: false
+    }
+  )
   if (error) return <p>{error.problem}</p>
   if (!region) return <FullSpinner />
-  return <EditRegion mutate={mutate} region={region} />
+  return <EditRegion region={region} remove={remove} update={update} />
 }
 
 // Add the MapLayout
@@ -46,8 +48,7 @@ LoadRegion.Layout = MapLayout
 /**
  * Use a separate component for the form due for the input hooks.
  */
-function EditRegion({mutate, region}) {
-  const regionURL = `/api/regions/${region._id}`
+function EditRegion({region, remove, update}) {
   const goToHome = useRouteTo('regions')
   const [bounds, setBounds] = useState(region.bounds)
   const [saving, setSaving] = useState(false)
@@ -61,7 +62,7 @@ function EditRegion({mutate, region}) {
 
   // Delete region action
   async function _delete() {
-    const res = await safeDelete(regionURL)
+    const res = await remove()
     if (res.ok) {
       goToHome()
       toast({
@@ -97,15 +98,14 @@ function EditRegion({mutate, region}) {
     })
     const newBounds = {north: nw.lat, west: nw.lon, south: se.lat, east: se.lon}
 
-    const res = await putJSON(regionURL, {
-      ...region,
+    const res = await update({
       bounds: newBounds,
       name: nameInput.value,
       description: descriptionInput.value
     })
 
+    setSaving(false)
     if (res.ok) {
-      mutate(regionURL, res.data)
       toast({
         title: 'Region updated',
         description: 'Your changes have been saved.',
@@ -113,7 +113,6 @@ function EditRegion({mutate, region}) {
         status: 'success'
       })
     } else {
-      setSaving(false)
       toast({
         title: 'Error updating region',
         description: res.data.message,

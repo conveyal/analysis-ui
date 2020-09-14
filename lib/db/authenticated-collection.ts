@@ -1,6 +1,7 @@
-import {Collection, ObjectID} from 'mongodb'
+import {Collection, ObjectID, FindOneOptions, FilterQuery} from 'mongodb'
 import fpOmit from 'lodash/fp/omit'
 
+import {getSession} from 'lib/auth0'
 import {IUser} from 'lib/user'
 
 import {connectToDatabase} from './connect'
@@ -12,21 +13,39 @@ function getAccessGroup(session: IUser) {
   return session.accessGroup
 }
 
-// Omit _id during updates
-const omitId = fpOmit(['_id'])
+// Omit _id, createdAt, createdBy, and accessGroup during updates
+const omitImmutable = fpOmit(['_id', 'accessGroup', 'createdAt', 'createdBy'])
+
+// Enabled collections
+const collections = ['analysisPresets', 'modifications', 'projects', 'regions']
 
 /**
  * Ensure that all operations are only performed if the user has access.
  */
 export default class AuthenticatedCollection {
-  accessGroup: string
+  accessGroup: string // If admin, this may be the `adminTempAccessGroup`
   collection: Collection
   session: IUser
 
-  static async initialize(
-    collectionName: string,
-    session: IUser
-  ): Promise<AuthenticatedCollection> {
+  static async initialize(req, res, collectionName) {
+    if (collections.indexOf(collectionName) === -1) {
+      throw new Error(`Collection '${collectionName}' is not enabled.`)
+    }
+
+    let session = null
+    try {
+      session = await getSession(req)
+    } catch (e) {
+      console.error('Error while retrieving the session.', e)
+    }
+    if (session == null) {
+      res.writeHead(302, {
+        Location: '/api/login'
+      })
+      res.end()
+      return
+    }
+
     const {db} = await connectToDatabase()
     return new AuthenticatedCollection(db.collection(collectionName), session)
   }
@@ -52,7 +71,7 @@ export default class AuthenticatedCollection {
   findAll() {
     return this.collection.find(
       {
-        accessGroup: this.session.accessGroup
+        accessGroup: this.accessGroup
       },
       {
         sort: {
@@ -67,6 +86,19 @@ export default class AuthenticatedCollection {
       accessGroup: this.accessGroup,
       _id
     })
+  }
+
+  /**
+   * Always override access group to ensure user has permissions.
+   */
+  findWhere(query: FilterQuery<any> = {}, options?: FindOneOptions<any>) {
+    return this.collection.find(
+      {
+        ...query,
+        accessGroup: this.accessGroup
+      },
+      options
+    )
   }
 
   remove(_id: string) {
@@ -85,7 +117,7 @@ export default class AuthenticatedCollection {
       },
       {
         $set: {
-          ...omitId(newValues),
+          ...omitImmutable(newValues),
           nonce: new ObjectID().toString(),
           updatedBy: this.session.email
         }
