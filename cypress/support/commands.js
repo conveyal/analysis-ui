@@ -22,7 +22,6 @@ const unlog = {log: false}
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
   cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
-    log: false,
     timeout: 15000
   })
   Cypress.log({name: 'Navigation complete'})
@@ -255,33 +254,64 @@ Cypress.Commands.add('deleteScenario', (scenarioName) => {
     .click()
 })
 
+/**
+ * Guidance taken from https://www.cypress.io/blog/2020/08/17/when-can-the-test-navigate/
+ */
 Cypress.Commands.add('navTo', (menuItemTitle) => {
+  const title = menuItemTitle.toLowerCase()
   // Ensure that any previous navigation is complete before attempting to navigate again
   cy.navComplete()
   // Navigate to a page using one of the main (leftmost) menu items
   // and wait until at least part of the page is loaded.
   const pages = {
-    regions: {lookFor: /Set up a new region/i},
-    'region settings': {lookFor: /Delete this region/i},
-    projects: {lookFor: /Create new Project|Upload a .* Bundle/i},
-    'network bundles': {lookFor: /Create a new network bundle/i},
-    'opportunity datasets': {lookFor: /Upload a new dataset/i},
-    'edit modifications': {
-      lookFor: /create new project|create a modification/i
+    regions: {
+      lookFor: /Set up a new region/i,
+      path: /\//
     },
-    analyze: {lookFor: /Comparison Project/i},
-    'regional analyses': {lookFor: /Regional Analyses/i}
+    'region settings': {
+      lookFor: /Delete this region/i,
+      path: /\/regions\/[a-z0-9]+\/edit/
+    },
+    projects: {
+      lookFor: /Create new Project|Upload a .* Bundle/i,
+      path: /\/regions\/[a-z0-9]+/
+    },
+    'network bundles': {
+      lookFor: /Create a new network bundle/i,
+      path: /\/regions\/[a-z0-9]+\/bundles/
+    },
+    'opportunity datasets': {
+      lookFor: /Upload a new dataset/i,
+      path: /\/regions\/[a-z0-9]+\/opportunities*/
+    },
+    'edit modifications': {
+      lookFor: /create a modification/i,
+      path: /\/regions\/[a-z0-9]+\/projects*/
+    },
+    analyze: {
+      lookFor: /Comparison Project/i,
+      path: /\/regions\/[a-z0-9]+\/analysis*/
+    },
+    'regional analyses': {
+      lookFor: /Regional Analyses/i,
+      path: /\/regions\/[a-z0-9]+\/regional*/
+    }
   }
-  const title = menuItemTitle.toLowerCase()
-  console.assert(title in pages)
+  const page = pages[title]
+  console.assert(page != null)
+
   Cypress.log({name: 'Navigate to'})
   // click the menu item
   cy.findByTitle(RegExp(title, 'i'), unlog)
-    .parent(unlog) // select actual SVG element rather than <title> el
+    .parent() // select actual SVG element rather than <title> el
+    .should('be.visible')
     .click({force: true})
+  // Ensure the pathname has updated to the correct path
+  cy.location('pathname').should('match', page.path)
   // check that page loads at least some content
+  cy.contains(page.lookFor, {timeout: 8000}).should('be.visible')
+  // Ensure the spinner has stopped loading before continuing
   cy.navComplete()
-  cy.contains(pages[title].lookFor, {log: false, timeout: 4000})
 })
 
 Cypress.Commands.add('clickMap', (coord) => {

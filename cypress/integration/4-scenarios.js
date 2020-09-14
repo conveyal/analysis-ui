@@ -2,7 +2,7 @@ function findScenarioByName(name) {
   return cy.get('#scenarios').contains(name).parent().parent().parent()
 }
 
-describe('Scenarios', () => {
+describe('Scenarios', function () {
   before(() => {
     cy.setup('project')
     cy.findByText(/Scenarios/).click()

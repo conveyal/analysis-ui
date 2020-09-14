@@ -5,19 +5,21 @@ function generateName(type, name) {
 // How long should it take to create an OD
 const timeout = 240000
 
-describe('Opportunity Datasets', () => {
+describe('Opportunity Datasets', function () {
   before(() => {
     cy.setup('region')
   })
 
   beforeEach(() => {
-    cy.fixture('regions/scratch.json').its('opportunities').as('opportunities')
+    cy.fixture('regions/scratch.json').then((data) => {
+      this.opportunities = data.opportunities
+    })
     cy.navTo('Opportunity datasets')
     cy.get('div.leaflet-container').as('map')
   })
 
   describe('can be imported', () => {
-    it('from CSV', function () {
+    it('from CSV', () => {
       let opportunity = this.opportunities.csv
       let oppName = generateName('opportunities', opportunity.name)
       let expectedFieldCount = 1 + opportunity.numericFields.length
@@ -60,7 +62,7 @@ describe('Opportunity Datasets', () => {
       cy.contains(/Delete entire dataset/i).click()
     })
 
-    it('from shapefile', function () {
+    it('from shapefile', () => {
       let opportunity = this.opportunities.shapefile
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       let expectedFieldCount = opportunity.numericFields.length
@@ -99,7 +101,7 @@ describe('Opportunity Datasets', () => {
       cy.contains(/Delete entire dataset/i).click()
     })
 
-    it('from .grid', function () {
+    it('from .grid', () => {
       let opportunity = this.opportunities.grid
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       cy.findByText(/Upload a new dataset/i).click()
@@ -141,7 +143,7 @@ describe('Opportunity Datasets', () => {
     before(() => {
       cy.setup('opportunities')
     })
-    it('as .grid', function () {
+    it('as .grid', () => {
       let opportunity = this.opportunities.grid
       // TODO should get the data via click, not hardcoded API url
       cy.findByLabelText(/or select an existing one/).type(`default{enter}`, {

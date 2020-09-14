@@ -1,11 +1,12 @@
 import {Box} from '@chakra-ui/core'
-import get from 'lodash/get'
 import Head from 'next/head'
-import React from 'react'
-import {SWRConfig} from 'swr'
 
 import LoadingScreen from './components/loading-screen'
-import {useFetchUser, UserContext} from './user'
+import {useFetchUser, UserContext, IUser} from './user'
+
+export interface IWithAuthProps {
+  user?: IUser
+}
 
 // Check if the passed in group matches the environment variable
 // TODO set this server side when the user logs in
@@ -19,7 +20,7 @@ const DevBar = () => (
     mt='-4px'
     position='absolute'
     width='100vw'
-    zIndex='10000'
+    zIndex={10000}
   />
 )
 
@@ -27,8 +28,8 @@ const DevBar = () => (
  * Ensure that a Page component is authenticated before rendering.
  */
 export default function withAuth(PageComponent) {
-  return function AuthenticatedComponent(p) {
-    const {user} = useFetchUser({required: true})
+  return function AuthenticatedComponent(p: IWithAuthProps): JSX.Element {
+    const {user} = useFetchUser(p.user)
     if (!user) return <LoadingScreen />
     return (
       <UserContext.Provider value={user}>
@@ -39,20 +40,7 @@ export default function withAuth(PageComponent) {
             <style id='DEVSTYLE'>{`.DEV{display: none;}`}</style>
           </Head>
         )}
-        <SWRConfig
-          value={{
-            fetcher: (url) =>
-              fetch(url, {
-                headers: {
-                  Authorization: `bearer ${get(user, 'idToken')}`,
-                  'X-Conveyal-Access-Group': get(user, 'adminTempAccessGroup')
-                },
-                mode: 'cors'
-              }).then((res) => res.json())
-          }}
-        >
-          <PageComponent {...p} />
-        </SWRConfig>
+        <PageComponent {...p} />
       </UserContext.Provider>
     )
   }
