@@ -12,12 +12,6 @@ if (!uri) {
   )
 }
 
-if (!dbName) {
-  throw new Error(
-    'Please define the MONGODB_DB environment variable inside .env.local'
-  )
-}
-
 export async function connectToDatabase(): Promise<{
   client: MongoClient
   db: Db
