@@ -128,22 +128,20 @@ function drawRouteGeometry(newRoute) {
   cy.findByText(/Stop editing/i).click()
 }
 
-describe('Modifications', () => {
-  before(() => {
+describe('Modifications', function () {
+  beforeEach(() => {
+    cy.fixture('regions/scratch.json').then((data) => {
+      this.region = data
+    })
     cy.setup('project')
     setupScenario(scenarioName)
-    // TODO clear out all old modifications
-  })
-
-  beforeEach(() => {
-    cy.fixture('regions/scratch.json').as('region')
-    cy.navTo('Edit Modifications')
+    cy.findByRole('tab', {name: /Modifications/g}).click()
     cy.get('div.leaflet-container').as('map')
   })
 
-  describe('CRUD each type', function () {
+  describe('CRUD each type', () => {
     types.forEach((type) => {
-      it(`CRUD ${type}`, function () {
+      it(`CRUD ${type}`, () => {
         const name = createModName(type, 'simple')
         const description = 'distinctly descriptive text'
         const updatedDescription = 'updated description'
@@ -237,7 +235,7 @@ describe('Modifications', () => {
   })
 
   describe('Add Trip Pattern', () => {
-    it('has working form elements', function () {
+    it('has working form elements', () => {
       // touches form elements not interacted with elsewhere
       const modName = createModName('ATP', 'form elements')
       setupMod('Add Trip Pattern', modName)
@@ -305,7 +303,7 @@ describe('Modifications', () => {
       deleteThisMod()
     })
 
-    it('can be imported from shapefile', function () {
+    it('can be imported from shapefile', () => {
       cy.findByRole('button', {
         name: 'Import modifications from another project'
       }).click()
@@ -342,7 +340,7 @@ describe('Modifications', () => {
       })
     })
 
-    it('can be drawn on map', function () {
+    it('can be drawn on map', () => {
       const modName = createModName('ATP', 'draw on map')
       setupMod('Add Trip Pattern', modName)
       cy.findAllByRole('alert').contains(/must have at least 2 stops/)
@@ -368,7 +366,7 @@ describe('Modifications', () => {
       deleteThisMod()
     })
 
-    it('can create and reuse timetables', function () {
+    it('can create and reuse timetables', () => {
       const modName = createModName('ATP', 'timetable templates')
       setupMod('Add Trip Pattern', modName)
       // add a route geometry
@@ -441,7 +439,7 @@ describe('Modifications', () => {
   })
 
   describe('Adjust dwell time', () => {
-    it('has working form elements', function () {
+    it('has working form elements', () => {
       const modName = createModName('ADT', 'form')
       setupMod('Adjust Dwell Time', modName)
       cy.findByLabelText(/Select feed/)
@@ -458,7 +456,7 @@ describe('Modifications', () => {
   })
 
   describe('Adjust speed', () => {
-    it('has working form elements', function () {
+    it('has working form elements', () => {
       const modName = createModName('AS', 'form')
       setupMod('Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
@@ -476,7 +474,7 @@ describe('Modifications', () => {
   })
 
   describe('Convert to frequency', () => {
-    it('has working form elements', function () {
+    it('has working form elements', () => {
       const modName = createModName('CTF', 'form')
       setupMod('Convert To Frequency', modName)
       cy.findByLabelText(/Select feed/)
@@ -515,7 +513,7 @@ describe('Modifications', () => {
       can test this with the 25X by removing few stops in downtown
       need to determine when this line runs (probably standard peak service)
     */
-    it('has working form elements', function () {
+    it('has working form elements', () => {
       const modName = createModName('RS', 'form')
       let testCase = this.region.testCases.removeStops
       setupMod('Remove Stops', modName)
@@ -536,7 +534,7 @@ describe('Modifications', () => {
   })
 
   describe('Remove trips', () => {
-    it('has working form elements', function () {
+    it('has working form elements', () => {
       const modName = createModName('RT', 'form')
       setupMod('Remove Trips', modName)
       cy.findByLabelText(/Select feed/)
@@ -551,7 +549,7 @@ describe('Modifications', () => {
   })
 
   describe('Reroute', () => {
-    it('has working form elements', function () {
+    it('has working form elements', () => {
       const modName = createModName('RR', 'form')
       setupMod('Reroute', modName)
       cy.findByLabelText(/Select feed/)
