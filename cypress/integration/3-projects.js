@@ -1,10 +1,9 @@
-describe('Projects', () => {
+describe('Projects', function () {
   before('prepare the region and bundle', () => {
-    cy.fixture('regions/scratch.json').as('region')
     cy.setup('bundle')
   })
 
-  it('can be created and deleted', function () {
+  it('can be created and deleted', () => {
     const projectName = Cypress.env('dataPrefix') + ' ' + Date.now()
     const bundleName = Cypress.env('dataPrefix') + 'scratch bundle'
     cy.navTo('Projects')
@@ -13,9 +12,9 @@ describe('Projects', () => {
 
     cy.findByLabelText(/Project name/).type(projectName)
     // select the scratch bundle
-    cy.findByLabelText(/Associated network bundle/i).type(
-      `{enter}${bundleName}{enter}`
-    )
+    cy.findByLabelText(/Associated network bundle/i)
+      .click({force: true})
+      .type(`{enter}${bundleName}{enter}`)
     cy.findByText('Create').click()
     cy.navComplete()
 

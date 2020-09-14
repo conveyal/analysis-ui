@@ -29,14 +29,12 @@ function fetchResults() {
     .wait(200)
   // fetch results button usually disappears when clicked, but may not always
   // when it returns, we know the results have been fetched
-  cy.findByText(/Fetch results/i, {timeout: 60000}).should('exist')
+  cy.findByText(/Fetch results/i, {timeout: 240000}).should('exist')
 }
 
 function setTimeCutoff(minutes) {
   // TODO this does not work yet
-  cy.findByLabelText(/Time cutoff/i)
-    .parent()
-    .findByRole('slider')
+  cy.findByRole('slider', {name: 'Time cutoff'})
     .invoke('val', minutes)
     .trigger('input', {force: true})
 }
@@ -62,42 +60,47 @@ function setupAnalysis() {
     .type('baseline{enter}')
   cy.findByLabelText(/^Opportunity Dataset$/)
     .click({force: true})
-    .type(`{enter}`)
-    .wait(100)
+    .type(`default{enter}`)
   cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   cy.fixture('regions/scratch.json').then((region) => {
     cy.get('@primary').findByLabelText(/Date/i).clear().type(region.date)
   })
 }
 
-context('Analysis', () => {
+describe('Analysis', function () {
   before(() => {
     cy.setup('project')
     cy.setup('opportunities')
   })
 
   beforeEach(() => {
-    cy.fixture('regions/scratch.json').as('region')
-    cy.fixture('regions/scratch-results.json').as('results')
+    cy.fixture('regions/scratch.json').then((data) => {
+      this.region = data
+    })
+    cy.fixture('regions/scratch-results.json').then((data) => {
+      this.results = data
+    })
     setupAnalysis()
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
   })
 
-  context('of a point', () => {
-    it('has all form elements', function () {
+  describe('of a point', () => {
+    it('has all form elements', () => {
       // note that elements touched in beforeEach are neglected here
-      cy.findByLabelText(/Time cutoff/i)
-      cy.findByLabelText(/Travel time percentile/i)
+      cy.findByRole('slider', {name: 'Time cutoff'})
+      cy.findByRole('slider', {name: /Travel time percentile/i})
       cy.get('@primary')
         .findByRole('button', {name: 'Regional analysis'})
         .should('be.disabled')
       cy.get('@primary').contains('scratch project')
       cy.get('@primary').contains('Baseline')
       cy.get('@primary').findAllByLabelText(/Bookmark/)
-      cy.get('@primary').findByLabelText(/Access mode/i)
-      cy.get('@primary').findByLabelText(/Transit modes/i)
-      cy.get('@primary').findByLabelText(/Egress mode/i)
+
+      cy.get('@primary').findByRole('button', {name: /Walk access/i})
+      cy.get('@primary').findByRole('button', {name: /Bus/i})
+      cy.get('@primary').findByRole('button', {name: /Walk egress/i})
+
       cy.findByLabelText(/Walk speed/i)
       cy.findByLabelText(/Max walk time/i)
       cy.get('@primary').findByLabelText(/Date/i)
@@ -117,7 +120,7 @@ context('Analysis', () => {
         })
     })
 
-    it('runs, giving reasonable results', function () {
+    it('runs, giving reasonable results', () => {
       // tests basic single point analysis at specified locations
       fetchResults() // initialize request
       // set new parameters
@@ -136,27 +139,21 @@ context('Analysis', () => {
       }
     })
 
-    it('handles direct access by walk/bike only', function () {
+    it('handles direct access by walk/bike only', () => {
       const location = this.region.locations.middle
       const results = this.results.locations.middle
       setOrigin(location)
       cy.centerMapOn(location)
       // turn off all transit
       cy.get('@primary')
-        .findByLabelText(/Transit modes/i)
-        .findByRole('button', {name: /All/i})
+        .findByRole('button', {name: /All transit/i})
         .click()
-      cy.get('@primary')
-        .findByLabelText(/Access mode/i)
-        .should('not.exist')
       // it has changed names, becoming:
       cy.get('@primary')
-        .findByLabelText(/Direct mode/i)
-        .findByTitle(/Bike/i)
+        .findByRole('button', {name: /bike direct mode/i})
         .click()
       cy.get('@primary')
-        .findByLabelText(/Egress mode/i)
-        .findAllByRole('button')
+        .findAllByRole('button', {name: /bike egress/i})
         .should('be.disabled')
       fetchResults()
       cy.findByLabelText('Opportunities within isochrone')
@@ -169,7 +166,7 @@ context('Analysis', () => {
         .matchImageSnapshot('direct-bike-access-chart')
     })
 
-    it('uses custom analysis bounds', function () {
+    it('uses custom analysis bounds', () => {
       const location = this.region.locations.center
       const results = this.results.locations.center
       setOrigin(location)
@@ -183,7 +180,7 @@ context('Analysis', () => {
         })
     })
 
-    it('gives different results at different times', function () {
+    it('gives different results at different times', () => {
       const location = this.region.locations.center
       const results = this.results.locations.center
       setOrigin(location)
@@ -222,7 +219,7 @@ context('Analysis', () => {
         .matchImageSnapshot('chart-no-variation')
     })
 
-    it('charts accessibility', function () {
+    it('charts accessibility', () => {
       const location = this.region.locations.center
       setOrigin(location)
       fetchResults()
@@ -244,8 +241,7 @@ context('Analysis', () => {
         .findByLabelText(/Identical request settings/i)
         .uncheck({force: true})
       cy.get('@comparison')
-        .findByLabelText(/Access mode/i)
-        .findByTitle(/Bike/i)
+        .findByRole('button', {name: /bike access mode/i})
         .click()
       fetchResults()
       cy.get('@chart')
@@ -256,8 +252,8 @@ context('Analysis', () => {
     it('sets a bookmark')
   })
 
-  context('of a region', () => {
-    it('runs a regional analysis, etc.', function () {
+  describe('of a region', () => {
+    it('runs a regional analysis, etc.', () => {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
@@ -271,14 +267,14 @@ context('Analysis', () => {
 
       cy.findByRole('button', {name: 'Create'}).click()
       // we should now be on the regional analyses page
-      cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 10000})
+      cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})
       cy.findByRole('heading', {name: analysisName})
         .parent()
         .parent()
         .as('statusBox')
       // shows progress
       cy.get('@statusBox').findByText(/\d+ \/ \d+ origins/)
-      cy.findByRole('heading', {name: analysisName, timeout: 120000}).should(
+      cy.findByRole('heading', {name: analysisName, timeout: 240000}).should(
         'not.exist'
       )
       cy.findByText(/View a regional analysis/)
@@ -289,10 +285,7 @@ context('Analysis', () => {
       cy.findByText(/Access to/i)
         .parent()
         .as('legend')
-      cy.get('@legend')
-        .should('not.contain', 'Loading grids')
-        .wait(1000)
-        .matchImageSnapshot('regional-single-legend')
+      cy.get('@legend').should('not.contain', 'Loading grids')
       // compare to self with different time cutoff and check the legend again
       cy.findByLabelText(/Compare to/).type(`${analysisName}{enter}`, {
         force: true
@@ -304,10 +297,7 @@ context('Analysis', () => {
         .findByRole('option', {name: '45 minutes'})
         .parent()
         .select('60 minutes')
-      cy.get('@legend')
-        .should('not.contain', 'Loading grids')
-        .wait(1000)
-        .matchImageSnapshot('regional-comparison-legend')
+      cy.get('@legend').should('not.contain', 'Loading grids')
       // TODO more semantic selector would be preferable
       // TODO export to GIS produces error locally
       cy.get('button[aria-label*="Export to GIS"')
@@ -339,8 +329,8 @@ context('Analysis', () => {
       cy.findByLabelText(/Attribute name to lookup on the shapefile/i)
         .clear()
         .type(this.region.aggregationAreas.nameField)
-      cy.get('@upload').click()
-      cy.contains(/Upload complete/, {timeout: 10000}).should('be.visible')
+      cy.get('@upload').scrollIntoView().click()
+      cy.contains(/Upload complete/, {timeout: 30000}).should('be.visible')
       // TODO label dissociated from input
       //cy.findByLabelText(/Aggregate results to/i)
       //  .type(this.region.aggregationAreas.sampleName+'{enter}')
