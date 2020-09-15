@@ -10,18 +10,23 @@ import {
 import {faCircle, faStopCircle} from '@fortawesome/free-solid-svg-icons'
 import {faCircle as faCircleO} from '@fortawesome/free-regular-svg-icons'
 import get from 'lodash/get'
+import {useState} from 'react'
+import {useSelector} from 'react-redux'
 
 import {
   ADD_TRIP_PATTERN,
   DEFAULT_STOP_SPACING_METERS,
   MINIMUM_STOP_SPACING,
-  MAP_STATE_TRANSIT_EDITOR,
   REROUTE
 } from 'lib/constants'
 import colors from 'lib/constants/colors'
 import message from 'lib/message'
+import selectSegmentDistances from 'lib/selectors/segment-distances'
+import selectAllStops from 'lib/selectors/stops-from-all-feeds'
 import getExistingStopsAlongPattern from 'lib/utils/get-existing-stops-along-pattern'
 
+import GTFSStopGridLayer from '../modifications-map/gtfs-stop-gridlayer'
+import TransitEditor from '../modifications-map/transit-editor'
 import Icon from '../icon'
 import NumberInput from '../number-input'
 import * as Panel from '../panel'
@@ -29,38 +34,23 @@ import * as Panel from '../panel'
 const isValidStopSpacing = (s) => s >= MINIMUM_STOP_SPACING
 
 export default function EditAlignment({
-  allStops,
-  disabled,
-  mapState,
+  isEditing,
   modification,
-  numberOfStops,
-  segmentDistances,
-  setMapState,
+  numberOfStops = 0,
+  setIsEditing,
   update,
   ...p
 }) {
-  const spacing = get(modification, 'segments[0].spacing', 0)
-  const allowExtend =
-    modification.type === REROUTE
-      ? modification.toStop == null || modification.fromStop == null
-      : !!get(mapState, 'allowExtend')
-  const extendFromEnd = get(mapState, 'extendFromEnd', true)
-  const createStopsAutomatically = spacing > 0
-  const followRoad = !!get(mapState, 'followRoad')
-  const isEditing = get(mapState, 'state') === MAP_STATE_TRANSIT_EDITOR
+  const allStops = useSelector(selectAllStops)
+  const segmentDistances = useSelector(selectSegmentDistances)
+  const [spacing, setSpacing] = useState(
+    get(modification, 'segments[0].spacing', 0)
+  )
 
-  /**
-   * Edit this modification on the map
-   */
-  function editOnMap() {
-    setMapState({
-      allowExtend: modification.type === REROUTE ? allowExtend : true,
-      extendFromEnd,
-      followRoad,
-      spacing,
-      state: MAP_STATE_TRANSIT_EDITOR
-    })
-  }
+  const [allowExtend, setAllowExtend] = useState(true)
+  const [extendFromEnd, setExtendFromEnd] = useState(true)
+  const [followRoad, setFollowRoad] = useState(false)
+  const createStopsAutomatically = spacing > 0
 
   function getSegments() {
     return [...(modification.segments || [])]
@@ -71,16 +61,6 @@ export default function EditAlignment({
     const newSegments = getExistingStopsAlongPattern(getSegments(), allStops)
     update({segments: newSegments})
   }
-
-  function updateMapState(props) {
-    setMapState({
-      ...(mapState || {}),
-      ...props
-    })
-  }
-
-  const updateCheckboxFor = (prop) => (e) =>
-    updateMapState({[`${prop}`]: e.target.checked})
 
   /**
    * Toggle whether a pattern is bidirectional.
@@ -96,7 +76,7 @@ export default function EditAlignment({
     const spacing = e.target.checked ? DEFAULT_STOP_SPACING_METERS : 0
 
     // Store in map state
-    updateMapState({spacing})
+    setSpacing(spacing)
 
     if (get(modification, 'segments.length') > 0) {
       update({
@@ -114,7 +94,7 @@ export default function EditAlignment({
   function onStopSpacingChange(spacing) {
     const {segments} = modification
 
-    updateMapState({spacing})
+    setSpacing(spacing)
 
     // only set stop spacing if current spacing is not zero
     if (get(segments, '[0].spacing') > 0) {
@@ -126,7 +106,7 @@ export default function EditAlignment({
     (t) => t.phaseAtStop != null
   )
 
-  const distance = (segmentDistances || []).reduce(
+  const distance = segmentDistances.reduce(
     (accumulatedDistance, currentDistance) => {
       return accumulatedDistance + currentDistance
     },
@@ -135,6 +115,25 @@ export default function EditAlignment({
 
   return (
     <Stack spacing={4} {...p}>
+      {isEditing && (
+        <>
+          <GTFSStopGridLayer stops={allStops} />
+          <TransitEditor
+            allowExtend={
+              modification.type === REROUTE
+                ? modification.toStop == null || modification.fromStop == null
+                : allowExtend
+            }
+            allStops={allStops}
+            extendFromEnd={extendFromEnd}
+            followRoad={followRoad}
+            modification={modification}
+            spacing={spacing}
+            updateModification={update}
+          />
+        </>
+      )}
+
       <Heading size='sm'>Route Geometry</Heading>
       {distance === 0 && modification.type === ADD_TRIP_PATTERN && (
         <Alert status='error'>
@@ -152,16 +151,19 @@ export default function EditAlignment({
 
       {!isEditing ? (
         <Button
-          isDisabled={!!disabled}
           isFullWidth
           leftIcon='edit'
-          onClick={editOnMap}
+          onClick={() => setIsEditing(true)}
           variantColor='yellow'
         >
           {message('transitEditor.startEdit')}
         </Button>
       ) : (
-        <Button isFullWidth onClick={() => setMapState()} variantColor='yellow'>
+        <Button
+          isFullWidth
+          onClick={() => setIsEditing(false)}
+          variantColor='yellow'
+        >
           <Icon icon={faStopCircle} /> {message('transitEditor.stopEdit')}
         </Button>
       )}
@@ -213,7 +215,7 @@ export default function EditAlignment({
         <Checkbox
           fontWeight='normal'
           isChecked={followRoad}
-          onChange={updateCheckboxFor('followRoad')}
+          onChange={(e) => setFollowRoad(e.target.checked)}
         >
           {message('transitEditor.followRoad')}
         </Checkbox>
@@ -223,7 +225,7 @@ export default function EditAlignment({
         <Checkbox
           fontWeight='normal'
           isChecked={allowExtend}
-          onChange={updateCheckboxFor('allowExtend')}
+          onChange={(e) => setAllowExtend(e.target.checked)}
         >
           {message('transitEditor.extend')}
         </Checkbox>
@@ -233,7 +235,7 @@ export default function EditAlignment({
         <Checkbox
           fontWeight='normal'
           isChecked={extendFromEnd}
-          onChange={updateCheckboxFor('extendFromEnd')}
+          onChange={(e) => setExtendFromEnd(e.target.checked)}
         >
           {message('transitEditor.extendFromEnd')}
         </Checkbox>

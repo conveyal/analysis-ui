@@ -68,7 +68,7 @@ describe('Region setup', function () {
         findText: /^Cincinnati, Ohio/,
         lat: 39.1,
         lon: -84.5
-      },
+      } /* ,
       {
         searchTerm: 'tulsa',
         findText: /^Tulsa, Oklahoma/,
@@ -80,7 +80,7 @@ describe('Region setup', function () {
         findText: /^Greenwich,.* England/,
         lat: 51.5,
         lon: 0
-      }
+      } */
     ]
     const maxOffset = 10000 // meters
     regions.forEach((r) => {

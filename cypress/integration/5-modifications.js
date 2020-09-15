@@ -1,9 +1,11 @@
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
-const createModName = (type, description) =>
-  `${modificationPrefix}_${type}_${description}_${Date.now()}`
+const createModName = (type, description = '') =>
+  `${modificationPrefix}${type}${description}${Date.now()}`
 
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
+
+const getMap = () => cy.get('div.leaflet-container')
 
 // All modification types
 const types = [
@@ -38,6 +40,7 @@ function setupScenario(name) {
         .type(name + '{enter}')
     }
   })
+  cy.findAllByRole('tab', {name: /Modifications/g}).click()
 }
 
 // Delete an open modification
@@ -75,18 +78,18 @@ function deleteMod(modType, modName) {
 }
 
 function setupMod(modType, modName) {
-  cy.navTo('Edit Modifications')
-  cy.findByRole('tab', {name: /Modifications/g}).click()
   // assumes we are already on this page or editing another mod
   cy.findByText('Create a modification').click()
   cy.findByLabelText(/Modification name/i).type(modName)
   if (modType.indexOf('Street') > -1) {
     cy.findByText('Street').click()
-    cy.findByLabelText('Street modification type').select(modType)
+    cy.findByLabelText(/Street modification type/i).select(modType)
   } else {
     cy.findByLabelText(/Transit modification type/i).select(modType)
   }
   cy.findByText('Create').click()
+  cy.findByRole('dialog').should('not.exist')
+  cy.navComplete()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 }
 
@@ -94,7 +97,6 @@ function drawRouteGeometry(newRoute) {
   cy.findByText(/Edit route geometry/i)
     .click()
     .contains(/Stop editing/i)
-  cy.get('div.leaflet-container').as('map')
   cy.window().then((win) => {
     const map = win.LeafletMap
     const route = win.L.polyline(newRoute)
@@ -104,7 +106,7 @@ function drawRouteGeometry(newRoute) {
     const coords = route.getLatLngs()
     coords.forEach((point, i) => {
       const pix = map.latLngToContainerPoint(point)
-      cy.get('@map').click(pix.x, pix.y)
+      getMap().click(pix.x, pix.y)
       if (i > 0) {
         cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
       }
@@ -112,15 +114,15 @@ function drawRouteGeometry(newRoute) {
     // convert an arbitrary stop to a control point
     const stop = coords[coords.length - 2]
     const pix = map.latLngToContainerPoint(stop)
-    cy.get('@map').click(pix.x, pix.y)
-    cy.get('@map')
+    getMap().click(pix.x, pix.y)
+    getMap()
       .findByText(/make control point/)
       .click()
     // control point not counted as stop
     cy.contains(new RegExp(coords.length - 1 + ' stops over \\d\\.\\d+ km'))
     // convert control point back to stop
-    cy.get('@map').click(pix.x, pix.y)
-    cy.get('@map')
+    getMap().click(pix.x, pix.y)
+    getMap()
       .findByText(/make stop/)
       .click()
     cy.contains(new RegExp(coords.length + ' stops over \\d\\.\\d+ km'))
@@ -129,14 +131,21 @@ function drawRouteGeometry(newRoute) {
 }
 
 describe('Modifications', function () {
-  beforeEach(() => {
+  before(() => {
     cy.fixture('regions/scratch.json').then((data) => {
       this.region = data
     })
     cy.setup('project')
     setupScenario(scenarioName)
+  })
+
+  beforeEach(() => {
+    cy.getPseudoFixture().then((s) => {
+      cy.navTo('regions')
+      cy.visit(`/regions/${s.regionId}/projects/${s.projectId}/modifications`)
+      return cy.navComplete()
+    })
     cy.findByRole('tab', {name: /Modifications/g}).click()
-    cy.get('div.leaflet-container').as('map')
   })
 
   describe('CRUD each type', () => {
@@ -151,7 +160,7 @@ describe('Modifications', function () {
         cy.findByText(/Add description/)
           .parent() // necessary because text element becomes detached
           .parent()
-          .click()
+          .click({force: true})
           .type(description)
         cy.findByLabelText(/Default/).uncheck({force: true})
         cy.findByLabelText(scenarioNameRegEx).check({force: true})
@@ -310,7 +319,7 @@ describe('Modifications', function () {
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
       cy.get('a.btn').get('svg[data-icon="upload"]').click()
-      cy.location('pathname').should('match', /\/import-shapefile/)
+      cy.location('pathname').should('match', /import-shapefile/g)
       cy.findByLabelText(/Select Shapefile/i).attachFile({
         filePath: this.region.importRoutes.shapefile,
         mimeType: 'application/octet-stream',
@@ -395,11 +404,20 @@ describe('Modifications', function () {
       cy.findByLabelText(/dwell time/)
         .clear()
         .type('00:00:30')
-      // exit and create new mod to copy into
-      const copyIntoName = createModName('ATP', 'copy')
-      setupMod('Add Trip Pattern', copyIntoName)
+      cy.findByText('Weekday').click({force: true}) // hide panel
+
+      // Copy the current modification
+      cy.findByRole('button', {name: /Copy modification/i}).click()
+      cy.loadingComplete()
+      cy.get('#react-toast').findByRole('alert').click({force: true})
+      cy.navComplete()
+
       cy.findByText(/Copy existing timetable/).click()
+      cy.findByRole('dialog').should('exist')
       cy.findByRole('dialog').as('dialog')
+      cy.get('@dialog')
+        .findByText(/Loading/)
+        .should('not.exist')
       cy.get('@dialog')
         .findByLabelText(/Region/)
         .select(Cypress.env('dataPrefix') + 'scratch')
@@ -449,8 +467,8 @@ describe('Modifications', function () {
         .click({force: true})
         .type(this.region.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
-      cy.findByLabelText(/Scale existing dwell times/i).check()
-      cy.findByLabelText(/Set new dwell time to/i).check()
+      cy.findByLabelText(/Scale existing dwell times by/i).click({force: true})
+      cy.findByLabelText(/Set new dwell time to/i).click({force: true})
       deleteThisMod()
     })
   })
@@ -483,7 +501,9 @@ describe('Modifications', function () {
       cy.findByLabelText(/Select route/)
         .click({force: true})
         .type(this.region.sampleRouteName + '{enter}')
-      cy.findByLabelText(/retain existing scheduled trips/i).check()
+      cy.findByLabelText(/retain existing scheduled trips/i).click({
+        force: true
+      })
       cy.findByText(/Add frequency entry/i).click()
       cy.findByLabelText(/Select patterns/i)
         .click({force: true})
@@ -500,7 +520,8 @@ describe('Modifications', function () {
       cy.findByLabelText(/Phase at stop/i)
         .click({force: true})
         .type('Fountain Square{enter}')
-      cy.findByText(/Delete frequency entry/i).click()
+      cy.findByRole('button', {name: 'Delete frequency entry'}).click()
+      cy.findByRole('button', {name: 'Confirm: Delete frequency entry'}).click()
       deleteThisMod()
     })
   })
@@ -557,11 +578,30 @@ describe('Modifications', function () {
         .type(this.region.sampleRouteName + '{enter}')
       // verify existence only
       cy.findByLabelText(/Select patterns/i)
-      cy.findByText(/Start of reroute/i)
-      cy.findByText(/End of reroute/i)
-      cy.findByLabelText(/Default dwell time/i)
-      cy.findByLabelText(/Average speed/i)
-      cy.findByLabelText(/Total moving time/i)
+
+      // Select from stop and to stop
+      cy.window().then((win) => {
+        const map = win.LeafletMap
+        cy.findByLabelText(/Select from stop/).click()
+        let p1 = map.latLngToContainerPoint([39.0877, -84.5192])
+        getMap().click(p1.x, p1.y)
+        // test clearing the from stop
+        cy.findByLabelText(/Clear from stop/).click()
+
+        // Re-select the from stop
+        cy.findByLabelText(/Select from stop/).click()
+        getMap().click(p1.x, p1.y)
+
+        // Select the to stop
+        cy.findByLabelText(/Select to stop/).click()
+        let p2 = map.latLngToContainerPoint([39.1003, -84.4855])
+        getMap().click(p2.x, p2.y)
+      })
+
+      cy.findByLabelText(/Default dwell time/i).type('00:10:00')
+      cy.findByLabelText(/Average speed/i).type('25')
+      cy.findByLabelText(/Total moving time/i).type('01:00:00')
+
       deleteThisMod()
     })
   })
