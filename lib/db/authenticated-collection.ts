@@ -90,10 +90,6 @@ export default class AuthenticatedCollection {
     this.session = session
   }
 
-  hasAccess(document: void | any) {
-    return document && document.accessGroup === this.accessGroup
-  }
-
   create(data: any) {
     return this.collection.insertOne({
       ...data,

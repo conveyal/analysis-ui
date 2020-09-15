@@ -83,6 +83,7 @@ export function parseTimesData(ab) {
 
   return {
     ...header,
+    ...metadata, // may contain accessibility
     data,
     errors: [],
     warnings: metadata.scenarioApplicationWarnings || [],
