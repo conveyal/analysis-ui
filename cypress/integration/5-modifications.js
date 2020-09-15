@@ -5,6 +5,8 @@ const createModName = (type, description = '') =>
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
 
+const getMap = () => cy.get('div.leaflet-container')
+
 // All modification types
 const types = [
   'Add Streets',
@@ -38,6 +40,7 @@ function setupScenario(name) {
         .type(name + '{enter}')
     }
   })
+  cy.findAllByRole('tab', {name: /Modifications/g}).click()
 }
 
 // Delete an open modification
@@ -75,18 +78,18 @@ function deleteMod(modType, modName) {
 }
 
 function setupMod(modType, modName) {
-  cy.navTo('Edit Modifications')
-  cy.findByRole('tab', {name: /Modifications/g}).click()
   // assumes we are already on this page or editing another mod
   cy.findByText('Create a modification').click()
   cy.findByLabelText(/Modification name/i).type(modName)
   if (modType.indexOf('Street') > -1) {
     cy.findByText('Street').click()
-    cy.findByLabelText('Street modification type').select(modType)
+    cy.findByLabelText(/Street modification type/i).select(modType)
   } else {
     cy.findByLabelText(/Transit modification type/i).select(modType)
   }
   cy.findByText('Create').click()
+  cy.findByRole('dialog').should('not.exist')
+  cy.navComplete()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 }
 
@@ -94,7 +97,6 @@ function drawRouteGeometry(newRoute) {
   cy.findByText(/Edit route geometry/i)
     .click()
     .contains(/Stop editing/i)
-  cy.get('div.leaflet-container').as('map')
   cy.window().then((win) => {
     const map = win.LeafletMap
     const route = win.L.polyline(newRoute)
@@ -104,7 +106,7 @@ function drawRouteGeometry(newRoute) {
     const coords = route.getLatLngs()
     coords.forEach((point, i) => {
       const pix = map.latLngToContainerPoint(point)
-      cy.get('@map').click(pix.x, pix.y)
+      getMap().click(pix.x, pix.y)
       if (i > 0) {
         cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
       }
@@ -112,15 +114,15 @@ function drawRouteGeometry(newRoute) {
     // convert an arbitrary stop to a control point
     const stop = coords[coords.length - 2]
     const pix = map.latLngToContainerPoint(stop)
-    cy.get('@map').click(pix.x, pix.y)
-    cy.get('@map')
+    getMap().click(pix.x, pix.y)
+    getMap()
       .findByText(/make control point/)
       .click()
     // control point not counted as stop
     cy.contains(new RegExp(coords.length - 1 + ' stops over \\d\\.\\d+ km'))
     // convert control point back to stop
-    cy.get('@map').click(pix.x, pix.y)
-    cy.get('@map')
+    getMap().click(pix.x, pix.y)
+    getMap()
       .findByText(/make stop/)
       .click()
     cy.contains(new RegExp(coords.length + ' stops over \\d\\.\\d+ km'))
@@ -129,14 +131,21 @@ function drawRouteGeometry(newRoute) {
 }
 
 describe('Modifications', function () {
-  beforeEach(() => {
+  before(() => {
     cy.fixture('regions/scratch.json').then((data) => {
       this.region = data
     })
     cy.setup('project')
     setupScenario(scenarioName)
+  })
+
+  beforeEach(() => {
+    cy.getPseudoFixture().then((s) => {
+      cy.navTo('regions')
+      cy.visit(`/regions/${s.regionId}/projects/${s.projectId}/modifications`)
+      return cy.navComplete()
+    })
     cy.findByRole('tab', {name: /Modifications/g}).click()
-    cy.get('div.leaflet-container').as('map')
   })
 
   describe('CRUD each type', () => {
@@ -151,7 +160,7 @@ describe('Modifications', function () {
         cy.findByText(/Add description/)
           .parent() // necessary because text element becomes detached
           .parent()
-          .click()
+          .click({force: true})
           .type(description)
         cy.findByLabelText(/Default/).uncheck({force: true})
         cy.findByLabelText(scenarioNameRegEx).check({force: true})
@@ -310,7 +319,7 @@ describe('Modifications', function () {
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
       cy.get('a.btn').get('svg[data-icon="upload"]').click()
-      cy.location('pathname').should('match', /\/import-shapefile/)
+      cy.location('pathname').should('match', /import-shapefile/g)
       cy.findByLabelText(/Select Shapefile/i).attachFile({
         filePath: this.region.importRoutes.shapefile,
         mimeType: 'application/octet-stream',
@@ -395,11 +404,19 @@ describe('Modifications', function () {
       cy.findByLabelText(/dwell time/)
         .clear()
         .type('00:00:30')
-      // exit and create new mod to copy into
-      const copyIntoName = createModName('ATP', 'copy')
-      setupMod('Add Trip Pattern', copyIntoName)
+      cy.findByText('Weekday').click({force: true}) // hide panel
+
+      // Copy the current modification
+      cy.findByRole('button', {name: /Copy modification/i}).click()
+      cy.get('#react-toast').findByRole('alert').click()
+      cy.navComplete()
+
       cy.findByText(/Copy existing timetable/).click()
+      cy.findByRole('dialog').should('exist')
       cy.findByRole('dialog').as('dialog')
+      cy.get('@dialog')
+        .findByText(/Loading/)
+        .should('not.exist')
       cy.get('@dialog')
         .findByLabelText(/Region/)
         .select(Cypress.env('dataPrefix') + 'scratch')

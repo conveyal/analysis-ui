@@ -19,16 +19,26 @@ const regionFixture = `regions/${regionName}.json`
 export const pseudoFixture = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
-// Wait until the page has finished loading
-Cypress.Commands.add('navComplete', () => {
+// No spinner
+Cypress.Commands.add('loadingComplete', () =>
   cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
     timeout: 15000
   })
-  Cypress.log({name: 'Navigation complete'})
+)
+
+// Wait until the page has finished loading
+Cypress.Commands.add('navComplete', () => {
+  return cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
+    timeout: 15000
+  })
 })
 
 // For easy use inside tests
 Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
+Cypress.Commands.add('getPseudoFixture', () => {
+  cy.task('touch', pseudoFixture)
+  return cy.readFile(pseudoFixture)
+})
 
 // Check if a floating point number is within a certain tolerance
 Cypress.Commands.add('isWithin', (f1, f2, tolerance = 0) => {
@@ -40,37 +50,33 @@ Cypress.Commands.add('setup', (entity) => setup(entity))
 
 function setup(entity) {
   const idKey = entity + 'Id'
-  cy.task('touch', pseudoFixture)
-  return cy.readFile(pseudoFixture).then((storedVals) => {
+  return cy.getPseudoFixture().then((storedVals) => {
     if (idKey in storedVals) {
       // thing exists; navigate to it
       switch (entity) {
         case 'region':
           cy.visit(`/regions/${storedVals.regionId}`)
-          cy.navComplete()
-          return cy.contains(/Create new Project|Upload a .* Bundle/i)
+          return cy.navComplete()
         case 'bundle':
           cy.visit(
             `/regions/${storedVals.regionId}/bundles/${storedVals.bundleId}`
           )
-          cy.navComplete()
-          return cy.contains(/create a new network bundle/i)
+          return cy.navComplete()
         case 'opportunities':
           cy.visit(`/regions/${storedVals.regionId}/opportunities`)
-          cy.navComplete()
-          return cy.contains(/Upload a new dataset/i)
+          return cy.navComplete()
         case 'project':
           cy.visit(
             `/regions/${storedVals.regionId}/projects/${storedVals.projectId}/modifications`
           )
-          cy.navComplete()
-          return cy.contains(/Create a modification/i)
+          return cy.navComplete()
         case 'analysis':
-          cy.visit(
-            `/regions/${storedVals.regionId}/regional?analysisId=${storedVals.analysisId}`
-          )
-          cy.navComplete()
-          return cy.contains(/Aggregate results to/i)
+          cy.visit(`/regions/${storedVals.regionId}/regional`, {
+            qs: {
+              analysisId: storedVals.analysisId
+            }
+          })
+          return cy.navComplete()
       }
       // if the entity didn't already exist, recurse through all dependencies
     } else if (entity === 'region') {
