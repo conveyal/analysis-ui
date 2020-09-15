@@ -7,7 +7,6 @@ import {
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
 import {useCallback, useState} from 'react'
-import {Pane} from 'react-leaflet'
 import {useSelector} from 'react-redux'
 
 import colors from 'lib/constants/colors'
@@ -65,43 +64,35 @@ export default function AdjustSpeedComponent({
 
   return (
     <Stack spacing={4} mb={4}>
-      <Pane zIndex={210}>
-        <GTFSStopGridLayer stops={allStops} />
-      </Pane>
+      <GTFSStopGridLayer stops={allStops} />
 
-      <Pane zIndex={220}>
-        <PatternLayer
-          activeTrips={modification.trips}
-          color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
-          feed={feed}
-          modification={modification}
-        />
-      </Pane>
+      <PatternLayer
+        activeTrips={modification.trips}
+        color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
+        feed={feed}
+        modification={modification}
+      />
 
       {modification.hops != null && (
-        <Pane zIndex={230}>
-          <HopLayer
-            color={colors.MODIFIED}
-            feed={feed}
-            hopStops={hopStops}
-            modification={modification}
-          />
-        </Pane>
+        <HopLayer
+          color={colors.MODIFIED}
+          feed={feed}
+          hopStops={hopStops}
+          modification={modification}
+        />
       )}
 
       {action !== 'none' && (
-        <Pane zIndex={510}>
-          <HopSelectPolygon
-            action={action}
-            allStops={allStops}
-            currentHops={modification.hops}
-            hopStops={hopStops}
-            update={(hops) => {
-              update({hops})
-              setAction('none')
-            }}
-          />
-        </Pane>
+        <HopSelectPolygon
+          action={action}
+          allStops={allStops}
+          currentHops={modification.hops}
+          hopStops={hopStops}
+          update={(hops) => {
+            update({hops})
+            setAction('none')
+          }}
+        />
       )}
 
       <SelectFeedAndRoutes
