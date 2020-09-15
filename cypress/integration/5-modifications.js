@@ -408,7 +408,8 @@ describe('Modifications', function () {
 
       // Copy the current modification
       cy.findByRole('button', {name: /Copy modification/i}).click()
-      cy.get('#react-toast').findByRole('alert').click()
+      cy.loadingComplete()
+      cy.get('#react-toast').findByRole('alert').click({force: true})
       cy.navComplete()
 
       cy.findByText(/Copy existing timetable/).click()

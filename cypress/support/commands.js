@@ -146,7 +146,7 @@ function createNewOpportunities() {
 
 function createNewRegion() {
   cy.visit('/regions/create')
-  cy.findByPlaceholderText('Region Name').type(prefix + regionName, {delay: 0})
+  cy.findByLabelText(/Region Name/).type(prefix + regionName, {delay: 0})
   cy.fixture(regionFixture).then((region) => {
     cy.findByLabelText(/North bound/)
       .clear()
@@ -162,6 +162,7 @@ function createNewRegion() {
       .type(region.east, {delay: 1})
   })
   cy.findByRole('button', {name: /Set up a new region/}).click()
+  cy.findByRole('button', {name: /Creating region/}).should('not.exist')
   cy.navComplete()
   cy.contains(/Upload a new network bundle|create new project/i)
   // store the region UUID for later
