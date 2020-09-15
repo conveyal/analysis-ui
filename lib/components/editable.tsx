@@ -38,9 +38,11 @@ export default function Editable({
         onClick={onOpen}
       >
         {value ? (
-          <Box flex='1'>{value}</Box>
+          <Box flex='1' wordBreak='break-all'>
+            {value}
+          </Box>
         ) : (
-          <Box flex='1' color='gray.500'>
+          <Box flex='1' color='gray.500' wordBreak='break-all'>
             {placeholder}
           </Box>
         )}
