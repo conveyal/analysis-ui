@@ -26,7 +26,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import debounce from 'lodash/debounce'
 import get from 'lodash/get'
-import React, {useCallback, useState} from 'react'
+import {Component, useCallback, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {
@@ -65,7 +65,7 @@ const nameIsValid = (s) => s && s.length > 0
 /**
  * Use a wrapper class to handle debouncing the updates
  */
-export default class DebouncedUpdate extends React.Component<any> {
+export default class DebouncedUpdate extends Component<any> {
   componentDidMount() {
     window.addEventListener('beforeunload', this.debouncedSaveToServer.flush)
   }
