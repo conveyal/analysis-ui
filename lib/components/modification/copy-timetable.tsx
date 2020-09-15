@@ -23,6 +23,7 @@ import {v4 as uuidv4} from 'uuid'
 import fetchAction from 'lib/actions/fetch'
 import {API} from 'lib/constants'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
+import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import selectRegionId from 'lib/selectors/current-region-id'
 
@@ -68,10 +69,10 @@ function CopyTimetableContent({create, intoModification, onClose}) {
   const [loading, setLoading] = useState(true)
   const defaultRegionId = useSelector(selectRegionId)
 
-  const [regionId, setRegionId] = useState(defaultRegionId)
-  const [projectId, setProjectId] = useState(intoModification.projectId)
-  const [modificationId, setModificationId] = useState(intoModification._id)
-  const [timetableId, setTimetableId] = useState(null)
+  const regionInput = useInput({value: defaultRegionId})
+  const projectInput = useInput({value: intoModification.projectId})
+  const modificationInput = useInput({value: intoModification._id})
+  const timetableInput = useInput({value: null})
 
   useEffect(() => {
     dispatch(fetchAction({url: API.Timetables})).then((regions) => {
@@ -95,15 +96,17 @@ function CopyTimetableContent({create, intoModification, onClose}) {
     )
   }
 
-  const region = regions.find((r) => regionId === r._id) || regions[0]
+  const region = regions.find((r) => regionInput.value === r._id) || regions[0]
   const projects = get(region, 'projects', [])
-  const project = projects.find((p) => projectId === p._id) || projects[0]
+  const project =
+    projects.find((p) => projectInput.value === p._id) || projects[0]
   const modifications = get(project, 'modifications', [])
   const modification =
-    modifications.find((m) => modificationId === m._id) || modifications[0]
+    modifications.find((m) => modificationInput.value === m._id) ||
+    modifications[0]
   const timetables = get(modification, 'timetables', [])
   const timetable =
-    timetables.find((t) => timetableId === t._id) || timetables[0]
+    timetables.find((t) => timetableInput.value === t._id) || timetables[0]
 
   const _onConfirmTimetable = async () => {
     if (!timetable) {
@@ -137,38 +140,26 @@ function CopyTimetableContent({create, intoModification, onClose}) {
       <ModalBody>
         <Stack spacing={4}>
           <FormControl>
-            <FormLabel>Region</FormLabel>
-            <Select
-              onChange={(e) => setRegionId(e.target.value)}
-              value={regionId}
-            >
+            <FormLabel htmlFor={regionInput.id}>Region</FormLabel>
+            <Select {...regionInput}>
               <Options options={regions} />
             </Select>
           </FormControl>
           <FormControl>
-            <FormLabel>Project</FormLabel>
-            <Select
-              onChange={(e) => setProjectId(e.target.value)}
-              value={projectId}
-            >
+            <FormLabel htmlFor={projectInput.id}>Project</FormLabel>
+            <Select {...projectInput}>
               <Options options={projects} />
             </Select>
           </FormControl>
           <FormControl>
-            <FormLabel>Modification</FormLabel>
-            <Select
-              onChange={(e) => setModificationId(e.target.value)}
-              value={modificationId}
-            >
+            <FormLabel htmlFor={modificationInput.id}>Modification</FormLabel>
+            <Select {...modificationInput}>
               <Options options={modifications} />
             </Select>
           </FormControl>
           <FormControl>
-            <FormLabel>Timetable</FormLabel>
-            <Select
-              onChange={(e) => setTimetableId(e.target.value)}
-              value={timetableId}
-            >
+            <FormLabel htmlFor={timetableInput.id}>Timetable</FormLabel>
+            <Select {...timetableInput}>
               <Options options={timetables} />
             </Select>
           </FormControl>
@@ -205,6 +196,7 @@ function CopyTimetableContent({create, intoModification, onClose}) {
           Cancel
         </Button>
         <Button
+          isDisabled={!timetable}
           leftIcon='small-add'
           onClick={_onConfirmTimetable}
           variantColor='green'
