@@ -1,5 +1,4 @@
-import {Radio, RadioGroup, Stack} from '@chakra-ui/core'
-import React from 'react'
+import {Box, Radio, RadioGroup, Stack} from '@chakra-ui/core'
 
 import colors from 'lib/constants/colors'
 
@@ -48,7 +47,9 @@ export default function AdjustDwellTimeComponent(p) {
       />
 
       {p.modification.routes && (
-        <SelectStops modification={p.modification} update={p.update} />
+        <Box>
+          <SelectStops modification={p.modification} update={p.update} />
+        </Box>
       )}
 
       <RadioGroup
