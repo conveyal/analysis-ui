@@ -203,13 +203,13 @@ describe('Analysis', function () {
           expect(asInt(val)).to.equal(results['6:00-8:00'])
         })
       // set time window in late evening - lower access
-      cy.get('@from').clear().type('22:00')
-      cy.get('@to').clear().type('24:00')
+      cy.get('@from').clear().type('20:00')
+      cy.get('@to').clear().type('22:00')
       fetchResults()
       cy.get('@results')
         .invoke('text')
         .then((val) => {
-          expect(asInt(val)).to.equal(results['22:00-24:00'])
+          expect(asInt(val)).to.equal(results['20:00-22:00'])
         })
       // narrow window to one minute - no variability
       cy.get('@from').clear().type('12:00')

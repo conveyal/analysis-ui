@@ -51,7 +51,6 @@ export default function FrequencyEntry({
       )
   )
 
-  // TODO Fix `setActiveTrips` on focus
   return (
     <Panel.Collapsible
       heading={() => (
