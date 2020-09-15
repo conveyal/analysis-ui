@@ -577,11 +577,30 @@ describe('Modifications', function () {
         .type(this.region.sampleRouteName + '{enter}')
       // verify existence only
       cy.findByLabelText(/Select patterns/i)
-      cy.findByText(/Start of reroute/i)
-      cy.findByText(/End of reroute/i)
-      cy.findByLabelText(/Default dwell time/i)
-      cy.findByLabelText(/Average speed/i)
-      cy.findByLabelText(/Total moving time/i)
+
+      // Select from stop and to stop
+      cy.window().then((win) => {
+        const map = win.LeafletMap
+        cy.findByLabelText(/Select from stop/).click()
+        let p1 = map.latLngToContainerPoint([39.0877, -84.5192])
+        getMap().click(p1.x, p1.y)
+        // test clearing the from stop
+        cy.findByLabelText(/Clear from stop/).click()
+
+        // Re-select the from stop
+        cy.findByLabelText(/Select from stop/).click()
+        getMap().click(p1.x, p1.y)
+
+        // Select the to stop
+        cy.findByLabelText(/Select to stop/).click()
+        p2 = map.latLngToContainerPoint([39.1003, -84.4855])
+        getMap().click(p2.x, p2.y)
+      })
+
+      cy.findByLabelText(/Default dwell time/i).type('00:10:00')
+      cy.findByLabelText(/Average speed/i).type('25')
+      cy.findByLabelText(/Total moving time/i).type('01:00:00')
+
       deleteThisMod()
     })
   })

@@ -22,7 +22,6 @@ export default function FrequencyEntry({
   modificationStops,
   routePatterns,
   routes,
-  setActiveTrips,
   update,
   remove
 }) {
@@ -33,10 +32,8 @@ export default function FrequencyEntry({
   })
 
   const _changeTrip = (sourceTrip) => update({sourceTrip})
-  const _selectPattern = (trips) => {
-    setActiveTrips(trips)
+  const _selectPattern = (trips) =>
     update({patternTrips: trips, sourceTrip: trips[0]})
-  }
 
   const patternsWithTrips = routePatterns.filter(
     (pattern) =>

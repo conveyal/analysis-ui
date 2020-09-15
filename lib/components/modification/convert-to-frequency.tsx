@@ -26,9 +26,7 @@ const MAP_COLOR = parseColor(colors.MODIFIED) + ''
  * @author mattwigway
  */
 export default function ConvertToFrequency({
-  mapState,
   modification,
-  setMapState,
   update,
   updateAndRetrieveFeedData
 }) {
@@ -79,13 +77,6 @@ export default function ConvertToFrequency({
     })
   }
 
-  const _setActiveTrips = (activeTrips) => {
-    setMapState({
-      ...mapState,
-      activeTrips
-    })
-  }
-
   return (
     <Stack spacing={4}>
       <PatternGeometry color={MAP_COLOR} patterns={selectedPatterns} />
@@ -128,7 +119,6 @@ export default function ConvertToFrequency({
             remove={_removeEntry(eidx)}
             routePatterns={routePatterns}
             routes={modification.routes}
-            setActiveTrips={_setActiveTrips}
             update={_replaceEntry(eidx)}
           />
         ))}
