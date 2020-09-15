@@ -2,10 +2,6 @@ import {Divider, FormControl, FormLabel, Input, Stack} from '@chakra-ui/core'
 import {faCalendar} from '@fortawesome/free-solid-svg-icons'
 import {useCallback} from 'react'
 
-import {
-  MAP_STATE_HIGHLIGHT_SEGMENT,
-  MAP_STATE_HIGHLIGHT_STOP
-} from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
 
 import ConfirmButton from '../confirm-button'
@@ -17,14 +13,10 @@ import TimetableEntry from './timetable-entry'
 
 /** Represents a PatternTimetable */
 export default function TimetableComponent({
-  bidirectional,
   modificationStops,
   numberOfStops,
-  projectTimetables,
-  qualifiedStops,
   remove,
   segmentDistances,
-  setMapState,
   timetable,
   update
 }): JSX.Element {
@@ -33,26 +25,6 @@ export default function TimetableComponent({
     onChange: _changeName,
     value: timetable.name
   })
-
-  const _highlightSegment = useCallback(
-    (segmentIndex) => {
-      setMapState({
-        state: MAP_STATE_HIGHLIGHT_SEGMENT,
-        segmentIndex
-      })
-    },
-    [setMapState]
-  )
-
-  const _highlightStop = useCallback(
-    (stopIndex) => {
-      setMapState({
-        state: MAP_STATE_HIGHLIGHT_STOP,
-        stopIndex
-      })
-    },
-    [setMapState]
-  )
 
   return (
     <Panel.Collapsible
@@ -72,9 +44,7 @@ export default function TimetableComponent({
           </FormControl>
 
           <TimetableEntry
-            bidirectional={bidirectional}
             modificationStops={modificationStops}
-            projectTimetables={projectTimetables}
             timetable={timetable}
             update={update}
           />
@@ -85,11 +55,7 @@ export default function TimetableComponent({
             <SegmentSpeeds
               dwellTime={timetable.dwellTime}
               dwellTimes={timetable.dwellTimes || []}
-              highlightSegment={_highlightSegment}
-              highlightStop={_highlightStop}
-              qualifiedStops={qualifiedStops}
               numberOfStops={numberOfStops}
-              segmentDistances={segmentDistances}
               segmentSpeeds={timetable.segmentSpeeds}
               update={update}
             />

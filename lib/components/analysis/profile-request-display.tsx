@@ -79,7 +79,7 @@ export default function ProfileRequestDisplay({
         setRequestJSON(response)
       }
     )
-  }, [id])
+  }, [dispatch, id])
 
   const projects = useSelector(selectProjects)
   const bundles = useSelector(selectBundles)
