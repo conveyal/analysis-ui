@@ -593,7 +593,7 @@ describe('Modifications', function () {
 
         // Select the to stop
         cy.findByLabelText(/Select to stop/).click()
-        p2 = map.latLngToContainerPoint([39.1003, -84.4855])
+        let p2 = map.latLngToContainerPoint([39.1003, -84.4855])
         getMap().click(p2.x, p2.y)
       })
 
