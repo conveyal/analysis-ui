@@ -109,8 +109,8 @@ describe('Region setup', function () {
     // Create the region
     cy.get('@create').click()
     cy.navComplete()
-    // should redirect to bundle upload
-    cy.location('pathname', {timeout: 10000}).should('match', /regions\/.{24}$/)
+    // should redirect to a region with no bundles
+    cy.location('pathname').should('match', /regions\/.{24}$/)
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
     cy.navTo('Regions')
