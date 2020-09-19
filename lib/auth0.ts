@@ -51,7 +51,7 @@ export default auth0
 /**
  * Flatten the session object and assign the accessGroup without the http portion.
  */
-export async function getSession(req: IncomingMessage): Promise<IUser> {
+export async function getUser(req: IncomingMessage): Promise<IUser> {
   const session = await auth0.getSession(req)
   if (!session) {
     throw new Error('User session does not exist. User must be logged in.')
@@ -78,7 +78,7 @@ export async function getSession(req: IncomingMessage): Promise<IUser> {
  * Helper function for retrieving the access group.
  */
 export async function getAccessGroup(req: IncomingMessage): Promise<string> {
-  const user = await getSession(req)
+  const user = await getUser(req)
   if (user.adminTempAccessGroup && user.adminTempAccessGroup.length > 0) {
     return user.adminTempAccessGroup
   }

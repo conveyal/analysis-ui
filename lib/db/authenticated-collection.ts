@@ -1,8 +1,8 @@
-import {IncomingMessage, ServerResponse} from 'http'
 import {Collection, ObjectID, FindOneOptions, FilterQuery} from 'mongodb'
+import {NextApiRequest} from 'next'
 import fpOmit from 'lodash/fp/omit'
 
-import {getSession} from 'lib/auth0'
+import {getUser} from 'lib/auth0'
 import {IUser} from 'lib/user'
 
 import {connectToDatabase} from './connect'
@@ -45,49 +45,35 @@ export default class AuthenticatedCollection {
   collection: Collection
   name: string
   singularName: string
-  session: IUser
+  user: IUser
 
   /**
    * Async factory method for creating an AuthenticatedCollection at an HTTP endpoint. Can be
-   * used in `getServerSideProps` or in `/pages/api/...` endpoints.
+   * used in `/pages/api/...` endpoints.
    */
-  static async initialize(
-    req: IncomingMessage,
-    res: ServerResponse,
-    collectionName: string
-  ) {
-    if (collections[collectionName] === undefined) {
-      throw new Error(`Collection '${collectionName}' is not enabled.`)
-    }
+  static async initFromReq(collectionName: string, req: NextApiRequest) {
+    return this.initFromUser(collectionName, await getUser(req))
+  }
 
-    let session = null
-    try {
-      session = await getSession(req)
-    } catch (e) {
-      console.error('Error while retrieving the session.', e)
-    }
-    if (session == null) {
-      res.writeHead(302, {
-        Location: '/api/login'
-      })
-      res.end()
-      return
-    }
-
+  static async initFromUser(collectionName: string, user: IUser) {
     const {db} = await connectToDatabase()
     return new AuthenticatedCollection(
       collectionName,
       db.collection(collectionName),
-      session
+      user
     )
   }
 
-  constructor(name: string, collection: Collection, session: IUser) {
-    this.accessGroup = getAccessGroup(session)
+  constructor(name: string, collection: Collection, user: IUser) {
+    if (collections[name] === undefined) {
+      throw new Error(`Collection '${name}' is not enabled.`)
+    }
+
+    this.accessGroup = getAccessGroup(user)
     this.collection = collection
     this.name = name
     this.singularName = collections[name].singular
-    this.session = session
+    this.user = user
   }
 
   create(data: any) {
@@ -97,8 +83,8 @@ export default class AuthenticatedCollection {
       _id: new ObjectID().toString(),
       accessGroup: this.accessGroup,
       nonce: new ObjectID().toString(),
-      createdBy: this.session.email,
-      updatedBy: this.session.email
+      createdBy: this.user.email,
+      updatedBy: this.user.email
     })
   }
 
@@ -153,7 +139,7 @@ export default class AuthenticatedCollection {
         $set: {
           ...omitImmutable(newValues),
           nonce: new ObjectID().toString(),
-          updatedBy: this.session.email
+          updatedBy: this.user.email
         }
       }
     )

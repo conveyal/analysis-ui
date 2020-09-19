@@ -20,12 +20,8 @@ export default function withCollection(handler: Handler) {
   return auth0.requireAuthentication(
     async (req: NextApiRequest, res: NextApiResponse) => {
       try {
-        const collectionName = getQueryAsString(req.query.collection)
-        const collection = await AuthenticatedCollection.initialize(
-          req,
-          res,
-          collectionName
-        )
+        const name = getQueryAsString(req.query.collection)
+        const collection = await AuthenticatedCollection.initFromReq(name, req)
         await handler(req, res, collection)
       } catch (e) {
         res.status(400).json(errorToPOJO(e))

@@ -10,6 +10,7 @@ import {
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 import {GetServerSideProps} from 'next'
 
+import {getUser} from 'lib/auth0'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
@@ -20,6 +21,7 @@ import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
+import {IUser} from 'lib/user'
 
 const alertDate = 'August, 2020'
 const alertText =
@@ -104,17 +106,24 @@ function RegionItem({region, ...p}) {
  * Comment out to disable. Page load should still work.
  */
 export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
-  const collection = await AuthenticatedCollection.initialize(
-    req,
-    res,
-    'regions'
-  )
+  let user: IUser = null
+  try {
+    user = await getUser(req)
+  } catch (e) {
+    res.writeHead(302, {
+      Location: '/api/login'
+    })
+    res.end()
+    return
+  }
+
+  const collection = await AuthenticatedCollection.initFromUser('regions', user)
   const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
 
   return {
     props: {
       regions: serializeCollection(regions),
-      user: collection.session
+      user
     }
   }
 }
