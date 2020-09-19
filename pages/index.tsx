@@ -105,16 +105,17 @@ function RegionItem({region, ...p}) {
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
  */
-export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
+export const getServerSideProps: GetServerSideProps = async ({req}) => {
   let user: IUser = null
   try {
     user = await getUser(req)
   } catch (e) {
-    res.writeHead(302, {
-      Location: '/api/login'
-    })
-    res.end()
-    return {props: {}} // must always return an object
+    return {
+      unstable_redirect: {
+        permanent: false,
+        destination: '/api/login'
+      }
+    }
   }
 
   const collection = await AuthenticatedCollection.initFromUser('regions', user)

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "action": "run-p java start",
-    "analyze": "ANALYZE=true yarn run build",
+    "analyze": "ANALYZE=true yarn build",
     "build": "next build",
     "check-format": "prettier -l \"cypress/**/*.js\" \"db/**/*.js\" \"lib/**/*.js\" \"migrations/**/*.js\" \"pages/**/*.js\"",
     "dev": "next",
@@ -15,7 +15,6 @@
     "cypress:run": "cypress run",
     "format": "prettier --write \"cypress/**/*.js\" \"db/**/*.js\" \"lib/**/*.js\" \"migrations/**/*.js\" \"pages/**/*.js\"",
     "java": "java -cp *.jar com.conveyal.analysis.BackendMain > /dev/null",
-    "jest": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "migrate": "migrate --store=./db/migrations-store.js --env=.env",
     "now-build": "next build",
@@ -24,9 +23,8 @@
     "pretest": "yarn",
     "semantic-release": "semantic-release",
     "start": "next start",
-    "test": "yarn run tsc && yarn run lint && yarn run jest",
-    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
-    "tsc": "tsc"
+    "test": "yarn tsc && yarn lint && yarn jest",
+    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "repository": {
     "type": "git",
@@ -102,7 +100,7 @@
     "migrate": "^1.6.2",
     "mongodb": "^3.5.7",
     "ms": "^2.1.2",
-    "next": "^9.5.2",
+    "next": "canary",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
     "prop-types": "^15.7.2",
