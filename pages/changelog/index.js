@@ -11,9 +11,10 @@ import C20200210 from './20200210.mdx'
 import C20200418 from './20200418.mdx'
 import C202006 from './202006.mdx'
 import C20200803 from './20200803.mdx'
+import C20200925 from './20200925.mdx'
 
 const changes = [
-  ['August, 2020', C20200803],
+  ['September, 2020', C20200925][('August, 2020', C20200803)],
   ['June, 2020', C202006],
   ['April 18th, 2020', C20200418],
   ['February 28th, 2020', C20200228],
