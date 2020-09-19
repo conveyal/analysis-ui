@@ -47,4 +47,4 @@ export function createUseModel(collectionName: string) {
 }
 
 export const useRegion = createUseModel('regions')
-export const useAnalysisPreset = createUseModel('analysisPreset')
+export const usePreset = createUseModel('presets')
