@@ -114,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
       Location: '/api/login'
     })
     res.end()
-    return
+    return {props: {}} // must always return an object
   }
 
   const collection = await AuthenticatedCollection.initFromUser('regions', user)
