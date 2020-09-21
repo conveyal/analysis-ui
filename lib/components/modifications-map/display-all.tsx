@@ -1,4 +1,5 @@
 import get from 'lodash/get'
+import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import React from 'react'
 import {useSelector} from 'react-redux'
@@ -8,13 +9,13 @@ import selectFeedsById from 'lib/selectors/feeds-by-id'
 import selectModifications from 'lib/selectors/modifications'
 import {getParsedItem} from 'lib/utils/local-storage'
 
-import Display from './display'
+const Display = dynamic(() => import('./display'), {ssr: false})
 
-export function DisplayAll(p) {
-  return p.modifications.map((m) => (
+export function DisplayAll({feedsById, isEditing = false, modifications}) {
+  return modifications.map((m) => (
     <Display
-      dim={p.isEditing}
-      feed={p.feedsById[m.feed]}
+      dim={isEditing}
+      feed={feedsById[m.feed]}
       key={m._id}
       modification={m}
     />
