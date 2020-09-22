@@ -1,6 +1,6 @@
 import {color as parseColor} from 'd3-color'
 import {schemeBlues, schemeReds} from 'd3-scale-chromatic'
-import {get} from 'lodash'
+import get from 'lodash/get'
 import {ckmeans, sample} from 'simple-statistics'
 import {createSelector} from 'reselect'
 import {constructor as XorShift} from 'xorshift'
