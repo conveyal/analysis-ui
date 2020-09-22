@@ -8,9 +8,11 @@ import {IUser} from './user'
 const cookieLifetime = ms('30 days') / 1000
 const httpTimeout = ms('10s')
 const scope = 'openid profile id_token'
-const redirectUri = `https://${process.env.VERCEL_URL}`
 
-const auth0 = (function createAuth0() {
+// Initialzed auth0s per origin served from this lambda
+const auth0s = {}
+
+function createAuth0(origin: string) {
   if (process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true') {
     return {
       handleCallback: async () => {},
@@ -32,8 +34,8 @@ const auth0 = (function createAuth0() {
       clientSecret: process.env.AUTH0_CLIENT_SECRET,
       scope,
       domain: process.env.AUTH0_DOMAIN,
-      redirectUri: `${redirectUri}/api/callback`,
-      postLogoutRedirectUri: redirectUri,
+      redirectUri: `${origin}/api/callback`,
+      postLogoutRedirectUri: origin,
       session: {
         cookieSecret: process.env.SESSION_COOKIE_SECRET,
         cookieLifetime,
@@ -44,14 +46,23 @@ const auth0 = (function createAuth0() {
       }
     })
   }
-})()
+}
 
-export default auth0
+// Dyanmically create the Auth0 instance based upon a request
+export default function initAuth0WithReq(req: IncomingMessage) {
+  const host = req.headers.host
+  const protocol = /^localhost(:\d+)?$/.test(host) ? 'http:' : 'https:'
+  const origin = `${protocol}//${host}`
+  if (auth0s[origin]) return auth0s[origin]
+  auth0s[origin] = createAuth0(origin)
+  return auth0s[origin]
+}
 
 /**
  * Flatten the session object and assign the accessGroup without the http portion.
  */
 export async function getUser(req: IncomingMessage): Promise<IUser> {
+  const auth0 = initAuth0WithReq(req)
   const session = await auth0.getSession(req)
   if (!session) {
     throw new Error('User session does not exist. User must be logged in.')
