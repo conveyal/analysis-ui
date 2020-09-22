@@ -1,6 +1,6 @@
 import {NextApiResponse, NextApiRequest} from 'next'
 
-import initAuth0 from 'lib/auth0'
+import initAuth0, {getUser} from 'lib/auth0'
 import {errorToPOJO, getQueryAsString} from 'lib/utils/api'
 
 import AuthenticatedCollection from './authenticated-collection'
@@ -23,9 +23,10 @@ export default function withCollection(handler: Handler) {
       async (req: NextApiRequest, res: NextApiResponse) => {
         try {
           const name = getQueryAsString(req.query.collection)
-          const collection = await AuthenticatedCollection.initFromReq(
+          const user = await getUser(req)
+          const collection = await AuthenticatedCollection.initFromUser(
             name,
-            req
+            user
           )
           await handler(req, res, collection)
         } catch (e) {

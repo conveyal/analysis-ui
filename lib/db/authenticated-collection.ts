@@ -1,8 +1,6 @@
 import {Collection, ObjectID, FindOneOptions, FilterQuery} from 'mongodb'
-import {NextApiRequest} from 'next'
 import fpOmit from 'lodash/fp/omit'
 
-import {getUser} from 'lib/auth0'
 import {IUser} from 'lib/user'
 
 import {connectToDatabase} from './connect'
@@ -46,14 +44,6 @@ export default class AuthenticatedCollection {
   name: string
   singularName: string
   user: IUser
-
-  /**
-   * Async factory method for creating an AuthenticatedCollection at an HTTP endpoint. Can be
-   * used in `/pages/api/...` endpoints.
-   */
-  static async initFromReq(collectionName: string, req: NextApiRequest) {
-    return this.initFromUser(collectionName, await getUser(req))
-  }
 
   static async initFromUser(collectionName: string, user: IUser) {
     const {db} = await connectToDatabase()
