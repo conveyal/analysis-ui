@@ -111,6 +111,7 @@ export default memo<Props>(function PresetChooser({
     async (_id) => {
       const res = await presetsCollection.remove(_id)
       if (res.ok) {
+        removeAction.onClose()
         toast({
           title: 'Deleted selected preset',
           position: 'top',
@@ -127,7 +128,7 @@ export default memo<Props>(function PresetChooser({
         })
       }
     },
-    [presetsCollection, toast]
+    [presetsCollection, removeAction, toast]
   )
 
   return (
