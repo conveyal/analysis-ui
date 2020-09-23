@@ -4,7 +4,7 @@
 /* eslint indent: 0, no-multi-spaces: 0 */
 
 /** Test that the aggregate accessibility selector works correctly */
-
+import {expect} from '@jest/globals'
 import range from 'lodash/range'
 
 import getAggregateAccessibility from '../aggregate-accessibility'

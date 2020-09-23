@@ -1,5 +1,4 @@
-//
-
+import {expect} from '@jest/globals'
 import getHopTimes from '../get-hop-times'
 
 function makeStops() {

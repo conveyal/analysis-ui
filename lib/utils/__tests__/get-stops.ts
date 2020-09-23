@@ -1,4 +1,4 @@
-//
+import {expect} from '@jest/globals'
 import getStops from '../get-stops'
 
 const segment = {

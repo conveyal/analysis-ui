@@ -1,5 +1,4 @@
-//
-
+import {expect} from '@jest/globals'
 import {getExactTimesFirstDepartures} from '../timetable'
 import {hhMmStringToSeconds} from '../time'
 

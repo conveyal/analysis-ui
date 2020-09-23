@@ -1,4 +1,6 @@
+import {expect} from '@jest/globals'
 import fs from 'fs'
+import get from 'lodash/get'
 import jsolines, {getContour} from '../jsolines'
 
 const surface = new Uint8Array(
@@ -58,8 +60,8 @@ function degrees(rad) {
   return (rad * 180) / Math.PI
 }
 
-function summarizeSnapshot(s, k) {
-  if (Array.isArray(s) || ArrayBuffer.isView(s)) {
+function summarizeSnapshot(s, k?) {
+  if (get(s, 'length') > 0) {
     return {
       [`first${k ? `-${k}` : ''}`]: summarizeSnapshot(s[0]),
       [`last${k ? `-${k}` : ''}`]: summarizeSnapshot(s[s.length - 1]),

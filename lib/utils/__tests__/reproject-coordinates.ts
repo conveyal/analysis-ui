@@ -1,4 +1,4 @@
-//
+import {expect} from '@jest/globals'
 import reproject from '../reproject-coordinates'
 
 describe('utils > reproject-coordinates', () => {

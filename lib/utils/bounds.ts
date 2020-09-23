@@ -8,9 +8,19 @@ import reprojectCoordinates from './reproject-coordinates'
 const ANTIMERIDIAN_WARNING =
   'We do not currently support bounds that cross the antimeridian.'
 
-export function toLatLngBounds(bounds) {
+type Bounds = {
+  north: number
+  south: number
+  east: number
+  west: number
+  toString: () => string
+}
+
+export function toLatLngBounds(
+  bounds: Bounds | L.LatLngBounds
+): L.LatLngBounds {
   // Check if it's already a leaflet bounds object
-  if (bounds.toBBoxString && bounds.isValid && bounds.isValid()) return bounds
+  if (bounds instanceof L.LatLngBounds) return bounds
   return new L.LatLngBounds([
     [bounds.north, bounds.west],
     [bounds.south, bounds.east]
@@ -20,14 +30,12 @@ export function toLatLngBounds(bounds) {
 /**
  * NB: We do not currently support crossing the antimeridian.
  */
-export function fromLatLngBounds(bounds) {
+export function fromLatLngBounds(bounds: L.LatLngBounds) {
   // Don't change the original bounds object
-  let b = new L.LatLngBounds()
-  b.extend(bounds)
+  let b = new L.LatLngBounds(bounds.getSouthWest(), bounds.getNorthEast())
 
   if (b.getWest() < -180) {
     b = new L.LatLngBounds(new L.LatLng(b.getSouth(), -180), b.getNorthEast())
-
     window.alert(message('antimeridian', ANTIMERIDIAN_WARNING))
   }
 

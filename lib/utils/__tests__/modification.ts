@@ -1,4 +1,4 @@
-//
+import {expect} from '@jest/globals'
 import toStartCase from 'lodash/startCase'
 
 import {MODIFICATION_TYPES} from '../../constants'
@@ -14,7 +14,12 @@ describe('Utils > Modification', () => {
   describe('create', () => {
     MODIFICATION_TYPES.forEach((t) => {
       it(`should create a modification of type ${t}`, () => {
-        const m = create({type: t, projectId: '1', variants: []})
+        const m = create({
+          type: t,
+          name: 'test mod',
+          projectId: '1',
+          variants: []
+        })
         expect(m.type).toBe(t)
         expect(m.name).toBe(toStartCase(t))
       })

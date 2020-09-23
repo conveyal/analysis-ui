@@ -1,4 +1,4 @@
-//
+import {expect} from '@jest/globals'
 import * as reroute from '../update-add-stops-terminus'
 
 const newStop = {

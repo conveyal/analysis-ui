@@ -17,7 +17,15 @@ import {
   REROUTE
 } from '../constants'
 
-export function create({feedId, name, projectId, type, variants}) {
+type Create = {
+  feedId?: string
+  name: string
+  projectId: string
+  type: string
+  variants: boolean[]
+}
+
+export function create({feedId, name, projectId, type, variants}: Create) {
   const base = {
     name: name || toStartCase(type),
     projectId,
