@@ -9,8 +9,15 @@ const cookieLifetime = ms('30 days') / 1000
 const httpTimeout = ms('10s')
 const scope = 'openid profile id_token'
 
-// Initialzed auth0s per origin served from this lambda
-const auth0s = {}
+/**
+ * Auth0 is initialized with the origin taken from an incoming header. With Vercel Preview Deployments,
+ * a single lambda may handle multiple origins. Ex: conveyal.dev, branch-git.conveyal.vercel.app,
+ * and analysis-11234234.vercel.app. Therefore we initialize a specific auth0 instance for each origin
+ * and store them based on that origin.
+ */
+const auth0s = {
+  // [origin]: ISignInWithAuth0
+}
 
 function createAuth0(origin: string) {
   if (process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true') {
