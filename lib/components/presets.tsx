@@ -59,6 +59,7 @@ function findPreset(settings, presets = []) {
 }
 
 type Props = {
+  currentLonLat: {lat: number; lon: number}
   currentSettings: Record<string, unknown>
   isDisabled: boolean
   isComparison?: boolean
