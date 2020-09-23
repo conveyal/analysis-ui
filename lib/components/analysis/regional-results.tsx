@@ -56,8 +56,8 @@ const getId = fpGet('_id')
 const parseCutoff = (c) => parseInt(c)
 
 function getNumberWithOrdinal(n) {
-  var s = ['th', 'st', 'nd', 'rd'],
-    v = n % 100
+  const s = ['th', 'st', 'nd', 'rd']
+  const v = n % 100
   return n + (s[(v - 20) % 10] || s[v] || s[0])
 }
 
@@ -181,11 +181,18 @@ export default function RegionalResults({analysis}) {
             <Icon icon={faTh} /> Access to
           </Heading>
 
-          <Text px={4}>{accessToLabel}</Text>
+          <Box px={4}>
+            <Heading size='xs'>{analysis.name}</Heading>
+            <Text>{accessToLabel}</Text>
+          </Box>
           {comparisonAnalysis && (
-            <Text px={4}>
-              <em>minus</em> {comparisonAccessToLabel}
-            </Text>
+            <Box px={4}>
+              <Text color='red.500'>
+                <em>minus</em>
+              </Text>
+              <Heading size='xs'>{comparisonAnalysis.name}</Heading>
+              <Text>{comparisonAccessToLabel}</Text>
+            </Box>
           )}
 
           {displayGrid && displayScale ? (
@@ -277,6 +284,7 @@ function ComparisonDisplay({analysis, comparisonAnalysis}) {
       )
     )
     return () => {
+      dispatch(setSearchParameter('comparisonAnalysisId'))
       dispatch(setSearchParameter('comparisonCutoff'))
       dispatch(setSearchParameter('comparisonPercentile'))
       dispatch(setSearchParameter('comparisonDestinationPointSetId'))

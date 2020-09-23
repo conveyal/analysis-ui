@@ -12,19 +12,14 @@ import {
   SimpleGrid
 } from '@chakra-ui/core'
 import get from 'lodash/get'
-import {forwardRef, useState, useCallback} from 'react'
-import DateTime from 'react-datetime'
+import {forwardRef, useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 
 import TimePicker from '../time-picker'
 
-// DateTime does not have a `renderInput`
-const DateTimeWithRender = DateTime as any
-
-const DATE_FORMAT = 'YYYY-MM-DD'
-
+const TenPM = 22 * 60 * 60
 const bold = (b) => `<strong>${b}</strong>`
 
 function bundleIsOutOfDate(bundle, dateString, project) {
@@ -79,7 +74,7 @@ const testWalkSpeed = valueWithin(3, 15)
 const testWalkTime = modeLessThanMax(60)
 const testBikeSpeed = valueWithin(5, 20)
 const testBikeTime = modeLessThanMax(60)
-const testMonteCarlo = valueWithin(1, 10000)
+const testMonteCarlo = valueWithin(1, 1200)
 const testMaxTransfers = valueWithin(0, 7)
 
 // Check modes for the type given
@@ -100,21 +95,44 @@ export default function ProfileRequestEditor({
   setProfileRequest,
   ...p
 }) {
-  const setFromTime = (fromTime) =>
-    setProfileRequest({fromTime: parseInt(fromTime)})
-  const setToTime = (toTime) => setProfileRequest({toTime: parseInt(toTime)})
+  // Keep times in order when setting.
+  const setFromTime = useCallback(
+    (timeString) => {
+      const fromTime = parseInt(timeString)
+      if (fromTime >= profileRequest.toTime) {
+        setProfileRequest({fromTime, toTime: fromTime + 60 * 60})
+      } else {
+        setProfileRequest({fromTime})
+      }
+    },
+    [profileRequest, setProfileRequest]
+  )
+  const setToTime = useCallback(
+    (timeString) => {
+      const toTime = parseInt(timeString)
+      if (profileRequest.fromTime >= toTime) {
+        setProfileRequest({fromTime: toTime - 60 * 60, toTime})
+      } else {
+        setProfileRequest({toTime})
+      }
+    },
+    [profileRequest, setProfileRequest]
+  )
 
-  const [dateIsValid, setDateIsValid] = useState(true)
-  function setDate(date) {
-    if (!date || !date.isValid || !date.isValid()) {
-      return setDateIsValid(false)
-    }
-    setDateIsValid(true)
-    setProfileRequest({date: date.format(DATE_FORMAT)})
-  }
+  const {fromTime, toTime} = profileRequest
+  const bundleOutOfDate = bundleIsOutOfDate(
+    bundle,
+    profileRequest.date,
+    project
+  )
 
-  const {date, fromTime, toTime} = profileRequest
-  const bundleOutOfDate = bundleIsOutOfDate(bundle, date, project)
+  const setDate = useCallback((date) => setProfileRequest({date}), [
+    setProfileRequest
+  ])
+  const dateInput = useInput({
+    onChange: setDate,
+    value: profileRequest.date
+  })
 
   const setWalkSpeed = useCallback(
     (walkSpeed) => setProfileRequest({walkSpeed: walkSpeed / 3.6}), // km/h to m/s
@@ -194,20 +212,15 @@ export default function ProfileRequestEditor({
         <>
           <FormControl
             isDisabled={disabled}
-            isInvalid={bundleOutOfDate || !dateIsValid}
+            isInvalid={bundleOutOfDate || dateInput.isInvalid}
           >
-            <FormLabel htmlFor='serviceDate'>
+            <FormLabel htmlFor={dateInput.id}>
               {message('analysis.date')}
             </FormLabel>
-            <DateTimeWithRender
-              closeOnSelect
-              dateFormat={DATE_FORMAT}
-              inputProps={{disabled}}
-              onChange={setDate}
-              renderInput={(p) => <Input {...p} id='serviceDate' />}
-              timeFormat={false}
-              utc // because new Date('2016-12-12') yields a date at midnight UTC
-              value={date}
+            <Input
+              {...dateInput}
+              isInvalid={!!bundleOutOfDate || dateInput.isInvalid}
+              type='date'
             />
           </FormControl>
 
@@ -224,6 +237,12 @@ export default function ProfileRequestEditor({
             value={toTime}
             onChange={setToTime}
           />
+
+          {toTime >= TenPM && (
+            <Alert status='error' gridColumn='1 / span 3'>
+              <AlertIcon /> Trips over midnight may not work correctly.
+            </Alert>
+          )}
 
           {bundleOutOfDate && (
             <Alert status='error' gridColumn='1 / span 3'>
