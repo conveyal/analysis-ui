@@ -30,6 +30,7 @@ import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selecto
 import selectCurrentBundle from 'lib/selectors/current-bundle'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectProfileRequest from 'lib/selectors/profile-request'
+import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectRegionBounds from 'lib/selectors/region-bounds'
 import {fromLatLngBounds} from 'lib/utils/bounds'
@@ -62,6 +63,7 @@ export default function Settings({
   const profileRequest = useSelector(selectProfileRequest)
   const currentBundle = useSelector(selectCurrentBundle)
   const currentProject = useSelector(selectCurrentProject)
+  const profileRequestLonLat = useSelector(selectProfileRequestLonLat)
   const variantIndex = useSelector((s) =>
     parseInt(get(s, 'analysis.requestsSettings[0].variantIndex', -1))
   )
@@ -205,6 +207,7 @@ export default function Settings({
           isDisabled={disableInputs}
           isFetchingIsochrone={isFetchingIsochrone}
           profileRequest={requestsSettings[0]}
+          profileRequestLonLat={profileRequestLonLat}
           project={currentProject}
           projects={projects}
           regionId={region._id}
@@ -241,6 +244,7 @@ export default function Settings({
           isDisabled={disableInputs}
           isFetchingIsochrone={isFetchingIsochrone}
           profileRequest={requestsSettings[1]}
+          profileRequestLonLat={profileRequestLonLat}
           project={comparisonProject}
           projects={projects}
           regionId={region._id}
@@ -395,6 +399,7 @@ function RequestSettings({
   isDisabled,
   isFetchingIsochrone,
   profileRequest,
+  profileRequestLonLat,
   project,
   projects,
   regionId,
@@ -440,6 +445,7 @@ function RequestSettings({
             <Box flex='1'>
               <Presets
                 currentSettings={profileRequest}
+                currentLonLat={profileRequestLonLat}
                 isComparison={isComparison}
                 isDisabled={isDisabled}
                 onChange={(presets) => {

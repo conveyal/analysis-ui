@@ -71,6 +71,7 @@ type Props = {
  */
 export default memo<Props>(function PresetChooser({
   currentSettings,
+  currentLonLat,
   isDisabled,
   isComparison = false,
   onChange,
@@ -92,8 +93,17 @@ export default memo<Props>(function PresetChooser({
   // Check the presets to see if they match any settings
   const presets = presetsCollection.data
   useEffect(() => {
-    setSelectedPreset(findPreset(currentSettings, presets))
-  }, [presets, currentSettings, setSelectedPreset])
+    setSelectedPreset(
+      findPreset(
+        {
+          ...currentSettings,
+          fromLat: currentLonLat.lat,
+          fromLon: currentLonLat.lon
+        },
+        presets
+      )
+    )
+  }, [presets, currentLonLat, currentSettings, setSelectedPreset])
 
   // Select a new preset and load it's contents
   const _selectPreset = useCallback(
@@ -193,7 +203,11 @@ export default memo<Props>(function PresetChooser({
       {createPresetAction.isOpen && (
         <CreatePreset
           create={presetsCollection.create}
-          currentSettings={currentSettings}
+          currentSettings={{
+            ...currentSettings,
+            fromLat: currentLonLat.lat,
+            fromLon: currentLonLat.lon
+          }}
           onClose={createPresetAction.onClose}
           regionId={regionId}
         />

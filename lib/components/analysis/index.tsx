@@ -96,15 +96,6 @@ export default function SinglePointAnalysis({
   const displayedDataIsCurrent =
     !profileRequestHasChanged && !isFetchingIsochrone
 
-  // On mount / unmount
-  useEffect(() => {
-    dispatch(clearResults())
-    return () => {
-      dispatch(cancelFetch())
-      dispatch(clearResults())
-    }
-  }, [dispatch])
-
   /**
    * Set the origin and fetch if ready.
    */
@@ -123,6 +114,15 @@ export default function SinglePointAnalysis({
     },
     [dispatch, readyToFetch]
   )
+
+  // On mount / unmount
+  useEffect(() => {
+    dispatch(clearResults())
+    return () => {
+      dispatch(cancelFetch())
+      dispatch(clearResults())
+    }
+  }, [dispatch])
 
   return (
     <>
