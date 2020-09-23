@@ -62,9 +62,9 @@ export default function jsolines({
       // Huzzah! We have found a line, now follow it, keeping the filled area to our left,
       // which allows us to use the winding direction to determine what should be a shell and
       // what should be a hole
-      let pos = [origx, origy]
-      let prev = [-1, -1]
-      let start = [-1, -1]
+      let pos: [number, number] = [origx, origy]
+      let prev: [number, number] = [-1, -1]
+      let start: [number, number] = [-1, -1]
 
       // Track winding direction
       let direction = 0
@@ -191,7 +191,11 @@ export default function jsolines({
  * area to our left. Thus we always indicate only which direction we exit the
  * cell.
  */
-function followLoop(idx, [x, y], [prevx, prevy]) {
+function followLoop(
+  idx: number,
+  [x, y]: [number, number],
+  [prevx, prevy]: [number, number]
+): [number, number] {
   switch (idx) {
     case 1:
       return [x - 1, y]

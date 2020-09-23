@@ -318,7 +318,7 @@ export const mockGrids = mockRegionalAnalyses.map((ra) => ({
   west: 20015,
   data: Array(GRID_SIZE * GRID_SIZE)
     .fill(0)
-    .map(() => parseInt(seededRandom.random() * GRID_MAX)),
+    .map(() => Math.floor(seededRandom.random() * GRID_MAX)),
   min: 0,
   max: GRID_MAX,
   contains: () => true
