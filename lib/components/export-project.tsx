@@ -32,7 +32,12 @@ function mapState(state) {
 
 export default function ExportProject({onHide, project}) {
   return (
-    <Modal isOpen={true} onClose={onHide} size='2xl'>
+    <Modal
+      closeOnOverlayClick={false}
+      isOpen={true}
+      onClose={onHide}
+      size='2xl'
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{message('variant.export')}</ModalHeader>

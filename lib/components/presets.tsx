@@ -256,7 +256,12 @@ function CreatePreset({create, currentSettings, onClose, regionId}) {
   }
 
   return (
-    <Modal isOpen={true} onClose={onClose} initialFocusRef={nameInput.ref}>
+    <Modal
+      closeOnOverlayClick={false}
+      isOpen={true}
+      onClose={onClose}
+      initialFocusRef={nameInput.ref}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Create preset</ModalHeader>
@@ -317,7 +322,7 @@ function EditPreset({preset, onClose, update}) {
   }
 
   return (
-    <Modal isOpen={true} onClose={onClose}>
+    <Modal closeOnOverlayClick={false} isOpen={true} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Edit preset</ModalHeader>
