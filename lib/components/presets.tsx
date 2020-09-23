@@ -183,7 +183,7 @@ export default memo<Props>(function PresetChooser({
             value={selectedPreset}
           />
         ) : (
-          <Alert status='info'>Save a preset to be used later.</Alert>
+          <Alert status='info'>Save presets to be used later.</Alert>
         )}
       </Box>
       {presetsCollection.error && (
