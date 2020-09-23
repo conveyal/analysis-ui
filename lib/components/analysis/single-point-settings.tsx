@@ -442,7 +442,10 @@ function RequestSettings({
                 currentSettings={profileRequest}
                 isComparison={isComparison}
                 isDisabled={isDisabled}
-                onChange={(presets) => setProfileRequest({...presets})}
+                onChange={(presets) => {
+                  if (isComparison) dispatch(setCopyRequestSettings(false))
+                  setProfileRequest({...presets})
+                }}
                 regionId={regionId}
               />
             </Box>
