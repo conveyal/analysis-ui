@@ -16,7 +16,6 @@ describe('Utils > Modification', () => {
       it(`should create a modification of type ${t}`, () => {
         const m = create({
           type: t,
-          name: 'test mod',
           projectId: '1',
           variants: []
         })

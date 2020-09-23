@@ -19,7 +19,7 @@ import {
 
 type Create = {
   feedId?: string
-  name: string
+  name?: string
   projectId: string
   type: string
   variants: boolean[]
