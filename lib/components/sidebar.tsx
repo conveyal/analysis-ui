@@ -242,7 +242,7 @@ export default function Sidebar() {
         <ExternalLink
           icon={faQuestionCircle}
           label={message('nav.help')}
-          href='http://docs.analysis.conveyal.com/'
+          href='http://docs.conveyal.com'
         />
 
         <ErrorTip />
