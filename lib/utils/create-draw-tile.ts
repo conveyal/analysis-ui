@@ -87,7 +87,7 @@ export default function createDrawTile({colorizer, grid}) {
           for (let tx = txMin; tx < txMax; tx++) {
             if (tx < 0 || tx > 255) continue
             // TODO refactor to iterate over relative x and y?
-            let interpolatedValue = row(
+            const interpolatedValue = row(
               (tx - txMin) / gridCellWidthInTilePixels
             )
 

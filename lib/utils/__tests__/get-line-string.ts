@@ -1,3 +1,4 @@
+import {expect} from '@jest/globals'
 import getLineString from '../get-line-string'
 
 // Follow road functionally is tested in get-route-polyline test

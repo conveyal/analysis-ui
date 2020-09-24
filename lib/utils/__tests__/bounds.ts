@@ -1,3 +1,4 @@
+import {expect} from '@jest/globals'
 import Leaflet from 'lib/leaflet'
 
 import {mockRegion} from '../mock-data'

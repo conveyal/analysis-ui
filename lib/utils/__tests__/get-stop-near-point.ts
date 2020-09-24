@@ -1,4 +1,4 @@
-//
+import {expect} from '@jest/globals'
 import getStopNearPoint from '../get-stop-near-point'
 
 const stops = [

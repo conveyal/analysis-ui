@@ -1,15 +1,23 @@
+type Grid = {
+  height: number
+  getValue: (x: number, y: number) => number
+  width: number
+}
+
+type InterpolatorFn = (p: number) => number
+
 // Returns 4x4 array of values to use from the grid.
-export function getCellsFromGrid(grid, x, y) {
+export function getCellsFromGrid(grid: Grid, x: number, y: number): number[][] {
   // Deal with the edges of the input grid by duplicating adjacent values.
   // It's tempting to do this with typed arrays and slice(), but we need
   // special handling for the grid edges.
-  const xs = [
+  const xs: number[] = [
     x === 0 ? x : x - 1, // handle left edge
     x,
     x + 1 >= grid.width ? x : x + 1, // handle right edge
     x + 2 >= grid.width ? x : x + 2 // handle right edge
   ]
-  const ys = [
+  const ys: number[] = [
     y === 0 ? y : y - 1, // handle top
     y,
     y + 1 >= grid.height ? y : y + 1, //handle bottom edge
@@ -23,14 +31,19 @@ export function getCellsFromGrid(grid, x, y) {
  * function provides interpolated values between b and c using a and d to
  * determine the slope going into and out of the b-c interval.
  */
-export function cubicHermiteInterpolator([a, b, c, d]) {
+export function cubicHermiteInterpolator([
+  a,
+  b,
+  c,
+  d
+]: number[]): InterpolatorFn {
   const c3 = -a / 2.0 + (3.0 * b) / 2.0 - (3.0 * c) / 2.0 + d / 2.0
   const c2 = a - (5.0 * b) / 2.0 + 2.0 * c - d / 2.0
   const c1 = -a / 2.0 + c / 2.0
   const c0 = b
   // This function takes a value in [0, 1] expressing the position between b
   // and c, and returns the interpolated value.
-  return (f) => c3 * f ** 3 + c2 * f ** 2 + c1 * f + c0
+  return (f: number): number => c3 * f ** 3 + c2 * f ** 2 + c1 * f + c0
 }
 
 /**
@@ -44,7 +57,7 @@ export function cubicHermiteInterpolator([a, b, c, d]) {
  * second and third points. This greatly simplifies the equations, because it
  * gives many differences, multipliers, and denominators have a value of 1.
  */
-export function interpolatorSpline([a, b, c, d]) {
+export function interpolatorSpline([a, b, c, d]: number[]): InterpolatorFn {
   // Optimization: if b and c are equal, interpolate a straight line
   if (b === c) return () => b
   const bSlope = slopeSpline(a, b, c)
@@ -57,7 +70,7 @@ export function interpolatorSpline([a, b, c, d]) {
   const ka = b // equation 13
   // The returned function takes an x value in [0, 1] expressing the position
   // between b and c, and returns the interpolated value.
-  return (x) => ka + kb * x + kc * x ** 2 + kd * x ** 3
+  return (x: number): number => ka + kb * x + kc * x ** 2 + kd * x ** 3
 }
 
 /**
@@ -70,7 +83,7 @@ export function interpolatorSpline([a, b, c, d]) {
  * slope at the endpoints (which requries recursively computing slopes).
  * Instead we just duplicate the values at the edge of the grid.
  */
-function slopeSpline(yPrev, y, yNext) {
+function slopeSpline(yPrev: number, y: number, yNext: number) {
   const prevSlope = y - yPrev
   const postSlope = yNext - y
   // Necessary to prevent overshoot
@@ -88,9 +101,9 @@ function slopeSpline(yPrev, y, yNext) {
  * computation from one output pixel to the next.
  */
 export default function interpolatePoint(
-  grid,
-  x,
-  y,
+  grid: Grid,
+  x: number,
+  y: number,
   createInterpolator = interpolatorSpline
 ) {
   // 2D Array of each x/y cell value.
@@ -101,10 +114,12 @@ export default function interpolatePoint(
   // The resulting object can be used to interpolate between the inner four cells.
   const columnInterpolators = cells.map(createInterpolator)
 
-  return function createInterpolatorForRow(yFraction) {
+  return function createInterpolatorForRow(yFraction: number) {
     // Perform curve fitting in the second (x) dimension based on the pre-fit
     // curves in the y dimension.
-    const interpolatedColumns = columnInterpolators.map((ci) => ci(yFraction))
+    const interpolatedColumns: number[] = columnInterpolators.map((ci) =>
+      ci(yFraction)
+    )
 
     // Return the one-dimensional interpolator for this row.
     return createInterpolator(interpolatedColumns)

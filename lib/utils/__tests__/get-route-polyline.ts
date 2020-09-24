@@ -1,4 +1,5 @@
 import lonlat from '@conveyal/lonlat'
+import {expect} from '@jest/globals'
 import nock from 'nock'
 
 import getRoutePolyline, {BASE_URL, PATH} from '../get-route-polyline'

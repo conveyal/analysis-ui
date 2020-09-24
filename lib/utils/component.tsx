@@ -1,4 +1,5 @@
 import {ThemeProvider} from '@chakra-ui/core'
+import {expect} from '@jest/globals'
 import enzyme from 'enzyme'
 import {createRouter} from 'next/router'
 import {RouterContext} from 'next/dist/next-server/lib/router-context'
@@ -11,7 +12,7 @@ import {makeMockStore, mockStores} from './mock-data'
 // Next.js uses Math.random to generate unique ids for pages that get captured in snapshots.
 global.Math.random = () => 0.5
 
-const router = createRouter('page', {}, 'as-path', {})
+const router = createRouter('page', {}, 'as-path', {} as any)
 
 const getName = (c) => c.displayName || c.name
 

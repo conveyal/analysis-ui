@@ -1,3 +1,4 @@
+import {expect} from '@jest/globals'
 import fs from 'fs'
 import jsolines, {getContour} from '../jsolines'
 
@@ -58,8 +59,8 @@ function degrees(rad) {
   return (rad * 180) / Math.PI
 }
 
-function summarizeSnapshot(s, k) {
-  if (Array.isArray(s) || ArrayBuffer.isView(s)) {
+function summarizeSnapshot(s, k?) {
+  if (Array.isArray(s) || s instanceof Uint8Array) {
     return {
       [`first${k ? `-${k}` : ''}`]: summarizeSnapshot(s[0]),
       [`last${k ? `-${k}` : ''}`]: summarizeSnapshot(s[s.length - 1]),
