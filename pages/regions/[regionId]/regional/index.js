@@ -64,7 +64,6 @@ const RegionalPage = withInitialFetch(
             key={activeAnalysis._id}
             opportunityDatasets={p.opportunityDatasets}
             regionalAnalyses={allAnalyses}
-            setMapChildren={p.setMapChildren}
           />
         ) : (
           <Stack spacing={4} py={4}>

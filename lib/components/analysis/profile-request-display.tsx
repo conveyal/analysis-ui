@@ -87,9 +87,6 @@ export default function ProfileRequestDisplay({
 
   const {onToggle, isOpen} = useDisclosure()
 
-  const keys = Object.keys(profileRequest)
-  keys.sort()
-
   const project = projects.find((p) => p._id === projectId)
   const bundle = bundles.find((b) => b._id === bundleId)
 
@@ -209,37 +206,43 @@ export default function ProfileRequestDisplay({
         >
           <Icon icon={isOpen ? faChevronUp : faChevronDown} />
         </Button>
-        {isOpen && (
-          <Box
-            as='table'
-            fontFamily='mono'
-            fontSize='sm'
-            style={{
-              tableLayout: 'fixed'
-            }}
-            width='100%'
-          >
-            <tbody>
-              {keys.map((k) => (
-                <PseudoBox
-                  as='tr'
-                  key={k}
-                  _odd={{
-                    bg: `${color}.50`
-                  }}
-                >
-                  <TDTitle>{k}</TDTitle>
-                  <TDValue>
-                    <Box as='pre' bg='transparent' border='none' pr={3} py={2}>
-                      {stringifyIfObject(profileRequest[k])}
-                    </Box>
-                  </TDValue>
-                </PseudoBox>
-              ))}
-            </tbody>
-          </Box>
-        )}
+        {isOpen && <ObjectToTable color={color} object={profileRequest} />}
       </Box>
     </Stack>
+  )
+}
+
+export function ObjectToTable({color = 'blue', object}) {
+  const keys = Object.keys(object)
+  keys.sort()
+  return (
+    <Box
+      as='table'
+      fontFamily='mono'
+      fontSize='sm'
+      style={{
+        tableLayout: 'fixed'
+      }}
+      width='100%'
+    >
+      <tbody>
+        {keys.map((k) => (
+          <PseudoBox
+            as='tr'
+            key={k}
+            _odd={{
+              bg: `${color}.50`
+            }}
+          >
+            <TDTitle>{k}</TDTitle>
+            <TDValue>
+              <Box as='pre' bg='transparent' border='none' pr={3} py={2}>
+                {stringifyIfObject(object[k])}
+              </Box>
+            </TDValue>
+          </PseudoBox>
+        ))}
+      </tbody>
+    </Box>
   )
 }
