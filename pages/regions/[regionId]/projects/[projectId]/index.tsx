@@ -1,8 +1,5 @@
-import find from 'lodash/find'
-import get from 'lodash/get'
-import {useSelector} from 'react-redux'
-
 import {loadBundles} from 'lib/actions'
+import {getForProject as loadModifications} from 'lib/actions/modifications'
 import {loadProject, loadProjects} from 'lib/actions/project'
 import {loadRegion} from 'lib/actions/region'
 import List from 'lib/components/modification/list'
@@ -17,17 +14,16 @@ const noProjectId = (pid) => !pid || pid === 'undefined'
  * Show Select Project if a project has not been selected
  */
 const ModificationsPage: any = withInitialFetch(
-  (p) => {
-    const project = useSelector((s) =>
-      find(get(s, 'project.projects'), ['_id', p.query.projectId])
-    )
+  ({bundles, modifications, project, projects, region}) => {
     if (!project) {
-      return <SelectProject {...p} />
+      return (
+        <SelectProject bundles={bundles} projects={projects} region={region} />
+      )
     } else {
       return (
         <>
           <ProjectTitle project={project} />
-          <List project={project} />
+          <List modifications={modifications} project={project} />
         </>
       )
     }
@@ -42,7 +38,11 @@ const ModificationsPage: any = withInitialFetch(
       ])
       return {bundles, projects, region}
     } else {
-      return {project: await dispatch(loadProject(projectId))}
+      const [project, modifications] = await Promise.all([
+        dispatch(loadProject(projectId)),
+        dispatch(loadModifications(projectId))
+      ])
+      return {project, modifications}
     }
   }
 )
