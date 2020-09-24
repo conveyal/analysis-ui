@@ -21,7 +21,110 @@ exports[`Modification > List 1`] = `
   }
   setMapChildren={[MockFunction]}
 >
-  <DynamicMockedComponent />
+  <DisplayAll
+    feedsById={
+      Object {
+        "1": Object {
+          "checksum": "MOCK",
+          "id": "1",
+          "routes": Array [
+            Object {
+              "label": "mock-route-label",
+              "patterns": Array [
+                Object {
+                  "geometry": Object {
+                    "coordinates": Array [
+                      Array [
+                        -122.0246,
+                        36.9707,
+                      ],
+                      Array [
+                        -122.0279,
+                        37.049,
+                      ],
+                      Array [
+                        -121.9799,
+                        37.2299,
+                      ],
+                      Array [
+                        -121.9445,
+                        37.324,
+                      ],
+                      Array [
+                        -121.936,
+                        37.353,
+                      ],
+                      Array [
+                        -121.924,
+                        37.365,
+                      ],
+                    ],
+                    "type": "LineString",
+                  },
+                  "name": "Mock Pattern",
+                  "pattern_id": "mock-pattern-id",
+                  "stops": Array [
+                    Object {
+                      "stop_id": "1",
+                      "stop_lat": 36.9707,
+                      "stop_lon": -122.0246,
+                      "stop_name": "Santa Cruz",
+                    },
+                    Object {
+                      "stop_id": "2",
+                      "stop_lat": 37.049,
+                      "stop_lon": -122.0279,
+                      "stop_name": "Scotts Valley",
+                    },
+                  ],
+                  "trips": Array [
+                    Object {
+                      "duration": 1234,
+                      "end_time": 13579,
+                      "start_time": 12345,
+                      "trip_headsign": "To Downtown",
+                      "trip_id": "abcd",
+                      "trip_short_name": "The Express",
+                    },
+                  ],
+                },
+              ],
+              "route_id": "route1",
+            },
+          ],
+          "stops": Array [
+            Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          ],
+          "stopsById": Object {
+            "1": Object {
+              "stop_id": "1",
+              "stop_lat": 36.9707,
+              "stop_lon": -122.0246,
+              "stop_name": "Santa Cruz",
+            },
+            "2": Object {
+              "stop_id": "2",
+              "stop_lat": 37.049,
+              "stop_lon": -122.0279,
+              "stop_name": "Scotts Valley",
+            },
+          },
+        },
+      }
+    }
+    modifications={Array []}
+  />
   <Tabs
     isFitted={true}
     width="320px"
@@ -680,6 +783,7 @@ exports[`Modification > List 1`] = `
                             </PseudoBox>
                           </Button>
                           <Modal
+                            closeOnOverlayClick={false}
                             initialFocusRef={
                               Object {
                                 "current": undefined,
@@ -854,7 +958,7 @@ exports[`Modification > List 1`] = `
                               <div
                                 className="css-1az9m6y"
                               >
-                                <SimpleIconButton
+                                <IconButton
                                   icon={
                                     Object {
                                       "icon": Array [],
@@ -874,7 +978,7 @@ exports[`Modification > List 1`] = `
                                         hasArrow={true}
                                         label="Import modifications from another project"
                                         placement="auto"
-                                        zIndex={1000}
+                                        zIndex={1500}
                                       >
                                         <Button
                                           aria-label="Import modifications from another project"
@@ -1053,13 +1157,13 @@ exports[`Modification > List 1`] = `
                                           shadow="md"
                                           timeout={200}
                                           usePortal={true}
-                                          zIndex={1000}
+                                          zIndex={1500}
                                         />
                                       </Tooltip>
                                     </div>
                                   </Box>
-                                </SimpleIconButton>
-                                <SimpleIconButton
+                                </IconButton>
+                                <IconButton
                                   icon={
                                     Object {
                                       "icon": Array [],
@@ -1079,7 +1183,7 @@ exports[`Modification > List 1`] = `
                                         hasArrow={true}
                                         label="Show all modifications"
                                         placement="auto"
-                                        zIndex={1000}
+                                        zIndex={1500}
                                       >
                                         <Button
                                           aria-label="Show all modifications"
@@ -1258,13 +1362,13 @@ exports[`Modification > List 1`] = `
                                           shadow="md"
                                           timeout={200}
                                           usePortal={true}
-                                          zIndex={1000}
+                                          zIndex={1500}
                                         />
                                       </Tooltip>
                                     </div>
                                   </Box>
-                                </SimpleIconButton>
-                                <SimpleIconButton
+                                </IconButton>
+                                <IconButton
                                   icon={
                                     Object {
                                       "icon": Array [],
@@ -1284,7 +1388,7 @@ exports[`Modification > List 1`] = `
                                         hasArrow={true}
                                         label="Hide all modifications"
                                         placement="auto"
-                                        zIndex={1000}
+                                        zIndex={1500}
                                       >
                                         <Button
                                           aria-label="Hide all modifications"
@@ -1463,12 +1567,12 @@ exports[`Modification > List 1`] = `
                                           shadow="md"
                                           timeout={200}
                                           usePortal={true}
-                                          zIndex={1000}
+                                          zIndex={1500}
                                         />
                                       </Tooltip>
                                     </div>
                                   </Box>
-                                </SimpleIconButton>
+                                </IconButton>
                               </div>
                             </Box>
                           </Flex>
@@ -1964,7 +2068,7 @@ exports[`Modification > List 1`] = `
                                                                                             Test Modification
                                                                                           </div>
                                                                                         </Box>
-                                                                                        <SimpleIconButton
+                                                                                        <IconButton
                                                                                           icon={
                                                                                             Object {
                                                                                               "icon": Array [],
@@ -1984,7 +2088,7 @@ exports[`Modification > List 1`] = `
                                                                                                 hasArrow={true}
                                                                                                 label="Show on map"
                                                                                                 placement="auto"
-                                                                                                zIndex={1000}
+                                                                                                zIndex={1500}
                                                                                               >
                                                                                                 <Button
                                                                                                   aria-label="Show on map"
@@ -2141,12 +2245,12 @@ exports[`Modification > List 1`] = `
                                                                                                   shadow="md"
                                                                                                   timeout={200}
                                                                                                   usePortal={true}
-                                                                                                  zIndex={1000}
+                                                                                                  zIndex={1500}
                                                                                                 />
                                                                                               </Tooltip>
                                                                                             </div>
                                                                                           </Box>
-                                                                                        </SimpleIconButton>
+                                                                                        </IconButton>
                                                                                       </div>
                                                                                     </Box>
                                                                                   </Flex>
@@ -2977,7 +3081,7 @@ exports[`Modification > List 1`] = `
                                                                               <div
                                                                                 className="css-3icrxw"
                                                                               >
-                                                                                <SimpleIconButton
+                                                                                <IconButton
                                                                                   icon={
                                                                                     Object {
                                                                                       "icon": Array [],
@@ -2997,7 +3101,7 @@ exports[`Modification > List 1`] = `
                                                                                         hasArrow={true}
                                                                                         label="Click to edit"
                                                                                         placement="auto"
-                                                                                        zIndex={1000}
+                                                                                        zIndex={1500}
                                                                                       >
                                                                                         <Button
                                                                                           aria-label="Click to edit"
@@ -3176,12 +3280,12 @@ exports[`Modification > List 1`] = `
                                                                                           shadow="md"
                                                                                           timeout={200}
                                                                                           usePortal={true}
-                                                                                          zIndex={1000}
+                                                                                          zIndex={1500}
                                                                                         />
                                                                                       </Tooltip>
                                                                                     </div>
                                                                                   </Box>
-                                                                                </SimpleIconButton>
+                                                                                </IconButton>
                                                                               </div>
                                                                             </PseudoBox>
                                                                           </div>
@@ -3203,7 +3307,7 @@ exports[`Modification > List 1`] = `
                                                                         <div
                                                                           className="css-1xhj18k"
                                                                         >
-                                                                          <SimpleIconButton
+                                                                          <IconButton
                                                                             icon={
                                                                               Object {
                                                                                 "icon": Array [],
@@ -3227,7 +3331,7 @@ exports[`Modification > List 1`] = `
                                                                                   hasArrow={true}
                                                                                   label="Copy scenario"
                                                                                   placement="auto"
-                                                                                  zIndex={1000}
+                                                                                  zIndex={1500}
                                                                                 >
                                                                                   <Button
                                                                                     aria-label="Copy scenario"
@@ -3406,13 +3510,13 @@ exports[`Modification > List 1`] = `
                                                                                     shadow="md"
                                                                                     timeout={200}
                                                                                     usePortal={true}
-                                                                                    zIndex={1000}
+                                                                                    zIndex={1500}
                                                                                   />
                                                                                 </Tooltip>
                                                                               </div>
                                                                             </Box>
-                                                                          </SimpleIconButton>
-                                                                          <SimpleIconButton
+                                                                          </IconButton>
+                                                                          <IconButton
                                                                             icon={
                                                                               Object {
                                                                                 "icon": Array [],
@@ -3436,7 +3540,7 @@ exports[`Modification > List 1`] = `
                                                                                   hasArrow={true}
                                                                                   label="Show modifications for this scenario on the map"
                                                                                   placement="auto"
-                                                                                  zIndex={1000}
+                                                                                  zIndex={1500}
                                                                                 >
                                                                                   <Button
                                                                                     aria-label="Show modifications for this scenario on the map"
@@ -3615,12 +3719,12 @@ exports[`Modification > List 1`] = `
                                                                                     shadow="md"
                                                                                     timeout={200}
                                                                                     usePortal={true}
-                                                                                    zIndex={1000}
+                                                                                    zIndex={1500}
                                                                                   />
                                                                                 </Tooltip>
                                                                               </div>
                                                                             </Box>
-                                                                          </SimpleIconButton>
+                                                                          </IconButton>
                                                                         </div>
                                                                       </Box>
                                                                     </Flex>

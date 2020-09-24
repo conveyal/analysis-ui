@@ -8,9 +8,18 @@ import {IUser} from './user'
 const cookieLifetime = ms('30 days') / 1000
 const httpTimeout = ms('10s')
 const scope = 'openid profile id_token'
-const redirectUri = `https://${process.env.VERCEL_URL}`
 
-const auth0 = (function createAuth0() {
+/**
+ * Auth0 is initialized with the origin taken from an incoming header. With Vercel Preview Deployments,
+ * a single lambda may handle multiple origins. Ex: conveyal.dev, branch-git.conveyal.vercel.app,
+ * and analysis-11234234.vercel.app. Therefore we initialize a specific auth0 instance for each origin
+ * and store them based on that origin.
+ */
+const auth0s = {
+  // [origin]: ISignInWithAuth0
+}
+
+function createAuth0(origin: string) {
   if (process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true') {
     return {
       handleCallback: async () => {},
@@ -32,8 +41,8 @@ const auth0 = (function createAuth0() {
       clientSecret: process.env.AUTH0_CLIENT_SECRET,
       scope,
       domain: process.env.AUTH0_DOMAIN,
-      redirectUri: `${redirectUri}/api/callback`,
-      postLogoutRedirectUri: redirectUri,
+      redirectUri: `${origin}/api/callback`,
+      postLogoutRedirectUri: origin,
       session: {
         cookieSecret: process.env.SESSION_COOKIE_SECRET,
         cookieLifetime,
@@ -44,14 +53,23 @@ const auth0 = (function createAuth0() {
       }
     })
   }
-})()
+}
 
-export default auth0
+// Dyanmically create the Auth0 instance based upon a request
+export default function initAuth0WithReq(req: IncomingMessage) {
+  const host = req.headers.host
+  const protocol = /^localhost(:\d+)?$/.test(host) ? 'http:' : 'https:'
+  const origin = `${protocol}//${host}`
+  if (auth0s[origin]) return auth0s[origin]
+  auth0s[origin] = createAuth0(origin)
+  return auth0s[origin]
+}
 
 /**
  * Flatten the session object and assign the accessGroup without the http portion.
  */
-export async function getSession(req: IncomingMessage): Promise<IUser> {
+export async function getUser(req: IncomingMessage): Promise<IUser> {
+  const auth0 = initAuth0WithReq(req)
   const session = await auth0.getSession(req)
   if (!session) {
     throw new Error('User session does not exist. User must be logged in.')
@@ -78,7 +96,7 @@ export async function getSession(req: IncomingMessage): Promise<IUser> {
  * Helper function for retrieving the access group.
  */
 export async function getAccessGroup(req: IncomingMessage): Promise<string> {
-  const user = await getSession(req)
+  const user = await getUser(req)
   if (user.adminTempAccessGroup && user.adminTempAccessGroup.length > 0) {
     return user.adminTempAccessGroup
   }

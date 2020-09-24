@@ -12,6 +12,7 @@ import {
   faChevronDown,
   faDownload
 } from '@fortawesome/free-solid-svg-icons'
+import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -86,15 +87,12 @@ export default function ProfileRequestDisplay({
 
   const {onToggle, isOpen} = useDisclosure()
 
-  const keys = Object.keys(profileRequest)
-  keys.sort()
-
   const project = projects.find((p) => p._id === projectId)
   const bundle = bundles.find((b) => b._id === bundleId)
 
   const scenarioName =
     profileRequest.variant > -1
-      ? project.variants[profileRequest.variant] || 'Unknown'
+      ? get(project, `variants[${profileRequest.variant}]`, 'Unknown')
       : 'Baseline'
 
   function downloadRequestJSON() {
@@ -114,39 +112,43 @@ export default function ProfileRequestDisplay({
         width='100%'
       >
         <tbody>
-          <tr>
-            <TDTitle>Bundle</TDTitle>
-            <TDValue>
-              <ALink
-                to='bundleEdit'
-                bundleId={bundle._id}
-                regionId={bundle.regionId}
-              >
-                {bundle.name}
-              </ALink>
-            </TDValue>
-          </tr>
-          <tr>
-            <TDTitle>Project</TDTitle>
-            <TDValue>
-              <Tooltip
-                aria-label={PROJECT_CHANGE_NOTE}
-                hasArrow
-                label={PROJECT_CHANGE_NOTE}
-                zIndex={1000}
-              >
-                <Box>
-                  <ALink
-                    to='project'
-                    projectId={project._id}
-                    regionId={project.regionId}
-                  >
-                    {project.name}
-                  </ALink>
-                </Box>
-              </Tooltip>
-            </TDValue>
-          </tr>
+          {bundle && (
+            <tr>
+              <TDTitle>Bundle</TDTitle>
+              <TDValue>
+                <ALink
+                  to='bundleEdit'
+                  bundleId={bundle._id}
+                  regionId={bundle.regionId}
+                >
+                  {bundle.name}
+                </ALink>
+              </TDValue>
+            </tr>
+          )}
+          {project && (
+            <tr>
+              <TDTitle>Project</TDTitle>
+              <TDValue>
+                <Tooltip
+                  aria-label={PROJECT_CHANGE_NOTE}
+                  hasArrow
+                  label={PROJECT_CHANGE_NOTE}
+                  zIndex={1000}
+                >
+                  <Box>
+                    <ALink
+                      to='project'
+                      projectId={project._id}
+                      regionId={project.regionId}
+                    >
+                      {project.name}
+                    </ALink>
+                  </Box>
+                </Tooltip>
+              </TDValue>
+            </tr>
+          )}
           <tr>
             <TDTitle>Scenario</TDTitle>
             <TDValue>
@@ -204,37 +206,43 @@ export default function ProfileRequestDisplay({
         >
           <Icon icon={isOpen ? faChevronUp : faChevronDown} />
         </Button>
-        {isOpen && (
-          <Box
-            as='table'
-            fontFamily='mono'
-            fontSize='sm'
-            style={{
-              tableLayout: 'fixed'
-            }}
-            width='100%'
-          >
-            <tbody>
-              {keys.map((k) => (
-                <PseudoBox
-                  as='tr'
-                  key={k}
-                  _odd={{
-                    bg: `${color}.50`
-                  }}
-                >
-                  <TDTitle>{k}</TDTitle>
-                  <TDValue>
-                    <Box as='pre' bg='transparent' border='none' pr={3} py={2}>
-                      {stringifyIfObject(profileRequest[k])}
-                    </Box>
-                  </TDValue>
-                </PseudoBox>
-              ))}
-            </tbody>
-          </Box>
-        )}
+        {isOpen && <ObjectToTable color={color} object={profileRequest} />}
       </Box>
     </Stack>
+  )
+}
+
+export function ObjectToTable({color = 'blue', object}) {
+  const keys = Object.keys(object)
+  keys.sort()
+  return (
+    <Box
+      as='table'
+      fontFamily='mono'
+      fontSize='sm'
+      style={{
+        tableLayout: 'fixed'
+      }}
+      width='100%'
+    >
+      <tbody>
+        {keys.map((k) => (
+          <PseudoBox
+            as='tr'
+            key={k}
+            _odd={{
+              bg: `${color}.50`
+            }}
+          >
+            <TDTitle>{k}</TDTitle>
+            <TDValue>
+              <Box as='pre' bg='transparent' border='none' pr={3} py={2}>
+                {stringifyIfObject(object[k])}
+              </Box>
+            </TDValue>
+          </PseudoBox>
+        ))}
+      </tbody>
+    </Box>
   )
 }

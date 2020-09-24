@@ -1,3 +1,4 @@
+import {useToast} from '@chakra-ui/core'
 import fpHas from 'lodash/fp/has'
 import {NextComponentType} from 'next'
 import App, {NextWebVitalsMetric} from 'next/app'
@@ -10,7 +11,7 @@ import ChakraTheme from 'lib/chakra'
 import ErrorModal from 'lib/components/error-modal'
 import * as gtag from 'lib/gtag'
 import LogRocket from 'lib/logrocket'
-import {swrConfig} from 'lib/utils/safe-fetch'
+import {swrFetcher} from 'lib/utils/safe-fetch'
 
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
@@ -34,6 +35,32 @@ type ComponentWithLayout = NextComponentType & {
 // Check if a component has a Layout
 const hasLayout = fpHas('Layout')
 
+// SWRConfig wrapper
+function SWRWrapper({children}) {
+  const toast = useToast()
+  return (
+    <SWRConfig
+      value={{
+        fetcher: swrFetcher,
+        onError: (error) => {
+          if (error.description) {
+            toast({
+              title: 'Error',
+              description: error.description,
+              position: 'top',
+              status: 'error',
+              isClosable: true,
+              duration: null
+            })
+          }
+        }
+      }}
+    >
+      {children}
+    </SWRConfig>
+  )
+}
+
 export default class ConveyalAnalysis extends App {
   state = {
     error: null
@@ -54,7 +81,7 @@ export default class ConveyalAnalysis extends App {
       : EmptyLayout
     return (
       <ChakraTheme>
-        <SWRConfig value={swrConfig}>
+        <SWRWrapper>
           <Head>
             <title key='title'>Conveyal Analysis</title>
           </Head>
@@ -69,7 +96,7 @@ export default class ConveyalAnalysis extends App {
               <Component {...pageProps} />
             </Layout>
           )}
-        </SWRConfig>
+        </SWRWrapper>
       </ChakraTheme>
     )
   }

@@ -67,7 +67,7 @@ export function getIdToken(): string | void {
  * Client side redirect to login.
  */
 function goToLogin() {
-  if (isServer) return
+  if (isServer || isDisabled) return
 
   const redirectTo = encodeURIComponent(
     window.location.pathname + window.location.search
