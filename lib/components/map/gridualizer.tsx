@@ -1,11 +1,11 @@
 import {Coords, DoneCallback, GridLayer as LeafletGridLayer} from 'leaflet'
 import {GridLayer, GridLayerProps, withLeaflet} from 'react-leaflet'
 
-type DrawTileFn = (
+export type DrawTileFn = (
   canvas: HTMLCanvasElement,
   coords: Coords,
   z: number
-) => HTMLElement
+) => void
 
 class MutableGridLayer extends LeafletGridLayer {
   drawTile: DrawTileFn
