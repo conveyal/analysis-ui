@@ -36,7 +36,8 @@ export default createSelector(
 
     // Check secondary request settings
     if (
-      get(requestsSettings, '[1].projectId') &&
+      (get(resultsSettings, '[1].projectId') ||
+        get(requestsSettings, '[1].projectId')) &&
       hasChanged(
         {
           ...(copyRequestSettings ? requestsSettings[0] : requestsSettings[1]), // if copying
@@ -47,8 +48,9 @@ export default createSelector(
         },
         resultsSettings[1]
       )
-    )
+    ) {
       return true
+    }
 
     return false
   }

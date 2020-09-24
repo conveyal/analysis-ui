@@ -28,7 +28,7 @@ export default function jsolines({
   interpolation = true,
   surface,
   width
-}) {
+}): GeoJSON.Feature<GeoJSON.MultiPolygon> {
   // First, create the contour grid.
   const contour = getContour({surface, width, height, cutoff})
   const cWidth = width - 1
@@ -178,6 +178,7 @@ export default function jsolines({
 
   return {
     type: 'Feature',
+    properties: {},
     geometry: {
       type: 'MultiPolygon',
       coordinates: shells.map((s) => s.geometry.coordinates)

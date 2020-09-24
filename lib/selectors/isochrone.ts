@@ -11,7 +11,10 @@ import selectTravelTimePercentile from './travel-time-percentile'
  * SingleValuedSurface, width, height all come from selector defined below and
  * thus must be passed in one argument.
  */
-export function computeIsochrone(singleValuedSurface, cutoff) {
+export function computeIsochrone(
+  singleValuedSurface,
+  cutoff
+): void | GeoJSON.Feature<GeoJSON.MultiPolygon> {
   if (singleValuedSurface == null) return null
 
   const {surface, width, height, west, north, zoom} = singleValuedSurface
