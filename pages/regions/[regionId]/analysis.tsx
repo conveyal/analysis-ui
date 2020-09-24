@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 
 import {load} from 'lib/actions/region'
-import {loadBookmarks} from 'lib/actions/bookmark'
 import {
   setScenarioApplicationErrors,
   setScenarioApplicationWarnings
@@ -24,14 +23,12 @@ const AnalysisPage: any = withInitialFetch(
     dispatch(setScenarioApplicationWarnings(null))
     dispatch(setScenarioApplicationErrors(null))
 
-    const [totalRegion, bookmarks, regionalAnalyses] = await Promise.all([
+    const [totalRegion, regionalAnalyses] = await Promise.all([
       dispatch(load(query.regionId)),
-      dispatch(loadBookmarks(query.regionId)),
       dispatch(loadAllRegionalAnalyses(query.regionId))
     ])
 
     return {
-      bookmarks,
       regionalAnalyses,
       ...totalRegion
     }

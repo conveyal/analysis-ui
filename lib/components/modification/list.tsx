@@ -22,32 +22,24 @@ import {
 import {faEye, faEyeSlash, faUpload} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
-import dynamic from 'next/dynamic'
 import {memo, useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
-import {getForProject as loadModifications} from 'lib/actions/modifications'
 import {LS_MOM} from 'lib/constants'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
+import selectFeedsById from 'lib/selectors/feeds-by-id'
 import selectVariants from 'lib/selectors/variants'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
 import IconButton from '../icon-button'
 import InnerDock from '../inner-dock'
 import Link from '../link'
+import {DisplayAll as ModificationsMap} from '../modifications-map/display-all'
 import VariantEditor from '../variant-editor'
 
 import CreateModification from './create'
-
-const ModificationsMap = dynamic(
-  () => import('lib/components/modifications-map/display-all'),
-  {
-    loading: () => null,
-    ssr: false
-  }
-)
 
 type Modification = {
   _id: string
@@ -79,33 +71,29 @@ export default function ModificationsList(p) {
   const {_id: projectId, bundleId, regionId} = p.project
   // Retrieve the modifications from the store. Filter out modifications that might be from another project
   const modifications = useSelector((s) => get(s, 'project.modifications'))
+  const feedsById = useSelector(selectFeedsById)
   const variants = useSelector(selectVariants)
   const goToModificationImport = useRouteTo('modificationImport', {
     projectId: p.project._id,
     regionId: p.project.regionId
   })
 
-  // Load modifications
-  useEffect(() => {
-    dispatch(loadModifications(projectId))
-  }, [dispatch, projectId])
-
   // Array of ids for currently displayed modifications
-  const [modificationsOnMap, setModificationsOnMap] = useState(() => {
-    return new Set(get(getParsedItem(LS_MOM), projectId, []))
-  })
+  const [modificationsOnMap, setModificationsOnMap] = useState<Modification[]>(
+    () => {
+      const _idsOnMap: string[] = get(getParsedItem(LS_MOM), projectId, [])
+      return modifications.filter((m) => _idsOnMap.includes(m._id))
+    }
+  )
 
   // Load the GTFS information for the modifications
   useEffect(() => {
-    const visibleModifications = modifications.filter((m) =>
-      modificationsOnMap.has(m._id)
-    )
-    if (visibleModifications.length > 0) {
+    if (modificationsOnMap.length > 0) {
       dispatch(
         getFeedsRoutesAndStops({
           bundleId,
           forceCompleteUpdate: true,
-          modifications: visibleModifications
+          modifications: modificationsOnMap
         })
       )
     }
@@ -113,13 +101,15 @@ export default function ModificationsList(p) {
 
   // Set and store modifications on map
   const setAndStoreMoM = useCallback(
-    (newMoM) => {
-      setModificationsOnMap(newMoM)
+    (_idsOnMap) => {
       const mom = getParsedItem(LS_MOM) || {}
-      mom[projectId] = Array.from(newMoM)
+      mom[projectId] = _idsOnMap
       stringifyAndSet(LS_MOM, mom)
+      setModificationsOnMap(
+        modifications.filter((m) => _idsOnMap.includes(m._id))
+      )
     },
-    [projectId, setModificationsOnMap]
+    [modifications, projectId]
   )
 
   const [filter, setFilter] = useState('')
@@ -134,11 +124,9 @@ export default function ModificationsList(p) {
   const showVariant = useCallback(
     (index) => {
       setAndStoreMoM(
-        new Set(
-          modifications
-            .filter((m) => m.variants[index] === true)
-            .map((m) => m._id)
-        )
+        modifications
+          .filter((m) => m.variants[index] === true)
+          .map((m) => m._id)
       )
     },
     [modifications, setAndStoreMoM]
@@ -146,28 +134,32 @@ export default function ModificationsList(p) {
 
   // Show/hide all modifications
   const showAll = useCallback(() => {
-    setAndStoreMoM(new Set(modifications.map((m) => m._id)))
+    setAndStoreMoM(modifications.map((m) => m._id))
   }, [modifications, setAndStoreMoM])
   const hideAll = useCallback(() => {
-    setAndStoreMoM(new Set())
+    setAndStoreMoM([])
   }, [setAndStoreMoM])
 
   // Toggle map appearance
   const toggleMapDisplay = useCallback(
     (_id) => {
-      if (modificationsOnMap.has(_id)) {
-        modificationsOnMap.delete(_id)
+      if (modificationsOnMap.find((m) => m._id === _id)) {
+        setAndStoreMoM(
+          modificationsOnMap.filter((m) => m._id !== _id).map((m) => m._id)
+        )
       } else {
-        modificationsOnMap.add(_id)
+        setAndStoreMoM([...modificationsOnMap.map((m) => m._id), _id])
       }
-      setAndStoreMoM(new Set(modificationsOnMap))
     },
     [modificationsOnMap, setAndStoreMoM]
   )
 
   return (
     <>
-      <ModificationsMap />
+      <ModificationsMap
+        feedsById={feedsById}
+        modifications={modificationsOnMap}
+      />
 
       <Tabs isFitted width='320px'>
         <TabList>
@@ -232,7 +224,11 @@ export default function ModificationsList(p) {
                       >
                         {ms.map((m) => (
                           <ModificationItem
-                            isDisplayed={modificationsOnMap.has(m._id)}
+                            isDisplayed={
+                              modificationsOnMap.find(
+                                (mom) => mom._id === m._id
+                              ) !== undefined
+                            }
                             key={m._id}
                             modification={m}
                             regionId={regionId}
