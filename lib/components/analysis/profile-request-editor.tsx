@@ -7,7 +7,6 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Divider,
   Select,
   SimpleGrid
 } from '@chakra-ui/core'
@@ -88,7 +87,6 @@ const containsType = (pr, type) =>
  */
 export default function ProfileRequestEditor({
   bundle,
-  color = 'blue',
   disabled,
   profileRequest,
   project,
@@ -271,7 +269,7 @@ export default function ProfileRequestEditor({
             <Input {...maxTransfersInput} type='number' />
           </FormControl>
 
-          <Divider borderColor={`${color}.100`} gridColumn='1 / span 3' />
+          <div />
         </>
       )}
 
@@ -299,9 +297,8 @@ export default function ProfileRequestEditor({
               </FormHelperText>
             </FormControl>
           )}
-          <div />
 
-          <Divider borderColor={`${color}.100`} gridColumn='1 / span 3' />
+          <div />
         </>
       )}
 
@@ -345,8 +342,6 @@ export default function ProfileRequestEditor({
               <option value={4}>4 - High stress</option>
             </Select>
           </FormControl>
-
-          <Divider borderColor={`${color}.100`} gridColumn='1 / span 3' />
         </>
       )}
     </SimpleGrid>

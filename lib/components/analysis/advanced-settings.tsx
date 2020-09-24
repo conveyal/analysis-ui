@@ -1,16 +1,7 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Stack,
-  Textarea
-} from '@chakra-ui/core'
+import {Box, Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
 import dynamic from 'next/dynamic'
-import {useCallback, useEffect, useRef, useState} from 'react'
+import {useState} from 'react'
 
 import message from 'lib/message'
 import R5Selector from 'lib/modules/r5-version/components/selector'
@@ -18,15 +9,6 @@ import R5Selector from 'lib/modules/r5-version/components/selector'
 import Select from '../select'
 
 const EditBounds = dynamic(() => import('../map/edit-bounds'), {ssr: false})
-
-const isInvalid = (jsonString) => {
-  try {
-    JSON.parse(jsonString)
-  } catch (e) {
-    return true
-  }
-  return false
-}
 
 /**
  * Edit the advanced parameters of an analysis.
@@ -39,28 +21,6 @@ export default function AdvancedSettings({
   setProfileRequest,
   ...p
 }) {
-  const [stringified, setStringified] = useState(
-    JSON.stringify(profileRequest, null, '  ')
-  )
-  const [currentValue, setCurrentValue] = useState(stringified)
-  const ref = useRef()
-  const onChange = useCallback(
-    (e) => {
-      const jsonString = e.target.value
-      setCurrentValue(jsonString) // for validation
-      if (!isInvalid(jsonString)) {
-        setProfileRequest(JSON.parse(jsonString))
-      }
-    },
-    [setCurrentValue, setProfileRequest]
-  )
-
-  useEffect(() => {
-    if (document.activeElement !== ref.current) {
-      setStringified(JSON.stringify(profileRequest, null, '  '))
-    }
-  }, [profileRequest, ref, setStringified])
-
   return (
     <Stack spacing={5} {...p}>
       <Stack isInline spacing={5}>
@@ -79,31 +39,7 @@ export default function AdvancedSettings({
           setProfileRequest={setProfileRequest}
         />
 
-        <FormControl
-          flex='1'
-          isDisabled={disabled}
-          isInvalid={isInvalid(currentValue)}
-        >
-          <FormLabel htmlFor='customProfileRequest'>
-            {message('analysis.customizeProfileRequest.label')}
-          </FormLabel>
-          <Textarea
-            defaultValue={stringified}
-            fontFamily='monospace'
-            fontSize='sm'
-            id='customProfileRequest'
-            key={stringified}
-            minHeight='unset'
-            onChange={onChange}
-            p={1}
-            ref={ref}
-            resize='both'
-            spellCheck={false}
-          />
-          <FormHelperText>
-            {message('analysis.customizeProfileRequest.description')}
-          </FormHelperText>
-        </FormControl>
+        <div style={{flex: 1}} />
       </Stack>
     </Stack>
   )

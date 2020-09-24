@@ -3,20 +3,29 @@ import {
   Button,
   Flex,
   FormControl,
+  FormHelperText,
   FormLabel,
   Heading,
   Stack,
   Switch,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
+  Textarea,
   Tooltip
 } from '@chakra-ui/core'
 import {
   faChevronDown,
   faChevronRight,
-  faChevronUp
+  faChevronUp,
+  faCode,
+  faMousePointer
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
@@ -412,6 +421,8 @@ function RequestSettings({
   setScenario,
   ...p
 }) {
+  // Manually control tabs in order to control when tab contents is rendered.
+  const [tabIndex, setTabIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(!project)
   const dispatch = useDispatch()
 
@@ -474,33 +485,64 @@ function RequestSettings({
           )}
 
           {project && !copyRequestSettings && (
-            <Stack spacing={SPACING}>
-              <ModeSelector
-                accessModes={profileRequest.accessModes}
-                directModes={profileRequest.directModes}
-                disabled={isDisabled}
-                egressModes={profileRequest.egressModes}
-                transitModes={profileRequest.transitModes}
-                update={setProfileRequest}
-              />
+            <Tabs
+              align='end'
+              onChange={setTabIndex}
+              variant='soft-rounded'
+              variantColor={color}
+            >
+              <TabPanels>
+                <TabPanel>
+                  {tabIndex === 0 && (
+                    <Stack spacing={SPACING}>
+                      <ModeSelector
+                        accessModes={profileRequest.accessModes}
+                        directModes={profileRequest.directModes}
+                        disabled={isDisabled}
+                        egressModes={profileRequest.egressModes}
+                        transitModes={profileRequest.transitModes}
+                        update={setProfileRequest}
+                      />
 
-              <ProfileRequestEditor
-                bundle={bundle}
-                color={color}
-                disabled={isDisabled}
-                profileRequest={profileRequest}
-                project={project}
-                setProfileRequest={setProfileRequest}
-              />
+                      <ProfileRequestEditor
+                        bundle={bundle}
+                        color={color}
+                        disabled={isDisabled}
+                        profileRequest={profileRequest}
+                        project={project}
+                        setProfileRequest={setProfileRequest}
+                      />
 
-              <AdvancedSettings
-                disabled={isDisabled}
-                profileRequest={profileRequest}
-                regionalAnalyses={regionalAnalyses}
-                regionBounds={regionBounds}
-                setProfileRequest={setProfileRequest}
-              />
-            </Stack>
+                      <AdvancedSettings
+                        disabled={isDisabled}
+                        profileRequest={profileRequest}
+                        regionalAnalyses={regionalAnalyses}
+                        regionBounds={regionBounds}
+                        setProfileRequest={setProfileRequest}
+                      />
+                    </Stack>
+                  )}
+                </TabPanel>
+                <TabPanel>
+                  {tabIndex === 1 && (
+                    <JSONEditor
+                      isDisabled={isDisabled}
+                      profileRequest={profileRequest}
+                      setProfileRequest={setProfileRequest}
+                    />
+                  )}
+                </TabPanel>
+              </TabPanels>
+
+              <TabList mt={4}>
+                <Tab>
+                  <Icon icon={faMousePointer} />
+                </Tab>
+                <Tab>
+                  <Icon icon={faCode} />
+                </Tab>
+              </TabList>
+            </Tabs>
           )}
         </Stack>
       )}
@@ -519,5 +561,70 @@ function RequestSettings({
         <Icon icon={isOpen ? faChevronUp : faChevronDown} />
       </Button>
     </Stack>
+  )
+}
+
+const isJSONInvalid = (jsonString) => {
+  try {
+    JSON.parse(jsonString)
+  } catch (e) {
+    return true
+  }
+  return false
+}
+
+function JSONEditor({isDisabled = false, profileRequest, setProfileRequest}) {
+  const [stringified, setStringified] = useState(
+    JSON.stringify(profileRequest, null, '  ')
+  )
+  const [currentValue, setCurrentValue] = useState(stringified)
+  const [height, setHeight] = useState('200px')
+  const ref = useRef<HTMLTextAreaElement>()
+  const onChange = useCallback(
+    (e) => {
+      const jsonString = e.target.value
+      setCurrentValue(jsonString) // for validation
+      if (!isJSONInvalid(jsonString)) {
+        setProfileRequest(JSON.parse(jsonString))
+      }
+    },
+    [setCurrentValue, setProfileRequest]
+  )
+
+  useEffect(() => {
+    if (document.activeElement !== ref.current) {
+      setStringified(JSON.stringify(profileRequest, null, '  '))
+    }
+  }, [profileRequest, ref, setStringified])
+
+  // Set the initial height to the scroll height (full contents of the text)
+  useEffect(() => {
+    if (ref.current) {
+      setHeight(ref.current.scrollHeight + 5 + 'px')
+    }
+  }, [ref, setHeight])
+
+  return (
+    <FormControl
+      isDisabled={isDisabled}
+      isInvalid={isJSONInvalid(currentValue)}
+    >
+      <FormLabel htmlFor='customProfileRequest'>
+        {message('analysis.customizeProfileRequest.label')}
+      </FormLabel>
+      <Textarea
+        defaultValue={stringified}
+        fontFamily='monospace'
+        height={`${height}`}
+        id='customProfileRequest'
+        key={stringified}
+        onChange={onChange}
+        ref={ref}
+        spellCheck={false}
+      />
+      <FormHelperText>
+        {message('analysis.customizeProfileRequest.description')}
+      </FormHelperText>
+    </FormControl>
   )
 }
