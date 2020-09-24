@@ -1,4 +1,5 @@
-import React from 'react'
+import get from 'lodash/get'
+import {memo} from 'react'
 import {useSelector} from 'react-redux'
 
 import Gridualizer from 'lib/components/map/gridualizer'
@@ -10,9 +11,12 @@ import createDrawTile from '../create-draw-tile'
  * Container for drawing opportunity data on the map.
  */
 let key = 0
-export default React.memo(function Dotmap() {
+export default memo(function Dotmap() {
   const grid = useSelector(activeOpportunityDatasetGrid)
-  if (!grid) return null
-  const drawTile = createDrawTile(grid)
-  return <Gridualizer key={key++} drawTile={drawTile} zIndex={299} />
+  if (get(grid, 'data.length', 0) > 0) {
+    return (
+      <Gridualizer key={key++} drawTile={createDrawTile(grid)} zIndex={299} />
+    )
+  }
+  return null
 })
