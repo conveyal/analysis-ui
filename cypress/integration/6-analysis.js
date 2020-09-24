@@ -96,7 +96,6 @@ describe('Analysis', function () {
         .should('be.disabled')
       cy.get('@primary').contains('scratch project')
       cy.get('@primary').contains('Baseline')
-      cy.get('@primary').findAllByLabelText(/Bookmark/)
 
       cy.get('@primary').findByRole('button', {name: /Walk access/i})
       cy.get('@primary').findByRole('button', {name: /Bus/i})
@@ -250,7 +249,40 @@ describe('Analysis', function () {
         .matchImageSnapshot('chart-with-comparison')
     })
 
-    it('sets a bookmark')
+    describe('presets', () => {
+      it('CRUD a preset', () => {
+        const name = Cypress.env('dataPrefix') + 'preset'
+        // Preset select does not exist without first creating a preset
+        cy.get('@primary').findByRole('button', {name: /Save/}).click()
+        cy.findByLabelText(/Name/).type(name)
+        cy.findByRole('button', {name: /Create preset/}).click()
+        cy.findByRole('dialog').should('not.exist')
+        cy.findByText(/Created new preset/)
+
+        // Preset selector should now exist
+        cy.get('@primary')
+          .findByLabelText(/Active preset/)
+          .click({force: true})
+          .type(`${name}{enter}`)
+
+        // Edit the preset name
+        cy.get('@primary')
+          .findByRole('button', {name: /Edit preset name/})
+          .click()
+        cy.findByLabelText(/Name/).dblclick().type('edited name')
+        cy.findByRole('button', {name: /Save/}).click()
+        cy.findByRole('dialog').should('not.exist')
+        cy.findByText(/Saved changes to preset/)
+
+        // Delete the preset
+        cy.get('@primary')
+          .findByRole('button', {name: /Delete selected preset/})
+          .click()
+        cy.findByRole('button', {name: /Confirm: Delete preset/}).click()
+        cy.findByRole('dialog').should('not.exist')
+        cy.findByText(/Deleted selected preset/)
+      })
+    })
   })
 
   describe('of a region', () => {

@@ -1,9 +1,9 @@
 import LogRocket from 'lib/logrocket'
 
-const FETCH_ERROR = 'FETCH_ERROR'
-const NONE = 'NONE'
-const CLIENT_ERROR = 'CLIENT_ERROR'
-const SERVER_ERROR = 'SERVER_ERROR'
+export const FETCH_ERROR = 'FETCH_ERROR'
+export const NONE = 'NONE'
+export const CLIENT_ERROR = 'CLIENT_ERROR'
+export const SERVER_ERROR = 'SERVER_ERROR'
 // const TIMEOUT_ERROR = 'TIMEOUT_ERROR'
 // const CONNECTION_ERROR = 'CONNECTION_ERROR'
 // const NETWORK_ERROR = 'NETWORK_ERROR'
@@ -46,9 +46,9 @@ function getProblemFromError(e: Error): string {
 async function getData(res: Response) {
   const type = res.headers.get('Content-Type') || ''
   if (type.indexOf('json') > -1) return res.json()
-  if (type.indexOf('text') > -1) return {message: await res.text()}
+  if (type.indexOf('text') > -1) return {description: await res.text()}
   if (type.indexOf('octet-stream') > -1) return res.arrayBuffer()
-  return {message: 'no content'}
+  return {description: 'no content'}
 }
 
 async function safeParseResponse(res: Response) {
@@ -72,7 +72,10 @@ type SafeResponse =
 /**
  * Never throw errors. Always return a response.
  */
-export async function safeFetch(url, options = {}): Promise<SafeResponse> {
+export async function safeFetch(
+  url: string,
+  options?: RequestInit
+): Promise<SafeResponse> {
   try {
     const res = await fetch(url, options)
     return await safeParseResponse(res)
@@ -90,13 +93,11 @@ export async function safeFetch(url, options = {}): Promise<SafeResponse> {
 /**
  * Throw the response when using SWR.
  */
-export const swrConfig = {
-  fetcher: (url) =>
-    safeFetch(url).then((res) => {
-      if (res.ok) return res.data
-      else throw res
-    })
-}
+export const swrFetcher = (url) =>
+  safeFetch(url).then((res) => {
+    if (res.ok) return res.data
+    else throw res
+  })
 
 /**
  * Safe DELETE

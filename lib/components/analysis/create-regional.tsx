@@ -5,6 +5,7 @@ import {
   Input,
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalFooter,
@@ -168,10 +169,16 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     destinationPointSets.length < 1
 
   return (
-    <Modal initialFocusRef={nameInput.ref} isOpen={true} onClose={onClose}>
+    <Modal
+      closeOnOverlayClick={false}
+      initialFocusRef={nameInput.ref}
+      isOpen={true}
+      onClose={onClose}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Create new regional analysis</ModalHeader>
+        <ModalCloseButton />
         <ModalBody>
           <Stack mb={4} spacing={4}>
             <FormControl
