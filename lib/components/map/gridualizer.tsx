@@ -1,38 +1,38 @@
 import {Coords, DoneCallback, GridLayer as LeafletGridLayer} from 'leaflet'
 import {GridLayer, GridLayerProps, withLeaflet} from 'react-leaflet'
 
-function createCreateTile(props) {
-  return function createTile(coords) {
+type DrawTileFn = (
+  canvas: HTMLCanvasElement,
+  coords: Coords,
+  z: number
+) => HTMLElement
+
+class MutableGridLayer extends LeafletGridLayer {
+  drawTile: DrawTileFn
+
+  constructor(options) {
+    super(options)
+    this.drawTile = options.drawTile
+  }
+
+  createTile(coords: Coords, _: DoneCallback) {
     const canvas = document.createElement('canvas')
     canvas.width = canvas.height = 256
-    props.drawTile(canvas, coords, coords.z)
+    this.drawTile(canvas, coords, coords.z)
     return canvas
   }
 }
 
-class MutableGridLayer extends LeafletGridLayer {
-  _createTile: (coords: Coords, done: DoneCallback) => HTMLElement
-
-  constructor(options) {
-    super(options)
-    this._createTile = options.createTile
-  }
-
-  createTile(coords: Coords, done: DoneCallback) {
-    return this._createTile(coords, done)
-  }
-}
-
 interface GridualizerLayerProps extends GridLayerProps {
-  drawTile: (canvas: HTMLCanvasElement, coords: Coords, z: number) => void
+  drawTile: DrawTileFn
 }
 
-export class GridualizerLayer extends GridLayer<
+class GridualizerLayer extends GridLayer<
   GridualizerLayerProps,
   MutableGridLayer
 > {
   createLeafletElement(props: GridualizerLayerProps) {
-    return new MutableGridLayer({createTile: createCreateTile(props)})
+    return new MutableGridLayer({drawTile: props.drawTile})
   }
 }
 
