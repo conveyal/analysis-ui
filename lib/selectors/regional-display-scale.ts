@@ -1,5 +1,6 @@
 import {color as parseColor} from 'd3-color'
 import {schemeBlues, schemeReds} from 'd3-scale-chromatic'
+import get from 'lodash/get'
 import {ckmeans, sample} from 'simple-statistics'
 import {createSelector} from 'reselect'
 import {constructor as XorShift} from 'xorshift'
@@ -53,13 +54,14 @@ function createColorizer(breaks, colorRange) {
 const negate = (b) => -b
 
 export default createSelector(selectDisplayGrid, (grid) => {
-  if (!grid) return null
-  if (grid.min === grid.max)
+  if (!grid || get(grid, 'data.length') < 1) return null
+  if (grid.min === grid.max) {
     return {
       breaks: [],
       colorRange: [],
       colorizer: () => [0, 0, 0, 0]
     }
+  }
 
   // All values are positive
   if (grid.min >= 0) {

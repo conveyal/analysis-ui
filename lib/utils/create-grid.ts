@@ -10,7 +10,7 @@ export default function create(data) {
   let max = -Infinity
 
   for (let i = 0, prev = 0; i < array.length; i++) {
-    array[i] = prev += array[i]
+    array[i] = prev += array[i] // de-delta code
     if (prev < min) min = prev
     if (prev > max) max = prev
   }

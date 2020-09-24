@@ -46,7 +46,7 @@ export default function CopyTimetableButton({create, intoModification}) {
       </Button>
 
       {isOpen && (
-        <Modal isOpen={true} onClose={onClose}>
+        <Modal closeOnOverlayClick={false} isOpen={true} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Copy timetable</ModalHeader>

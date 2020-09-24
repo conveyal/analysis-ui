@@ -30,6 +30,7 @@ import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selecto
 import selectCurrentBundle from 'lib/selectors/current-bundle'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectProfileRequest from 'lib/selectors/profile-request'
+import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectRegionBounds from 'lib/selectors/region-bounds'
 import {fromLatLngBounds} from 'lib/utils/bounds'
@@ -39,8 +40,8 @@ import {secondsToHhMmString} from 'lib/utils/time'
 import ControlledSelect from '../controlled-select'
 import Icon from '../icon'
 import ModeIcon from '../mode-icon'
+import Presets from '../presets'
 
-import BookmarkChooser from './bookmark-chooser'
 import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
@@ -62,6 +63,7 @@ export default function Settings({
   const profileRequest = useSelector(selectProfileRequest)
   const currentBundle = useSelector(selectCurrentBundle)
   const currentProject = useSelector(selectCurrentProject)
+  const profileRequestLonLat = useSelector(selectProfileRequestLonLat)
   const variantIndex = useSelector((s) =>
     parseInt(get(s, 'analysis.requestsSettings[0].variantIndex', -1))
   )
@@ -205,8 +207,10 @@ export default function Settings({
           isDisabled={disableInputs}
           isFetchingIsochrone={isFetchingIsochrone}
           profileRequest={requestsSettings[0]}
+          profileRequestLonLat={profileRequestLonLat}
           project={currentProject}
           projects={projects}
+          regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
           scenario={variantIndex}
@@ -240,8 +244,10 @@ export default function Settings({
           isDisabled={disableInputs}
           isFetchingIsochrone={isFetchingIsochrone}
           profileRequest={requestsSettings[1]}
+          profileRequestLonLat={profileRequestLonLat}
           project={comparisonProject}
           projects={projects}
+          regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
           scenario={comparisonVariant}
@@ -393,8 +399,10 @@ function RequestSettings({
   isDisabled,
   isFetchingIsochrone,
   profileRequest,
+  profileRequestLonLat,
   project,
   projects,
+  regionId,
   regionalAnalyses,
   regionBounds,
   scenario,
@@ -434,15 +442,19 @@ function RequestSettings({
               value={scenarioOptions.find((v) => v.value === scenario)}
             />
 
-            <BookmarkChooser
-              disabled={isDisabled}
-              flex='1'
-              isComparison={isComparison}
-              onChange={(bookmarkSettings) =>
-                setProfileRequest({...bookmarkSettings})
-              }
-              requestSettings={profileRequest}
-            />
+            <Box flex='1'>
+              <Presets
+                currentSettings={profileRequest}
+                currentLonLat={profileRequestLonLat}
+                isComparison={isComparison}
+                isDisabled={isDisabled}
+                onChange={(presets) => {
+                  if (isComparison) dispatch(setCopyRequestSettings(false))
+                  setProfileRequest({...presets})
+                }}
+                regionId={regionId}
+              />
+            </Box>
           </Stack>
 
           {isComparison && (
