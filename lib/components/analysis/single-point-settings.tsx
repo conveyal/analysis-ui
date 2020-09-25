@@ -25,7 +25,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import isEqual from 'lodash/isEqual'
-import {useCallback, useEffect, useRef, useState} from 'react'
+import {memo, useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
@@ -587,7 +587,11 @@ const isJSONValid = (jsonString) => {
   return true
 }
 
-function JSONEditor({isDisabled, profileRequest, replaceSettings}) {
+const JSONEditor = memo<{
+  isDisabled: boolean
+  profileRequest: Record<string, unknown>
+  replaceSettings: (newSettings: Record<string, unknown>) => void
+}>(function JSONEditor({isDisabled, profileRequest, replaceSettings}) {
   const [stringified, setStringified] = useState(
     JSON.stringify(profileRequest, null, '  ')
   )
@@ -642,4 +646,4 @@ function JSONEditor({isDisabled, profileRequest, replaceSettings}) {
       </FormHelperText>
     </FormControl>
   )
-}
+})
