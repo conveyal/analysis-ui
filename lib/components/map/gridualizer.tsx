@@ -1,4 +1,4 @@
-import {Coords, DoneCallback, GridLayer as LeafletGridLayer} from 'leaflet'
+import {Coords, GridLayer as LeafletGridLayer} from 'leaflet'
 import {GridLayer, GridLayerProps, withLeaflet} from 'react-leaflet'
 
 export type DrawTileFn = (
@@ -15,7 +15,7 @@ class MutableGridLayer extends LeafletGridLayer {
     this.drawTile = options.drawTile
   }
 
-  createTile(coords: Coords, _: DoneCallback) {
+  createTile(coords: Coords) {
     const canvas = document.createElement('canvas')
     canvas.width = canvas.height = 256
     this.drawTile(canvas, coords, coords.z)
