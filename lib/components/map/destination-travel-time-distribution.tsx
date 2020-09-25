@@ -12,7 +12,7 @@ import fpGet from 'lodash/fp/get'
 import {scaleLinear} from 'd3-scale'
 import {useState, useEffect, useReducer, useRef} from 'react'
 import {useSelector} from 'react-redux'
-import {CircleMarker, useLeaflet} from 'react-leaflet'
+import {CircleMarker, Pane, useLeaflet} from 'react-leaflet'
 import MapControl from 'react-leaflet-control'
 
 import colors from 'lib/constants/colors'
@@ -140,13 +140,15 @@ export default function DestinationTravelTimeDistribution() {
   return (
     <>
       {latlng && (
-        <CircleMarker
-          center={latlng}
-          color={state.locked ? '#333' : '#3182ce'}
-          onclick={(e) => dispatch({type: 'toggle lock', payload: e.latlng})}
-          radius={5}
-          ref={markerRef}
-        />
+        <Pane zIndex={600}>
+          <CircleMarker
+            center={latlng}
+            color={state.locked ? '#333' : '#3182ce'}
+            onclick={(e) => dispatch({type: 'toggle lock', payload: e.latlng})}
+            radius={5}
+            ref={markerRef}
+          />
+        </Pane>
       )}
       <MapControl position='bottomleft'>
         <Stack backgroundColor='white' boxShadow='lg' rounded='md' pt={2}>
