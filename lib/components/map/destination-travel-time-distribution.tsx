@@ -26,6 +26,7 @@ const WIDTH = 300
 const HEIGHT = 15
 const MAX_TRIP_DURATION = 120
 const SCALE = scaleLinear().domain([0, MAX_TRIP_DURATION]).range([0, WIDTH])
+const PADDING = 4
 const FONT_SIZE = 10
 const STROKE_WIDTH = 1
 
@@ -135,7 +136,8 @@ export default function DestinationTravelTimeDistribution() {
     }
   }, [dispatch, leaflet])
 
-  const fullHeight = (comparisonDistribution ? HEIGHT * 2 : HEIGHT) + FONT_SIZE
+  const fullHeight =
+    (comparisonDistribution ? HEIGHT * 2 : HEIGHT) + PADDING + FONT_SIZE
 
   return (
     <>
@@ -151,8 +153,8 @@ export default function DestinationTravelTimeDistribution() {
         </Pane>
       )}
       <MapControl position='bottomleft'>
-        <Stack backgroundColor='white' boxShadow='lg' rounded='md' pt={2}>
-          <Flex alignItems='baseline' justify='space-between' px={3}>
+        <Stack backgroundColor='white' boxShadow='lg'>
+          <Flex alignItems='baseline' justify='space-between' pt={3} px={3}>
             <Heading size='sm'>Travel time distribution (minutes)</Heading>
             {latlng && distribution && (
               <Text fontFamily='mono' fontSize='sm'>
@@ -160,8 +162,15 @@ export default function DestinationTravelTimeDistribution() {
               </Text>
             )}
           </Flex>
+
+          {surface && !distribution && (
+            <Alert status='info'>
+              <AlertIcon /> Mouse over the isochrone to show travel times.
+            </Alert>
+          )}
+
           {distribution && (
-            <Box fontFamily='mono' px={3} pb={2} position='relative'>
+            <Box fontFamily='mono' position='relative' px={3} pb={3}>
               {isValidTime(distribution[percentileIndex]) && (
                 <Text
                   color='blue.500'
@@ -222,12 +231,6 @@ export default function DestinationTravelTimeDistribution() {
                 </svg>
               </figure>
             </Box>
-          )}
-
-          {surface && !distribution && (
-            <Alert status='info'>
-              <AlertIcon /> Mouse over the isochrone to show travel times.
-            </Alert>
           )}
         </Stack>
       </MapControl>
