@@ -1,14 +1,25 @@
-import {Box, Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/core'
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack
+} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
 import dynamic from 'next/dynamic'
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
 
 import message from 'lib/message'
 import R5Selector from 'lib/modules/r5-version/components/selector'
 
 import Select from '../select'
+import useControlledInput from 'lib/hooks/use-controlled-input'
 
 const EditBounds = dynamic(() => import('../map/edit-bounds'), {ssr: false})
+
+const testMonteCarlo = (v) => v >= 1 && v <= 1200
 
 /**
  * Edit the advanced parameters of an analysis.
@@ -22,25 +33,22 @@ export default function AdvancedSettings({
   ...p
 }) {
   return (
-    <Stack spacing={5} {...p}>
-      <Stack isInline spacing={5}>
-        <R5Selector
-          flex='1'
-          isDisabled={disabled}
-          onChange={(workerVersion) => setProfileRequest({workerVersion})}
-          value={profileRequest.workerVersion}
-        />
+    <Stack isInline spacing={5} {...p}>
+      <R5Selector
+        flex='1'
+        isDisabled={disabled}
+        onChange={(workerVersion) => setProfileRequest({workerVersion})}
+        value={profileRequest.workerVersion}
+      />
 
-        <CustomBoundsSelector
-          isDisabled={disabled}
-          profileRequest={profileRequest}
-          regionalAnalyses={regionalAnalyses}
-          regionBounds={regionBounds}
-          setProfileRequest={setProfileRequest}
-        />
-
-        <div style={{flex: 1}} />
-      </Stack>
+      <CustomBoundsSelector
+        flex='1'
+        isDisabled={disabled}
+        profileRequest={profileRequest}
+        regionalAnalyses={regionalAnalyses}
+        regionBounds={regionBounds}
+        setProfileRequest={setProfileRequest}
+      />
     </Stack>
   )
 }
@@ -110,7 +118,7 @@ function CustomBoundsSelector({
   }
 
   return (
-    <FormControl flex='1' isDisabled={isDisabled} {...p}>
+    <FormControl isDisabled={isDisabled} {...p}>
       {editingBounds && (
         <EditBounds
           bounds={profileRequest.bounds}

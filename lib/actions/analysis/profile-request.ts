@@ -1,3 +1,4 @@
+import merge from 'lodash/merge'
 import {createAction} from 'redux-actions'
 
 import {PROFILE_REQUEST_DEFAULTS} from 'lib/constants'
@@ -41,20 +42,14 @@ export const storeRequestsSettings = (requestsSettings) => (
 /**
  * Ovverides with default settings in case of missing parameters.
  */
-export const loadRequestsSettings = (regionId) => {
+export const loadRequestsSettings = (regionId: string) => {
   const storedRequestsSettings = getStoredSettings()
   const requestsSettings = storedRequestsSettings[regionId]
   if (requestsSettings) {
     return [
       setRequestsSettings([
-        {
-          ...PROFILE_REQUEST_DEFAULTS,
-          ...requestsSettings[0]
-        },
-        {
-          ...PROFILE_REQUEST_DEFAULTS,
-          ...requestsSettings[1]
-        }
+        merge({}, PROFILE_REQUEST_DEFAULTS, requestsSettings[0]),
+        merge({}, PROFILE_REQUEST_DEFAULTS, requestsSettings[1])
       ]),
       R5Version.actions.setCurrentR5Version(requestsSettings[0].workerVersion)
     ]

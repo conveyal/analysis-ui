@@ -487,6 +487,7 @@ function RequestSettings({
           {project && !copyRequestSettings && (
             <Tabs
               align='end'
+              index={tabIndex}
               onChange={setTabIndex}
               variant='soft-rounded'
               variantColor={color}
@@ -497,6 +498,7 @@ function RequestSettings({
                     <Stack spacing={SPACING}>
                       <ModeSelector
                         accessModes={profileRequest.accessModes}
+                        color={color}
                         directModes={profileRequest.directModes}
                         disabled={isDisabled}
                         egressModes={profileRequest.egressModes}

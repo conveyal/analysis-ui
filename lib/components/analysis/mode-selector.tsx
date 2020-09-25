@@ -49,6 +49,7 @@ const ALL_TRANSIT_STRING = ALL_TRANSIT_ARRAY.join(',')
 /** Select modes of travel */
 export default function ModeSelector({
   accessModes,
+  color,
   directModes,
   disabled,
   egressModes,
@@ -113,6 +114,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_selectAccessMode(WALK)}
               title={`${message('analysis.modes.walk')} ${label}`}
+              variantColor={color}
             >
               <ModeIcon mode='WALK' />
             </Button>
@@ -121,6 +123,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_selectAccessMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} ${label}`}
+              variantColor={color}
             >
               <ModeIcon mode={BICYCLE} />
             </Button>
@@ -129,6 +132,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_selectAccessMode(CAR)}
               title={`${message('analysis.modes.car')} ${label}`}
+              variantColor={color}
             >
               <ModeIcon mode={CAR} />
             </Button>
@@ -137,6 +141,7 @@ export default function ModeSelector({
               isDisabled={disabled || !transit}
               onClick={_selectAccessMode(CAR_PARK)}
               title={`${message('analysis.modes.carPark')} ${label}`}
+              variantColor={color}
             >
               <ModeIcon mode={CAR_PARK} />
             </Button>
@@ -152,6 +157,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(ALL)}
               title='All transit'
+              variantColor={color}
             >
               All
             </Button>
@@ -160,6 +166,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(BUS)}
               title={message('mode.bus')}
+              variantColor={color}
             >
               <Icon icon={faBus} />
             </Button>
@@ -168,6 +175,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(TRAM)}
               title={message('mode.tram')}
+              variantColor={color}
             >
               <strong>T</strong>
             </Button>
@@ -176,6 +184,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(SUBWAY)}
               title={message('mode.subway')}
+              variantColor={color}
             >
               <Icon icon={faSubway} />
             </Button>
@@ -184,6 +193,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(RAIL)}
               title={message('mode.rail')}
+              variantColor={color}
             >
               <Icon icon={faTrain} />
             </Button>
@@ -192,6 +202,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(FERRY)}
               title={message('mode.ferry')}
+              variantColor={color}
             >
               <Icon icon={faShip} />
             </Button>
@@ -200,6 +211,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(CABLE_CAR)}
               title={message('mode.cableCar')}
+              variantColor={color}
             >
               <strong>C</strong>
             </Button>
@@ -208,6 +220,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(GONDOLA)}
               title={message('mode.gondola')}
+              variantColor={color}
             >
               <strong>G</strong>
             </Button>
@@ -216,6 +229,7 @@ export default function ModeSelector({
               isDisabled={disabled}
               onClick={_toggleTransitMode(FUNICULAR)}
               title={message('mode.funicular')}
+              variantColor={color}
             >
               <strong>F</strong>
             </Button>
@@ -233,6 +247,7 @@ export default function ModeSelector({
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(WALK)}
               title={`${message('analysis.modes.walk')} egress`}
+              variantColor={color}
             >
               <Icon icon={faWalking} />
             </Button>
@@ -241,6 +256,7 @@ export default function ModeSelector({
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} egress`}
+              variantColor={color}
             >
               <Icon icon={faBicycle} />
             </Button>

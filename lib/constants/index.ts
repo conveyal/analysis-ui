@@ -185,6 +185,12 @@ export const PROFILE_REQUEST_DEFAULTS = {
     process.env.NODE_ENV === 'test'
       ? '2020-06-10'
       : new Date().toISOString().split('T')[0],
+  decayFunction: {
+    type: 'step',
+    standardDeviationMinutes: 10,
+    decayConstant: -0.01,
+    decayWidth: 10
+  },
   directModes: 'WALK',
   egressModes: 'WALK',
   fromTime: 25200,
