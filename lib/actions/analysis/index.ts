@@ -135,7 +135,7 @@ export const fetchTravelTimeSurface = () => (dispatch, getState) => {
       ...requestsSettings[0],
       fromLat: fromLonLat.lat,
       fromLon: fromLonLat.lon,
-      destinationPointSetIds: destinationPointSetIds,
+      destinationPointSetIds,
       percentiles: TRAVEL_TIME_PERCENTILES
     }
   ]

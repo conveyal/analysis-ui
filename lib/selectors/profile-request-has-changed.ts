@@ -5,6 +5,8 @@ import {createSelector} from 'reselect'
 
 import selectProfileRequestLonLat from './profile-request-lonlat'
 
+import {activeOpportunityDatasetId} from '../modules/opportunity-datasets/selectors'
+
 const omitKeys = [
   'maxTripDurationMinutes',
   'opportunityDatasetId',
@@ -20,7 +22,18 @@ export default createSelector(
   (state) => get(state, 'analysis.copyRequestSettings'),
   (state) => get(state, 'analysis.requestsSettings', []),
   (state) => get(state, 'analysis.resultsSettings', []),
-  (lonlat, copyRequestSettings, requestsSettings, resultsSettings) => {
+  (state) => get(state, 'analysis.travelTimeSurface'),
+  (state) => get(state, 'analysis.comparisonTravelTimeSurface'),
+  activeOpportunityDatasetId,
+  (
+    lonlat,
+    copyRequestSettings,
+    requestsSettings,
+    resultsSettings,
+    tts,
+    ctts,
+    opportunitDatasetId
+  ) => {
     // Check primary request settings
     if (
       hasChanged(
@@ -48,6 +61,22 @@ export default createSelector(
         },
         resultsSettings[1]
       )
+    ) {
+      return true
+    }
+
+    // If the accessibility was calculated server side, check for opportunity changes
+    if (
+      Array.isArray(get(tts, 'accessibility')) &&
+      get(requestsSettings, '[0].destinationPointSetIds[0]') !==
+        opportunitDatasetId
+    ) {
+      return true
+    }
+    if (
+      Array.isArray(get(ctts, 'accessibility')) &&
+      get(requestsSettings, '[1].destinationPointSetIds[0]') !==
+        opportunitDatasetId
     ) {
       return true
     }
