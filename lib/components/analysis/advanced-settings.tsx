@@ -1,25 +1,14 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack
-} from '@chakra-ui/core'
+import {Box, Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
 import dynamic from 'next/dynamic'
-import {useCallback, useState} from 'react'
+import {useState} from 'react'
 
 import message from 'lib/message'
 import R5Selector from 'lib/modules/r5-version/components/selector'
 
 import Select from '../select'
-import useControlledInput from 'lib/hooks/use-controlled-input'
 
 const EditBounds = dynamic(() => import('../map/edit-bounds'), {ssr: false})
-
-const testMonteCarlo = (v) => v >= 1 && v <= 1200
 
 /**
  * Edit the advanced parameters of an analysis.
@@ -29,7 +18,7 @@ export default function AdvancedSettings({
   profileRequest,
   regionalAnalyses,
   regionBounds,
-  setProfileRequest,
+  updateProfileRequest,
   ...p
 }) {
   return (
@@ -37,7 +26,7 @@ export default function AdvancedSettings({
       <R5Selector
         flex='1'
         isDisabled={disabled}
-        onChange={(workerVersion) => setProfileRequest({workerVersion})}
+        onChange={(workerVersion) => updateProfileRequest({workerVersion})}
         value={profileRequest.workerVersion}
       />
 
@@ -47,7 +36,7 @@ export default function AdvancedSettings({
         profileRequest={profileRequest}
         regionalAnalyses={regionalAnalyses}
         regionBounds={regionBounds}
-        setProfileRequest={setProfileRequest}
+        updateProfileRequest={updateProfileRequest}
       />
     </Stack>
   )
@@ -64,7 +53,7 @@ function CustomBoundsSelector({
   profileRequest,
   regionBounds,
   regionalAnalyses,
-  setProfileRequest,
+  updateProfileRequest,
   ...p
 }) {
   const [editingBounds, setEditingBounds] = useState(false)
@@ -106,11 +95,11 @@ function CustomBoundsSelector({
 
   function _setRegionalAnalysisBounds(e) {
     if (e.value === '__REGION') {
-      setProfileRequest({bounds: regionBounds})
+      updateProfileRequest({bounds: regionBounds})
     } else if (regionalAnalyses) {
       const foundAnalyses = regionalAnalyses.find((r) => r._id === e.value)
       if (foundAnalyses) {
-        setProfileRequest({
+        updateProfileRequest({
           bounds: webMercatorBoundsToGeographic(foundAnalyses)
         })
       }
@@ -122,7 +111,7 @@ function CustomBoundsSelector({
       {editingBounds && (
         <EditBounds
           bounds={profileRequest.bounds}
-          save={(bounds) => setProfileRequest({bounds})}
+          save={(bounds) => updateProfileRequest({bounds})}
         />
       )}
       <Flex justifyContent='space-between'>

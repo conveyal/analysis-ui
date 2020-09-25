@@ -10,19 +10,25 @@ import fetch from './fetch'
 export const setQueryString = createAction('set query string')
 
 // Update a search parameters
-export const setSearchParameter = createAction(
-  'set search parameter',
-  (params, value) => {
-    if (typeof params === 'string') {
-      const opts = {[`${params}`]: value}
-      setURLSearchParameter(opts)
-      return opts
-    } else {
-      setURLSearchParameter(params)
-      return params
+export const setSearchParameter = (
+  params: string | Record<string, string>,
+  value?: string
+) => {
+  if (typeof params === 'string') {
+    const opts = {[`${params}`]: value}
+    setURLSearchParameter(opts)
+    return {
+      type: 'set search parameter',
+      payload: opts
+    }
+  } else {
+    setURLSearchParameter(params)
+    return {
+      type: 'set search parameter',
+      payload: params
     }
   }
-)
+}
 
 export const clearError = createAction('clear error')
 

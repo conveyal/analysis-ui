@@ -114,7 +114,7 @@ export default function ProfileRequestEditor({
   disabled,
   profileRequest,
   project,
-  setProfileRequest,
+  updateProfileRequest,
   ...p
 }) {
   // Keep times in order when setting.
@@ -122,23 +122,23 @@ export default function ProfileRequestEditor({
     (timeString) => {
       const fromTime = parseInt(timeString)
       if (fromTime >= profileRequest.toTime) {
-        setProfileRequest({fromTime, toTime: fromTime + 60 * 60})
+        updateProfileRequest({fromTime, toTime: fromTime + 60 * 60})
       } else {
-        setProfileRequest({fromTime})
+        updateProfileRequest({fromTime})
       }
     },
-    [profileRequest, setProfileRequest]
+    [profileRequest, updateProfileRequest]
   )
   const setToTime = useCallback(
     (timeString) => {
       const toTime = parseInt(timeString)
       if (profileRequest.fromTime >= toTime) {
-        setProfileRequest({fromTime: toTime - 60 * 60, toTime})
+        updateProfileRequest({fromTime: toTime - 60 * 60, toTime})
       } else {
-        setProfileRequest({toTime})
+        updateProfileRequest({toTime})
       }
     },
-    [profileRequest, setProfileRequest]
+    [profileRequest, updateProfileRequest]
   )
 
   const {fromTime, toTime} = profileRequest
@@ -148,8 +148,8 @@ export default function ProfileRequestEditor({
     project
   )
 
-  const setDate = useCallback((date) => setProfileRequest({date}), [
-    setProfileRequest
+  const setDate = useCallback((date) => updateProfileRequest({date}), [
+    updateProfileRequest
   ])
   const dateInput = useInput({
     onChange: setDate,
@@ -157,8 +157,8 @@ export default function ProfileRequestEditor({
   })
 
   const setWalkSpeed = useCallback(
-    (walkSpeed) => setProfileRequest({walkSpeed: walkSpeed / 3.6}), // km/h to m/s
-    [setProfileRequest]
+    (walkSpeed) => updateProfileRequest({walkSpeed: walkSpeed / 3.6}), // km/h to m/s
+    [updateProfileRequest]
   )
   const walkSpeedInput = useInput({
     onChange: setWalkSpeed,
@@ -168,8 +168,8 @@ export default function ProfileRequestEditor({
   })
 
   const setWalkTime = useCallback(
-    (maxWalkTime) => setProfileRequest({maxWalkTime}),
-    [setProfileRequest]
+    (maxWalkTime) => updateProfileRequest({maxWalkTime}),
+    [updateProfileRequest]
   )
   const maxWalkTimeInput = useInput({
     onChange: setWalkTime,
@@ -179,8 +179,8 @@ export default function ProfileRequestEditor({
   })
 
   const setBikeSpeed = useCallback(
-    (bikeSpeed) => setProfileRequest({bikeSpeed: bikeSpeed / 3.6}), // km/h to m/s
-    [setProfileRequest]
+    (bikeSpeed) => updateProfileRequest({bikeSpeed: bikeSpeed / 3.6}), // km/h to m/s
+    [updateProfileRequest]
   )
   const bikeSpeedInput = useInput({
     onChange: setBikeSpeed,
@@ -190,8 +190,8 @@ export default function ProfileRequestEditor({
   })
 
   const setMaxBikeTime = useCallback(
-    (maxBikeTime) => setProfileRequest({maxBikeTime}),
-    [setProfileRequest]
+    (maxBikeTime) => updateProfileRequest({maxBikeTime}),
+    [updateProfileRequest]
   )
   const maxBikeTimeInput = useInput({
     onChange: setMaxBikeTime,
@@ -201,8 +201,8 @@ export default function ProfileRequestEditor({
   })
 
   const setMaxRides = useCallback(
-    (maxTransfers) => setProfileRequest({maxRides: maxTransfers + 1}),
-    [setProfileRequest]
+    (maxTransfers) => updateProfileRequest({maxRides: maxTransfers + 1}),
+    [updateProfileRequest]
   )
   const maxTransfersInput = useInput({
     onChange: setMaxRides,
@@ -212,8 +212,8 @@ export default function ProfileRequestEditor({
   })
 
   const setMonteCarlo = useCallback(
-    (monteCarloDraws) => setProfileRequest({monteCarloDraws}),
-    [setProfileRequest]
+    (monteCarloDraws) => updateProfileRequest({monteCarloDraws}),
+    [updateProfileRequest]
   )
   const monteCarloInput = useInput({
     onChange: setMonteCarlo,
@@ -227,9 +227,6 @@ export default function ProfileRequestEditor({
     containsType(profileRequest, 'BICYCLE_RENT')
   const hasTransit = profileRequest.transitModes.length > 0
   const hasWalk = containsType(profileRequest, 'WALK')
-
-  const displayForTransit = hasTransit ? 'inherit' : 'none'
-  const displayForWalk = hasWalk ? 'inherit' : 'none'
 
   return (
     <SimpleGrid columns={4} spacing={5} {...p}>
@@ -340,7 +337,7 @@ export default function ProfileRequestEditor({
         <Select
           id='bikeLts'
           onChange={(v) =>
-            setProfileRequest({bikeTrafficStress: parseInt(v.target.value)})
+            updateProfileRequest({bikeTrafficStress: parseInt(v.target.value)})
           }
           value={get(profileRequest, 'bikeTrafficStress', 4)}
         >
@@ -354,7 +351,7 @@ export default function ProfileRequestEditor({
       <DecayFunction
         isDisabled={disabled}
         update={(decayFunction) => {
-          setProfileRequest({decayFunction})
+          updateProfileRequest({decayFunction})
         }}
         value={get(profileRequest, 'decayFunction', defaultDecayFunction)}
       />

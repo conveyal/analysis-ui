@@ -25,12 +25,14 @@ import {
   faMousePointer
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
+import isEqual from 'lodash/isEqual'
 import {useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
 import {
   setCopyRequestSettings,
+  setRequestsSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
 import useOnMount from 'lib/hooks/use-on-mount'
@@ -122,17 +124,27 @@ export default function Settings({
   ]
 
   // Simplify commonly used set function
-  const setPrimaryPR = useCallback(
+  const updatePrimaryPR = useCallback(
     (params) => {
       dispatch(updateRequestsSettings({index: 0, params}))
     },
     [dispatch]
   )
-  const setComparisonPR = useCallback(
+  const updateComparisonPR = useCallback(
     (params) => {
       dispatch(updateRequestsSettings({index: 1, params}))
     },
     [dispatch]
+  )
+  const replaceSettings = useCallback(
+    (index, newSettings) => {
+      dispatch(
+        setRequestsSettings(
+          requestsSettings.map((s, i) => (i === index ? newSettings : s))
+        )
+      )
+    },
+    [dispatch, requestsSettings]
   )
 
   // On initial load, the query string may be out of sync with the requestsSettings.projectId
@@ -140,59 +152,59 @@ export default function Settings({
     const projectId = get(currentProject, '_id')
     if (projectId != null && projectId !== 'undefined') {
       dispatch(setSearchParameter({projectId}))
-      setPrimaryPR({projectId})
+      updatePrimaryPR({projectId})
     }
   })
 
   // Set the analysis bounds to be the region bounds if bounds do not exist
   useEffect(() => {
     if (!profileRequest.bounds) {
-      setPrimaryPR({bounds: fromLatLngBounds(regionBounds)})
+      updatePrimaryPR({bounds: fromLatLngBounds(regionBounds)})
     }
-  }, [profileRequest, regionBounds, setPrimaryPR])
+  }, [profileRequest, regionBounds, updatePrimaryPR])
 
   // Current project is stored in the query string
   const _setCurrentProject = useCallback(
     (option) => {
       const projectId = get(option, '_id')
       dispatch(setSearchParameter({projectId}))
-      setPrimaryPR({projectId, variantIndex: -1})
+      updatePrimaryPR({projectId, variantIndex: -1})
     },
-    [dispatch, setPrimaryPR]
+    [dispatch, updatePrimaryPR]
   )
   const _setCurrentVariant = useCallback(
-    (option) => setPrimaryPR({variantIndex: parseInt(option.value)}),
-    [setPrimaryPR]
+    (option) => updatePrimaryPR({variantIndex: parseInt(option.value)}),
+    [updatePrimaryPR]
   )
 
   const _setComparisonProject = useCallback(
     (project) => {
       if (project) {
         if (!comparisonProject) {
-          setComparisonPR({
+          updateComparisonPR({
             ...profileRequest,
             projectId: project._id,
             variantIndex: -1
           })
         } else {
-          setComparisonPR({
+          updateComparisonPR({
             projectId: project._id,
             variantIndex: -1
           })
         }
       } else {
-        setComparisonPR({
+        updateComparisonPR({
           projectId: null,
           variantIndex: null
         })
       }
     },
-    [comparisonProject, profileRequest, setComparisonPR]
+    [comparisonProject, profileRequest, updateComparisonPR]
   )
 
   const _setComparisonVariant = useCallback(
-    (e) => setComparisonPR({variantIndex: parseInt(e.value)}),
-    [setComparisonPR]
+    (e) => updateComparisonPR({variantIndex: parseInt(e.value)}),
+    [updateComparisonPR]
   )
 
   return (
@@ -222,11 +234,12 @@ export default function Settings({
           regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
+          replaceSettings={(s) => replaceSettings(0, s)}
           scenario={variantIndex}
           scenarioOptions={scenarioOptions}
-          setProfileRequest={setPrimaryPR}
           setProject={_setCurrentProject}
           setScenario={_setCurrentVariant}
+          updateProfileRequest={updatePrimaryPR}
         />
       </Box>
 
@@ -259,11 +272,13 @@ export default function Settings({
           regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
+          replaceSettings={(s) => replaceSettings(1, s)}
           scenario={comparisonVariant}
           scenarioOptions={comparisonScenarioOptions}
-          setProfileRequest={setComparisonPR}
+          setProfileRequest
           setProject={_setComparisonProject}
           setScenario={_setComparisonVariant}
+          updateProfileRequest={updateComparisonPR}
         />
       </Box>
     </>
@@ -289,10 +304,10 @@ function RequestSummary({color, profileRequest, ...p}) {
               <Box color={`${color}.500`} fontSize='xs'>
                 <Icon icon={faChevronRight} />
               </Box>
-              {transitModes.slice(0, 2).map((m) => (
+              {transitModes.slice(0, 3).map((m) => (
                 <ModeIcon mode={m} key={m} />
               ))}
-              {transitModes.length > 2 && <Box>...</Box>}
+              {transitModes.length > 3 && <Box>...</Box>}
               {profileRequest.egressModes !== 'WALK' && (
                 <Stack align='center' isInline spacing={1}>
                   <Box color={`${color}.500`} fontSize='xs'>
@@ -414,11 +429,12 @@ function RequestSettings({
   regionId,
   regionalAnalyses,
   regionBounds,
+  replaceSettings,
   scenario,
   scenarioOptions,
-  setProfileRequest,
   setProject,
   setScenario,
+  updateProfileRequest,
   ...p
 }) {
   // Manually control tabs in order to control when tab contents is rendered.
@@ -459,9 +475,9 @@ function RequestSettings({
                 currentLonLat={profileRequestLonLat}
                 isComparison={isComparison}
                 isDisabled={isDisabled}
-                onChange={(presets) => {
+                onChange={(preset) => {
                   if (isComparison) dispatch(setCopyRequestSettings(false))
-                  setProfileRequest({...presets})
+                  updateProfileRequest(preset)
                 }}
                 regionId={regionId}
               />
@@ -503,7 +519,7 @@ function RequestSettings({
                         disabled={isDisabled}
                         egressModes={profileRequest.egressModes}
                         transitModes={profileRequest.transitModes}
-                        update={setProfileRequest}
+                        update={updateProfileRequest}
                       />
 
                       <ProfileRequestEditor
@@ -512,7 +528,7 @@ function RequestSettings({
                         disabled={isDisabled}
                         profileRequest={profileRequest}
                         project={project}
-                        setProfileRequest={setProfileRequest}
+                        updateProfileRequest={updateProfileRequest}
                       />
 
                       <AdvancedSettings
@@ -520,7 +536,7 @@ function RequestSettings({
                         profileRequest={profileRequest}
                         regionalAnalyses={regionalAnalyses}
                         regionBounds={regionBounds}
-                        setProfileRequest={setProfileRequest}
+                        updateProfileRequest={updateProfileRequest}
                       />
                     </Stack>
                   )}
@@ -530,7 +546,7 @@ function RequestSettings({
                     <JSONEditor
                       isDisabled={isDisabled}
                       profileRequest={profileRequest}
-                      setProfileRequest={setProfileRequest}
+                      replaceSettings={replaceSettings}
                     />
                   )}
                 </TabPanel>
@@ -566,32 +582,27 @@ function RequestSettings({
   )
 }
 
-const isJSONInvalid = (jsonString) => {
+const isJSONValid = (jsonString) => {
   try {
     JSON.parse(jsonString)
   } catch (e) {
-    return true
+    return false
   }
-  return false
+  return true
 }
 
-function JSONEditor({isDisabled = false, profileRequest, setProfileRequest}) {
+function JSONEditor({isDisabled, profileRequest, replaceSettings}) {
   const [stringified, setStringified] = useState(
     JSON.stringify(profileRequest, null, '  ')
   )
   const [currentValue, setCurrentValue] = useState(stringified)
-  const [height, setHeight] = useState('200px')
+  const [height, setHeight] = useState('650px')
   const ref = useRef<HTMLTextAreaElement>()
-  const onChange = useCallback(
-    (e) => {
-      const jsonString = e.target.value
-      setCurrentValue(jsonString) // for validation
-      if (!isJSONInvalid(jsonString)) {
-        setProfileRequest(JSON.parse(jsonString))
-      }
-    },
-    [setCurrentValue, setProfileRequest]
-  )
+  const onBlur = useCallback(() => {
+    if (isJSONValid(currentValue)) {
+      replaceSettings(JSON.parse(currentValue))
+    }
+  }, [currentValue, replaceSettings])
 
   useEffect(() => {
     if (document.activeElement !== ref.current) {
@@ -606,21 +617,27 @@ function JSONEditor({isDisabled = false, profileRequest, setProfileRequest}) {
     }
   }, [ref, setHeight])
 
+  // Show a green border when there are unsaved changes
+  const focusBorderColor =
+    isJSONValid(currentValue) &&
+    isEqual(JSON.parse(currentValue), profileRequest)
+      ? 'blue.500'
+      : 'green.500'
+
   return (
-    <FormControl
-      isDisabled={isDisabled}
-      isInvalid={isJSONInvalid(currentValue)}
-    >
+    <FormControl isDisabled={isDisabled} isInvalid={!isJSONValid(currentValue)}>
       <FormLabel htmlFor='customProfileRequest'>
         {message('analysis.customizeProfileRequest.label')}
       </FormLabel>
       <Textarea
         defaultValue={stringified}
+        focusBorderColor={focusBorderColor}
         fontFamily='monospace'
         height={`${height}`}
         id='customProfileRequest'
         key={stringified}
-        onChange={onChange}
+        onChange={(e) => setCurrentValue(e.target.value)}
+        onBlur={onBlur}
         ref={ref}
         spellCheck={false}
       />
