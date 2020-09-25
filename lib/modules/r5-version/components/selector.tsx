@@ -1,6 +1,5 @@
-import {Alert, FormControl, FormLabel} from '@chakra-ui/core'
+import {Alert, Box, FormControl, FormLabel} from '@chakra-ui/core'
 import get from 'lodash/get'
-import React from 'react'
 import {useSelector} from 'react-redux'
 import Creatable from 'react-select/creatable'
 
@@ -84,6 +83,19 @@ export default function SelectR5Version({onChange, value, ...p}) {
       <FormLabel htmlFor='select-r5-version'>
         {message('r5Version.title')}
       </FormLabel>
+      <Box>
+        <Creatable
+          name='select-r5-version'
+          inputId='select-r5-version'
+          formatCreateLabel={_promptTextCreator}
+          isDisabled={p.isDisabled}
+          isValidNewOption={_isValidNewOption}
+          onChange={_selectVersion}
+          options={options}
+          styles={selectStyles}
+          value={options.find((v) => v.value === value)}
+        />
+      </Box>
       {currentVersionNumber < versionToNumber(RECOMMENDED_R5_VERSION) && (
         <Alert status='warning'>
           {message('r5Version.latestReleaseVersionNotSelected')}
@@ -95,18 +107,6 @@ export default function SelectR5Version({onChange, value, ...p}) {
           {message('r5Version.analysisVersionDifferent')}
         </Alert>
       )}
-
-      <Creatable
-        name='select-r5-version'
-        inputId='select-r5-version'
-        formatCreateLabel={_promptTextCreator}
-        isDisabled={p.isDisabled}
-        isValidNewOption={_isValidNewOption}
-        onChange={_selectVersion}
-        options={options}
-        styles={selectStyles}
-        value={options.find((v) => v.value === value)}
-      />
     </FormControl>
   )
 }
