@@ -4,18 +4,26 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
   // sets a value in the "Customize Profile Request" box
   let newConfig = {}
   cy.get(`@${scenario}`)
+    .findByRole('tab', {name: /Custom JSON editor/i})
+    .click()
+
+  cy.get(`@${scenario}`)
     .findByLabelText(/Customize Profile Request/i)
     .as('profile')
     .invoke('val')
     .then((currentConfig) => {
       newConfig = JSON.parse(currentConfig)
       newConfig[settingKey] = newValue
-      cy.get('@profile')
+
+      return cy
+        .get('@profile')
         .invoke('val', JSON.stringify(newConfig, null, 2))
         .type(' {backspace}')
-      // TODO this last .type() triggers some kind of event that updates
-      // the map. Ideally we would hit this directly with .trigger()
     })
+
+  cy.get(`@${scenario}`)
+    .findByRole('tab', {name: /Form editor/i})
+    .click()
 }
 
 function setOrigin(latLonArray) {
@@ -92,7 +100,9 @@ describe('Analysis', function () {
       cy.findByRole('slider', {name: 'Time cutoff'})
       cy.findByRole('slider', {name: /Travel time percentile/i})
       cy.get('@primary')
-        .findByRole('button', {name: 'Regional analysis'})
+        .findByRole('button', {
+          name: 'Fetch results with the current settings to enable button'
+        })
         .should('be.disabled')
       cy.get('@primary').contains('scratch project')
       cy.get('@primary').contains('Baseline')
@@ -110,7 +120,7 @@ describe('Analysis', function () {
       cy.get('@primary').findByLabelText(/Maximum transfers/i)
       cy.findByLabelText(/Routing engine/i)
       cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
-      cy.get('@primary').findByLabelText(/Customize Profile Request/i)
+      cy.get('@primary').findByRole('tab', {name: /Custom JSON editor/i})
       cy.findByText(/Fetch results/i).should('be.enabled')
       fetchResults()
       cy.findByLabelText('Opportunities within isochrone')

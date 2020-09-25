@@ -549,10 +549,10 @@ function RequestSettings({
               </TabPanels>
 
               <TabList mt={4}>
-                <Tab>
+                <Tab title='Form editor'>
                   <Icon icon={faMousePointer} />
                 </Tab>
-                <Tab>
+                <Tab title='Custom JSON editor'>
                   <Icon icon={faCode} />
                 </Tab>
               </TabList>
