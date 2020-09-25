@@ -104,7 +104,7 @@ function RegionItem({region, ...p}) {
 /**
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
- */
+ *
 export const getServerSideProps: GetServerSideProps = async ({req}) => {
   let user: IUser = null
   try {
@@ -128,3 +128,4 @@ export const getServerSideProps: GetServerSideProps = async ({req}) => {
     }
   }
 }
+*/
