@@ -6,7 +6,6 @@ import {
   Icon,
   Stack,
   Text,
-  Tooltip,
   useDisclosure
 } from '@chakra-ui/core'
 import {faCopy, faTrash, faEye} from '@fortawesome/free-solid-svg-icons'
@@ -25,6 +24,7 @@ import {ConfirmDialog} from './confirm-button'
 import Editable from './editable'
 import IconButton from './icon-button'
 import InnerDock from './inner-dock'
+import Tip from './tip'
 
 type VariantProps = {
   showVariant: (index: number) => void
@@ -65,14 +65,9 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
               <Text flex='1' fontWeight='bold'>
                 {message('variant.baseline')}
               </Text>
-              <Tooltip
-                aria-label='Baseline (empty scenario) cannot be modified'
-                hasArrow
-                label='Baseline (empty scenario) cannot be modified'
-                zIndex={1000}
-              >
+              <Tip label='Baseline (empty scenario) cannot be modified'>
                 <Icon name='lock' mr={1} />
-              </Tooltip>
+              </Tip>
             </Flex>
             {variants.map((name, index) => (
               <Box key={index}>

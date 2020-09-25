@@ -4,7 +4,6 @@ import {
   Flex,
   PseudoBox,
   Stack,
-  Tooltip,
   useDisclosure
 } from '@chakra-ui/core'
 import {
@@ -25,6 +24,7 @@ import {secondsToHhMmString} from 'lib/utils/time'
 import IconButton from '../icon-button'
 import Icon from '../icon'
 import {ALink} from '../link'
+import Tip from '../tip'
 
 import ModeSummary from './mode-summary'
 
@@ -130,12 +130,7 @@ export default function ProfileRequestDisplay({
             <tr>
               <TDTitle>Project</TDTitle>
               <TDValue>
-                <Tooltip
-                  aria-label={PROJECT_CHANGE_NOTE}
-                  hasArrow
-                  label={PROJECT_CHANGE_NOTE}
-                  zIndex={1000}
-                >
+                <Tip label={PROJECT_CHANGE_NOTE}>
                   <Box>
                     <ALink
                       to='project'
@@ -145,7 +140,7 @@ export default function ProfileRequestDisplay({
                       {project.name}
                     </ALink>
                   </Box>
-                </Tooltip>
+                </Tip>
               </TDValue>
             </tr>
           )}

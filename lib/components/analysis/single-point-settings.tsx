@@ -14,8 +14,7 @@ import {
   TabPanels,
   Tabs,
   Text,
-  Textarea,
-  Tooltip
+  Textarea
 } from '@chakra-ui/core'
 import {
   faChevronDown,
@@ -52,6 +51,7 @@ import ControlledSelect from '../controlled-select'
 import Icon from '../icon'
 import ModeIcon from '../mode-icon'
 import Presets from '../presets'
+import Tip from '../tip'
 
 import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
@@ -295,11 +295,7 @@ function RequestSummary({color, profileRequest, ...p}) {
       <Stack align='center' isInline spacing={1}>
         <ModeIcon mode={profileRequest.accessModes} />
         {transitModesStr.length > 0 && (
-          <Tooltip
-            hasArrow
-            aria-label={transitModes.join(', ')}
-            label={transitModes.join(', ')}
-          >
+          <Tip label={transitModes.join(', ')}>
             <Stack align='center' isInline spacing={1}>
               <Box color={`${color}.500`} fontSize='xs'>
                 <Icon icon={faChevronRight} />
@@ -317,7 +313,7 @@ function RequestSummary({color, profileRequest, ...p}) {
                 </Stack>
               )}
             </Stack>
-          </Tooltip>
+          </Tip>
         )}
       </Stack>
 

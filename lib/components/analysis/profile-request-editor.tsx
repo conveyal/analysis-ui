@@ -8,7 +8,6 @@ import {
   InputRightElement,
   Select,
   SimpleGrid,
-  Tooltip,
   Flex,
   Box,
   InputProps
@@ -20,8 +19,9 @@ import {forwardRef, useCallback} from 'react'
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 
-import TimePicker from '../time-picker'
 import DocsLink from '../docs-link'
+import TimePicker from '../time-picker'
+import Tip from '../tip'
 
 const TenPM = 22 * 60 * 60
 const bold = (b) => `<strong>${b}</strong>`
@@ -44,18 +44,6 @@ function bundleIsOutOfDate(bundle, dateString, project) {
     })
   }
 }
-
-const Tip = ({children, label}) => (
-  <Tooltip
-    aria-label={label}
-    hasArrow
-    label={label}
-    placement='bottom'
-    zIndex={1500}
-  >
-    {children}
-  </Tooltip>
-)
 
 const InputWithUnits: React.ComponentType<
   {units: string} & InputProps
@@ -289,7 +277,7 @@ export default function ProfileRequestEditor({
         isInvalid={walkSpeedInput.isInvalid}
       >
         <FormLabel htmlFor={walkSpeedInput.id}>Walk speed</FormLabel>
-        <Tip label='Range 3-15'>
+        <Tip label='Range 3-15' placement='bottom'>
           <InputWithUnits {...walkSpeedInput} type='number' units='km/h' />
         </Tip>
       </FormControl>
@@ -300,7 +288,10 @@ export default function ProfileRequestEditor({
         isInvalid={maxWalkTimeInput.isInvalid}
       >
         <FormLabel htmlFor={maxWalkTimeInput.id}>Max walk time</FormLabel>
-        <Tip label='Maximum of 60. Lower time limits apply to transfers and egress legs.'>
+        <Tip
+          label='Maximum of 60. Lower time limits apply to transfers and egress legs.'
+          placement='bottom'
+        >
           <InputWithUnits {...maxWalkTimeInput} units='minutes' />
         </Tip>
       </FormControl>
@@ -311,7 +302,7 @@ export default function ProfileRequestEditor({
         isInvalid={bikeSpeedInput.isInvalid}
       >
         <FormLabel htmlFor={bikeSpeedInput.id}>Bike speed</FormLabel>
-        <Tip label='Range 5-20'>
+        <Tip label='Range 5-20' placement='bottom'>
           <InputWithUnits {...bikeSpeedInput} type='number' units='km/h' />
         </Tip>
       </FormControl>
@@ -322,7 +313,10 @@ export default function ProfileRequestEditor({
         isInvalid={maxBikeTimeInput.isInvalid}
       >
         <FormLabel htmlFor={maxBikeTimeInput.id}>Max bike time</FormLabel>
-        <Tip label='Maximum of 60. Lower time limits apply to transfer and egress legs.'>
+        <Tip
+          label='Maximum of 60. Lower time limits apply to transfer and egress legs.'
+          placement='bottom'
+        >
           <InputWithUnits {...maxBikeTimeInput} units='minutes' />
         </Tip>
       </FormControl>
@@ -444,7 +438,7 @@ function DecayFunction({isDisabled, update, value}) {
         <FormLabel htmlFor={standardDeviationInput.id}>
           Standard Deviation
         </FormLabel>
-        <Tip label='Range 1-60'>
+        <Tip label='Range 1-60' placement='bottom'>
           <InputWithUnits {...standardDeviationInput} units='minutes' />
         </Tip>
       </FormControl>
@@ -455,7 +449,7 @@ function DecayFunction({isDisabled, update, value}) {
         isInvalid={decayConstantInput.isInvalid}
       >
         <FormLabel htmlFor={decayConstantInput.id}>Decay Constant</FormLabel>
-        <Tip label='Range 0 to -1'>
+        <Tip label='Range 0 to -1' placement='bottom'>
           <Input {...decayConstantInput} />
         </Tip>
       </FormControl>
@@ -466,7 +460,7 @@ function DecayFunction({isDisabled, update, value}) {
         isInvalid={decayWidthInput.isInvalid}
       >
         <FormLabel htmlFor={decayWidthInput.id}>Decay Width</FormLabel>
-        <Tip label='Range 1-60'>
+        <Tip label='Range 1-60' placement='bottom'>
           <InputWithUnits {...decayWidthInput} units='minutes' />
         </Tip>
       </FormControl>
