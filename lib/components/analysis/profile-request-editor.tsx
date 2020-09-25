@@ -373,7 +373,10 @@ const decayFunctionTypes = [
 ]
 
 function DecayFunction({isDisabled, update, value}) {
-  const onChangeType = useCallback((type) => update({...value, type}), [value])
+  const onChangeType = useCallback((type) => update({...value, type}), [
+    update,
+    value
+  ])
   const typeInput = useInput({
     value: value.type,
     onChange: onChangeType
@@ -381,7 +384,7 @@ function DecayFunction({isDisabled, update, value}) {
 
   const onChangeSD = useCallback(
     (sd) => update({...value, standardDeviationMinutes: sd}),
-    [value]
+    [update, value]
   )
   const standardDeviationInput = useInput({
     onChange: onChangeSD,
@@ -392,7 +395,7 @@ function DecayFunction({isDisabled, update, value}) {
 
   const onChangeDecay = useCallback(
     (dc) => update({...value, decayConstant: dc}),
-    [value]
+    [update, value]
   )
   const decayConstantInput = useInput({
     onChange: onChangeDecay,
@@ -403,7 +406,7 @@ function DecayFunction({isDisabled, update, value}) {
 
   const onChangeWidth = useCallback(
     (dw) => update({...value, decayWidth: dw}),
-    [value]
+    [update, value]
   )
   const decayWidthInput = useInput({
     onChange: onChangeWidth,
