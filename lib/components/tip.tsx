@@ -1,5 +1,7 @@
 import {Tooltip} from '@chakra-ui/core'
 
+const zIndex = 1500 // Chakra modals are set to 1400
+
 // Common Tooltip defaults used acrossed the application
 export default function Tip({children, label, ...p}) {
   return (
@@ -7,7 +9,7 @@ export default function Tip({children, label, ...p}) {
       aria-label={`Tooltip: ${label}`}
       hasArrow
       label={label}
-      zIndex={1500}
+      zIndex={zIndex}
       {...p}
     >
       {children}

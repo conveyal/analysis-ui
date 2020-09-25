@@ -17,8 +17,6 @@ type IconButtonProps = {
   variantColor?: ButtonProps['variantColor']
 } & BoxProps
 
-const zIndex = 1500 // Chakra Modals are set at 1400
-
 export default function IconButton({
   icon,
   isActive = false,
