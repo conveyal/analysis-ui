@@ -36,7 +36,6 @@ import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minute
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import Select from '../select'
-import Tip from '../tip'
 
 // For react-select options
 const getName = fpGet('name')
@@ -58,6 +57,8 @@ const createTestArray = (min, max) => (sorted) =>
 const testCutoffs = createTestArray(5, 120)
 const testPercentiles = createTestArray(1, 99)
 
+const disabledLabel = 'Fetch results with the current settings to enable'
+
 export default function CreateRegional({
   isDisabled,
   profileRequest,
@@ -67,17 +68,15 @@ export default function CreateRegional({
   const {isOpen, onOpen, onClose} = useDisclosure()
   return (
     <>
-      {isDisabled ? (
-        <Tip label='Fetch results to enable'>
-          <Button isDisabled={true} rightIcon='small-add' variantColor='green'>
-            Regional analysis
-          </Button>
-        </Tip>
-      ) : (
-        <Button onClick={onOpen} rightIcon='small-add' variantColor='green'>
-          Regional analysis
-        </Button>
-      )}
+      <Button
+        isDisabled={isDisabled}
+        onClick={onOpen}
+        rightIcon='small-add'
+        title={isDisabled ? disabledLabel : 'Start a regional analysis'}
+        variantColor='green'
+      >
+        Regional analysis
+      </Button>
       {isOpen && (
         <CreateModal
           onClose={onClose}
