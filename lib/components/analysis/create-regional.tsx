@@ -208,7 +208,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 Opportunity dataset
                 {workerVersionHandlesMultipleDimensions ? '(s)' : ''}
               </FormLabel>
-              <Box>
+              <div>
                 <Select
                   isClearable={false}
                   isDisabled={isCreating}
@@ -222,7 +222,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                     destinationPointSets.includes(o._id)
                   )}
                 />
-              </Box>
+              </div>
               {workerVersionHandlesMultipleDimensions && (
                 <FormHelperText>Select up to 6 datasets.</FormHelperText>
               )}

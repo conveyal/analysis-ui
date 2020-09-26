@@ -9,7 +9,6 @@ import {
   Select,
   SimpleGrid,
   Flex,
-  Box,
   InputProps
 } from '@chakra-ui/core'
 import get from 'lodash/get'
@@ -324,9 +323,9 @@ export default function ProfileRequestEditor({
       <FormControl display={displayIf(hasBike)} isDisabled={disabled}>
         <Flex justify='space-between'>
           <FormLabel htmlFor='bikeLts'>Max LTS</FormLabel>
-          <Box>
+          <div>
             <DocsLink to='learn-more/lts' />
-          </Box>
+          </div>
         </Flex>
         <Select
           id='bikeLts'
@@ -420,9 +419,9 @@ function DecayFunction({isDisabled, update, value}) {
       <FormControl isDisabled={isDisabled}>
         <Flex justify='space-between'>
           <FormLabel htmlFor={typeInput.id}>Decay Function</FormLabel>
-          <Box>
+          <div>
             <DocsLink to='learn-more/decay-functions' />
-          </Box>
+          </div>
         </Flex>
         <Select {...typeInput}>
           {decayFunctionTypes.map((t) => (

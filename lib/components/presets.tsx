@@ -179,7 +179,7 @@ export default memo<Props>(function PresetChooser({
           )}
         </Stack>
       </Flex>
-      <Box>
+      <div>
         {get(presets, 'length') > 0 ? (
           <Select
             name={id}
@@ -196,7 +196,7 @@ export default memo<Props>(function PresetChooser({
         ) : (
           <Alert status='info'>Save presets to be used later.</Alert>
         )}
-      </Box>
+      </div>
       {presetsCollection.error && (
         <FormErrorMessage>Error loading presets.</FormErrorMessage>
       )}

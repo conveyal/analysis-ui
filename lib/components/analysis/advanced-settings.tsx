@@ -145,7 +145,7 @@ function CustomBoundsSelector({
           </Button>
         )}
       </Flex>
-      <Box>
+      <div>
         <Select
           inputId='customBoundsSelect'
           isDisabled={isDisabled}
@@ -153,7 +153,7 @@ function CustomBoundsSelector({
           options={options}
           onChange={_setRegionalAnalysisBounds}
         />
-      </Box>
+      </div>
     </FormControl>
   )
 }

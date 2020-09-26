@@ -131,7 +131,7 @@ export default function ProfileRequestDisplay({
               <TDTitle>Project</TDTitle>
               <TDValue>
                 <Tip label={PROJECT_CHANGE_NOTE}>
-                  <Box>
+                  <div>
                     <ALink
                       to='project'
                       projectId={project._id}
@@ -139,7 +139,7 @@ export default function ProfileRequestDisplay({
                     >
                       {project.name}
                     </ALink>
-                  </Box>
+                  </div>
                 </Tip>
               </TDValue>
             </tr>

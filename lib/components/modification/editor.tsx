@@ -274,9 +274,9 @@ function ModificationEditor({
         </Box>
 
         <Flex>
-          <Box>
+          <div>
             <FitBoundsButton />
-          </Box>
+          </div>
           <IconButton
             label={message('modification.copyModification')}
             icon={faCopy}

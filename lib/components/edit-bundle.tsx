@@ -105,7 +105,7 @@ export default function EditBundle(p) {
     <Stack spacing={8}>
       <FormControl>
         <FormLabel htmlFor='selectBundle'>{message('bundle.select')}</FormLabel>
-        <Box>
+        <div>
           <Select
             inputId='selectBundle'
             options={bundles}
@@ -114,7 +114,7 @@ export default function EditBundle(p) {
             onChange={selectBundle}
             value={bundles.find((b) => b._id === bundleId)}
           />
-        </Box>
+        </div>
       </FormControl>
 
       {bundle && bundleId === router.query.bundleId && (

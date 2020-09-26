@@ -83,7 +83,7 @@ export default function SelectR5Version({onChange, value, ...p}) {
       <FormLabel htmlFor='select-r5-version'>
         {message('r5Version.title')}
       </FormLabel>
-      <Box>
+      <div>
         <Creatable
           name='select-r5-version'
           inputId='select-r5-version'
@@ -95,7 +95,7 @@ export default function SelectR5Version({onChange, value, ...p}) {
           styles={selectStyles}
           value={options.find((v) => v.value === value)}
         />
-      </Box>
+      </div>
       {currentVersionNumber < versionToNumber(RECOMMENDED_R5_VERSION) && (
         <Alert status='warning'>
           {message('r5Version.latestReleaseVersionNotSelected')}
