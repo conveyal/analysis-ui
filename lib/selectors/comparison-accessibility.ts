@@ -14,5 +14,20 @@ export default createSelector(
   selectMaxTripDurationMinutes,
   activeOpportunityDataset,
   selectTravelTimePercentile,
-  computeAccessibility
+  (travelTimeSurface, cutoff, opportunityDataset, percentile) => {
+    if (
+      travelTimeSurface == null ||
+      opportunityDataset == null ||
+      opportunityDataset.grid == null
+    ) {
+      return null
+    }
+
+    return computeAccessibility(
+      travelTimeSurface,
+      cutoff,
+      opportunityDataset.grid,
+      percentile
+    )
+  }
 )

@@ -9,18 +9,10 @@ import selectTravelTimePercentile from './travel-time-percentile'
 
 export function computeAccessibility(
   travelTimeSurface,
-  cutoff,
-  opportunityDataset,
-  percentile
-) {
-  if (
-    travelTimeSurface == null ||
-    opportunityDataset == null ||
-    opportunityDataset.grid == null
-  ) {
-    return null
-  }
-
+  cutoff: number,
+  grid,
+  percentile: number
+): number {
   // Corresponds to an index in the array of percentiles sent
   const DEPTH = selectNearestPercentileIndex(percentile)
 
@@ -28,12 +20,11 @@ export function computeAccessibility(
   if (Array.isArray(travelTimeSurface.accessibility)) {
     const destinationPointSetIndex = 0 // Only one destination point set is currently used.
     return travelTimeSurface.accessibility[destinationPointSetIndex][DEPTH][
-      cutoff
+      cutoff - 1 // cutoff's range is 1-120. Array index goes from 0-119
     ]
   }
 
   let accessibility = 0
-  const {grid} = opportunityDataset
   // y on outside, loop in order, hope the CPU figures this out and prefetches
   for (let y = 0; y < grid.height; y++) {
     const travelTimeY = y + grid.north - travelTimeSurface.north
@@ -41,7 +32,7 @@ export function computeAccessibility(
     for (let x = 0; x < grid.width; x++) {
       const travelTimeX = x + grid.west - travelTimeSurface.west
       if (travelTimeX < 0 || travelTimeX >= travelTimeSurface.width) continue
-      // less than is correct here, times are floored on the server when
+      // Less than (<) is correct here. Times are floored on the server when
       // converted from seconds to minutes, so a travel time of 59m59s will have
       // a value of 59, not 60.
       if (travelTimeSurface.get(travelTimeX, travelTimeY, DEPTH) < cutoff) {
@@ -58,5 +49,20 @@ export default createSelector(
   selectMaxTripDurationMinutes,
   activeOpportunityDataset,
   selectTravelTimePercentile,
-  computeAccessibility
+  (travelTimeSurface, cutoff, opportunityDataset, percentile) => {
+    if (
+      travelTimeSurface == null ||
+      opportunityDataset == null ||
+      opportunityDataset.grid == null
+    ) {
+      return null
+    }
+
+    return computeAccessibility(
+      travelTimeSurface,
+      cutoff,
+      opportunityDataset.grid,
+      percentile
+    )
+  }
 )
