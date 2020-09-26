@@ -17,9 +17,12 @@ type Handler = (
  * 2. Ensure the user is authenticated.
  */
 export default function withCollection(handler: Handler) {
-  return function apiHandler(req: NextApiRequest, res: NextApiResponse) {
+  return function apiHandler(
+    req: NextApiRequest,
+    res: NextApiResponse
+  ): Promise<void> {
     const auth0 = initAuth0(req)
-    auth0.requireAuthentication(
+    return auth0.requireAuthentication(
       async (req: NextApiRequest, res: NextApiResponse) => {
         try {
           const name = getQueryAsString(req.query.collection)
