@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   ButtonGroup,
   Flex,
@@ -14,8 +13,10 @@ import {
   faSubway,
   faTrain
 } from '@fortawesome/free-solid-svg-icons'
-import message from 'lib/message'
 import without from 'lodash/without'
+import {memo} from 'react'
+
+import message from 'lib/message'
 
 import ModeIcon from '../mode-icon'
 import Icon from '../icon'
@@ -63,16 +64,6 @@ export default function ModeSelector({
       Boolean
     )
 
-  const _selectAccessMode = (newMode) => () => {
-    // easiest to just overwrite both. Access mode is used in transit searches
-    // and direct mode in non-transit searches; overwriting only one of them
-    // however would require additional updates when toggling transit.
-    update({
-      accessModes: newMode,
-      directModes: newMode
-    })
-  }
-
   function selectEgressMode(newMode) {
     update({egressModes: newMode})
   }
@@ -100,57 +91,19 @@ export default function ModeSelector({
   }
 
   const transit = transitModes !== ''
-  const nonTransitMode = transit ? accessModes : directModes
-  const label = transit ? message('mode.access') : message('mode.direct')
 
   return (
     <Flex justify='space-between' {...p}>
-      <FormControl>
-        <FormLabel htmlFor='accessMode'>{label}</FormLabel>
-        <Box>
-          <ButtonGroup isAttached id='accessMode'>
-            <Button
-              isActive={nonTransitMode === WALK}
-              isDisabled={disabled}
-              onClick={_selectAccessMode(WALK)}
-              title={`${message('analysis.modes.walk')} ${label}`}
-              variantColor={color}
-            >
-              <ModeIcon mode='WALK' />
-            </Button>
-            <Button
-              isActive={nonTransitMode === BICYCLE}
-              isDisabled={disabled}
-              onClick={_selectAccessMode(BICYCLE)}
-              title={`${message('analysis.modes.bicycle')} ${label}`}
-              variantColor={color}
-            >
-              <ModeIcon mode={BICYCLE} />
-            </Button>
-            <Button
-              isActive={nonTransitMode === CAR}
-              isDisabled={disabled}
-              onClick={_selectAccessMode(CAR)}
-              title={`${message('analysis.modes.car')} ${label}`}
-              variantColor={color}
-            >
-              <ModeIcon mode={CAR} />
-            </Button>
-            <Button
-              isActive={nonTransitMode === CAR_PARK}
-              isDisabled={disabled || !transit}
-              onClick={_selectAccessMode(CAR_PARK)}
-              title={`${message('analysis.modes.carPark')} ${label}`}
-              variantColor={color}
-            >
-              <ModeIcon mode={CAR_PARK} />
-            </Button>
-          </ButtonGroup>
-        </Box>
-      </FormControl>
+      <AccessModeSelector
+        color={color}
+        hasTransit={transitModes !== ''}
+        isDisabled={disabled}
+        selectedMode={transit ? accessModes : directModes}
+        update={update}
+      />
       <FormControl>
         <FormLabel htmlFor='transitModes'>Transit modes</FormLabel>
-        <Box>
+        <div>
           <ButtonGroup isAttached id='transitModes'>
             <Button
               isActive={_hasAllTransit()}
@@ -234,13 +187,13 @@ export default function ModeSelector({
               <strong>F</strong>
             </Button>
           </ButtonGroup>
-        </Box>
+        </div>
       </FormControl>
       <FormControl>
         <FormLabel pr={0} htmlFor='egressMode'>
           Egress mode
         </FormLabel>
-        <Box>
+        <div>
           <ButtonGroup isAttached id='egressMode'>
             <Button
               isActive={transit && egressModes === WALK}
@@ -261,8 +214,82 @@ export default function ModeSelector({
               <Icon icon={faBicycle} />
             </Button>
           </ButtonGroup>
-        </Box>
+        </div>
       </FormControl>
     </Flex>
   )
 }
+
+type AccessModeSelectorProps = {
+  color: string
+  hasTransit: boolean
+  isDisabled: boolean
+  selectedMode: string
+  update: (newModes: {accessModes: string; directModes: string}) => void
+}
+
+const AccessModeSelector = memo<AccessModeSelectorProps>(
+  function AccessModeSelector({
+    color,
+    hasTransit,
+    isDisabled,
+    selectedMode,
+    update
+  }) {
+    const _selectAccessMode = (newMode: string) => () => {
+      // easiest to just overwrite both. Access mode is used in transit searches
+      // and direct mode in non-transit searches; overwriting only one of them
+      // however would require additional updates when toggling transit.
+      update({
+        accessModes: newMode,
+        directModes: newMode
+      })
+    }
+    const label = hasTransit ? message('mode.access') : message('mode.direct')
+    return (
+      <FormControl>
+        <FormLabel htmlFor='accessMode'>{label}</FormLabel>
+        <div>
+          <ButtonGroup isAttached id='accessMode'>
+            <Button
+              isActive={selectedMode === WALK}
+              isDisabled={isDisabled}
+              onClick={_selectAccessMode(WALK)}
+              title={`${message('analysis.modes.walk')} ${label}`}
+              variantColor={color}
+            >
+              <ModeIcon mode='WALK' />
+            </Button>
+            <Button
+              isActive={selectedMode === BICYCLE}
+              isDisabled={isDisabled}
+              onClick={_selectAccessMode(BICYCLE)}
+              title={`${message('analysis.modes.bicycle')} ${label}`}
+              variantColor={color}
+            >
+              <ModeIcon mode={BICYCLE} />
+            </Button>
+            <Button
+              isActive={selectedMode === CAR}
+              isDisabled={isDisabled}
+              onClick={_selectAccessMode(CAR)}
+              title={`${message('analysis.modes.car')} ${label}`}
+              variantColor={color}
+            >
+              <ModeIcon mode={CAR} />
+            </Button>
+            <Button
+              isActive={selectedMode === CAR_PARK}
+              isDisabled={isDisabled || !hasTransit}
+              onClick={_selectAccessMode(CAR_PARK)}
+              title={`${message('analysis.modes.carPark')} ${label}`}
+              variantColor={color}
+            >
+              <ModeIcon mode={CAR_PARK} />
+            </Button>
+          </ButtonGroup>
+        </div>
+      </FormControl>
+    )
+  }
+)
