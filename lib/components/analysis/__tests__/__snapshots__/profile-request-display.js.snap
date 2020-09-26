@@ -242,73 +242,62 @@ exports[`Component ProfileRequestDisplay snapshot(mount) 1`] = `
                             label="Notice: project may have changed since the analysis was run."
                             zIndex={1500}
                           >
-                            <Box
+                            <div
                               onBlur={[Function]}
                               onClick={[Function]}
                               onFocus={[Function]}
                               onMouseEnter={[Function]}
                               onMouseLeave={[Function]}
                             >
-                              <div
-                                className="css-0"
-                                onBlur={[Function]}
-                                onClick={[Function]}
-                                onFocus={[Function]}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
+                              <ALink
+                                projectId="1"
+                                regionId="1"
+                                to="project"
                               >
-                                <ALink
+                                <Link
                                   projectId="1"
                                   regionId="1"
                                   to="project"
                                 >
                                   <Link
-                                    projectId="1"
-                                    regionId="1"
-                                    to="project"
+                                    as="/regions/1/projects/1"
+                                    href={
+                                      Object {
+                                        "pathname": "/regions/[regionId]/projects/[projectId]",
+                                        "query": Object {},
+                                      }
+                                    }
+                                    passHref={true}
                                   >
-                                    <Link
-                                      as="/regions/1/projects/1"
-                                      href={
+                                    <PseudoBox
+                                      _hover={
                                         Object {
-                                          "pathname": "/regions/[regionId]/projects/[projectId]",
-                                          "query": Object {},
+                                          "color": "blue.700",
                                         }
                                       }
-                                      passHref={true}
+                                      as="a"
+                                      className=""
+                                      color="blue.500"
+                                      href="/regions/1/projects/1"
+                                      onClick={[Function]}
+                                      onMouseEnter={[Function]}
                                     >
-                                      <PseudoBox
-                                        _hover={
-                                          Object {
-                                            "color": "blue.700",
-                                          }
-                                        }
-                                        as="a"
-                                        className=""
-                                        color="blue.500"
+                                      <a
+                                        className=" css-1cnzmew"
                                         href="/regions/1/projects/1"
                                         onClick={[Function]}
                                         onMouseEnter={[Function]}
                                       >
-                                        <a
-                                          className=" css-1cnzmew"
-                                          href="/regions/1/projects/1"
-                                          onClick={[Function]}
-                                          onMouseEnter={[Function]}
-                                        >
-                                          Mock Project
-                                        </a>
-                                      </PseudoBox>
-                                    </Link>
+                                        Mock Project
+                                      </a>
+                                    </PseudoBox>
                                   </Link>
-                                </ALink>
-                              </div>
-                            </Box>
+                                </Link>
+                              </ALink>
+                            </div>
                             <ForwardRef
                               anchorEl={
-                                <div
-                                  class="css-0"
-                                >
+                                <div>
                                   <a
                                     class=" css-1cnzmew"
                                     href="/regions/1/projects/1"

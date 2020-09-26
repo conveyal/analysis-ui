@@ -1,4 +1,4 @@
-import {Alert, Box, FormControl, FormLabel} from '@chakra-ui/core'
+import {Alert, FormControl, FormLabel} from '@chakra-ui/core'
 import get from 'lodash/get'
 import {useSelector} from 'react-redux'
 import Creatable from 'react-select/creatable'

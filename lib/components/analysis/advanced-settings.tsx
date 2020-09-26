@@ -1,4 +1,4 @@
-import {Box, Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/core'
+import {Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
 import dynamic from 'next/dynamic'
 import {useState} from 'react'

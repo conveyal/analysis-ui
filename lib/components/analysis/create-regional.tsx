@@ -11,7 +11,6 @@ import {
   ModalFooter,
   ModalOverlay,
   useDisclosure,
-  Box,
   FormHelperText,
   Stack
 } from '@chakra-ui/core'
