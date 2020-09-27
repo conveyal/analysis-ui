@@ -1,5 +1,7 @@
 import {useEffect, useState} from 'react'
 
+import LogRocket from '../logrocket'
+
 function errorToString(e): string {
   const str = e.value || e.message || ''
   if (str === 'Failed to fetch')
@@ -27,7 +29,7 @@ export default function usePromise(
         if (mounted) setValue(v)
       })
       .catch((e) => {
-        console.error('Error in initial fetch', e)
+        LogRocket.captureException(e)
         if (mounted) setError(errorToString(e))
       })
       .finally(() => {
