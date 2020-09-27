@@ -4,6 +4,66 @@ import {timer} from 'lib/utils/metric'
 
 import {getUser} from '../user'
 
+type Action = {
+  type: string
+  payload?: any
+}
+type State = Record<string, unknown>
+
+type FetchSig = {
+  type: string
+  id?: number
+}
+
+type FetchOptions = {
+  body?: FormData | Record<string, unknown>
+  headers?: Record<string, string>
+  method?: 'get' | 'post' | 'put' | 'delete'
+}
+
+type FetchContents = {
+  options?: FetchOptions
+  url: string
+}
+
+type FetchPayload = FetchSig &
+  (
+    | FetchContents
+    | {
+        fetches: FetchContents[]
+      }
+  )
+
+interface FetchResponse extends Response {
+  value: unknown
+}
+
+type RetryFn = (response: unknown) => Promise<boolean>
+
+type RunFetchParams = {
+  retry?: false | RetryFn
+  signature: FetchSig
+  options?: FetchOptions
+  url: string
+}
+
+type NextFn = (
+  error: void | FetchResponse | FetchResponse[],
+  response?: FetchResponse | FetchResponse[]
+) => unknown
+
+type RunFetchActionParams = FetchSig & {
+  options?: FetchOptions
+  next?: NextFn
+  retry?: false | RetryFn
+  url: string
+}
+
+type RunFetchMultipleParams = FetchSig & {
+  next?: NextFn
+  fetches: FetchContents[]
+}
+
 // Main actions to be dispatched return promises and can be `await`ed
 export const fetchAction = (payload) => (dispatch, getState) =>
   runFetchAction(payload, dispatch, getState())
@@ -34,29 +94,31 @@ export const getID = () => ++FETCH_ID
 const GFT = '__FETCH__'
 
 // Active fetches, can still be aborted
-const activeFetches = {
-  [GFT]: []
-}
+const activeFetches: number[] = []
+const activeFetchTypes: Record<string, number> = {}
 
 // Remove a fetch from the active pool
-const removeFetch = (sig) => {
+const removeFetch = (sig: FetchSig) => {
   if (sig.type === GFT) {
-    activeFetches[GFT].splice(activeFetches[GFT].indexOf(sig.id), 1)
+    activeFetches.splice(activeFetches.indexOf(sig.id), 1)
   } else {
-    delete activeFetches[sig.type]
+    delete activeFetchTypes[sig.type]
   }
 }
 
 // Check if a fetch is still active
-export const fetchIsActive = (sig) => {
-  if (sig.type === GFT) return activeFetches[GFT].includes(sig.id)
-  if (activeFetches[sig.type] === undefined) return false
+export const fetchIsActive = (sig: FetchSig) => {
+  if (sig.type === GFT) return activeFetches.includes(sig.id)
+  if (activeFetchTypes[sig.type] === undefined) return false
   if (sig.id === undefined) return true
-  return activeFetches[sig.type] === sig.id
+  return activeFetchTypes[sig.type] === sig.id
 }
 
 // Simple action creator
-const createAction = (type) => (payload) => ({type, payload})
+const createAction = (type: string) => (payload: any): Action => ({
+  type,
+  payload
+})
 
 // Internally dispatched actions
 const abortedFetch = createAction(ABORTED_FETCH)
@@ -67,7 +129,7 @@ const fetchError = createAction(FETCH_ERROR)
  * Call decrement and dispatch "aborted" and "decrement" actions. If `id` is
  * not set, cancel all fetches for the given type.
  */
-export const abortFetch = (sig) => {
+export const abortFetch = (sig: FetchSig) => {
   if (fetchIsActive(sig)) {
     return [abortedFetch(sig), decrementFetches(sig)]
   } else {
@@ -76,44 +138,41 @@ export const abortFetch = (sig) => {
 }
 
 // Abort all active fetches
-export const abortAllFetches = () =>
-  Object.keys(activeFetches).reduce((aborts, fetchType) => {
-    if (fetchType === GFT) {
-      return [
-        ...aborts,
-        ...activeFetches[GFT].map((id) => abortFetch({type: GFT, id}))
-      ]
-    } else {
-      return [
-        ...aborts,
-        abortFetch({type: fetchType, id: activeFetches[fetchType]})
-      ]
-    }
-  }, [])
+export const abortAllFetches = () => {
+  const sigs = [
+    ...activeFetches.map((id) => ({type: GFT, id})),
+    ...Object.keys(activeFetchTypes).map((type) => ({
+      type,
+      id: activeFetchTypes[type]
+    }))
+  ]
+  return sigs
+    .filter((sig) => fetchIsActive(sig))
+    .reduce(
+      (actions, sig) => [...actions, abortedFetch(sig), decrementFetches(sig)],
+      []
+    )
+}
 
 /**
  * Send an increment action and add the fetch to the active list. This will also
  * abort a previous fetch of the same type if it exists.
  */
-export const incrementFetches = (payload) => {
-  const actions = [
+export const incrementFetches = (payload: FetchPayload) => {
+  const actions: Action[] = [
     {
       type: INCREMENT_FETCH,
       payload
     }
   ]
 
-  if (payload.type === GFT) activeFetches[GFT].push(payload.id)
+  if (payload.type === GFT) activeFetches.push(payload.id)
   else {
-    if (activeFetches[payload.type] !== undefined) {
-      actions.push(
-        abortFetch({
-          type: payload.type,
-          id: activeFetches[payload.type]
-        })
-      )
+    if (fetchIsActive(payload)) {
+      actions.push(abortedFetch(payload))
+      actions.push(decrementFetches(payload))
     }
-    activeFetches[payload.type] = payload.id
+    activeFetchTypes[payload.type] = payload.id
   }
 
   return actions
@@ -122,7 +181,7 @@ export const incrementFetches = (payload) => {
 /**
  * Send a decrement action and remove the fetch from the active list.
  */
-export const decrementFetches = (signature) => {
+export const decrementFetches = (signature: FetchSig) => {
   removeFetch(signature)
 
   return {
@@ -137,7 +196,10 @@ export const decrementFetches = (signature) => {
  *
  * @returns Promise
  */
-function runFetch({signature, options = {}, retry = false, url}, state) {
+function runFetch(
+  {signature, options = {}, retry = false, url}: RunFetchParams,
+  state
+): Promise<FetchResponse> {
   const headers = {
     ...createAuthorizationHeader(),
     ...createContentHeader(options.body),
@@ -175,9 +237,16 @@ function runFetch({signature, options = {}, retry = false, url}, state) {
  * @returns Promise
  */
 function runFetchAction(
-  {type = GFT, id = getID(), next, options = {}, retry = false, url},
+  {
+    type = GFT,
+    id = getID(),
+    next,
+    options = {},
+    retry = false,
+    url
+  }: RunFetchActionParams,
   dispatch,
-  state
+  state: State
 ) {
   // Start timer
   const fetchTimer = timer('fetch', {method: options.method || 'get', url})
@@ -185,7 +254,7 @@ function runFetchAction(
   // Fetch signature based on the `type` and `id`
   const signature = {type, id}
 
-  // If next does not exist or only takes a response, dispatch on error
+  // If next does not exist or only takes a response, dispatch and throw on error
   const dispatchFetchError = !next || next.length < 2
 
   // Increment fetches
@@ -195,26 +264,25 @@ function runFetchAction(
   return runFetch({signature, options, retry, url}, state)
     .then((response) => {
       fetchTimer.end()
-
       if (fetchIsActive(signature)) {
         dispatch(decrementFetches(signature))
         if (next) dispatch(wrapNext(next)(response))
-
         return response.value || response
       }
     })
     .catch((error) => {
       fetchTimer.end()
-
       return createErrorResponse(error).then((response) => {
         if (fetchIsActive(signature)) {
           dispatch(decrementFetches(signature))
-          if (next && next.length > 1) dispatch(next(error, response))
+          if (next && next.length > 1) dispatch(next(response))
         }
 
-        if (dispatchFetchError) dispatch(fetchError(response))
-        // Rethrow
-        else throw response
+        if (dispatchFetchError) {
+          dispatch(fetchError(response))
+          // Rethrow
+          throw response
+        }
       })
     })
 }
@@ -228,9 +296,9 @@ function runFetchMultiple(
     id = getID(), // One ID for all fetch IDs in a fetch multiple
     fetches,
     next
-  },
+  }: RunFetchMultipleParams,
   dispatch,
-  state
+  state: State
 ) {
   const signature = {type, id}
   const dispatchFetchError = !next || next.length < 2
@@ -244,9 +312,7 @@ function runFetchMultiple(
     .then((responses) => {
       if (fetchIsActive(signature)) {
         dispatch(decrementFetches(signature))
-
         if (next) dispatch(wrapNext(next)(responses))
-
         // Just return the values for Promise based execution
         return responses.map((r) => r.value || r)
       }
@@ -256,15 +322,17 @@ function runFetchMultiple(
         if (fetchIsActive(signature)) {
           dispatch(decrementFetches(signature))
           if (next && next.length > 1) dispatch(next(error, response))
-          if (dispatchFetchError) dispatch(fetchError(response))
-          // Rethrow
-          else throw response
+          if (dispatchFetchError) {
+            dispatch(fetchError(response))
+            // Rethrow
+            throw response
+          }
         }
       })
     )
 }
 
-function createAuthorizationHeader() {
+function createAuthorizationHeader(): Record<string, string> {
   const user = getUser()
   return user
     ? {
@@ -274,7 +342,7 @@ function createAuthorizationHeader() {
     : {}
 }
 
-function checkStatus(res) {
+function checkStatus(res: Response) {
   if (res.status >= 200 && res.status < 300) {
     return res
   } else {
@@ -283,7 +351,7 @@ function checkStatus(res) {
 }
 
 const isServer = typeof window === 'undefined'
-function createContentHeader(body) {
+function createContentHeader(body): Record<string, string> {
   if (!isServer && body instanceof window.FormData) {
     return {}
   } else if (isObject(body)) {
@@ -300,7 +368,7 @@ function createErrorResponse(res) {
   return res.headers ? createResponse(res) : Promise.resolve(res)
 }
 
-function createResponse(res) {
+function createResponse(res: FetchResponse): Promise<FetchResponse> {
   return deserialize(res)
     .then((value) => {
       res.value = value
@@ -312,7 +380,7 @@ function createResponse(res) {
     })
 }
 
-async function deserialize(res) {
+async function deserialize(res: Response) {
   const header = res.headers.get('Content-Type') || res.headers.get('Content')
   if (header.indexOf('json') > -1) return res.json()
   if (header.indexOf('octet-stream') > -1) return res.arrayBuffer()
@@ -332,8 +400,8 @@ function serialize(body) {
   }
 }
 
-function wrapNext(next) {
-  return function (response) {
+function wrapNext(next: NextFn) {
+  return function (response: FetchResponse | FetchResponse[]) {
     if (next.length > 1) {
       return next(null, response)
     } else {

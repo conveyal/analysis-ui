@@ -1,8 +1,9 @@
 import {Alert, AlertIcon, Box, Heading, PseudoBox, Stack} from '@chakra-ui/core'
 import {faServer} from '@fortawesome/free-solid-svg-icons'
+import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import ms from 'ms'
-import React from 'react'
+import {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
@@ -28,15 +29,17 @@ import withInitialFetch from 'lib/with-initial-fetch'
 const REFETCH_INTERVAL = ms('15s')
 
 const selectJobs = (s) => get(s, 'regionalAnalyses.activeJobs', [])
+const getId = fpGet('_id')
+const getName = fpGet('name')
 
 const RegionalPage = withInitialFetch(
-  (p) => {
+  function RegionalComponent(p: any) {
     const dispatch = useDispatch()
     const allAnalyses = useSelector(selectRegionalAnalyses)
     const activeAnalysis = useSelector(selectActiveAnalysis)
     const jobs = useSelector(selectJobs)
 
-    const onChange = React.useCallback(
+    const onChange = useCallback(
       (v) => dispatch(setSearchParameter('analysisId', v)),
       [dispatch]
     )
@@ -81,9 +84,9 @@ const RegionalPage = withInitialFetch(
               <Select
                 isClearable
                 key={`analysis-${input.value}`} // Dont show deleted analyses as selected
-                onChange={(v) => input.onChange(get(v, '_id'))}
-                getOptionLabel={(a) => a.name}
-                getOptionValue={(a) => a._id}
+                onChange={(v) => input.onChange(getId(v))}
+                getOptionLabel={getName}
+                getOptionValue={getId}
                 options={allAnalyses}
                 placeholder='View a regional analysis...'
                 value={allAnalyses.find((a) => a._id === input.value)}
@@ -108,23 +111,20 @@ const RegionalPage = withInitialFetch(
     )
   },
   async (dispatch, query) => {
-    const [
-      aggregationAreas,
-      regionalAnalyses,
-      opportunityDatasets,
-      regionProjectsBundles
-    ] = await Promise.all([
+    const results = await Promise.all([
       dispatch(loadAggregationAreas(query.regionId)),
       dispatch(loadAllAnalyses(query.regionId)),
       dispatch(loadOpportunityDatasets(query.regionId)),
       dispatch(loadRegion(query.regionId)),
       dispatch(loadActiveRegionalJobs(query.regionId))
     ])
+    const regionalAnalyses = results[1]
+    const regionProjectsBundles = results[3]
 
     return {
-      aggregationAreas,
+      aggregationAreas: results[0],
       analysis: regionalAnalyses.find((a) => a._id === query.analysisId),
-      opportunityDatasets,
+      opportunityDatasets: results[2],
       region: regionProjectsBundles.region,
       regionalAnalyses
     }

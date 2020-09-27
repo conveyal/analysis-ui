@@ -31,18 +31,18 @@ const ModificationsPage: any = withInitialFetch(
   async (dispatch, query) => {
     const {projectId, regionId} = query
     if (noProjectId(projectId)) {
-      const [region, bundles, projects] = await Promise.all([
-        dispatch(loadRegion(regionId)),
+      const results = await Promise.all([
         dispatch(loadBundles({regionId})),
-        dispatch(loadProjects({regionId}))
+        dispatch(loadProjects({regionId})),
+        dispatch(loadRegion(regionId))
       ])
-      return {bundles, projects, region}
+      return {bundles: results[0], projects: results[1], region: results[2]}
     } else {
-      const [project, modifications] = await Promise.all([
+      const results = await Promise.all([
         dispatch(loadProject(projectId)),
         dispatch(loadModifications(projectId))
       ])
-      return {project, modifications}
+      return {project: results[0], modifications: results[1]}
     }
   }
 )
