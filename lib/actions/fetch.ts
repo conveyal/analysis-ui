@@ -275,7 +275,7 @@ function runFetchAction(
       return createErrorResponse(error).then((response) => {
         if (fetchIsActive(signature)) {
           dispatch(decrementFetches(signature))
-          if (next && next.length > 1) dispatch(next(response))
+          if (next && next.length > 1) dispatch(next(error, response))
         }
 
         if (dispatchFetchError) {
