@@ -31,10 +31,7 @@ describe('Opportunity Datasets', function () {
       )
       cy.findByLabelText(/Latitude/).type(opportunity.latitudeField)
       cy.findByLabelText(/Longitude/).type(opportunity.longitudeField)
-      cy.get('a.btn')
-        .contains(/Upload/)
-        .should('not.be.disabled')
-        .click()
+      cy.findByRole('button', {name: /Upload/}).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
@@ -74,10 +71,7 @@ describe('Opportunity Datasets', function () {
         .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[2], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[3], encoding: 'base64'})
-      cy.get('a.btn')
-        .contains(/Upload/)
-        .should('not.be.disabled')
-        .click()
+      cy.findByRole('button', {name: /Upload/}).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
@@ -111,10 +105,7 @@ describe('Opportunity Datasets', function () {
         filePath: opportunity.file,
         encoding: 'base64'
       })
-      cy.get('a.btn')
-        .contains(/Upload/)
-        .should('not.be.disabled')
-        .click()
+      cy.findByRole('button', {name: /Upload/}).click()
       cy.navComplete()
 
       cy.location('pathname').should('match', /opportunities$/)

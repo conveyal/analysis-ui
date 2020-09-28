@@ -87,14 +87,12 @@ export default function UploadOpportunityDataset({regionId}) {
               </FormControl>
 
               <Stack className='DEV' spacing={4}>
-                {
-                  <Checkbox
-                    isChecked={freeform}
-                    onChange={(e) => setFreeForm(e.target.checked)}
-                  >
-                    {message('opportunityDatasets.freeform')}
-                  </Checkbox>
-                }
+                <Checkbox
+                  isChecked={freeform}
+                  onChange={(e) => setFreeForm(e.target.checked)}
+                >
+                  {message('opportunityDatasets.freeform')}
+                </Checkbox>
 
                 {freeform && (
                   <Stack spacing={4}>

@@ -47,7 +47,7 @@ export default function ImportModifications({projects, projectId, regionId}) {
         }}
         variantColor='green'
       >
-        <Icon icon={faUpload} /> {message('project.importAction')}
+        <Icon icon={faUpload} /> Import from Shapefile
       </ButtonLink>
       <Heading size='md'>{message('modification.importFromProject')}</Heading>
       <Box>{message('modification.importFromProjectInfo')}</Box>
@@ -67,7 +67,7 @@ export default function ImportModifications({projects, projectId, regionId}) {
         onClick={_copyFromProject}
         variantColor='green'
       >
-        {message('project.importAction')}
+        Import from existing project
       </Button>
     </Stack>
   )

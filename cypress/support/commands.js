@@ -118,9 +118,7 @@ function createNewOpportunities() {
       filePath: opportunity.file,
       encoding: 'base64'
     })
-    cy.get('a.btn')
-      .contains(/Upload/)
-      .click()
+    cy.findByRole('button', {name: /Upload a new opportunity dataset/}).click()
     cy.navComplete()
     // find the message showing this upload is complete
     cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
@@ -309,10 +307,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
 
   Cypress.log({name: 'Navigate to'})
   // click the menu item
-  cy.findByTitle(RegExp(title, 'i'), unlog)
-    .parent() // select actual SVG element rather than <title> el
-    .should('be.visible')
-    .click({force: true})
+  cy.findByRole('button', {name: RegExp(title, 'i')}).click()
   // Ensure the pathname has updated to the correct path
   cy.location('pathname').should('match', page.path)
   // check that page loads at least some content

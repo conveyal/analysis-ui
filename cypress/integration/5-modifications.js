@@ -318,7 +318,7 @@ describe('Modifications', function () {
       }).click()
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
-      cy.get('a.btn').get('svg[data-icon="upload"]').click()
+      cy.findByRole('button', {name: /Import from Shapefile/}).click()
       cy.location('pathname').should('match', /import-shapefile/g)
       cy.findByLabelText(/Select Shapefile/i).attachFile({
         filePath: this.region.importRoutes.shapefile,
