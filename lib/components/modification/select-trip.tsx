@@ -1,34 +1,33 @@
+import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
-import React from 'react'
+import {useMemo} from 'react'
 
 import {secondsToHhMmString} from 'lib/utils/time'
 
-import Select from '../select'
-import {Group as FormGroup} from '../input'
+import ControlledSelect from '../controlled-select'
 
-/** Select trips */
-export default function SelectTrip(p) {
-  const {feed, patternTrips, routes} = p
-  const trips = React.useMemo(() => getTrips(feed, patternTrips, routes), [
+const getTripId = fpGet('trip_id')
+
+/**
+ * Trip selector.
+ */
+export default function SelectTrip({feed, patternTrips, routes, ...p}) {
+  const trips = useMemo(() => getTrips(feed, patternTrips, routes), [
     feed,
     patternTrips,
     routes
   ])
 
   return (
-    <FormGroup>
-      <label htmlFor='Trip'>Select trip</label>
-      <Select
-        name='Trip'
-        inputId='Trip'
-        getOptionLabel={(t) => tripLabel(t)}
-        getOptionValue={(t) => t.trip_id}
-        onChange={(t) => p.onChange(t.trip_id)}
-        options={trips}
-        placeholder='Select Trip'
-        value={trips.find((t) => t.trip_id === p.trip)}
-      />
-    </FormGroup>
+    <ControlledSelect
+      {...p}
+      label='Select trip'
+      getOptionLabel={tripLabel}
+      getOptionValue={getTripId}
+      onChange={(t) => p.onChange(getTripId(t))}
+      options={trips}
+      value={trips.find((t) => t.trip_id === p.trip)}
+    />
   )
 }
 

@@ -1,4 +1,4 @@
-import {FormControl, FormLabel, Input, Stack} from '@chakra-ui/core'
+import {Box, FormControl, FormLabel, Input, Stack} from '@chakra-ui/core'
 import {faCalendar} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import {useCallback} from 'react'
@@ -85,11 +85,13 @@ export default function FrequencyEntry({
             />
           )}
 
-          <TimetableEntry
-            modificationStops={stopsInPatterns}
-            timetable={entry}
-            update={update}
-          />
+          <Box>
+            <TimetableEntry
+              modificationStops={stopsInPatterns}
+              timetable={entry}
+              update={update}
+            />
+          </Box>
 
           <ConfirmButton
             action='Delete frequency entry'
