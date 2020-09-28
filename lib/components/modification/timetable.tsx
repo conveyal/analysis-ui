@@ -29,12 +29,12 @@ export default function TimetableComponent({
   return (
     <Panel.Collapsible
       defaultExpanded={false}
-      heading={() => (
+      heading={
         <>
           <Icon icon={faCalendar} />
           <strong> {nameInput.value}</strong>
         </>
-      )}
+      }
     >
       <Panel.Body>
         <Stack spacing={4}>
@@ -62,13 +62,14 @@ export default function TimetableComponent({
           )}
 
           <ConfirmButton
-            action='Delete Timetable'
             description='Are you sure you would like to remove this timetable?'
             isFullWidth
             leftIcon='delete'
             onConfirm={remove}
             variantColor='red'
-          />
+          >
+            Delete Timetable
+          </ConfirmButton>
         </Stack>
       </Panel.Body>
     </Panel.Collapsible>

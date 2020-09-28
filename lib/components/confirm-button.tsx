@@ -6,22 +6,36 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
+  ButtonProps,
   useDisclosure
 } from '@chakra-ui/core'
 import {useRef, useState} from 'react'
 
-export default function ConfirmButton({action, description, onConfirm, ...p}) {
+type ConfirmButtonProps = ButtonProps & {
+  description: string
+  onConfirm: () => void
+}
+
+/**
+ * Button that opens a dialog for confirming the action taken by the button.
+ */
+export default function ConfirmButton({
+  children,
+  description,
+  onConfirm,
+  ...p
+}: ConfirmButtonProps) {
   const {isOpen, onOpen, onClose} = useDisclosure()
 
   return (
     <>
       <Button {...p} onClick={onOpen}>
-        {action}
+        {children}
       </Button>
 
       {isOpen && (
         <ConfirmDialog
-          action={action}
+          action={children}
           description={description}
           onClose={onClose}
           onConfirm={onConfirm}

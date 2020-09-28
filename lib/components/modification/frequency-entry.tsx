@@ -53,12 +53,12 @@ export default function FrequencyEntry({
 
   return (
     <Panel.Collapsible
-      heading={() => (
+      heading={
         <>
           <Icon icon={faCalendar} />
           <strong> {entry.name}</strong>
         </>
-      )}
+      }
     >
       <Panel.Body>
         <Stack spacing={4}>
@@ -94,13 +94,14 @@ export default function FrequencyEntry({
           </Box>
 
           <ConfirmButton
-            action='Delete frequency entry'
             description='Are you sure you would like to remove this frequency entry?'
             isFullWidth
             leftIcon='delete'
             onConfirm={remove}
             variantColor='red'
-          />
+          >
+            Delete frequency entry
+          </ConfirmButton>
         </Stack>
       </Panel.Body>
     </Panel.Collapsible>

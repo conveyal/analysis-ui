@@ -2,7 +2,7 @@ import {v4 as uuidv4} from 'uuid'
 
 import {secondsToHhMmString} from './time'
 
-export function create(segmentSpeeds = [], count) {
+export function create(segmentSpeeds = [], count = 0) {
   const timetable = {
     _id: uuidv4(),
     startTime: 7 * 3600,

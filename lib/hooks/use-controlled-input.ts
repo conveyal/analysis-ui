@@ -2,7 +2,7 @@ import get from 'lodash/get'
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {v4 as uuid} from 'uuid'
 
-const alwaysValid = (p = '', r = '') => true // eslint-disable-line
+const alwaysValid = (p: any, r?: any) => true // eslint-disable-line
 const identityFn = (v) => v
 
 // Is this the value itself or an event?

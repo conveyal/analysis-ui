@@ -1,14 +1,6 @@
-import {
-  faDownload,
-  faPencilAlt,
-  faTrash
-} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
+import {Button, Heading, Stack} from '@chakra-ui/core'
 import {useDispatch} from 'react-redux'
 
-import Icon from 'lib/components/icon'
-import {Button} from 'lib/components/buttons'
-import {Group} from 'lib/components/input'
 import message from 'lib/message'
 
 import {
@@ -19,7 +11,7 @@ import {
 } from '../actions'
 
 export default function EditOpportunityDatatset(p) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
 
   function _editName() {
     const newName = window.prompt(message('opportunityDatasets.enterName'))
@@ -45,70 +37,68 @@ export default function EditOpportunityDatatset(p) {
     }
   }
 
-  function _downloadTiff() {
-    dispatch(downloadOpportunityDataset(p.opportunityDataset, 'tiff')).then(
-      (value) => {
-        window.open(value.url)
-      }
+  async function _downloadTiff() {
+    const value = await dispatch(
+      downloadOpportunityDataset(p.opportunityDataset, 'tiff')
     )
+    window.open(value.url)
   }
 
-  function _downloadGrid() {
-    dispatch(downloadOpportunityDataset(p.opportunityDataset, 'grid')).then(
-      (value) => {
-        window.open(value.url)
-      }
+  async function _downloadGrid() {
+    const value = await dispatch(
+      downloadOpportunityDataset(p.opportunityDataset, 'grid')
     )
+    window.open(value.url)
   }
 
   return (
-    <>
-      <Group label={p.opportunityDataset.name}>
+    <Stack spacing={4}>
+      <Stack spacing={2}>
+        <Heading size='md'>{p.opportunityDataset.name}</Heading>
         <Button
-          block
+          leftIcon='edit'
           onClick={_editName}
-          style='warning'
+          variantColor='yellow'
           title={message('opportunityDatasets.editName')}
         >
-          <Icon icon={faPencilAlt} /> {message('opportunityDatasets.editName')}
+          {message('opportunityDatasets.editName')}
         </Button>
         <Button
-          block
+          leftIcon='delete'
           onClick={_deleteDataset}
-          style='danger'
+          variantColor='red'
           title={message('opportunityDatasets.delete')}
         >
-          <Icon icon={faTrash} /> {message('opportunityDatasets.delete')}
+          {message('opportunityDatasets.delete')}
         </Button>
         <Button
-          block
+          leftIcon='delete'
           onClick={_deleteSourceSet}
-          style='danger'
+          variantColor='red'
           title={message('opportunityDatasets.deleteSource')}
         >
-          <Icon icon={faTrash} /> {message('opportunityDatasets.deleteSource')}
+          {message('opportunityDatasets.deleteSource')}
         </Button>
-      </Group>
-      <Group label={message('analysis.gisExport')}>
+      </Stack>
+      <Stack spacing={2}>
+        <Heading size='md'>{message('analysis.gisExport')}</Heading>
         <Button
-          block
+          leftIcon='download'
           onClick={_downloadTiff}
-          style='success'
+          variantColor='green'
           title={message('opportunityDatasets.downloadTiff')}
         >
-          <Icon icon={faDownload} />{' '}
           {message('opportunityDatasets.downloadTiff')}
         </Button>
         <Button
-          block
+          leftIcon='download'
           onClick={_downloadGrid}
-          style='success'
+          variantColor='green'
           title={message('opportunityDatasets.downloadGrid')}
         >
-          <Icon icon={faDownload} />{' '}
           {message('opportunityDatasets.downloadGrid')}
         </Button>
-      </Group>
-    </>
+      </Stack>
+    </Stack>
   )
 }

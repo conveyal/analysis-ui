@@ -1,5 +1,6 @@
 import {
   FormControl,
+  FormControlProps,
   FormLabel,
   Input,
   InputGroup,
@@ -8,10 +9,19 @@ import {
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
 
-const defaultTest = (parsed) => parsed >= 1
-const defaultParse = (targetValue) => parseFloat(targetValue)
+const defaultTest = (parsed: number) => parsed >= 1
+const defaultParse = (targetValue: string) => parseFloat(targetValue)
 
 const noop = () => {}
+
+type NumberInputProps = FormControlProps & {
+  label?: string
+  onChange: (newValue: number) => void
+  parse?: (targetValue: string) => number
+  test?: (parsed: number) => boolean
+  units?: string
+  value: number
+}
 
 export default function NumberInput({
   isDisabled = false,
@@ -25,7 +35,7 @@ export default function NumberInput({
   units = '',
   value,
   ...p
-}) {
+}: NumberInputProps) {
   const input = useControlledInput({
     onChange,
     parse,

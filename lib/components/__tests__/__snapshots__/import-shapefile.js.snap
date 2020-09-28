@@ -1,88 +1,219 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > ImportShapefile 1`] = `
-<Connect(ImportShapefile)
+<ImportShapefile
   projectId="1"
   regionId="1"
   variants={Array []}
 >
-  <ImportShapefile
-    createModifications={[Function]}
-    projectId="1"
-    regionId="1"
-    variants={Array []}
+  <ForwardRef
+    p={4}
+    spacing={4}
   >
-    <Heading
-      mb={4}
-      size="md"
+    <Flex
+      direction="column"
+      p={4}
     >
       <Box
-        as="h2"
-        fontFamily="heading"
-        fontSize="xl"
-        fontWeight="bold"
-        lineHeight="shorter"
-        mb={4}
-      >
-        <h2
-          className="css-k9oqgk"
-        >
-          Route alignments from shapefile
-        </h2>
-      </Box>
-    </Heading>
-    <File
-      label="Select Shapefile (zipped):"
-      onChange={[Function]}
-    >
-      <Group
-        id="select-shapefile-zipped-input-0"
-        label="Select Shapefile (zipped):"
-        onChange={[Function]}
+        display="flex"
+        flexDirection="column"
+        p={4}
       >
         <div
-          className="form-group"
+          className="css-1n0jko5"
         >
-          <label
-            className="control-label"
-            htmlFor="select-shapefile-zipped-input-0"
+          <Heading
+            key=".0"
+            mb={4}
+            size="md"
           >
-            Select Shapefile (zipped):
-          </label>
-          <ForwardRef
-            id="select-shapefile-zipped-input-0"
-            label="Select Shapefile (zipped):"
-            onChange={[Function]}
-            type="file"
+            <Box
+              as="h2"
+              fontFamily="heading"
+              fontSize="xl"
+              fontWeight="bold"
+              lineHeight="shorter"
+              mb={4}
+            >
+              <h2
+                className="css-k9oqgk"
+              >
+                Route alignments from shapefile
+              </h2>
+            </Box>
+          </Heading>
+          <FormControl
+            key=".1"
+            mb={4}
           >
-            <input
-              className="form-control"
-              id="select-shapefile-zipped-input-0"
-              label="Select Shapefile (zipped):"
-              onChange={[Function]}
-              placeholder="Select Shapefile (zipped):"
-              type="file"
-            />
-          </ForwardRef>
+            <Box
+              mb={4}
+              role="group"
+            >
+              <div
+                className="css-acwcvw"
+                role="group"
+              >
+                <FormLabel>
+                  <Box
+                    as="label"
+                    display="inline-block"
+                    fontSize="md"
+                    fontWeight="medium"
+                    opacity="1"
+                    pb="4px"
+                    pr="12px"
+                    textAlign="left"
+                    verticalAlign="middle"
+                  >
+                    <label
+                      className="css-176s5fq"
+                    >
+                      Select Shapefile (zipped):
+                    </label>
+                  </Box>
+                </FormLabel>
+                <Input
+                  as="input"
+                  errorBorderColor="red.500"
+                  focusBorderColor="blue.500"
+                  isFullWidth={true}
+                  onChange={[Function]}
+                  size="md"
+                  type="file"
+                  variant="outline"
+                >
+                  <PseudoBox
+                    _disabled={
+                      Object {
+                        "cursor": "not-allowed",
+                        "opacity": "0.4",
+                      }
+                    }
+                    _focus={
+                      Object {
+                        "borderColor": "#3182ce",
+                        "boxShadow": "0 0 0 1px #3182ce",
+                        "zIndex": 1,
+                      }
+                    }
+                    _hover={
+                      Object {
+                        "borderColor": "gray.300",
+                      }
+                    }
+                    _invalid={
+                      Object {
+                        "borderColor": "#e53e3e",
+                        "boxShadow": "0 0 0 1px #e53e3e",
+                      }
+                    }
+                    _readOnly={
+                      Object {
+                        "bg": "transparent",
+                        "boxShadow": "none !important",
+                        "userSelect": "all",
+                      }
+                    }
+                    alignItems="center"
+                    appearance="none"
+                    as="input"
+                    bg="white"
+                    border="1px"
+                    borderColor="inherit"
+                    display="flex"
+                    fontSize="md"
+                    height={10}
+                    onChange={[Function]}
+                    outline="none"
+                    position="relative"
+                    px={4}
+                    rounded="md"
+                    transition="all 0.2s"
+                    type="file"
+                    width="100%"
+                  >
+                    <input
+                      className="css-1ga4kqw"
+                      onChange={[Function]}
+                      type="file"
+                    />
+                  </PseudoBox>
+                </Input>
+              </div>
+            </Box>
+          </FormControl>
+          <Button
+            isDisabled={true}
+            isLoading={false}
+            key=".4"
+            mb={null}
+            onClick={[Function]}
+            variantColor="green"
+          >
+            <PseudoBox
+              _active={
+                Object {
+                  "bg": "green.700",
+                }
+              }
+              _disabled={
+                Object {
+                  "boxShadow": "none",
+                  "cursor": "not-allowed",
+                  "opacity": "40%",
+                }
+              }
+              _focus={
+                Object {
+                  "boxShadow": "outline",
+                }
+              }
+              _hover={
+                Object {
+                  "bg": "green.600",
+                }
+              }
+              alignItems="center"
+              appearance="none"
+              aria-disabled={true}
+              as="button"
+              bg="green.500"
+              borderRadius="md"
+              color="white"
+              disabled={true}
+              display="inline-flex"
+              fontSize="md"
+              fontWeight="semibold"
+              height={10}
+              justifyContent="center"
+              lineHeight="1.2"
+              mb={null}
+              minWidth={10}
+              onClick={[Function]}
+              outline="none"
+              position="relative"
+              px={4}
+              transition="all 250ms"
+              type="button"
+              userSelect="none"
+              verticalAlign="middle"
+              whiteSpace="nowrap"
+            >
+              <button
+                aria-disabled={true}
+                className="css-6cthfa"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                Import
+              </button>
+            </PseudoBox>
+          </Button>
         </div>
-      </Group>
-    </File>
-    <Button
-      block={true}
-      disabled={true}
-      onClick={[Function]}
-      style="success"
-    >
-      <a
-        className="btn btn-success btn-block"
-        disabled={true}
-        href="#"
-        onClick={[Function]}
-        tabIndex={0}
-      >
-        Import
-      </a>
-    </Button>
-  </ImportShapefile>
-</Connect(ImportShapefile)>
+      </Box>
+    </Flex>
+  </ForwardRef>
+</ImportShapefile>
 `;

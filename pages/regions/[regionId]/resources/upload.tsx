@@ -4,17 +4,20 @@ import {
   AlertIcon,
   Box,
   Button,
+  FormControl,
+  FormLabel,
   Heading,
+  Input,
+  Select,
   Stack
 } from '@chakra-ui/core'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
+import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 
 import {createResource} from 'lib/actions/resources'
 import A from 'lib/components/a'
 import Icon from 'lib/components/icon'
-import {File, Select, Text} from 'lib/components/input'
 import InnerDock from 'lib/components/inner-dock'
 import Link from 'lib/components/link'
 import MapLayout from 'lib/layouts/map'
@@ -25,52 +28,48 @@ const EXTS = ['.geojson', '.json'] // later: csv, pbf, zip
 const TYPES = ['Lines', 'Points', 'Polygons']
 
 export default function UploadResource(p) {
-  const dispatch = useDispatch()
-  const [status, setStatus] = React.useState()
-  const [error, setError] = React.useState()
-  const [file, setFile] = React.useState()
-  const [name, setName] = React.useState('')
-  const [uploading, setUploading] = React.useState(false)
-  const [type, setType] = React.useState(TYPES[0])
+  const dispatch = useDispatch<any>()
+  const [status, setStatus] = useState<void | JSX.Element>()
+  const [error, setError] = useState<void | string>()
+  const [file, setFile] = useState()
+  const [name, setName] = useState('')
+  const [uploading, setUploading] = useState(false)
+  const [type, setType] = useState(TYPES[0])
 
-  function upload() {
+  async function upload() {
     setStatus(msg('resources.uploading'))
     setUploading(true)
-    dispatch(
-      createResource({
-        name,
-        file,
-        regionId: p.query.regionId,
-        type
-      })
-    )
-      .then((resource) => {
-        setError()
-        setFile()
-        setName('')
-        const {as} = routeTo('resourceEdit', {
-          regionId: resource.regionId,
-          resourceId: resource._id
+    try {
+      const resource = await dispatch(
+        createResource({
+          name,
+          file,
+          regionId: p.query.regionId,
+          type
         })
-        setStatus(
-          <span>
-            Finished uploading! <A href={as}>View resource.</A>
-          </span>
-        )
+      )
+      setError()
+      setName('')
+      const {as} = routeTo('resourceEdit', {
+        regionId: resource.regionId,
+        resourceId: resource._id
       })
-      .catch((e) => {
-        console.error(e)
-        setStatus()
-        setError(e.message)
-      })
-      .finally(() => {
-        setUploading(false)
-      })
+      setStatus(
+        <span>
+          Finished uploading! <A href={as}>View resource.</A>
+        </span>
+      )
+    } catch (e) {
+      console.error(e)
+      setStatus()
+      setError(e.message)
+      setUploading(false)
+    }
   }
 
   return (
-    <InnerDock className='block'>
-      <Stack spacing={4}>
+    <InnerDock>
+      <Stack p={4} spacing={4}>
         <Heading size='md'>
           <Link to='resources' {...p.query}>
             <A>
@@ -92,32 +91,34 @@ export default function UploadResource(p) {
             <AlertDescription>{status}</AlertDescription>
           </Alert>
         )}
-        <Box>
-          <Text
-            label='Name'
+        <FormControl>
+          <FormLabel>Name</FormLabel>
+          <Input
             onChange={(e) => setName(e.currentTarget.value)}
             value={name}
           />
-          <File
+        </FormControl>
+        <FormControl>
+          <FormLabel>Select file</FormLabel>
+          <Input
             accept={EXTS.join(',')}
-            label='Select file'
             onChange={(e) => setFile(e.target.files[0])}
+            type='file'
           />
-          <Select
-            label='Type'
-            onChange={(e) => setType(e.currentTarget.value)}
-            value={type}
-          >
+        </FormControl>
+        <FormControl>
+          <FormLabel>Type</FormLabel>
+          <Select onChange={(e) => setType(e.currentTarget.value)} value={type}>
             {TYPES.map((t) => (
               <option key={t} value={t}>
                 {t}
               </option>
             ))}
           </Select>
-        </Box>
+        </FormControl>
         <Button
-          block
-          disabled={uploading || !file || !name}
+          isDisabled={uploading || !file || !name}
+          isLoading={uploading}
           onClick={upload}
           variantColor='green'
         >
