@@ -125,6 +125,7 @@ export default function Sidebar() {
       bg='#ddd'
       direction='column'
       height='100vh'
+      id='sidebar'
       justify='space-between'
       width='40px'
     >

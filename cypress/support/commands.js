@@ -113,7 +113,7 @@ function createNewOpportunities() {
     let oppName = `${prefix}default_opportunities`
     cy.navTo('Opportunity Datasets')
     cy.findByText(/Upload a new dataset/i).click()
-    cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+    cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
     cy.findByLabelText(/Select opportunity dataset/).attachFile({
       filePath: opportunity.file,
       encoding: 'base64'
@@ -307,7 +307,9 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
 
   Cypress.log({name: 'Navigate to'})
   // click the menu item
-  cy.findByRole('button', {name: RegExp(title, 'i')}).click()
+  cy.get('#sidebar')
+    .findByRole('button', {name: RegExp(title, 'i')})
+    .click()
   // Ensure the pathname has updated to the correct path
   cy.location('pathname').should('match', page.path)
   // check that page loads at least some content

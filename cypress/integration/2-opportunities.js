@@ -25,7 +25,7 @@ describe('Opportunity Datasets', function () {
       let expectedFieldCount = 1 + opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
-      cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
         opportunity.file
       )
@@ -65,7 +65,7 @@ describe('Opportunity Datasets', function () {
       let expectedFieldCount = opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
-      cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/Select opportunity dataset/)
         .attachFile({filePath: opportunity.files[0], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
@@ -100,7 +100,7 @@ describe('Opportunity Datasets', function () {
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
-      cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/Select opportunity dataset/).attachFile({
         filePath: opportunity.file,
         encoding: 'base64'
