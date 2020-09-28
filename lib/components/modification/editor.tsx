@@ -237,8 +237,6 @@ function ModificationEditor({
 
   if (isDeleting) return null
 
-  const disableAndDim = `block ${saveInProgress ? 'disableAndDim' : ''}`
-
   return (
     <>
       <AllModificationsMapDisplay isEditing={true} />
@@ -290,7 +288,7 @@ function ModificationEditor({
           />
         </Flex>
       </Flex>
-      <InnerDock className={disableAndDim}>
+      <InnerDock className={saveInProgress ? 'disableAndDim' : ''}>
         {feedIsLoaded ? (
           modification ? (
             <Tabs align='end' variant='soft-rounded'>
