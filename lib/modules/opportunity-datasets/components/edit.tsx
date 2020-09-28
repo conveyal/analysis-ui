@@ -15,7 +15,7 @@ export default function EditOpportunityDatatset(p) {
 
   function _editName() {
     const newName = window.prompt(message('opportunityDatasets.enterName'))
-    if (newName !== p.opportunityDataset.name) {
+    if (newName && newName !== p.opportunityDataset.name) {
       dispatch(
         editOpportunityDataset({
           ...p.opportunityDataset,
