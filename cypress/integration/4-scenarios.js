@@ -21,6 +21,9 @@ describe('Scenarios', function () {
             name: 'Confirm: Delete this scenario'
           }).click()
           cy.findByRole('alertdialog').should('not.exist')
+        } else {
+          // Ensure the remaining scenario is named Default
+          cy.wrap(group).parent().parent().click().type('Default{enter}')
         }
       })
   })
