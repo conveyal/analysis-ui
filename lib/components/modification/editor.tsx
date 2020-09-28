@@ -291,7 +291,7 @@ function ModificationEditor({
       <InnerDock className={saveInProgress ? 'disableAndDim' : ''}>
         {feedIsLoaded ? (
           modification ? (
-            <Tabs align='end' variant='soft-rounded'>
+            <Tabs align='end' p={4} variant='soft-rounded'>
               <TabPanels>
                 <TabPanel>
                   <Stack spacing={4}>
