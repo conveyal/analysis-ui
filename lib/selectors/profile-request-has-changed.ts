@@ -53,11 +53,13 @@ export default createSelector(
         get(requestsSettings, '[1].projectId')) &&
       hasChanged(
         {
-          ...(copyRequestSettings ? requestsSettings[0] : requestsSettings[1]), // if copying
+          ...(copyRequestSettings
+            ? requestsSettings[0]
+            : get(requestsSettings, '[1]', {})), // if copying
           fromLat: lonlat.lat,
           fromLon: lonlat.lon,
-          projectId: requestsSettings[1].projectId,
-          variantIndex: requestsSettings[1].variantIndex
+          projectId: get(requestsSettings, '[1].projectId'),
+          variantIndex: get(requestsSettings, '[1].variantIndex')
         },
         resultsSettings[1]
       )
