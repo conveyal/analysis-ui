@@ -1,5 +1,6 @@
 import {
   Alert,
+  AlertDescription,
   AlertIcon,
   Button,
   Checkbox,
@@ -11,12 +12,13 @@ import {
   Stack
 } from '@chakra-ui/core'
 import distance from '@turf/distance'
-import {lineString, point} from '@turf/helpers'
+import get from 'lodash/get'
 import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import shp from 'shpjs'
 
 import {createMultiple as createModifications} from 'lib/actions/modifications'
+import useInput from 'lib/hooks/use-controlled-input'
 import useRouteTo from 'lib/hooks/use-route-to'
 import logrocket from 'lib/logrocket'
 import message from 'lib/message'
@@ -26,6 +28,28 @@ import {create as createTimetable} from 'lib/utils/timetable'
 import NumberInput from './number-input'
 
 const hasOwnProperty = (o, p) => Object.prototype.hasOwnProperty.call(o, p)
+
+/**
+ * Make LineStrings look like MultiLineStrings.
+ */
+function getCoordinatesFromFeature(
+  feature: GeoJSON.Feature
+): GeoJSON.Position[][] {
+  if (feature.geometry.type === 'LineString') {
+    return [(feature.geometry as GeoJSON.LineString).coordinates]
+  } else if (feature.geometry.type === 'MultiLineString') {
+    const coords = (feature.geometry as GeoJSON.MultiLineString).coordinates
+    for (let i = 1; i < coords.length; i++) {
+      // Ensure MultiLineStrings line up at the ends.
+      if (distance(coords[i - 1].slice(-1)[0], coords[i][0]) > 0.05) {
+        throw new Error(message('shapefile.invalidMultiLineString'))
+      }
+    }
+    return coords
+  } else {
+    throw new Error(message('shapefile.invalidShapefileType'))
+  }
+}
 
 /**
  * Import a shapefile. This more or less does what geom2gtfs used to.
@@ -39,9 +63,9 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   const [stopSpacingMeters, setStopSpacingMeters] = useState(400)
   const [bidirectional, setBidirectional] = useState(true)
   const [autoCreateStops, setAutoCreateStops] = useState(true)
-  const [nameProp, setNameProp] = useState('')
-  const [freqProp, setFreqProp] = useState('')
-  const [speedProp, setSpeedProp] = useState('')
+  const nameInput = useInput({value: ''})
+  const freqInput = useInput({value: ''})
+  const speedInput = useInput({value: ''})
   const [error, setError] = useState<void | string>()
   const [properties, setProperties] = useState<string[]>([])
   const [uploading, setUploading] = useState(false)
@@ -52,7 +76,6 @@ export default function ImportShapefile({projectId, regionId, variants}) {
   })
 
   async function readShapeFile(e) {
-    console.log(`read ${e.target.result.byteLength} bytes`)
     const shapefiles = await shp.parseZip(e.target.result)
     const properties = []
 
@@ -71,17 +94,20 @@ export default function ImportShapefile({projectId, regionId, variants}) {
 
     setShapefile(shapefile)
     setProperties(properties)
-    setNameProp(properties[0])
-    setFreqProp(properties[0])
-    setSpeedProp(properties[0])
+    nameInput.onChange(properties[0])
+    freqInput.onChange(properties[0])
+    speedInput.onChange(properties[0])
     setError()
   }
 
   function selectShapeFile(e) {
     // read the shapefile
-    const reader = new window.FileReader()
-    reader.onloadend = readShapeFile
-    reader.readAsArrayBuffer(e.target.files[0])
+    const file = get(e.target, 'files[0]')
+    if (file) {
+      const reader = new window.FileReader()
+      reader.onloadend = readShapeFile
+      reader.readAsArrayBuffer(e.target.files[0])
+    }
   }
 
   /** create and save modifications for each line */
@@ -92,37 +118,15 @@ export default function ImportShapefile({projectId, regionId, variants}) {
       if (shapefile) {
         const mods = shapefile.features.map((feat) => {
           const segments = []
+          const coords: GeoJSON.Position[][] = getCoordinatesFromFeature(feat)
 
-          // We make each segment in the input geometry a segment in the output.
-          // Otherwise adding a stop in the middle would replace all of the
-          // surrounding geometry.
-          if (feat.geometry.type !== 'MultiLineString') {
-            throw new Error(message('shapefile.invalidShapefileType'))
-          }
-          const {coordinates} = feat.geometry as GeoJSON.MultiLineString
-
-          // flatten the coordinates
-          const flat = []
-
-          for (let i = 0; i < coordinates.length; i++) {
-            if (i > 0) {
-              // make sure they line up at the ends
-              if (
-                distance(
-                  point(coordinates[i - 1].slice(-1)[0]),
-                  point(coordinates[i][0])
-                ) > 0.05
-              ) {
-                throw new Error(message('shapefile.invalidMultiLineString'))
-              }
-
-              coordinates[i].forEach((c) => flat.push(c))
-            }
-          }
-
-          for (let i = 1; i < coordinates.length; i++) {
+          // Make a segment from each LineString.
+          for (let i = 0; i < coords.length; i++) {
             segments.push({
-              geometry: lineString([flat[i - 1], flat[i]]).geometry,
+              geometry: {
+                type: 'LineString',
+                coordinates: coords[i]
+              },
               spacing: autoCreateStops ? stopSpacingMeters : 0,
               stopAtStart: false,
               stopAtEnd: false,
@@ -137,15 +141,15 @@ export default function ImportShapefile({projectId, regionId, variants}) {
           }
 
           const mod = createAddTripPattern({
-            name: feat.properties[nameProp],
+            name: feat.properties[nameInput.value] || 'Add Trip Pattern',
             projectId,
             variants: variantsFlags
           })
 
           const timetable = createTimetable(
-            segments.map(() => feat.properties[speedProp])
+            segments.map(() => feat.properties[speedInput.value])
           )
-          timetable.headwaySecs = feat.properties[freqProp] * 60
+          timetable.headwaySecs = feat.properties[freqInput.value] * 60
 
           mod.bidirectional = bidirectional
           mod.segments = segments
@@ -172,26 +176,26 @@ export default function ImportShapefile({projectId, regionId, variants}) {
       <Heading size='md'>{message('modification.importFromShapefile')}</Heading>
 
       <FormControl>
-        <FormLabel>{message('shapefile.selectZipped')}</FormLabel>
-        <Input onChange={selectShapeFile} type='file' />
+        <FormLabel htmlFor='fileInput'>
+          {message('shapefile.selectZipped')}
+        </FormLabel>
+        <Input id='fileInput' onChange={selectShapeFile} type='file' />
       </FormControl>
 
       {error && (
         <Alert status='error'>
-          <AlertIcon /> {error}
+          <AlertIcon />
+          <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
       {properties && shapefile && (
         <Stack spacing={4}>
           <FormControl>
-            <FormLabel>Name property</FormLabel>
-            <Select
-              onChange={(e) => setNameProp(e.target.value)}
-              value={nameProp}
-            >
+            <FormLabel htmlFor={nameInput.id}>Name property</FormLabel>
+            <Select {...nameInput}>
               {properties.map((p) => (
-                <option key={`name-property-${p}`} value={p}>
+                <option key={p} value={p}>
                   {p}
                 </option>
               ))}
@@ -199,13 +203,10 @@ export default function ImportShapefile({projectId, regionId, variants}) {
           </FormControl>
 
           <FormControl>
-            <FormLabel>Frequency property</FormLabel>
-            <Select
-              onChange={(e) => setFreqProp(e.target.value)}
-              value={freqProp}
-            >
+            <FormLabel htmlFor={freqInput.id}>Frequency property</FormLabel>
+            <Select {...freqInput}>
               {properties.map((p) => (
-                <option key={`frequency-property-${p}`} value={p}>
+                <option key={p} value={p}>
                   {p}
                 </option>
               ))}
@@ -213,13 +214,10 @@ export default function ImportShapefile({projectId, regionId, variants}) {
           </FormControl>
 
           <FormControl>
-            <FormLabel>Speed property</FormLabel>
-            <Select
-              onChange={(e) => setSpeedProp(e.target.value)}
-              value={speedProp}
-            >
+            <FormLabel htmlFor={speedInput.id}>Speed property</FormLabel>
+            <Select {...speedInput}>
               {properties.map((p) => (
-                <option key={`speed-property-${p}`} value={p}>
+                <option key={p} value={p}>
                   {p}
                 </option>
               ))}
@@ -245,7 +243,7 @@ export default function ImportShapefile({projectId, regionId, variants}) {
           {autoCreateStops && (
             <NumberInput
               label='Stop spacing (meters)'
-              onChange={(v) => setStopSpacingMeters(v)}
+              onChange={setStopSpacingMeters}
               value={stopSpacingMeters}
             />
           )}
@@ -255,6 +253,7 @@ export default function ImportShapefile({projectId, regionId, variants}) {
       <Button
         isDisabled={!shapefile || uploading}
         isLoading={uploading}
+        loadingText='Creating modifications...'
         onClick={create}
         variantColor='green'
       >

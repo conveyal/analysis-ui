@@ -338,7 +338,7 @@ describe('Modifications', function () {
 
       this.region.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
-        cy.findByRole('button', {name: 'Timetable NaN'}).click({force: true})
+        cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
         cy.findByLabelText(/Frequency/)
           .invoke('val')
           .then((val) => expect(val).to.eq('' + route.frequency))
