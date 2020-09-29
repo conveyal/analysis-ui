@@ -17,6 +17,7 @@ import {forwardRef, useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
+import {workerVersionInRange} from 'lib/modules/r5-version/utils'
 
 import DocsLink from '../docs-link'
 import TimePicker from '../time-picker'
@@ -341,13 +342,15 @@ export default function ProfileRequestEditor({
         </Select>
       </FormControl>
 
-      <DecayFunction
-        isDisabled={disabled}
-        update={(decayFunction) => {
-          updateProfileRequest({decayFunction})
-        }}
-        value={get(profileRequest, 'decayFunction', defaultDecayFunction)}
-      />
+      {workerVersionInRange(profileRequest.workerVersion, 'v6.0.0') && (
+        <DecayFunction
+          isDisabled={disabled}
+          update={(decayFunction) => {
+            updateProfileRequest({decayFunction})
+          }}
+          value={get(profileRequest, 'decayFunction', defaultDecayFunction)}
+        />
+      )}
 
       <FormControl
         display={displayIf(hasTransit)}
