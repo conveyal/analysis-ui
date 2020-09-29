@@ -26,11 +26,25 @@ export function versionToNumber(version: string): number {
 export function workerVersionInRange(
   version: string,
   min: string = MINIMUM_R5_VERSION,
-  max = 'v100'
+  max = 'v1000.0.0'
 ): boolean {
   const versionNumber = versionToNumber(version)
+  console.log(versionNumber, versionToNumber('v6.0.0'))
   return (
     versionNumber >= versionToNumber(min) &&
     versionNumber <= versionToNumber(max)
   )
+}
+
+/**
+ * Check if the r5 version is a patch version or in a given range
+ */
+export function workerVersionTestOrInRange(
+  version: string,
+  min: string,
+  max?: string
+): boolean {
+  const isTestVersion = versionToNumber(version) % 1 !== 0
+  console.log(isTestVersion)
+  return isTestVersion || workerVersionInRange(version, min, max)
 }

@@ -17,7 +17,7 @@ import {forwardRef, useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
-import {workerVersionInRange} from 'lib/modules/r5-version/utils'
+import {workerVersionTestOrInRange} from 'lib/modules/r5-version/utils'
 
 import DocsLink from '../docs-link'
 import TimePicker from '../time-picker'
@@ -345,7 +345,7 @@ export default function ProfileRequestEditor({
       <DecayFunction
         isDisabled={
           disabled ||
-          !workerVersionInRange(profileRequest.workerVersion, 'v6.0.0')
+          !workerVersionTestOrInRange(profileRequest.workerVersion, 'v6.0.0')
         }
         update={(decayFunction) => {
           updateProfileRequest({decayFunction})
