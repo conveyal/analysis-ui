@@ -342,15 +342,16 @@ export default function ProfileRequestEditor({
         </Select>
       </FormControl>
 
-      {workerVersionInRange(profileRequest.workerVersion, 'v6.0.0') && (
-        <DecayFunction
-          isDisabled={disabled}
-          update={(decayFunction) => {
-            updateProfileRequest({decayFunction})
-          }}
-          value={get(profileRequest, 'decayFunction', defaultDecayFunction)}
-        />
-      )}
+      <DecayFunction
+        isDisabled={
+          disabled ||
+          !workerVersionInRange(profileRequest.workerVersion, 'v6.0.0')
+        }
+        update={(decayFunction) => {
+          updateProfileRequest({decayFunction})
+        }}
+        value={get(profileRequest, 'decayFunction', defaultDecayFunction)}
+      />
 
       <FormControl
         display={displayIf(hasTransit)}
