@@ -69,14 +69,14 @@ export default createSelector(
 
     // If the accessibility was calculated server side, check for opportunity changes
     if (
-      Array.isArray(get(tts, 'accessibility')) &&
+      get(resultsSettings, '[0].decayFunction.type') !== 'step' &&
       get(requestsSettings, '[0].destinationPointSetIds[0]') !==
         opportunitDatasetId
     ) {
       return true
     }
     if (
-      Array.isArray(get(ctts, 'accessibility')) &&
+      get(resultsSettings, '[1].decayFunction.type') !== 'step' &&
       get(requestsSettings, '[1].destinationPointSetIds[0]') !==
         opportunitDatasetId
     ) {
