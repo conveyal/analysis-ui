@@ -83,7 +83,7 @@ const testMaxTransfers = valueWithin(0, 7)
 const testMonteCarlo = valueWithin(1, 1200)
 const testDecayConstant = valueWithin(-1, 0)
 const testStandardDeviationMinutes = valueWithin(1, 60)
-const testDecayWidth = valueWithin(1, 60)
+const testWidthMinutes = valueWithin(1, 60)
 
 // Check modes for the type given
 const containsType = (pr, type) =>
@@ -408,14 +408,14 @@ function DecayFunction({isDisabled, update, value}) {
   })
 
   const onChangeWidth = useCallback(
-    (dw) => update({...value, decayWidth: dw}),
+    (wm) => update({...value, widthMinutes: wm}),
     [update, value]
   )
-  const decayWidthInput = useInput({
+  const widthMinutesInput = useInput({
     onChange: onChangeWidth,
     parse: parseInt,
-    test: testDecayWidth,
-    value: value.decayWidth
+    test: testWidthMinutes,
+    value: value.widthMinutes
   })
 
   return (
@@ -463,11 +463,11 @@ function DecayFunction({isDisabled, update, value}) {
       <FormControl
         display={displayIf(typeInput.value === 'linear')}
         isDisabled={isDisabled}
-        isInvalid={decayWidthInput.isInvalid}
+        isInvalid={widthMinutesInput.isInvalid}
       >
-        <FormLabel htmlFor={decayWidthInput.id}>Decay Width</FormLabel>
+        <FormLabel htmlFor={widthMinutesInput.id}>Decay Width</FormLabel>
         <Tip label='Range 1-60' placement='bottom'>
-          <InputWithUnits {...decayWidthInput} units='minutes' />
+          <InputWithUnits {...widthMinutesInput} units='minutes' />
         </Tip>
       </FormControl>
     </>
