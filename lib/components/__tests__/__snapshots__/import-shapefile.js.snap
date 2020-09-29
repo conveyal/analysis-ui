@@ -54,12 +54,15 @@ exports[`Component > ImportShapefile 1`] = `
                 className="css-acwcvw"
                 role="group"
               >
-                <FormLabel>
+                <FormLabel
+                  htmlFor="fileInput"
+                >
                   <Box
                     as="label"
                     display="inline-block"
                     fontSize="md"
                     fontWeight="medium"
+                    htmlFor="fileInput"
                     opacity="1"
                     pb="4px"
                     pr="12px"
@@ -68,6 +71,7 @@ exports[`Component > ImportShapefile 1`] = `
                   >
                     <label
                       className="css-176s5fq"
+                      htmlFor="fileInput"
                     >
                       Select Shapefile (zipped):
                     </label>
@@ -77,6 +81,7 @@ exports[`Component > ImportShapefile 1`] = `
                   as="input"
                   errorBorderColor="red.500"
                   focusBorderColor="blue.500"
+                  id="fileInput"
                   isFullWidth={true}
                   onChange={[Function]}
                   size="md"
@@ -124,6 +129,7 @@ exports[`Component > ImportShapefile 1`] = `
                     display="flex"
                     fontSize="md"
                     height={10}
+                    id="fileInput"
                     onChange={[Function]}
                     outline="none"
                     position="relative"
@@ -135,6 +141,7 @@ exports[`Component > ImportShapefile 1`] = `
                   >
                     <input
                       className="css-1ga4kqw"
+                      id="fileInput"
                       onChange={[Function]}
                       type="file"
                     />
@@ -147,6 +154,7 @@ exports[`Component > ImportShapefile 1`] = `
             isDisabled={true}
             isLoading={false}
             key=".4"
+            loadingText="Creating modifications..."
             mb={null}
             onClick={[Function]}
             variantColor="green"
