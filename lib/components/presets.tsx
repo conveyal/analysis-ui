@@ -46,10 +46,9 @@ const hasName = (n) => n && n.length > 0
  * Presets contain many more parameters than we use in the UI. Only check the ones from there.
  */
 function findPreset(settings, presets = []) {
-  const keys = Object.keys(settings || {})
   return presets.find(
     ({profileRequest}) =>
-      keys.find((k) => {
+      Object.keys(profileRequest).find((k) => {
         if (typeof profileRequest[k] === 'number') {
           return !isWithinTolerance(profileRequest[k], settings[k])
         }
