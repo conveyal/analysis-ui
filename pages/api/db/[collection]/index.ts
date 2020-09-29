@@ -10,12 +10,10 @@ export default withCollection(async (req, res, collection) => {
         const documents = await collection.findWhere(query, options).toArray()
         res.json(documents)
       } catch (e) {
-        res
-          .status(400)
-          .json({
-            description: 'Error finding documents.',
-            error: errorToPOJO(e)
-          })
+        res.status(400).json({
+          description: 'Error finding documents.',
+          error: errorToPOJO(e)
+        })
       }
       break
     }
@@ -24,12 +22,10 @@ export default withCollection(async (req, res, collection) => {
         const document = await collection.create(req.body)
         res.status(201).json(document.ops[0])
       } catch (e) {
-        res
-          .status(400)
-          .json({
-            description: 'Error creating document.',
-            error: errorToPOJO(e)
-          })
+        res.status(400).json({
+          description: 'Error creating document.',
+          error: errorToPOJO(e)
+        })
       }
       break
     }

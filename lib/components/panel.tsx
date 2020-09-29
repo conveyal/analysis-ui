@@ -5,7 +5,7 @@ import Icon from './icon'
 
 export function Panel({children}) {
   return (
-    <Box borderWidth='1px' shadow='sm'>
+    <Box borderWidth='1px' shadow='xs'>
       {children}
     </Box>
   )

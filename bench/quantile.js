@@ -22,7 +22,7 @@ function findPercentile(fn) {
   RUNS.forEach(() => {
     const values = VALS.map(() => generator.random() * RANG)
     const now = Date.now()
-    results.push(percentiles.map(p => fn(values, p)))
+    results.push(percentiles.map((p) => fn(values, p)))
     times.push(Date.now() - now)
   })
 

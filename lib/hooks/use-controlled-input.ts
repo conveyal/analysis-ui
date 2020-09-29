@@ -21,6 +21,15 @@ function getRawValueFromInput(input) {
   }
 }
 
+type ControlledInput = {
+  onChange: (input: any) => Promise<void>
+  id: string
+  isInvalid: boolean
+  isValid: boolean
+  ref: any
+  value: any
+}
+
 /**
  * Helper hook for allowing controlled inputs that can frequently update but not slow down the interface.
  */
@@ -30,7 +39,7 @@ export default function useControlledInput({
   parse = identityFn,
   test = alwaysValid,
   value
-}) {
+}): ControlledInput {
   const [inputValue, setInputValue] = useState(value)
   const [isValid, setIsValid] = useState(() =>
     test(parse(inputValue), inputValue)
