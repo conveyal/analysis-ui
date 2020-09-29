@@ -20,7 +20,7 @@ export function computeAccessibility(
   if (Array.isArray(travelTimeSurface.accessibility)) {
     const destinationPointSetIndex = 0 // Only one destination point set is currently used.
     return travelTimeSurface.accessibility[destinationPointSetIndex][DEPTH][
-      cutoff - 1 // cutoff's range is 1-120. Array index goes from 0-119
+      cutoff // Array size is 121 so cutoff === index
     ]
   }
 
