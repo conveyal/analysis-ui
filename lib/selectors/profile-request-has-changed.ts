@@ -30,8 +30,6 @@ export default createSelector(
     copyRequestSettings,
     requestsSettings,
     resultsSettings,
-    tts,
-    ctts,
     opportunitDatasetId
   ) => {
     // Check primary request settings
@@ -69,6 +67,7 @@ export default createSelector(
 
     // If the accessibility was calculated server side, check for opportunity changes
     if (
+      get(resultsSettings, '[0]') &&
       get(resultsSettings, '[0].decayFunction.type') !== 'step' &&
       get(requestsSettings, '[0].destinationPointSetIds[0]') !==
         opportunitDatasetId
@@ -76,6 +75,7 @@ export default createSelector(
       return true
     }
     if (
+      get(resultsSettings, '[1]') &&
       get(resultsSettings, '[1].decayFunction.type') !== 'step' &&
       get(requestsSettings, '[1].destinationPointSetIds[0]') !==
         opportunitDatasetId
