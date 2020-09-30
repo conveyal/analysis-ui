@@ -4,7 +4,6 @@ import {
   faCompass,
   faCubes,
   faDatabase,
-  faExclamationCircle,
   faGlobe,
   faLayerGroup,
   faMap,
@@ -24,7 +23,6 @@ import {useSelector} from 'react-redux'
 
 import {CB_DARK, CB_HEX, LOGO_URL} from 'lib/constants'
 import useRouteChanging from 'lib/hooks/use-route-changing'
-import LogRocket from 'lib/logrocket'
 import {routeTo} from 'lib/router'
 
 import {CREATING_ID} from '../constants/region'
@@ -208,8 +206,6 @@ export default function Sidebar() {
           label={message('nav.help')}
           href='http://docs.conveyal.com'
         />
-
-        <ErrorTip />
         <OnlineIndicator />
       </div>
     </Flex>
@@ -275,40 +271,6 @@ const OnlineIndicator = memo(() => {
     </Tip>
   )
 })
-
-function ErrorTip() {
-  const [error, setError] = useState()
-  // Handle error events
-  useEffect(() => {
-    const onError = (e) => {
-      LogRocket.captureException(e)
-      setError(e.message)
-    }
-    const onUnhandledRejection = (e) => {
-      LogRocket.captureException(e)
-      setError(e.reason.stack)
-    }
-
-    addListener('error', onError)
-    addListener('unhandledrejection', onUnhandledRejection)
-
-    return () => {
-      removeListener('error', onError)
-      removeListener('unhandledrejection', onUnhandledRejection)
-    }
-  }, [setError])
-
-  if (!error) return null
-  return (
-    <Tip label={message('error.script') + error}>
-      <Box>
-        <NavItemContents color='red.500'>
-          <Icon icon={faExclamationCircle} />
-        </NavItemContents>
-      </Box>
-    </Tip>
-  )
-}
 
 type ExternalLinkProps = {
   href: string

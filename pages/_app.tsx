@@ -9,6 +9,7 @@ import {SWRConfig} from 'swr'
 
 import ChakraTheme from 'lib/chakra'
 import ErrorModal from 'lib/components/error-modal'
+import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
 import * as gtag from 'lib/gtag'
 import LogRocket from 'lib/logrocket'
 import {swrFetcher} from 'lib/utils/safe-fetch'
@@ -61,6 +62,11 @@ function SWRWrapper({children}) {
   )
 }
 
+function ErrorHandler({children}) {
+  useErrorHandlingToast()
+  return <>{children}</>
+}
+
 export default class ConveyalAnalysis extends App {
   state = {
     error: null
@@ -81,22 +87,24 @@ export default class ConveyalAnalysis extends App {
       : EmptyLayout
     return (
       <ChakraTheme>
-        <SWRWrapper>
-          <Head>
-            <title key='title'>Conveyal Analysis</title>
-          </Head>
-          {this.state.error ? (
-            <ErrorModal
-              error={this.state.error}
-              clear={() => this.setState({error: null})}
-              title='Application error'
-            />
-          ) : (
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          )}
-        </SWRWrapper>
+        <ErrorHandler>
+          <SWRWrapper>
+            <Head>
+              <title key='title'>Conveyal Analysis</title>
+            </Head>
+            {this.state.error ? (
+              <ErrorModal
+                error={this.state.error}
+                clear={() => this.setState({error: null})}
+                title='Application error'
+              />
+            ) : (
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            )}
+          </SWRWrapper>
+        </ErrorHandler>
       </ChakraTheme>
     )
   }
