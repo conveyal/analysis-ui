@@ -27,7 +27,7 @@ function computePercentile({grid, percentileIndex, travelTimeSurface}) {
       // converted from seconds to minutes, so a travel time of 59m59s will have
       // a value of 59, not 60.
       if (travelTime < MAX_TRIP_DURATION) {
-        dataThisPercentile[travelTime] += grid.data[y * grid.width + x]
+        dataThisPercentile[travelTime] += grid.getValue(x, y)
       }
     }
   }

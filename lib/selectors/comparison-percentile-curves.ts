@@ -1,7 +1,6 @@
-//
 import {createSelector} from 'reselect'
 
-import {activeOpportunityDatasetGrid} from '../modules/opportunity-datasets/selectors'
+import {activeOpportunityDatasetGrid} from 'lib/modules/opportunity-datasets/selectors'
 
 import {computePercentileCurves} from './percentile-curves'
 
