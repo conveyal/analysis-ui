@@ -6,7 +6,11 @@ import {activeOpportunityDatasetGrid} from 'lib/modules/opportunity-datasets/sel
 
 const MAX_TRIP_DURATION = 120
 
-function computePercentile({grid, percentileIndex, travelTimeSurface}) {
+function computePercentile({
+  grid,
+  percentileIndex,
+  travelTimeSurface
+}): number[] {
   const dataThisPercentile = fill(Array(MAX_TRIP_DURATION + 1), 0)
   const north = grid.north - travelTimeSurface.north
   const west = grid.west - travelTimeSurface.west
@@ -18,7 +22,7 @@ function computePercentile({grid, percentileIndex, travelTimeSurface}) {
     for (let x = 0; x < grid.width; x++) {
       const travelTimeX = x + west
       if (travelTimeX < 0 || travelTimeX >= travelTimeSurface.width) continue
-      const travelTime = travelTimeSurface.get(
+      const travelTime: number = travelTimeSurface.get(
         travelTimeX,
         travelTimeY,
         percentileIndex
@@ -27,7 +31,11 @@ function computePercentile({grid, percentileIndex, travelTimeSurface}) {
       // converted from seconds to minutes, so a travel time of 59m59s will have
       // a value of 59, not 60.
       if (travelTime < MAX_TRIP_DURATION) {
-        dataThisPercentile[travelTime] += grid.getValue(x, y)
+        // Increment travel time to align with server side accessibility?
+        // Travel time of 1 == index of 2???
+        // Travel times [0, 1, 2, ..., 120] (length = 121)
+        // Cutoff = 1, index should equal 1...right?
+        dataThisPercentile[travelTime + 1] += grid.getValue(x, y)
       }
     }
   }
@@ -44,7 +52,7 @@ function computePercentile({grid, percentileIndex, travelTimeSurface}) {
  * Percentile curves data is an array of cumulative accessibility curves for
  * different percentiles.
  */
-export function computePercentileCurves({travelTimeSurface, grid}) {
+export function computePercentileCurves({travelTimeSurface, grid}): number[][] {
   const perccentileCurves = times(travelTimeSurface.depth, (percentileIndex) =>
     computePercentile({
       grid,
