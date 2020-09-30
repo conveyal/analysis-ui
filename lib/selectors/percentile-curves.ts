@@ -5,13 +5,18 @@ import {createSelector} from 'reselect'
 import {activeOpportunityDatasetGrid} from 'lib/modules/opportunity-datasets/selectors'
 
 const MAX_TRIP_DURATION = 120
+const TOTAL_CUTOFFS = MAX_TRIP_DURATION + 1
 
-function computePercentile({
+/**
+ * Calculate the accessibility for a given destination point set, travel time surface,
+ * and percentile (index).
+ */
+function computeAccessibilityForPercentile({
   grid,
   percentileIndex,
   travelTimeSurface
 }): number[] {
-  const dataThisPercentile = fill(Array(MAX_TRIP_DURATION + 1), 0)
+  const dataThisPercentile = fill(Array(TOTAL_CUTOFFS), 0)
   const north = grid.north - travelTimeSurface.north
   const west = grid.west - travelTimeSurface.west
 
@@ -30,10 +35,9 @@ function computePercentile({
       // converted from seconds to minutes, so a travel time of 59m59s will have
       // a value of 59, not 60.
       if (travelTime < MAX_TRIP_DURATION) {
-        // Increment travel time to align with server side accessibility?
-        // Travel time of 1 == index of 2???
-        // Travel times [0, 1, 2, ..., 120] (length = 121)
-        // Cutoff = 1, index should equal 1...right?
+        // When the decay function is step, the 0th index will always be 0.
+        // Index 1 will have the count of opportunities with travel times from zero to one minutes,
+        // exclusive. So add 1 to the travel time.
         dataThisPercentile[travelTime + 1] += grid.getValue(x, y)
       }
     }
@@ -51,7 +55,10 @@ function computePercentile({
  * Percentile curves data is an array of cumulative accessibility curves for
  * different percentiles.
  */
-export function computePercentileCurves({travelTimeSurface, grid}): number[][] {
+export function computeAccessibilityCurves({
+  travelTimeSurface,
+  grid
+}): number[][] {
   // If the accessbility was calculated on the server side this array will exist.
   if (Array.isArray(travelTimeSurface.accessibility)) {
     const destinationPointSetIndex = 0 // Only one destination point set is currently used.
@@ -59,7 +66,7 @@ export function computePercentileCurves({travelTimeSurface, grid}): number[][] {
   }
 
   return times(travelTimeSurface.depth, (percentileIndex) =>
-    computePercentile({
+    computeAccessibilityForPercentile({
       grid,
       percentileIndex,
       travelTimeSurface
@@ -72,6 +79,6 @@ export default createSelector(
   activeOpportunityDatasetGrid,
   (travelTimeSurface, grid) =>
     travelTimeSurface && grid
-      ? computePercentileCurves({grid, travelTimeSurface})
+      ? computeAccessibilityCurves({grid, travelTimeSurface})
       : undefined
 )
