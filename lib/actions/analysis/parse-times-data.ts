@@ -42,7 +42,7 @@ export function parseGridHeader(ab: ArrayBuffer) {
 /**
  * Parse the ArrayBuffer from a `*_times.dat` file for a point in a network.
  */
-export function parseTimesData(ab) {
+export function parseTimesData(ab: ArrayBuffer) {
   const header = parseGridHeader(ab)
   const gridSize = header.width * header.height
 
@@ -70,7 +70,7 @@ export function parseTimesData(ab) {
   )
   const metadata = decodeMetadata(rawMetadata)
 
-  function contains(x, y, z) {
+  function contains(x: number, y: number, z: number) {
     return (
       x >= 0 &&
       x < header.width &&
@@ -88,7 +88,7 @@ export function parseTimesData(ab) {
     errors: [],
     warnings: metadata.scenarioApplicationWarnings || [],
     contains,
-    get(x, y, z) {
+    get(x: number, y: number, z: number): number {
       if (contains(x, y, z)) return data[z * gridSize + y * header.width + x]
       return Infinity
     }
