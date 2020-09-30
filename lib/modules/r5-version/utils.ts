@@ -29,7 +29,6 @@ export function workerVersionInRange(
   max = 'v1000.0.0'
 ): boolean {
   const versionNumber = versionToNumber(version)
-  console.log(versionNumber, versionToNumber('v6.0.0'))
   return (
     versionNumber >= versionToNumber(min) &&
     versionNumber <= versionToNumber(max)
@@ -45,6 +44,5 @@ export function workerVersionTestOrInRange(
   max?: string
 ): boolean {
   const isTestVersion = versionToNumber(version) % 1 !== 0
-  console.log(isTestVersion)
   return isTestVersion || workerVersionInRange(version, min, max)
 }
