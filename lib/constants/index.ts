@@ -188,9 +188,9 @@ export const PROFILE_REQUEST_DEFAULTS = {
   decayFunction: {
     type: 'step',
     standardDeviationMinutes: 10,
-    decayConstant: -0.01,
-    decayWidth: 10
+    widthMinutes: 10
   },
+  destinationPointSetIds: [],
   directModes: 'WALK',
   egressModes: 'WALK',
   fromTime: 25200,

@@ -490,7 +490,10 @@ export const mockDestinationGrid = {
   ...mockSurfaceParameters,
   west: mockSurfaceParameters.west - 1, // shift slightly so that we are testing misaligned grids
   north: mockSurfaceParameters.north - 1,
-  data: opportunityDatasetGridData
+  data: opportunityDatasetGridData,
+  getValue(x, y) {
+    return opportunityDatasetGridData[y * mockSurfaceParameters.width + x]
+  }
 }
 
 export const releaseVersions = ['v3.0.0', 'v2.2.0', 'v2.0.0']

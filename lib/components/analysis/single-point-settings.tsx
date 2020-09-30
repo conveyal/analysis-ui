@@ -296,11 +296,11 @@ function RequestSummary({color, profileRequest, ...p}) {
 
   return (
     <Flex flex='2' justify='space-evenly' {...p}>
-      <Stack align='center' isInline spacing={1}>
+      <Stack align='center' isInline mr={2} spacing={1}>
         <ModeIcon mode={profileRequest.accessModes} />
         {transitModesStr.length > 0 && (
           <Tip label={transitModes.join(', ')}>
-            <Stack align='center' isInline spacing={1}>
+            <Stack align='center' isInline spacing={0}>
               <Box color={`${color}.500`} fontSize='xs'>
                 <Icon icon={faChevronRight} />
               </Box>

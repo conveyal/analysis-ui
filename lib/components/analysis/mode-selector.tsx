@@ -5,21 +5,12 @@ import {
   FormControl,
   FormLabel
 } from '@chakra-ui/core'
-import {
-  faBicycle,
-  faBus,
-  faWalking,
-  faShip,
-  faSubway,
-  faTrain
-} from '@fortawesome/free-solid-svg-icons'
 import without from 'lodash/without'
 import {memo} from 'react'
 
 import message from 'lib/message'
 
-import ModeIcon from '../mode-icon'
-import Icon from '../icon'
+import {ModeIcon} from '../mode-icon'
 
 const WALK = 'WALK'
 const BICYCLE = 'BICYCLE'
@@ -121,7 +112,7 @@ export default function ModeSelector({
               title={message('mode.bus')}
               variantColor={color}
             >
-              <Icon icon={faBus} />
+              <ModeIcon mode={BUS} />
             </Button>
             <Button
               isActive={_hasTransit(TRAM)}
@@ -130,7 +121,7 @@ export default function ModeSelector({
               title={message('mode.tram')}
               variantColor={color}
             >
-              <strong>T</strong>
+              <ModeIcon mode={TRAM} />
             </Button>
             <Button
               isActive={_hasTransit(SUBWAY)}
@@ -139,7 +130,7 @@ export default function ModeSelector({
               title={message('mode.subway')}
               variantColor={color}
             >
-              <Icon icon={faSubway} />
+              <ModeIcon mode={SUBWAY} />
             </Button>
             <Button
               isActive={_hasTransit(RAIL)}
@@ -148,7 +139,7 @@ export default function ModeSelector({
               title={message('mode.rail')}
               variantColor={color}
             >
-              <Icon icon={faTrain} />
+              <ModeIcon mode={RAIL} />
             </Button>
             <Button
               isActive={_hasTransit(FERRY)}
@@ -157,7 +148,7 @@ export default function ModeSelector({
               title={message('mode.ferry')}
               variantColor={color}
             >
-              <Icon icon={faShip} />
+              <ModeIcon mode={FERRY} />
             </Button>
             <Button
               isActive={_hasTransit(CABLE_CAR)}
@@ -166,7 +157,7 @@ export default function ModeSelector({
               title={message('mode.cableCar')}
               variantColor={color}
             >
-              <strong>C</strong>
+              <ModeIcon mode={CABLE_CAR} />
             </Button>
             <Button
               isActive={_hasTransit(GONDOLA)}
@@ -175,7 +166,7 @@ export default function ModeSelector({
               title={message('mode.gondola')}
               variantColor={color}
             >
-              <strong>G</strong>
+              <ModeIcon mode={GONDOLA} />
             </Button>
             <Button
               isActive={_hasTransit(FUNICULAR)}
@@ -184,7 +175,7 @@ export default function ModeSelector({
               title={message('mode.funicular')}
               variantColor={color}
             >
-              <strong>F</strong>
+              <ModeIcon mode={FUNICULAR} />
             </Button>
           </ButtonGroup>
         </div>
@@ -202,7 +193,7 @@ export default function ModeSelector({
               title={`${message('analysis.modes.walk')} egress`}
               variantColor={color}
             >
-              <Icon icon={faWalking} />
+              <ModeIcon mode={WALK} />
             </Button>
             <Button
               isActive={transit && egressModes === BICYCLE}
@@ -211,7 +202,7 @@ export default function ModeSelector({
               title={`${message('analysis.modes.bicycle')} egress`}
               variantColor={color}
             >
-              <Icon icon={faBicycle} />
+              <ModeIcon mode={BICYCLE} />
             </Button>
           </ButtonGroup>
         </div>

@@ -525,6 +525,6 @@ function createYScale(height: number, maxAccessibility: number) {
 
 function createXScale(width: number) {
   return scaleLinear()
-    .domain([1, MAX_TRIP_DURATION])
+    .domain([0, MAX_TRIP_DURATION])
     .range([BOX_PLOT_WIDTH * width, width])
 }

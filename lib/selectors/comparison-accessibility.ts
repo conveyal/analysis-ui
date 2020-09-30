@@ -1,33 +1,20 @@
+import get from 'lodash/get'
 import {createSelector} from 'reselect'
 
-import {activeOpportunityDataset} from '../modules/opportunity-datasets/selectors'
-
-import {computeAccessibility} from './accessibility'
+import selectComparisonPercentileCurves from './comparison-percentile-curves'
 import selectMaxTripDurationMinutes from './max-trip-duration-minutes'
-import selectTravelTimePercentile from './travel-time-percentile'
+import selectPercentileIndex from './percentile-index'
 
 /**
- * Select comparison surface accessibility
+ * Select the total accessibility for a specific percentile and cutoff of the comparison percentile curves.
  */
 export default createSelector(
-  (state) => state.analysis.comparisonTravelTimeSurface,
   selectMaxTripDurationMinutes,
-  activeOpportunityDataset,
-  selectTravelTimePercentile,
-  (travelTimeSurface, cutoff, opportunityDataset, percentile) => {
-    if (
-      travelTimeSurface == null ||
-      opportunityDataset == null ||
-      opportunityDataset.grid == null
-    ) {
-      return null
-    }
-
-    return computeAccessibility(
-      travelTimeSurface,
-      cutoff,
-      opportunityDataset.grid,
-      percentile
-    )
-  }
+  selectComparisonPercentileCurves,
+  selectPercentileIndex,
+  (
+    cutoffMinutes: number,
+    percentileCurves: number[][],
+    percentileIndex: number
+  ) => get(percentileCurves, `[${percentileIndex}][${cutoffMinutes}]`)
 )

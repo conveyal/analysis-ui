@@ -17,6 +17,7 @@ import {forwardRef, useCallback} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
+import {workerVersionTestOrInRange} from 'lib/modules/r5-version/utils'
 
 import DocsLink from '../docs-link'
 import TimePicker from '../time-picker'
@@ -80,9 +81,8 @@ const testBikeSpeed = valueWithin(5, 20)
 const testBikeTime = modeLessThanMax(60)
 const testMaxTransfers = valueWithin(0, 7)
 const testMonteCarlo = valueWithin(1, 1200)
-const testDecayConstant = valueWithin(-1, 0)
 const testStandardDeviationMinutes = valueWithin(1, 60)
-const testDecayWidth = valueWithin(1, 60)
+const testWidthMinutes = valueWithin(1, 60)
 
 // Check modes for the type given
 const containsType = (pr, type) =>
@@ -342,7 +342,10 @@ export default function ProfileRequestEditor({
       </FormControl>
 
       <DecayFunction
-        isDisabled={disabled}
+        isDisabled={
+          disabled ||
+          !workerVersionTestOrInRange(profileRequest.workerVersion, 'v6.0.0')
+        }
         update={(decayFunction) => {
           updateProfileRequest({decayFunction})
         }}
@@ -363,13 +366,7 @@ export default function ProfileRequestEditor({
   )
 }
 
-const decayFunctionTypes = [
-  'step',
-  'logistic',
-  'fixed-exponential',
-  'exponential',
-  'linear'
-]
+const decayFunctionTypes = ['step', 'logistic', 'exponential', 'linear']
 
 function DecayFunction({isDisabled, update, value}) {
   const onChangeType = useCallback((type) => update({...value, type}), [
@@ -392,26 +389,15 @@ function DecayFunction({isDisabled, update, value}) {
     value: value.standardDeviationMinutes
   })
 
-  const onChangeDecay = useCallback(
-    (dc) => update({...value, decayConstant: dc}),
-    [update, value]
-  )
-  const decayConstantInput = useInput({
-    onChange: onChangeDecay,
-    parse: parseFloat,
-    test: testDecayConstant,
-    value: value.decayConstant
-  })
-
   const onChangeWidth = useCallback(
-    (dw) => update({...value, decayWidth: dw}),
+    (wm) => update({...value, widthMinutes: wm}),
     [update, value]
   )
-  const decayWidthInput = useInput({
+  const widthMinutesInput = useInput({
     onChange: onChangeWidth,
     parse: parseInt,
-    test: testDecayWidth,
-    value: value.decayWidth
+    test: testWidthMinutes,
+    value: value.widthMinutes
   })
 
   return (
@@ -446,24 +432,13 @@ function DecayFunction({isDisabled, update, value}) {
       </FormControl>
 
       <FormControl
-        display={displayIf(typeInput.value === 'fixed-exponential')}
-        isDisabled={isDisabled}
-        isInvalid={decayConstantInput.isInvalid}
-      >
-        <FormLabel htmlFor={decayConstantInput.id}>Decay Constant</FormLabel>
-        <Tip label='Range 0 to -1' placement='bottom'>
-          <Input {...decayConstantInput} />
-        </Tip>
-      </FormControl>
-
-      <FormControl
         display={displayIf(typeInput.value === 'linear')}
         isDisabled={isDisabled}
-        isInvalid={decayWidthInput.isInvalid}
+        isInvalid={widthMinutesInput.isInvalid}
       >
-        <FormLabel htmlFor={decayWidthInput.id}>Decay Width</FormLabel>
+        <FormLabel htmlFor={widthMinutesInput.id}>Decay Width</FormLabel>
         <Tip label='Range 1-60' placement='bottom'>
-          <InputWithUnits {...decayWidthInput} units='minutes' />
+          <InputWithUnits {...widthMinutesInput} units='minutes' />
         </Tip>
       </FormControl>
     </>
