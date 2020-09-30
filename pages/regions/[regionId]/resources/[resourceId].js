@@ -57,7 +57,7 @@ function ConfirmDelete(p) {
 
   return (
     <>
-      <Button block variantColor='red' onClick={() => setIsOpen(true)}>
+      <Button variantColor='red' onClick={() => setIsOpen(true)}>
         {msg('resources.deleteAction')}
       </Button>
 
@@ -132,8 +132,7 @@ const EditResourcePage = withInitialFetch(
             </Stat>
           </StatGroup>
           <Button
-            block
-            disabled={!resourceData}
+            isDisabled={!resourceData}
             onClick={_download}
             variantColor='green'
           >

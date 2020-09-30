@@ -7,7 +7,9 @@ const CreateProjectPage = withInitialFetch(
   CreateProject,
   async (dispatch, query) => {
     const bundles = await dispatch(loadBundles({regionId: query.regionId}))
-    return {bundles}
+    return {
+      bundles
+    }
   }
 )
 

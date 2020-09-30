@@ -5,16 +5,28 @@ import {
   InputGroup,
   InputRightElement
 } from '@chakra-ui/core'
+import {FocusEvent} from 'react'
 
 import useControlledInput from 'lib/hooks/use-controlled-input'
 
-const defaultTest = (parsed) => parsed >= 1
-const defaultParse = (targetValue) => parseFloat(targetValue)
+const defaultTest = (parsed: number) => parsed >= 1
+const defaultParse = (targetValue: string) => parseFloat(targetValue)
 
 const noop = () => {}
 
+type NumberInputProps = {
+  label?: string
+  onBlur?: (event: FocusEvent<HTMLInputElement>) => void
+  onChange: (newValue: number) => void
+  onFocus?: (event: FocusEvent<HTMLInputElement>) => void
+  parse?: (targetValue: string) => number
+  placeholder?: string
+  test?: (parsed: number) => boolean
+  units?: string
+  value: number
+}
+
 export default function NumberInput({
-  isDisabled = false,
   label = '',
   onBlur = noop,
   onChange,
@@ -25,7 +37,7 @@ export default function NumberInput({
   units = '',
   value,
   ...p
-}) {
+}: NumberInputProps) {
   const input = useControlledInput({
     onChange,
     parse,
@@ -34,7 +46,7 @@ export default function NumberInput({
   })
 
   return (
-    <FormControl isDisabled={isDisabled} isInvalid={input.isInvalid} {...p}>
+    <FormControl isInvalid={input.isInvalid} {...p}>
       {label && <FormLabel htmlFor={input.id}>{label}</FormLabel>}
       <InputGroup>
         <Input

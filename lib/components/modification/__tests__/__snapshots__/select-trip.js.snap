@@ -1,32 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component > SelectTrip renders correctly 1`] = `
-<Group>
-  <label
-    htmlFor="Trip"
-  >
-    Select trip
-  </label>
-  <Memo([object Object])
-    getOptionLabel={[Function]}
-    getOptionValue={[Function]}
-    inputId="Trip"
-    name="Trip"
-    onChange={[Function]}
-    options={
-      Array [
-        Object {
-          "duration": 1234,
-          "end_time": 13579,
-          "start_time": 12345,
-          "trip_headsign": "To Downtown",
-          "trip_id": "abcd",
-          "trip_short_name": "The Express",
-        },
-      ]
-    }
-    placeholder="Select Trip"
-    value={
+<Memo(ControlledSelect)
+  getOptionLabel={[Function]}
+  getOptionValue={[Function]}
+  label="Select trip"
+  onChange={[Function]}
+  options={
+    Array [
       Object {
         "duration": 1234,
         "end_time": 13579,
@@ -34,8 +15,19 @@ exports[`Component > SelectTrip renders correctly 1`] = `
         "trip_headsign": "To Downtown",
         "trip_id": "abcd",
         "trip_short_name": "The Express",
-      }
+      },
+    ]
+  }
+  trip="abcd"
+  value={
+    Object {
+      "duration": 1234,
+      "end_time": 13579,
+      "start_time": 12345,
+      "trip_headsign": "To Downtown",
+      "trip_id": "abcd",
+      "trip_short_name": "The Express",
     }
-  />
-</Group>
+  }
+/>
 `;

@@ -33,7 +33,7 @@ export default withAuth(function SelectRegionPage(p) {
   const goToRegionCreate = useRouteTo('regionCreate')
 
   return (
-    <Flex alignItems='center' mb={6} direction='column'>
+    <Flex alignItems='center' py={10} direction='column'>
       <Box mt={8} mb={6}>
         <Logo />
       </Box>

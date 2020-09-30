@@ -1,11 +1,4 @@
-import {
-  Box,
-  Flex,
-  Image,
-  PseudoBox,
-  PseudoBoxProps,
-  useDisclosure
-} from '@chakra-ui/core'
+import {Box, Flex, Image, PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
 import {
   faChartArea,
   faCompass,
@@ -40,67 +33,33 @@ import selectOutstandingRequests from '../selectors/outstanding-requests'
 import {UserContext} from '../user'
 
 import Icon from './icon'
+import Tip from './tip'
 
 const sidebarWidth = '40px'
 
-type NavTipProps = {label: string}
-
-const NavTip = memo<NavTipProps>(({label}) => {
+const NavItemContents = memo<PseudoBoxProps>(({children, ...p}) => {
   return (
-    <Box pos='relative'>
-      <Box pos='absolute' left={sidebarWidth} top='-20px'>
-        <Box as='span' className='tooltip' px='5px' ml='3px'>
-          <Box
-            as='span'
-            className='tooltip-arrow'
-            borderRightColor='#333'
-            borderWidth='5px 5px 5px 0'
-            left='0'
-            mt='-5px'
-            top='50%'
-          />
-          <span className='tooltip-inner'>{label}</span>
-        </Box>
-      </Box>
-    </Box>
+    <PseudoBox
+      borderBottom='2px solid rgba(0, 0, 0, 0)'
+      cursor='pointer'
+      color={CB_HEX}
+      fontSize='14px'
+      lineHeight='20px'
+      py={3}
+      textAlign='center'
+      width={sidebarWidth}
+      _focus={{
+        outline: 'none'
+      }}
+      _hover={{
+        color: CB_DARK
+      }}
+      {...p}
+    >
+      {children}
+    </PseudoBox>
   )
 })
-
-type NavItemContentsProps = {
-  label: string
-  isActive?: boolean
-} & PseudoBoxProps
-
-const NavItemContents = memo<NavItemContentsProps>(
-  ({children, isActive, label, ...p}) => {
-    const {isOpen, onOpen, onClose} = useDisclosure()
-
-    return (
-      <PseudoBox
-        borderBottom='2px solid rgba(0, 0, 0, 0)'
-        cursor='pointer'
-        color={CB_HEX}
-        fontSize='14px'
-        lineHeight='20px'
-        onMouseOver={onOpen}
-        onMouseOut={onClose}
-        py={3}
-        textAlign='center'
-        width={sidebarWidth}
-        _focus={{
-          outline: 'none'
-        }}
-        _hover={{
-          color: CB_DARK
-        }}
-        {...p}
-      >
-        {children}
-        {!isActive && isOpen && <NavTip label={label} />}
-      </PseudoBox>
-    )
-  }
-)
 
 function useIsActive(to, params = {}) {
   const [, pathname] = useRouteChanging()
@@ -140,9 +99,13 @@ const ItemLink = memo<ItemLinkProps>(({icon, label, to, params = {}}) => {
     : {onClick: goToLink}
 
   return (
-    <NavItemContents {...navItemProps} isActive={isActive} label={label}>
-      <Icon icon={icon} title={label} />
-    </NavItemContents>
+    <Tip isDisabled={isActive} label={label}>
+      <Box role='button' title={label}>
+        <NavItemContents {...navItemProps}>
+          <Icon icon={icon} title={label} />
+        </NavItemContents>
+      </Box>
+    </Tip>
   )
 })
 
@@ -162,6 +125,7 @@ export default function Sidebar() {
       bg='#ddd'
       direction='column'
       height='100vh'
+      id='sidebar'
       justify='space-between'
       width='40px'
     >
@@ -302,12 +266,13 @@ const OnlineIndicator = memo(() => {
 
   if (online) return null
   return (
-    <NavItemContents
-      color='red.500'
-      label={message('nav.notConnectedToInternet')}
-    >
-      <Icon icon={faWifi} />
-    </NavItemContents>
+    <Tip label={message('nav.notConnectedToInternet')}>
+      <Box>
+        <NavItemContents color='red.500'>
+          <Icon icon={faWifi} />
+        </NavItemContents>
+      </Box>
+    </Tip>
   )
 })
 
@@ -335,9 +300,13 @@ function ErrorTip() {
 
   if (!error) return null
   return (
-    <NavItemContents color='red.500' label={message('error.script') + error}>
-      <Icon icon={faExclamationCircle} />
-    </NavItemContents>
+    <Tip label={message('error.script') + error}>
+      <Box>
+        <NavItemContents color='red.500'>
+          <Icon icon={faExclamationCircle} />
+        </NavItemContents>
+      </Box>
+    </Tip>
   )
 }
 
@@ -349,10 +318,14 @@ type ExternalLinkProps = {
 
 const ExternalLink = memo<ExternalLinkProps>(({href, label, icon}) => {
   return (
-    <a target='_blank' href={href} rel='noopener noreferrer'>
-      <NavItemContents label={label}>
-        <Icon icon={icon} />
-      </NavItemContents>
-    </a>
+    <Tip label={label} placement='right'>
+      <Box>
+        <a target='_blank' href={href} rel='noopener noreferrer'>
+          <NavItemContents>
+            <Icon icon={icon} />
+          </NavItemContents>
+        </a>
+      </Box>
+    </Tip>
   )
 })

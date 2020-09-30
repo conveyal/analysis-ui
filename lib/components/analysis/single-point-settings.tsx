@@ -24,6 +24,7 @@ import {
   faMousePointer
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
+import fpGet from 'lodash/fp/get'
 import isEqual from 'lodash/isEqual'
 import {memo, useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
@@ -62,6 +63,9 @@ import CreateRegional from './create-regional'
 const SPACING_XS = 2
 const SPACING = 5
 const SPACING_LG = 8
+
+const getName = fpGet('name')
+const getId = fpGet('_id')
 
 export default function Settings({
   bundles,
@@ -445,8 +449,8 @@ function RequestSettings({
           <Stack isInline spacing={SPACING}>
             <ControlledSelect
               flex='1'
-              getOptionLabel={(o) => o.name}
-              getOptionValue={(o) => o._id}
+              getOptionLabel={getName}
+              getOptionValue={getId}
               isClearable={isComparison}
               isDisabled={projects.length === 0 || isFetchingIsochrone}
               label={message('common.project')}

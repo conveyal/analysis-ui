@@ -2,7 +2,7 @@ import get from 'lodash/get'
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {v4 as uuid} from 'uuid'
 
-const alwaysValid = (p = '', r = '') => true // eslint-disable-line
+const alwaysValid = (p: any, r?: any) => true // eslint-disable-line
 const identityFn = (v) => v
 
 // Is this the value itself or an event?
@@ -21,6 +21,15 @@ function getRawValueFromInput(input) {
   }
 }
 
+type ControlledInput = {
+  onChange: (input: any) => Promise<void>
+  id: string
+  isInvalid: boolean
+  isValid: boolean
+  ref: any
+  value: any
+}
+
 /**
  * Helper hook for allowing controlled inputs that can frequently update but not slow down the interface.
  */
@@ -30,7 +39,7 @@ export default function useControlledInput({
   parse = identityFn,
   test = alwaysValid,
   value
-}) {
+}): ControlledInput {
   const [inputValue, setInputValue] = useState(value)
   const [isValid, setIsValid] = useState(() =>
     test(parse(inputValue), inputValue)

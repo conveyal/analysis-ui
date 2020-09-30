@@ -12,7 +12,7 @@ const ImportShapeFilePage = withInitialFetch(
   (p) => (
     <>
       <ProjectTitle project={p.project} />
-      <Dock className='block'>
+      <Dock>
         <ImportShapefile
           projectId={p.query.projectId}
           regionId={p.query.regionId}

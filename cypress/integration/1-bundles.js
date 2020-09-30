@@ -35,7 +35,7 @@ describe('Network bundles', () => {
     // confirm that the bundle was saved
     cy.contains('or select an existing one')
     cy.location('pathname').should('match', /.*bundles\/.{24}$/)
-    cy.findByPlaceholderText(/Bundle name/i)
+    cy.findByLabelText(/Network bundle name/i)
       .invoke('val')
       .then((name) => {
         expect(name).to.equal(bundleName)

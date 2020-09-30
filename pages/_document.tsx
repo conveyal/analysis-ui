@@ -5,7 +5,6 @@ import {LOGO_URL} from 'lib/constants'
 
 const Stylesheets = () => (
   <>
-    <link rel='stylesheet' href='/static/bootstrap.min.css' />
     <link rel='stylesheet' href='/static/leaflet/leaflet.css' />
     <link rel='stylesheet' href='/static/leaflet-draw/leaflet.draw.css' />
     <link rel='stylesheet' href='/static/mapbox-gl.css' />
