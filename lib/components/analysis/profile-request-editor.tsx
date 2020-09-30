@@ -367,13 +367,7 @@ export default function ProfileRequestEditor({
   )
 }
 
-const decayFunctionTypes = [
-  'step',
-  'logistic',
-  'fixed-exponential',
-  'exponential',
-  'linear'
-]
+const decayFunctionTypes = ['step', 'logistic', 'exponential', 'linear']
 
 function DecayFunction({isDisabled, update, value}) {
   const onChangeType = useCallback((type) => update({...value, type}), [
@@ -394,17 +388,6 @@ function DecayFunction({isDisabled, update, value}) {
     parse: parseInt,
     test: testStandardDeviationMinutes,
     value: value.standardDeviationMinutes
-  })
-
-  const onChangeDecay = useCallback(
-    (dc) => update({...value, decayConstant: dc}),
-    [update, value]
-  )
-  const decayConstantInput = useInput({
-    onChange: onChangeDecay,
-    parse: parseFloat,
-    test: testDecayConstant,
-    value: value.decayConstant
   })
 
   const onChangeWidth = useCallback(
@@ -446,17 +429,6 @@ function DecayFunction({isDisabled, update, value}) {
         </FormLabel>
         <Tip label='Range 1-60' placement='bottom'>
           <InputWithUnits {...standardDeviationInput} units='minutes' />
-        </Tip>
-      </FormControl>
-
-      <FormControl
-        display={displayIf(typeInput.value === 'fixed-exponential')}
-        isDisabled={isDisabled}
-        isInvalid={decayConstantInput.isInvalid}
-      >
-        <FormLabel htmlFor={decayConstantInput.id}>Decay Constant</FormLabel>
-        <Tip label='Range 0 to -1' placement='bottom'>
-          <Input {...decayConstantInput} />
         </Tip>
       </FormControl>
 
