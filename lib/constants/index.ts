@@ -190,6 +190,7 @@ export const PROFILE_REQUEST_DEFAULTS = {
     standardDeviationMinutes: 10,
     widthMinutes: 10
   },
+  destinationPointSetIds: [],
   directModes: 'WALK',
   egressModes: 'WALK',
   fromTime: 25200,

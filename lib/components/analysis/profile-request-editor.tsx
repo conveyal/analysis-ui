@@ -81,7 +81,6 @@ const testBikeSpeed = valueWithin(5, 20)
 const testBikeTime = modeLessThanMax(60)
 const testMaxTransfers = valueWithin(0, 7)
 const testMonteCarlo = valueWithin(1, 1200)
-const testDecayConstant = valueWithin(-1, 0)
 const testStandardDeviationMinutes = valueWithin(1, 60)
 const testWidthMinutes = valueWithin(1, 60)
 
