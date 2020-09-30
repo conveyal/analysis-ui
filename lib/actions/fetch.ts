@@ -123,7 +123,6 @@ const createAction = (type: string) => (payload: any): Action => ({
 // Internally dispatched actions
 const abortedFetch = createAction(ABORTED_FETCH)
 const abortFetchFailed = createAction(ABORT_FETCH_FAILED)
-const fetchError = createAction(FETCH_ERROR)
 
 /**
  * Call decrement and dispatch "aborted" and "decrement" actions. If `id` is
@@ -255,7 +254,7 @@ function runFetchAction(
   const signature = {type, id}
 
   // If next does not exist or only takes a response, dispatch and throw on error
-  const dispatchFetchError = !next || next.length < 2
+  const throwFetchError = !next || next.length < 2
 
   // Increment fetches
   dispatch(incrementFetches({type, id, options, url}))
@@ -278,8 +277,7 @@ function runFetchAction(
           if (next && next.length > 1) dispatch(next(error, response))
         }
 
-        if (dispatchFetchError) {
-          dispatch(fetchError(response))
+        if (throwFetchError) {
           // Rethrow
           throw response
         }
@@ -299,9 +297,9 @@ function runFetchMultiple(
   }: RunFetchMultipleParams,
   dispatch,
   state: State
-) {
+): Promise<unknown> {
   const signature = {type, id}
-  const dispatchFetchError = !next || next.length < 2
+  const throwFetchError = !next || next.length < 2
 
   // Log and increment
   dispatch(incrementFetches({type, id, fetches}))
@@ -322,9 +320,7 @@ function runFetchMultiple(
         if (fetchIsActive(signature)) {
           dispatch(decrementFetches(signature))
           if (next && next.length > 1) dispatch(next(error, response))
-          if (dispatchFetchError) {
-            dispatch(fetchError(response))
-            // Rethrow
+          if (throwFetchError) {
             throw response
           }
         }
