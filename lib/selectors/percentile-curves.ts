@@ -15,16 +15,15 @@ function computePercentile({
   const north = grid.north - travelTimeSurface.north
   const west = grid.west - travelTimeSurface.west
 
-  // y on outside, loop in order, hope the CPU figures this out and prefetches
   for (let y = 0; y < grid.height; y++) {
-    const travelTimeY = y + north
-    if (travelTimeY < 0 || travelTimeY >= travelTimeSurface.height) continue
+    const yIndex = y + north
+    if (yIndex < 0 || yIndex >= travelTimeSurface.height) continue
     for (let x = 0; x < grid.width; x++) {
-      const travelTimeX = x + west
-      if (travelTimeX < 0 || travelTimeX >= travelTimeSurface.width) continue
+      const xIndex = x + west
+      if (xIndex < 0 || xIndex >= travelTimeSurface.width) continue
       const travelTime: number = travelTimeSurface.get(
-        travelTimeX,
-        travelTimeY,
+        xIndex,
+        yIndex,
         percentileIndex
       )
       // Less than (<) is correct here. Times are floored on the server when
@@ -40,7 +39,7 @@ function computePercentile({
     }
   }
 
-  // make non-cumulative
+  // Make cumulative
   for (let i = 1; i < dataThisPercentile.length; i++) {
     dataThisPercentile[i] += dataThisPercentile[i - 1]
   }
