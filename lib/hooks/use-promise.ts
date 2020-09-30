@@ -2,11 +2,25 @@ import {useEffect, useState} from 'react'
 
 import LogRocket from '../logrocket'
 
-function errorToString(e): string {
-  const str = e.value || e.message || ''
-  if (str === 'Failed to fetch')
-    return 'Failed to contact server. Please make sure you have an active internet connection.'
-  return str
+function errorToString(e: unknown): string {
+  if (typeof e === 'string') return e
+
+  if (e instanceof Response) {
+    if (e.status === 401 || e.status === 403) return 'Access denied.'
+    if (e.status === 404) return '404: Object does not exist.'
+    if (e.status === 500) return 'Server error.'
+    return 'Application error'
+  }
+
+  if (e instanceof Error) {
+    const v = e.message
+    if (v === 'Failed to fetch') {
+      return 'Failed to contact server. Please make sure you have an active internet connection.'
+    }
+    return v
+  }
+
+  return 'Unknown error'
 }
 
 /**
@@ -28,8 +42,8 @@ export default function usePromise(
       .then((v) => {
         if (mounted) setValue(v)
       })
-      .catch((e) => {
-        LogRocket.captureException(e)
+      .catch((e: unknown) => {
+        if (e instanceof Error) LogRocket.captureException(e)
         if (mounted) setError(errorToString(e))
       })
       .finally(() => {
