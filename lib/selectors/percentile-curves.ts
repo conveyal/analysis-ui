@@ -52,26 +52,19 @@ function computePercentile({
  * different percentiles.
  */
 export function computePercentileCurves({travelTimeSurface, grid}): number[][] {
-  const perccentileCurves = times(travelTimeSurface.depth, (percentileIndex) =>
+  // If the accessbility was calculated on the server side this array will exist.
+  if (Array.isArray(travelTimeSurface.accessibility)) {
+    const destinationPointSetIndex = 0 // Only one destination point set is currently used.
+    return travelTimeSurface.accessibility[destinationPointSetIndex]
+  }
+
+  return times(travelTimeSurface.depth, (percentileIndex) =>
     computePercentile({
       grid,
       percentileIndex,
       travelTimeSurface
     })
   )
-
-  // If the accessbility was calculated on the server side this array will exist.
-  if (Array.isArray(travelTimeSurface.accessibility)) {
-    const destinationPointSetIndex = 0 // Only one destination point set is currently used.
-    console.log('client side', perccentileCurves)
-    console.log(
-      'server side',
-      travelTimeSurface.accessibility[destinationPointSetIndex]
-    )
-    return travelTimeSurface.accessibility[destinationPointSetIndex]
-  }
-
-  return perccentileCurves
 }
 
 export default createSelector(
