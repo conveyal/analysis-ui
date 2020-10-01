@@ -43,7 +43,8 @@ export default function useErrorHandlingToast() {
       }
 
       if (e instanceof Response) {
-        ;(title = 'Error while fetching'), (description = e.statusText)
+        title = 'Error while fetching'
+        description = e.statusText
       }
 
       toast({
