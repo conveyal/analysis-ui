@@ -10,7 +10,7 @@ import {
 import lonlat from '@conveyal/lonlat'
 import fpGet from 'lodash/fp/get'
 import {scaleLinear} from 'd3-scale'
-import {useState, useEffect, useReducer, useRef} from 'react'
+import {memo, useState, useEffect, useReducer, useRef} from 'react'
 import {useSelector} from 'react-redux'
 import {CircleMarker, Pane, useLeaflet} from 'react-leaflet'
 import MapControl from 'react-leaflet-control'
@@ -84,7 +84,7 @@ const isValidTime = (m) => m >= 0 && m <= 120
  * Show a popup with the travel time distribution from the origin to a location
  * @author mattwigway
  */
-export default function DestinationTravelTimeDistribution() {
+export default memo(function DestinationTravelTimeDistribution() {
   const markerRef = useRef<CircleMarker>()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [distribution, setDistribution] = useState<void | number[]>()
@@ -236,4 +236,4 @@ export default function DestinationTravelTimeDistribution() {
       </MapControl>
     </>
   )
-}
+})
