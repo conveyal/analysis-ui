@@ -33,7 +33,12 @@ export default withAuth(function SelectRegionPage(p) {
   const goToRegionCreate = useRouteTo('regionCreate')
 
   return (
-    <Flex alignItems='center' py={10} direction='column'>
+    <Flex
+      alignItems='center'
+      direction='column'
+      py={10}
+      zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
+    >
       <Box mt={8} mb={6}>
         <Logo />
       </Box>

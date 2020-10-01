@@ -126,6 +126,7 @@ export default function Sidebar() {
       id='sidebar'
       justify='space-between'
       width='40px'
+      zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
     >
       <div>
         <Box fontSize='20px' py={10} textAlign='center' width='40px'>
