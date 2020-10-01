@@ -1,14 +1,16 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 
+/**
+ * Sets a value in the custom JSON editor
+ */
 function setCustom(settingKey, newValue, scenario = 'primary') {
-  // sets a value in the "Customize Profile Request" box
   let newConfig = {}
   cy.get(`@${scenario}`)
     .findByRole('tab', {name: /Custom JSON editor/i})
     .click()
 
   cy.get(`@${scenario}`)
-    .findByLabelText(/Customize Profile Request/i)
+    .findByLabelText(/Customize analysis request/i)
     .as('profile')
     .invoke('val')
     .then((currentConfig) => {
