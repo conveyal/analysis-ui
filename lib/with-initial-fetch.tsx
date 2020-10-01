@@ -10,7 +10,9 @@ import {FunctionComponent, useCallback} from 'react'
 import {useDispatch} from 'react-redux'
 
 import FullSpinner from './components/full-spinner'
+import {ExternalLink} from './components/link'
 import usePromise from './hooks/use-promise'
+import message from './message'
 
 interface LayoutComponent extends FunctionComponent {
   Layout?: FunctionComponent<any>
@@ -29,6 +31,12 @@ const ShowError = ({children}) => (
     <Stack>
       <AlertTitle>Error loading data</AlertTitle>
       <AlertDescription>{children}</AlertDescription>
+      <AlertDescription>
+        <>{message('error.report')} </>
+        <ExternalLink href='mailto:support@conveyal.com'>
+          support@conveyal.com
+        </ExternalLink>
+      </AlertDescription>
     </Stack>
   </Alert>
 )

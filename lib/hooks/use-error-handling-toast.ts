@@ -36,14 +36,14 @@ export default function useErrorHandlingToast() {
         LogRocket.captureException(e)
         description = e.message
         if (e.message === 'Failed to fetch') {
-          title = 'Failed to contact server.'
+          title = 'Failed to contact server'
           description =
-            'Please make sure you have an active internet connection.'
+            'Recent changes made may not have been saved. Please make sure you have an active internet connection and reload the page.'
         }
       }
 
       if (e instanceof Response) {
-        title = 'Error while fetching'
+        title = 'Error while communicating with server'
         description = e.statusText
       }
 
