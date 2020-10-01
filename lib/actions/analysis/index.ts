@@ -110,6 +110,9 @@ export const fetchGeoTIFF = (projectName, requestSettings) => (
     })
 }
 
+// Check if the settings contain a decay function type other than step
+const isNotStep = (s) => get(s, 'decayFunction.type', 'step') !== 'step'
+
 /**
  * Handle fetching and constructing the travel time surface and comparison
  * surface and dispatching updates along the way.
@@ -124,28 +127,37 @@ export const fetchTravelTimeSurface = () => (dispatch, getState) => {
   )
 
   const fromLonLat = selectProfileRequestLonLat(state)
+
+  // Only calcuate if decay function is not step
+  const destinationPointSetIds = []
   const destinationPointSetId = activeOpportunityDatasetId(state)
-  // If any pointset is selected, we want an array containing its ID, otherwise no array
-  const destinationPointSetIds = destinationPointSetId && [
-    destinationPointSetId
-  ]
+  if (destinationPointSetId) {
+    destinationPointSetIds.push(destinationPointSetId)
+  }
 
   const profileRequests = [
     {
       ...requestsSettings[0],
       fromLat: fromLonLat.lat,
       fromLon: fromLonLat.lon,
-      destinationPointSetIds,
+      destinationPointSetIds: isNotStep(requestsSettings[0])
+        ? destinationPointSetIds
+        : [],
       percentiles: TRAVEL_TIME_PERCENTILES
     }
   ]
 
   if (get(requestsSettings, '[1].projectId') != null) {
+    const finalSettings = copyRequestSettings
+      ? requestsSettings[0]
+      : requestsSettings[1]
     profileRequests.push({
-      ...(copyRequestSettings ? requestsSettings[0] : requestsSettings[1]), // if copying
+      ...finalSettings,
       fromLat: fromLonLat.lat,
       fromLon: fromLonLat.lon,
-      destinationPointSetIds: destinationPointSetIds,
+      destinationPointSetIds: isNotStep(finalSettings)
+        ? destinationPointSetIds
+        : [],
       percentiles: TRAVEL_TIME_PERCENTILES,
       projectId: requestsSettings[1].projectId,
       variantIndex: requestsSettings[1].variantIndex

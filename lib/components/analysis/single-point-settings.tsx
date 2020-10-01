@@ -631,7 +631,7 @@ const JSONEditor = memo<{
   return (
     <FormControl isDisabled={isDisabled} isInvalid={!isJSONValid(currentValue)}>
       <FormLabel htmlFor='customProfileRequest'>
-        {message('analysis.customizeProfileRequest.label')}
+        Customize analysis request
       </FormLabel>
       <Textarea
         defaultValue={stringified}
