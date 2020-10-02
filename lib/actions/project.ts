@@ -49,12 +49,14 @@ export const loadProject = (_id) =>
   })
 
 export const loadProjectAndModifications = (_id) => async (dispatch) => {
-  const [project, modifications] = await Promise.all([
+  const r1 = await Promise.all([
     dispatch(loadProject(_id)),
     dispatch(getModificationsForProject(_id))
   ])
+  const project = r1[0]
+  const modifications = r1[1]
 
-  const [bundle, feeds] = await Promise.all([
+  const r2 = await Promise.all([
     dispatch(loadBundle(project.bundleId)),
     dispatch(
       getFeedsRoutesAndStops({
@@ -65,7 +67,7 @@ export const loadProjectAndModifications = (_id) => async (dispatch) => {
     )
   ])
 
-  return {bundle, feeds, modifications, project}
+  return {bundle: r2[0], feeds: r2[1], modifications, project}
 }
 
 export const saveToServer = (project) =>

@@ -11,7 +11,7 @@ const ImportModificationsPage = withInitialFetch(
   (p) => (
     <>
       <ProjectTitle project={p.project} />
-      <Dock className='block'>
+      <Dock>
         <ImportModifications
           projects={p.projects}
           projectId={p.query.projectId}

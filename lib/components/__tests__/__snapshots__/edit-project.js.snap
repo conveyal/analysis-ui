@@ -20,12 +20,11 @@ exports[`Component > EditProject 1`] = `
       ],
     }
   }
+  query={Object {}}
 >
-  <InnerDock
-    className="block"
-  >
+  <InnerDock>
     <SimpleBar
-      className="InnerDock block"
+      className="InnerDock "
       style={
         Object {
           "height": 768,
@@ -33,7 +32,7 @@ exports[`Component > EditProject 1`] = `
       }
     >
       <div
-        className="InnerDock block"
+        className="InnerDock "
         data-simplebar={true}
         style={
           Object {
@@ -63,272 +62,518 @@ exports[`Component > EditProject 1`] = `
                 <div
                   className="simplebar-content"
                 >
-                  <Heading
-                    mb={4}
-                    size="md"
+                  <ForwardRef
+                    p={4}
+                    spacing={4}
                   >
-                    <Box
-                      as="h2"
-                      fontFamily="heading"
-                      fontSize="xl"
-                      fontWeight="bold"
-                      lineHeight="shorter"
-                      mb={4}
+                    <Flex
+                      direction="column"
+                      p={4}
                     >
-                      <h2
-                        className="css-k9oqgk"
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        p={4}
                       >
-                        Edit project settings
-                      </h2>
-                    </Box>
-                  </Heading>
-                  <Text
-                    label="Project name"
-                    onChange={[Function]}
-                    value="Mock Project"
-                  >
-                    <Group
-                      id="project-name-input-0"
-                      label="Project name"
-                      onChange={[Function]}
-                      value="Mock Project"
-                    >
-                      <div
-                        className="form-group"
-                      >
-                        <label
-                          className="control-label"
-                          htmlFor="project-name-input-0"
+                        <div
+                          className="css-1n0jko5"
                         >
-                          Project name
-                        </label>
-                        <ForwardRef
-                          id="project-name-input-0"
-                          label="Project name"
-                          onChange={[Function]}
-                          type="text"
-                          value="Mock Project"
-                        >
-                          <input
-                            className="form-control"
-                            id="project-name-input-0"
-                            label="Project name"
-                            onChange={[Function]}
-                            placeholder="Project name"
-                            type="text"
-                            value="Mock Project"
-                          />
-                        </ForwardRef>
-                      </div>
-                    </Group>
-                  </Text>
-                  <Group
-                    label="Bundle"
-                  >
-                    <div
-                      className="form-group"
-                    >
-                      <label
-                        className="control-label"
-                        htmlFor="bundle-input-1"
-                      >
-                        Bundle
-                      </label>
-                      <P>
-                        <Box
-                          as="p"
-                          mb="10px"
-                        >
-                          <p
-                            className="css-1r2f04i"
+                          <Heading
+                            key=".0"
+                            mb={4}
+                            size="md"
                           >
-                            Bundle cannot be changed once a project is created. 
-                            <ALink
-                              bundleId="1"
-                              regionId="1"
-                              to="bundleEdit"
+                            <Box
+                              as="h2"
+                              fontFamily="heading"
+                              fontSize="xl"
+                              fontWeight="bold"
+                              lineHeight="shorter"
+                              mb={4}
                             >
-                              <Link
-                                bundleId="1"
-                                regionId="1"
-                                to="bundleEdit"
+                              <h2
+                                className="css-k9oqgk"
                               >
-                                <Link
-                                  as="/regions/1/bundles/1"
-                                  href={
-                                    Object {
-                                      "pathname": "/regions/[regionId]/bundles/[bundleId]",
-                                      "query": Object {},
-                                    }
-                                  }
-                                  passHref={true}
+                                Edit project settings
+                              </h2>
+                            </Box>
+                          </Heading>
+                          <FormControl
+                            isInvalid={false}
+                            key=".1"
+                            mb={4}
+                          >
+                            <Box
+                              mb={4}
+                              role="group"
+                            >
+                              <div
+                                className="css-acwcvw"
+                                role="group"
+                              >
+                                <FormLabel
+                                  htmlFor="projectName"
+                                >
+                                  <Box
+                                    as="label"
+                                    display="inline-block"
+                                    fontSize="md"
+                                    fontWeight="medium"
+                                    htmlFor="projectName"
+                                    opacity="1"
+                                    pb="4px"
+                                    pr="12px"
+                                    textAlign="left"
+                                    verticalAlign="middle"
+                                  >
+                                    <label
+                                      className="css-176s5fq"
+                                      htmlFor="projectName"
+                                    >
+                                      Project name
+                                    </label>
+                                  </Box>
+                                </FormLabel>
+                                <Input
+                                  as="input"
+                                  errorBorderColor="red.500"
+                                  focusBorderColor="blue.500"
+                                  id="projectName"
+                                  isFullWidth={true}
+                                  onChange={[Function]}
+                                  size="md"
+                                  value="Mock Project"
+                                  variant="outline"
                                 >
                                   <PseudoBox
-                                    _hover={
+                                    _disabled={
                                       Object {
-                                        "color": "blue.700",
+                                        "cursor": "not-allowed",
+                                        "opacity": "0.4",
                                       }
                                     }
-                                    as="a"
-                                    className=""
-                                    color="blue.500"
-                                    href="/regions/1/bundles/1"
-                                    onClick={[Function]}
-                                    onMouseEnter={[Function]}
+                                    _focus={
+                                      Object {
+                                        "borderColor": "#3182ce",
+                                        "boxShadow": "0 0 0 1px #3182ce",
+                                        "zIndex": 1,
+                                      }
+                                    }
+                                    _hover={
+                                      Object {
+                                        "borderColor": "gray.300",
+                                      }
+                                    }
+                                    _invalid={
+                                      Object {
+                                        "borderColor": "#e53e3e",
+                                        "boxShadow": "0 0 0 1px #e53e3e",
+                                      }
+                                    }
+                                    _readOnly={
+                                      Object {
+                                        "bg": "transparent",
+                                        "boxShadow": "none !important",
+                                        "userSelect": "all",
+                                      }
+                                    }
+                                    alignItems="center"
+                                    appearance="none"
+                                    aria-invalid={false}
+                                    as="input"
+                                    bg="white"
+                                    border="1px"
+                                    borderColor="inherit"
+                                    display="flex"
+                                    fontSize="md"
+                                    height={10}
+                                    id="projectName"
+                                    onChange={[Function]}
+                                    outline="none"
+                                    position="relative"
+                                    px={4}
+                                    rounded="md"
+                                    transition="all 0.2s"
+                                    value="Mock Project"
+                                    width="100%"
                                   >
-                                    <a
-                                      className=" css-1cnzmew"
-                                      href="/regions/1/bundles/1"
-                                      onClick={[Function]}
-                                      onMouseEnter={[Function]}
-                                    >
-                                      View bundle info here.
-                                    </a>
+                                    <input
+                                      aria-invalid={false}
+                                      className="css-1ga4kqw"
+                                      id="projectName"
+                                      onChange={[Function]}
+                                      value="Mock Project"
+                                    />
                                   </PseudoBox>
-                                </Link>
-                              </Link>
-                            </ALink>
-                          </p>
-                        </Box>
-                      </P>
-                    </div>
-                  </Group>
-                  <Button
-                    block={true}
-                    disabled={true}
-                    onClick={[Function]}
-                    style="success"
-                  >
-                    <a
-                      className="btn btn-success btn-block"
-                      disabled={true}
-                      href="#"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "save",
-                            "prefix": "fas",
-                          }
-                        }
-                      >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "save",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          swapOpacity={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-save fa-w-NaN fa-fw "
-                            data-icon="save"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
+                                </Input>
+                              </div>
+                            </Box>
+                          </FormControl>
+                          <ForwardRef
+                            key=".2"
+                            mb={4}
+                            spacing={2}
                           >
-                            <path
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       
-                      Save project
-                    </a>
-                  </Button>
-                  <Button
-                    block={true}
-                    onClick={[Function]}
-                    style="danger"
-                  >
-                    <a
-                      className="btn btn-danger btn-block"
-                      href="#"
-                      onClick={[Function]}
-                      tabIndex={0}
-                    >
-                      <Icon
-                        icon={
-                          Object {
-                            "icon": Array [],
-                            "iconName": "trash",
-                            "prefix": "fas",
-                          }
-                        }
-                      >
-                        <FontAwesomeIcon
-                          border={false}
-                          className=""
-                          fixedWidth={true}
-                          flip={null}
-                          icon={
-                            Object {
-                              "icon": Array [],
-                              "iconName": "trash",
-                              "prefix": "fas",
-                            }
-                          }
-                          inverse={false}
-                          listItem={false}
-                          mask={null}
-                          pull={null}
-                          pulse={false}
-                          rotation={null}
-                          size={null}
-                          spin={false}
-                          swapOpacity={false}
-                          symbol={false}
-                          title=""
-                          transform={null}
-                        >
-                          <svg
-                            aria-hidden="true"
-                            className="svg-inline--fa fa-trash fa-w-NaN fa-fw "
-                            data-icon="trash"
-                            data-prefix="fas"
-                            focusable="false"
-                            role="img"
-                            style={Object {}}
-                            viewBox="0 0 undefined undefined"
-                            xmlns="http://www.w3.org/2000/svg"
+                            <Flex
+                              direction="column"
+                              mb={4}
+                            >
+                              <Box
+                                display="flex"
+                                flexDirection="column"
+                                mb={4}
+                              >
+                                <div
+                                  className="css-opcg3f"
+                                >
+                                  <Heading
+                                    key=".0"
+                                    mb={2}
+                                    size="sm"
+                                  >
+                                    <Box
+                                      as="h2"
+                                      fontFamily="heading"
+                                      fontSize="md"
+                                      fontWeight="bold"
+                                      lineHeight="shorter"
+                                      mb={2}
+                                    >
+                                      <h2
+                                        className="css-zngbqj"
+                                      >
+                                        Bundle
+                                      </h2>
+                                    </Box>
+                                  </Heading>
+                                  <Box
+                                    key=".1"
+                                    mb={null}
+                                  >
+                                    <div
+                                      className="css-0"
+                                    >
+                                      Bundle cannot be changed once a project is created. 
+                                      <ALink
+                                        bundleId="1"
+                                        regionId="1"
+                                        to="bundleEdit"
+                                      >
+                                        <InternalLink
+                                          bundleId="1"
+                                          regionId="1"
+                                          to="bundleEdit"
+                                        >
+                                          <Link
+                                            as="/regions/1/bundles/1"
+                                            href={
+                                              Object {
+                                                "pathname": "/regions/[regionId]/bundles/[bundleId]",
+                                                "query": Object {},
+                                              }
+                                            }
+                                            passHref={true}
+                                          >
+                                            <Link
+                                              _hover={
+                                                Object {
+                                                  "color": "blue.700",
+                                                }
+                                              }
+                                              className=""
+                                              color="blue.500"
+                                              href="/regions/1/bundles/1"
+                                              onClick={[Function]}
+                                              onMouseEnter={[Function]}
+                                            >
+                                              <PseudoBox
+                                                _disabled={
+                                                  Object {
+                                                    "cursor": "not-allowed",
+                                                    "opacity": "0.4",
+                                                    "textDecoration": "none",
+                                                  }
+                                                }
+                                                _focus={
+                                                  Object {
+                                                    "boxShadow": "outline",
+                                                  }
+                                                }
+                                                _hover={
+                                                  Object {
+                                                    "color": "blue.700",
+                                                  }
+                                                }
+                                                as="a"
+                                                className=""
+                                                color="blue.500"
+                                                cursor="pointer"
+                                                href="/regions/1/bundles/1"
+                                                onClick={[Function]}
+                                                onMouseEnter={[Function]}
+                                                outline="none"
+                                                textDecoration="none"
+                                                transition="all 0.15s ease-out"
+                                              >
+                                                <a
+                                                  className=" css-17d37xz"
+                                                  href="/regions/1/bundles/1"
+                                                  onClick={[Function]}
+                                                  onMouseEnter={[Function]}
+                                                >
+                                                  View bundle info here.
+                                                </a>
+                                              </PseudoBox>
+                                            </Link>
+                                          </Link>
+                                        </InternalLink>
+                                      </ALink>
+                                    </div>
+                                  </Box>
+                                </div>
+                              </Box>
+                            </Flex>
+                          </ForwardRef>
+                          <Button
+                            isDisabled={true}
+                            key=".3"
+                            leftIcon="edit"
+                            mb={4}
+                            onClick={[Function]}
+                            variantColor="green"
                           >
-                            <path
-                              fill="currentColor"
-                              style={Object {}}
-                            />
-                          </svg>
-                        </FontAwesomeIcon>
-                      </Icon>
-                       
-                      Delete project
-                    </a>
-                  </Button>
+                            <PseudoBox
+                              _active={
+                                Object {
+                                  "bg": "green.700",
+                                }
+                              }
+                              _disabled={
+                                Object {
+                                  "boxShadow": "none",
+                                  "cursor": "not-allowed",
+                                  "opacity": "40%",
+                                }
+                              }
+                              _focus={
+                                Object {
+                                  "boxShadow": "outline",
+                                }
+                              }
+                              _hover={
+                                Object {
+                                  "bg": "green.600",
+                                }
+                              }
+                              alignItems="center"
+                              appearance="none"
+                              aria-disabled={true}
+                              as="button"
+                              bg="green.500"
+                              borderRadius="md"
+                              color="white"
+                              disabled={true}
+                              display="inline-flex"
+                              fontSize="md"
+                              fontWeight="semibold"
+                              height={10}
+                              justifyContent="center"
+                              lineHeight="1.2"
+                              mb={4}
+                              minWidth={10}
+                              onClick={[Function]}
+                              outline="none"
+                              position="relative"
+                              px={4}
+                              transition="all 250ms"
+                              type="button"
+                              userSelect="none"
+                              verticalAlign="middle"
+                              whiteSpace="nowrap"
+                            >
+                              <button
+                                aria-disabled={true}
+                                className="css-1egop4s"
+                                disabled={true}
+                                onClick={[Function]}
+                                type="button"
+                              >
+                                <ButtonIcon
+                                  icon="edit"
+                                  ml={-1}
+                                  mr={2}
+                                >
+                                  <Icon
+                                    aria-hidden="true"
+                                    color="currentColor"
+                                    focusable="false"
+                                    ml={-1}
+                                    mr={2}
+                                    name="edit"
+                                  >
+                                    <Styled(div)
+                                      aria-hidden="true"
+                                      as="svg"
+                                      color="currentColor"
+                                      display="inline-block"
+                                      focusable="false"
+                                      ml={-1}
+                                      mr={2}
+                                      role="presentation"
+                                      size="1em"
+                                      verticalAlign="middle"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <svg
+                                        aria-hidden="true"
+                                        className="css-yxiis9"
+                                        focusable="false"
+                                        role="presentation"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <g
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeLinecap="full"
+                                          strokeWidth="2"
+                                        >
+                                          <path
+                                            d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                                          />
+                                          <path
+                                            d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                                          />
+                                        </g>
+                                      </svg>
+                                    </Styled(div)>
+                                  </Icon>
+                                </ButtonIcon>
+                                Save project
+                              </button>
+                            </PseudoBox>
+                          </Button>
+                          <ConfirmButton
+                            description="Are you sure you would like to delete this project?"
+                            key=".4"
+                            leftIcon="delete"
+                            mb={null}
+                            onConfirm={[Function]}
+                            variantColor="red"
+                          >
+                            <Button
+                              leftIcon="delete"
+                              mb={null}
+                              onClick={[Function]}
+                              variantColor="red"
+                            >
+                              <PseudoBox
+                                _active={
+                                  Object {
+                                    "bg": "red.700",
+                                  }
+                                }
+                                _disabled={
+                                  Object {
+                                    "boxShadow": "none",
+                                    "cursor": "not-allowed",
+                                    "opacity": "40%",
+                                  }
+                                }
+                                _focus={
+                                  Object {
+                                    "boxShadow": "outline",
+                                  }
+                                }
+                                _hover={
+                                  Object {
+                                    "bg": "red.600",
+                                  }
+                                }
+                                alignItems="center"
+                                appearance="none"
+                                as="button"
+                                bg="red.500"
+                                borderRadius="md"
+                                color="white"
+                                display="inline-flex"
+                                fontSize="md"
+                                fontWeight="semibold"
+                                height={10}
+                                justifyContent="center"
+                                lineHeight="1.2"
+                                mb={null}
+                                minWidth={10}
+                                onClick={[Function]}
+                                outline="none"
+                                position="relative"
+                                px={4}
+                                transition="all 250ms"
+                                type="button"
+                                userSelect="none"
+                                verticalAlign="middle"
+                                whiteSpace="nowrap"
+                              >
+                                <button
+                                  className="css-thv05u"
+                                  onClick={[Function]}
+                                  type="button"
+                                >
+                                  <ButtonIcon
+                                    icon="delete"
+                                    ml={-1}
+                                    mr={2}
+                                  >
+                                    <Icon
+                                      aria-hidden="true"
+                                      color="currentColor"
+                                      focusable="false"
+                                      ml={-1}
+                                      mr={2}
+                                      name="delete"
+                                    >
+                                      <Styled(div)
+                                        aria-hidden="true"
+                                        as="svg"
+                                        color="currentColor"
+                                        display="inline-block"
+                                        focusable="false"
+                                        ml={-1}
+                                        mr={2}
+                                        role="presentation"
+                                        size="1em"
+                                        verticalAlign="middle"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          className="css-yxiis9"
+                                          focusable="false"
+                                          role="presentation"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <g
+                                            fill="currentColor"
+                                          >
+                                            <path
+                                              d="M19.452,7.5H4.547a.5.5,0,0,0-.5.545L5.334,22.181A2,2,0,0,0,7.326,24h9.347a2,2,0,0,0,1.992-1.819L19.95,8.045a.5.5,0,0,0-.129-.382A.5.5,0,0,0,19.452,7.5Zm-9.2,13a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Zm5,0a.75.75,0,0,1-1.5,0v-9a.75.75,0,0,1,1.5,0Z"
+                                            />
+                                            <path
+                                              d="M22,4H17.25A.25.25,0,0,1,17,3.75V2.5A2.5,2.5,0,0,0,14.5,0h-5A2.5,2.5,0,0,0,7,2.5V3.75A.25.25,0,0,1,6.75,4H2A1,1,0,0,0,2,6H22a1,1,0,0,0,0-2ZM9,3.75V2.5A.5.5,0,0,1,9.5,2h5a.5.5,0,0,1,.5.5V3.75a.25.25,0,0,1-.25.25H9.25A.25.25,0,0,1,9,3.75Z"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </Styled(div)>
+                                    </Icon>
+                                  </ButtonIcon>
+                                  Delete project
+                                </button>
+                              </PseudoBox>
+                            </Button>
+                          </ConfirmButton>
+                        </div>
+                      </Box>
+                    </Flex>
+                  </ForwardRef>
                 </div>
               </div>
             </div>

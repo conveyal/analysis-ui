@@ -54,7 +54,7 @@ function filterModifications(filter, modifications, projectId) {
   modifications
     .filter((m) => m.projectId === projectId)
     .filter(
-      (m) => filter === null || m.name.toLowerCase().indexOf(filterLcase) > -1
+      (m) => filter === null || m.name?.toLowerCase().indexOf(filterLcase) > -1
     )
     .forEach((m) => {
       filteredModificationsByType[m.type] = [

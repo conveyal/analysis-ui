@@ -16,11 +16,14 @@ const ModificationsPage: any = withInitialFetch(
     </>
   ),
   async (dispatch, query) => {
-    const [project, modifications] = await Promise.all([
-      dispatch(loadProject(query.projectId)),
-      dispatch(loadModifications(query.projectId))
+    const results = await Promise.all([
+      dispatch(loadModifications(query.projectId)),
+      dispatch(loadProject(query.projectId))
     ])
-    return {project, modifications}
+    return {
+      modifications: results[0],
+      project: results[1]
+    }
   }
 )
 

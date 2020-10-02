@@ -25,6 +25,19 @@ type Create = {
   variants: boolean[]
 }
 
+export function createAddTripPattern({name, projectId, variants = []}) {
+  return {
+    name,
+    projectId,
+    bidirectional: true,
+    segments: [],
+    variants,
+    timetables: [],
+    type: ADD_TRIP_PATTERN,
+    transitMode: 3 // BUS, same as the R5 default
+  }
+}
+
 export function create({feedId, name, projectId, type, variants}: Create) {
   const base = {
     name: name || toStartCase(type),
@@ -65,13 +78,7 @@ export function create({feedId, name, projectId, type, variants}: Create) {
         toStop: null
       }
     case ADD_TRIP_PATTERN:
-      return {
-        ...base,
-        bidirectional: true,
-        segments: [],
-        timetables: [],
-        transitMode: 3 // BUS, same as the R5 default
-      }
+      return createAddTripPattern(base)
     case ADJUST_DWELL_TIME:
       return {
         ...base,

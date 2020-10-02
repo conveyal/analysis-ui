@@ -75,7 +75,7 @@ export default withRedux(function Debug() {
       >
         Fetch a url that does not exist
       </Button>
-      <Button onClick={() => dispatch(fetch())} variantColor='red'>
+      <Button onClick={() => dispatch(fetch({}))} variantColor='red'>
         Fetch with invalid parameters
       </Button>
     </Stack>

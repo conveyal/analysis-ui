@@ -75,7 +75,6 @@ export default function ErrorModal({
       closeOnOverlayClick={false}
       isOpen={error}
       onClose={() => clear()}
-      scrollBehavior='inside'
       size='2xl'
     >
       <ModalOverlay />

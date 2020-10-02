@@ -1,13 +1,8 @@
-import {faPlus, faUsers} from '@fortawesome/free-solid-svg-icons'
+import {Box, Button, Heading, Stack} from '@chakra-ui/core'
 import differenceInHours from 'date-fns/differenceInHours'
-import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import {Button, ButtonLink} from 'lib/components/buttons'
-import H5 from 'lib/components/h5'
-import Icon from 'lib/components/icon'
-import {Group} from 'lib/components/input'
-import P from 'lib/components/p'
+import ButtonLink from 'lib/components/button-link'
 import useInterval from 'lib/hooks/use-interval'
 import message from 'lib/message'
 
@@ -27,24 +22,23 @@ const uploadingOrProcessing = (s) => ['UPLOADING', 'PROCESSING'].includes(s)
 const UPLOAD_STATUS_CHECK_INTERVAL = 5000 // five seconds
 
 export default function ListOpportunityDatasets({regionId}) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const activeOpportunityDataset = useSelector(select.activeOpportunityDataset)
   const uploadStatuses = useSelector(select.uploadStatuses)
 
   // If there are uploads occuring, check statuses on an interval
-  useInterval(() => {
+  useInterval(async () => {
     if (uploadStatuses.find((status) => uploadingOrProcessing(status.status))) {
-      dispatch(checkUploadStatus(regionId)).then((newStatuses) => {
-        // Reload ODs if any status went from processing to done
-        const incomplete = uploadStatuses.filter((s) => s.status !== 'DONE')
-        const complete = newStatuses.filter((s) => s.status === 'DONE')
+      const newStatuses = await dispatch(checkUploadStatus(regionId))
+      // Reload ODs if any status went from processing to done
+      const incomplete = uploadStatuses.filter((s) => s.status !== 'DONE')
+      const complete = newStatuses.filter((s) => s.status === 'DONE')
 
-        if (
-          complete.findIndex((s) => incomplete.find((i) => i.id === s.id)) > -1
-        ) {
-          dispatch(loadOpportunityDatasets(regionId))
-        }
-      })
+      if (
+        complete.findIndex((s) => incomplete.find((i) => i.id === s.id)) > -1
+      ) {
+        dispatch(loadOpportunityDatasets(regionId))
+      }
     }
   }, UPLOAD_STATUS_CHECK_INTERVAL)
 
@@ -60,8 +54,8 @@ export default function ListOpportunityDatasets({regionId}) {
   )
 
   return (
-    <>
-      {recentStatuses.length > 0 && <H5>Upload Status</H5>}
+    <Stack spacing={4}>
+      {recentStatuses.length > 0 && <Heading>Upload Status</Heading>}
       {recentStatuses.map((status, i) => (
         <Status
           clear={() => dispatch(clearStatus(regionId, status.id))}
@@ -69,30 +63,30 @@ export default function ListOpportunityDatasets({regionId}) {
           {...status}
         />
       ))}
-      <Group>
+      <Stack spacing={2}>
         <ButtonLink
+          leftIcon='small-add'
           to='opportunitiesUpload'
-          regionId={regionId}
-          block
-          style='success'
+          query={{regionId}}
+          variantColor='green'
         >
-          <Icon icon={faPlus} /> {message('opportunityDatasets.upload')}
+          {message('opportunityDatasets.upload')}
         </ButtonLink>
-        <Button block onClick={_downloadLODES} style='primary'>
-          <Icon icon={faUsers} /> {message('opportunityDatasets.downloadLODES')}
+        <Button onClick={_downloadLODES} variantColor='blue'>
+          {message('opportunityDatasets.downloadLODES')}
         </Button>
-      </Group>
-      <P className='text-center'>
+      </Stack>
+      <Box textAlign='center'>
         <label htmlFor='select-opportunity-dataset'>
           {message('opportunityDatasets.select')}
         </label>
-      </P>
-      <Group>
+      </Box>
+      <Box>
         <Selector regionId={regionId} />
-      </Group>
+      </Box>
       {activeOpportunityDataset && (
         <EditOpportunityDataset opportunityDataset={activeOpportunityDataset} />
       )}
-    </>
+    </Stack>
   )
 }

@@ -74,24 +74,26 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
   return (
     <Stack {...p}>
       <Stack spacing={0}>
-        <Stack isInline spacing={5} alignItems='center'>
-          <Progress
-            flex='10'
-            color={disabledOrStale ? 'gray' : 'blue'}
-            size='md'
-            value={((accessibility || 1) / maxAccessibility) * 100}
-          />
-          <Box
-            aria-label={PRIMARY_ACCESS_LABEL}
-            fontWeight='500'
-            flex='1'
-            textAlign='left'
-          >
-            {commaFormat(accessibility)}
-          </Box>
-        </Stack>
+        {typeof accessibility === 'number' && (
+          <Stack isInline spacing={5} alignItems='center'>
+            <Progress
+              flex='10'
+              color={disabledOrStale ? 'gray' : 'blue'}
+              size='md'
+              value={((accessibility || 1) / maxAccessibility) * 100}
+            />
+            <Box
+              aria-label={PRIMARY_ACCESS_LABEL}
+              fontWeight='500'
+              flex='1'
+              textAlign='left'
+            >
+              {commaFormat(accessibility)}
+            </Box>
+          </Stack>
+        )}
 
-        {comparisonProjectName && comparisonAccessibility != null && (
+        {comparisonProjectName && typeof comparisonAccessibility === 'number' && (
           <Stack isInline spacing={5} alignItems='center'>
             <Progress
               flex='10'

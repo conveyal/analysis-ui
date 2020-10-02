@@ -162,13 +162,14 @@ export default function EditBundle(p) {
             </Alert>
           ) : (
             <ConfirmButton
-              action={message('bundle.delete')}
               description={message('bundle.deleteConfirmation')}
               leftIcon='delete'
               onConfirm={_deleteBundle}
               size='lg'
               variantColor='red'
-            />
+            >
+              {message('bundle.delete')}
+            </ConfirmButton>
           )}
         </Stack>
       )}

@@ -8,13 +8,16 @@ import selectPercentileIndex from './percentile-index'
 /**
  * Select the total accessibility for a specific percentile and cutoff of the comparison percentile curves.
  */
-export default createSelector(
+export default createSelector<
+  unknown,
+  number,
+  void | number[][],
+  number,
+  void | number
+>(
   selectMaxTripDurationMinutes,
   selectComparisonPercentileCurves,
   selectPercentileIndex,
-  (
-    cutoffMinutes: number,
-    percentileCurves: number[][],
-    percentileIndex: number
-  ) => get(percentileCurves, `[${percentileIndex}][${cutoffMinutes}]`)
+  (cutoffMinutes, percentileCurves, percentileIndex) =>
+    get(percentileCurves, `[${percentileIndex}][${cutoffMinutes}]`)
 )

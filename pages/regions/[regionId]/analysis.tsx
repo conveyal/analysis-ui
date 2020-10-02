@@ -23,14 +23,14 @@ const AnalysisPage: any = withInitialFetch(
     dispatch(setScenarioApplicationWarnings(null))
     dispatch(setScenarioApplicationErrors(null))
 
-    const [totalRegion, regionalAnalyses] = await Promise.all([
+    const results = await Promise.all([
       dispatch(load(query.regionId)),
       dispatch(loadAllRegionalAnalyses(query.regionId))
     ])
 
     return {
-      regionalAnalyses,
-      ...totalRegion
+      regionalAnalyses: results[1],
+      ...results[0]
     }
   }
 )

@@ -19,7 +19,7 @@ const generator = new XorShift(SEED)
 const values = Array(VALUES)
   .fill(0)
   .map(() => generator.random() * RANGE)
-SAMPLES.forEach(sampleSize => {
+SAMPLES.forEach((sampleSize) => {
   const times = []
   const results = []
   const sampleGenerator = new XorShift(SEED)
@@ -29,7 +29,7 @@ SAMPLES.forEach(sampleSize => {
     results.push(ss.ckmeans(samples, BREAKS))
     times.push(Date.now() - now)
   }
-  const clusters = results[0].map(c => c[c.length - 1] | 0)
+  const clusters = results[0].map((c) => c[c.length - 1] | 0)
   console.log('Sample Size:', sampleSize)
   console.log(ss.mean(times))
   console.log(JSON.stringify(clusters))
