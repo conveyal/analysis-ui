@@ -120,6 +120,7 @@ describe('Analysis', function () {
       cy.findByLabelText(/To time/i)
       cy.get('@primary').findByLabelText(/Simulated Schedules/i)
       cy.get('@primary').findByLabelText(/Maximum transfers/i)
+      cy.get('@primary').findByLabelText(/Decay function/i)
       cy.findByLabelText(/Routing engine/i)
       cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
       cy.get('@primary').findByRole('tab', {name: /Custom JSON editor/i})
