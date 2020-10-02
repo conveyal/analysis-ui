@@ -5,12 +5,19 @@ import {createSelector} from 'reselect'
 
 import selectProfileRequestLonLat from './profile-request-lonlat'
 
+import {activeOpportunityDatasetId} from 'lib/modules/opportunity-datasets/selectors'
+
 const omitKeys = [
   'maxTripDurationMinutes',
   'opportunityDatasetId',
   'travelTimePercentile'
 ]
 const hasChanged = (a, b) => !isEqual(omit(a, omitKeys), omit(b, omitKeys))
+
+const accessibilityOutOfSync = (results, currentId) =>
+  results &&
+  get(results, 'decayFunction.type', 'step') !== 'step' &&
+  get(results, 'destinationPointSetIds[0]') !== currentId
 
 /**
  * Compare the results vs the current settings.
@@ -20,34 +27,39 @@ export default createSelector(
   (state) => get(state, 'analysis.copyRequestSettings'),
   (state) => get(state, 'analysis.requestsSettings', []),
   (state) => get(state, 'analysis.resultsSettings', []),
-  (lonlat, copyRequestSettings, requestsSettings, resultsSettings) => {
-    // Check primary request settings
-    if (
-      hasChanged(
-        {
-          ...requestsSettings[0],
-          fromLat: lonlat.lat,
-          fromLon: lonlat.lon
-        },
-        resultsSettings[0]
-      )
+  activeOpportunityDatasetId,
+  (
+    lonlat,
+    copyRequestSettings,
+    requestsSettings,
+    resultsSettings,
+    opportunitDatasetId
+  ) => {
+    const [req1, req2] = requestsSettings
+    const [res1, res2] = resultsSettings
+    const position = {fromLat: lonlat.lat, fromLon: lonlat.lon}
+
+    const primaryHasChanged = hasChanged({...req1, ...position}, res1)
+    const comparisonHasChanged = hasChanged(
+      {
+        ...(copyRequestSettings ? req1 : req2 ?? {}), // if copying
+        ...position,
+        // even when copying comparison may have different project/scenario
+        projectId: req2?.projectId,
+        variantIndex: req2?.variantIndex
+      },
+      res2
     )
+
+    // Check primary request settings
+    if (primaryHasChanged) return true
+    if ((res2?.projectId || req2?.projectId) && comparisonHasChanged)
       return true
 
-    // Check secondary request settings
+    // If the accessibility was calculated server side, check for opportunity changes
     if (
-      (get(resultsSettings, '[1].projectId') ||
-        get(requestsSettings, '[1].projectId')) &&
-      hasChanged(
-        {
-          ...(copyRequestSettings ? requestsSettings[0] : requestsSettings[1]), // if copying
-          fromLat: lonlat.lat,
-          fromLon: lonlat.lon,
-          projectId: requestsSettings[1].projectId,
-          variantIndex: requestsSettings[1].variantIndex
-        },
-        resultsSettings[1]
-      )
+      accessibilityOutOfSync(res1, opportunitDatasetId) ||
+      accessibilityOutOfSync(res2, opportunitDatasetId)
     ) {
       return true
     }

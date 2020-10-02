@@ -1,9 +1,8 @@
-//
 import {createSelector} from 'reselect'
 
-import {activeOpportunityDatasetGrid} from '../modules/opportunity-datasets/selectors'
+import {activeOpportunityDatasetGrid} from 'lib/modules/opportunity-datasets/selectors'
 
-import {computePercentileCurves} from './percentile-curves'
+import {computeAccessibilityCurves} from './percentile-curves'
 
 /**
  * Select the percentile curves for the comparison project
@@ -13,6 +12,6 @@ export default createSelector(
   activeOpportunityDatasetGrid,
   (travelTimeSurface, grid) =>
     travelTimeSurface && grid
-      ? computePercentileCurves({travelTimeSurface, grid})
+      ? computeAccessibilityCurves({travelTimeSurface, grid})
       : null
 )

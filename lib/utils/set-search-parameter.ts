@@ -1,4 +1,7 @@
-export default function setSearchParameter(name, value) {
+export default function setSearchParameter(
+  name: string | Record<string, string>,
+  value?: string
+) {
   if (typeof window === 'undefined') return
 
   const search = new URLSearchParams(window.location.search)

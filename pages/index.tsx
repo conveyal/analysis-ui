@@ -8,20 +8,15 @@ import {
   Stack
 } from '@chakra-ui/core'
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
-import {GetServerSideProps} from 'next'
 
-import {getUser} from 'lib/auth0'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
-import AuthenticatedCollection from 'lib/db/authenticated-collection'
-import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
-import {IUser} from 'lib/user'
 
 const alertDate = 'August, 2020'
 const alertText =
@@ -104,7 +99,7 @@ function RegionItem({region, ...p}) {
 /**
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
- */
+ *
 export const getServerSideProps: GetServerSideProps = async ({req}) => {
   let user: IUser = null
   try {
@@ -128,3 +123,4 @@ export const getServerSideProps: GetServerSideProps = async ({req}) => {
     }
   }
 }
+*/

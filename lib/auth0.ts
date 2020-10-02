@@ -1,4 +1,6 @@
 import {initAuth0} from '@auth0/nextjs-auth0'
+import {ISignInWithAuth0} from '@auth0/nextjs-auth0/dist/instance'
+import {ISession} from '@auth0/nextjs-auth0/dist/session/session'
 import {parse} from 'cookie'
 import {IncomingMessage} from 'http'
 import ms from 'ms'
@@ -19,21 +21,25 @@ const auth0s = {
   // [origin]: ISignInWithAuth0
 }
 
-function createAuth0(origin: string) {
+function createAuth0(origin: string): ISignInWithAuth0 {
   if (process.env.NEXT_PUBLIC_AUTH_DISABLED === 'true') {
     return {
       handleCallback: async () => {},
       handleLogin: async () => {},
       handleLogout: async () => {},
       handleProfile: async () => {},
-      getSession: () => ({
+      getSession: async (): Promise<ISession> => ({
+        createdAt: Date.now(),
         user: {
           name: 'local',
           'http://conveyal/accessGroup': 'local'
         },
         idToken: 'fake'
       }),
-      requireAuthentication: (fn) => fn
+      requireAuthentication: (fn) => fn,
+      tokenCache: () => ({
+        getAccessToken: async () => ({})
+      })
     }
   } else {
     return initAuth0({
@@ -56,7 +62,9 @@ function createAuth0(origin: string) {
 }
 
 // Dyanmically create the Auth0 instance based upon a request
-export default function initAuth0WithReq(req: IncomingMessage) {
+export default function initAuth0WithReq(
+  req: IncomingMessage
+): ISignInWithAuth0 {
   const host = req.headers.host
   const protocol = /^localhost(:\d+)?$/.test(host) ? 'http:' : 'https:'
   const origin = `${protocol}//${host}`

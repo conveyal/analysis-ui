@@ -10,9 +10,9 @@ import {
 import lonlat from '@conveyal/lonlat'
 import fpGet from 'lodash/fp/get'
 import {scaleLinear} from 'd3-scale'
-import {useState, useEffect, useReducer, useRef} from 'react'
+import {memo, useState, useEffect, useReducer, useRef} from 'react'
 import {useSelector} from 'react-redux'
-import {CircleMarker, useLeaflet} from 'react-leaflet'
+import {CircleMarker, Pane, useLeaflet} from 'react-leaflet'
 import MapControl from 'react-leaflet-control'
 
 import colors from 'lib/constants/colors'
@@ -26,6 +26,7 @@ const WIDTH = 300
 const HEIGHT = 15
 const MAX_TRIP_DURATION = 120
 const SCALE = scaleLinear().domain([0, MAX_TRIP_DURATION]).range([0, WIDTH])
+const PADDING = 4
 const FONT_SIZE = 10
 const STROKE_WIDTH = 1
 
@@ -83,7 +84,7 @@ const isValidTime = (m) => m >= 0 && m <= 120
  * Show a popup with the travel time distribution from the origin to a location
  * @author mattwigway
  */
-export default function DestinationTravelTimeDistribution() {
+export default memo(function DestinationTravelTimeDistribution() {
   const markerRef = useRef<CircleMarker>()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [distribution, setDistribution] = useState<void | number[]>()
@@ -135,22 +136,25 @@ export default function DestinationTravelTimeDistribution() {
     }
   }, [dispatch, leaflet])
 
-  const fullHeight = (comparisonDistribution ? HEIGHT * 2 : HEIGHT) + FONT_SIZE
+  const fullHeight =
+    (comparisonDistribution ? HEIGHT * 2 : HEIGHT) + PADDING + FONT_SIZE
 
   return (
     <>
       {latlng && (
-        <CircleMarker
-          center={latlng}
-          color={state.locked ? '#333' : '#3182ce'}
-          onclick={(e) => dispatch({type: 'toggle lock', payload: e.latlng})}
-          radius={5}
-          ref={markerRef}
-        />
+        <Pane zIndex={600}>
+          <CircleMarker
+            center={latlng}
+            color={state.locked ? '#333' : '#3182ce'}
+            onclick={(e) => dispatch({type: 'toggle lock', payload: e.latlng})}
+            radius={5}
+            ref={markerRef}
+          />
+        </Pane>
       )}
       <MapControl position='bottomleft'>
-        <Stack backgroundColor='white' boxShadow='lg' rounded='md' pt={2}>
-          <Flex alignItems='baseline' justify='space-between' px={3}>
+        <Stack backgroundColor='white' boxShadow='lg'>
+          <Flex alignItems='baseline' justify='space-between' pt={3} px={3}>
             <Heading size='sm'>Travel time distribution (minutes)</Heading>
             {latlng && distribution && (
               <Text fontFamily='mono' fontSize='sm'>
@@ -158,8 +162,15 @@ export default function DestinationTravelTimeDistribution() {
               </Text>
             )}
           </Flex>
+
+          {surface && !distribution && (
+            <Alert status='info'>
+              <AlertIcon /> Mouse over the isochrone to show travel times.
+            </Alert>
+          )}
+
           {distribution && (
-            <Box fontFamily='mono' px={3} pb={2} position='relative'>
+            <Box fontFamily='mono' position='relative' px={3} pb={3}>
               {isValidTime(distribution[percentileIndex]) && (
                 <Text
                   color='blue.500'
@@ -221,14 +232,8 @@ export default function DestinationTravelTimeDistribution() {
               </figure>
             </Box>
           )}
-
-          {surface && !distribution && (
-            <Alert status='info'>
-              <AlertIcon /> Mouse over the isochrone to show travel times.
-            </Alert>
-          )}
         </Stack>
       </MapControl>
     </>
   )
-}
+})

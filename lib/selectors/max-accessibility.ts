@@ -1,4 +1,3 @@
-//
 import {createSelector} from 'reselect'
 
 import selectComparisonPercentileCurves from './comparison-percentile-curves'

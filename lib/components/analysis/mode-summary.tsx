@@ -1,8 +1,9 @@
-import {Box, Stack, Tooltip} from '@chakra-ui/core'
+import {Box, Stack} from '@chakra-ui/core'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
 
 import Icon from '../icon'
-import ModeIcon from '../mode-icon'
+import ModeIconBox from '../mode-icon'
+import Tip from '../tip'
 
 export default function ModeSummary({
   accessModes,
@@ -15,20 +16,15 @@ export default function ModeSummary({
 
   return (
     <Stack align='center' isInline spacing={1}>
-      <ModeIcon mode={accessModes} />
+      <ModeIconBox mode={accessModes} />
       {transitModes.length > 0 && (
-        <Tooltip
-          hasArrow
-          aria-label={transitModesArray.join(', ')}
-          label={transitModesArray.join(', ')}
-          zIndex={1000}
-        >
+        <Tip label={transitModesArray.join(', ')}>
           <Stack align='center' isInline spacing={1}>
             <Box color={`${color}.500`} fontSize='xs'>
               <Icon icon={faChevronRight} />
             </Box>
             {transitModesArray.slice(0, max).map((m) => (
-              <ModeIcon mode={m} key={m} />
+              <ModeIconBox mode={m} key={m} />
             ))}
             {transitModesArray.length > max && <Box>...</Box>}
             {egressModes !== 'WALK' && (
@@ -36,11 +32,11 @@ export default function ModeSummary({
                 <Box color={`${color}.500`} fontSize='xs'>
                   <Icon icon={faChevronRight} />
                 </Box>
-                <ModeIcon mode={egressModes} />
+                <ModeIconBox mode={egressModes} />
               </Stack>
             )}
           </Stack>
-        </Tooltip>
+        </Tip>
       )}
     </Stack>
   )

@@ -11,7 +11,6 @@ import {
   ModalFooter,
   ModalOverlay,
   useDisclosure,
-  Box,
   FormHelperText,
   Stack
 } from '@chakra-ui/core'
@@ -57,6 +56,8 @@ const createTestArray = (min, max) => (sorted) =>
 const testCutoffs = createTestArray(5, 120)
 const testPercentiles = createTestArray(1, 99)
 
+const disabledLabel = 'Fetch results with the current settings to enable button'
+
 export default function CreateRegional({
   isDisabled,
   profileRequest,
@@ -70,6 +71,7 @@ export default function CreateRegional({
         isDisabled={isDisabled}
         onClick={onOpen}
         rightIcon='small-add'
+        title={isDisabled ? disabledLabel : 'Regional analysis'}
         variantColor='green'
       >
         Regional analysis
@@ -205,7 +207,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 Opportunity dataset
                 {workerVersionHandlesMultipleDimensions ? '(s)' : ''}
               </FormLabel>
-              <Box>
+              <div>
                 <Select
                   isClearable={false}
                   isDisabled={isCreating}
@@ -219,7 +221,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                     destinationPointSets.includes(o._id)
                   )}
                 />
-              </Box>
+              </div>
               {workerVersionHandlesMultipleDimensions && (
                 <FormHelperText>Select up to 6 datasets.</FormHelperText>
               )}

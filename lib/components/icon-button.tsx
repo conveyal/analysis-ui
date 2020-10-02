@@ -1,8 +1,9 @@
-import {Box, BoxProps, Button, Tooltip, ButtonProps} from '@chakra-ui/core'
+import {Box, BoxProps, Button, ButtonProps} from '@chakra-ui/core'
 import {PopperProps} from '@chakra-ui/core/dist/Popper'
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
 
 import Icon from './icon'
+import Tip from './tip'
 
 type IconButtonProps = {
   icon: IconDefinition
@@ -15,8 +16,6 @@ type IconButtonProps = {
   variant?: ButtonProps['variant']
   variantColor?: ButtonProps['variantColor']
 } & BoxProps
-
-const zIndex = 1500 // Chakra Modals are set at 1400
 
 export default function IconButton({
   icon,
@@ -32,13 +31,7 @@ export default function IconButton({
 }: IconButtonProps) {
   return (
     <Box {...p}>
-      <Tooltip
-        aria-label={label}
-        hasArrow
-        label={label}
-        placement={placement || 'auto'}
-        zIndex={zIndex}
-      >
+      <Tip label={label} placement={placement || 'auto'}>
         <Button
           aria-label={label}
           isActive={isActive}
@@ -50,7 +43,7 @@ export default function IconButton({
         >
           <Icon icon={icon} fixedWidth={false} />
         </Button>
-      </Tooltip>
+      </Tip>
     </Box>
   )
 }

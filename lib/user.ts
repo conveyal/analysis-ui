@@ -26,8 +26,7 @@ declare global {
 const localUser: IUser = {
   accessGroup: 'local',
   adminTempAccessGroup: null,
-  email: 'local',
-  idToken: 'invalid token'
+  email: 'local'
 }
 
 // Allow components to consume the user without needing to drill it down
