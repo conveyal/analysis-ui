@@ -605,4 +605,41 @@ describe('Modifications', function () {
       deleteThisMod()
     })
   })
+
+  describe('Download and share', () => {
+    const mods = types.map((type) => ({
+      name: createModName(type, 'report'),
+      type
+    }))
+
+    before(() => {
+      // Create a modification of each type
+      mods.forEach((mod) => {
+        cy.navTo('edit modifications')
+        setupMod(mod.type, mod.name)
+      })
+    })
+
+    after(() => {
+      cy.setup('project') // Navigates to the project
+      mods.forEach((mod) => deleteMod(mod.type, mod.name)) // Delete all of the modifications
+    })
+
+    beforeEach(() => {
+      cy.navTo('edit modifications')
+      cy.findByRole('button', {name: /Download or share this project/}).click()
+    })
+
+    it('should show a report of all the modifications', () => {
+      cy.findAllByRole('button', {name: /Summary Report/i})
+        .first()
+        .click()
+
+      cy.findByRole('dialog').should('not.exist')
+
+      mods.forEach((mod) => {
+        cy.findByText(mod.name).should('exist')
+      })
+    })
+  })
 })
