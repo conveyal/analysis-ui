@@ -1,3 +1,5 @@
+import path from 'path'
+
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
 const createModName = (type, description = '') =>
   `${modificationPrefix}${type}${description}${Date.now()}`
@@ -47,6 +49,10 @@ function setupScenario(name) {
 function deleteThisMod() {
   cy.findByRole('button', {name: 'Delete modification'}).click()
   cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
+  cy.findByRole('dialog').should('not.exist')
+  cy.contains('Create a modification')
+  cy.wait(100) // eslint-disable-line
+  cy.navComplete() // Modifications are not loaded in GetInitialProps
 }
 
 function openMod(modType, modName) {
@@ -130,18 +136,34 @@ function drawRouteGeometry(newRoute) {
   cy.findByText(/Stop editing/i).click()
 }
 
+function clearAllModifications() {
+  return cy
+    .get('body')
+    .then(($body) => {
+      return $body.find('button[aria-label="Edit modification"]')
+    })
+    .then((buttons) => {
+      if (buttons.length > 0) {
+        cy.wrap(buttons[0]).click()
+        deleteThisMod()
+        return clearAllModifications()
+      }
+    })
+}
+
 describe('Modifications', function () {
   before(() => {
     cy.fixture('regions/scratch.json').then((data) => {
       this.region = data
     })
     cy.setup('project')
+    clearAllModifications()
     setupScenario(scenarioName)
   })
 
   beforeEach(() => {
     cy.getPseudoFixture().then((s) => {
-      cy.navTo('regions')
+      cy.visit('/')
       cy.visit(`/regions/${s.regionId}/projects/${s.projectId}/modifications`)
       return cy.navComplete()
     })
@@ -607,7 +629,7 @@ describe('Modifications', function () {
   })
 
   describe('Download and share', () => {
-    const mods = types.map((type) => ({
+    const mods = types.slice(0, 1).map((type) => ({
       name: createModName(type, 'report'),
       type
     }))
@@ -618,19 +640,42 @@ describe('Modifications', function () {
         cy.navTo('edit modifications')
         setupMod(mod.type, mod.name)
       })
+
+      cy.wrap(
+        Cypress.automation('remote:debugger:protocol', {
+          command: 'Page.setDownloadBehavior',
+          params: {behavior: 'allow', downloadPath: 'cypress/downloads'}
+        }),
+        {log: false}
+      )
     })
 
     after(() => {
-      cy.setup('project') // Navigates to the project
+      cy.setup('project') // Navigates directly to the project
       mods.forEach((mod) => deleteMod(mod.type, mod.name)) // Delete all of the modifications
     })
 
-    beforeEach(() => {
-      cy.navTo('edit modifications')
+    it('should download the scenario, routes, and stops', () => {
       cy.findByRole('button', {name: /Download or share this project/}).click()
+
+      cy.findAllByRole('button', {name: /Raw scenario/})
+        .first()
+        .click()
+
+      cy.findAllByRole('button', {name: /New alignments/})
+        .first()
+        .click()
+
+      cy.findAllByRole('button', {name: /New stops/})
+        .first()
+        .click()
+
+      cy.findByRole('button', {name: /Close/}).click()
     })
 
     it('should show a report of all the modifications', () => {
+      cy.findByRole('button', {name: /Download or share this project/}).click()
+
       cy.findAllByRole('button', {name: /Summary Report/i})
         .first()
         .click()
@@ -640,6 +685,8 @@ describe('Modifications', function () {
       mods.forEach((mod) => {
         cy.findByText(mod.name).should('exist')
       })
+
+      cy.go('back')
     })
   })
 })
