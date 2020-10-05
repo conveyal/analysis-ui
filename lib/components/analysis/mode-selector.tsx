@@ -97,34 +97,34 @@ export default function ModeSelector({
         <div>
           <ButtonGroup isAttached id='transitModes'>
             <Button
-              isActive={_hasAllTransit()}
               isDisabled={disabled}
               onClick={_toggleTransitMode(ALL)}
               title='All transit'
+              variant={_hasAllTransit() ? 'solid' : 'ghost'}
               variantColor={color}
             >
               All
             </Button>
             <Button
-              isActive={_hasTransit(BUS)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(BUS)}
               title={message('mode.bus')}
+              variant={_hasTransit(BUS) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={BUS} />
             </Button>
             <Button
-              isActive={_hasTransit(TRAM)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(TRAM)}
               title={message('mode.tram')}
+              variant={_hasTransit(TRAM) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={TRAM} />
             </Button>
             <Button
-              isActive={_hasTransit(SUBWAY)}
+              variant={_hasTransit(SUBWAY) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(SUBWAY)}
               title={message('mode.subway')}
@@ -133,7 +133,7 @@ export default function ModeSelector({
               <ModeIcon mode={SUBWAY} />
             </Button>
             <Button
-              isActive={_hasTransit(RAIL)}
+              variant={_hasTransit(RAIL) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(RAIL)}
               title={message('mode.rail')}
@@ -142,7 +142,7 @@ export default function ModeSelector({
               <ModeIcon mode={RAIL} />
             </Button>
             <Button
-              isActive={_hasTransit(FERRY)}
+              variant={_hasTransit(FERRY) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(FERRY)}
               title={message('mode.ferry')}
@@ -151,7 +151,7 @@ export default function ModeSelector({
               <ModeIcon mode={FERRY} />
             </Button>
             <Button
-              isActive={_hasTransit(CABLE_CAR)}
+              variant={_hasTransit(CABLE_CAR) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(CABLE_CAR)}
               title={message('mode.cableCar')}
@@ -160,7 +160,7 @@ export default function ModeSelector({
               <ModeIcon mode={CABLE_CAR} />
             </Button>
             <Button
-              isActive={_hasTransit(GONDOLA)}
+              variant={_hasTransit(GONDOLA) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(GONDOLA)}
               title={message('mode.gondola')}
@@ -169,7 +169,7 @@ export default function ModeSelector({
               <ModeIcon mode={GONDOLA} />
             </Button>
             <Button
-              isActive={_hasTransit(FUNICULAR)}
+              variant={_hasTransit(FUNICULAR) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(FUNICULAR)}
               title={message('mode.funicular')}
@@ -185,21 +185,21 @@ export default function ModeSelector({
           Egress mode
         </FormLabel>
         <div>
-          <ButtonGroup isAttached id='egressMode'>
+          <ButtonGroup id='egressMode' spacing={0}>
             <Button
-              isActive={transit && egressModes === WALK}
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(WALK)}
               title={`${message('analysis.modes.walk')} egress`}
+              variant={transit && egressModes === WALK ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={WALK} />
             </Button>
             <Button
-              isActive={transit && egressModes === BICYCLE}
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} egress`}
+              variant={transit && egressModes === BICYCLE ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={BICYCLE} />
@@ -241,39 +241,43 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
       <FormControl>
         <FormLabel htmlFor='accessMode'>{label}</FormLabel>
         <div>
-          <ButtonGroup isAttached id='accessMode'>
+          <ButtonGroup id='accessMode' spacing={0}>
             <Button
-              isActive={selectedMode === WALK}
+              // isActive={selectedMode === WALK}
               isDisabled={isDisabled}
               onClick={_selectAccessMode(WALK)}
               title={`${message('analysis.modes.walk')} ${label}`}
+              variant={selectedMode === WALK ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode='WALK' />
             </Button>
             <Button
-              isActive={selectedMode === BICYCLE}
+              // isActive={selectedMode === BICYCLE}
               isDisabled={isDisabled}
               onClick={_selectAccessMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} ${label}`}
+              variant={selectedMode === BICYCLE ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={BICYCLE} />
             </Button>
             <Button
-              isActive={selectedMode === CAR}
+              // isActive={selectedMode === CAR}
               isDisabled={isDisabled}
               onClick={_selectAccessMode(CAR)}
               title={`${message('analysis.modes.car')} ${label}`}
+              variant={selectedMode === CAR ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={CAR} />
             </Button>
             <Button
-              isActive={selectedMode === CAR_PARK}
+              // isActive={selectedMode === CAR_PARK}
               isDisabled={isDisabled || !hasTransit}
               onClick={_selectAccessMode(CAR_PARK)}
               title={`${message('analysis.modes.carPark')} ${label}`}
+              variant={selectedMode === CAR_PARK ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={CAR_PARK} />
