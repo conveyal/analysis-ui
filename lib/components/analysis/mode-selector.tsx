@@ -124,55 +124,55 @@ export default function ModeSelector({
               <ModeIcon mode={TRAM} />
             </Button>
             <Button
-              variant={_hasTransit(SUBWAY) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(SUBWAY)}
               title={message('mode.subway')}
+              variant={_hasTransit(SUBWAY) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={SUBWAY} />
             </Button>
             <Button
-              variant={_hasTransit(RAIL) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(RAIL)}
               title={message('mode.rail')}
+              variant={_hasTransit(RAIL) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={RAIL} />
             </Button>
             <Button
-              variant={_hasTransit(FERRY) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(FERRY)}
               title={message('mode.ferry')}
+              variant={_hasTransit(FERRY) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={FERRY} />
             </Button>
             <Button
-              variant={_hasTransit(CABLE_CAR) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(CABLE_CAR)}
               title={message('mode.cableCar')}
+              variant={_hasTransit(CABLE_CAR) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={CABLE_CAR} />
             </Button>
             <Button
-              variant={_hasTransit(GONDOLA) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(GONDOLA)}
               title={message('mode.gondola')}
+              variant={_hasTransit(GONDOLA) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={GONDOLA} />
             </Button>
             <Button
-              variant={_hasTransit(FUNICULAR) ? 'solid' : 'ghost'}
               isDisabled={disabled}
               onClick={_toggleTransitMode(FUNICULAR)}
               title={message('mode.funicular')}
+              variant={_hasTransit(FUNICULAR) ? 'solid' : 'ghost'}
               variantColor={color}
             >
               <ModeIcon mode={FUNICULAR} />
@@ -243,7 +243,6 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
         <div>
           <ButtonGroup id='accessMode' spacing={0}>
             <Button
-              // isActive={selectedMode === WALK}
               isDisabled={isDisabled}
               onClick={_selectAccessMode(WALK)}
               title={`${message('analysis.modes.walk')} ${label}`}
@@ -253,7 +252,6 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
               <ModeIcon mode='WALK' />
             </Button>
             <Button
-              // isActive={selectedMode === BICYCLE}
               isDisabled={isDisabled}
               onClick={_selectAccessMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} ${label}`}
@@ -263,7 +261,6 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
               <ModeIcon mode={BICYCLE} />
             </Button>
             <Button
-              // isActive={selectedMode === CAR}
               isDisabled={isDisabled}
               onClick={_selectAccessMode(CAR)}
               title={`${message('analysis.modes.car')} ${label}`}
@@ -273,7 +270,6 @@ const AccessModeSelector = memo<AccessModeSelectorProps>(
               <ModeIcon mode={CAR} />
             </Button>
             <Button
-              // isActive={selectedMode === CAR_PARK}
               isDisabled={isDisabled || !hasTransit}
               onClick={_selectAccessMode(CAR_PARK)}
               title={`${message('analysis.modes.carPark')} ${label}`}
