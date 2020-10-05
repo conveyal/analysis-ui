@@ -1,74 +1,118 @@
-const tempRegionName = Cypress.env('dataPrefix') + 'temp'
+const tempPrefix = Cypress.env('dataPrefix') + 'temp'
+const createTempRegionName = () => tempPrefix + Date.now()
 
-function setup() {
-  // be on the region setup page
-  cy.visit('/regions/create')
-  // alias all inputs
-  cy.findByLabelText(/Region Name/).as('name')
-  cy.findByLabelText('Description').as('description')
-  cy.findByLabelText(/North bound/).as('North')
-  cy.findByLabelText(/South bound/).as('South')
-  cy.findByLabelText(/East bound/).as('East')
-  cy.findByLabelText(/West bound/).as('West')
-  cy.findByRole('button', {name: /Set up a new region/}).as('create')
-  cy.get('input#react-select-2-input').as('search')
+const getName = () => cy.findByLabelText(/Region Name/)
+const getDesc = () => cy.findByLabelText(/Description/)
+const getNorth = () => cy.findByLabelText(/North bound/)
+const getSouth = () => cy.findByLabelText(/South bound/)
+const getEast = () => cy.findByLabelText(/East bound/)
+const getWest = () => cy.findByLabelText(/West bound/)
+const getCreate = () => cy.findByRole('button', {name: /Set up a new region/})
+const getSave = () => cy.findByRole('button', {name: /Save changes/})
+const getSearch = () => cy.get('input#react-select-2-input').as('search')
+
+/**
+ * Scratch region
+ */
+const regionData = {
+  description: 'Cypress stratch testing region',
+  searchTerm: 'covington',
+  foundName: 'Covington, Kentucky, United States',
+  north: 39.1199,
+  south: 38.9268,
+  east: -84.3592,
+  west: -84.706,
+  center: [39.02335, -84.5326]
 }
 
-describe('Region setup', function () {
-  beforeEach(() => {
-    // scratch region settings
-    cy.fixture('regions/scratch.json').then((region) => {
-      this.region = region
+/**
+ * Manipulate the coordinate inputs to ensure proper behavior
+ */
+function testInvalidCoordinates() {
+  // try to set south == north
+  getNorth()
+    .invoke('val')
+    .then((northVal) => {
+      getSouth().clear().type(northVal).blur()
+      getSouth().should((south) => {
+        expect(Number(south[0].value)).to.be.lessThan(Number(northVal))
+      })
     })
+  // try to set east < west
+  getEast()
+    .invoke('val')
+    .then((eastVal) => {
+      getWest()
+        .clear()
+        .type(Number(eastVal) + 1)
+        .blur()
+      getWest().should((west) => {
+        expect(Number(west[0].value)).to.be.lessThan(Number(eastVal))
+      })
+    })
+  // try to enter a non-numeric value
+  // form should revert to previous numeric value
+  getWest().clear().type('letters').blur()
+  getWest().should((west) => {
+    assert.isNotNaN(Number(west[0].value))
+  })
+}
+
+/**
+ * Delete the currently open region. Must be already on the region settings page.
+ */
+function deleteThisRegion() {
+  // Delete region
+  cy.findByText(/Delete this region/).click()
+  cy.findByText(/Confirm: Delete this region/).click()
+  return cy.findByRole('dialog').should('not.exist')
+}
+
+/**
+ * Clean up any temp regions created by this file that were not deleted.
+ * Useful for local development and running of tests.
+ */
+function deleteOldScratchRegions() {
+  cy.visit('/')
+  cy.findByText('or go to an existing region') // regions are loaded
+  return cy
+    .get('body')
+    .then(($body) =>
+      $body
+        .find('button')
+        .filter((_, el) => Cypress.$(el).text().startsWith(tempPrefix))
+    )
+    .then((regions) => {
+      if (regions.length > 0) {
+        cy.wrap(regions[0]).click()
+        cy.navTo('region settings')
+        deleteThisRegion()
+        deleteOldScratchRegions()
+      }
+    })
+}
+
+describe('Regions', () => {
+  before(() => {
+    deleteOldScratchRegions()
   })
 
-  it('can be found from homepage', function () {
+  it('CRUD', function () {
     cy.visit('/')
     cy.findByText('Set up a new region').click()
     cy.location('pathname').should('eq', '/regions/create')
-  })
 
-  it('does not allow invalid coordinates', () => {
-    setup()
-    // try to set south == north
-    cy.get('@North')
-      .invoke('val')
-      .then((northVal) => {
-        cy.get('@South').clear().type(northVal).blur()
-        cy.get('@South').should((south) => {
-          expect(Number(south[0].value)).to.be.lessThan(Number(northVal))
-        })
-      })
-    // try to set east < west
-    cy.get('@East')
-      .invoke('val')
-      .then((eastVal) => {
-        cy.get('@West')
-          .clear()
-          .type(Number(eastVal) + 1)
-          .blur()
-        cy.get('@West').should((west) => {
-          expect(Number(west[0].value)).to.be.lessThan(Number(eastVal))
-        })
-      })
-    // try to enter a non-numeric value
-    // form should revert to previous numeric value
-    cy.get('@West').clear().type('letters').blur()
-    cy.get('@West').should((west) => {
-      assert.isNotNaN(Number(west[0].value))
-    })
-  })
+    // Test invalid coordinates in the create form
+    testInvalidCoordinates()
 
-  it('finds locations searched by name', () => {
-    setup()
-
-    const regions = [
+    // Test geocoder search
+    const testLocations = [
       {
         searchTerm: 'cincinnati',
         findText: /^Cincinnati, Ohio/,
         lat: 39.1,
         lon: -84.5
-      } /* ,
+      },
       {
         searchTerm: 'tulsa',
         findText: /^Tulsa, Oklahoma/,
@@ -80,34 +124,31 @@ describe('Region setup', function () {
         findText: /^Greenwich,.* England/,
         lat: 51.5,
         lon: 0
-      } */
+      }
     ]
     const maxOffset = 10000 // meters
-    regions.forEach((r) => {
-      cy.get('@search').focus().clear().type(r.searchTerm)
+    testLocations.forEach((r) => {
+      getSearch().focus().clear().type(r.searchTerm)
       cy.findByText(r.findText).click()
       cy.mapCenteredOn([r.lat, r.lon], maxOffset)
     })
-  })
 
-  it('CRUD a region', () => {
-    setup()
-    // create a temporary region name
-    const regionName = tempRegionName + Date.now()
+    // Create a region
+    const regionName = createTempRegionName()
     // Enter region name and description
-    cy.get('@name').type(regionName)
-    cy.get('@description').type(this.region.description)
+    getName().type(regionName)
+    getDesc().type(regionData.description)
     // search for region by name
-    cy.get('@search').focus().clear().type(this.region.searchTerm)
-    cy.findByText(this.region.foundName).click()
-    cy.mapCenteredOn(this.region.center, 10000)
+    getSearch().focus().clear().type(regionData.searchTerm)
+    cy.findByText(regionData.foundName).click()
+    cy.mapCenteredOn(regionData.center, 10000)
     // Enter exact coordinates
-    cy.get('@North').clear().type(this.region.north)
-    cy.get('@South').clear().type(this.region.south)
-    cy.get('@East').clear().type(this.region.east)
-    cy.get('@West').clear().type(this.region.west)
+    getNorth().clear().type(regionData.north)
+    getSouth().clear().type(regionData.south)
+    getEast().clear().type(regionData.east)
+    getWest().clear().type(regionData.west)
     // Create the region
-    cy.get('@create').click()
+    getCreate().click()
     cy.navComplete()
     // should redirect to a region with no bundles
     cy.location('pathname').should('match', /regions\/.{24}$/)
@@ -119,48 +160,47 @@ describe('Region setup', function () {
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
     cy.navTo('Region Settings')
-    // redeclaration is necessary to prevent the page from reloading... :-(
-    cy.findByLabelText(/Region Name/).as('name')
-    cy.findByLabelText(/Description/).as('description')
-    cy.findByLabelText(/North bound/).as('North')
-    cy.findByLabelText(/South bound/).as('South')
-    cy.findByLabelText(/East bound/).as('East')
-    cy.findByLabelText(/West bound/).as('West')
     // check setting values
-    cy.get('@name').should('have.value', regionName)
-    cy.get('@description').should('have.value', this.region.description)
+    getName().should('have.value', regionName)
+    getDesc().should('have.value', regionData.description)
     // coordinate values are rounded to match analysis grid
-    cy.get('@North')
+    getNorth()
       .invoke('val')
-      .then((coord) => cy.isWithin(coord, this.region.north, 0.02))
-    cy.get('@South')
+      .then((coord) => cy.isWithin(coord, regionData.north, 0.02))
+    getSouth()
       .invoke('val')
-      .then((coord) => cy.isWithin(coord, this.region.south, 0.02))
-    cy.get('@East')
+      .then((coord) => cy.isWithin(coord, regionData.south, 0.02))
+    getEast()
       .invoke('val')
-      .then((coord) => cy.isWithin(coord, this.region.east, 0.02))
-    cy.get('@West')
+      .then((coord) => cy.isWithin(coord, regionData.east, 0.02))
+    getWest()
       .invoke('val')
-      .then((coord) => cy.isWithin(coord, this.region.west, 0.02))
-    cy.mapCenteredOn(this.region.center, 10000)
+      .then((coord) => cy.isWithin(coord, regionData.west, 0.02))
+    cy.mapCenteredOn(regionData.center, 10000)
+    getSave().should('be.disabled')
+
+    // Run the coordinate tests on the edit page
+    testInvalidCoordinates()
+
     // update something and verify save
-    cy.findByRole('button', {name: 'Save changes'})
-      .as('save')
-      .should('be.disabled')
     const newDescription = 'This text has just been updated!'
-    cy.get('@description').clear().type(newDescription)
-    cy.get('@save').should('be.enabled').click()
+    const newName = createTempRegionName()
+    getDesc().clear().type(newDescription)
+    getName().clear().type(newName)
+    getSave().should('be.enabled').click()
     cy.navTo('Regions')
-    cy.findByText(regionName).click()
+    cy.findByText(newName).click()
     cy.navComplete()
     cy.navTo('Region Settings') // will go to bundle page otherwise
-    cy.findByLabelText(/Description/).should('have.value', newDescription)
-    // Delete region
-    cy.findByText(/Delete this region/).click()
-    cy.findByText(/Confirm: Delete this region/).click()
+    getDesc().should('have.value', newDescription)
+    getName().should('have.value', newName)
+
+    // From region settings
+    deleteThisRegion()
+
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
-    cy.findByText(regionName).should('not.exist')
+    cy.findByText(newName).should('not.exist')
   })
 })
