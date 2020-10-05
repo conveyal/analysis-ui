@@ -74,7 +74,7 @@ function deleteThisRegion() {
  */
 function deleteOldScratchRegions() {
   cy.visit('/')
-  cy.findByText('or go to an existing region') // regions are loaded
+  cy.get('[class*="Skeleton"]').should('not.exist') // regions loaded
   return cy
     .get('body')
     .then(($body) =>
