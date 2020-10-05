@@ -1,5 +1,3 @@
-import path from 'path'
-
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
 const createModName = (type, description = '') =>
   `${modificationPrefix}${type}${description}${Date.now()}`
