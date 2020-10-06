@@ -11,10 +11,10 @@ import C20200210 from './20200210.mdx'
 import C20200418 from './20200418.mdx'
 import C202006 from './202006.mdx'
 import C20200803 from './20200803.mdx'
-import C20200925 from './20200925.mdx'
+import C20201007 from './20201007.mdx'
 
 const changes = [
-  ['September, 2020', C20200925],
+  ['October, 2020', C20201007],
   ['August, 2020', C20200803],
   ['June, 2020', C202006],
   ['April 18th, 2020', C20200418],
@@ -28,7 +28,7 @@ const spacing = 10
 
 export default function Changelog() {
   return (
-    <Stack spacing={spacing} m={40}>
+    <Stack spacing={spacing} maxWidth='100ch' mx='auto' my={40}>
       <Flex justify='space-between'>
         <Heading size='2xl'>What&lsquo;s new</Heading>
         <Image display='inline-block' size='45px' src='/logo.svg' />

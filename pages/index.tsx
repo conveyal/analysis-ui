@@ -21,9 +21,9 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
 
-const alertDate = 'August, 2020'
+const alertDate = 'v2020.10'
 const alertText =
-  'Run regional analyses with multiple cutoffs, percentiles, and opportunity datasets all at once.'
+  'Apply distance decay functions to opportunities, better manage analysis presets, and visualize travel to destinations.'
 
 export default withAuth(function SelectRegionPage(p) {
   const {data: regions, isValidating} = useRegions({
@@ -47,11 +47,15 @@ export default withAuth(function SelectRegionPage(p) {
             {email} ({accessGroup})
           </strong>
         </Box>
-        <Alert status='warning' borderRadius='4px'>
-          <AlertDescription>
-            <strong>{alertDate}</strong> — <span>{alertText} </span>
-            <ALink to='changelog'>Click here to learn more.</ALink>
-          </AlertDescription>
+        <Alert status='success' borderRadius='4px'>
+          <Stack>
+            <AlertDescription>
+              <strong>{alertDate}</strong> — <span>{alertText} </span>
+            </AlertDescription>
+            <AlertDescription>
+              <ALink to='changelog'>Click here to learn more.</ALink>
+            </AlertDescription>
+          </Stack>
         </Alert>
         <Button
           isFullWidth
