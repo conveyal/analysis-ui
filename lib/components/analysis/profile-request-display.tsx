@@ -175,7 +175,6 @@ export default function ProfileRequestDisplay({
                 accessModes={profileRequest.accessModes}
                 color={color}
                 egressModes={profileRequest.egressModes}
-                max={10}
                 transitModes={profileRequest.transitModes}
               />
             </TDValue>

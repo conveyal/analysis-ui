@@ -12,11 +12,15 @@ export default function ModeSummary({
   max = 4,
   transitModes
 }) {
+  const accessModesArray = accessModes.split(',')
   const transitModesArray = transitModes.split(',')
+  const egressModesArray = egressModes.split(',')
 
   return (
     <Stack align='center' isInline spacing={1}>
-      <ModeIconBox mode={accessModes} />
+      {accessModesArray.map((m) => (
+        <ModeIconBox key={m} mode={m} />
+      ))}
       {transitModes.length > 0 && (
         <Tip label={transitModesArray.join(', ')}>
           <Stack align='center' isInline spacing={1}>
@@ -32,7 +36,9 @@ export default function ModeSummary({
                 <Box color={`${color}.500`} fontSize='xs'>
                   <Icon icon={faChevronRight} />
                 </Box>
-                <ModeIconBox mode={egressModes} />
+                {egressModesArray.map((m) => (
+                  <ModeIconBox key={m} mode={m} />
+                ))}
               </Stack>
             )}
           </Stack>
