@@ -40,7 +40,13 @@ const RegionalPage = withInitialFetch(
     const jobs = useSelector(selectJobs)
 
     const onChange = useCallback(
-      (v) => dispatch(setSearchParameter('analysisId', v)),
+      (v) =>
+        dispatch(
+          setSearchParameter({
+            analysisId: v,
+            destinationPointSetId: null
+          })
+        ),
       [dispatch]
     )
     const input = useControlledInput({
