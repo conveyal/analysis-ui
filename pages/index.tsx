@@ -18,7 +18,7 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
 
-const alertDate = 'v2020.10'
+const alertDate = 'October, 2020'
 const alertText =
   'Apply distance decay functions to opportunities, better manage analysis presets, and visualize travel time to destinations.'
 

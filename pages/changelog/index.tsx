@@ -15,7 +15,7 @@ import C20200803 from './20200803.mdx'
 import C20201007 from './20201007.mdx'
 
 const changes = [
-  ['v2020.10', C20201007],
+  ['October, 2020', C20201007],
   ['August, 2020', C20200803],
   ['June, 2020', C202006],
   ['April 18th, 2020', C20200418],
