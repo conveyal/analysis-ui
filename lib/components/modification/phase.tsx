@@ -74,7 +74,7 @@ export default function Phase({
       </FormControl>
       {disabled && <Alert status='info'>{message('phasing.disabled')}</Alert>}
       {timetable.phaseAtStop && (
-        <>
+        <Stack spacing={4}>
           <FormControl>
             <FormLabel htmlFor='phaseFromTimetable'>
               {message('phasing.fromTimetable')}
@@ -98,7 +98,7 @@ export default function Phase({
           </FormControl>
           {timetable.phaseFromTimetable &&
             (selectedTimetable ? (
-              <>
+              <Stack spacing={4}>
                 {selectedTimetable.headwaySecs !== timetable.headwaySecs && (
                   <Alert status='error'>
                     {message('phasing.headwayMismatchWarning', {
@@ -139,7 +139,7 @@ export default function Phase({
                     seconds={timetable.phaseSeconds}
                   />
                 )}
-              </>
+              </Stack>
             ) : (
               <Alert status='error'>
                 <strong>Selected timetable no longer exists.</strong> Please
@@ -147,7 +147,7 @@ export default function Phase({
                 during analysis.
               </Alert>
             ))}
-        </>
+        </Stack>
       )}
     </Stack>
   )

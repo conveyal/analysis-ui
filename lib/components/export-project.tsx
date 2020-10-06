@@ -11,8 +11,8 @@ import {
   Stack,
   SimpleGrid
 } from '@chakra-ui/core'
-
 import {faPrint} from '@fortawesome/free-solid-svg-icons'
+import fpGet from 'lodash/fp/get'
 import {useSelector} from 'react-redux'
 
 import useRouteTo from 'lib/hooks/use-route-to'
@@ -25,10 +25,8 @@ import {
 
 import Icon from './icon'
 
-function mapState(state) {
-  const {feeds, modifications} = state.project
-  return {feeds, modifications}
-}
+const selectFeeds = fpGet('project.feeds')
+const selectModifications = fpGet('project.modifications')
 
 export default function ExportProject({onHide, project}) {
   return (
@@ -68,7 +66,8 @@ function Variant({index, name, project}) {
     projectId: project._id,
     regionId: project.regionId
   })
-  const {feeds, modifications} = useSelector(mapState)
+  const feeds = useSelector(selectFeeds)
+  const modifications = useSelector(selectModifications)
 
   function _downloadLines() {
     downloadLines(project, modifications, index)
