@@ -17,9 +17,9 @@ import {
   TabPanels,
   Text
 } from '@chakra-ui/core'
-import {faDatabase, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import {faDatabase} from '@fortawesome/free-solid-svg-icons'
 import {useRouter} from 'next/router'
-import React from 'react'
+import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {addBundle} from 'lib/actions'
@@ -30,10 +30,10 @@ import {routeTo} from 'lib/router'
 import selectBundles from 'lib/selectors/bundles'
 import selectCurrentRegion from 'lib/selectors/current-region'
 
-import A from './a'
 import Code from './code'
 import Icon from './icon'
 import InnerDock from './inner-dock'
+import DocsLink from './docs-link'
 
 // how often to poll when waiting for a bundle to be read on the server.
 const POLL_TIMEOUT_MS = 10000
@@ -44,19 +44,20 @@ const STATUS_ERROR = 'ERROR'
  * Create bundle form.
  */
 export default function CreateBundle() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const router = useRouter()
   const bundles = useSelector(selectBundles)
   const region = useSelector(selectCurrentRegion)
 
-  const [reuseOsm, setReuseOsm] = React.useState(true)
-  const [reuseGtfs, setReuseGtfs] = React.useState(true)
-  const [uploading, setUploading] = React.useState(false)
-  const [error, setError] = React.useState(false)
-  const [formData, setFormData] = React.useState({
+  const hasExistingBundles = bundles.length > 0
+  const [reuseOsm, setReuseOsm] = useState(hasExistingBundles)
+  const [reuseGtfs, setReuseGtfs] = useState(hasExistingBundles)
+  const [uploading, setUploading] = useState(false)
+  const [error, setError] = useState<string | void>()
+  const [formData, setFormData] = useState<Record<string, string>>({
     name: ''
   })
-  const onChange = (propName) => (e) => {
+  const onChange = (propName: string) => (e) => {
     // Since `target` will not exist if used in the function call below, extract
     // value first.
     const value = e.target.value
@@ -74,7 +75,7 @@ export default function CreateBundle() {
   /**
    * Check if the upload has completed
    */
-  function checkUploadState(_id) {
+  function checkUploadState(_id: string) {
     dispatch(fetch({url: `${API.Bundle}/${_id}`}))
       .then((bundle) => {
         if (bundle.status === STATUS_DONE) {
@@ -151,6 +152,13 @@ export default function CreateBundle() {
         )}
 
         <Text>{message('bundle.createDescription')}</Text>
+
+        {!uploading && !error && (
+          <Alert status='info'>
+            <AlertIcon />
+            {message('bundle.notice')}
+          </Alert>
+        )}
       </Stack>
 
       <Stack
@@ -173,122 +181,140 @@ export default function CreateBundle() {
           />
         </FormControl>
 
-        <Tabs isFitted onChange={(i) => setReuseOsm(i === 0)}>
+        <Tabs
+          defaultIndex={hasExistingBundles ? 0 : 1}
+          isFitted
+          onChange={(i) => setReuseOsm(i === 0)}
+        >
           <TabList>
-            <Tab>{message('bundle.osm.existingTitle')}</Tab>
+            <Tab
+              aria-disabled={!hasExistingBundles}
+              disabled={!hasExistingBundles}
+            >
+              {message('bundle.osm.existingTitle')}
+            </Tab>
             <Tab>{message('bundle.osm.uploadNewTitle')}</Tab>
           </TabList>
 
           <TabPanels>
             <TabPanel pt={4}>
-              <Select
-                id='osmId'
-                name='osmId'
-                onChange={onChange('osmId')}
-                placeholder={message('bundle.osm.existingLabel')}
-              >
-                {bundles.map((b) => (
-                  <option key={b._id} value={b.osmId}>
-                    {b.name}
-                  </option>
-                ))}
-              </Select>
+              {reuseOsm && (
+                <Select
+                  id='osmId'
+                  name='osmId'
+                  onChange={onChange('osmId')}
+                  placeholder={message('bundle.osm.existingLabel')}
+                >
+                  {bundles.map((b) => (
+                    <option key={b._id} value={b.osmId}>
+                      {b.name}
+                    </option>
+                  ))}
+                </Select>
+              )}
             </TabPanel>
             <TabPanel>
-              <Stack spacing={4} pt={4}>
-                <Heading size='sm'>
-                  {message('bundle.osmconvertDescription')}
-                  <A
-                    href='http://docs.conveyal.com/prepare-inputs#preparing-the-osm-data'
-                    ml={1}
-                    rel='noopener noreferrer'
-                    target='_blank'
-                  >
-                    <Icon icon={faInfoCircle} />
-                  </A>
-                </Heading>
+              {!reuseOsm && (
+                <Stack spacing={4} pt={4}>
+                  <Heading size='sm'>
+                    {message('bundle.osmconvertDescription')}
+                    <DocsLink
+                      ml={1}
+                      to='/prepare-inputs#preparing-the-osm-data'
+                    />
+                  </Heading>
 
-                <Code>
-                  {message('bundle.osmConvertCommand', {
-                    north: bounds.north,
-                    south: bounds.south,
-                    east: bounds.east,
-                    west: bounds.west
-                  })}
-                </Code>
+                  <Code>
+                    {message('bundle.osmConvertCommand', {
+                      north: bounds.north,
+                      south: bounds.south,
+                      east: bounds.east,
+                      west: bounds.west
+                    })}
+                  </Code>
 
-                <Heading size='sm'>
-                  {message('bundle.osmosisDescription')}
-                  <A
-                    href='http://docs.conveyal.com/prepare-inputs#preparing-the-osm-data'
-                    ml={1}
-                    rel='noopener noreferrer'
-                    target='_blank'
-                  >
-                    <Icon icon={faInfoCircle} />
-                  </A>
-                </Heading>
-                <Code>
-                  {message('bundle.osmosisCommand', {
-                    north: bounds.north,
-                    south: bounds.south,
-                    east: bounds.east,
-                    west: bounds.west
-                  })}
-                </Code>
+                  <Heading size='sm'>
+                    {message('bundle.osmosisDescription')}
+                    <DocsLink
+                      ml={1}
+                      to='/prepare-inputs#preparing-the-osm-data'
+                    />
+                  </Heading>
+                  <Code>
+                    {message('bundle.osmosisCommand', {
+                      north: bounds.north,
+                      south: bounds.south,
+                      east: bounds.east,
+                      west: bounds.west
+                    })}
+                  </Code>
 
-                <FormControl>
-                  <FormLabel htmlFor='osm'>
-                    {message('bundle.osm.uploadNewLabel')}
-                  </FormLabel>
-                  <Input
-                    accept='.pbf'
-                    id='osm'
-                    name='osm'
-                    type='file'
-                    onChange={onChange('osm')}
-                  />
-                </FormControl>
-              </Stack>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor='osm'>
+                      {message('bundle.osm.uploadNewLabel')}
+                    </FormLabel>
+                    <Input
+                      accept='.pbf'
+                      id='osm'
+                      name='osm'
+                      type='file'
+                      onChange={onChange('osm')}
+                    />
+                  </FormControl>
+                </Stack>
+              )}
             </TabPanel>
           </TabPanels>
         </Tabs>
 
-        <Tabs isFitted onChange={(i) => setReuseGtfs(i === 0)}>
+        <Tabs
+          defaultIndex={hasExistingBundles ? 0 : 1}
+          isFitted
+          onChange={(i) => setReuseGtfs(i === 0)}
+        >
           <TabList>
-            <Tab>{message('bundle.gtfs.existingTitle')}</Tab>
+            <Tab
+              aria-disabled={!hasExistingBundles}
+              disabled={!hasExistingBundles}
+            >
+              {message('bundle.gtfs.existingTitle')}
+            </Tab>
             <Tab>{message('bundle.gtfs.uploadNewTitle')}</Tab>
           </TabList>
 
           <TabPanels>
             <TabPanel pt={4}>
-              <Select
-                id='feedGroupId'
-                name='feedGroupId'
-                onChange={onChange('feedGroupId')}
-                placeholder={message('bundle.gtfs.existingLabel')}
-              >
-                {bundles.map((b) => (
-                  <option key={b._id} value={b.feedGroupId}>
-                    {b.name}
-                  </option>
-                ))}
-              </Select>
+              {reuseGtfs && (
+                <Select
+                  id='feedGroupId'
+                  name='feedGroupId'
+                  onChange={onChange('feedGroupId')}
+                  placeholder={message('bundle.gtfs.existingLabel')}
+                >
+                  {bundles.map((b) => (
+                    <option key={b._id} value={b.feedGroupId}>
+                      {b.name}
+                    </option>
+                  ))}
+                </Select>
+              )}
             </TabPanel>
             <TabPanel pt={4}>
-              <FormControl>
-                <FormLabel htmlFor='feedGroup'>
-                  {message('bundle.gtfs.uploadNewLabel')}
-                </FormLabel>
-                <Input
-                  accept='.zip'
-                  id='feedGroup'
-                  multiple
-                  name='feedGroup'
-                  onChange={onChange('feedGroup')}
-                  type='file'
-                />
-              </FormControl>
+              {!reuseGtfs && (
+                <FormControl isRequired>
+                  <FormLabel htmlFor='feedGroup'>
+                    {message('bundle.gtfs.uploadNewLabel')}
+                  </FormLabel>
+                  <Input
+                    accept='.zip'
+                    id='feedGroup'
+                    multiple
+                    name='feedGroup'
+                    onChange={onChange('feedGroup')}
+                    type='file'
+                  />
+                </FormControl>
+              )}
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -296,13 +322,6 @@ export default function CreateBundle() {
         <input type='hidden' name='regionId' value={regionId} />
 
         <Stack spacing={4}>
-          {!uploading && !error && (
-            <Alert status='info'>
-              <AlertIcon />
-              {message('bundle.notice')}
-            </Alert>
-          )}
-
           <Button
             isDisabled={!isValid()}
             isLoading={uploading}
