@@ -1,16 +1,14 @@
 # Summary
 
 - New recommended routing version v6.0.0 (see below)
-- Distance decay functions (see below)
-- Routing enging fix for scheduled to frequency based route transfers (see below)
+- Decay functions to enable gravity-type accessibility indicators (see below)
+- Routing engine fix for certain transfer times (see below)
 - Manage analysis settings with Presets (previously known as Bookmarks)
 - New and improved [User Manual](https://docs.conveyal.com)
 - Dynamic destination travel time distribution display
   ![Distance decay accessibility](/img/changelog/202010/destination-travel-time-distribution.png)
-- Improved error handling and messages.
-- Added more notifications for user actions.
-- Made the on/off state of mode selector buttons more obvious.
-- Compacted the analysis settings for easier viewing.
+- Improved notifications about actions and errors.
+- Streamlined analysis settings panel, with clearer toggling of travel modes
 - More bug fixes and UI improvements.
 
 ## Worker version v6.0.0
@@ -23,11 +21,11 @@ The new recommended routing engine version enables a few new features:
 
 > Routing engines v4 and v5 are still available for use, but do not include these new features.
 
-### Distance decay functions
+### Decay functions and gravity-type accessibility indicators
 
-Conveyal Analysis can now apply distance decay functions rather than hard cutoffs in both regional and single-point analyses.
+Conveyal Analysis can now apply decay functions rather than hard cutoffs in both regional and single-point analyses.
 
-![Distance decay accessibility](/img/changelog/202010/decay-access.png)
+![Accessibility with decay function applied](/img/changelog/202010/decay-access.png)
 
 Rather than being the sum of all opportunities that can be reached in less than a specified number of minutes, the accessibility indicator can be more generally defined as the sum of all opportunities in the region, with each opportunity weighted (multiplied) by the value of a "decay function". It is now possible to select logistic (sigmoid), linear, and exponential decay functions in addition to the existing default step function. [Learn more](https://docs.conveyal.com/learn-more/decay-functions)
 
