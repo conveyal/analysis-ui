@@ -108,9 +108,12 @@ export default function Changelog() {
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
           max-height: 20rem;
           margin: 2rem auto;
+          cursor: zoom-in;
         }
 
-        .CL img:hover {
+        .CL img:focus,
+        .CL img:active {
+          cursor: zoom-out;
           max-height: unset;
         }
 
