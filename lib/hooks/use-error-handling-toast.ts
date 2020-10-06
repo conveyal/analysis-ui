@@ -19,16 +19,28 @@ export default function useErrorHandlingToast() {
   const toast = useToast()
   // Handle error events
   useEffect(() => {
-    const onError = (e: ErrorEvent) => {
-      LogRocket.captureException(e.error)
-      toast({
-        ...toastSettings,
-        title: 'Application Error',
-        description: e.message
-      })
+    // Don't show duplicate toasts of the same error.
+    const toastTracker = new Set<string>() // title + description
+    const showUniqueToast = (title: string, description: string) => {
+      const slug = title + description
+      if (!toastTracker.has(slug)) {
+        toastTracker.add(slug)
+        toast({
+          ...toastSettings,
+          description,
+          title,
+          // Remove toast type from tracker
+          onClose: () => toastTracker.delete(slug)
+        })
+      }
     }
 
-    const onUnhandledRejection = async (pre: PromiseRejectionEvent) => {
+    const onError = (e: ErrorEvent) => {
+      LogRocket.captureException(e.error)
+      showUniqueToast('Application Error', e.message)
+    }
+
+    const onUnhandledRejection = (pre: PromiseRejectionEvent) => {
       const e: unknown = pre.reason
       let title = 'Application Error'
       let description = ''
@@ -36,7 +48,7 @@ export default function useErrorHandlingToast() {
         LogRocket.captureException(e)
         description = e.message
         if (e.message === 'Failed to fetch') {
-          title = 'Failed to contact server'
+          title = 'Network Error'
           description =
             'Recent changes made may not have been saved. Please make sure you have an active internet connection and reload the page.'
         }
@@ -44,14 +56,11 @@ export default function useErrorHandlingToast() {
 
       if (e instanceof Response) {
         title = 'Error while communicating with server'
-        description = e.statusText
+        description =
+          typeof (e as any).value === 'string' ? (e as any).value : e.statusText
       }
 
-      toast({
-        ...toastSettings,
-        title,
-        description
-      })
+      showUniqueToast(title, description)
     }
 
     addListener('error', onError)
