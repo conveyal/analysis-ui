@@ -16,7 +16,7 @@
     "format": "prettier --write .",
     "java": "java -cp *.jar com.conveyal.analysis.BackendMain > /dev/null",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "migrate": "migrate --store=./db/migrations-store.js --env=.env",
+    "migrate": "migrate --store=./db/migrations-store.js --env=.env.local",
     "now-build": "next build",
     "prebuild": "yarn",
     "predev": "yarn",

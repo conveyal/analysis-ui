@@ -7,11 +7,15 @@ import {
   Skeleton,
   Stack
 } from '@chakra-ui/core'
-import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import {
+  faExternalLinkAlt,
+  faMap,
+  faSignOutAlt
+} from '@fortawesome/free-solid-svg-icons'
 
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
-import {ALink} from 'lib/components/link'
+import {ALink, ExternalLink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
@@ -20,7 +24,7 @@ import withAuth from 'lib/with-auth'
 
 const alertDate = 'October, 2020'
 const alertText =
-  'Apply distance decay functions to opportunities, better manage analysis presets, and visualize travel time to destinations.'
+  'Apply decay functions to opportunities, better manage analysis presets, and visualize travel time to destinations.'
 
 export default withAuth(function SelectRegionPage(p) {
   const {data: regions, isValidating} = useRegions({
@@ -49,14 +53,20 @@ export default withAuth(function SelectRegionPage(p) {
             {email} ({accessGroup})
           </strong>
         </Box>
-        <Alert status='success' borderRadius='4px'>
+        <Alert status='success' borderRadius='md'>
           <Stack>
-            <AlertDescription>
-              <strong>{alertDate}</strong> — <span>{alertText} </span>
-            </AlertDescription>
-            <AlertDescription>
+            <Box>
+              <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
+            </Box>
+            <Box>
               <ALink to='changelog'>Click here to learn more.</ALink>
-            </AlertDescription>
+            </Box>
+            <Box>
+              <ExternalLink href='https://docs.conveyal.com'>
+                Also, check out our improved User Manual{' '}
+                <Icon icon={faExternalLinkAlt} />
+              </ExternalLink>
+            </Box>
           </Stack>
         </Alert>
         <Button
