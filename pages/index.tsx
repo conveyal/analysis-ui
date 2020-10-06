@@ -23,7 +23,7 @@ import withAuth from 'lib/with-auth'
 
 const alertDate = 'v2020.10'
 const alertText =
-  'Apply distance decay functions to opportunities, better manage analysis presets, and visualize travel to destinations.'
+  'Apply distance decay functions to opportunities, better manage analysis presets, and visualize travel time to destinations.'
 
 export default withAuth(function SelectRegionPage(p) {
   const {data: regions, isValidating} = useRegions({
