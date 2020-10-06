@@ -29,7 +29,7 @@ Conveyal Analysis can now apply distance decay functions rather than hard cutoff
 
 ![Distance decay accessibility](/img/changelog/202010/decay-access.png)
 
-Rather than being the sum of all opportunities that can be reached in less than a specified number of minutes, the accessibility indicator can be more generally defined as the sum of all opportunities in the region, with each opportunity weighted (multiplied) by the value of a "decay function". This function always returns values between zero and one, and is a monotonically decreasing function of travel time. Put differently, the longer it takes to reach each opportunity the less it counts, eventually tapering down to zero. Simple cumulative opportunities accessibility is then a special case of this general definition where the weighting function has value 1 for all travel times less than the threshold, and value 0 for all travel times at or above the threshold. [Learn more](https://docs.conveyal.com/learn-more/decay-functions)
+Rather than being the sum of all opportunities that can be reached in less than a specified number of minutes, the accessibility indicator can be more generally defined as the sum of all opportunities in the region, with each opportunity weighted (multiplied) by the value of a "decay function". It is now possible to select logistic (sigmoid), linear, and exponential decay functions in addition to the existing default step function. [Learn more](https://docs.conveyal.com/learn-more/decay-functions)
 
 ### Routing engine bug fix
 
