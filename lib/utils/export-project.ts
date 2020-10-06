@@ -39,11 +39,10 @@ export const downloadLines = (project, modifications, index) => {
           },
           geometry: {
             type: 'LineString',
-            properties: null,
             coordinates: []
           }
         }
-        if (mod.segments) {
+        if (mod.segments?.length > 0) {
           const start = mod.segments[0]
           const coord = start.geometry.coordinates[0]
           f.geometry.coordinates.push(coord)
@@ -76,7 +75,6 @@ export const downloadStops = (project, modifications, index) => {
             },
             geometry: {
               type: 'Point',
-              properties: null,
               coordinates: [stop.lon, stop.lat]
             }
           })
