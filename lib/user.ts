@@ -26,8 +26,7 @@ declare global {
 const localUser: IUser = {
   accessGroup: 'local',
   adminTempAccessGroup: null,
-  email: 'local',
-  idToken: 'invalid token'
+  email: 'local'
 }
 
 // Allow components to consume the user without needing to drill it down
@@ -67,7 +66,7 @@ export function getIdToken(): string | void {
  * Client side redirect to login.
  */
 function goToLogin() {
-  if (isServer) return
+  if (isServer || isDisabled) return
 
   const redirectTo = encodeURIComponent(
     window.location.pathname + window.location.search

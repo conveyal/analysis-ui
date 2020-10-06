@@ -1,24 +1,16 @@
 import {
-  Box,
   Button,
   ButtonGroup,
   Flex,
   FormControl,
   FormLabel
 } from '@chakra-ui/core'
-import {
-  faBicycle,
-  faBus,
-  faWalking,
-  faShip,
-  faSubway,
-  faTrain
-} from '@fortawesome/free-solid-svg-icons'
-import message from 'lib/message'
 import without from 'lodash/without'
+import {memo} from 'react'
 
-import ModeIcon from '../mode-icon'
-import Icon from '../icon'
+import message from 'lib/message'
+
+import {ModeIcon} from '../mode-icon'
 
 const WALK = 'WALK'
 const BICYCLE = 'BICYCLE'
@@ -49,6 +41,7 @@ const ALL_TRANSIT_STRING = ALL_TRANSIT_ARRAY.join(',')
 /** Select modes of travel */
 export default function ModeSelector({
   accessModes,
+  color,
   directModes,
   disabled,
   egressModes,
@@ -61,16 +54,6 @@ export default function ModeSelector({
     ALL_TRANSIT_ARRAY.map((mode) => transitModes.indexOf(mode) !== -1).every(
       Boolean
     )
-
-  const _selectAccessMode = (newMode) => () => {
-    // easiest to just overwrite both. Access mode is used in transit searches
-    // and direct mode in non-transit searches; overwriting only one of them
-    // however would require additional updates when toggling transit.
-    update({
-      accessModes: newMode,
-      directModes: newMode
-    })
-  }
 
   function selectEgressMode(newMode) {
     update({egressModes: newMode})
@@ -99,154 +82,205 @@ export default function ModeSelector({
   }
 
   const transit = transitModes !== ''
-  const nonTransitMode = transit ? accessModes : directModes
-  const label = transit ? message('mode.access') : message('mode.direct')
 
   return (
     <Flex justify='space-between' {...p}>
-      <FormControl>
-        <FormLabel htmlFor='accessMode'>{label}</FormLabel>
-        <Box>
-          <ButtonGroup isAttached id='accessMode'>
-            <Button
-              isActive={nonTransitMode === WALK}
-              isDisabled={disabled}
-              onClick={_selectAccessMode(WALK)}
-              title={`${message('analysis.modes.walk')} ${label}`}
-            >
-              <ModeIcon mode='WALK' />
-            </Button>
-            <Button
-              isActive={nonTransitMode === BICYCLE}
-              isDisabled={disabled}
-              onClick={_selectAccessMode(BICYCLE)}
-              title={`${message('analysis.modes.bicycle')} ${label}`}
-            >
-              <ModeIcon mode={BICYCLE} />
-            </Button>
-            <Button
-              isActive={nonTransitMode === CAR}
-              isDisabled={disabled}
-              onClick={_selectAccessMode(CAR)}
-              title={`${message('analysis.modes.car')} ${label}`}
-            >
-              <ModeIcon mode={CAR} />
-            </Button>
-            <Button
-              isActive={nonTransitMode === CAR_PARK}
-              isDisabled={disabled || !transit}
-              onClick={_selectAccessMode(CAR_PARK)}
-              title={`${message('analysis.modes.carPark')} ${label}`}
-            >
-              <ModeIcon mode={CAR_PARK} />
-            </Button>
-          </ButtonGroup>
-        </Box>
-      </FormControl>
+      <AccessModeSelector
+        color={color}
+        hasTransit={transitModes !== ''}
+        isDisabled={disabled}
+        selectedMode={transit ? accessModes : directModes}
+        update={update}
+      />
       <FormControl>
         <FormLabel htmlFor='transitModes'>Transit modes</FormLabel>
-        <Box>
+        <div>
           <ButtonGroup isAttached id='transitModes'>
             <Button
-              isActive={_hasAllTransit()}
               isDisabled={disabled}
               onClick={_toggleTransitMode(ALL)}
               title='All transit'
+              variant={_hasAllTransit() ? 'solid' : 'ghost'}
+              variantColor={color}
             >
               All
             </Button>
             <Button
-              isActive={_hasTransit(BUS)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(BUS)}
               title={message('mode.bus')}
+              variant={_hasTransit(BUS) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <Icon icon={faBus} />
+              <ModeIcon mode={BUS} />
             </Button>
             <Button
-              isActive={_hasTransit(TRAM)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(TRAM)}
               title={message('mode.tram')}
+              variant={_hasTransit(TRAM) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <strong>T</strong>
+              <ModeIcon mode={TRAM} />
             </Button>
             <Button
-              isActive={_hasTransit(SUBWAY)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(SUBWAY)}
               title={message('mode.subway')}
+              variant={_hasTransit(SUBWAY) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <Icon icon={faSubway} />
+              <ModeIcon mode={SUBWAY} />
             </Button>
             <Button
-              isActive={_hasTransit(RAIL)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(RAIL)}
               title={message('mode.rail')}
+              variant={_hasTransit(RAIL) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <Icon icon={faTrain} />
+              <ModeIcon mode={RAIL} />
             </Button>
             <Button
-              isActive={_hasTransit(FERRY)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(FERRY)}
               title={message('mode.ferry')}
+              variant={_hasTransit(FERRY) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <Icon icon={faShip} />
+              <ModeIcon mode={FERRY} />
             </Button>
             <Button
-              isActive={_hasTransit(CABLE_CAR)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(CABLE_CAR)}
               title={message('mode.cableCar')}
+              variant={_hasTransit(CABLE_CAR) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <strong>C</strong>
+              <ModeIcon mode={CABLE_CAR} />
             </Button>
             <Button
-              isActive={_hasTransit(GONDOLA)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(GONDOLA)}
               title={message('mode.gondola')}
+              variant={_hasTransit(GONDOLA) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <strong>G</strong>
+              <ModeIcon mode={GONDOLA} />
             </Button>
             <Button
-              isActive={_hasTransit(FUNICULAR)}
               isDisabled={disabled}
               onClick={_toggleTransitMode(FUNICULAR)}
               title={message('mode.funicular')}
+              variant={_hasTransit(FUNICULAR) ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <strong>F</strong>
+              <ModeIcon mode={FUNICULAR} />
             </Button>
           </ButtonGroup>
-        </Box>
+        </div>
       </FormControl>
       <FormControl>
         <FormLabel pr={0} htmlFor='egressMode'>
           Egress mode
         </FormLabel>
-        <Box>
-          <ButtonGroup isAttached id='egressMode'>
+        <div>
+          <ButtonGroup id='egressMode' spacing={0}>
             <Button
-              isActive={transit && egressModes === WALK}
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(WALK)}
               title={`${message('analysis.modes.walk')} egress`}
+              variant={transit && egressModes === WALK ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <Icon icon={faWalking} />
+              <ModeIcon mode={WALK} />
             </Button>
             <Button
-              isActive={transit && egressModes === BICYCLE}
               isDisabled={!transit || disabled}
               onClick={() => selectEgressMode(BICYCLE)}
               title={`${message('analysis.modes.bicycle')} egress`}
+              variant={transit && egressModes === BICYCLE ? 'solid' : 'ghost'}
+              variantColor={color}
             >
-              <Icon icon={faBicycle} />
+              <ModeIcon mode={BICYCLE} />
             </Button>
           </ButtonGroup>
-        </Box>
+        </div>
       </FormControl>
     </Flex>
   )
 }
+
+type AccessModeSelectorProps = {
+  color: string
+  hasTransit: boolean
+  isDisabled: boolean
+  selectedMode: string
+  update: (newModes: {accessModes: string; directModes: string}) => void
+}
+
+const AccessModeSelector = memo<AccessModeSelectorProps>(
+  function AccessModeSelector({
+    color,
+    hasTransit,
+    isDisabled,
+    selectedMode,
+    update
+  }) {
+    const _selectAccessMode = (newMode: string) => () => {
+      // easiest to just overwrite both. Access mode is used in transit searches
+      // and direct mode in non-transit searches; overwriting only one of them
+      // however would require additional updates when toggling transit.
+      update({
+        accessModes: newMode,
+        directModes: newMode
+      })
+    }
+    const label = hasTransit ? message('mode.access') : message('mode.direct')
+    return (
+      <FormControl>
+        <FormLabel htmlFor='accessMode'>{label}</FormLabel>
+        <div>
+          <ButtonGroup id='accessMode' spacing={0}>
+            <Button
+              isDisabled={isDisabled}
+              onClick={_selectAccessMode(WALK)}
+              title={`${message('analysis.modes.walk')} ${label}`}
+              variant={selectedMode === WALK ? 'solid' : 'ghost'}
+              variantColor={color}
+            >
+              <ModeIcon mode='WALK' />
+            </Button>
+            <Button
+              isDisabled={isDisabled}
+              onClick={_selectAccessMode(BICYCLE)}
+              title={`${message('analysis.modes.bicycle')} ${label}`}
+              variant={selectedMode === BICYCLE ? 'solid' : 'ghost'}
+              variantColor={color}
+            >
+              <ModeIcon mode={BICYCLE} />
+            </Button>
+            <Button
+              isDisabled={isDisabled}
+              onClick={_selectAccessMode(CAR)}
+              title={`${message('analysis.modes.car')} ${label}`}
+              variant={selectedMode === CAR ? 'solid' : 'ghost'}
+              variantColor={color}
+            >
+              <ModeIcon mode={CAR} />
+            </Button>
+            <Button
+              isDisabled={isDisabled || !hasTransit}
+              onClick={_selectAccessMode(CAR_PARK)}
+              title={`${message('analysis.modes.carPark')} ${label}`}
+              variant={selectedMode === CAR_PARK ? 'solid' : 'ghost'}
+              variantColor={color}
+            >
+              <ModeIcon mode={CAR_PARK} />
+            </Button>
+          </ButtonGroup>
+        </div>
+      </FormControl>
+    )
+  }
+)

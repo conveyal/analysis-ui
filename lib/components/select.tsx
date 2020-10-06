@@ -25,7 +25,7 @@ export const selectStyles = {
   })
 }
 
-const SelectWithForwardRef = forwardRef((p: Props, ref) => (
+const SelectWithForwardRef = forwardRef<typeof Select, Props>((p, ref) => (
   <Select innerRef={ref as any} styles={selectStyles} {...p} />
 ))
 

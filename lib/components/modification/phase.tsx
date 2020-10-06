@@ -47,7 +47,7 @@ export default function Phase({
       <Heading size='sm'>
         <span>Phasing </span>
         <a
-          href='http://docs.analysis.conveyal.com/en/latest/edit-scenario/phasing.html'
+          href='http://docs.conveyal.com/edit-scenario/phasing'
           rel='noopener noreferrer'
           target='_blank'
           title='Learn more about phasing'

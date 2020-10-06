@@ -25,16 +25,13 @@ describe('Opportunity Datasets', function () {
       let expectedFieldCount = 1 + opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
-      cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
         opportunity.file
       )
       cy.findByLabelText(/Latitude/).type(opportunity.latitudeField)
       cy.findByLabelText(/Longitude/).type(opportunity.longitudeField)
-      cy.get('a.btn')
-        .contains(/Upload/)
-        .should('not.be.disabled')
-        .click()
+      cy.findByRole('button', {name: /Upload/}).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
@@ -68,16 +65,13 @@ describe('Opportunity Datasets', function () {
       let expectedFieldCount = opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
-      cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/Select opportunity dataset/)
         .attachFile({filePath: opportunity.files[0], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[2], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[3], encoding: 'base64'})
-      cy.get('a.btn')
-        .contains(/Upload/)
-        .should('not.be.disabled')
-        .click()
+      cy.findByRole('button', {name: /Upload/}).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
       // find the message showing this upload is complete
@@ -106,15 +100,12 @@ describe('Opportunity Datasets', function () {
       let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
-      cy.findByPlaceholderText(/^Opportunity dataset/i).type(oppName)
+      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
       cy.findByLabelText(/Select opportunity dataset/).attachFile({
         filePath: opportunity.file,
         encoding: 'base64'
       })
-      cy.get('a.btn')
-        .contains(/Upload/)
-        .should('not.be.disabled')
-        .click()
+      cy.findByRole('button', {name: /Upload/}).click()
       cy.navComplete()
 
       cy.location('pathname').should('match', /opportunities$/)

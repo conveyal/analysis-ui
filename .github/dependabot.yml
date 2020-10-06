@@ -3,16 +3,17 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'npm' # See documentation for possible values
+    directory: '/' # Location of package manifests
+    open-pull-requests-limit: 10
     labels:
-      - "automerge"
-      - "dependencies"
+      - 'automerge'
+      - 'dependencies'
     reviewers:
-      - "trevorgerhardt"
+      - 'trevorgerhardt'
     schedule:
-      interval: "weekly"
-    target-branch: "dev"
+      interval: 'weekly'
+    target-branch: 'dev'
     # Increase the version requirements for package.json
     # only when required
-    versioning-strategy: increase-if-necessary
+    versioning-strategy: increase

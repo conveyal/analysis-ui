@@ -3,25 +3,36 @@ import {
   Button,
   Flex,
   FormControl,
+  FormHelperText,
   FormLabel,
   Heading,
   Stack,
   Switch,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
-  Tooltip
+  Textarea
 } from '@chakra-ui/core'
 import {
   faChevronDown,
   faChevronRight,
-  faChevronUp
+  faChevronUp,
+  faCode,
+  faMousePointer
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
-import {useCallback, useEffect, useState} from 'react'
+import fpGet from 'lodash/fp/get'
+import isEqual from 'lodash/isEqual'
+import {memo, useCallback, useEffect, useRef, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {setSearchParameter} from 'lib/actions'
 import {
   setCopyRequestSettings,
+  setRequestsSettings,
   updateRequestsSettings
 } from 'lib/actions/analysis/profile-request'
 import useOnMount from 'lib/hooks/use-on-mount'
@@ -30,6 +41,7 @@ import {activeOpportunityDataset} from 'lib/modules/opportunity-datasets/selecto
 import selectCurrentBundle from 'lib/selectors/current-bundle'
 import selectCurrentProject from 'lib/selectors/current-project'
 import selectProfileRequest from 'lib/selectors/profile-request'
+import selectProfileRequestLonLat from 'lib/selectors/profile-request-lonlat'
 import selectProfileRequestHasChanged from 'lib/selectors/profile-request-has-changed'
 import selectRegionBounds from 'lib/selectors/region-bounds'
 import {fromLatLngBounds} from 'lib/utils/bounds'
@@ -39,8 +51,9 @@ import {secondsToHhMmString} from 'lib/utils/time'
 import ControlledSelect from '../controlled-select'
 import Icon from '../icon'
 import ModeIcon from '../mode-icon'
+import Presets from '../presets'
+import Tip from '../tip'
 
-import BookmarkChooser from './bookmark-chooser'
 import DownloadMenu from './download-menu'
 import ProfileRequestEditor from './profile-request-editor'
 import AdvancedSettings from './advanced-settings'
@@ -50,6 +63,9 @@ import CreateRegional from './create-regional'
 const SPACING_XS = 2
 const SPACING = 5
 const SPACING_LG = 8
+
+const getName = fpGet('name')
+const getId = fpGet('_id')
 
 export default function Settings({
   bundles,
@@ -62,6 +78,7 @@ export default function Settings({
   const profileRequest = useSelector(selectProfileRequest)
   const currentBundle = useSelector(selectCurrentBundle)
   const currentProject = useSelector(selectCurrentProject)
+  const profileRequestLonLat = useSelector(selectProfileRequestLonLat)
   const variantIndex = useSelector((s) =>
     parseInt(get(s, 'analysis.requestsSettings[0].variantIndex', -1))
   )
@@ -111,17 +128,27 @@ export default function Settings({
   ]
 
   // Simplify commonly used set function
-  const setPrimaryPR = useCallback(
+  const updatePrimaryPR = useCallback(
     (params) => {
       dispatch(updateRequestsSettings({index: 0, params}))
     },
     [dispatch]
   )
-  const setComparisonPR = useCallback(
+  const updateComparisonPR = useCallback(
     (params) => {
       dispatch(updateRequestsSettings({index: 1, params}))
     },
     [dispatch]
+  )
+  const replaceSettings = useCallback(
+    (index, newSettings) => {
+      dispatch(
+        setRequestsSettings(
+          requestsSettings.map((s, i) => (i === index ? newSettings : s))
+        )
+      )
+    },
+    [dispatch, requestsSettings]
   )
 
   // On initial load, the query string may be out of sync with the requestsSettings.projectId
@@ -129,59 +156,59 @@ export default function Settings({
     const projectId = get(currentProject, '_id')
     if (projectId != null && projectId !== 'undefined') {
       dispatch(setSearchParameter({projectId}))
-      setPrimaryPR({projectId})
+      updatePrimaryPR({projectId})
     }
   })
 
   // Set the analysis bounds to be the region bounds if bounds do not exist
   useEffect(() => {
     if (!profileRequest.bounds) {
-      setPrimaryPR({bounds: fromLatLngBounds(regionBounds)})
+      updatePrimaryPR({bounds: fromLatLngBounds(regionBounds)})
     }
-  }, [profileRequest, regionBounds, setPrimaryPR])
+  }, [profileRequest, regionBounds, updatePrimaryPR])
 
   // Current project is stored in the query string
   const _setCurrentProject = useCallback(
     (option) => {
       const projectId = get(option, '_id')
       dispatch(setSearchParameter({projectId}))
-      setPrimaryPR({projectId, variantIndex: -1})
+      updatePrimaryPR({projectId, variantIndex: -1})
     },
-    [dispatch, setPrimaryPR]
+    [dispatch, updatePrimaryPR]
   )
   const _setCurrentVariant = useCallback(
-    (option) => setPrimaryPR({variantIndex: parseInt(option.value)}),
-    [setPrimaryPR]
+    (option) => updatePrimaryPR({variantIndex: parseInt(option.value)}),
+    [updatePrimaryPR]
   )
 
   const _setComparisonProject = useCallback(
     (project) => {
       if (project) {
         if (!comparisonProject) {
-          setComparisonPR({
+          updateComparisonPR({
             ...profileRequest,
             projectId: project._id,
             variantIndex: -1
           })
         } else {
-          setComparisonPR({
+          updateComparisonPR({
             projectId: project._id,
             variantIndex: -1
           })
         }
       } else {
-        setComparisonPR({
+        updateComparisonPR({
           projectId: null,
           variantIndex: null
         })
       }
     },
-    [comparisonProject, profileRequest, setComparisonPR]
+    [comparisonProject, profileRequest, updateComparisonPR]
   )
 
   const _setComparisonVariant = useCallback(
-    (e) => setComparisonPR({variantIndex: parseInt(e.value)}),
-    [setComparisonPR]
+    (e) => updateComparisonPR({variantIndex: parseInt(e.value)}),
+    [updateComparisonPR]
   )
 
   return (
@@ -205,15 +232,18 @@ export default function Settings({
           isDisabled={disableInputs}
           isFetchingIsochrone={isFetchingIsochrone}
           profileRequest={requestsSettings[0]}
+          profileRequestLonLat={profileRequestLonLat}
           project={currentProject}
           projects={projects}
+          regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
+          replaceSettings={(s) => replaceSettings(0, s)}
           scenario={variantIndex}
           scenarioOptions={scenarioOptions}
-          setProfileRequest={setPrimaryPR}
           setProject={_setCurrentProject}
           setScenario={_setCurrentVariant}
+          updateProfileRequest={updatePrimaryPR}
         />
       </Box>
 
@@ -240,15 +270,19 @@ export default function Settings({
           isDisabled={disableInputs}
           isFetchingIsochrone={isFetchingIsochrone}
           profileRequest={requestsSettings[1]}
+          profileRequestLonLat={profileRequestLonLat}
           project={comparisonProject}
           projects={projects}
+          regionId={region._id}
           regionBounds={region.bounds}
           regionalAnalyses={regionalAnalyses}
+          replaceSettings={(s) => replaceSettings(1, s)}
           scenario={comparisonVariant}
           scenarioOptions={comparisonScenarioOptions}
-          setProfileRequest={setComparisonPR}
+          setProfileRequest
           setProject={_setComparisonProject}
           setScenario={_setComparisonVariant}
+          updateProfileRequest={updateComparisonPR}
         />
       </Box>
     </>
@@ -262,22 +296,18 @@ function RequestSummary({color, profileRequest, ...p}) {
 
   return (
     <Flex flex='2' justify='space-evenly' {...p}>
-      <Stack align='center' isInline spacing={1}>
+      <Stack align='center' isInline mr={2} spacing={1}>
         <ModeIcon mode={profileRequest.accessModes} />
         {transitModesStr.length > 0 && (
-          <Tooltip
-            hasArrow
-            aria-label={transitModes.join(', ')}
-            label={transitModes.join(', ')}
-          >
-            <Stack align='center' isInline spacing={1}>
+          <Tip label={transitModes.join(', ')}>
+            <Stack align='center' isInline spacing={0}>
               <Box color={`${color}.500`} fontSize='xs'>
                 <Icon icon={faChevronRight} />
               </Box>
-              {transitModes.slice(0, 2).map((m) => (
+              {transitModes.slice(0, 3).map((m) => (
                 <ModeIcon mode={m} key={m} />
               ))}
-              {transitModes.length > 2 && <Box>...</Box>}
+              {transitModes.length > 3 && <Box>...</Box>}
               {profileRequest.egressModes !== 'WALK' && (
                 <Stack align='center' isInline spacing={1}>
                   <Box color={`${color}.500`} fontSize='xs'>
@@ -287,7 +317,7 @@ function RequestSummary({color, profileRequest, ...p}) {
                 </Stack>
               )}
             </Stack>
-          </Tooltip>
+          </Tip>
         )}
       </Stack>
 
@@ -393,17 +423,22 @@ function RequestSettings({
   isDisabled,
   isFetchingIsochrone,
   profileRequest,
+  profileRequestLonLat,
   project,
   projects,
+  regionId,
   regionalAnalyses,
   regionBounds,
+  replaceSettings,
   scenario,
   scenarioOptions,
-  setProfileRequest,
   setProject,
   setScenario,
+  updateProfileRequest,
   ...p
 }) {
+  // Manually control tabs in order to control when tab contents is rendered.
+  const [tabIndex, setTabIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(!project)
   const dispatch = useDispatch()
 
@@ -414,8 +449,8 @@ function RequestSettings({
           <Stack isInline spacing={SPACING}>
             <ControlledSelect
               flex='1'
-              getOptionLabel={(o) => o.name}
-              getOptionValue={(o) => o._id}
+              getOptionLabel={getName}
+              getOptionValue={getId}
               isClearable={isComparison}
               isDisabled={projects.length === 0 || isFetchingIsochrone}
               label={message('common.project')}
@@ -434,15 +469,19 @@ function RequestSettings({
               value={scenarioOptions.find((v) => v.value === scenario)}
             />
 
-            <BookmarkChooser
-              disabled={isDisabled}
-              flex='1'
-              isComparison={isComparison}
-              onChange={(bookmarkSettings) =>
-                setProfileRequest({...bookmarkSettings})
-              }
-              requestSettings={profileRequest}
-            />
+            <Box flex='1'>
+              <Presets
+                currentSettings={profileRequest}
+                currentLonLat={profileRequestLonLat}
+                isComparison={isComparison}
+                isDisabled={isDisabled}
+                onChange={(preset) => {
+                  if (isComparison) dispatch(setCopyRequestSettings(false))
+                  updateProfileRequest(preset)
+                }}
+                regionId={regionId}
+              />
+            </Box>
           </Stack>
 
           {isComparison && (
@@ -462,33 +501,66 @@ function RequestSettings({
           )}
 
           {project && !copyRequestSettings && (
-            <Stack spacing={SPACING}>
-              <ModeSelector
-                accessModes={profileRequest.accessModes}
-                directModes={profileRequest.directModes}
-                disabled={isDisabled}
-                egressModes={profileRequest.egressModes}
-                transitModes={profileRequest.transitModes}
-                update={setProfileRequest}
-              />
+            <Tabs
+              align='end'
+              index={tabIndex}
+              onChange={setTabIndex}
+              variant='soft-rounded'
+              variantColor={color}
+            >
+              <TabPanels>
+                <TabPanel>
+                  {tabIndex === 0 && (
+                    <Stack spacing={SPACING}>
+                      <ModeSelector
+                        accessModes={profileRequest.accessModes}
+                        color={color}
+                        directModes={profileRequest.directModes}
+                        disabled={isDisabled}
+                        egressModes={profileRequest.egressModes}
+                        transitModes={profileRequest.transitModes}
+                        update={updateProfileRequest}
+                      />
 
-              <ProfileRequestEditor
-                bundle={bundle}
-                color={color}
-                disabled={isDisabled}
-                profileRequest={profileRequest}
-                project={project}
-                setProfileRequest={setProfileRequest}
-              />
+                      <ProfileRequestEditor
+                        bundle={bundle}
+                        color={color}
+                        disabled={isDisabled}
+                        profileRequest={profileRequest}
+                        project={project}
+                        updateProfileRequest={updateProfileRequest}
+                      />
 
-              <AdvancedSettings
-                disabled={isDisabled}
-                profileRequest={profileRequest}
-                regionalAnalyses={regionalAnalyses}
-                regionBounds={regionBounds}
-                setProfileRequest={setProfileRequest}
-              />
-            </Stack>
+                      <AdvancedSettings
+                        disabled={isDisabled}
+                        profileRequest={profileRequest}
+                        regionalAnalyses={regionalAnalyses}
+                        regionBounds={regionBounds}
+                        updateProfileRequest={updateProfileRequest}
+                      />
+                    </Stack>
+                  )}
+                </TabPanel>
+                <TabPanel>
+                  {tabIndex === 1 && (
+                    <JSONEditor
+                      isDisabled={isDisabled}
+                      profileRequest={profileRequest}
+                      replaceSettings={replaceSettings}
+                    />
+                  )}
+                </TabPanel>
+              </TabPanels>
+
+              <TabList mt={4}>
+                <Tab title='Form editor'>
+                  <Icon icon={faMousePointer} />
+                </Tab>
+                <Tab title='Custom JSON editor'>
+                  <Icon icon={faCode} />
+                </Tab>
+              </TabList>
+            </Tabs>
           )}
         </Stack>
       )}
@@ -509,3 +581,73 @@ function RequestSettings({
     </Stack>
   )
 }
+
+const isJSONValid = (jsonString) => {
+  try {
+    JSON.parse(jsonString)
+  } catch (e) {
+    return false
+  }
+  return true
+}
+
+const JSONEditor = memo<{
+  isDisabled: boolean
+  profileRequest: Record<string, unknown>
+  replaceSettings: (newSettings: Record<string, unknown>) => void
+}>(function JSONEditor({isDisabled, profileRequest, replaceSettings}) {
+  const [stringified, setStringified] = useState(
+    JSON.stringify(profileRequest, null, '  ')
+  )
+  const [currentValue, setCurrentValue] = useState(stringified)
+  const [height, setHeight] = useState('650px')
+  const ref = useRef<HTMLTextAreaElement>()
+  const onBlur = useCallback(() => {
+    if (isJSONValid(currentValue)) {
+      replaceSettings(JSON.parse(currentValue))
+    }
+  }, [currentValue, replaceSettings])
+
+  useEffect(() => {
+    if (document.activeElement !== ref.current) {
+      setStringified(JSON.stringify(profileRequest, null, '  '))
+    }
+  }, [profileRequest, ref, setStringified])
+
+  // Set the initial height to the scroll height (full contents of the text)
+  useEffect(() => {
+    if (ref.current) {
+      setHeight(ref.current.scrollHeight + 5 + 'px')
+    }
+  }, [ref, setHeight])
+
+  // Show a green border when there are unsaved changes
+  const focusBorderColor =
+    isJSONValid(currentValue) &&
+    isEqual(JSON.parse(currentValue), profileRequest)
+      ? 'blue.500'
+      : 'green.500'
+
+  return (
+    <FormControl isDisabled={isDisabled} isInvalid={!isJSONValid(currentValue)}>
+      <FormLabel htmlFor='customProfileRequest'>
+        Customize analysis request
+      </FormLabel>
+      <Textarea
+        defaultValue={stringified}
+        focusBorderColor={focusBorderColor}
+        fontFamily='monospace'
+        height={`${height}`}
+        id='customProfileRequest'
+        key={stringified}
+        onChange={(e) => setCurrentValue(e.target.value)}
+        onBlur={onBlur}
+        ref={ref}
+        spellCheck={false}
+      />
+      <FormHelperText>
+        {message('analysis.customizeProfileRequest.description')}
+      </FormHelperText>
+    </FormControl>
+  )
+})

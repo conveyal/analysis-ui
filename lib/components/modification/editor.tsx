@@ -237,8 +237,6 @@ function ModificationEditor({
 
   if (isDeleting) return null
 
-  const disableAndDim = `block ${saveInProgress ? 'disableAndDim' : ''}`
-
   return (
     <>
       <AllModificationsMapDisplay isEditing={true} />
@@ -274,9 +272,9 @@ function ModificationEditor({
         </Box>
 
         <Flex>
-          <Box>
+          <div>
             <FitBoundsButton />
-          </Box>
+          </div>
           <IconButton
             label={message('modification.copyModification')}
             icon={faCopy}
@@ -290,10 +288,10 @@ function ModificationEditor({
           />
         </Flex>
       </Flex>
-      <InnerDock className={disableAndDim}>
+      <InnerDock className={saveInProgress ? 'disableAndDim' : ''}>
         {feedIsLoaded ? (
           modification ? (
-            <Tabs align='end' variant='soft-rounded'>
+            <Tabs align='end' p={4} variant='soft-rounded'>
               <TabPanels>
                 <TabPanel>
                   <Stack spacing={4}>

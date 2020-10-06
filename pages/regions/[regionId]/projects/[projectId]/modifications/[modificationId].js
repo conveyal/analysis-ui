@@ -50,14 +50,16 @@ const EditorPage = withInitialFetch(
     const {modificationId, projectId} = query
 
     // TODO check if project and feed are already loaded
-    const [project, modification] = await Promise.all([
-      dispatch(loadProject(projectId)),
+    const r1 = await Promise.all([
       // Always reload the modification to get recent changes
-      dispatch(loadModification(modificationId))
+      dispatch(loadModification(modificationId)),
+      dispatch(loadProject(projectId))
     ])
+    const modification = r1[0]
+    const project = r1[1]
 
     // Only gets unloaded feeds for modifications that have them
-    const [bundle, feeds] = await Promise.all([
+    const r2 = await Promise.all([
       dispatch(loadBundle(project.bundleId)),
       dispatch(
         getFeedsRoutesAndStops({
@@ -68,8 +70,8 @@ const EditorPage = withInitialFetch(
     ])
 
     return {
-      bundle,
-      feeds,
+      bundle: r2[0],
+      feeds: r2[1],
       modification,
       project
     }

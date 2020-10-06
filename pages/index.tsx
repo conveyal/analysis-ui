@@ -8,14 +8,11 @@ import {
   Stack
 } from '@chakra-ui/core'
 import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
-import {GetServerSideProps} from 'next'
 
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
-import AuthenticatedCollection from 'lib/db/authenticated-collection'
-import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
@@ -36,7 +33,12 @@ export default withAuth(function SelectRegionPage(p) {
   const goToRegionCreate = useRouteTo('regionCreate')
 
   return (
-    <Flex alignItems='center' mb={6} direction='column'>
+    <Flex
+      alignItems='center'
+      direction='column'
+      py={10}
+      zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
+    >
       <Box mt={8} mb={6}>
         <Logo />
       </Box>
@@ -106,19 +108,28 @@ function RegionItem({region, ...p}) {
 /**
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
- */
-export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
-  const collection = await AuthenticatedCollection.initialize(
-    req,
-    res,
-    'regions'
-  )
+ *
+export const getServerSideProps: GetServerSideProps = async ({req}) => {
+  let user: IUser = null
+  try {
+    user = await getUser(req)
+  } catch (e) {
+    return {
+      unstable_redirect: {
+        permanent: false,
+        destination: '/api/login'
+      }
+    }
+  }
+
+  const collection = await AuthenticatedCollection.initFromUser('regions', user)
   const regions = await collection.findWhere({}, {sort: {name: 1}}).toArray()
 
   return {
     props: {
       regions: serializeCollection(regions),
-      user: collection.session
+      user
     }
   }
 }
+*/

@@ -4,9 +4,9 @@ const HEADER_LENGTH = 9 // type + entries
 const TIMES_GRID_TYPE = 'ACCESSGR'
 
 /**
- * Parse the ArrayBuffer from a `*_times.dat` file for a point in a network.
+ * Parse a grid header created by a GridResultWriter
  */
-export function parseTimesData(ab) {
+export function parseGridHeader(ab: ArrayBuffer) {
   const headerData = new Int8Array(ab, 0, TIMES_GRID_TYPE.length)
   const headerType = String.fromCharCode.apply(null, headerData)
   if (headerType !== TIMES_GRID_TYPE) {
@@ -27,23 +27,34 @@ export function parseTimesData(ab) {
   if (version !== CURRENT_VERSION) {
     throw new Error(`Unsupported version ${version} of travel time surface`)
   }
-  const zoom = header[1]
-  const west = header[2]
-  const north = header[3]
-  const width = header[4]
-  const height = header[5]
-  const depth = header[6]
-  const gridSize = width * height
+
+  return {
+    zoom: header[1],
+    west: header[2],
+    north: header[3],
+    width: header[4],
+    height: header[5],
+    depth: header[6],
+    version
+  }
+}
+
+/**
+ * Parse the ArrayBuffer from a `*_times.dat` file for a point in a network.
+ */
+export function parseTimesData(ab: ArrayBuffer) {
+  const header = parseGridHeader(ab)
+  const gridSize = header.width * header.height
 
   // skip the header
   const data = new Int32Array(
     ab,
     HEADER_LENGTH * Int32Array.BYTES_PER_ELEMENT,
-    gridSize * depth
+    gridSize * header.depth
   )
 
   // de delta-code
-  for (let i = 0, position = 0; i < depth; i++) {
+  for (let i = 0, position = 0; i < header.depth; i++) {
     let previous = 0
     for (let j = 0; j < gridSize; j++, position++) {
       data[position] = data[position] + previous
@@ -54,29 +65,31 @@ export function parseTimesData(ab) {
   // Decode metadata
   const rawMetadata = new Uint8Array(
     ab,
-    (HEADER_LENGTH + width * height * depth) * Int32Array.BYTES_PER_ELEMENT
+    (HEADER_LENGTH + header.width * header.height * header.depth) *
+      Int32Array.BYTES_PER_ELEMENT
   )
   const metadata = decodeMetadata(rawMetadata)
 
-  function contains(x, y, z) {
-    return x >= 0 && x < width && y >= 0 && y < height && z >= 0 && z < depth
+  function contains(x: number, y: number, z: number) {
+    return (
+      x >= 0 &&
+      x < header.width &&
+      y >= 0 &&
+      y < header.height &&
+      z >= 0 &&
+      z < header.depth
+    )
   }
 
   return {
+    ...header,
     ...metadata, // may contain accessibility
-    version,
-    zoom,
-    west,
-    north,
-    width,
-    height,
-    depth,
     data,
     errors: [],
     warnings: metadata.scenarioApplicationWarnings || [],
     contains,
-    get(x, y, z) {
-      if (contains(x, y, z)) return data[z * gridSize + y * width + x]
+    get(x: number, y: number, z: number): number {
+      if (contains(x, y, z)) return data[z * gridSize + y * header.width + x]
       return Infinity
     }
   }

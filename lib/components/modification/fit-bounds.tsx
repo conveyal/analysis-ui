@@ -1,4 +1,4 @@
-import {Button, Tooltip} from '@chakra-ui/core'
+import {Button} from '@chakra-ui/core'
 import {faExpand} from '@fortawesome/free-solid-svg-icons'
 import {useEffect, useState} from 'react'
 import {useLeaflet} from 'react-leaflet'
@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux'
 import selectModificationBounds from 'lib/selectors/modification-bounds'
 
 import Icon from '../icon'
+import Tip from '../tip'
 
 const label = 'Fit map to modification extents'
 
@@ -25,7 +26,7 @@ export default function FitBounds() {
   }, [bounds, leaflet, fitBoundsTriggered])
 
   return (
-    <Tooltip aria-label={label} label={label} hasArrow zIndex={1000}>
+    <Tip label={label}>
       <Button
         id='zoom-to-modification'
         onClick={() => setFitBoundsTriggered(Date.now())}
@@ -35,6 +36,6 @@ export default function FitBounds() {
       >
         <Icon icon={faExpand} fixedWidth={false} />
       </Button>
-    </Tooltip>
+    </Tip>
   )
 }

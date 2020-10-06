@@ -1,4 +1,4 @@
-import {Button, Flex, Heading} from '@chakra-ui/core'
+import {Box, Button, Flex, Heading, Text} from '@chakra-ui/core'
 import {faChartArea} from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import {useDispatch, useSelector} from 'react-redux'
@@ -26,9 +26,11 @@ function TitleMessage({fetchStatus, project}) {
   if (fetchStatus) title = fetchStatus
   else if (!project) title = 'Select a project'
   else if (!isochrone) title = 'Compute travel time'
-  else if (profileRequestHasChanged) title = 'Results are out of date'
-  else if (!opportunityDataset) title = 'Select opportunity dataset'
-  return <> {title}</>
+  else if (profileRequestHasChanged)
+    title = 'Results are out of sync with settings'
+  else if (!opportunityDataset)
+    title = 'Select an opportunity dataset to see accessibility'
+  return <Text> {title}</Text>
 }
 
 export default function AnalysisTitle() {
@@ -53,8 +55,10 @@ export default function AnalysisTitle() {
       py={4}
       width='640px'
     >
-      <Heading size='md'>
-        <Icon icon={faChartArea} />
+      <Heading alignItems='center' display='flex' size='md'>
+        <Box mr={2}>
+          <Icon icon={faChartArea} />
+        </Box>
         <TitleMessage
           fetchStatus={isochroneFetchStatus}
           project={currentProject}

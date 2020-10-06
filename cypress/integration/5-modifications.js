@@ -318,7 +318,7 @@ describe('Modifications', function () {
       }).click()
       cy.location('pathname').should('match', /import-modifications$/)
       // TODO need better selector for button
-      cy.get('a.btn').get('svg[data-icon="upload"]').click()
+      cy.findByRole('button', {name: /Import from Shapefile/}).click()
       cy.location('pathname').should('match', /import-shapefile/g)
       cy.findByLabelText(/Select Shapefile/i).attachFile({
         filePath: this.region.importRoutes.shapefile,
@@ -338,7 +338,7 @@ describe('Modifications', function () {
 
       this.region.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
-        cy.findByRole('button', {name: 'Timetable NaN'}).click({force: true})
+        cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
         cy.findByLabelText(/Frequency/)
           .invoke('val')
           .then((val) => expect(val).to.eq('' + route.frequency))

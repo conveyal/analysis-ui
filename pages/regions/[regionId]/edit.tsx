@@ -178,14 +178,15 @@ function EditRegion({region, remove, update}) {
         </Button>
 
         <ConfirmButton
-          action={message('region.deleteAction')}
           description={message('region.deleteConfirmation')}
           isFullWidth
           leftIcon='delete'
           onConfirm={_delete}
           size='lg'
           variantColor='red'
-        />
+        >
+          {message('region.deleteAction')}
+        </ConfirmButton>
       </Stack>
     </InnerDock>
   )
