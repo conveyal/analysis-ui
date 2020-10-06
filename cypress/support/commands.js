@@ -46,7 +46,7 @@ Cypress.Commands.add('isWithin', (f1, f2, tolerance = 0) => {
 })
 
 // Recursive setup
-Cypress.Commands.add('setup', (entity) => setup(entity))
+Cypress.Commands.add('setup', setup)
 
 function setup(entity) {
   const idKey = entity + 'Id'

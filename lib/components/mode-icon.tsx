@@ -15,6 +15,7 @@ import Icon from './icon'
 
 type Mode =
   | 'BICYCLE'
+  | 'BICYCLE_RENT'
   | 'BUS'
   | 'CABLE_CAR'
   | 'CAR'
@@ -44,6 +45,7 @@ const Letter = ({children}) => (
 export function ModeIcon({mode}: {mode: Mode}) {
   switch (mode) {
     case 'BICYCLE':
+    case 'BICYCLE_RENT':
       return <Icon icon={faBicycle} />
     case 'BUS':
       return <Icon icon={faBus} />
@@ -67,6 +69,9 @@ export function ModeIcon({mode}: {mode: Mode}) {
       return <Letter>T</Letter>
     case 'WALK':
       return <Icon icon={faWalking} />
+    default:
+      console.error(`${mode} does not exist`)
+      return null
   }
 }
 

@@ -27,3 +27,13 @@ before('Optionally wipe configured state', () => {
     }
   })
 })
+
+/**
+ * Uncaught exceptions should not occur in the app, but we need to be able to test what happens when they do.
+ */
+Cypress.on('uncaught:exception', (err) => {
+  console.error(err)
+  // returning false here prevents Cypress from
+  // failing the test
+  return false
+})

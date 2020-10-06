@@ -78,11 +78,13 @@ export default withAuth(function SelectRegionPage(p) {
             ))}
           </Stack>
         )}
-        <Box>
-          <ALink to='logout'>
-            <Icon icon={faSignOutAlt} /> Log out
-          </ALink>
-        </Box>
+        {process.env.NEXT_PUBLIC_AUTH_DISABLED !== 'true' && (
+          <Box>
+            <ALink to='logout'>
+              <Icon icon={faSignOutAlt} /> Log out
+            </ALink>
+          </Box>
+        )}
       </Stack>
     </Flex>
   )

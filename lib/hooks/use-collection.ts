@@ -5,6 +5,11 @@ import LogRocket from 'lib/logrocket'
 import {UserContext} from 'lib/user'
 import {postJSON, putJSON, safeDelete} from 'lib/utils/safe-fetch'
 
+interface UseCollection extends ConfigInterface {
+  query?: Record<string, unknown>
+  options?: Record<string, unknown>
+}
+
 const encode = (o: Record<string, unknown> | void) => {
   if (o) {
     try {
@@ -16,9 +21,11 @@ const encode = (o: Record<string, unknown> | void) => {
   }
 }
 
-interface UseCollection extends ConfigInterface {
-  query?: Record<string, unknown>
-  options?: Record<string, unknown>
+const configToQueryParams = (config?: UseCollection): string => {
+  const params = []
+  if (config?.query) params.push(`query=${encode(config.query)}`)
+  if (config?.options) params.push(`options=${encode(config.options)}`)
+  return params.join('&')
 }
 
 /**
@@ -27,11 +34,10 @@ interface UseCollection extends ConfigInterface {
 export function createUseCollection(collectionName) {
   return function useCollection(config?: UseCollection) {
     const user = useContext(UserContext)
-    const baseURL = `/api/db/${collectionName}`
-    const queryParams = `query=${encode(config.query)}&options=${encode(
-      config.options
-    )}`
-    const results = useSWR([`${baseURL}?${queryParams}`, user], config)
+    const url = [`/api/db/${collectionName}`]
+    const queryParams = configToQueryParams(config)
+    if (queryParams) url.push(queryParams)
+    const results = useSWR([url.join('?'), user], config)
 
     const {mutate, revalidate} = results
     // Helper function for updating values when using a collection
