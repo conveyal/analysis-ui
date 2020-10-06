@@ -54,11 +54,20 @@ function asInt(numericText) {
   return parseInt(numericText.replace(',', ''))
 }
 
+function selectDefaultOpportunityDataset() {
+  cy.findByLabelText(/^Opportunity Dataset$/)
+    .click({force: true})
+    .type(`default{enter}`)
+    .wait(100)
+  cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+}
+
 function setupAnalysis() {
   // refresh the analysis page by navigating away and then back
   cy.navTo('projects')
   cy.navTo('Analyze')
   cy.get('div#PrimaryAnalysisSettings').as('primary')
+  cy.get('div#ComparisonAnalysisSettings').as('comparison')
   // set a standard project and scenario for all tests
   cy.get('@primary')
     .findByLabelText(/^Project$/)
@@ -68,11 +77,6 @@ function setupAnalysis() {
     .findByLabelText(/^Scenario$/)
     .click({force: true})
     .type('baseline{enter}')
-  cy.findByLabelText(/^Opportunity Dataset$/)
-    .click({force: true})
-    .type(`default{enter}`)
-    .wait(100)
-  cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
   cy.fixture('regions/scratch.json').then((region) => {
     cy.get('@primary').findByLabelText(/Date/i).clear().type(region.date)
   })
@@ -92,8 +96,6 @@ describe('Analysis', function () {
       this.results = data
     })
     setupAnalysis()
-    cy.get('div#PrimaryAnalysisSettings').as('primary')
-    cy.get('div#ComparisonAnalysisSettings').as('comparison')
   })
 
   describe('of a point', () => {
@@ -120,21 +122,17 @@ describe('Analysis', function () {
       cy.findByLabelText(/To time/i)
       cy.get('@primary').findByLabelText(/Simulated Schedules/i)
       cy.get('@primary').findByLabelText(/Maximum transfers/i)
+      cy.get('@primary').findByLabelText(/Decay function/i)
       cy.findByLabelText(/Routing engine/i)
       cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
       cy.get('@primary').findByRole('tab', {name: /Custom JSON editor/i})
       cy.findByText(/Fetch results/i).should('be.enabled')
-      fetchResults()
-      cy.findByLabelText('Opportunities within isochrone')
-        .invoke('text')
-        .then((text) => {
-          expect(text).to.match(/^\d+$/)
-        })
     })
 
     it('runs, giving reasonable results', () => {
       // tests basic single point analysis at specified locations
       fetchResults() // initialize request
+      selectDefaultOpportunityDataset()
       // set new parameters
       setTimeCutoff(75)
       // move marker and align map for snapshot
@@ -167,6 +165,7 @@ describe('Analysis', function () {
       cy.get('@primary')
         .findAllByRole('button', {name: /bike egress/i})
         .should('be.disabled')
+      selectDefaultOpportunityDataset()
       fetchResults()
       cy.findByLabelText('Opportunities within isochrone')
         .invoke('text')
@@ -185,6 +184,7 @@ describe('Analysis', function () {
       cy.centerMapOn(location)
       setCustom('bounds', this.region.customRegionSubset)
       fetchResults()
+      selectDefaultOpportunityDataset()
       cy.findByLabelText('Opportunities within isochrone')
         .invoke('text')
         .then((val) => {
@@ -207,6 +207,7 @@ describe('Analysis', function () {
         .clear()
         .type('08:00')
       fetchResults()
+      selectDefaultOpportunityDataset()
       cy.findByLabelText('Opportunities within isochrone')
         .as('results')
         .invoke('text')
@@ -235,6 +236,7 @@ describe('Analysis', function () {
       const location = this.region.locations.center
       setOrigin(location)
       fetchResults()
+      selectDefaultOpportunityDataset()
       cy.get('svg#results-chart')
         .as('chart')
         .scrollIntoView()
@@ -259,6 +261,41 @@ describe('Analysis', function () {
       cy.get('@chart')
         .scrollIntoView()
         .matchImageSnapshot('chart-with-comparison')
+    })
+
+    it('handles decay functions', () => {
+      // Should be disabled for < v6
+      cy.get('@primary')
+        .findByLabelText(/Routing engine/)
+        .click({force: true})
+        .type('v5.10.0{enter}')
+
+      cy.get('@primary')
+        .findByLabelText(/Decay Function/i)
+        .should('be.disabled')
+
+      fetchResults()
+      cy.findByText(/Select an opportunity dataset to see accessibility/)
+
+      // Should be enabled for >= v6
+      cy.get('@primary')
+        .findByLabelText(/Routing engine/)
+        .click({force: true})
+        .type('v6.0.0{enter}')
+
+      cy.get('@primary')
+        .findByLabelText(/Decay Function/i)
+        .should('be.enabled')
+        .select('logistic')
+
+      fetchResults()
+      cy.findByText(/Select an opportunity dataset to see accessibility/)
+      selectDefaultOpportunityDataset()
+
+      // Logistic function should cause "out of sync" after dataset selected
+      cy.findByText(/Results are out of sync with settings/)
+      fetchResults()
+      cy.findByText(/Analyze results/)
     })
 
     describe('presets', () => {
@@ -309,6 +346,10 @@ describe('Analysis', function () {
         .click()
 
       cy.findByLabelText(/Regional analysis name/).type(analysisName)
+
+      cy.findByLabelText(/Opportunity dataset\(s\)/)
+        .click({force: true})
+        .type('people{enter}')
 
       cy.findByRole('button', {name: 'Create'}).click()
       // we should now be on the regional analyses page

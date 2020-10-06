@@ -11,7 +11,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  PseudoBox,
   Tab,
   Tabs,
   TabList,
@@ -20,6 +19,7 @@ import {
   useDisclosure
 } from '@chakra-ui/core'
 import {faEye, faEyeSlash, faUpload} from '@fortawesome/free-solid-svg-icons'
+import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
 import {memo, useCallback, useEffect, useState} from 'react'
@@ -33,9 +33,9 @@ import selectFeedsById from 'lib/selectors/feeds-by-id'
 import selectVariants from 'lib/selectors/variants'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
+import ButtonLink from '../button-link'
 import IconButton from '../icon-button'
 import InnerDock from '../inner-dock'
-import Link from '../link'
 import {DisplayAll as ModificationsMap} from '../modifications-map/display-all'
 import VariantEditor from '../variant-editor'
 
@@ -66,11 +66,13 @@ function filterModifications(filter, modifications, projectId) {
   return filteredModificationsByType
 }
 
+const selectModifications = fpGet('project.modifications')
+
 export default function ModificationsList(p) {
   const dispatch = useDispatch()
   const {_id: projectId, bundleId, regionId} = p.project
   // Retrieve the modifications from the store. Filter out modifications that might be from another project
-  const modifications = useSelector((s) => get(s, 'project.modifications'))
+  const modifications = useSelector(selectModifications)
   const feedsById = useSelector(selectFeedsById)
   const variants = useSelector(selectVariants)
   const goToModificationImport = useRouteTo('modificationImport', {
@@ -113,7 +115,9 @@ export default function ModificationsList(p) {
   )
 
   const [filter, setFilter] = useState('')
-  const [filteredModificationsByType, setFiltered] = useState({})
+  const [filteredModificationsByType, setFiltered] = useState(() =>
+    filterModifications(filter, modifications, projectId)
+  )
 
   // Update filtered modifications when the filter changes
   useEffect(() => {
@@ -272,7 +276,7 @@ function ModificationType({children, modificationCount, type}) {
         <AccordionIcon />
       </AccordionHeader>
       <AccordionPanel py={0} px={1}>
-        <Flex direction='column'>{children}</Flex>
+        {isOpen && <Flex direction='column'>{children}</Flex>}
       </AccordionPanel>
     </AccordionItem>
   )
@@ -287,40 +291,34 @@ type ModificationItemProps = {
 
 const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
-    <PseudoBox
-      borderRadius='4px'
-      color='blue.500'
-      _hover={{
-        backgroundColor: 'rgba(0,0,0,0.04)',
-        color: 'blue.700'
-      }}
-    >
-      <Link
+    <Flex align='center' px={1}>
+      <ButtonLink
+        aria-label='Edit modification'
+        flex='1'
+        justifyContent='start'
+        overflow='hidden'
+        px={4}
+        query={{
+          modificationId: modification._id,
+          projectId: modification.projectId,
+          regionId
+        }}
+        style={{textOverflow: 'ellipsis'}}
         to='modificationEdit'
-        modificationId={modification._id}
-        projectId={modification.projectId}
-        regionId={regionId}
+        variant='ghost'
+        variantColor='blue'
+        whiteSpace='nowrap'
       >
-        <Flex align='center' py={1} pl={5} pr={1} cursor='pointer'>
-          <Box
-            flex='1'
-            overflow='hidden'
-            pr={4}
-            whiteSpace='nowrap'
-            style={{textOverflow: 'ellipsis'}}
-          >
-            {modification.name}
-          </Box>
-          <IconButton
-            icon={isDisplayed ? faEye : faEyeSlash}
-            label={isDisplayed ? 'Hide from map' : 'Show on map'}
-            onClick={(e) => {
-              e.preventDefault()
-              toggleMapDisplay(modification._id)
-            }}
-          />
-        </Flex>
-      </Link>
-    </PseudoBox>
+        {modification.name}
+      </ButtonLink>
+      <IconButton
+        icon={isDisplayed ? faEye : faEyeSlash}
+        label={isDisplayed ? 'Hide from map' : 'Show on map'}
+        onClick={(e) => {
+          e.preventDefault()
+          toggleMapDisplay(modification._id)
+        }}
+      />
+    </Flex>
   )
 )
