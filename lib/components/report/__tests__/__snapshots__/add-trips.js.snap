@@ -1,113 +1,119 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Report > AddTrips renders correctly 1`] = `
-<div>
-  <Map
-    bounds={
-      Object {
-        "_northEast": Object {
-          "lat": 37.365,
-          "lng": -121.924,
-        },
-        "_southWest": Object {
-          "lat": 36.9707,
-          "lng": -122.0279,
-        },
+<ForwardRef>
+  <Box>
+    <Map
+      bounds={
+        Object {
+          "_northEast": Object {
+            "lat": 37.365,
+            "lng": -121.924,
+          },
+          "_southWest": Object {
+            "lat": 36.9707,
+            "lng": -122.0279,
+          },
+        }
       }
-    }
+    >
+      <AddTripPatternLayer
+        bidirectional={true}
+        segments={
+          Array [
+            {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+            {
+  "fromStopId": "1",
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [
+        "-122.02460000",
+        "36.97070000"
+      ],
+      [
+        "-122.02790000",
+        "37.04900000"
+      ],
+      [
+        "-121.97990000",
+        "37.22990000"
+      ],
+      [
+        "-121.94450000",
+        "37.32400000"
+      ],
+      [
+        "-121.93600000",
+        "37.35300000"
+      ],
+      [
+        "-121.92400000",
+        "37.36500000"
+      ]
+    ]
+  },
+  "properties": {},
+  "spacing": "3000.00000000",
+  "stopAtEnd": false,
+  "stopAtStart": false,
+  "type": "Feature"
+},
+          ]
+        }
+      />
+    </Map>
+  </Box>
+  <Box
+    textAlign="center"
   >
-    <AddTripPatternLayer
-      bidirectional={true}
-      segments={
-        Array [
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-          {
-  "fromStopId": "1",
-  "geometry": {
-    "type": "LineString",
-    "coordinates": [
-      [
-        "-122.02460000",
-        "36.97070000"
-      ],
-      [
-        "-122.02790000",
-        "37.04900000"
-      ],
-      [
-        "-121.97990000",
-        "37.22990000"
-      ],
-      [
-        "-121.94450000",
-        "37.32400000"
-      ],
-      [
-        "-121.93600000",
-        "37.35300000"
-      ],
-      [
-        "-121.92400000",
-        "37.36500000"
-      ]
-    ]
-  },
-  "properties": {},
-  "spacing": "3000.00000000",
-  "stopAtEnd": false,
-  "stopAtStart": false,
-  "type": "Feature"
-},
-        ]
-      }
-    />
-  </Map>
-  <i>
-    <Distance
-      km={90.41904621701774}
-    />
-    ,
-     
-    unidirectional
-  </i>
-  <table
-    className="table table-striped"
+    <i>
+      <Distance
+        km={90.41904621701774}
+      />
+      ,
+       
+      unidirectional
+    </i>
+  </Box>
+  <Box
+    as="table"
   >
     <thead>
       <tr>
@@ -135,67 +141,49 @@ exports[`Report > AddTrips renders correctly 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr
-        key="timetable-id-summary"
-      >
-        <td>
-          Test timetable
-        </td>
-        <td>
-          08:00
-        </td>
-        <td>
-          16:00
-        </td>
-        <td>
-          15
-        </td>
-        <td>
-          <Speed
-            kmh={0}
-          />
-        </td>
-        <td>
-          <DaysOfService
-            _id="timetable-id"
-            dwellTime={10}
-            dwellTimes={
-              Array [
-                12,
-              ]
-            }
-            endTime={57600}
-            exactTimes={false}
-            friday={true}
-            headwaySecs={900}
-            modificationId="1234"
-            modificationName="Test Modification"
-            monday={true}
-            name="Test timetable"
-            patternTrips={
-              Array [
-                "abcd",
-              ]
-            }
-            phaseAtStop=""
-            phaseFromStop=""
-            phaseFromTimetable=""
-            phaseSeconds={300}
-            saturday={false}
-            segmentSpeeds={Array []}
-            sourceTrip="abcd"
-            startTime={28800}
-            sunday={false}
-            thursday={true}
-            tuesday={true}
-            wednesday={true}
-          />
-        </td>
-        <td>
-          32
-        </td>
-      </tr>
+      <Timetable
+        bidirectional={false}
+        key="timetable-id"
+        segmentDistances={
+          Array [
+            45.20952310850887,
+            45.20952310850887,
+          ]
+        }
+        timetable={
+          Object {
+            "_id": "timetable-id",
+            "dwellTime": 10,
+            "dwellTimes": Array [
+              12,
+            ],
+            "endTime": 57600,
+            "exactTimes": false,
+            "friday": true,
+            "headwaySecs": 900,
+            "modificationId": "1234",
+            "modificationName": "Test Modification",
+            "monday": true,
+            "name": "Test timetable",
+            "patternTrips": Array [
+              "abcd",
+            ],
+            "phaseAtStop": "",
+            "phaseFromStop": "",
+            "phaseFromTimetable": "",
+            "phaseSeconds": 300,
+            "saturday": false,
+            "segmentSpeeds": Array [],
+            "sourceTrip": "abcd",
+            "startTime": 28800,
+            "sunday": false,
+            "thursday": true,
+            "tuesday": true,
+            "wednesday": true,
+          }
+        }
+      />
     </tbody>
-  </table>
-</div>
+  </Box>
+</ForwardRef>
 `;

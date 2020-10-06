@@ -37,12 +37,12 @@ export default function useControlledInput({
   onChange = identityFn,
   id = null,
   parse = identityFn,
-  test = alwaysValid,
+  test: checkValid = alwaysValid,
   value
 }): ControlledInput {
   const [inputValue, setInputValue] = useState(value)
   const [isValid, setIsValid] = useState(() =>
-    test(parse(inputValue), inputValue)
+    checkValid(parse(inputValue), inputValue)
   )
   const ref = useRef<any>()
 
@@ -54,9 +54,9 @@ export default function useControlledInput({
   useEffect(() => {
     if (ref.current !== document.activeElement) {
       setInputValue(value)
-      setIsValid(test(parse(value), value))
+      setIsValid(checkValid(parse(value), value))
     }
-  }, [parse, ref, setInputValue, test, value])
+  }, [parse, ref, setInputValue, checkValid, value])
 
   // Get the value from the Input, parse it, test it, and then pass then parsed
   // value to the original onChange function. This keeps the input in sync.
@@ -66,14 +66,14 @@ export default function useControlledInput({
       // Ensure the displayed value syncs fast, even if it's not valid
       setInputValue(rawValue)
       const parsedValue = parse(rawValue)
-      const isValid = test(parsedValue, rawValue)
+      const isValid = checkValid(parsedValue, rawValue)
       setIsValid(isValid)
       // Don't pass invalid changes through to the onChange function
       if (!isValid) return
       // Allow the sync to occur before propogating the change
       await onChange(parsedValue)
     },
-    [onChange, parse, setInputValue, setIsValid, test]
+    [onChange, parse, setInputValue, setIsValid, checkValid]
   )
 
   return {

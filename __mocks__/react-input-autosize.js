@@ -1,1 +1,1 @@
-module.exports = jest.genMockFromModule('react-input-autosize')
+module.exports = jest.createMockFromModule('react-input-autosize')

@@ -1,7 +1,7 @@
 import assign from 'lodash/assign'
 
 const L = jest.requireActual('leaflet')
-const LeafletMock = jest.genMockFromModule('leaflet')
+const LeafletMock = jest.createMockFromModule('leaflet')
 
 class ControlMock extends LeafletMock.Control {
   constructor(options) {
