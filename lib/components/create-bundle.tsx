@@ -135,6 +135,8 @@ export default function CreateBundle() {
           <Icon icon={faDatabase} /> {message('bundle.create')}
         </Heading>
 
+        <Text>{message('bundle.createDescription')}</Text>
+
         {uploading && (
           <Alert status='info'>
             <AlertIcon />
@@ -150,8 +152,6 @@ export default function CreateBundle() {
             <AlertIcon /> {error}
           </Alert>
         )}
-
-        <Text>{message('bundle.createDescription')}</Text>
 
         {!uploading && !error && (
           <Alert status='info'>
