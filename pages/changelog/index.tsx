@@ -1,5 +1,5 @@
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons'
-import {Box, Divider, Flex, Heading, Image, Link, Stack} from '@chakra-ui/core'
+import {Box, Divider, Flex, Heading, Image, Stack} from '@chakra-ui/core'
 import React from 'react'
 
 import Icon from 'lib/components/icon'
@@ -105,9 +105,13 @@ export default function Changelog() {
         }
 
         .CL img {
-          display: inline-block;
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-          margin: 15px 0 0;
+          max-height: 20rem;
+          margin: 2rem auto;
+        }
+
+        .CL img:hover {
+          max-height: unset;
         }
 
         .CL a {

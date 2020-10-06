@@ -6,6 +6,7 @@
 - Manage analysis settings with Presets (previously known as Bookmarks)
 - New and improved [User Manual](https://docs.conveyal.com)
 - Dynamic destination travel time distribution display
+  ![Distance decay accessibility](/img/changelog/202010/destination-travel-time-distribution.png)
 - Improved error handling and messages.
 - Added more notifications for user actions.
 - Analysis mode selectors are more obvious when they are on.
@@ -25,6 +26,8 @@ The new recommended routing engine version enables a few new features:
 ### Distance decay functions
 
 Conveyal Analysis can now apply distance decay functions rather than hard cutoffs in both regional and single-point analyses.
+
+![Distance decay accessibility](/img/changelog/202010/decay-access.png)
 
 Rather than being the sum of all opportunities that can be reached in less than a specified number of minutes, the accessibility indicator can be more generally defined as the sum of all opportunities in the region, with each opportunity weighted (multiplied) by the value of a "decay function". This function always returns values between zero and one, and is a monotonically decreasing function of travel time. Put differently, the longer it takes to reach each opportunity the less it counts, eventually tapering down to zero. Simple cumulative opportunities accessibility is then a special case of this general definition where the weighting function has value 1 for all travel times less than the threshold, and value 0 for all travel times at or above the threshold. [Learn more](https://docs.conveyal.com/learn-more/decay-functions)
 
