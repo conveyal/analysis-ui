@@ -163,7 +163,6 @@ export default function CreateBundle() {
 
       <Stack
         as='form'
-        encType='multipart/form-data'
         onSubmit={submit}
         opacity={uploading ? 0.4 : 1}
         pointerEvents={uploading ? 'none' : 'auto'}
