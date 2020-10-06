@@ -1,12 +1,4 @@
-import {
-  Alert,
-  AlertDescription,
-  Box,
-  Button,
-  Flex,
-  Skeleton,
-  Stack
-} from '@chakra-ui/core'
+import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/core'
 import {
   faExternalLinkAlt,
   faMap,
