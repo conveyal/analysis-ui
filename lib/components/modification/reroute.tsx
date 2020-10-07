@@ -112,17 +112,19 @@ export default function Reroute({
 
   return (
     <Stack spacing={4}>
-      <RerouteLayer feed={selectedFeed} modification={modification} />
+      <div style={{position: 'relative'}}>
+        <RerouteLayer feed={selectedFeed} modification={modification} />
 
-      {selectStop !== 'none' && (
-        <StopLayer
-          feed={selectedFeed}
-          modification={modification}
-          onSelect={onSelectStop}
-          selectedColor={colors.ACTIVE}
-          unselectedColor={colors.NEUTRAL}
-        />
-      )}
+        {selectStop !== 'none' && (
+          <StopLayer
+            feed={selectedFeed}
+            modification={modification}
+            onSelect={onSelectStop}
+            selectedColor={colors.ACTIVE}
+            unselectedColor={colors.NEUTRAL}
+          />
+        )}
+      </div>
 
       <SelectFeedRouteAndPatterns
         onChange={updateAndRetrieveFeedData}
