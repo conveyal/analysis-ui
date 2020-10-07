@@ -65,40 +65,42 @@ export default function AdjustSpeedComponent({
 
   return (
     <Stack spacing={4} mb={4}>
-      <GTFSStopGridLayer stops={allStops} />
+      <div style={{position: 'relative'}}>
+        <GTFSStopGridLayer stops={allStops} />
 
-      <Pane zIndex={500}>
-        <PatternLayer
-          activeTrips={modification.trips}
-          color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
-          feed={feed}
-          modification={modification}
-        />
-      </Pane>
-
-      {modification.hops != null && (
-        <Pane zIndex={501}>
-          <HopLayer
-            color={colors.MODIFIED}
+        <Pane zIndex={500}>
+          <PatternLayer
+            activeTrips={modification.trips}
+            color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
             feed={feed}
-            hopStops={hopStops}
             modification={modification}
           />
         </Pane>
-      )}
 
-      {action !== 'none' && (
-        <HopSelectPolygon
-          action={action}
-          allStops={allStops}
-          currentHops={modification.hops}
-          hopStops={hopStops}
-          update={(hops) => {
-            update({hops})
-            setAction('none')
-          }}
-        />
-      )}
+        {modification.hops != null && (
+          <Pane zIndex={501}>
+            <HopLayer
+              color={colors.MODIFIED}
+              feed={feed}
+              hopStops={hopStops}
+              modification={modification}
+            />
+          </Pane>
+        )}
+
+        {action !== 'none' && (
+          <HopSelectPolygon
+            action={action}
+            allStops={allStops}
+            currentHops={modification.hops}
+            hopStops={hopStops}
+            update={(hops) => {
+              update({hops})
+              setAction('none')
+            }}
+          />
+        )}
+      </div>
 
       <SelectFeedAndRoutes
         allowMultipleRoutes
