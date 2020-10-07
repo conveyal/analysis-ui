@@ -70,24 +70,22 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
   function PercentileSlider({isDisabled, ...p}) {
     const dispatch = useDispatch()
     const onChangePercentile = useCallback(
-      (percentile) => dispatch(setTravelTimePercentile(percentile)),
+      (index) =>
+        dispatch(setTravelTimePercentile(TRAVEL_TIME_PERCENTILES[index])),
       [dispatch]
     )
     const percentileSlider = useInput({
       onChange: onChangePercentile,
-      value: useSelector(selectTravelTimePercentile)
+      value: getNearestPercentileIndex(useSelector(selectTravelTimePercentile))
     })
 
-    // We only allow for a set of percentiles when viewing single point results
-    const singlePointPercentile =
-      TRAVEL_TIME_PERCENTILES[getNearestPercentileIndex(percentileSlider.value)]
     return (
       <FormControl isDisabled={isDisabled} {...p}>
         <FormLabel>Travel time percentile</FormLabel>
         <Slider
           isDisabled={isDisabled}
-          min={1}
-          max={99}
+          min={0}
+          max={4}
           onChange={percentileSlider.onChange}
           value={percentileSlider.value}
         >
@@ -99,14 +97,10 @@ export const PercentileSlider = memo<PercentileSliderProps & FormControlProps>(
             size='8'
           >
             <Box fontSize='sm' fontWeight='bold'>
-              {percentileSlider.value}
+              {TRAVEL_TIME_PERCENTILES[percentileSlider.value]}
             </Box>
           </SliderThumb>
         </Slider>
-        <FormHelperText>
-          {singlePointPercentile} single-point, {percentileSlider.value}{' '}
-          multi-point
-        </FormHelperText>
       </FormControl>
     )
   }
