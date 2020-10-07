@@ -1,42 +1,53 @@
-import {Flex} from '@chakra-ui/core'
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Stack
+} from '@chakra-ui/core'
 import {useRouter} from 'next/router'
-import {useCallback} from 'react'
+import {FunctionComponent, useCallback} from 'react'
 import {useDispatch} from 'react-redux'
 
-import P from './components/p'
-import Spinner from './components/spinner'
+import FullSpinner from './components/full-spinner'
+import {ExternalLink} from './components/link'
 import usePromise from './hooks/use-promise'
-import useWindowSize from './hooks/use-window-size'
+import message from './message'
+
+interface LayoutComponent extends FunctionComponent {
+  Layout?: FunctionComponent<any>
+}
+
+type InitialFetchFn = (dispatch, query) => Promise<any>
 
 // On statically generated pages the router.query is not immediately available. Next.js
 // is working on a legitimate flag to replace this in the future.
 const routerQueryIsReady = (router) =>
   Object.keys(router.query).length !== 0 || !router.pathname.includes('[')
 
-const minHeight = '600px'
-const minWidth = '320px'
-const spinnerStyle = {
-  color: '#2389c9',
-  fontSize: '36px',
-  marginTop: '-25px'
-}
-
-const ShowError = (p) => (
-  <div className='block'>
-    <P>{String(p.error)}</P>
-  </div>
-)
-const ShowSpinner = () => (
-  <span style={spinnerStyle}>
-    <Spinner />
-  </span>
+const ShowError = ({children}) => (
+  <Alert status='error' m={4} width='320px'>
+    <AlertIcon />
+    <Stack>
+      <AlertTitle>Error loading data</AlertTitle>
+      <AlertDescription>{children}</AlertDescription>
+      <AlertDescription>
+        <>{message('error.report')} </>
+        <ExternalLink href='mailto:support@conveyal.com'>
+          support@conveyal.com
+        </ExternalLink>
+      </AlertDescription>
+    </Stack>
+  </Alert>
 )
 
-export default function withInitialFetch(PageComponent, initialFetch) {
-  return function InitialFetch(p) {
+export default function withInitialFetch(
+  PageComponent,
+  initialFetch: InitialFetchFn
+): LayoutComponent {
+  return function InitialFetch(p: any) {
     const router = useRouter()
     const dispatch = useDispatch()
-    const size = useWindowSize()
 
     // Page components are always passed a query object
     const {query} = router
@@ -48,22 +59,8 @@ export default function withInitialFetch(PageComponent, initialFetch) {
     )
     const [loading, error, results] = usePromise(getInitialFetch)
 
-    if (error) return <ShowError error={error} />
-    if (loading)
-      return (
-        <Flex
-          align='center'
-          direction='column'
-          height={size.height || minHeight}
-          m='0 auto'
-          justify='center'
-          width={minWidth}
-        >
-          <ShowSpinner />
-        </Flex>
-      )
+    if (error) return <ShowError>{error}</ShowError>
+    if (loading) return <FullSpinner />
     if (results) return <PageComponent query={query} {...p} {...results} />
-
-    return null
   }
 }

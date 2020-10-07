@@ -1,6 +1,6 @@
 describe('/status', function () {
   it('should run', function () {
     cy.visit('/status')
-    cy.screenshot()
+    cy.findAllByText('OK').should('have.length', 2)
   })
 })

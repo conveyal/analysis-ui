@@ -1,54 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Report > DaysOfService renders correctly 1`] = `
-<span>
-  <span
-    aria-hidden={false}
-    className="DaysOfService-active"
+<ForwardRef
+  isInline={true}
+>
+  <Text
+    color="black"
+    key="monday"
+    textDecoration="none"
   >
     Mo
-  </span>
-   
-  <span
-    aria-hidden={false}
-    className="DaysOfService-active"
+  </Text>
+  <Text
+    color="black"
+    key="tuesday"
+    textDecoration="none"
   >
     Tu
-  </span>
-   
-  <span
-    aria-hidden={true}
-    className="DaysOfService-inactive"
+  </Text>
+  <Text
+    color="gray"
+    key="wednesday"
+    textDecoration="line-through"
   >
     We
-  </span>
-   
-  <span
-    aria-hidden={true}
-    className="DaysOfService-inactive"
+  </Text>
+  <Text
+    color="gray"
+    key="thursday"
+    textDecoration="line-through"
   >
     Th
-  </span>
-   
-  <span
-    aria-hidden={true}
-    className="DaysOfService-inactive"
+  </Text>
+  <Text
+    color="gray"
+    key="friday"
+    textDecoration="line-through"
   >
     Fr
-  </span>
-   
-  <span
-    aria-hidden={true}
-    className="DaysOfService-inactive"
+  </Text>
+  <Text
+    color="gray"
+    key="saturday"
+    textDecoration="line-through"
   >
     Sa
-  </span>
-   
-  <span
-    aria-hidden={true}
-    className="DaysOfService-inactive"
+  </Text>
+  <Text
+    color="gray"
+    key="sunday"
+    textDecoration="line-through"
   >
     Su
-  </span>
-</span>
+  </Text>
+</ForwardRef>
 `;

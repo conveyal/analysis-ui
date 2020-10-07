@@ -1,13 +1,15 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 
-import initAuth0 from 'lib/auth0'
+import initAuth0, {getUser} from 'lib/auth0'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default function session(
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> {
   const auth0 = initAuth0(req)
-  auth0.requireAuthentication(async (req, res) => {
+  return auth0.requireAuthentication(async (req, res) => {
     try {
-      const session = await auth0.getSession(req)
-      res.json(session)
+      res.json(await getUser(req))
     } catch (error) {
       console.error(error)
       res.status(error.status || 500).end(error.message)

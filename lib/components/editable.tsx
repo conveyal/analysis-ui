@@ -1,6 +1,6 @@
 import {Box, Flex, Input, PseudoBox, useDisclosure} from '@chakra-ui/core'
 import {faCheck, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
-import {useEffect, useCallback} from 'react'
+import {useEffect, useCallback, useState} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 
@@ -8,14 +8,14 @@ import IconButton from './icon-button'
 
 const defaultEditLabel = 'Click to edit'
 
-const alwaysValid = (s) => true
+const alwaysValid = (_?: any) => true
 
 export default function Editable({
   isValid = alwaysValid,
   onChange,
   placeholder = 'Add value',
   value
-}) {
+}): JSX.Element {
   const {isOpen, onClose, onOpen} = useDisclosure()
 
   if (isOpen) {
@@ -38,9 +38,11 @@ export default function Editable({
         onClick={onOpen}
       >
         {value ? (
-          <Box flex='1'>{value}</Box>
+          <Box flex='1' wordBreak='break-all'>
+            {value}
+          </Box>
         ) : (
-          <Box flex='1' color='gray.500'>
+          <Box flex='1' color='gray.500' wordBreak='break-all'>
             {placeholder}
           </Box>
         )}
@@ -63,8 +65,10 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
   })
   const inputRef = input.ref
 
-  const save = useCallback(() => {
-    onChange(inputRef.current.value)
+  const [isSaving, setIsSaving] = useState(false)
+  const save = useCallback(async () => {
+    setIsSaving(true)
+    await onChange(inputRef.current.value)
     onClose()
   }, [onChange, onClose, inputRef])
 
@@ -79,7 +83,7 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
     }
     window.addEventListener('keydown', listener)
     return () => window.removeEventListener('keydown', listener)
-  }, [save]) // Run once on mount / unmount
+  }, [onClose, save]) // Run once on mount / unmount
 
   // Select all the text by default
   useEffect(() => {
@@ -94,6 +98,7 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
       <Input
         {...input}
         height='unset'
+        isDisabled={isSaving}
         onBlur={save}
         outline='none'
         p={0}
@@ -101,7 +106,12 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
         variant='flushed'
       />
       {input.isValid && (
-        <IconButton icon={faCheck} label='Save' onClick={save} />
+        <IconButton
+          icon={faCheck}
+          isDisabled={isSaving}
+          label='Save'
+          onClick={save}
+        />
       )}
     </Flex>
   )

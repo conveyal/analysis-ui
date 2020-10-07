@@ -57,14 +57,14 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
   const maxAccessibility = useSelector(selectMaxAccessibility)
   const opportunityDatasetName = opportunityDataset && opportunityDataset.name
 
-  const projectColor =
-    disabled || stale
-      ? colors.STALE_PERCENTILE_COLOR
-      : colors.PROJECT_PERCENTILE_COLOR
-  const comparisonColor =
-    disabled || stale
-      ? colors.STALE_PERCENTILE_COLOR
-      : colors.COMPARISON_PERCENTILE_COLOR
+  const disabledOrStale = disabled || stale
+
+  const projectColor = disabledOrStale
+    ? colors.STALE_PERCENTILE_COLOR
+    : colors.PROJECT_PERCENTILE_COLOR
+  const comparisonColor = disabledOrStale
+    ? colors.STALE_PERCENTILE_COLOR
+    : colors.COMPARISON_PERCENTILE_COLOR
 
   const colorBar = color(projectColor)
   colorBar.opacity = 0.5
@@ -74,28 +74,30 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
   return (
     <Stack {...p}>
       <Stack spacing={0}>
-        <Stack isInline spacing={5} alignItems='center'>
-          <Progress
-            flex='10'
-            color='blue'
-            size='md'
-            value={((accessibility || 1) / maxAccessibility) * 100}
-          />
-          <Box
-            aria-label={PRIMARY_ACCESS_LABEL}
-            fontWeight='500'
-            flex='1'
-            textAlign='left'
-          >
-            {commaFormat(accessibility)}
-          </Box>
-        </Stack>
-
-        {comparisonProjectName && comparisonAccessibility != null && (
+        {typeof accessibility === 'number' && (
           <Stack isInline spacing={5} alignItems='center'>
             <Progress
               flex='10'
-              color='red'
+              color={disabledOrStale ? 'gray' : 'blue'}
+              size='md'
+              value={((accessibility || 1) / maxAccessibility) * 100}
+            />
+            <Box
+              aria-label={PRIMARY_ACCESS_LABEL}
+              fontWeight='500'
+              flex='1'
+              textAlign='left'
+            >
+              {commaFormat(accessibility)}
+            </Box>
+          </Stack>
+        )}
+
+        {comparisonProjectName && typeof comparisonAccessibility === 'number' && (
+          <Stack isInline spacing={5} alignItems='center'>
+            <Progress
+              flex='10'
+              color={disabledOrStale ? 'gray' : 'red'}
               size='md'
               value={((comparisonAccessibility || 1) / maxAccessibility) * 100}
             />

@@ -1,12 +1,14 @@
-import {Box, BoxProps, Button, Tooltip, ButtonProps} from '@chakra-ui/core'
+import {Box, BoxProps, Button, ButtonProps} from '@chakra-ui/core'
 import {PopperProps} from '@chakra-ui/core/dist/Popper'
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons'
 
 import Icon from './icon'
+import Tip from './tip'
 
-type SimpleIconButtonProps = {
+type IconButtonProps = {
   icon: IconDefinition
   isActive?: boolean
+  isDisabled?: boolean
   label: string
   onClick: (e: MouseEvent) => void
   placement?: PopperProps['placement']
@@ -15,9 +17,10 @@ type SimpleIconButtonProps = {
   variantColor?: ButtonProps['variantColor']
 } & BoxProps
 
-export default function SimpleIconButton({
+export default function IconButton({
   icon,
   isActive = false,
+  isDisabled = false,
   label,
   onClick,
   placement,
@@ -25,19 +28,14 @@ export default function SimpleIconButton({
   variant = 'ghost',
   variantColor = 'blue',
   ...p
-}: SimpleIconButtonProps) {
+}: IconButtonProps) {
   return (
     <Box {...p}>
-      <Tooltip
-        aria-label={label}
-        hasArrow
-        label={label}
-        placement={placement || 'auto'}
-        zIndex={1000}
-      >
+      <Tip label={label} placement={placement || 'auto'}>
         <Button
           aria-label={label}
           isActive={isActive}
+          isDisabled={isDisabled}
           onClick={onClick}
           size={size}
           variant={variant}
@@ -45,7 +43,7 @@ export default function SimpleIconButton({
         >
           <Icon icon={icon} fixedWidth={false} />
         </Button>
-      </Tooltip>
+      </Tip>
     </Box>
   )
 }

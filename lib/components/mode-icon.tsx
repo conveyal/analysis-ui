@@ -1,4 +1,4 @@
-import {Box, BoxProps} from '@chakra-ui/core'
+import {Box, BoxProps, Text} from '@chakra-ui/core'
 import {
   faBicycle,
   faBus,
@@ -6,7 +6,8 @@ import {
   faWalking,
   faShip,
   faSubway,
-  faTrain
+  faTrain,
+  faParking
 } from '@fortawesome/free-solid-svg-icons'
 import toStartCase from 'lodash/startCase'
 
@@ -14,6 +15,7 @@ import Icon from './icon'
 
 type Mode =
   | 'BICYCLE'
+  | 'BICYCLE_RENT'
   | 'BUS'
   | 'CABLE_CAR'
   | 'CAR'
@@ -26,32 +28,50 @@ type Mode =
   | 'TRAM'
   | 'WALK'
 
-function getIcon(mode: Mode) {
+const Letter = ({children}) => (
+  <Text
+    fontFamily='mono'
+    fontSize='14px'
+    fontWeight={600}
+    height='17px'
+    lineHeight='1.5rem'
+    textAlign='center'
+    width='15px'
+  >
+    {children}
+  </Text>
+)
+
+export function ModeIcon({mode}: {mode: Mode}) {
   switch (mode) {
     case 'BICYCLE':
+    case 'BICYCLE_RENT':
       return <Icon icon={faBicycle} />
     case 'BUS':
       return <Icon icon={faBus} />
     case 'CABLE_CAR':
-      return <strong>C</strong>
+      return <Letter>C</Letter>
     case 'CAR':
       return <Icon icon={faCar} />
     case 'CAR_PARK':
-      return <strong>P</strong>
+      return <Icon icon={faParking}>P</Icon>
     case 'FERRY':
       return <Icon icon={faShip} />
     case 'FUNICULAR':
-      return <strong>F</strong>
+      return <Letter>F</Letter>
     case 'GONDOLA':
-      return <strong>G</strong>
+      return <Letter>G</Letter>
     case 'RAIL':
       return <Icon icon={faTrain} />
     case 'SUBWAY':
       return <Icon icon={faSubway} />
     case 'TRAM':
-      return <strong>T</strong>
+      return <Letter>T</Letter>
     case 'WALK':
       return <Icon icon={faWalking} />
+    default:
+      console.error(`${mode} does not exist`)
+      return null
   }
 }
 
@@ -59,10 +79,10 @@ type ModeIconProps = {
   mode: Mode
 } & BoxProps
 
-export default function ModeIcon({mode, ...p}: ModeIconProps) {
+export default function ModeIconBox({mode, ...p}: ModeIconProps) {
   return (
     <Box {...p} title={toStartCase(mode)}>
-      {getIcon(mode)}
+      <ModeIcon mode={mode} />
     </Box>
   )
 }

@@ -1,8 +1,5 @@
-import find from 'lodash/find'
-import get from 'lodash/get'
-import {useSelector} from 'react-redux'
-
 import {loadBundles} from 'lib/actions'
+import {getForProject as loadModifications} from 'lib/actions/modifications'
 import {loadProject, loadProjects} from 'lib/actions/project'
 import {loadRegion} from 'lib/actions/region'
 import List from 'lib/components/modification/list'
@@ -17,17 +14,16 @@ const noProjectId = (pid) => !pid || pid === 'undefined'
  * Show Select Project if a project has not been selected
  */
 const ModificationsPage: any = withInitialFetch(
-  (p) => {
-    const project = useSelector((s) =>
-      find(get(s, 'project.projects'), ['_id', p.query.projectId])
-    )
+  ({bundles, modifications, project, projects, region}) => {
     if (!project) {
-      return <SelectProject {...p} />
+      return (
+        <SelectProject bundles={bundles} projects={projects} region={region} />
+      )
     } else {
       return (
         <>
           <ProjectTitle project={project} />
-          <List project={project} />
+          <List modifications={modifications} project={project} />
         </>
       )
     }
@@ -35,14 +31,18 @@ const ModificationsPage: any = withInitialFetch(
   async (dispatch, query) => {
     const {projectId, regionId} = query
     if (noProjectId(projectId)) {
-      const [region, bundles, projects] = await Promise.all([
-        dispatch(loadRegion(regionId)),
+      const results = await Promise.all([
         dispatch(loadBundles({regionId})),
-        dispatch(loadProjects({regionId}))
+        dispatch(loadProjects({regionId})),
+        dispatch(loadRegion(regionId))
       ])
-      return {bundles, projects, region}
+      return {bundles: results[0], projects: results[1], region: results[2]}
     } else {
-      return {project: await dispatch(loadProject(projectId))}
+      const results = await Promise.all([
+        dispatch(loadProject(projectId)),
+        dispatch(loadModifications(projectId))
+      ])
+      return {project: results[0], modifications: results[1]}
     }
   }
 )

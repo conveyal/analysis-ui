@@ -32,7 +32,7 @@ import SelectResource from 'lib/components/select-resource'
 import msg from 'lib/message'
 import downloadData from 'lib/utils/download-data'
 import {routeTo} from 'lib/router'
-import MapLayout, {MapChildrenContext} from 'lib/layouts/map'
+import MapLayout from 'lib/layouts/map'
 import withInitialFetch from 'lib/with-initial-fetch'
 
 const GeoJSON = dynamic(() => import('lib/components/map/geojson'), {
@@ -57,7 +57,7 @@ function ConfirmDelete(p) {
 
   return (
     <>
-      <Button block variantColor='red' onClick={() => setIsOpen(true)}>
+      <Button variantColor='red' onClick={() => setIsOpen(true)}>
         {msg('resources.deleteAction')}
       </Button>
 
@@ -98,16 +98,6 @@ const EditResourcePage = withInitialFetch(
       dispatch(loadResourceData(resource)).then(setResourceData)
     }, [dispatch, resource])
 
-    // Show the resource on the map
-    const setMapChildren = React.useContext(MapChildrenContext)
-    React.useEffect(() => {
-      if (resourceData) {
-        setMapChildren(<GeoJSON data={resourceData} />)
-      }
-
-      return () => setMapChildren(<React.Fragment />)
-    }, [resourceData, setMapChildren])
-
     function _download() {
       downloadData(resourceData, resource.filename, resource.type)
     }
@@ -121,6 +111,7 @@ const EditResourcePage = withInitialFetch(
 
     return (
       <SelectResource {...p}>
+        {resourceData && <GeoJSON data={resourceData} />}
         <Stack mt={6}>
           <Heading size='lg'>{resource.name}</Heading>
           <Text fontSize='xl'>{resource.filename}</Text>
@@ -141,8 +132,7 @@ const EditResourcePage = withInitialFetch(
             </Stat>
           </StatGroup>
           <Button
-            block
-            disabled={!resourceData}
+            isDisabled={!resourceData}
             onClick={_download}
             variantColor='green'
           >

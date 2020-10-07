@@ -1,16 +1,7 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Stack,
-  Textarea
-} from '@chakra-ui/core'
+import {Button, Flex, FormControl, FormLabel, Stack} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
 import dynamic from 'next/dynamic'
-import {useCallback, useEffect, useRef, useState} from 'react'
+import {useState} from 'react'
 
 import message from 'lib/message'
 import R5Selector from 'lib/modules/r5-version/components/selector'
@@ -18,15 +9,6 @@ import R5Selector from 'lib/modules/r5-version/components/selector'
 import Select from '../select'
 
 const EditBounds = dynamic(() => import('../map/edit-bounds'), {ssr: false})
-
-const isInvalid = (jsonString) => {
-  try {
-    JSON.parse(jsonString)
-  } catch (e) {
-    return true
-  }
-  return false
-}
 
 /**
  * Edit the advanced parameters of an analysis.
@@ -36,75 +18,26 @@ export default function AdvancedSettings({
   profileRequest,
   regionalAnalyses,
   regionBounds,
-  setProfileRequest,
+  updateProfileRequest,
   ...p
 }) {
-  const [stringified, setStringified] = useState(
-    JSON.stringify(profileRequest, null, '  ')
-  )
-  const [currentValue, setCurrentValue] = useState(stringified)
-  const ref = useRef()
-  const onChange = useCallback(
-    (e) => {
-      const jsonString = e.target.value
-      setCurrentValue(jsonString) // for validation
-      if (!isInvalid(jsonString)) {
-        setProfileRequest(JSON.parse(jsonString))
-      }
-    },
-    [ref, setCurrentValue, setProfileRequest]
-  )
-
-  useEffect(() => {
-    if (document.activeElement !== ref.current) {
-      setStringified(JSON.stringify(profileRequest, null, '  '))
-    }
-  }, [profileRequest, ref, setStringified])
-
   return (
-    <Stack spacing={5} {...p}>
-      <Stack isInline spacing={5}>
-        <R5Selector
-          flex='1'
-          isDisabled={disabled}
-          onChange={(workerVersion) => setProfileRequest({workerVersion})}
-          value={profileRequest.workerVersion}
-        />
+    <Stack isInline spacing={5} {...p}>
+      <R5Selector
+        flex='1'
+        isDisabled={disabled}
+        onChange={(workerVersion) => updateProfileRequest({workerVersion})}
+        value={profileRequest.workerVersion}
+      />
 
-        <CustomBoundsSelector
-          isDisabled={disabled}
-          profileRequest={profileRequest}
-          regionalAnalyses={regionalAnalyses}
-          regionBounds={regionBounds}
-          setProfileRequest={setProfileRequest}
-        />
-
-        <FormControl
-          flex='1'
-          isDisabled={disabled}
-          isInvalid={isInvalid(currentValue)}
-        >
-          <FormLabel htmlFor='customProfileRequest'>
-            {message('analysis.customizeProfileRequest.label')}
-          </FormLabel>
-          <Textarea
-            defaultValue={stringified}
-            fontFamily='monospace'
-            fontSize='sm'
-            id='customProfileRequest'
-            key={stringified}
-            minHeight='unset'
-            onChange={onChange}
-            p={1}
-            ref={ref}
-            resize='both'
-            spellCheck={false}
-          />
-          <FormHelperText>
-            {message('analysis.customizeProfileRequest.description')}
-          </FormHelperText>
-        </FormControl>
-      </Stack>
+      <CustomBoundsSelector
+        flex='1'
+        isDisabled={disabled}
+        profileRequest={profileRequest}
+        regionalAnalyses={regionalAnalyses}
+        regionBounds={regionBounds}
+        updateProfileRequest={updateProfileRequest}
+      />
     </Stack>
   )
 }
@@ -120,7 +53,7 @@ function CustomBoundsSelector({
   profileRequest,
   regionBounds,
   regionalAnalyses,
-  setProfileRequest,
+  updateProfileRequest,
   ...p
 }) {
   const [editingBounds, setEditingBounds] = useState(false)
@@ -162,11 +95,11 @@ function CustomBoundsSelector({
 
   function _setRegionalAnalysisBounds(e) {
     if (e.value === '__REGION') {
-      setProfileRequest({bounds: regionBounds})
+      updateProfileRequest({bounds: regionBounds})
     } else if (regionalAnalyses) {
       const foundAnalyses = regionalAnalyses.find((r) => r._id === e.value)
       if (foundAnalyses) {
-        setProfileRequest({
+        updateProfileRequest({
           bounds: webMercatorBoundsToGeographic(foundAnalyses)
         })
       }
@@ -174,11 +107,11 @@ function CustomBoundsSelector({
   }
 
   return (
-    <FormControl flex='1' isDisabled={isDisabled} {...p}>
+    <FormControl isDisabled={isDisabled} {...p}>
       {editingBounds && (
         <EditBounds
           bounds={profileRequest.bounds}
-          save={(bounds) => setProfileRequest({bounds})}
+          save={(bounds) => updateProfileRequest({bounds})}
         />
       )}
       <Flex justifyContent='space-between'>
@@ -212,7 +145,7 @@ function CustomBoundsSelector({
           </Button>
         )}
       </Flex>
-      <Box>
+      <div>
         <Select
           inputId='customBoundsSelect'
           isDisabled={isDisabled}
@@ -220,7 +153,7 @@ function CustomBoundsSelector({
           options={options}
           onChange={_setRegionalAnalysisBounds}
         />
-      </Box>
+      </div>
     </FormControl>
   )
 }

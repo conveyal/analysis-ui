@@ -106,7 +106,12 @@ export default function CreateModification({
       >
         {message('modification.create')}
       </Button>
-      <Modal initialFocusRef={nameInput.ref} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        closeOnOverlayClick={false}
+        initialFocusRef={nameInput.ref}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create new modification</ModalHeader>

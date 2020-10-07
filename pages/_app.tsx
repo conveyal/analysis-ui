@@ -1,25 +1,27 @@
+import {useToast} from '@chakra-ui/core'
+import fpHas from 'lodash/fp/has'
 import {NextComponentType} from 'next'
-import App from 'next/app'
+import App, {NextWebVitalsMetric} from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import React, {ComponentType, ErrorInfo} from 'react'
-import ReactGA from 'react-ga'
+import {SWRConfig} from 'swr'
 
-import ChakraTheme from '../lib/chakra'
-import ErrorModal from '../lib/components/error-modal'
-import LogRocket from '../lib/logrocket'
+import ChakraTheme from 'lib/chakra'
+import ErrorModal from 'lib/components/error-modal'
+import useErrorHandlingToast from 'lib/hooks/use-error-handling-toast'
+import * as gtag from 'lib/gtag'
+import LogRocket from 'lib/logrocket'
+import {swrFetcher} from 'lib/utils/safe-fetch'
 
-import 'react-datetime/css/react-datetime.css'
 import 'simplebar/dist/simplebar.css'
 import '../styles.css'
 
-const TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
-
-if (TRACKING_ID != null) {
-  ReactGA.initialize(TRACKING_ID)
+// Log page views if tracking ID is provided
+if (process.env.NEXT_PUBLIC_GA_TRACKING_ID) {
   // Log all page views
-  Router.events.on('routeChangeComplete', () => {
-    ReactGA.pageview(Router.pathname)
+  Router.events.on('routeChangeComplete', (url) => {
+    gtag.pageView(url)
   })
 }
 
@@ -31,47 +33,78 @@ type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
 }
 
+// Check if a component has a Layout
+const hasLayout = fpHas('Layout')
+
+// SWRConfig wrapper
+function SWRWrapper({children}) {
+  const toast = useToast()
+  return (
+    <SWRConfig
+      value={{
+        fetcher: swrFetcher,
+        onError: (error) => {
+          if (error.description) {
+            toast({
+              title: 'Error',
+              description: error.description,
+              position: 'top',
+              status: 'error',
+              isClosable: true,
+              duration: null
+            })
+          }
+        }
+      }}
+    >
+      {children}
+    </SWRConfig>
+  )
+}
+
+function ErrorHandler({children}) {
+  useErrorHandlingToast()
+  return <>{children}</>
+}
+
 export default class ConveyalAnalysis extends App {
   state = {
     error: null
   }
 
-  componentDidCatch(err: Error, info: ErrorInfo) {
-    LogRocket.captureException(err, {extras: info})
+  componentDidCatch(err: Error, info: ErrorInfo): void {
+    LogRocket.captureException(err, {extra: {...info}})
   }
 
-  componentDidMount() {
-    if (TRACKING_ID != null) {
-      // Log initial page view
-      ReactGA.pageview(Router.pathname)
-    }
-  }
-
-  static getDerivedStateFromError(error: Error) {
+  static getDerivedStateFromError(error: Error): {error: Error} {
     return {error}
   }
 
-  render() {
+  render(): JSX.Element {
     const {Component, pageProps} = this.props
-    const Layout = Component.hasOwnProperty('Layout')
+    const Layout = hasLayout(Component)
       ? (Component as ComponentWithLayout).Layout
       : EmptyLayout
     return (
       <ChakraTheme>
-        <Head>
-          <title key='title'>Conveyal Analysis</title>
-        </Head>
-        {this.state.error ? (
-          <ErrorModal
-            error={this.state.error}
-            clear={() => this.setState({error: null})}
-            title='Application error'
-          />
-        ) : (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        )}
+        <ErrorHandler>
+          <SWRWrapper>
+            <Head>
+              <title key='title'>Conveyal Analysis</title>
+            </Head>
+            {this.state.error ? (
+              <ErrorModal
+                error={this.state.error}
+                clear={() => this.setState({error: null})}
+                title='Application error'
+              />
+            ) : (
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            )}
+          </SWRWrapper>
+        </ErrorHandler>
       </ChakraTheme>
     )
   }
@@ -80,15 +113,16 @@ export default class ConveyalAnalysis extends App {
 /**
  * Track UI performance. Learn more here: https://nextjs.org/docs/advanced-features/measuring-performance
  */
-export function reportWebVitals({id, name, label, value}) {
-  if (TRACKING_ID != null) {
-    ReactGA.ga('send', 'event', {
-      eventCategory:
-        label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-      eventAction: name,
-      eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
-      eventLabel: id, // id unique to current page load
-      nonInteraction: true // avoids affecting bounce rate.
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  if (process.env.NEXT_PUBLIC_GA_TRACKING_ID) {
+    gtag.event({
+      category:
+        metric.label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+      label: metric.id, // id unique to current page load
+      name: metric.name,
+      value: Math.round(
+        metric.name === 'CLS' ? metric.value * 1000 : metric.value
+      ) // values must be integers
     })
   }
 }

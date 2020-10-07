@@ -5,12 +5,12 @@ import {
   Input,
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalFooter,
   ModalOverlay,
   useDisclosure,
-  Box,
   FormHelperText,
   Stack
 } from '@chakra-ui/core'
@@ -53,8 +53,13 @@ const createTestArray = (min, max) => (sorted) =>
   sorted[0] >= min &&
   sorted[sorted.length - 1] <= max
 
+const onlyDigits = (s) => /^\d+$/.test(s)
 const testCutoffs = createTestArray(5, 120)
 const testPercentiles = createTestArray(1, 99)
+const testCutoff = (c, o) => onlyDigits(o) && c >= 5 && c <= 120
+const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
+
+const disabledLabel = 'Fetch results with the current settings to enable button'
 
 export default function CreateRegional({
   isDisabled,
@@ -69,6 +74,7 @@ export default function CreateRegional({
         isDisabled={isDisabled}
         onClick={onOpen}
         rightIcon='small-add'
+        title={isDisabled ? disabledLabel : 'Regional analysis'}
         variantColor='green'
       >
         Regional analysis
@@ -126,6 +132,18 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     value: get(profileRequest, 'percentiles', defaultPercentiles)
   })
 
+  const cutoffInput = useInput({
+    parse: parseInt,
+    test: testCutoff,
+    value: maxTripDurationMinutes
+  })
+
+  const percentileInput = useInput({
+    parse: parseInt,
+    test: testPercentile,
+    value: travelTimePercentile
+  })
+
   async function create() {
     setIsCreating(true)
     try {
@@ -145,10 +163,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         await dispatch(
           createRegionalAnalysis({
             ...profileRequest,
-            cutoffsMinutes: [maxTripDurationMinutes],
+            cutoffsMinutes: [parseInt(cutoffInput.value)],
             destinationPointSetIds: destinationPointSets,
             name: nameInput.value,
-            percentiles: [travelTimePercentile],
+            percentiles: [parseInt(percentileInput.value)],
             projectId,
             variantIndex
           })
@@ -165,13 +183,21 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     nameInput.isInvalid ||
     cutoffsInput.isInvalid ||
     percentilesInput.isInvalid ||
+    cutoffInput.isInvalid ||
+    percentileInput.isInvalid ||
     destinationPointSets.length < 1
 
   return (
-    <Modal initialFocusRef={nameInput.ref} isOpen={true} onClose={onClose}>
+    <Modal
+      closeOnOverlayClick={false}
+      initialFocusRef={nameInput.ref}
+      isOpen={true}
+      onClose={onClose}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Create new regional analysis</ModalHeader>
+        <ModalCloseButton />
         <ModalBody>
           <Stack mb={4} spacing={4}>
             <FormControl
@@ -198,7 +224,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 Opportunity dataset
                 {workerVersionHandlesMultipleDimensions ? '(s)' : ''}
               </FormLabel>
-              <Box>
+              <div>
                 <Select
                   isClearable={false}
                   isDisabled={isCreating}
@@ -212,14 +238,14 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                     destinationPointSets.includes(o._id)
                   )}
                 />
-              </Box>
+              </div>
               {workerVersionHandlesMultipleDimensions && (
                 <FormHelperText>Select up to 6 datasets.</FormHelperText>
               )}
             </FormControl>
           </Stack>
 
-          {workerVersionHandlesMultipleDimensions && (
+          {workerVersionHandlesMultipleDimensions ? (
             <Stack spacing={4}>
               <FormControl
                 isDisabled={isCreating}
@@ -252,6 +278,28 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                       : percentilesInput.value
                   }
                 />
+                <FormHelperText>From 1 to 99.</FormHelperText>
+              </FormControl>
+            </Stack>
+          ) : (
+            <Stack spacing={4}>
+              <FormControl
+                isDisabled={isCreating}
+                isRequired
+                isInvalid={cutoffInput.isInvalid}
+              >
+                <FormLabel htmlFor={cutoffInput.id}>Cutoff minute</FormLabel>
+                <Input {...cutoffInput} />
+                <FormHelperText>From 5 to 120.</FormHelperText>
+              </FormControl>
+
+              <FormControl
+                isDisabled={isCreating}
+                isRequired
+                isInvalid={percentileInput.isInvalid}
+              >
+                <FormLabel htmlFor={percentileInput.id}>Percentile</FormLabel>
+                <Input {...percentileInput} />
                 <FormHelperText>From 1 to 99.</FormHelperText>
               </FormControl>
             </Stack>

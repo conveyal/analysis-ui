@@ -11,7 +11,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  PseudoBox,
   Tab,
   Tabs,
   TabList,
@@ -20,34 +19,27 @@ import {
   useDisclosure
 } from '@chakra-ui/core'
 import {faEye, faEyeSlash, faUpload} from '@fortawesome/free-solid-svg-icons'
+import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import toStartCase from 'lodash/startCase'
-import dynamic from 'next/dynamic'
 import {memo, useCallback, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import getFeedsRoutesAndStops from 'lib/actions/get-feeds-routes-and-stops'
-import {getForProject as loadModifications} from 'lib/actions/modifications'
 import {LS_MOM} from 'lib/constants'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
+import selectFeedsById from 'lib/selectors/feeds-by-id'
 import selectVariants from 'lib/selectors/variants'
 import {getParsedItem, stringifyAndSet} from 'lib/utils/local-storage'
 
+import ButtonLink from '../button-link'
 import IconButton from '../icon-button'
 import InnerDock from '../inner-dock'
-import Link from '../link'
+import {DisplayAll as ModificationsMap} from '../modifications-map/display-all'
 import VariantEditor from '../variant-editor'
 
 import CreateModification from './create'
-
-const ModificationsMap = dynamic(
-  () => import('lib/components/modifications-map/display-all'),
-  {
-    loading: () => null,
-    ssr: false
-  }
-)
 
 type Modification = {
   _id: string
@@ -62,7 +54,7 @@ function filterModifications(filter, modifications, projectId) {
   modifications
     .filter((m) => m.projectId === projectId)
     .filter(
-      (m) => filter === null || m.name.toLowerCase().indexOf(filterLcase) > -1
+      (m) => filter === null || m.name?.toLowerCase().indexOf(filterLcase) > -1
     )
     .forEach((m) => {
       filteredModificationsByType[m.type] = [
@@ -74,38 +66,36 @@ function filterModifications(filter, modifications, projectId) {
   return filteredModificationsByType
 }
 
+const selectModifications = fpGet('project.modifications')
+
 export default function ModificationsList(p) {
   const dispatch = useDispatch()
   const {_id: projectId, bundleId, regionId} = p.project
   // Retrieve the modifications from the store. Filter out modifications that might be from another project
-  const modifications = useSelector((s) => get(s, 'project.modifications'))
+  const modifications = useSelector(selectModifications)
+  const feedsById = useSelector(selectFeedsById)
   const variants = useSelector(selectVariants)
   const goToModificationImport = useRouteTo('modificationImport', {
     projectId: p.project._id,
     regionId: p.project.regionId
   })
 
-  // Load modifications
-  useEffect(() => {
-    dispatch(loadModifications(projectId))
-  }, [dispatch, projectId])
-
   // Array of ids for currently displayed modifications
-  const [modificationsOnMap, setModificationsOnMap] = useState(() => {
-    return new Set(get(getParsedItem(LS_MOM), projectId, []))
-  })
+  const [modificationsOnMap, setModificationsOnMap] = useState<Modification[]>(
+    () => {
+      const _idsOnMap: string[] = get(getParsedItem(LS_MOM), projectId, [])
+      return modifications.filter((m) => _idsOnMap.includes(m._id))
+    }
+  )
 
   // Load the GTFS information for the modifications
   useEffect(() => {
-    const visibleModifications = modifications.filter((m) =>
-      modificationsOnMap.has(m._id)
-    )
-    if (visibleModifications.length > 0) {
+    if (modificationsOnMap.length > 0) {
       dispatch(
         getFeedsRoutesAndStops({
           bundleId,
           forceCompleteUpdate: true,
-          modifications: visibleModifications
+          modifications: modificationsOnMap
         })
       )
     }
@@ -113,17 +103,21 @@ export default function ModificationsList(p) {
 
   // Set and store modifications on map
   const setAndStoreMoM = useCallback(
-    (newMoM) => {
-      setModificationsOnMap(newMoM)
+    (_idsOnMap) => {
       const mom = getParsedItem(LS_MOM) || {}
-      mom[projectId] = Array.from(newMoM)
+      mom[projectId] = _idsOnMap
       stringifyAndSet(LS_MOM, mom)
+      setModificationsOnMap(
+        modifications.filter((m) => _idsOnMap.includes(m._id))
+      )
     },
-    [setModificationsOnMap]
+    [modifications, projectId]
   )
 
   const [filter, setFilter] = useState('')
-  const [filteredModificationsByType, setFiltered] = useState({})
+  const [filteredModificationsByType, setFiltered] = useState(() =>
+    filterModifications(filter, modifications, projectId)
+  )
 
   // Update filtered modifications when the filter changes
   useEffect(() => {
@@ -134,11 +128,9 @@ export default function ModificationsList(p) {
   const showVariant = useCallback(
     (index) => {
       setAndStoreMoM(
-        new Set(
-          modifications
-            .filter((m) => m.variants[index] === true)
-            .map((m) => m._id)
-        )
+        modifications
+          .filter((m) => m.variants[index] === true)
+          .map((m) => m._id)
       )
     },
     [modifications, setAndStoreMoM]
@@ -146,28 +138,32 @@ export default function ModificationsList(p) {
 
   // Show/hide all modifications
   const showAll = useCallback(() => {
-    setAndStoreMoM(new Set(modifications.map((m) => m._id)))
+    setAndStoreMoM(modifications.map((m) => m._id))
   }, [modifications, setAndStoreMoM])
   const hideAll = useCallback(() => {
-    setAndStoreMoM(new Set())
+    setAndStoreMoM([])
   }, [setAndStoreMoM])
 
   // Toggle map appearance
   const toggleMapDisplay = useCallback(
     (_id) => {
-      if (modificationsOnMap.has(_id)) {
-        modificationsOnMap.delete(_id)
+      if (modificationsOnMap.find((m) => m._id === _id)) {
+        setAndStoreMoM(
+          modificationsOnMap.filter((m) => m._id !== _id).map((m) => m._id)
+        )
       } else {
-        modificationsOnMap.add(_id)
+        setAndStoreMoM([...modificationsOnMap.map((m) => m._id), _id])
       }
-      setAndStoreMoM(new Set(modificationsOnMap))
     },
     [modificationsOnMap, setAndStoreMoM]
   )
 
   return (
     <>
-      <ModificationsMap />
+      <ModificationsMap
+        feedsById={feedsById}
+        modifications={modificationsOnMap}
+      />
 
       <Tabs isFitted width='320px'>
         <TabList>
@@ -232,7 +228,11 @@ export default function ModificationsList(p) {
                       >
                         {ms.map((m) => (
                           <ModificationItem
-                            isDisplayed={modificationsOnMap.has(m._id)}
+                            isDisplayed={
+                              modificationsOnMap.find(
+                                (mom) => mom._id === m._id
+                              ) !== undefined
+                            }
                             key={m._id}
                             modification={m}
                             regionId={regionId}
@@ -276,7 +276,7 @@ function ModificationType({children, modificationCount, type}) {
         <AccordionIcon />
       </AccordionHeader>
       <AccordionPanel py={0} px={1}>
-        <Flex direction='column'>{children}</Flex>
+        {isOpen && <Flex direction='column'>{children}</Flex>}
       </AccordionPanel>
     </AccordionItem>
   )
@@ -291,40 +291,34 @@ type ModificationItemProps = {
 
 const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
-    <PseudoBox
-      borderRadius='4px'
-      color='blue.500'
-      _hover={{
-        backgroundColor: 'rgba(0,0,0,0.04)',
-        color: 'blue.700'
-      }}
-    >
-      <Link
+    <Flex align='center' px={1}>
+      <ButtonLink
+        aria-label='Edit modification'
+        flex='1'
+        justifyContent='start'
+        overflow='hidden'
+        px={4}
+        query={{
+          modificationId: modification._id,
+          projectId: modification.projectId,
+          regionId
+        }}
+        style={{textOverflow: 'ellipsis'}}
         to='modificationEdit'
-        modificationId={modification._id}
-        projectId={modification.projectId}
-        regionId={regionId}
+        variant='ghost'
+        variantColor='blue'
+        whiteSpace='nowrap'
       >
-        <Flex align='center' py={1} pl={5} pr={1} cursor='pointer'>
-          <Box
-            flex='1'
-            overflow='hidden'
-            pr={4}
-            whiteSpace='nowrap'
-            style={{textOverflow: 'ellipsis'}}
-          >
-            {modification.name}
-          </Box>
-          <IconButton
-            icon={isDisplayed ? faEye : faEyeSlash}
-            label={isDisplayed ? 'Hide from map' : 'Show on map'}
-            onClick={(e) => {
-              e.preventDefault()
-              toggleMapDisplay(modification._id)
-            }}
-          />
-        </Flex>
-      </Link>
-    </PseudoBox>
+        {modification.name}
+      </ButtonLink>
+      <IconButton
+        icon={isDisplayed ? faEye : faEyeSlash}
+        label={isDisplayed ? 'Hide from map' : 'Show on map'}
+        onClick={(e) => {
+          e.preventDefault()
+          toggleMapDisplay(modification._id)
+        }}
+      />
+    </Flex>
   )
 )

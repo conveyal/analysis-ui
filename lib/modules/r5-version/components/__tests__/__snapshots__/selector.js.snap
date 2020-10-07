@@ -33,6 +33,56 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             </label>
           </Box>
         </FormLabel>
+        <div>
+          <Creatable
+            formatCreateLabel={[Function]}
+            inputId="select-r5-version"
+            isValidNewOption={[Function]}
+            name="select-r5-version"
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "v6.0.0 (recommended)",
+                  "value": "v6.0.0",
+                },
+                Object {
+                  "label": <span
+                    style={
+                      Object {
+                        "textDecoration": "line-through",
+                      }
+                    }
+                  />,
+                  "value": undefined,
+                },
+              ]
+            }
+            styles={
+              Object {
+                "control": [Function],
+                "menu": [Function],
+                "option": [Function],
+              }
+            }
+            value={
+              Object {
+                "label": <span
+                  style={
+                    Object {
+                      "textDecoration": "line-through",
+                    }
+                  }
+                />,
+                "value": undefined,
+              }
+            }
+          >
+            <div
+              className="ReactSelect/Creatable"
+            />
+          </Creatable>
+        </div>
         <Alert
           status="warning"
         >
@@ -56,53 +106,6 @@ exports[`Component SelectR5Version snapshot(mount) 1`] = `
             </div>
           </Box>
         </Alert>
-        <Creatable
-          formatCreateLabel={[Function]}
-          inputId="select-r5-version"
-          isValidNewOption={[Function]}
-          name="select-r5-version"
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "v5.10.0 (recommended)",
-                "value": "v5.10.0",
-              },
-              Object {
-                "label": <span
-                  style={
-                    Object {
-                      "textDecoration": "line-through",
-                    }
-                  }
-                />,
-                "value": undefined,
-              },
-            ]
-          }
-          styles={
-            Object {
-              "control": [Function],
-              "option": [Function],
-            }
-          }
-          value={
-            Object {
-              "label": <span
-                style={
-                  Object {
-                    "textDecoration": "line-through",
-                  }
-                }
-              />,
-              "value": undefined,
-            }
-          }
-        >
-          <div
-            className="ReactSelect/Creatable"
-          />
-        </Creatable>
       </div>
     </Box>
   </FormControl>

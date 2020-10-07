@@ -533,6 +533,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                           styles={
                             Object {
                               "control": [Function],
+                              "menu": [Function],
                               "option": [Function],
                             }
                           }
@@ -651,24 +652,45 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                               </h2>
                             </Box>
                           </Heading>
-                          <Text
+                          <Box
                             key=".1"
                             mb={3}
                             px={4}
                           >
-                            <Box
-                              as="p"
-                              fontFamily="body"
-                              mb={3}
-                              px={4}
+                            <div
+                              className="css-1w68sn0"
                             >
-                              <p
-                                className="css-6d7uu3"
+                              <Heading
+                                size="xs"
                               >
-                                undefined within 60 minutes, 50th percentile
-                              </p>
-                            </Box>
-                          </Text>
+                                <Box
+                                  as="h2"
+                                  fontFamily="heading"
+                                  fontSize="sm"
+                                  fontWeight="bold"
+                                  lineHeight="shorter"
+                                >
+                                  <h2
+                                    className="css-glel1g"
+                                  >
+                                    ANALYSIS 1
+                                  </h2>
+                                </Box>
+                              </Heading>
+                              <Text>
+                                <Box
+                                  as="p"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-fzcsno"
+                                  >
+                                    undefined within 60 minutes, 50th percentile
+                                  </p>
+                                </Box>
+                              </Text>
+                            </div>
+                          </Box>
                           <Legend
                             breaks={
                               Array [
@@ -938,6 +960,7 @@ exports[`RegionalResults snapshot(mount) 1`] = `
                                         styles={
                                           Object {
                                             "control": [Function],
+                                            "menu": [Function],
                                             "option": [Function],
                                           }
                                         }
@@ -1677,6 +1700,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                           styles={
                             Object {
                               "control": [Function],
+                              "menu": [Function],
                               "option": [Function],
                             }
                           }
@@ -2647,7 +2671,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                             regionId="1"
                                             to="bundleEdit"
                                           >
-                                            <Link
+                                            <InternalLink
                                               bundleId="1"
                                               regionId="1"
                                               to="bundleEdit"
@@ -2662,30 +2686,59 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                 }
                                                 passHref={true}
                                               >
-                                                <PseudoBox
+                                                <Link
                                                   _hover={
                                                     Object {
                                                       "color": "blue.700",
                                                     }
                                                   }
-                                                  as="a"
                                                   className=""
                                                   color="blue.500"
                                                   href="/regions/1/bundles/1"
                                                   onClick={[Function]}
                                                   onMouseEnter={[Function]}
                                                 >
-                                                  <a
-                                                    className=" css-1cnzmew"
+                                                  <PseudoBox
+                                                    _disabled={
+                                                      Object {
+                                                        "cursor": "not-allowed",
+                                                        "opacity": "0.4",
+                                                        "textDecoration": "none",
+                                                      }
+                                                    }
+                                                    _focus={
+                                                      Object {
+                                                        "boxShadow": "outline",
+                                                      }
+                                                    }
+                                                    _hover={
+                                                      Object {
+                                                        "color": "blue.700",
+                                                      }
+                                                    }
+                                                    as="a"
+                                                    className=""
+                                                    color="blue.500"
+                                                    cursor="pointer"
                                                     href="/regions/1/bundles/1"
                                                     onClick={[Function]}
                                                     onMouseEnter={[Function]}
+                                                    outline="none"
+                                                    textDecoration="none"
+                                                    transition="all 0.15s ease-out"
                                                   >
-                                                    Mock Bundle
-                                                  </a>
-                                                </PseudoBox>
+                                                    <a
+                                                      className=" css-17d37xz"
+                                                      href="/regions/1/bundles/1"
+                                                      onClick={[Function]}
+                                                      onMouseEnter={[Function]}
+                                                    >
+                                                      Mock Bundle
+                                                    </a>
+                                                  </PseudoBox>
+                                                </Link>
                                               </Link>
-                                            </Link>
+                                            </InternalLink>
                                           </ALink>
                                         </td>
                                       </Box>
@@ -2729,21 +2782,17 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                         <td
                                           className="css-ft9ciy"
                                         >
-                                          <Tooltip
-                                            aria-label="Notice: project may have changed since the analysis was run."
-                                            hasArrow={true}
+                                          <Tip
                                             label="Notice: project may have changed since the analysis was run."
-                                            zIndex={1000}
                                           >
-                                            <Box
-                                              onBlur={[Function]}
-                                              onClick={[Function]}
-                                              onFocus={[Function]}
-                                              onMouseEnter={[Function]}
-                                              onMouseLeave={[Function]}
+                                            <Tooltip
+                                              aria-label="Tooltip: Notice: project may have changed since the analysis was run."
+                                              fontSize="md"
+                                              hasArrow={true}
+                                              label="Notice: project may have changed since the analysis was run."
+                                              zIndex={1500}
                                             >
                                               <div
-                                                className="css-0"
                                                 onBlur={[Function]}
                                                 onClick={[Function]}
                                                 onFocus={[Function]}
@@ -2755,7 +2804,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                   regionId="1"
                                                   to="project"
                                                 >
-                                                  <Link
+                                                  <InternalLink
                                                     projectId="1"
                                                     regionId="1"
                                                     to="project"
@@ -2770,73 +2819,100 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                       }
                                                       passHref={true}
                                                     >
-                                                      <PseudoBox
+                                                      <Link
                                                         _hover={
                                                           Object {
                                                             "color": "blue.700",
                                                           }
                                                         }
-                                                        as="a"
                                                         className=""
                                                         color="blue.500"
                                                         href="/regions/1/projects/1"
                                                         onClick={[Function]}
                                                         onMouseEnter={[Function]}
                                                       >
-                                                        <a
-                                                          className=" css-1cnzmew"
+                                                        <PseudoBox
+                                                          _disabled={
+                                                            Object {
+                                                              "cursor": "not-allowed",
+                                                              "opacity": "0.4",
+                                                              "textDecoration": "none",
+                                                            }
+                                                          }
+                                                          _focus={
+                                                            Object {
+                                                              "boxShadow": "outline",
+                                                            }
+                                                          }
+                                                          _hover={
+                                                            Object {
+                                                              "color": "blue.700",
+                                                            }
+                                                          }
+                                                          as="a"
+                                                          className=""
+                                                          color="blue.500"
+                                                          cursor="pointer"
                                                           href="/regions/1/projects/1"
                                                           onClick={[Function]}
                                                           onMouseEnter={[Function]}
+                                                          outline="none"
+                                                          textDecoration="none"
+                                                          transition="all 0.15s ease-out"
                                                         >
-                                                          Mock Project
-                                                        </a>
-                                                      </PseudoBox>
+                                                          <a
+                                                            className=" css-17d37xz"
+                                                            href="/regions/1/projects/1"
+                                                            onClick={[Function]}
+                                                            onMouseEnter={[Function]}
+                                                          >
+                                                            Mock Project
+                                                          </a>
+                                                        </PseudoBox>
+                                                      </Link>
                                                     </Link>
-                                                  </Link>
+                                                  </InternalLink>
                                                 </ALink>
                                               </div>
-                                            </Box>
-                                            <ForwardRef
-                                              anchorEl={
-                                                <div
-                                                  class="css-0"
-                                                >
-                                                  <a
-                                                    class=" css-1cnzmew"
-                                                    href="/regions/1/projects/1"
-                                                  >
-                                                    Mock Project
-                                                  </a>
-                                                </div>
-                                              }
-                                              arrowSize="10px"
-                                              bg="gray.700"
-                                              borderRadius="sm"
-                                              color="whiteAlpha.900"
-                                              fontSize="sm"
-                                              fontWeight="medium"
-                                              hasArrow={true}
-                                              isOpen={false}
-                                              maxW="320px"
-                                              modifiers={
-                                                Object {
-                                                  "offset": Object {
-                                                    "enabled": true,
-                                                    "offset": "0, 8",
-                                                  },
+                                              <ForwardRef
+                                                anchorEl={
+                                                  <div>
+                                                    <a
+                                                      class=" css-17d37xz"
+                                                      href="/regions/1/projects/1"
+                                                    >
+                                                      Mock Project
+                                                    </a>
+                                                  </div>
                                                 }
-                                              }
-                                              placement="auto"
-                                              pointerEvents="none"
-                                              px="8px"
-                                              py="2px"
-                                              shadow="md"
-                                              timeout={200}
-                                              usePortal={true}
-                                              zIndex={1000}
-                                            />
-                                          </Tooltip>
+                                                arrowSize="10px"
+                                                bg="gray.700"
+                                                borderRadius="sm"
+                                                color="whiteAlpha.900"
+                                                fontSize="md"
+                                                fontWeight="medium"
+                                                hasArrow={true}
+                                                isOpen={false}
+                                                maxW="320px"
+                                                modifiers={
+                                                  Object {
+                                                    "offset": Object {
+                                                      "enabled": true,
+                                                      "offset": "0, 8",
+                                                    },
+                                                  }
+                                                }
+                                                placement="auto"
+                                                pointerEvents="none"
+                                                px="8px"
+                                                py="2px"
+                                                shadow="md"
+                                                timeout={200}
+                                                usePortal={true}
+                                                zIndex={1500}
+                                              />
+                                            </Tooltip>
+                                          </Tip>
                                         </td>
                                       </Box>
                                     </TDValue>
@@ -2898,7 +2974,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                     Unknown
                                                   </div>
                                                 </Box>
-                                                <SimpleIconButton
+                                                <IconButton
                                                   icon={
                                                     Object {
                                                       "icon": Array [],
@@ -2913,101 +2989,94 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                     <div
                                                       className="css-0"
                                                     >
-                                                      <Tooltip
-                                                        aria-label="Download scenario info and modifications used to create this analysis."
-                                                        hasArrow={true}
+                                                      <Tip
                                                         label="Download scenario info and modifications used to create this analysis."
                                                         placement="auto"
-                                                        zIndex={1000}
                                                       >
-                                                        <Button
-                                                          aria-label="Download scenario info and modifications used to create this analysis."
-                                                          isActive={false}
-                                                          onBlur={[Function]}
-                                                          onClick={[Function]}
-                                                          onFocus={[Function]}
-                                                          onMouseEnter={[Function]}
-                                                          onMouseLeave={[Function]}
-                                                          size="sm"
-                                                          variant="ghost"
-                                                          variantColor="blue"
+                                                        <Tooltip
+                                                          aria-label="Tooltip: Download scenario info and modifications used to create this analysis."
+                                                          fontSize="md"
+                                                          hasArrow={true}
+                                                          label="Download scenario info and modifications used to create this analysis."
+                                                          placement="auto"
+                                                          zIndex={1500}
                                                         >
-                                                          <PseudoBox
-                                                            _active={
-                                                              Object {
-                                                                "bg": "blue.100",
-                                                              }
-                                                            }
-                                                            _disabled={
-                                                              Object {
-                                                                "boxShadow": "none",
-                                                                "cursor": "not-allowed",
-                                                                "opacity": "40%",
-                                                              }
-                                                            }
-                                                            _focus={
-                                                              Object {
-                                                                "boxShadow": "outline",
-                                                              }
-                                                            }
-                                                            _hover={
-                                                              Object {
-                                                                "bg": "blue.50",
-                                                              }
-                                                            }
-                                                            alignItems="center"
-                                                            appearance="none"
+                                                          <Button
                                                             aria-label="Download scenario info and modifications used to create this analysis."
-                                                            as="button"
-                                                            bg="transparent"
-                                                            borderRadius="md"
-                                                            color="blue.500"
-                                                            display="inline-flex"
-                                                            fontSize="sm"
-                                                            fontWeight="semibold"
-                                                            height={8}
-                                                            justifyContent="center"
-                                                            lineHeight="1.2"
-                                                            minWidth={8}
+                                                            isActive={false}
+                                                            isDisabled={false}
                                                             onBlur={[Function]}
                                                             onClick={[Function]}
                                                             onFocus={[Function]}
                                                             onMouseEnter={[Function]}
                                                             onMouseLeave={[Function]}
-                                                            outline="none"
-                                                            position="relative"
-                                                            px={3}
-                                                            transition="all 250ms"
-                                                            type="button"
-                                                            userSelect="none"
-                                                            verticalAlign="middle"
-                                                            whiteSpace="nowrap"
+                                                            size="sm"
+                                                            variant="ghost"
+                                                            variantColor="blue"
                                                           >
-                                                            <button
+                                                            <PseudoBox
+                                                              _active={
+                                                                Object {
+                                                                  "bg": "blue.100",
+                                                                }
+                                                              }
+                                                              _disabled={
+                                                                Object {
+                                                                  "boxShadow": "none",
+                                                                  "cursor": "not-allowed",
+                                                                  "opacity": "40%",
+                                                                }
+                                                              }
+                                                              _focus={
+                                                                Object {
+                                                                  "boxShadow": "outline",
+                                                                }
+                                                              }
+                                                              _hover={
+                                                                Object {
+                                                                  "bg": "blue.50",
+                                                                }
+                                                              }
+                                                              alignItems="center"
+                                                              appearance="none"
                                                               aria-label="Download scenario info and modifications used to create this analysis."
-                                                              className="css-ig2uvu"
+                                                              as="button"
+                                                              bg="transparent"
+                                                              borderRadius="md"
+                                                              color="blue.500"
+                                                              display="inline-flex"
+                                                              fontSize="sm"
+                                                              fontWeight="semibold"
+                                                              height={8}
+                                                              justifyContent="center"
+                                                              lineHeight="1.2"
+                                                              minWidth={8}
                                                               onBlur={[Function]}
                                                               onClick={[Function]}
                                                               onFocus={[Function]}
                                                               onMouseEnter={[Function]}
                                                               onMouseLeave={[Function]}
+                                                              outline="none"
+                                                              position="relative"
+                                                              px={3}
+                                                              transition="all 250ms"
                                                               type="button"
+                                                              userSelect="none"
+                                                              verticalAlign="middle"
+                                                              whiteSpace="nowrap"
                                                             >
-                                                              <Icon
-                                                                fixedWidth={false}
-                                                                icon={
-                                                                  Object {
-                                                                    "icon": Array [],
-                                                                    "iconName": "download",
-                                                                    "prefix": "fas",
-                                                                  }
-                                                                }
+                                                              <button
+                                                                aria-label="Download scenario info and modifications used to create this analysis."
+                                                                className="css-ig2uvu"
+                                                                onBlur={[Function]}
+                                                                onClick={[Function]}
+                                                                onFocus={[Function]}
+                                                                onMouseEnter={[Function]}
+                                                                onMouseLeave={[Function]}
+                                                                type="button"
                                                               >
-                                                                <FontAwesomeIcon
-                                                                  border={false}
-                                                                  className=""
+                                                                <Icon
                                                                   fixedWidth={false}
-                                                                  flip={null}
                                                                   icon={
                                                                     Object {
                                                                       "icon": Array [],
@@ -3015,93 +3084,107 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                                       "prefix": "fas",
                                                                     }
                                                                   }
-                                                                  inverse={false}
-                                                                  listItem={false}
-                                                                  mask={null}
-                                                                  pull={null}
-                                                                  pulse={false}
-                                                                  rotation={null}
-                                                                  size={null}
-                                                                  spin={false}
-                                                                  swapOpacity={false}
-                                                                  symbol={false}
-                                                                  title=""
-                                                                  transform={null}
                                                                 >
-                                                                  <svg
-                                                                    aria-hidden="true"
-                                                                    className="svg-inline--fa fa-download fa-w-NaN "
-                                                                    data-icon="download"
-                                                                    data-prefix="fas"
-                                                                    focusable="false"
-                                                                    role="img"
-                                                                    style={Object {}}
-                                                                    viewBox="0 0 undefined undefined"
-                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                  <FontAwesomeIcon
+                                                                    border={false}
+                                                                    className=""
+                                                                    fixedWidth={false}
+                                                                    flip={null}
+                                                                    icon={
+                                                                      Object {
+                                                                        "icon": Array [],
+                                                                        "iconName": "download",
+                                                                        "prefix": "fas",
+                                                                      }
+                                                                    }
+                                                                    inverse={false}
+                                                                    listItem={false}
+                                                                    mask={null}
+                                                                    pull={null}
+                                                                    pulse={false}
+                                                                    rotation={null}
+                                                                    size={null}
+                                                                    spin={false}
+                                                                    swapOpacity={false}
+                                                                    symbol={false}
+                                                                    title=""
+                                                                    transform={null}
                                                                   >
-                                                                    <path
-                                                                      fill="currentColor"
+                                                                    <svg
+                                                                      aria-hidden="true"
+                                                                      className="svg-inline--fa fa-download fa-w-NaN "
+                                                                      data-icon="download"
+                                                                      data-prefix="fas"
+                                                                      focusable="false"
+                                                                      role="img"
                                                                       style={Object {}}
-                                                                    />
-                                                                  </svg>
-                                                                </FontAwesomeIcon>
-                                                              </Icon>
-                                                            </button>
-                                                          </PseudoBox>
-                                                        </Button>
-                                                        <ForwardRef
-                                                          anchorEl={
-                                                            <button
-                                                              aria-label="Download scenario info and modifications used to create this analysis."
-                                                              class="css-ig2uvu"
-                                                              type="button"
-                                                            >
-                                                              <svg
-                                                                aria-hidden="true"
-                                                                class="svg-inline--fa fa-download fa-w-NaN "
-                                                                data-icon="download"
-                                                                data-prefix="fas"
-                                                                focusable="false"
-                                                                role="img"
-                                                                viewBox="0 0 undefined undefined"
-                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                      viewBox="0 0 undefined undefined"
+                                                                      xmlns="http://www.w3.org/2000/svg"
+                                                                    >
+                                                                      <path
+                                                                        fill="currentColor"
+                                                                        style={Object {}}
+                                                                      />
+                                                                    </svg>
+                                                                  </FontAwesomeIcon>
+                                                                </Icon>
+                                                              </button>
+                                                            </PseudoBox>
+                                                          </Button>
+                                                          <ForwardRef
+                                                            anchorEl={
+                                                              <button
+                                                                aria-label="Download scenario info and modifications used to create this analysis."
+                                                                class="css-ig2uvu"
+                                                                type="button"
                                                               >
-                                                                <path
-                                                                  fill="currentColor"
-                                                                />
-                                                              </svg>
-                                                            </button>
-                                                          }
-                                                          arrowSize="10px"
-                                                          bg="gray.700"
-                                                          borderRadius="sm"
-                                                          color="whiteAlpha.900"
-                                                          fontSize="sm"
-                                                          fontWeight="medium"
-                                                          hasArrow={true}
-                                                          isOpen={false}
-                                                          maxW="320px"
-                                                          modifiers={
-                                                            Object {
-                                                              "offset": Object {
-                                                                "enabled": true,
-                                                                "offset": "0, 8",
-                                                              },
+                                                                <svg
+                                                                  aria-hidden="true"
+                                                                  class="svg-inline--fa fa-download fa-w-NaN "
+                                                                  data-icon="download"
+                                                                  data-prefix="fas"
+                                                                  focusable="false"
+                                                                  role="img"
+                                                                  viewBox="0 0 undefined undefined"
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                >
+                                                                  <path
+                                                                    fill="currentColor"
+                                                                  />
+                                                                </svg>
+                                                              </button>
                                                             }
-                                                          }
-                                                          placement="auto"
-                                                          pointerEvents="none"
-                                                          px="8px"
-                                                          py="2px"
-                                                          shadow="md"
-                                                          timeout={200}
-                                                          usePortal={true}
-                                                          zIndex={1000}
-                                                        />
-                                                      </Tooltip>
+                                                            arrowSize="10px"
+                                                            bg="gray.700"
+                                                            borderRadius="sm"
+                                                            color="whiteAlpha.900"
+                                                            fontSize="md"
+                                                            fontWeight="medium"
+                                                            hasArrow={true}
+                                                            isOpen={false}
+                                                            maxW="320px"
+                                                            modifiers={
+                                                              Object {
+                                                                "offset": Object {
+                                                                  "enabled": true,
+                                                                  "offset": "0, 8",
+                                                                },
+                                                              }
+                                                            }
+                                                            placement="auto"
+                                                            pointerEvents="none"
+                                                            px="8px"
+                                                            py="2px"
+                                                            shadow="md"
+                                                            timeout={200}
+                                                            usePortal={true}
+                                                            zIndex={1500}
+                                                          />
+                                                        </Tooltip>
+                                                      </Tip>
                                                     </div>
                                                   </Box>
-                                                </SimpleIconButton>
+                                                </IconButton>
                                               </div>
                                             </Box>
                                           </Flex>
@@ -3239,7 +3322,6 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                             accessModes="WALK"
                                             color="red"
                                             egressModes="WALK"
-                                            max={10}
                                             transitModes="BUS,TRAM,RAIL,SUBWAY"
                                           >
                                             <ForwardRef
@@ -3259,8 +3341,8 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                   <div
                                                     className="css-u4p24i"
                                                   >
-                                                    <ModeIcon
-                                                      key=".0"
+                                                    <ModeIconBox
+                                                      key=".0:$WALK"
                                                       mode="WALK"
                                                       mr={1}
                                                     >
@@ -3272,20 +3354,10 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                           className="css-1xe59u8"
                                                           title="WALK"
                                                         >
-                                                          <Icon
-                                                            icon={
-                                                              Object {
-                                                                "icon": Array [],
-                                                                "iconName": "walking",
-                                                                "prefix": "fas",
-                                                              }
-                                                            }
+                                                          <ModeIcon
+                                                            mode="WALK"
                                                           >
-                                                            <FontAwesomeIcon
-                                                              border={false}
-                                                              className=""
-                                                              fixedWidth={true}
-                                                              flip={null}
+                                                            <Icon
                                                               icon={
                                                                 Object {
                                                                   "icon": Array [],
@@ -3293,108 +3365,114 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                                   "prefix": "fas",
                                                                 }
                                                               }
-                                                              inverse={false}
-                                                              listItem={false}
-                                                              mask={null}
-                                                              pull={null}
-                                                              pulse={false}
-                                                              rotation={null}
-                                                              size={null}
-                                                              spin={false}
-                                                              swapOpacity={false}
-                                                              symbol={false}
-                                                              title=""
-                                                              transform={null}
                                                             >
-                                                              <svg
-                                                                aria-hidden="true"
-                                                                className="svg-inline--fa fa-walking fa-w-NaN fa-fw "
-                                                                data-icon="walking"
-                                                                data-prefix="fas"
-                                                                focusable="false"
-                                                                role="img"
-                                                                style={Object {}}
-                                                                viewBox="0 0 undefined undefined"
-                                                                xmlns="http://www.w3.org/2000/svg"
+                                                              <FontAwesomeIcon
+                                                                border={false}
+                                                                className=""
+                                                                fixedWidth={true}
+                                                                flip={null}
+                                                                icon={
+                                                                  Object {
+                                                                    "icon": Array [],
+                                                                    "iconName": "walking",
+                                                                    "prefix": "fas",
+                                                                  }
+                                                                }
+                                                                inverse={false}
+                                                                listItem={false}
+                                                                mask={null}
+                                                                pull={null}
+                                                                pulse={false}
+                                                                rotation={null}
+                                                                size={null}
+                                                                spin={false}
+                                                                swapOpacity={false}
+                                                                symbol={false}
+                                                                title=""
+                                                                transform={null}
                                                               >
-                                                                <path
-                                                                  fill="currentColor"
+                                                                <svg
+                                                                  aria-hidden="true"
+                                                                  className="svg-inline--fa fa-walking fa-w-NaN fa-fw "
+                                                                  data-icon="walking"
+                                                                  data-prefix="fas"
+                                                                  focusable="false"
+                                                                  role="img"
                                                                   style={Object {}}
-                                                                />
-                                                              </svg>
-                                                            </FontAwesomeIcon>
-                                                          </Icon>
+                                                                  viewBox="0 0 undefined undefined"
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                >
+                                                                  <path
+                                                                    fill="currentColor"
+                                                                    style={Object {}}
+                                                                  />
+                                                                </svg>
+                                                              </FontAwesomeIcon>
+                                                            </Icon>
+                                                          </ModeIcon>
                                                         </div>
                                                       </Box>
-                                                    </ModeIcon>
-                                                    <Tooltip
-                                                      aria-label="BUS, TRAM, RAIL, SUBWAY"
-                                                      hasArrow={true}
+                                                    </ModeIconBox>
+                                                    <Tip
                                                       key=".1"
                                                       label="BUS, TRAM, RAIL, SUBWAY"
                                                       mr={null}
-                                                      zIndex={1000}
                                                     >
-                                                      <ForwardRef
-                                                        align="center"
-                                                        isInline={true}
-                                                        onBlur={[Function]}
-                                                        onClick={[Function]}
-                                                        onFocus={[Function]}
-                                                        onMouseEnter={[Function]}
-                                                        onMouseLeave={[Function]}
-                                                        spacing={1}
+                                                      <Tooltip
+                                                        aria-label="Tooltip: BUS, TRAM, RAIL, SUBWAY"
+                                                        fontSize="md"
+                                                        hasArrow={true}
+                                                        label="BUS, TRAM, RAIL, SUBWAY"
+                                                        mr={null}
+                                                        zIndex={1500}
                                                       >
-                                                        <Flex
+                                                        <ForwardRef
                                                           align="center"
-                                                          direction="row"
+                                                          isInline={true}
                                                           onBlur={[Function]}
                                                           onClick={[Function]}
                                                           onFocus={[Function]}
                                                           onMouseEnter={[Function]}
                                                           onMouseLeave={[Function]}
+                                                          spacing={1}
                                                         >
-                                                          <Box
-                                                            alignItems="center"
-                                                            display="flex"
-                                                            flexDirection="row"
+                                                          <Flex
+                                                            align="center"
+                                                            direction="row"
                                                             onBlur={[Function]}
                                                             onClick={[Function]}
                                                             onFocus={[Function]}
                                                             onMouseEnter={[Function]}
                                                             onMouseLeave={[Function]}
                                                           >
-                                                            <div
-                                                              className="css-u4p24i"
+                                                            <Box
+                                                              alignItems="center"
+                                                              display="flex"
+                                                              flexDirection="row"
                                                               onBlur={[Function]}
                                                               onClick={[Function]}
                                                               onFocus={[Function]}
                                                               onMouseEnter={[Function]}
                                                               onMouseLeave={[Function]}
                                                             >
-                                                              <Box
-                                                                color="red.500"
-                                                                fontSize="xs"
-                                                                key=".0"
-                                                                mr={1}
+                                                              <div
+                                                                className="css-u4p24i"
+                                                                onBlur={[Function]}
+                                                                onClick={[Function]}
+                                                                onFocus={[Function]}
+                                                                onMouseEnter={[Function]}
+                                                                onMouseLeave={[Function]}
                                                               >
-                                                                <div
-                                                                  className="css-1el2ag8"
+                                                                <Box
+                                                                  color="red.500"
+                                                                  fontSize="xs"
+                                                                  key=".0"
+                                                                  mr={1}
                                                                 >
-                                                                  <Icon
-                                                                    icon={
-                                                                      Object {
-                                                                        "icon": Array [],
-                                                                        "iconName": "chevron-right",
-                                                                        "prefix": "fas",
-                                                                      }
-                                                                    }
+                                                                  <div
+                                                                    className="css-1el2ag8"
                                                                   >
-                                                                    <FontAwesomeIcon
-                                                                      border={false}
-                                                                      className=""
-                                                                      fixedWidth={true}
-                                                                      flip={null}
+                                                                    <Icon
                                                                       icon={
                                                                         Object {
                                                                           "icon": Array [],
@@ -3402,384 +3480,441 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                                                           "prefix": "fas",
                                                                         }
                                                                       }
-                                                                      inverse={false}
-                                                                      listItem={false}
-                                                                      mask={null}
-                                                                      pull={null}
-                                                                      pulse={false}
-                                                                      rotation={null}
-                                                                      size={null}
-                                                                      spin={false}
-                                                                      swapOpacity={false}
-                                                                      symbol={false}
-                                                                      title=""
-                                                                      transform={null}
                                                                     >
-                                                                      <svg
-                                                                        aria-hidden="true"
-                                                                        className="svg-inline--fa fa-chevron-right fa-w-NaN fa-fw "
-                                                                        data-icon="chevron-right"
-                                                                        data-prefix="fas"
-                                                                        focusable="false"
-                                                                        role="img"
-                                                                        style={Object {}}
-                                                                        viewBox="0 0 undefined undefined"
-                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                      <FontAwesomeIcon
+                                                                        border={false}
+                                                                        className=""
+                                                                        fixedWidth={true}
+                                                                        flip={null}
+                                                                        icon={
+                                                                          Object {
+                                                                            "icon": Array [],
+                                                                            "iconName": "chevron-right",
+                                                                            "prefix": "fas",
+                                                                          }
+                                                                        }
+                                                                        inverse={false}
+                                                                        listItem={false}
+                                                                        mask={null}
+                                                                        pull={null}
+                                                                        pulse={false}
+                                                                        rotation={null}
+                                                                        size={null}
+                                                                        spin={false}
+                                                                        swapOpacity={false}
+                                                                        symbol={false}
+                                                                        title=""
+                                                                        transform={null}
                                                                       >
-                                                                        <path
-                                                                          fill="currentColor"
+                                                                        <svg
+                                                                          aria-hidden="true"
+                                                                          className="svg-inline--fa fa-chevron-right fa-w-NaN fa-fw "
+                                                                          data-icon="chevron-right"
+                                                                          data-prefix="fas"
+                                                                          focusable="false"
+                                                                          role="img"
                                                                           style={Object {}}
-                                                                        />
-                                                                      </svg>
-                                                                    </FontAwesomeIcon>
-                                                                  </Icon>
-                                                                </div>
-                                                              </Box>
-                                                              <ModeIcon
-                                                                key=".1:$BUS"
-                                                                mode="BUS"
-                                                                mr={1}
-                                                              >
-                                                                <Box
+                                                                          viewBox="0 0 undefined undefined"
+                                                                          xmlns="http://www.w3.org/2000/svg"
+                                                                        >
+                                                                          <path
+                                                                            fill="currentColor"
+                                                                            style={Object {}}
+                                                                          />
+                                                                        </svg>
+                                                                      </FontAwesomeIcon>
+                                                                    </Icon>
+                                                                  </div>
+                                                                </Box>
+                                                                <ModeIconBox
+                                                                  key=".1:$BUS"
+                                                                  mode="BUS"
                                                                   mr={1}
-                                                                  title="BUS"
                                                                 >
-                                                                  <div
-                                                                    className="css-1xe59u8"
+                                                                  <Box
+                                                                    mr={1}
                                                                     title="BUS"
                                                                   >
-                                                                    <Icon
-                                                                      icon={
-                                                                        Object {
-                                                                          "icon": Array [],
-                                                                          "iconName": "bus",
-                                                                          "prefix": "fas",
-                                                                        }
-                                                                      }
+                                                                    <div
+                                                                      className="css-1xe59u8"
+                                                                      title="BUS"
                                                                     >
-                                                                      <FontAwesomeIcon
-                                                                        border={false}
-                                                                        className=""
-                                                                        fixedWidth={true}
-                                                                        flip={null}
-                                                                        icon={
-                                                                          Object {
-                                                                            "icon": Array [],
-                                                                            "iconName": "bus",
-                                                                            "prefix": "fas",
-                                                                          }
-                                                                        }
-                                                                        inverse={false}
-                                                                        listItem={false}
-                                                                        mask={null}
-                                                                        pull={null}
-                                                                        pulse={false}
-                                                                        rotation={null}
-                                                                        size={null}
-                                                                        spin={false}
-                                                                        swapOpacity={false}
-                                                                        symbol={false}
-                                                                        title=""
-                                                                        transform={null}
+                                                                      <ModeIcon
+                                                                        mode="BUS"
                                                                       >
-                                                                        <svg
-                                                                          aria-hidden="true"
-                                                                          className="svg-inline--fa fa-bus fa-w-NaN fa-fw "
-                                                                          data-icon="bus"
-                                                                          data-prefix="fas"
-                                                                          focusable="false"
-                                                                          role="img"
-                                                                          style={Object {}}
-                                                                          viewBox="0 0 undefined undefined"
-                                                                          xmlns="http://www.w3.org/2000/svg"
+                                                                        <Icon
+                                                                          icon={
+                                                                            Object {
+                                                                              "icon": Array [],
+                                                                              "iconName": "bus",
+                                                                              "prefix": "fas",
+                                                                            }
+                                                                          }
                                                                         >
-                                                                          <path
-                                                                            fill="currentColor"
-                                                                            style={Object {}}
-                                                                          />
-                                                                        </svg>
-                                                                      </FontAwesomeIcon>
-                                                                    </Icon>
-                                                                  </div>
-                                                                </Box>
-                                                              </ModeIcon>
-                                                              <ModeIcon
-                                                                key=".1:$TRAM"
-                                                                mode="TRAM"
-                                                                mr={1}
-                                                              >
-                                                                <Box
+                                                                          <FontAwesomeIcon
+                                                                            border={false}
+                                                                            className=""
+                                                                            fixedWidth={true}
+                                                                            flip={null}
+                                                                            icon={
+                                                                              Object {
+                                                                                "icon": Array [],
+                                                                                "iconName": "bus",
+                                                                                "prefix": "fas",
+                                                                              }
+                                                                            }
+                                                                            inverse={false}
+                                                                            listItem={false}
+                                                                            mask={null}
+                                                                            pull={null}
+                                                                            pulse={false}
+                                                                            rotation={null}
+                                                                            size={null}
+                                                                            spin={false}
+                                                                            swapOpacity={false}
+                                                                            symbol={false}
+                                                                            title=""
+                                                                            transform={null}
+                                                                          >
+                                                                            <svg
+                                                                              aria-hidden="true"
+                                                                              className="svg-inline--fa fa-bus fa-w-NaN fa-fw "
+                                                                              data-icon="bus"
+                                                                              data-prefix="fas"
+                                                                              focusable="false"
+                                                                              role="img"
+                                                                              style={Object {}}
+                                                                              viewBox="0 0 undefined undefined"
+                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                            >
+                                                                              <path
+                                                                                fill="currentColor"
+                                                                                style={Object {}}
+                                                                              />
+                                                                            </svg>
+                                                                          </FontAwesomeIcon>
+                                                                        </Icon>
+                                                                      </ModeIcon>
+                                                                    </div>
+                                                                  </Box>
+                                                                </ModeIconBox>
+                                                                <ModeIconBox
+                                                                  key=".1:$TRAM"
+                                                                  mode="TRAM"
                                                                   mr={1}
-                                                                  title="TRAM"
                                                                 >
-                                                                  <div
-                                                                    className="css-1xe59u8"
+                                                                  <Box
+                                                                    mr={1}
                                                                     title="TRAM"
                                                                   >
-                                                                    <strong>
-                                                                      T
-                                                                    </strong>
-                                                                  </div>
-                                                                </Box>
-                                                              </ModeIcon>
-                                                              <ModeIcon
-                                                                key=".1:$RAIL"
-                                                                mode="RAIL"
-                                                                mr={1}
-                                                              >
-                                                                <Box
+                                                                    <div
+                                                                      className="css-1xe59u8"
+                                                                      title="TRAM"
+                                                                    >
+                                                                      <ModeIcon
+                                                                        mode="TRAM"
+                                                                      >
+                                                                        <Letter>
+                                                                          <Text
+                                                                            fontFamily="mono"
+                                                                            fontSize="14px"
+                                                                            fontWeight={600}
+                                                                            height="17px"
+                                                                            lineHeight="1.5rem"
+                                                                            textAlign="center"
+                                                                            width="15px"
+                                                                          >
+                                                                            <Box
+                                                                              as="p"
+                                                                              fontFamily="mono"
+                                                                              fontSize="14px"
+                                                                              fontWeight={600}
+                                                                              height="17px"
+                                                                              lineHeight="1.5rem"
+                                                                              textAlign="center"
+                                                                              width="15px"
+                                                                            >
+                                                                              <p
+                                                                                className="css-1q2wprf"
+                                                                              >
+                                                                                T
+                                                                              </p>
+                                                                            </Box>
+                                                                          </Text>
+                                                                        </Letter>
+                                                                      </ModeIcon>
+                                                                    </div>
+                                                                  </Box>
+                                                                </ModeIconBox>
+                                                                <ModeIconBox
+                                                                  key=".1:$RAIL"
+                                                                  mode="RAIL"
                                                                   mr={1}
-                                                                  title="RAIL"
                                                                 >
-                                                                  <div
-                                                                    className="css-1xe59u8"
+                                                                  <Box
+                                                                    mr={1}
                                                                     title="RAIL"
                                                                   >
-                                                                    <Icon
-                                                                      icon={
-                                                                        Object {
-                                                                          "icon": Array [],
-                                                                          "iconName": "train",
-                                                                          "prefix": "fas",
-                                                                        }
-                                                                      }
+                                                                    <div
+                                                                      className="css-1xe59u8"
+                                                                      title="RAIL"
                                                                     >
-                                                                      <FontAwesomeIcon
-                                                                        border={false}
-                                                                        className=""
-                                                                        fixedWidth={true}
-                                                                        flip={null}
-                                                                        icon={
-                                                                          Object {
-                                                                            "icon": Array [],
-                                                                            "iconName": "train",
-                                                                            "prefix": "fas",
-                                                                          }
-                                                                        }
-                                                                        inverse={false}
-                                                                        listItem={false}
-                                                                        mask={null}
-                                                                        pull={null}
-                                                                        pulse={false}
-                                                                        rotation={null}
-                                                                        size={null}
-                                                                        spin={false}
-                                                                        swapOpacity={false}
-                                                                        symbol={false}
-                                                                        title=""
-                                                                        transform={null}
+                                                                      <ModeIcon
+                                                                        mode="RAIL"
                                                                       >
-                                                                        <svg
-                                                                          aria-hidden="true"
-                                                                          className="svg-inline--fa fa-train fa-w-NaN fa-fw "
-                                                                          data-icon="train"
-                                                                          data-prefix="fas"
-                                                                          focusable="false"
-                                                                          role="img"
-                                                                          style={Object {}}
-                                                                          viewBox="0 0 undefined undefined"
-                                                                          xmlns="http://www.w3.org/2000/svg"
+                                                                        <Icon
+                                                                          icon={
+                                                                            Object {
+                                                                              "icon": Array [],
+                                                                              "iconName": "train",
+                                                                              "prefix": "fas",
+                                                                            }
+                                                                          }
                                                                         >
-                                                                          <path
-                                                                            fill="currentColor"
-                                                                            style={Object {}}
-                                                                          />
-                                                                        </svg>
-                                                                      </FontAwesomeIcon>
-                                                                    </Icon>
-                                                                  </div>
-                                                                </Box>
-                                                              </ModeIcon>
-                                                              <ModeIcon
-                                                                key=".1:$SUBWAY"
-                                                                mode="SUBWAY"
-                                                                mr={null}
-                                                              >
-                                                                <Box
+                                                                          <FontAwesomeIcon
+                                                                            border={false}
+                                                                            className=""
+                                                                            fixedWidth={true}
+                                                                            flip={null}
+                                                                            icon={
+                                                                              Object {
+                                                                                "icon": Array [],
+                                                                                "iconName": "train",
+                                                                                "prefix": "fas",
+                                                                              }
+                                                                            }
+                                                                            inverse={false}
+                                                                            listItem={false}
+                                                                            mask={null}
+                                                                            pull={null}
+                                                                            pulse={false}
+                                                                            rotation={null}
+                                                                            size={null}
+                                                                            spin={false}
+                                                                            swapOpacity={false}
+                                                                            symbol={false}
+                                                                            title=""
+                                                                            transform={null}
+                                                                          >
+                                                                            <svg
+                                                                              aria-hidden="true"
+                                                                              className="svg-inline--fa fa-train fa-w-NaN fa-fw "
+                                                                              data-icon="train"
+                                                                              data-prefix="fas"
+                                                                              focusable="false"
+                                                                              role="img"
+                                                                              style={Object {}}
+                                                                              viewBox="0 0 undefined undefined"
+                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                            >
+                                                                              <path
+                                                                                fill="currentColor"
+                                                                                style={Object {}}
+                                                                              />
+                                                                            </svg>
+                                                                          </FontAwesomeIcon>
+                                                                        </Icon>
+                                                                      </ModeIcon>
+                                                                    </div>
+                                                                  </Box>
+                                                                </ModeIconBox>
+                                                                <ModeIconBox
+                                                                  key=".1:$SUBWAY"
+                                                                  mode="SUBWAY"
                                                                   mr={null}
-                                                                  title="SUBWAY"
                                                                 >
-                                                                  <div
-                                                                    className="css-0"
+                                                                  <Box
+                                                                    mr={null}
                                                                     title="SUBWAY"
                                                                   >
-                                                                    <Icon
-                                                                      icon={
-                                                                        Object {
-                                                                          "icon": Array [],
-                                                                          "iconName": "subway",
-                                                                          "prefix": "fas",
-                                                                        }
-                                                                      }
+                                                                    <div
+                                                                      className="css-0"
+                                                                      title="SUBWAY"
                                                                     >
-                                                                      <FontAwesomeIcon
-                                                                        border={false}
-                                                                        className=""
-                                                                        fixedWidth={true}
-                                                                        flip={null}
-                                                                        icon={
-                                                                          Object {
-                                                                            "icon": Array [],
-                                                                            "iconName": "subway",
-                                                                            "prefix": "fas",
-                                                                          }
-                                                                        }
-                                                                        inverse={false}
-                                                                        listItem={false}
-                                                                        mask={null}
-                                                                        pull={null}
-                                                                        pulse={false}
-                                                                        rotation={null}
-                                                                        size={null}
-                                                                        spin={false}
-                                                                        swapOpacity={false}
-                                                                        symbol={false}
-                                                                        title=""
-                                                                        transform={null}
+                                                                      <ModeIcon
+                                                                        mode="SUBWAY"
                                                                       >
-                                                                        <svg
-                                                                          aria-hidden="true"
-                                                                          className="svg-inline--fa fa-subway fa-w-NaN fa-fw "
-                                                                          data-icon="subway"
-                                                                          data-prefix="fas"
-                                                                          focusable="false"
-                                                                          role="img"
-                                                                          style={Object {}}
-                                                                          viewBox="0 0 undefined undefined"
-                                                                          xmlns="http://www.w3.org/2000/svg"
+                                                                        <Icon
+                                                                          icon={
+                                                                            Object {
+                                                                              "icon": Array [],
+                                                                              "iconName": "subway",
+                                                                              "prefix": "fas",
+                                                                            }
+                                                                          }
                                                                         >
-                                                                          <path
-                                                                            fill="currentColor"
-                                                                            style={Object {}}
-                                                                          />
-                                                                        </svg>
-                                                                      </FontAwesomeIcon>
-                                                                    </Icon>
-                                                                  </div>
-                                                                </Box>
-                                                              </ModeIcon>
-                                                            </div>
-                                                          </Box>
-                                                        </Flex>
-                                                      </ForwardRef>
-                                                      <ForwardRef
-                                                        anchorEl={
-                                                          <div
-                                                            class="css-u4p24i"
-                                                          >
+                                                                          <FontAwesomeIcon
+                                                                            border={false}
+                                                                            className=""
+                                                                            fixedWidth={true}
+                                                                            flip={null}
+                                                                            icon={
+                                                                              Object {
+                                                                                "icon": Array [],
+                                                                                "iconName": "subway",
+                                                                                "prefix": "fas",
+                                                                              }
+                                                                            }
+                                                                            inverse={false}
+                                                                            listItem={false}
+                                                                            mask={null}
+                                                                            pull={null}
+                                                                            pulse={false}
+                                                                            rotation={null}
+                                                                            size={null}
+                                                                            spin={false}
+                                                                            swapOpacity={false}
+                                                                            symbol={false}
+                                                                            title=""
+                                                                            transform={null}
+                                                                          >
+                                                                            <svg
+                                                                              aria-hidden="true"
+                                                                              className="svg-inline--fa fa-subway fa-w-NaN fa-fw "
+                                                                              data-icon="subway"
+                                                                              data-prefix="fas"
+                                                                              focusable="false"
+                                                                              role="img"
+                                                                              style={Object {}}
+                                                                              viewBox="0 0 undefined undefined"
+                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                            >
+                                                                              <path
+                                                                                fill="currentColor"
+                                                                                style={Object {}}
+                                                                              />
+                                                                            </svg>
+                                                                          </FontAwesomeIcon>
+                                                                        </Icon>
+                                                                      </ModeIcon>
+                                                                    </div>
+                                                                  </Box>
+                                                                </ModeIconBox>
+                                                              </div>
+                                                            </Box>
+                                                          </Flex>
+                                                        </ForwardRef>
+                                                        <ForwardRef
+                                                          anchorEl={
                                                             <div
-                                                              class="css-1el2ag8"
+                                                              class="css-u4p24i"
                                                             >
-                                                              <svg
-                                                                aria-hidden="true"
-                                                                class="svg-inline--fa fa-chevron-right fa-w-NaN fa-fw "
-                                                                data-icon="chevron-right"
-                                                                data-prefix="fas"
-                                                                focusable="false"
-                                                                role="img"
-                                                                viewBox="0 0 undefined undefined"
-                                                                xmlns="http://www.w3.org/2000/svg"
+                                                              <div
+                                                                class="css-1el2ag8"
                                                               >
-                                                                <path
-                                                                  fill="currentColor"
-                                                                />
-                                                              </svg>
-                                                            </div>
-                                                            <div
-                                                              class="css-1xe59u8"
-                                                              title="BUS"
-                                                            >
-                                                              <svg
-                                                                aria-hidden="true"
-                                                                class="svg-inline--fa fa-bus fa-w-NaN fa-fw "
-                                                                data-icon="bus"
-                                                                data-prefix="fas"
-                                                                focusable="false"
-                                                                role="img"
-                                                                viewBox="0 0 undefined undefined"
-                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                <svg
+                                                                  aria-hidden="true"
+                                                                  class="svg-inline--fa fa-chevron-right fa-w-NaN fa-fw "
+                                                                  data-icon="chevron-right"
+                                                                  data-prefix="fas"
+                                                                  focusable="false"
+                                                                  role="img"
+                                                                  viewBox="0 0 undefined undefined"
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                >
+                                                                  <path
+                                                                    fill="currentColor"
+                                                                  />
+                                                                </svg>
+                                                              </div>
+                                                              <div
+                                                                class="css-1xe59u8"
+                                                                title="BUS"
                                                               >
-                                                                <path
-                                                                  fill="currentColor"
-                                                                />
-                                                              </svg>
-                                                            </div>
-                                                            <div
-                                                              class="css-1xe59u8"
-                                                              title="TRAM"
-                                                            >
-                                                              <strong>
-                                                                T
-                                                              </strong>
-                                                            </div>
-                                                            <div
-                                                              class="css-1xe59u8"
-                                                              title="RAIL"
-                                                            >
-                                                              <svg
-                                                                aria-hidden="true"
-                                                                class="svg-inline--fa fa-train fa-w-NaN fa-fw "
-                                                                data-icon="train"
-                                                                data-prefix="fas"
-                                                                focusable="false"
-                                                                role="img"
-                                                                viewBox="0 0 undefined undefined"
-                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                <svg
+                                                                  aria-hidden="true"
+                                                                  class="svg-inline--fa fa-bus fa-w-NaN fa-fw "
+                                                                  data-icon="bus"
+                                                                  data-prefix="fas"
+                                                                  focusable="false"
+                                                                  role="img"
+                                                                  viewBox="0 0 undefined undefined"
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                >
+                                                                  <path
+                                                                    fill="currentColor"
+                                                                  />
+                                                                </svg>
+                                                              </div>
+                                                              <div
+                                                                class="css-1xe59u8"
+                                                                title="TRAM"
                                                               >
-                                                                <path
-                                                                  fill="currentColor"
-                                                                />
-                                                              </svg>
-                                                            </div>
-                                                            <div
-                                                              class="css-0"
-                                                              title="SUBWAY"
-                                                            >
-                                                              <svg
-                                                                aria-hidden="true"
-                                                                class="svg-inline--fa fa-subway fa-w-NaN fa-fw "
-                                                                data-icon="subway"
-                                                                data-prefix="fas"
-                                                                focusable="false"
-                                                                role="img"
-                                                                viewBox="0 0 undefined undefined"
-                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                <p
+                                                                  class="css-1q2wprf"
+                                                                >
+                                                                  T
+                                                                </p>
+                                                              </div>
+                                                              <div
+                                                                class="css-1xe59u8"
+                                                                title="RAIL"
                                                               >
-                                                                <path
-                                                                  fill="currentColor"
-                                                                />
-                                                              </svg>
+                                                                <svg
+                                                                  aria-hidden="true"
+                                                                  class="svg-inline--fa fa-train fa-w-NaN fa-fw "
+                                                                  data-icon="train"
+                                                                  data-prefix="fas"
+                                                                  focusable="false"
+                                                                  role="img"
+                                                                  viewBox="0 0 undefined undefined"
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                >
+                                                                  <path
+                                                                    fill="currentColor"
+                                                                  />
+                                                                </svg>
+                                                              </div>
+                                                              <div
+                                                                class="css-0"
+                                                                title="SUBWAY"
+                                                              >
+                                                                <svg
+                                                                  aria-hidden="true"
+                                                                  class="svg-inline--fa fa-subway fa-w-NaN fa-fw "
+                                                                  data-icon="subway"
+                                                                  data-prefix="fas"
+                                                                  focusable="false"
+                                                                  role="img"
+                                                                  viewBox="0 0 undefined undefined"
+                                                                  xmlns="http://www.w3.org/2000/svg"
+                                                                >
+                                                                  <path
+                                                                    fill="currentColor"
+                                                                  />
+                                                                </svg>
+                                                              </div>
                                                             </div>
-                                                          </div>
-                                                        }
-                                                        arrowSize="10px"
-                                                        bg="gray.700"
-                                                        borderRadius="sm"
-                                                        color="whiteAlpha.900"
-                                                        fontSize="sm"
-                                                        fontWeight="medium"
-                                                        hasArrow={true}
-                                                        isOpen={false}
-                                                        maxW="320px"
-                                                        modifiers={
-                                                          Object {
-                                                            "offset": Object {
-                                                              "enabled": true,
-                                                              "offset": "0, 8",
-                                                            },
                                                           }
-                                                        }
-                                                        mr={null}
-                                                        placement="auto"
-                                                        pointerEvents="none"
-                                                        px="8px"
-                                                        py="2px"
-                                                        shadow="md"
-                                                        timeout={200}
-                                                        usePortal={true}
-                                                        zIndex={1000}
-                                                      />
-                                                    </Tooltip>
+                                                          arrowSize="10px"
+                                                          bg="gray.700"
+                                                          borderRadius="sm"
+                                                          color="whiteAlpha.900"
+                                                          fontSize="md"
+                                                          fontWeight="medium"
+                                                          hasArrow={true}
+                                                          isOpen={false}
+                                                          maxW="320px"
+                                                          modifiers={
+                                                            Object {
+                                                              "offset": Object {
+                                                                "enabled": true,
+                                                                "offset": "0, 8",
+                                                              },
+                                                            }
+                                                          }
+                                                          mr={null}
+                                                          placement="auto"
+                                                          pointerEvents="none"
+                                                          px="8px"
+                                                          py="2px"
+                                                          shadow="md"
+                                                          timeout={200}
+                                                          usePortal={true}
+                                                          zIndex={1500}
+                                                        />
+                                                      </Tooltip>
+                                                    </Tip>
                                                   </div>
                                                 </Box>
                                               </Flex>
@@ -4042,46 +4177,101 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                               </h2>
                             </Box>
                           </Heading>
-                          <Text
+                          <Box
                             key=".1"
                             mb={3}
                             px={4}
                           >
-                            <Box
-                              as="p"
-                              fontFamily="body"
-                              mb={3}
-                              px={4}
+                            <div
+                              className="css-1w68sn0"
                             >
-                              <p
-                                className="css-6d7uu3"
+                              <Heading
+                                size="xs"
                               >
-                                undefined within 60 minutes, 50th percentile
-                              </p>
-                            </Box>
-                          </Text>
-                          <Text
+                                <Box
+                                  as="h2"
+                                  fontFamily="heading"
+                                  fontSize="sm"
+                                  fontWeight="bold"
+                                  lineHeight="shorter"
+                                >
+                                  <h2
+                                    className="css-glel1g"
+                                  >
+                                    ANALYSIS 1
+                                  </h2>
+                                </Box>
+                              </Heading>
+                              <Text>
+                                <Box
+                                  as="p"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-fzcsno"
+                                  >
+                                    undefined within 60 minutes, 50th percentile
+                                  </p>
+                                </Box>
+                              </Text>
+                            </div>
+                          </Box>
+                          <Box
                             key=".2"
                             mb={3}
                             px={4}
                           >
-                            <Box
-                              as="p"
-                              fontFamily="body"
-                              mb={3}
-                              px={4}
+                            <div
+                              className="css-1w68sn0"
                             >
-                              <p
-                                className="css-6d7uu3"
+                              <Text
+                                color="red.500"
                               >
-                                <em>
-                                  minus
-                                </em>
-                                 
-                                undefined within 60 minutes, 50th percentile
-                              </p>
-                            </Box>
-                          </Text>
+                                <Box
+                                  as="p"
+                                  color="red.500"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-1bqbto5"
+                                  >
+                                    <em>
+                                      minus
+                                    </em>
+                                  </p>
+                                </Box>
+                              </Text>
+                              <Heading
+                                size="xs"
+                              >
+                                <Box
+                                  as="h2"
+                                  fontFamily="heading"
+                                  fontSize="sm"
+                                  fontWeight="bold"
+                                  lineHeight="shorter"
+                                >
+                                  <h2
+                                    className="css-glel1g"
+                                  >
+                                    ANALYSIS 2
+                                  </h2>
+                                </Box>
+                              </Heading>
+                              <Text>
+                                <Box
+                                  as="p"
+                                  fontFamily="body"
+                                >
+                                  <p
+                                    className="css-fzcsno"
+                                  >
+                                    undefined within 60 minutes, 50th percentile
+                                  </p>
+                                </Box>
+                              </Text>
+                            </div>
+                          </Box>
                           <Legend
                             breaks={
                               Array [
@@ -4299,7 +4489,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       <div
                                         className="css-9a6xh2"
                                       >
-                                        235 to -235 (transparent)
+                                        235 to −235 (transparent)
                                       </div>
                                     </PseudoBox>
                                     <PseudoBox
@@ -4318,7 +4508,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       <div
                                         className="css-1vkqfzt"
                                       >
-                                        -235 to -491
+                                        −235 to −491
                                       </div>
                                     </PseudoBox>
                                     <PseudoBox
@@ -4337,7 +4527,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       <div
                                         className="css-1mz3pju"
                                       >
-                                        -491 to -773
+                                        −491 to −773
                                       </div>
                                     </PseudoBox>
                                     <PseudoBox
@@ -4356,7 +4546,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       <div
                                         className="css-eo16cd"
                                       >
-                                        -773 to -1,089
+                                        −773 to −1,089
                                       </div>
                                     </PseudoBox>
                                     <PseudoBox
@@ -4375,7 +4565,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       <div
                                         className="css-gpbeli"
                                       >
-                                        -1,089 to -1,421
+                                        −1,089 to −1,421
                                       </div>
                                     </PseudoBox>
                                     <PseudoBox
@@ -4394,7 +4584,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                       <div
                                         className="css-mcv2m0"
                                       >
-                                        -1,421 to -1,998
+                                        −1,421 to −1,998
                                       </div>
                                     </PseudoBox>
                                   </div>
@@ -4481,6 +4671,7 @@ exports[`RegionalResults with comparison snapshot(mount) 1`] = `
                                         styles={
                                           Object {
                                             "control": [Function],
+                                            "menu": [Function],
                                             "option": [Function],
                                           }
                                         }

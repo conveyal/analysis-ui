@@ -4,7 +4,6 @@ import {
   Flex,
   PseudoBox,
   Stack,
-  Tooltip,
   useDisclosure
 } from '@chakra-ui/core'
 import {
@@ -25,6 +24,7 @@ import {secondsToHhMmString} from 'lib/utils/time'
 import IconButton from '../icon-button'
 import Icon from '../icon'
 import {ALink} from '../link'
+import Tip from '../tip'
 
 import ModeSummary from './mode-summary'
 
@@ -80,15 +80,12 @@ export default function ProfileRequestDisplay({
         setRequestJSON(response)
       }
     )
-  }, [id])
+  }, [dispatch, id])
 
   const projects = useSelector(selectProjects)
   const bundles = useSelector(selectBundles)
 
   const {onToggle, isOpen} = useDisclosure()
-
-  const keys = Object.keys(profileRequest)
-  keys.sort()
 
   const project = projects.find((p) => p._id === projectId)
   const bundle = bundles.find((b) => b._id === bundleId)
@@ -133,13 +130,8 @@ export default function ProfileRequestDisplay({
             <tr>
               <TDTitle>Project</TDTitle>
               <TDValue>
-                <Tooltip
-                  aria-label={PROJECT_CHANGE_NOTE}
-                  hasArrow
-                  label={PROJECT_CHANGE_NOTE}
-                  zIndex={1000}
-                >
-                  <Box>
+                <Tip label={PROJECT_CHANGE_NOTE}>
+                  <div>
                     <ALink
                       to='project'
                       projectId={project._id}
@@ -147,8 +139,8 @@ export default function ProfileRequestDisplay({
                     >
                       {project.name}
                     </ALink>
-                  </Box>
-                </Tooltip>
+                  </div>
+                </Tip>
               </TDValue>
             </tr>
           )}
@@ -183,7 +175,6 @@ export default function ProfileRequestDisplay({
                 accessModes={profileRequest.accessModes}
                 color={color}
                 egressModes={profileRequest.egressModes}
-                max={10}
                 transitModes={profileRequest.transitModes}
               />
             </TDValue>
@@ -209,36 +200,43 @@ export default function ProfileRequestDisplay({
         >
           <Icon icon={isOpen ? faChevronUp : faChevronDown} />
         </Button>
-        {isOpen && (
-          <Box
-            as='table'
-            fontFamily='mono'
-            fontSize='sm'
-            style={{
-              tableLayout: 'fixed'
-            }}
-            width='100%'
-          >
-            <tbody>
-              {keys.map((k) => (
-                <PseudoBox
-                  as='tr'
-                  _odd={{
-                    bg: `${color}.50`
-                  }}
-                >
-                  <TDTitle>{k}</TDTitle>
-                  <TDValue>
-                    <Box as='pre' bg='transparent' border='none' pr={3} py={2}>
-                      {stringifyIfObject(profileRequest[k])}
-                    </Box>
-                  </TDValue>
-                </PseudoBox>
-              ))}
-            </tbody>
-          </Box>
-        )}
+        {isOpen && <ObjectToTable color={color} object={profileRequest} />}
       </Box>
     </Stack>
+  )
+}
+
+export function ObjectToTable({color = 'blue', object}) {
+  const keys = Object.keys(object)
+  keys.sort()
+  return (
+    <Box
+      as='table'
+      fontFamily='mono'
+      fontSize='sm'
+      style={{
+        tableLayout: 'fixed'
+      }}
+      width='100%'
+    >
+      <tbody>
+        {keys.map((k) => (
+          <PseudoBox
+            as='tr'
+            key={k}
+            _odd={{
+              bg: `${color}.50`
+            }}
+          >
+            <TDTitle>{k}</TDTitle>
+            <TDValue>
+              <Box as='pre' bg='transparent' border='none' pr={3} py={2}>
+                {stringifyIfObject(object[k])}
+              </Box>
+            </TDValue>
+          </PseudoBox>
+        ))}
+      </tbody>
+    </Box>
   )
 }

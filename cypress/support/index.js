@@ -19,8 +19,8 @@ before('Optionally wipe configured state', () => {
         if ('regionId' in storedVals) {
           cy.visit(`/regions/${storedVals.regionId}`)
           cy.navTo('Region Settings')
-          cy.findByText(/Delete this region/i).click()
-          cy.findByText(/Confirm: Delete this region/).click()
+          cy.findByRole('button', {name: /Delete this region/i}).click()
+          cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
         }
       })
       cy.writeFile(pseudoFixture, '{}')
@@ -28,6 +28,12 @@ before('Optionally wipe configured state', () => {
   })
 })
 
-export function generateName(type, name) {
-  return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
-}
+/**
+ * Uncaught exceptions should not occur in the app, but we need to be able to test what happens when they do.
+ */
+Cypress.on('uncaught:exception', (err) => {
+  console.error(err)
+  // returning false here prevents Cypress from
+  // failing the test
+  return false
+})

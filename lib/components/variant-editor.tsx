@@ -6,7 +6,6 @@ import {
   Icon,
   Stack,
   Text,
-  Tooltip,
   useDisclosure
 } from '@chakra-ui/core'
 import {faCopy, faTrash, faEye} from '@fortawesome/free-solid-svg-icons'
@@ -24,6 +23,8 @@ import message from 'lib/message'
 import {ConfirmDialog} from './confirm-button'
 import Editable from './editable'
 import IconButton from './icon-button'
+import InnerDock from './inner-dock'
+import Tip from './tip'
 
 type VariantProps = {
   showVariant: (index: number) => void
@@ -58,35 +59,32 @@ export default memo<VariantProps>(function Variants({showVariant, variants}) {
 
         <Divider mx={4} />
 
-        <Stack spacing={3} pt={2} pl={4} pr={2} id='scenarios'>
-          <Flex pr={2}>
-            <Text flex='1' fontWeight='bold'>
-              {message('variant.baseline')}
-            </Text>
-            <Tooltip
-              aria-label='Baseline (empty scenario) cannot be modified'
-              hasArrow
-              label='Baseline (empty scenario) cannot be modified'
-              zIndex={1000}
-            >
-              <Icon name='lock' mr={1} />
-            </Tooltip>
-          </Flex>
-          {variants.map((name, index) => (
-            <Box key={index}>
-              <Variant
-                copyVariant={() => dispatch(copyScenario(index))}
-                deleteVariant={() => dispatch(deleteVariant(index))}
-                index={index}
-                name={name}
-                onChangeName={(name) =>
-                  dispatch(editVariantName({index, name}))
-                }
-                showVariant={() => showVariant(index)}
-              />
-            </Box>
-          ))}
-        </Stack>
+        <InnerDock>
+          <Stack spacing={3} pt={2} pl={4} pr={2} id='scenarios'>
+            <Flex pr={2}>
+              <Text flex='1' fontWeight='bold'>
+                {message('variant.baseline')}
+              </Text>
+              <Tip label='Baseline (empty scenario) cannot be modified'>
+                <Icon name='lock' mr={1} />
+              </Tip>
+            </Flex>
+            {variants.map((name, index) => (
+              <Box key={index}>
+                <Variant
+                  copyVariant={() => dispatch(copyScenario(index))}
+                  deleteVariant={() => dispatch(deleteVariant(index))}
+                  index={index}
+                  name={name}
+                  onChangeName={(name) =>
+                    dispatch(editVariantName({index, name}))
+                  }
+                  showVariant={() => showVariant(index)}
+                />
+              </Box>
+            ))}
+          </Stack>
+        </InnerDock>
       </Stack>
     </>
   )

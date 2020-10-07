@@ -1,6 +1,5 @@
 import {
   Alert,
-  Box,
   Button,
   FormControl,
   FormLabel,
@@ -105,7 +104,7 @@ export default function EditBundle(p) {
     <Stack spacing={8}>
       <FormControl>
         <FormLabel htmlFor='selectBundle'>{message('bundle.select')}</FormLabel>
-        <Box>
+        <div>
           <Select
             inputId='selectBundle'
             options={bundles}
@@ -114,7 +113,7 @@ export default function EditBundle(p) {
             onChange={selectBundle}
             value={bundles.find((b) => b._id === bundleId)}
           />
-        </Box>
+        </div>
       </FormControl>
 
       {bundle && bundleId === router.query.bundleId && (
@@ -163,13 +162,14 @@ export default function EditBundle(p) {
             </Alert>
           ) : (
             <ConfirmButton
-              action={message('bundle.delete')}
               description={message('bundle.deleteConfirmation')}
               leftIcon='delete'
               onConfirm={_deleteBundle}
               size='lg'
               variantColor='red'
-            />
+            >
+              {message('bundle.delete')}
+            </ConfirmButton>
           )}
         </Stack>
       )}
