@@ -7,7 +7,6 @@ import {
   SliderThumb,
   SliderTrack,
   Stack,
-  FormHelperText,
   FormControlProps
 } from '@chakra-ui/core'
 import {useCallback, memo} from 'react'
