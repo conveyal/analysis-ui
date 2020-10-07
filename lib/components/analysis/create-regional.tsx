@@ -55,6 +55,8 @@ const createTestArray = (min, max) => (sorted) =>
 
 const testCutoffs = createTestArray(5, 120)
 const testPercentiles = createTestArray(1, 99)
+const testCutoff = (c) => c >= 5 && c <= 120
+const testPercentile = (p) => p >= 1 && p <= 99
 
 const disabledLabel = 'Fetch results with the current settings to enable button'
 
@@ -129,6 +131,18 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     value: get(profileRequest, 'percentiles', defaultPercentiles)
   })
 
+  const cutoffInput = useInput({
+    parse: parseInt,
+    test: testCutoff,
+    value: maxTripDurationMinutes
+  })
+
+  const percentileInput = useInput({
+    parse: parseInt,
+    test: testPercentile,
+    value: travelTimePercentile
+  })
+
   async function create() {
     setIsCreating(true)
     try {
@@ -148,10 +162,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         await dispatch(
           createRegionalAnalysis({
             ...profileRequest,
-            cutoffsMinutes: [maxTripDurationMinutes],
+            cutoffsMinutes: [cutoffInput.value],
             destinationPointSetIds: destinationPointSets,
             name: nameInput.value,
-            percentiles: [travelTimePercentile],
+            percentiles: [percentileInput.value],
             projectId,
             variantIndex
           })
@@ -228,7 +242,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
             </FormControl>
           </Stack>
 
-          {workerVersionHandlesMultipleDimensions && (
+          {workerVersionHandlesMultipleDimensions ? (
             <Stack spacing={4}>
               <FormControl
                 isDisabled={isCreating}
@@ -261,6 +275,28 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                       : percentilesInput.value
                   }
                 />
+                <FormHelperText>From 1 to 99.</FormHelperText>
+              </FormControl>
+            </Stack>
+          ) : (
+            <Stack spacing={4}>
+              <FormControl
+                isDisabled={isCreating}
+                isRequired
+                isInvalid={cutoffInput.isInvalid}
+              >
+                <FormLabel htmlFor={cutoffInput.id}>Cutoff minute</FormLabel>
+                <Input {...cutoffInput} />
+                <FormHelperText>From 5 to 120.</FormHelperText>
+              </FormControl>
+
+              <FormControl
+                isDisabled={isCreating}
+                isRequired
+                isInvalid={percentileInput.isInvalid}
+              >
+                <FormLabel htmlFor={percentileInput.id}>Percentile</FormLabel>
+                <Input {...percentileInput} />
                 <FormHelperText>From 1 to 99.</FormHelperText>
               </FormControl>
             </Stack>
