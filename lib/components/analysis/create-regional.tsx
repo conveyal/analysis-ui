@@ -53,10 +53,11 @@ const createTestArray = (min, max) => (sorted) =>
   sorted[0] >= min &&
   sorted[sorted.length - 1] <= max
 
+const onlyDigits = (s) => /^\d+$/.test(s)
 const testCutoffs = createTestArray(5, 120)
 const testPercentiles = createTestArray(1, 99)
-const testCutoff = (c) => c >= 5 && c <= 120
-const testPercentile = (p) => p >= 1 && p <= 99
+const testCutoff = (c, o) => onlyDigits(o) && c >= 5 && c <= 120
+const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
 
 const disabledLabel = 'Fetch results with the current settings to enable button'
 
@@ -162,10 +163,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         await dispatch(
           createRegionalAnalysis({
             ...profileRequest,
-            cutoffsMinutes: [cutoffInput.value],
+            cutoffsMinutes: [parseInt(cutoffInput.value)],
             destinationPointSetIds: destinationPointSets,
             name: nameInput.value,
-            percentiles: [percentileInput.value],
+            percentiles: [parseInt(percentileInput.value)],
             projectId,
             variantIndex
           })
