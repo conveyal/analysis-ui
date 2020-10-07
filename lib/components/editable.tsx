@@ -1,6 +1,6 @@
 import {Box, Flex, Input, PseudoBox, useDisclosure} from '@chakra-ui/core'
 import {faCheck, faPencilAlt} from '@fortawesome/free-solid-svg-icons'
-import {useEffect, useCallback} from 'react'
+import {useEffect, useCallback, useState} from 'react'
 
 import useInput from 'lib/hooks/use-controlled-input'
 
@@ -65,8 +65,10 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
   })
   const inputRef = input.ref
 
-  const save = useCallback(() => {
-    onChange(inputRef.current.value)
+  const [isSaving, setIsSaving] = useState(false)
+  const save = useCallback(async () => {
+    setIsSaving(true)
+    await onChange(inputRef.current.value)
     onClose()
   }, [onChange, onClose, inputRef])
 
@@ -96,6 +98,7 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
       <Input
         {...input}
         height='unset'
+        isDisabled={isSaving}
         onBlur={save}
         outline='none'
         p={0}
@@ -103,7 +106,12 @@ function HiddenInput({isValid, onChange, onClose, placeholder, value}) {
         variant='flushed'
       />
       {input.isValid && (
-        <IconButton icon={faCheck} label='Save' onClick={save} />
+        <IconButton
+          icon={faCheck}
+          isDisabled={isSaving}
+          label='Save'
+          onClick={save}
+        />
       )}
     </Flex>
   )
