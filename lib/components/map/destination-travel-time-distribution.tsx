@@ -12,7 +12,7 @@ import fpGet from 'lodash/fp/get'
 import {scaleLinear} from 'd3-scale'
 import {memo, useState, useEffect, useReducer, useRef} from 'react'
 import {useSelector} from 'react-redux'
-import {CircleMarker, Pane, useLeaflet} from 'react-leaflet'
+import {CircleMarker, useLeaflet} from 'react-leaflet'
 import MapControl from 'react-leaflet-control'
 
 import colors from 'lib/constants/colors'
@@ -21,6 +21,7 @@ import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import Boxplot from '../analysis/boxplot'
 import MinuteTicks from '../analysis/minute-ticks'
+import Pane from '../map/pane'
 
 const WIDTH = 300
 const HEIGHT = 15

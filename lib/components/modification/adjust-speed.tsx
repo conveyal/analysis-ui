@@ -7,7 +7,6 @@ import {
 import get from 'lodash/get'
 import dynamic from 'next/dynamic'
 import {useCallback, useState} from 'react'
-import {Pane} from 'react-leaflet'
 import {useSelector} from 'react-redux'
 
 import colors from 'lib/constants/colors'
@@ -16,6 +15,7 @@ import selectHopStops from 'lib/selectors/hop-stops'
 import selectModificationFeed from 'lib/selectors/modification-feed'
 import selectStopsFromAllFeeds from 'lib/selectors/stops-from-all-feeds'
 
+import Pane from '../map/pane'
 import IconButton from '../icon-button'
 import NumberInput from '../number-input'
 
@@ -65,42 +65,40 @@ export default function AdjustSpeedComponent({
 
   return (
     <Stack spacing={4} mb={4}>
-      <div style={{position: 'relative'}}>
-        <GTFSStopGridLayer stops={allStops} />
+      <GTFSStopGridLayer stops={allStops} />
 
-        <Pane zIndex={500}>
-          <PatternLayer
-            activeTrips={modification.trips}
-            color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
+      <Pane zIndex={500}>
+        <PatternLayer
+          activeTrips={modification.trips}
+          color={modification.hops == null ? colors.MODIFIED : colors.NEUTRAL}
+          feed={feed}
+          modification={modification}
+        />
+      </Pane>
+
+      {modification.hops != null && (
+        <Pane zIndex={501}>
+          <HopLayer
+            color={colors.MODIFIED}
             feed={feed}
+            hopStops={hopStops}
             modification={modification}
           />
         </Pane>
+      )}
 
-        {modification.hops != null && (
-          <Pane zIndex={501}>
-            <HopLayer
-              color={colors.MODIFIED}
-              feed={feed}
-              hopStops={hopStops}
-              modification={modification}
-            />
-          </Pane>
-        )}
-
-        {action !== 'none' && (
-          <HopSelectPolygon
-            action={action}
-            allStops={allStops}
-            currentHops={modification.hops}
-            hopStops={hopStops}
-            update={(hops) => {
-              update({hops})
-              setAction('none')
-            }}
-          />
-        )}
-      </div>
+      {action !== 'none' && (
+        <HopSelectPolygon
+          action={action}
+          allStops={allStops}
+          currentHops={modification.hops}
+          hopStops={hopStops}
+          update={(hops) => {
+            update({hops})
+            setAction('none')
+          }}
+        />
+      )}
 
       <SelectFeedAndRoutes
         allowMultipleRoutes

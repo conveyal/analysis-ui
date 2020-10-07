@@ -160,12 +160,10 @@ export default function ModificationsList(p) {
 
   return (
     <>
-      <div style={{position: 'relative'}}>
-        <ModificationsMap
-          feedsById={feedsById}
-          modifications={modificationsOnMap}
-        />
-      </div>
+      <ModificationsMap
+        feedsById={feedsById}
+        modifications={modificationsOnMap}
+      />
 
       <Tabs isFitted width='320px'>
         <TabList>
