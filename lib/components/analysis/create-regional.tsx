@@ -182,6 +182,8 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     nameInput.isInvalid ||
     cutoffsInput.isInvalid ||
     percentilesInput.isInvalid ||
+    cutoffInput.isInvalid ||
+    percentileInput.isInvalid ||
     destinationPointSets.length < 1
 
   return (
