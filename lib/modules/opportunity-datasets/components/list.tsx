@@ -55,7 +55,7 @@ export default function ListOpportunityDatasets({regionId}) {
 
   return (
     <Stack spacing={4}>
-      {recentStatuses.length > 0 && <Heading>Upload Status</Heading>}
+      {recentStatuses.length > 0 && <Heading size='sm'>Upload Status</Heading>}
       {recentStatuses.map((status, i) => (
         <Status
           clear={() => dispatch(clearStatus(regionId, status.id))}
