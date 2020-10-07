@@ -1,9 +1,13 @@
 import {memo, forwardRef} from 'react'
-import Select, {Props} from 'react-select'
+import Select, {Props, Styles} from 'react-select'
 
 import {CB_HEX, CB_RGB} from 'lib/constants'
 
-export const selectStyles = {
+export const selectStyles: Partial<Styles> = {
+  menu: (styles, _) => ({
+    ...styles,
+    zIndex: 3
+  }),
   option: (styles, state) => ({
     ...styles,
     color: state.isSelected ? '#fff' : styles.color,
@@ -17,7 +21,7 @@ export const selectStyles = {
     ...styles,
     boxShadow: state.isFocused
       ? `0 0 0 0.2rem rgba(${CB_RGB.r}, ${CB_RGB.g}, ${CB_RGB.b}, 0.25)`
-      : 0,
+      : '0',
     borderColor: state.isFocused ? CB_HEX : styles.borderColor,
     '&:hover': {
       borderColor: state.isFocused ? CB_HEX : styles.borderColor
