@@ -83,7 +83,11 @@ export default function ModificationsList(p) {
   // Array of ids for currently displayed modifications
   const [modificationsOnMap, setModificationsOnMap] = useState<Modification[]>(
     () => {
-      const _idsOnMap: string[] = get(getParsedItem(LS_MOM), projectId, [])
+      const _idsOnMap: string[] = get(
+        getParsedItem(LS_MOM),
+        projectId,
+        []
+      ) as string[]
       return modifications.filter((m) => _idsOnMap.includes(m._id))
     }
   )
