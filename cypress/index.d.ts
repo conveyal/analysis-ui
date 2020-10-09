@@ -4,8 +4,8 @@
 declare namespace Cypress {
   type Entity = 'analysis' | 'bundle' | 'opportunities' | 'project' | 'region'
 
+  // eslint-disable-next-line
   interface Chainable {
-    // eslint-disable-line
     /**
      * Center the map on the given coordinates.
      * @example cy.centerMapOn([60, 25])
