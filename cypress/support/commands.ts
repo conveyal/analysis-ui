@@ -131,7 +131,7 @@ function createNewOpportunities() {
     // check number of fields uploaded
     cy.get('@notice').contains(/Finished uploading 1 feature/i)
     // close the message
-    cy.get('@notice').findByRole('button', {name: /x/}).click()
+    cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // now grab the ID
     cy.findByText(/Select\.\.\./)
       .click()

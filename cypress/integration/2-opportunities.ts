@@ -45,7 +45,7 @@ describe('Opportunity Datasets', function () {
         `Finished uploading ${expectedFieldCount} features`
       )
       // close the message
-      cy.get('@notice').findByRole('button', {name: /x/}).click()
+      cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
       cy.findByLabelText(/or select an existing one/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
@@ -85,7 +85,7 @@ describe('Opportunity Datasets', function () {
         `Finished uploading ${expectedFieldCount} features`
       )
       // close the message
-      cy.get('@notice').findByRole('button', {name: /x/}).click()
+      cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
       cy.findByLabelText(/or select an existing one/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
@@ -118,7 +118,7 @@ describe('Opportunity Datasets', function () {
       // check number of fields uploaded
       cy.get('@notice').contains(/Finished uploading 1 feature/i)
       // close the message
-      cy.get('@notice').findByRole('button', {name: /x/}).click()
+      cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
       cy.findByLabelText(/or select an existing one/).type(
         `${oppName} {enter}`,
