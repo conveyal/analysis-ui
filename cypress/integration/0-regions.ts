@@ -9,7 +9,7 @@ const getEast = () => cy.findByLabelText(/East bound/)
 const getWest = () => cy.findByLabelText(/West bound/)
 const getCreate = () => cy.findByRole('button', {name: /Set up a new region/})
 const getSave = () => cy.findByRole('button', {name: /Save changes/})
-const getSearch = () => cy.get('input#react-select-2-input').as('search')
+const getSearch = () => cy.get('#geocoder')
 
 /**
  * Scratch region
@@ -34,7 +34,7 @@ function testInvalidCoordinates() {
     .itsNumericValue()
     .then((northVal) => {
       getSouth().clear().type(`${northVal}`).blur()
-      cy.wait(1) // eslint-disable-line
+      cy.wait(10) // eslint-disable-line
       getSouth().itsNumericValue().should('be.lt', northVal)
     })
   // try to set east < west
@@ -45,13 +45,13 @@ function testInvalidCoordinates() {
         .clear()
         .type(`${eastVal + 1}`)
         .blur()
-      cy.wait(1) // eslint-disable-line
+      cy.wait(10) // eslint-disable-line
       getWest().itsNumericValue().should('be.lt', eastVal)
     })
   // try to enter a non-numeric value
   // form should revert to previous numeric value
   getWest().clear().type('letters').blur()
-  cy.wait(1) // eslint-disable-line
+  cy.wait(10) // eslint-disable-line
   getWest().itsNumericValue().should('not.be.NaN')
 }
 
