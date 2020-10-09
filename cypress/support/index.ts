@@ -11,21 +11,25 @@ import 'cypress-wait-until'
 
 import {pseudoFixture} from './commands'
 
+// Should data be reset?
+const resetData = Cypress.env('resetDataBeforeEachRun')
+
+/**
+ * TODO do this directly via MongoDB
+ */
 before('Optionally wipe configured state', () => {
-  cy.wrap(Cypress.env('resetDataBeforeEachRun')).then((resetData) => {
-    if (resetData === true) {
-      cy.task('touch', pseudoFixture)
-      cy.readFile(pseudoFixture).then((storedVals) => {
-        if ('regionId' in storedVals) {
-          cy.visit(`/regions/${storedVals.regionId}`)
-          cy.navTo('Region Settings')
-          cy.findByRole('button', {name: /Delete this region/i}).click()
-          cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
-        }
-      })
-      cy.writeFile(pseudoFixture, '{}')
-    }
-  })
+  if (resetData === true) {
+    cy.task('touch', pseudoFixture)
+    cy.readFile(pseudoFixture).then((storedVals) => {
+      if ('regionId' in storedVals) {
+        cy.visit(`/regions/${storedVals.regionId}`)
+        cy.navTo('Region Settings')
+        cy.findByRole('button', {name: /Delete this region/i}).click()
+        cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
+      }
+    })
+    cy.writeFile(pseudoFixture, '{}')
+  }
 })
 
 /**

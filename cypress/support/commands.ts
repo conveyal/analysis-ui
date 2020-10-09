@@ -27,11 +27,11 @@ Cypress.Commands.add('loadingComplete', () =>
 )
 
 // Wait until the page has finished loading
-Cypress.Commands.add('navComplete', () => {
-  return cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
+Cypress.Commands.add('navComplete', () =>
+  cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
     timeout: 15000
   })
-})
+)
 
 // For easy use inside tests
 Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
@@ -41,9 +41,14 @@ Cypress.Commands.add('getPseudoFixture', () => {
 })
 
 // Check if a floating point number is within a certain tolerance
-Cypress.Commands.add('isWithin', (f1, f2, tolerance = 0) => {
-  cy.wrap(Math.abs(Number(f1) - Number(f2)) <= tolerance).should('be.true')
-})
+Cypress.Commands.add('isWithin', (f1: number, f2: number, tolerance = 0) =>
+  cy.wrap(Math.abs(f1 - f2) <= tolerance).should('be.true')
+)
+
+// Get the numeric value of an input
+Cypress.Commands.add('itsNumericValue', () =>
+  cy.its('value').then((v: string) => Number(v))
+)
 
 // Recursive setup
 Cypress.Commands.add('setup', setup)
@@ -88,7 +93,7 @@ function setup(entity) {
     } else if (entity === 'project') {
       return setup('bundle').then(() => createNewProject())
     } else if (entity === 'analysis') {
-      return setup('project').then(() => createNewAnalysis())
+      throw new Error('Analysis setup not implemented yet')
     }
   })
 }
@@ -100,17 +105,10 @@ function stash(key, val) {
   })
 }
 
-function createNewAnalysis() {
-  // TODO this function is left here empty for now - only one regional analysis
-  // is ever created, so it seems best not to duplicate that code here without
-  // need. It probably should be done eventually though.
-  return assert(false).is.true
-}
-
 function createNewOpportunities() {
   return cy.fixture(regionFixture).then((region) => {
-    let opportunity = region.opportunities.grid
-    let oppName = `${prefix}default_opportunities`
+    const opportunity = region.opportunities.grid
+    const oppName = `${prefix}default_opportunities`
     cy.navTo('Opportunity Datasets')
     cy.findByText(/Upload a new dataset/i).click()
     cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
@@ -128,7 +126,7 @@ function createNewOpportunities() {
     // check number of fields uploaded
     cy.get('@notice').contains(/Finished uploading 1 feature/i)
     // close the message
-    cy.get('@notice').findByRole('button', /x/).click()
+    cy.get('@notice').findByRole('button', {name: /x/}).click()
     // now grab the ID
     cy.findByText(/Select\.\.\./)
       .click()
@@ -173,7 +171,7 @@ function createNewRegion() {
 }
 
 function createNewBundle() {
-  let bundleName = prefix + regionName + ' bundle'
+  const bundleName = prefix + regionName + ' bundle'
   cy.navTo('Network Bundles')
   cy.findByText(/Create .* bundle/).click()
   cy.location('pathname').should('match', /\/bundles\/create$/)
@@ -241,19 +239,17 @@ Cypress.Commands.add('deleteProject', (projectName) => {
   })
 })
 
+const getPanel = () => cy.contains('Scenarios').parent()
 Cypress.Commands.add('deleteScenario', (scenarioName) => {
   // can be called when editing modifications
   cy.navTo('Edit Modifications')
   // open the scenario panel if it isn't already
-  cy.contains('Scenarios')
-    .parent()
-    .as('panel')
-    .then((panel) => {
-      if (!panel.text().includes('Create a scenario')) {
-        cy.get(panel).click()
-      }
-    })
-  cy.get('@panel')
+  getPanel().then((panel) => {
+    if (!panel.text().includes('Create a scenario')) {
+      cy.wrap(panel).click()
+    }
+  })
+  getPanel()
     .contains(scenarioName)
     .findByTitle(/Delete this scenario/)
     .click()
@@ -320,44 +316,43 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
 
 Cypress.Commands.add('clickMap', (coord) => {
   console.assert('lat' in coord && 'lon' in coord)
-  cy.window()
-    .its('LeafletMap')
-    .then((map) => {
-      let pix = map.latLngToContainerPoint([coord.lat, coord.lon])
-      cy.get('div.leaflet-container').click(pix.x, pix.y)
-    })
+  cy.getLeafletMap().then((map) => {
+    const pix = map.latLngToContainerPoint([coord.lat, coord.lon])
+    cy.get('div.leaflet-container').click(pix.x, pix.y)
+  })
 })
 
-Cypress.Commands.add('waitForMapToLoad', () => {
-  cy.window()
-    .its('LeafletMap')
-    .then((map) => {
-      // this just does not seem to work as expected. The wait remains necessary
-      cy.wrap(map).its('_loaded').should('be.true')
-      //cy.wrap(map).its('_renderer').its('_drawing').should('be.false')
-      cy.wait(500) // eslint-disable-line cypress/no-unnecessary-waiting
-    })
-})
+Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
 
-Cypress.Commands.add('mapCenteredOn', (latLonArray, tolerance) => {
-  cy.window()
-    .its('LeafletMap')
-    .then((map) => {
-      cy.wrap(map.distance(map.getCenter(), latLonArray)).should(
-        'be.lessThan',
-        tolerance
+Cypress.Commands.add('waitForMapToLoad', () =>
+  cy
+    .getLeafletMap() // eslint-disable-line
+    .its('_loaded')
+    .should('be.true') // this just does not seem to work as expected. The wait remains necessary
+    .wait(500)
+)
+
+Cypress.Commands.add(
+  'mapCenteredOn',
+  (latLonArray: [number, number], tolerance: number) =>
+    cy
+      .getLeafletMap()
+      .then((map) =>
+        cy
+          .wrap(map.distance(map.getCenter(), latLonArray))
+          .should('be.lessThan', tolerance)
       )
-    })
-})
+)
 
-Cypress.Commands.add('centerMapOn', (latLonArray, zoom = 12) => {
-  // centers map on a given lat/lon coordinate: [x,y]
-  cy.window()
-    .its('LeafletMap')
-    .then((map) => {
+Cypress.Commands.add(
+  'centerMapOn',
+  (latLonArray: [number, number], zoom = 12) =>
+    // centers map on a given lat/lon coordinate: [x,y]
+    cy.getLeafletMap().then((map) => {
       map.setView(latLonArray, zoom)
+      return map
     })
-})
+)
 
 Cypress.Commands.add('login', function () {
   cy.getCookie('a0:state').then((cookie) => {
@@ -367,7 +362,7 @@ Cypress.Commands.add('login', function () {
     cy.visit('/')
     cy.findByLabelText('Email').type(Cypress.env('username'))
     cy.findByLabelText('Password').type(Cypress.env('password'))
-    cy.findByRole('button', {label: 'Log In'}).click()
+    cy.findByRole('button', {name: 'Log In'}).click()
 
     // Should show the home page
     cy.findByText(new RegExp(Cypress.env('username')))

@@ -1,6 +1,5 @@
 describe('Network bundles', () => {
   before('prepare the region', () => {
-    cy.setup('region')
     cy.setup('bundle')
   })
 
@@ -10,7 +9,7 @@ describe('Network bundles', () => {
   })
 
   it('with single feed can be uploaded and deleted', function () {
-    let bundleName = Cypress.env('dataPrefix') + ' temp bundle ' + Date.now()
+    const bundleName = Cypress.env('dataPrefix') + ' temp bundle ' + Date.now()
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type(bundleName)
@@ -47,7 +46,7 @@ describe('Network bundles', () => {
       })
     cy.findByLabelText(/Feed #2/).should('not.exist')
     cy.findByText(/Delete this network bundle/i).click()
-    cy.findByRole('alertdialog', 'Confirm')
+    cy.findByRole('alertdialog', {name: 'Confirm'})
       .findByRole('button', {name: /Delete/})
       .click()
     cy.location('pathname').should('match', /.*\/bundles$/)
@@ -57,7 +56,7 @@ describe('Network bundles', () => {
   })
 
   it('can reuse OSM and GTFS components', function () {
-    let bundleName = Cypress.env('dataPrefix') + 'temp bundle ' + Date.now()
+    const bundleName = Cypress.env('dataPrefix') + 'temp bundle ' + Date.now()
     cy.findByText(/Create a new network bundle/).click()
     cy.location('pathname').should('match', /.*\/bundles\/create$/)
     cy.findByLabelText(/Bundle Name/i).type(bundleName)
@@ -86,7 +85,7 @@ describe('Network bundles', () => {
         expect(val).to.eq(this.region.feedAgencyName)
       })
     cy.findByText(/Delete this network bundle/i).click()
-    cy.findByRole('alertdialog', 'Confirm')
+    cy.findByRole('alertdialog', {name: /Confirm/})
       .findByRole('button', {name: /Delete/})
       .click()
     cy.location('pathname').should('match', /.*\/bundles$/)
@@ -122,7 +121,7 @@ describe('Network bundles', () => {
       'Please upload valid OSM .pbf and GTFS .zip files.'
     )
     cy.findByRole('button', {name: /delete/i}).click()
-    cy.findByRole('alertdialog', 'Confirm')
+    cy.findByRole('alertdialog', {name: /Confirm/})
       .findByRole('button', {name: /Delete/})
       .click()
   })
@@ -165,7 +164,7 @@ describe('Network bundles', () => {
       })
     cy.findByLabelText(/Feed #3/).should('not.exist')
     cy.findByText(/Delete this network bundle/i).click()
-    cy.findByRole('alertdialog', 'Confirm')
+    cy.findByRole('alertdialog', {name: /Confirm/})
       .findByRole('button', {name: /Delete/})
       .click()
     cy.location('pathname').should('match', /.*\/bundles$/)

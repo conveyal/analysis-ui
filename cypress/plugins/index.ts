@@ -11,10 +11,10 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-const {addMatchImageSnapshotPlugin} = require('cypress-image-snapshot/plugin')
-const fs = require('fs')
+import {addMatchImageSnapshotPlugin} from 'cypress-image-snapshot/plugin'
+import fs from 'fs'
 
-module.exports = (on, config) => {
+export default function initializePlugins(on, config) {
   addMatchImageSnapshotPlugin(on, config)
 
   // used to create the pseudoFixture file

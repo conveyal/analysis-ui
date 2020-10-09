@@ -10,9 +10,10 @@ describe('Opportunity Datasets', function () {
     cy.setup('region')
   })
 
+  let scratchOpportunities: Record<string, any> = {}
   beforeEach(() => {
     cy.fixture('regions/scratch.json').then((data) => {
-      this.opportunities = data.opportunities
+      scratchOpportunities = data.opportunities
     })
     cy.navTo('Opportunity datasets')
     cy.get('div.leaflet-container').as('map')
@@ -20,9 +21,9 @@ describe('Opportunity Datasets', function () {
 
   describe('can be imported', () => {
     it('from CSV', () => {
-      let opportunity = this.opportunities.csv
-      let oppName = generateName('opportunities', opportunity.name)
-      let expectedFieldCount = 1 + opportunity.numericFields.length
+      const opportunity = scratchOpportunities.csv
+      const oppName = generateName('opportunities', opportunity.name)
+      const expectedFieldCount = 1 + opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
       cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
@@ -44,7 +45,7 @@ describe('Opportunity Datasets', function () {
         `Finished uploading ${expectedFieldCount} features`
       )
       // close the message
-      cy.get('@notice').findByRole('button', /x/).click()
+      cy.get('@notice').findByRole('button', {name: /x/}).click()
       // select in the dropdown
       cy.findByLabelText(/or select an existing one/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
@@ -60,9 +61,9 @@ describe('Opportunity Datasets', function () {
     })
 
     it('from shapefile', () => {
-      let opportunity = this.opportunities.shapefile
-      let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
-      let expectedFieldCount = opportunity.numericFields.length
+      const opportunity = scratchOpportunities.shapefile
+      const oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
+      const expectedFieldCount = opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
       cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
@@ -84,7 +85,7 @@ describe('Opportunity Datasets', function () {
         `Finished uploading ${expectedFieldCount} features`
       )
       // close the message
-      cy.get('@notice').findByRole('button', /x/).click()
+      cy.get('@notice').findByRole('button', {name: /x/}).click()
       // select in the dropdown
       cy.findByLabelText(/or select an existing one/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
@@ -96,8 +97,8 @@ describe('Opportunity Datasets', function () {
     })
 
     it('from .grid', () => {
-      let opportunity = this.opportunities.grid
-      let oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
+      const opportunity = scratchOpportunities.grid
+      const oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       cy.findByText(/Upload a new dataset/i).click()
       cy.location('pathname').should('match', /\/opportunities\/upload$/)
       cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
@@ -117,7 +118,7 @@ describe('Opportunity Datasets', function () {
       // check number of fields uploaded
       cy.get('@notice').contains(/Finished uploading 1 feature/i)
       // close the message
-      cy.get('@notice').findByRole('button', /x/).click()
+      cy.get('@notice').findByRole('button', {name: /x/}).click()
       // select in the dropdown
       cy.findByLabelText(/or select an existing one/).type(
         `${oppName} {enter}`,
@@ -135,7 +136,7 @@ describe('Opportunity Datasets', function () {
       cy.setup('opportunities')
     })
     it('as .grid', () => {
-      let opportunity = this.opportunities.grid
+      const opportunity = scratchOpportunities.grid
       // TODO should get the data via click, not hardcoded API url
       cy.findByLabelText(/or select an existing one/).type(`default{enter}`, {
         force: true
@@ -144,7 +145,7 @@ describe('Opportunity Datasets', function () {
       cy.location('href')
         .should('match', /opportunityDatasetId=\w{24}$/)
         .then((href) => {
-          let gridId = href.match(/\w{24}$/)[0]
+          const gridId = href.match(/\w{24}$/)[0]
           cy.request(
             `http://localhost:7070/api/opportunities/${gridId}/grid`
           ).then((response) => {

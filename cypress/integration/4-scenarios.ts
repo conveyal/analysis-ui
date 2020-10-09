@@ -1,4 +1,4 @@
-function findScenarioByName(name) {
+function findScenarioByName(name: string) {
   return cy.get('#scenarios').contains(name).parent().parent().parent()
 }
 

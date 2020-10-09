@@ -31,31 +31,34 @@ const regionData = {
 function testInvalidCoordinates() {
   // try to set south == north
   getNorth()
-    .invoke('val')
+    .itsNumericValue()
     .then((northVal) => {
-      getSouth().clear().type(northVal).blur()
-      getSouth().should((south) => {
-        expect(Number(south[0].value)).to.be.lessThan(Number(northVal))
-      })
+      getSouth()
+        .clear()
+        .type(`${northVal}`)
+        .blur()
+        .itsNumericValue()
+        .should('be.lessThan', northVal)
     })
   // try to set east < west
   getEast()
-    .invoke('val')
+    .itsNumericValue()
     .then((eastVal) => {
       getWest()
         .clear()
-        .type(Number(eastVal) + 1)
+        .type(`${eastVal + 1}`)
         .blur()
-      getWest().should((west) => {
-        expect(Number(west[0].value)).to.be.lessThan(Number(eastVal))
-      })
+        .itsNumericValue()
+        .should('be.lessThan', eastVal)
     })
   // try to enter a non-numeric value
   // form should revert to previous numeric value
-  getWest().clear().type('letters').blur()
-  getWest().should((west) => {
-    assert.isNotNaN(Number(west[0].value))
-  })
+  getWest()
+    .clear()
+    .type('letters')
+    .blur()
+    .itsNumericValue()
+    .should('not.be.NaN')
 }
 
 /**
@@ -143,10 +146,18 @@ describe('Regions', () => {
     cy.findByText(regionData.foundName).click()
     cy.mapCenteredOn(regionData.center, 10000)
     // Enter exact coordinates
-    getNorth().clear().type(regionData.north)
-    getSouth().clear().type(regionData.south)
-    getEast().clear().type(regionData.east)
-    getWest().clear().type(regionData.west)
+    getNorth()
+      .clear()
+      .type(regionData.north + '')
+    getSouth()
+      .clear()
+      .type(regionData.south + '')
+    getEast()
+      .clear()
+      .type(regionData.east + '')
+    getWest()
+      .clear()
+      .type(regionData.west + '')
     // Create the region
     getCreate().click()
     cy.navComplete()
@@ -165,16 +176,16 @@ describe('Regions', () => {
     getDesc().should('have.value', regionData.description)
     // coordinate values are rounded to match analysis grid
     getNorth()
-      .invoke('val')
+      .itsNumericValue()
       .then((coord) => cy.isWithin(coord, regionData.north, 0.02))
     getSouth()
-      .invoke('val')
+      .itsNumericValue()
       .then((coord) => cy.isWithin(coord, regionData.south, 0.02))
     getEast()
-      .invoke('val')
+      .itsNumericValue()
       .then((coord) => cy.isWithin(coord, regionData.east, 0.02))
     getWest()
-      .invoke('val')
+      .itsNumericValue()
       .then((coord) => cy.isWithin(coord, regionData.west, 0.02))
     cy.mapCenteredOn(regionData.center, 10000)
     getSave().should('be.disabled')

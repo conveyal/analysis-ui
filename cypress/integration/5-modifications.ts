@@ -1,3 +1,5 @@
+import {polyline} from 'leaflet'
+
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
 const createModName = (type, description = '') =>
   `${modificationPrefix}${type}${description}${Date.now()}`
@@ -64,7 +66,7 @@ function openMod(modType, modName) {
     .as('modList')
     .then((modList) => {
       if (!modList.text().includes(modName)) {
-        cy.get(modList).click()
+        cy.wrap(modList).click()
       }
     })
   cy.get('@modList').contains(modName).click()
@@ -101,9 +103,8 @@ function drawRouteGeometry(newRoute) {
   cy.findByText(/Edit route geometry/i)
     .click()
     .contains(/Stop editing/i)
-  cy.window().then((win) => {
-    const map = win.LeafletMap
-    const route = win.L.polyline(newRoute)
+  cy.getLeafletMap().then((map) => {
+    const route = polyline(newRoute)
     map.fitBounds(route.getBounds(), {animate: false})
     cy.waitForMapToLoad()
     // click at the coordinates
@@ -116,7 +117,7 @@ function drawRouteGeometry(newRoute) {
       }
     })
     // convert an arbitrary stop to a control point
-    const stop = coords[coords.length - 2]
+    const stop: L.LatLng = coords[coords.length - 2] as L.LatLng
     const pix = map.latLngToContainerPoint(stop)
     getMap().click(pix.x, pix.y)
     getMap()
@@ -150,9 +151,10 @@ function clearAllModifications() {
 }
 
 describe('Modifications', function () {
+  let regionFixture: Record<string, any> = {}
   before(() => {
     cy.fixture('regions/scratch.json').then((data) => {
-      this.region = data
+      regionFixture = data
     })
     cy.setup('project')
     clearAllModifications()
@@ -277,7 +279,7 @@ describe('Modifications', function () {
       cy.findByLabelText(/Times are exact/i).uncheck({force: true})
       cy.findByLabelText(/Phase at stop/i)
       // drawing a route activates the following elements
-      drawRouteGeometry(this.region.newRoute)
+      drawRouteGeometry(regionFixture.newRoute)
       // set dwell times, verifying that they increase the total travel time
       cy.findByText(/Travel time/i)
         .parent()
@@ -309,15 +311,15 @@ describe('Modifications', function () {
       cy.findByRole('button', {name: /Set individual segment speeds/i}).click()
       // decreasing segment speed should increase travel time
       cy.findByLabelText(/Segment 1 speed/i)
-        .invoke('val')
-        .should('match', /\d+/i)
+        .itsNumericValue()
+        .should('not.be.NaN')
         .then((segSpeed) => {
           cy.get('@travelTime')
             .invoke('text')
             .then((initialTime) => {
               cy.findByLabelText(/Segment 1 speed/i)
                 .clear()
-                .type(segSpeed * 0.5)
+                .type(`${segSpeed * 0.5}`)
               cy.get('@travelTime')
                 .invoke('text')
                 .then((newTime) => {
@@ -341,22 +343,22 @@ describe('Modifications', function () {
       cy.findByRole('button', {name: /Import from Shapefile/}).click()
       cy.location('pathname').should('match', /import-shapefile/g)
       cy.findByLabelText(/Select Shapefile/i).attachFile({
-        filePath: this.region.importRoutes.shapefile,
+        filePath: regionFixture.importRoutes.shapefile,
         mimeType: 'application/octet-stream',
         encoding: 'base64'
       })
-      cy.findByLabelText(/Name/).select(this.region.importRoutes.nameField)
+      cy.findByLabelText(/Name/).select(regionFixture.importRoutes.nameField)
       cy.findByLabelText(/Frequency/).select(
-        this.region.importRoutes.frequencyField
+        regionFixture.importRoutes.frequencyField
       )
-      cy.findByLabelText(/Speed/).select(this.region.importRoutes.speedField)
+      cy.findByLabelText(/Speed/).select(regionFixture.importRoutes.speedField)
       cy.findByText(/Import/)
         .should('not.be.disabled')
         .click()
 
       cy.location('pathname').should('match', /projects\/.{24}\/modifications/)
 
-      this.region.importRoutes.routes.forEach((route) => {
+      regionFixture.importRoutes.routes.forEach((route) => {
         openMod('Add Trip Pattern', route.name)
         cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
         cy.findByLabelText(/Frequency/)
@@ -375,7 +377,7 @@ describe('Modifications', function () {
       cy.findAllByRole('alert').contains(/must have at least 2 stops/)
       cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
       // add a route geometry
-      drawRouteGeometry(this.region.newRoute)
+      drawRouteGeometry(regionFixture.newRoute)
 
       cy.findAllByRole('alert')
         .contains(/must have at least 2 stops/)
@@ -399,7 +401,7 @@ describe('Modifications', function () {
       const modName = createModName('ATP', 'timetable templates')
       setupMod('Add Trip Pattern', modName)
       // add a route geometry
-      drawRouteGeometry(this.region.newRoute)
+      drawRouteGeometry(regionFixture.newRoute)
 
       cy.findByText(/Add new timetable/).click()
       cy.findByText('Timetable 1').click({force: true})
@@ -482,10 +484,10 @@ describe('Modifications', function () {
       setupMod('Adjust Dwell Time', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type(this.region.feedAgencyName + '{enter}')
+        .type(regionFixture.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type(this.region.sampleRouteName + '{enter}')
+        .type(regionFixture.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Scale existing dwell times by/i).click({force: true})
       cy.findByLabelText(/Set new dwell time to/i).click({force: true})
@@ -499,14 +501,14 @@ describe('Modifications', function () {
       setupMod('Adjust Speed', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type(this.region.feedAgencyName + '{enter}')
+        .type(regionFixture.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type(this.region.sampleRouteName + '{enter}')
+        .type(regionFixture.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       cy.findByLabelText(/Scale speed by/i)
-        .invoke('val')
-        .then((val) => expect(val * 1).to.eq(1))
+        .itsNumericValue()
+        .should('eq', 1)
       deleteThisMod()
     })
   })
@@ -517,10 +519,10 @@ describe('Modifications', function () {
       setupMod('Convert To Frequency', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type(this.region.feedAgencyName + '{enter}')
+        .type(regionFixture.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type(this.region.sampleRouteName + '{enter}')
+        .type(regionFixture.sampleRouteName + '{enter}')
       cy.findByLabelText(/retain existing scheduled trips/i).click({
         force: true
       })
@@ -553,11 +555,11 @@ describe('Modifications', function () {
     */
     it('has working form elements', () => {
       const modName = createModName('RS', 'form')
-      let testCase = this.region.testCases.removeStops
+      const testCase = regionFixture.testCases.removeStops
       setupMod('Remove Stops', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type(this.region.feedAgencyName + '{enter}')
+        .type(regionFixture.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
         .type(testCase.routeName + '{enter}')
@@ -577,10 +579,10 @@ describe('Modifications', function () {
       setupMod('Remove Trips', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type(this.region.feedAgencyName + '{enter}')
+        .type(regionFixture.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type(this.region.sampleRouteName + '{enter}')
+        .type(regionFixture.sampleRouteName + '{enter}')
       cy.findByLabelText(/Select patterns/i)
       deleteThisMod()
     })
@@ -592,18 +594,17 @@ describe('Modifications', function () {
       setupMod('Reroute', modName)
       cy.findByLabelText(/Select feed/)
         .click({force: true})
-        .type(this.region.feedAgencyName + '{enter}')
+        .type(regionFixture.feedAgencyName + '{enter}')
       cy.findByLabelText(/Select route/)
         .click({force: true})
-        .type(this.region.sampleRouteName + '{enter}')
+        .type(regionFixture.sampleRouteName + '{enter}')
       // verify existence only
       cy.findByLabelText(/Select patterns/i)
 
       // Select from stop and to stop
-      cy.window().then((win) => {
-        const map = win.LeafletMap
+      cy.getLeafletMap().then((map) => {
         cy.findByLabelText(/Select from stop/).click()
-        let p1 = map.latLngToContainerPoint([39.0877, -84.5192])
+        const p1 = map.latLngToContainerPoint([39.0877, -84.5192])
         getMap().click(p1.x, p1.y)
         // test clearing the from stop
         cy.findByLabelText(/Clear from stop/).click()
@@ -614,7 +615,7 @@ describe('Modifications', function () {
 
         // Select the to stop
         cy.findByLabelText(/Select to stop/).click()
-        let p2 = map.latLngToContainerPoint([39.1003, -84.4855])
+        const p2 = map.latLngToContainerPoint([39.1003, -84.4855])
         getMap().click(p2.x, p2.y)
       })
 

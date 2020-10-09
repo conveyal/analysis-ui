@@ -14,7 +14,7 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
     .as('profile')
     .invoke('val')
     .then((currentConfig) => {
-      newConfig = JSON.parse(currentConfig)
+      newConfig = JSON.parse(currentConfig + '')
       newConfig[settingKey] = newValue
 
       return cy
@@ -88,12 +88,14 @@ describe('Analysis', function () {
     cy.setup('opportunities')
   })
 
+  let regionFixture: Record<string, any> = {}
+  let resultsFixture: Record<string, any> = {}
   beforeEach(() => {
     cy.fixture('regions/scratch.json').then((data) => {
-      this.region = data
+      regionFixture = data
     })
     cy.fixture('regions/scratch-results.json').then((data) => {
-      this.results = data
+      resultsFixture = data
     })
     setupAnalysis()
   })
@@ -136,22 +138,22 @@ describe('Analysis', function () {
       // set new parameters
       setTimeCutoff(75)
       // move marker and align map for snapshot
-      for (let key in this.region.locations) {
-        let location = this.region.locations[key]
+      for (const key in regionFixture.locations) {
+        const location = regionFixture.locations[key]
         setOrigin(location)
         cy.centerMapOn(location)
         fetchResults()
         cy.findByLabelText('Opportunities within isochrone')
           .invoke('text')
           .then((val) => {
-            expect(asInt(val)).to.equal(this.results.locations[key].default)
+            expect(asInt(val)).to.equal(resultsFixture.locations[key].default)
           })
       }
     })
 
     it('handles direct access by walk/bike only', () => {
-      const location = this.region.locations.middle
-      const results = this.results.locations.middle
+      const location = regionFixture.locations.middle
+      const results = resultsFixture.locations.middle
       setOrigin(location)
       cy.centerMapOn(location)
       // turn off all transit
@@ -178,11 +180,11 @@ describe('Analysis', function () {
     })
 
     it('uses custom analysis bounds', () => {
-      const location = this.region.locations.center
-      const results = this.results.locations.center
+      const location = regionFixture.locations.center
+      const results = resultsFixture.locations.center
       setOrigin(location)
       cy.centerMapOn(location)
-      setCustom('bounds', this.region.customRegionSubset)
+      setCustom('bounds', regionFixture.customRegionSubset)
       fetchResults()
       selectDefaultOpportunityDataset()
       cy.findByLabelText('Opportunities within isochrone')
@@ -193,8 +195,8 @@ describe('Analysis', function () {
     })
 
     it('gives different results at different times', () => {
-      const location = this.region.locations.center
-      const results = this.results.locations.center
+      const location = regionFixture.locations.center
+      const results = resultsFixture.locations.center
       setOrigin(location)
       cy.centerMapOn(location)
       // set time window in morning rush -- should have high access
@@ -233,7 +235,7 @@ describe('Analysis', function () {
     })
 
     it('charts accessibility', () => {
-      const location = this.region.locations.center
+      const location = regionFixture.locations.center
       setOrigin(location)
       fetchResults()
       selectDefaultOpportunityDataset()
@@ -337,7 +339,7 @@ describe('Analysis', function () {
   describe('of a region', () => {
     it('runs a regional analysis, etc.', () => {
       const analysisName = Cypress.env('dataPrefix') + 'regional_' + Date.now()
-      setCustom('bounds', this.region.customRegionSubset)
+      setCustom('bounds', regionFixture.customRegionSubset)
       fetchResults()
       // start the analysis
       cy.get('@primary')
@@ -396,30 +398,30 @@ describe('Analysis', function () {
       cy.findByLabelText(/Aggregation area name/i).type('cities')
       cy.findByLabelText(/Select aggregation area files/i)
         .attachFile({
-          filePath: this.region.aggregationAreas.files[0],
+          filePath: regionFixture.aggregationAreas.files[0],
           encoding: 'base64'
         })
         .attachFile({
-          filePath: this.region.aggregationAreas.files[1],
+          filePath: regionFixture.aggregationAreas.files[1],
           encoding: 'base64'
         })
         .attachFile({
-          filePath: this.region.aggregationAreas.files[2],
+          filePath: regionFixture.aggregationAreas.files[2],
           encoding: 'base64'
         })
         .attachFile({
-          filePath: this.region.aggregationAreas.files[3],
+          filePath: regionFixture.aggregationAreas.files[3],
           encoding: 'base64'
         })
       cy.findByLabelText(/Union/).uncheck({force: true})
       cy.findByLabelText(/Attribute name to lookup on the shapefile/i)
         .clear()
-        .type(this.region.aggregationAreas.nameField)
+        .type(regionFixture.aggregationAreas.nameField)
       cy.get('@upload').scrollIntoView().click()
       cy.contains(/Upload complete/, {timeout: 30000}).should('be.visible')
       // TODO label dissociated from input
       //cy.findByLabelText(/Aggregate results to/i)
-      //  .type(this.region.aggregationAreas.sampleName+'{enter}')
+      //  .type(regionFixture.aggregationAreas.sampleName+'{enter}')
       // clean up
       cy.findByRole('button', {name: 'Delete'}).click()
       cy.findByRole('button', {name: /Confirm/}).click()
