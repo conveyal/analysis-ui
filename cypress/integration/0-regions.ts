@@ -33,12 +33,8 @@ function testInvalidCoordinates() {
   getNorth()
     .itsNumericValue()
     .then((northVal) => {
-      getSouth()
-        .clear()
-        .type(`${northVal}`)
-        .blur()
-        .itsNumericValue()
-        .should('be.lessThan', northVal)
+      getSouth().clear().type(`${northVal}`).blur()
+      getSouth().itsNumericValue().should('be.lt', northVal)
     })
   // try to set east < west
   getEast()
@@ -49,7 +45,7 @@ function testInvalidCoordinates() {
         .type(`${eastVal + 1}`)
         .blur()
         .itsNumericValue()
-        .should('be.lessThan', eastVal)
+        .should('be.lt', eastVal)
     })
   // try to enter a non-numeric value
   // form should revert to previous numeric value
@@ -175,18 +171,10 @@ describe('Regions', () => {
     getName().should('have.value', regionName)
     getDesc().should('have.value', regionData.description)
     // coordinate values are rounded to match analysis grid
-    getNorth()
-      .itsNumericValue()
-      .then((coord) => cy.isWithin(coord, regionData.north, 0.02))
-    getSouth()
-      .itsNumericValue()
-      .then((coord) => cy.isWithin(coord, regionData.south, 0.02))
-    getEast()
-      .itsNumericValue()
-      .then((coord) => cy.isWithin(coord, regionData.east, 0.02))
-    getWest()
-      .itsNumericValue()
-      .then((coord) => cy.isWithin(coord, regionData.west, 0.02))
+    getNorth().itsNumericValue().isWithin(regionData.north, 0.02)
+    getSouth().itsNumericValue().isWithin(regionData.south, 0.02)
+    getEast().itsNumericValue().isWithin(regionData.east, 0.02)
+    getWest().itsNumericValue().isWithin(regionData.west, 0.02)
     cy.mapCenteredOn(regionData.center, 10000)
     getSave().should('be.disabled')
 

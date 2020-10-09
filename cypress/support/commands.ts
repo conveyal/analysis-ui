@@ -34,20 +34,25 @@ Cypress.Commands.add('navComplete', () =>
 )
 
 // For easy use inside tests
-Cypress.Commands.add('getRegionFixture', () => cy.fixture(regionFixture))
 Cypress.Commands.add('getPseudoFixture', () => {
   cy.task('touch', pseudoFixture)
   return cy.readFile(pseudoFixture)
 })
 
 // Check if a floating point number is within a certain tolerance
-Cypress.Commands.add('isWithin', (f1: number, f2: number, tolerance = 0) =>
-  cy.wrap(Math.abs(f1 - f2) <= tolerance).should('be.true')
+Cypress.Commands.add(
+  'isWithin',
+  {prevSubject: true},
+  (f1: number, f2: number, tolerance = 0) =>
+    cy.wrap(Math.abs(f1 - f2)).should('be.lte', tolerance)
 )
 
 // Get the numeric value of an input
-Cypress.Commands.add('itsNumericValue', () =>
-  cy.its('value').then((v: string) => Number(v))
+Cypress.Commands.add('itsNumericValue', {prevSubject: true}, (subject) =>
+  cy
+    .wrap(subject)
+    .invoke('val')
+    .then((v: string) => Number(v))
 )
 
 // Recursive setup
@@ -311,7 +316,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   // check that page loads at least some content
   cy.contains(page.lookFor, {timeout: 8000}).should('be.visible')
   // Ensure the spinner has stopped loading before continuing
-  cy.navComplete()
+  return cy.navComplete()
 })
 
 Cypress.Commands.add('clickMap', (coord) => {

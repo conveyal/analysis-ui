@@ -26,9 +26,9 @@ declare namespace Cypress {
 
     /**
      * Check if the values are within a tolerance of each other
-     * @example cy.isWithin(6, 7, 1)
+     * @example cy.get('#input').itsNumericValue().isWithin(7, 1)
      */
-    isWithin(n1: number, n2: number, tolerance?: number): Chainable<boolean>
+    isWithin(comparison: number, tolerance?: number): Chainable<boolean>
 
     /**
      * Get the numeric value of an input.
@@ -51,13 +51,13 @@ declare namespace Cypress {
      * Navigate to a page via the sidebar.
      * @example cy.navTo('greeting')
      */
-    navTo(location: string): Chainable<Element>
+    navTo(location: string): Chainable<boolean>
 
     /**
      * Wait until a manual navigation is complete.
      * @example cy.navTo('greeting')
      */
-    navComplete(): Chainable<Element>
+    navComplete(): Chainable<boolean>
 
     /**
      * Setup an entity and all of it's dependencies.
