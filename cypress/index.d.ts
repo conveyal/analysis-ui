@@ -49,13 +49,13 @@ declare namespace Cypress {
 
     /**
      * Navigate to a page via the sidebar.
-     * @example cy.navTo('greeting')
+     * @example cy.navTo('projects')
      */
     navTo(location: string): Chainable<boolean>
 
     /**
      * Wait until a manual navigation is complete.
-     * @example cy.navTo('greeting')
+     * @example cy.navComplete()
      */
     navComplete(): Chainable<boolean>
 

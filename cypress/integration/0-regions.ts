@@ -34,6 +34,7 @@ function testInvalidCoordinates() {
     .itsNumericValue()
     .then((northVal) => {
       getSouth().clear().type(`${northVal}`).blur()
+      cy.wait(1) // eslint-disable-line
       getSouth().itsNumericValue().should('be.lt', northVal)
     })
   // try to set east < west
@@ -44,17 +45,14 @@ function testInvalidCoordinates() {
         .clear()
         .type(`${eastVal + 1}`)
         .blur()
-        .itsNumericValue()
-        .should('be.lt', eastVal)
+      cy.wait(1) // eslint-disable-line
+      getWest().itsNumericValue().should('be.lt', eastVal)
     })
   // try to enter a non-numeric value
   // form should revert to previous numeric value
-  getWest()
-    .clear()
-    .type('letters')
-    .blur()
-    .itsNumericValue()
-    .should('not.be.NaN')
+  getWest().clear().type('letters').blur()
+  cy.wait(1) // eslint-disable-line
+  getWest().itsNumericValue().should('not.be.NaN')
 }
 
 /**
@@ -72,7 +70,6 @@ function deleteThisRegion() {
  * Useful for local development and running of tests.
  */
 function deleteOldScratchRegions() {
-  cy.visit('/')
   cy.get('[class*="Skeleton"]').should('not.exist') // regions loaded
   return cy
     .get('body')
@@ -93,11 +90,11 @@ function deleteOldScratchRegions() {
 
 describe('Regions', () => {
   before(() => {
+    cy.visit('/')
     deleteOldScratchRegions()
   })
 
   it('CRUD', function () {
-    cy.visit('/')
     cy.findByText('Set up a new region').click()
     cy.location('pathname').should('eq', '/regions/create')
 
