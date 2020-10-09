@@ -325,8 +325,8 @@ Cypress.Commands.add('clickMap', (coord) => {
 Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
 
 Cypress.Commands.add('waitForMapToLoad', () =>
-  cy
-    .getLeafletMap() // eslint-disable-line
+  cy // eslint-disable-line
+    .getLeafletMap()
     .its('_loaded')
     .should('be.true') // this just does not seem to work as expected. The wait remains necessary
     .wait(500)
