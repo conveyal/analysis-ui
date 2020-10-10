@@ -1,5 +1,3 @@
-import {polyline} from 'leaflet'
-
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
 const createModName = (type, description = '') =>
   `${modificationPrefix}${type}${description}${Date.now()}`
@@ -99,17 +97,15 @@ function setupMod(modType, modName) {
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 }
 
-function drawRouteGeometry(newRoute) {
+function drawRouteGeometry(newRoute: [number, number][]) {
   cy.findByText(/Edit route geometry/i)
     .click()
     .contains(/Stop editing/i)
   cy.getLeafletMap().then((map) => {
-    const route = polyline(newRoute)
-    map.fitBounds(route.getBounds(), {animate: false})
+    map.fitBounds(newRoute, {animate: false})
     cy.waitForMapToLoad()
     // click at the coordinates
-    const coords = route.getLatLngs()
-    coords.forEach((point, i) => {
+    newRoute.forEach((point, i) => {
       const pix = map.latLngToContainerPoint(point)
       getMap().click(pix.x, pix.y)
       if (i > 0) {
@@ -117,20 +113,20 @@ function drawRouteGeometry(newRoute) {
       }
     })
     // convert an arbitrary stop to a control point
-    const stop: L.LatLng = coords[coords.length - 2] as L.LatLng
+    const stop = newRoute[newRoute.length - 2]
     const pix = map.latLngToContainerPoint(stop)
     getMap().click(pix.x, pix.y)
     getMap()
       .findByText(/make control point/)
       .click()
     // control point not counted as stop
-    cy.contains(new RegExp(coords.length - 1 + ' stops over \\d\\.\\d+ km'))
+    cy.contains(new RegExp(newRoute.length - 1 + ' stops over \\d\\.\\d+ km'))
     // convert control point back to stop
     getMap().click(pix.x, pix.y)
     getMap()
       .findByText(/make stop/)
       .click()
-    cy.contains(new RegExp(coords.length + ' stops over \\d\\.\\d+ km'))
+    cy.contains(new RegExp(newRoute.length + ' stops over \\d\\.\\d+ km'))
   })
   cy.findByText(/Stop editing/i).click()
 }
