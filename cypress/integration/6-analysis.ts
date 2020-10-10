@@ -353,7 +353,9 @@ describe('Analysis', function () {
         .click({force: true})
         .type('people{enter}')
 
-      cy.findByRole('button', {name: 'Create'}).click()
+      cy.findByRole('button', {name: /Create/}).click()
+      cy.findByRole('dialog').should('not.exist')
+
       // we should now be on the regional analyses page
       cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})
       cy.findByRole('heading', {name: analysisName})
