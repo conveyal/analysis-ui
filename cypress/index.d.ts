@@ -37,6 +37,12 @@ declare namespace Cypress {
     itsNumericValue(): Chainable<number>
 
     /**
+     * Get the text as a numberic value.
+     * @example cy.findByText('Opportunities).itsNumericText().should('be', 18200)
+     */
+    itsNumericText(): Chainable<number>
+
+    /**
      * Wait until the spinner is gone and loading is complete.
      */
     loadingComplete(): Chainable<boolean>

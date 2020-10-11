@@ -49,11 +49,6 @@ function setTimeCutoff(minutes) {
     .trigger('input', {force: true})
 }
 
-function asInt(numericText) {
-  // parse formatted numbers with thousands separators
-  return parseInt(numericText.replace(',', ''))
-}
-
 function selectDefaultOpportunityDataset() {
   cy.findByLabelText(/^Opportunity Dataset$/)
     .click({force: true})
@@ -77,9 +72,11 @@ function setupAnalysis() {
     .findByLabelText(/^Scenario$/)
     .click({force: true})
     .type('baseline{enter}')
-  cy.fixture('regions/scratch.json').then((region) => {
-    cy.get('@primary').findByLabelText(/Date/i).clear().type(region.date)
-  })
+  return cy
+    .fixture('regions/scratch.json')
+    .then((region) =>
+      cy.get('@primary').findByLabelText(/Date/i).clear().type(region.date)
+    )
 }
 
 describe('Analysis', function () {
@@ -131,23 +128,21 @@ describe('Analysis', function () {
       cy.findByText(/Fetch results/i).should('be.enabled')
     })
 
-    it('runs, giving reasonable results', () => {
+    it.only('runs, giving reasonable results', () => {
       // tests basic single point analysis at specified locations
       fetchResults() // initialize request
       selectDefaultOpportunityDataset()
       // set new parameters
       setTimeCutoff(75)
       // move marker and align map for snapshot
-      for (const key in regionFixture.locations) {
-        const location = regionFixture.locations[key]
+      for (const location of regionFixture.locations) {
+        // const location = regionFixture.locations[key]
         setOrigin(location)
         cy.centerMapOn(location)
         fetchResults()
         cy.findByLabelText('Opportunities within isochrone')
-          .invoke('text')
-          .then((val) => {
-            expect(asInt(val)).to.equal(resultsFixture.locations[key].default)
-          })
+          .itsNumericText()
+          .isWithin(location.default, 10)
       }
     })
 
@@ -169,11 +164,11 @@ describe('Analysis', function () {
         .should('be.disabled')
       selectDefaultOpportunityDataset()
       fetchResults()
+
       cy.findByLabelText('Opportunities within isochrone')
-        .invoke('text')
-        .then((val) => {
-          expect(asInt(val)).to.equal(results['bike-only'])
-        })
+        .itsNumericText()
+        .isWithin(results.bikeOnly)
+
       cy.get('svg#results-chart')
         .scrollIntoView()
         .matchImageSnapshot('direct-bike-access-chart')
@@ -188,10 +183,8 @@ describe('Analysis', function () {
       fetchResults()
       selectDefaultOpportunityDataset()
       cy.findByLabelText('Opportunities within isochrone')
-        .invoke('text')
-        .then((val) => {
-          expect(asInt(val)).to.equal(results['custom-bounds'])
-        })
+        .itsNumericText()
+        .isWithin(results.customBounds)
     })
 
     it('gives different results at different times', () => {
@@ -212,19 +205,13 @@ describe('Analysis', function () {
       selectDefaultOpportunityDataset()
       cy.findByLabelText('Opportunities within isochrone')
         .as('results')
-        .invoke('text')
-        .then((val) => {
-          expect(asInt(val)).to.equal(results['6:00-8:00'])
-        })
+        .itsNumericText()
+        .isWithin(results['6:00-8:00'])
       // set time window in late evening - lower access
       cy.get('@from').clear().type('20:00')
       cy.get('@to').clear().type('22:00')
       fetchResults()
-      cy.get('@results')
-        .invoke('text')
-        .then((val) => {
-          expect(asInt(val)).to.equal(results['20:00-22:00'])
-        })
+      cy.get('@results').itsNumericText().isWithin(results['20:00-22:00'])
       // narrow window to one minute - no variability
       cy.get('@from').clear().type('12:00')
       cy.get('@to').clear().type('12:01')

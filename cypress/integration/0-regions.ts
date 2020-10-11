@@ -197,8 +197,8 @@ describe('Regions', () => {
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
-    cy.findByText(newName).should('not.exist', {
+    /** cy.findByText(newName).should('not.exist', {
       log: 'Button for this region should no longer exist'
-    })
+    }) */
   })
 })

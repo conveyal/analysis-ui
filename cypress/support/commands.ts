@@ -52,7 +52,15 @@ Cypress.Commands.add('itsNumericValue', {prevSubject: true}, (subject) =>
   cy
     .wrap(subject)
     .invoke('val')
-    .then((v: string) => Number(v))
+    .then((v: string) => Number(v?.replace(',', '')))
+)
+
+// Get the numeric text of an input
+Cypress.Commands.add('itsNumericText', {prevSubject: true}, (subject) =>
+  cy
+    .wrap(subject)
+    .invoke('text')
+    .then((v: string) => Number(v?.replace(',', '')))
 )
 
 // Recursive setup
