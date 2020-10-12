@@ -128,7 +128,7 @@ describe('Analysis', function () {
       cy.findByText(/Fetch results/i).should('be.enabled')
     })
 
-    it.only('runs, giving reasonable results', () => {
+    it('runs, giving reasonable results', () => {
       // tests basic single point analysis at specified locations
       fetchResults() // initialize request
       selectDefaultOpportunityDataset()
