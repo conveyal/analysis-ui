@@ -4,7 +4,6 @@
  * Sets a value in the custom JSON editor
  */
 function setCustom(settingKey, newValue, scenario = 'primary') {
-  let newConfig = {}
   cy.get(`@${scenario}`)
     .findByRole('tab', {name: /Custom JSON editor/i})
     .click()
@@ -14,7 +13,7 @@ function setCustom(settingKey, newValue, scenario = 'primary') {
     .as('profile')
     .invoke('val')
     .then((currentConfig) => {
-      newConfig = JSON.parse(currentConfig + '')
+      const newConfig = JSON.parse(currentConfig + '')
       newConfig[settingKey] = newValue
 
       return cy
