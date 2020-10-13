@@ -6,7 +6,7 @@ describe('Projects', function () {
   it('can be created and deleted', () => {
     const projectName = Cypress.env('dataPrefix') + ' ' + Date.now()
     const bundleName = Cypress.env('dataPrefix') + 'scratch bundle'
-    cy.navTo('Projects')
+    cy.navTo('projects')
     cy.findByText(/Create new Project/i).click()
     cy.navComplete()
 
@@ -19,7 +19,7 @@ describe('Projects', function () {
     cy.navComplete()
 
     // make sure it's listed on the projects page
-    cy.navTo('Projects')
+    cy.navTo('projects')
     cy.findByText(projectName).click()
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()
@@ -37,7 +37,7 @@ describe('Projects', function () {
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     cy.contains(/Currently used by \d+ project/i)
     // should be selectable in analysis
-    cy.navTo('Analyze')
+    cy.navTo('analyze')
     cy.findAllByLabelText(/^Project$/)
       .first()
       .click({force: true})
@@ -49,7 +49,7 @@ describe('Projects', function () {
       .type('Baseline{enter}')
     cy.contains(/Baseline/)
     // delete the project
-    cy.navTo('Projects')
+    cy.navTo('projects')
     cy.findByText(projectName).click()
     cy.navComplete()
     cy.findByLabelText('Edit project settings').click()

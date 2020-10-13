@@ -3,6 +3,15 @@
 
 declare namespace Cypress {
   type Entity = 'analysis' | 'bundle' | 'opportunities' | 'project' | 'region'
+  type NavToOption =
+    | 'analyze'
+    | 'edit modifications'
+    | 'network bundles'
+    | 'opportunity datasets'
+    | 'projects'
+    | 'regions'
+    | 'regional analyses'
+    | 'region settings'
 
   // eslint-disable-next-line
   interface Chainable {
@@ -20,9 +29,9 @@ declare namespace Cypress {
 
     /**
      * Get the pseudo fixture contents.
-     * @example cy.getPseudoFixture().then((fixture) => { ... })
+     * @example cy.getLocalFixture().then((fixture) => { ... })
      */
-    getPseudoFixture(): Chainable<Record<string, unknown>>
+    getLocalFixture(): Chainable<Record<string, unknown>>
 
     /**
      * Check if the values are within a tolerance of each other
@@ -57,7 +66,7 @@ declare namespace Cypress {
      * Navigate to a page via the sidebar.
      * @example cy.navTo('projects')
      */
-    navTo(location: string): Chainable<boolean>
+    navTo(location: NavToOption): Chainable<boolean>
 
     /**
      * Wait until a manual navigation is complete.
@@ -70,6 +79,14 @@ declare namespace Cypress {
      * @example cy.setup('bundle')
      */
     setup(entity: Entity): Chainable<boolean>
+
+    /**
+     * Store a value in the locally created fixture file.
+     */
+    storeInLocalFixture(
+      key: string,
+      value: any
+    ): Chainable<Record<string, unknown>>
 
     /**
      * Wait for the map to be ready for interactivity

@@ -55,7 +55,7 @@ function deleteThisMod() {
 
 function openMod(modType, modName) {
   // opens the first listed modification of this type with this name
-  cy.navTo('Edit Modifications')
+  cy.navTo('edit modifications')
   cy.findByRole('tab', {name: /Modifications/g}).click()
   // find the container for this modification type and open it if need be
   cy.findByText(modType)
@@ -158,7 +158,7 @@ describe('Modifications', function () {
   })
 
   beforeEach(() => {
-    cy.getPseudoFixture().then((s) => {
+    cy.getLocalFixture().then((s) => {
       cy.visit('/')
       cy.visit(`/regions/${s.regionId}/projects/${s.projectId}/modifications`)
       return cy.navComplete()
@@ -183,7 +183,7 @@ describe('Modifications', function () {
         cy.findByLabelText(/Default/).uncheck({force: true})
         cy.findByLabelText(scenarioNameRegEx).check({force: true})
         // Read the saved settings
-        cy.navTo('Edit Modifications')
+        cy.navTo('edit modifications')
         openMod(type, name)
         cy.findByText(description)
         cy.findByLabelText(/Default/).should('not.be.checked')
@@ -194,7 +194,7 @@ describe('Modifications', function () {
           .parent()
           .click()
           .type(updatedDescription)
-        cy.navTo('Edit Modifications')
+        cy.navTo('edit modifications')
         openMod(type, name)
         cy.findByText(updatedDescription)
         // Delete the modification

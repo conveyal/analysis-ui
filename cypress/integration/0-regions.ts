@@ -158,12 +158,12 @@ describe('Regions', () => {
     cy.location('pathname').should('match', /regions\/.{24}$/)
     cy.contains('Upload a new Network Bundle')
     // Region is listed in main regions menu
-    cy.navTo('Regions')
+    cy.navTo('regions')
     cy.findByText(regionName).click()
     cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
-    cy.navTo('Region Settings')
+    cy.navTo('region settings')
     // check setting values
     getName().should('have.value', regionName)
     getDesc().should('have.value', regionData.description)
@@ -184,10 +184,10 @@ describe('Regions', () => {
     getDesc().clear().type(newDescription)
     getName().clear().type(newName)
     getSave().should('be.enabled').click()
-    cy.navTo('Regions')
+    cy.navTo('regions')
     cy.findByText(newName).click()
     cy.navComplete()
-    cy.navTo('Region Settings') // will go to bundle page otherwise
+    cy.navTo('region settings') // will go to bundle page otherwise
     getDesc().should('have.value', newDescription)
     getName().should('have.value', newName)
 

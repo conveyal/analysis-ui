@@ -5,7 +5,7 @@ describe('Network bundles', () => {
 
   beforeEach(() => {
     cy.fixture('regions/scratch.json').as('region')
-    cy.navTo('Network Bundles')
+    cy.navTo('network bundles')
   })
 
   it('with single feed can be uploaded and deleted', function () {
@@ -113,7 +113,7 @@ describe('Network bundles', () => {
       'role',
       'alert'
     )
-    cy.navTo('Network Bundles')
+    cy.navTo('network bundles')
     // TODO need semantic selector for dropdown
     cy.findByText('Select...').click().type('ERROR{enter}')
     cy.contains(bundleName)
