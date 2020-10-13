@@ -21,7 +21,7 @@ const prefix = Cypress.env('dataPrefix')
 const regionName = Cypress.env('region')
 const regionFixture = `regions/${regionName}.json`
 // used to store object UUIDs between tests to avoid needless ui interaction
-export const pseudoFixturePath = `cypress/fixtures/regions/.${regionName}.json`
+export const localFixturePath = `cypress/fixtures/regions/.${regionName}.json`
 const unlog = {log: false}
 
 // No spinner
@@ -46,25 +46,25 @@ Cypress.Commands.add('navComplete', () => {
 
 // For easy use inside tests
 let isLoaded = false
-let pseudoFixture: Record<string, unknown> = {}
+let localFixture: Record<string, unknown> = {}
 Cypress.Commands.add('getLocalFixture', () => {
   Cypress.log({
     displayName: 'readLocal',
-    message: `From ${isLoaded ? 'memory' : pseudoFixturePath}`
+    message: `From ${isLoaded ? 'memory' : localFixturePath}`
   })
-  if (isLoaded) return cy.wrap(pseudoFixture, unlog)
+  if (isLoaded) return cy.wrap(localFixture, unlog)
 
-  cy.task('touch', pseudoFixturePath, unlog)
-  return cy.readFile(pseudoFixturePath, unlog).then((data) => {
+  cy.task('touch', localFixturePath, unlog)
+  return cy.readFile(localFixturePath, unlog).then((data) => {
     isLoaded = true
-    pseudoFixture = data
-    return pseudoFixture
+    localFixture = data
+    return localFixture
   })
 })
 
 Cypress.Commands.add('storeInLocalFixture', (key, val) => {
-  pseudoFixture[key] = val
-  return cy.writeFile(pseudoFixturePath, pseudoFixture, unlog)
+  localFixture[key] = val
+  return cy.writeFile(localFixturePath, localFixture, unlog)
 })
 
 // Check if a floating point number is within a certain tolerance
@@ -107,7 +107,7 @@ Cypress.Commands.add('itsNumericText', {prevSubject: true}, (subject) =>
 /**
  * Navigate directly to the scratch entity
  */
-function goToEntity(entity) {
+function goToEntity(entity: Cypress.Entity) {
   Cypress.log({
     displayName: 'goTo',
     message: entity
@@ -146,14 +146,14 @@ function goToEntity(entity) {
 }
 
 // Recursive setup
-Cypress.Commands.add('setup', (entity) =>
+Cypress.Commands.add('setup', (entity: Cypress.Entity) =>
   setup(entity).then(() => goToEntity(entity))
 )
 
 /**
  *
  */
-function setup(entity) {
+function setup(entity: Cypress.Entity) {
   Cypress.log({
     displayName: 'setupLocal',
     message: `Finding ${entity}...`
@@ -181,7 +181,7 @@ function createNewOpportunities() {
   return cy.fixture(regionFixture).then((region) => {
     const opportunity = region.opportunities.grid
     const oppName = `${prefix}default_opportunities`
-    cy.navTo('opportunity datasets')
+    goToEntity('opportunities')
     cy.findByText(/Upload a new dataset/i).click()
     cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
     cy.findByLabelText(/Select opportunity dataset/).attachFile({
@@ -252,6 +252,7 @@ function createNewBundle() {
     message: 'bundle'
   })
   const bundleName = prefix + regionName + ' bundle'
+  goToEntity('region')
   cy.navTo('network bundles')
   cy.findByText(/Create .* bundle/).click()
   cy.location('pathname').should('match', /\/bundles\/create$/)
@@ -293,7 +294,7 @@ function createNewProject() {
   })
   const projectName = prefix + regionName + ' project'
   const bundleName = prefix + regionName + ' bundle'
-  cy.navTo('projects')
+  goToEntity('region')
   cy.findByText(/Create new Project/i).click()
   cy.findByLabelText(/Project name/).type(projectName)
   cy.findByLabelText(/Associated network bundle/i)

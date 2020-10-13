@@ -9,7 +9,7 @@
 
 import 'cypress-wait-until'
 
-import {pseudoFixturePath} from './commands'
+import {localFixturePath} from './commands'
 
 // Should data be reset?
 const resetData = Cypress.env('resetDataBeforeEachRun')
@@ -19,16 +19,18 @@ const resetData = Cypress.env('resetDataBeforeEachRun')
  */
 before('Optionally wipe configured state', () => {
   if (resetData === true) {
-    cy.task('touch', pseudoFixturePath)
-    cy.getLocalFixture().then((storedVals) => {
+    cy.task('touch', localFixturePath)
+    cy.fixture('regions/.scratch').then((storedVals) => {
       if ('regionId' in storedVals) {
-        cy.visit(`/regions/${storedVals.regionId}`)
-        cy.navTo('region settings')
+        cy.visit(`/regions/${storedVals.regionId}/edit`)
+        cy.navComplete()
         cy.findByRole('button', {name: /Delete this region/i}).click()
+        cy.findByRole('alertdialog').should('exist')
         cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
+        cy.findByRole('alertdialog').should('not.exist')
       }
     })
-    cy.writeFile(pseudoFixturePath, '{}')
+    cy.writeFile(localFixturePath, '{}')
   }
 })
 

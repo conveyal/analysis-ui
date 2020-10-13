@@ -2,8 +2,13 @@
 /// <reference types="leaflet" />
 
 declare namespace Cypress {
-  type Entity = 'analysis' | 'bundle' | 'opportunities' | 'project' | 'region'
-  type NavToOption =
+  export type Entity =
+    | 'analysis'
+    | 'bundle'
+    | 'opportunities'
+    | 'project'
+    | 'region'
+  export type NavToOption =
     | 'analyze'
     | 'edit modifications'
     | 'network bundles'
