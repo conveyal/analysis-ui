@@ -166,7 +166,7 @@ function setup(entity) {
     if (entity === 'bundle')
       return setup('region').then(() => createNewBundle())
     if (entity === 'opportunities')
-      setup('region').then(() => createNewOpportunities())
+      return setup('region').then(() => createNewOpportunities())
     if (entity === 'project')
       return setup('bundle').then(() => createNewProject())
     throw new Error(`Entity "${entity}" not yet implemented`)
@@ -178,7 +178,7 @@ function createNewOpportunities() {
     displayName: 'creating',
     message: 'opportunities'
   })
-  return cy.fixture(regionFixture, unlog).then((region) => {
+  return cy.fixture(regionFixture).then((region) => {
     const opportunity = region.opportunities.grid
     const oppName = `${prefix}default_opportunities`
     cy.navTo('opportunity datasets')
