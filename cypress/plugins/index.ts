@@ -19,7 +19,7 @@ export default function initializePlugins(on, config) {
 
   // used to create the pseudoFixture file
   on('task', {
-    touch(filename, contents = '{}') {
+    ensureExists(filename, contents = '{}') {
       if (!fs.existsSync(filename)) {
         fs.writeFileSync(filename, contents)
       }

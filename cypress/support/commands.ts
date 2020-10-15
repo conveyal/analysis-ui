@@ -1,27 +1,6 @@
-import '@testing-library/cypress/add-commands'
-import 'cypress-file-upload'
-import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
-
-import {connectToDatabase} from '../../lib/db/connect'
-
-addMatchImageSnapshotCommand({
-  failureThresholdType: 'percent',
-  failureThreshold: 0.05 // allow up to a 5% image diff
-})
-
-// Persist the user cookie across sessions
-Cypress.Cookies.defaults({
-  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
-})
-
-// Access the DB directly
-Cypress.Commands.add('db', () => connectToDatabase())
-
 const prefix = Cypress.env('dataPrefix')
 const regionName = Cypress.env('region')
-const regionFixture = `regions/${regionName}.json`
-// used to store object UUIDs between tests to avoid needless ui interaction
-export const localFixturePath = `cypress/fixtures/regions/.${regionName}.json`
+const localFixturePath = Cypress.env('localFixturePath')
 const unlog = {log: false}
 
 // No spinner
@@ -48,16 +27,24 @@ Cypress.Commands.add('navComplete', () => {
 let isLoaded = false
 let localFixture: Record<string, unknown> = {}
 Cypress.Commands.add('getLocalFixture', () => {
-  Cypress.log({
-    displayName: 'readLocal',
-    message: `From ${isLoaded ? 'memory' : localFixturePath}`
-  })
-  if (isLoaded) return cy.wrap(localFixture, unlog)
+  if (isLoaded) {
+    Cypress.log({
+      consoleProps: () => localFixture,
+      displayName: 'readLocal',
+      message: 'From memory'
+    })
+    return cy.wrap(localFixture, unlog)
+  }
 
-  cy.task('touch', localFixturePath, unlog)
+  cy.task('ensureExists', localFixturePath, unlog)
   return cy.readFile(localFixturePath, unlog).then((data) => {
     isLoaded = true
     localFixture = data
+    Cypress.log({
+      consoleProps: () => localFixture,
+      displayName: 'readLocal',
+      message: 'From storage'
+    })
     return localFixture
   })
 })
@@ -107,7 +94,7 @@ Cypress.Commands.add('itsNumericText', {prevSubject: true}, (subject) =>
 /**
  * Navigate directly to the scratch entity
  */
-function goToEntity(entity: Cypress.Entity) {
+Cypress.Commands.add('goToEntity', (entity: Cypress.Entity) => {
   Cypress.log({
     displayName: 'goTo',
     message: entity
@@ -134,26 +121,24 @@ function goToEntity(entity: Cypress.Entity) {
         )
         return cy.navComplete()
       case 'analysis':
-        cy.visit(`/regions/${storedVals.regionId}/regional`, {
-          log: false,
-          qs: {
-            analysisId: storedVals.analysisId
-          }
-        })
+        cy.visit(`/regions/${storedVals.regionId}/analysis`, unlog)
+        return cy.navComplete()
+      case 'regionalAnalysis':
+        cy.visit(
+          `/regions/${storedVals.regionId}/regional?analysisId=${storedVals.regionalAnalysisId}`
+        )
         return cy.navComplete()
     }
   })
-}
+})
 
 // Recursive setup
-Cypress.Commands.add('setup', (entity: Cypress.Entity) =>
-  setup(entity).then(() => goToEntity(entity))
-)
+Cypress.Commands.add('setup', (entity: Cypress.Entity) => {
+  cy._setup(entity)
+  return cy.goToEntity(entity)
+})
 
-/**
- *
- */
-function setup(entity: Cypress.Entity) {
+Cypress.Commands.add('_setup', (entity: Cypress.Entity) => {
   Cypress.log({
     displayName: 'setupLocal',
     message: `Finding ${entity}...`
@@ -162,26 +147,37 @@ function setup(entity: Cypress.Entity) {
     const idKey = entity + 'Id'
     if (idKey in storedVals) return Promise.resolve()
     // if the entity didn't already exist, recurse through all dependencies
-    if (entity === 'region') return createNewRegion()
-    if (entity === 'bundle')
-      return setup('region').then(() => createNewBundle())
-    if (entity === 'opportunities')
-      return setup('region').then(() => createNewOpportunities())
-    if (entity === 'project')
-      return setup('bundle').then(() => createNewProject())
-    throw new Error(`Entity "${entity}" not yet implemented`)
+    switch (entity) {
+      case 'region':
+        return createNewRegion()
+      case 'bundle':
+        return cy._setup('region').then(() => createNewBundle())
+      case 'opportunities':
+        return cy._setup('region').then(() => createNewOpportunities())
+      case 'project':
+        return cy._setup('bundle').then(() => createNewProject())
+      case 'analysis':
+        cy._setup('project')
+        return cy._setup('opportunities')
+      case 'regionalAnalysis':
+        cy._setup('project')
+        cy._setup('opportunities')
+        return createNewRegionalAnalysis()
+      default:
+        throw new Error(`Entity "${entity}" not yet implemented`)
+    }
   })
-}
+})
 
 function createNewOpportunities() {
   Cypress.log({
     displayName: 'creating',
     message: 'opportunities'
   })
-  return cy.fixture(regionFixture).then((region) => {
-    const opportunity = region.opportunities.grid
+  return cy.fixture('regions/scratch').then((region) => {
+    const opportunity = (region.opportunities as any).grid
     const oppName = `${prefix}default_opportunities`
-    goToEntity('opportunities')
+    cy.goToEntity('opportunities')
     cy.findByText(/Upload a new dataset/i).click()
     cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
     cy.findByLabelText(/Select opportunity dataset/).attachFile({
@@ -219,19 +215,19 @@ function createNewRegion() {
   })
   cy.visit('/regions/create')
   cy.findByLabelText(/Region Name/).type(prefix + regionName, {delay: 0})
-  cy.fixture(regionFixture).then((region) => {
+  cy.fixture('regions/scratch').then((region) => {
     cy.findByLabelText(/North bound/)
       .clear()
-      .type(region.north, {delay: 1})
+      .type(region.north as string, {delay: 1})
     cy.findByLabelText(/South bound/)
       .clear()
-      .type(region.south, {delay: 1})
+      .type(region.south as string, {delay: 1})
     cy.findByLabelText(/West bound/)
       .clear()
-      .type(region.west, {delay: 1})
+      .type(region.west as string, {delay: 1})
     cy.findByLabelText(/East bound/)
       .clear()
-      .type(region.east, {delay: 1})
+      .type(region.east as string, {delay: 1})
   })
   cy.findByRole('button', {name: /Set up a new region/}).click()
   cy.findByRole('button', {name: /Creating region/}).should('not.exist')
@@ -252,21 +248,21 @@ function createNewBundle() {
     message: 'bundle'
   })
   const bundleName = prefix + regionName + ' bundle'
-  goToEntity('region')
+  cy.goToEntity('region')
   cy.navTo('network bundles')
   cy.findByText(/Create .* bundle/).click()
   cy.location('pathname').should('match', /\/bundles\/create$/)
   cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
   cy.findByText(/Upload new OpenStreetMap/i).click()
-  cy.fixture(regionFixture).then((region) => {
+  cy.fixture('regions/scratch').then((region) => {
     cy.findByLabelText(/Select PBF file/i).attachFile({
-      filePath: region.PBFfile,
+      filePath: region.PBFfile as string,
       encoding: 'base64',
       mimeType: 'application/octet-stream'
     })
     cy.findByText(/Upload new GTFS/i).click()
     cy.findByLabelText(/Select .*GTFS/i).attachFile({
-      filePath: region.GTFSfile,
+      filePath: region.GTFSfile as string,
       encoding: 'base64',
       mimeType: 'application/octet-stream'
     })
@@ -294,7 +290,7 @@ function createNewProject() {
   })
   const projectName = prefix + regionName + ' project'
   const bundleName = prefix + regionName + ' bundle'
-  goToEntity('region')
+  cy.goToEntity('region')
   cy.findByText(/Create new Project/i).click()
   cy.findByLabelText(/Project name/).type(projectName)
   cy.findByLabelText(/Associated network bundle/i)
@@ -309,6 +305,60 @@ function createNewProject() {
     .then((path) =>
       cy.storeInLocalFixture('projectId', path.match(/\w{24}/g)[1])
     )
+}
+
+function createNewRegionalAnalysis() {
+  Cypress.log({
+    displayName: 'creating',
+    message: 'regional analysis'
+  })
+  cy.setupAnalysis()
+  cy.get('div#PrimaryAnalysisSettings').as('primary')
+  cy.get('div#ComparisonAnalysisSettings').as('comparison')
+
+  return cy.fixture('regions/scratch').then((region) => {
+    const analysisName = prefix + regionName + '_regional'
+    cy.editPrimaryAnalysisJSON('bounds', region.customRegionSubset)
+    cy.fetchResults()
+    // start the analysis
+    cy.get('@primary')
+      .findByRole('button', {name: 'Regional analysis'})
+      .should('be.enabled')
+      .click()
+
+    cy.findByLabelText(/Regional analysis name/).type(analysisName)
+
+    cy.findByLabelText(/Opportunity dataset\(s\)/)
+      .click({force: true})
+      .type('people{enter}')
+
+    cy.findByRole('button', {name: /Create/}).click()
+    cy.findByRole('dialog').should('not.exist')
+
+    // we should now be on the regional analyses page
+    cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})
+    cy.findByRole('heading', {name: analysisName})
+      .parent()
+      .parent()
+      .as('statusBox')
+    // shows progress
+    cy.get('@statusBox').findByText(/\d+ \/ \d+ origins/)
+    cy.findByRole('heading', {name: analysisName, timeout: 240000}).should(
+      'not.exist'
+    )
+    cy.findByText(/View a regional analysis/)
+      .click()
+      .type(`${analysisName}{enter}`)
+    cy.navComplete()
+
+    // store the regionalAnalysisId
+    return cy
+      .location('href', unlog)
+      .should('match', /regions\/\w{24}\/regional\?analysisId=\w{24}$/)
+      .then((path) =>
+        cy.storeInLocalFixture('regionalAnalysisId', path.match(/\w{24}/g)[1])
+      )
+  })
 }
 
 Cypress.Commands.add('deleteProject', (projectName) => {

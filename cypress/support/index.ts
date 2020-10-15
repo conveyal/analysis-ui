@@ -7,20 +7,39 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+import '@testing-library/cypress/add-commands'
+import 'cypress-file-upload'
+import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
 import 'cypress-wait-until'
 
-import {localFixturePath} from './commands'
+import './analysis'
+import './commands'
+
+addMatchImageSnapshotCommand({
+  failureThresholdType: 'percent',
+  failureThreshold: 0.05 // allow up to a 5% image diff
+})
+
+// Persist the user cookie across sessions
+Cypress.Cookies.defaults({
+  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
+})
 
 // Should data be reset?
 const resetData = Cypress.env('resetDataBeforeEachRun')
+const localFixturePath = Cypress.env('localFixturePath')
 
 /**
  * TODO do this directly via MongoDB
  */
 before('Optionally wipe configured state', () => {
   if (resetData === true) {
-    cy.task('touch', localFixturePath)
-    cy.fixture('regions/.scratch').then((storedVals) => {
+    Cypress.log({
+      displayName: 'clearDB',
+      message: 'Deleting region saved in .scratch.json'
+    })
+    cy.task('ensureExists', localFixturePath)
+    cy.readFile(localFixturePath).then((storedVals) => {
       if ('regionId' in storedVals) {
         cy.visit(`/regions/${storedVals.regionId}/edit`)
         cy.navComplete()
@@ -28,6 +47,7 @@ before('Optionally wipe configured state', () => {
         cy.findByRole('alertdialog').should('exist')
         cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
         cy.findByRole('alertdialog').should('not.exist')
+        cy.navComplete()
       }
     })
     cy.writeFile(localFixturePath, '{}')
