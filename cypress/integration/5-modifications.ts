@@ -408,8 +408,6 @@ describe('Modifications (Basic)', () => {
         .click()
 
       cy.findByRole('dialog').should('not.exist')
-
-      cy.go('back')
     })
   })
 })
