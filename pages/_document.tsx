@@ -5,14 +5,10 @@ import {LOGO_URL} from 'lib/constants'
 
 const Stylesheets = () => (
   <>
-    <link rel='preload' href='/static/leaflet/leaflet.css' as='style' />
-    <link
-      rel='preload'
-      href='/static/leaflet-draw/leaflet.draw.css'
-      as='style'
-    />
-    <link rel='preload' href='/static/mapbox-gl.css' as='style' />
-    <link rel='preload' href='/static/fontawesome.css' as='style' />
+    <link rel='stylesheet' href='/static/leaflet/leaflet.css' />
+    <link rel='stylesheet' href='/static/leaflet-draw/leaflet.draw.css' />
+    <link rel='stylesheet' href='/static/mapbox-gl.css' />
+    <link rel='stylesheet' href='/static/fontawesome.css' />
   </>
 )
 
