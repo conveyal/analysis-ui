@@ -5,36 +5,11 @@
  * Tests that verify analysis results should go in the
  * Advanced Modifications group.
  */
-
-// All modification types
-const types = [
-  'Add Streets',
-  'Add Trip Pattern',
-  'Adjust Dwell Time',
-  'Adjust Speed',
-  'Convert To Frequency',
-  'Modify Streets',
-  'Remove Stops',
-  'Remove Trips',
-  'Reroute',
-  'Custom'
-] as const
-
-// Convert above array to an enum
-type ModificationType = typeof types[number]
-
-/**
- *  Helper functions
- */
-
-const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
-const createModName = (type, description = '') =>
-  `${modificationPrefix}${type}${description}${Date.now()}`
+import {ModificationTypes, createModificationName} from './utils'
 
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
 
-const getMap = () => cy.get('div.leaflet-container')
 const selectFeed = (feedName) => {
   cy.findByLabelText(/Select feed/)
     .click({force: true})
@@ -68,37 +43,8 @@ function setupScenario(name) {
   cy.findAllByRole('tab', {name: /Modifications/g}).click()
 }
 
-// Delete an open modification
-function deleteThisMod() {
-  cy.findByRole('button', {name: 'Delete modification'}).click()
-  cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
-  cy.findByRole('dialog').should('not.exist')
-  cy.contains('Create a modification')
-  cy.wait(100) // eslint-disable-line
-  cy.navComplete() // Modifications are not loaded in GetInitialProps
-}
-
-function openMod(modType: ModificationType, modName) {
-  // opens the first listed modification of this type with this name
-  cy.navTo('edit modifications')
-  cy.findByRole('tab', {name: /Modifications/g}).click()
-  // find the container for this modification type and open it if need be
-  cy.findByText(modType)
-    .parent()
-    .parent()
-    .as('modList')
-    .then((modList) => {
-      if (!modList.text().includes(modName)) {
-        cy.wrap(modList).click()
-      }
-    })
-  cy.get('@modList').contains(modName).click()
-  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
-  cy.contains(modName)
-}
-
-function deleteMod(modType: ModificationType, modName) {
-  openMod(modType, modName)
+function deleteMod(modType: Cypress.ModificationType, modName) {
+  cy.openModification(modType, modName)
 
   cy.findByRole('button', {name: 'Delete modification'}).click()
   cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
@@ -106,78 +52,10 @@ function deleteMod(modType: ModificationType, modName) {
   cy.findByText(modName).should('not.exist')
 }
 
-function setupMod(modType: ModificationType, modName) {
-  // assumes we are already on this page or editing another mod
-  cy.findByText('Create a modification').click()
-  cy.findByLabelText(/Modification name/i).type(modName)
-  if (modType.indexOf('Street') > -1) {
-    cy.findByText('Street').click()
-    cy.findByLabelText(/Street modification type/i).select(modType)
-  } else {
-    cy.findByLabelText(/Transit modification type/i).select(modType)
-  }
-  cy.findByText('Create').click()
-  cy.findByRole('dialog').should('not.exist')
-  cy.navComplete()
-  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
-}
-
-function drawRouteGeometry(newRoute: [number, number][]) {
-  cy.findByText(/Edit route geometry/i)
-    .click()
-    .contains(/Stop editing/i)
-  cy.getLeafletMap().then((map) => {
-    map.fitBounds(newRoute, {animate: false})
-    cy.waitForMapToLoad()
-    // click at the coordinates
-    newRoute.forEach((point, i) => {
-      const pix = map.latLngToContainerPoint(point)
-      getMap().click(pix.x, pix.y)
-      if (i > 0) {
-        cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
-      }
-    })
-    // convert an arbitrary stop to a control point
-    const stop = newRoute[newRoute.length - 2]
-    const pix = map.latLngToContainerPoint(stop)
-    getMap().click(pix.x, pix.y)
-    getMap()
-      .findByText(/make control point/)
-      .click()
-    // control point not counted as stop
-    cy.contains(new RegExp(newRoute.length - 1 + ' stops over \\d\\.\\d+ km'))
-    // convert control point back to stop
-    getMap().click(pix.x, pix.y)
-    getMap()
-      .findByText(/make stop/)
-      .click()
-    cy.contains(new RegExp(newRoute.length + ' stops over \\d\\.\\d+ km'))
-  })
-  cy.findByText(/Stop editing/i).click()
-}
-
-/**
- * Remove all old modifications that contain the temporary prefix
- */
-function clearAllModifications() {
-  return cy
-    .get('body')
-    .then(($body) => {
-      return $body.find('button[aria-label="Edit modification"]')
-    })
-    .then((buttons) => {
-      if (buttons.length > 0) {
-        cy.wrap(buttons[0]).click()
-        deleteThisMod()
-        return clearAllModifications()
-      }
-    })
-}
-
 describe('Modifications (Basic)', () => {
   before(function () {
     cy.setup('project')
-    clearAllModifications() // clean uo for development
+    cy.clearAllModifications() // clean uo for development
     setupScenario(scenarioName)
   })
 
@@ -189,15 +67,15 @@ describe('Modifications (Basic)', () => {
 
   after(() => {
     cy.goToEntity('project') // Navigates directly to the project
-    clearAllModifications() // Delete all of the modifications
+    cy.clearAllModifications() // Delete all of the modifications
   })
 
-  types.forEach((type) => {
+  ModificationTypes.forEach((type) => {
     it(`CRU(D) ${type}`, function () {
-      const name = createModName(type, 'simple')
+      const name = createModificationName(type, 'simple')
       const description = 'distinctly descriptive text'
       // Create the modification
-      setupMod(type, name)
+      cy.createModification(type, name)
       cy.contains(name)
 
       // Update the description
@@ -219,7 +97,7 @@ describe('Modifications (Basic)', () => {
       cy.navComplete()
 
       // Read the saved settings
-      openMod(type, name)
+      cy.openModification(type, name)
       cy.findByText(description)
       cy.findByLabelText(/Default/).should('not.be.checked')
       cy.findByLabelText(scenarioNameRegEx).should('be.checked')
@@ -253,7 +131,7 @@ describe('Modifications (Basic)', () => {
     cy.location('pathname').should('match', /projects\/.{24}\/modifications/)
 
     this.region.importRoutes.routes.forEach((route) => {
-      openMod('Add Trip Pattern', route.name)
+      cy.openModification('Add Trip Pattern', route.name)
       cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
       cy.findByLabelText(/Frequency/)
         .invoke('val')
@@ -261,17 +139,17 @@ describe('Modifications (Basic)', () => {
       cy.findByLabelText(/Average speed/i)
         .invoke('val')
         .then((val) => expect(val).to.eq('' + route.speed))
-      deleteThisMod()
+      cy.deleteThisModification()
     })
   })
 
   it('can be drawn on map', function () {
-    const modName = createModName('ATP', 'draw on map')
-    setupMod('Add Trip Pattern', modName)
+    const modName = createModificationName('ATP', 'draw on map')
+    cy.createModification('Add Trip Pattern', modName)
     cy.findAllByRole('alert').contains(/must have at least 2 stops/)
     cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
     // add a route geometry
-    drawRouteGeometry(this.region.newRoute)
+    cy.drawRouteGeometry(this.region.newRoute)
 
     cy.findAllByRole('alert')
       .contains(/must have at least 2 stops/)
@@ -288,14 +166,14 @@ describe('Modifications (Basic)', () => {
     cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
       'not.exist'
     )
-    deleteThisMod()
+    cy.deleteThisModification()
   })
 
   it('can create and reuse timetables', function () {
-    const modName = createModName('ATP', 'timetable templates')
-    setupMod('Add Trip Pattern', modName)
+    const modName = createModificationName('ATP', 'timetable templates')
+    cy.createModification('Add Trip Pattern', modName)
     // add a route geometry
-    drawRouteGeometry(this.region.newRoute)
+    cy.drawRouteGeometry(this.region.newRoute)
 
     cy.findByText(/Add new timetable/).click()
     cy.findByText('Timetable 1').click({force: true})
@@ -366,7 +244,7 @@ describe('Modifications (Basic)', () => {
       .invoke('val')
       .then((val) => expect(val).to.eq('23:00'))
     // delete the temp modification
-    deleteThisMod()
+    cy.deleteThisModification()
     // delete the template modification
     deleteMod('Add Trip Pattern', modName)
   })
@@ -419,7 +297,7 @@ describe('Modifications (Basic)', () => {
  * validation. Tests for how these modifications affect results should
  * go in the "Advanced Modifications" group.
  */
-function formCheck(type: ModificationType, region) {
+function formCheck(type: Cypress.ModificationType, region) {
   switch (type) {
     case 'Add Trip Pattern':
       return testAddTripPattern(region)
@@ -479,7 +357,7 @@ function testAddTripPattern(region) {
   cy.findByLabelText(/Times are exact/i).uncheck({force: true})
   cy.findByLabelText(/Phase at stop/i)
   // drawing a route activates the following elements
-  drawRouteGeometry(region.newRoute)
+  cy.drawRouteGeometry(region.newRoute)
   // set dwell times, verifying that they increase the total travel time
   cy.findByText(/Travel time/i)
     .parent()
@@ -630,18 +508,18 @@ function testReroute(region) {
   cy.getLeafletMap().then((map) => {
     cy.findByLabelText(/Select from stop/).click()
     const p1 = map.latLngToContainerPoint([39.0877, -84.5192])
-    getMap().click(p1.x, p1.y)
+    cy.getMapDiv().click(p1.x, p1.y)
     // test clearing the from stop
     cy.findByLabelText(/Clear from stop/).click()
 
     // Re-select the from stop
     cy.findByLabelText(/Select from stop/).click()
-    getMap().click(p1.x, p1.y)
+    cy.getMapDiv().click(p1.x, p1.y)
 
     // Select the to stop
     cy.findByLabelText(/Select to stop/).click()
     const p2 = map.latLngToContainerPoint([39.1003, -84.4855])
-    getMap().click(p2.x, p2.y)
+    cy.getMapDiv().click(p2.x, p2.y)
   })
 
   cy.findByLabelText(/Default dwell time/i).type('00:10:00')

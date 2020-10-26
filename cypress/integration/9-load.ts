@@ -1,4 +1,4 @@
-describe('Load Tests', () => {
+describe.skip('Load Tests', () => {
   before(() => {
     // populate database with 100+ of each entity type (duplicate bundle/opportunties so the data doesn't double)
   })

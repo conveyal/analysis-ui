@@ -10,6 +10,20 @@ declare namespace Cypress {
     | 'project'
     | 'region'
     | 'regionalAnalysis'
+
+  // Convert above array to an enum
+  export type ModificationType =
+    | 'Add Streets'
+    | 'Add Trip Pattern'
+    | 'Adjust Dwell Time'
+    | 'Adjust Speed'
+    | 'Convert To Frequency'
+    | 'Modify Streets'
+    | 'Remove Stops'
+    | 'Remove Trips'
+    | 'Reroute'
+    | 'Custom'
+
   export type NavToOption =
     | 'analyze'
     | 'edit modifications'
@@ -20,13 +34,39 @@ declare namespace Cypress {
     | 'regional analyses'
     | 'region settings'
 
+  export type Lat = number
+  export type Lon = number
+  export type Coord = [Lat, Lon]
+
   // eslint-disable-next-line
   interface Chainable {
     /**
      * Center the map on the given coordinates.
      * @example cy.centerMapOn([60, 25])
      */
-    centerMapOn(coord: [number, number], zoom?: number): Chainable<L.Map>
+    centerMapOn(coord: Coord, zoom?: number): Chainable<L.Map>
+
+    /**
+     * Clear all existing modifications with the data prefix.
+     */
+    clearAllModifications(): Chainable<void>
+
+    /**
+     * Create a modification.
+     * @xample cy.createModification('Add Trip Pattern', 'New name')
+     */
+    createModification(type: ModificationType, name: string): Chainable<void>
+
+    /**
+     * Delete an open modification.
+     */
+    deleteThisModification(): Chainable<void>
+
+    /**
+     * Draw route geometry on an open modification
+     * @example cy.drawRouteGeometry([[50, -70], [51, -71]])
+     */
+    drawRouteGeometry(coords: Coord[]): Chainable<void>
 
     /**
      * Set custom analysis value.
@@ -51,6 +91,12 @@ declare namespace Cypress {
      * @example cy.getLocalFixture().then((fixture) => { ... })
      */
     getLocalFixture(): Chainable<Record<string, unknown>>
+
+    /**
+     *
+     * @param entity
+     */
+    getMapDiv(): Chainable<HTMLElement>
 
     /**
      * Go directly to the locally stored entity.
@@ -85,7 +131,7 @@ declare namespace Cypress {
      * Check if the map is centered on a set of coordinates.
      * @example cy.mapCenteredOn([50.5, 121.2], 5)
      */
-    mapCenteredOn(lonlat: number[], tolerance: number): Chainable<boolean>
+    mapCenteredOn(lonlat: Coord, tolerance: number): Chainable<boolean>
 
     /**
      * Navigate to a page via the sidebar.
@@ -100,6 +146,12 @@ declare namespace Cypress {
     navComplete(): Chainable<boolean>
 
     /**
+     * Open an existing modification.
+     * @xample cy.createModification('Add Trip Pattern', 'New name')
+     */
+    openModification(type: ModificationType, name: string): Chainable<void>
+
+    /**
      * Select the default dataset.
      */
     selectDefaultOpportunityDataset(): Chainable<void>
@@ -108,7 +160,7 @@ declare namespace Cypress {
      * Set the analysis origin.
      * @example cy.setOrigin([lat, lng])
      */
-    setOrigin(location: [number, number]): Chainable<void>
+    setOrigin(location: Coord): Chainable<void>
 
     /**
      * Set the time cutoff.

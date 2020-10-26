@@ -4,12 +4,12 @@ describe('Analysis', () => {
   before(() => {
     cy.setup('project')
     cy.setup('opportunities')
-    cy.fixture('regions/scratch').as('region')
-    cy.fixture('regions/scratch-results').as('results')
   })
 
-  beforeEach(function () {
+  beforeEach(() => {
     cy.setupAnalysis()
+    cy.fixture('regions/scratch').as('region')
+    cy.fixture('regions/scratch-results').as('results')
     cy.get('div#PrimaryAnalysisSettings').as('primary')
     cy.get('div#ComparisonAnalysisSettings').as('comparison')
   })

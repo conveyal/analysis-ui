@@ -14,6 +14,7 @@ import 'cypress-wait-until'
 
 import './analysis'
 import './commands'
+import './modification'
 
 addMatchImageSnapshotCommand({
   failureThresholdType: 'percent',

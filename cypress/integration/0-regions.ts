@@ -22,7 +22,7 @@ const regionData = {
   south: 38.9268,
   east: -84.3592,
   west: -84.706,
-  center: [39.02335, -84.5326]
+  center: [39.02335, -84.5326] as Cypress.Coord
 }
 
 /**
