@@ -5,7 +5,7 @@
  * Tests that verify analysis results should go in the
  * Advanced Modifications group.
  */
-import {ModificationTypes, createModificationName} from './utils'
+import {ModificationTypes, createModificationName} from '../utils'
 
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
