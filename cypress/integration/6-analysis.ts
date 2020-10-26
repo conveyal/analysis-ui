@@ -224,6 +224,7 @@ describe('Analysis', () => {
       cy.get('@primary')
         .findByRole('button', {name: /Edit preset name/})
         .click()
+      cy.findByRole('dialog').should('exist')
       cy.findByLabelText(/Name/).dblclick().type('edited name')
       cy.findByRole('button', {name: /Save/}).click()
       cy.findByRole('dialog').should('not.exist')
