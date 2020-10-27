@@ -1,5 +1,5 @@
 /**
- * Modification Tests (Basic)
+ * Basic Modification Tests
  *
  * CRUD, form validation, and map interactions for all types.
  * Tests that verify analysis results should go in the
