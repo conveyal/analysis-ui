@@ -48,8 +48,8 @@ const coordinatesFromSegment = (segment, end = false) =>
 
 const getLineWeightForZoom = (z) => (z < 11 ? 1 : z - 10)
 
-export class TransitEditor extends React.Component {
-  state = {}
+export class TransitEditor extends React.Component<any> {
+  state: any = {}
 
   static getDerivedStateFromProps(props) {
     const zoom = props.leaflet.map.getZoom()
@@ -68,7 +68,7 @@ export class TransitEditor extends React.Component {
     map.on('zoomend', this._handleZoomEnd)
 
     // Focus the map on the routes
-    const bounds = new Leaflet.LatLngBounds()
+    const bounds = new Leaflet.LatLngBounds([])
     const segments = this._getSegments()
     if (segments.length > 0 && segments[0].geometry.type !== 'Point') {
       for (const segment of segments) {
@@ -112,7 +112,7 @@ export class TransitEditor extends React.Component {
       controlPoints,
       segmentFeatures,
       stops
-    } = getDerivedStateFromModification(p.modification, p.extendFromEnd)
+    } = getDerivedStateFromModification(p.modification) // TODO this arg was unused... why? p.extendFromEnd)
     const zoom = this.props.leaflet.map.getZoom()
     return (
       <>
@@ -250,7 +250,7 @@ export class TransitEditor extends React.Component {
     if (allowExtend) {
       runAsync(async () => {
         let coordinates = lonlat.toCoordinates(event.latlng)
-        let segments = this._getSegments()
+        const segments = this._getSegments()
         const snapStop = this._getStopNear(event.latlng)
 
         let stopId
