@@ -52,6 +52,11 @@ declare namespace Cypress {
     clearAllModifications(): Chainable<void>
 
     /**
+     * Click map at a given coordinate.
+     */
+    clickMapAtCoord(coord: Coord): Chainable<void>
+
+    /**
      * Create a modification.
      * @xample cy.createModification('Add Trip Pattern', 'New name')
      */

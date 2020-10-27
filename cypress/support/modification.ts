@@ -53,6 +53,14 @@ Cypress.Commands.add('deleteThisModification', function () {
   cy.navComplete() // Modifications are not loaded in GetInitialProps
 })
 
+Cypress.Commands.add('clickMapAtCoord', (coord: Cypress.Coord) => {
+  cy.getLeafletMap().then((map) => {
+    map.panTo(coord, {animate: false})
+    const point = map.latLngToLayerPoint(coord)
+    cy.getMapDiv().click(point.x, point.y)
+  })
+})
+
 Cypress.Commands.add('drawRouteGeometry', function (newRoute) {
   cy.findByText(/Edit route geometry/i)
     .click()
@@ -61,24 +69,24 @@ Cypress.Commands.add('drawRouteGeometry', function (newRoute) {
     map.fitBounds(newRoute, {animate: false})
     cy.waitForMapToLoad()
     // click at the coordinates
-    newRoute.forEach((point, i) => {
-      const pix = map.latLngToContainerPoint(point)
-      cy.getMapDiv().click(pix.x, pix.y)
+    newRoute.forEach((coord, i) => {
+      const point = map.latLngToContainerPoint(coord)
+      cy.getMapDiv().click(point.x, point.y)
       if (i > 0) {
         cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
       }
     })
     // convert an arbitrary stop to a control point
     const stop = newRoute[newRoute.length - 2]
-    const pix = map.latLngToContainerPoint(stop)
-    cy.getMapDiv().click(pix.x, pix.y)
+    const point = map.latLngToContainerPoint(stop)
+    cy.getMapDiv().click(point.x, point.y)
     cy.getMapDiv()
       .findByText(/make control point/)
       .click()
     // control point not counted as stop
     cy.contains(new RegExp(newRoute.length - 1 + ' stops over \\d\\.\\d+ km'))
     // convert control point back to stop
-    cy.getMapDiv().click(pix.x, pix.y)
+    cy.getMapDiv().click(point.x, point.y)
     cy.getMapDiv()
       .findByText(/make stop/)
       .click()
