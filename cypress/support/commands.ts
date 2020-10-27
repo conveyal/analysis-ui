@@ -237,9 +237,10 @@ function createNewRegion() {
   return cy
     .location('pathname')
     .should('match', /regions\/\w{24}$/)
-    .then((path) =>
+    .then((path) => {
+      cy.writeFile(localFixturePath, '{}') // Reset all other data
       cy.storeInLocalFixture('regionId', path.match(/\w{24}$/)[0])
-    )
+    })
 }
 
 function createNewBundle() {
