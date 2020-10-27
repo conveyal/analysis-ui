@@ -4,14 +4,18 @@ const analysisName =
 describe('Regional', () => {
   before(() => {
     cy.setup('regionalAnalysis')
-    cy.fixture('regions/scratch').as('region')
-    cy.fixture('regions/scratch-results').as('results')
   })
 
-  it('verifies regional analysis results', function () {
+  beforeEach(() => {
+    cy.goToEntity('regionalAnalysis')
+    cy.fixture('regions/scratch').as('region')
+    cy.fixture('regions/scratch-results').as('results')
     cy.findByText(/Access to/i)
       .parent()
       .as('legend')
+  })
+
+  it('verifies regional analysis results', function () {
     cy.get('@legend').should('not.contain', 'Loading grids')
     // compare to self with different time cutoff and check the legend again
     cy.findByLabelText(/Compare to/).type(`${analysisName}{enter}`, {
