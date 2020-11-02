@@ -1,12 +1,13 @@
-import {Button} from '@chakra-ui/core'
+import {Button, useDisclosure, useToast} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
-import memoizeOne from 'memoize-one'
-import React from 'react'
-import {Marker, Polyline, Popup, withLeaflet} from 'react-leaflet'
+import {LatLng} from 'leaflet'
+import {useCallback, useEffect, useState} from 'react'
+import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
 
 import {ADD_TRIP_PATTERN, MINIMUM_SNAP_STOP_ZOOM_LEVEL} from 'lib/constants'
 import colors from 'lib/constants/colors'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
+import useOnMount from 'lib/hooks/use-on-mount'
 import Leaflet from 'lib/leaflet'
 import message from 'lib/message'
 import getStopsFromSegments from 'lib/utils/get-stops'
@@ -20,151 +21,481 @@ import {
   getSnappedStopIconForZoom
 } from '../../map/circle-icons'
 
+// Valid modification types for this component
+type Modification = CL.AddTripPattern | CL.Reroute
+
+type ControlPoint = {
+  position: LatLng
+  index: number
+}
+
+type TransitEditorProps = {
+  allowExtend: boolean
+  allStops: GTFS.Stop[]
+  extendFromEnd: boolean
+  followRoad: boolean
+  modification: Modification
+  spacing: number
+  updateModification: (update: Partial<Modification>) => void
+}
+
 const logDomEvent = createLogDomEvent('transit-editor')
 
 /**
  * Check if the Leaflet point goes over the anti-meridian.
  */
-const latlngIsOutOfRange = (ll) =>
+const latlngIsOutOfRange = (ll: L.LatLng) =>
   ll.lng >= 180 || ll.lng <= -180 || (ll.lat >= 90 && ll.lat <= -90)
 
-const outOfRangeMessage = (ll) =>
+const outOfRangeMessage = (ll: L.LatLng) =>
   `Selected point ${ll.toString()} is invalid. Coordinates must not go over the anti-meridian.`
 
-// Wrapper to use `async`/`await` functions that can't be passed as event handlers
-const runAsync = (as) =>
-  as().catch((e) => {
-    console.error(e)
-    throw e
-  })
+// We previously allowed segment speeds to get out of sync with the segments.
+// This ensures consistent array lengths.
+const extendSegmentSpeedsTo = (ss: number[], newLength: number): number[] => {
+  const lastSpeed = ss[ss.length - 1] || DEFAULT_SEGMENT_SPEED
+  for (let i = ss.length; i < newLength; i++) {
+    ss.push(lastSpeed)
+  }
+  return ss
+}
 
 // Helper function to get the coordinates from a segment depending on type
-const coordinatesFromSegment = (segment, end = false) =>
-  segment.geometry.type === 'Point'
-    ? segment.geometry.coordinates
-    : end
-    ? segment.geometry.coordinates.slice(-1)[0]
-    : segment.geometry.coordinates[0]
-
-const getLineWeightForZoom = (z) => (z < 11 ? 1 : z - 10)
-
-export class TransitEditor extends React.Component<any> {
-  state: any = {}
-
-  static getDerivedStateFromProps(props) {
-    const zoom = props.leaflet.map.getZoom()
-    return {
-      controlPointIcon: getControlPointIconForZoom(zoom),
-      lineWeight: getLineWeightForZoom(zoom),
-      newStopIcon: getNewStopIconForZoom(zoom),
-      newSnappedStopIcon: getSnappedStopIconForZoom(zoom)
-    }
+const coordinatesFromSegment = (
+  {geometry}: CL.ModificationSegment,
+  end = false
+): GeoJSON.Position => {
+  if (geometry.type === 'Point') return geometry.coordinates
+  if (geometry.type === 'LineString') {
+    return end ? geometry.coordinates.slice(-1)[0] : geometry.coordinates[0]
   }
+  console.error('Invalid geometry type')
+  return []
+}
 
-  componentDidMount() {
-    const {map} = this.props.leaflet
-    map.on('click', this._handleMapClick)
-    map.on('mousemove', this._handleMouseMove)
-    map.on('zoomend', this._handleZoomEnd)
+function useZoom() {
+  const leaflet = useLeaflet()
+  const [zoom, setZoom] = useState(leaflet.map.getZoom())
 
+  useEffect(() => {
+    const handleZoomEnd = () => setZoom(leaflet.map.getZoom())
+    leaflet.map.on('zoomend', handleZoomEnd)
+    return () => {
+      leaflet.map.off('zoomend', handleZoomEnd)
+    }
+  }, [leaflet, setZoom])
+
+  return zoom
+}
+
+function useNewStopIcon() {
+  const zoom = useZoom()
+  const [newStopIcon, setNewStopIcon] = useState(() =>
+    getNewStopIconForZoom(zoom)
+  )
+  useEffect(() => {
+    setNewStopIcon(getNewStopIconForZoom(zoom))
+  }, [zoom])
+
+  return newStopIcon
+}
+
+// Get the modification segments. Always return an array
+const getSegments = (m: Modification): CL.ModificationSegment[] => [
+  ...(m.segments || [])
+]
+
+// Hook for getting the segments
+function useSegments(modification: Modification) {
+  const [segments, setSegments] = useState<CL.ModificationSegment[]>(
+    modification.segments || []
+  )
+  useEffect(() => {
+    setSegments(modification.segments || [])
+  }, [modification.segments])
+  return segments
+}
+
+/**
+ * Create/edit a new route
+ */
+export default function TransitEditor({
+  allowExtend,
+  allStops,
+  extendFromEnd,
+  followRoad,
+  modification,
+  spacing,
+  updateModification
+}: TransitEditorProps) {
+  const leaflet = useLeaflet()
+  const segments = useSegments(modification)
+  const toast = useToast()
+  const zoom = useZoom()
+
+  const latlngIsInvalidCheck = useCallback(
+    (latlng: L.LatLng): boolean => {
+      if (latlngIsOutOfRange(latlng)) {
+        toast({
+          description: outOfRangeMessage(latlng),
+          position: 'top',
+          status: 'error'
+        })
+        return true
+      }
+      return false
+    },
+    [toast]
+  )
+
+  // Initial mount only. Fit bounds to route
+  useOnMount(() => {
     // Focus the map on the routes
     const bounds = new Leaflet.LatLngBounds([])
-    const segments = this._getSegments()
-    if (segments.length > 0 && segments[0].geometry.type !== 'Point') {
+    if (segments.length > 0) {
       for (const segment of segments) {
-        const coordinates = segment.geometry.coordinates
-        for (const coord of coordinates) {
-          bounds.extend([coord[1], coord[0]])
+        if (segment.geometry.type === 'LineString') {
+          const coordinates = segment.geometry.coordinates
+          for (const coord of coordinates) {
+            bounds.extend([coord[1], coord[0]])
+          }
         }
       }
-      map.fitBounds(bounds)
+      leaflet.map.fitBounds(bounds)
     }
-  }
+  })
 
-  componentWillUnmount() {
-    const {map} = this.props.leaflet
-    map.off('click', this._handleMapClick)
-    map.off('mousemove', this._handleMouseMove)
-    map.off('zoomend', this._handleZoomEnd)
-  }
+  const updateSegments = useCallback(
+    (newSegments: CL.ModificationSegment[]) => {
+      updateModification({segments: newSegments})
+    },
+    [updateModification]
+  )
 
-  _handleZoomEnd = () => {
-    const z = this.props.leaflet.map.getZoom()
-    this.setState({
-      controlPointIcon: getControlPointIconForZoom(z),
-      lineWeight: getLineWeightForZoom(z),
-      newStopIcon: getNewStopIconForZoom(z),
-      newSnappedStopIcon: getSnappedStopIconForZoom(z)
-    })
-  }
+  const getStopNearPoint = useCallback(
+    (point: L.LatLng) => {
+      if (zoom >= MINIMUM_SNAP_STOP_ZOOM_LEVEL) {
+        return getNearestStopToPoint(point, allStops, zoom)
+      }
+    },
+    [allStops, zoom]
+  )
 
-  render() {
-    const {
-      controlPointIcon,
-      cursorPosition,
-      lineWeight,
-      newStopIcon,
-      newSnappedStopIcon,
-      showStop
-    } = this.state
-    const p = this.props
-    const {
-      controlPoints,
-      segmentFeatures,
-      stops
-    } = getDerivedStateFromModification(p.modification) // TODO this arg was unused... why? p.extendFromEnd)
-    const zoom = this.props.leaflet.map.getZoom()
-    return (
-      <>
-        {segmentFeatures.map((feature, index) => (
-          <Polyline
-            color={colors.ADDED}
-            key={`segment-${index}`}
-            onClick={this._clickSegment(index)}
-            onBlur={this._handleMouseOutSegment}
-            onFocus={this._handleMouseOverSegment}
-            onMouseover={this._handleMouseOverSegment}
-            onMouseout={this._handleMouseOutSegment}
-            positions={feature}
-            weight={lineWeight}
+  const handleMapClick = useCallback(
+    async (event: L.LeafletMouseEvent) => {
+      logDomEvent('Map.onClick', event)
+      const {latlng} = event
+      if (latlngIsInvalidCheck(latlng)) return
+      if (!allowExtend) {
+        // TODO: Show message about `allowExtend`
+        return
+      }
+
+      // Add a new stop and update the segments
+      updateModification(
+        await addStop(
+          latlng,
+          modification,
+          extendFromEnd,
+          followRoad,
+          spacing,
+          getStopNearPoint(latlng)
+        )
+      )
+    },
+    [
+      allowExtend,
+      extendFromEnd,
+      followRoad,
+      getStopNearPoint,
+      latlngIsInvalidCheck,
+      modification,
+      spacing,
+      updateModification
+    ]
+  )
+
+  useEffect(() => {
+    leaflet.map.on('click', handleMapClick)
+    return () => leaflet.map.off('click', handleMapClick)
+  }, [handleMapClick, leaflet])
+
+  const insertStopAtIndex = useCallback(
+    async (index: number, latlng: L.LatLng) => {
+      if (latlngIsInvalidCheck(latlng)) return
+      updateModification(
+        await insertStop(
+          latlng,
+          index,
+          modification,
+          followRoad,
+          getStopNearPoint(latlng)
+        )
+      )
+    },
+    [
+      followRoad,
+      latlngIsInvalidCheck,
+      getStopNearPoint,
+      modification,
+      updateModification
+    ]
+  )
+
+  const deleteStopOrPoint = useCallback(
+    async (index) => {
+      const newSegments = await deleteStopOrPointFromSegments(
+        modification,
+        index,
+        followRoad
+      )
+      updateModification(newSegments)
+    },
+    [followRoad, modification, updateModification]
+  )
+
+  const _onStopDragEnd = useCallback(
+    async (stopIndex: number, latlng: L.LatLng) => {
+      if (latlngIsInvalidCheck(latlng)) return
+      updateSegments(
+        await onStopDragEnd(
+          latlng,
+          stopIndex,
+          segments,
+          followRoad,
+          getStopNearPoint(latlng)
+        )
+      )
+    },
+    [
+      followRoad,
+      getStopNearPoint,
+      latlngIsInvalidCheck,
+      segments,
+      updateSegments
+    ]
+  )
+
+  const _onControlPointDragEnd = useCallback(
+    async (stopIndex: number, latlng: L.LatLng) => {
+      if (latlngIsInvalidCheck(latlng)) return
+
+      updateSegments(
+        await onControlPointDragEnd(latlng, stopIndex, segments, followRoad)
+      )
+    },
+    [followRoad, latlngIsInvalidCheck, segments, updateSegments]
+  )
+
+  return (
+    <>
+      <Segments clickSegment={insertStopAtIndex} modification={modification} />
+      <AutoCreatedStops onDragEnd={insertStopAtIndex} segments={segments} />
+      <ControlPoints
+        deletePoint={deleteStopOrPoint}
+        onDragEnd={_onControlPointDragEnd}
+        segments={segments}
+        updateSegments={updateSegments}
+      />
+      <Stops
+        deleteStop={deleteStopOrPoint}
+        onStopDragEnd={_onStopDragEnd}
+        segments={segments}
+        updateSegments={updateSegments}
+      />
+    </>
+  )
+}
+
+const getLineWeightForZoom = (z) => (z < 11 ? 1 : z - 10)
+function useLineWeight() {
+  const zoom = useZoom()
+  const [lineWeight, setLineWeight] = useState(() => getLineWeightForZoom(zoom))
+  useEffect(() => {
+    setLineWeight(getLineWeightForZoom(zoom))
+  }, [zoom])
+
+  return lineWeight
+}
+
+function useSegmentFeatures(modification: Modification): L.LatLng[][] {
+  const segments = useSegments(modification)
+  const [segmentFeatures, setSegmentFeatures] = useState(() =>
+    flattenSegments(segments)
+  )
+  useEffect(() => {
+    setSegmentFeatures(flattenSegments(segments))
+  }, [segments, setSegmentFeatures])
+  return segmentFeatures
+}
+
+function Segments({clickSegment, modification}) {
+  const lineWeight = useLineWeight()
+  const segmentFeatures = useSegmentFeatures(modification)
+  const showStop = useDisclosure()
+
+  return (
+    <>
+      {segmentFeatures.map((feature, index) => (
+        <Polyline
+          color={colors.ADDED}
+          key={index}
+          onClick={(event: L.LeafletMouseEvent) => {
+            logDomEvent('Segment.onClick', event)
+            Leaflet.DomEvent.stop(event)
+            clickSegment(index, event.latlng)
+          }}
+          onBlur={showStop.onClose}
+          onFocus={showStop.onOpen}
+          onMouseover={showStop.onOpen}
+          onMouseout={showStop.onClose}
+          positions={feature}
+          weight={lineWeight}
+        />
+      ))}
+      {showStop.isOpen && <NewStopUnderCursor />}
+    </>
+  )
+}
+
+function useCursorPosition() {
+  const leaflet = useLeaflet()
+  const [cursorPosition, setCursorPosition] = useState()
+
+  useEffect(() => {
+    // TODO ensure latlng within valid range
+    const handleMouseMove = (event) => setCursorPosition(event.latlng)
+    leaflet.map.on('mousemove', handleMouseMove)
+    return () => {
+      leaflet.map.off('mousemove', handleMouseMove)
+    }
+  }, [leaflet, setCursorPosition])
+
+  return cursorPosition
+}
+
+/**
+ * Show a new stop under the cursor when hovering over a segment.
+ */
+function NewStopUnderCursor() {
+  const cursorPosition = useCursorPosition()
+  const newStopIcon = useNewStopIcon()
+  return (
+    <Marker position={cursorPosition} icon={newStopIcon} interactive={false} />
+  )
+}
+
+function useStops(segments: CL.ModificationSegment[]) {
+  const [stops, setStops] = useState<CL.StopFromSegment[]>(() =>
+    getStopsFromSegments(segments)
+  )
+  useEffect(() => {
+    setStops(getStopsFromSegments(segments))
+  }, [segments])
+
+  return stops
+}
+
+function AutoCreatedStops({onDragEnd, segments}) {
+  const newStopIcon = useNewStopIcon()
+  const stops = useStops(segments)
+
+  return (
+    <>
+      {stops
+        .filter((s) => s.autoCreated)
+        .map((stop, i) => (
+          <Marker
+            position={lonlat.toLeaflet(stop)}
+            draggable
+            icon={newStopIcon}
+            key={`auto-created-stop-${i}-${lonlat.toString(stop)}`}
+            onClick={(event: L.LeafletMouseEvent) => {
+              logDomEvent('AutoCreatedStop.onClick', event)
+              Leaflet.DomEvent.stop(event)
+              onDragEnd(stop.index, event.latlng)
+            }}
+            onDragend={(event: L.DragEndEvent) => {
+              logDomEvent('AutoCreatedStop.onDragend', event)
+              Leaflet.DomEvent.stop(event)
+              onDragEnd(stop.index, (event.target as L.Marker).getLatLng())
+            }}
+            opacity={0.5}
+            zIndexOffset={500}
           />
         ))}
-        {stops
-          .filter((s) => s.autoCreated)
-          .map((stop, i) => (
-            <Marker
-              position={stop}
-              draggable
-              icon={newStopIcon}
-              key={`auto-created-stop-${i}-${lonlat.toString(stop)}`}
-              onClick={this._dragAutoCreatedStop(stop.index)}
-              onDragend={this._dragAutoCreatedStop(stop.index)}
-              opacity={0.5}
-              zIndexOffset={500}
-            />
-          ))}
-        {controlPoints.map((controlPoint) => (
+    </>
+  )
+}
+
+function useNewSnappedStopIcon() {
+  const zoom = useZoom()
+  const [newSnappedStopIcon, setNewSnappedStopIcon] = useState(() =>
+    getSnappedStopIconForZoom(zoom)
+  )
+
+  useEffect(() => {
+    setNewSnappedStopIcon(getSnappedStopIconForZoom(zoom))
+  }, [zoom])
+
+  return newSnappedStopIcon
+}
+
+function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
+  const stops = useStops(segments)
+  const newSnappedStopIcon = useNewSnappedStopIcon()
+  const newStopIcon = useNewStopIcon()
+
+  const toggleStop = useCallback(
+    (stopIndex) => {
+      if (stopIndex < segments.length) {
+        segments[stopIndex] = {
+          ...segments[stopIndex],
+          stopAtStart: false,
+          fromStopId: null
+        }
+      }
+
+      if (stopIndex > 0) {
+        segments[stopIndex - 1] = {
+          ...segments[stopIndex - 1],
+          stopAtEnd: false,
+          toStopId: null
+        }
+      }
+      updateSegments(segments)
+    },
+    [segments, updateSegments]
+  )
+
+  return (
+    <>
+      {stops
+        .filter((s) => !s.autoCreated)
+        .map((stop) => (
           <Marker
-            position={controlPoint.position}
+            position={lonlat.toLeaflet(stop)}
+            icon={stop.stopId ? newSnappedStopIcon : newStopIcon}
             draggable
-            icon={controlPointIcon}
-            key={`control-point-${controlPoint.index}-${lonlat.toString(
-              controlPoint.position
-            )}-${zoom}`}
-            onDragend={this._dragControlPoint(controlPoint.index)}
-            zIndexOffset={750}
+            key={`stop-${stop.index}-${lonlat.toString(stop)}`}
+            onDragend={(event: L.DragEndEvent) => {
+              logDomEvent('Stop.onDragEnd', event)
+              Leaflet.DomEvent.stop(event)
+              onStopDragEnd(stop.index, (event.target as L.Marker).getLatLng())
+            }}
+            zIndexOffset={1000}
           >
             <Popup>
               <div>
                 <Button
-                  onClick={this._toggleControlPoint(controlPoint.index)}
-                  variantColor='blue'
+                  onClick={() => toggleStop(stop.index)}
+                  variantColor='teal'
                 >
-                  {message('transitEditor.makeStop')}
+                  {message('transitEditor.makeControlPoint')}
                 </Button>
                 &nbsp;
                 <Button
-                  onClick={this._deleteStopOrPoint(controlPoint.index)}
+                  onClick={() => deleteStop(stop.index)}
                   variantColor='red'
                 >
                   {message('transitEditor.deletePoint')}
@@ -173,597 +504,492 @@ export class TransitEditor extends React.Component<any> {
             </Popup>
           </Marker>
         ))}
-        {stops
-          .filter((s) => !s.autoCreated)
-          .map((stop) => (
-            <Marker
-              position={stop}
-              icon={stop.stopId ? newSnappedStopIcon : newStopIcon}
-              draggable
-              key={`stop-${stop.index}-${lonlat.toString(stop)}`}
-              onDragend={this._dragStop(stop.index)}
-              zIndexOffset={1000}
-            >
-              <Popup>
-                <div>
-                  <Button
-                    onClick={this._toggleStop(stop.index)}
-                    variantColor='teal'
-                  >
-                    {message('transitEditor.makeControlPoint')}
-                  </Button>
-                  &nbsp;
-                  <Button
-                    onClick={this._deleteStopOrPoint(stop.index)}
-                    variantColor='red'
-                  >
-                    {message('transitEditor.deletePoint')}
-                  </Button>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-        {showStop && (
-          <Marker
-            position={cursorPosition}
-            icon={newStopIcon}
-            interactive={false}
-          />
-        )}
-      </>
-    )
-  }
+    </>
+  )
+}
 
-  /**
-   * Get a stop ID at the specified location, or null if this is not near a stop
-   */
-  _getStopNear(pointClickedOnMap) {
-    const zoom = this.props.leaflet.map.getZoom()
-    if (zoom >= MINIMUM_SNAP_STOP_ZOOM_LEVEL) {
-      return getNearestStopToPoint(pointClickedOnMap, this.props.allStops, zoom)
-    }
-  }
+function useControlPoints(segments: CL.ModificationSegment[]) {
+  const [controlPoints, setControlPoints] = useState(() =>
+    getControlPointsForSegments(segments)
+  )
+  useEffect(() => {
+    setControlPoints(getControlPointsForSegments(segments))
+  }, [segments])
+  return controlPoints
+}
 
-  _getSegments() {
-    return [...(this.props.modification.segments || [])]
-  }
+function useControlPointIcon() {
+  const zoom = useZoom()
+  const [controlPointIcon, setControlPointIcon] = useState(() =>
+    getControlPointIconForZoom(zoom)
+  )
 
-  /**
-   * Handle a user clicking on the map
-   */
-  _handleMapClick = (event) => {
-    logDomEvent('_handleMapClick', event)
-    if (latlngIsOutOfRange(event.latlng)) {
-      window.alert(outOfRangeMessage(event.latlng))
-      return
-    }
+  useEffect(() => {
+    setControlPointIcon(getControlPointIconForZoom(zoom))
+  }, [zoom])
 
-    const p = this.props
-    const {
-      allowExtend,
-      extendFromEnd,
-      followRoad,
-      spacing,
-      updateModification
-    } = this.props
+  return controlPointIcon
+}
 
-    if (allowExtend) {
-      runAsync(async () => {
-        let coordinates = lonlat.toCoordinates(event.latlng)
-        const segments = this._getSegments()
-        const snapStop = this._getStopNear(event.latlng)
+function ControlPoints({deletePoint, onDragEnd, segments, updateSegments}) {
+  const controlPoints = useControlPoints(segments)
+  const controlPointIcon = useControlPointIcon()
 
-        let stopId
-        if (snapStop) {
-          stopId = snapStop.stop_id
-          coordinates = [snapStop.stop_lon, snapStop.stop_lat]
+  const togglePoint = useCallback(
+    (pointIndex: number) => {
+      if (pointIndex < segments.length) {
+        segments[pointIndex] = {
+          ...segments[pointIndex],
+          stopAtStart: true
         }
+      }
 
-        let newSegments
-        if (segments.length > 0) {
-          if (extendFromEnd) {
-            // Insert a segment at the end
-            const lastSegment = segments[segments.length - 1]
-            const from = coordinatesFromSegment(lastSegment, true)
-            const geometry = await getLineString(from, coordinates, {
-              followRoad
-            })
-
-            newSegments = [
-              ...segments,
-              {
-                fromStopId: lastSegment.toStopId,
-                geometry,
-                spacing,
-                stopAtEnd: true,
-                stopAtStart: lastSegment.stopAtEnd,
-                toStopId: stopId
-              }
-            ]
-          } else {
-            const firstSegment = segments[0]
-            const to = coordinatesFromSegment(firstSegment)
-            const geometry = await getLineString(coordinates, to, {followRoad})
-
-            newSegments = [
-              {
-                fromStopId: stopId,
-                geometry,
-                spacing,
-                stopAtEnd: firstSegment.stopAtStart,
-                stopAtStart: true,
-                toStopId: firstSegment.fromStopId
-              },
-              ...segments
-            ]
-          }
-
-          // Remove all leftover point features
-          newSegments = newSegments.filter((s) => s.geometry.type !== 'Point')
-        } else {
-          newSegments = [
-            {
-              fromStopId: stopId,
-              geometry: {
-                type: 'Point',
-                coordinates: lonlat.toCoordinates(coordinates)
-              },
-              spacing,
-              stopAtEnd: true,
-              stopAtStart: true,
-              toStopId: stopId
-            }
-          ]
+      if (pointIndex > 0) {
+        segments[pointIndex - 1] = {
+          ...segments[pointIndex - 1],
+          stopAtEnd: true
         }
+      }
 
-        // Update the segment speeds
-        const updateSegmentSpeeds = (ss) => {
-          if (!extendFromEnd) {
-            ss.unshift(ss[0] || DEFAULT_SEGMENT_SPEED)
-          }
+      updateSegments(segments)
+    },
+    [segments, updateSegments]
+  )
 
-          return this._extendSegmentSpeedsTo(ss, newSegments.length)
-        }
+  return (
+    <>
+      {controlPoints.map((p) => (
+        <Marker
+          position={p.position}
+          draggable
+          icon={controlPointIcon}
+          key={`cp-${p.index}-${p.position.toString()}`}
+          onDragend={(event: L.DragEndEvent) => {
+            logDomEvent('ControlPoint.onDragend', event)
+            Leaflet.DomEvent.stop(event)
+            onDragEnd(p.index, (event.target as L.Marker).getLatLng())
+          }}
+          zIndexOffset={750}
+        >
+          <Popup>
+            <div>
+              <Button onClick={() => togglePoint(p.index)} variantColor='blue'>
+                {message('transitEditor.makeStop')}
+              </Button>
+              &nbsp;
+              <Button onClick={() => deletePoint(p.index)} variantColor='red'>
+                {message('transitEditor.deletePoint')}
+              </Button>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+    </>
+  )
+}
 
-        if (p.modification.type === ADD_TRIP_PATTERN) {
-          updateModification({
-            segments: newSegments,
-            timetables: p.modification.timetables.map((tt) => ({
-              ...tt,
-              segmentSpeeds: updateSegmentSpeeds([...tt.segmentSpeeds])
-            }))
-          })
-        } else {
-          // type === REROUTE
-          updateModification({
-            segments: newSegments,
-            segmentSpeeds: updateSegmentSpeeds([
-              ...p.modification.segmentSpeeds
-            ])
-          })
-        }
+/**
+ * Handle a user clicking on the map
+ */
+async function addStop(
+  latlng: LatLng,
+  modification: Modification,
+  extendFromEnd: boolean,
+  followRoad: boolean,
+  spacing: number,
+  snapStop: null | GTFS.Stop
+): Promise<Partial<Modification>> {
+  const segments = getSegments(modification)
+
+  const coordinates: GeoJSON.Position = snapStop
+    ? [snapStop.stop_lon, snapStop.stop_lat]
+    : [latlng.lng, latlng.lat]
+  const stopId: void | string = snapStop?.stop_id
+
+  let newSegments: CL.ModificationSegment[]
+  if (segments.length > 0) {
+    if (extendFromEnd) {
+      // Insert a segment at the end
+      const lastSegment = segments[segments.length - 1]
+      const from = coordinatesFromSegment(lastSegment, true)
+      const geometry = await getLineString(from, coordinates, {
+        followRoad
       })
-    }
-  }
 
-  // We previously allowed segment speeds to get out of sync with the segments.
-  // This ensures consistent array lengths.
-  _extendSegmentSpeedsTo(ss, newLength) {
-    const lastSpeed = ss[ss.length - 1] || DEFAULT_SEGMENT_SPEED
-    for (let i = ss.length; i < newLength; i++) {
-      ss.push(lastSpeed)
-    }
-    return ss
-  }
-
-  _handleMouseMove = (event) => {
-    logDomEvent('_handleMouseMove', event)
-    const latlng = event.latlng
-    if (latlngIsOutOfRange(latlng)) {
-      window.alert(outOfRangeMessage(latlng))
-      return
-    }
-
-    this.setState({cursorPosition: latlng})
-  }
-
-  _handleMouseOverSegment = (event) => {
-    logDomEvent('_handleMouseOverSegment', event)
-    this.setState({showStop: true})
-  }
-
-  _handleMouseOutSegment = (event) => {
-    logDomEvent('_handleMouseOutSegment', event)
-    this.setState({showStop: false})
-  }
-
-  _dragAutoCreatedStop = (index) => (event) => {
-    logDomEvent('_dragAutoCreatedStop', event)
-    Leaflet.DomEvent.stop(event)
-
-    const latlng = event.target.getLatLng()
-    if (latlngIsOutOfRange(latlng)) {
-      window.alert(outOfRangeMessage(latlng))
-      return
-    }
-
-    this._insertStop(lonlat.toCoordinates(latlng), index)
-  }
-
-  _dragStop = (index) => (event) => {
-    logDomEvent('_dragStop', event)
-    Leaflet.DomEvent.stop(event)
-    const position = event.target.getLatLng()
-    if (latlngIsOutOfRange(position)) {
-      window.alert(outOfRangeMessage(position))
-      return
-    }
-
-    const {followRoad, updateModification} = this.props
-    const segments = this._getSegments()
-    const snapStop = this._getStopNear(position)
-    const isEnd = index === segments.length
-    const isStart = index === 0
-
-    let coordinates = lonlat.toCoordinates(position)
-    let newStopId
-    if (snapStop) {
-      newStopId = snapStop.stop_id
-      coordinates = [snapStop.stop_lon, snapStop.stop_lat]
-    }
-
-    runAsync(async () => {
-      const newSegments = [...segments]
-      if (!isStart) {
-        const previousSegment = segments[index - 1]
-        const geometry = await getLineString(
-          coordinatesFromSegment(previousSegment),
-          coordinates,
-          {followRoad}
-        )
-        // will overwrite geometry and preserve other attributes
-        newSegments[index - 1] = {
-          ...previousSegment,
-          toStopId: newStopId,
-          geometry
+      newSegments = [
+        ...segments,
+        {
+          fromStopId: lastSegment.toStopId,
+          geometry,
+          spacing,
+          stopAtEnd: true,
+          stopAtStart: lastSegment.stopAtEnd,
+          toStopId: stopId
         }
-      }
-
-      if (!isEnd) {
-        const nextSegment = segments[index]
-        newSegments[index] = {
-          ...nextSegment,
-          fromStopId: newStopId,
-          geometry: await getLineString(
-            coordinates,
-            coordinatesFromSegment(nextSegment, true),
-            {followRoad}
-          )
-        }
-      }
-
-      updateModification({segments: newSegments})
-    })
-  }
-
-  _toggleStop = (index) => () => {
-    const segments = this._getSegments()
-    if (index < segments.length) {
-      segments[index] = {
-        ...segments[index],
-        stopAtStart: false,
-        fromStopId: null
-      }
-    }
-
-    if (index > 0) {
-      segments[index - 1] = {
-        ...segments[index - 1],
-        stopAtEnd: false,
-        toStopId: null
-      }
-    }
-
-    this.props.updateModification({segments})
-  }
-
-  _dragControlPoint = (index) => (event) => {
-    logDomEvent('_dragControlPoint', event)
-    Leaflet.DomEvent.stop(event)
-    const latlng = event.target.getLatLng()
-    if (latlngIsOutOfRange(latlng)) {
-      window.alert(outOfRangeMessage(latlng))
-      return
-    }
-
-    const {followRoad, updateModification} = this.props
-    const coordinates = lonlat.toCoordinates(latlng)
-    const segments = this._getSegments()
-    const isEnd = index === segments.length
-    const isStart = index === 0
-
-    runAsync(async () => {
-      const newSegments = [...segments]
-      if (!isStart) {
-        const previousSegment = newSegments[index - 1]
-        // will overwrite geometry and preserve other attributes
-        newSegments[index - 1] = {
-          ...previousSegment,
-          geometry: await getLineString(
-            coordinatesFromSegment(previousSegment),
-            coordinates,
-            {followRoad}
-          )
-        }
-      }
-
-      if (!isEnd) {
-        const nextSegment = newSegments[index]
-        // can be a point if only one stop has been created
-        const toCoordinates = coordinatesFromSegment(nextSegment, true)
-        newSegments[index] = {
-          ...nextSegment,
-          geometry: await getLineString(coordinates, toCoordinates, {
-            followRoad
-          })
-        }
-      }
-
-      updateModification({segments: newSegments})
-    })
-  }
-
-  _toggleControlPoint = (index) => () => {
-    const segments = this._getSegments()
-    if (index < segments.length) {
-      segments[index] = {
-        ...segments[index],
-        stopAtStart: true
-      }
-    }
-
-    if (index > 0) {
-      segments[index - 1] = {
-        ...segments[index - 1],
-        stopAtEnd: true
-      }
-    }
-
-    this.props.updateModification({segments})
-  }
-
-  /**
-   * TODO Move to an action
-   */
-  _deleteStopOrPoint = (index) => () => {
-    const p = this.props
-    let segments = this._getSegments()
-    const newSegmentsLength = segments.length - 1
-
-    if (index === 0) {
-      segments = segments.slice(1)
-
-      // Update segment speeds
-      const removeFirstSegmentSpeed = (ss) =>
-        this._extendSegmentSpeedsTo(ss.slice(1), newSegmentsLength)
-
-      if (p.modification.type === ADD_TRIP_PATTERN) {
-        p.updateModification({
-          segments,
-          timetables: p.modification.timetables.map((tt) => ({
-            ...tt,
-            segmentSpeeds: removeFirstSegmentSpeed([...tt.segmentSpeeds])
-          }))
-        })
-      } else {
-        // type === REROUTE
-        p.updateModification({
-          segments,
-          segmentSpeeds: removeFirstSegmentSpeed([
-            ...p.modification.segmentSpeeds
-          ])
-        })
-      }
-    } else if (index === segments.length) {
-      // nb stop index not hop index
-      segments.pop()
-
-      // Update segment speeds
-      const removeLastSegmentSpeed = (ss) => {
-        if (ss.length === segments.length) {
-          return ss.slice(0, -1)
-        } else {
-          return this._extendSegmentSpeedsTo(ss, newSegmentsLength)
-        }
-      }
-
-      if (p.modification.type === ADD_TRIP_PATTERN) {
-        p.updateModification({
-          segments,
-          timetables: p.modification.timetables.map((tt) => ({
-            ...tt,
-            segmentSpeeds: removeLastSegmentSpeed(tt.segmentSpeeds)
-          }))
-        })
-      } else {
-        // type === REROUTE
-        p.updateModification({
-          segments,
-          segmentSpeeds: removeLastSegmentSpeed(p.modification.segmentSpeeds)
-        })
-      }
+      ]
     } else {
-      // ok a little trickier
-      const seg0 = segments[index - 1]
-      const seg1 = segments[index]
-      getLineString(
-        coordinatesFromSegment(seg0),
-        coordinatesFromSegment(seg1, true),
-        {followRoad: p.followRoad}
-      ).then((line) => {
-        segments.splice(index - 1, 2, {
-          fromStopId: seg0.fromStopId,
-          geometry: line,
-          spacing: seg0.spacing,
-          stopAtEnd: seg1.stopAtEnd,
-          stopAtStart: seg0.stopAtStart,
-          toStopId: seg1.toStopId
-        })
+      const firstSegment = segments[0]
+      const to = coordinatesFromSegment(firstSegment)
+      const geometry = await getLineString(coordinates, to, {followRoad})
 
-        // Splice out a segment speed
-        const spliceSegmentSpeed = (ss) => {
-          if (ss.length > index) {
-            ss.splice(index, 1)
-          }
-
-          return this._extendSegmentSpeedsTo(ss, newSegmentsLength)
-        }
-
-        if (p.modification.type === ADD_TRIP_PATTERN) {
-          p.updateModification({
-            segments,
-            timetables: p.modification.timetables.map((tt) => ({
-              ...tt,
-              segmentSpeeds: spliceSegmentSpeed(tt.segmentSpeeds)
-            }))
-          })
-        } else {
-          // type === REROUTE
-          p.updateModification({
-            segments,
-            segmentSpeeds: spliceSegmentSpeed(p.modification.segmentSpeeds)
-          })
-        }
-
-        p.updateModification({segments})
-      })
-    }
-  }
-
-  _clickSegment = (index) => (event) => {
-    logDomEvent('_clickSegment', event)
-    Leaflet.DomEvent.stop(event)
-    const latlng = event.target.getLatLng()
-    if (latlngIsOutOfRange(latlng)) {
-      window.alert(outOfRangeMessage(latlng))
-      return
+      newSegments = [
+        {
+          fromStopId: stopId,
+          geometry,
+          spacing,
+          stopAtEnd: firstSegment.stopAtStart,
+          stopAtStart: true,
+          toStopId: firstSegment.fromStopId
+        },
+        ...segments
+      ]
     }
 
-    this._insertStop(latlng, index)
-  }
-
-  /**
-   * Insert a stop at the specified position. TODO should be done in actions.
-   */
-  async _insertStop(coordinates, index) {
-    const p = this.props
-    const {followRoad} = p
-    const segments = this._getSegments()
-
-    const snapStop = this._getStopNear(coordinates)
-    let stopId
-    if (snapStop) {
-      coordinates = [snapStop.stop_lon, snapStop.stop_lat]
-      stopId = snapStop.stop_id
-    }
-
-    const sourceSegment = segments[index]
-    const line0 = await getLineString(
-      coordinatesFromSegment(sourceSegment),
-      coordinates,
-      {followRoad}
-    )
-    const line1 = await getLineString(
-      coordinates,
-      coordinatesFromSegment(sourceSegment, true),
-      {followRoad}
-    )
-
-    const newSegments = [
-      ...segments.slice(0, index),
-      {
-        fromStopId: sourceSegment.fromStopId,
-        geometry: line0,
-        spacing: sourceSegment.spacing,
-        stopAtEnd: true,
-        stopAtStart: sourceSegment.stopAtStart,
-        toStopId: stopId
-      },
+    // Remove all leftover point features
+    newSegments = newSegments.filter((s) => s.geometry.type !== 'Point')
+  } else {
+    newSegments = [
       {
         fromStopId: stopId,
-        geometry: line1,
-        spacing: sourceSegment.spacing,
-        stopAtEnd: sourceSegment.stopAtEnd,
+        geometry: {type: 'Point', coordinates},
+        spacing,
+        stopAtEnd: true,
         stopAtStart: true,
-        toStopId: sourceSegment.toStopId
-      },
-      ...segments.slice(index + 1)
-    ]
-
-    // Determine new segment speeds
-    const insertSpeed = (ss) => {
-      if (ss.length > index) {
-        const duplicateSpeed = ss[index]
-        ss.splice(index + 1, 0, duplicateSpeed)
+        toStopId: stopId
       }
+    ]
+  }
 
-      return this._extendSegmentSpeedsTo(ss, newSegments.length)
+  // Update the segment speeds
+  const updateSegmentSpeeds = (ss: CL.SegmentSpeeds) => {
+    if (!extendFromEnd) {
+      ss.unshift(ss[0] || DEFAULT_SEGMENT_SPEED)
     }
 
-    if (p.modification.type === ADD_TRIP_PATTERN) {
-      p.updateModification({
-        segments: newSegments,
-        timetables: p.modification.timetables.map((tt) => ({
-          ...tt,
-          segmentSpeeds: insertSpeed(tt.segmentSpeeds)
-        }))
-      })
-    } else {
-      // type === REROUTE
-      p.updateModification({
-        segments: newSegments,
-        segmentSpeeds: insertSpeed(p.modification.segmentSpeeds)
-      })
+    return extendSegmentSpeedsTo(ss, newSegments.length)
+  }
+
+  if (modification.type === ADD_TRIP_PATTERN) {
+    return {
+      segments: newSegments,
+      timetables: modification.timetables.map((tt) => ({
+        ...tt,
+        segmentSpeeds: updateSegmentSpeeds([...tt.segmentSpeeds])
+      }))
+    }
+  } else {
+    // type === REROUTE
+    return {
+      segments: newSegments,
+      segmentSpeeds: updateSegmentSpeeds([...modification.segmentSpeeds])
     }
   }
 }
 
 /**
- * Add leaflet to props
+ * When an existing stop is dragged, reflow the segments around it. If an existing stop is close by
+ * snap to that stop.
  */
-export default withLeaflet(TransitEditor)
+async function onStopDragEnd(
+  latlng: LatLng,
+  stopIndex: number,
+  segments: CL.ModificationSegment[],
+  followRoad: boolean,
+  snapStop: null | GTFS.Stop
+): Promise<CL.ModificationSegment[]> {
+  const coordinates = snapStop
+    ? [snapStop.stop_lon, snapStop.stop_lat]
+    : [latlng.lng, latlng.lat]
+  const newStopId = snapStop?.stop_id
+
+  const isEnd = stopIndex === segments.length
+  const isStart = stopIndex === 0
+
+  const newSegments = [...segments]
+  if (!isStart) {
+    const previousSegment = segments[stopIndex - 1]
+    const geometry = await getLineString(
+      coordinatesFromSegment(previousSegment),
+      coordinates,
+      {followRoad}
+    )
+    // Overwrite geometry and preserve other attributes
+    newSegments[stopIndex - 1] = {
+      ...previousSegment,
+      toStopId: newStopId,
+      geometry
+    }
+  }
+
+  if (!isEnd) {
+    const nextSegment = segments[stopIndex]
+    newSegments[stopIndex] = {
+      ...nextSegment,
+      fromStopId: newStopId,
+      geometry: await getLineString(
+        coordinates,
+        coordinatesFromSegment(nextSegment, true),
+        {followRoad}
+      )
+    }
+  }
+
+  return newSegments
+}
 
 /**
- * Scope stops with their feed ID so that we can snap new patterns to stops from
- * multiple feeds.
+ * When a control point is dragged, reflow the segments around it.
  */
-const getDerivedStateFromModification = memoizeOne((modification) => {
-  const segments = modification.segments || []
+async function onControlPointDragEnd(
+  latlng: LatLng,
+  controlPointIndex: number,
+  segments: CL.ModificationSegment[],
+  followRoad: boolean
+): Promise<CL.ModificationSegment[]> {
+  const isEnd = controlPointIndex === segments.length
+  const isStart = controlPointIndex === 0
+  const coordinates = [latlng.lng, latlng.lat]
 
-  return {
-    controlPoints: getControlPointsForSegments(segments),
-    segmentFeatures: segments
-      .filter((segment) => segment.geometry.type !== 'Point') // if there's just a single stop, don't render an additional marker
-      .map((segment) =>
-        segment.geometry.coordinates.map((c) => lonlat.toLeaflet(c))
-      ),
-    stops: getStopsFromSegments(segments)
+  const newSegments = [...segments]
+  if (!isStart) {
+    const previousSegment = newSegments[controlPointIndex - 1]
+    // Overwrite geometry and preserve other attributes
+    newSegments[controlPointIndex - 1] = {
+      ...previousSegment,
+      geometry: await getLineString(
+        coordinatesFromSegment(previousSegment),
+        coordinates,
+        {followRoad}
+      )
+    }
   }
-})
 
-function getControlPointsForSegments(segments) {
-  const controlPoints = []
+  if (!isEnd) {
+    const nextSegment = newSegments[controlPointIndex]
+    // Can be a point if only one stop has been created
+    const toCoordinates = coordinatesFromSegment(nextSegment, true)
+    newSegments[controlPointIndex] = {
+      ...nextSegment,
+      geometry: await getLineString(coordinates, toCoordinates, {
+        followRoad
+      })
+    }
+  }
+
+  return newSegments
+}
+
+/**
+ * Delete stop or point and create new segments and segment speeds. Return the new modification
+ * values ready to send as an update.
+ */
+async function deleteStopOrPointFromSegments(
+  modification: Modification,
+  index: number,
+  followRoad: boolean
+): Promise<Partial<Modification>> {
+  let segments = getSegments(modification)
+  const newSegmentsLength = segments.length - 1
+
+  if (index === 0) {
+    segments = segments.slice(1)
+
+    // Update segment speeds
+    const removeFirstSegmentSpeed = (ss) =>
+      extendSegmentSpeedsTo(ss.slice(1), newSegmentsLength)
+
+    if (modification.type === ADD_TRIP_PATTERN) {
+      return {
+        segments,
+        timetables: modification.timetables.map((tt) => ({
+          ...tt,
+          segmentSpeeds: removeFirstSegmentSpeed([...tt.segmentSpeeds])
+        }))
+      }
+    } else {
+      // type === REROUTE
+      return {
+        segments,
+        segmentSpeeds: removeFirstSegmentSpeed([...modification.segmentSpeeds])
+      }
+    }
+  } else if (index === segments.length) {
+    // nb stop index not hop index
+    segments.pop()
+
+    // Update segment speeds
+    const removeLastSegmentSpeed = (ss) => {
+      if (ss.length === segments.length) {
+        return ss.slice(0, -1)
+      } else {
+        return extendSegmentSpeedsTo(ss, newSegmentsLength)
+      }
+    }
+
+    if (modification.type === ADD_TRIP_PATTERN) {
+      return {
+        segments,
+        timetables: modification.timetables.map((tt) => ({
+          ...tt,
+          segmentSpeeds: removeLastSegmentSpeed(tt.segmentSpeeds)
+        }))
+      }
+    } else {
+      // type === REROUTE
+      return {
+        segments,
+        segmentSpeeds: removeLastSegmentSpeed(modification.segmentSpeeds)
+      }
+    }
+  } else {
+    // If we cut the segment we need to create two line strings
+    const seg0 = segments[index - 1]
+    const seg1 = segments[index]
+    const line = await getLineString(
+      coordinatesFromSegment(seg0),
+      coordinatesFromSegment(seg1, true),
+      {followRoad}
+    )
+
+    segments.splice(index - 1, 2, {
+      fromStopId: seg0.fromStopId,
+      geometry: line,
+      spacing: seg0.spacing,
+      stopAtEnd: seg1.stopAtEnd,
+      stopAtStart: seg0.stopAtStart,
+      toStopId: seg1.toStopId
+    })
+
+    // Splice out a segment speed
+    const spliceSegmentSpeed = (ss) => {
+      if (ss.length > index) {
+        ss.splice(index, 1)
+      }
+
+      return extendSegmentSpeedsTo(ss, newSegmentsLength)
+    }
+
+    if (modification.type === ADD_TRIP_PATTERN) {
+      return {
+        segments,
+        timetables: modification.timetables.map((tt) => ({
+          ...tt,
+          segmentSpeeds: spliceSegmentSpeed(tt.segmentSpeeds)
+        }))
+      }
+    } else {
+      // type === REROUTE
+      return {
+        segments,
+        segmentSpeeds: spliceSegmentSpeed(modification.segmentSpeeds)
+      }
+    }
+  }
+}
+
+/**
+ * Insert a stop at the specified position.
+ */
+async function insertStop(
+  latlng: LatLng,
+  index: number,
+  modification: Modification,
+  followRoad: boolean,
+  snapStop: null | GTFS.Stop
+): Promise<Partial<Modification>> {
+  const coordinates = snapStop
+    ? [snapStop.stop_lon, snapStop.stop_lat]
+    : [latlng.lng, latlng.lat]
+  const stopId = snapStop?.stop_id
+
+  const segments = getSegments(modification)
+  const sourceSegment = segments[index]
+  const line0 = await getLineString(
+    coordinatesFromSegment(sourceSegment),
+    coordinates,
+    {followRoad}
+  )
+  const line1 = await getLineString(
+    coordinates,
+    coordinatesFromSegment(sourceSegment, true),
+    {followRoad}
+  )
+
+  const newSegments: CL.ModificationSegment[] = [
+    ...segments.slice(0, index),
+    {
+      fromStopId: sourceSegment.fromStopId,
+      geometry: line0,
+      spacing: sourceSegment.spacing,
+      stopAtEnd: true,
+      stopAtStart: sourceSegment.stopAtStart,
+      toStopId: stopId
+    },
+    {
+      fromStopId: stopId,
+      geometry: line1,
+      spacing: sourceSegment.spacing,
+      stopAtEnd: sourceSegment.stopAtEnd,
+      stopAtStart: true,
+      toStopId: sourceSegment.toStopId
+    },
+    ...segments.slice(index + 1)
+  ]
+
+  // Determine new segment speeds
+  const insertSpeed = (ss) => {
+    if (ss.length > index) {
+      const duplicateSpeed = ss[index]
+      ss.splice(index + 1, 0, duplicateSpeed)
+    }
+
+    return extendSegmentSpeedsTo(ss, newSegments.length)
+  }
+
+  if (modification.type === ADD_TRIP_PATTERN) {
+    return {
+      segments: newSegments,
+      timetables: modification.timetables.map((tt) => ({
+        ...tt,
+        segmentSpeeds: insertSpeed(tt.segmentSpeeds)
+      }))
+    }
+  } else {
+    // type === REROUTE
+    return {
+      segments: newSegments,
+      segmentSpeeds: insertSpeed(modification.segmentSpeeds)
+    }
+  }
+}
+
+function flattenSegments(segments: CL.ModificationSegment[]): L.LatLng[][] {
+  const flattenedCoordinates: LatLng[][] = []
+  for (const segment of segments) {
+    if (segment.geometry.type === 'LineString') {
+      flattenedCoordinates.push(
+        segment.geometry.coordinates.map((c) => lonlat.toLeaflet(c) as L.LatLng)
+      )
+    }
+  }
+  return flattenedCoordinates
+}
+
+function getControlPointsForSegments(
+  segments: CL.ModificationSegment[]
+): ControlPoint[] {
+  const controlPoints: ControlPoint[] = []
   for (let i = 0; i < segments.length; i++) {
     if (!segments[i].stopAtStart) {
       controlPoints.push({
-        position: lonlat(coordinatesFromSegment(segments[i])),
+        position: lonlat.toLeaflet(coordinatesFromSegment(segments[i])),
         index: i
       })
     }
 
     if (i === segments.length - 1 && !segments[i].stopAtEnd) {
       controlPoints.push({
-        position: lonlat(coordinatesFromSegment(segments[i], true)),
+        position: lonlat.toLeaflet(coordinatesFromSegment(segments[i], true)),
         index: i + 1
       })
     }

@@ -7,7 +7,7 @@ const segment = {
   geometry: {
     coordinates: [-70, 40],
     type: 'Point'
-  },
+  } as GeoJSON.Point,
   spacing: 250,
   stopAtEnd: true,
   stopAtStart: true
