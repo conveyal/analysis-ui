@@ -4,4 +4,10 @@ declare namespace GTFS {
     stop_lat: number
     stop_lon: number
   }
+
+  export type Pattern = {
+    name: string
+    pattern_id: string
+    geometry: GeoJSON.LineString
+  }
 }

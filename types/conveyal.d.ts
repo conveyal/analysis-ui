@@ -89,13 +89,33 @@ declare namespace CL {
   /**
    *
    */
-  export type ModificationTypes = 'add-trip-pattern' | 'reroute'
+  export type ModificationTypes =
+    | 'add-streets'
+    | 'add-trip-pattern'
+    | 'modify-streets'
+    | 'reroute'
 
   /**
    * Base modification
    */
   export interface IModification extends IModel {
     type: ModificationTypes
+  }
+
+  /**
+   *
+   */
+  export interface AddStreets extends IModification {
+    type: 'add-streets'
+    lineStrings: GeoJSON.Position[][]
+  }
+
+  /**
+   *
+   */
+  export interface ModifyStreets extends IModification {
+    type: 'modify-streets'
+    polygons: GeoJSON.Position[][]
   }
 
   /**
