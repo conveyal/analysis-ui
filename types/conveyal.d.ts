@@ -1,5 +1,5 @@
-// Conveyal Types
 declare namespace CL {
+  // eslint-disable-line
   /**
    * Common geospatial coordinate types
    */
@@ -53,8 +53,8 @@ declare namespace CL {
     accessGroup: string
     nonce: ObjectID
     name: string
-    createdAt: number
-    updatedAt: number
+    createdAt: string
+    updatedAt: string
   }
 
   export type Timetable = {

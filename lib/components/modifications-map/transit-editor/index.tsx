@@ -1,6 +1,6 @@
 import {Button, useDisclosure, useToast} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
-import {LatLng} from 'leaflet'
+import {LatLng, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
 import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
 
@@ -150,14 +150,17 @@ export default function TransitEditor({
 
   // Initial mount only. Fit bounds to route
   useOnMount(() => {
+    if (segments.length === 0) return
     // Focus the map on the routes
     const bounds = new Leaflet.LatLngBounds([])
-    if (segments.length > 0) {
+    if (segments.length === 1 && segments[0].geometry.type === 'Point') {
+      leaflet.map.flyTo(lonlat.toLeaflet(segments[0].geometry.coordinates))
+    } else {
       for (const segment of segments) {
         if (segment.geometry.type === 'LineString') {
-          const coordinates = segment.geometry.coordinates
-          for (const coord of coordinates) {
-            bounds.extend([coord[1], coord[0]])
+          // Should always be true
+          for (const coord of segment.geometry.coordinates) {
+            bounds.extend(lonlat.toLeaflet(coord))
           }
         }
       }
@@ -358,13 +361,16 @@ function Segments({clickSegment, modification}) {
   )
 }
 
+/**
+ * Get the current cursor position as a Leaflet.LatLng
+ */
 function useCursorPosition() {
   const leaflet = useLeaflet()
-  const [cursorPosition, setCursorPosition] = useState()
+  const [cursorPosition, setCursorPosition] = useState<LatLng | null>(null)
 
   useEffect(() => {
-    // TODO ensure latlng within valid range
-    const handleMouseMove = (event) => setCursorPosition(event.latlng)
+    const handleMouseMove = (event: LeafletMouseEvent) =>
+      setCursorPosition(event.latlng)
     leaflet.map.on('mousemove', handleMouseMove)
     return () => {
       leaflet.map.off('mousemove', handleMouseMove)
@@ -380,9 +386,9 @@ function useCursorPosition() {
 function NewStopUnderCursor() {
   const cursorPosition = useCursorPosition()
   const newStopIcon = useNewStopIcon()
-  return (
+  return cursorPosition != null ? (
     <Marker position={cursorPosition} icon={newStopIcon} interactive={false} />
-  )
+  ) : null
 }
 
 function useStops(segments: CL.ModificationSegment[]) {
