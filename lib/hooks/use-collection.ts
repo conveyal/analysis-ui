@@ -31,18 +31,20 @@ const configToQueryParams = (config?: UseCollection): string => {
 /**
  * Factory function for creating a hook to use a collection.
  */
-export function createUseCollection(collectionName) {
+export function createUseCollection<T extends CL.IModel>(
+  collectionName: string
+) {
   return function useCollection(config?: UseCollection) {
     const user = useContext(UserContext)
     const url = [`/api/db/${collectionName}`]
     const queryParams = configToQueryParams(config)
     if (queryParams) url.push(queryParams)
-    const results = useSWR([url.join('?'), user], config)
+    const results = useSWR<T[]>([url.join('?'), user], config)
 
     const {mutate, revalidate} = results
     // Helper function for updating values when using a collection
     const update = useCallback(
-      async (_id: string, newProperties: Record<string, unknown>) => {
+      async (_id: string, newProperties: Partial<T>) => {
         try {
           const data = await mutate(async (data) => {
             const obj = data.find((d) => d._id === _id)
@@ -66,7 +68,7 @@ export function createUseCollection(collectionName) {
 
     // Helper function for creating new values and revalidating
     const create = useCallback(
-      async (properties: Record<string, unknown>) => {
+      async (properties: T) => {
         const res = await postJSON(`/api/db/${collectionName}`, properties)
         if (res.ok) {
           revalidate()
@@ -98,5 +100,5 @@ export function createUseCollection(collectionName) {
 }
 
 // Create an instance of each collection type
-export const usePresets = createUseCollection('presets')
-export const useRegions = createUseCollection('regions')
+export const usePresets = createUseCollection<CL.Preset>('presets')
+export const useRegions = createUseCollection<CL.Region>('regions')

@@ -69,7 +69,7 @@ export function testAndSnapshot(C, p, id?: any) {
 /**
  * Test and snapshot map component
  */
-export function wrapMapComponent(C, p, id) {
+export function wrapMapComponent(C, p, id?: any) {
   const MapWrapper = (props) => (
     <Map>
       <C {...props} />

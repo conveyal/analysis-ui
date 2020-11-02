@@ -5,15 +5,15 @@ import {safeDelete, putJSON} from 'lib/utils/safe-fetch'
 
 import {UserContext} from '../user'
 
-export function createUseModel(collectionName: string) {
+export function createUseModel<T extends CL.IModel>(collectionName: string) {
   return function useModel(_id: string, config?: ConfigInterface) {
     const user = useContext(UserContext)
     const url = `/api/db/${collectionName}/${_id}`
-    const results = useSWR([url, user], config)
+    const results = useSWR<T>([url, user], config)
 
     const {mutate} = results
     const update = useCallback(
-      async (newProperties) => {
+      async (newProperties: Partial<T>) => {
         try {
           const data = await mutate(async (data) => {
             const res = await putJSON(url, {
@@ -46,5 +46,5 @@ export function createUseModel(collectionName: string) {
   }
 }
 
-export const useRegion = createUseModel('regions')
-export const usePreset = createUseModel('presets')
+export const useRegion = createUseModel<CL.Region>('regions')
+export const usePreset = createUseModel<CL.Preset>('presets')

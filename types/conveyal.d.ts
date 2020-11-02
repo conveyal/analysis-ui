@@ -1,5 +1,5 @@
+// eslint-disable-next-line
 declare namespace CL {
-  // eslint-disable-line
   /**
    * Common geospatial coordinate types
    */
@@ -12,6 +12,16 @@ declare namespace CL {
     y: number
   }
   export type CoordinateArray = [longitude: number, latitude: number]
+
+  /**
+   * Commonly used bounds object
+   */
+  export type Bounds = {
+    north: number
+    south: number
+    east: number
+    west: number
+  }
 
   /**
    * Segment speeds. Stored in timetables for ATP and directly on the modification for Reroute.
@@ -55,6 +65,21 @@ declare namespace CL {
     name: string
     createdAt: string
     updatedAt: string
+  }
+
+  /**
+   * Region model
+   */
+  export interface Region extends IModel {
+    bounds: Bounds
+  }
+
+  /**
+   * Analysis request presets
+   */
+  export interface Preset extends IModel {
+    profileRequest: Record<string, unknown>
+    regionId: string
   }
 
   export type Timetable = {
