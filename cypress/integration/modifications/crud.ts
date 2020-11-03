@@ -92,6 +92,10 @@ describe('Modifications (Basic)', () => {
       // Test the type specific elements
       formCheck(type, this.region)
 
+      // Navigate away and expand the map to the modification
+      cy.centerMapOn([0, 0])
+      cy.findByRole('button', {name: /Fit map to modification extents/}).click()
+
       // Go back to the list to force a save
       cy.findByRole('button', {name: /^Modifications$/}).click()
       cy.navComplete()
