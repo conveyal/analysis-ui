@@ -1,29 +1,17 @@
-import lonlat from '@conveyal/lonlat'
-import React from 'react'
-import {Marker, Polyline, useLeaflet} from 'react-leaflet'
+import {useEffect, useState} from 'react'
+import {Marker, Polyline} from 'react-leaflet'
 
 import {NEW_LINE_WEIGHT} from 'lib/constants'
 import colors from 'lib/constants/colors'
+import useLeafletZoom from 'lib/hooks/use-leaflet-zoom'
 import getStops from 'lib/utils/get-stops'
+import {flatten} from 'lib/utils/segments'
 
 import {
   getNewStopIconForZoom,
   getSnappedStopIconForZoom
 } from '../map/circle-icons'
 import DirectionalMarkers from '../directional-markers'
-
-function getCoordinatesFromSegments(segments) {
-  if (segments.length === 0 || segments[0].geometry.type === 'Point') return []
-
-  // smoosh all segments together
-  const coordinates = [].concat(
-    ...segments.map(({geometry}) => geometry.coordinates.slice(0, -1))
-  )
-  // add last coordinate
-  coordinates.push(segments.slice(-1)[0].geometry.coordinates.slice(-1)[0])
-
-  return coordinates
-}
 
 function getIconsForZoom(z) {
   return {
@@ -32,54 +20,78 @@ function getIconsForZoom(z) {
   }
 }
 
+function useIcons() {
+  const zoom = useLeafletZoom()
+  const [icons, setIcons] = useState(() => getIconsForZoom(zoom))
+
+  useEffect(() => {
+    setIcons(getIconsForZoom(zoom))
+  }, [zoom])
+
+  return icons
+}
+
+function parseSegments(segments) {
+  const coordinates = flatten(segments)
+  return {
+    lineStrings: [
+      {
+        geometry: {
+          coordinates: coordinates,
+          type: 'LineString'
+        } as GeoJSON.LineString
+      }
+    ],
+    leafletLatLngs: coordinates.map((c) => ({lat: c[1], lng: c[0]})),
+    stops: getStops(segments)
+  }
+}
+
+function useParsedSegments(segments) {
+  const [values, setValues] = useState(() => parseSegments(segments))
+  useEffect(() => {
+    setValues(parseSegments(segments))
+  }, [segments])
+  return values
+}
+
+type AddTripPatternLayerProps = {
+  bidirectional: boolean
+  dim: boolean
+  segments: CL.ModificationSegment[]
+}
+
 /**
  * A layer to display (not edit) an added trip pattern
  */
-export default function AddTripPatternLayer(p) {
-  const leaflet = useLeaflet()
-  const [icons, setIcons] = React.useState(() =>
-    getIconsForZoom(leaflet.map.getZoom())
-  )
-
-  React.useEffect(() => {
-    function onZoom() {
-      setIcons(getIconsForZoom(leaflet.map.getZoom()))
-    }
-
-    leaflet.map.on('zoomend', onZoom)
-    return () => leaflet.map.off('zoomend', onZoom)
-  }, [leaflet, setIcons])
-
-  const {segments} = p
-  const [directionalMarkers, segmentPolylines, stops] = React.useMemo(() => {
-    const coordinates = getCoordinatesFromSegments(segments)
-    return [
-      [{geometry: {coordinates}}],
-      coordinates.map(lonlat.toLeaflet),
-      getStops(segments)
-    ]
-  }, [segments])
+export default function AddTripPatternLayer({
+  bidirectional,
+  dim,
+  segments
+}: AddTripPatternLayerProps) {
+  const icons = useIcons()
+  const values = useParsedSegments(segments)
 
   return (
     <>
       <Polyline
         color={colors.ADDED}
-        opacity={p.dim ? 0.5 : 1}
-        positions={segmentPolylines}
+        opacity={dim ? 0.5 : 1}
+        positions={values.leafletLatLngs}
         weight={NEW_LINE_WEIGHT}
       />
-      {!p.bidirectional && !p.dim && (
+      {!bidirectional && !dim && (
         <DirectionalMarkers
           color={colors.ADDED}
-          patterns={directionalMarkers}
+          patterns={values.lineStrings}
         />
       )}
-      {stops.map((s, i) => (
+      {values.stops.map((s, i) => (
         <Marker
           icon={s.stopId ? icons.newSnappedStop : icons.newStop}
           key={`stop-${i}`}
-          opacity={p.dim ? 0.5 : 1}
-          position={s}
+          opacity={dim ? 0.5 : 1}
+          position={{lat: s.lat, lng: s.lon}}
         />
       ))}
     </>
