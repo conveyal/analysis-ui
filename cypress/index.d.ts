@@ -76,6 +76,11 @@ declare namespace Cypress {
     editPrimaryAnalysisJSON(key: string, newValue: any): Chainable<void>
 
     /**
+     * Edit modification JSON directly.
+     */
+    editJSONValues(newValues: Record<string, unknown>): Chainable<void>
+
+    /**
      * While in the analysis page, fetch and wait for results.
      * @example cy.fetchResults()
      */

@@ -1,5 +1,3 @@
-import {latLngBounds} from 'leaflet'
-
 import './commands'
 import './map'
 
@@ -89,6 +87,23 @@ Cypress.Commands.add('drawRouteGeometry', function (
 
   // Exit editing mode
   cy.findByText(/Stop editing/i).click()
+})
+
+Cypress.Commands.add('editJSONValues', function (
+  newValues: Record<string, unknown>
+) {
+  cy.findByRole('tab', {name: /Edit JSON/}).click()
+  cy.get('textarea')
+    .invoke('val')
+    .then((currentConfig) => {
+      const parsedConfig = JSON.parse(currentConfig + '')
+      return cy
+        .get('textarea')
+        .invoke('val', JSON.stringify({...parsedConfig, ...newValues}, null, 2))
+        .type(' {backspace}')
+    })
+  cy.findByRole('button', {name: /Save custom changes/i}).click()
+  cy.findByRole('tab', {name: /Edit value/}).click()
 })
 
 Cypress.Commands.add('openModification', function (

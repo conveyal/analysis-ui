@@ -124,7 +124,8 @@ export default function TransitEditor({
         toast({
           description: outOfRangeMessage(latlng),
           position: 'top',
-          status: 'error'
+          status: 'error',
+          title: 'Invalid coordinate'
         })
         return true
       }
