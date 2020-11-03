@@ -1,14 +1,14 @@
 import {Button, useDisclosure, useToast} from '@chakra-ui/core'
 import lonlat from '@conveyal/lonlat'
-import {LatLng, LeafletMouseEvent} from 'leaflet'
+import {DomEvent, LatLng, LatLngBounds, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
 import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
 
 import {ADD_TRIP_PATTERN, MINIMUM_SNAP_STOP_ZOOM_LEVEL} from 'lib/constants'
 import colors from 'lib/constants/colors'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
+import useZoom from 'lib/hooks/use-leaflet-zoom'
 import useOnMount from 'lib/hooks/use-on-mount'
-import Leaflet from 'lib/leaflet'
 import message from 'lib/message'
 import getStopsFromSegments from 'lib/utils/get-stops'
 import getNearestStopToPoint from 'lib/utils/get-stop-near-point'
@@ -71,21 +71,6 @@ const coordinatesFromSegment = (
   }
   console.error('Invalid geometry type')
   return []
-}
-
-function useZoom() {
-  const leaflet = useLeaflet()
-  const [zoom, setZoom] = useState(leaflet.map.getZoom())
-
-  useEffect(() => {
-    const handleZoomEnd = () => setZoom(leaflet.map.getZoom())
-    leaflet.map.on('zoomend', handleZoomEnd)
-    return () => {
-      leaflet.map.off('zoomend', handleZoomEnd)
-    }
-  }, [leaflet, setZoom])
-
-  return zoom
 }
 
 function useNewStopIcon() {
@@ -152,7 +137,7 @@ export default function TransitEditor({
   useOnMount(() => {
     if (segments.length === 0) return
     // Focus the map on the routes
-    const bounds = new Leaflet.LatLngBounds([])
+    const bounds = new LatLngBounds([])
     if (segments.length === 1 && segments[0].geometry.type === 'Point') {
       leaflet.map.flyTo(lonlat.toLeaflet(segments[0].geometry.coordinates))
     } else {
@@ -170,7 +155,7 @@ export default function TransitEditor({
 
   const updateSegments = useCallback(
     (newSegments: CL.ModificationSegment[]) => {
-      updateModification({segments: newSegments})
+      updateModification({segments: [...newSegments]})
     },
     [updateModification]
   )
@@ -345,7 +330,7 @@ function Segments({clickSegment, modification}) {
           key={index}
           onClick={(event: L.LeafletMouseEvent) => {
             logDomEvent('Segment.onClick', event)
-            Leaflet.DomEvent.stop(event)
+            DomEvent.stop(event)
             clickSegment(index, event.latlng)
           }}
           onBlur={showStop.onClose}
@@ -418,12 +403,12 @@ function AutoCreatedStops({onDragEnd, segments}) {
             key={`auto-created-stop-${i}-${lonlat.toString(stop)}`}
             onClick={(event: L.LeafletMouseEvent) => {
               logDomEvent('AutoCreatedStop.onClick', event)
-              Leaflet.DomEvent.stop(event)
+              DomEvent.stop(event)
               onDragEnd(stop.index, event.latlng)
             }}
             onDragend={(event: L.DragEndEvent) => {
               logDomEvent('AutoCreatedStop.onDragend', event)
-              Leaflet.DomEvent.stop(event)
+              DomEvent.stop(event)
               onDragEnd(stop.index, (event.target as L.Marker).getLatLng())
             }}
             opacity={0.5}
@@ -486,7 +471,7 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
             key={`stop-${stop.index}-${lonlat.toString(stop)}`}
             onDragend={(event: L.DragEndEvent) => {
               logDomEvent('Stop.onDragEnd', event)
-              Leaflet.DomEvent.stop(event)
+              DomEvent.stop(event)
               onStopDragEnd(stop.index, (event.target as L.Marker).getLatLng())
             }}
             zIndexOffset={1000}
@@ -537,7 +522,19 @@ function useControlPointIcon() {
   return controlPointIcon
 }
 
-function ControlPoints({deletePoint, onDragEnd, segments, updateSegments}) {
+type ControlPointsProps = {
+  deletePoint: (index: number) => void
+  onDragEnd: (index: number, latlng: LatLng) => void
+  segments: CL.ModificationSegment[]
+  updateSegments: (segments: CL.ModificationSegment[]) => void
+}
+
+function ControlPoints({
+  deletePoint,
+  onDragEnd,
+  segments,
+  updateSegments
+}: ControlPointsProps) {
   const controlPoints = useControlPoints(segments)
   const controlPointIcon = useControlPointIcon()
 
@@ -572,7 +569,7 @@ function ControlPoints({deletePoint, onDragEnd, segments, updateSegments}) {
           key={`cp-${p.index}-${p.position.toString()}`}
           onDragend={(event: L.DragEndEvent) => {
             logDomEvent('ControlPoint.onDragend', event)
-            Leaflet.DomEvent.stop(event)
+            DomEvent.stop(event)
             onDragEnd(p.index, (event.target as L.Marker).getLatLng())
           }}
           zIndexOffset={750}
