@@ -9,6 +9,7 @@ import colors from 'lib/constants/colors'
 import {DEFAULT_SEGMENT_SPEED} from 'lib/constants/timetables'
 import useZoom from 'lib/hooks/use-leaflet-zoom'
 import useOnMount from 'lib/hooks/use-on-mount'
+import LogRocket from 'lib/logrocket'
 import message from 'lib/message'
 import getStopsFromSegments from 'lib/utils/get-stops'
 import getNearestStopToPoint from 'lib/utils/get-stop-near-point'
@@ -142,15 +143,20 @@ export default function TransitEditor({
     if (segments.length === 1 && segments[0].geometry.type === 'Point') {
       leaflet.map.flyTo(lonlat.toLeaflet(segments[0].geometry.coordinates))
     } else {
+      console.log(segments)
       for (const segment of segments) {
         if (segment.geometry.type === 'LineString') {
           // Should always be true
           for (const coord of segment.geometry.coordinates) {
-            bounds.extend(lonlat.toLeaflet(coord))
+            bounds.extend([coord[1], coord[0]])
           }
         }
       }
-      leaflet.map.fitBounds(bounds)
+      try {
+        leaflet.map.fitBounds(bounds)
+      } catch (e) {
+        LogRocket.captureException(e)
+      }
     }
   })
 

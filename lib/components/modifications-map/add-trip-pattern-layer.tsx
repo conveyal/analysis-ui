@@ -57,7 +57,7 @@ function useParsedSegments(segments) {
 
 type AddTripPatternLayerProps = {
   bidirectional: boolean
-  dim: boolean
+  dim?: boolean
   segments: CL.ModificationSegment[]
 }
 
@@ -66,7 +66,7 @@ type AddTripPatternLayerProps = {
  */
 export default function AddTripPatternLayer({
   bidirectional,
-  dim,
+  dim = false,
   segments
 }: AddTripPatternLayerProps) {
   const icons = useIcons()
