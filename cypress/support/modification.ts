@@ -89,7 +89,7 @@ Cypress.Commands.add('drawRouteGeometry', function (
   cy.findByText(/Stop editing/i).click()
 })
 
-Cypress.Commands.add('editJSONValues', function (
+Cypress.Commands.add('editModificationJSON', function (
   newValues: Record<string, unknown>
 ) {
   cy.findByRole('tab', {name: /Edit JSON/}).click()

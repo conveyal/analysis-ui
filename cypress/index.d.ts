@@ -78,7 +78,7 @@ declare namespace Cypress {
     /**
      * Edit modification JSON directly.
      */
-    editJSONValues(newValues: Record<string, unknown>): Chainable<void>
+    editModificationJSON(newValues: Record<string, unknown>): Chainable<void>
 
     /**
      * While in the analysis page, fetch and wait for results.
