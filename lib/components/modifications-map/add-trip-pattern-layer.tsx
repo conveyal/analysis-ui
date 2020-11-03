@@ -31,7 +31,7 @@ function useIcons() {
   return icons
 }
 
-function parseSegments(segments) {
+function parseSegments(segments: CL.ModificationSegment[]) {
   const coordinates = flatten(segments)
   return {
     lineStrings: [
