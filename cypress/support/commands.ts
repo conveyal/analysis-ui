@@ -454,46 +454,6 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
     .then(() => Cypress.log({displayName: 'navTo:complete', message: title}))
 })
 
-Cypress.Commands.add('clickMap', (coord) => {
-  console.assert('lat' in coord && 'lon' in coord)
-  cy.getLeafletMap().then((map) => {
-    const pix = map.latLngToContainerPoint([coord.lat, coord.lon])
-    cy.get('div.leaflet-container').click(pix.x, pix.y)
-  })
-})
-
-Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
-
-Cypress.Commands.add('waitForMapToLoad', () =>
-  cy // eslint-disable-line
-    .getLeafletMap()
-    .its('_loaded')
-    .should('be.true') // this just does not seem to work as expected. The wait remains necessary
-    .wait(500)
-)
-
-Cypress.Commands.add(
-  'mapCenteredOn',
-  (latLonArray: [number, number], tolerance: number) =>
-    cy
-      .getLeafletMap()
-      .then((map) =>
-        cy
-          .wrap(map.distance(map.getCenter(), latLonArray))
-          .should('be.lessThan', tolerance)
-      )
-)
-
-Cypress.Commands.add(
-  'centerMapOn',
-  (latLonArray: [number, number], zoom = 12) =>
-    // centers map on a given lat/lon coordinate: [x,y]
-    cy.getLeafletMap().then((map) => {
-      map.setView(latLonArray, zoom)
-      return map
-    })
-)
-
 Cypress.Commands.add('login', function () {
   cy.getCookie('a0:state').then((cookie) => {
     // If the cookie already exists, skip the login

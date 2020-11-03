@@ -1,6 +1,6 @@
 import {createModificationName} from '../utils'
 
-const coordsOverAntiMeridian: Cypress.Coord[] = [
+const coordsOverAntiMeridian: L.LatLngTuple[] = [
   [5, 160],
   [5, 200]
 ]

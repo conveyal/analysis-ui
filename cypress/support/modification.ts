@@ -1,3 +1,5 @@
+import {latLngBounds} from 'leaflet'
+
 import './commands'
 import './map'
 
@@ -53,45 +55,39 @@ Cypress.Commands.add('deleteThisModification', function () {
   cy.navComplete() // Modifications are not loaded in GetInitialProps
 })
 
-Cypress.Commands.add('clickMapAtCoord', (coord: Cypress.Coord) => {
-  cy.getLeafletMap().then((map) => {
-    map.panTo(coord, {animate: false})
-    const point = map.latLngToLayerPoint(coord)
-    cy.getMapDiv().click(point.x, point.y)
-  })
-})
-
-Cypress.Commands.add('drawRouteGeometry', function (newRoute) {
+Cypress.Commands.add('drawRouteGeometry', function (
+  newRoute: L.LatLngExpression[]
+) {
   cy.findByText(/Edit route geometry/i)
     .click()
     .contains(/Stop editing/i)
-  cy.getLeafletMap().then((map) => {
-    map.fitBounds(newRoute, {animate: false})
-    cy.waitForMapToLoad()
-    // click at the coordinates
-    newRoute.forEach((coord, i) => {
-      const point = map.latLngToContainerPoint(coord)
-      cy.getMapDiv().click(point.x, point.y)
-      if (i > 0) {
-        cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
-      }
-    })
-    // convert an arbitrary stop to a control point
-    const stop = newRoute[newRoute.length - 2]
-    const point = map.latLngToContainerPoint(stop)
-    cy.getMapDiv().click(point.x, point.y)
-    cy.getMapDiv()
-      .findByText(/make control point/)
-      .click()
-    // control point not counted as stop
-    cy.contains(new RegExp(newRoute.length - 1 + ' stops over \\d\\.\\d+ km'))
-    // convert control point back to stop
-    cy.getMapDiv().click(point.x, point.y)
-    cy.getMapDiv()
-      .findByText(/make stop/)
-      .click()
-    cy.contains(new RegExp(newRoute.length + ' stops over \\d\\.\\d+ km'))
+  cy.waitForMapToLoad()
+  // click at the coordinates
+  newRoute.forEach((coord, i) => {
+    cy.clickMapAtCoord(coord)
+    if (i > 0) {
+      cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
+    }
   })
+
+  // convert an arbitrary stop to a control point
+  const stop = newRoute[newRoute.length - 2]
+  cy.clickMapAtCoord(stop)
+  cy.getMapDiv()
+    .findByText(/make control point/)
+    .click()
+
+  // control point not counted as stop
+  cy.contains(new RegExp(newRoute.length - 1 + ' stops over \\d\\.\\d+ km'))
+
+  // convert control point back to stop
+  cy.clickMapAtCoord(stop)
+  cy.getMapDiv()
+    .findByText(/make stop/)
+    .click()
+  cy.contains(new RegExp(newRoute.length + ' stops over \\d\\.\\d+ km'))
+
+  // Exit editing mode
   cy.findByText(/Stop editing/i).click()
 })
 

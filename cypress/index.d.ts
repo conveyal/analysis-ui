@@ -34,17 +34,13 @@ declare namespace Cypress {
     | 'regional analyses'
     | 'region settings'
 
-  export type Lat = number
-  export type Lon = number
-  export type Coord = [Lat, Lon]
-
   // eslint-disable-next-line
   interface Chainable {
     /**
      * Center the map on the given coordinates.
      * @example cy.centerMapOn([60, 25])
      */
-    centerMapOn(coord: Coord, zoom?: number): Chainable<L.Map>
+    centerMapOn(coord: L.LatLngExpression, zoom?: number): Chainable<L.Map>
 
     /**
      * Clear all existing modifications with the data prefix.
@@ -52,9 +48,9 @@ declare namespace Cypress {
     clearAllModifications(): Chainable<void>
 
     /**
-     * Click map at a given coordinate.
+     * Pan to the coordinate and click that point on the map.
      */
-    clickMapAtCoord(coord: Coord): Chainable<void>
+    clickMapAtCoord(coord: L.LatLngExpression): Chainable<void>
 
     /**
      * Create a modification.
@@ -71,7 +67,7 @@ declare namespace Cypress {
      * Draw route geometry on an open modification
      * @example cy.drawRouteGeometry([[50, -70], [51, -71]])
      */
-    drawRouteGeometry(coords: Coord[]): Chainable<void>
+    drawRouteGeometry(coords: L.LatLngExpression[]): Chainable<void>
 
     /**
      * Set custom analysis value.
@@ -136,7 +132,10 @@ declare namespace Cypress {
      * Check if the map is centered on a set of coordinates.
      * @example cy.mapCenteredOn([50.5, 121.2], 5)
      */
-    mapCenteredOn(lonlat: Coord, tolerance: number): Chainable<boolean>
+    mapCenteredOn(
+      latlng: L.LatLngExpression,
+      tolerance: number
+    ): Chainable<boolean>
 
     /**
      * Navigate to a page via the sidebar.
@@ -165,7 +164,7 @@ declare namespace Cypress {
      * Set the analysis origin.
      * @example cy.setOrigin([lat, lng])
      */
-    setOrigin(location: Coord): Chainable<void>
+    setOrigin(latlng: L.LatLngExpression): Chainable<void>
 
     /**
      * Set the time cutoff.
