@@ -1,5 +1,4 @@
 import {Button, useDisclosure, useToast} from '@chakra-ui/core'
-import lonlat from '@conveyal/lonlat'
 import {DomEvent, LatLng, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
 import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
@@ -13,6 +12,7 @@ import getStopsFromSegments from 'lib/utils/get-stops'
 import getNearestStopToPoint from 'lib/utils/get-stop-near-point'
 import getLineString from 'lib/utils/get-line-string'
 import createLogDomEvent from 'lib/utils/log-dom-event'
+import {getSegmentCoordinates} from 'lib/utils/segment'
 
 import {
   getControlPointIconForZoom,
@@ -23,8 +23,7 @@ import {
 // Valid modification types for this component
 type Modification = CL.AddTripPattern | CL.Reroute
 
-type ControlPoint = {
-  position: LatLng
+type ControlPoint = L.LatLngLiteral & {
   index: number
 }
 
@@ -43,11 +42,13 @@ const logDomEvent = createLogDomEvent('transit-editor')
 /**
  * Check if the Leaflet point goes over the anti-meridian.
  */
-const latlngIsOutOfRange = (ll: L.LatLng) =>
+const latlngIsOutOfRange = (ll: L.LatLngLiteral) =>
   ll.lng >= 180 || ll.lng <= -180 || (ll.lat >= 90 && ll.lat <= -90)
 
-const outOfRangeMessage = (ll: L.LatLng) =>
-  `Selected point ${ll.toString()} is invalid. Coordinates must not go over the anti-meridian.`
+const outOfRangeMessage = (ll: L.LatLngLiteral) =>
+  `Selected coordinate ${
+    (ll.lng, ll.lat)
+  } (lon, lat) is invalid. Coordinates must not go over the anti-meridian.`
 
 // We previously allowed segment speeds to get out of sync with the segments.
 // This ensures consistent array lengths.
@@ -61,15 +62,11 @@ const extendSegmentSpeedsTo = (ss: number[], newLength: number): number[] => {
 
 // Helper function to get the coordinates from a segment depending on type
 const coordinatesFromSegment = (
-  {geometry}: CL.ModificationSegment,
+  segment: CL.ModificationSegment,
   end = false
 ): GeoJSON.Position => {
-  if (geometry.type === 'Point') return geometry.coordinates
-  if (geometry.type === 'LineString') {
-    return end ? geometry.coordinates.slice(-1)[0] : geometry.coordinates[0]
-  }
-  console.error('Invalid geometry type')
-  return []
+  const coordinates = getSegmentCoordinates(segment)
+  return end ? coordinates.slice(-1)[0] : coordinates[0]
 }
 
 function useNewStopIcon() {
@@ -155,7 +152,12 @@ export default function TransitEditor({
       const {latlng} = event
       if (latlngIsInvalidCheck(latlng)) return
       if (!allowExtend) {
-        // TODO: Show message about `allowExtend`
+        toast({
+          title: 'Click disabled',
+          description: 'Check "Extend" to add segments',
+          position: 'top',
+          status: 'info'
+        })
         return
       }
 
@@ -179,6 +181,7 @@ export default function TransitEditor({
       latlngIsInvalidCheck,
       modification,
       spacing,
+      toast,
       updateModification
     ]
   )
@@ -286,13 +289,13 @@ function useLineWeight() {
   return lineWeight
 }
 
-function useSegmentFeatures(modification: Modification): L.LatLng[][] {
+function useSegmentFeatures(modification: Modification): L.LatLngLiteral[][] {
   const segments = useSegments(modification)
-  const [segmentFeatures, setSegmentFeatures] = useState(() =>
-    flattenSegments(segments)
+  const [segmentFeatures, setSegmentFeatures] = useState<L.LatLngLiteral[][]>(
+    () => segments.map(getSegmentAsLatLngs)
   )
   useEffect(() => {
-    setSegmentFeatures(flattenSegments(segments))
+    setSegmentFeatures(segments.map(getSegmentAsLatLngs))
   }, [segments, setSegmentFeatures])
   return segmentFeatures
 }
@@ -377,10 +380,10 @@ function AutoCreatedStops({onDragEnd, segments}) {
         .filter((s) => s.autoCreated)
         .map((stop, i) => (
           <Marker
-            position={lonlat.toLeaflet(stop)}
+            position={stop}
             draggable
             icon={newStopIcon}
-            key={`auto-created-stop-${i}-${lonlat.toString(stop)}`}
+            key={`auto-created-stop-${i}-${stop.lng}-${stop.lat}`}
             onClick={(event: L.LeafletMouseEvent) => {
               logDomEvent('AutoCreatedStop.onClick', event)
               DomEvent.stop(event)
@@ -445,10 +448,10 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
         .filter((s) => !s.autoCreated)
         .map((stop) => (
           <Marker
-            position={lonlat.toLeaflet(stop)}
+            position={stop}
             icon={stop.stopId ? newSnappedStopIcon : newStopIcon}
             draggable
-            key={`stop-${stop.index}-${lonlat.toString(stop)}`}
+            key={`stop-${stop.index}-${stop.lng}-${stop.lat}`}
             onDragend={(event: L.DragEndEvent) => {
               logDomEvent('Stop.onDragEnd', event)
               DomEvent.stop(event)
@@ -543,10 +546,10 @@ function ControlPoints({
     <>
       {controlPoints.map((p) => (
         <Marker
-          position={p.position}
+          position={p}
           draggable
           icon={controlPointIcon}
-          key={`cp-${p.index}-${p.position.toString()}`}
+          key={`cp-${p.index}-${p.lng}-${p.lat}`}
           onDragend={(event: L.DragEndEvent) => {
             logDomEvent('ControlPoint.onDragend', event)
             DomEvent.stop(event)
@@ -778,7 +781,7 @@ async function deleteStopOrPointFromSegments(
     segments = segments.slice(1)
 
     // Update segment speeds
-    const removeFirstSegmentSpeed = (ss) =>
+    const removeFirstSegmentSpeed = (ss: CL.SegmentSpeeds) =>
       extendSegmentSpeedsTo(ss.slice(1), newSegmentsLength)
 
     if (modification.type === ADD_TRIP_PATTERN) {
@@ -946,16 +949,16 @@ async function insertStop(
   }
 }
 
-function flattenSegments(segments: CL.ModificationSegment[]): L.LatLng[][] {
-  const flattenedCoordinates: LatLng[][] = []
-  for (const segment of segments) {
-    if (segment.geometry.type === 'LineString') {
-      flattenedCoordinates.push(
-        segment.geometry.coordinates.map((c) => lonlat.toLeaflet(c) as L.LatLng)
-      )
-    }
-  }
-  return flattenedCoordinates
+/**
+ * Get the coordinates
+ */
+function getSegmentAsLatLngs(
+  segment: CL.ModificationSegment
+): L.LatLngLiteral[] {
+  return getSegmentCoordinates(segment).map((p) => ({
+    lat: p[1],
+    lng: p[0]
+  }))
 }
 
 function getControlPointsForSegments(
@@ -964,15 +967,19 @@ function getControlPointsForSegments(
   const controlPoints: ControlPoint[] = []
   for (let i = 0; i < segments.length; i++) {
     if (!segments[i].stopAtStart) {
+      const c = coordinatesFromSegment(segments[i])
       controlPoints.push({
-        position: lonlat.toLeaflet(coordinatesFromSegment(segments[i])),
+        lat: c[1],
+        lng: c[0],
         index: i
       })
     }
 
     if (i === segments.length - 1 && !segments[i].stopAtEnd) {
+      const c = coordinatesFromSegment(segments[i], true)
       controlPoints.push({
-        position: lonlat.toLeaflet(coordinatesFromSegment(segments[i], true)),
+        lat: c[1],
+        lng: c[0],
         index: i + 1
       })
     }

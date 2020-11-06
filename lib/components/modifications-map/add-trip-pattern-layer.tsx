@@ -5,7 +5,7 @@ import {NEW_LINE_WEIGHT} from 'lib/constants'
 import colors from 'lib/constants/colors'
 import useLeafletZoom from 'lib/hooks/use-leaflet-zoom'
 import getStops from 'lib/utils/get-stops'
-import {flatten} from 'lib/utils/segments'
+import {getSegmentCoordinates} from 'lib/utils/segment'
 
 import {
   getNewStopIconForZoom,
@@ -32,7 +32,7 @@ function useIcons() {
 }
 
 function parseSegments(segments: CL.ModificationSegment[]) {
-  const coordinates = flatten(segments)
+  const coordinates = segments.map(getSegmentCoordinates).flat()
   return {
     lineStrings: [
       {
@@ -91,7 +91,7 @@ export default function AddTripPatternLayer({
           icon={s.stopId ? icons.newSnappedStop : icons.newStop}
           key={`stop-${i}`}
           opacity={dim ? 0.5 : 1}
-          position={{lat: s.lat, lng: s.lon}}
+          position={s}
         />
       ))}
     </>

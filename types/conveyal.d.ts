@@ -43,7 +43,7 @@ declare namespace CL {
   /**
    * Generated from segments, not stored.
    */
-  export type StopFromSegment = CL.LonLat & {
+  export type StopFromSegment = L.LatLngLiteral & {
     stopId: void | string
     index: number
     autoCreated: boolean

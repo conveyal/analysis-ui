@@ -44,7 +44,7 @@ export default function getStops(
         stopId: segments[0].fromStopId,
         index: 0,
         lat: coord[1],
-        lon: coord[0],
+        lng: coord[0],
         autoCreated: !segments[0].stopAtStart,
         distanceFromStart: 0
       }
@@ -57,7 +57,7 @@ export default function getStops(
     stopId: segments[0].fromStopId,
     index: 0,
     lat: coord[1],
-    lon: coord[0],
+    lng: coord[0],
     autoCreated: !segments[0].stopAtStart,
     distanceFromStart: 0
   })
@@ -95,7 +95,7 @@ export default function getStops(
           // most likely the last segment did not have automatic stop creation
           if (frac < 0) frac = 0
 
-          const lon = c0[0] + (c1[0] - c0[0]) * frac
+          const lng = c0[0] + (c1[0] - c0[0]) * frac
           const lat = c0[1] + (c1[1] - c0[1]) * frac
 
           // We can't just add segment.spacing because of converting negative
@@ -109,7 +109,7 @@ export default function getStops(
             stopId: undefined,
             index: segIdx,
             lat,
-            lon,
+            lng,
             autoCreated: true,
             distanceFromStart: previousStopDistance
           })
@@ -125,7 +125,7 @@ export default function getStops(
         stopId: segment.toStopId,
         index: segIdx + 1,
         lat: endCoord[1],
-        lon: endCoord[0],
+        lng: endCoord[0],
         autoCreated: false,
         distanceFromStart: totalDistance
       })
