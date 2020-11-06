@@ -13,6 +13,9 @@ export const ModificationTypes = [
 ] as const
 
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
-export function createModificationName(type, description = '') {
+export function createModificationName(
+  type: typeof ModificationTypes[number],
+  description = ''
+) {
   return `${modificationPrefix}${type}${description}${Date.now()}`
 }

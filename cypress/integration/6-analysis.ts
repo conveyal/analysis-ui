@@ -123,12 +123,12 @@ describe('Analysis', () => {
     cy.findByLabelText('Opportunities within isochrone')
       .as('results')
       .itsNumericText()
-      .isWithin(results['6:00-8:00'])
+      .isWithin(results['6:00-8:00'], 10)
     // set time window in late evening - lower access
     cy.get('@from').clear().type('20:00')
     cy.get('@to').clear().type('22:00')
     cy.fetchResults()
-    cy.get('@results').itsNumericText().isWithin(results['20:00-22:00'])
+    cy.get('@results').itsNumericText().isWithin(results['20:00-22:00'], 10)
     // narrow window to one minute - no variability
     cy.get('@from').clear().type('12:00')
     cy.get('@to').clear().type('12:01')
