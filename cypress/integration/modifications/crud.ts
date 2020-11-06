@@ -10,17 +10,6 @@ import {ModificationTypes, createModificationName} from '../utils'
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
 
-const selectFeed = (feedName) => {
-  cy.findByLabelText(/Select feed/)
-    .click({force: true})
-    .type(feedName + '{enter}')
-}
-const selectRoute = (routeName) => {
-  cy.findByLabelText(/Select route/)
-    .click({force: true})
-    .type(routeName + '{enter}')
-}
-
 function setupScenario(name) {
   // open the scenarios tab
   cy.findByRole('tab', {name: 'Scenarios'}).click()
@@ -416,8 +405,8 @@ function testAddTripPattern(region) {
 }
 
 function testAdjustDwellTime(region) {
-  selectFeed(region.feedAgencyName)
-  selectRoute(region.sampleRouteName)
+  cy.selectFeed(region.feedAgencyName)
+  cy.selectRoute(region.sampleRouteName)
 
   cy.findByLabelText(/Select patterns/i)
   cy.findByLabelText(/Scale existing dwell times by/i).click({force: true})
@@ -425,8 +414,8 @@ function testAdjustDwellTime(region) {
 }
 
 function testAdjustSpeed(region) {
-  selectFeed(region.feedAgencyName)
-  selectRoute(region.sampleRouteName)
+  cy.selectFeed(region.feedAgencyName)
+  cy.selectRoute(region.sampleRouteName)
 
   cy.findByLabelText(/Select patterns/i)
   cy.findByLabelText(/Scale speed by/i)
@@ -435,8 +424,8 @@ function testAdjustSpeed(region) {
 }
 
 function testConvertToFrequency(region) {
-  selectFeed(region.feedAgencyName)
-  selectRoute(region.sampleRouteName)
+  cy.selectFeed(region.feedAgencyName)
+  cy.selectRoute(region.sampleRouteName)
   cy.findByLabelText(/retain existing scheduled trips/i).click({
     force: true
   })
@@ -485,14 +474,14 @@ function testModifyStreets() {
 }
 
 function testRemoveTrips(region) {
-  selectFeed(region.feedAgencyName)
-  selectRoute(region.sampleRouteName)
+  cy.selectFeed(region.feedAgencyName)
+  cy.selectRoute(region.sampleRouteName)
   cy.findByLabelText(/Select patterns/i)
 }
 
 function testRemoveStops(region) {
-  selectFeed(region.feedAgencyName)
-  selectRoute(region.sampleRouteName)
+  cy.selectFeed(region.feedAgencyName)
+  cy.selectRoute(region.sampleRouteName)
   // can't interact with these yet - leave all at defaults
   cy.findByLabelText(/Select patterns/i)
   cy.findByLabelText(/Time savings per removed stop/i)
@@ -502,8 +491,8 @@ function testRemoveStops(region) {
 }
 
 function testReroute(region) {
-  selectFeed(region.feedAgencyName)
-  selectRoute(region.sampleRouteName)
+  cy.selectFeed(region.feedAgencyName)
+  cy.selectRoute(region.sampleRouteName)
 
   // verify existence only
   cy.findByLabelText(/Select patterns/i)

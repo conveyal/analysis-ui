@@ -127,3 +127,15 @@ Cypress.Commands.add('openModification', function (
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
   cy.contains(modName)
 })
+
+Cypress.Commands.add('selectFeed', function selectFeed(feedName: string) {
+  cy.findByLabelText(/Select feed/)
+    .click({force: true})
+    .type(feedName + '{enter}')
+})
+
+Cypress.Commands.add('selectRoute', function selectRoute(routeName: string) {
+  cy.findByLabelText(/Select route/)
+    .click({force: true})
+    .type(routeName + '{enter}')
+})

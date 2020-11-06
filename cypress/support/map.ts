@@ -3,8 +3,8 @@ Cypress.Commands.add('getMapDiv', () => cy.get('div.leaflet-container'))
 Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
 
 Cypress.Commands.add('clickMapAtCoord', (coord: L.LatLngExpression) => {
+  cy.centerMapOn(coord)
   cy.getLeafletMap().then((map) => {
-    map.panTo(coord, {animate: false})
     const point = map.latLngToLayerPoint(coord)
     cy.getMapDiv().click(point.x, point.y)
   })

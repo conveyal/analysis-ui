@@ -1,9 +1,3 @@
-/**
- * TODO:
- * 1. Add Reroute modification
- * 2. Add Modify Street modification
- * 3. Edit the modification JSON and save invalid coords. Ensure they still open.
- */
 import {createModificationName} from '../utils'
 
 const coordsOverAntiMeridian: L.LatLngTuple[] = [
@@ -28,7 +22,8 @@ const addTripSegment = {
 
 /**
  * Modifications that allow drawing should handle drawing over the anti-meridian
- * without failing.
+ * without failing. They should show alerts when drawing over the anti-meridian
+ * but also still open if they have invalid coordinates from undefined usage.
  *
  * Reported here: https://github.com/conveyal/analysis-ui/issues/1315
  */
@@ -40,6 +35,7 @@ describe('Modification drawing over anti-meridian', () => {
 
   beforeEach(() => {
     cy.goToEntity('project')
+    cy.fixture('regions/scratch.json').as('region')
   })
 
   it('should handle Add Trip Patterns', () => {
@@ -69,13 +65,27 @@ describe('Modification drawing over anti-meridian', () => {
     cy.deleteThisModification()
   })
 
-  it('should handle Reroute', () => {
+  it('should handle Reroute', function () {
     const type = 'Reroute'
     const name = createModificationName(type, 'anti-meridian')
     cy.createModification(type, name)
 
+    cy.selectFeed(this.region.feedAgencyName)
+    cy.selectRoute(this.region.sampleRouteName)
+    cy.findByLabelText(/Select from stop/).click()
+
     cy.waitForMapToLoad()
-    cy.getLeafletMap().then((map) => map.fitBounds(coordsOverAntiMeridian))
+    // cy.clickMapAtCoord([39.0877, -84.5192])
+    cy.clickMapAtCoord([39.085704, -84.515856])
+
+    cy.findByRole('button', {name: /Edit route geometry/}).click()
+    coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
+    cy.get('#react-toast').findByRole('alert') // Alert should pop up
+    cy.findByRole('button', {name: /Stop editing/i}).click()
+
+    // Save and re-open
+    cy.findByRole('button', {name: /^Modifications$/}).click()
+    cy.openModification(type, name)
 
     // Edit the JSON directly
     cy.editModificationJSON({segments: [addTripSegment]})

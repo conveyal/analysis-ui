@@ -166,6 +166,12 @@ declare namespace Cypress {
     selectDefaultOpportunityDataset(): Chainable<void>
 
     /**
+     * Select modification feed and route by name
+     */
+    selectFeed(feedName: string): Chainable<void>
+    selectRoute(routeName: string): Chainable<void>
+
+    /**
      * Set the analysis origin.
      * @example cy.setOrigin([lat, lng])
      */
