@@ -6,10 +6,10 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
+      - uses: actions/checkout@v2
 
       # Install and cache the build
       - uses: bahmutov/npm-install@v1
@@ -24,6 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
       - uses: actions/cache@v1
         with:
           path: '.'
@@ -35,6 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
       - uses: actions/cache@v1
         with:
           path: '.'
@@ -47,6 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
       - uses: actions/cache@v1
         with:
           path: '.'
@@ -61,6 +70,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
       - uses: actions/cache@v1
         with:
           path: '.'
@@ -96,6 +108,9 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
       # Install / cache dependencies with Cypress to handle caching Cypress binary.
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
