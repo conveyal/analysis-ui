@@ -1,23 +1,23 @@
 import {expect} from '@jest/globals'
 import getStops from '../get-stops'
 
-const segment = {
+const segment: CL.ModificationSegment = {
   fromStopId: '1',
   toStopId: '2',
   geometry: {
     coordinates: [-70, 40],
     type: 'Point'
-  } as GeoJSON.Point,
+  },
   spacing: 250,
   stopAtEnd: true,
   stopAtStart: true
 }
 
-const stop = {
+const stop: CL.StopFromSegment = {
   stopId: segment.fromStopId,
   index: 0,
-  lat: segment.geometry.coordinates[1],
-  lon: segment.geometry.coordinates[0],
+  lat: 40,
+  lng: -70,
   autoCreated: false,
   distanceFromStart: 0
 }
