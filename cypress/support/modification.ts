@@ -43,6 +43,11 @@ Cypress.Commands.add('createModification', function (
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 })
 
+Cypress.Commands.add('deleteModification', function (type, name) {
+  cy.openModification(type, name)
+  cy.deleteThisModification()
+})
+
 Cypress.Commands.add('deleteThisModification', function () {
   // Delete an open modification
   cy.findByRole('button', {name: 'Delete modification'}).click()
@@ -111,7 +116,7 @@ Cypress.Commands.add('openModification', function (
   modName
 ) {
   // opens the first listed modification of this type with this name
-  cy.navTo('edit modifications')
+  cy.goToEntity('project')
   cy.findByRole('tab', {name: /Modifications/g}).click()
   // find the container for this modification type and open it if need be
   cy.findByText(modType)

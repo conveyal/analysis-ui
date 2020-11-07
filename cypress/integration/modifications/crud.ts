@@ -5,7 +5,11 @@
  * Tests that verify analysis results should go in the
  * Advanced Modifications group.
  */
-import {ModificationTypes, createModificationName} from '../utils'
+import {
+  ModificationTypes,
+  setupModificationTests,
+  testModification
+} from '../utils'
 
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
@@ -32,39 +36,22 @@ function setupScenario(name) {
   cy.findAllByRole('tab', {name: /Modifications/g}).click()
 }
 
-function deleteMod(modType: Cypress.ModificationType, modName) {
-  cy.openModification(modType, modName)
-
-  cy.findByRole('button', {name: 'Delete modification'}).click()
-  cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
-  cy.contains('Create a modification')
-  cy.findByText(modName).should('not.exist')
-}
-
-describe('Modifications (Basic)', () => {
-  before(function () {
-    cy.setup('project')
-    cy.clearAllModifications() // clean uo for development
+setupModificationTests('basic', () => {
+  before(() => {
     setupScenario(scenarioName)
   })
 
-  beforeEach(() => {
-    cy.goToEntity('project')
-    cy.findByRole('tab', {name: /Modifications/g}).click()
-    cy.fixture('regions/scratch.json').as('region')
-  })
-
-  after(() => {
-    cy.goToEntity('project') // Navigates directly to the project
-    cy.clearAllModifications() // Delete all of the modifications
-  })
-
+  /**
+   * Repeat the same modification simple tests for each modification type.
+   * Each modification contains the same basic form element indicating that
+   * they may not need to be tested individually. But instances have occured
+   * where the invidiual modification bodies have caused elements outside of
+   * the modification to fail or work incorrectly. Therefore it is necessary
+   * run these simple tests for each modification type.
+   */
   ModificationTypes.forEach((type) => {
-    it(`CRU(D) ${type}`, function () {
-      const name = createModificationName(type, 'simple')
+    testModification(type, 'CRUD', function (name) {
       const description = 'distinctly descriptive text'
-      // Create the modification
-      cy.createModification(type, name)
       cy.contains(name)
 
       // Update the description
@@ -74,7 +61,7 @@ describe('Modifications (Basic)', () => {
         .click({force: true})
         .type(description)
 
-      // Update the variatns
+      // Update the variants
       cy.findByLabelText(/Default/).uncheck({force: true})
       cy.findByLabelText(scenarioNameRegEx).check({force: true})
 
@@ -94,8 +81,6 @@ describe('Modifications (Basic)', () => {
       cy.findByText(description)
       cy.findByLabelText(/Default/).should('not.be.checked')
       cy.findByLabelText(scenarioNameRegEx).should('be.checked')
-
-      // Do not delete yet. More modifications for the report view.
     })
   })
 
@@ -136,9 +121,7 @@ describe('Modifications (Basic)', () => {
     })
   })
 
-  it('can be drawn on map', function () {
-    const modName = createModificationName('ATP', 'draw on map')
-    cy.createModification('Add Trip Pattern', modName)
+  testModification('Add Trip Pattern', 'draw on map', function () {
     cy.findAllByRole('alert').contains(/must have at least 2 stops/)
     cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
     // add a route geometry
@@ -159,12 +142,11 @@ describe('Modifications (Basic)', () => {
     cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
       'not.exist'
     )
-    cy.deleteThisModification()
   })
 
-  it('can create and reuse timetables', function () {
-    const modName = createModificationName('ATP', 'timetable templates')
-    cy.createModification('Add Trip Pattern', modName)
+  testModification('Add Trip Pattern', 'create and reuse timetables', function (
+    modName
+  ) {
     // add a route geometry
     cy.drawRouteGeometry(this.region.newRoute)
 
@@ -229,17 +211,15 @@ describe('Modifications (Basic)', () => {
     cy.findByLabelText(/Sun/).should('not.be.checked')
     cy.findByLabelText(/Frequency/)
       .invoke('val')
-      .then((val) => expect(val).to.eq('00:20:00'))
+      .should('eq', '00:20:00')
     cy.findByLabelText(/Start time/)
       .invoke('val')
-      .then((val) => expect(val).to.eq('06:00'))
+      .should('eq', '06:00')
     cy.findByLabelText(/End time/)
       .invoke('val')
-      .then((val) => expect(val).to.eq('23:00'))
-    // delete the temp modification
+      .should('eq', '23:00')
+    // Delete the copied modification
     cy.deleteThisModification()
-    // delete the template modification
-    deleteMod('Add Trip Pattern', modName)
   })
 
   describe('Download and share modifications', () => {

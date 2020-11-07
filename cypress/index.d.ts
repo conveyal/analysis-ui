@@ -11,7 +11,6 @@ declare namespace Cypress {
     | 'region'
     | 'regionalAnalysis'
 
-  // Convert above array to an enum
   export type ModificationType =
     | 'Add Streets'
     | 'Add Trip Pattern'
@@ -57,6 +56,11 @@ declare namespace Cypress {
      * @xample cy.createModification('Add Trip Pattern', 'New name')
      */
     createModification(type: ModificationType, name: string): Chainable<void>
+
+    /**
+     * Delete a modification by type and name.
+     */
+    deleteModification(type: ModificationType, name: string): Chainable<void>
 
     /**
      * Delete an open modification.
