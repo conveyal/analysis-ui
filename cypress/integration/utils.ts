@@ -29,7 +29,7 @@ export function testModification(
     const name = createModificationName(type)
     cy.createModification(type, name)
     runner.call(this, name)
-    cy.deleteModification(type, name)
+    cy.deleteModification(name)
   })
 }
 

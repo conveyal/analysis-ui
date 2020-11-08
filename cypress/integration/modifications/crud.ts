@@ -77,7 +77,7 @@ setupModificationTests('basic', () => {
       cy.navComplete()
 
       // Read the saved settings
-      cy.openModification(type, name)
+      cy.openModification(name)
       cy.findByText(description)
       cy.findByLabelText(/Default/).should('not.be.checked')
       cy.findByLabelText(scenarioNameRegEx).should('be.checked')
@@ -109,7 +109,7 @@ setupModificationTests('basic', () => {
     cy.location('pathname').should('match', /projects\/.{24}\/modifications/)
 
     this.region.importRoutes.routes.forEach((route) => {
-      cy.openModification('Add Trip Pattern', route.name)
+      cy.openModification(route.name)
       cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
       cy.findByLabelText(/Frequency/)
         .invoke('val')

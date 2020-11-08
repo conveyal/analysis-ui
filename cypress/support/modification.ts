@@ -43,8 +43,8 @@ Cypress.Commands.add('createModification', function (
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
 })
 
-Cypress.Commands.add('deleteModification', function (type, name) {
-  cy.openModification(type, name)
+Cypress.Commands.add('deleteModification', function (name) {
+  cy.openModification(name)
   cy.deleteThisModification()
 })
 
@@ -111,14 +111,15 @@ Cypress.Commands.add('editModificationJSON', function (
   cy.findByRole('tab', {name: /Edit value/}).click()
 })
 
-Cypress.Commands.add('openModification', function (
-  modType: Cypress.ModificationType,
-  modName: string
-) {
+function regExFromName(name: string) {
+  return new RegExp(name.replace('(', '\\(').replace(')', '\\)'))
+}
+
+Cypress.Commands.add('openModification', function (modName: string) {
   // opens the first listed modification of this type with this name
   cy.goToEntity('project')
   cy.findByRole('tab', {name: /Modifications/g}).click()
-  cy.findByRole('button', {name: new RegExp(modName)}).click()
+  cy.findByRole('button', {name: regExFromName(modName)}).click()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
   cy.contains(modName)
 })

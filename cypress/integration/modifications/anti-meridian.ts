@@ -43,20 +43,19 @@ setupModificationTests('Drawing over anti-meridian', () => {
 
       // Save and re-open
       cy.findByRole('button', {name: /^Modifications$/}).click()
-      cy.openModification('Add Trip Pattern', name)
+      cy.openModification(name)
 
       // Edit the JSON directly
       cy.editModificationJSON({segments: [addTripSegment]})
 
       // Save and re-open and attempt to edit the route geometry
       cy.findByRole('button', {name: /^Modifications$/}).click()
-      cy.openModification('Add Trip Pattern', name)
+      cy.openModification(name)
       cy.findByRole('button', {name: /Edit route geometry/i}).click()
     }
   )
 
   testModification('Reroute', 'anti-meridian drawing', function (name) {
-    const type = 'Reroute'
     cy.selectFeed(this.region.feedAgencyName)
     cy.selectRoute(this.region.sampleRouteName)
     cy.findByLabelText(/Select from stop/).click()
@@ -71,14 +70,14 @@ setupModificationTests('Drawing over anti-meridian', () => {
 
     // Save and re-open
     cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification(type, name)
+    cy.openModification(name)
 
     // Edit the JSON directly
     cy.editModificationJSON({segments: [addTripSegment]})
 
     // Save and re-open and attempt to edit the route geometry
     cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification(type, name)
+    cy.openModification(name)
     cy.findByRole('button', {name: /Edit route geometry/i}).click()
   })
 
@@ -93,19 +92,18 @@ setupModificationTests('Drawing over anti-meridian', () => {
 
     // Save and re-open
     cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification('Add Streets', name)
+    cy.openModification(name)
 
     // Edit the JSON directly
     cy.editModificationJSON({lineStrings: [lineString.coordinates]})
 
     // Save and re-open
     cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification('Add Streets', name)
+    cy.openModification(name)
   })
 
   testModification('Modify Streets', 'anti-meridian drawing', function (name) {
     const withEndCoord = [...coordsOverAntiMeridian, coordsOverAntiMeridian[0]]
-    const type = 'Modify Streets'
 
     cy.waitForMapToLoad()
     cy.getLeafletMap().then((map) => map.fitBounds(coordsOverAntiMeridian))
@@ -117,13 +115,13 @@ setupModificationTests('Drawing over anti-meridian', () => {
 
     // Save and re-open
     cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification(type, name)
+    cy.openModification(name)
 
     // Edit the JSON directly
     cy.editModificationJSON({polygons: [withEndCoord.map((c) => [c[1], c[0]])]})
 
     // Save and re-open
     cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification(type, name)
+    cy.openModification(name)
   })
 })

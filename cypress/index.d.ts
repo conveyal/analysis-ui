@@ -60,7 +60,7 @@ declare namespace Cypress {
     /**
      * Delete a modification by type and name.
      */
-    deleteModification(type: ModificationType, name: string): Chainable<void>
+    deleteModification(name: string): Chainable<void>
 
     /**
      * Delete an open modification.
@@ -160,9 +160,9 @@ declare namespace Cypress {
 
     /**
      * Open an existing modification.
-     * @xample cy.createModification('Add Trip Pattern', 'New name')
+     * @xample cy.openModification('New name')
      */
-    openModification(type: ModificationType, name: string): Chainable<void>
+    openModification(name: string): Chainable<void>
 
     /**
      * Select the default dataset.
