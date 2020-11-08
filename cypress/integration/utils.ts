@@ -17,21 +17,38 @@ export function createModificationName(type: string, description = '') {
   return `${modificationPrefix}${type}${description}${Date.now()}`
 }
 
+type TestModificationOptions = {
+  testFunction?: Mocha.ExclusiveTestFunction | Mocha.TestFunction
+  title: string
+  type: Cypress.ModificationType
+}
+
 /**
  * Perform initialization and cleanup for modification tests.
  */
 export function testModification(
-  type: Cypress.ModificationType,
-  description: string,
+  {testFunction = it, title, type}: TestModificationOptions,
   runner: (name: string) => void
 ) {
-  it(`testModification<${type}>: ${description}`, function () {
+  testFunction(`testModification<${type}>: ${title}`, function () {
     const name = createModificationName(type)
     cy.createModification(type, name)
     runner.call(this, name)
     cy.deleteModification(name)
   })
 }
+
+testModification.only = (
+  options: TestModificationOptions,
+  runner: (name: string) => void
+) =>
+  testModification(
+    {
+      ...options,
+      testFunction: it.only
+    },
+    runner
+  )
 
 /**
  * Setup a group of modification tests.

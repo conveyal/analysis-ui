@@ -50,38 +50,46 @@ setupModificationTests('basic', () => {
    * run these simple tests for each modification type.
    */
   ModificationTypes.forEach((type) => {
-    testModification(type, 'CRUD', function (name) {
-      const description = 'distinctly descriptive text'
-      cy.contains(name)
+    testModification(
+      {
+        title: 'CRUD',
+        type
+      },
+      function (name) {
+        const description = 'distinctly descriptive text'
+        cy.contains(name)
 
-      // Update the description
-      cy.findByText(/Add description/)
-        .parent() // necessary because text element becomes detached
-        .parent()
-        .click({force: true})
-        .type(description)
+        // Update the description
+        cy.findByText(/Add description/)
+          .parent() // necessary because text element becomes detached
+          .parent()
+          .click({force: true})
+          .type(description)
 
-      // Update the variants
-      cy.findByLabelText(/Default/).uncheck({force: true})
-      cy.findByLabelText(scenarioNameRegEx).check({force: true})
+        // Update the variants
+        cy.findByLabelText(/Default/).uncheck({force: true})
+        cy.findByLabelText(scenarioNameRegEx).check({force: true})
 
-      // Test the type specific elements
-      formCheck(type, this.region)
+        // Test the type specific elements
+        formCheck(type, this.region)
 
-      // Navigate away and expand the map to the modification
-      cy.centerMapOn([0, 0])
-      cy.findByRole('button', {name: /Fit map to modification extents/}).click()
+        // Navigate away and expand the map to the modification
+        cy.centerMapOn([0, 0])
+        cy.findByRole('button', {
+          name: /Fit map to modification extents/
+        }).click()
 
-      // Go back to the list to force a save
-      cy.findByRole('button', {name: /^Modifications$/}).click()
-      cy.navComplete()
+        // Go back to the list to force a save
+        cy.findByRole('button', {name: /^Modifications$/}).click()
+        cy.navComplete()
 
-      // Read the saved settings
-      cy.openModification(name)
-      cy.findByText(description)
-      cy.findByLabelText(/Default/).should('not.be.checked')
-      cy.findByLabelText(scenarioNameRegEx).should('be.checked')
-    })
+        // Read the saved settings
+        cy.openModification(name)
+        cy.findByText(description)
+        cy.findByLabelText(/Default/).should('not.be.checked')
+        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
+      }
+    )
   })
 
   it('can be imported from shapefile', function () {
@@ -121,106 +129,116 @@ setupModificationTests('basic', () => {
     })
   })
 
-  testModification('Add Trip Pattern', 'draw on map', function () {
-    cy.findAllByRole('alert').contains(/must have at least 2 stops/)
-    cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
-    // add a route geometry
-    cy.drawRouteGeometry(this.region.newRoute)
+  testModification(
+    {
+      type: 'Add Trip Pattern',
+      title: 'draw on map'
+    },
+    function () {
+      cy.findAllByRole('alert').contains(/must have at least 2 stops/)
+      cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
+      // add a route geometry
+      cy.drawRouteGeometry(this.region.newRoute)
 
-    cy.findAllByRole('alert')
-      .contains(/must have at least 2 stops/)
-      .should('not.exist')
-    cy.findByLabelText(/Auto-create stops at set spacing/i).check({
-      force: true
-    })
+      cy.findAllByRole('alert')
+        .contains(/must have at least 2 stops/)
+        .should('not.exist')
+      cy.findByLabelText(/Auto-create stops at set spacing/i).check({
+        force: true
+      })
 
-    cy.findByLabelText(/Bidirectional/i)
-      .uncheck({force: true})
-      .should('not.be.checked')
-    // add a timetable
-    cy.findByText(/Add new timetable/i).click()
-    cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
-      'not.exist'
-    )
-  })
+      cy.findByLabelText(/Bidirectional/i)
+        .uncheck({force: true})
+        .should('not.be.checked')
+      // add a timetable
+      cy.findByText(/Add new timetable/i).click()
+      cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
+        'not.exist'
+      )
+    }
+  )
 
-  testModification('Add Trip Pattern', 'create and reuse timetables', function (
-    modName
-  ) {
-    // add a route geometry
-    cy.drawRouteGeometry(this.region.newRoute)
+  testModification(
+    {
+      type: 'Add Trip Pattern',
+      title: 'create and reuse timetables'
+    },
+    function (modName) {
+      // add a route geometry
+      cy.drawRouteGeometry(this.region.newRoute)
 
-    cy.findByText(/Add new timetable/).click()
-    cy.findByText('Timetable 1').click({force: true})
-    // enter arbitrary settings to see if they get saved
-    cy.findByLabelText('Name').clear().type('Weekday')
-    cy.findByLabelText(/Mon/).check()
-    cy.findByLabelText(/Tue/).check()
-    cy.findByLabelText(/Wed/).check()
-    cy.findByLabelText(/Thu/).check()
-    cy.findByLabelText(/Fri/).check()
-    cy.findByLabelText(/Sat/).uncheck({force: true})
-    cy.findByLabelText(/Sun/).uncheck({force: true})
-    cy.findByLabelText(/Frequency/)
-      .clear()
-      .type('00:20:00')
-    cy.findByLabelText(/Start time/)
-      .clear()
-      .type('06:00')
-    cy.findByLabelText(/End time/)
-      .clear()
-      .type('23:00')
-    cy.findByLabelText(/dwell time/)
-      .clear()
-      .type('00:00:30')
-    cy.findByText('Weekday').click({force: true}) // hide panel
+      cy.findByText(/Add new timetable/).click()
+      cy.findByText('Timetable 1').click({force: true})
+      // enter arbitrary settings to see if they get saved
+      cy.findByLabelText('Name').clear().type('Weekday')
+      cy.findByLabelText(/Mon/).check()
+      cy.findByLabelText(/Tue/).check()
+      cy.findByLabelText(/Wed/).check()
+      cy.findByLabelText(/Thu/).check()
+      cy.findByLabelText(/Fri/).check()
+      cy.findByLabelText(/Sat/).uncheck({force: true})
+      cy.findByLabelText(/Sun/).uncheck({force: true})
+      cy.findByLabelText(/Frequency/)
+        .clear()
+        .type('00:20:00')
+      cy.findByLabelText(/Start time/)
+        .clear()
+        .type('06:00')
+      cy.findByLabelText(/End time/)
+        .clear()
+        .type('23:00')
+      cy.findByLabelText(/dwell time/)
+        .clear()
+        .type('00:00:30')
+      cy.findByText('Weekday').click({force: true}) // hide panel
 
-    // Copy the current modification
-    cy.findByRole('button', {name: /Copy modification/i}).click()
-    cy.loadingComplete()
-    cy.get('#react-toast').findByRole('alert').click({force: true})
-    cy.navComplete()
+      // Copy the current modification
+      cy.findByRole('button', {name: /Copy modification/i}).click()
+      cy.loadingComplete()
+      cy.get('#react-toast').findByRole('alert').click({force: true})
+      cy.navComplete()
 
-    cy.findByText(/Copy existing timetable/).click()
-    cy.findByRole('dialog').should('exist')
-    cy.findByRole('dialog').as('dialog')
-    cy.get('@dialog')
-      .findByText(/Loading/)
-      .should('not.exist')
-    cy.get('@dialog')
-      .findByLabelText(/Region/)
-      .select(Cypress.env('dataPrefix') + 'scratch')
-    cy.get('@dialog')
-      .findByLabelText(/Project/)
-      .select(Cypress.env('dataPrefix') + 'scratch project')
-    cy.get('@dialog')
-      .findByLabelText(/Modification/)
-      .select(modName)
-    cy.get('@dialog')
-      .findByLabelText(/Timetable/)
-      .select('Weekday')
-    cy.findByText(/Copy into new timetable/i).click()
-    cy.contains(/copy of Weekday/i).click({force: true})
-    // verify the settings from above
-    cy.findByLabelText(/Mon/).should('be.checked')
-    cy.findByLabelText(/Tue/).should('be.checked')
-    cy.findByLabelText(/Wed/).should('be.checked')
-    cy.findByLabelText(/Thu/).should('be.checked')
-    cy.findByLabelText(/Fri/).should('be.checked')
-    cy.findByLabelText(/Sat/).should('not.be.checked')
-    cy.findByLabelText(/Sun/).should('not.be.checked')
-    cy.findByLabelText(/Frequency/)
-      .invoke('val')
-      .should('eq', '00:20:00')
-    cy.findByLabelText(/Start time/)
-      .invoke('val')
-      .should('eq', '06:00')
-    cy.findByLabelText(/End time/)
-      .invoke('val')
-      .should('eq', '23:00')
-    // Delete the copied modification
-    cy.deleteThisModification()
-  })
+      cy.findByText(/Copy existing timetable/).click()
+      cy.findByRole('dialog').should('exist')
+      cy.findByRole('dialog').as('dialog')
+      cy.get('@dialog')
+        .findByText(/Loading/)
+        .should('not.exist')
+      cy.get('@dialog')
+        .findByLabelText(/Region/)
+        .select(Cypress.env('dataPrefix') + 'scratch')
+      cy.get('@dialog')
+        .findByLabelText(/Project/)
+        .select(Cypress.env('dataPrefix') + 'scratch project')
+      cy.get('@dialog')
+        .findByLabelText(/Modification/)
+        .select(modName)
+      cy.get('@dialog')
+        .findByLabelText(/Timetable/)
+        .select('Weekday')
+      cy.findByText(/Copy into new timetable/i).click()
+      cy.contains(/copy of Weekday/i).click({force: true})
+      // verify the settings from above
+      cy.findByLabelText(/Mon/).should('be.checked')
+      cy.findByLabelText(/Tue/).should('be.checked')
+      cy.findByLabelText(/Wed/).should('be.checked')
+      cy.findByLabelText(/Thu/).should('be.checked')
+      cy.findByLabelText(/Fri/).should('be.checked')
+      cy.findByLabelText(/Sat/).should('not.be.checked')
+      cy.findByLabelText(/Sun/).should('not.be.checked')
+      cy.findByLabelText(/Frequency/)
+        .invoke('val')
+        .should('eq', '00:20:00')
+      cy.findByLabelText(/Start time/)
+        .invoke('val')
+        .should('eq', '06:00')
+      cy.findByLabelText(/End time/)
+        .invoke('val')
+        .should('eq', '23:00')
+      // Delete the copied modification
+      cy.deleteThisModification()
+    }
+  )
 
   describe('Download and share modifications', () => {
     before(() => {
