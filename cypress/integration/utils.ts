@@ -21,7 +21,7 @@ export function createModificationName(type: string, description = '') {
  * Perform initialization and cleanup for modification tests.
  */
 export function testModification(
-  type: typeof ModificationTypes[number],
+  type: Cypress.ModificationType,
   description: string,
   runner: (name: string) => void
 ) {
@@ -29,8 +29,7 @@ export function testModification(
     const name = createModificationName(type)
     cy.createModification(type, name)
     runner.call(this, name)
-    cy.openModification(type, name)
-    cy.deleteThisModification()
+    cy.deleteModification(type, name)
   })
 }
 

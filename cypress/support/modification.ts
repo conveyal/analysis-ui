@@ -8,7 +8,7 @@ function clearAllModifications() {
   return cy
     .get('body')
     .then(($body) => {
-      return $body.find('button[aria-label="Edit modification"]')
+      return $body.find('button[aria-label^="Edit modification"]')
     })
     .then((buttons) => {
       if (buttons.length > 0) {
@@ -113,22 +113,12 @@ Cypress.Commands.add('editModificationJSON', function (
 
 Cypress.Commands.add('openModification', function (
   modType: Cypress.ModificationType,
-  modName
+  modName: string
 ) {
   // opens the first listed modification of this type with this name
   cy.goToEntity('project')
   cy.findByRole('tab', {name: /Modifications/g}).click()
-  // find the container for this modification type and open it if need be
-  cy.findByText(modType)
-    .parent()
-    .parent()
-    .as('modList')
-    .then((modList) => {
-      if (!modList.text().includes(modName)) {
-        cy.wrap(modList).click()
-      }
-    })
-  cy.get('@modList').contains(modName).click()
+  cy.findByRole('button', {name: new RegExp(modName)}).click()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
   cy.contains(modName)
 })

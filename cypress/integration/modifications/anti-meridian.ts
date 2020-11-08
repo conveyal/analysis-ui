@@ -103,7 +103,7 @@ setupModificationTests('Drawing over anti-meridian', () => {
     cy.openModification('Add Streets', name)
   })
 
-  testModification('Modify Streets', 'anti-meridian drawing', function () {
+  testModification('Modify Streets', 'anti-meridian drawing', function (name) {
     const withEndCoord = [...coordsOverAntiMeridian, coordsOverAntiMeridian[0]]
     const type = 'Modify Streets'
 
