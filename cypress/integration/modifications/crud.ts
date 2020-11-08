@@ -96,10 +96,11 @@ setupModificationTests('basic', () => {
     cy.findByRole('button', {
       name: 'Import modifications from another project'
     }).click()
-    cy.location('pathname').should('match', /import-modifications$/)
-    // TODO need better selector for button
+    cy.navComplete()
+
     cy.findByRole('button', {name: /Import from Shapefile/}).click()
-    cy.location('pathname').should('match', /import-shapefile/g)
+    cy.navComplete()
+
     cy.findByLabelText(/Select Shapefile/i).attachFile({
       filePath: this.region.importRoutes.shapefile,
       mimeType: 'application/octet-stream',
@@ -113,6 +114,7 @@ setupModificationTests('basic', () => {
     cy.findByText(/Import/)
       .should('not.be.disabled')
       .click()
+    cy.navComplete()
 
     cy.location('pathname').should('match', /projects\/.{24}\/modifications/)
 

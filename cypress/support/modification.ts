@@ -61,7 +61,7 @@ Cypress.Commands.add('deleteThisModification', function () {
 Cypress.Commands.add('drawRouteGeometry', function (
   newRoute: L.LatLngExpression[]
 ) {
-  cy.findByText(/Edit route geometry/i)
+  cy.findByRole('button', {name: /Edit route geometry/i})
     .click()
     .contains(/Stop editing/i)
   cy.waitForMapToLoad()
@@ -76,22 +76,18 @@ Cypress.Commands.add('drawRouteGeometry', function (
   // convert an arbitrary stop to a control point
   const stop = newRoute[newRoute.length - 2]
   cy.clickMapAtCoord(stop)
-  cy.getMapDiv()
-    .findByText(/make control point/)
-    .click()
+  cy.findByRole('button', {name: /make control point/i}).click()
 
   // control point not counted as stop
   cy.contains(new RegExp(newRoute.length - 1 + ' stops over \\d\\.\\d+ km'))
 
   // convert control point back to stop
   cy.clickMapAtCoord(stop)
-  cy.getMapDiv()
-    .findByText(/make stop/)
-    .click()
+  cy.findByRole('button', {name: /make stop/i}).click()
   cy.contains(new RegExp(newRoute.length + ' stops over \\d\\.\\d+ km'))
 
   // Exit editing mode
-  cy.findByText(/Stop editing/i).click()
+  cy.findByRole('button', {name: /Stop editing/i}).click()
 })
 
 Cypress.Commands.add('editModificationJSON', function (
