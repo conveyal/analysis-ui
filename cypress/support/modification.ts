@@ -120,6 +120,7 @@ Cypress.Commands.add('openModification', function (modName: string) {
   cy.goToEntity('project')
   cy.findByRole('tab', {name: /Modifications/g}).click()
   cy.findByRole('button', {name: regExFromName(modName)}).click()
+  cy.navComplete()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
   cy.contains(modName)
 })
