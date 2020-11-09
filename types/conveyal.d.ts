@@ -11,7 +11,6 @@ declare namespace CL {
     x: number
     y: number
   }
-  export type CoordinateArray = [longitude: number, latitude: number]
 
   /**
    * Commonly used bounds object
