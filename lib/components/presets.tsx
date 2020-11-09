@@ -187,7 +187,7 @@ export default memo<Props>(function PresetChooser({
             key={getId(selectedPreset)}
             getOptionLabel={getOptionLabel}
             getOptionValue={getId}
-            options={presets}
+            options={presets as any}
             onChange={_selectPreset}
             placeholder='Select a preset'
             value={selectedPreset}

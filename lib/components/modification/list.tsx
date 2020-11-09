@@ -297,7 +297,7 @@ const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
     <Flex align='center' px={1}>
       <ButtonLink
-        aria-label='Edit modification'
+        aria-label={`Edit modification ${modification.name}`}
         flex='1'
         justifyContent='start'
         overflow='hidden'

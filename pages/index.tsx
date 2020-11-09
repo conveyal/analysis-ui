@@ -92,7 +92,11 @@ export default withAuth(function SelectRegionPage(p) {
   )
 })
 
-function RegionItem({region, ...p}) {
+interface RegionItemProps {
+  region: CL.Region
+}
+
+function RegionItem({region, ...p}: RegionItemProps) {
   const goToRegion = useRouteTo('projects', {regionId: region._id})
   return (
     <ListGroupItem

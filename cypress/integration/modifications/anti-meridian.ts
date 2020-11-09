@@ -1,59 +1,152 @@
-import {createModificationName} from '../utils'
+import {setupModificationTests, testModification} from '../utils'
 
-const coordsOverAntiMeridian: Cypress.Coord[] = [
+const coordsOverAntiMeridian: L.LatLngTuple[] = [
   [5, 160],
   [5, 200]
 ]
 
+const lineString: GeoJSON.LineString = {
+  type: 'LineString',
+  coordinates: [
+    [160, 5],
+    [200, 5]
+  ]
+}
+
+const addTripSegment = {
+  stopAtStart: true,
+  stopAtEnd: true,
+  spacing: 0,
+  geometry: lineString
+}
+
 /**
- * Modifications that allow drawing should handle drawing over the anti-meridian
- * without failing.
+ * Modifications that allow drawing can have problems when drawing over the anti-meridian.
+ * This test ensures that these modifications both:
+ * 1. Show alerts when drawing over the anti-meridian.
+ * 2. Still open if they have invalid coordinates from undefined usage.
  *
  * Reported here: https://github.com/conveyal/analysis-ui/issues/1315
  */
-describe('Modification drawing over anti-meridian', () => {
-  before(() => {
-    cy.setup('project')
-    cy.clearAllModifications() // clean up for development
-  })
+setupModificationTests('Drawing over anti-meridian', () => {
+  testModification(
+    {
+      type: 'Add Trip Pattern',
+      title: 'handle anti-meridian drawing'
+    },
+    (name) => {
+      cy.waitForMapToLoad()
+      cy.getLeafletMap().then((map) => map.fitBounds(coordsOverAntiMeridian))
 
-  beforeEach(() => {
-    cy.goToEntity('project')
-  })
+      cy.findByRole('button', {name: /Edit route geometry/i}).click()
+      coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
+      cy.get('#react-toast').findByRole('alert') // Alert should pop up
+      cy.findByRole('button', {name: /Stop editing/i}).click()
 
-  it('should handle Add Trip Patterns', () => {
-    const name = createModificationName('Add Trip Pattern', 'anti-meridian')
-    cy.createModification('Add Trip Pattern', name)
+      // Save and re-open
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
 
-    cy.waitForMapToLoad()
-    cy.getLeafletMap().then((map) => map.fitBounds(coordsOverAntiMeridian))
+      // Edit the JSON directly
+      cy.editModificationJSON({segments: [addTripSegment]})
 
-    cy.findByRole('button', {name: /Edit route geometry/i}).click()
-    coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
-    cy.findByRole('button', {name: /Stop editing/i}).click()
+      // Save and re-open and attempt to edit the route geometry
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
+      cy.findByRole('button', {name: /Edit route geometry/i}).click()
+    }
+  )
 
-    // Save and re-open
-    cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification('Add Trip Pattern', name)
+  testModification(
+    {
+      type: 'Reroute',
+      title: 'anti-meridian drawing'
+    },
+    function (name) {
+      cy.selectFeed(this.region.feedAgencyName)
+      cy.selectRoute(this.region.sampleRouteName)
+      cy.findByLabelText(/Select from stop/).click()
 
-    cy.deleteThisModification()
-  })
+      cy.waitForMapToLoad()
+      cy.clickMapAtCoord([39.085704, -84.515856])
 
-  it('should handle Add Streets', () => {
-    const name = createModificationName('Add Streets', 'anti-meridian')
-    cy.createModification('Add Streets', name)
+      cy.findByRole('button', {name: /Edit route geometry/}).click()
+      coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
+      cy.get('#react-toast').findByRole('alert') // Alert should pop up
+      cy.findByRole('button', {name: /Stop editing/i}).click()
 
-    cy.waitForMapToLoad()
-    cy.getLeafletMap().then((map) => map.fitBounds(coordsOverAntiMeridian))
+      // Save and re-open
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
 
-    cy.findByTitle(/Draw a polyline/i).click()
-    coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
-    cy.findByTitle(/Finish drawing/i).click()
+      // Edit the JSON directly
+      cy.editModificationJSON({segments: [addTripSegment]})
 
-    // Save and re-open
-    cy.findByRole('button', {name: /^Modifications$/}).click()
-    cy.openModification('Add Streets', name)
+      // Save and re-open and attempt to edit the route geometry
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
+      cy.findByRole('button', {name: /Edit route geometry/i}).click()
+    }
+  )
 
-    cy.deleteThisModification()
-  })
+  testModification(
+    {
+      type: 'Add Streets',
+      title: 'anti-meridian drawing'
+    },
+    function (name) {
+      cy.waitForMapToLoad()
+      cy.getLeafletMap().then((map) => map.fitBounds(coordsOverAntiMeridian))
+
+      cy.findByTitle(/Draw a polyline/i).click()
+      coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))
+      cy.findByRole('alert')
+      cy.findByTitle(/Finish drawing/i).click()
+
+      // Save and re-open
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
+
+      // Edit the JSON directly
+      cy.editModificationJSON({lineStrings: [lineString.coordinates]})
+
+      // Save and re-open
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
+    }
+  )
+
+  testModification(
+    {
+      type: 'Modify Streets',
+      title: 'anti-meridian drawing'
+    },
+    function (name) {
+      const withEndCoord = [
+        ...coordsOverAntiMeridian,
+        coordsOverAntiMeridian[0]
+      ]
+
+      cy.waitForMapToLoad()
+      cy.getLeafletMap().then((map) => map.fitBounds(coordsOverAntiMeridian))
+
+      cy.findByTitle(/Draw a polygon/i).click()
+      withEndCoord.forEach((coord) => cy.clickMapAtCoord(coord))
+      cy.findByRole('alert')
+      cy.findByTitle(/Finish drawing/i).click()
+
+      // Save and re-open
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
+
+      // Edit the JSON directly
+      cy.editModificationJSON({
+        polygons: [withEndCoord.map((c) => [c[1], c[0]])]
+      })
+
+      // Save and re-open
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.openModification(name)
+    }
+  )
 })

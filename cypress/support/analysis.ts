@@ -1,3 +1,5 @@
+import {latLng} from 'leaflet'
+
 const getPrimary = () => cy.get('div#PrimaryAnalysisSettings')
 
 /**
@@ -27,9 +29,10 @@ Cypress.Commands.add('editPrimaryAnalysisJSON', (key, newValue) => {
     .click()
 })
 
-Cypress.Commands.add('setOrigin', (latLonArray) => {
-  cy.editPrimaryAnalysisJSON('fromLat', latLonArray[0])
-  cy.editPrimaryAnalysisJSON('fromLon', latLonArray[1])
+Cypress.Commands.add('setOrigin', (newOrigin: L.LatLngExpression) => {
+  const latlng = latLng(newOrigin)
+  cy.editPrimaryAnalysisJSON('fromLat', latlng.lat)
+  cy.editPrimaryAnalysisJSON('fromLon', latlng.lng)
 })
 
 Cypress.Commands.add('fetchResults', () => {

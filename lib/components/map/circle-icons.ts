@@ -1,3 +1,4 @@
+import {DivIconOptions} from 'leaflet'
 import memoize from 'lodash/memoize'
 
 import Leaflet from 'lib/leaflet'
@@ -19,7 +20,7 @@ function createGetCircleIconForZoom(type) {
   const className = `CircleIconMarker ${type}`
   return memoize((zoom) => {
     const radius = getStopRadius(zoom)
-    const divIconOpts = {
+    const divIconOpts: DivIconOptions = {
       iconAnchor: undefined,
       iconSize: [radius * 2, radius * 2],
       className,
