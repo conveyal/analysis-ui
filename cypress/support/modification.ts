@@ -13,6 +13,7 @@ function clearAllModifications() {
     .then((buttons) => {
       if (buttons.length > 0) {
         cy.wrap(buttons[0]).click()
+        cy.navComplete()
         cy.deleteThisModification()
         return clearAllModifications()
       }
@@ -72,6 +73,9 @@ Cypress.Commands.add('drawRouteGeometry', function (
       cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
     }
   })
+
+  // Zoom to the entire route
+  cy.findByRole('button', {name: /Fit map to modification extents/}).click()
 
   // convert an arbitrary stop to a control point
   const stop = newRoute[newRoute.length - 2]

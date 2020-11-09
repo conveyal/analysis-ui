@@ -134,35 +134,6 @@ setupModificationTests('basic', () => {
   testModification(
     {
       type: 'Add Trip Pattern',
-      title: 'draw on map'
-    },
-    function () {
-      cy.findAllByRole('alert').contains(/must have at least 2 stops/)
-      cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
-      // add a route geometry
-      cy.drawRouteGeometry(this.region.newRoute)
-
-      cy.findAllByRole('alert')
-        .contains(/must have at least 2 stops/)
-        .should('not.exist')
-      cy.findByLabelText(/Auto-create stops at set spacing/i).check({
-        force: true
-      })
-
-      cy.findByLabelText(/Bidirectional/i)
-        .uncheck({force: true})
-        .should('not.be.checked')
-      // add a timetable
-      cy.findByText(/Add new timetable/i).click()
-      cy.findByRole('alert', {name: /needs at least 1 timetable/}).should(
-        'not.exist'
-      )
-    }
-  )
-
-  testModification(
-    {
-      type: 'Add Trip Pattern',
       title: 'create and reuse timetables'
     },
     function (modName) {
@@ -344,13 +315,22 @@ function testAddTripPattern(region) {
   cy.findByLabelText(/Transit Mode/i).select('Tram')
   cy.findAllByRole('alert').contains(/must have at least 2 stops/)
   cy.findByRole('button', {name: /Edit route geometry/i}).as('edit')
+
   cy.findAllByRole('alert').contains(/needs at least 1 timetable/)
   cy.findByRole('button', {name: /Add new timetable/i}).click()
+  cy.findAllByRole('alert')
+    .contains(/needs at least 1 timetable/)
+    .should('not.exist')
   cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
+
   cy.findByLabelText(/Times are exact/i).uncheck({force: true})
   cy.findByLabelText(/Phase at stop/i)
   // drawing a route activates the following elements
   cy.drawRouteGeometry(region.newRoute)
+  cy.findAllByRole('alert')
+    .contains(/must have at least 2 stops/)
+    .should('not.exist')
+
   // set dwell times, verifying that they increase the total travel time
   cy.findByText(/Travel time/i)
     .parent()

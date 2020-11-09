@@ -69,9 +69,5 @@ export function setupModificationTests(
     })
 
     runner()
-
-    after(() => {
-      cy.clearAllModifications() // clean up for other test groups
-    })
   })
 }

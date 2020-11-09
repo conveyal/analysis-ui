@@ -2,20 +2,18 @@
 Cypress.Commands.add('getMapDiv', () => cy.get('div.leaflet-container'))
 Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
 
-Cypress.Commands.add('clickMapAtCoord', (coord: L.LatLngExpression) => {
-  cy.centerMapOn(coord)
+Cypress.Commands.add('clickMapAtCoord', (coord: L.LatLngExpression) =>
   cy.getLeafletMap().then((map) => {
-    const point = map.latLngToLayerPoint(coord)
+    map.setView(coord, 15, {animate: false, duration: 0})
+    const point = map.latLngToContainerPoint(coord)
     cy.getMapDiv().click(point.x, point.y)
   })
-})
+)
 
 Cypress.Commands.add('waitForMapToLoad', () =>
-  cy // eslint-disable-line
-    .getLeafletMap()
-    .its('_loaded')
-    .should('be.true') // this just does not seem to work as expected. The wait remains necessary
-    .wait(500)
+  cy.getLeafletMap().then((map) => {
+    cy.waitUntil(() => new Promise((resolve) => map.whenReady(resolve)))
+  })
 )
 
 Cypress.Commands.add(
