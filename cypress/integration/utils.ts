@@ -195,7 +195,23 @@ export function setupProject(
     })
   }
 
+  // Helper for cleaning up modifications by name
+  function deleteModification(modificationName: string) {
+    navToProject()
+    // Create if it does not exist
+    cy.findAllByRole('button').then((buttons) => {
+      const pb = buttons.filter((_, el) => el.textContent === modificationName)
+      if (pb.length !== 0) {
+        cy.wrap(pb.first()).click()
+        cy.findByRole('button', {name: /Delete modification/}).click()
+        cy.findByRole('button', {name: /Confirm: Delete modification/}).click()
+        cy.navComplete()
+      }
+    })
+  }
+
   return {
+    deleteModification,
     setupModification,
     setupScenarios,
     name: project.name,
