@@ -42,8 +42,8 @@ Cypress.Commands.add('createModification', function (
   }
   cy.findByText('Create').click()
   cy.findByRole('dialog').should('not.exist')
-  cy.navComplete()
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+  cy.navComplete()
 })
 
 Cypress.Commands.add('deleteModification', function (name) {
@@ -68,7 +68,7 @@ Cypress.Commands.add('drawRouteGeometry', function (
   cy.findByRole('button', {name: /Edit route geometry/i})
     .click()
     .contains(/Stop editing/i)
-  cy.waitForMapToLoad()
+
   // click at the coordinates
   newRoute.forEach((coord, i) => {
     cy.clickMapAtCoord(coord)
@@ -76,9 +76,6 @@ Cypress.Commands.add('drawRouteGeometry', function (
       cy.contains(new RegExp(i + 1 + ' stops over \\d\\.\\d+ km'))
     }
   })
-
-  // Zoom to the entire route
-  cy.findByRole('button', {name: /Fit map to modification extents/}).click()
 
   // convert an arbitrary stop to a control point
   const stop = newRoute[newRoute.length - 2]
@@ -120,7 +117,6 @@ function regExFromName(name: string) {
 
 Cypress.Commands.add('openModification', function (modName: string) {
   // opens the first listed modification of this type with this name
-  cy.goToEntity('project')
   cy.findByRole('tab', {name: /Modifications/g}).click()
   cy.findByRole('button', {name: regExFromName(modName)}).click()
   cy.navComplete()
@@ -134,11 +130,13 @@ Cypress.Commands.add('selectDefaultFeedAndRoute', function () {
 Cypress.Commands.add('selectFeed', function selectFeed(feedName: string) {
   cy.findByLabelText(/Select feed/)
     .click({force: true})
-    .type(feedName + '{enter}')
+    .type(feedName + '{enter}', {delay: 0})
+  cy.loadingComplete()
 })
 
 Cypress.Commands.add('selectRoute', function selectRoute(routeName: string) {
   cy.findByLabelText(/Select route/)
     .click({force: true})
-    .type(routeName + '{enter}')
+    .type('{backspace}' + routeName + '{enter}', {delay: 0})
+  cy.loadingComplete()
 })

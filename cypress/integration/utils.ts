@@ -15,9 +15,19 @@ export const ModificationTypes: Cypress.ModificationType[] = [
   'Custom'
 ]
 
+const typeUsesFeed = new Set([
+  'Adjust Dwell Time',
+  'Adjust Speed',
+  'Convert To Frequency',
+  'Remove Stops',
+  'Remove Trips',
+  'Reroute'
+])
+
 // Setup modification function
 type SetupModificationFn = {
   data?: Record<string, unknown>
+  onCreate?: () => void
   id?: string
   type: Cypress.ModificationType
 }
@@ -35,12 +45,17 @@ const defaultBundleName =
 /**
  * Sets up a project for modification testing. IDs must be unique within
  * the region.
+ * TBD:
+ * - Allow using other regions and opportunities.
  */
 export function setupProject(
   projectId: string,
   bundleName: string = defaultBundleName
 ) {
-  const projectName = Cypress.env('dataPrefix') + projectId
+  const project = {
+    name: Cypress.env('dataPrefix') + projectId,
+    path: null
+  }
 
   before(() => {
     // Ensure region exists and we are on the region page.
@@ -48,7 +63,7 @@ export function setupProject(
 
     // Create a project if it does not exist.
     cy.get('button').then((buttons) => {
-      const pb = buttons.filter((_, el) => el.textContent === projectName)
+      const pb = buttons.filter((_, el) => el.textContent === project.name)
       if (pb.length === 0) {
         // If this project isn't set up, make sure the other entities are.
         cy.setup('bundle')
@@ -56,7 +71,7 @@ export function setupProject(
         cy.navTo('projects')
 
         cy.findByText(/Create new Project/i).click()
-        cy.findByLabelText(/Project name/).type(projectName)
+        cy.findByLabelText(/Project name/).type(project.name)
         cy.findByLabelText(/Associated network bundle/i)
           .click({force: true})
           .type(bundleName + '{enter}')
@@ -64,26 +79,40 @@ export function setupProject(
       } else {
         cy.wrap(pb.first()).click()
       }
+      cy.navComplete()
+
+      // Store the project id
+      cy.location('pathname').then((path) => {
+        project.path = path
+      })
     })
   })
 
   // Helper to go to the project.
   function navToProject() {
-    cy.navTo('projects')
-    cy.findByRole('button', {name: new RegExp(projectName)}).click()
-    cy.navComplete()
+    cy.location('pathname').then((path) => {
+      if (path === project.path) {
+        cy.findByRole('tab', {name: /Modifications/}).click()
+      } else {
+        cy.visit(project.path)
+        cy.navComplete()
+      }
+    })
   }
 
   // Maintain unique modification ids
   const ids = new Set()
 
   // Helper for setting up modifications for this project.
-  function setupModification({data, id, type}: SetupModificationFn) {
-    const modificationName = Cypress.env('dataPrefix') + (id ?? type + ids.size)
-    if (ids.has(modificationName)) {
+  function setupModification({data, onCreate, id, type}: SetupModificationFn) {
+    const modification = {
+      name: Cypress.env('dataPrefix') + (id ?? type + ids.size),
+      path: null
+    }
+    if (ids.has(modification.name)) {
       throw new Error('Modification id must be unique per project')
     } else {
-      ids.add(modificationName)
+      ids.add(modification.name)
     }
 
     before(() => {
@@ -91,22 +120,42 @@ export function setupProject(
       // Create if it does not exist
       cy.findAllByRole('button').then((buttons) => {
         const pb = buttons.filter(
-          (_, el) => el.textContent === modificationName
+          (_, el) => el.textContent === modification.name
         )
         if (pb.length === 0) {
-          cy.createModification(type, modificationName)
+          cy.createModification(type, modification.name)
+
+          // Set the feed and route to the default
+          if (typeUsesFeed.has(type)) {
+            cy.selectDefaultFeedAndRoute()
+          }
+
+          if (onCreate) onCreate()
         } else {
           cy.wrap(pb.first()).click()
           cy.navComplete()
         }
-        if (data) cy.editModificationJSON(data)
+
+        // On each test run ensure it starts with the same data.
+        if (data) {
+          cy.editModificationJSON(data)
+        }
+
+        // Store the modification path
+        cy.location('pathname').then((path) => {
+          modification.path = path
+        })
       })
     })
 
     // Helper to navigate to this modification
     function navToMod() {
-      navToProject()
-      cy.findByRole('button', {name: new RegExp(modificationName)}).click()
+      cy.location('pathname').then((path) => {
+        if (path !== modification.path) {
+          navToProject()
+          cy.findByRole('button', {name: new RegExp(modification.name)}).click()
+        }
+      })
     }
 
     function deleteMod() {
@@ -118,95 +167,38 @@ export function setupProject(
 
     return {
       delete: deleteMod,
-      name: modificationName,
+      name: modification.name,
       navTo: navToMod
     }
   }
 
-  // Helper for setting up a scenario in this project.
-  function setupScenario(scenarioName) {
-    navToProject()
-    cy.findByRole('tab', {name: 'Scenarios'}).click()
-    cy.get('#scenarios').then((el) => {
-      // create named scenario if it doesn't already exist
-      if (!el.text().includes(scenarioName)) {
-        cy.findByRole('button', {name: 'Create a scenario'}).click()
-        // TODO there has GOT to be a better way...
-        cy.wrap(el)
-          .findByText(/Scenario \d/)
-          .parent()
-          .parent()
-          .parent()
-          .click()
-          .parent()
-          .findByDisplayValue(/Scenario \d/)
-          .type(scenarioName + '{enter}')
-      }
+  // Helper for setting up a scenarios in this project.
+  function setupScenarios(scenarios: string[]) {
+    before(() => {
+      navToProject()
+      cy.findByRole('tab', {name: 'Scenarios'}).click()
+      scenarios.forEach((scenarioName) => {
+        cy.get('#scenarios').then((el) => {
+          // create named scenario if it doesn't already exist
+          if (!el.text().includes(scenarioName)) {
+            cy.findByRole('button', {name: 'Create a scenario'}).click()
+            cy.wait(10) // eslint-disable-line
+            // TODO there has GOT to be a better way...
+            cy.get('#scenarios').findAllByRole('group').last().click()
+
+            cy.focused()
+              .clear()
+              .type(scenarioName + '{enter}')
+          }
+        })
+      })
     })
   }
 
   return {
     setupModification,
-    setupScenario,
-    name: projectName,
+    setupScenarios,
+    name: project.name,
     navTo: navToProject
   }
-}
-
-/**
- * Sets up modification testing.
- * - `before`: creates bundle, project, opportunity data and clears all old modifications (for development)
- * @example
- * define('Modification test group', () => {
- *   beforeModificationTests()
- *   // do tests
- * })
- */
-export function beforeModificationTests() {
-  before(() => {
-    cy.setup('analysis')
-    cy.clearAllModifications()
-  })
-}
-
-/**
- * Generate a name, create a modification and (conditionally) clean up after.
- * @example
- * define('Modification test group', () => {
- *   beforeModificationTests()
- *   const name = setupModification('Add Trip Pattern')
- *   it('Add trip pattern should exist', ...)
- * })
- */
-export function setupModification(type: Cypress.ModificationType): string {
-  const name = createModificationName(type)
-
-  before(() => cy.createModification(type, name))
-
-  return name
-}
-
-/**
- * Create a scenario in the scratch project.
- */
-export function createScenario(name) {
-  // open the scenarios tab
-  cy.goToEntity('project')
-  cy.findByRole('tab', {name: 'Scenarios'}).click()
-  cy.get('#scenarios').then((el) => {
-    // create named scenario if it doesn't already exist
-    if (!el.text().includes(name)) {
-      cy.findByRole('button', {name: 'Create a scenario'}).click()
-      // TODO there has GOT to be a better way...
-      cy.wrap(el)
-        .findByText(/Scenario \d/)
-        .parent()
-        .parent()
-        .parent()
-        .click()
-        .parent()
-        .findByDisplayValue(/Scenario \d/)
-        .type(name + '{enter}')
-    }
-  })
 }

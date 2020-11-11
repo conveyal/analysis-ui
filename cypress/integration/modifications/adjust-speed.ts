@@ -1,9 +1,4 @@
-import {
-  beforeModificationTests,
-  createScenario,
-  scratchRegion,
-  setupModification
-} from '../utils'
+import {scratchRegion, setupProject} from '../utils'
 
 describe('Adjust Speed', () => {
   const routeName = '1 Dixie Hwy'
@@ -17,69 +12,58 @@ describe('Adjust Speed', () => {
   const scaleSpeedBy = (v: number) =>
     cy.findByLabelText('Scale speed by').clear().type(`${v}`)
 
-  beforeModificationTests()
+  const project = setupProject('Adjust Speed')
 
-  // const projectName = setupProject('Unique Identifier')
-  const modificationName = setupModification('Adjust Speed')
-
-  beforeEach(() => cy.openModification(modificationName))
+  // Set up the scenarios ahead of time for consistent variant lengths
+  project.setupScenarios(['All Routes', 'Single Route', 'Segments', 'Patterns'])
 
   describe('all routes selected', () => {
-    before(() => {
-      cy.selectFeed(scratchRegion.feedAgencyName)
-      selectAll()
+    const mod = project.setupModification({
+      data: {
+        scale: 10,
+        variants: [false, true, false, false, false]
+      },
+      id: 'All Routes',
+      onCreate: () => {
+        selectAll()
+      },
+      type: 'Adjust Speed'
     })
 
     it('should increase accessibility with increased speed', () => {
-      scaleSpeedBy(10)
-      cy.fetchAccessibilityComparison(centralCoords).should(beGreater)
+      cy.fetchAccessibilityComparison(
+        centralCoords,
+        [project.name, 'All Routes'],
+        [project.name, 'baseline']
+      ).should(beGreater)
     })
 
     it('should decrease accessibility with decreased speed', () => {
+      mod.navTo()
       scaleSpeedBy(0.1)
-      cy.fetchAccessibilityComparison(centralCoords).should(beLess)
-    })
 
-    after(() => {
-      cy.openModification(modificationName)
-      cy.findByRole('button', {name: /Deselect all routes/}).click()
+      cy.fetchAccessibilityComparison(
+        centralCoords,
+        [project.name, 'All Routes'],
+        [project.name, 'baseline']
+      ).should(beLess)
     })
   })
 
   describe('single route selected', () => {
-    before(() => {
-      cy.selectFeed(scratchRegion.feedAgencyName)
-      cy.selectRoute(routeName)
+    const singleRouteMod = project.setupModification({
+      data: {
+        scale: 10,
+        variants: [false, false, true, false, false]
+      },
+      id: 'Single Route',
+      onCreate: () => {
+        cy.selectRoute(routeName)
+      },
+      type: 'Adjust Speed'
     })
 
-    it('should increase accessibility with increased speed', () => {
-      scaleSpeedBy(10)
-      cy.fetchAccessibilityComparison(centralCoords).should(beGreater)
-    })
-
-    it('should have equal accessibility far from the route', () => {
-      scaleSpeedBy(10)
-      cy.fetchAccessibilityComparison(farFromRouteCoords).should(([v, c]) =>
-        expect(v).to.be.equal(c)
-      )
-    })
-
-    it('should decrease accessibility with decreased speed', () => {
-      scaleSpeedBy(0.1)
-      cy.fetchAccessibilityComparison(centralCoords).should(beLess)
-    })
-  })
-
-  describe.only('segments of a single route selected', () => {
-    const scenarioName = 'Segments'
-    before(() => {
-      createScenario(scenarioName)
-      cy.findByRole('tab', {name: /Modifications/}).click()
-    })
-
-    // Since this is created after the scenario it will be added to it automatically
-    const segmentMod = setupModification('Adjust Speed')
-
+    // Create a modification with a subset of segments selected.
     const [lat, lon] = centralCoords
     const offset = 0.03
     const segmentPolygonCoords: L.LatLngTuple[] = [
@@ -88,43 +72,62 @@ describe('Adjust Speed', () => {
       [lat, lon - offset],
       [lat - offset, lon]
     ]
+    project.setupModification({
+      data: {
+        scale: 10,
+        variants: [false, false, false, true, false]
+      },
+      id: 'Segments',
+      onCreate: () => {
+        cy.selectRoute(routeName)
+        // Draw box around segments
+        cy.findByRole('button', {name: /Select segments/}).click()
+        cy.get('.leaflet-draw') // Wait for this to appear before clicking the map
+
+        segmentPolygonCoords.forEach((ll) => cy.clickMapAtCoord(ll))
+        cy.clickMapAtCoord(segmentPolygonCoords[0]) // Closes the polygon
+
+        // Add to, Remove from, and clear buttons should now exist
+        cy.findByRole('button', {name: /Add to/})
+      },
+      type: 'Adjust Speed'
+    })
+
+    it('should increase accessibility with increased speed', () => {
+      cy.fetchAccessibilityComparison(
+        centralCoords,
+        [project.name, 'Single Route'],
+        [project.name, 'baseline']
+      ).should(beGreater)
+    })
+
+    it('should have equal accessibility far from the route', () => {
+      cy.fetchAccessibilityComparison(
+        farFromRouteCoords,
+        [project.name, 'Single Route'],
+        [project.name, 'baseline']
+      ).should(([v, c]) => expect(v).to.be.equal(c))
+    })
 
     it('should have different accessibility from a full route modification', () => {
-      cy.openModification(segmentMod)
-      cy.selectFeed(scratchRegion.feedAgencyName)
-      cy.selectRoute(routeName)
-      scaleSpeedBy(10)
+      cy.fetchAccessibilityComparison(
+        centralCoords,
+        [project.name, 'Single Route'],
+        [project.name, 'Segments']
+      ).should(beGreater)
+    })
 
-      // Draw box around segments
-      cy.findByRole('button', {name: /Select segments/}).click()
-      segmentPolygonCoords.forEach((ll) => cy.clickMapAtCoord(ll))
-      cy.clickMapAtCoord(segmentPolygonCoords[0]) // Closes the polygon
-
-      // Add to, Remove from, and clear buttons should now exist
-      cy.findByRole('button', {name: /Add to/})
-
-      // Remove from the default scenario
-      cy.findByText('Active in scenarios')
-        .parent()
-        .findByLabelText(/Default/)
-        .uncheck({force: true})
-
-      cy.openModification(modificationName)
-      cy.selectFeed(scratchRegion.feedAgencyName)
-      cy.selectRoute(routeName)
-      scaleSpeedBy(10)
-      cy.findByText('Active in scenarios')
-        .parent()
-        .findByLabelText(new RegExp(scenarioName))
-        .uncheck({force: true})
+    it('should decrease accessibility with decreased speed', () => {
+      singleRouteMod.navTo()
+      scaleSpeedBy(0.1)
 
       cy.fetchAccessibilityComparison(
         centralCoords,
-        ['scratch', 'default'],
-        ['scratch', scenarioName]
-      ).should(beGreater)
+        [project.name, 'Single Route'],
+        [project.name, 'baseline']
+      ).should(beLess)
     })
   })
 
-  describe('different results when patterns are deselected', () => {})
+  // TODO describe('different results when patterns are deselected', () => {})
 })

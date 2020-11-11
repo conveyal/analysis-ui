@@ -2,14 +2,15 @@
 Cypress.Commands.add('getMapDiv', () => cy.get('div.leaflet-container'))
 Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
 
-Cypress.Commands.add('clickMapAtCoord', (coord: L.LatLngExpression) =>
-  cy.getLeafletMap().then((map) => {
-    map.setView(coord, 14, {animate: false, duration: 0})
-    map.whenReady(() => {
+Cypress.Commands.add(
+  'clickMapAtCoord',
+  (coord: L.LatLngExpression, zoom = 15) => {
+    cy.centerMapOn(coord, zoom)
+    cy.getLeafletMap().then((map) => {
       const point = map.latLngToContainerPoint(coord)
       cy.getMapDiv().click(point.x, point.y)
     })
-  })
+  }
 )
 
 Cypress.Commands.add('waitForMapToLoad', () =>
@@ -30,10 +31,10 @@ Cypress.Commands.add(
       )
 )
 
-Cypress.Commands.add('centerMapOn', (latlng: L.LatLngExpression, zoom = 12) =>
+Cypress.Commands.add('centerMapOn', (latlng: L.LatLngExpression, zoom = 12) => {
   // centers map on a given lat/lon coordinate: [x,y]
-  cy.getLeafletMap().then((map) => {
-    map.setView(latlng, zoom)
-    return map
-  })
-)
+  cy.getLeafletMap().then((map) =>
+    map.setView(latlng, zoom, {animate: false, duration: 0})
+  )
+  cy.waitForMapToLoad()
+})

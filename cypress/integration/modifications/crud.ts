@@ -5,21 +5,20 @@
  * Tests that verify analysis results should go in the
  * Advanced Modifications group.
  */
-import {
-  createScenario,
-  ModificationTypes,
-  setupModificationTests,
-  testModification
-} from '../utils'
+import {ModificationTypes, scratchRegion, setupProject} from '../utils'
 
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
 
-setupModificationTests('basic', () => {
-  before(() => {
-    createScenario(scenarioName)
-    cy.findByRole('tab', {name: 'Modifications'}).click()
-  })
+describe('CRUD Modification Tests', () => {
+  const project = setupProject('Modification Form Test')
+  project.setupScenarios([scenarioName])
+  const mods = ModificationTypes.map((type) =>
+    project.setupModification({type})
+  )
+
+  // Test deletion. During development comment out to speed up.
+  after(() => mods.forEach((mod) => mod.delete()))
 
   /**
    * Repeat the same modification simple tests for each modification type.
@@ -29,50 +28,54 @@ setupModificationTests('basic', () => {
    * the modification to fail or work incorrectly. Therefore it is necessary
    * run these simple tests for each modification type.
    */
-  ModificationTypes.forEach((type) => {
-    testModification(
-      {
-        title: 'CRUD',
-        type
-      },
-      function (name) {
-        const description = 'distinctly descriptive text'
-        cy.contains(name)
+  mods.forEach((mod, i) => {
+    const type = ModificationTypes[i]
+    it(`${type}: should handle basic modification editing`, () => {
+      mod.navTo()
 
-        // Update the description
-        cy.findByText(/Add description/)
-          .parent() // necessary because text element becomes detached
-          .parent()
-          .click({force: true})
-          .type(description)
+      const description = 'distinctly descriptive text'
+      // Update the description
+      cy.findByRole('group', {name: /Add description/}).click()
 
-        // Update the variants
-        cy.findByLabelText(/Default/).uncheck({force: true})
-        cy.findByLabelText(scenarioNameRegEx).check({force: true})
+      cy.focused().type(description)
 
-        // Test the type specific elements
-        formCheck(type, this.region)
+      // Update the variants
+      cy.findAllByText('Active in scenarios')
+        .parent()
+        .within(() => {
+          cy.findByLabelText(/Default/).uncheck({force: true})
+          cy.findByLabelText(scenarioNameRegEx).check({force: true})
+        })
 
-        // Navigate away and expand the map to the modification
-        cy.centerMapOn([0, 0])
-        cy.findByRole('button', {
-          name: /Fit map to modification extents/
-        }).click()
+      // Test the type specific elements
+      formCheck(type)
 
-        // Go back to the list to force a save
-        cy.findByRole('button', {name: /^Modifications$/}).click()
-        cy.navComplete()
+      // Navigate away and expand the map to the modification
+      cy.centerMapOn([0, 0])
+      cy.findByRole('button', {
+        name: /Fit map to modification extents/
+      }).click()
 
-        // Read the saved settings
-        cy.openModification(name)
-        cy.findByText(description)
-        cy.findByLabelText(/Default/).should('not.be.checked')
-        cy.findByLabelText(scenarioNameRegEx).should('be.checked')
-      }
-    )
+      // Go back to the list to force a save
+      cy.findByRole('button', {name: /^Modifications$/}).click()
+      cy.navComplete()
+
+      // Read the saved settings
+      mod.navTo()
+
+      cy.findByText(description)
+      cy.findAllByText('Active in scenarios')
+        .parent()
+        .within(() => {
+          cy.findByLabelText(/Default/).should('not.be.checked')
+          cy.findByLabelText(scenarioNameRegEx).should('be.checked')
+        })
+    })
   })
 
   it('can be imported from shapefile', function () {
+    project.navTo()
+
     cy.findByRole('button', {
       name: 'Import modifications from another project'
     }).click()
@@ -82,15 +85,15 @@ setupModificationTests('basic', () => {
     cy.navComplete()
 
     cy.findByLabelText(/Select Shapefile/i).attachFile({
-      filePath: this.region.importRoutes.shapefile,
+      filePath: scratchRegion.importRoutes.shapefile,
       mimeType: 'application/octet-stream',
       encoding: 'base64'
     })
-    cy.findByLabelText(/Name/).select(this.region.importRoutes.nameField)
+    cy.findByLabelText(/Name/).select(scratchRegion.importRoutes.nameField)
     cy.findByLabelText(/Frequency/).select(
-      this.region.importRoutes.frequencyField
+      scratchRegion.importRoutes.frequencyField
     )
-    cy.findByLabelText(/Speed/).select(this.region.importRoutes.speedField)
+    cy.findByLabelText(/Speed/).select(scratchRegion.importRoutes.speedField)
     cy.findByText(/Import/)
       .should('not.be.disabled')
       .click()
@@ -98,8 +101,10 @@ setupModificationTests('basic', () => {
 
     cy.location('pathname').should('match', /projects\/.{24}\/modifications/)
 
-    this.region.importRoutes.routes.forEach((route) => {
+    scratchRegion.importRoutes.routes.forEach((route) => {
+      project.navTo()
       cy.openModification(route.name)
+
       cy.findByRole('button', {name: /Timetable 1/}).click({force: true})
       cy.findByLabelText(/Frequency/)
         .invoke('val')
@@ -107,91 +112,10 @@ setupModificationTests('basic', () => {
       cy.findByLabelText(/Average speed/i)
         .invoke('val')
         .then((val) => expect(val).to.eq('' + route.speed))
+
       cy.deleteThisModification()
     })
   })
-
-  testModification(
-    {
-      type: 'Add Trip Pattern',
-      title: 'create and reuse timetables'
-    },
-    function (modName) {
-      // add a route geometry
-      cy.drawRouteGeometry(this.region.newRoute)
-
-      cy.findByText(/Add new timetable/).click()
-      cy.findByText('Timetable 1').click({force: true})
-      // enter arbitrary settings to see if they get saved
-      cy.findByLabelText('Name').clear().type('Weekday')
-      cy.findByLabelText(/Mon/).check()
-      cy.findByLabelText(/Tue/).check()
-      cy.findByLabelText(/Wed/).check()
-      cy.findByLabelText(/Thu/).check()
-      cy.findByLabelText(/Fri/).check()
-      cy.findByLabelText(/Sat/).uncheck({force: true})
-      cy.findByLabelText(/Sun/).uncheck({force: true})
-      cy.findByLabelText(/Frequency/)
-        .clear()
-        .type('00:20:00')
-      cy.findByLabelText(/Start time/)
-        .clear()
-        .type('06:00')
-      cy.findByLabelText(/End time/)
-        .clear()
-        .type('23:00')
-      cy.findByLabelText(/dwell time/)
-        .clear()
-        .type('00:00:30')
-      cy.findByText('Weekday').click({force: true}) // hide panel
-
-      // Copy the current modification
-      cy.findByRole('button', {name: /Copy modification/i}).click()
-      cy.loadingComplete()
-      cy.get('#react-toast').findByRole('alert').click({force: true})
-      cy.navComplete()
-
-      cy.findByText(/Copy existing timetable/).click()
-      cy.findByRole('dialog').should('exist')
-      cy.findByRole('dialog').as('dialog')
-      cy.get('@dialog')
-        .findByText(/Loading/)
-        .should('not.exist')
-      cy.get('@dialog')
-        .findByLabelText(/Region/)
-        .select(Cypress.env('dataPrefix') + 'scratch')
-      cy.get('@dialog')
-        .findByLabelText(/Project/)
-        .select(Cypress.env('dataPrefix') + 'scratch project')
-      cy.get('@dialog')
-        .findByLabelText(/Modification/)
-        .select(modName)
-      cy.get('@dialog')
-        .findByLabelText(/Timetable/)
-        .select('Weekday')
-      cy.findByText(/Copy into new timetable/i).click()
-      cy.contains(/copy of Weekday/i).click({force: true})
-      // verify the settings from above
-      cy.findByLabelText(/Mon/).should('be.checked')
-      cy.findByLabelText(/Tue/).should('be.checked')
-      cy.findByLabelText(/Wed/).should('be.checked')
-      cy.findByLabelText(/Thu/).should('be.checked')
-      cy.findByLabelText(/Fri/).should('be.checked')
-      cy.findByLabelText(/Sat/).should('not.be.checked')
-      cy.findByLabelText(/Sun/).should('not.be.checked')
-      cy.findByLabelText(/Frequency/)
-        .invoke('val')
-        .should('eq', '00:20:00')
-      cy.findByLabelText(/Start time/)
-        .invoke('val')
-        .should('eq', '06:00')
-      cy.findByLabelText(/End time/)
-        .invoke('val')
-        .should('eq', '23:00')
-      // Delete the copied modification
-      cy.deleteThisModification()
-    }
-  )
 
   describe('Download and share modifications', () => {
     before(() => {
@@ -205,6 +129,8 @@ setupModificationTests('basic', () => {
     })
 
     it('should download the scenario, routes, and stops', () => {
+      project.navTo()
+
       cy.findByRole('button', {name: /Download or share this project/}).click()
 
       cy.findAllByRole('button', {name: /Raw scenario/})
@@ -223,6 +149,8 @@ setupModificationTests('basic', () => {
     })
 
     it('should show a report of all the modifications', () => {
+      project.navTo()
+
       cy.findByRole('button', {name: /Download or share this project/}).click()
 
       cy.findAllByRole('button', {name: /Summary Report/i})
@@ -241,26 +169,26 @@ setupModificationTests('basic', () => {
  * validation. Tests for how these modifications affect results should
  * go in the "Advanced Modifications" group.
  */
-function formCheck(type: Cypress.ModificationType, region) {
+function formCheck(type: Cypress.ModificationType) {
   switch (type) {
     case 'Add Trip Pattern':
-      return testAddTripPattern(region)
+      return testAddTripPattern()
     case 'Add Streets':
       return testAddStreets()
     case 'Adjust Dwell Time':
-      return testAdjustDwellTime(region)
+      return testAdjustDwellTime()
     case 'Adjust Speed':
-      return testAdjustSpeed(region)
+      return testAdjustSpeed()
     case 'Convert To Frequency':
-      return testConvertToFrequency(region)
+      return testConvertToFrequency()
     case 'Modify Streets':
       return testModifyStreets()
     case 'Remove Stops':
-      return testRemoveStops(region)
+      return testRemoveStops()
     case 'Remove Trips':
-      return testRemoveTrips(region)
+      return testRemoveTrips()
     case 'Reroute':
-      return testReroute(region)
+      return testReroute()
     default:
       console.log('Not yet implemented...')
       break
@@ -274,24 +202,30 @@ function testAddStreets() {
   cy.findByLabelText(/Enable driving/i).as('carAccess')
   // toggling access changes options
   // WALK
-  cy.findByLabelText(/Walk time factor/i)
   cy.get('@walkAccess').uncheck(force)
   cy.findByLabelText(/Walk time factor/i).should('not.exist')
+  cy.get('@walkAccess').check(force)
+  cy.findByLabelText(/Walk time factor/i)
+
   // BIKE
-  cy.findByLabelText(/Bike time factor/i)
-  cy.findByLabelText(/Bike level of Traffic Stress/i)
   cy.get('@bikeAccess').uncheck(force)
   cy.findByLabelText(/Bike time factor/i).should('not.exist')
   cy.findByLabelText(/Bike level of Traffic Stress/i).should('not.exist')
+  cy.get('@bikeAccess').check(force)
+  cy.findByLabelText(/Bike time factor/i)
+  cy.findByLabelText(/Bike level of Traffic Stress/i)
+
   // DRIVE
-  cy.findByLabelText(/Car speed/i)
   cy.get('@carAccess').uncheck(force)
   cy.findByLabelText(/Car speed/i).should('not.exist')
+  cy.get('@carAccess').check(force)
+  cy.findByLabelText(/Car speed/i)
+
   // map interaction
   cy.findByTitle(/Draw a polyline/i)
 }
 
-function testAddTripPattern(region) {
+function testAddTripPattern() {
   cy.findByLabelText(/Transit Mode/i).select('Tram')
   cy.findAllByRole('alert').contains(/must have at least 2 stops/)
   cy.findByRole('button', {name: /Edit route geometry/i}).as('edit')
@@ -306,7 +240,7 @@ function testAddTripPattern(region) {
   cy.findByLabelText(/Times are exact/i).uncheck({force: true})
   cy.findByLabelText(/Phase at stop/i)
   // drawing a route activates the following elements
-  cy.drawRouteGeometry(region.newRoute)
+  cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngExpression[])
   cy.findAllByRole('alert')
     .contains(/must have at least 2 stops/)
     .should('not.exist')
@@ -364,28 +298,20 @@ function testAddTripPattern(region) {
     .should('match', /\d\d:\d\d:\d\d/)
 }
 
-function testAdjustDwellTime(region) {
-  cy.selectFeed(region.feedAgencyName)
-  cy.selectRoute(region.sampleRouteName)
-
+function testAdjustDwellTime() {
   cy.findByLabelText(/Select patterns/i)
   cy.findByLabelText(/Scale existing dwell times by/i).click({force: true})
   cy.findByLabelText(/Set new dwell time to/i).click({force: true})
 }
 
-function testAdjustSpeed(region) {
-  cy.selectFeed(region.feedAgencyName)
-  cy.selectRoute(region.sampleRouteName)
-
+function testAdjustSpeed() {
   cy.findByLabelText(/Select patterns/i)
   cy.findByLabelText(/Scale speed by/i)
     .itsNumericValue()
     .should('eq', 1)
 }
 
-function testConvertToFrequency(region) {
-  cy.selectFeed(region.feedAgencyName)
-  cy.selectRoute(region.sampleRouteName)
+function testConvertToFrequency() {
   cy.findByLabelText(/retain existing scheduled trips/i).click({
     force: true
   })
@@ -433,15 +359,11 @@ function testModifyStreets() {
   cy.findByTitle(/Draw a polygon/i)
 }
 
-function testRemoveTrips(region) {
-  cy.selectFeed(region.feedAgencyName)
-  cy.selectRoute(region.sampleRouteName)
+function testRemoveTrips() {
   cy.findByLabelText(/Select patterns/i)
 }
 
-function testRemoveStops(region) {
-  cy.selectFeed(region.feedAgencyName)
-  cy.selectRoute(region.sampleRouteName)
+function testRemoveStops() {
   // can't interact with these yet - leave all at defaults
   cy.findByLabelText(/Select patterns/i)
   cy.findByLabelText(/Time savings per removed stop/i)
@@ -450,10 +372,7 @@ function testRemoveStops(region) {
   //cy.get('div.leaflet-container').as('map')
 }
 
-function testReroute(region) {
-  cy.selectFeed(region.feedAgencyName)
-  cy.selectRoute(region.sampleRouteName)
-
+function testReroute() {
   // verify existence only
   cy.findByLabelText(/Select patterns/i)
 

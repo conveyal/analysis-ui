@@ -71,7 +71,6 @@ describe('Modification drawing over anti-meridian', () => {
     })
 
     it('should handle anti-meridian drawing', () => {
-      cy.selectDefaultFeedAndRoute()
       cy.findByLabelText(/Select from stop/).click()
 
       cy.waitForMapToLoad()

@@ -8,33 +8,41 @@ import {scratchRegion, setupProject} from '../utils'
  * baseline against the default opportunity data.
  */
 describe('Example Modification Test', () => {
-  const centralCoords: L.LatLngTuple = scratchRegion.locations
-    .center as L.LatLngTuple // Downtown
-  const beEqual = ([v, b]) => expect(v).to.be.equal(b)
-
   // Uses scratch region, bundle, and opportunity data. Creates a new project for this test group.
   const project = setupProject('Example Modification Test')
 
+  // Create scenarios to be used
+  project.setupScenarios(['Example Scenario 1', 'Example Scenario 2'])
+
   // Creates a modification if it does not exist.
   const persistentMod = project.setupModification({
-    type: 'Adjust Speed'
+    type: 'Adjust Speed',
+    data: {
+      // Will be set on each test run. Not just on creation.
+      scale: 10,
+      variants: [true, false, true] // corresponds to the above
+    }
   })
   const transientMod = project.setupModification({
-    type: 'Add Streets'
+    type: 'Add Streets',
+    id: 'UUID', // When in development tests may run out of order. Set an id manually to ensure stability.
+    onCreate: () => {
+      // Setup the modification. Only run on initial creation.
+    }
   })
 
   it('should have equal accessibility with no changes', () => {
+    // Helper to open modification
     persistentMod.navTo()
-    cy.selectDefaultFeedAndRoute()
 
     // Delete modification with helper. Does not need to be open
     transientMod.delete()
 
     // Runs a single point comparison at the coords and returns the two accessibility results
     cy.fetchAccessibilityComparison(
-      centralCoords,
+      scratchRegion.locations.center as L.LatLngTuple,
       [project.name, 'default'],
       [project.name, 'baseline']
-    ).should(beEqual)
+    ).should(([a, c]) => expect(a).to.be.greaterThan(c))
   })
 })
