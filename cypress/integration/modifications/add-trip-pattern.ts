@@ -36,8 +36,9 @@ describe('Add Trip Pattern', () => {
     }
   })
 
+  // Clean up any failed tests
   before(() => {
-    // TODO clean up old copied modifications
+    project.deleteModification(mod.name + ' (copy)')
   })
 
   it('should be able to create and reuse timetables', () => {
