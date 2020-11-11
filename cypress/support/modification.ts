@@ -1,3 +1,5 @@
+import region from '../fixtures/regions/scratch.json'
+
 import './commands'
 import './map'
 
@@ -31,7 +33,7 @@ Cypress.Commands.add('createModification', function (
 ) {
   // assumes we are already on this page or editing another mod
   cy.findByText('Create a modification').click()
-  cy.findByLabelText(/Modification name/i).type(name)
+  cy.findByLabelText(/Modification name/i).type(name, {delay: 0})
   if (type.indexOf('Street') > -1) {
     cy.findByText('Street').click()
     cy.findByLabelText(/Street modification type/i).select(type)
@@ -54,6 +56,7 @@ Cypress.Commands.add('deleteThisModification', function () {
   cy.findByRole('button', {name: 'Delete modification'}).click()
   cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
   cy.findByRole('dialog').should('not.exist')
+  cy.navComplete()
   cy.contains('Create a modification')
   cy.wait(100) // eslint-disable-line
   cy.navComplete() // Modifications are not loaded in GetInitialProps
@@ -121,8 +124,11 @@ Cypress.Commands.add('openModification', function (modName: string) {
   cy.findByRole('tab', {name: /Modifications/g}).click()
   cy.findByRole('button', {name: regExFromName(modName)}).click()
   cy.navComplete()
-  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
-  cy.contains(modName)
+})
+
+Cypress.Commands.add('selectDefaultFeedAndRoute', function () {
+  cy.selectFeed(region.feedAgencyName)
+  cy.selectRoute(region.sampleRouteName)
 })
 
 Cypress.Commands.add('selectFeed', function selectFeed(feedName: string) {

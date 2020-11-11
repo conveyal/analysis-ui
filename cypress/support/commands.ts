@@ -1,6 +1,8 @@
-const prefix = Cypress.env('dataPrefix')
-const regionName = Cypress.env('region')
-const localFixturePath = Cypress.env('localFixturePath')
+import scratchRegion from '../fixtures/regions/scratch.json'
+
+const prefix: string = Cypress.env('dataPrefix')
+const regionName: string = Cypress.env('region')
+const localFixturePath: string = Cypress.env('localFixturePath')
 const unlog = {log: false}
 
 // No spinner
@@ -174,38 +176,36 @@ function createNewOpportunities() {
     displayName: 'creating',
     message: 'opportunities'
   })
-  return cy.fixture('regions/scratch').then((region) => {
-    const opportunity = (region.opportunities as any).grid
-    const oppName = `${prefix}default_opportunities`
-    cy.goToEntity('opportunities')
-    cy.findByText(/Upload a new dataset/i).click()
-    cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-    cy.findByLabelText(/Select opportunity dataset/).attachFile({
-      filePath: opportunity.file,
-      encoding: 'base64'
-    })
-    cy.findByRole('button', {name: /Upload a new opportunity dataset/}).click()
-    cy.navComplete()
-    // find the message showing this upload is complete
-    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
-      .parent()
-      .parent()
-      .as('notice')
-    // check number of fields uploaded
-    cy.get('@notice').contains(/Finished uploading 1 feature/i)
-    // close the message
-    cy.get('@notice').findByRole('button', {name: /Close/}).click()
-    // now grab the ID
-    cy.findByText(/Select\.\.\./)
-      .click()
-      .type(`${oppName} {enter}`)
-    return cy
-      .location('href')
-      .should('match', /.*DatasetId=\w{24}$/)
-      .then((href) =>
-        cy.storeInLocalFixture('opportunitiesId', href.match(/\w{24}$/)[0])
-      )
+  const opportunity = scratchRegion.opportunities.grid
+  const oppName = `${prefix}default_opportunities`
+  cy.goToEntity('opportunities')
+  cy.findByText(/Upload a new dataset/i).click()
+  cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
+  cy.findByLabelText(/Select opportunity dataset/).attachFile({
+    filePath: opportunity.file,
+    encoding: 'base64'
   })
+  cy.findByRole('button', {name: /Upload a new opportunity dataset/}).click()
+  cy.navComplete()
+  // find the message showing this upload is complete
+  cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
+    .parent()
+    .parent()
+    .as('notice')
+  // check number of fields uploaded
+  cy.get('@notice').contains(/Finished uploading 1 feature/i)
+  // close the message
+  cy.get('@notice').findByRole('button', {name: /Close/}).click()
+  // now grab the ID
+  cy.findByText(/Select\.\.\./)
+    .click()
+    .type(`${oppName} {enter}`)
+  return cy
+    .location('href')
+    .should('match', /.*DatasetId=\w{24}$/)
+    .then((href) =>
+      cy.storeInLocalFixture('opportunitiesId', href.match(/\w{24}$/)[0])
+    )
 }
 
 function createNewRegion() {
@@ -215,20 +215,18 @@ function createNewRegion() {
   })
   cy.visit('/regions/create')
   cy.findByLabelText(/Region Name/).type(prefix + regionName, {delay: 0})
-  cy.fixture('regions/scratch').then((region) => {
-    cy.findByLabelText(/North bound/)
-      .clear()
-      .type(region.north as string, {delay: 1})
-    cy.findByLabelText(/South bound/)
-      .clear()
-      .type(region.south as string, {delay: 1})
-    cy.findByLabelText(/West bound/)
-      .clear()
-      .type(region.west as string, {delay: 1})
-    cy.findByLabelText(/East bound/)
-      .clear()
-      .type(region.east as string, {delay: 1})
-  })
+  cy.findByLabelText(/North bound/)
+    .clear()
+    .type(scratchRegion.north.toString(), {delay: 0})
+  cy.findByLabelText(/South bound/)
+    .clear()
+    .type(scratchRegion.south.toString(), {delay: 0})
+  cy.findByLabelText(/West bound/)
+    .clear()
+    .type(scratchRegion.west.toString(), {delay: 0})
+  cy.findByLabelText(/East bound/)
+    .clear()
+    .type(scratchRegion.east.toString(), {delay: 0})
   cy.findByRole('button', {name: /Set up a new region/}).click()
   cy.findByRole('button', {name: /Creating region/}).should('not.exist')
   cy.navComplete()
@@ -255,18 +253,16 @@ function createNewBundle() {
   cy.location('pathname').should('match', /\/bundles\/create$/)
   cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
   cy.findByText(/Upload new OpenStreetMap/i).click()
-  cy.fixture('regions/scratch').then((region) => {
-    cy.findByLabelText(/Select PBF file/i).attachFile({
-      filePath: region.PBFfile as string,
-      encoding: 'base64',
-      mimeType: 'application/octet-stream'
-    })
-    cy.findByText(/Upload new GTFS/i).click()
-    cy.findByLabelText(/Select .*GTFS/i).attachFile({
-      filePath: region.GTFSfile as string,
-      encoding: 'base64',
-      mimeType: 'application/octet-stream'
-    })
+  cy.findByLabelText(/Select PBF file/i).attachFile({
+    filePath: scratchRegion.PBFfile,
+    encoding: 'base64',
+    mimeType: 'application/octet-stream'
+  })
+  cy.findByText(/Upload new GTFS/i).click()
+  cy.findByLabelText(/Select .*GTFS/i).attachFile({
+    filePath: scratchRegion.GTFSfile,
+    encoding: 'base64',
+    mimeType: 'application/octet-stream'
   })
   cy.findByRole('button', {name: /Create/i}).click()
   cy.findByText(/Processing/)
@@ -317,49 +313,47 @@ function createNewRegionalAnalysis() {
   cy.get('div#PrimaryAnalysisSettings').as('primary')
   cy.get('div#ComparisonAnalysisSettings').as('comparison')
 
-  return cy.fixture('regions/scratch').then((region) => {
-    const analysisName = prefix + regionName + '_regional'
-    cy.editPrimaryAnalysisJSON('bounds', region.customRegionSubset)
-    cy.fetchResults()
-    // start the analysis
-    cy.get('@primary')
-      .findByRole('button', {name: 'Regional analysis'})
-      .should('be.enabled')
-      .click()
+  const analysisName = prefix + regionName + '_regional'
+  cy.editPrimaryAnalysisJSON('bounds', scratchRegion.customRegionSubset)
+  cy.fetchResults()
+  // start the analysis
+  cy.get('@primary')
+    .findByRole('button', {name: 'Regional analysis'})
+    .should('be.enabled')
+    .click()
 
-    cy.findByLabelText(/Regional analysis name/).type(analysisName)
+  cy.findByLabelText(/Regional analysis name/).type(analysisName, {delay: 0})
 
-    cy.findByLabelText(/Opportunity dataset\(s\)/)
-      .click({force: true})
-      .type('people{enter}')
+  cy.findByLabelText(/Opportunity dataset\(s\)/)
+    .click({force: true})
+    .type('people{enter}')
 
-    cy.findByRole('button', {name: /Create/}).click()
-    cy.findByRole('dialog').should('not.exist')
+  cy.findByRole('button', {name: /Create/}).click()
+  cy.findByRole('dialog').should('not.exist')
 
-    // we should now be on the regional analyses page
-    cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})
-    cy.findByRole('heading', {name: analysisName})
-      .parent()
-      .parent()
-      .as('statusBox')
-    // shows progress
-    cy.get('@statusBox').findByText(/\d+ \/ \d+ origins/)
-    cy.findByRole('heading', {name: analysisName, timeout: 240000}).should(
-      'not.exist'
+  // we should now be on the regional analyses page
+  cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})
+  cy.findByRole('heading', {name: analysisName})
+    .parent()
+    .parent()
+    .as('statusBox')
+  // shows progress
+  cy.get('@statusBox').findByText(/\d+ \/ \d+ origins/)
+  cy.findByRole('heading', {name: analysisName, timeout: 240000}).should(
+    'not.exist'
+  )
+  cy.findByText(/View a regional analysis/)
+    .click()
+    .type(`${analysisName}{enter}`)
+  cy.navComplete()
+
+  // store the regionalAnalysisId
+  return cy
+    .location('href', unlog)
+    .should('match', /regions\/\w{24}\/regional\?analysisId=\w{24}$/)
+    .then((path) =>
+      cy.storeInLocalFixture('regionalAnalysisId', path.match(/\w{24}/g)[1])
     )
-    cy.findByText(/View a regional analysis/)
-      .click()
-      .type(`${analysisName}{enter}`)
-    cy.navComplete()
-
-    // store the regionalAnalysisId
-    return cy
-      .location('href', unlog)
-      .should('match', /regions\/\w{24}\/regional\?analysisId=\w{24}$/)
-      .then((path) =>
-        cy.storeInLocalFixture('regionalAnalysisId', path.match(/\w{24}/g)[1])
-      )
-  })
 }
 
 Cypress.Commands.add('deleteProject', (projectName) => {
@@ -444,10 +438,7 @@ Cypress.Commands.add('navTo', (menuItemTitle) => {
   // Ensure the pathname has updated to the correct path
   cy.location('pathname', unlog).should('match', page.path, unlog)
   // check that page loads at least some content
-  cy.contains(page.lookFor, {log: false, timeout: 8000}).should(
-    'be.visible',
-    unlog
-  )
+  cy.contains(page.lookFor, {timeout: 8000}).should('be.visible')
   // Ensure the spinner has stopped loading before continuing
   return cy
     .navComplete()

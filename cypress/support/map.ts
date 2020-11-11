@@ -4,9 +4,11 @@ Cypress.Commands.add('getLeafletMap', () => cy.window().its('LeafletMap'))
 
 Cypress.Commands.add('clickMapAtCoord', (coord: L.LatLngExpression) =>
   cy.getLeafletMap().then((map) => {
-    map.setView(coord, 15, {animate: false, duration: 0})
-    const point = map.latLngToContainerPoint(coord)
-    cy.getMapDiv().click(point.x, point.y)
+    map.setView(coord, 14, {animate: false, duration: 0})
+    map.whenReady(() => {
+      const point = map.latLngToContainerPoint(coord)
+      cy.getMapDiv().click(point.x, point.y)
+    })
   })
 )
 

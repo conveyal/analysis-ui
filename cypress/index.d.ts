@@ -33,6 +33,8 @@ declare namespace Cypress {
     | 'regional analyses'
     | 'region settings'
 
+  export type ProjectScenario = [project: string, scenario: string]
+
   // eslint-disable-next-line
   interface Chainable {
     /**
@@ -83,6 +85,15 @@ declare namespace Cypress {
      * Edit modification JSON directly.
      */
     editModificationJSON(newValues: Record<string, unknown>): Chainable<void>
+
+    /**
+     * Get the accessibility at a given coordinates for a project and comparison.
+     */
+    fetchAccessibilityComparison(
+      coords: L.LatLngExpression,
+      project?: ProjectScenario,
+      comparisonProject?: ProjectScenario
+    ): Chainable<[accessibility: number, comparison: number]>
 
     /**
      * While in the analysis page, fetch and wait for results.
@@ -160,9 +171,16 @@ declare namespace Cypress {
 
     /**
      * Open an existing modification.
-     * @xample cy.openModification('New name')
+     * @example cy.openModification('New name')
      */
     openModification(name: string): Chainable<void>
+
+    /**
+     * Merge new values into the existing analysis JSON. Must be done chained from or
+     * `within` one of the two analysis sections.
+     * @example cy.get('#Primary).patchAnalysisJSON({fromLat: 50})
+     */
+    patchAnalysisJSON(newValues: Record<string, unknown>): Chainable<void>
 
     /**
      * Select the default dataset.
@@ -174,6 +192,7 @@ declare namespace Cypress {
      */
     selectFeed(feedName: string): Chainable<void>
     selectRoute(routeName: string): Chainable<void>
+    selectDefaultFeedAndRoute(): Chainable<void>
 
     /**
      * Set the analysis origin.

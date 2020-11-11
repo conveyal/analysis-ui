@@ -6,6 +6,7 @@
  * Advanced Modifications group.
  */
 import {
+  createScenario,
   ModificationTypes,
   setupModificationTests,
   testModification
@@ -14,31 +15,10 @@ import {
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
 
-function setupScenario(name) {
-  // open the scenarios tab
-  cy.findByRole('tab', {name: 'Scenarios'}).click()
-  cy.get('#scenarios').then((el) => {
-    // create named scenario if it doesn't already exist
-    if (!el.text().includes(name)) {
-      cy.findByRole('button', {name: 'Create a scenario'}).click()
-      // TODO there has GOT to be a better way...
-      cy.wrap(el)
-        .findByText(/Scenario \d/)
-        .parent()
-        .parent()
-        .parent()
-        .click()
-        .parent()
-        .findByDisplayValue(/Scenario \d/)
-        .type(name + '{enter}')
-    }
-  })
-  cy.findAllByRole('tab', {name: /Modifications/g}).click()
-}
-
 setupModificationTests('basic', () => {
   before(() => {
-    setupScenario(scenarioName)
+    createScenario(scenarioName)
+    cy.findByRole('tab', {name: 'Modifications'}).click()
   })
 
   /**
