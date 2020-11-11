@@ -153,11 +153,19 @@ describe('CRUD Modification Tests', () => {
 
       cy.findByRole('button', {name: /Download or share this project/}).click()
 
-      cy.findAllByRole('button', {name: /Summary Report/i})
-        .first()
-        .click()
+      cy.findByRole('dialog').within(() => {
+        cy.findByText(scenarioNameRegEx)
+          .parent()
+          .within(() => {
+            cy.findAllByRole('button', {name: /Summary Report/i}).click()
+          })
+      })
 
       cy.findByRole('dialog').should('not.exist')
+
+      mods.forEach((mod) => {
+        cy.findByText(mod.name)
+      })
     })
   })
 })
