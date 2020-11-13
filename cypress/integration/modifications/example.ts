@@ -41,8 +41,8 @@ describe('Example Modification Test', () => {
     // Runs a single point comparison at the coords and returns the two accessibility results
     cy.fetchAccessibilityComparison(
       scratchRegion.locations.center as L.LatLngTuple,
-      [project.name, 'default'],
-      [project.name, 'baseline']
+      {project: project.name, scenario: 'default'},
+      {project: project.name, scenario: 'baseline'}
     ).should(([a, c]) => expect(a).to.be.greaterThan(c))
   })
 })

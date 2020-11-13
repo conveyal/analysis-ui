@@ -33,8 +33,8 @@ describe('Adjust Speed', () => {
     it('should increase accessibility with increased speed', () => {
       cy.fetchAccessibilityComparison(
         centralCoords,
-        [project.name, 'All Routes'],
-        [project.name, 'baseline']
+        {project: project.name, scenario: 'All Routes'},
+        {project: project.name, scenario: 'baseline'}
       ).should(beGreater)
     })
 
@@ -44,8 +44,8 @@ describe('Adjust Speed', () => {
 
       cy.fetchAccessibilityComparison(
         centralCoords,
-        [project.name, 'All Routes'],
-        [project.name, 'baseline']
+        {project: project.name, scenario: 'All Routes'},
+        {project: project.name, scenario: 'baseline'}
       ).should(beLess)
     })
   })
@@ -96,24 +96,24 @@ describe('Adjust Speed', () => {
     it('should increase accessibility with increased speed', () => {
       cy.fetchAccessibilityComparison(
         centralCoords,
-        [project.name, 'Single Route'],
-        [project.name, 'baseline']
+        {project: project.name, scenario: 'Single Route'},
+        {project: project.name, scenario: 'baseline'}
       ).should(beGreater)
     })
 
     it('should have equal accessibility far from the route', () => {
       cy.fetchAccessibilityComparison(
         farFromRouteCoords,
-        [project.name, 'Single Route'],
-        [project.name, 'baseline']
+        {project: project.name, scenario: 'Single Route'},
+        {project: project.name, scenario: 'baseline'}
       ).should(([v, c]) => expect(v).to.be.equal(c))
     })
 
     it('should have different accessibility from a full route modification', () => {
       cy.fetchAccessibilityComparison(
         centralCoords,
-        [project.name, 'Single Route'],
-        [project.name, 'Segments']
+        {project: project.name, scenario: 'Single Route'},
+        {project: project.name, scenario: 'Segments'}
       ).should(beGreater)
     })
 
@@ -123,8 +123,8 @@ describe('Adjust Speed', () => {
 
       cy.fetchAccessibilityComparison(
         centralCoords,
-        [project.name, 'Single Route'],
-        [project.name, 'baseline']
+        {project: project.name, scenario: 'Single Route'},
+        {project: project.name, scenario: 'baseline'}
       ).should(beLess)
     })
   })

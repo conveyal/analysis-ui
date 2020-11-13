@@ -33,7 +33,11 @@ declare namespace Cypress {
     | 'regional analyses'
     | 'region settings'
 
-  export type ProjectScenario = [project: string, scenario: string]
+  export type ProjectScenario = {
+    project?: string
+    scenario?: string
+    settings?: Record<string, unknown>
+  }
 
   // eslint-disable-next-line
   interface Chainable {
@@ -88,11 +92,14 @@ declare namespace Cypress {
 
     /**
      * Get the accessibility at a given coordinates for a project and comparison.
+     * Defaults:
+     * primary: {project: scratch, scenario: default} vs
+     * comparison: {project: scratch, scenario: baseline}
      */
     fetchAccessibilityComparison(
       coords: L.LatLngExpression,
-      project?: ProjectScenario,
-      comparisonProject?: ProjectScenario
+      primary?: ProjectScenario,
+      comparison?: ProjectScenario
     ): Chainable<[accessibility: number, comparison: number]>
 
     /**

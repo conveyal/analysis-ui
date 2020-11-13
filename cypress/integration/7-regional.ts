@@ -63,10 +63,11 @@ describe('Regional', () => {
     // TODO label dissociated from input
     //cy.findByLabelText(/Aggregate results to/i)
     //  .type(this.region.aggregationAreas.sampleName+'{enter}')
-    // clean up
-    cy.findByRole('button', {name: /Delete/}).click()
-    cy.findByRole('button', {name: /Confirm/}).click()
   })
+
+  it('test starting and deleting a running analysis')
+  // cy.findByRole('button', {name: /Delete/}).click()
+  // cy.findByRole('button', {name: /Confirm/}).click()
 
   // TODO this is partly tested above but should be refactored into its own
   // test here. This will require setting up an analysis first though

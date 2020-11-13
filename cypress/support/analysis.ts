@@ -4,14 +4,14 @@ import scratchRegion from '../fixtures/regions/scratch.json'
 
 const getPrimary = () => cy.get('div#PrimaryAnalysisSettings')
 const getComparison = () => cy.get('div#ComparisonAnalysisSettings')
-const setProjectScenario = (ps: Cypress.ProjectScenario) => {
+const setProjectScenario = (project: string, scenario: string) => {
   cy.findByLabelText(/^Project$/)
     .click({force: true})
-    .type(`${ps[0]}{enter}`, {delay: 0})
+    .type(`${project}{enter}`, {delay: 0})
 
   cy.findByLabelText(/^Scenario$/)
     .click({force: true})
-    .type(`${ps[1]}{enter}`, {delay: 0})
+    .type(`${scenario}{enter}`, {delay: 0})
 }
 
 /**
@@ -69,21 +69,33 @@ Cypress.Commands.add(
 
 Cypress.Commands.add('fetchAccessibilityComparison', function (
   coords: L.LatLngExpression,
-  project: Cypress.ProjectScenario = ['scratch', 'default'],
-  comparison: Cypress.ProjectScenario = ['scratch', 'baseline']
+  primary?: Cypress.ProjectScenario,
+  comparison?: Cypress.ProjectScenario
 ) {
+  // This is necessary so that selected projects do not carry over
+  // TODO that may be a common use case so we should optimize for that and use navTo
   cy.goToEntity('analysis')
 
   getPrimary().within(() => {
-    setProjectScenario(project)
+    const project = primary?.project ?? 'scratch'
+    const scenario = primary?.scenario ?? 'default'
+    setProjectScenario(project, scenario)
     cy.patchAnalysisJSON({
       date: scratchRegion.date,
       fromLat: coords[0],
       fromLon: coords[1]
     })
+    if (primary?.settings) cy.patchAnalysisJSON(primary.settings)
   })
-  getComparison().within(() => setProjectScenario(comparison))
 
+  getComparison().within(() => {
+    const project = comparison?.project ?? 'scratch'
+    const scenario = comparison?.scenario ?? 'baseline'
+    setProjectScenario(project, scenario)
+    if (comparison?.settings) cy.patchAnalysisJSON(comparison.settings)
+  })
+
+  // TODO Make this an option?
   cy.selectDefaultOpportunityDataset()
   cy.fetchResults()
 

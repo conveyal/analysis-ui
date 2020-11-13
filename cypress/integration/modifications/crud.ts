@@ -385,22 +385,18 @@ function testReroute() {
   cy.findByLabelText(/Select patterns/i)
 
   // Select from stop and to stop
-  cy.getLeafletMap().then((map) => {
-    cy.findByLabelText(/Select from stop/).click()
-    const p1 = map.latLngToContainerPoint([39.0877, -84.5192])
-    cy.getMapDiv().click(p1.x, p1.y)
-    // test clearing the from stop
-    cy.findByLabelText(/Clear from stop/).click()
+  cy.findByLabelText(/Select from stop/).click()
+  cy.clickMapAtCoord([39.0877, -84.5192])
+  // test clearing the from stop
+  cy.findByLabelText(/Clear from stop/).click()
 
-    // Re-select the from stop
-    cy.findByLabelText(/Select from stop/).click()
-    cy.getMapDiv().click(p1.x, p1.y)
+  // Re-select the from stop
+  cy.findByLabelText(/Select from stop/).click()
+  cy.clickMapAtCoord([39.0877, -84.5192])
 
-    // Select the to stop
-    cy.findByLabelText(/Select to stop/).click()
-    const p2 = map.latLngToContainerPoint([39.1003, -84.4855])
-    cy.getMapDiv().click(p2.x, p2.y)
-  })
+  // Select the to stop
+  cy.findByLabelText(/Select to stop/).click()
+  cy.clickMapAtCoord([39.1003, -84.4855])
 
   cy.findByLabelText(/Default dwell time/i).type('00:10:00')
   cy.findByLabelText(/Average speed/i).type('25')

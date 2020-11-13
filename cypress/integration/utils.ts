@@ -25,11 +25,27 @@ const typeUsesFeed = new Set([
 ])
 
 // Setup modification function
-type SetupModificationFn = {
+type SetupModificationProps = {
   data?: Record<string, unknown>
   onCreate?: () => void
   id?: string
   type: Cypress.ModificationType
+}
+
+type TestModification = {
+  delete: () => void
+  name: string
+  navTo: () => void
+}
+
+type SetupModification = (props: SetupModificationProps) => TestModification
+
+type TestProject = {
+  deleteModification: (name: string) => void
+  setupModification: SetupModification
+  setupScenarios: (scenarioNames: string[]) => void
+  name: string
+  navTo: () => void
 }
 
 const modificationPrefix = Cypress.env('dataPrefix') + 'MOD'
@@ -43,17 +59,20 @@ const defaultBundleName =
   Cypress.env('dataPrefix') + scratchRegionName + ' bundle'
 
 /**
- * Sets up a project for modification testing. IDs must be unique within
+ * Sets up a project for modification testing. Names must be unique within
  * the region.
- * TBD:
- * - Allow using other regions and opportunities.
+ * TODO:
+ * - Expand settings to allow using other regions and opportunities.
+ * - Attach the "scratch" data associated to the project.
+ * - Create a helper for running an analysis on this project.
+ * - Move to a class based structure? new Region(), new Project(), etc.
  */
 export function setupProject(
-  projectId: string,
+  projectName: string,
   bundleName: string = defaultBundleName
-) {
+): TestProject {
   const project = {
-    name: Cypress.env('dataPrefix') + projectId,
+    name: Cypress.env('dataPrefix') + projectName,
     path: null
   }
 
@@ -104,7 +123,12 @@ export function setupProject(
   const ids = new Set()
 
   // Helper for setting up modifications for this project.
-  function setupModification({data, onCreate, id, type}: SetupModificationFn) {
+  function setupModification({
+    data,
+    onCreate,
+    id,
+    type
+  }: SetupModificationProps): TestModification {
     const modification = {
       name: Cypress.env('dataPrefix') + (id ?? type + ids.size),
       path: null
@@ -114,6 +138,17 @@ export function setupProject(
     } else {
       ids.add(modification.name)
     }
+
+    /**
+     * const mod = new Modification({data, name, onCreate, project, type})
+     * mod.before_setup() // sets .path
+     * return mod
+     *
+     * Later...
+     *   mod.name
+     *   mod.navTo()
+     *   mod.delete()
+     */
 
     before(() => {
       navToProject()
@@ -154,6 +189,7 @@ export function setupProject(
         if (path !== modification.path) {
           navToProject()
           cy.findByRole('button', {name: new RegExp(modification.name)}).click()
+          cy.navComplete()
         }
       })
     }
