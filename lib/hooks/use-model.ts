@@ -1,17 +1,35 @@
-import useSWR, {ConfigInterface} from 'swr'
+import useSWR, {ConfigInterface, responseInterface} from 'swr'
 import {useContext, useCallback} from 'react'
 
-import {safeDelete, putJSON} from 'lib/utils/safe-fetch'
+import {putJSON, safeDelete, SafeResponse} from 'lib/utils/safe-fetch'
 
 import {UserContext} from '../user'
 
+type UseModelResponse<T> = {
+  data: T
+  remove: () => Promise<SafeResponse>
+  response: responseInterface<T, SafeResponse>
+  update: (newProperties: Partial<T>) => Promise<SafeResponse>
+}
+
 export function createUseModel<T extends CL.IModel>(collectionName: string) {
-  return function useModel(_id: string, config?: ConfigInterface) {
+  const SWRConfigDefaults: ConfigInterface = {
+    // When using a model directly, there's a good chance we are editing it.
+    // Revalidating on focus could overwrite local cahnges.
+    revalidateOnFocus: false
+  }
+
+  return function useModel(
+    _id: string,
+    config?: ConfigInterface
+  ): UseModelResponse<T> {
     const user = useContext(UserContext)
     const url = `/api/db/${collectionName}/${_id}`
-    const results = useSWR<T>([url, user], config)
-
-    const {mutate} = results
+    const response = useSWR<T, SafeResponse>([url, user], {
+      ...SWRConfigDefaults,
+      ...config
+    })
+    const {mutate} = response
     const update = useCallback(
       async (newProperties: Partial<T>) => {
         try {
@@ -22,26 +40,28 @@ export function createUseModel<T extends CL.IModel>(collectionName: string) {
             })
             // Update client with final result
             if (res.ok) {
-              return res.data
+              // TODO schema check here?
+              return res.data as T
             } else {
               throw res
             }
-          })
+          }, false)
           return {ok: true, data}
         } catch (res) {
           return res
         }
       },
-      [url, mutate]
+      [mutate, url]
     )
 
     // Should never change
-    const remove = useCallback((_id) => safeDelete(url), [url])
+    const remove = useCallback(() => safeDelete(url), [url])
 
     return {
-      ...results,
-      update,
-      remove
+      data: response.data,
+      remove,
+      response,
+      update
     }
   }
 }

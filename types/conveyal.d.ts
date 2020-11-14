@@ -57,7 +57,7 @@ declare namespace CL {
   /**
    * Base DB Model with common properties.
    */
-  export interface IModel {
+  export interface IModel extends Record {
     _id: ObjectID
     accessGroup: string
     nonce: ObjectID

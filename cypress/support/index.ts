@@ -43,12 +43,9 @@ before('Optionally wipe configured state', () => {
     cy.readFile(localFixturePath).then((storedVals) => {
       if ('regionId' in storedVals) {
         cy.visit(`/regions/${storedVals.regionId}/edit`)
-        cy.navComplete()
         cy.findByRole('button', {name: /Delete this region/i}).click()
-        cy.findByRole('alertdialog').should('exist')
         cy.findByRole('button', {name: /Confirm: Delete this region/}).click()
-        cy.findByRole('alertdialog').should('not.exist')
-        cy.navComplete()
+        cy.location('pathname').should('eq', '/')
       }
     })
     cy.writeFile(localFixturePath, '{}')

@@ -19,7 +19,7 @@ const alertText =
   'Apply decay functions to opportunities, better manage analysis presets, and visualize travel time to destinations.'
 
 export default withAuth(function SelectRegionPage(p) {
-  const {data: regions, isValidating} = useRegions({
+  const {data: regions, response} = useRegions({
     initialData: p.regions,
     options: {
       sort: {name: 1}
@@ -69,7 +69,7 @@ export default withAuth(function SelectRegionPage(p) {
         >
           Set up a new region
         </Button>
-        {!regions && isValidating && <Skeleton height='30px' />}
+        {!regions && response.isValidating && <Skeleton height='30px' />}
         {regions && regions.length > 0 && (
           <Box>or go to an existing region</Box>
         )}
