@@ -59,9 +59,34 @@ declare namespace Cypress {
 
     /**
      * Create a modification.
-     * @xample cy.createModification('Add Trip Pattern', 'New name')
+     * @example cy.createModification('Add Trip Pattern', 'New name')
      */
     createModification(type: ModificationType, name: string): Chainable<void>
+
+    /**
+     * Create a region. Returns the new region id.
+     * @example cy.createRegion('Region', bounds)
+     */
+    createRegion(name: string, bounds: CL.Bounds): Chainable<string>
+
+    /**
+     * Create a bundle
+     */
+    createBundle(
+      name: string,
+      gtfsFilePath: string,
+      pbfFilePath: string
+    ): Chainable<string>
+
+    /**
+     * Create a new opportunity dataset.
+     * @param name
+     * @param filePath
+     */
+    createOpportunityDataset(
+      name: string,
+      filePath: string
+    ): Cypress.Chainable<string>
 
     /**
      * Delete a modification by type and name.
@@ -127,8 +152,14 @@ declare namespace Cypress {
     getMapDiv(): Chainable<HTMLElement>
 
     /**
+     * Get the analysis settings section for primary/comparison.
+     */
+    getPrimaryAnalysisSettings(): Chainable<JQuery<HTMLDivElement>>
+    getComparisonAnalysisSettings(): Chainable<JQuery<HTMLDivElement>>
+
+    /**
      * Go directly to the locally stored entity.
-     * @example cy.goToEntity('project)
+     * @example cy.goToEntity('project')
      */
     goToEntity(entity: Entity): Chainable<void>
 
@@ -185,7 +216,7 @@ declare namespace Cypress {
     /**
      * Merge new values into the existing analysis JSON. Must be done chained from or
      * `within` one of the two analysis sections.
-     * @example cy.get('#Primary).patchAnalysisJSON({fromLat: 50})
+     * @example cy.get('#Primary').patchAnalysisJSON({fromLat: 50})
      */
     patchAnalysisJSON(newValues: Record<string, unknown>): Chainable<void>
 

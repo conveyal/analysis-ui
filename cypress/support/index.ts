@@ -13,8 +13,11 @@ import {addMatchImageSnapshotCommand} from 'cypress-image-snapshot/command'
 import 'cypress-wait-until'
 
 import './analysis'
+import './bundle'
 import './commands'
 import './modification'
+import './opportunities'
+import './region'
 
 addMatchImageSnapshotCommand({
   failureThresholdType: 'percent',

@@ -172,112 +172,29 @@ Cypress.Commands.add('_setup', (entity: Cypress.Entity) => {
 })
 
 function createNewOpportunities() {
-  Cypress.log({
-    displayName: 'creating',
-    message: 'opportunities'
-  })
   const opportunity = scratchRegion.opportunities.grid
   const oppName = `${prefix}default_opportunities`
   cy.goToEntity('opportunities')
-  cy.findByText(/Upload a new dataset/i).click()
-  cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-  cy.findByLabelText(/Select opportunity dataset/).attachFile({
-    filePath: opportunity.file,
-    encoding: 'base64'
-  })
-  cy.findByRole('button', {name: /Upload a new opportunity dataset/}).click()
-  cy.navComplete()
-  // find the message showing this upload is complete
-  cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout: 5000})
-    .parent()
-    .parent()
-    .as('notice')
-  // check number of fields uploaded
-  cy.get('@notice').contains(/Finished uploading 1 feature/i)
-  // close the message
-  cy.get('@notice').findByRole('button', {name: /Close/}).click()
-  // now grab the ID
-  cy.findByText(/Select\.\.\./)
-    .click()
-    .type(`${oppName} {enter}`)
   return cy
-    .location('href')
-    .should('match', /.*DatasetId=\w{24}$/)
-    .then((href) =>
-      cy.storeInLocalFixture('opportunitiesId', href.match(/\w{24}$/)[0])
-    )
+    .createOpportunityDataset(oppName, opportunity.file)
+    .then((id) => cy.storeInLocalFixture('opportunitiesId', id))
 }
 
 function createNewRegion() {
-  Cypress.log({
-    displayName: 'creating',
-    message: 'region'
+  cy.createRegion(prefix + regionName, scratchRegion).then((id) => {
+    cy.writeFile(localFixturePath, '{}') // Reset all other data
+    cy.storeInLocalFixture('regionId', id)
   })
-  cy.visit('/regions/create')
-  cy.findByLabelText(/Region Name/).type(prefix + regionName, {delay: 0})
-  cy.findByLabelText(/North bound/)
-    .clear()
-    .type(scratchRegion.north.toString(), {delay: 0})
-  cy.findByLabelText(/South bound/)
-    .clear()
-    .type(scratchRegion.south.toString(), {delay: 0})
-  cy.findByLabelText(/West bound/)
-    .clear()
-    .type(scratchRegion.west.toString(), {delay: 0})
-  cy.findByLabelText(/East bound/)
-    .clear()
-    .type(scratchRegion.east.toString(), {delay: 0})
-  cy.findByRole('button', {name: /Set up a new region/}).click()
-  cy.findByRole('button', {name: /Creating region/}).should('not.exist')
-  cy.navComplete()
-  cy.contains(/Upload a new network bundle|create new project/i)
-  // store the region UUID for later
-  return cy
-    .location('pathname')
-    .should('match', /regions\/\w{24}$/)
-    .then((path) => {
-      cy.writeFile(localFixturePath, '{}') // Reset all other data
-      cy.storeInLocalFixture('regionId', path.match(/\w{24}$/)[0])
-    })
 }
 
 function createNewBundle() {
-  Cypress.log({
-    displayName: 'creating',
-    message: 'bundle'
-  })
-  const bundleName = prefix + regionName + ' bundle'
   cy.goToEntity('region')
-  cy.navTo('network bundles')
-  cy.findByText(/Create .* bundle/).click()
-  cy.location('pathname').should('match', /\/bundles\/create$/)
-  cy.findByLabelText(/Network bundle name/i).type(bundleName, {delay: 1})
-  cy.findByText(/Upload new OpenStreetMap/i).click()
-  cy.findByLabelText(/Select PBF file/i).attachFile({
-    filePath: scratchRegion.PBFfile,
-    encoding: 'base64',
-    mimeType: 'application/octet-stream'
-  })
-  cy.findByText(/Upload new GTFS/i).click()
-  cy.findByLabelText(/Select .*GTFS/i).attachFile({
-    filePath: scratchRegion.GTFSfile,
-    encoding: 'base64',
-    mimeType: 'application/octet-stream'
-  })
-  cy.findByRole('button', {name: /Create/i}).click()
-  cy.findByText(/Processing/)
-  cy.findByText(/Processing/, {timeout: 30000}).should('not.exist')
-  // go back and grab the UUID
-  cy.navTo('network bundles')
-  cy.findByLabelText(/or select an existing one/)
-    .click({force: true})
-    .type(bundleName + '{enter}')
+  const bundleName = prefix + regionName + ' bundle'
   return cy
-    .location('pathname')
-    .should('match', /bundles\/\w{24}$/)
-    .then((path) =>
-      cy.storeInLocalFixture('bundleId', path.match(/\w{24}$/)[0])
-    )
+    .createBundle(bundleName, scratchRegion.GTFSfile, scratchRegion.PBFfile)
+    .then((id) => {
+      cy.storeInLocalFixture('bundleId', id)
+    })
 }
 
 function createNewProject() {

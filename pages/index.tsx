@@ -69,7 +69,9 @@ export default withAuth(function SelectRegionPage(p) {
         >
           Set up a new region
         </Button>
-        {!regions && response.isValidating && <Skeleton height='30px' />}
+        {!regions && response.isValidating && (
+          <Skeleton id='LoadingSkeleton' height='30px' />
+        )}
         {regions && regions.length > 0 && (
           <Box>or go to an existing region</Box>
         )}

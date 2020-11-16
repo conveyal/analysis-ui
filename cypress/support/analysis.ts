@@ -14,6 +14,24 @@ const setProjectScenario = (project: string, scenario: string) => {
     .type(`${scenario}{enter}`, {delay: 0})
 }
 
+const expandIfClosed = () => {
+  // Expand JSON if it is not open
+  cy.get('button').then((buttons) => {
+    const pb = buttons.filter((_, el) => el.title === 'expand')
+    if (pb.length !== 0) cy.wrap(pb.first()).click()
+  })
+}
+
+Cypress.Commands.add('getPrimaryAnalysisSettings', () => {
+  getPrimary().within(() => expandIfClosed())
+  return getPrimary()
+})
+
+Cypress.Commands.add('getComparisonAnalysisSettings', () => {
+  getComparison().within(() => expandIfClosed())
+  return getComparison()
+})
+
 /**
  * Sets a value in the custom JSON editor.
  */
@@ -42,7 +60,7 @@ Cypress.Commands.add('editPrimaryAnalysisJSON', (key, newValue) => {
 })
 
 /**
- * Must be done within primary/comparison.
+ * Must be done within an open primary/comparison.
  */
 Cypress.Commands.add(
   'patchAnalysisJSON',
@@ -111,8 +129,12 @@ Cypress.Commands.add('fetchAccessibilityComparison', function (
 
 Cypress.Commands.add('setOrigin', (newOrigin: L.LatLngExpression) => {
   const latlng = latLng(newOrigin)
-  cy.editPrimaryAnalysisJSON('fromLat', latlng.lat)
-  cy.editPrimaryAnalysisJSON('fromLon', latlng.lng)
+  cy.getPrimaryAnalysisSettings().within(() => {
+    cy.patchAnalysisJSON({
+      fromLat: latlng.lat,
+      fromLon: latlng.lng
+    })
+  })
 })
 
 Cypress.Commands.add('fetchResults', () => {

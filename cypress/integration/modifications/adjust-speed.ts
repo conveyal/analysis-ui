@@ -1,4 +1,4 @@
-import {scratchRegion, setupProject} from '../utils'
+import {getDefaultSetup, scratchRegion} from '../utils'
 
 describe('Adjust Speed', () => {
   const routeName = '1 Dixie Hwy'
@@ -12,18 +12,24 @@ describe('Adjust Speed', () => {
   const scaleSpeedBy = (v: number) =>
     cy.findByLabelText('Scale speed by').clear().type(`${v}`)
 
-  const project = setupProject('Adjust Speed')
+  const {region} = getDefaultSetup()
+  const project = region.findOrCreateProject('Adjust Speed')
 
   // Set up the scenarios ahead of time for consistent variant lengths
-  project.setupScenarios(['All Routes', 'Single Route', 'Segments', 'Patterns'])
+  project.findOrCreateScenarios([
+    'All Routes',
+    'Single Route',
+    'Segments',
+    'Patterns'
+  ])
 
   describe('all routes selected', () => {
-    const mod = project.setupModification({
+    const mod = project.findOrCreateModification({
       data: {
         scale: 10,
         variants: [false, true, false, false, false]
       },
-      id: 'All Routes',
+      name: 'All Routes',
       onCreate: () => {
         selectAll()
       },
@@ -31,32 +37,26 @@ describe('Adjust Speed', () => {
     })
 
     it('should increase accessibility with increased speed', () => {
-      cy.fetchAccessibilityComparison(
-        centralCoords,
-        {project: project.name, scenario: 'All Routes'},
-        {project: project.name, scenario: 'baseline'}
-      ).should(beGreater)
+      region.setupAnalysis({project, scenario: 'All routes'})
+      region.fetchAccessibilityComparison(centralCoords).should(beGreater)
     })
 
     it('should decrease accessibility with decreased speed', () => {
       mod.navTo()
       scaleSpeedBy(0.1)
 
-      cy.fetchAccessibilityComparison(
-        centralCoords,
-        {project: project.name, scenario: 'All Routes'},
-        {project: project.name, scenario: 'baseline'}
-      ).should(beLess)
+      region.setupAnalysis({project, scenario: 'All routes'})
+      region.fetchAccessibilityComparison(centralCoords).should(beLess)
     })
   })
 
   describe('single route selected', () => {
-    const singleRouteMod = project.setupModification({
+    const singleRouteMod = project.findOrCreateModification({
       data: {
         scale: 10,
         variants: [false, false, true, false, false]
       },
-      id: 'Single Route',
+      name: 'Single Route',
       onCreate: () => {
         cy.selectRoute(routeName)
       },
@@ -72,12 +72,12 @@ describe('Adjust Speed', () => {
       [lat, lon - offset],
       [lat - offset, lon]
     ]
-    project.setupModification({
+    project.findOrCreateModification({
       data: {
         scale: 10,
         variants: [false, false, false, true, false]
       },
-      id: 'Segments',
+      name: 'Segments',
       onCreate: () => {
         cy.selectRoute(routeName)
         // Draw box around segments
@@ -94,38 +94,37 @@ describe('Adjust Speed', () => {
     })
 
     it('should increase accessibility with increased speed', () => {
-      cy.fetchAccessibilityComparison(
-        centralCoords,
-        {project: project.name, scenario: 'Single Route'},
-        {project: project.name, scenario: 'baseline'}
-      ).should(beGreater)
+      region.setupAnalysis({project, scenario: 'Single Route'})
+      region.fetchAccessibilityComparison(centralCoords).should(beGreater)
     })
 
     it('should have equal accessibility far from the route', () => {
-      cy.fetchAccessibilityComparison(
-        farFromRouteCoords,
-        {project: project.name, scenario: 'Single Route'},
-        {project: project.name, scenario: 'baseline'}
-      ).should(([v, c]) => expect(v).to.be.equal(c))
+      region.setupAnalysis({project, scenario: 'Single Route'})
+      region
+        .fetchAccessibilityComparison(farFromRouteCoords)
+        .should(([v, c]) => expect(v).to.be.equal(c))
     })
 
     it('should have different accessibility from a full route modification', () => {
-      cy.fetchAccessibilityComparison(
-        centralCoords,
-        {project: project.name, scenario: 'Single Route'},
-        {project: project.name, scenario: 'Segments'}
-      ).should(beGreater)
+      region.setupAnalysis(
+        {
+          project,
+          scenario: 'Single Route'
+        },
+        {
+          project,
+          scenario: 'Segments'
+        }
+      )
+      region.fetchAccessibilityComparison(centralCoords).should(beGreater)
     })
 
     it('should decrease accessibility with decreased speed', () => {
       singleRouteMod.navTo()
       scaleSpeedBy(0.1)
 
-      cy.fetchAccessibilityComparison(
-        centralCoords,
-        {project: project.name, scenario: 'Single Route'},
-        {project: project.name, scenario: 'baseline'}
-      ).should(beLess)
+      region.setupAnalysis({project, scenario: 'Single Route'})
+      region.fetchAccessibilityComparison(centralCoords).should(beLess)
     })
   })
 
