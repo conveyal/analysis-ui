@@ -15,29 +15,31 @@ describe('Analysis', () => {
     // note that elements touched in beforeEach are neglected here
     cy.findByRole('slider', {name: 'Time cutoff'})
     cy.findByRole('slider', {name: /Travel time percentile/i})
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findByRole('button', {
         name: 'Fetch results with the current settings to enable button'
       })
       .should('be.disabled')
-    cy.get('@primary').contains('scratch project')
-    cy.get('@primary').contains('Baseline')
+    cy.getPrimaryAnalysisSettings().contains('scratch project')
+    cy.getPrimaryAnalysisSettings().contains('Baseline')
 
-    cy.get('@primary').findByRole('button', {name: /Walk access/i})
-    cy.get('@primary').findByRole('button', {name: /Bus/i})
-    cy.get('@primary').findByRole('button', {name: /Walk egress/i})
+    cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Walk access/i})
+    cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Bus/i})
+    cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Walk egress/i})
 
     cy.findByLabelText(/Walk speed/i)
     cy.findByLabelText(/Max walk time/i)
-    cy.get('@primary').findByLabelText(/Date/i)
+    cy.getPrimaryAnalysisSettings().findByLabelText(/Date/i)
     cy.findByLabelText(/From time/i)
     cy.findByLabelText(/To time/i)
-    cy.get('@primary').findByLabelText(/Simulated Schedules/i)
-    cy.get('@primary').findByLabelText(/Maximum transfers/i)
-    cy.get('@primary').findByLabelText(/Decay function/i)
+    cy.getPrimaryAnalysisSettings().findByLabelText(/Simulated Schedules/i)
+    cy.getPrimaryAnalysisSettings().findByLabelText(/Maximum transfers/i)
+    cy.getPrimaryAnalysisSettings().findByLabelText(/Decay function/i)
     cy.findByLabelText(/Routing engine/i)
-    cy.get('@primary').findAllByLabelText(/Bounds of analysis/i)
-    cy.get('@primary').findByRole('tab', {name: /Custom JSON editor/i})
+    cy.getPrimaryAnalysisSettings().findAllByLabelText(/Bounds of analysis/i)
+    cy.getPrimaryAnalysisSettings().findByRole('tab', {
+      name: /Custom JSON editor/i
+    })
     cy.findByText(/Fetch results/i).should('be.enabled')
   })
 
@@ -66,14 +68,14 @@ describe('Analysis', () => {
     cy.setOrigin(location)
     cy.centerMapOn(location)
     // turn off all transit
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findByRole('button', {name: /All transit/i})
       .click()
     // it has changed names, becoming:
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findByRole('button', {name: /bike direct mode/i})
       .click()
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findAllByRole('button', {name: /bike egress/i})
       .should('be.disabled')
     cy.selectDefaultOpportunityDataset()
@@ -145,19 +147,19 @@ describe('Analysis', () => {
       .scrollIntoView()
       .matchImageSnapshot('single-scenario-chart')
     // add a comparison case to the chart
-    cy.get('@comparison')
+    cy.getComparisonAnalysisSettings()
       .findByLabelText(/^Project$/)
       .click({force: true})
       .type('scratch{enter}')
-    cy.get('@comparison')
+    cy.getComparisonAnalysisSettings()
       .findByLabelText(/^Scenario$/)
       .click({force: true})
       .type('baseline{enter}')
     // change the mode
-    cy.get('@comparison')
+    cy.getComparisonAnalysisSettings()
       .findByLabelText(/Identical request settings/i)
       .uncheck({force: true})
-    cy.get('@comparison')
+    cy.getComparisonAnalysisSettings()
       .findByRole('button', {name: /bike access mode/i})
       .click()
     cy.fetchResults()
@@ -168,12 +170,12 @@ describe('Analysis', () => {
 
   it('handles decay functions', function () {
     // Should be disabled for < v6
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findByLabelText(/Routing engine/)
       .click({force: true})
       .type('v5.10.0{enter}')
 
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findByLabelText(/Decay Function/i)
       .should('be.disabled')
 
@@ -181,12 +183,12 @@ describe('Analysis', () => {
     cy.findByText(/Select an opportunity dataset to see accessibility/)
 
     // Should be enabled for >= v6
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findByLabelText(/Routing engine/)
       .click({force: true})
       .type('v6.0.0{enter}')
 
-    cy.get('@primary')
+    cy.getPrimaryAnalysisSettings()
       .findByLabelText(/Decay Function/i)
       .should('be.enabled')
       .select('logistic')
@@ -205,20 +207,22 @@ describe('Analysis', () => {
     it('CRUD a preset', function () {
       const name = Cypress.env('dataPrefix') + 'preset'
       // Preset select does not exist without first creating a preset
-      cy.get('@primary').findByRole('button', {name: /Save/}).click()
+      cy.getPrimaryAnalysisSettings()
+        .findByRole('button', {name: /Save/})
+        .click()
       cy.findByLabelText(/Name/).type(name)
       cy.findByRole('button', {name: /Create preset/}).click()
       cy.findByRole('dialog').should('not.exist')
       cy.findByText(/Created new preset/)
 
       // Preset selector should now exist
-      cy.get('@primary')
+      cy.getPrimaryAnalysisSettings()
         .findByLabelText(/Active preset/)
         .click({force: true})
         .type(`${name}{enter}`)
 
       // Edit the preset name
-      cy.get('@primary')
+      cy.getPrimaryAnalysisSettings()
         .findByRole('button', {name: /Edit preset name/})
         .click()
       cy.findByRole('dialog').should('exist')
@@ -228,7 +232,7 @@ describe('Analysis', () => {
       cy.findByText(/Saved changes to preset/)
 
       // Delete the preset
-      cy.get('@primary')
+      cy.getPrimaryAnalysisSettings()
         .findByRole('button', {name: /Delete selected preset/})
         .click()
       cy.findByRole('button', {name: /Confirm: Delete preset/}).click()
