@@ -181,7 +181,7 @@ function createNewOpportunities() {
 }
 
 function createNewRegion() {
-  cy.createRegion(prefix + regionName, scratchRegion).then((id) => {
+  cy.createRegion(prefix + regionName, scratchRegion.bounds).then((id) => {
     cy.writeFile(localFixturePath, '{}') // Reset all other data
     cy.storeInLocalFixture('regionId', id)
   })

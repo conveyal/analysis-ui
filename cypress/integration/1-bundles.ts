@@ -3,6 +3,13 @@ import {findOrCreateRegion, scratchRegion} from './utils'
 // Bundles may take awhile to upload
 const processingTimeout = 240000
 
+// Bundle Names
+const names = {
+  corrupt: Cypress.env('dataPrefix') + 'Corrupt Bundle',
+  multiple: Cypress.env('dataPrefix') + 'Multiple GTFS',
+  reuse: Cypress.env('dataPrefix') + 'Reuse OSM and GTFS'
+}
+
 function createBundle(name: string, selectFilesFn: () => void) {
   cy.findByText(/Create a new network bundle/).click()
   cy.findByLabelText(/Bundle Name/i).type(name)
@@ -19,19 +26,28 @@ function createBundle(name: string, selectFilesFn: () => void) {
   cy.location('pathname').should('match', /\/bundles\/.{24}$/)
 }
 
+function deleteThisBundle(bundleName: string) {
+  cy.findByRole('button', {name: /Delete this network bundle/i}).click()
+  cy.findByRole('button', {name: /Confirm: Delete this network bundle/}).click()
+  cy.location('pathname').should('match', /.*\/bundles$/)
+  cy.navComplete()
+  cy.findByText(/Select.../).click()
+  cy.contains(bundleName).should('not.exist')
+}
+
 describe('Network bundles', () => {
   const region = findOrCreateRegion(scratchRegion.name, scratchRegion.bounds)
-
-  beforeEach(() => {
-    region.navTo()
-    cy.navTo('network bundles')
-  })
 
   const singleFeedBundle = region.findOrCreateBundle(
     'Temporary Single feed',
     scratchRegion.GTFSfile,
     scratchRegion.PBFfile
   )
+
+  beforeEach(() => {
+    region.navTo()
+    cy.navTo('network bundles')
+  })
 
   after(() => singleFeedBundle.delete())
 
@@ -51,8 +67,7 @@ describe('Network bundles', () => {
   })
 
   it('can reuse OSM and GTFS components', function () {
-    const bundleName = Cypress.env('dataPrefix') + 'Reuse OSM and GTFS'
-    createBundle(bundleName, () => {
+    createBundle(names.reuse, () => {
       cy.findByText(/Reuse existing OpenStreetMap/i).click()
       cy.findByText(/network bundle to reuse OSM from/i)
         .parent()
@@ -65,21 +80,14 @@ describe('Network bundles', () => {
 
     cy.findByLabelText(/Feed #1/)
       .invoke('val')
-      .then((val) => {
-        expect(val).to.eq(scratchRegion.feedAgencyName)
-      })
-    cy.findByText(/Delete this network bundle/i).click()
-    cy.findByRole('alertdialog', {name: /Confirm/})
-      .findByRole('button', {name: /Delete/})
-      .click()
-    cy.location('pathname').should('match', /.*\/bundles$/)
+      .should('equal', scratchRegion.feedAgencyName)
+
+    deleteThisBundle(names.reuse)
   })
 
   it('rejects obviously corrupt GTFS', function () {
-    const bundleName = Cypress.env('dataPrefix') + 'Corrupt Bundle'
-
     cy.findByText(/Create a new network bundle/).click()
-    cy.findByLabelText(/Bundle Name/i).type(bundleName)
+    cy.findByLabelText(/Bundle Name/i).type(names.corrupt)
     cy.findByText(/Reuse existing OpenStreetMap/i).click()
     cy.findByText(/network bundle to reuse OSM from/i)
       .parent()
@@ -100,19 +108,16 @@ describe('Network bundles', () => {
     cy.navTo('network bundles')
     // TODO need semantic selector for dropdown
     cy.findByText('Select...').click().type('ERROR{enter}')
-    cy.contains(bundleName)
+    cy.contains(names.corrupt)
     cy.findByRole('alert').contains(
       'Please upload valid OSM .pbf and GTFS .zip files.'
     )
-    cy.findByRole('button', {name: /delete/i}).click()
-    cy.findByRole('alertdialog', {name: /Confirm/})
-      .findByRole('button', {name: /Delete/})
-      .click()
+
+    deleteThisBundle(names.corrupt)
   })
 
   it('with multiple GTFS feeds can be uploaded', function () {
-    const bundleName = Cypress.env('dataPrefix') + 'Multiple GTFS'
-    createBundle(bundleName, () => {
+    createBundle(names.multiple, () => {
       cy.findByText(/Reuse existing OpenStreetMap/i).click()
       cy.findByText(/network bundle to reuse OSM from/i)
         .parent()
@@ -133,21 +138,12 @@ describe('Network bundles', () => {
 
     cy.findByLabelText(/Feed #1/)
       .invoke('val')
-      .then((name) => {
-        expect(name).to.equal(scratchRegion.feedAgencyName)
-      })
+      .should('equal', scratchRegion.feedAgencyName)
     cy.findByLabelText(/Feed #2/)
       .invoke('val')
-      .then((name) => {
-        expect(name).to.equal(scratchRegion.feedAgencyName)
-      })
+      .should('equal', scratchRegion.feedAgencyName)
     cy.findByLabelText(/Feed #3/).should('not.exist')
-    cy.findByText(/Delete this network bundle/i).click()
-    cy.findByRole('alertdialog', {name: /Confirm/})
-      .findByRole('button', {name: /Delete/})
-      .click()
-    cy.location('pathname').should('match', /.*\/bundles$/)
-    cy.findByText(/Select.../).click()
-    cy.contains(bundleName).should('not.exist')
+
+    deleteThisBundle(names.multiple)
   })
 })

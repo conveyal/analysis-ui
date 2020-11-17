@@ -215,7 +215,9 @@ declare namespace Cypress {
      * `within` one of the two analysis sections.
      * @example cy.get('#Primary').patchAnalysisJSON({fromLat: 50})
      */
-    patchAnalysisJSON(newValues: Record<string, unknown>): Chainable<void>
+    patchAnalysisJSON(
+      newValues: Record<string, unknown>
+    ): Chainable<HTMLElement>
 
     /**
      * Select the default dataset.
@@ -234,6 +236,15 @@ declare namespace Cypress {
      * @example cy.setOrigin([lat, lng])
      */
     setOrigin(latlng: L.LatLngExpression): Chainable<void>
+
+    /**
+     * Set the project/scenario. Must be chained off a specific settings.
+     * @example cy.getPrimaryAnalysisSettings().setProjectScenario('project')
+     */
+    setProjectScenario(
+      project: string,
+      scenario?: string
+    ): Chainable<HTMLElement>
 
     /**
      * Set the time cutoff.

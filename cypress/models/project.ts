@@ -64,7 +64,7 @@ export default class Project extends Model {
     }
     const modification = new Modification(name)
 
-    before(() => {
+    before(`findOrCreateModification(${modification.name})`, () => {
       this.navTo()
       // Create if it does not exist
       cy.findAllByRole('button').then((buttons) => {
@@ -102,7 +102,7 @@ export default class Project extends Model {
 
   // Helper for setting up a scenarios in this project.
   findOrCreateScenarios(scenarios: string[]) {
-    before(() => {
+    before('findOrCreateScenarios', () => {
       this.navTo()
       cy.findByRole('tab', {name: 'Scenarios'}).click()
       scenarios.forEach((scenarioName) => {

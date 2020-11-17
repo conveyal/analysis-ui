@@ -1,17 +1,14 @@
+import {getDefaultSetup, scratchRegion, scratchResults} from './utils'
+
 /* eslint-disable cypress/no-unnecessary-waiting */
 
 describe('Analysis', () => {
-  before(() => {
-    cy.setup('project')
-    cy.setup('opportunities')
-  })
+  const {region} = getDefaultSetup()
+  const project = region.findOrCreateProject('Analysis Tests')
 
   beforeEach(() => {
-    cy.setupAnalysis()
-    cy.fixture('regions/scratch').as('region')
-    cy.fixture('regions/scratch-results').as('results')
-    cy.get('div#PrimaryAnalysisSettings').as('primary')
-    cy.get('div#ComparisonAnalysisSettings').as('comparison')
+    region.navToAnalysis()
+    region.setupAnalysis({project})
   })
 
   it('has all form elements', function () {
@@ -51,21 +48,21 @@ describe('Analysis', () => {
     // set new parameters
     cy.setTimeCutoff(75)
     // move marker and align map for snapshot
-    const locations: Record<string, [number, number]> = this.region.locations
+    const locations = scratchRegion.locations
     for (const key in locations) {
-      const location = locations[key]
+      const location: L.LatLngTuple = locations[key]
       cy.setOrigin(location)
       cy.centerMapOn(location)
       cy.fetchResults()
       cy.findByLabelText('Opportunities within isochrone')
         .itsNumericText()
-        .isWithin(this.results.locations[key].default, 10)
+        .isWithin(scratchResults.locations[key].default, 10)
     }
   })
 
   it('handles direct access by walk/bike only', function () {
-    const location = this.region.locations.middle
-    const results = this.results.locations.middle
+    const location = scratchRegion.locations.middle as L.LatLngTuple
+    const results = scratchResults.locations.middle
     cy.setOrigin(location)
     cy.centerMapOn(location)
     // turn off all transit
@@ -92,11 +89,11 @@ describe('Analysis', () => {
   })
 
   it('uses custom analysis bounds', function () {
-    const location = this.region.locations.center
-    const results = this.results.locations.center
+    const location = scratchRegion.locations.center as L.LatLngTuple
+    const results = scratchResults.locations.center
     cy.setOrigin(location)
     cy.centerMapOn(location)
-    cy.editPrimaryAnalysisJSON('bounds', this.region.customRegionSubset)
+    cy.editPrimaryAnalysisJSON('bounds', scratchRegion.customRegionSubset)
     cy.fetchResults()
     cy.selectDefaultOpportunityDataset()
     cy.findByLabelText('Opportunities within isochrone')
@@ -105,8 +102,8 @@ describe('Analysis', () => {
   })
 
   it('gives different results at different times', function () {
-    const location = this.region.locations.center
-    const results = this.results.locations.center
+    const location = scratchRegion.locations.center as L.LatLngTuple
+    const results = scratchResults.locations.center
     cy.setOrigin(location)
     cy.centerMapOn(location)
     // set time window in morning rush -- should have high access
@@ -139,7 +136,7 @@ describe('Analysis', () => {
   })
 
   it('charts accessibility', function () {
-    const location = this.region.locations.center
+    const location = scratchRegion.locations.center as L.LatLngTuple
     cy.setOrigin(location)
     cy.fetchResults()
     cy.selectDefaultOpportunityDataset()

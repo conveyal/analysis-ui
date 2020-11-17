@@ -16,20 +16,27 @@ const setProjectScenario = (project: string, scenario: string) => {
 
 const expandIfClosed = () => {
   // Expand JSON if it is not open
-  cy.get('button').then((buttons) => {
+  cy.get('button', {log: false}).then((buttons) => {
     const pb = buttons.filter((_, el) => el.title === 'expand')
-    if (pb.length !== 0) cy.wrap(pb.first()).click()
+    if (pb.length !== 0) {
+      cy.log('expanding analysis settings')
+      cy.wrap(pb.first(), {log: false}).click({log: false})
+    }
   })
 }
 
 Cypress.Commands.add('getPrimaryAnalysisSettings', () => {
-  getPrimary().within(() => expandIfClosed())
-  return getPrimary()
+  return getPrimary().within(($div) => {
+    expandIfClosed()
+    return $div
+  })
 })
 
 Cypress.Commands.add('getComparisonAnalysisSettings', () => {
-  getComparison().within(() => expandIfClosed())
-  return getComparison()
+  return getComparison().within(($div) => {
+    expandIfClosed()
+    return $div
+  })
 })
 
 /**
@@ -180,3 +187,16 @@ Cypress.Commands.add('setupAnalysis', () => {
     getPrimary().findByLabelText(/Date/i).clear().type(region.date)
   )
 })
+
+Cypress.Commands.add(
+  'setProjectScenario',
+  (project: string, scenario = 'default') => {
+    cy.findByLabelText(/^Project$/)
+      .click({force: true})
+      .type(`${project}{enter}`, {delay: 0})
+
+    cy.findByLabelText(/^Scenario$/)
+      .click({force: true})
+      .type(`${scenario}{enter}`, {delay: 0})
+  }
+)

@@ -1,6 +1,13 @@
 import Model from './model'
 
 export default class Bundle extends Model {
+  date: string
+
+  constructor(name: string, date: string) {
+    super(name)
+    this.date = date
+  }
+
   delete() {
     this.navTo()
     cy.findByRole('button', {name: /Delete this network bundle/}).click()

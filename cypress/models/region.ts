@@ -11,16 +11,6 @@ type ProjectAnalysisSettings = {
   settings?: Record<string, unknown>
 }
 
-const setProjectScenario = (project: string, scenario: string) => {
-  cy.findByLabelText(/^Project$/)
-    .click({force: true})
-    .type(`${project}{enter}`, {delay: 0})
-
-  cy.findByLabelText(/^Scenario$/)
-    .click({force: true})
-    .type(`${scenario}{enter}`, {delay: 0})
-}
-
 export default class Region extends Model {
   defaultBundle: Bundle
   defaultOpportunityDataset: OpportunityData
@@ -68,14 +58,15 @@ export default class Region extends Model {
   findOrCreateBundle(
     name: string,
     gtfsFilePath: string,
-    osmFilePath: string
+    osmFilePath: string,
+    serviceDate: string = scratchRegion.date
   ): Bundle {
-    const bundle = new Bundle(name)
+    const bundle = new Bundle(name, serviceDate)
 
     // Store as default if there is none.
     if (!this.defaultBundle) this.defaultBundle = bundle
 
-    before(() => {
+    before(`findOrCreateBundle${bundle.name}`, () => {
       this.navTo()
 
       // Check for the existing bundle. If it does not exist, create one.
@@ -89,8 +80,12 @@ export default class Region extends Model {
           // Does not exist, create the bundle
           cy.createBundle(bundle.name, gtfsFilePath, osmFilePath)
         }
-        bundle.path = path
       })
+      cy.location('pathname')
+        .should('match', /bundles\/\w{24}$/)
+        .then((path) => {
+          bundle.path = path
+        })
     })
 
     return bundle
@@ -100,7 +95,7 @@ export default class Region extends Model {
     bundle ??= this.defaultBundle
     const project = new Project(name, bundle)
 
-    before(() => {
+    before(`findOrCreateProject(${project.name})`, () => {
       this.navTo()
 
       // Create a project if it does not exist.
@@ -137,7 +132,7 @@ export default class Region extends Model {
 
     if (!this.defaultOpportunityDataset) this.defaultOpportunityDataset = od
 
-    before(() => {
+    before(`findOrCreateOpportunityDataset(${od.name})`, () => {
       this.navTo()
 
       // Check for the existing ods
@@ -149,13 +144,13 @@ export default class Region extends Model {
       cy.location('href').then((href) => {
         if (!href.match(/.*DatasetId=\w{24}$/)) {
           cy.createOpportunityDataset(od.name, filePath)
-          cy.location('href').then((href) => {
-            od.path = href
-          })
-        } else {
-          od.path = href
         }
       })
+      cy.location('href')
+        .should('match', /.*DatasetId=\w{24}$/)
+        .then((href) => {
+          od.path = href
+        })
     })
 
     return od
@@ -191,18 +186,17 @@ export default class Region extends Model {
 
     const projectName = primary.project.name
     cy.getPrimaryAnalysisSettings().within(() => {
-      const scenario = primary.scenario ?? 'default'
-      setProjectScenario(projectName, scenario)
+      cy.setProjectScenario(projectName, primary.scenario ?? 'default')
       cy.patchAnalysisJSON({
-        date: scratchRegion.date // TODO get this from the project bundle
+        date: primary.project.bundle.date,
+        ...(primary.settings || {})
       })
-      if (primary.settings) cy.patchAnalysisJSON(primary.settings)
     })
 
+    const comparisonProjectName = comparison?.project?.name ?? projectName
+    const comparisonScenarioName = comparison?.scenario ?? 'baseline'
     cy.getComparisonAnalysisSettings().within(() => {
-      const comparisonProjectName = comparison?.project?.name ?? projectName
-      const scenario = comparison?.scenario ?? 'baseline'
-      setProjectScenario(comparisonProjectName, scenario)
+      cy.setProjectScenario(comparisonProjectName, comparisonScenarioName)
       if (comparison?.settings) {
         cy.findByLabelText('Identical request settings').uncheck({force: true})
         cy.patchAnalysisJSON(comparison.settings)

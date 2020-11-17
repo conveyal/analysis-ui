@@ -1,10 +1,14 @@
+import {getDefaultSetup} from './utils'
+
 function findScenarioByName(name: string) {
   return cy.get('#scenarios').contains(name).parent().parent().parent()
 }
 
 describe('Scenarios', function () {
+  const {region} = getDefaultSetup()
+  const project = region.findOrCreateProject('Scenario Test')
   before(() => {
-    cy.setup('project')
+    project.navTo()
     cy.findByText(/Scenarios/).click()
 
     // Clear all existing scenarios

@@ -5,6 +5,7 @@ import scratchRegion from '../fixtures/regions/scratch.json'
 
 // Re-export the scratch data
 export {default as scratchRegion} from '../fixtures/regions/scratch.json'
+export {default as scratchResults} from '../fixtures/regions/scratch-results.json'
 
 // Prefix each name with a value for easy database queries later
 export const prefixName = (name: string): string =>
@@ -30,10 +31,14 @@ type DefaultSetup = {
   opportunityData: OpportunityData
 }
 
+// Store the default bundle/region/opportunity data
+let defaultSetup: false | DefaultSetup = false
+
 /**
  * Use the default region
  */
 export function getDefaultSetup(): DefaultSetup {
+  if (defaultSetup !== false) return defaultSetup
   const region = findOrCreateRegion(scratchRegion.name, scratchRegion.bounds)
   const bundle = region.findOrCreateBundle(
     scratchRegion.feedAgencyName,
@@ -44,8 +49,9 @@ export function getDefaultSetup(): DefaultSetup {
     scratchRegion.opportunities.grid.name,
     scratchRegion.opportunities.grid.file
   )
+  defaultSetup = {bundle, region, opportunityData}
 
-  return {bundle, region, opportunityData}
+  return defaultSetup
 }
 
 /**
@@ -53,7 +59,7 @@ export function getDefaultSetup(): DefaultSetup {
  */
 export function findOrCreateRegion(name: string, bounds: CL.Bounds): Region {
   const region = new Region(name)
-  before(() => {
+  before('findOrCreateRegion', () => {
     cy.visit('/')
     cy.get('#LoadingSkeleton').should('not.exist')
     cy.get('button').then((buttons) => {
@@ -62,6 +68,7 @@ export function findOrCreateRegion(name: string, bounds: CL.Bounds): Region {
         cy.createRegion(region.name, bounds)
       } else {
         cy.wrap(pb.first()).click()
+        cy.location('pathname').should('match', /regions\/\w{24}$/)
         cy.navComplete()
       }
       cy.location('pathname').then((path) => {
