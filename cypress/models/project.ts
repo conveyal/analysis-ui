@@ -91,9 +91,11 @@ export default class Project extends Model {
         }
 
         // Store the modification path
-        cy.location('pathname').then((path) => {
-          modification.path = path
-        })
+        cy.location('pathname')
+          .should('match', /projects\/\w{24}\/modifications\/\w{24}$/)
+          .then((path) => {
+            modification.path = path
+          })
       })
     })
 

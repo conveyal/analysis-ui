@@ -112,12 +112,13 @@ export default class Region extends Model {
         } else {
           cy.wrap(pb.first()).click()
         }
-        cy.navComplete()
 
         // Store the project id
-        cy.location('pathname').then((path) => {
-          project.path = path
-        })
+        cy.location('pathname')
+          .should('match', /regions\/\w{24}\/projects\/\w{24}\/modifications$/)
+          .then((path) => {
+            project.path = path
+          })
       })
     })
 

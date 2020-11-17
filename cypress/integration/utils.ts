@@ -68,12 +68,12 @@ export function findOrCreateRegion(name: string, bounds: CL.Bounds): Region {
         cy.createRegion(region.name, bounds)
       } else {
         cy.wrap(pb.first()).click()
-        cy.location('pathname').should('match', /regions\/\w{24}$/)
-        cy.navComplete()
       }
-      cy.location('pathname').then((path) => {
-        region.path = path
-      })
+      cy.location('pathname')
+        .should('match', /regions\/\w{24}$/)
+        .then((path) => {
+          region.path = path
+        })
     })
   })
   return region
