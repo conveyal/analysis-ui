@@ -1,7 +1,22 @@
+import {getDefaultSetup, scratchRegion, scratchResults} from './utils'
+
 const analysisName =
   Cypress.env('dataPrefix') + Cypress.env('region') + '_regional'
 
 describe('Regional', () => {
+  const {region} = getDefaultSetup()
+  const project = region.findOrCreateProject('Regional Analysis Test Project')
+
+  // TODO: finish this section
+  const regionalAnalysis = region.findOrCreateRegionalAnalysis({
+    project
+    // scenario,
+    // analysisSettings,
+    // opportunityDatasets,
+    // percentiles,
+    // cutoffs
+  })
+
   before(() => {
     cy.setup('regionalAnalysis')
   })
