@@ -157,7 +157,24 @@ export default class Region extends Model {
     return od
   }
 
+  // TODO finish this
+  findOrCreateRegionalAnalysis({
+    project,
+    scenario,
+    settings,
+    opportunityDatasets,
+    cutoffs,
+    percentiles
+  }) {
+    before('findOrCreateRegionalAnalysis', () => {
+      this.setupAnalysis({project, scenario, settings})
+
+      cy.fetchResults()
+    })
+  }
+
   navTo() {
+    cy.navComplete()
     cy.location('pathname', {log: false}).then((path) => {
       if (!path.startsWith(this.path)) {
         cy.visit(this.path)
@@ -167,6 +184,7 @@ export default class Region extends Model {
   }
 
   navToAnalysis() {
+    cy.navComplete()
     cy.location('pathname', {log: false}).then((path) => {
       if (!path.startsWith(this.path + '/analysis')) {
         cy.visit(this.path + '/analysis')

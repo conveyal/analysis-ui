@@ -19,6 +19,7 @@ export default class Bundle extends Model {
   }
 
   navTo() {
+    cy.navComplete()
     cy.location('pathname').then((path) => {
       if (path !== this.path) {
         cy.visit(this.path)

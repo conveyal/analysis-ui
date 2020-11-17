@@ -9,6 +9,7 @@ export default class OpportunityData extends Model {
   }
 
   navTo() {
+    cy.navComplete()
     cy.location('href').then((href) => {
       if (href !== this.path) {
         cy.visit(this.path)
