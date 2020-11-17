@@ -58,7 +58,7 @@ describe('Add Trip Pattern', () => {
       .should('not.exist')
     cy.get('@dialog')
       .findByLabelText(/Region/)
-      .select(Cypress.env('dataPrefix') + 'scratch')
+      .select(region.name)
     cy.get('@dialog')
       .findByLabelText(/Project/)
       .select(project.name)

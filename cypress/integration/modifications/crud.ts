@@ -349,21 +349,28 @@ function testModifyStreets() {
   cy.findByLabelText(/Enable walking/i).as('walkAccess')
   cy.findByLabelText(/Enable biking/i).as('bikeAccess')
   cy.findByLabelText(/Enable driving/i).as('carAccess')
+
   // toggling access changes options
   // WALK
   cy.findByLabelText(/Walk time factor/i)
   cy.get('@walkAccess').uncheck(force)
   cy.findByLabelText(/Walk time factor/i).should('not.exist')
+  cy.get('@walkAccess').check(force)
+
   // BIKE
   cy.findByLabelText(/Bike time factor/i)
   cy.findByLabelText(/Bike level of Traffic Stress/i)
   cy.get('@bikeAccess').uncheck(force)
   cy.findByLabelText(/Bike time factor/i).should('not.exist')
   cy.findByLabelText(/Bike level of Traffic Stress/i).should('not.exist')
+  cy.get('@bikeAccess').check(force)
+
   // DRIVE
   cy.findByLabelText(/Car speed/i)
   cy.get('@carAccess').uncheck(force)
   cy.findByLabelText(/Car speed/i).should('not.exist')
+  cy.get('@carAccess').check(force)
+
   // map interaction
   cy.findByTitle(/Draw a polygon/i)
 }
