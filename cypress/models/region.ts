@@ -25,7 +25,14 @@ export default class Region extends Model {
   defaultBundle: Bundle
   defaultOpportunityDataset: OpportunityData
 
-  delete() {}
+  delete() {
+    this.navTo()
+    cy.navTo('region settings')
+    // Delete region
+    cy.findByText(/Delete this region/).click()
+    cy.findByText(/Confirm: Delete this region/).click()
+    return cy.findByRole('dialog').should('not.exist')
+  }
 
   /**
    * Must be on the analysis page.
@@ -58,7 +65,11 @@ export default class Region extends Model {
       )
   }
 
-  findOrCreateBundle(name: string, gtfsFilePath: string, osmFilePath: string) {
+  findOrCreateBundle(
+    name: string,
+    gtfsFilePath: string,
+    osmFilePath: string
+  ): Bundle {
     const bundle = new Bundle(name)
 
     // Store as default if there is none.
@@ -71,12 +82,14 @@ export default class Region extends Model {
       cy.navTo('network bundles')
       cy.findByLabelText(/or select an existing one/)
         .click({force: true})
-        .type(name + '{enter}')
+        .type(bundle.name + '{enter}')
       cy.navComplete()
       cy.location('pathname').then((path) => {
         if (!path.match(/bundles\/\w{24}$/)) {
+          // Does not exist, create the bundle
           cy.createBundle(bundle.name, gtfsFilePath, osmFilePath)
         }
+        bundle.path = path
       })
     })
 
@@ -116,7 +129,10 @@ export default class Region extends Model {
     return project
   }
 
-  findOrCreateOpportunityDataset(name: string, filePath: string) {
+  findOrCreateOpportunityDataset(
+    name: string,
+    filePath: string
+  ): OpportunityData {
     const od = new OpportunityData(name)
 
     if (!this.defaultOpportunityDataset) this.defaultOpportunityDataset = od
@@ -128,11 +144,16 @@ export default class Region extends Model {
       cy.navTo('opportunity datasets')
       cy.findByText(/Select\.\.\./)
         .click()
-        .type(`${name} {enter}`)
+        .type(`${od.name} {enter}`)
       cy.navComplete()
-      cy.location('href').then((path) => {
-        if (!path.match(/.*DatasetId=\w{24}$/)) {
+      cy.location('href').then((href) => {
+        if (!href.match(/.*DatasetId=\w{24}$/)) {
           cy.createOpportunityDataset(od.name, filePath)
+          cy.location('href').then((href) => {
+            od.path = href
+          })
+        } else {
+          od.path = href
         }
       })
     })
@@ -159,7 +180,7 @@ export default class Region extends Model {
   }
 
   /**
-   * Must be on the analysis page. By default, compares the same project from
+   * By default, compares the same project from
    * the default scenario to the baseline scenario.
    */
   setupAnalysis(

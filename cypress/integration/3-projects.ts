@@ -1,20 +1,21 @@
+import {getDefaultSetup} from './utils'
+
 describe('Projects', function () {
-  before('prepare the region and bundle', () => {
-    cy.setup('bundle')
-  })
+  const {bundle, region} = getDefaultSetup()
 
   it('can be created and deleted', () => {
-    const projectName = Cypress.env('dataPrefix') + ' ' + Date.now()
-    const bundleName = Cypress.env('dataPrefix') + 'scratch bundle'
+    region.navTo()
     cy.navTo('projects')
+
     cy.findByText(/Create new Project/i).click()
     cy.navComplete()
 
+    const projectName = Cypress.env('dataPrefix') + 'Test Project'
     cy.findByLabelText(/Project name/).type(projectName)
     // select the scratch bundle
     cy.findByLabelText(/Associated network bundle/i)
       .click({force: true})
-      .type(`{enter}${bundleName}{enter}`)
+      .type(`{enter}${bundle.name}{enter}`)
     cy.findByText('Create').click()
     cy.navComplete()
 
@@ -26,14 +27,14 @@ describe('Projects', function () {
 
     cy.findByLabelText(/Project name/)
       .invoke('val')
-      .then((val) => expect(val).to.eq(projectName))
+      .should('equal', projectName)
     // check that the bundle is associated and can't now be deleted
     cy.findByRole('link', {name: /view bundle info/i}).click()
     cy.navComplete()
     cy.contains(/Create a new network bundle/)
     cy.findByLabelText(/Network bundle name/i)
       .invoke('val')
-      .then((val) => expect(val).to.eq(bundleName))
+      .should('equal', bundle.name)
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     cy.contains(/Currently used by \d+ project/i)
     // should be selectable in analysis

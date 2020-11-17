@@ -83,10 +83,7 @@ declare namespace Cypress {
      * @param name
      * @param filePath
      */
-    createOpportunityDataset(
-      name: string,
-      filePath: string
-    ): Cypress.Chainable<string>
+    createOpportunityDataset(name: string, filePath: string): Chainable<string>
 
     /**
      * Delete a modification by type and name.

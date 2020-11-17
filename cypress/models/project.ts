@@ -27,7 +27,14 @@ export default class Project extends Model {
     this.bundle = bundle
   }
 
-  delete() {}
+  delete() {
+    this.navTo()
+    cy.findByLabelText('Edit project settings').click()
+    cy.navComplete()
+    cy.findByText(/Delete project/i).click()
+    cy.findByRole('button', {name: /Confirm: Delete project/i}).click()
+    cy.navComplete()
+  }
 
   deleteModification(modificationName: string) {
     this.navTo()

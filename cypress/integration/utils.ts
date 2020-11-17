@@ -34,7 +34,7 @@ type DefaultSetup = {
  * Use the default region
  */
 export function getDefaultSetup(): DefaultSetup {
-  const region = findOrCreateRegion(scratchRegion.name, scratchRegion)
+  const region = findOrCreateRegion(scratchRegion.name, scratchRegion.bounds)
   const bundle = region.findOrCreateBundle(
     scratchRegion.feedAgencyName,
     scratchRegion.GTFSfile,

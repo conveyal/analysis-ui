@@ -9,8 +9,7 @@ Cypress.Commands.add('createBundle', function (
   })
 
   cy.navTo('network bundles')
-  cy.findByText(/Create .* bundle/).click()
-  cy.location('pathname').should('match', /\/bundles\/create$/)
+  cy.findByText(/Create a new network bundle/).click()
   cy.findByLabelText(/Network bundle name/i).type(name, {delay: 0})
   cy.findByText(/Upload new OpenStreetMap/i).click()
   cy.findByLabelText(/Select PBF file/i).attachFile({

@@ -1,3 +1,5 @@
+import {findOrCreateRegion, scratchRegion} from './utils'
+
 function generateName(type, name) {
   return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
 }
@@ -6,22 +8,23 @@ function generateName(type, name) {
 const timeout = 240000
 
 describe('Opportunity Datasets', function () {
-  before(() => {
-    cy.setup('region')
+  const region = findOrCreateRegion(scratchRegion.name, scratchRegion.bounds)
+
+  beforeEach(() => {
+    region.navTo()
+    cy.navTo('opportunity datasets')
   })
 
-  let scratchOpportunities: Record<string, any> = {}
-  beforeEach(() => {
-    cy.fixture('regions/scratch.json').then((data) => {
-      scratchOpportunities = data.opportunities
-    })
-    cy.navTo('opportunity datasets')
-    cy.get('div.leaflet-container').as('map')
-  })
+  const importedWithGrid = region.findOrCreateOpportunityDataset(
+    'Grid Import',
+    scratchRegion.opportunities.grid.file
+  )
+
+  after(() => importedWithGrid.delete())
 
   describe('can be imported', () => {
     it('from CSV', () => {
-      const opportunity = scratchOpportunities.csv
+      const opportunity = scratchRegion.opportunities.csv
       const oppName = generateName('opportunities', opportunity.name)
       const expectedFieldCount = 1 + opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
@@ -53,15 +56,11 @@ describe('Opportunity Datasets', function () {
           force: true
         }
       )
-      // look at the map
-      //cy.waitForMapToLoad()
-      //cy.get('@map').matchImageSnapshot('csv-' + opportunity.name)
-      //
       cy.contains(/Delete entire dataset/i).click()
     })
 
     it('from shapefile', () => {
-      const opportunity = scratchOpportunities.shapefile
+      const opportunity = scratchRegion.opportunities.shapefile
       const oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
       const expectedFieldCount = opportunity.numericFields.length
       cy.findByText(/Upload a new dataset/i).click()
@@ -97,34 +96,7 @@ describe('Opportunity Datasets', function () {
     })
 
     it('from .grid', () => {
-      const opportunity = scratchOpportunities.grid
-      const oppName = Cypress.env('dataPrefix') + opportunity.name + '_temp'
-      cy.findByText(/Upload a new dataset/i).click()
-      cy.location('pathname').should('match', /\/opportunities\/upload$/)
-      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-      cy.findByLabelText(/Select opportunity dataset/).attachFile({
-        filePath: opportunity.file,
-        encoding: 'base64'
-      })
-      cy.findByRole('button', {name: /Upload/}).click()
-      cy.navComplete()
-
-      cy.location('pathname').should('match', /opportunities$/)
-      // find the message showing this upload is complete
-      cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
-        .parent()
-        .parent()
-        .as('notice')
-      // check number of fields uploaded
-      cy.get('@notice').contains(/Finished uploading 1 feature/i)
-      // close the message
-      cy.get('@notice').findByRole('button', {name: /Close/}).click()
-      // select in the dropdown
-      cy.findByLabelText(/or select an existing one/).type(
-        `${oppName} {enter}`,
-        {force: true}
-      )
-      cy.contains(/Delete entire dataset/i).click()
+      importedWithGrid.navTo()
     })
 
     // doesn't work in offline mode
@@ -132,15 +104,8 @@ describe('Opportunity Datasets', function () {
   })
 
   describe('can be downloaded', () => {
-    before(() => {
-      cy.setup('opportunities')
-    })
     it('as .grid', () => {
-      const opportunity = scratchOpportunities.grid
-      // TODO should get the data via click, not hardcoded API url
-      cy.findByLabelText(/or select an existing one/).type(`default{enter}`, {
-        force: true
-      })
+      importedWithGrid.navTo()
       cy.contains(/Download as \.grid/)
       cy.location('href')
         .should('match', /opportunityDatasetId=\w{24}$/)
@@ -150,21 +115,17 @@ describe('Opportunity Datasets', function () {
             `http://localhost:7070/api/opportunities/${gridId}/grid`
           ).then((response) => {
             cy.request(response.body.url).then((response) => {
-              cy.readFile('cypress/fixtures/' + opportunity.file, 'utf8').then(
-                (file) => {
-                  expect(response.body).to.equal(file)
-                }
-              )
+              cy.readFile(
+                'cypress/fixtures/' + scratchRegion.opportunities.grid.file,
+                'utf8'
+              ).then((file) => {
+                expect(response.body).to.equal(file)
+              })
             })
           })
         })
     })
 
     it('as TIFF') // produces an error
-  })
-
-  after(() => {
-    // TODO check that everything imported by these tests has been deleted
-    // can look for the '_temp' suffix
   })
 })

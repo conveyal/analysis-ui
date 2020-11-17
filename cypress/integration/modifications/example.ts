@@ -9,10 +9,7 @@ import {findOrCreateRegion, scratchRegion} from '../utils'
  */
 describe('Example Modification Test', () => {
   // Create a new region
-  const newRegion = findOrCreateRegion('Example', scratchRegion)
-
-  // Or use the default region. Which comes with a default bundle and opportunity data.
-  // const {region, bundle, opportunityData} = getDefaultSetup()
+  const newRegion = findOrCreateRegion('Example', scratchRegion.bounds)
 
   // Create a new bundle
   const newBundle = newRegion.findOrCreateBundle(
@@ -27,13 +24,16 @@ describe('Example Modification Test', () => {
     'regions/nky/people.grid'
   )
 
+  // Or use the default region. Which comes with the above default bundle and opportunity data.
+  // const {region, bundle, opportunityData} = getDefaultSetup()
+
   // Creates a new project for this test group. Uses the first bundle if none is provided.
   const project = newRegion.findOrCreateProject(
     'Example Modification Test',
     newBundle
   )
 
-  // Create scenarios to be used
+  // Create scenarios to be used.
   project.findOrCreateScenarios(['Example Scenario 1', 'Example Scenario 2'])
 
   // Creates a modification if it does not exist.

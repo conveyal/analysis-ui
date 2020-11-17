@@ -70,7 +70,7 @@ function deleteThisRegion() {
  * Useful for local development and running of tests.
  */
 function deleteOldScratchRegions() {
-  cy.get('[class*="Skeleton"]').should('not.exist') // regions loaded
+  cy.get('#LoadingSkeleton').should('not.exist') // regions loaded
   return cy
     .get('body')
     .then(($body) =>
@@ -197,8 +197,6 @@ describe('Regions', () => {
     // should go back to home page
     cy.location('pathname').should('eq', '/')
     cy.contains('Set up a new region')
-    /** cy.findByText(newName).should('not.exist', {
-      log: 'Button for this region should no longer exist'
-    }) */
+    cy.findByText(newName).should('not.exist')
   })
 })
