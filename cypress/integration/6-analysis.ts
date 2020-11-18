@@ -2,11 +2,17 @@ import {getDefaultRegion, scratchRegion, scratchResults} from './utils'
 
 /* eslint-disable cypress/no-unnecessary-waiting */
 
+const getFromTime = () => cy.findByLabelText(/From time/i)
+const getToTime = () => cy.findAllByLabelText(/To time/i)
+const getOpportunityCount = () =>
+  cy.findByLabelText(/Opportunities within isochrone/).itsNumericText()
+
 describe('Analysis', () => {
   const region = getDefaultRegion()
 
   beforeEach(() => {
-    region.setupAnalysis()
+    cy.visitHome()
+    region.setupAnalysis({scenario: 'baseline'})
   })
 
   it('has all form elements', function () {
@@ -28,8 +34,8 @@ describe('Analysis', () => {
     cy.findByLabelText(/Walk speed/i)
     cy.findByLabelText(/Max walk time/i)
     cy.getPrimaryAnalysisSettings().findByLabelText(/Date/i)
-    cy.findByLabelText(/From time/i)
-    cy.findByLabelText(/To time/i)
+    getFromTime()
+    getToTime()
     cy.getPrimaryAnalysisSettings().findByLabelText(/Simulated Schedules/i)
     cy.getPrimaryAnalysisSettings().findByLabelText(/Maximum transfers/i)
     cy.getPrimaryAnalysisSettings().findByLabelText(/Decay function/i)
@@ -41,22 +47,15 @@ describe('Analysis', () => {
     cy.findByText(/Fetch results/i).should('be.enabled')
   })
 
+  // tests basic single point analysis at specified locations
   it('runs, giving reasonable results', function () {
-    // tests basic single point analysis at specified locations
-    cy.fetchResults() // initialize request
-    cy.selectDefaultOpportunityDataset()
-    // set new parameters
-    cy.setTimeCutoff(75)
+    region.defaultOpportunityDataset.select()
     // move marker and align map for snapshot
-    const locations = scratchRegion.locations
-    for (const key in locations) {
-      const location: L.LatLngTuple = locations[key]
+    for (const key in scratchRegion.locations) {
+      const location: L.LatLngTuple = scratchRegion.locations[key]
       cy.setOrigin(location)
-      cy.centerMapOn(location)
       cy.fetchResults()
-      cy.findByLabelText('Opportunities within isochrone')
-        .itsNumericText()
-        .isWithin(scratchResults.locations[key].default, 10)
+      getOpportunityCount().isWithin(scratchResults.locations[key].default, 10)
     }
   })
 
@@ -76,12 +75,11 @@ describe('Analysis', () => {
     cy.getPrimaryAnalysisSettings()
       .findAllByRole('button', {name: /bike egress/i})
       .should('be.disabled')
-    cy.selectDefaultOpportunityDataset()
+
+    region.defaultOpportunityDataset.select()
     cy.fetchResults()
 
-    cy.findByLabelText('Opportunities within isochrone')
-      .itsNumericText()
-      .isWithin(results.bikeOnly)
+    getOpportunityCount().isWithin(results.bikeOnly)
 
     cy.get('svg#results-chart')
       .scrollIntoView()
@@ -91,45 +89,40 @@ describe('Analysis', () => {
   it('uses custom analysis bounds', function () {
     const location = scratchRegion.locations.center as L.LatLngTuple
     const results = scratchResults.locations.center
-    cy.setOrigin(location)
-    cy.centerMapOn(location)
+
     cy.editPrimaryAnalysisJSON('bounds', scratchRegion.customRegionSubset)
+    cy.setOrigin(location)
     cy.fetchResults()
-    cy.selectDefaultOpportunityDataset()
-    cy.findByLabelText('Opportunities within isochrone')
-      .itsNumericText()
-      .isWithin(results.customBounds)
+
+    region.defaultOpportunityDataset.select()
+    getOpportunityCount().isWithin(results.customBounds)
   })
 
   it('gives different results at different times', function () {
     const location = scratchRegion.locations.center as L.LatLngTuple
     const results = scratchResults.locations.center
-    cy.setOrigin(location)
-    cy.centerMapOn(location)
+
     // set time window in morning rush -- should have high access
-    cy.findByLabelText(/From time/i)
-      .as('from')
-      .clear()
-      .type('06:00')
-    cy.findByLabelText(/To time/i)
-      .as('to')
-      .clear()
-      .type('08:00')
+    getFromTime().clear().type('06:00')
+    getToTime().clear().type('08:00')
+
+    cy.setOrigin(location)
+    region.defaultOpportunityDataset.select()
     cy.fetchResults()
-    cy.selectDefaultOpportunityDataset()
-    cy.findByLabelText('Opportunities within isochrone')
-      .as('results')
-      .itsNumericText()
-      .isWithin(results['6:00-8:00'], 10)
+
+    getOpportunityCount().isWithin(results['6:00-8:00'], 10)
+
     // set time window in late evening - lower access
-    cy.get('@from').clear().type('20:00')
-    cy.get('@to').clear().type('22:00')
+    getFromTime().clear().type('20:00')
+    getToTime().clear().type('22:00')
     cy.fetchResults()
-    cy.get('@results').itsNumericText().isWithin(results['20:00-22:00'], 10)
+    getOpportunityCount().isWithin(results['20:00-22:00'], 10)
+
     // narrow window to one minute - no variability
-    cy.get('@from').clear().type('12:00')
-    cy.get('@to').clear().type('12:01')
+    getFromTime().clear().type('12:00')
+    getToTime().clear().type('12:01')
     cy.fetchResults()
+
     cy.get('svg#results-chart')
       .scrollIntoView()
       .matchImageSnapshot('chart-no-variation')
@@ -138,8 +131,10 @@ describe('Analysis', () => {
   it('charts accessibility', function () {
     const location = scratchRegion.locations.center as L.LatLngTuple
     cy.setOrigin(location)
+
+    region.defaultOpportunityDataset.select()
     cy.fetchResults()
-    cy.selectDefaultOpportunityDataset()
+
     cy.get('svg#results-chart')
       .as('chart')
       .scrollIntoView()
@@ -193,7 +188,7 @@ describe('Analysis', () => {
 
     cy.fetchResults()
     cy.findByText(/Select an opportunity dataset to see accessibility/)
-    cy.selectDefaultOpportunityDataset()
+    region.defaultOpportunityDataset.select()
 
     // Logistic function should cause "out of sync" after dataset selected
     cy.findByText(/Results are out of sync with settings/)

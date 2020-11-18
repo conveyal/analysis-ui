@@ -43,13 +43,7 @@ export default class Region extends Model {
     opportunityDataset?: OpportunityData
   ): Cypress.Chainable<[number, number]> {
     cy.setOrigin(coords)
-
-    opportunityDataset ??= this.defaultOpportunityDataset
-    cy.findByLabelText(/^Opportunity Dataset$/) // eslint-disable-line cypress/no-unnecessary-waiting
-      .click({force: true})
-      .type(`${opportunityDataset.name}{enter}`, {delay: 0})
-      .wait(100)
-    cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+    ;(opportunityDataset ?? this.defaultOpportunityDataset).select()
 
     cy.fetchResults()
 
@@ -171,12 +165,12 @@ export default class Region extends Model {
   getRegionalAnalysis(name: string, options?: RegionalAnalysisOptions) {
     const ra = new RegionalAnalysis(name)
 
-    before('findOrCreateRegionalAnalysis', () => {
+    before('getRegionalAnalysis', () => {
       this.navTo()
       cy.navTo('regional analyses')
       cy.findByText(/View a regional analysis/)
         .click()
-        .type(`${name}{enter}`)
+        .type(`${ra.name}{enter}`)
 
       cy.location('href').then((href) => {
         if (!href.match(/analysisId=\w{24}/)) {
@@ -185,7 +179,7 @@ export default class Region extends Model {
           cy.fetchResults()
 
           cy.createRegionalAnalysis(
-            name,
+            ra.name,
             options?.opportunityDatasets || [
               this.defaultOpportunityDataset.name
             ],

@@ -2,8 +2,9 @@ const unlog = {log: false}
 
 // Load the home page. Wait for the "Skeleton" to disappear
 Cypress.Commands.add('visitHome', () => {
-  cy.visit('/')
-  cy.get('#LoadingSkeleton').should('not.exist')
+  cy.log('visitHome')
+  cy.visit('/', {log: false})
+  cy.get('#LoadingSkeleton', {log: false}).should('not.exist')
 })
 
 // No spinner
