@@ -24,7 +24,7 @@ export const ModificationTypes: Cypress.ModificationType[] = [
 ]
 
 // Store the default region
-let defaultRegion
+let defaultRegion: null | Region = null
 
 /**
  * Use the default region
@@ -34,20 +34,20 @@ export function getDefaultRegion(): Region {
   defaultRegion = getRegion(scratchRegion.name, scratchRegion.bounds)
 
   // Create a default bundle
-  defaultRegion.findOrCreateBundle(
+  defaultRegion.getBundle(
     scratchRegion.feedAgencyName,
     scratchRegion.GTFSfile,
     scratchRegion.PBFfile
   )
 
   // Create a default opportunity dataset
-  defaultRegion.findOrCreateOpportunityDataset(
+  defaultRegion.getOpportunityDataset(
     scratchRegion.opportunities.grid.name,
     scratchRegion.opportunities.grid.file
   )
 
   // Create a default project
-  defaultRegion.findOrCreateProject('Default Test Project')
+  defaultRegion.getProject('Default Test Project')
 
   return defaultRegion
 }
@@ -57,7 +57,7 @@ export function getDefaultRegion(): Region {
  */
 export function getRegion(name: string, bounds: CL.Bounds): Region {
   const region = new Region(name)
-  before('findOrCreateRegion', () => {
+  before(`getRegion(${region.name})`, () => {
     cy.visitHome()
     cy.get('button').then((buttons) => {
       const pb = buttons.filter((_, el) => el.textContent === region.name)
