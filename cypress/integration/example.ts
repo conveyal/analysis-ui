@@ -1,4 +1,4 @@
-import {getRegion, scratchRegion} from '../utils'
+import {getRegion, scratchRegion} from './utils'
 
 /**
  * EXAMPLE TEST
