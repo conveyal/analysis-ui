@@ -53,7 +53,7 @@ const RegionalResults = dynamic(() => import('./regional-results'), {
 const nameIsValid = (s) => s && s.length > 0
 
 // Get full qualifier for opportunity datasets
-const getFullODName = (od) => `${od.sourceName}: ${od.name}`
+const getFullODName = (od) => `${od?.sourceName}: ${od?.name}`
 
 export default function Regional(p) {
   const deleteDisclosure = useDisclosure()

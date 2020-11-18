@@ -53,7 +53,7 @@ const getName = fpGet('name')
 const getId = fpGet('_id')
 
 // Get full qualifier for opportunity datasets
-const getFullODName = (od) => `${od.sourceName}: ${od.name}`
+const getFullODName = (od) => `${od?.sourceName}: ${od?.name}`
 
 // Cannot pass `parseInt` directly because
 const parseCutoff = (c) => parseInt(c)
