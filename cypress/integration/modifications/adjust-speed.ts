@@ -79,8 +79,8 @@ describe('Adjust Speed', () => {
         cy.findByRole('button', {name: /Select segments/}).click()
         cy.get('.leaflet-draw') // Wait for this to appear before clicking the map
 
-        segmentPolygonCoords.forEach((ll) => cy.clickMapAtCoord(ll))
-        cy.clickMapAtCoord(segmentPolygonCoords[0]) // Closes the polygon
+        segmentPolygonCoords.forEach((ll) => cy.clickMapAtCoord(ll, 13))
+        cy.clickMapAtCoord(segmentPolygonCoords[0], 13) // Closes the polygon
 
         // Add to, Remove from, and clear buttons should now exist
         cy.findByRole('button', {name: /Add to/})

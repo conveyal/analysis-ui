@@ -50,7 +50,7 @@ declare namespace Cypress {
     /**
      * Pan to the coordinate and click that point on the map.
      */
-    clickMapAtCoord(coord: L.LatLngExpression): Chainable<void>
+    clickMapAtCoord(coord: L.LatLngExpression, zoom?: number): Chainable<void>
 
     /**
      * Create a modification.
