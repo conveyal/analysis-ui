@@ -1,12 +1,13 @@
-import {getDefaultSetup} from './utils'
+import {getDefaultRegion} from './utils'
 
 function findScenarioByName(name: string) {
   return cy.get('#scenarios').contains(name).parent().parent().parent()
 }
 
 describe('Scenarios', function () {
-  const {region} = getDefaultSetup()
-  const project = region.findOrCreateProject('Scenario Test')
+  const region = getDefaultRegion()
+  const project = region.getProject('Scenario Test')
+
   before(() => {
     project.navTo()
     cy.findByText(/Scenarios/).click()

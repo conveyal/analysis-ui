@@ -3,30 +3,6 @@ import region from '../fixtures/regions/scratch.json'
 import './commands'
 import './map'
 
-/**
- * Remove all old modifications that contain the temporary prefix
- */
-function clearAllModifications() {
-  return cy
-    .get('body')
-    .then(($body) => {
-      return $body.find('button[aria-label^="Edit modification"]')
-    })
-    .then((buttons) => {
-      if (buttons.length > 0) {
-        cy.wrap(buttons[0]).click()
-        cy.navComplete()
-        cy.deleteThisModification()
-        return clearAllModifications()
-      }
-    })
-}
-
-Cypress.Commands.add('clearAllModifications', () => {
-  cy.goToEntity('project')
-  return clearAllModifications()
-})
-
 Cypress.Commands.add('createModification', function (
   type: Cypress.ModificationType,
   name: string

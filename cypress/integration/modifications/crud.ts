@@ -5,18 +5,16 @@
  * Tests that verify analysis results should go in the
  * Advanced Modifications group.
  */
-import {getDefaultSetup, ModificationTypes, scratchRegion} from '../utils'
+import {getDefaultRegion, ModificationTypes, scratchRegion} from '../utils'
 
 const scenarioName = Cypress.env('dataPrefix') + 'SCENARIO'
 const scenarioNameRegEx = new RegExp(scenarioName, 'g')
 
 describe('CRUD Modification Tests', () => {
-  const {region} = getDefaultSetup()
-  const project = region.findOrCreateProject('Modification Form Test')
-  project.findOrCreateScenarios([scenarioName])
-  const mods = ModificationTypes.map((type) =>
-    project.findOrCreateModification({type})
-  )
+  const region = getDefaultRegion()
+  const project = region.getProject('Modification Form Test')
+  project.getScenarios([scenarioName])
+  const mods = ModificationTypes.map((type) => project.getModification({type}))
 
   // Test deletion. During development comment out to speed up.
   after(() => mods.forEach((mod) => mod.delete()))

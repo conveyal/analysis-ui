@@ -1,4 +1,4 @@
-import {getDefaultSetup} from '../utils'
+import {getDefaultRegion} from '../utils'
 
 const coordsOverAntiMeridian: L.LatLngTuple[] = [
   [5, 160],
@@ -29,11 +29,11 @@ const addTripSegment = {
  * Reported here: https://github.com/conveyal/analysis-ui/issues/1315
  */
 describe('Modification drawing over anti-meridian', () => {
-  const {region} = getDefaultSetup()
-  const project = region.findOrCreateProject('anti-meridian')
+  const region = getDefaultRegion()
+  const project = region.getProject('anti-meridian')
 
   describe('Add Trip Pattern', () => {
-    const mod = project.findOrCreateModification({
+    const mod = project.getModification({
       type: 'Add Trip Pattern',
       data: {
         segments: []
@@ -64,7 +64,7 @@ describe('Modification drawing over anti-meridian', () => {
   })
 
   describe('Reroute', () => {
-    const mod = project.findOrCreateModification({
+    const mod = project.getModification({
       data: {
         segments: []
       },
@@ -97,7 +97,7 @@ describe('Modification drawing over anti-meridian', () => {
   })
 
   describe('Add Streets', () => {
-    const mod = project.findOrCreateModification({
+    const mod = project.getModification({
       type: 'Add Streets',
       data: {
         lineStrings: []
@@ -127,7 +127,7 @@ describe('Modification drawing over anti-meridian', () => {
   })
 
   describe('Modify Streets', () => {
-    const mod = project.findOrCreateModification({
+    const mod = project.getModification({
       type: 'Modify Streets',
       data: {
         polygons: []

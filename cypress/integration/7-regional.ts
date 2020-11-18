@@ -1,30 +1,17 @@
-import {getDefaultSetup, scratchRegion, scratchResults} from './utils'
-
-const analysisName =
-  Cypress.env('dataPrefix') + Cypress.env('region') + '_regional'
+import {getDefaultRegion, scratchRegion} from './utils'
 
 describe('Regional', () => {
-  const {region} = getDefaultSetup()
-  const project = region.findOrCreateProject('Regional Analysis Test Project')
-
-  // TODO: finish this section
-  const regionalAnalysis = region.findOrCreateRegionalAnalysis({
-    project
-    // scenario,
-    // analysisSettings,
-    // opportunityDatasets,
-    // percentiles,
-    // cutoffs
+  const region = getDefaultRegion()
+  const regionalAnalysis = region.getRegionalAnalysis('Basic Regional Test', {
+    settings: {
+      bounds: scratchRegion.customRegionSubset
+    }
   })
 
-  before(() => {
-    cy.setup('regionalAnalysis')
-  })
+  // For faster testing results, comment out the below
+  after(() => regionalAnalysis.delete())
 
   beforeEach(() => {
-    cy.goToEntity('regionalAnalysis')
-    cy.fixture('regions/scratch').as('region')
-    cy.fixture('regions/scratch-results').as('results')
     cy.findByText(/Access to/i)
       .parent()
       .as('legend')
@@ -33,7 +20,7 @@ describe('Regional', () => {
   it('verifies regional analysis results', function () {
     cy.get('@legend').should('not.contain', 'Loading grids')
     // compare to self with different time cutoff and check the legend again
-    cy.findByLabelText(/Compare to/).type(`${analysisName}{enter}`, {
+    cy.findByLabelText(/Compare to/).type(`${regionalAnalysis.name}{enter}`, {
       force: true
     })
     // TODO make these select elements easier to identify
@@ -54,25 +41,25 @@ describe('Regional', () => {
     cy.findByLabelText(/Aggregation area name/i).type('cities')
     cy.findByLabelText(/Select aggregation area files/i)
       .attachFile({
-        filePath: this.region.aggregationAreas.files[0],
+        filePath: scratchRegion.aggregationAreas.files[0],
         encoding: 'base64'
       })
       .attachFile({
-        filePath: this.region.aggregationAreas.files[1],
+        filePath: scratchRegion.aggregationAreas.files[1],
         encoding: 'base64'
       })
       .attachFile({
-        filePath: this.region.aggregationAreas.files[2],
+        filePath: scratchRegion.aggregationAreas.files[2],
         encoding: 'base64'
       })
       .attachFile({
-        filePath: this.region.aggregationAreas.files[3],
+        filePath: scratchRegion.aggregationAreas.files[3],
         encoding: 'base64'
       })
     cy.findByLabelText(/Union/).uncheck({force: true})
     cy.findByLabelText(/Attribute name to lookup on the shapefile/i)
       .clear()
-      .type(this.region.aggregationAreas.nameField)
+      .type(scratchRegion.aggregationAreas.nameField)
     cy.get('@upload').scrollIntoView().click()
     cy.contains(/Upload complete/, {timeout: 30000}).should('be.visible')
     // TODO label dissociated from input

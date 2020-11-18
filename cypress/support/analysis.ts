@@ -1,18 +1,7 @@
 import {latLng} from 'leaflet'
 
-import scratchRegion from '../fixtures/regions/scratch.json'
-
 const getPrimary = () => cy.get('div#PrimaryAnalysisSettings')
 const getComparison = () => cy.get('div#ComparisonAnalysisSettings')
-const setProjectScenario = (project: string, scenario: string) => {
-  cy.findByLabelText(/^Project$/)
-    .click({force: true})
-    .type(`${project}{enter}`, {delay: 0})
-
-  cy.findByLabelText(/^Scenario$/)
-    .click({force: true})
-    .type(`${scenario}{enter}`, {delay: 0})
-}
 
 const expandIfClosed = () => {
   // Expand JSON if it is not open
@@ -92,48 +81,6 @@ Cypress.Commands.add(
   }
 )
 
-Cypress.Commands.add('fetchAccessibilityComparison', function (
-  coords: L.LatLngExpression,
-  primary?: Cypress.ProjectScenario,
-  comparison?: Cypress.ProjectScenario
-) {
-  // This is necessary so that selected projects do not carry over
-  // TODO that may be a common use case so we should optimize for that and use navTo
-  cy.goToEntity('analysis')
-
-  getPrimary().within(() => {
-    const project = primary?.project ?? 'scratch'
-    const scenario = primary?.scenario ?? 'default'
-    setProjectScenario(project, scenario)
-    cy.patchAnalysisJSON({
-      date: scratchRegion.date,
-      fromLat: coords[0],
-      fromLon: coords[1]
-    })
-    if (primary?.settings) cy.patchAnalysisJSON(primary.settings)
-  })
-
-  getComparison().within(() => {
-    const project = comparison?.project ?? 'scratch'
-    const scenario = comparison?.scenario ?? 'baseline'
-    setProjectScenario(project, scenario)
-    if (comparison?.settings) cy.patchAnalysisJSON(comparison.settings)
-  })
-
-  // TODO Make this an option?
-  cy.selectDefaultOpportunityDataset()
-  cy.fetchResults()
-
-  return cy
-    .findByLabelText('Opportunities within isochrone')
-    .itsNumericText()
-    .then((o) => {
-      cy.findByLabelText('Opportunities within comparison isochrone')
-        .itsNumericText()
-        .then((c) => [o, c])
-    })
-})
-
 Cypress.Commands.add('setOrigin', (newOrigin: L.LatLngExpression) => {
   const latlng = latLng(newOrigin)
   cy.getPrimaryAnalysisSettings().within(() => {
@@ -168,26 +115,6 @@ Cypress.Commands.add('selectDefaultOpportunityDataset', () => {
   cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
 })
 
-Cypress.Commands.add('setupAnalysis', () => {
-  cy.getLocalFixture().then((region) => {
-    cy.visit(`/regions/${region.regionId}/analysis`)
-    cy.navComplete()
-  })
-
-  // set a standard project and scenario for all tests
-  getPrimary()
-    .findByLabelText(/^Project$/)
-    .click({force: true})
-    .type('scratch{enter}')
-  getPrimary()
-    .findByLabelText(/^Scenario$/)
-    .click({force: true})
-    .type('baseline{enter}')
-  cy.fixture('regions/scratch').then((region) =>
-    getPrimary().findByLabelText(/Date/i).clear().type(region.date)
-  )
-})
-
 Cypress.Commands.add(
   'setProjectScenario',
   (project: string, scenario = 'default') => {
@@ -198,5 +125,66 @@ Cypress.Commands.add(
     cy.findByLabelText(/^Scenario$/)
       .click({force: true})
       .type(`${scenario}{enter}`, {delay: 0})
+  }
+)
+
+Cypress.Commands.add(
+  'createRegionalAnalysis',
+  (
+    name: string,
+    opportunityDatasets: string[],
+    options?: {
+      cutoffs?: number[]
+      percentiles?: number[]
+      timeout?: number
+    }
+  ) => {
+    cy.getPrimaryAnalysisSettings()
+      .findByRole('button', {name: 'Regional analysis'})
+      .click()
+
+    cy.findByLabelText(/Regional analysis name/).type(name, {delay: 0})
+
+    opportunityDatasets.forEach((od) => {
+      cy.findByLabelText(/Opportunity dataset\(s\)/)
+        .click({force: true})
+        .type(`${od}{enter}`)
+    })
+
+    if (options?.cutoffs) {
+      cy.findByLabelText('Cutoff minutes')
+        .clear()
+        .type(options?.cutoffs.join(','))
+    }
+
+    if (options?.percentiles) {
+      cy.findByLabelText('Percentiles')
+        .clear()
+        .type(options?.percentiles.join(','))
+    }
+
+    cy.findByRole('button', {name: /Create/}).click()
+
+    // Navigates to regional analysis page
+    cy.findByRole('heading', {name: /Regional Analyses/i, timeout: 15000})
+
+    // Wait for a display to show origins
+    cy.findByRole('heading', {name})
+      .parent()
+      .parent()
+      .findByText(/\d+ \/ \d+ origins/)
+
+    // Wait for the status box to disappear
+    cy.findByRole('heading', {
+      name,
+      timeout: options?.timeout ?? 600000
+    }).should('not.exist')
+
+    // Navigate to the completed regional analysis
+    cy.findByText(/View a regional analysis/)
+      .click()
+      .type(`${name}{enter}`)
+
+    cy.navComplete()
   }
 )

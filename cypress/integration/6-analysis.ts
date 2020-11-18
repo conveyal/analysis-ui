@@ -1,14 +1,12 @@
-import {getDefaultSetup, scratchRegion, scratchResults} from './utils'
+import {getDefaultRegion, scratchRegion, scratchResults} from './utils'
 
 /* eslint-disable cypress/no-unnecessary-waiting */
 
 describe('Analysis', () => {
-  const {region} = getDefaultSetup()
-  const project = region.findOrCreateProject('Analysis Tests')
+  const region = getDefaultRegion()
 
   beforeEach(() => {
-    region.navToAnalysis()
-    region.setupAnalysis({project})
+    region.setupAnalysis()
   })
 
   it('has all form elements', function () {
@@ -20,8 +18,8 @@ describe('Analysis', () => {
         name: 'Fetch results with the current settings to enable button'
       })
       .should('be.disabled')
-    cy.getPrimaryAnalysisSettings().contains('scratch project')
-    cy.getPrimaryAnalysisSettings().contains('Baseline')
+    cy.getPrimaryAnalysisSettings().contains(region.defaultProject.name)
+    cy.getPrimaryAnalysisSettings().contains('Default')
 
     cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Walk access/i})
     cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Bus/i})

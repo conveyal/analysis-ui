@@ -48,11 +48,6 @@ declare namespace Cypress {
     centerMapOn(coord: L.LatLngExpression, zoom?: number): Chainable<L.Map>
 
     /**
-     * Clear all existing modifications with the data prefix.
-     */
-    clearAllModifications(): Chainable<void>
-
-    /**
      * Pan to the coordinate and click that point on the map.
      */
     clickMapAtCoord(coord: L.LatLngExpression): Chainable<void>
@@ -86,6 +81,20 @@ declare namespace Cypress {
     createOpportunityDataset(name: string, filePath: string): Chainable<string>
 
     /**
+     * Create a new regional analysis.
+     * @example cy.createRegionalAnalysis('New RA', ['default'])
+     */
+    createRegionalAnalysis(
+      name: string,
+      opportunityDatasets: string[],
+      settings?: {
+        cutoffs?: number[]
+        percentiles?: number[]
+        timeout?: number
+      }
+    ): Chainable<string>
+
+    /**
      * Delete a modification by type and name.
      */
     deleteModification(name: string): Chainable<void>
@@ -113,18 +122,6 @@ declare namespace Cypress {
     editModificationJSON(newValues: Record<string, unknown>): Chainable<void>
 
     /**
-     * Get the accessibility at a given coordinates for a project and comparison.
-     * Defaults:
-     * primary: {project: scratch, scenario: default} vs
-     * comparison: {project: scratch, scenario: baseline}
-     */
-    fetchAccessibilityComparison(
-      coords: L.LatLngExpression,
-      primary?: ProjectScenario,
-      comparison?: ProjectScenario
-    ): Chainable<[accessibility: number, comparison: number]>
-
-    /**
      * While in the analysis page, fetch and wait for results.
      * @example cy.fetchResults()
      */
@@ -137,12 +134,6 @@ declare namespace Cypress {
     getLeafletMap(): Chainable<L.Map>
 
     /**
-     * Get the pseudo fixture contents.
-     * @example cy.getLocalFixture().then((fixture) => { ... })
-     */
-    getLocalFixture(): Chainable<Record<string, unknown>>
-
-    /**
      *
      * @param entity
      */
@@ -153,12 +144,6 @@ declare namespace Cypress {
      */
     getPrimaryAnalysisSettings(): Chainable<JQuery<HTMLDivElement>>
     getComparisonAnalysisSettings(): Chainable<JQuery<HTMLDivElement>>
-
-    /**
-     * Go directly to the locally stored entity.
-     * @example cy.goToEntity('project')
-     */
-    goToEntity(entity: Entity): Chainable<void>
 
     /**
      * Check if the values are within a tolerance of each other
@@ -253,29 +238,14 @@ declare namespace Cypress {
     setTimeCutoff(cutoff: number): Chainable<void>
 
     /**
-     * Setup Analysis page
-     */
-    setupAnalysis(): Chainable<void>
-
-    /**
-     * Setup an entity and all of it's dependencies.
-     * @example cy.setup('bundle')
-     */
-    setup(entity: Entity): Chainable<void>
-    _setup(entity: Entity): Chainable<void>
-
-    /**
-     * Store a value in the locally created fixture file.
-     */
-    storeInLocalFixture(
-      key: string,
-      value: any
-    ): Chainable<Record<string, unknown>>
-
-    /**
      * Wait for the map to be ready for interactivity
      * @example cy.waitForMapToLoad()
      */
     waitForMapToLoad(): Chainable<void>
+
+    /**
+     * Go to home page and wait for it to load.
+     */
+    visitHome(): Chainable<void>
   }
 }

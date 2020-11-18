@@ -8,7 +8,6 @@ Cypress.Commands.add('createBundle', function (
     message: 'bundle'
   })
 
-  cy.navTo('network bundles')
   cy.findByText(/Create a new network bundle/).click()
   cy.findByLabelText(/Network bundle name/i).type(name, {delay: 0})
   cy.findByText(/Upload new OpenStreetMap/i).click()
@@ -28,7 +27,6 @@ Cypress.Commands.add('createBundle', function (
   cy.findByText(/Processing/, {timeout: 240000}).should('not.exist')
 
   // go back and grab the id
-  cy.navTo('network bundles')
   cy.findByLabelText(/or select an existing one/)
     .click({force: true})
     .type(name + '{enter}')

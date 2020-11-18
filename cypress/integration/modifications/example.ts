@@ -1,4 +1,4 @@
-import {findOrCreateRegion, scratchRegion} from '../utils'
+import {getRegion, scratchRegion} from '../utils'
 
 /**
  * EXAMPLE TEST
@@ -9,35 +9,32 @@ import {findOrCreateRegion, scratchRegion} from '../utils'
  */
 describe('Example Modification Test', () => {
   // Create a new region
-  const newRegion = findOrCreateRegion('Example', scratchRegion.bounds)
+  const newRegion = getRegion('Example', scratchRegion.bounds)
 
   // Create a new bundle
-  const newBundle = newRegion.findOrCreateBundle(
+  const newBundle = newRegion.getBundle(
     'Example Bundle',
     'regions/nky/TANK-GTFS.zip', // path from fixtures folder
     'regions/nky/streets.osm.pbf'
   )
 
   // Create a new opportunity dataset
-  const opportunityData = newRegion.findOrCreateOpportunityDataset(
+  const opportunityData = newRegion.getOpportunityDataset(
     'Example OD',
     'regions/nky/people.grid'
   )
 
-  // Or use the default region. Which comes with the above default bundle and opportunity data.
-  // const {region, bundle, opportunityData} = getDefaultSetup()
+  // Or use the default region. Which comes with the above default bundle and opportunity data and a default project.
+  // const region = getDefaultRegion()
 
   // Creates a new project for this test group. Uses the first bundle if none is provided.
-  const project = newRegion.findOrCreateProject(
-    'Example Modification Test',
-    newBundle
-  )
+  const project = newRegion.getProject('Example Modification Test', newBundle)
 
   // Create scenarios to be used.
-  project.findOrCreateScenarios(['Example Scenario 1', 'Example Scenario 2'])
+  project.getScenarios(['Example Scenario 1', 'Example Scenario 2'])
 
   // Creates a modification if it does not exist.
-  const persistentMod = project.findOrCreateModification({
+  const persistentMod = project.getModification({
     type: 'Adjust Speed',
     data: {
       // Will be set on each test run. Not just on creation.
@@ -47,7 +44,7 @@ describe('Example Modification Test', () => {
   })
 
   // This modification is will get deleted in the test
-  const modDeletedInTest = project.findOrCreateModification({
+  const modDeletedInTest = project.getModification({
     type: 'Add Streets',
     // Usually names are auto-incremented. In development tests may be
     // skipped and run out of order. Set a name manually to ensure stability.

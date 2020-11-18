@@ -50,7 +50,7 @@ export default class Project extends Model {
     })
   }
 
-  findOrCreateModification({
+  getModification({
     data,
     name,
     onCreate,
@@ -103,8 +103,8 @@ export default class Project extends Model {
   }
 
   // Helper for setting up a scenarios in this project.
-  findOrCreateScenarios(scenarios: string[]) {
-    before('findOrCreateScenarios', () => {
+  getScenarios(scenarios: string[]) {
+    before('getScenarios', () => {
       this.navTo()
       cy.findByRole('tab', {name: 'Scenarios'}).click()
       scenarios.forEach((scenarioName) => {

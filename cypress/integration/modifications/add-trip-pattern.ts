@@ -1,10 +1,10 @@
-import {getDefaultSetup, scratchRegion} from '../utils'
+import {getDefaultRegion, scratchRegion} from '../utils'
 
 describe('Add Trip Pattern', () => {
-  const {region} = getDefaultSetup()
+  const region = getDefaultRegion()
   const timetableName = 'Weekday'
-  const project = region.findOrCreateProject('Add Trip Pattern')
-  const mod = project.findOrCreateModification({
+  const project = region.getProject('Add Trip Pattern')
+  const mod = project.getModification({
     type: 'Add Trip Pattern',
     onCreate: () => {
       // add a route geometry

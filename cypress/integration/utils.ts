@@ -1,6 +1,4 @@
-import Bundle from '../models/bundle'
 import Region from '../models/region'
-import OpportunityData from '../models/opportunity-data'
 import scratchRegion from '../fixtures/regions/scratch.json'
 
 // Re-export the scratch data
@@ -25,43 +23,42 @@ export const ModificationTypes: Cypress.ModificationType[] = [
   'Custom'
 ]
 
-type DefaultSetup = {
-  region: Region
-  bundle: Bundle
-  opportunityData: OpportunityData
-}
-
-// Store the default bundle/region/opportunity data
-let defaultSetup: false | DefaultSetup = false
+// Store the default region
+let defaultRegion
 
 /**
  * Use the default region
  */
-export function getDefaultSetup(): DefaultSetup {
-  if (defaultSetup !== false) return defaultSetup
-  const region = findOrCreateRegion(scratchRegion.name, scratchRegion.bounds)
-  const bundle = region.findOrCreateBundle(
+export function getDefaultRegion(): Region {
+  if (defaultRegion) return defaultRegion
+  defaultRegion = getRegion(scratchRegion.name, scratchRegion.bounds)
+
+  // Create a default bundle
+  defaultRegion.findOrCreateBundle(
     scratchRegion.feedAgencyName,
     scratchRegion.GTFSfile,
     scratchRegion.PBFfile
   )
-  const opportunityData = region.findOrCreateOpportunityDataset(
+
+  // Create a default opportunity dataset
+  defaultRegion.findOrCreateOpportunityDataset(
     scratchRegion.opportunities.grid.name,
     scratchRegion.opportunities.grid.file
   )
-  defaultSetup = {bundle, region, opportunityData}
 
-  return defaultSetup
+  // Create a default project
+  defaultRegion.findOrCreateProject('Default Test Project')
+
+  return defaultRegion
 }
 
 /**
  * Find or create a new region.
  */
-export function findOrCreateRegion(name: string, bounds: CL.Bounds): Region {
+export function getRegion(name: string, bounds: CL.Bounds): Region {
   const region = new Region(name)
   before('findOrCreateRegion', () => {
-    cy.visit('/')
-    cy.get('#LoadingSkeleton').should('not.exist')
+    cy.visitHome()
     cy.get('button').then((buttons) => {
       const pb = buttons.filter((_, el) => el.textContent === region.name)
       if (pb.length === 0) {

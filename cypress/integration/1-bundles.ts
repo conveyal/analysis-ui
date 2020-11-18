@@ -1,4 +1,4 @@
-import {findOrCreateRegion, scratchRegion} from './utils'
+import {getDefaultRegion, scratchRegion} from './utils'
 
 // Bundles may take awhile to upload
 const processingTimeout = 240000
@@ -36,18 +36,15 @@ function deleteThisBundle(bundleName: string) {
 }
 
 describe('Network bundles', () => {
-  const region = findOrCreateRegion(scratchRegion.name, scratchRegion.bounds)
+  const region = getDefaultRegion()
 
-  const singleFeedBundle = region.findOrCreateBundle(
+  const singleFeedBundle = region.getBundle(
     'Temporary Single feed',
     scratchRegion.GTFSfile,
     scratchRegion.PBFfile
   )
 
-  beforeEach(() => {
-    region.navTo()
-    cy.navTo('network bundles')
-  })
+  beforeEach(() => region.navTo('network bundles'))
 
   after(() => singleFeedBundle.delete())
 
@@ -105,7 +102,7 @@ describe('Network bundles', () => {
       'role',
       'alert'
     )
-    cy.navTo('network bundles')
+    region.navTo('network bundles')
     // TODO need semantic selector for dropdown
     cy.findByText('Select...').click().type('ERROR{enter}')
     cy.contains(names.corrupt)

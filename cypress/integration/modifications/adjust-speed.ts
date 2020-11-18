@@ -1,4 +1,4 @@
-import {getDefaultSetup, scratchRegion} from '../utils'
+import {getDefaultRegion, scratchRegion} from '../utils'
 
 describe('Adjust Speed', () => {
   const routeName = '1 Dixie Hwy'
@@ -12,19 +12,14 @@ describe('Adjust Speed', () => {
   const scaleSpeedBy = (v: number) =>
     cy.findByLabelText('Scale speed by').clear().type(`${v}`)
 
-  const {region} = getDefaultSetup()
-  const project = region.findOrCreateProject('Adjust Speed')
+  const region = getDefaultRegion()
+  const project = region.getProject('Adjust Speed')
 
   // Set up the scenarios ahead of time for consistent variant lengths
-  project.findOrCreateScenarios([
-    'All Routes',
-    'Single Route',
-    'Segments',
-    'Patterns'
-  ])
+  project.getScenarios(['All Routes', 'Single Route', 'Segments', 'Patterns'])
 
   describe('all routes selected', () => {
-    const mod = project.findOrCreateModification({
+    const mod = project.getModification({
       data: {
         scale: 10,
         variants: [false, true, false, false, false]
@@ -51,7 +46,7 @@ describe('Adjust Speed', () => {
   })
 
   describe('single route selected', () => {
-    const singleRouteMod = project.findOrCreateModification({
+    const singleRouteMod = project.getModification({
       data: {
         scale: 10,
         variants: [false, false, true, false, false]
@@ -72,7 +67,7 @@ describe('Adjust Speed', () => {
       [lat, lon - offset],
       [lat - offset, lon]
     ]
-    project.findOrCreateModification({
+    project.getModification({
       data: {
         scale: 10,
         variants: [false, false, false, true, false]

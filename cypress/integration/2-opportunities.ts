@@ -1,4 +1,4 @@
-import {findOrCreateRegion, scratchRegion} from './utils'
+import {getDefaultRegion, scratchRegion} from './utils'
 
 function generateName(type, name) {
   return `${Cypress.env('dataPrefix')}${type}_${name}_${Date.now()}`
@@ -8,14 +8,11 @@ function generateName(type, name) {
 const timeout = 240000
 
 describe('Opportunity Datasets', function () {
-  const region = findOrCreateRegion(scratchRegion.name, scratchRegion.bounds)
+  const region = getDefaultRegion()
 
-  beforeEach(() => {
-    region.navTo()
-    cy.navTo('opportunity datasets')
-  })
+  beforeEach(() => region.navTo('opportunity datasets'))
 
-  const importedWithGrid = region.findOrCreateOpportunityDataset(
+  const importedWithGrid = region.getOpportunityDataset(
     'Grid Import',
     scratchRegion.opportunities.grid.file
   )

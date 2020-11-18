@@ -70,7 +70,7 @@ function deleteThisRegion() {
  * Useful for local development and running of tests.
  */
 function deleteOldScratchRegions() {
-  cy.get('#LoadingSkeleton').should('not.exist') // regions loaded
+  cy.visitHome()
   return cy
     .get('body')
     .then(($body) =>
@@ -89,10 +89,7 @@ function deleteOldScratchRegions() {
 }
 
 describe('Regions', () => {
-  before(() => {
-    cy.visit('/')
-    deleteOldScratchRegions()
-  })
+  before(() => deleteOldScratchRegions())
 
   it('CRUD', function () {
     cy.findByText('Set up a new region').click()

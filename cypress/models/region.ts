@@ -4,16 +4,27 @@ import Bundle from './bundle'
 import Model from './model'
 import OpportunityData from './opportunity-data'
 import Project from './project'
+import RegionalAnalysis from './regional-analysis'
 
 type ProjectAnalysisSettings = {
-  project: Project
+  project?: Project
   scenario?: string
   settings?: Record<string, unknown>
+}
+
+type RegionalAnalysisOptions = {
+  project?: Project
+  scenario?: string
+  settings?: Record<string, unknown>
+  opportunityDatasets?: string[]
+  cutoffs?: number[]
+  percentiles?: number[]
 }
 
 export default class Region extends Model {
   defaultBundle: Bundle
   defaultOpportunityDataset: OpportunityData
+  defaultProject: Project
 
   delete() {
     this.navTo()
@@ -55,7 +66,7 @@ export default class Region extends Model {
       )
   }
 
-  findOrCreateBundle(
+  getBundle(
     name: string,
     gtfsFilePath: string,
     osmFilePath: string,
@@ -66,7 +77,7 @@ export default class Region extends Model {
     // Store as default if there is none.
     if (!this.defaultBundle) this.defaultBundle = bundle
 
-    before(`findOrCreateBundle${bundle.name}`, () => {
+    before(`getBundle(${bundle.name})`, () => {
       this.navTo()
 
       // Check for the existing bundle. If it does not exist, create one.
@@ -91,11 +102,14 @@ export default class Region extends Model {
     return bundle
   }
 
-  findOrCreateProject(name: string, bundle?: Bundle): Project {
+  getProject(name: string, bundle?: Bundle): Project {
     bundle ??= this.defaultBundle
     const project = new Project(name, bundle)
 
-    before(`findOrCreateProject(${project.name})`, () => {
+    // Store as default if there is none.
+    if (!this.defaultProject) this.defaultProject = project
+
+    before(`getProject(${project.name})`, () => {
       this.navTo()
 
       // Create a project if it does not exist.
@@ -125,15 +139,12 @@ export default class Region extends Model {
     return project
   }
 
-  findOrCreateOpportunityDataset(
-    name: string,
-    filePath: string
-  ): OpportunityData {
+  getOpportunityDataset(name: string, filePath: string): OpportunityData {
     const od = new OpportunityData(name)
 
     if (!this.defaultOpportunityDataset) this.defaultOpportunityDataset = od
 
-    before(`findOrCreateOpportunityDataset(${od.name})`, () => {
+    before(`getOpportunityDataset(${od.name})`, () => {
       this.navTo()
 
       // Check for the existing ods
@@ -157,28 +168,52 @@ export default class Region extends Model {
     return od
   }
 
-  // TODO finish this
-  findOrCreateRegionalAnalysis({
-    project,
-    scenario,
-    settings,
-    opportunityDatasets,
-    cutoffs,
-    percentiles
-  }) {
-    before('findOrCreateRegionalAnalysis', () => {
-      this.setupAnalysis({project, scenario, settings})
+  getRegionalAnalysis(name: string, options?: RegionalAnalysisOptions) {
+    const ra = new RegionalAnalysis(name)
 
-      cy.fetchResults()
+    before('findOrCreateRegionalAnalysis', () => {
+      this.navTo()
+      cy.navTo('regional analyses')
+      cy.findByText(/View a regional analysis/)
+        .click()
+        .type(`${name}{enter}`)
+
+      cy.location('href').then((href) => {
+        if (!href.match(/analysisId=\w{24}/)) {
+          this.setupAnalysis(options)
+
+          cy.fetchResults()
+
+          cy.createRegionalAnalysis(
+            name,
+            options?.opportunityDatasets || [
+              this.defaultOpportunityDataset.name
+            ],
+            options
+          )
+        }
+
+        cy.location('href')
+          .should('match', /.*analysisId=\w{24}$/)
+          .then((href) => {
+            ra.path = href
+          })
+      })
     })
+
+    return ra
   }
 
-  navTo() {
+  navTo(section?: Cypress.NavToOption) {
     cy.navComplete()
     cy.location('pathname', {log: false}).then((path) => {
       if (!path.startsWith(this.path)) {
         cy.visit(this.path)
         cy.navComplete()
+      }
+
+      if (section) {
+        cy.navTo(section)
       }
     })
   }
@@ -198,17 +233,18 @@ export default class Region extends Model {
    * the default scenario to the baseline scenario.
    */
   setupAnalysis(
-    primary: ProjectAnalysisSettings,
+    primary?: ProjectAnalysisSettings,
     comparison?: ProjectAnalysisSettings
   ) {
     this.navToAnalysis()
 
-    const projectName = primary.project.name
+    const project = primary?.project ?? this.defaultProject
+    const projectName = project.name
     cy.getPrimaryAnalysisSettings().within(() => {
-      cy.setProjectScenario(projectName, primary.scenario ?? 'default')
+      cy.setProjectScenario(projectName, primary?.scenario ?? 'default')
       cy.patchAnalysisJSON({
-        date: primary.project.bundle.date,
-        ...(primary.settings || {})
+        date: project.bundle.date,
+        ...(primary?.settings ?? {})
       })
     })
 

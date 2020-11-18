@@ -1,11 +1,10 @@
-import {getDefaultSetup} from './utils'
+import {getDefaultRegion} from './utils'
 
 describe('Projects', function () {
-  const {bundle, region} = getDefaultSetup()
+  const region = getDefaultRegion()
 
   it('can be created and deleted', () => {
-    region.navTo()
-    cy.navTo('projects')
+    region.navTo('projects')
 
     cy.findByText(/Create new Project/i).click()
     cy.navComplete()
@@ -15,12 +14,12 @@ describe('Projects', function () {
     // select the scratch bundle
     cy.findByLabelText(/Associated network bundle/i)
       .click({force: true})
-      .type(`{enter}${bundle.name}{enter}`)
+      .type(`{enter}${region.defaultBundle.name}{enter}`)
     cy.findByText('Create').click()
     cy.navComplete()
 
     // make sure it's listed on the projects page
-    cy.navTo('projects')
+    regionv.navTo('projects')
     cy.findByText(projectName).click()
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()
@@ -34,11 +33,11 @@ describe('Projects', function () {
     cy.contains(/Create a new network bundle/)
     cy.findByLabelText(/Network bundle name/i)
       .invoke('val')
-      .should('equal', bundle.name)
+      .should('equal', region.defaultBundle.name)
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     cy.contains(/Currently used by \d+ project/i)
     // should be selectable in analysis
-    cy.navTo('analyze')
+    region.navTo('analyze')
     cy.findAllByLabelText(/^Project$/)
       .first()
       .click({force: true})
@@ -50,7 +49,7 @@ describe('Projects', function () {
       .type('Baseline{enter}')
     cy.contains(/Baseline/)
     // delete the project
-    cy.navTo('projects')
+    region.navTo('projects')
     cy.findByText(projectName).click()
     cy.navComplete()
     cy.findByLabelText('Edit project settings').click()
