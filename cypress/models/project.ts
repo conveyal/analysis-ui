@@ -112,7 +112,7 @@ export default class Project extends Model {
           // create named scenario if it doesn't already exist
           if (!el.text().includes(scenarioName)) {
             cy.findByRole('button', {name: 'Create a scenario'}).click()
-            cy.wait(10) // eslint-disable-line
+            cy.loadingComplete()
             // TODO there has GOT to be a better way...
             cy.get('#scenarios').findAllByRole('group').last().click()
 

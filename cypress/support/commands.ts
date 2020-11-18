@@ -8,12 +8,13 @@ Cypress.Commands.add('visitHome', () => {
 })
 
 // No spinner
-Cypress.Commands.add('loadingComplete', () =>
+Cypress.Commands.add('loadingComplete', () => {
+  cy.wait(1, {log: false}) // eslint-disable-line
   cy.waitUntil(() => Cypress.$('#sidebar-spinner').length === 0, {
     log: false,
     timeout: 15000
   })
-)
+})
 
 // Wait until the page has finished loading
 Cypress.Commands.add('navComplete', () => {
