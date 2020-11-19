@@ -147,7 +147,7 @@ jobs:
           install: false
           # record: true
           start: yarn start, yarn start-backend # runs frontend and java server together
-          wait-on: 'http://localhost:3000, http://localhost:7070'
+          wait-on: 'http://localhost:3000, http://localhost:7070/version'
           wait-on-timeout: 60
 
       - uses: actions/upload-artifact@v1
