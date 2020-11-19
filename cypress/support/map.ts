@@ -6,8 +6,9 @@ const getMap = (): Cypress.Chainable<L.Map> =>
 Cypress.Commands.add('getMapDiv', getMapDiv)
 Cypress.Commands.add('getLeafletMap', getMap)
 
-const waitDuration = 10
+const waitDuration = 100
 const minZoom = 12
+
 Cypress.Commands.add('clickMapAtCoord', (coord: L.LatLngTuple, zoom = 18) => {
   if (zoom < minZoom)
     throw new Error(`Minimum clickMapAtCoord zoom is ${minZoom}`)
