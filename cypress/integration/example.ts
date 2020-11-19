@@ -67,7 +67,7 @@ describe('Example Modification Test', () => {
     // Fetch with a location and an opportunity dataset (optional)
     newRegion
       .fetchAccessibilityComparison(
-        scratchRegion.locations.center as L.LatLngExpression,
+        scratchRegion.locations.center as L.LatLngTuple,
         opportunityData
       )
       .should(([a, c]) => expect(a).to.be.greaterThan(c))

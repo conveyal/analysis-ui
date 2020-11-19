@@ -8,7 +8,7 @@ describe('Add Trip Pattern', () => {
     type: 'Add Trip Pattern',
     onCreate: () => {
       // add a route geometry
-      cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngExpression[])
+      cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngTuple[])
 
       cy.findByText(/Add new timetable/).click()
       cy.findByText('Timetable 1').click({force: true})

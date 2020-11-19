@@ -247,7 +247,7 @@ function testAddTripPattern() {
   cy.findByLabelText(/Times are exact/i).uncheck({force: true})
   cy.findByLabelText(/Phase at stop/i)
   // drawing a route activates the following elements
-  cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngExpression[])
+  cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngTuple[])
   cy.findAllByRole('alert')
     .contains(/must have at least 2 stops/)
     .should('not.exist')

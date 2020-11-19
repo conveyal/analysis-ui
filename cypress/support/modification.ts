@@ -38,9 +38,7 @@ Cypress.Commands.add('deleteThisModification', function () {
   cy.navComplete() // Modifications are not loaded in GetInitialProps
 })
 
-Cypress.Commands.add('drawRouteGeometry', function (
-  newRoute: L.LatLngExpression[]
-) {
+Cypress.Commands.add('drawRouteGeometry', function (newRoute: L.LatLngTuple[]) {
   cy.findByRole('button', {name: /Edit route geometry/i})
     .click()
     .contains(/Stop editing/i)

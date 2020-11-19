@@ -1,5 +1,3 @@
-import {latLng} from 'leaflet'
-
 const getPrimary = () => cy.get('div#PrimaryAnalysisSettings')
 const getComparison = () => cy.get('div#ComparisonAnalysisSettings')
 
@@ -81,12 +79,11 @@ Cypress.Commands.add(
   }
 )
 
-Cypress.Commands.add('setOrigin', (newOrigin: L.LatLngExpression) => {
-  const latlng = latLng(newOrigin)
+Cypress.Commands.add('setOrigin', (newOrigin: L.LatLngTuple) => {
   cy.getPrimaryAnalysisSettings().within(() => {
     cy.patchAnalysisJSON({
-      fromLat: latlng.lat,
-      fromLon: latlng.lng
+      fromLat: newOrigin[0],
+      fromLon: newOrigin[1]
     })
   })
 })

@@ -45,12 +45,12 @@ declare namespace Cypress {
      * Center the map on the given coordinates.
      * @example cy.centerMapOn([60, 25])
      */
-    centerMapOn(coord: L.LatLngExpression, zoom?: number): Chainable<L.Map>
+    centerMapOn(coord: L.LatLngTuple, zoom?: number): Chainable<L.Map>
 
     /**
      * Pan to the coordinate and click that point on the map.
      */
-    clickMapAtCoord(coord: L.LatLngExpression, zoom?: number): Chainable<void>
+    clickMapAtCoord(coord: L.LatLngTuple, zoom?: number): Chainable<void>
 
     /**
      * Create a modification.
@@ -108,7 +108,7 @@ declare namespace Cypress {
      * Draw route geometry on an open modification
      * @example cy.drawRouteGeometry([[50, -70], [51, -71]])
      */
-    drawRouteGeometry(coords: L.LatLngExpression[]): Chainable<void>
+    drawRouteGeometry(coords: L.LatLngTuple[]): Chainable<void>
 
     /**
      * Set custom analysis value.
@@ -172,10 +172,7 @@ declare namespace Cypress {
      * Check if the map is centered on a set of coordinates.
      * @example cy.mapCenteredOn([50.5, 121.2], 5)
      */
-    mapCenteredOn(
-      latlng: L.LatLngExpression,
-      tolerance: number
-    ): Chainable<boolean>
+    mapCenteredOn(latlng: L.LatLngTuple, tolerance: number): Chainable<boolean>
 
     /**
      * Navigate to a page via the sidebar.
@@ -220,7 +217,7 @@ declare namespace Cypress {
      * Set the analysis origin.
      * @example cy.setOrigin([lat, lng])
      */
-    setOrigin(latlng: L.LatLngExpression): Chainable<void>
+    setOrigin(latlng: L.LatLngTuple): Chainable<void>
 
     /**
      * Set the project/scenario. Must be chained off a specific settings.
@@ -241,7 +238,7 @@ declare namespace Cypress {
      * Wait for the map to be ready for interactivity
      * @example cy.waitForMapToLoad()
      */
-    waitForMapToLoad(): Chainable<void>
+    waitForMapToLoad(): Chainable<L.Map>
 
     /**
      * Go to home page and wait for it to load.

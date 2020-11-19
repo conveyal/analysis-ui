@@ -103,27 +103,24 @@ describe('Regions', () => {
       {
         searchTerm: 'cincinnati',
         findText: /^Cincinnati, Ohio/,
-        lat: 39.1,
-        lng: -84.5
+        coord: [39.1, -84.5]
       },
       {
         searchTerm: 'tulsa',
         findText: /^Tulsa, Oklahoma/,
-        lat: 36.1,
-        lng: -95.9
+        coord: [361.1, -95.9]
       },
       {
         searchTerm: 'greenwich',
         findText: /^Greenwich,.* England/,
-        lat: 51.5,
-        lng: 0
+        coord: [51.5, 0]
       }
     ]
     const maxOffset = 10000 // meters
     testLocations.forEach((r) => {
       getSearch().focus().clear().type(r.searchTerm)
       cy.findByText(r.findText).click()
-      cy.mapCenteredOn(r, maxOffset)
+      cy.mapCenteredOn(r.coord as L.LatLngTuple, maxOffset)
     })
 
     // Create a region

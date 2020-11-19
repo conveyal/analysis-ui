@@ -39,7 +39,7 @@ export default class Region extends Model {
    * Must be on the analysis page.
    */
   fetchAccessibilityComparison(
-    coords: L.LatLngExpression,
+    coords: L.LatLngTuple,
     opportunityDataset?: OpportunityData
   ): Cypress.Chainable<[number, number]> {
     cy.setOrigin(coords)
@@ -91,6 +91,7 @@ export default class Region extends Model {
         .then((path) => {
           bundle.path = path
         })
+      cy.navComplete()
     })
 
     return bundle
@@ -127,6 +128,7 @@ export default class Region extends Model {
           .then((path) => {
             project.path = path
           })
+        cy.navComplete()
       })
     })
 
@@ -157,6 +159,7 @@ export default class Region extends Model {
         .then((href) => {
           od.path = href
         })
+      cy.navComplete()
     })
 
     return od
@@ -192,6 +195,7 @@ export default class Region extends Model {
           .then((href) => {
             ra.path = href
           })
+        cy.navComplete()
       })
     })
 

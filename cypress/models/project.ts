@@ -83,6 +83,7 @@ export default class Project extends Model {
         } else {
           cy.wrap(pb.first()).click()
           cy.navComplete()
+          cy.findByText(modification.name)
         }
 
         // On each test run ensure it starts with the same data.
@@ -96,6 +97,7 @@ export default class Project extends Model {
           .then((path) => {
             modification.path = path
           })
+        cy.navComplete()
       })
     })
 
