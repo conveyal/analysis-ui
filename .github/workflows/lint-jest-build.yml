@@ -149,3 +149,9 @@ jobs:
           start: yarn action # runs frontend and java server together
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 60
+
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
