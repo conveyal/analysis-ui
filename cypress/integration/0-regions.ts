@@ -108,7 +108,7 @@ describe('Regions', () => {
       {
         searchTerm: 'tulsa',
         findText: /^Tulsa, Oklahoma/,
-        coord: [361.1, -95.9]
+        coord: [36.1, -95.9]
       },
       {
         searchTerm: 'greenwich',
