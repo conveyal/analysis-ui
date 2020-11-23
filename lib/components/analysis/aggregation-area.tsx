@@ -161,9 +161,7 @@ function UploadNewAggregationArea({onClose, regionId}) {
 
       {!union && (
         <Stack spacing={4}>
-          <Alert status='warning'>
-            {message('analysis.separateFeatures')}
-          </Alert>
+          <Alert status='warning'>{message('analysis.separateFeatures')}</Alert>
           <FormControl isDisabled={uploading} isRequired>
             <FormLabel htmlFor={attributeInput.id}>
               {message('analysis.attributeName')}
