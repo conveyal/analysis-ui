@@ -1,4 +1,9 @@
-import {getDefaultRegion, scratchRegion, scratchResults} from './utils'
+import {
+  defaultAnalysisSettings,
+  getDefaultRegion,
+  scratchRegion,
+  scratchResults
+} from './utils'
 
 /* eslint-disable cypress/no-unnecessary-waiting */
 
@@ -12,7 +17,15 @@ describe('Analysis', () => {
 
   beforeEach(() => {
     cy.visitHome()
-    region.setupAnalysis({scenario: 'baseline'})
+    region.setupAnalysis({
+      project: region.defaultProject,
+      scenario: 'baseline',
+      settings: {
+        ...defaultAnalysisSettings,
+        bounds: region.bounds,
+        date: region.defaultBundle.date
+      }
+    })
   })
 
   it('has all form elements', function () {
@@ -44,7 +57,7 @@ describe('Analysis', () => {
     cy.getPrimaryAnalysisSettings().findByRole('tab', {
       name: /Custom JSON editor/i
     })
-    cy.findByText(/Fetch results/i).should('be.enabled')
+    cy.findButton(/^Fetch results$/i).should('be.enabled')
   })
 
   // tests basic single point analysis at specified locations
