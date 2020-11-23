@@ -24,6 +24,25 @@ Cypress.Commands.add('clickMapAtCoord', (coord: L.LatLngTuple, zoom = 18) => {
   })
 })
 
+Cypress.Commands.add('clickStopOnMap', (name: string | RegExp) => {
+  cy.findStop(name).then((stop) => cy.clickMapAtCoord(stop.latlng))
+})
+
+Cypress.Commands.add(
+  'findStop',
+  (name: string | RegExp): Cypress.Chainable<Cypress.Stop> => {
+    return cy.findAllByText(name).then((el) => {
+      return {
+        latlng: el
+          .attr('data-coordinate')
+          .split(',')
+          .map((v: string) => parseFloat(v)) as L.LatLngTuple,
+        id: el.attr('data-id')
+      }
+    })
+  }
+)
+
 Cypress.Commands.add('waitForMapToLoad', () => {
   Cypress.log({displayName: 'waitForMapToLoad'})
   getMap().waitUntil(

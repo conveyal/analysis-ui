@@ -1,5 +1,8 @@
 const unlog = {log: false}
 
+// Shortened helper for `findByRole('button', {name: /Name/})
+Cypress.Commands.add('findButton', (name) => cy.findByRole('button', {name}))
+
 // Load the home page. Wait for the "Skeleton" to disappear
 Cypress.Commands.add('visitHome', () => {
   cy.log('visitHome')

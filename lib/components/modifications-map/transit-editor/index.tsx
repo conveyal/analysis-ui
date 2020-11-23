@@ -19,6 +19,7 @@ import {
   getNewStopIconForZoom,
   getSnappedStopIconForZoom
 } from '../../map/circle-icons'
+import Pane from '../../map/pane'
 
 // Valid modification types for this component
 type Modification = CL.AddTripPattern | CL.Reroute
@@ -153,8 +154,8 @@ export default function TransitEditor({
       if (latlngIsInvalidCheck(latlng)) return
       if (!allowExtend) {
         toast({
-          title: 'Click disabled',
-          description: 'Check "Extend" to add segments',
+          title: 'Click ignored',
+          description: 'Extending is disabled.',
           position: 'top',
           status: 'info'
         })
@@ -259,7 +260,7 @@ export default function TransitEditor({
   )
 
   return (
-    <>
+    <Pane zIndex={505}>
       <Segments clickSegment={insertStopAtIndex} modification={modification} />
       <AutoCreatedStops onDragEnd={insertStopAtIndex} segments={segments} />
       <ControlPoints
@@ -274,7 +275,7 @@ export default function TransitEditor({
         segments={segments}
         updateSegments={updateSegments}
       />
-    </>
+    </Pane>
   )
 }
 
@@ -310,6 +311,7 @@ function Segments({clickSegment, modification}) {
       {segmentFeatures.map((feature, index) => (
         <Polyline
           color={colors.ADDED}
+          interactive
           key={index}
           onClick={(event: L.LeafletMouseEvent) => {
             logDomEvent('Segment.onClick', event)

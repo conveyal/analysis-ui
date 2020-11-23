@@ -26,7 +26,13 @@ addMatchImageSnapshotCommand({
 
 // Persist the user cookie across sessions
 Cypress.Cookies.defaults({
-  preserve: ['a0:state', 'a0:session', 'a0:redirectTo', 'adminTempAccessGroup']
+  preserve: [
+    'a0:state',
+    'a0:session',
+    'a0:redirectTo',
+    'adminTempAccessGroup',
+    'cypressTestData'
+  ]
 })
 
 // Should data be reset?

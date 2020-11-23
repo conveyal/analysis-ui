@@ -39,6 +39,11 @@ declare namespace Cypress {
     settings?: Record<string, unknown>
   }
 
+  export type Stop = {
+    latlng: L.LatLngTuple
+    id: string
+  }
+
   // eslint-disable-next-line
   interface Chainable {
     /**
@@ -53,16 +58,16 @@ declare namespace Cypress {
     clickMapAtCoord(coord: L.LatLngTuple, zoom?: number): Chainable<void>
 
     /**
+     * Click a stop on the map by its name.
+     * @example cy.clickStopOnMap(/Stop/)
+     */
+    clickStopOnMap(name: string | RegExp): Chainable<JQuery<HTMLElement>>
+
+    /**
      * Create a modification.
      * @example cy.createModification('Add Trip Pattern', 'New name')
      */
     createModification(type: ModificationType, name: string): Chainable<void>
-
-    /**
-     * Create a region. Returns the new region id.
-     * @example cy.createRegion('Region', bounds)
-     */
-    createRegion(name: string, bounds: CL.Bounds): Chainable<string>
 
     /**
      * Create a bundle
@@ -126,6 +131,16 @@ declare namespace Cypress {
      * @example cy.fetchResults()
      */
     fetchResults(): Chainable<void>
+
+    /**
+     * Find a button by the name
+     */
+    findButton(name: string | RegExp): Chainable<JQuery<HTMLElement>>
+
+    /**
+     * Find a stop on the map by name.
+     */
+    findStop(name: string | RegExp): Chainable<Stop>
 
     /**
      * Get the LeafletMap.

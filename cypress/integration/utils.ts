@@ -54,24 +54,19 @@ export function getDefaultRegion(): Region {
 
 /**
  * Find or create a new region.
+ * TODO Preserve created data between tests with Cookies: https://docs.cypress.io/faq/questions/using-cypress-faq.html#How-do-I-preserve-cookies-localStorage-in-between-my-tests
  */
 export function getRegion(name: string, bounds: CL.Bounds): Region {
-  const region = new Region(name)
-  before(`getRegion(${region.name})`, () => {
-    cy.visitHome()
-    cy.get('button').then((buttons) => {
-      const pb = buttons.filter((_, el) => el.textContent === region.name)
-      if (pb.length === 0) {
-        cy.createRegion(region.name, bounds)
-      } else {
-        cy.wrap(pb.first()).click()
-      }
-      cy.location('pathname')
-        .should('match', /regions\/\w{24}$/)
-        .then((path) => {
-          region.path = path
-        })
-    })
+  const region = new Region(name, bounds)
+  before('getRegion', () => {
+    region.initialize()
   })
   return region
+}
+
+/**
+ * Clear temporary data used for speeding up test development
+ */
+export function clearTemporaryData() {
+  Region.clearAllStoredPaths()
 }
