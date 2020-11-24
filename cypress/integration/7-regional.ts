@@ -57,7 +57,7 @@ describe('Regional', () => {
         encoding: 'base64'
       })
     cy.findByLabelText(/Union/).uncheck({force: true})
-    cy.findByLabelText(/Attribute name to lookup on the shapefile/i)
+    cy.findByLabelText(/Shapefile attribute to use as aggregation area name/i)
       .clear()
       .type(scratchRegion.aggregationAreas.nameField)
     cy.get('@upload').scrollIntoView().click()
