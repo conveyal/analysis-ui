@@ -1,5 +1,3 @@
-import region from '../fixtures/regions/scratch.json'
-
 import './commands'
 import './map'
 
