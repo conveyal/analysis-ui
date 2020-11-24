@@ -47,7 +47,11 @@ type Modification = {
   name: string
 }
 
-function filterModifications(filter, modifications, projectId) {
+function filterModifications(
+  filter: string,
+  modifications: CL.IModification[],
+  projectId: string
+) {
   const filterLcase = filter != null ? filter.toLowerCase() : ''
   const filteredModificationsByType = {}
 
@@ -182,6 +186,7 @@ export default function ModificationsList(p) {
           <TabPanel pt={2}>
             <Box px={2}>
               <CreateModification
+                feedsById={feedsById}
                 projectId={projectId}
                 regionId={regionId}
                 variants={variants}
