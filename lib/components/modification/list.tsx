@@ -72,16 +72,16 @@ function filterModifications(
 
 const selectModifications = fpGet('project.modifications')
 
-export default function ModificationsList(p) {
+export default function ModificationsList({bundle, project}) {
   const dispatch = useDispatch()
-  const {_id: projectId, bundleId, regionId} = p.project
+  const {_id: projectId, bundleId, regionId} = project
   // Retrieve the modifications from the store. Filter out modifications that might be from another project
   const modifications = useSelector(selectModifications)
   const feedsById = useSelector(selectFeedsById)
   const variants = useSelector(selectVariants)
   const goToModificationImport = useRouteTo('modificationImport', {
-    projectId: p.project._id,
-    regionId: p.project.regionId
+    projectId,
+    regionId
   })
 
   // Array of ids for currently displayed modifications
@@ -186,7 +186,7 @@ export default function ModificationsList(p) {
           <TabPanel pt={2}>
             <Box px={2}>
               <CreateModification
-                feedsById={feedsById}
+                feeds={bundle.feeds}
                 projectId={projectId}
                 regionId={regionId}
                 variants={variants}

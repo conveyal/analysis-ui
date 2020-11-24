@@ -61,7 +61,7 @@ const streetModificationTypes = [ADD_STREETS, MODIFY_STREETS]
  * Modal for creating a modification.
  */
 export default function CreateModification({
-  feedsById,
+  feeds,
   projectId,
   regionId,
   variants,
@@ -79,10 +79,9 @@ export default function CreateModification({
   async function create() {
     setIsCreating(true)
     const type = tabIndex === 0 ? transitTypeInput.value : streetTypeInput.value
-    const feeds = feedsById ? Object.values(feedsById) : []
     const m: CL.IModification = await dispatch(
       createModification({
-        feedId: get(feeds, '[0].id'), // default to the first feed
+        feedId: get(feeds, '[0].feedId'), // default to the first feed
         name: nameInput.value,
         projectId,
         type,

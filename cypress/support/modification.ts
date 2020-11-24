@@ -6,7 +6,7 @@ Cypress.Commands.add('createModification', function (
   name: string
 ) {
   // assumes we are already on this page or editing another mod
-  cy.findByText('Create a modification').click()
+  cy.findButton('Create a modification').click()
   cy.findByLabelText(/Modification name/i).type(name, {delay: 0})
   if (type.indexOf('Street') > -1) {
     cy.findByText('Street').click()
@@ -14,7 +14,7 @@ Cypress.Commands.add('createModification', function (
   } else {
     cy.findByLabelText(/Transit modification type/i).select(type)
   }
-  cy.findByText('Create').click()
+  cy.findButton('Create').click()
   cy.findByRole('dialog').should('not.exist')
   cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
   cy.navComplete()
@@ -27,8 +27,8 @@ Cypress.Commands.add('deleteModification', function (name) {
 
 Cypress.Commands.add('deleteThisModification', function () {
   // Delete an open modification
-  cy.findByRole('button', {name: 'Delete modification'}).click()
-  cy.findByRole('button', {name: 'Confirm: Delete modification'}).click()
+  cy.findButton('Delete modification').click()
+  cy.findButton('Confirm: Delete modification').click()
   cy.findByRole('dialog').should('not.exist')
   cy.navComplete()
   cy.contains('Create a modification')
