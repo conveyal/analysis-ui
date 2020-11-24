@@ -37,9 +37,12 @@ export default class Modification extends Model {
       if (pb.length === 0) {
         cy.createModification(this.type, this.name)
 
-        // Set the feed and route to the default
+        // Set the first route by default
         if (typeUsesFeed.has(this.type)) {
-          cy.selectDefaultFeedAndRoute()
+          cy.findByLabelText(/Select route/)
+            .click({force: true})
+            .type('{enter}', {delay: 0})
+          cy.loadingComplete()
         }
 
         // If it has a special onCreate function, run it

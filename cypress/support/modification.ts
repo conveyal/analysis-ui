@@ -96,11 +96,6 @@ Cypress.Commands.add('openModification', function (modName: string) {
   cy.navComplete()
 })
 
-Cypress.Commands.add('selectDefaultFeedAndRoute', function () {
-  cy.selectFeed(region.feedAgencyName)
-  cy.selectRoute(region.sampleRouteName)
-})
-
 Cypress.Commands.add('selectFeed', function selectFeed(feedName: string) {
   cy.findByLabelText(/Select feed/)
     .click({force: true})

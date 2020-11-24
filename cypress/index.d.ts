@@ -226,7 +226,6 @@ declare namespace Cypress {
      */
     selectFeed(feedName: string): Chainable<void>
     selectRoute(routeName: string): Chainable<void>
-    selectDefaultFeedAndRoute(): Chainable<void>
 
     /**
      * Set the analysis origin.
