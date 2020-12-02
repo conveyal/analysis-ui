@@ -16,9 +16,14 @@ type WithMapFn = (map: L.Map) => any
 function withMap(fn: WithMapFn) {
   cy.waitForMapToLoad().then((map) => {
     map.invalidateSize(false)
-    mapZoomComplete()
-    cy.wrap(map, {log: false}).then(fn)
     wait()
+    mapZoomComplete()
+
+    cy.wrap(map, {log: false}).then(fn)
+
+    map.invalidateSize(false)
+    wait()
+    mapZoomComplete()
   })
 }
 

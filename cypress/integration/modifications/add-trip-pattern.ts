@@ -8,34 +8,9 @@ describe('Add Trip Pattern', () => {
   describe('Copy Timetables', () => {
     const mod = project.getModification({
       type: 'Add Trip Pattern',
-      onCreate: () => {
-        // add a route geometry
-        cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngTuple[])
-
-        cy.findByText(/Add new timetable/).click()
-        cy.findByText('Timetable 1').click({force: true})
-        // enter arbitrary settings to see if they get saved
-        cy.findByLabelText('Name').clear().type(timetableName)
-        cy.findByLabelText(/Mon/).check()
-        cy.findByLabelText(/Tue/).check()
-        cy.findByLabelText(/Wed/).check()
-        cy.findByLabelText(/Thu/).check()
-        cy.findByLabelText(/Fri/).check()
-        cy.findByLabelText(/Sat/).uncheck({force: true})
-        cy.findByLabelText(/Sun/).uncheck({force: true})
-        cy.findByLabelText(/Frequency/)
-          .clear()
-          .type('00:20:00')
-        cy.findByLabelText(/Start time/)
-          .clear()
-          .type('06:00')
-        cy.findByLabelText(/End time/)
-          .clear()
-          .type('23:00')
-        cy.findByLabelText(/dwell time/)
-          .clear()
-          .type('00:00:30')
-        cy.findByText(timetableName).click({force: true}) // hide panel
+      data: {
+        segments: [],
+        timetables: []
       }
     })
 
@@ -45,8 +20,36 @@ describe('Add Trip Pattern', () => {
     })
 
     it('create and reuse timetables', () => {
-      // Copy the current modification and navigate to it by clicking the toast
       mod.navTo()
+      // add a route geometry
+      cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngTuple[])
+
+      cy.findByText(/Add new timetable/).click()
+      cy.findByText('Timetable 1').click({force: true})
+      // enter arbitrary settings to see if they get saved
+      cy.findByLabelText('Name').clear().type(timetableName)
+      cy.findByLabelText(/Mon/).check()
+      cy.findByLabelText(/Tue/).check()
+      cy.findByLabelText(/Wed/).check()
+      cy.findByLabelText(/Thu/).check()
+      cy.findByLabelText(/Fri/).check()
+      cy.findByLabelText(/Sat/).uncheck({force: true})
+      cy.findByLabelText(/Sun/).uncheck({force: true})
+      cy.findByLabelText(/Frequency/)
+        .clear()
+        .type('00:20:00')
+      cy.findByLabelText(/Start time/)
+        .clear()
+        .type('06:00')
+      cy.findByLabelText(/End time/)
+        .clear()
+        .type('23:00')
+      cy.findByLabelText(/dwell time/)
+        .clear()
+        .type('00:00:30')
+      cy.findByText(timetableName).click({force: true}) // hide panel
+
+      // Copy the current modification and navigate to it by clicking the toast
       cy.findByRole('button', {name: /Copy modification/i}).click()
       cy.loadingComplete()
       cy.get('#react-toast').findByRole('alert').click({force: true})
