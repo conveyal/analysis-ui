@@ -110,6 +110,15 @@ declare namespace Cypress {
     deleteThisModification(): Chainable<void>
 
     /**
+     * Drag a marker on the map.
+     */
+    dragMarker(
+      markerTitle: string,
+      start: L.LatLngTuple,
+      end: L.LatLngTuple
+    ): Chainable<void>
+
+    /**
      * Draw route geometry on an open modification
      * @example cy.drawRouteGeometry([[50, -70], [51, -71]])
      */
