@@ -38,6 +38,16 @@ type TransitEditorProps = {
   updateModification: (update: Partial<Modification>) => void
 }
 
+// Keep track of zIndexes for all layers
+let indexCounter = 505
+const zIndex = {
+  segments: indexCounter++,
+  autoCreatedStops: indexCounter++,
+  controlPoints: indexCounter++,
+  stops: indexCounter++,
+  newStop: indexCounter++
+}
+
 const logDomEvent = createLogDomEvent('transit-editor')
 
 // Store the timestamp of the last event to prevent double map clicks
@@ -275,36 +285,25 @@ export default function TransitEditor({
 
   return (
     <>
-      <Pane zIndex={505}>
-        <Segments
-          clickSegment={insertStopAtIndex}
-          modification={modification}
-        />
-      </Pane>
-      <Pane zIndex={506}>
-        <AutoCreatedStops onDragEnd={insertStopAtIndex} segments={segments} />
-      </Pane>
-      <Pane zIndex={507}>
-        <ControlPoints
-          deletePoint={deleteStopOrPoint}
-          onDragEnd={_onControlPointDragEnd}
-          segments={segments}
-          updateSegments={updateSegments}
-        />
-      </Pane>
-      <Pane zIndex={508}>
-        <Stops
-          deleteStop={deleteStopOrPoint}
-          onStopDragEnd={_onStopDragEnd}
-          segments={segments}
-          updateSegments={updateSegments}
-        />
-      </Pane>
+      <Segments clickSegment={insertStopAtIndex} modification={modification} />
+      <AutoCreatedStops onDragEnd={insertStopAtIndex} segments={segments} />
+      <ControlPoints
+        deletePoint={deleteStopOrPoint}
+        onDragEnd={_onControlPointDragEnd}
+        segments={segments}
+        updateSegments={updateSegments}
+      />
+      <Stops
+        deleteStop={deleteStopOrPoint}
+        onStopDragEnd={_onStopDragEnd}
+        segments={segments}
+        updateSegments={updateSegments}
+      />
     </>
   )
 }
 
-const getLineWeightForZoom = (z) => (z < 11 ? 1 : z - 10)
+const getLineWeightForZoom = (z) => (z < 11 ? 1 : z - 9)
 function useLineWeight() {
   const zoom = useZoom()
   const [lineWeight, setLineWeight] = useState(() => getLineWeightForZoom(zoom))
@@ -333,26 +332,30 @@ function Segments({clickSegment, modification}) {
 
   return (
     <>
-      {segmentFeatures.map((feature, index) => (
-        <Polyline
-          bubblingMouseEvents={false}
-          color={colors.ADDED}
-          interactive
-          key={index}
-          onClick={(event: L.LeafletMouseEvent) => {
-            logDomEvent('Segment.onClick', event)
-            DomEvent.stop(event)
-            clickSegment(index, event.latlng)
-          }}
-          onBlur={showStop.onClose}
-          onFocus={showStop.onOpen}
-          onMouseover={showStop.onOpen}
-          onMouseout={showStop.onClose}
-          positions={feature}
-          weight={lineWeight}
-        />
-      ))}
-      {showStop.isOpen && <NewStopUnderCursor />}
+      <Pane zIndex={zIndex.segments}>
+        {segmentFeatures.map((feature, index) => (
+          <Polyline
+            bubblingMouseEvents={false}
+            color={colors.ADDED}
+            interactive
+            key={index}
+            onClick={(event: L.LeafletMouseEvent) => {
+              logDomEvent('Segment.onClick', event)
+              DomEvent.stop(event)
+              clickSegment(index, event.latlng)
+            }}
+            onBlur={showStop.onClose}
+            onFocus={showStop.onOpen}
+            onMouseover={showStop.onOpen}
+            onMouseout={showStop.onClose}
+            positions={feature}
+            weight={lineWeight}
+          />
+        ))}
+      </Pane>
+      <Pane zIndex={zIndex.newStop}>
+        {showStop.isOpen && <NewStopUnderCursor />}
+      </Pane>
     </>
   )
 }
@@ -404,7 +407,7 @@ function AutoCreatedStops({onDragEnd, segments}) {
   const stops = useStops(segments)
 
   return (
-    <>
+    <Pane zIndex={zIndex.autoCreatedStops}>
       {stops
         .filter((s) => s.autoCreated)
         .map((stop) => (
@@ -427,7 +430,7 @@ function AutoCreatedStops({onDragEnd, segments}) {
             title={autoCreatedStopKey(stop)}
           />
         ))}
-    </>
+    </Pane>
   )
 }
 
@@ -474,7 +477,7 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
   )
 
   return (
-    <>
+    <Pane zIndex={zIndex.stops}>
       {stops
         .filter((s) => !s.autoCreated)
         .map((stop, stopIndex) => (
@@ -509,7 +512,7 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
             </Popup>
           </Marker>
         ))}
-    </>
+    </Pane>
   )
 }
 
@@ -575,7 +578,7 @@ function ControlPoints({
   )
 
   return (
-    <>
+    <Pane zIndex={zIndex.controlPoints}>
       {controlPoints.map((cp) => (
         <Marker
           position={cp}
@@ -602,7 +605,7 @@ function ControlPoints({
           </Popup>
         </Marker>
       ))}
-    </>
+    </Pane>
   )
 }
 
