@@ -3,24 +3,24 @@ import region from '../fixtures/regions/scratch.json'
 import './commands'
 import './map'
 
-Cypress.Commands.add('createModification', function (
-  type: Cypress.ModificationType,
-  name: string
-) {
-  // assumes we are already on this page or editing another mod
-  cy.findByText('Create a modification').click()
-  cy.findByLabelText(/Modification name/i).type(name, {delay: 0})
-  if (type.indexOf('Street') > -1) {
-    cy.findByText('Street').click()
-    cy.findByLabelText(/Street modification type/i).select(type)
-  } else {
-    cy.findByLabelText(/Transit modification type/i).select(type)
+Cypress.Commands.add(
+  'createModification',
+  function (type: Cypress.ModificationType, name: string) {
+    // assumes we are already on this page or editing another mod
+    cy.findByText('Create a modification').click()
+    cy.findByLabelText(/Modification name/i).type(name, {delay: 0})
+    if (type.indexOf('Street') > -1) {
+      cy.findByText('Street').click()
+      cy.findByLabelText(/Street modification type/i).select(type)
+    } else {
+      cy.findByLabelText(/Transit modification type/i).select(type)
+    }
+    cy.findByText('Create').click()
+    cy.findByRole('dialog').should('not.exist')
+    cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+    cy.navComplete()
   }
-  cy.findByText('Create').click()
-  cy.findByRole('dialog').should('not.exist')
-  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
-  cy.navComplete()
-})
+)
 
 Cypress.Commands.add('deleteModification', function (name) {
   cy.openModification(name)
@@ -68,22 +68,26 @@ Cypress.Commands.add('drawRouteGeometry', function (newRoute: L.LatLngTuple[]) {
   cy.findByRole('button', {name: /Stop editing/i}).click()
 })
 
-Cypress.Commands.add('editModificationJSON', function (
-  newValues: Record<string, unknown>
-) {
-  cy.findByRole('tab', {name: /Edit JSON/}).click()
-  cy.get('textarea')
-    .invoke('val')
-    .then((currentConfig) => {
-      const parsedConfig = JSON.parse(currentConfig + '')
-      return cy
-        .get('textarea')
-        .invoke('val', JSON.stringify({...parsedConfig, ...newValues}, null, 2))
-        .type(' {backspace}')
-    })
-  cy.findByRole('button', {name: /Save custom changes/i}).click()
-  cy.findByRole('tab', {name: /Edit value/}).click()
-})
+Cypress.Commands.add(
+  'editModificationJSON',
+  function (newValues: Record<string, unknown>) {
+    cy.findByRole('tab', {name: /Edit JSON/}).click()
+    cy.get('textarea')
+      .invoke('val')
+      .then((currentConfig) => {
+        const parsedConfig = JSON.parse(currentConfig + '')
+        return cy
+          .get('textarea')
+          .invoke(
+            'val',
+            JSON.stringify({...parsedConfig, ...newValues}, null, 2)
+          )
+          .type(' {backspace}')
+      })
+    cy.findByRole('button', {name: /Save custom changes/i}).click()
+    cy.findByRole('tab', {name: /Edit value/}).click()
+  }
+)
 
 function regExFromName(name: string) {
   return new RegExp(name.replace('(', '\\(').replace(')', '\\)'))
