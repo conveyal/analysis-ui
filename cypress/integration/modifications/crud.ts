@@ -248,6 +248,28 @@ function testAddTripPattern() {
   cy.findByLabelText(/Phase at stop/i)
   // drawing a route activates the following elements
   cy.drawRouteGeometry(scratchRegion.newRoute as L.LatLngTuple[])
+
+  // convert an arbitrary stop to a control point
+  cy.findButton(/Edit route geometry/i).click()
+  const stop = scratchRegion.newRoute[
+    scratchRegion.newRoute.length - 2
+  ] as L.LatLngTuple
+  cy.clickMapAtCoord(stop)
+  cy.findButton(/make control point/i).click()
+
+  // control point not counted as stop
+  cy.contains(
+    new RegExp(scratchRegion.newRoute.length - 1 + ' stops over \\d\\.\\d+ km')
+  )
+
+  // convert control point back to stop
+  cy.clickMapAtCoord(stop)
+  cy.findButton(/make stop/i).click()
+  cy.contains(
+    new RegExp(scratchRegion.newRoute.length + ' stops over \\d\\.\\d+ km')
+  )
+  cy.findButton(/Stop editing/i).click()
+
   cy.findAllByRole('alert')
     .contains(/must have at least 2 stops/)
     .should('not.exist')
