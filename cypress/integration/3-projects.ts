@@ -20,7 +20,7 @@ describe('Projects', function () {
 
     // make sure it's listed on the projects page
     region.navTo('projects')
-    cy.findByText(projectName).click()
+    cy.findAllByText(projectName).first().click()
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()
 
@@ -38,6 +38,11 @@ describe('Projects', function () {
     cy.contains(/Currently used by \d+ project/i)
     // should be selectable in analysis
     region.navTo('analyze')
+    cy.findAllByRole('button', {name: /expand/i}).then(($buttons) => {
+      for (let i = 0; i < $buttons.length; i++) {
+        cy.wrap($buttons.get(i)).click()
+      }
+    })
     cy.findAllByLabelText(/^Project$/)
       .first()
       .click({force: true})
@@ -50,7 +55,7 @@ describe('Projects', function () {
     cy.contains(/Baseline/)
     // delete the project
     region.navTo('projects')
-    cy.findByText(projectName).click()
+    cy.findAllByText(projectName).first().click()
     cy.navComplete()
     cy.findByLabelText('Edit project settings').click()
     cy.navComplete()

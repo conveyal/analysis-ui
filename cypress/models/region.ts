@@ -165,6 +165,9 @@ export default class Region extends Model {
     return ra
   }
 
+  /**
+   * Navigate to a section of a region
+   */
   navTo(section?: Cypress.NavToOption) {
     cy.navComplete()
     cy.location('pathname', {log: false}).then((path) => {
