@@ -485,7 +485,7 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
             position={stop}
             icon={stop.stopId ? newSnappedStopIcon : newStopIcon}
             draggable
-            key={stopKey(stop) + zoom}
+            key={`${stopKey(stop)} ${zoom} ${stop.lng},${stop.lat}`}
             title={stopKey(stop)}
             ondragend={(event: L.DragEndEvent) => {
               logDomEvent('Stop.onDragEnd', event)
@@ -555,6 +555,7 @@ function ControlPoints({
 }: ControlPointsProps) {
   const controlPoints = useControlPoints(segments)
   const controlPointIcon = useControlPointIcon()
+  const zoom = useZoom()
 
   const togglePoint = useCallback(
     (pointIndex: number) => {
@@ -584,7 +585,7 @@ function ControlPoints({
           position={cp}
           draggable
           icon={controlPointIcon}
-          key={controlPointKey(cp)}
+          key={`${controlPointKey(cp)} ${zoom} ${cp.lng} ${cp.lat}`}
           onDragend={(event: L.DragEndEvent) => {
             logDomEvent('ControlPoint.onDragend', event)
             DomEvent.stop(event)
