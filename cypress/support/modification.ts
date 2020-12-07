@@ -1,24 +1,24 @@
 import './commands'
 import './map'
 
-Cypress.Commands.add('createModification', function (
-  type: Cypress.ModificationType,
-  name: string
-) {
-  // assumes we are already on this page or editing another mod
-  cy.findButton('Create a modification').click()
-  cy.findByLabelText(/Modification name/i).type(name, {delay: 0})
-  if (type.indexOf('Street') > -1) {
-    cy.findByText('Street').click()
-    cy.findByLabelText(/Street modification type/i).select(type)
-  } else {
-    cy.findByLabelText(/Transit modification type/i).select(type)
+Cypress.Commands.add(
+  'createModification',
+  function (type: Cypress.ModificationType, name: string) {
+    // assumes we are already on this page or editing another mod
+    cy.findButton('Create a modification').click()
+    cy.findByLabelText(/Modification name/i).type(name, {delay: 0})
+    if (type.indexOf('Street') > -1) {
+      cy.findByText('Street').click()
+      cy.findByLabelText(/Street modification type/i).select(type)
+    } else {
+      cy.findByLabelText(/Transit modification type/i).select(type)
+    }
+    cy.findButton('Create').click()
+    cy.findByRole('dialog').should('not.exist')
+    cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
+    cy.navComplete()
   }
-  cy.findButton('Create').click()
-  cy.findByRole('dialog').should('not.exist')
-  cy.location('pathname').should('match', /.*\/modifications\/.{24}$/)
-  cy.navComplete()
-})
+)
 
 Cypress.Commands.add('deleteModification', function (name) {
   cy.openModification(name)
