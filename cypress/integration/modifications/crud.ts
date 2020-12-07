@@ -347,7 +347,7 @@ function testConvertToFrequency() {
   cy.findByText(/Add frequency entry/i).click()
   cy.findByLabelText(/Select patterns/i)
     .click({force: true})
-    .type('Bakewell{enter}')
+    .type('BAWAC{enter}')
   cy.findByLabelText(/Frequency/i)
     .clear()
     .type('00:20:00')
@@ -359,7 +359,7 @@ function testConvertToFrequency() {
     .type('23:00')
   cy.findByLabelText(/Phase at stop/i)
     .click({force: true})
-    .type('Fountain Square{enter}')
+    .type('Florence Mall{enter}')
   cy.findByRole('button', {name: 'Delete frequency entry'}).click()
   cy.findByRole('button', {name: 'Confirm: Delete frequency entry'}).click()
 }
@@ -414,16 +414,23 @@ function testReroute() {
 
   // Select from stop and to stop
   cy.findByLabelText(/Select from stop/).click()
-  cy.clickMapAtCoord([39.0877, -84.5192])
+  cy.findStop(/Bakewell at 3rd - Out/).then((stop) => {
+    cy.clickMapAtCoord(stop.latlng)
+  })
   // test clearing the from stop
   cy.findByLabelText(/Clear from stop/).click()
 
   // Re-select the from stop
   cy.findByLabelText(/Select from stop/).click()
-  cy.clickMapAtCoord([39.0877, -84.5192])
+  cy.findStop(/Bakewell at 3rd - Out/).then((stop) => {
+    cy.clickMapAtCoord(stop.latlng)
+  })
 
   // Select the to stop
   cy.findByLabelText(/Select to stop/).click()
+  cy.findStop(/Fourth at Russell - In/).then((stop) => {
+    cy.clickMapAtCoord(stop.latlng)
+  })
   cy.clickMapAtCoord([39.1003, -84.4855])
 
   cy.findByLabelText(/Default dwell time/i).type('00:10:00')
