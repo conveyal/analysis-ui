@@ -36,23 +36,20 @@ describe('Projects', function () {
       .should('equal', region.defaultBundle.name)
     cy.findByText(/Delete this network bundle/i).should('not.exist')
     cy.contains(/Currently used by \d+ project/i)
+
     // should be selectable in analysis
     region.navTo('analyze')
-    cy.findAllByRole('button', {name: /expand/i}).then(($buttons) => {
-      for (let i = 0; i < $buttons.length; i++) {
-        cy.wrap($buttons.get(i)).click()
-      }
+    cy.getPrimaryAnalysisSettings().within(() => {
+      cy.findByLabelText(/^Project$/)
+        .click({force: true})
+        .type(projectName + '{enter}')
+      cy.contains(projectName)
+      cy.findByLabelText(/^Scenario$/)
+        .click({force: true})
+        .type('Baseline{enter}')
+      cy.contains(/Baseline/)
     })
-    cy.findAllByLabelText(/^Project$/)
-      .first()
-      .click({force: true})
-      .type(projectName + '{enter}')
-    cy.contains(projectName)
-    cy.findAllByLabelText(/^Scenario$/)
-      .first()
-      .click({force: true})
-      .type('Baseline{enter}')
-    cy.contains(/Baseline/)
+
     // delete the project
     region.navTo('projects')
     cy.findAllByText(projectName).first().click()
