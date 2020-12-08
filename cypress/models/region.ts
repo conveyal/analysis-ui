@@ -1,4 +1,5 @@
-import scratchRegion from '../fixtures/regions/scratch.json'
+import {latLngBounds} from 'leaflet'
+import {defaultAnalysisSettings, scratchRegion} from '../integration/utils'
 
 import Bundle from './bundle'
 import Model from './model'
@@ -14,6 +15,7 @@ type ProjectAnalysisSettings = {
 
 export default class Region extends Model {
   bounds: CL.Bounds
+  center: L.LatLngTuple
   defaultBundle: Bundle
   defaultOpportunityDataset: OpportunityData
   defaultProject: Project
@@ -21,6 +23,11 @@ export default class Region extends Model {
   constructor(name: string, bounds: CL.Bounds) {
     super('Conveyal', name, 'region')
     this.bounds = bounds
+    const center = latLngBounds(
+      [bounds.north, bounds.west],
+      [bounds.south, bounds.east]
+    ).getCenter()
+    this.center = [center.lat, center.lng]
   }
 
   _delete() {
@@ -40,7 +47,6 @@ export default class Region extends Model {
   ): Cypress.Chainable<[number, number]> {
     cy.setOrigin(coords)
     ;(opportunityDataset ?? this.defaultOpportunityDataset).select()
-
     cy.fetchResults()
 
     return cy
@@ -159,6 +165,9 @@ export default class Region extends Model {
     return ra
   }
 
+  /**
+   * Navigate to a section of a region
+   */
   navTo(section?: Cypress.NavToOption) {
     cy.navComplete()
     cy.location('pathname', {log: false}).then((path) => {
@@ -181,6 +190,23 @@ export default class Region extends Model {
         cy.navComplete()
       }
     })
+  }
+
+  /**
+   * Set default analysis settings.
+   */
+  initializeAnalysisDefaults() {
+    this.navToAnalysis()
+    this.setupAnalysis({
+      project: this.defaultProject,
+      settings: {
+        ...defaultAnalysisSettings,
+        bounds: this.bounds,
+        date: this.defaultBundle.date
+      }
+    })
+    cy.setOrigin(this.center)
+    cy.fetchResults()
   }
 
   /**

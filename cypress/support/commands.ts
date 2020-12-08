@@ -94,7 +94,7 @@ const navToPages = {
     path: /\/regions\/[a-z0-9]+\/projects*/
   },
   analyze: {
-    lookFor: /Comparison Project/i,
+    lookFor: /Fetch results/i,
     path: /\/regions\/[a-z0-9]+\/analysis*/
   },
   'regional analyses': {

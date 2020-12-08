@@ -103,15 +103,17 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'findStop',
   (name: string | RegExp): Cypress.Chainable<Cypress.Stop> => {
-    return cy.findByText(name).then((el) => {
-      return {
-        latlng: el
-          .attr('data-coordinate')
-          .split(',')
-          .map((v: string) => parseFloat(v)) as L.LatLngTuple,
-        id: el.attr('data-id')
-      }
-    })
+    return getMapDiv()
+      .findByText(name)
+      .then((el) => {
+        return {
+          latlng: el
+            .attr('data-coordinate')
+            .split(',')
+            .map((v: string) => parseFloat(v)) as L.LatLngTuple,
+          id: el.attr('data-id')
+        }
+      })
   }
 )
 
