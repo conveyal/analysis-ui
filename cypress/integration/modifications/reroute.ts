@@ -19,6 +19,10 @@ describe('Reroute', () => {
    */
   it('should be able to add a stop along the reroute detour', () => {
     rerouteModification.navTo()
+    cy.findByLabelText(/Select route/)
+      .click({force: true})
+      .type('Southbank{enter}')
+
     cy.findButton(/Select from stop/).click()
     cy.clickStopOnMap(/Monmouth at Third - Out/)
     cy.findButton(/Select to stop/).click()

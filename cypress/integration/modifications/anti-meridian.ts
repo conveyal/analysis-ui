@@ -73,9 +73,7 @@ describe('Modification drawing over anti-meridian', () => {
 
     it('should handle anti-meridian drawing', () => {
       cy.findByLabelText(/Select from stop/).click()
-      cy.findStop(/Bakewell at 3rd - Out/).then((stop) => {
-        cy.clickMapAtCoord(stop.latlng)
-      })
+      cy.clickStopOnMap(/Bakewell at 3rd - Out/)
 
       cy.findButton(/Edit route geometry/).click()
       coordsOverAntiMeridian.forEach((coord) => cy.clickMapAtCoord(coord))

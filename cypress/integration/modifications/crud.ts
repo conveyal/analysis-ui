@@ -414,23 +414,17 @@ function testReroute() {
 
   // Select from stop and to stop
   cy.findByLabelText(/Select from stop/).click()
-  cy.findStop(/Bakewell at 3rd - Out/).then((stop) => {
-    cy.clickMapAtCoord(stop.latlng)
-  })
+  cy.clickStopOnMap(/Race at 3rd - Out/)
   // test clearing the from stop
   cy.findByLabelText(/Clear from stop/).click()
 
   // Re-select the from stop
   cy.findByLabelText(/Select from stop/).click()
-  cy.findStop(/Bakewell at 3rd - Out/).then((stop) => {
-    cy.clickMapAtCoord(stop.latlng)
-  })
+  cy.clickStopOnMap(/Race at 3rd - Out/)
 
   // Select the to stop
   cy.findByLabelText(/Select to stop/).click()
-  cy.findStop(/Fourth at Russell - In/).then((stop) => {
-    cy.clickMapAtCoord(stop.latlng)
-  })
+  cy.clickStopOnMap(/Dixie at Edgewood - Out/)
   cy.clickMapAtCoord([39.1003, -84.4855])
 
   cy.findByLabelText(/Default dwell time/i).type('00:10:00')
