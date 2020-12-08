@@ -88,12 +88,13 @@ describe('Analysis', () => {
     const results = scratchResults.locations.middle
     cy.setOrigin(location)
     cy.centerMapOn(location)
-    // turn off all transit
     cy.getPrimaryAnalysisSettings().within(() => {
-      cy.findByRole('button', {name: /All transit/i}).click()
+      // turn off all transit
+      cy.findButton(/All transit/i).click()
       // it has changed names, becoming:
-      cy.findByRole('button', {name: /bike direct mode/i}).click()
-      cy.findAllByRole('button', {name: /bike egress/i}).should('be.disabled')
+      cy.findButton(/bike direct mode/i).click()
+      cy.findButton(/bike egress/i).should('be.disabled')
+      cy.findByLabelText(/Max LTS/).select('4')
     })
 
     region.defaultOpportunityDataset.select()
@@ -104,6 +105,25 @@ describe('Analysis', () => {
     cy.get('svg#results-chart')
       .scrollIntoView()
       .matchImageSnapshot('direct-bike-access-chart')
+  })
+
+  it('has lower access with lower bike LTS', () => {
+    const location = scratchRegion.locations.middle as L.LatLngTuple
+
+    cy.getPrimaryAnalysisSettings().within(() => {
+      cy.findButton(/Bike Access mode/i).click()
+      cy.findByLabelText(/Max LTS/).select('4')
+    })
+
+    cy.getComparisonAnalysisSettings().within(() => {
+      cy.findButton(/Bike Access mode/).click()
+    })
+
+    region
+      .fetchAccessibilityComparison(location)
+      .then(([highStress, lowStress]) =>
+        expect(lowStress).to.be.lessThan(highStress)
+      )
   })
 
   it('uses custom analysis bounds', function () {

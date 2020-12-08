@@ -27,6 +27,7 @@ export const ModificationTypes: Cypress.ModificationType[] = [
 export const defaultAnalysisSettings = {
   accessModes: 'WALK',
   bikeSpeed: 4.166666666666667,
+  bikeTrafficStress: 1,
   bounds: scratchRegion.bounds,
   date: scratchRegion.date,
   decayFunction: {
