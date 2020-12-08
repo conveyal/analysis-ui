@@ -8,7 +8,7 @@ import {
 /* eslint-disable cypress/no-unnecessary-waiting */
 
 const getFromTime = () => cy.findByLabelText(/From time/i)
-const getToTime = () => cy.findAllByLabelText(/To time/i)
+const getToTime = () => cy.findByLabelText(/To time/i)
 const getOpportunityCount = () =>
   cy.findByLabelText(/Opportunities within isochrone/).itsNumericText()
 
@@ -17,45 +17,56 @@ describe('Analysis', () => {
 
   beforeEach(() => {
     cy.visitHome()
-    region.setupAnalysis({
-      project: region.defaultProject,
-      scenario: 'baseline',
-      settings: {
-        ...defaultAnalysisSettings,
-        bounds: region.bounds,
-        date: region.defaultBundle.date
+    region.setupAnalysis(
+      {
+        project: region.defaultProject,
+        scenario: 'baseline',
+        settings: {
+          ...defaultAnalysisSettings,
+          bounds: region.bounds,
+          date: region.defaultBundle.date
+        }
+      },
+      {
+        project: region.defaultProject,
+        scenario: 'baseline',
+        settings: {
+          ...defaultAnalysisSettings,
+          bounds: region.bounds,
+          date: region.defaultBundle.date
+        }
       }
-    })
+    )
   })
 
   it('has all form elements', function () {
     // note that elements touched in beforeEach are neglected here
     cy.findByRole('slider', {name: 'Time cutoff'})
     cy.findByRole('slider', {name: /Travel time percentile/i})
-    cy.getPrimaryAnalysisSettings()
-      .findByRole('button', {
-        name: 'Fetch results with the current settings to enable button'
+    cy.getPrimaryAnalysisSettings().within(() => {
+      cy.findButton(
+        'Fetch results with the current settings to enable button'
+      ).should('be.disabled')
+      cy.contains(region.defaultProject.name)
+      cy.contains('Default')
+
+      cy.findButton(/Walk access/i)
+      cy.findButton(/Bus/i)
+      cy.findButton(/Walk egress/i)
+
+      cy.findByLabelText(/Walk speed/i)
+      cy.findByLabelText(/Max walk time/i)
+      cy.findByLabelText(/Date/i)
+      getFromTime()
+      getToTime()
+      cy.findByLabelText(/Simulated Schedules/i)
+      cy.findByLabelText(/Maximum transfers/i)
+      cy.findByLabelText(/Decay function/i)
+      cy.findByLabelText(/Routing engine/i)
+      cy.findAllByLabelText(/Bounds of analysis/i)
+      cy.findByRole('tab', {
+        name: /Custom JSON editor/i
       })
-      .should('be.disabled')
-    cy.getPrimaryAnalysisSettings().contains(region.defaultProject.name)
-    cy.getPrimaryAnalysisSettings().contains('Default')
-
-    cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Walk access/i})
-    cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Bus/i})
-    cy.getPrimaryAnalysisSettings().findByRole('button', {name: /Walk egress/i})
-
-    cy.findByLabelText(/Walk speed/i)
-    cy.findByLabelText(/Max walk time/i)
-    cy.getPrimaryAnalysisSettings().findByLabelText(/Date/i)
-    getFromTime()
-    getToTime()
-    cy.getPrimaryAnalysisSettings().findByLabelText(/Simulated Schedules/i)
-    cy.getPrimaryAnalysisSettings().findByLabelText(/Maximum transfers/i)
-    cy.getPrimaryAnalysisSettings().findByLabelText(/Decay function/i)
-    cy.findByLabelText(/Routing engine/i)
-    cy.getPrimaryAnalysisSettings().findAllByLabelText(/Bounds of analysis/i)
-    cy.getPrimaryAnalysisSettings().findByRole('tab', {
-      name: /Custom JSON editor/i
     })
     cy.findButton(/^Fetch results$/i).should('be.enabled')
   })
@@ -78,16 +89,12 @@ describe('Analysis', () => {
     cy.setOrigin(location)
     cy.centerMapOn(location)
     // turn off all transit
-    cy.getPrimaryAnalysisSettings()
-      .findByRole('button', {name: /All transit/i})
-      .click()
-    // it has changed names, becoming:
-    cy.getPrimaryAnalysisSettings()
-      .findByRole('button', {name: /bike direct mode/i})
-      .click()
-    cy.getPrimaryAnalysisSettings()
-      .findAllByRole('button', {name: /bike egress/i})
-      .should('be.disabled')
+    cy.getPrimaryAnalysisSettings().within(() => {
+      cy.findByRole('button', {name: /All transit/i}).click()
+      // it has changed names, becoming:
+      cy.findByRole('button', {name: /bike direct mode/i}).click()
+      cy.findAllByRole('button', {name: /bike egress/i}).should('be.disabled')
+    })
 
     region.defaultOpportunityDataset.select()
     cy.fetchResults()
@@ -116,8 +123,10 @@ describe('Analysis', () => {
     const results = scratchResults.locations.center
 
     // set time window in morning rush -- should have high access
-    getFromTime().clear().type('06:00')
-    getToTime().clear().type('08:00')
+    cy.getPrimaryAnalysisSettings().within(() => {
+      getFromTime().clear().type('06:00')
+      getToTime().clear().type('08:00')
+    })
 
     cy.setOrigin(location)
     region.defaultOpportunityDataset.select()
@@ -126,14 +135,18 @@ describe('Analysis', () => {
     getOpportunityCount().isWithin(results['6:00-8:00'], 10)
 
     // set time window in late evening - lower access
-    getFromTime().clear().type('20:00')
-    getToTime().clear().type('22:00')
+    cy.getPrimaryAnalysisSettings().within(() => {
+      getFromTime().clear().type('20:00')
+      getToTime().clear().type('22:00')
+    })
     cy.fetchResults()
     getOpportunityCount().isWithin(results['20:00-22:00'], 10)
 
     // narrow window to one minute - no variability
-    getFromTime().clear().type('12:00')
-    getToTime().clear().type('12:01')
+    cy.getPrimaryAnalysisSettings().within(() => {
+      getFromTime().clear().type('12:00')
+      getToTime().clear().type('12:01')
+    })
     cy.fetchResults()
 
     cy.get('svg#results-chart')
@@ -153,21 +166,18 @@ describe('Analysis', () => {
       .scrollIntoView()
       .matchImageSnapshot('single-scenario-chart')
     // add a comparison case to the chart
-    cy.getComparisonAnalysisSettings()
-      .findByLabelText(/^Project$/)
-      .click({force: true})
-      .type('scratch{enter}')
-    cy.getComparisonAnalysisSettings()
-      .findByLabelText(/^Scenario$/)
-      .click({force: true})
-      .type('baseline{enter}')
-    // change the mode
-    cy.getComparisonAnalysisSettings()
-      .findByLabelText(/Identical request settings/i)
-      .uncheck({force: true})
-    cy.getComparisonAnalysisSettings()
-      .findByRole('button', {name: /bike access mode/i})
-      .click()
+    cy.getComparisonAnalysisSettings().within(() => {
+      cy.findByLabelText(/^Project$/)
+        .click({force: true})
+        .type('scratch{enter}')
+      cy.findByLabelText(/^Scenario$/)
+        .click({force: true})
+        .type('baseline{enter}')
+      // change the mode
+      cy.findByLabelText(/Identical request settings/i).uncheck({force: true})
+      cy.findButton(/bike access mode/i).click()
+    })
+
     cy.fetchResults()
     cy.get('@chart')
       .scrollIntoView()
