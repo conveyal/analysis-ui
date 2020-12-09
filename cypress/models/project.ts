@@ -84,6 +84,7 @@ export default class Project extends Model {
 
       // On each test run ensure it starts with the same data.
       if (data) {
+        modification.navTo()
         cy.editModificationJSON(data)
       }
     })

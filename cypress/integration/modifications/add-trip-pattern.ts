@@ -97,27 +97,29 @@ describe('Add Trip Pattern', () => {
       cy.editModificationJSON({
         segments: []
       })
+      cy.findButton(/Edit route geometry/).click()
+    })
+
+    afterEach(() => {
+      cy.findButton(/Stop editing/).click()
     })
 
     it('create a single line with two clicks', () => {
-      cy.findButton(/Edit route geometry/).click()
       cy.clickMapAtCoord([39.08, -84.48])
       cy.clickMapAtCoord([39.08, -84.49])
-      cy.findButton(/Stop editing/).click()
       cy.findByText(/2 stops over/).should('exist')
     })
 
     it('can disable extending', () => {
-      cy.findButton(/Edit route geometry/).click()
       cy.clickMapAtCoord([39.08, -84.48])
       cy.clickMapAtCoord([39.08, -84.49])
       cy.findByLabelText(/^Extend$/).uncheck({force: true})
       cy.clickMapAtCoord([39.08, -84.5])
       cy.get('#react-toast').findByRole('alert')
+      cy.findByLabelText(/^Extend$/).check({force: true})
     })
 
     it('drag new stops', () => {
-      cy.findButton(/Edit route geometry/).click()
       cy.clickMapAtCoord([39.08, -84.48])
 
       const lastCoord: L.LatLngTuple = [39.08, -84.49]
@@ -134,25 +136,20 @@ describe('Add Trip Pattern', () => {
       cy.findByText(/2 stops over 2/)
 
       cy.dragMarker('Stop 1', tempCoord, newCoord)
-
-      cy.findButton(/Stop editing/).click()
       cy.findByText(/2 stops over 1.7/)
     })
 
     it('insert a new stop along a line', () => {
-      cy.findButton(/Edit route geometry/).click()
       cy.clickMapAtCoord([39.08, -84.48])
       cy.clickMapAtCoord([39.08, -84.5])
       cy.findByText(/2 stops over 1.7/)
 
       // Click a point along the existing route to add a new one
       cy.clickMapAtCoord([39.08, -84.49])
-      cy.findButton(/Stop editing/).click()
       cy.findByText(/3 stops over 1.7/)
     })
 
     it('drag inserted stops to new locations', () => {
-      cy.findButton(/Edit route geometry/).click()
       cy.clickMapAtCoord([39.08, -84.48])
       cy.clickMapAtCoord([39.08, -84.5])
       cy.findByText(/2 stops over 1.7/)
@@ -162,13 +159,10 @@ describe('Add Trip Pattern', () => {
       const newCoord: L.LatLngTuple = [39.09, -84.49]
       cy.clickMapAtCoord(coord)
       cy.dragMarker('Stop 1', coord, newCoord)
-
-      cy.findButton(/Stop editing/).click()
       cy.findByText(/3 stops over 2/)
     })
 
     it('handles many inserted and dragged stops', () => {
-      cy.findButton(/Edit route geometry/).click()
       const step = 0.01
       const steps = 5
       const startLat = 39.08
