@@ -62,9 +62,7 @@ export default abstract class Model {
 
   initialize() {
     this.isPathStored().then((pathIsStored) => {
-      if (pathIsStored) {
-        this.navTo()
-      } else {
+      if (!pathIsStored) {
         this.findOrCreate() // sets the path
         this.storePath() // store the path to be reused
         cy.navComplete() // ensure navigation is complete before continuing

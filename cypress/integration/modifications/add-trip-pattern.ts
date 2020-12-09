@@ -89,10 +89,11 @@ describe('Add Trip Pattern', () => {
   })
 
   describe('Geometry Editing', () => {
-    project.getModification({type: 'Add Trip Pattern'})
+    const mod = project.getModification({type: 'Add Trip Pattern'})
 
     // Reset segments on each go
     beforeEach(() => {
+      mod.navTo()
       cy.editModificationJSON({
         segments: []
       })
@@ -104,6 +105,15 @@ describe('Add Trip Pattern', () => {
       cy.clickMapAtCoord([39.08, -84.49])
       cy.findButton(/Stop editing/).click()
       cy.findByText(/2 stops over/).should('exist')
+    })
+
+    it('can disable extending', () => {
+      cy.findButton(/Edit route geometry/).click()
+      cy.clickMapAtCoord([39.08, -84.48])
+      cy.clickMapAtCoord([39.08, -84.49])
+      cy.findByLabelText(/^Extend$/).uncheck({force: true})
+      cy.clickMapAtCoord([39.08, -84.5])
+      cy.get('#react-toast').findByRole('alert')
     })
 
     it('drag new stops', () => {

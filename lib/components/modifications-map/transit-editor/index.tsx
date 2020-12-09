@@ -1,4 +1,4 @@
-import {Button, useDisclosure, useToast} from '@chakra-ui/core'
+import {Button, Heading, Stack, useDisclosure, useToast} from '@chakra-ui/core'
 import {DomEvent, LatLng, LeafletMouseEvent} from 'leaflet'
 import {useCallback, useEffect, useState} from 'react'
 import {Marker, Polyline, Popup, useLeaflet} from 'react-leaflet'
@@ -39,9 +39,9 @@ type TransitEditorProps = {
 }
 
 // Keep track of zIndexes for all layers
-let indexCounter = 505
+let indexCounter = 600
 const zIndex = {
-  segments: indexCounter++,
+  segments: 501,
   autoCreatedStops: indexCounter++,
   controlPoints: indexCounter++,
   stops: indexCounter++,
@@ -163,12 +163,11 @@ export default function TransitEditor({
 
   const handleMapClick = useCallback(
     async (event: L.LeafletMouseEvent) => {
+      logDomEvent('Map.onClick', event)
       if (Date.now() - lastEventMs < MIN_EVENT_INTERVAL) {
         console.log('Map.onClick cancelled due to previous event')
         return
       }
-
-      logDomEvent('Map.onClick', event)
       const {latlng} = event
       if (latlngIsInvalidCheck(latlng)) return
       if (!allowExtend) {
@@ -494,21 +493,21 @@ function Stops({deleteStop, onStopDragEnd, segments, updateSegments}) {
             }}
           >
             <Popup>
-              <div>
+              <Stack>
+                <Heading size='sm'>{stopKey(stop)}</Heading>
                 <Button
                   onClick={() => toggleStop(stopIndex)}
-                  variantColor='teal'
+                  variantColor='blue'
                 >
                   {message('transitEditor.makeControlPoint')}
                 </Button>
-                &nbsp;
                 <Button
                   onClick={() => deleteStop(stopIndex)}
                   variantColor='red'
                 >
                   {message('transitEditor.deletePoint')}
                 </Button>
-              </div>
+              </Stack>
             </Popup>
           </Marker>
         ))}
@@ -594,15 +593,15 @@ function ControlPoints({
           title={controlPointKey(cp)}
         >
           <Popup>
-            <div>
+            <Stack>
+              <Heading size='sm'>{controlPointKey(cp)}</Heading>
               <Button onClick={() => togglePoint(cp.index)} variantColor='blue'>
                 {message('transitEditor.makeStop')}
               </Button>
-              &nbsp;
               <Button onClick={() => deletePoint(cp.index)} variantColor='red'>
                 {message('transitEditor.deletePoint')}
               </Button>
-            </div>
+            </Stack>
           </Popup>
         </Marker>
       ))}
