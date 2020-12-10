@@ -134,7 +134,7 @@ export const getServerSideProps: GetServerSideProps = async ({req}) => {
     user = await getUser(req)
   } catch (e) {
     return {
-      unstable_redirect: {
+      redirect: {
         permanent: false,
         destination: '/api/login'
       }
