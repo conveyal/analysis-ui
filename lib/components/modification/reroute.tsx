@@ -112,7 +112,11 @@ export default function Reroute({
 
   return (
     <Stack spacing={4}>
-      <RerouteLayer feed={selectedFeed} modification={modification} />
+      <RerouteLayer
+        feed={selectedFeed}
+        isEditing={isEditing}
+        modification={modification}
+      />
 
       {selectStop !== 'none' && (
         <StopLayer
