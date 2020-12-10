@@ -133,6 +133,7 @@ export default function TransitEditor({
     (latlng: L.LatLng): boolean => {
       if (latlngIsOutOfRange(latlng)) {
         toast({
+          isClosable: true,
           description: outOfRangeMessage(latlng),
           position: 'top',
           status: 'error',
@@ -172,6 +173,7 @@ export default function TransitEditor({
       if (latlngIsInvalidCheck(latlng)) return
       if (!allowExtend) {
         toast({
+          isClosable: true,
           title: 'Click ignored',
           description: 'Extending is disabled.',
           position: 'top',
