@@ -1,4 +1,4 @@
-import {Button, ButtonGroup, Heading, Stack} from '@chakra-ui/core'
+import {Button, ButtonGroup, Divider, Heading, Stack} from '@chakra-ui/core'
 import {useDispatch} from 'react-redux'
 
 import ConfirmButton from 'lib/components/confirm-button'
@@ -84,6 +84,30 @@ export default function EditOpportunityDatatset(p) {
       </Stack>
 
       <Stack spacing={1}>
+        <LabelHeading>download as</LabelHeading>
+        <ButtonGroup>
+          <Button
+            leftIcon='download'
+            onClick={_downloadTiff}
+            title={message('opportunityDatasets.downloadTiff')}
+            variantColor='green'
+            variant='outline'
+          >
+            .tiff
+          </Button>
+          <Button
+            leftIcon='download'
+            onClick={_downloadGrid}
+            title={message('opportunityDatasets.downloadGrid')}
+            variantColor='green'
+            variant='outline'
+          >
+            .grid
+          </Button>
+        </ButtonGroup>
+      </Stack>
+
+      <Stack spacing={1}>
         <LabelHeading>created by</LabelHeading>
         <Heading size='md'>{p.opportunityDataset.createdBy}</Heading>
       </Stack>
@@ -95,36 +119,17 @@ export default function EditOpportunityDatatset(p) {
         </Heading>
       </Stack>
 
-      <ButtonGroup>
-        <Button
-          leftIcon='download'
-          onClick={_downloadTiff}
-          title={message('opportunityDatasets.downloadTiff')}
-          variantColor='green'
-          variant='outline'
-        >
-          .tiff
-        </Button>
-        <Button
-          leftIcon='download'
-          onClick={_downloadGrid}
-          title={message('opportunityDatasets.downloadGrid')}
-          variantColor='green'
-          variant='outline'
-        >
-          .grid
-        </Button>
+      <ConfirmButton
+        description={message('opportunityDatasets.confirmDelete')}
+        leftIcon='delete'
+        onConfirm={_deleteDataset}
+        variantColor='red'
+        variant='outline'
+      >
+        {message('opportunityDatasets.delete')}
+      </ConfirmButton>
 
-        <ConfirmButton
-          description={message('opportunityDatasets.confirmDelete')}
-          leftIcon='delete'
-          onConfirm={_deleteDataset}
-          variantColor='red'
-          variant='outline'
-        >
-          {message('opportunityDatasets.delete')}
-        </ConfirmButton>
-      </ButtonGroup>
+      <Divider />
 
       <Stack spacing={2}>
         <LabelHeading>dataset source name</LabelHeading>
