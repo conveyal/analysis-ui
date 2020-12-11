@@ -18,9 +18,9 @@ import useRouteTo from 'lib/hooks/use-route-to'
 import withAuth from 'lib/with-auth'
 import {IUser} from 'lib/user'
 
-const alertDate = 'October, 2020'
-const alertText =
-  'Apply decay functions to opportunities, better manage analysis presets, and visualize travel time to destinations.'
+const alertDate = 'December, 2020'
+const alertStatus = 'warning'
+const alertText = 'Minor changes and a few bug fixes.'
 
 type SelectRegionPageProps = {
   regions: CL.Region[]
@@ -54,7 +54,7 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
             {email} ({accessGroup})
           </strong>
         </Box>
-        <Alert status='success' borderRadius='md'>
+        <Alert status={alertStatus} borderRadius='md'>
           <Stack>
             <Box>
               <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
