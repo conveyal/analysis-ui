@@ -1,15 +1,11 @@
 import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/core'
-import {
-  faExternalLinkAlt,
-  faMap,
-  faSignOutAlt
-} from '@fortawesome/free-solid-svg-icons'
+import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 import {GetServerSideProps} from 'next'
 
 import {getUser} from 'lib/auth0'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
-import {ALink, ExternalLink} from 'lib/components/link'
+import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import AuthenticatedCollection from 'lib/db/authenticated-collection'
 import {serializeCollection} from 'lib/db/utils'
@@ -20,7 +16,7 @@ import {IUser} from 'lib/user'
 
 const alertDate = 'December, 2020'
 const alertStatus = 'warning'
-const alertText = 'Minor changes and a few bug fixes.'
+const alertText = 'Minor changes and a few bug fixes related to modifications.'
 
 type SelectRegionPageProps = {
   regions: CL.Region[]
@@ -61,12 +57,6 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
             </Box>
             <Box>
               <ALink to='changelog'>Click here to learn more.</ALink>
-            </Box>
-            <Box>
-              <ExternalLink href='https://docs.conveyal.com'>
-                Also, check out our improved User Manual{' '}
-                <Icon icon={faExternalLinkAlt} />
-              </ExternalLink>
             </Box>
           </Stack>
         </Alert>
