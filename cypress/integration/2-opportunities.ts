@@ -124,7 +124,7 @@ describe('Opportunity Datasets', function () {
   describe('can be downloaded', () => {
     it('as .grid', () => {
       importedWithGrid.navTo()
-      cy.contains(/Download as \.grid/)
+      cy.contains(/\.grid/)
       cy.location('href')
         .should('match', /opportunityDatasetId=\w{24}$/)
         .then((href) => {
@@ -147,7 +147,7 @@ describe('Opportunity Datasets', function () {
     // This currently crahes Cypress
     it.skip('as TIFF', () => {
       importedWithGrid.navTo()
-      cy.findButton(/Download as \.tiff/i)
+      cy.findButton(/\.tiff/i)
     })
   })
 })
