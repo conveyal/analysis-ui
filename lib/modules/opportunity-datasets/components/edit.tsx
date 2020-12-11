@@ -70,14 +70,14 @@ export default function EditOpportunityDatatset(p) {
           <Editable
             onChange={_editName}
             isValid={nameIsValid}
-            placeholder='Add dataset name'
+            placeholder='Opportunity dataset name'
             value={p.opportunityDataset.name}
           />
         </Heading>
       </Stack>
       <Stack spacing={1}>
         <LabelHeading>total opportunities</LabelHeading>
-        <Heading size='md'>
+        <Heading id='totalOpportunities' size='md'>
           {p.opportunityDataset.totalOpportunities.toLocaleString()}
         </Heading>
       </Stack>
@@ -93,7 +93,6 @@ export default function EditOpportunityDatatset(p) {
       </Stack>
 
       <Stack spacing={2}>
-        <Heading size='md'>{message('analysis.gisExport')}</Heading>
         <Button
           leftIcon='download'
           onClick={_downloadTiff}
