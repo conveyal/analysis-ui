@@ -1,6 +1,8 @@
 import {Button, Heading, Stack} from '@chakra-ui/core'
 import {useDispatch} from 'react-redux'
 
+import ConfirmButton from 'lib/components/confirm-button'
+import Editable from 'lib/components/editable'
 import message from 'lib/message'
 
 import {
@@ -10,31 +12,40 @@ import {
   editOpportunityDataset
 } from '../actions'
 
+function LabelHeading({children, ...p}) {
+  return (
+    <Heading
+      color='gray.500'
+      fontWeight='normal'
+      size='sm'
+      style={{fontVariant: 'small-caps'}}
+      {...p}
+    >
+      {children}
+    </Heading>
+  )
+}
+
+const nameIsValid = (n?: string) => typeof n === 'string' && n.length > 0
+
 export default function EditOpportunityDatatset(p) {
   const dispatch = useDispatch<any>()
 
-  function _editName() {
-    const newName = window.prompt(message('opportunityDatasets.enterName'))
-    if (newName && newName !== p.opportunityDataset.name) {
-      dispatch(
-        editOpportunityDataset({
-          ...p.opportunityDataset,
-          name: newName
-        })
-      )
-    }
+  function _editName(newName: string) {
+    return dispatch(
+      editOpportunityDataset({
+        ...p.opportunityDataset,
+        name: newName
+      })
+    )
   }
 
   function _deleteDataset() {
-    if (window.confirm(message('opportunityDatasets.confirmDelete'))) {
-      dispatch(deleteOpportunityDataset(p.opportunityDataset))
-    }
+    return dispatch(deleteOpportunityDataset(p.opportunityDataset))
   }
 
   function _deleteSourceSet() {
-    if (window.confirm(message('opportunityDatasets.confirmDeleteSource'))) {
-      dispatch(deleteSourceSet(p.opportunityDataset.sourceId))
-    }
+    return dispatch(deleteSourceSet(p.opportunityDataset.sourceId))
   }
 
   async function _downloadTiff() {
@@ -53,33 +64,34 @@ export default function EditOpportunityDatatset(p) {
 
   return (
     <Stack spacing={4}>
-      <Stack spacing={2}>
-        <Heading size='md'>{p.opportunityDataset.name}</Heading>
-        <Button
-          leftIcon='edit'
-          onClick={_editName}
-          variantColor='yellow'
-          title={message('opportunityDatasets.editName')}
-        >
-          {message('opportunityDatasets.editName')}
-        </Button>
-        <Button
-          leftIcon='delete'
-          onClick={_deleteDataset}
-          variantColor='red'
-          title={message('opportunityDatasets.delete')}
-        >
-          {message('opportunityDatasets.delete')}
-        </Button>
-        <Button
-          leftIcon='delete'
-          onClick={_deleteSourceSet}
-          variantColor='red'
-          title={message('opportunityDatasets.deleteSource')}
-        >
-          {message('opportunityDatasets.deleteSource')}
-        </Button>
+      <Stack spacing={0}>
+        <LabelHeading>name</LabelHeading>
+        <Heading size='md'>
+          <Editable
+            onChange={_editName}
+            isValid={nameIsValid}
+            placeholder='Add dataset name'
+            value={p.opportunityDataset.name}
+          />
+        </Heading>
       </Stack>
+      <Stack spacing={1}>
+        <LabelHeading>total opportunities</LabelHeading>
+        <Heading size='md'>
+          {p.opportunityDataset.totalOpportunities.toLocaleString()}
+        </Heading>
+      </Stack>
+      <Stack spacing={1}>
+        <LabelHeading>created by</LabelHeading>
+        <Heading size='md'>{p.opportunityDataset.createdBy}</Heading>
+      </Stack>
+      <Stack spacing={1}>
+        <LabelHeading>created at</LabelHeading>
+        <Heading size='md'>
+          {new Date(p.opportunityDataset.createdAt).toLocaleString()}
+        </Heading>
+      </Stack>
+
       <Stack spacing={2}>
         <Heading size='md'>{message('analysis.gisExport')}</Heading>
         <Button
@@ -98,6 +110,25 @@ export default function EditOpportunityDatatset(p) {
         >
           {message('opportunityDatasets.downloadGrid')}
         </Button>
+      </Stack>
+
+      <Stack spacing={2}>
+        <ConfirmButton
+          description={message('opportunityDatasets.confirmDelete')}
+          leftIcon='delete'
+          onConfirm={_deleteDataset}
+          variantColor='red'
+        >
+          {message('opportunityDatasets.delete')}
+        </ConfirmButton>
+        <ConfirmButton
+          description={message('opportunityDatasets.confirmDeleteSource')}
+          leftIcon='delete'
+          onConfirm={_deleteSourceSet}
+          variantColor='red'
+        >
+          {message('opportunityDatasets.deleteSource')}
+        </ConfirmButton>
       </Stack>
     </Stack>
   )
