@@ -1,6 +1,6 @@
 import {clearTemporaryData} from './utils'
 
-describe('Clear all test data', () => {
+describe.skip('Clear all test data', () => {
   before(() => {
     clearTemporaryData()
   })
