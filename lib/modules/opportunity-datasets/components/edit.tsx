@@ -62,6 +62,8 @@ export default function EditOpportunityDatatset(p) {
     window.open(value.url)
   }
 
+  const {totalOpportunities} = p.opportunityDataset
+
   return (
     <Stack spacing={5}>
       <Stack spacing={0}>
@@ -79,7 +81,9 @@ export default function EditOpportunityDatatset(p) {
       <Stack spacing={1}>
         <LabelHeading>total opportunities</LabelHeading>
         <Heading id='totalOpportunities' size='md'>
-          {p.opportunityDataset.totalOpportunities.toLocaleString()}
+          {typeof totalOpportunities === 'number'
+            ? totalOpportunities.toLocaleString()
+            : 'unknown'}
         </Heading>
       </Stack>
 
