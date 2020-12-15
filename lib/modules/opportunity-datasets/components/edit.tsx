@@ -33,6 +33,7 @@ const nameIsValid = (n?: string) => typeof n === 'string' && n.length > 0
 
 export default function EditOpportunityDatatset(p) {
   const dispatch = useDispatch<any>()
+  const {createdAt, totalOpportunities} = p.opportunityDataset
 
   function _editName(newName: string) {
     return dispatch(
@@ -65,12 +66,6 @@ export default function EditOpportunityDatatset(p) {
     window.open(value.url)
   }
 
-  const {createdAt, totalOpportunities} = p.opportunityDataset
-  let totalOpportunitiesDisplay = 'unknown'
-  if (totalOpportunities || createdAt >= cutoffTimestamp) {
-    totalOpportunitiesDisplay = totalOpportunities.toLocaleString()
-  }
-
   return (
     <Stack spacing={5}>
       <Stack spacing={0}>
@@ -85,12 +80,15 @@ export default function EditOpportunityDatatset(p) {
         </Heading>
       </Stack>
 
-      <Stack spacing={1}>
-        <LabelHeading>total opportunities</LabelHeading>
-        <Heading id='totalOpportunities' size='md'>
-          {totalOpportunitiesDisplay}
-        </Heading>
-      </Stack>
+      {totalOpportunities ||
+        (createdAt >= cutoffTimestamp && (
+          <Stack spacing={1}>
+            <LabelHeading>total opportunities</LabelHeading>
+            <Heading id='totalOpportunities' size='md'>
+              {totalOpportunities.toLocaleString()}
+            </Heading>
+          </Stack>
+        ))}
 
       <Stack spacing={1}>
         <LabelHeading>download as</LabelHeading>
@@ -123,9 +121,7 @@ export default function EditOpportunityDatatset(p) {
 
       <Stack spacing={1}>
         <LabelHeading>created at</LabelHeading>
-        <Heading size='md'>
-          {new Date(p.opportunityDataset.createdAt).toLocaleString()}
-        </Heading>
+        <Heading size='md'>{new Date(createdAt).toLocaleString()}</Heading>
       </Stack>
 
       <ConfirmButton
