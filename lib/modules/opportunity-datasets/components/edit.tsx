@@ -26,6 +26,9 @@ function LabelHeading({children, ...p}) {
   )
 }
 
+// Datasets before 2019 may not have had their total opportunties calculated
+const cutoffTimestamp = new Date('2019').valueOf()
+
 const nameIsValid = (n?: string) => typeof n === 'string' && n.length > 0
 
 export default function EditOpportunityDatatset(p) {
@@ -62,7 +65,11 @@ export default function EditOpportunityDatatset(p) {
     window.open(value.url)
   }
 
-  const {totalOpportunities} = p.opportunityDataset
+  const {createdAt, totalOpportunities} = p.opportunityDataset
+  let totalOpportunitiesDisplay = 'unknown'
+  if (totalOpportunities || createdAt >= cutoffTimestamp) {
+    totalOpportunitiesDisplay = totalOpportunities.toLocaleString()
+  }
 
   return (
     <Stack spacing={5}>
@@ -81,9 +88,7 @@ export default function EditOpportunityDatatset(p) {
       <Stack spacing={1}>
         <LabelHeading>total opportunities</LabelHeading>
         <Heading id='totalOpportunities' size='md'>
-          {typeof totalOpportunities === 'number'
-            ? totalOpportunities.toLocaleString()
-            : 'unknown'}
+          {totalOpportunitiesDisplay}
         </Heading>
       </Stack>
 
