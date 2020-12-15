@@ -80,15 +80,14 @@ export default function EditOpportunityDatatset(p) {
         </Heading>
       </Stack>
 
-      {totalOpportunities ||
-        (createdAt >= cutoffTimestamp && (
-          <Stack spacing={1}>
-            <LabelHeading>total opportunities</LabelHeading>
-            <Heading id='totalOpportunities' size='md'>
-              {totalOpportunities.toLocaleString()}
-            </Heading>
-          </Stack>
-        ))}
+      {(totalOpportunities || createdAt >= cutoffTimestamp) && (
+        <Stack spacing={1}>
+          <LabelHeading>total opportunities</LabelHeading>
+          <Heading id='totalOpportunities' size='md'>
+            {totalOpportunities.toLocaleString()}
+          </Heading>
+        </Stack>
+      )}
 
       <Stack spacing={1}>
         <LabelHeading>download as</LabelHeading>
