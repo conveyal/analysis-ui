@@ -1,31 +1,36 @@
 import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/core'
-import {
-  faExternalLinkAlt,
-  faMap,
-  faSignOutAlt
-} from '@fortawesome/free-solid-svg-icons'
+import {faMap, faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import {GetServerSideProps} from 'next'
 
+import {getUser} from 'lib/auth0'
 import Icon from 'lib/components/icon'
 import ListGroupItem from 'lib/components/list-group-item'
-import {ALink, ExternalLink} from 'lib/components/link'
+import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
+import AuthenticatedCollection from 'lib/db/authenticated-collection'
+import {serializeCollection} from 'lib/db/utils'
 import {useRegions} from 'lib/hooks/use-collection'
 import useRouteTo from 'lib/hooks/use-route-to'
-import useUser from 'lib/hooks/use-user'
 import withAuth from 'lib/with-auth'
+import {IUser} from 'lib/user'
 
-const alertDate = 'October, 2020'
-const alertText =
-  'Apply decay functions to opportunities, better manage analysis presets, and visualize travel time to destinations.'
+const alertDate = 'December, 2020'
+const alertStatus = 'warning'
+const alertText = 'Minor changes and a few bug fixes related to modifications.'
 
-export default withAuth(function SelectRegionPage(p) {
-  const {data: regions, isValidating} = useRegions({
+type SelectRegionPageProps = {
+  regions: CL.Region[]
+  user: IUser
+}
+
+export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
+  const {data: regions, response} = useRegions({
     initialData: p.regions,
     options: {
       sort: {name: 1}
     }
   })
-  const {accessGroup, email} = useUser()
+  const {accessGroup, email} = p.user
   const goToRegionCreate = useRouteTo('regionCreate')
 
   return (
@@ -45,19 +50,13 @@ export default withAuth(function SelectRegionPage(p) {
             {email} ({accessGroup})
           </strong>
         </Box>
-        <Alert status='success' borderRadius='md'>
+        <Alert status={alertStatus} borderRadius='md'>
           <Stack>
             <Box>
               <strong>{alertDate}</strong> — <span>{alertText} </span>{' '}
             </Box>
             <Box>
               <ALink to='changelog'>Click here to learn more.</ALink>
-            </Box>
-            <Box>
-              <ExternalLink href='https://docs.conveyal.com'>
-                Also, check out our improved User Manual{' '}
-                <Icon icon={faExternalLinkAlt} />
-              </ExternalLink>
             </Box>
           </Stack>
         </Alert>
@@ -69,7 +68,9 @@ export default withAuth(function SelectRegionPage(p) {
         >
           Set up a new region
         </Button>
-        {!regions && isValidating && <Skeleton height='30px' />}
+        {!regions && response.isValidating && (
+          <Skeleton id='LoadingSkeleton' height='30px' />
+        )}
         {regions && regions.length > 0 && (
           <Box>or go to an existing region</Box>
         )}
@@ -92,7 +93,11 @@ export default withAuth(function SelectRegionPage(p) {
   )
 })
 
-function RegionItem({region, ...p}) {
+interface RegionItemProps {
+  region: CL.Region
+}
+
+function RegionItem({region, ...p}: RegionItemProps) {
   const goToRegion = useRouteTo('projects', {regionId: region._id})
   return (
     <ListGroupItem
@@ -112,14 +117,14 @@ function RegionItem({region, ...p}) {
 /**
  * Take additional steps to attempt a fast page load since this is the first page most people will see.
  * Comment out to disable. Page load should still work.
- *
+ */
 export const getServerSideProps: GetServerSideProps = async ({req}) => {
   let user: IUser = null
   try {
     user = await getUser(req)
   } catch (e) {
     return {
-      unstable_redirect: {
+      redirect: {
         permanent: false,
         destination: '/api/login'
       }
@@ -136,4 +141,3 @@ export const getServerSideProps: GetServerSideProps = async ({req}) => {
     }
   }
 }
-*/

@@ -47,7 +47,11 @@ type Modification = {
   name: string
 }
 
-function filterModifications(filter, modifications, projectId) {
+function filterModifications(
+  filter: string,
+  modifications: CL.IModification[],
+  projectId: string
+) {
   const filterLcase = filter != null ? filter.toLowerCase() : ''
   const filteredModificationsByType = {}
 
@@ -68,22 +72,26 @@ function filterModifications(filter, modifications, projectId) {
 
 const selectModifications = fpGet('project.modifications')
 
-export default function ModificationsList(p) {
+export default function ModificationsList({bundle, project}) {
   const dispatch = useDispatch()
-  const {_id: projectId, bundleId, regionId} = p.project
+  const {_id: projectId, bundleId, regionId} = project
   // Retrieve the modifications from the store. Filter out modifications that might be from another project
   const modifications = useSelector(selectModifications)
   const feedsById = useSelector(selectFeedsById)
   const variants = useSelector(selectVariants)
   const goToModificationImport = useRouteTo('modificationImport', {
-    projectId: p.project._id,
-    regionId: p.project.regionId
+    projectId,
+    regionId
   })
 
   // Array of ids for currently displayed modifications
   const [modificationsOnMap, setModificationsOnMap] = useState<Modification[]>(
     () => {
-      const _idsOnMap: string[] = get(getParsedItem(LS_MOM), projectId, [])
+      const _idsOnMap: string[] = get(
+        getParsedItem(LS_MOM),
+        projectId,
+        []
+      ) as string[]
       return modifications.filter((m) => _idsOnMap.includes(m._id))
     }
   )
@@ -178,6 +186,7 @@ export default function ModificationsList(p) {
           <TabPanel pt={2}>
             <Box px={2}>
               <CreateModification
+                feeds={bundle.feeds}
                 projectId={projectId}
                 regionId={regionId}
                 variants={variants}
@@ -293,7 +302,7 @@ const ModificationItem = memo<ModificationItemProps>(
   ({isDisplayed, modification, regionId, toggleMapDisplay}) => (
     <Flex align='center' px={1}>
       <ButtonLink
-        aria-label='Edit modification'
+        aria-label={`Edit modification ${modification.name}`}
         flex='1'
         justifyContent='start'
         overflow='hidden'
