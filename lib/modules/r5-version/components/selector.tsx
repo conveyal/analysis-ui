@@ -9,6 +9,7 @@ import message from 'lib/message'
 import {MINIMUM_R5_VERSION, RECOMMENDED_R5_VERSION} from '../constants'
 import * as select from '../selectors'
 import {versionToNumber} from '../utils'
+import WarningNote from 'lib/components/warning-note'
 
 // Minimum version number
 const MIN_VERSION = versionToNumber(MINIMUM_R5_VERSION)
@@ -83,6 +84,11 @@ export default function SelectR5Version({onChange, value, ...p}) {
       <FormLabel htmlFor='select-r5-version'>
         {message('r5Version.title')}
       </FormLabel>
+      <div> 
+        {lastUsedVersion && lastUsedVersion !== value && (
+          <WarningNote msg={message('r5Version.analysisVersionDifferent')}/>
+        )}
+      </div>
       <div>
         <Creatable
           name='select-r5-version'
@@ -99,12 +105,6 @@ export default function SelectR5Version({onChange, value, ...p}) {
       {currentVersionNumber < versionToNumber(RECOMMENDED_R5_VERSION) && (
         <Alert status='warning'>
           {message('r5Version.latestReleaseVersionNotSelected')}
-        </Alert>
-      )}
-
-      {lastUsedVersion && lastUsedVersion !== value && (
-        <Alert status='warning'>
-          {message('r5Version.analysisVersionDifferent')}
         </Alert>
       )}
     </FormControl>
