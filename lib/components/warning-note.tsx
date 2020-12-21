@@ -9,10 +9,7 @@ const _hover = {color: 'yellow.700'}
 export default function WarningNote({msg}) {
   return (
     <Tip label={`${msg}`}>
-      <Link
-        color='yellow.500'
-        _hover={_hover}
-      >
+      <Link color='yellow.500' _hover={_hover}>
         <Icon icon={faExclamationCircle} />
       </Link>
     </Tip>

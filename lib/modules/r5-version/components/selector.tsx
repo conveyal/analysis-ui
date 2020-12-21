@@ -85,7 +85,7 @@ export default function SelectR5Version({onChange, value, ...p}) {
         <FormLabel htmlFor='select-r5-version'>
           {message('r5Version.title')}
         </FormLabel>
-        <div> 
+        <div>
           {lastUsedVersion && lastUsedVersion !== value && (
             <WarningNote msg={message('r5Version.analysisVersionDifferent')} />
           )}
