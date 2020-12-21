@@ -1,4 +1,4 @@
-import { Link } from '@chakra-ui/core'
+import {Link} from '@chakra-ui/core'
 import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons'
 
 import Icon from './icon'

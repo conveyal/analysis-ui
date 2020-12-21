@@ -82,14 +82,14 @@ export default function SelectR5Version({onChange, value, ...p}) {
   return (
     <FormControl {...p}>
       <Flex justify='space-between'>
-      <FormLabel htmlFor='select-r5-version'>
-        {message('r5Version.title')}
+        <FormLabel htmlFor='select-r5-version'>
+          {message('r5Version.title')}
+        </FormLabel>
         <div> 
-        {lastUsedVersion && lastUsedVersion !== value && (
-          <WarningNote msg={message('r5Version.analysisVersionDifferent')}/>
-        )}
+          {lastUsedVersion && lastUsedVersion !== value && (
+            <WarningNote msg={message('r5Version.analysisVersionDifferent')} />
+          )}
         </div>
-      </FormLabel>
       </Flex>
       <div>
         <Creatable
