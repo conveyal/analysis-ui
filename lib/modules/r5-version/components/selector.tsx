@@ -1,4 +1,4 @@
-import {Alert, FormControl, FormLabel} from '@chakra-ui/core'
+import {Alert, Flex, FormControl, FormLabel} from '@chakra-ui/core'
 import get from 'lodash/get'
 import {useSelector} from 'react-redux'
 import Creatable from 'react-select/creatable'
@@ -81,14 +81,16 @@ export default function SelectR5Version({onChange, value, ...p}) {
 
   return (
     <FormControl {...p}>
+      <Flex justify='space-between'>
       <FormLabel htmlFor='select-r5-version'>
         {message('r5Version.title')}
-      </FormLabel>
-      <div> 
+        <div> 
         {lastUsedVersion && lastUsedVersion !== value && (
           <WarningNote msg={message('r5Version.analysisVersionDifferent')}/>
         )}
-      </div>
+        </div>
+      </FormLabel>
+      </Flex>
       <div>
         <Creatable
           name='select-r5-version'
