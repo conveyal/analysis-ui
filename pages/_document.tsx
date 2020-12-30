@@ -36,8 +36,13 @@ const Analytics = () => (
 export default class extends Document {
   render() {
     return (
-      <Html>
+      <Html lang='en'>
         <Head>
+          <link
+            rel='stylesheet'
+            href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600'
+            type='text/css'
+          />
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
           <Stylesheets />
           {process.env.NEXT_PUBLIC_GA_TRACKING_ID && <Analytics />}
