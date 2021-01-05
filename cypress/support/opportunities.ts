@@ -13,6 +13,12 @@ Cypress.Commands.add(
       filePath,
       encoding: 'base64'
     })
+
+    if (filePath.endsWith('csv')) {
+      cy.findByLabelText(/Latitude/).type('lat')
+      cy.findByLabelText(/Longitude/).type('lon')
+    }
+
     cy.findButton(/Upload a new opportunity dataset/).click()
     cy.navComplete()
     // find the message showing this upload is complete
@@ -21,7 +27,7 @@ Cypress.Commands.add(
       .parent()
       .as('notice')
     // check number of fields uploaded
-    cy.get('@notice').contains(/Finished uploading 1 feature/i)
+    cy.get('@notice').contains(/Finished uploading \d feature/i)
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // now grab the ID
