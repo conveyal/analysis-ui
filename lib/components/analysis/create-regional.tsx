@@ -15,7 +15,11 @@ import {
   Stack,
   Alert,
   AlertIcon,
-  AlertDescription
+  AlertDescription,
+  Radio,
+  RadioGroup,
+  Text,
+  Divider
 } from '@chakra-ui/core'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
@@ -38,6 +42,7 @@ import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minute
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import Select from '../select'
+import DocsLink from '../docs-link'
 
 // For react-select options
 const getId = fpGet('_id')
@@ -102,6 +107,8 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
   const selectedOpportunityDataset = useSelector(activeOpportunityDataset)
+  const [originType, setOriginType] = useState('grid')
+  const [originPointSetId, setOriginPointSetId] = useState<string | null>(null)
   const [destinationPointSets, setDestinationPointSets] = useState(
     selectedOpportunityDataset ? [selectedOpportunityDataset._id] : []
   )
@@ -115,6 +122,13 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     (workerVersion.length == 7 && workerVersion.indexOf('.') == -1)
 
   const nameInput = useInput({test: testContent, value: ''})
+
+  const onChangeOriginPointSetId = useCallback(
+    (dataset) => {
+      setOriginPointSetId(dataset?._id)
+    },
+    [setOriginPointSetId]
+  )
 
   const onChangeDestinationPointSets = useCallback(
     (datasets) => {
@@ -159,6 +173,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
             ...profileRequest,
             cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
             destinationPointSetIds: destinationPointSets,
+            originPointSetId,
             name: nameInput.value,
             percentiles: parseStringAsIntArray(percentilesInput.value),
             projectId,
@@ -203,10 +218,14 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       initialFocusRef={nameInput.ref}
       isOpen={true}
       onClose={onClose}
+      size='lg'
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Create new regional analysis</ModalHeader>
+        <ModalHeader>
+          Create new regional analysis{' '}
+          <DocsLink to='analysis/regional#starting-a-regional-analysis' />
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Stack mb={4} spacing={4}>
@@ -229,6 +248,39 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               </FormLabel>
               <Input {...nameInput} />
             </FormControl>
+
+            <RadioGroup
+              isInline
+              onChange={(e) => setOriginType(e.target.value)}
+              value={originType}
+            >
+              <Text>Origins from </Text>
+              <Radio value='grid'>Full Region</Radio>
+              <Radio value='pointSet'>Point Set</Radio>
+            </RadioGroup>
+
+            {originType === 'pointSet' && (
+              <FormControl isDisabled={isCreating}>
+                <div>
+                  <Select
+                    isClearable
+                    isDisabled={isCreating}
+                    getOptionLabel={getFullODName}
+                    getOptionValue={getId}
+                    inputId='originPointSetId'
+                    onChange={onChangeOriginPointSetId}
+                    options={opportunityDatasets.filter(
+                      (od) => od.format === 0
+                    )}
+                    value={opportunityDatasets.find(
+                      ({_id}) => _id === originPointSetId
+                    )}
+                  />
+                </div>
+              </FormControl>
+            )}
+
+            <Divider />
 
             <FormControl
               isDisabled={isCreating}
@@ -263,65 +315,77 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                 <FormHelperText>Select up to 6 datasets.</FormHelperText>
               )}
             </FormControl>
+
+            <Divider />
           </Stack>
 
           {workerVersionHandlesMultipleDimensions ? (
-            <Stack spacing={4}>
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={cutoffsInput.isInvalid}
-              >
-                <FormLabel htmlFor={cutoffsInput.id}>Cutoff minutes</FormLabel>
-                <Input
-                  {...cutoffsInput}
-                  value={
-                    Array.isArray(cutoffsInput.value)
-                      ? cutoffsInput.value.join(', ')
-                      : cutoffsInput.value
-                  }
-                />
-                <FormHelperText>From 5 to 120.</FormHelperText>
-              </FormControl>
-
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={percentilesInput.isInvalid}
-              >
-                <FormLabel htmlFor={percentilesInput.id}>Percentiles</FormLabel>
-                <Input
-                  {...percentilesInput}
-                  value={
-                    Array.isArray(percentilesInput.value)
-                      ? percentilesInput.value.join(', ')
-                      : percentilesInput.value
-                  }
-                />
-                <FormHelperText>From 1 to 99.</FormHelperText>
-              </FormControl>
+            <Stack isInline spacing={4}>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={cutoffsInput.isInvalid}
+                >
+                  <FormLabel htmlFor={cutoffsInput.id}>
+                    Cutoff minutes
+                  </FormLabel>
+                  <Input
+                    {...cutoffsInput}
+                    value={
+                      Array.isArray(cutoffsInput.value)
+                        ? cutoffsInput.value.join(', ')
+                        : cutoffsInput.value
+                    }
+                  />
+                  <FormHelperText>From 5 to 120.</FormHelperText>
+                </FormControl>
+              </Stack>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={percentilesInput.isInvalid}
+                >
+                  <FormLabel htmlFor={percentilesInput.id}>
+                    Percentiles
+                  </FormLabel>
+                  <Input
+                    {...percentilesInput}
+                    value={
+                      Array.isArray(percentilesInput.value)
+                        ? percentilesInput.value.join(', ')
+                        : percentilesInput.value
+                    }
+                  />
+                  <FormHelperText>From 1 to 99.</FormHelperText>
+                </FormControl>
+              </Stack>
             </Stack>
           ) : (
-            <Stack spacing={4}>
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={cutoffInput.isInvalid}
-              >
-                <FormLabel htmlFor={cutoffInput.id}>Cutoff minute</FormLabel>
-                <Input {...cutoffInput} />
-                <FormHelperText>From 5 to 120.</FormHelperText>
-              </FormControl>
-
-              <FormControl
-                isDisabled={isCreating}
-                isRequired
-                isInvalid={percentileInput.isInvalid}
-              >
-                <FormLabel htmlFor={percentileInput.id}>Percentile</FormLabel>
-                <Input {...percentileInput} />
-                <FormHelperText>From 1 to 99.</FormHelperText>
-              </FormControl>
+            <Stack isInline spacing={4}>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={cutoffInput.isInvalid}
+                >
+                  <FormLabel htmlFor={cutoffInput.id}>Cutoff minute</FormLabel>
+                  <Input {...cutoffInput} />
+                  <FormHelperText>From 5 to 120.</FormHelperText>
+                </FormControl>
+              </Stack>
+              <Stack spacing={4}>
+                <FormControl
+                  isDisabled={isCreating}
+                  isRequired
+                  isInvalid={percentileInput.isInvalid}
+                >
+                  <FormLabel htmlFor={percentileInput.id}>Percentile</FormLabel>
+                  <Input {...percentileInput} />
+                  <FormHelperText>From 1 to 99.</FormHelperText>
+                </FormControl>
+              </Stack>
             </Stack>
           )}
         </ModalBody>
