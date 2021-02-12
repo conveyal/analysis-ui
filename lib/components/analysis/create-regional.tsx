@@ -98,7 +98,7 @@ export default function CreateRegional({
 
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const dispatch = useDispatch()
-  const [error, setError] = useState<string | null>('Test error message')
+  const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
   const selectedOpportunityDataset = useSelector(activeOpportunityDataset)
