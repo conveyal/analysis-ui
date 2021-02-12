@@ -12,7 +12,12 @@ import {
   ModalOverlay,
   useDisclosure,
   FormHelperText,
-  Stack
+  Stack,
+  Alert,
+  CloseButton,
+  AlertIcon,
+  AlertDescription,
+  AlertTitle
 } from '@chakra-ui/core'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
@@ -95,6 +100,7 @@ export default function CreateRegional({
 
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const dispatch = useDispatch()
+  const [error, setError] = useState<string | null>('Test error message')
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
   const selectedOpportunityDataset = useSelector(activeOpportunityDataset)
@@ -177,7 +183,11 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       const {as, href} = routeTo('regionalAnalyses', {regionId})
       router.push(href, as)
     } catch (e) {
+      console.error(e)
       setIsCreating(false)
+      if (e instanceof Error) {
+        setError(e.message)
+      }
     }
   }
 
@@ -202,6 +212,14 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         <ModalCloseButton />
         <ModalBody>
           <Stack mb={4} spacing={4}>
+            {error && (
+              <Alert status='error'>
+                <AlertIcon />
+                <AlertDescription>
+                  Error creating regional analysis. {error}
+                </AlertDescription>
+              </Alert>
+            )}
             <FormControl
               isDisabled={isCreating}
               mb={4}
