@@ -14,10 +14,8 @@ import {
   FormHelperText,
   Stack,
   Alert,
-  CloseButton,
   AlertIcon,
-  AlertDescription,
-  AlertTitle
+  AlertDescription
 } from '@chakra-ui/core'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
