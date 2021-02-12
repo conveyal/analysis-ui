@@ -21,7 +21,7 @@ Cypress.Commands.add(
       .parent()
       .as('notice')
     // check number of fields uploaded
-    cy.get('@notice').contains(/Finished uploading 1 feature/i)
+    cy.get('@notice').contains(/Finished uploading 1 layer/i)
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // now grab the ID
