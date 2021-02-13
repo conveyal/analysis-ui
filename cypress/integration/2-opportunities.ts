@@ -66,7 +66,7 @@ describe('Opportunity Datasets', function () {
         .as('notice')
       // check number of fields uploaded
       cy.get('@notice').contains(
-        `Finished uploading ${expectedFieldCount} features`
+        `Finished uploading ${expectedFieldCount} layers`
       )
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
@@ -103,7 +103,7 @@ describe('Opportunity Datasets', function () {
         .as('notice')
       // check number of fields uploaded
       cy.get('@notice').contains(
-        `Finished uploading ${expectedFieldCount} features`
+        `Finished uploading ${expectedFieldCount} layers`
       )
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
@@ -157,7 +157,7 @@ describe('Opportunity Datasets', function () {
       .as('notice')
     // check number of fields uploaded
     cy.get('@notice').contains(
-      `Finished uploading ${expectedFieldCount} features`
+      `Finished uploading ${expectedFieldCount} layers`
     )
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
