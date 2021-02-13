@@ -19,12 +19,13 @@ import {
   Radio,
   RadioGroup,
   Text,
-  Divider
+  Divider,
+  useToast,
+  PseudoBox
 } from '@chakra-ui/core'
 import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
-import {useRouter} from 'next/router'
 import {useCallback, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -36,13 +37,13 @@ import {
   opportunityDatasets as selectOpportunityDatasets
 } from 'lib/modules/opportunity-datasets/selectors'
 import {versionToNumber} from 'lib/modules/r5-version/utils'
-import {routeTo} from 'lib/router'
 import selectCurrentRegionId from 'lib/selectors/current-region-id'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
 
 import Select from '../select'
 import DocsLink from '../docs-link'
+import useRouteTo from 'lib/hooks/use-route-to'
 
 // For react-select options
 const getId = fpGet('_id')
@@ -101,8 +102,39 @@ export default function CreateRegional({
   )
 }
 
+/**
+ * Show this toast when a modification has been copied.
+ */
+function CreatedRegionalToast({onClose, regionId}) {
+  const goToRegionalAnalyses = useRouteTo('regionalAnalyses', {
+    regionId
+  })
+
+  return (
+    <Alert
+      status='success'
+      variant='solid'
+      mt={2}
+      cursor='pointer'
+      onClick={() => {
+        goToRegionalAnalyses()
+        onClose()
+      }}
+    >
+      <AlertIcon />
+      <AlertDescription>
+        <PseudoBox _hover={{textDecoration: 'underline'}}>
+          Regional analysis has been created successfully. Click here to view
+          progress.
+        </PseudoBox>
+      </AlertDescription>
+    </Alert>
+  )
+}
+
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const dispatch = useDispatch()
+  const toast = useToast()
   const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
@@ -113,7 +145,6 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     selectedOpportunityDataset ? [selectedOpportunityDataset._id] : []
   )
   const regionId = useSelector(selectCurrentRegionId)
-  const router = useRouter()
   const maxTripDurationMinutes = useSelector(selectMaxTripDurationMinutes)
   const travelTimePercentile = useSelector(selectTravelTimePercentile)
   const workerVersion = get(profileRequest, 'workerVersion', '')
@@ -193,8 +224,13 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
           })
         )
       }
-      const {as, href} = routeTo('regionalAnalyses', {regionId})
-      router.push(href, as)
+
+      toast({
+        position: 'top',
+        render: ({onClose}) => (
+          <CreatedRegionalToast onClose={onClose} regionId={regionId} />
+        )
+      })
     } catch (e) {
       console.error(e)
       setIsCreating(false)
