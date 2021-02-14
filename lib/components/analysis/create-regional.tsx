@@ -225,6 +225,10 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
         )
       }
 
+      // Close modal first
+      onClose()
+
+      // Then show the toast
       toast({
         position: 'top',
         render: ({onClose}) => (
@@ -287,7 +291,11 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
             <RadioGroup
               isInline
-              onChange={(e) => setOriginType(e.target.value)}
+              onChange={(e) => {
+                const type = e.target.value
+                setOriginType(type)
+                if (type === 'grid') setOriginPointSetId(null)
+              }}
               value={originType}
             >
               <Text>Origins from </Text>
@@ -306,7 +314,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
                     inputId='originPointSetId'
                     onChange={onChangeOriginPointSetId}
                     options={opportunityDatasets.filter(
-                      (od) => od.format === 0
+                      (od) => od.format === 'FREEFORM'
                     )}
                     value={opportunityDatasets.find(
                       ({_id}) => _id === originPointSetId
