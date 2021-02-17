@@ -73,13 +73,6 @@ const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
 
 const disabledLabel = 'Fetch results with the current settings to enable button'
 
-function createRegionalAnalysis(options: Record<string, unknown>) {
-  return authenticatedFetch(API.Regional, {
-    method: 'POST',
-    body: JSON.stringify(options)
-  })
-}
-
 export default function CreateRegional({
   isDisabled,
   profileRequest,
@@ -204,35 +197,30 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
   async function create() {
     setIsCreating(true)
-    let response
-    if (workerVersionHandlesMultipleDimensions) {
-      response = await createRegionalAnalysis({
-        ...profileRequest,
-        cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
-        destinationPointSetIds: destinationPointSets,
-        originPointSetId,
-        name: nameInput.value,
-        percentiles: parseStringAsIntArray(percentilesInput.value),
-        projectId,
-        variantIndex
-      })
-    } else {
-      response = await createRegionalAnalysis({
-        ...profileRequest,
-        cutoffsMinutes: [parseInt(cutoffInput.value)],
-        destinationPointSetIds: destinationPointSets,
-        name: nameInput.value,
-        percentiles: [parseInt(percentileInput.value)],
-        projectId,
-        variantIndex
-      })
+    const cutoffsMinutes = workerVersionHandlesMultipleDimensions
+      ? parseStringAsIntArray(cutoffsInput.value)
+      : [parseInt(cutoffInput.value)]
+    const percentiles = workerVersionHandlesMultipleDimensions
+      ? parseStringAsIntArray(percentilesInput.value)
+      : [parseInt(percentileInput.value)]
+
+    const options = {
+      ...profileRequest,
+      cutoffsMinutes,
+      destinationPointSetIds: destinationPointSets,
+      originPointSetId,
+      name: nameInput.value,
+      percentiles,
+      projectId,
+      variantIndex
     }
 
-    if (!response.ok) {
-      console.error(response)
-      setIsCreating(false)
-      setError(response.data.message)
-    } else {
+    const response = await authenticatedFetch(API.Regional, {
+      method: 'POST',
+      body: JSON.stringify(options)
+    })
+
+    if (response.ok) {
       // Close modal first
       onClose()
 
@@ -243,6 +231,14 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
           <CreatedRegionalToast onClose={onClose} regionId={regionId} />
         )
       })
+    } else {
+      console.error(response)
+      setIsCreating(false)
+      if (response.data instanceof Error) {
+        setError(response.data.message)
+      } else {
+        setError(response.problem)
+      }
     }
   }
 

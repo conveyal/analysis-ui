@@ -38,8 +38,7 @@ function getProblemFromResponse(res: Response) {
   }
 }
 
-function getProblemFromError(e: Error): string {
-  console.error(e)
+function getProblemFromError(_: Error): string {
   return FETCH_ERROR
 }
 
