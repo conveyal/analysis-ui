@@ -27,9 +27,9 @@ import fpGet from 'lodash/fp/get'
 import get from 'lodash/get'
 import sort from 'lodash/sortBy'
 import {useCallback, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 
-import {createRegionalAnalysis} from 'lib/actions/analysis/regional'
+import {API} from 'lib/constants'
 import useInput from 'lib/hooks/use-controlled-input'
 import message from 'lib/message'
 import {
@@ -40,6 +40,7 @@ import {versionToNumber} from 'lib/modules/r5-version/utils'
 import selectCurrentRegionId from 'lib/selectors/current-region-id'
 import selectMaxTripDurationMinutes from 'lib/selectors/max-trip-duration-minutes'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
+import authenticatedFetch from 'lib/utils/auth-fetch'
 
 import Select from '../select'
 import DocsLink from '../docs-link'
@@ -71,6 +72,13 @@ const testCutoff = (c, o) => onlyDigits(o) && c >= 5 && c <= 120
 const testPercentile = (p, o) => onlyDigits(o) && p >= 1 && p <= 99
 
 const disabledLabel = 'Fetch results with the current settings to enable button'
+
+function createRegionalAnalysis(options: Record<string, unknown>) {
+  return authenticatedFetch(API.Regional, {
+    method: 'POST',
+    body: JSON.stringify(options)
+  })
+}
 
 export default function CreateRegional({
   isDisabled,
@@ -133,7 +141,6 @@ function CreatedRegionalToast({onClose, regionId}) {
 }
 
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
-  const dispatch = useDispatch()
   const toast = useToast()
   const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
@@ -197,34 +204,35 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
 
   async function create() {
     setIsCreating(true)
-    try {
-      if (workerVersionHandlesMultipleDimensions) {
-        await dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
-            destinationPointSetIds: destinationPointSets,
-            originPointSetId,
-            name: nameInput.value,
-            percentiles: parseStringAsIntArray(percentilesInput.value),
-            projectId,
-            variantIndex
-          })
-        )
-      } else {
-        await dispatch(
-          createRegionalAnalysis({
-            ...profileRequest,
-            cutoffsMinutes: [parseInt(cutoffInput.value)],
-            destinationPointSetIds: destinationPointSets,
-            name: nameInput.value,
-            percentiles: [parseInt(percentileInput.value)],
-            projectId,
-            variantIndex
-          })
-        )
-      }
+    let response
+    if (workerVersionHandlesMultipleDimensions) {
+      response = await createRegionalAnalysis({
+        ...profileRequest,
+        cutoffsMinutes: parseStringAsIntArray(cutoffsInput.value),
+        destinationPointSetIds: destinationPointSets,
+        originPointSetId,
+        name: nameInput.value,
+        percentiles: parseStringAsIntArray(percentilesInput.value),
+        projectId,
+        variantIndex
+      })
+    } else {
+      response = await createRegionalAnalysis({
+        ...profileRequest,
+        cutoffsMinutes: [parseInt(cutoffInput.value)],
+        destinationPointSetIds: destinationPointSets,
+        name: nameInput.value,
+        percentiles: [parseInt(percentileInput.value)],
+        projectId,
+        variantIndex
+      })
+    }
 
+    if (!response.ok) {
+      console.error(response)
+      setIsCreating(false)
+      setError(response.data.message)
+    } else {
       // Close modal first
       onClose()
 
@@ -235,12 +243,6 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
           <CreatedRegionalToast onClose={onClose} regionId={regionId} />
         )
       })
-    } catch (e) {
-      console.error(e)
-      setIsCreating(false)
-      if (e instanceof Error) {
-        setError(e.message)
-      }
     }
   }
 
