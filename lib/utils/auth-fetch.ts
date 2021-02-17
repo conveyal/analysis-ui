@@ -3,7 +3,7 @@ import {getUser} from '../user'
 import {safeFetch, SafeResponse} from './safe-fetch'
 
 /**
- * Fetch wrapper that includes authentication. Defaults to JSON.
+ * Fetch wrapper that includes authentication. Defaults headers to JSON.
  */
 export default function authFetch(
   url: string,

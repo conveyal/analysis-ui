@@ -16,9 +16,6 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
-  Radio,
-  RadioGroup,
-  Text,
   Divider,
   useToast,
   PseudoBox
@@ -45,12 +42,13 @@ import authenticatedFetch from 'lib/utils/auth-fetch'
 import Select from '../select'
 import DocsLink from '../docs-link'
 import useRouteTo from 'lib/hooks/use-route-to'
+import calculateGridPoints from 'lib/utils/calculate-grid-points'
 
 // For react-select options
 const getId = fpGet('_id')
 
 // Combine the source name with the name
-const getFullODName = (od) => `${od.sourceName}: ${od.name}`
+const getFullODName = (od) => od.label || `${od.sourceName}: ${od.name}`
 
 const testContent = (s) => s && s.length > 0
 
@@ -103,9 +101,6 @@ export default function CreateRegional({
   )
 }
 
-/**
- * Show this toast when a modification has been copied.
- */
 function CreatedRegionalToast({onClose, regionId}) {
   const goToRegionalAnalyses = useRouteTo('regionalAnalyses', {
     regionId
@@ -133,14 +128,18 @@ function CreatedRegionalToast({onClose, regionId}) {
   )
 }
 
+const defaultOriginPointSet = {
+  label: 'Rectangular Grid',
+  value: 'rectangular-grid'
+}
+
 function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const toast = useToast()
   const [error, setError] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const opportunityDatasets = useSelector(selectOpportunityDatasets)
   const selectedOpportunityDataset = useSelector(activeOpportunityDataset)
-  const [originType, setOriginType] = useState('grid')
-  const [originPointSetId, setOriginPointSetId] = useState<string | null>(null)
+  const [originPointSet, setOriginPointSet] = useState(defaultOriginPointSet)
   const [destinationPointSets, setDestinationPointSets] = useState(
     selectedOpportunityDataset ? [selectedOpportunityDataset._id] : []
   )
@@ -151,15 +150,16 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
   const workerVersionHandlesMultipleDimensions: any =
     versionToNumber(workerVersion) > 50900 ||
     (workerVersion.length == 7 && workerVersion.indexOf('.') == -1)
+  const freeformPointSets = opportunityDatasets.filter(
+    (od) => od.format === 'FREEFORM'
+  )
+
+  const totalOrigins: number =
+    originPointSet === defaultOriginPointSet
+      ? calculateGridPoints(profileRequest.bounds, profileRequest.zoom)
+      : get(originPointSet, 'totalPoints')
 
   const nameInput = useInput({test: testContent, value: ''})
-
-  const onChangeOriginPointSetId = useCallback(
-    (dataset) => {
-      setOriginPointSetId(dataset?._id)
-    },
-    [setOriginPointSetId]
-  )
 
   const onChangeDestinationPointSets = useCallback(
     (datasets) => {
@@ -208,7 +208,8 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       ...profileRequest,
       cutoffsMinutes,
       destinationPointSetIds: destinationPointSets,
-      originPointSetId,
+      originPointSetId:
+        originPointSet.value !== 'grid' ? get(originPointSet, '_id') : null,
       name: nameInput.value,
       percentiles,
       projectId,
@@ -221,10 +222,8 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     })
 
     if (response.ok) {
-      // Close modal first
-      onClose()
+      onClose() // Close modal before showing the toast
 
-      // Then show the toast
       toast({
         position: 'top',
         render: ({onClose}) => (
@@ -287,40 +286,28 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
               <Input {...nameInput} />
             </FormControl>
 
-            <RadioGroup
-              isInline
-              onChange={(e) => {
-                const type = e.target.value
-                setOriginType(type)
-                if (type === 'grid') setOriginPointSetId(null)
-              }}
-              value={originType}
-            >
-              <Text>Origins from </Text>
-              <Radio value='grid'>Full Region</Radio>
-              <Radio value='pointSet'>Point Set</Radio>
-            </RadioGroup>
+            <FormControl isDisabled={isCreating} isRequired>
+              <FormLabel htmlFor='originPointSet'>Origin points</FormLabel>
+              <div>
+                <Select
+                  isDisabled={isCreating}
+                  getOptionLabel={getFullODName}
+                  getOptionValue={getId}
+                  inputId='originPointSet'
+                  onChange={setOriginPointSet}
+                  options={[defaultOriginPointSet, ...freeformPointSets]}
+                  value={originPointSet}
+                />
+              </div>
+            </FormControl>
 
-            {originType === 'pointSet' && (
-              <FormControl isDisabled={isCreating}>
-                <div>
-                  <Select
-                    isClearable
-                    isDisabled={isCreating}
-                    getOptionLabel={getFullODName}
-                    getOptionValue={getId}
-                    inputId='originPointSetId'
-                    onChange={onChangeOriginPointSetId}
-                    options={opportunityDatasets.filter(
-                      (od) => od.format === 'FREEFORM'
-                    )}
-                    value={opportunityDatasets.find(
-                      ({_id}) => _id === originPointSetId
-                    )}
-                  />
-                </div>
-              </FormControl>
-            )}
+            <Alert status='info'>
+              <AlertIcon />
+              <AlertDescription>
+                Analysis will run for {totalOrigins.toLocaleString()} origin
+                points
+              </AlertDescription>
+            </Alert>
 
             <Divider />
 
