@@ -221,7 +221,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
       body: JSON.stringify(options)
     })
 
-    if (response.ok) {
+    if (response.ok === true) {
       onClose() // Close modal before showing the toast
 
       toast({
@@ -233,11 +233,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     } else {
       console.error(response)
       setIsCreating(false)
-      if (response.data && response.data.message != null) {
-        setError(response.data.message)
-      } else {
-        setError(response.problem)
-      }
+      setError(response.error.message)
     }
   }
 
