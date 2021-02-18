@@ -15,7 +15,7 @@ const timeout = 240000
 describe('Opportunity Datasets', function () {
   const region = getDefaultRegion()
 
-  beforeEach(() => region.navTo('opportunity datasets'))
+  beforeEach(() => region.navTo('spatial datasets'))
 
   const importedWithGrid = region.getOpportunityDataset(
     'Grid Import',
@@ -27,10 +27,10 @@ describe('Opportunity Datasets', function () {
     const newName = generateName('OD', 'newName')
     cy.createOpportunityDataset(name, scratchRegion.opportunities.grid.file)
     cy.get('#totalOpportunities').itsNumericText().should('eq', 227903)
-    cy.findByRole('group', {name: /Opportunity dataset name/}).click()
+    cy.findByRole('group', {name: /Spatial dataset name/}).click()
     cy.focused().type(newName).blur()
     cy.navTo('projects')
-    cy.navTo('opportunity datasets')
+    cy.navTo('spatial datasets')
     cy.findByLabelText(/or select an existing one/)
       .click({force: true})
       .type(`${newName}{enter}`)
@@ -46,12 +46,16 @@ describe('Opportunity Datasets', function () {
       cy.findByText(/Upload a new dataset/i).click()
       cy.navComplete()
 
-      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-      cy.findByLabelText(/^Select opportunity dataset/i).attachFile(
+      cy.findByLabelText(/Spatial dataset name/i).type(oppName)
+      cy.findByLabelText(/^Select spatial dataset/i).attachFile(
         opportunity.file
       )
-      cy.findByLabelText(/Latitude/).type(opportunity.latitudeField)
-      cy.findByLabelText(/Longitude/).type(opportunity.longitudeField)
+      cy.findByLabelText(/^Latitude/)
+        .clear()
+        .type(opportunity.latitudeField)
+      cy.findByLabelText(/^Longitude/)
+        .clear()
+        .type(opportunity.longitudeField)
       cy.findButton(/Upload/).click()
       cy.navComplete()
       cy.location('pathname').should('match', /opportunities$/)
@@ -62,7 +66,7 @@ describe('Opportunity Datasets', function () {
         .as('notice')
       // check number of fields uploaded
       cy.get('@notice').contains(
-        `Finished uploading ${expectedFieldCount} features`
+        `Finished uploading ${expectedFieldCount} layers`
       )
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
@@ -83,8 +87,8 @@ describe('Opportunity Datasets', function () {
       cy.findButton(/Upload a new dataset/i).click()
       cy.navComplete()
 
-      cy.findByLabelText(/Opportunity dataset name/i).type(oppName)
-      cy.findByLabelText(/Select opportunity dataset/)
+      cy.findByLabelText(/Spatial dataset name/i).type(oppName)
+      cy.findByLabelText(/Select spatial dataset/)
         .attachFile({filePath: opportunity.files[0], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[1], encoding: 'base64'})
         .attachFile({filePath: opportunity.files[2], encoding: 'base64'})
@@ -99,7 +103,7 @@ describe('Opportunity Datasets', function () {
         .as('notice')
       // check number of fields uploaded
       cy.get('@notice').contains(
-        `Finished uploading ${expectedFieldCount} features`
+        `Finished uploading ${expectedFieldCount} layers`
       )
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
@@ -119,6 +123,51 @@ describe('Opportunity Datasets', function () {
 
     // doesn't work in offline mode
     it('from LODES importer')
+  })
+
+  it('can import CSV as Freeform', () => {
+    const opportunity = scratchRegion.opportunities.csv
+    const oppName = generateName('opportunities', opportunity.name)
+    const expectedFieldCount = 1 + opportunity.numericFields.length
+    cy.findByText(/Upload a new dataset/i).click()
+    cy.navComplete()
+
+    cy.findByLabelText(/Spatial dataset name/i).type(oppName)
+    cy.findByLabelText(/^Select spatial dataset/i).attachFile(opportunity.file)
+    cy.findByLabelText(/^Latitude/)
+      .clear()
+      .type(opportunity.latitudeField)
+    cy.findByLabelText(/^Longitude/)
+      .clear()
+      .type(opportunity.longitudeField)
+
+    cy.findByLabelText(/Enable free form/).check({force: true})
+    cy.findByLabelText(/ID field/).type('sport')
+    cy.findByLabelText(/Opportunity count field/).type('count')
+
+    cy.findButton(/Upload/).click()
+    cy.navComplete()
+    cy.location('pathname').should('match', /opportunities$/)
+    // find the message showing this upload is complete
+    cy.contains(new RegExp(oppName + ' \\(DONE\\)'), {timeout})
+      .parent()
+      .parent()
+      .as('notice')
+    // check number of fields uploaded
+    cy.get('@notice').contains(
+      `Finished uploading ${expectedFieldCount} layers`
+    )
+    // close the message
+    cy.get('@notice').findByRole('button', {name: /Close/}).click()
+    // select in the dropdown
+    cy.findByLabelText(/or select an existing one/).type(
+      `${oppName}: ${opportunity.numericFields[0]} (freeform) {enter}`,
+      {
+        force: true
+      }
+    )
+    cy.get('#format').should('contain', 'FREEFORM')
+    deleteEntireDataset()
   })
 
   describe('can be downloaded', () => {

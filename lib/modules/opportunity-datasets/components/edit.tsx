@@ -74,9 +74,16 @@ export default function EditOpportunityDatatset(p) {
           <Editable
             onChange={_editName}
             isValid={nameIsValid}
-            placeholder='Opportunity dataset name'
+            placeholder='Spatial dataset name'
             value={p.opportunityDataset.name}
           />
+        </Heading>
+      </Stack>
+
+      <Stack>
+        <LabelHeading>format</LabelHeading>
+        <Heading id='format' size='md'>
+          {p.opportunityDataset.format}
         </Heading>
       </Stack>
 

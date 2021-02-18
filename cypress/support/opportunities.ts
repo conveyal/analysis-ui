@@ -8,8 +8,8 @@ Cypress.Commands.add(
 
     cy.findButton(/Upload a new dataset/i).click()
     cy.navComplete()
-    cy.findByLabelText(/Opportunity dataset name/i).type(name)
-    cy.findByLabelText(/Select opportunity dataset/).attachFile({
+    cy.findByLabelText(/Spatial dataset name/i).type(name)
+    cy.findByLabelText(/Select spatial dataset/).attachFile({
       filePath,
       encoding: 'base64'
     })
@@ -19,7 +19,7 @@ Cypress.Commands.add(
       cy.findByLabelText(/Longitude/).type('lon')
     }
 
-    cy.findButton(/Upload a new opportunity dataset/).click()
+    cy.findButton(/Upload a new spatial dataset/).click()
     cy.navComplete()
     // find the message showing this upload is complete
     cy.contains(new RegExp(name + ' \\(DONE\\)'), {timeout: 5000})
@@ -27,7 +27,7 @@ Cypress.Commands.add(
       .parent()
       .as('notice')
     // check number of fields uploaded
-    cy.get('@notice').contains(/Finished uploading \d feature/i)
+    cy.get('@notice').contains(/Finished uploading \d layer/i)
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // now grab the ID

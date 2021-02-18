@@ -14,24 +14,25 @@ const Stylesheets = () => (
 
 const Analytics = () => (
   <>
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-    />
-    <script
-      dangerouslySetInnerHTML={{
-        __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {
-            page_path: window.location.pathname,
-          });
-        `
-      }}
-    />
+    {process.browser && (
+      // Render only in browser to prevent double tracking: https://github.com/vercel/next.js/issues/9070
+      <script
+        async
+        defer
+        data-domain='analysis.conveyal.com'
+        src='https://plausible.conveyal.com/js/index.js'
+      />
+    )}
   </>
 )
+
+const ZenDeskWidget = () =>
+  process.env.ZENDESK_KEY != null && (
+    <script
+      id='ze-snippet'
+      src={`https://static.zdassets.com/ekr/snippet.js?key=${process.env.ZENDESK_KEY}`}
+    />
+  )
 
 export default class extends Document {
   render() {
@@ -45,7 +46,8 @@ export default class extends Document {
           />
           <link rel='shortcut icon' href={LOGO_URL} type='image/x-icon' />
           <Stylesheets />
-          {process.env.NEXT_PUBLIC_GA_TRACKING_ID && <Analytics />}
+          <Analytics />
+          <ZenDeskWidget />
         </Head>
         <body>
           <Main />
