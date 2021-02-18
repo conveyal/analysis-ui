@@ -1,6 +1,6 @@
 name: 'Install, lint, unit test, build, run Cypress tests'
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   install:
@@ -17,7 +17,7 @@ jobs:
       # Cache the entire working directory for subsequent steps
       - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
   typeCheck:
@@ -29,7 +29,7 @@ jobs:
           node-version: '12'
       - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       - run: yarn tsc
@@ -43,7 +43,7 @@ jobs:
           node-version: '12'
       - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       - run: yarn lint
@@ -58,7 +58,7 @@ jobs:
           node-version: '12'
       - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       - run: yarn jest
@@ -75,7 +75,7 @@ jobs:
           node-version: '12'
       - uses: actions/cache@v2
         with:
-          path: '.'
+          path: ./*
           key: ${{ github.sha }}
 
       # Cache the next.js cache folder per os/dependency change
