@@ -233,7 +233,7 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
     } else {
       console.error(response)
       setIsCreating(false)
-      if (response.data instanceof Error) {
+      if (response.data && response.data.message != null) {
         setError(response.data.message)
       } else {
         setError(response.problem)

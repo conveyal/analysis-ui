@@ -66,7 +66,7 @@ export type SafeResponse =
   | ResponseError
   | (Response & {
       ok: boolean
-      data: unknown
+      data: any
       problem: string
     })
 
