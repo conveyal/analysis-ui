@@ -3,7 +3,7 @@ import {getDefaultRegion} from '../utils'
 /**
  * Produce results even when bounds are small.
  */
-describe.skip('Regional > Small bounds', () => {
+describe('Regional > Small bounds', () => {
   const region = getDefaultRegion()
   const regionalAnalysis = region.getRegionalAnalysis('Small Bounds', {
     settings: {
