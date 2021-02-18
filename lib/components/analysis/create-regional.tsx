@@ -300,8 +300,8 @@ function CreateModal({onClose, profileRequest, projectId, variantIndex}) {
             <Alert status='info'>
               <AlertIcon />
               <AlertDescription>
-                Analysis will run for {totalOrigins.toLocaleString()} origin
-                points
+                Analysis will run for{' '}
+                {Math.round(totalOrigins).toLocaleString()} origin points
               </AlertDescription>
             </Alert>
 
