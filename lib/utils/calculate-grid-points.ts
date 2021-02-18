@@ -16,5 +16,5 @@ export default function calculateGridPoints(
   const bottomRight = lonlat.toPixel([bounds.east, bounds.south], zoom)
   const width = Math.floor(topLeft.x) - Math.floor(bottomRight.x)
   const height = Math.floor(topLeft.y) - Math.floor(bottomRight.y)
-  return (width + 2) * (height + 2)
+  return (width + 3) * (height + 3)
 }
