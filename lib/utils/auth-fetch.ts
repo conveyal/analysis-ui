@@ -1,11 +1,14 @@
 import {getUser} from '../user'
 
-import {safeFetch} from './safe-fetch'
+import {safeFetch, SafeResponse} from './safe-fetch'
 
 /**
- * Fetch wrapper that includes authentication. Defaults to JSON.
+ * Fetch wrapper that includes authentication. Defaults headers to JSON.
  */
-export default function authFetch(url: string, options?: RequestInit) {
+export default function authFetch(
+  url: string,
+  options?: RequestInit
+): Promise<SafeResponse> {
   const user = getUser()
   const headers = {
     Accept: 'application/json',
