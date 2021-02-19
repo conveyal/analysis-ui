@@ -21,7 +21,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "migrate": "migrate --store=./db/migrations-store.js --env=.env.local",
     "start": "next start",
-    "start-backend": "java -cp *.jar com.conveyal.analysis.BackendMain > /dev/null",
+    "start-backend": "java -Xmx4G -cp *.jar com.conveyal.analysis.BackendMain > /dev/null",
     "pretest": "yarn",
     "test": "yarn tsc && yarn lint && yarn jest",
     "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
