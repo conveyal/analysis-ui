@@ -1,4 +1,4 @@
-import {getDefaultRegion, scratchRegion} from './utils'
+import {getDefaultRegion, scratchRegion} from '../utils'
 
 describe('Regional', () => {
   const region = getDefaultRegion()
