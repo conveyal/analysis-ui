@@ -107,11 +107,11 @@ Cypress.Commands.add('setTimeCutoff', (minutes) => {
 })
 
 Cypress.Commands.add('selectDefaultOpportunityDataset', () => {
-  cy.findByLabelText(/^Opportunity Dataset$/) // eslint-disable-line cypress/no-unnecessary-waiting
+  cy.findByLabelText(/^Destination opportunity layer$/) // eslint-disable-line cypress/no-unnecessary-waiting
     .click({force: true})
     .type(`default{enter}`, {delay: 0})
     .wait(100)
-  cy.findByLabelText(/^Opportunity Dataset$/).should('be.enabled')
+  cy.findByLabelText(/^Destination opportunity layer$/).should('be.enabled')
 })
 
 Cypress.Commands.add(
@@ -152,7 +152,7 @@ Cypress.Commands.add(
     }
 
     opportunityDatasets.forEach((od) => {
-      cy.findByLabelText(/Opportunity dataset\(s\)/)
+      cy.findByLabelText(/Destination opportunity layer\(s\)/)
         .click({force: true})
         .type(`${od}{enter}`)
     })

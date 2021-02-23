@@ -5,8 +5,8 @@ function generateName(type, name) {
 }
 
 function deleteEntireDataset() {
-  cy.findButton(/Delete entire dataset source/i).click()
-  cy.findButton(/Confirm: Delete entire dataset source/i).click()
+  cy.findButton(/Delete all layers from dataset/i).click()
+  cy.findButton(/Confirm: Delete all layers from dataset/i).click()
 }
 
 // How long should it take to create an OD
@@ -31,11 +31,11 @@ describe('Opportunity Datasets', function () {
     cy.focused().type(newName).blur()
     cy.navTo('projects')
     cy.navTo('spatial datasets')
-    cy.findByLabelText(/or select an existing one/)
+    cy.findByLabelText(/or select an existing layer/)
       .click({force: true})
       .type(`${newName}{enter}`)
-    cy.findButton(/Delete this dataset/).click()
-    cy.findButton(/Confirm: Delete this dataset/).click()
+    cy.findButton(/Delete this layer/).click()
+    cy.findButton(/Confirm: Delete this layer/).click()
   })
 
   describe('can be imported', () => {
@@ -71,7 +71,7 @@ describe('Opportunity Datasets', function () {
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
-      cy.findByLabelText(/or select an existing one/).type(
+      cy.findByLabelText(/or select an existing layer/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
         {
           force: true
@@ -108,7 +108,7 @@ describe('Opportunity Datasets', function () {
       // close the message
       cy.get('@notice').findByRole('button', {name: /Close/}).click()
       // select in the dropdown
-      cy.findByLabelText(/or select an existing one/).type(
+      cy.findByLabelText(/or select an existing layer/).type(
         `${oppName}: ${opportunity.numericFields[0]} {enter}`,
         {
           force: true
@@ -141,7 +141,9 @@ describe('Opportunity Datasets', function () {
       .clear()
       .type(opportunity.longitudeField)
 
-    cy.findByLabelText(/Enable free form/).check({force: true})
+    cy.findByLabelText(/Enable freeform \(non-grid\) points/).check({
+      force: true
+    })
     cy.findByLabelText(/ID field/).type('sport')
     cy.findByLabelText(/Opportunity count field/).type('count')
 
@@ -160,7 +162,7 @@ describe('Opportunity Datasets', function () {
     // close the message
     cy.get('@notice').findByRole('button', {name: /Close/}).click()
     // select in the dropdown
-    cy.findByLabelText(/or select an existing one/).type(
+    cy.findByLabelText(/or select an existing layer/).type(
       `${oppName}: ${opportunity.numericFields[0]} (freeform) {enter}`,
       {
         force: true
