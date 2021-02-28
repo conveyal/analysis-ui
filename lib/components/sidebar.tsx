@@ -1,14 +1,13 @@
-import {Box, Flex, Image, PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
+import {Box, Flex, PseudoBox, PseudoBoxProps} from '@chakra-ui/core'
 import {
   faChartArea,
   faCompass,
   faCubes,
   faDatabase,
   faGlobe,
+  faInfoCircle,
   faLayerGroup,
-  faMap,
   faPencilAlt,
-  faQuestionCircle,
   faServer,
   faSignOutAlt,
   faTh,
@@ -17,6 +16,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import get from 'lodash/get'
 import fpGet from 'lodash/fp/get'
+import omit from 'lodash/omit'
+import Image from 'next/image'
 import {useRouter} from 'next/router'
 import {memo, useCallback, useContext, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
@@ -137,12 +138,6 @@ export default function Sidebar() {
         {queryParams.regionId && queryParams.regionId !== CREATING_ID && (
           <>
             <ItemLink
-              icon={faMap}
-              label={message('nav.regionSettings')}
-              to='regionSettings'
-              params={regionOnly}
-            />
-            <ItemLink
               icon={faCubes}
               label={message('nav.projects')}
               to='projects'
@@ -178,7 +173,7 @@ export default function Sidebar() {
               icon={faChartArea}
               label={message('nav.analyze')}
               to='analysis'
-              params={queryParams}
+              params={omit(queryParams, 'modificationId')}
             />
             <ItemLink
               icon={faServer}
@@ -203,9 +198,9 @@ export default function Sidebar() {
           />
         )}
         <ExternalLink
-          icon={faQuestionCircle}
+          icon={faInfoCircle}
           label={message('nav.help')}
-          href='http://docs.conveyal.com'
+          href='https://docs.conveyal.com'
         />
         <OnlineIndicator />
       </div>
@@ -241,7 +236,7 @@ const LogoSpinner = memo(() => {
     return <Icon color={CB_HEX} icon={faCompass} spin id='sidebar-spinner' />
   }
 
-  return <Image display='inline-block' size='20px' src={LOGO_URL} />
+  return <Image priority height='20px' width='20px' src={LOGO_URL} />
 })
 
 const isOnline = () => (isServer ? true : navigator.onLine)

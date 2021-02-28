@@ -27,11 +27,10 @@ declare namespace Cypress {
     | 'analyze'
     | 'edit modifications'
     | 'network bundles'
-    | 'opportunity datasets'
+    | 'spatial datasets'
     | 'projects'
     | 'regions'
     | 'regional analyses'
-    | 'region settings'
 
   export type ProjectScenario = {
     project?: string
@@ -83,7 +82,12 @@ declare namespace Cypress {
      * @param name
      * @param filePath
      */
-    createOpportunityDataset(name: string, filePath: string): Chainable<string>
+    createOpportunityDataset(
+      name: string,
+      filePath: string,
+      isFreeform?: boolean,
+      idField?: string
+    ): Chainable<string>
 
     /**
      * Create a new regional analysis.

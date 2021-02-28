@@ -10,11 +10,13 @@ import {
 import lonlat from '@conveyal/lonlat'
 import fpGet from 'lodash/fp/get'
 import {scaleLinear} from 'd3-scale'
-import {memo, useState, useEffect, useReducer, useRef} from 'react'
-import {useSelector} from 'react-redux'
+import {LatLng, LeafletMouseEvent} from 'leaflet'
+import {memo, useState, useEffect, useRef, useCallback} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {CircleMarker, useLeaflet} from 'react-leaflet'
 import MapControl from 'react-leaflet-control'
 
+import {updateRequestsSettings} from 'lib/actions/analysis/profile-request'
 import colors from 'lib/constants/colors'
 import nearestPercentileIndex from 'lib/selectors/nearest-percentile-index'
 import selectTravelTimePercentile from 'lib/selectors/travel-time-percentile'
@@ -31,7 +33,10 @@ const PADDING = 4
 const FONT_SIZE = 10
 const STROKE_WIDTH = 1
 
-function createDistribution(latlng, travelTimeSurface) {
+function createDistribution(
+  latlng: LatLng,
+  travelTimeSurface: CL.AccessGrid
+): null | number[] {
   const pixel = lonlat.toPixel(
     lonlat.fromLeaflet(latlng),
     travelTimeSurface.zoom
@@ -63,23 +68,8 @@ function createDistribution(latlng, travelTimeSurface) {
 const selectSurface = fpGet('analysis.travelTimeSurface')
 const selectComparisonSurface = fpGet('analysis.comparisonTravelTimeSurface')
 
-function reducer(state, action) {
-  switch (action.type) {
-    case 'toggle lock':
-      return {locked: !state.locked, latlng: action.payload}
-    case 'move':
-      if (state.locked) return state
-      return {...state, latlng: action.payload}
-  }
-}
-
-const initialState = {
-  latlng: null,
-  locked: false
-}
-
 // Grids contain high values for inaccessible locations
-const isValidTime = (m) => m >= 0 && m <= 120
+const isValidTime = (m: number) => m >= 0 && m <= 120
 
 /**
  * Show a popup with the travel time distribution from the origin to a location
@@ -87,18 +77,27 @@ const isValidTime = (m) => m >= 0 && m <= 120
  */
 export default memo(function DestinationTravelTimeDistribution() {
   const markerRef = useRef<CircleMarker>()
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const dispatch = useDispatch()
+  const [mouseLatLng, setMouseLatLng] = useState<LatLng | null>(null)
+  const [lockedLatLng, setLockedLatLng] = useState<LatLng | false>(false)
+  const [latlng, setLatLng] = useState<LatLng | null>(null)
   const [distribution, setDistribution] = useState<void | number[]>()
   const [comparisonDistribution, setComparisonDistribution] = useState<
     void | number[]
   >()
-  const surface = useSelector(selectSurface)
-  const comparisonSurface = useSelector(selectComparisonSurface)
+  const surface: CL.AccessGrid = useSelector(selectSurface)
+  const comparisonSurface: CL.AccessGrid = useSelector(selectComparisonSurface)
   const leaflet = useLeaflet()
   const percentileIndex = nearestPercentileIndex(
     useSelector(selectTravelTimePercentile)
   )
-  const {latlng} = state
+
+  // Set the current latlng to use
+  useEffect(() => {
+    if (lockedLatLng) setLatLng(lockedLatLng)
+    else if (mouseLatLng) setLatLng(mouseLatLng)
+    else setLatLng(null)
+  }, [mouseLatLng, lockedLatLng])
 
   // Bring the marker to the front on each render.
   useEffect(() => {
@@ -125,11 +124,8 @@ export default memo(function DestinationTravelTimeDistribution() {
 
   // Set the destination on mouse move
   useEffect(() => {
-    function onMove(e) {
-      dispatch({
-        type: 'move',
-        payload: e.latlng
-      })
+    function onMove(e: LeafletMouseEvent) {
+      setMouseLatLng(e.latlng)
     }
     leaflet.map.on('mousemove', onMove)
     return () => {
@@ -137,20 +133,47 @@ export default memo(function DestinationTravelTimeDistribution() {
     }
   }, [dispatch, leaflet])
 
+  // Lock the marker and store toLat/toLon
+  const lockMarker = useCallback(
+    (e: LeafletMouseEvent) => {
+      const {latlng} = e
+      setLockedLatLng(latlng)
+      dispatch(
+        updateRequestsSettings({
+          index: 0,
+          params: {
+            toLat: latlng.lat,
+            toLon: latlng.lng
+          }
+        })
+      )
+    },
+    [dispatch, setLockedLatLng]
+  )
+
   const fullHeight =
     (comparisonDistribution ? HEIGHT * 2 : HEIGHT) + PADDING + FONT_SIZE
 
   return (
     <>
-      {latlng && (
+      {mouseLatLng && (
         <Pane zIndex={600}>
-          <CircleMarker
-            center={latlng}
-            color={state.locked ? '#333' : '#3182ce'}
-            onclick={(e) => dispatch({type: 'toggle lock', payload: e.latlng})}
-            radius={5}
-            ref={markerRef}
-          />
+          {lockedLatLng !== false ? (
+            <CircleMarker
+              center={lockedLatLng}
+              color='#333'
+              onclick={() => setLockedLatLng(false)}
+              radius={5}
+            />
+          ) : (
+            <CircleMarker
+              center={mouseLatLng}
+              color='#3182ce'
+              onclick={lockMarker}
+              radius={5}
+              ref={markerRef}
+            />
+          )}
         </Pane>
       )}
       <MapControl position='bottomleft'>

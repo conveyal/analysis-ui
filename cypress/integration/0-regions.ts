@@ -16,7 +16,7 @@ const getSearch = () => cy.get('#geocoder')
  */
 const regionData = {
   description: 'Cypress stratch testing region',
-  searchTerm: 'covington',
+  searchTerm: 'covington kentucky',
   foundName: 'Covington, Kentucky, United States',
   north: 39.1199,
   south: 38.9268,
@@ -81,7 +81,7 @@ function deleteOldScratchRegions() {
     .then((regions) => {
       if (regions.length > 0) {
         cy.wrap(regions[0]).click()
-        cy.navTo('region settings')
+        cy.findButton(/Edit region settings/).click()
         deleteThisRegion()
         deleteOldScratchRegions()
       }
@@ -101,19 +101,14 @@ describe('Regions', () => {
     // Test geocoder search
     const testLocations = [
       {
-        searchTerm: 'cincinnati',
+        searchTerm: 'cincinnati ohio usa',
         findText: /^Cincinnati, Ohio/,
         coord: [39.1, -84.5]
       },
       {
-        searchTerm: 'tulsa',
+        searchTerm: 'tulsa oklahoma usa',
         findText: /^Tulsa, Oklahoma/,
         coord: [36.1, -95.9]
-      },
-      {
-        searchTerm: 'greenwich',
-        findText: /^Greenwich,.* England/,
-        coord: [51.5, 0]
       }
     ]
     const maxOffset = 10000 // meters
@@ -157,7 +152,7 @@ describe('Regions', () => {
     cy.navComplete()
     cy.location('pathname').should('match', /regions\/.{24}$/)
     // region settings are saved correctly
-    cy.navTo('region settings')
+    cy.findButton(/Edit region settings/).click()
     // check setting values
     getName().should('have.value', regionName)
     getDesc().should('have.value', regionData.description)
@@ -181,7 +176,7 @@ describe('Regions', () => {
     cy.navTo('regions')
     cy.findButton(newName).click()
     cy.navComplete()
-    cy.navTo('region settings') // will go to bundle page otherwise
+    cy.findButton(/Edit region settings/).click() // will go to bundle page otherwise
     getDesc().should('have.value', newDescription)
     getName().should('have.value', newName)
 

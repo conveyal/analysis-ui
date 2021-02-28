@@ -73,10 +73,6 @@ const navToPages = {
     lookFor: /Set up a new region/i,
     path: /\//
   },
-  'region settings': {
-    lookFor: /Delete this region/i,
-    path: /\/regions\/[a-z0-9]+\/edit/
-  },
   projects: {
     lookFor: /Create new Project|Upload a .* Bundle/i,
     path: /\/regions\/[a-z0-9]+/
@@ -85,7 +81,7 @@ const navToPages = {
     lookFor: /Create a new network bundle/i,
     path: /\/regions\/[a-z0-9]+\/bundles/
   },
-  'opportunity datasets': {
+  'spatial datasets': {
     lookFor: /Upload a new dataset/i,
     path: /\/regions\/[a-z0-9]+\/opportunities*/
   },
