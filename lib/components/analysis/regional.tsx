@@ -10,7 +10,8 @@ import {
   MenuItem,
   Alert,
   AlertIcon,
-  AlertDescription
+  AlertDescription,
+  Center
 } from '@chakra-ui/react'
 import find from 'lodash/find'
 import get from 'lodash/get'
@@ -157,7 +158,7 @@ export default function Regional(p) {
 
       <Flex
         align='center'
-        borderBottom='1px solid #E2E8F0'
+        borderBottomWidth='1px'
         className={p.saveInProgress ? 'disableAndDim' : ''}
         p={2}
         width='320px'
@@ -241,13 +242,12 @@ export default function Regional(p) {
         )}
 
         {isComplete && (
-          <Menu>
-            <MenuButton
-              as={Button}
-              colorScheme='blue'
-              leftIco={<DownloadIcon />}
-            >
-              Download results
+          <Menu isLazy>
+            <MenuButton as={Button} colorScheme='blue'>
+              <Center>
+                <DownloadIcon />
+                &nbsp; Download results
+              </Center>
             </MenuButton>
             <MenuList>
               <MenuItem
