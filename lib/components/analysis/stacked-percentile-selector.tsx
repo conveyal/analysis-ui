@@ -3,6 +3,8 @@ import {
   Stack,
   Progress,
   StackProps,
+  HStack,
+  VStack,
   useColorModeValue,
   useToken
 } from '@chakra-ui/react'
@@ -82,12 +84,12 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
 
   return (
     <Stack {...p}>
-      <Stack spacing={0}>
+      <VStack pl='35px' spacing={0}>
         {typeof accessibility === 'number' && (
-          <Stack isInline spacing={5} alignItems='center'>
+          <HStack spacing={5} width='100%'>
             <Progress
               flex='10'
-              color={disabledOrStale ? 'gray' : 'blue'}
+              colorScheme={disabledOrStale ? 'gray' : 'blue'}
               size='md'
               value={((accessibility || 1) / maxAccessibility) * 100}
             />
@@ -99,14 +101,14 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             >
               {commaFormat(accessibility)}
             </Box>
-          </Stack>
+          </HStack>
         )}
 
         {comparisonProjectName && typeof comparisonAccessibility === 'number' && (
-          <Stack isInline spacing={5} alignItems='center'>
+          <HStack spacing={5} width='100%'>
             <Progress
               flex='10'
-              color={disabledOrStale ? 'gray' : 'red'}
+              colorScheme={disabledOrStale ? 'gray' : 'red'}
               size='md'
               value={((comparisonAccessibility || 1) / maxAccessibility) * 100}
             />
@@ -118,9 +120,9 @@ function StackedPercentileSelector({disabled, stale, ...p}) {
             >
               {commaFormat(comparisonAccessibility)}
             </Box>
-          </Stack>
+          </HStack>
         )}
-      </Stack>
+      </VStack>
 
       {get(percentileCurves, 'length') > 0 &&
         (comparisonPercentileCurves == null ? (
