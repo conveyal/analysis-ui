@@ -1,12 +1,13 @@
 import {Button, Stack, useColorModeValue} from '@chakra-ui/react'
+import {Map} from 'leaflet'
 import set from 'lodash/set'
 import dynamic from 'next/dynamic'
 import {useEffect, useRef, useState} from 'react'
 import {
   AttributionControl,
-  Map as LeafletMap,
-  useLeaflet,
-  Viewport
+  Map as ReactMap,
+  Viewport,
+  useLeaflet
 } from 'react-leaflet'
 import {useSelector} from 'react-redux'
 import MapControl from 'react-leaflet-control'
@@ -35,6 +36,17 @@ const lightStyle =
   process.env.NEXT_PUBLIC_MAPBOX_STYLE ?? 'conveyal/cjwu7oipd0bf41cqqv15huoim'
 const darkStyle = 'conveyal/cklwkj6g529qi17nydq56jn9k'
 const getStyle = (style: string) => `mapbox://styles/${style}`
+
+type MapProps = {
+  children?: React.ReactNode
+  setLeafletContext: ({
+    map,
+    layerContainer
+  }: {
+    map: Map
+    layerContainer: Map
+  }) => void
+}
 
 function Controls({isDisabled}) {
   const {map} = useLeaflet()
@@ -68,10 +80,10 @@ function Controls({isDisabled}) {
   )
 }
 
-export default function Map({children, setLeafletContext}) {
+export default function BaseMap({children, setLeafletContext}: MapProps) {
   const style = useColorModeValue(lightStyle, darkStyle)
   const backgroundColor = useColorModeValue('gray.50', 'gray.800')
-  const leafletMapRef = useRef<LeafletMap>()
+  const leafletMapRef = useRef<ReactMap>()
   const regionBounds = useSelector(selectRegionBounds)
   const [viewport, setViewport] = useState<Viewport>(() => ({
     ...DEFAULT_VIEWPORT,
@@ -122,33 +134,31 @@ export default function Map({children, setLeafletContext}) {
   }, [leafletMapRef, regionBounds, viewport])
 
   return (
-    <>
-      <LeafletMap
-        attributionControl={false}
-        className={
-          routeChanging || saveInProgress
-            ? 'disableAndDim'
-            : 'conveyal-leaflet-map'
-        }
-        minZoom={MIN_ZOOM}
-        onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
-        preferCanvas={true}
-        ref={leafletMapRef}
-        style={{backgroundColor}}
-        tap={false}
-        viewport={viewport || DEFAULT_VIEWPORT}
-        zoomControl={false}
-      >
-        {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
-          <MapboxGLLayer style={getStyle(style)} />
-        )}
+    <ReactMap
+      attributionControl={false}
+      className={
+        routeChanging || saveInProgress
+          ? 'disableAndDim'
+          : 'conveyal-leaflet-map'
+      }
+      minZoom={MIN_ZOOM}
+      onViewportChanged={(v) => stringifyAndSet(VIEWPORT_KEY, v)}
+      preferCanvas={true}
+      ref={leafletMapRef}
+      style={{backgroundColor}}
+      tap={false}
+      viewport={viewport || DEFAULT_VIEWPORT}
+      zoomControl={false}
+    >
+      {process.env.NEXT_PUBLIC_BASEMAP_DISABLED !== 'true' && (
+        <MapboxGLLayer style={getStyle(style)} />
+      )}
 
-        <AttributionControl position='bottomright' prefix={false} />
+      <AttributionControl position='bottomright' prefix={false} />
 
-        <Controls isDisabled={routeChanging || saveInProgress} />
+      <Controls isDisabled={routeChanging || saveInProgress} />
 
-        {!routeChanging && children ? children : null}
-      </LeafletMap>
-    </>
+      {!routeChanging && children ? children : null}
+    </ReactMap>
   )
 }

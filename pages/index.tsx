@@ -1,4 +1,5 @@
-import {Alert, Box, Button, Flex, Skeleton, Stack} from '@chakra-ui/react'
+import {Alert, Box, Button, Flex, Stack} from '@chakra-ui/react'
+import {FindOneOptions} from 'mongodb'
 import Link from 'next/link'
 
 import {AddIcon, RegionIcon, SignOutIcon} from 'lib/components/icons'
@@ -6,32 +7,25 @@ import ListGroupItem from 'lib/components/list-group-item'
 import {ALink} from 'lib/components/link'
 import Logo from 'lib/components/logo'
 import {AUTH_DISABLED} from 'lib/constants'
-import AuthenticatedCollection from 'lib/db/authenticated-collection'
 import {useRegions} from 'lib/hooks/use-collection'
 import useLink from 'lib/hooks/use-link'
 import useRouteTo from 'lib/hooks/use-route-to'
-import withAuth, {getServerSidePropsWithAuth} from 'lib/with-auth'
-import {IUser} from 'lib/user'
+import useUser from 'lib/hooks/use-user'
 
 const alertDate = 'February, 2021'
 const alertStatus = 'info'
 const alertText = 'New options for spatial datasets'
 
-type SelectRegionPageProps = {
-  regions: CL.Region[]
-  user: IUser
-}
+const findOptions: FindOneOptions<CL.Region> = {sort: {name: 1}}
 
-export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
-  const {data: regions, response} = useRegions({
-    initialData: p.regions,
-    options: {
-      sort: {name: 1}
-    }
+export default function SelectRegionPage() {
+  const {data: regions} = useRegions({
+    options: findOptions
   })
-  const {accessGroup, email} = p.user
+  const {accessGroup, email} = useUser() ?? {}
   const goToRegionCreate = useRouteTo('regionCreate')
   const logoutLink = useLink('logout')
+  const goToRegion = useRouteTo('projects')
 
   return (
     <Flex
@@ -70,17 +64,20 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
         >
           Set up a new region
         </Button>
-        {!regions && response.isValidating && (
-          <Skeleton id='LoadingSkeleton' height='30px' />
-        )}
-        {regions && regions.length > 0 && (
-          <Box textAlign='center'>or go to an existing region</Box>
-        )}
-        {regions && regions.length > 0 && (
-          <Stack spacing={0}>
-            {regions.map((region) => (
-              <RegionItem key={region._id} region={region} />
-            ))}
+        {(regions || []).length > 0 && (
+          <Stack spacing={4}>
+            <Box textAlign='center'>or go to an existing region</Box>
+            <Stack spacing={0}>
+              {(regions || []).map((region) => (
+                <ListGroupItem
+                  key={region._id}
+                  leftIcon={<RegionIcon />}
+                  onClick={() => goToRegion({regionId: region._id})}
+                >
+                  {region.name}
+                </ListGroupItem>
+              ))}
+            </Stack>
           </Stack>
         )}
         {!AUTH_DISABLED && (
@@ -98,32 +95,4 @@ export default withAuth(function SelectRegionPage(p: SelectRegionPageProps) {
       </Stack>
     </Flex>
   )
-})
-
-interface RegionItemProps {
-  region: CL.Region
 }
-
-function RegionItem({region, ...p}: RegionItemProps) {
-  const goToRegion = useRouteTo('projects', {regionId: region._id})
-  return (
-    <ListGroupItem {...p} leftIcon={<RegionIcon />} onClick={goToRegion}>
-      {region.name}
-    </ListGroupItem>
-  )
-}
-
-/**
- * Take additional steps to attempt a fast page load since this is the first page most people will see.
- * Comment out to disable. Page load should still work.
- */
-export const getServerSideProps = getServerSidePropsWithAuth(
-  async (_, user) => {
-    const regions = await AuthenticatedCollection.with('regions', user)
-    return {
-      props: {
-        regions: await regions.findJSON({}, {sort: {name: 1}})
-      }
-    }
-  }
-)

@@ -7,10 +7,7 @@ import {
   Input,
   Stack
 } from '@chakra-ui/react'
-import {useState} from 'react'
-import {useDispatch} from 'react-redux'
-
-import {deleteProject, saveToServer} from 'lib/actions/project'
+import {useProject} from 'lib/hooks/use-model'
 import useRouteTo from 'lib/hooks/use-route-to'
 import message from 'lib/message'
 
@@ -18,25 +15,36 @@ import ConfirmButton from './confirm-button'
 import {DeleteIcon, EditIcon} from './icons'
 import InnerDock from './inner-dock'
 import {ALink} from './link'
+import useControlledInput from 'lib/hooks/use-controlled-input'
 
-export default function EditProject({project, query}) {
-  const dispatch = useDispatch<any>()
-  const [name, setName] = useState(project.name)
-  const {projectId, regionId} = query
+type EditProjectProps = {
+  project: CL.Project
+  query: CL.Query
+}
+
+const nameIsValid = (n?: string): boolean => n?.length > 0
+
+export default function EditProject(p: EditProjectProps) {
+  const {projectId, regionId} = p.query
+  const {data: project, remove, update} = useProject(projectId)
+  const nameInput = useControlledInput({
+    test: nameIsValid,
+    value: project?.name
+  })
   const routeToProjects = useRouteTo('projects', {regionId})
   const routeToModifications = useRouteTo('modifications', {
     projectId,
     regionId
   })
 
-  function _deleteProject() {
-    dispatch(deleteProject(projectId)).then(() => routeToProjects())
+  async function _deleteProject() {
+    await remove()
+    routeToProjects()
   }
 
-  function _save() {
-    dispatch(saveToServer({...project, name})).then(() =>
-      routeToModifications()
-    )
+  async function _save() {
+    await update({name: nameInput.value})
+    routeToModifications()
   }
 
   return (
@@ -45,13 +53,11 @@ export default function EditProject({project, query}) {
         <Heading mb={4} size='md'>
           {message('project.editSettings')}
         </Heading>
-        <FormControl isInvalid={!name || name.length === 0}>
-          <FormLabel htmlFor='projectName'>{message('project.name')}</FormLabel>
-          <Input
-            id='projectName'
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
+        <FormControl isInvalid={nameInput.isInvalid} isRequired>
+          <FormLabel htmlFor={nameInput.id}>
+            {message('project.name')}
+          </FormLabel>
+          <Input {...nameInput} />
         </FormControl>
         <Stack spacing={2}>
           <Heading size='sm'>Bundle</Heading>
@@ -60,8 +66,8 @@ export default function EditProject({project, query}) {
             <ALink
               to='bundleEdit'
               query={{
-                bundleId: project.bundleId,
-                regionId: project.regionId
+                bundleId: project?.bundleId,
+                regionId: project?.regionId
               }}
             >
               View bundle info here.
@@ -70,7 +76,7 @@ export default function EditProject({project, query}) {
         </Stack>
         <Button
           leftIcon={<EditIcon />}
-          isDisabled={!name || project.name === name}
+          isDisabled={nameInput.isInvalid || project.name === nameInput.value}
           onClick={_save}
           colorScheme='green'
         >

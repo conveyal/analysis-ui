@@ -10,18 +10,20 @@ import {localUser} from 'lib/user'
 import ErrorHandler from 'lib/components/app-error-handler'
 import ChakraTheme from 'lib/config/chakra'
 import SWRWrapper from 'lib/config/swr'
+import EmptyLayout from 'lib/layouts/empty'
 
 import '../styles.css'
-
-// Re-use for Component's without a Layout
-const EmptyLayout = ({children}) => <>{children}</>
 
 // Components that have a layout
 type ComponentWithLayout = NextComponentType & {
   Layout: ComponentType
 }
 
-export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
+export default function ConveyalAnalysis({
+  Component,
+  pageProps,
+  router
+}: AppProps) {
   const Layout = Object.prototype.hasOwnProperty.call(Component, 'Layout')
     ? (Component as ComponentWithLayout).Layout
     : EmptyLayout
@@ -35,7 +37,7 @@ export default function ConveyalAnalysis({Component, pageProps}: AppProps) {
               <title>Conveyal Analysis</title>
             </Head>
             <Layout>
-              <Component {...pageProps} user={user} />
+              <Component query={router.query} {...pageProps} />
             </Layout>
           </SWRWrapper>
         </ErrorHandler>
