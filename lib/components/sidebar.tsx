@@ -1,19 +1,29 @@
 import {
+  Badge,
   Box,
-  BoxProps,
   Center,
+  CenterProps,
   Flex,
+  Popover,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
+  useDisclosure
 } from '@chakra-ui/react'
 import fpGet from 'lodash/fp/get'
 import omit from 'lodash/omit'
 import {useRouter} from 'next/router'
-import {memo, useEffect} from 'react'
+import {memo, useEffect, useState} from 'react'
 import {useSelector} from 'react-redux'
 
-import {CB_DARK, CB_HEX, PageKey} from 'lib/constants'
+import {AUTH_DISABLED, CB_DARK, CB_HEX, PageKey} from 'lib/constants'
 import {CREATING_ID} from 'lib/constants/region'
+import {SIDEBAR_Z} from 'lib/constants/z-index'
+import useActivity from 'lib/hooks/use-activity'
 import useRouteChanging from 'lib/hooks/use-route-changing'
 import useRouteTo from 'lib/hooks/use-route-to'
 import useUser from 'lib/hooks/use-user'
@@ -22,6 +32,7 @@ import {routeTo} from 'lib/router'
 import selectOutstandingRequests from 'lib/selectors/outstanding-requests'
 
 import {
+  ActivityIcon,
   BundlesIcon,
   EditIcon,
   InfoIcon,
@@ -36,12 +47,13 @@ import {
   SunIcon
 } from './icons'
 import SVGLogo from './logo.svg'
-import Tip from './tip'
 import Spinner from './spinner'
+import TaskList from './task-list'
+import Tip from './tip'
 
 const sidebarWidth = '40px'
 
-const NavItemContents = memo<BoxProps>(({children, ...p}) => {
+const NavItemContents = memo<CenterProps>(({children, ...p}) => {
   return (
     <Center
       borderBottom='2px solid rgba(0, 0, 0, 0)'
@@ -127,7 +139,7 @@ export default function Sidebar() {
       id='sidebar'
       justify='space-between'
       width={sidebarWidth}
-      zIndex={1} // Necessary for scrolling bug when Modals are closed (should be fixed in Chakra v1)
+      zIndex={SIDEBAR_Z}
     >
       <div>
         <NavItemContents fontSize='22px' my={12}>
@@ -195,10 +207,20 @@ export default function Sidebar() {
       </div>
 
       <div>
-        <NavItemContents className='DEV' onClick={colorMode.toggleColorMode}>
-          {colorMode.colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-        </NavItemContents>
-        {email && (
+        <ActivityItem />
+
+        <Tip label='Toggle color mode' placement='right'>
+          <div>
+            <NavItemContents
+              className='DEV'
+              onClick={colorMode.toggleColorMode}
+            >
+              {colorMode.colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            </NavItemContents>
+          </div>
+        </Tip>
+
+        {!AUTH_DISABLED && (
           <ItemLink
             label={
               message('authentication.logOut') +
@@ -210,6 +232,7 @@ export default function Sidebar() {
             <SignOutIcon />
           </ItemLink>
         )}
+
         <ExternalLink
           label={message('nav.help')}
           href='https://docs.conveyal.com'
@@ -218,6 +241,97 @@ export default function Sidebar() {
         </ExternalLink>
       </div>
     </Flex>
+  )
+}
+
+function getActivityColor(tasks: CL.Task[]): string {
+  if (tasks.length === 0) return 'gray'
+  if (tasks.find((p) => p.state === 'ERROR')) return 'red'
+  if (tasks.find((p) => p.state === 'ACTIVE')) return 'green'
+  return 'blue'
+}
+
+function ActivityItem() {
+  const {tasks} = useActivity()
+  const {isOpen, onClose, onOpen} = useDisclosure()
+  const activityColor = getActivityColor(tasks)
+  const [previousTasksLength, setPreviousTasksLength] = useState(tasks.length)
+
+  // If there is a brand new task, open the popover.
+  useEffect(() => {
+    if (tasks.length !== previousTasksLength) {
+      setPreviousTasksLength(tasks.length)
+      if (!isOpen && tasks.length > previousTasksLength) {
+        onOpen()
+      }
+    }
+  }, [tasks, previousTasksLength, isOpen, onOpen])
+
+  if (tasks.length === 0) {
+    return (
+      <Tip label='No current activity' placement='right'>
+        <div>
+          <NavItemContents color='gray.500' _hover={{color: 'gray.600'}}>
+            <ActivityIcon />
+          </NavItemContents>
+        </div>
+      </Tip>
+    )
+  }
+
+  if (!isOpen) {
+    return (
+      <Tip label='View activity' placement='right'>
+        <div>
+          <NavItemContents
+            color={`${activityColor}.500`}
+            _hover={{color: `${activityColor}.600`}}
+            onClick={onOpen}
+          >
+            <ActivityIcon />
+          </NavItemContents>
+        </div>
+      </Tip>
+    )
+  }
+
+  return (
+    <Popover
+      closeDelay={750}
+      isLazy
+      isOpen={isOpen}
+      onClose={onClose}
+      onOpen={onOpen}
+      placement='right'
+    >
+      <PopoverTrigger>
+        {isOpen && (
+          <div>
+            <NavItemContents
+              color={`${activityColor}.500`}
+              _hover={{
+                color: `${activityColor}.600`
+              }}
+              onClick={onClose}
+            >
+              <ActivityIcon />
+            </NavItemContents>
+          </div>
+        )}
+      </PopoverTrigger>
+      <PopoverContent mb={3} width='600px'>
+        <PopoverHeader fontWeight='bold'>
+          <>Activity</>
+          <Badge fontSize='0.8em' ml={2}>
+            {tasks.length}
+          </Badge>
+        </PopoverHeader>
+        <PopoverCloseButton />
+        <PopoverBody p={0}>
+          <TaskList limit={3} />
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
   )
 }
 

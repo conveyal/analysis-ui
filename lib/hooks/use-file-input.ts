@@ -12,10 +12,9 @@ import {
   SERVER_MAX_FILE_SIZE_BYTES
 } from 'lib/constants'
 
-const toMB = (bytes: number) => bytes / 1024 / 1024
+const toMB = (bytes: number) => bytes / 1_000 / 1_000
 
-const singleAlert = (b: number) =>
-  `Each file has a maximum limit of ${toMB(b)}MB.`
+const singleAlert = (b: number) => `Each file is limited to ${toMB(b)}MB.`
 const totalAlert = (b: number) =>
   `Total size of all files must be less than ${toMB(b)}MB.`
 
@@ -30,11 +29,11 @@ function getFileSizesAlert(
     return singleAlert(fileMaxBytes)
 }
 
-type FileInput = {
-  files: File[] | null
+interface FileInput {
+  files: File[] | ''
   fileSizes: number[]
   onChangeFiles: (e: ChangeEvent<HTMLInputElement>) => void
-  setFiles: Dispatch<SetStateAction<File[]>>
+  setFiles: Dispatch<SetStateAction<File[] | ''>>
   totalSize: number
   value: string | string[]
 }
@@ -46,7 +45,7 @@ export default function useFileInput(
   }
 ): FileInput {
   const toast = useToast()
-  const [files, setFiles] = useState<File[] | null>(null)
+  const [files, setFiles] = useState<File[] | ''>('')
   const [fileSizes, setFileSizes] = useState<number[]>([])
   const [totalSize, setTotalSize] = useState(0)
   const [value, setValue] = useState<string | string[]>('')
@@ -64,12 +63,12 @@ export default function useFileInput(
       )
       if (typeof alertText === 'string') {
         e.preventDefault()
-        setFiles(null)
+        setFiles('')
         setFileSizes([])
         setTotalSize(0)
         setValue('')
         toast({
-          title: 'Invalid File Selected',
+          title: 'Selected file too large',
           description: alertText,
           position: 'top',
           isClosable: true,

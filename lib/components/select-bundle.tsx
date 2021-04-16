@@ -7,8 +7,7 @@ import message from 'lib/message'
 
 import Select from './select'
 
-const getOptionLabel = (b: CL.Bundle) =>
-  `${b.name}${b.status === 'DONE' ? '' : `: ${b.status}`}`
+const getOptionLabel = (b: CL.Bundle) => b.name
 
 export default function SelectBundle({
   bundles,
@@ -18,7 +17,7 @@ export default function SelectBundle({
   query: Record<string, string>
 }) {
   const [bundleId, setBundleId] = useState(query.bundleId)
-  const goToBundleEdit = useRouteTo('bundleEdit', {regionId: query.regionId})
+  const goToBundleEdit = useRouteTo('bundle', {regionId: query.regionId})
 
   function selectBundle(result: CL.Bundle) {
     setBundleId(result._id)

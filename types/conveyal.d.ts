@@ -157,8 +157,6 @@ declare namespace CL {
     feeds: FeedSummary[]
     osmId: string
     regionId: string
-    status: string
-    statusText: string
   }
 
   export interface Project extends IModel {
@@ -217,6 +215,42 @@ declare namespace CL {
     branch: string
     commit: string
     version: string
+  }
+
+  export type TaskState = 'ACTIVE' | 'ERROR' | 'DONE'
+
+  export type TaskLogEntry = {
+    level: string
+    time: number
+    message: string
+  }
+
+  export type TaskWorkProduct = {
+    id: string
+    regionId: string
+    type: 'BUNDLE' | 'REGIONAL_ANALYSIS'
+  }
+
+  export type Task = {
+    completionTime?: number
+    detail: string
+    id: string
+    percentComplete: number
+    startTime?: number
+    state: TaskState
+    secondsActive: number
+    secondsComplete: number
+    title: string
+    workProduct?: TaskWorkProduct
+  }
+
+  /**
+   * Server Activity
+   */
+  export type Activity = {
+    systemStatusMessages: unknown[]
+    taskBacklog: number
+    taskProgress: Task[]
   }
 
   /**

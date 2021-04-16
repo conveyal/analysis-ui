@@ -21,8 +21,7 @@ import ConfirmButton from './confirm-button'
 import {DeleteIcon} from './icons'
 import Select from './select'
 
-const getOptionLabel = (b) =>
-  `${b.name}${b.status === 'DONE' ? '' : `: ${b.status}`}`
+const getOptionLabel = (b) => b.name
 
 const hasContent = (s) => s.length > 0
 
@@ -59,7 +58,7 @@ export default function EditBundle(p) {
 
   const regionId = router.query.regionId as string
   const goToBundles = useRouteTo('bundles', {regionId})
-  const goToBundleEdit = useRouteTo('bundleEdit', {regionId})
+  const goToBundleEdit = useRouteTo('bundle', {regionId})
   const [bundleId, setBundleId] = useState(router.query.bundleId)
   const originalBundle = bundles.find((b) => b._id === bundleId)
   const [bundle, setBundle] = useState(originalBundle)

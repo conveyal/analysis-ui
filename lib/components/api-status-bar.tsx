@@ -1,7 +1,7 @@
 import {AlertIcon, AlertTitle, Box} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
 
-import useStatus from 'lib/hooks/use-status'
+import useActivity from 'lib/hooks/use-activity'
 import useIsOnline from 'lib/hooks/use-is-online'
 
 import BannerAlert from './banner-alert'
@@ -38,7 +38,8 @@ const NotOnline = () => (
 export default function APIStatusBar() {
   const [showIsValidating, setShowIsValidating] = useState(false)
   const isOnline = useIsOnline()
-  const {error, isValidating} = useStatus()
+  const {response} = useActivity()
+  const {error, isValidating} = response
 
   useEffect(() => {
     if (!isValidating) return
@@ -52,6 +53,6 @@ export default function APIStatusBar() {
   if (isOnline) {
     if (error) return <NoAPI />
     if (isValidating && showIsValidating) return <IsValidating />
-  } else if (error || isValidating) return <NotOnline />
+  } else if (error || showIsValidating) return <NotOnline />
   return null
 }
