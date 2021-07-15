@@ -12,7 +12,7 @@ export default function AdminWorkerList(p) {
     <Flex justify='center' wrap='wrap' mt='5'>
       {p.workers.map((w) => (
         <Box key={w.workerId} mr='2' mb='2'>
-          <Worker {...w} />
+          <Worker worker={w} />
         </Box>
       ))}
     </Flex>
