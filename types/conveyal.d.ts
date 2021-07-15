@@ -236,6 +236,7 @@ declare global {
     export interface RegionalJob {
       activeWorkers: number
       complete: number
+      graphId: string
       jobId: string
       regionalAnalysis: RegionalAnalysis
       statusText?: string

@@ -32,8 +32,14 @@ const fetcher = (url, user) =>
   }).then((res) => res.json())
 
 export default withAuth(function AdminDashboard({user}) {
-  const jobRequest = useSWR([API.Jobs, user], fetcher, {refreshInterval})
-  const workerRequest = useSWR([API.Workers, user], fetcher, {refreshInterval})
+  const jobRequest = useSWR<CL.RegionalJob[]>([API.Jobs, user], fetcher, {
+    refreshInterval
+  })
+  const workerRequest = useSWR<CL.RegionalWorker[]>(
+    [API.Workers, user],
+    fetcher,
+    {refreshInterval}
+  )
 
   const jobs = (jobRequest.data || []).filter((j) => j.graphId !== 'SUM')
   const workers = workerRequest.data || []

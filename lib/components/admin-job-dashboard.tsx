@@ -58,20 +58,6 @@ const timeRemainingInWords = (createdAt: number, job: CL.RegionalJob) => {
   }
 }
 
-/**
- * Example commit string: "v3.4.0-118-gbe7199c". Take the last section after
- * splitting on the hyphens and remove the "g".
- */
-const githubUrl = 'https://github.com/conveyal/r5/commits'
-function createR5Url(workerCommit: string) {
-  // not a release version
-  if (workerCommit.indexOf('-') !== -1) {
-    const hash = workerCommit.split('-')[2].slice(1) //
-    return `${githubUrl}/${hash}`
-  }
-  return `${githubUrl}/${workerCommit}`
-}
-
 export default function JobDashboard(p: {
   jobs: CL.RegionalJob[]
   workers: CL.RegionalWorker[]
@@ -177,7 +163,7 @@ function Job({
             >
               Project
             </Link>
-            <ExternalLink href={createR5Url(regionalAnalysis.workerVersion)}>
+            <ExternalLink href='https://github.com/conveyal/r5'>
               R5 {regionalAnalysis.workerVersion}
             </ExternalLink>
           </Stack>
