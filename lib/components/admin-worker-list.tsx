@@ -1,9 +1,8 @@
 import {Box, Flex} from '@chakra-ui/react'
-import React from 'react'
 
 import Worker from './admin-worker'
 
-export default function AdminWorkerList(p) {
+export default function AdminWorkerList(p: {workers: CL.RegionalWorker[]}) {
   return p.workers.length === 0 ? (
     <Box textAlign='center' mt='5'>
       <em>no active workers</em>
