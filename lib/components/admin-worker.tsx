@@ -19,7 +19,7 @@ function createWorkerUrl(instanceId, region) {
 }
 
 export default function Worker({worker}: {worker: CL.RegionalWorker}) {
-  const bundle = worker.bundles[0]
+  const bundle = Array.isArray(worker.bundles) ? worker.bundles[0] : null
   return (
     <Popover trigger='hover'>
       <PopoverTrigger>
