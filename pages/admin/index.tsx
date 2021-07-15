@@ -18,31 +18,44 @@ import JobDashboard from 'lib/components/admin-job-dashboard'
 import TextLink from 'lib/components/text-link'
 import WorkerList from 'lib/components/admin-worker-list'
 import withAuth from 'lib/with-auth'
+import useUser from 'lib/hooks/use-user'
 
 // Refresh every five seconds
 const refreshInterval = 5000
 
 // Fetcher
-const fetcher = (url, user) =>
+const fetcher = (url: string, user: CL.User) =>
   fetch(url, {
     headers: {
-      Authorization: `bearer ${user.idToken}`,
-      'X-Conveyal-Access-Group': user.adminTempAccessGroup
+      Authorization: `bearer ${user.idToken}`
     }
   }).then((res) => res.json())
 
-export default withAuth(function AdminDashboard({user}) {
+const EMPTY_ARRAY = []
+
+function useRegionalJobs() {
+  const {user} = useUser()
   const jobRequest = useSWR<CL.RegionalJob[]>([API.Jobs, user], fetcher, {
     refreshInterval
   })
-  const workerRequest = useSWR<CL.RegionalWorker[]>(
+  return Array.isArray(jobRequest.data)
+    ? jobRequest.data.filter((j) => j.graphId !== 'SUM')
+    : EMPTY_ARRAY
+}
+
+function useRegionalWorkers() {
+  const {user} = useUser()
+  const workersRequest = useSWR<CL.RegionalWorker[]>(
     [API.Workers, user],
     fetcher,
     {refreshInterval}
   )
+  return workersRequest.data ?? EMPTY_ARRAY
+}
 
-  const jobs = (jobRequest.data || []).filter((j) => j.graphId !== 'SUM')
-  const workers = workerRequest.data || []
+export default withAuth(function AdminDashboard() {
+  const jobs = useRegionalJobs()
+  const workers = useRegionalWorkers()
 
   return (
     <Flex p={16}>
