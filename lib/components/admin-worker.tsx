@@ -30,7 +30,7 @@ export default function Worker({worker}: {worker: CL.RegionalWorker}) {
           </Tag>
         </Box>
       </PopoverTrigger>
-      <PopoverContent maxWidth='500px' zIndex={4}>
+      <PopoverContent width='2xl' zIndex={4}>
         <PopoverArrow />
         <PopoverHeader>
           <ExternalLink
